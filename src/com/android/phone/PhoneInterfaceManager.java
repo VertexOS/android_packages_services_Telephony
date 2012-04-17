@@ -3640,4 +3640,8 @@ public void toggleLTE(boolean on) {
         }
         return result;
     }
+
+    public int getLteOnGsmMode() {
+        return mPhone.getLteOnGsmMode();
+    }
 }
