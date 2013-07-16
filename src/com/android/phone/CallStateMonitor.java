@@ -92,6 +92,9 @@ class CallStateMonitor extends Handler {
 
     public void addListener(Handler handler) {
         if (handler != null && !registeredHandlers.contains(handler)) {
+            if (DBG) {
+                Log.d(LOG_TAG, "Adding Handler: " + handler);
+            }
             registeredHandlers.add(handler);
         }
     }
