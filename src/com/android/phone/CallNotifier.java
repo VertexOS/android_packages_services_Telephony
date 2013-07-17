@@ -50,7 +50,6 @@ import android.provider.Settings;
 import android.telephony.PhoneNumberUtils;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
-import android.text.TextUtils;
 import android.util.EventLog;
 import android.util.Log;
 

@@ -31,8 +31,6 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewConfiguration;
-import android.view.View.OnHoverListener;
 import android.view.accessibility.AccessibilityManager;
 import android.view.ViewStub;
 import android.widget.EditText;
@@ -40,7 +38,6 @@ import android.widget.EditText;
 import com.android.internal.telephony.CallManager;
 import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneConstants;
-import com.android.internal.telephony.TelephonyCapabilities;
 
 import java.util.HashMap;
 import java.util.LinkedList;

@@ -1107,7 +1107,8 @@ public class NotificationMgr implements CallerInfoAsyncQuery.OnQueryCompleteList
 
         Notification notification = builder.getNotification();
         if (DBG) log("Notifying IN_CALL_NOTIFICATION: " + notification);
-        mNotificationManager.notify(IN_CALL_NOTIFICATION, notification);
+        // TODO(klp): not needed anymore.  Possibly delete this and move notification to incallui.
+        //mNotificationManager.notify(IN_CALL_NOTIFICATION, notification);
 
         // Finally, refresh the mute and speakerphone notifications (since
         // some phone state changes can indirectly affect the mute and/or

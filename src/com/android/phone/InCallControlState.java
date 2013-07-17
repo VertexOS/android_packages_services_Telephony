@@ -21,7 +21,6 @@ import android.util.Log;
 
 import com.android.internal.telephony.Call;
 import com.android.internal.telephony.Connection;
-import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.CallManager;
 import com.android.internal.telephony.PhoneConstants;
 import com.android.internal.telephony.TelephonyCapabilities;

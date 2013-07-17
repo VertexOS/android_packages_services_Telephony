@@ -36,7 +36,6 @@ import android.os.Handler;
 import android.os.Message;
 import android.os.RemoteException;
 import android.os.SystemProperties;
-import android.provider.Settings;
 import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
 import android.util.Log;

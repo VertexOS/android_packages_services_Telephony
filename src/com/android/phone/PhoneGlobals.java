@@ -762,7 +762,8 @@ public class PhoneGlobals extends ContextWrapper
     }
 
     private static String getCallScreenClassName() {
-        return InCallScreen.class.getName();
+        //InCallScreen.class.getName();
+        return "blah";
     }
 
     /**
@@ -781,7 +782,7 @@ public class PhoneGlobals extends ContextWrapper
         }
 
         try {
-            startActivity(createInCallIntent());
+            //startActivity(createInCallIntent());
         } catch (ActivityNotFoundException e) {
             // It's possible that the in-call UI might not exist (like on
             // non-voice-capable devices), so don't crash if someone

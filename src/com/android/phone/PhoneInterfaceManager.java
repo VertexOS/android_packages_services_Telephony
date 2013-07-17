@@ -311,7 +311,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
                 intent = PhoneGlobals.createInCallIntent();
             }
             try {
-                mApp.startActivity(intent);
+                //mApp.startActivity(intent);
             } catch (ActivityNotFoundException e) {
                 // It's possible that the in-call UI might not exist
                 // (like on non-voice-capable devices), although we
