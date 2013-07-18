@@ -16,28 +16,27 @@
 
 package com.android.services.telephony.common;
 
-import com.android.services.telephony.common.ICallCommandService;
-
 /**
- * Service implemented by clients that would like to control and know the status
- * of phone calls on the device.
- * TODO: Rename interface.  This not only monitors but controls calls, too. Come
- *       up with a name that doesn't conflict with current CallManager and
- *       CallController classes.
+ * Service implemented by TelephonyService and used by In-call UI to control
+ * phone calls on the device.
  * TODO: Move this out of opt/telephony and into opt/call or similar. This interface
  *       makes sense even without the telephony layer (think VOIP).
  */
-oneway interface ICallMonitorService {
+oneway interface ICallCommandService {
 
     /**
-     * Hands a command interface to the CallMonitorService through which
-     * the call monitor can control the phone calls.
+     * Answer a ringing call.
      */
-    void setCallCommandService(ICallCommandService callCommandService);
+    void answerCall(int callId);
 
     /**
-     * Called when a new incoming call comes in.
+     * Reject a ringing call.
      */
-    void onIncomingCall(int callId);
+    void rejectCall(int callId);
+
+    /**
+     * Disconnect an active call.
+     */
+    void disconnectCall(int callId);
 
 }

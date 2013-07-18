@@ -173,6 +173,7 @@ public class PhoneGlobals extends ContextWrapper
     CallManager mCM;
     CallStateMonitor callStateMonitor;
     CallMonitorServiceProxy callMonitorServiceProxy;
+    CallCommandService callCommandService;
     int mBluetoothHeadsetState = BluetoothProfile.STATE_DISCONNECTED;
     int mBluetoothHeadsetAudioState = BluetoothHeadset.STATE_AUDIO_DISCONNECTED;
     boolean mShowBluetoothIndication = false;
@@ -537,8 +538,12 @@ public class PhoneGlobals extends ContextWrapper
             // Monitors call activity from the telephony layer
             callStateMonitor = new CallStateMonitor(mCM);
 
+            // Service used by in-call UI to control calls
+            callCommandService = new CallCommandService(mCM);
+
             // Sends call state to the UI
-            callMonitorServiceProxy = new CallMonitorServiceProxy(this, callStateMonitor);
+            callMonitorServiceProxy = new CallMonitorServiceProxy(this, callStateMonitor,
+                    callCommandService);
 
             // Create the CallNotifer singleton, which handles
             // asynchronous events from the telephony layer (like
