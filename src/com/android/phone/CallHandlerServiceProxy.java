@@ -28,15 +28,15 @@ import android.os.RemoteException;
 import android.os.SystemProperties;
 import android.util.Log;
 
-import com.android.services.telephony.common.ICallMonitorService;
+import com.android.services.telephony.common.ICallHandlerService;
 import com.android.services.telephony.common.ICallCommandService;
 
 /**
- * This class is responsible for passing through call state changes to the CallMonitorService.
+ * This class is responsible for passing through call state changes to the CallHandlerService.
  */
-public class CallMonitorServiceProxy extends Handler {
+public class CallHandlerServiceProxy extends Handler {
 
-    private static final String TAG = CallMonitorServiceProxy.class.getSimpleName();
+    private static final String TAG = CallHandlerServiceProxy.class.getSimpleName();
     private static final boolean DBG =
             (PhoneGlobals.DBG_LEVEL >= 1) && (SystemProperties.getInt("ro.debuggable", 0) == 1);
     private static final boolean VDBG = (PhoneGlobals.DBG_LEVEL >= 2);
@@ -44,10 +44,10 @@ public class CallMonitorServiceProxy extends Handler {
     private Context mContext;
     private CallStateMonitor mCallStateMonitor;
     private ServiceConnection mConnection;
-    private ICallMonitorService mCallMonitorService;
+    private ICallHandlerService mCallHandlerService;
     private CallCommandService mCallCommandService;
 
-    public CallMonitorServiceProxy(Context context, CallStateMonitor callStateMonitor,
+    public CallHandlerServiceProxy(Context context, CallStateMonitor callStateMonitor,
             CallCommandService callCommandService) {
         mContext = context;
         mCallStateMonitor = callStateMonitor;
@@ -71,7 +71,7 @@ public class CallMonitorServiceProxy extends Handler {
     }
 
     /**
-     * Sets up the connection with ICallMonitorService
+     * Sets up the connection with ICallHandlerService
      */
     private void setupServiceConnection() {
         mConnection = new ServiceConnection() {
@@ -80,31 +80,31 @@ public class CallMonitorServiceProxy extends Handler {
                 if (DBG) {
                     Log.d(TAG, "Service Connected");
                 }
-                onCallMonitorServiceConnected(ICallMonitorService.Stub.asInterface(service));
+                onCallHandlerServiceConnected(ICallHandlerService.Stub.asInterface(service));
             }
 
             @Override
             public void onServiceDisconnected(ComponentName className) {
-                mCallMonitorService = null;
+                mCallHandlerService = null;
             }
         };
 
-        Intent serviceIntent = new Intent(ICallMonitorService.class.getName());
+        Intent serviceIntent = new Intent(ICallHandlerService.class.getName());
         if (!mContext.bindService(serviceIntent, mConnection, Context.BIND_AUTO_CREATE)) {
-            Log.e(TAG, "Cound not bind to ICallMonitorService");
+            Log.e(TAG, "Cound not bind to ICallHandlerService");
         }
     }
 
     /**
      * Called when the in-call UI service is connected.  Send command interface to in-call.
      */
-    private void onCallMonitorServiceConnected(ICallMonitorService callMonitorService) {
-        mCallMonitorService = callMonitorService;
+    private void onCallHandlerServiceConnected(ICallHandlerService CallHandlerService) {
+        mCallHandlerService = CallHandlerService;
 
         try {
-            mCallMonitorService.setCallCommandService(mCallCommandService);
+            mCallHandlerService.setCallCommandService(mCallCommandService);
         } catch (RemoteException e) {
-            Log.e(TAG, "Remote exception calling CallMonitorService::onConnected. " + e);
+            Log.e(TAG, "Remote exception calling CallHandlerService::onConnected. " + e);
         }
     }
 
@@ -112,9 +112,9 @@ public class CallMonitorServiceProxy extends Handler {
      * Send notification of a new incoming call.
      */
     private void onNewRingingConnection(AsyncResult result) {
-        if (mCallMonitorService != null) {
+        if (mCallHandlerService != null) {
             try {
-                mCallMonitorService.onIncomingCall(0);
+                mCallHandlerService.onIncomingCall(0);
             } catch (RemoteException e) {
                 Log.e(TAG, "Remote exception handling onIncomingCall:" + e);
             }

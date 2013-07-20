@@ -27,7 +27,7 @@ import com.android.services.telephony.common.ICallCommandService;
  * TODO: Move this out of opt/telephony and into opt/call or similar. This interface
  *       makes sense even without the telephony layer (think VOIP).
  */
-oneway interface ICallMonitorService {
+oneway interface ICallHandlerService {
 
     /**
      * Hands a command interface to the CallMonitorService through which
