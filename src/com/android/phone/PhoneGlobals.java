@@ -539,7 +539,7 @@ public class PhoneGlobals extends ContextWrapper
             callStateMonitor = new CallStateMonitor(mCM);
 
             // Service used by in-call UI to control calls
-            callCommandService = new CallCommandService(mCM);
+            callCommandService = new CallCommandService(this, mCM);
 
             // Sends call state to the UI
             CallHandlerServiceProxy = new CallHandlerServiceProxy(this, callStateMonitor,

@@ -39,4 +39,14 @@ oneway interface ICallCommandService {
      */
     void disconnectCall(int callId);
 
+    /**
+     * Mute the phone.
+     */
+    void mute(boolean onOff);
+
+    /**
+     * Turn on or off speaker.
+     */
+    void speaker(boolean onOff);
+
 }

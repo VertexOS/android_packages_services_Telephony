@@ -39,7 +39,7 @@ public class CallHandlerServiceProxy extends Handler {
     private static final String TAG = CallHandlerServiceProxy.class.getSimpleName();
     private static final boolean DBG =
             (PhoneGlobals.DBG_LEVEL >= 1) && (SystemProperties.getInt("ro.debuggable", 0) == 1);
-    private static final boolean VDBG = (PhoneGlobals.DBG_LEVEL >= 2);
+
 
     private Context mContext;
     private CallStateMonitor mCallStateMonitor;
@@ -85,6 +85,11 @@ public class CallHandlerServiceProxy extends Handler {
 
             @Override
             public void onServiceDisconnected(ComponentName className) {
+                // TODO(klp): handle the case where the in call ui crashed or gets destroyed.
+                // In the near term, we need to re-bind to the service when ever it's gone.
+                // Longer term, we need a way to catch the crash and allow the users to choose
+                // a different in-call screen.
+                Log.e(TAG, "Yikes! no in call ui!");
                 mCallHandlerService = null;
             }
         };
@@ -118,6 +123,8 @@ public class CallHandlerServiceProxy extends Handler {
             } catch (RemoteException e) {
                 Log.e(TAG, "Remote exception handling onIncomingCall:" + e);
             }
+        } else {
+            Log.wtf(TAG, "Call handle service has not connected!  Cannot accept incoming call.");
         }
     }
 }
