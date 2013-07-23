@@ -34,7 +34,7 @@ import com.android.services.telephony.common.ICallCommandService;
 /**
  * This class is responsible for passing through call state changes to the CallHandlerService.
  */
-public class CallHandlerServiceProxy extends Handler {
+public class CallHandlerServiceProxy extends Handler implements CallModeler.Listener {
 
     private static final String TAG = CallHandlerServiceProxy.class.getSimpleName();
     private static final boolean DBG =
@@ -42,31 +42,42 @@ public class CallHandlerServiceProxy extends Handler {
 
 
     private Context mContext;
-    private CallStateMonitor mCallStateMonitor;
+    private CallModeler mCallModeler;
     private ServiceConnection mConnection;
     private ICallHandlerService mCallHandlerService;
     private CallCommandService mCallCommandService;
 
-    public CallHandlerServiceProxy(Context context, CallStateMonitor callStateMonitor,
+    public CallHandlerServiceProxy(Context context, CallModeler callModeler,
             CallCommandService callCommandService) {
         mContext = context;
-        mCallStateMonitor = callStateMonitor;
         mCallCommandService = callCommandService;
+        mCallModeler = callModeler;
 
-        mCallStateMonitor.addListener(this);
+        mCallModeler.addListener(this);
         setupServiceConnection();
     }
 
     @Override
-    public void handleMessage(Message msg) {
-        switch (msg.what) {
-            case CallStateMonitor.PHONE_NEW_RINGING_CONNECTION:
-                onNewRingingConnection((AsyncResult) msg.obj);
-                break;
+    public void onNewCall(int callId) {
+        if (mCallHandlerService != null) {
+            try {
+                mCallHandlerService.onIncomingCall(callId);
+            } catch (RemoteException e) {
+                Log.e(TAG, "Remote exception handling onIncomingCall", e);
+            }
+        } else {
+            Log.wtf(TAG, "Call handle service has not connected!  Cannot accept incoming call.");
+        }
+    }
 
-            default:
-                //super.handleMessage(msg);
-                break;
+    @Override
+    public void onDisconnect(int callId) {
+        if (mCallHandlerService != null) {
+            try {
+                mCallHandlerService.onDisconnect(callId);
+            } catch (RemoteException e) {
+                Log.e(TAG, "Remote exception handling onDisconnect ", e);
+            }
         }
     }
 
@@ -103,28 +114,13 @@ public class CallHandlerServiceProxy extends Handler {
     /**
      * Called when the in-call UI service is connected.  Send command interface to in-call.
      */
-    private void onCallHandlerServiceConnected(ICallHandlerService CallHandlerService) {
-        mCallHandlerService = CallHandlerService;
+    private void onCallHandlerServiceConnected(ICallHandlerService callHandlerService) {
+        mCallHandlerService = callHandlerService;
 
         try {
             mCallHandlerService.setCallCommandService(mCallCommandService);
         } catch (RemoteException e) {
-            Log.e(TAG, "Remote exception calling CallHandlerService::onConnected. " + e);
-        }
-    }
-
-    /**
-     * Send notification of a new incoming call.
-     */
-    private void onNewRingingConnection(AsyncResult result) {
-        if (mCallHandlerService != null) {
-            try {
-                mCallHandlerService.onIncomingCall(0);
-            } catch (RemoteException e) {
-                Log.e(TAG, "Remote exception handling onIncomingCall:" + e);
-            }
-        } else {
-            Log.wtf(TAG, "Call handle service has not connected!  Cannot accept incoming call.");
+            Log.e(TAG, "Remote exception calling CallHandlerService::setCallCommandService", e);
         }
     }
 }

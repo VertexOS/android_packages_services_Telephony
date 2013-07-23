@@ -161,22 +161,26 @@ public class PhoneGlobals extends ContextWrapper
 
     // A few important fields we expose to the rest of the package
     // directly (rather than thru set/get methods) for efficiency.
-    Phone phone;
     CallController callController;
-    InCallUiState inCallUiState;
-    CallerInfoCache callerInfoCache;
-    CallNotifier notifier;
-    NotificationMgr notificationMgr;
-    Ringer ringer;
-    IBluetoothHeadsetPhone mBluetoothPhone;
-    PhoneInterfaceManager phoneMgr;
     CallManager mCM;
-    CallStateMonitor callStateMonitor;
-    CallHandlerServiceProxy CallHandlerServiceProxy;
-    CallCommandService callCommandService;
-    int mBluetoothHeadsetState = BluetoothProfile.STATE_DISCONNECTED;
-    int mBluetoothHeadsetAudioState = BluetoothHeadset.STATE_AUDIO_DISCONNECTED;
-    boolean mShowBluetoothIndication = false;
+    CallNotifier notifier;
+    CallerInfoCache callerInfoCache;
+    InCallUiState inCallUiState;
+    NotificationMgr notificationMgr;
+    Phone phone;
+    PhoneInterfaceManager phoneMgr;
+
+    private CallCommandService callCommandService;
+    private CallHandlerServiceProxy callHandlerServiceProxy;
+    private CallModeler callModeler;
+    private CallStateMonitor callStateMonitor;
+    private IBluetoothHeadsetPhone mBluetoothPhone;
+    private Ringer ringer;
+
+    private int mBluetoothHeadsetState = BluetoothProfile.STATE_DISCONNECTED;
+    private int mBluetoothHeadsetAudioState = BluetoothHeadset.STATE_AUDIO_DISCONNECTED;
+    private boolean mShowBluetoothIndication = false;
+
     static int mDockState = Intent.EXTRA_DOCK_STATE_UNDOCKED;
     static boolean sVoiceCapable = true;
 
@@ -541,8 +545,11 @@ public class PhoneGlobals extends ContextWrapper
             // Service used by in-call UI to control calls
             callCommandService = new CallCommandService(this, mCM);
 
+            // Creates call models for use with CallHandlerService.
+            callModeler = new CallModeler(callStateMonitor);
+
             // Sends call state to the UI
-            CallHandlerServiceProxy = new CallHandlerServiceProxy(this, callStateMonitor,
+            callHandlerServiceProxy = new CallHandlerServiceProxy(this, callModeler,
                     callCommandService);
 
             // Create the CallNotifer singleton, which handles

@@ -40,4 +40,9 @@ oneway interface ICallHandlerService {
      */
     void onIncomingCall(int callId);
 
+    /**
+     * Called when a call disconnects.
+     */
+    void onDisconnect(int callId);
+
 }
