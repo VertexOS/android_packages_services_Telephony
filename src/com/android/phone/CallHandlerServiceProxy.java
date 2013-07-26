@@ -28,6 +28,7 @@ import android.os.RemoteException;
 import android.os.SystemProperties;
 import android.util.Log;
 
+import com.android.services.telephony.common.Call;
 import com.android.services.telephony.common.ICallHandlerService;
 import com.android.services.telephony.common.ICallCommandService;
 
@@ -61,7 +62,7 @@ public class CallHandlerServiceProxy extends Handler implements CallModeler.List
     public void onNewCall(int callId) {
         if (mCallHandlerService != null) {
             try {
-                mCallHandlerService.onIncomingCall(callId);
+                mCallHandlerService.onIncomingCall(new Call(callId));
             } catch (RemoteException e) {
                 Log.e(TAG, "Remote exception handling onIncomingCall", e);
             }
@@ -74,7 +75,7 @@ public class CallHandlerServiceProxy extends Handler implements CallModeler.List
     public void onDisconnect(int callId) {
         if (mCallHandlerService != null) {
             try {
-                mCallHandlerService.onDisconnect(callId);
+                mCallHandlerService.onDisconnect(new Call(callId));
             } catch (RemoteException e) {
                 Log.e(TAG, "Remote exception handling onDisconnect ", e);
             }

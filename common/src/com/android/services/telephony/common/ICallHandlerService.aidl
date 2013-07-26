@@ -16,6 +16,7 @@
 
 package com.android.services.telephony.common;
 
+import com.android.services.telephony.common.Call;
 import com.android.services.telephony.common.ICallCommandService;
 
 /**
@@ -38,11 +39,17 @@ oneway interface ICallHandlerService {
     /**
      * Called when a new incoming call comes in.
      */
-    void onIncomingCall(int callId);
+    void onIncomingCall(in Call call);
+
+    /**
+     * Called when the state of a call changes.
+     * TODO(klp): Should this replace onIncomingCall and onDisconnect?
+     * TODO(klp): Should this take in a Collection of calls to update in bulk.
+     */
+    void onCallUpdate(in Call call);
 
     /**
      * Called when a call disconnects.
      */
-    void onDisconnect(int callId);
-
+    void onDisconnect(in Call call);
 }
