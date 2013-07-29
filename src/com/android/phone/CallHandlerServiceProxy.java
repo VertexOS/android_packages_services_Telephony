@@ -32,6 +32,8 @@ import com.android.services.telephony.common.Call;
 import com.android.services.telephony.common.ICallHandlerService;
 import com.android.services.telephony.common.ICallCommandService;
 
+import java.util.List;
+
 /**
  * This class is responsible for passing through call state changes to the CallHandlerService.
  */
@@ -78,6 +80,17 @@ public class CallHandlerServiceProxy extends Handler implements CallModeler.List
                 mCallHandlerService.onDisconnect(call);
             } catch (RemoteException e) {
                 Log.e(TAG, "Remote exception handling onDisconnect ", e);
+            }
+        }
+    }
+
+    @Override
+    public void onUpdate(List<Call> calls) {
+        if (mCallHandlerService != null) {
+            try {
+                mCallHandlerService.onUpdate(calls);
+            } catch (RemoteException e) {
+                Log.e(TAG, "Remote exception handling onUpdate", e);
             }
         }
     }

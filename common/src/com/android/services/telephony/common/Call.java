@@ -27,9 +27,32 @@ final public class Call implements Parcelable {
 
     public static final int INVALID_CALL_ID = -1;
 
+    /* Defines different states of this call */
+    public static class State {
+        public static final int INVALID = 0;
+
+        // The call is idle.  Nothing active.
+        public static final int IDLE = 1;
+
+        // There is an active call.
+        public static final int ACTIVE = 2;
+
+        // A normal incoming phone call.
+        public static final int INCOMING = 3;
+
+        // An incoming phone call while another call is active.
+        public static final int CALL_WAITING = 4;
+
+        // A Mobile-originating (MO) call. This call is dialing out.
+        public static final int DIALING = 5;
+
+        // An active phone call placed on hold.
+        public static final int ONHOLD = 6;
+    }
+
     private int mCallId = INVALID_CALL_ID;
     private String mNumber = "";
-    // TODO(klp): Add call state type
+    private int mState = State.INVALID;
 
     public Call(int callId) {
         mCallId = callId;
@@ -43,6 +66,14 @@ final public class Call implements Parcelable {
         return mNumber;
     }
 
+    public int getState() {
+        return mState;
+    }
+
+    public void setState(int state) {
+        mState = state;
+    }
+
     /**
      * Parcelable implementation
      */
@@ -51,6 +82,7 @@ final public class Call implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(mCallId);
         dest.writeString(mNumber);
+        dest.writeInt(mState);
     }
 
     @Override
@@ -73,6 +105,7 @@ final public class Call implements Parcelable {
     private Call(Parcel in) {
         mCallId = in.readInt();
         mNumber = in.readString();
+        mState = in.readInt();
     }
 
 }

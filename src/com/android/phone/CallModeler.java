@@ -25,8 +25,11 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 
+import com.android.internal.telephony.CallManager;
 import com.android.internal.telephony.Connection;
+import com.android.internal.telephony.PhoneConstants;
 import com.android.services.telephony.common.Call;
+import com.android.services.telephony.common.Call.State;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -68,12 +71,14 @@ public class CallModeler extends Handler {
     private static final int CALL_ID_START_VALUE = 1;
 
     private CallStateMonitor mCallStateMonitor;
+    private CallManager mCallManager;
     private HashMap<Connection, Call> mCallMap = Maps.newHashMap();
     private List<Listener> mListeners = Lists.newArrayList();
     private AtomicInteger mNextCallId = new AtomicInteger(CALL_ID_START_VALUE);
 
-    public CallModeler(CallStateMonitor callStateMonitor) {
+    public CallModeler(CallStateMonitor callStateMonitor, CallManager callManager) {
         mCallStateMonitor = callStateMonitor;
+        mCallManager = callManager;
 
         mCallStateMonitor.addListener(this);
     }
@@ -104,6 +109,7 @@ public class CallModeler extends Handler {
     private void onNewRingingConnection(AsyncResult r) {
         final Connection conn = (Connection) r.result;
         final Call call = getCallFromConnection(conn, true);
+        call.setState(Call.State.INCOMING);
 
         if (call != null) {
             for (Listener l : mListeners) {
@@ -125,7 +131,63 @@ public class CallModeler extends Handler {
         }
     }
 
+    /**
+     * Called when the phone state changes.
+     * The telephony layer maintains a certain amount of preallocated telephony::Call instances
+     * that change throughout the lifetime of the phone.  When we get an alert that the state
+     * changes, we need to go through the telephony::Calls and determine what changed.
+     */
     private void onPhoneStateChanged(AsyncResult r) {
+        final List<com.android.internal.telephony.Call> telephonyCalls = Lists.newArrayList();
+        telephonyCalls.addAll(mCallManager.getRingingCalls());
+        telephonyCalls.addAll(mCallManager.getForegroundCalls());
+        telephonyCalls.addAll(mCallManager.getBackgroundCalls());
+
+        final List<Call> updatedCalls = Lists.newArrayList();
+
+        // Cycle through all the Connections on all the Calls. Update our Call objects
+        // to reflect any new state and send the updated Call objects to the handler service.
+        for (com.android.internal.telephony.Call telephonyCall : telephonyCalls) {
+            final int state = translateStateFromTelephony(telephonyCall.getState());
+
+            for (Connection connection : telephonyCall.getConnections()) {
+                final Call call = getCallFromConnection(connection, true);
+
+                if (call.getState() != state) {
+                    call.setState(state);
+                    updatedCalls.add(call);
+                }
+            }
+        }
+
+        for (Listener l : mListeners) {
+            l.onUpdate(updatedCalls);
+        }
+    }
+
+    private int translateStateFromTelephony(com.android.internal.telephony.Call.State teleState) {
+        int retval = State.IDLE;
+        switch (teleState) {
+            case ACTIVE:
+                retval = State.ACTIVE;
+                break;
+            case INCOMING:
+                retval = State.INCOMING;
+                break;
+            case DIALING:
+            case ALERTING:
+                retval = State.DIALING;
+                break;
+            case WAITING:
+                retval = State.CALL_WAITING;
+                break;
+            case HOLDING:
+                retval = State.ONHOLD;
+                break;
+            default:
+        }
+
+        return retval;
     }
 
     /**
@@ -168,5 +230,6 @@ public class CallModeler extends Handler {
     public interface Listener {
         void onNewCall(Call call);
         void onDisconnect(Call call);
+        void onUpdate(List<Call> calls);
     }
 }

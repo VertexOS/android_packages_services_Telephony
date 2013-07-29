@@ -46,7 +46,7 @@ oneway interface ICallHandlerService {
      * TODO(klp): Should this replace onIncomingCall and onDisconnect?
      * TODO(klp): Should this take in a Collection of calls to update in bulk.
      */
-    void onCallUpdate(in Call call);
+    void onUpdate(in List<Call> call);
 
     /**
      * Called when a call disconnects.
