@@ -75,6 +75,16 @@ class CallCommandService extends ICallCommandService.Stub {
     }
 
     @Override
+    public void hold(int callId, boolean hold) {
+        try {
+            // TODO(klp): Change to use the callId/hold
+            PhoneUtils.switchHoldingAndActive(mCallManager.getFirstActiveBgCall());
+        } catch (Exception e) {
+            Log.e(TAG, "Error trying to place call on hold.", e);
+        }
+    }
+
+    @Override
     public void mute(boolean onOff) {
         try {
             PhoneUtils.setMute(onOff);

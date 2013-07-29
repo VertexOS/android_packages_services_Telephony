@@ -40,6 +40,11 @@ oneway interface ICallCommandService {
     void disconnectCall(int callId);
 
     /**
+     * Place call on hold.
+     */
+    void hold(int callId, boolean hold);
+
+    /**
      * Mute the phone.
      */
     void mute(boolean onOff);
