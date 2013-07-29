@@ -26,6 +26,7 @@ import android.os.Message;
 import android.util.Log;
 
 import com.android.internal.telephony.Connection;
+import com.android.services.telephony.common.Call;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -65,10 +66,9 @@ public class CallModeler extends Handler {
     private static final String TAG = CallModeler.class.getSimpleName();
 
     private static final int CALL_ID_START_VALUE = 1;
-    private static final int INVALID_CALL_ID = -1;
 
     private CallStateMonitor mCallStateMonitor;
-    private HashMap<Connection, Integer> mCallIdMap = Maps.newHashMap();
+    private HashMap<Connection, Call> mCallMap = Maps.newHashMap();
     private List<Listener> mListeners = Lists.newArrayList();
     private AtomicInteger mNextCallId = new AtomicInteger(CALL_ID_START_VALUE);
 
@@ -86,6 +86,10 @@ public class CallModeler extends Handler {
                 break;
             case CallStateMonitor.PHONE_DISCONNECT:
                 onDisconnect((AsyncResult) msg.obj);
+                break;
+            case CallStateMonitor.PHONE_STATE_CHANGED:
+                onPhoneStateChanged((AsyncResult) msg.obj);
+                break;
             default:
                 break;
         }
@@ -99,38 +103,44 @@ public class CallModeler extends Handler {
 
     private void onNewRingingConnection(AsyncResult r) {
         final Connection conn = (Connection) r.result;
-        final int callId = getCallId(conn, true);
+        final Call call = getCallFromConnection(conn, true);
 
-        for (Listener l : mListeners) {
-            l.onNewCall(callId);
+        if (call != null) {
+            for (Listener l : mListeners) {
+                l.onNewCall(call);
+            }
         }
     }
 
     private void onDisconnect(AsyncResult r) {
         final Connection conn = (Connection) r.result;
-        final int callId = getCallId(conn, false);
+        final Call call = getCallFromConnection(conn, false);
 
-        if (INVALID_CALL_ID != callId) {
-            mCallIdMap.remove(conn);
+        if (call != null) {
+            mCallMap.remove(conn);
 
             for (Listener l : mListeners) {
-                l.onDisconnect(callId);
+                l.onDisconnect(call);
             }
         }
+    }
+
+    private void onPhoneStateChanged(AsyncResult r) {
     }
 
     /**
      * Gets an existing callId for a connection, or creates one
      * if none exists.
      */
-    private int getCallId(Connection conn, boolean createIfMissing) {
-        int callId = INVALID_CALL_ID;
+    private Call getCallFromConnection(Connection conn, boolean createIfMissing) {
+        Call call = null;
 
         // Find the call id or create if missing and requested.
         if (conn != null) {
-            if (mCallIdMap.containsKey(conn)) {
-                callId = mCallIdMap.get(conn).intValue();
+            if (mCallMap.containsKey(conn)) {
+                call = mCallMap.get(conn);
             } else if (createIfMissing) {
+                int callId;
                 int newNextCallId;
                 do {
                     callId = mNextCallId.get();
@@ -143,19 +153,20 @@ public class CallModeler extends Handler {
                     // The call to containsValue() is linear, however, most devices support a
                     // maximum of 7 connections so it's not expensive.
                 } while (!mNextCallId.compareAndSet(callId, newNextCallId) ||
-                        mCallIdMap.containsValue(callId));
+                        mCallMap.containsValue(callId));
 
-                mCallIdMap.put(conn, callId);
+                call = new Call(callId);
+                mCallMap.put(conn, call);
             }
         }
-        return callId;
+        return call;
     }
 
     /**
      * Listener interface for changes to Calls.
      */
     public interface Listener {
-        void onNewCall(int callId);
-        void onDisconnect(int callId);
+        void onNewCall(Call call);
+        void onDisconnect(Call call);
     }
 }

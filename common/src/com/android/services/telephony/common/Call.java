@@ -28,6 +28,7 @@ final public class Call implements Parcelable {
     public static final int INVALID_CALL_ID = -1;
 
     private int mCallId = INVALID_CALL_ID;
+    private String mNumber = "";
     // TODO(klp): Add call state type
 
     public Call(int callId) {
@@ -38,9 +39,18 @@ final public class Call implements Parcelable {
         return mCallId;
     }
 
+    public String getNumber() {
+        return mNumber;
+    }
+
+    /**
+     * Parcelable implementation
+     */
+
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(mCallId);
+        dest.writeString(mNumber);
     }
 
     @Override
@@ -62,6 +72,7 @@ final public class Call implements Parcelable {
 
     private Call(Parcel in) {
         mCallId = in.readInt();
+        mNumber = in.readString();
     }
 
 }

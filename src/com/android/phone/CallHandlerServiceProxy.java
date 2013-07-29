@@ -59,10 +59,10 @@ public class CallHandlerServiceProxy extends Handler implements CallModeler.List
     }
 
     @Override
-    public void onNewCall(int callId) {
+    public void onNewCall(Call call) {
         if (mCallHandlerService != null) {
             try {
-                mCallHandlerService.onIncomingCall(new Call(callId));
+                mCallHandlerService.onIncomingCall(call);
             } catch (RemoteException e) {
                 Log.e(TAG, "Remote exception handling onIncomingCall", e);
             }
@@ -72,10 +72,10 @@ public class CallHandlerServiceProxy extends Handler implements CallModeler.List
     }
 
     @Override
-    public void onDisconnect(int callId) {
+    public void onDisconnect(Call call) {
         if (mCallHandlerService != null) {
             try {
-                mCallHandlerService.onDisconnect(new Call(callId));
+                mCallHandlerService.onDisconnect(call);
             } catch (RemoteException e) {
                 Log.e(TAG, "Remote exception handling onDisconnect ", e);
             }
