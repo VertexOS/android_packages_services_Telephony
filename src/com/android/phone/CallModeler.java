@@ -218,6 +218,7 @@ public class CallModeler extends Handler {
                         mCallMap.containsValue(callId));
 
                 call = new Call(callId);
+                call.setNumber(conn.getAddress());
                 mCallMap.put(conn, call);
             }
         }
