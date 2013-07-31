@@ -66,6 +66,10 @@ final public class Call implements Parcelable {
         return mNumber;
     }
 
+    public void setNumber(String number) {
+        mNumber = number;
+    }
+
     public int getState() {
         return mState;
     }
