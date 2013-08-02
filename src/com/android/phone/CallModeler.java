@@ -70,11 +70,11 @@ public class CallModeler extends Handler {
 
     private static final int CALL_ID_START_VALUE = 1;
 
-    private CallStateMonitor mCallStateMonitor;
-    private CallManager mCallManager;
-    private HashMap<Connection, Call> mCallMap = Maps.newHashMap();
-    private List<Listener> mListeners = Lists.newArrayList();
-    private AtomicInteger mNextCallId = new AtomicInteger(CALL_ID_START_VALUE);
+    private final CallStateMonitor mCallStateMonitor;
+    private final CallManager mCallManager;
+    private final HashMap<Connection, Call> mCallMap = Maps.newHashMap();
+    private final AtomicInteger mNextCallId = new AtomicInteger(CALL_ID_START_VALUE);
+    private Listener mListener;
 
     public CallModeler(CallStateMonitor callStateMonitor, CallManager callManager) {
         mCallStateMonitor = callStateMonitor;
@@ -100,10 +100,20 @@ public class CallModeler extends Handler {
         }
     }
 
-    public void addListener(Listener listener) {
+    public void setListener(Listener listener) {
         Preconditions.checkNotNull(listener);
+        Preconditions.checkState(mListener == null);
 
-        mListeners.add(listener);
+        // only support setting listener once.
+        // We only have one listener anyway and supporting multiple means maintaining state for
+        // each of the listeners so that we can do proper diffs.
+        mListener = listener;
+    }
+
+    public List<Call> getFullList() {
+        final List<Call> retval = Lists.newArrayList();
+        doUpdate(true, retval);
+        return retval;
     }
 
     private void onNewRingingConnection(AsyncResult r) {
@@ -111,39 +121,47 @@ public class CallModeler extends Handler {
         final Call call = getCallFromConnection(conn, true);
         call.setState(Call.State.INCOMING);
 
-        if (call != null) {
-            for (Listener l : mListeners) {
-                l.onNewCall(call);
-            }
+        if (call != null && mListener != null) {
+            mListener.onUpdate(Lists.newArrayList(call), false);
         }
     }
 
     private void onDisconnect(AsyncResult r) {
         final Connection conn = (Connection) r.result;
         final Call call = getCallFromConnection(conn, false);
+        call.setState(Call.State.IDLE);
 
         if (call != null) {
             mCallMap.remove(conn);
 
-            for (Listener l : mListeners) {
-                l.onDisconnect(call);
+            if (mListener != null) {
+                mListener.onDisconnect(call);
             }
         }
     }
 
     /**
      * Called when the phone state changes.
-     * The telephony layer maintains a certain amount of preallocated telephony::Call instances
-     * that change throughout the lifetime of the phone.  When we get an alert that the state
-     * changes, we need to go through the telephony::Calls and determine what changed.
      */
     private void onPhoneStateChanged(AsyncResult r) {
+        final List<Call> updatedCalls = Lists.newArrayList();
+        doUpdate(false, updatedCalls);
+
+        if (mListener != null) {
+            mListener.onUpdate(updatedCalls, false);
+        }
+    }
+
+
+    /**
+     * Go through the Calls from CallManager and return the list of calls that were updated.
+     * Or, the full list if requested.
+     */
+    private void doUpdate(boolean fullUpdate, List<Call> out) {
         final List<com.android.internal.telephony.Call> telephonyCalls = Lists.newArrayList();
         telephonyCalls.addAll(mCallManager.getRingingCalls());
         telephonyCalls.addAll(mCallManager.getForegroundCalls());
         telephonyCalls.addAll(mCallManager.getBackgroundCalls());
-
-        final List<Call> updatedCalls = Lists.newArrayList();
 
         // Cycle through all the Connections on all the Calls. Update our Call objects
         // to reflect any new state and send the updated Call objects to the handler service.
@@ -151,17 +169,16 @@ public class CallModeler extends Handler {
             final int state = translateStateFromTelephony(telephonyCall.getState());
 
             for (Connection connection : telephonyCall.getConnections()) {
+                // new connections return a Call with INVALID state, which does not translate to
+                // a state in the Connection object.  This ensures that staleness check below
+                // fails and we always add the item to the update list if it is new.
                 final Call call = getCallFromConnection(connection, true);
 
-                if (call.getState() != state) {
+                if (fullUpdate || call.getState() != state) {
                     call.setState(state);
-                    updatedCalls.add(call);
+                    out.add(call);
                 }
             }
-        }
-
-        for (Listener l : mListeners) {
-            l.onUpdate(updatedCalls);
         }
     }
 
@@ -229,8 +246,7 @@ public class CallModeler extends Handler {
      * Listener interface for changes to Calls.
      */
     public interface Listener {
-        void onNewCall(Call call);
         void onDisconnect(Call call);
-        void onUpdate(List<Call> calls);
+        void onUpdate(List<Call> calls, boolean fullUpdate);
     }
 }

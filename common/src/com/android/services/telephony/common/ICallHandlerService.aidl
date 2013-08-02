@@ -37,16 +37,9 @@ oneway interface ICallHandlerService {
     void setCallCommandService(ICallCommandService callCommandService);
 
     /**
-     * Called when a new incoming call comes in.
-     */
-    void onIncomingCall(in Call call);
-
-    /**
      * Called when the state of a call changes.
-     * TODO(klp): Should this replace onIncomingCall and onDisconnect?
-     * TODO(klp): Should this take in a Collection of calls to update in bulk.
      */
-    void onUpdate(in List<Call> call);
+    void onUpdate(in List<Call> call, boolean fullUpdate);
 
     /**
      * Called when a call disconnects.

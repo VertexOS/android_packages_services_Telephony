@@ -56,21 +56,11 @@ public class CallHandlerServiceProxy extends Handler implements CallModeler.List
         mCallCommandService = callCommandService;
         mCallModeler = callModeler;
 
-        mCallModeler.addListener(this);
         setupServiceConnection();
-    }
+        mCallModeler.setListener(this);
 
-    @Override
-    public void onNewCall(Call call) {
-        if (mCallHandlerService != null) {
-            try {
-                mCallHandlerService.onIncomingCall(call);
-            } catch (RemoteException e) {
-                Log.e(TAG, "Remote exception handling onIncomingCall", e);
-            }
-        } else {
-            Log.wtf(TAG, "Call handle service has not connected!  Cannot accept incoming call.");
-        }
+        // start the whole process
+        onUpdate(mCallModeler.getFullList(), true);
     }
 
     @Override
@@ -85,10 +75,10 @@ public class CallHandlerServiceProxy extends Handler implements CallModeler.List
     }
 
     @Override
-    public void onUpdate(List<Call> calls) {
+    public void onUpdate(List<Call> calls, boolean fullUpdate) {
         if (mCallHandlerService != null) {
             try {
-                mCallHandlerService.onUpdate(calls);
+                mCallHandlerService.onUpdate(calls, fullUpdate);
             } catch (RemoteException e) {
                 Log.e(TAG, "Remote exception handling onUpdate", e);
             }
