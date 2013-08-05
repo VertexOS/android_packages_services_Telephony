@@ -127,6 +127,19 @@ public class CallModeler extends Handler {
         return null;
     }
 
+    public boolean hasOutstandingActiveCall() {
+        for (Call call : mCallMap.values()) {
+            int state = call.getState();
+            if (Call.State.INVALID != state &&
+                    Call.State.IDLE != state &&
+                    Call.State.INCOMING != state) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     private void onNewRingingConnection(AsyncResult r) {
         final Connection conn = (Connection) r.result;
         final Call call = getCallFromConnection(conn, true);

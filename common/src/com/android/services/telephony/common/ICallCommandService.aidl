@@ -54,4 +54,13 @@ oneway interface ICallCommandService {
      */
     void speaker(boolean onOff);
 
+    /**
+     * Start playing DTMF tone for the specified digit.
+     */
+    void playDtmfTone(char digit);
+
+    /**
+     * Stop playing DTMF tone for the specified digit.
+     */
+    void stopDtmfTone();
 }

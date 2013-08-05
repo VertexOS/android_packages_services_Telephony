@@ -35,11 +35,14 @@ class CallCommandService extends ICallCommandService.Stub {
     private final Context mContext;
     private final CallManager mCallManager;
     private final CallModeler mCallModeler;
+    private final DTMFTonePlayer mDtmfTonePlayer;
 
-    public CallCommandService(Context context, CallManager callManager, CallModeler callModeler) {
+    public CallCommandService(Context context, CallManager callManager, CallModeler callModeler,
+            DTMFTonePlayer dtmfTonePlayer) {
         mContext = context;
         mCallManager = callManager;
         mCallModeler = callModeler;
+        mDtmfTonePlayer = dtmfTonePlayer;
     }
 
     /**
@@ -93,7 +96,7 @@ class CallCommandService extends ICallCommandService.Stub {
             CallResult result = mCallModeler.getCallWithId(callId);
             if (result != null) {
                 int state = result.getCall().getState();
-                if (hold && Call.State.ACTIVE == state ) {
+                if (hold && Call.State.ACTIVE == state) {
                     PhoneUtils.switchHoldingAndActive(mCallManager.getFirstActiveBgCall());
                 } else if (!hold && Call.State.ONHOLD == state) {
                     PhoneUtils.switchHoldingAndActive(result.getConnection().getCall());
@@ -120,6 +123,24 @@ class CallCommandService extends ICallCommandService.Stub {
             PhoneUtils.turnOnSpeaker(mContext, onOff, true);
         } catch (Exception e) {
             Log.e(TAG, "Error during speaker().", e);
+        }
+    }
+
+    @Override
+    public void playDtmfTone(char digit) {
+        try {
+            mDtmfTonePlayer.playDtmfTone(digit);
+        } catch (Exception e) {
+            Log.e(TAG, "Error playing DTMF tone.", e);
+        }
+    }
+
+    @Override
+    public void stopDtmfTone() {
+        try {
+            mDtmfTonePlayer.stopDtmfTone();
+        } catch (Exception e) {
+            Log.e(TAG, "Error stopping DTMF tone.", e);
         }
     }
 }

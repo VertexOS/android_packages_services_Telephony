@@ -174,6 +174,7 @@ public class PhoneGlobals extends ContextWrapper
     private CallHandlerServiceProxy callHandlerServiceProxy;
     private CallModeler callModeler;
     private CallStateMonitor callStateMonitor;
+    private DTMFTonePlayer dtmfTonePlayer;
     private IBluetoothHeadsetPhone mBluetoothPhone;
     private Ringer ringer;
 
@@ -545,8 +546,11 @@ public class PhoneGlobals extends ContextWrapper
             // Creates call models for use with CallHandlerService.
             callModeler = new CallModeler(callStateMonitor, mCM);
 
+            // Plays DTMF Tones
+            dtmfTonePlayer = new DTMFTonePlayer(mCM, callModeler);
+
             // Service used by in-call UI to control calls
-            callCommandService = new CallCommandService(this, mCM, callModeler);
+            callCommandService = new CallCommandService(this, mCM, callModeler, dtmfTonePlayer);
 
             // Sends call state to the UI
             callHandlerServiceProxy = new CallHandlerServiceProxy(this, callModeler,
