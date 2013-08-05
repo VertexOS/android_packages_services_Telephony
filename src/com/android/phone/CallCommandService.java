@@ -20,6 +20,8 @@ import android.content.Context;
 import android.util.Log;
 
 import com.android.internal.telephony.CallManager;
+import com.android.phone.CallModeler.CallResult;
+import com.android.services.telephony.common.Call;
 import com.android.services.telephony.common.ICallCommandService;
 
 /**
@@ -30,12 +32,14 @@ class CallCommandService extends ICallCommandService.Stub {
 
     private static final String TAG = CallCommandService.class.getSimpleName();
 
-    private Context mContext;
-    private CallManager mCallManager;
+    private final Context mContext;
+    private final CallManager mCallManager;
+    private final CallModeler mCallModeler;
 
-    public CallCommandService(Context context, CallManager callManager) {
+    public CallCommandService(Context context, CallManager callManager, CallModeler callModeler) {
         mContext = context;
         mCallManager = callManager;
+        mCallModeler = callModeler;
     }
 
     /**
@@ -44,8 +48,10 @@ class CallCommandService extends ICallCommandService.Stub {
     @Override
     public void answerCall(int callId) {
         try {
-            // TODO(klp): Change to using the callId and logic from InCallScreen::internalAnswerCall
-            PhoneUtils.answerCall(mCallManager.getFirstActiveRingingCall());
+            CallResult result = mCallModeler.getCallWithId(callId);
+            if (result != null) {
+                PhoneUtils.answerCall(result.getConnection().getCall());
+            }
         } catch (Exception e) {
             Log.e(TAG, "Error during answerCall().", e);
         }
@@ -57,8 +63,10 @@ class CallCommandService extends ICallCommandService.Stub {
     @Override
     public void rejectCall(int callId) {
         try {
-            // TODO(klp): Change to using the callId
-            PhoneUtils.hangupRingingCall(mCallManager.getFirstActiveRingingCall());
+            CallResult result = mCallModeler.getCallWithId(callId);
+            if (result != null) {
+                PhoneUtils.hangupRingingCall(result.getConnection().getCall());
+            }
         } catch (Exception e) {
             Log.e(TAG, "Error during rejectCall().", e);
         }
@@ -67,8 +75,13 @@ class CallCommandService extends ICallCommandService.Stub {
     @Override
     public void disconnectCall(int callId) {
         try {
-            // TODO(klp): Change to using the callId
-            PhoneUtils.hangup(mCallManager);
+            CallResult result = mCallModeler.getCallWithId(callId);
+            if (result != null) {
+                int state = result.getCall().getState();
+                if (Call.State.ACTIVE == state || Call.State.ONHOLD == state) {
+                    result.getConnection().getCall().hangup();
+                }
+            }
         } catch (Exception e) {
             Log.e(TAG, "Error during disconnectCall().", e);
         }
@@ -77,8 +90,15 @@ class CallCommandService extends ICallCommandService.Stub {
     @Override
     public void hold(int callId, boolean hold) {
         try {
-            // TODO(klp): Change to use the callId/hold
-            PhoneUtils.switchHoldingAndActive(mCallManager.getFirstActiveBgCall());
+            CallResult result = mCallModeler.getCallWithId(callId);
+            if (result != null) {
+                int state = result.getCall().getState();
+                if (hold && Call.State.ACTIVE == state ) {
+                    PhoneUtils.switchHoldingAndActive(mCallManager.getFirstActiveBgCall());
+                } else if (!hold && Call.State.ONHOLD == state) {
+                    PhoneUtils.switchHoldingAndActive(result.getConnection().getCall());
+                }
+            }
         } catch (Exception e) {
             Log.e(TAG, "Error trying to place call on hold.", e);
         }

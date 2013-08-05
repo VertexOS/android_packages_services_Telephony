@@ -34,6 +34,7 @@ import com.android.services.telephony.common.Call.State;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map.Entry;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -114,6 +115,16 @@ public class CallModeler extends Handler {
         final List<Call> retval = Lists.newArrayList();
         doUpdate(true, retval);
         return retval;
+    }
+
+    public CallResult getCallWithId(int callId) {
+        // max 8 connections, so this should be fast even through we are traversing the entire map.
+        for (Entry<Connection, Call> entry : mCallMap.entrySet()) {
+            if (entry.getValue().getCallId() == callId) {
+                return new CallResult(entry.getValue(), entry.getKey());
+            }
+        }
+        return null;
     }
 
     private void onNewRingingConnection(AsyncResult r) {
@@ -248,5 +259,26 @@ public class CallModeler extends Handler {
     public interface Listener {
         void onDisconnect(Call call);
         void onUpdate(List<Call> calls, boolean fullUpdate);
+    }
+
+    /**
+     * Result class for accessing a call by connection.
+     */
+    public static class CallResult {
+        public Call mCall;
+        public Connection mConnection;
+
+        private CallResult(Call call, Connection connection) {
+            mCall = call;
+            mConnection = connection;
+        }
+
+        public Call getCall() {
+            return mCall;
+        }
+
+        public Connection getConnection() {
+            return mConnection;
+        }
     }
 }

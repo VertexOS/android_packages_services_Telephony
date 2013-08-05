@@ -542,11 +542,11 @@ public class PhoneGlobals extends ContextWrapper
             // Monitors call activity from the telephony layer
             callStateMonitor = new CallStateMonitor(mCM);
 
-            // Service used by in-call UI to control calls
-            callCommandService = new CallCommandService(this, mCM);
-
             // Creates call models for use with CallHandlerService.
             callModeler = new CallModeler(callStateMonitor, mCM);
+
+            // Service used by in-call UI to control calls
+            callCommandService = new CallCommandService(this, mCM, callModeler);
 
             // Sends call state to the UI
             callHandlerServiceProxy = new CallHandlerServiceProxy(this, callModeler,
