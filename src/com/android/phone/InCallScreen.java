@@ -153,7 +153,6 @@ public class InCallScreen extends Activity
     private static final int DONT_ADD_VOICEMAIL_NUMBER = 107;
     private static final int DELAYED_CLEANUP_AFTER_DISCONNECT = 108;
     private static final int SUPP_SERVICE_FAILED = 110;
-    private static final int REQUEST_UPDATE_BLUETOOTH_INDICATION = 114;
     private static final int PHONE_CDMA_CALL_WAITING = 115;
     private static final int REQUEST_CLOSE_SPC_ERROR_NOTICE = 118;
     private static final int REQUEST_CLOSE_OTA_FAILURE_NOTICE = 119;
@@ -197,11 +196,6 @@ public class InCallScreen extends Activity
     // reference we should get it dynamically from the CallManager, probably
     // based on the current foreground Call.)
     private Phone mPhone;
-
-    private BluetoothHeadset mBluetoothHeadset;
-    private BluetoothAdapter mBluetoothAdapter;
-    private boolean mBluetoothConnectionPending;
-    private long mBluetoothConnectionRequestTime;
 
     /** Main in-call UI elements. */
     private CallCard mCallCard;
@@ -344,16 +338,6 @@ public class InCallScreen extends Activity
                     delayedCleanupAfterDisconnect();
                     break;
 
-                case REQUEST_UPDATE_BLUETOOTH_INDICATION:
-                    if (VDBG) log("REQUEST_UPDATE_BLUETOOTH_INDICATION...");
-                    // The bluetooth headset state changed, so some UI
-                    // elements may need to update.  (There's no need to
-                    // look up the current state here, since any UI
-                    // elements that care about the bluetooth state get it
-                    // directly from PhoneApp.showBluetoothIndication().)
-                    updateScreen();
-                    break;
-
                 case PHONE_CDMA_CALL_WAITING:
                     if (DBG) log("Received PHONE_CDMA_CALL_WAITING event ...");
                     Connection cn = mCM.getFirstActiveRingingCall().getLatestConnection();
@@ -480,12 +464,6 @@ public class InCallScreen extends Activity
         mCM =  mApp.mCM;
         log("- onCreate: phone state = " + mCM.getState());
 
-        mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-        if (mBluetoothAdapter != null) {
-            mBluetoothAdapter.getProfileProxy(getApplicationContext(), mBluetoothProfileServiceListener,
-                                    BluetoothProfile.HEADSET);
-        }
-
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
         // Inflate everything in incall_screen.xml and add it to the screen.
@@ -518,20 +496,6 @@ public class InCallScreen extends Activity
         Profiler.callScreenCreated();
         if (DBG) log("onCreate(): exit");
     }
-
-     private BluetoothProfile.ServiceListener mBluetoothProfileServiceListener =
-             new BluetoothProfile.ServiceListener() {
-         @Override
-         public void onServiceConnected(int profile, BluetoothProfile proxy) {
-             mBluetoothHeadset = (BluetoothHeadset) proxy;
-             if (VDBG) log("- Got BluetoothHeadset: " + mBluetoothHeadset);
-         }
-
-         @Override
-         public void onServiceDisconnected(int profile) {
-             mBluetoothHeadset = null;
-         }
-    };
 
     /**
      * Sets the Phone object used internally by the InCallScreen.
@@ -609,7 +573,6 @@ public class InCallScreen extends Activity
         // most common example of this is when there's some kind of
         // failure while initiating an outgoing call; see
         // CallController.placeCall().)
-        //
         boolean handledStartupError = false;
         if (inCallUiState.hasPendingCallStatusCode()) {
             if (DBG) log("- onResume: need to show status indication!");
@@ -622,8 +585,9 @@ public class InCallScreen extends Activity
         }
 
         // Set the volume control handler while we are in the foreground.
-        final boolean bluetoothConnected = isBluetoothAudioConnected();
+        final boolean bluetoothConnected = false; //isBluetoothAudioConnected();
 
+        // TODO(klp): Move this volume button control code to the UI
         if (bluetoothConnected) {
             setVolumeControlStream(AudioManager.STREAM_BLUETOOTH_SCO);
         } else {
@@ -939,11 +903,6 @@ public class InCallScreen extends Activity
         // No need to change wake state here; that happens in onPause() when we
         // are moving out of the foreground.
 
-        if (mBluetoothHeadset != null) {
-            mBluetoothAdapter.closeProfileProxy(BluetoothProfile.HEADSET, mBluetoothHeadset);
-            mBluetoothHeadset = null;
-        }
-
         // Dismiss all dialogs, to be absolutely sure we won't leak any of
         // them while changing orientation.
         dismissAllDialogs();
@@ -1254,7 +1213,7 @@ public class InCallScreen extends Activity
         initInCallTouchUi();
 
         // Helper class to keep track of enabledness/state of UI controls
-        mInCallControlState = new InCallControlState(this, mCM);
+        mInCallControlState = new InCallControlState(this, mCM, mApp.getBluetoothManager());
 
         // Helper class to run the "Manage conference" UI
         mManageConferenceUtils = new ManageConferenceUtils(this, mCM);
@@ -2453,7 +2412,6 @@ public class InCallScreen extends Activity
         boolean updateSuccessful = false;
         if (DBG) log("syncWithPhoneState()...");
         if (DBG) PhoneUtils.dumpCallState(mPhone);
-        if (VDBG) dumpBluetoothState();
 
         // Make sure the Phone is "in use".  (If not, we shouldn't be on
         // this screen in the first place.)
@@ -2785,9 +2743,12 @@ public class InCallScreen extends Activity
         boolean newSpeakerState = !PhoneUtils.isSpeakerOn(this);
         log("toggleSpeaker(): newSpeakerState = " + newSpeakerState);
 
-        if (newSpeakerState && isBluetoothAvailable() && isBluetoothAudioConnected()) {
+        // TODO(klp): Add bluetooth query back in for AudioRouter.
+        /*
+         if (newSpeakerState && isBluetoothAvailable() && isBluetoothAudioConnected()) {
             disconnectBluetoothAudio();
         }
+        */
         PhoneUtils.turnOnSpeaker(this, newSpeakerState, true);
 
         // And update the InCallTouchUi widget (since the "audio mode"
@@ -2818,6 +2779,9 @@ public class InCallScreen extends Activity
     public void toggleBluetooth() {
         if (VDBG) log("toggleBluetooth()...");
 
+        // TODO(klp): Copy to new AudioManager for new incall
+
+        /*
         if (isBluetoothAvailable()) {
             // Toggle the bluetooth audio connection state:
             if (isBluetoothAudioConnected()) {
@@ -2846,6 +2810,7 @@ public class InCallScreen extends Activity
         // button might need to change its appearance based on the new
         // audio state.)
         updateInCallTouchUi();
+        */
     }
 
     /**
@@ -2861,6 +2826,9 @@ public class InCallScreen extends Activity
      * we can get rid of toggleBluetooth() and toggleSpeaker().
      */
     public void switchInCallAudio(InCallAudioMode newMode) {
+        // TODO(klp): Copy to new AudioManager for new incall
+        /*
+
         log("switchInCallAudio: new mode = " + newMode);
         switch (newMode) {
             case SPEAKER:
@@ -2910,6 +2878,7 @@ public class InCallScreen extends Activity
         // mode" button might need to change its appearance based on the
         // new audio state.)
         updateInCallTouchUi();
+        */
     }
 
     /**
@@ -4054,185 +4023,6 @@ public class InCallScreen extends Activity
         return ((serviceState == ServiceState.STATE_EMERGENCY_ONLY) ||
                 (serviceState == ServiceState.STATE_OUT_OF_SERVICE) ||
                 (mApp.getKeyguardManager().inKeyguardRestrictedInputMode()));
-    }
-
-
-    //
-    // Bluetooth helper methods.
-    //
-    // - BluetoothAdapter is the Bluetooth system service.  If
-    //   getDefaultAdapter() returns null
-    //   then the device is not BT capable.  Use BluetoothDevice.isEnabled()
-    //   to see if BT is enabled on the device.
-    //
-    // - BluetoothHeadset is the API for the control connection to a
-    //   Bluetooth Headset.  This lets you completely connect/disconnect a
-    //   headset (which we don't do from the Phone UI!) but also lets you
-    //   get the address of the currently active headset and see whether
-    //   it's currently connected.
-
-    /**
-     * @return true if the Bluetooth on/off switch in the UI should be
-     *         available to the user (i.e. if the device is BT-capable
-     *         and a headset is connected.)
-     */
-    /* package */ boolean isBluetoothAvailable() {
-        if (VDBG) log("isBluetoothAvailable()...");
-
-        // There's no need to ask the Bluetooth system service if BT is enabled:
-        //
-        //    BluetoothAdapter adapter = BluetoothAdapter.getDefaultAdapter();
-        //    if ((adapter == null) || !adapter.isEnabled()) {
-        //        if (DBG) log("  ==> FALSE (BT not enabled)");
-        //        return false;
-        //    }
-        //    if (DBG) log("  - BT enabled!  device name " + adapter.getName()
-        //                 + ", address " + adapter.getAddress());
-        //
-        // ...since we already have a BluetoothHeadset instance.  We can just
-        // call isConnected() on that, and assume it'll be false if BT isn't
-        // enabled at all.
-
-        // Check if there's a connected headset, using the BluetoothHeadset API.
-        boolean isConnected = false;
-        if (mBluetoothHeadset != null) {
-            List<BluetoothDevice> deviceList = mBluetoothHeadset.getConnectedDevices();
-
-            if (deviceList.size() > 0) {
-                BluetoothDevice device = deviceList.get(0);
-                isConnected = true;
-
-                if (VDBG) log("  - headset state = " +
-                              mBluetoothHeadset.getConnectionState(device));
-                if (VDBG) log("  - headset address: " + device);
-                if (VDBG) log("  - isConnected: " + isConnected);
-            }
-        }
-
-        if (VDBG) log("  ==> " + isConnected);
-        return isConnected;
-    }
-
-    /**
-     * @return true if a BT Headset is available, and its audio is currently connected.
-     */
-    /* package */ boolean isBluetoothAudioConnected() {
-        if (mBluetoothHeadset == null) {
-            if (VDBG) log("isBluetoothAudioConnected: ==> FALSE (null mBluetoothHeadset)");
-            return false;
-        }
-        List<BluetoothDevice> deviceList = mBluetoothHeadset.getConnectedDevices();
-
-        if (deviceList.isEmpty()) {
-            return false;
-        }
-        BluetoothDevice device = deviceList.get(0);
-        boolean isAudioOn = mBluetoothHeadset.isAudioConnected(device);
-        if (VDBG) log("isBluetoothAudioConnected: ==> isAudioOn = " + isAudioOn);
-        return isAudioOn;
-    }
-
-    /**
-     * Helper method used to control the onscreen "Bluetooth" indication;
-     * see InCallControlState.bluetoothIndicatorOn.
-     *
-     * @return true if a BT device is available and its audio is currently connected,
-     *              <b>or</b> if we issued a BluetoothHeadset.connectAudio()
-     *              call within the last 5 seconds (which presumably means
-     *              that the BT audio connection is currently being set
-     *              up, and will be connected soon.)
-     */
-    /* package */ boolean isBluetoothAudioConnectedOrPending() {
-        if (isBluetoothAudioConnected()) {
-            if (VDBG) log("isBluetoothAudioConnectedOrPending: ==> TRUE (really connected)");
-            return true;
-        }
-
-        // If we issued a connectAudio() call "recently enough", even
-        // if BT isn't actually connected yet, let's still pretend BT is
-        // on.  This makes the onscreen indication more responsive.
-        if (mBluetoothConnectionPending) {
-            long timeSinceRequest =
-                    SystemClock.elapsedRealtime() - mBluetoothConnectionRequestTime;
-            if (timeSinceRequest < 5000 /* 5 seconds */) {
-                if (VDBG) log("isBluetoothAudioConnectedOrPending: ==> TRUE (requested "
-                             + timeSinceRequest + " msec ago)");
-                return true;
-            } else {
-                if (VDBG) log("isBluetoothAudioConnectedOrPending: ==> FALSE (request too old: "
-                             + timeSinceRequest + " msec ago)");
-                mBluetoothConnectionPending = false;
-                return false;
-            }
-        }
-
-        if (VDBG) log("isBluetoothAudioConnectedOrPending: ==> FALSE");
-        return false;
-    }
-
-    /**
-     * Posts a message to our handler saying to update the onscreen UI
-     * based on a bluetooth headset state change.
-     */
-    /* package */ void requestUpdateBluetoothIndication() {
-        if (VDBG) log("requestUpdateBluetoothIndication()...");
-        // No need to look at the current state here; any UI elements that
-        // care about the bluetooth state (i.e. the CallCard) get
-        // the necessary state directly from PhoneApp.showBluetoothIndication().
-        mHandler.removeMessages(REQUEST_UPDATE_BLUETOOTH_INDICATION);
-        mHandler.sendEmptyMessage(REQUEST_UPDATE_BLUETOOTH_INDICATION);
-    }
-
-    private void dumpBluetoothState() {
-        log("============== dumpBluetoothState() =============");
-        log("= isBluetoothAvailable: " + isBluetoothAvailable());
-        log("= isBluetoothAudioConnected: " + isBluetoothAudioConnected());
-        log("= isBluetoothAudioConnectedOrPending: " + isBluetoothAudioConnectedOrPending());
-        log("= PhoneApp.showBluetoothIndication: "
-            + mApp.showBluetoothIndication());
-        log("=");
-        if (mBluetoothAdapter != null) {
-            if (mBluetoothHeadset != null) {
-                List<BluetoothDevice> deviceList = mBluetoothHeadset.getConnectedDevices();
-
-                if (deviceList.size() > 0) {
-                    BluetoothDevice device = deviceList.get(0);
-                    log("= BluetoothHeadset.getCurrentDevice: " + device);
-                    log("= BluetoothHeadset.State: "
-                        + mBluetoothHeadset.getConnectionState(device));
-                    log("= BluetoothHeadset audio connected: " +
-                        mBluetoothHeadset.isAudioConnected(device));
-                }
-            } else {
-                log("= mBluetoothHeadset is null");
-            }
-        } else {
-            log("= mBluetoothAdapter is null; device is not BT capable");
-        }
-    }
-
-    /* package */ void connectBluetoothAudio() {
-        if (VDBG) log("connectBluetoothAudio()...");
-        if (mBluetoothHeadset != null) {
-            // TODO(BT) check return
-            mBluetoothHeadset.connectAudio();
-        }
-
-        // Watch out: The bluetooth connection doesn't happen instantly;
-        // the connectAudio() call returns instantly but does its real
-        // work in another thread.  The mBluetoothConnectionPending flag
-        // is just a little trickery to ensure that the onscreen UI updates
-        // instantly. (See isBluetoothAudioConnectedOrPending() above.)
-        mBluetoothConnectionPending = true;
-        mBluetoothConnectionRequestTime = SystemClock.elapsedRealtime();
-    }
-
-    /* package */ void disconnectBluetoothAudio() {
-        if (VDBG) log("disconnectBluetoothAudio()...");
-        if (mBluetoothHeadset != null) {
-            mBluetoothHeadset.disconnectAudio();
-        }
-        mBluetoothConnectionPending = false;
     }
 
     /**

@@ -168,6 +168,8 @@ public class OtaUtils {
     // an InCallScreen or CallCard or any OTASP UI elements at all.
     private boolean mInteractive = true;
 
+    // used when setting speakerphone
+    private final BluetoothManager mBluetoothManager;
 
     /**
      * OtaWidgetData class represent all OTA UI elements
@@ -214,11 +216,12 @@ public class OtaUtils {
      * Note if interactive is true, you must also call updateUiWidgets() as soon
      * as the InCallScreen instance is ready.
      */
-    public OtaUtils(Context context, boolean interactive) {
+    public OtaUtils(Context context, boolean interactive, BluetoothManager bluetoothManager) {
         if (DBG) log("OtaUtils constructor...");
         mApplication = PhoneGlobals.getInstance();
         mContext = context;
         mInteractive = interactive;
+        mBluetoothManager = bluetoothManager;
     }
 
     /**
@@ -442,7 +445,8 @@ public class OtaUtils {
         }
 
         // Create the OtaUtils instance.
-        app.otaUtils = new OtaUtils(context, false /* non-interactive mode */);
+        app.otaUtils = new OtaUtils(context, false /* non-interactive mode */,
+                app.getBluetoothManager());
         if (DBG) log("- created OtaUtils: " + app.otaUtils);
 
         // ... and kick off the OTASP call.
@@ -558,7 +562,8 @@ public class OtaUtils {
         }
 
         // Create the OtaUtils instance.
-        app.otaUtils = new OtaUtils(app.getApplicationContext(), true /* interactive */);
+        app.otaUtils = new OtaUtils(app.getApplicationContext(), true /* interactive */,
+                app.getBluetoothManager());
         if (DBG) log("- created OtaUtils: " + app.otaUtils);
 
         // NOTE we still need to call OtaUtils.updateUiWidgets() once the
@@ -616,9 +621,9 @@ public class OtaUtils {
             return;
         }
 
-        if (state && mInCallScreen.isBluetoothAvailable()
-                && mInCallScreen.isBluetoothAudioConnected()) {
-            mInCallScreen.disconnectBluetoothAudio();
+        if (state && mBluetoothManager.isBluetoothAvailable()
+                && mBluetoothManager.isBluetoothAudioConnected()) {
+            mBluetoothManager.disconnectBluetoothAudio();
         }
         PhoneUtils.turnOnSpeaker(mContext, state, true);
     }

@@ -167,15 +167,19 @@ public class CallNotifier extends Handler
     // Cached AudioManager
     private AudioManager mAudioManager;
 
+    private final BluetoothManager mBluetoothManager;
+
     /**
      * Initialize the singleton CallNotifier instance.
      * This is only done once, at startup, from PhoneApp.onCreate().
      */
     /* package */ static CallNotifier init(PhoneGlobals app, Phone phone, Ringer ringer,
-            CallLogger callLogger, CallStateMonitor callStateMonitor) {
+            CallLogger callLogger, CallStateMonitor callStateMonitor,
+            BluetoothManager bluetoothManager) {
         synchronized (CallNotifier.class) {
             if (sInstance == null) {
-                sInstance = new CallNotifier(app, phone, ringer, callLogger, callStateMonitor);
+                sInstance = new CallNotifier(app, phone, ringer, callLogger, callStateMonitor,
+                        bluetoothManager);
             } else {
                 Log.wtf(LOG_TAG, "init() called multiple times!  sInstance = " + sInstance);
             }
@@ -185,11 +189,12 @@ public class CallNotifier extends Handler
 
     /** Private constructor; @see init() */
     private CallNotifier(PhoneGlobals app, Phone phone, Ringer ringer, CallLogger callLogger,
-            CallStateMonitor callStateMonitor) {
+            CallStateMonitor callStateMonitor, BluetoothManager bluetoothManager) {
         mApplication = app;
         mCM = app.mCM;
         mCallLogger = callLogger;
         mCallStateMonitor = callStateMonitor;
+        mBluetoothManager = bluetoothManager;
 
         mAudioManager = (AudioManager) mApplication.getSystemService(Context.AUDIO_SERVICE);
 
@@ -753,7 +758,9 @@ public class CallNotifier extends Handler
         // There's no need to force a UI update since we update the
         // in-call notification ourselves (below), and the InCallScreen
         // listens for phone state changes itself.
-        mApplication.updateBluetoothIndication(false);
+        // TODO(klp): Have BluetoothManager listen to CallModeler instead of relying on
+        // CallNotifier
+        mBluetoothManager.updateBluetoothIndication();
 
 
         // Update the phone state and other sensor/lock.

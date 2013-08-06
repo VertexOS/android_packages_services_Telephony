@@ -43,6 +43,7 @@ public class InCallControlState {
     private static final String LOG_TAG = "InCallControlState";
     private static final boolean DBG = (PhoneGlobals.DBG_LEVEL >= 2);
 
+    private final BluetoothManager mBluetoothManager;
     private InCallScreen mInCallScreen;
     private CallManager mCM;
 
@@ -85,10 +86,12 @@ public class InCallControlState {
     public boolean canHold;
 
 
-    public InCallControlState(InCallScreen inCallScreen, CallManager cm) {
+    public InCallControlState(InCallScreen inCallScreen, CallManager cm,
+            BluetoothManager bluetoothManager) {
         if (DBG) log("InCallControlState constructor...");
         mInCallScreen = inCallScreen;
         mCM = cm;
+        mBluetoothManager = bluetoothManager;
     }
 
     /**
@@ -132,9 +135,9 @@ public class InCallControlState {
         canMerge = PhoneUtils.okToMergeCalls(mCM);
 
         // "Bluetooth":
-        if (mInCallScreen.isBluetoothAvailable()) {
+        if (mBluetoothManager.isBluetoothAvailable()) {
             bluetoothEnabled = true;
-            bluetoothIndicatorOn = mInCallScreen.isBluetoothAudioConnectedOrPending();
+            bluetoothIndicatorOn = mBluetoothManager.isBluetoothAudioConnectedOrPending();
         } else {
             bluetoothEnabled = false;
             bluetoothIndicatorOn = false;

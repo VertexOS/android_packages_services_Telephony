@@ -288,6 +288,8 @@ public class PhoneUtils {
                 // Check is phone in any dock, and turn on speaker accordingly
                 final boolean speakerActivated = activateSpeakerIfDocked(phone);
 
+                final BluetoothManager btManager = app.getBluetoothManager();
+
                 // When answering a phone call, the user will move the phone near to her/his ear
                 // and start conversation, without checking its speaker status. If some other
                 // application turned on the speaker mode before the call and didn't turn it off,
@@ -297,7 +299,7 @@ public class PhoneUtils {
                 // - we did not activate speaker by ourselves during the process above, and
                 // - Bluetooth headset is not in use.
                 if (isRealIncomingCall && !speakerActivated && isSpeakerOn(app)
-                        && !app.isBluetoothHeadsetAudioOn()) {
+                        && !btManager.isBluetoothHeadsetAudioOn()) {
                     // This is not an error but might cause users' confusion. Add log just in case.
                     Log.i(LOG_TAG, "Forcing speaker off due to new incoming call...");
                     turnOnSpeaker(app, false, true);
@@ -711,9 +713,11 @@ public class PhoneUtils {
             // Check is phone in any dock, and turn on speaker accordingly
             final boolean speakerActivated = activateSpeakerIfDocked(phone);
 
+            final BluetoothManager btManager = app.getBluetoothManager();
+
             // See also similar logic in answerCall().
             if (initiallyIdle && !speakerActivated && isSpeakerOn(app)
-                    && !app.isBluetoothHeadsetAudioOn()) {
+                    && !btManager.isBluetoothHeadsetAudioOn()) {
                 // This is not an error but might cause users' confusion. Add log just in case.
                 Log.i(LOG_TAG, "Forcing speaker off when initiating a new outgoing call...");
                 PhoneUtils.turnOnSpeaker(app, false, true);
@@ -2457,8 +2461,9 @@ public class PhoneUtils {
         if (PhoneGlobals.mDockState != Intent.EXTRA_DOCK_STATE_UNDOCKED) {
             if (DBG) log("activateSpeakerIfDocked(): In a dock -> may need to turn on speaker.");
             PhoneGlobals app = PhoneGlobals.getInstance();
+            final BluetoothManager btManager = app.getBluetoothManager();
 
-            if (!app.isHeadsetPlugged() && !app.isBluetoothHeadsetAudioOn()) {
+            if (!app.isHeadsetPlugged() && !btManager.isBluetoothHeadsetAudioOn()) {
                 turnOnSpeaker(phone.getContext(), true, true);
                 activated = true;
             }
