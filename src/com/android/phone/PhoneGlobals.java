@@ -169,6 +169,7 @@ public class PhoneGlobals extends ContextWrapper
     Phone phone;
     PhoneInterfaceManager phoneMgr;
 
+    private AudioRouter audioRouter;
     private BluetoothManager bluetoothManager;
     private CallCommandService callCommandService;
     private CallHandlerServiceProxy callHandlerServiceProxy;
@@ -550,8 +551,12 @@ public class PhoneGlobals extends ContextWrapper
             // Plays DTMF Tones
             dtmfTonePlayer = new DTMFTonePlayer(mCM, callModeler);
 
+            // Audio router
+            audioRouter = new AudioRouter(this, bluetoothManager);
+
             // Service used by in-call UI to control calls
-            callCommandService = new CallCommandService(this, mCM, callModeler, dtmfTonePlayer);
+            callCommandService = new CallCommandService(this, mCM, callModeler, dtmfTonePlayer,
+                    audioRouter);
 
             // Sends call state to the UI
             callHandlerServiceProxy = new CallHandlerServiceProxy(this, callModeler,

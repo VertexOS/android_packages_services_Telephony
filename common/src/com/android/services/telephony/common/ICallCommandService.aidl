@@ -51,6 +51,7 @@ oneway interface ICallCommandService {
 
     /**
      * Turn on or off speaker.
+     * TODO(klp): Remove in favor of setAudioMode
      */
     void speaker(boolean onOff);
 
@@ -63,4 +64,10 @@ oneway interface ICallCommandService {
      * Stop playing DTMF tone for the specified digit.
      */
     void stopDtmfTone();
+
+    /**
+     * Sets the audio mode for the active phone call.
+     * {@see AudioMode}
+     */
+    void setAudioMode(int mode);
 }

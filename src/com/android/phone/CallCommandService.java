@@ -21,6 +21,7 @@ import android.util.Log;
 
 import com.android.internal.telephony.CallManager;
 import com.android.phone.CallModeler.CallResult;
+import com.android.services.telephony.common.AudioMode;
 import com.android.services.telephony.common.Call;
 import com.android.services.telephony.common.ICallCommandService;
 
@@ -36,13 +37,15 @@ class CallCommandService extends ICallCommandService.Stub {
     private final CallManager mCallManager;
     private final CallModeler mCallModeler;
     private final DTMFTonePlayer mDtmfTonePlayer;
+    private final AudioRouter mAudioRouter;
 
     public CallCommandService(Context context, CallManager callManager, CallModeler callModeler,
-            DTMFTonePlayer dtmfTonePlayer) {
+            DTMFTonePlayer dtmfTonePlayer, AudioRouter audioRouter) {
         mContext = context;
         mCallManager = callManager;
         mCallModeler = callModeler;
         mDtmfTonePlayer = dtmfTonePlayer;
+        mAudioRouter = audioRouter;
     }
 
     /**
@@ -110,7 +113,8 @@ class CallCommandService extends ICallCommandService.Stub {
     @Override
     public void mute(boolean onOff) {
         try {
-            PhoneUtils.setMute(onOff);
+            //PhoneUtils.setMute(onOff);
+            mAudioRouter.setAudioMode(onOff ? AudioMode.BLUETOOTH : AudioMode.EARPIECE);
         } catch (Exception e) {
             Log.e(TAG, "Error during mute().", e);
         }
@@ -141,6 +145,15 @@ class CallCommandService extends ICallCommandService.Stub {
             mDtmfTonePlayer.stopDtmfTone();
         } catch (Exception e) {
             Log.e(TAG, "Error stopping DTMF tone.", e);
+        }
+    }
+
+    @Override
+    public void setAudioMode(int mode) {
+        try {
+            mAudioRouter.setAudioMode(mode);
+        } catch (Exception e) {
+            Log.e(TAG, "Error setting the audio mode.", e);
         }
     }
 }

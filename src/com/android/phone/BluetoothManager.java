@@ -221,9 +221,15 @@ public class BluetoothManager {
         notifyListeners(mShowBluetoothIndication);
     }
 
-    /* package */ void addBluetoothIndicatorListener(BluetoothIndicatorListener listener) {
+    public void addBluetoothIndicatorListener(BluetoothIndicatorListener listener) {
         if (!mListeners.contains(listener)) {
             mListeners.add(listener);
+        }
+    }
+
+    public void removeBluetoothIndicatorListener(BluetoothIndicatorListener listener) {
+        if (mListeners.contains(listener)) {
+            mListeners.remove(listener);
         }
     }
 
@@ -396,6 +402,6 @@ public class BluetoothManager {
     }
 
     /* package */ interface BluetoothIndicatorListener {
-        public void onBluetoothIndicationChange(boolean showAsConnected, BluetoothManager manager);
+        public void onBluetoothIndicationChange(boolean isConnected, BluetoothManager manager);
     }
 }

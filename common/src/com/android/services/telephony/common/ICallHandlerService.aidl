@@ -45,4 +45,16 @@ oneway interface ICallHandlerService {
      * Called when a call disconnects.
      */
     void onDisconnect(in Call call);
+
+    /**
+     * Called when the audio mode changes.
+     * {@see AudioMode}
+     */
+    void onAudioModeChange(in int mode);
+
+    /**
+     * Called when the supported audio modes change.
+     * {@see AudioMode}
+     */
+    void onAudioModeSupportChange(in int modeMask);
 }

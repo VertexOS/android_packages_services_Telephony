@@ -28,6 +28,8 @@ import android.os.RemoteException;
 import android.os.SystemProperties;
 import android.util.Log;
 
+import com.android.phone.AudioRouter.AudioModeListener;
+import com.android.services.telephony.common.AudioMode;
 import com.android.services.telephony.common.Call;
 import com.android.services.telephony.common.ICallHandlerService;
 import com.android.services.telephony.common.ICallCommandService;
@@ -37,7 +39,8 @@ import java.util.List;
 /**
  * This class is responsible for passing through call state changes to the CallHandlerService.
  */
-public class CallHandlerServiceProxy extends Handler implements CallModeler.Listener {
+public class CallHandlerServiceProxy extends Handler implements CallModeler.Listener,
+        AudioModeListener {
 
     private static final String TAG = CallHandlerServiceProxy.class.getSimpleName();
     private static final boolean DBG =
@@ -81,6 +84,21 @@ public class CallHandlerServiceProxy extends Handler implements CallModeler.List
                 mCallHandlerService.onUpdate(calls, fullUpdate);
             } catch (RemoteException e) {
                 Log.e(TAG, "Remote exception handling onUpdate", e);
+            }
+        }
+    }
+
+    @Override
+    public void onAudioModeChange(int previousMode, int newMode) {
+        // Just do a simple log for now.
+        Log.i(TAG, "Updating with new audio mode: " + AudioMode.toString(newMode) +
+                " from " + AudioMode.toString(previousMode));
+
+        if (mCallHandlerService != null) {
+            try {
+                mCallHandlerService.onAudioModeChange(newMode);
+            } catch (RemoteException e) {
+                Log.e(TAG, "Remote exception handling onAudioModeChange", e);
             }
         }
     }
