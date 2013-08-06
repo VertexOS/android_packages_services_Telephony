@@ -37,6 +37,11 @@ oneway interface ICallHandlerService {
     void setCallCommandService(ICallCommandService callCommandService);
 
     /**
+     * Called when there is an incoming call.
+     */
+    void onIncoming(in Call call, in List<String> textReponses);
+
+    /**
      * Called when the state of a call changes.
      */
     void onUpdate(in List<Call> call, boolean fullUpdate);

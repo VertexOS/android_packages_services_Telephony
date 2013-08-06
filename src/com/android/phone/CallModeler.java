@@ -23,7 +23,6 @@ import com.google.common.base.Preconditions;
 import android.os.AsyncResult;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 
 import com.android.internal.telephony.CallManager;
 import com.android.internal.telephony.Connection;
@@ -76,10 +75,13 @@ public class CallModeler extends Handler {
     private final HashMap<Connection, Call> mCallMap = Maps.newHashMap();
     private final AtomicInteger mNextCallId = new AtomicInteger(CALL_ID_START_VALUE);
     private final ArrayList<Listener> mListeners = new ArrayList<Listener>();
+    private RejectWithTextMessageManager mRejectWithTextMessageManager;
 
-    public CallModeler(CallStateMonitor callStateMonitor, CallManager callManager) {
+    public CallModeler(CallStateMonitor callStateMonitor, CallManager callManager,
+            RejectWithTextMessageManager rejectWithTextMessageManager) {
         mCallStateMonitor = callStateMonitor;
         mCallManager = callManager;
+        mRejectWithTextMessageManager = rejectWithTextMessageManager;
 
         mCallStateMonitor.addListener(this);
     }
@@ -144,7 +146,10 @@ public class CallModeler extends Handler {
         call.setState(Call.State.INCOMING);
 
         for (int i = 0; i < mListeners.size(); ++i) {
-            mListeners.get(i).onUpdate(Lists.newArrayList(call), false);
+            if (call != null) {
+              mListeners.get(i).onIncoming(call,
+                      mRejectWithTextMessageManager.loadCannedResponses());
+            }
         }
     }
 
@@ -269,6 +274,7 @@ public class CallModeler extends Handler {
      */
     public interface Listener {
         void onDisconnect(Call call);
+        void onIncoming(Call call, ArrayList<String> textReponses);
         void onUpdate(List<Call> calls, boolean fullUpdate);
     }
 

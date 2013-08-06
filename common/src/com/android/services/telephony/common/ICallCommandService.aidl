@@ -32,7 +32,7 @@ oneway interface ICallCommandService {
     /**
      * Reject a ringing call.
      */
-    void rejectCall(int callId);
+    void rejectCall(int callId, boolean rejectWithMessage, String message);
 
     /**
      * Disconnect an active call.

@@ -176,6 +176,7 @@ public class PhoneGlobals extends ContextWrapper
     private CallModeler callModeler;
     private CallStateMonitor callStateMonitor;
     private DTMFTonePlayer dtmfTonePlayer;
+    private RejectWithTextMessageManager rejectWithTextMessageManager;
     private IBluetoothHeadsetPhone mBluetoothPhone;
     private Ringer ringer;
 
@@ -545,8 +546,11 @@ public class PhoneGlobals extends ContextWrapper
             // Monitors call activity from the telephony layer
             callStateMonitor = new CallStateMonitor(mCM);
 
+            // Rejects calls with TextMessages
+            rejectWithTextMessageManager = new RejectWithTextMessageManager();
+
             // Creates call models for use with CallHandlerService.
-            callModeler = new CallModeler(callStateMonitor, mCM);
+            callModeler = new CallModeler(callStateMonitor, mCM, rejectWithTextMessageManager);
 
             // Plays DTMF Tones
             dtmfTonePlayer = new DTMFTonePlayer(mCM, callModeler);
@@ -556,7 +560,7 @@ public class PhoneGlobals extends ContextWrapper
 
             // Service used by in-call UI to control calls
             callCommandService = new CallCommandService(this, mCM, callModeler, dtmfTonePlayer,
-                    audioRouter);
+                    audioRouter, rejectWithTextMessageManager);
 
             // Sends call state to the UI
             callHandlerServiceProxy = new CallHandlerServiceProxy(this, callModeler,

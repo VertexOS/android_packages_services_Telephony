@@ -31,6 +31,7 @@ import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneConstants;
 import com.android.services.telephony.common.Call;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -112,6 +113,10 @@ public class DTMFTonePlayer implements CallModeler.Listener {
     public void onDisconnect(Call call) {
         logD("Call disconnected");
         checkCallState();
+    }
+
+    @Override
+    public void onIncoming(Call call, ArrayList<String> textResponses) {
     }
 
     @Override

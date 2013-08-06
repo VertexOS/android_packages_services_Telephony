@@ -34,6 +34,7 @@ import com.android.services.telephony.common.Call;
 import com.android.services.telephony.common.ICallHandlerService;
 import com.android.services.telephony.common.ICallCommandService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -73,6 +74,17 @@ public class CallHandlerServiceProxy extends Handler implements CallModeler.List
                 mCallHandlerService.onDisconnect(call);
             } catch (RemoteException e) {
                 Log.e(TAG, "Remote exception handling onDisconnect ", e);
+            }
+        }
+    }
+
+    @Override
+    public void onIncoming(Call call, ArrayList<String> textResponses) {
+        if (mCallHandlerService != null) {
+            try {
+                mCallHandlerService.onIncoming(call, textResponses);
+            } catch (RemoteException e) {
+                Log.e(TAG, "Remote exception handling onUpdate", e);
             }
         }
     }

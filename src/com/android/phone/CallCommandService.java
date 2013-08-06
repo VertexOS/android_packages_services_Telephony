@@ -38,14 +38,17 @@ class CallCommandService extends ICallCommandService.Stub {
     private final CallModeler mCallModeler;
     private final DTMFTonePlayer mDtmfTonePlayer;
     private final AudioRouter mAudioRouter;
+    private final RejectWithTextMessageManager mRejectWithTextMessageManager;
 
     public CallCommandService(Context context, CallManager callManager, CallModeler callModeler,
-            DTMFTonePlayer dtmfTonePlayer, AudioRouter audioRouter) {
+            DTMFTonePlayer dtmfTonePlayer, AudioRouter audioRouter,
+            RejectWithTextMessageManager rejectWithTextMessageManager) {
         mContext = context;
         mCallManager = callManager;
         mCallModeler = callModeler;
         mDtmfTonePlayer = dtmfTonePlayer;
         mAudioRouter = audioRouter;
+        mRejectWithTextMessageManager = rejectWithTextMessageManager;
     }
 
     /**
@@ -67,10 +70,20 @@ class CallCommandService extends ICallCommandService.Stub {
      * TODO(klp): Add a confirmation callback parameter.
      */
     @Override
-    public void rejectCall(int callId) {
+    public void rejectCall(int callId, boolean rejectWithMessage, String message) {
         try {
             CallResult result = mCallModeler.getCallWithId(callId);
             if (result != null) {
+                if (rejectWithMessage) {
+                    if (message != null) {
+                        mRejectWithTextMessageManager.rejectCallWithMessage(
+                                result.getConnection().getCall(), message);
+                    } else {
+                        mRejectWithTextMessageManager.rejectCallWithNewMessage(
+                                result.getConnection().getCall());
+                    }
+                }
+                Log.v(TAG, "Hanging up");
                 PhoneUtils.hangupRingingCall(result.getConnection().getCall());
             }
         } catch (Exception e) {
