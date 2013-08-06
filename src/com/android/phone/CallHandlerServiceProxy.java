@@ -57,7 +57,7 @@ public class CallHandlerServiceProxy extends Handler implements CallModeler.List
         mCallModeler = callModeler;
 
         setupServiceConnection();
-        mCallModeler.setListener(this);
+        mCallModeler.addListener(this);
 
         // start the whole process
         onUpdate(mCallModeler.getFullList(), true);

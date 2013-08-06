@@ -127,9 +127,9 @@ class CallCommandService extends ICallCommandService.Stub {
     }
 
     @Override
-    public void playDtmfTone(char digit) {
+    public void playDtmfTone(char digit, boolean timedShortTone) {
         try {
-            mDtmfTonePlayer.playDtmfTone(digit);
+            mDtmfTonePlayer.playDtmfTone(digit, timedShortTone);
         } catch (Exception e) {
             Log.e(TAG, "Error playing DTMF tone.", e);
         }

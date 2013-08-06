@@ -75,7 +75,7 @@ public class CallModeler extends Handler {
     private final CallManager mCallManager;
     private final HashMap<Connection, Call> mCallMap = Maps.newHashMap();
     private final AtomicInteger mNextCallId = new AtomicInteger(CALL_ID_START_VALUE);
-    private Listener mListener;
+    private final ArrayList<Listener> mListeners = new ArrayList<Listener>();
 
     public CallModeler(CallStateMonitor callStateMonitor, CallManager callManager) {
         mCallStateMonitor = callStateMonitor;
@@ -101,14 +101,10 @@ public class CallModeler extends Handler {
         }
     }
 
-    public void setListener(Listener listener) {
+    public void addListener(Listener listener) {
         Preconditions.checkNotNull(listener);
-        Preconditions.checkState(mListener == null);
-
-        // only support setting listener once.
-        // We only have one listener anyway and supporting multiple means maintaining state for
-        // each of the listeners so that we can do proper diffs.
-        mListener = listener;
+        Preconditions.checkNotNull(mListeners);
+        mListeners.add(listener);
     }
 
     public List<Call> getFullList() {
@@ -145,8 +141,8 @@ public class CallModeler extends Handler {
         final Call call = getCallFromConnection(conn, true);
         call.setState(Call.State.INCOMING);
 
-        if (call != null && mListener != null) {
-            mListener.onUpdate(Lists.newArrayList(call), false);
+        for (int i = 0; i < mListeners.size(); ++i) {
+            mListeners.get(i).onUpdate(Lists.newArrayList(call), false);
         }
     }
 
@@ -158,8 +154,8 @@ public class CallModeler extends Handler {
         if (call != null) {
             mCallMap.remove(conn);
 
-            if (mListener != null) {
-                mListener.onDisconnect(call);
+            for (int i = 0; i < mListeners.size(); ++i) {
+                mListeners.get(i).onDisconnect(call);
             }
         }
     }
@@ -171,8 +167,8 @@ public class CallModeler extends Handler {
         final List<Call> updatedCalls = Lists.newArrayList();
         doUpdate(false, updatedCalls);
 
-        if (mListener != null) {
-            mListener.onUpdate(updatedCalls, false);
+        for (int i = 0; i < mListeners.size(); ++i) {
+            mListeners.get(i).onUpdate(updatedCalls, false);
         }
     }
 

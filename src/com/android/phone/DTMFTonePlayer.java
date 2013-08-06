@@ -18,6 +18,7 @@ package com.android.phone;
 
 import com.google.common.collect.ImmutableMap;
 
+import android.content.Context;
 import android.media.AudioManager;
 import android.media.ToneGenerator;
 import android.os.Handler;
@@ -27,11 +28,14 @@ import android.util.Log;
 
 import com.android.internal.telephony.CallManager;
 import com.android.internal.telephony.Phone;
+import com.android.internal.telephony.PhoneConstants;
 import com.android.services.telephony.common.Call;
 
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Queue;
 
 /**
  * Playing DTMF tones through the CallManager.
@@ -40,7 +44,8 @@ public class DTMFTonePlayer implements CallModeler.Listener {
     private static final String LOG_TAG = DTMFTonePlayer.class.getSimpleName();
     private static final boolean DBG = (PhoneGlobals.DBG_LEVEL >= 2);
 
-    private static final int DTMF_STOP = 100;
+    private static final int DTMF_SEND_CNF = 100;
+    private static final int DTMF_STOP = 101;
 
     /** Hash Map to map a character to a tone*/
     private static final Map<Character, Integer> mToneMap =
@@ -65,18 +70,53 @@ public class DTMFTonePlayer implements CallModeler.Listener {
     private ToneGenerator mToneGenerator;
     private boolean mLocalToneEnabled;
 
+    // indicates that we are using automatically shortened DTMF tones
+    boolean mShortTone;
+
+    // indicate if the confirmation from TelephonyFW is pending.
+    private boolean mDTMFBurstCnfPending = false;
+
+    // Queue to queue the short dtmf characters.
+    private Queue<Character> mDTMFQueue = new LinkedList<Character>();
+
+    //  Short Dtmf tone duration
+    private static final int DTMF_DURATION_MS = 120;
+
+    /**
+     * Our own handler to take care of the messages from the phone state changes
+     */
+    private final Handler mHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case DTMF_SEND_CNF:
+                    logD("dtmf confirmation received from FW.");
+                    // handle burst dtmf confirmation
+                    handleBurstDtmfConfirmation();
+                    break;
+                case DTMF_STOP:
+                    logD("dtmf stop received");
+                    stopDtmfTone();
+                    break;
+            }
+        }
+    };
+
     public DTMFTonePlayer(CallManager callManager, CallModeler callModeler) {
         mCallManager = callManager;
         mCallModeler = callModeler;
+        mCallModeler.addListener(this);
     }
 
     @Override
     public void onDisconnect(Call call) {
+        logD("Call disconnected");
         checkCallState();
     }
 
     @Override
     public void onUpdate(List<Call> calls, boolean full) {
+        logD("Call updated");
         checkCallState();
     }
 
@@ -137,12 +177,18 @@ public class DTMFTonePlayer implements CallModeler.Listener {
                 mToneGenerator = null;
             }
         }
+
+        mHandler.removeMessages(DTMF_SEND_CNF);
+        synchronized (mDTMFQueue) {
+            mDTMFBurstCnfPending = false;
+            mDTMFQueue.clear();
+        }
     }
 
     /**
      * Starts playback of the dtmf tone corresponding to the parameter.
      */
-    public void playDtmfTone(char c) {
+    public void playDtmfTone(char c, boolean timedShortTone) {
         // Only play the tone if it exists.
         if (!mToneMap.containsKey(c)) {
             return;
@@ -152,21 +198,79 @@ public class DTMFTonePlayer implements CallModeler.Listener {
             return;
         }
 
+        PhoneGlobals.getInstance().pokeUserActivity();
+
         // Read the settings as it may be changed by the user during the call
         Phone phone = mCallManager.getFgPhone();
 
+        // Before we go ahead and start a tone, we need to make sure that any pending
+        // stop-tone message is processed.
+        if (mHandler.hasMessages(DTMF_STOP)) {
+            mHandler.removeMessages(DTMF_STOP);
+            stopDtmfTone();
+        }
+
+        mShortTone = useShortDtmfTones(phone, phone.getContext());
         logD("startDtmfTone()...");
 
-        // Pass as a char to be sent to network
-        logD("send long dtmf for " + c);
-        mCallManager.startDtmf(c);
+        // For Short DTMF we need to play the local tone for fixed duration
+        if (mShortTone) {
+            sendShortDtmfToNetwork(c);
+        } else {
+            // Pass as a char to be sent to network
+            logD("send long dtmf for " + c);
+            mCallManager.startDtmf(c);
+
+            // If it is a timed tone, queue up the stop command in DTMF_DURATION_MS.
+            if (timedShortTone) {
+                mHandler.sendMessageDelayed(mHandler.obtainMessage(DTMF_STOP), DTMF_DURATION_MS);
+            }
+        }
 
         startLocalToneIfNeeded(c);
     }
 
+    /**
+     * Sends the dtmf character over the network for short DTMF settings
+     * When the characters are entered in quick succession,
+     * the characters are queued before sending over the network.
+     */
+    private void sendShortDtmfToNetwork(char dtmfDigit) {
+        synchronized (mDTMFQueue) {
+            if (mDTMFBurstCnfPending == true) {
+                // Insert the dtmf char to the queue
+                mDTMFQueue.add(new Character(dtmfDigit));
+            } else {
+                String dtmfStr = Character.toString(dtmfDigit);
+                mCallManager.sendBurstDtmf(dtmfStr, 0, 0, mHandler.obtainMessage(DTMF_SEND_CNF));
+                // Set flag to indicate wait for Telephony confirmation.
+                mDTMFBurstCnfPending = true;
+            }
+        }
+    }
+
+    /**
+     * Handles Burst Dtmf Confirmation from the Framework.
+     */
+    void handleBurstDtmfConfirmation() {
+        Character dtmfChar = null;
+        synchronized (mDTMFQueue) {
+            mDTMFBurstCnfPending = false;
+            if (!mDTMFQueue.isEmpty()) {
+                dtmfChar = mDTMFQueue.remove();
+                Log.i(LOG_TAG, "The dtmf character removed from queue" + dtmfChar);
+            }
+        }
+        if (dtmfChar != null) {
+            sendShortDtmfToNetwork(dtmfChar);
+        }
+    }
+
     public void stopDtmfTone() {
-        mCallManager.stopDtmf();
-        stopLocalToneIfNeeded();
+        if (!mShortTone) {
+            mCallManager.stopDtmf();
+            stopLocalToneIfNeeded();
+        }
     }
 
     /**
@@ -181,6 +285,9 @@ public class DTMFTonePlayer implements CallModeler.Listener {
                 } else {
                     logD("starting local tone " + c);
                     int toneDuration = -1;
+                    if (mShortTone) {
+                        toneDuration = DTMF_DURATION_MS;
+                    }
                     mToneGenerator.startTone(mToneMap.get(c), toneDuration);
                 }
             }
@@ -191,15 +298,17 @@ public class DTMFTonePlayer implements CallModeler.Listener {
      * Stops the local tone based on the phone type.
      */
     public void stopLocalToneIfNeeded() {
-        // if local tone playback is enabled, stop it.
-        logD("trying to stop local tone...");
-        if (mLocalToneEnabled) {
-            synchronized (mToneGeneratorLock) {
-                if (mToneGenerator == null) {
-                    logD("stopLocalTone: mToneGenerator == null");
-                } else {
-                    logD("stopping local tone.");
-                    mToneGenerator.stopTone();
+        if (!mShortTone) {
+            // if local tone playback is enabled, stop it.
+            logD("trying to stop local tone...");
+            if (mLocalToneEnabled) {
+                synchronized (mToneGeneratorLock) {
+                    if (mToneGenerator == null) {
+                        logD("stopLocalTone: mToneGenerator == null");
+                    } else {
+                        logD("stopping local tone.");
+                        mToneGenerator.stopTone();
+                    }
                 }
             }
         }
@@ -221,10 +330,36 @@ public class DTMFTonePlayer implements CallModeler.Listener {
     }
 
     /**
+     * On GSM devices, we never use short tones.
+     * On CDMA devices, it depends upon the settings.
+     */
+    private static boolean useShortDtmfTones(Phone phone, Context context) {
+        int phoneType = phone.getPhoneType();
+        if (phoneType == PhoneConstants.PHONE_TYPE_GSM) {
+            return false;
+        } else if (phoneType == PhoneConstants.PHONE_TYPE_CDMA) {
+            int toneType = android.provider.Settings.System.getInt(
+                    context.getContentResolver(),
+                    Settings.System.DTMF_TONE_TYPE_WHEN_DIALING,
+                    Constants.DTMF_TONE_TYPE_NORMAL);
+            if (toneType == Constants.DTMF_TONE_TYPE_NORMAL) {
+                return true;
+            } else {
+                return false;
+            }
+        } else if (phoneType == PhoneConstants.PHONE_TYPE_SIP) {
+            return false;
+        } else {
+            throw new IllegalStateException("Unexpected phone type: " + phoneType);
+        }
+    }
+
+    /**
      * Checks to see if there are any active calls. If there are, then we want to allocate the tone
      * resources for playing DTMF tone, otherwise release them.
      */
     private void checkCallState() {
+        logD("checkCallState");
         if (mCallModeler.hasOutstandingActiveCall()) {
             startDialerSession();
         } else {
