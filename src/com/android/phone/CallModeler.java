@@ -260,6 +260,9 @@ public class CallModeler extends Handler {
 
                 call = new Call(callId);
                 call.setNumber(conn.getAddress());
+                call.setNumberPresentation(conn.getNumberPresentation());
+                call.setCnapNamePresentation(conn.getCnapNamePresentation());
+                call.setCnapName(conn.getCnapName());
                 mCallMap.put(conn, call);
             }
         }
