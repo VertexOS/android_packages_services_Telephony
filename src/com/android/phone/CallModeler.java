@@ -104,7 +104,9 @@ public class CallModeler extends Handler {
     public void addListener(Listener listener) {
         Preconditions.checkNotNull(listener);
         Preconditions.checkNotNull(mListeners);
-        mListeners.add(listener);
+        if (!mListeners.contains(listener)) {
+            mListeners.add(listener);
+        }
     }
 
     public List<Call> getFullList() {
