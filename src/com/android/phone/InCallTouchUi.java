@@ -867,7 +867,10 @@ public class InCallTouchUi extends FrameLayout
         // depending on whether a wired headset is physically plugged in.
         MenuItem earpieceItem = menu.findItem(R.id.audio_mode_earpiece);
         MenuItem wiredHeadsetItem = menu.findItem(R.id.audio_mode_wired_headset);
-        final boolean usingHeadset = mApp.isHeadsetPlugged();
+
+        // TODO(klp): This is a compile stop-gap.  This will all be deleted
+        final boolean usingHeadset = false; //mApp.isHeadsetPlugged();
+
         earpieceItem.setVisible(!usingHeadset);
         earpieceItem.setEnabled(!usingHeadset);
         wiredHeadsetItem.setVisible(usingHeadset);

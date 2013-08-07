@@ -21,10 +21,13 @@ package com.android.services.telephony.common;
  */
 public class AudioMode {
     // These can be used as a bit mask
-    public static int EARPIECE = 0x00000001;
-    public static int BLUETOOTH = 0x00000002;
+    public static int EARPIECE      = 0x00000001;
+    public static int BLUETOOTH     = 0x00000002;
+    public static int WIRED_HEADSET = 0x00000004;
+    public static int SPEAKER       = 0x00000008;
 
-    public static int ALL_MODES = EARPIECE | BLUETOOTH;
+    public static int WIRED_OR_EARPIECE = EARPIECE | WIRED_HEADSET;
+    public static int ALL_MODES = EARPIECE | BLUETOOTH | WIRED_HEADSET | SPEAKER;
 
     public static String toString(int mode) {
         if ((mode & ~ALL_MODES) != 0x0) {
@@ -37,6 +40,12 @@ public class AudioMode {
         }
         if ((mode & BLUETOOTH) == BLUETOOTH) {
             listAppend(buffer, "BLUETOOTH");
+        }
+        if ((mode & WIRED_HEADSET) == WIRED_HEADSET) {
+            listAppend(buffer, "WIRED_HEADSET");
+        }
+        if ((mode & SPEAKER) == SPEAKER) {
+            listAppend(buffer, "SPEAKER");
         }
 
         return buffer.toString();

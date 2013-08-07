@@ -69,14 +69,18 @@ import com.android.internal.telephony.cdma.TtyIntent;
 import com.android.phone.common.CallLogAsync;
 import com.android.phone.BluetoothManager.BluetoothIndicatorListener;
 import com.android.phone.OtaUtils.CdmaOtaScreenState;
+import com.android.phone.WiredHeadsetManager.WiredHeadsetListener;
 import com.android.server.sip.SipService;
+import com.android.services.telephony.common.AudioMode;
 
 /**
  * Global state for the telephony subsystem when running in the primary
  * phone process.
  */
 public class PhoneGlobals extends ContextWrapper
-        implements AccelerometerListener.OrientationListener, BluetoothIndicatorListener {
+        implements AccelerometerListener.OrientationListener,
+                   BluetoothIndicatorListener,
+                   WiredHeadsetListener {
     /* package */ static final String LOG_TAG = "PhoneApp";
 
     /**
@@ -103,7 +107,6 @@ public class PhoneGlobals extends ContextWrapper
 
     // Message codes; see mHandler below.
     private static final int EVENT_SIM_NETWORK_LOCKED = 3;
-    private static final int EVENT_WIRED_HEADSET_PLUG = 7;
     private static final int EVENT_SIM_STATE_CHANGED = 8;
     private static final int EVENT_UPDATE_INCALL_NOTIFICATION = 9;
     private static final int EVENT_DATA_ROAMING_DISCONNECTED = 10;
@@ -179,6 +182,7 @@ public class PhoneGlobals extends ContextWrapper
     private RejectWithTextMessageManager rejectWithTextMessageManager;
     private IBluetoothHeadsetPhone mBluetoothPhone;
     private Ringer ringer;
+    private WiredHeadsetManager wiredHeadsetManager;
 
     static int mDockState = Intent.EXTRA_DOCK_STATE_UNDOCKED;
     static boolean sVoiceCapable = true;
@@ -199,11 +203,6 @@ public class PhoneGlobals extends ContextWrapper
 
     private boolean mIsSimPinEnabled;
     private String mCachedSimPin;
-
-    // True if a wired headset is currently plugged in, based on the state
-    // from the latest Intent.ACTION_HEADSET_PLUG broadcast we received in
-    // mReceiver.onReceive().
-    private boolean mIsHeadsetPlugged;
 
     // True if the keyboard is currently *not* hidden
     // Gets updated whenever there is a Configuration change
@@ -337,34 +336,6 @@ public class PhoneGlobals extends ContextWrapper
                     PhoneUtils.cancelMmiCode(phone);
                     break;
 
-                case EVENT_WIRED_HEADSET_PLUG:
-                    // Since the presence of a wired headset or bluetooth affects the
-                    // speakerphone, update the "speaker" state.  We ONLY want to do
-                    // this on the wired headset connect / disconnect events for now
-                    // though, so we're only triggering on EVENT_WIRED_HEADSET_PLUG.
-
-                    phoneState = mCM.getState();
-                    // Do not change speaker state if phone is not off hook
-                    if (phoneState == PhoneConstants.State.OFFHOOK &&
-                            !bluetoothManager.isBluetoothHeadsetAudioOn()) {
-                        if (!isHeadsetPlugged()) {
-                            // if the state is "not connected", restore the speaker state.
-                            PhoneUtils.restoreSpeakerMode(getApplicationContext());
-                        } else {
-                            // if the state is "connected", force the speaker off without
-                            // storing the state.
-                            PhoneUtils.turnOnSpeaker(getApplicationContext(), false, false);
-                        }
-                    }
-                    // Update the Proximity sensor based on headset state
-                    updateProximitySensorMode(phoneState);
-
-                    // Force TTY state update according to new headset state
-                    if (mTtyEnabled) {
-                        sendMessage(obtainMessage(EVENT_TTY_PREFERRED_MODE_CHANGED, 0));
-                    }
-                    break;
-
                 case EVENT_SIM_STATE_CHANGED:
                     // Marks the event where the SIM goes into ready state.
                     // Right now, this is only used for the PUK-unlocking
@@ -400,7 +371,10 @@ public class PhoneGlobals extends ContextWrapper
 
                     phoneState = mCM.getState();
                     if (phoneState == PhoneConstants.State.OFFHOOK &&
-                        !isHeadsetPlugged() && !bluetoothManager.isBluetoothHeadsetAudioOn()) {
+                            !wiredHeadsetManager.isHeadsetPlugged() &&
+                            !bluetoothManager.isBluetoothHeadsetAudioOn()) {
+                        audioRouter.setSpeaker(inDockMode);
+
                         PhoneUtils.turnOnSpeaker(getApplicationContext(), inDockMode, true);
                         updateInCallScreen();  // Has no effect if the InCallScreen isn't visible
                     }
@@ -409,7 +383,7 @@ public class PhoneGlobals extends ContextWrapper
                 case EVENT_TTY_PREFERRED_MODE_CHANGED:
                     // TTY mode is only applied if a headset is connected
                     int ttyMode;
-                    if (isHeadsetPlugged()) {
+                    if (wiredHeadsetManager.isHeadsetPlugged()) {
                         ttyMode = mPreferredTtyMode;
                     } else {
                         ttyMode = Phone.TTY_MODE_OFF;
@@ -555,8 +529,12 @@ public class PhoneGlobals extends ContextWrapper
             // Plays DTMF Tones
             dtmfTonePlayer = new DTMFTonePlayer(mCM, callModeler);
 
+            // Manages wired headset state
+            wiredHeadsetManager = new WiredHeadsetManager(this);
+            wiredHeadsetManager.addWiredHeadsetListener(this);
+
             // Audio router
-            audioRouter = new AudioRouter(this, bluetoothManager);
+            audioRouter = new AudioRouter(this, bluetoothManager, wiredHeadsetManager, mCM);
 
             // Service used by in-call UI to control calls
             callCommandService = new CallCommandService(this, mCM, callModeler, dtmfTonePlayer,
@@ -564,7 +542,7 @@ public class PhoneGlobals extends ContextWrapper
 
             // Sends call state to the UI
             callHandlerServiceProxy = new CallHandlerServiceProxy(this, callModeler,
-                    callCommandService);
+                    callCommandService, audioRouter);
 
             // Create the CallNotifer singleton, which handles
             // asynchronous events from the telephony layer (like
@@ -593,7 +571,6 @@ public class PhoneGlobals extends ContextWrapper
             IntentFilter intentFilter =
                     new IntentFilter(Intent.ACTION_AIRPLANE_MODE_CHANGED);
             intentFilter.addAction(TelephonyIntents.ACTION_ANY_DATA_CONNECTION_STATE_CHANGED);
-            intentFilter.addAction(Intent.ACTION_HEADSET_PLUG);
             intentFilter.addAction(Intent.ACTION_DOCK_EVENT);
             intentFilter.addAction(TelephonyIntents.ACTION_SIM_STATE_CHANGED);
             intentFilter.addAction(TelephonyIntents.ACTION_RADIO_TECHNOLOGY_CHANGED);
@@ -719,6 +696,14 @@ public class PhoneGlobals extends ContextWrapper
 
     /* package */ BluetoothManager getBluetoothManager() {
         return bluetoothManager;
+    }
+
+    /* package */ WiredHeadsetManager getWiredHeadsetManager() {
+        return wiredHeadsetManager;
+    }
+
+    /* package */ AudioRouter getAudioRouter() {
+        return audioRouter;
     }
 
     /**
@@ -1176,7 +1161,7 @@ public class PhoneGlobals extends ContextWrapper
                 // turn proximity sensor off and turn screen on immediately if
                 // we are using a headset, the keyboard is open, or the device
                 // is being held in a horizontal position.
-                boolean screenOnImmediately = (isHeadsetPlugged()
+                boolean screenOnImmediately = (wiredHeadsetManager.isHeadsetPlugged()
                                                || PhoneUtils.isSpeakerOn(this)
                                                || bluetoothManager.isBluetoothHeadsetAudioOn()
                                                || mIsHardKeyboardOpen);
@@ -1371,15 +1356,6 @@ public class PhoneGlobals extends ContextWrapper
 
 
     /**
-     * @return true if a wired headset is currently plugged in.
-     *
-     * @see Intent.ACTION_HEADSET_PLUG (which we listen for in mReceiver.onReceive())
-     */
-    boolean isHeadsetPlugged() {
-        return mIsHeadsetPlugged;
-    }
-
-    /**
      * This needs to be called any time the bluetooth headset state or the
      * telephony state changes.
      * TODO(klp): See about a ProximityManager-type class listening to bluetooth
@@ -1390,6 +1366,22 @@ public class PhoneGlobals extends ContextWrapper
     public void onBluetoothIndicationChange(boolean showAsConnected, BluetoothManager manager) {
         // Update the Proximity sensor based on Bluetooth audio state
         updateProximitySensorMode(mCM.getState());
+    }
+
+    /**
+     * This is called when the wired headset state changes.
+     */
+    @Override
+    public void onWiredHeadsetConnection(boolean pluggedIn) {
+        PhoneConstants.State phoneState = mCM.getState();
+
+        // Update the Proximity sensor based on headset state
+        updateProximitySensorMode(phoneState);
+
+        // Force TTY state update according to new headset state
+        if (mTtyEnabled) {
+            mHandler.sendMessage(mHandler.obtainMessage(EVENT_TTY_PREFERRED_MODE_CHANGED, 0));
+        }
     }
 
     /**
@@ -1420,12 +1412,6 @@ public class PhoneGlobals extends ContextWrapper
                 mHandler.sendEmptyMessage(disconnectedDueToRoaming
                                           ? EVENT_DATA_ROAMING_DISCONNECTED
                                           : EVENT_DATA_ROAMING_OK);
-            } else if (action.equals(Intent.ACTION_HEADSET_PLUG)) {
-                if (VDBG) Log.d(LOG_TAG, "mReceiver: ACTION_HEADSET_PLUG");
-                if (VDBG) Log.d(LOG_TAG, "    state: " + intent.getIntExtra("state", 0));
-                if (VDBG) Log.d(LOG_TAG, "    name: " + intent.getStringExtra("name"));
-                mIsHeadsetPlugged = (intent.getIntExtra("state", 0) == 1);
-                mHandler.sendMessage(mHandler.obtainMessage(EVENT_WIRED_HEADSET_PLUG, 0));
             } else if ((action.equals(TelephonyIntents.ACTION_SIM_STATE_CHANGED)) &&
                     (mPUKEntryActivity != null)) {
                 // if an attempt to un-PUK-lock the device was made, while we're

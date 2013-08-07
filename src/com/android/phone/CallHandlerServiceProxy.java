@@ -48,19 +48,22 @@ public class CallHandlerServiceProxy extends Handler implements CallModeler.List
             (PhoneGlobals.DBG_LEVEL >= 1) && (SystemProperties.getInt("ro.debuggable", 0) == 1);
 
 
-    private Context mContext;
-    private CallModeler mCallModeler;
-    private ServiceConnection mConnection;
-    private ICallHandlerService mCallHandlerService;
+    private AudioRouter mAudioRouter;
     private CallCommandService mCallCommandService;
+    private CallModeler mCallModeler;
+    private Context mContext;
+    private ICallHandlerService mCallHandlerService;
+    private ServiceConnection mConnection;
 
     public CallHandlerServiceProxy(Context context, CallModeler callModeler,
-            CallCommandService callCommandService) {
+            CallCommandService callCommandService, AudioRouter audioRouter) {
         mContext = context;
         mCallCommandService = callCommandService;
         mCallModeler = callModeler;
+        mAudioRouter = audioRouter;
 
         setupServiceConnection();
+        mAudioRouter.addAudioModeListener(this);
         mCallModeler.addListener(this);
 
         // start the whole process
@@ -108,7 +111,22 @@ public class CallHandlerServiceProxy extends Handler implements CallModeler.List
 
         if (mCallHandlerService != null) {
             try {
+                if (DBG) Log.d(TAG, "onSupportAudioModeChange");
+
                 mCallHandlerService.onAudioModeChange(newMode);
+            } catch (RemoteException e) {
+                Log.e(TAG, "Remote exception handling onAudioModeChange", e);
+            }
+        }
+    }
+
+    @Override
+    public void onSupportedAudioModeChange(int modeMask) {
+        if (mCallHandlerService != null) {
+            try {
+                if (DBG) Log.d(TAG, "onSupportAudioModeChange: " + AudioMode.toString(modeMask));
+
+                mCallHandlerService.onSupportedAudioModeChange(modeMask);
             } catch (RemoteException e) {
                 Log.e(TAG, "Remote exception handling onAudioModeChange", e);
             }

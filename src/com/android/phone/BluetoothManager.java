@@ -38,13 +38,12 @@ import com.android.internal.telephony.CallManager;
 import java.util.List;
 
 /**
- * Listens to and caches bluetooth headset state.  Used By the CallHandlerServiceProxy
- * for sending this state to the UI layer.  Also provides method for connection the bluetooth
- * headset to the phone call.  This is used by the CallCommandService to allow the UI to use the
- * bluetooth headset if connected.
+ * Listens to and caches bluetooth headset state.  Used By the AudioRouter for maintaining
+ * overall audio state for use in the UI layer. Also provides method for connecting the bluetooth
+ * headset to the phone call.
  */
 public class BluetoothManager {
-    private static final String LOG_TAG = "InCallScreen";
+    private static final String LOG_TAG = BluetoothManager.class.getSimpleName();
     private static final boolean DBG =
             (PhoneGlobals.DBG_LEVEL >= 1) && (SystemProperties.getInt("ro.debuggable", 0) == 1);
     private static final boolean VDBG = (PhoneGlobals.DBG_LEVEL >= 2);

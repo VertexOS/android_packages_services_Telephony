@@ -2766,119 +2766,14 @@ public class InCallScreen extends Activity
         PhoneUtils.setMute(newMuteState);
     }
 
-    /**
-     * Toggles whether or not to route in-call audio to the bluetooth
-     * headset, or do nothing (but log a warning) if no bluetooth device
-     * is actually connected.
-     *
-     * TODO: this method is currently unused, but the "audio mode" UI
-     * design is still in flux so let's keep it around for now.
-     * (But if we ultimately end up *not* providing any way for the UI to
-     * simply "toggle bluetooth", we can get rid of this method.)
-     */
     public void toggleBluetooth() {
-        if (VDBG) log("toggleBluetooth()...");
-
-        // TODO(klp): Copy to new AudioManager for new incall
-
-        /*
-        if (isBluetoothAvailable()) {
-            // Toggle the bluetooth audio connection state:
-            if (isBluetoothAudioConnected()) {
-                disconnectBluetoothAudio();
-            } else {
-                // Manually turn the speaker phone off, instead of allowing the
-                // Bluetooth audio routing to handle it, since there's other
-                // important state-updating that needs to happen in the
-                // PhoneUtils.turnOnSpeaker() method.
-                // (Similarly, whenever the user turns *on* the speaker, we
-                // manually disconnect the active bluetooth headset;
-                // see toggleSpeaker() and/or switchInCallAudio().)
-                if (PhoneUtils.isSpeakerOn(this)) {
-                    PhoneUtils.turnOnSpeaker(this, false, true);
-                }
-
-                connectBluetoothAudio();
-            }
-        } else {
-            // Bluetooth isn't available; the onscreen UI shouldn't have
-            // allowed this request in the first place!
-            Log.w(LOG_TAG, "toggleBluetooth(): bluetooth is unavailable");
-        }
-
-        // And update the InCallTouchUi widget (since the "audio mode"
-        // button might need to change its appearance based on the new
-        // audio state.)
-        updateInCallTouchUi();
-        */
+        // TODO(klp) this still here to avoid compile errors until remove
+        // the UI from services/Telephony completely.
     }
 
-    /**
-     * Switches the current routing of in-call audio between speaker,
-     * bluetooth, and the built-in earpiece (or wired headset.)
-     *
-     * This method is used on devices that provide a single 3-way switch
-     * for audio routing.  For devices that provide separate toggles for
-     * Speaker and Bluetooth, see toggleBluetooth() and toggleSpeaker().
-     *
-     * TODO: UI design is still in flux.  If we end up totally
-     * eliminating the concept of Speaker and Bluetooth toggle buttons,
-     * we can get rid of toggleBluetooth() and toggleSpeaker().
-     */
     public void switchInCallAudio(InCallAudioMode newMode) {
-        // TODO(klp): Copy to new AudioManager for new incall
-        /*
-
-        log("switchInCallAudio: new mode = " + newMode);
-        switch (newMode) {
-            case SPEAKER:
-                if (!PhoneUtils.isSpeakerOn(this)) {
-                    // Switch away from Bluetooth, if it was active.
-                    if (isBluetoothAvailable() && isBluetoothAudioConnected()) {
-                        disconnectBluetoothAudio();
-                    }
-                    PhoneUtils.turnOnSpeaker(this, true, true);
-                }
-                break;
-
-            case BLUETOOTH:
-                // If already connected to BT, there's nothing to do here.
-                if (isBluetoothAvailable() && !isBluetoothAudioConnected()) {
-                    // Manually turn the speaker phone off, instead of allowing the
-                    // Bluetooth audio routing to handle it, since there's other
-                    // important state-updating that needs to happen in the
-                    // PhoneUtils.turnOnSpeaker() method.
-                    // (Similarly, whenever the user turns *on* the speaker, we
-                    // manually disconnect the active bluetooth headset;
-                    // see toggleSpeaker() and/or switchInCallAudio().)
-                    if (PhoneUtils.isSpeakerOn(this)) {
-                        PhoneUtils.turnOnSpeaker(this, false, true);
-                    }
-                    connectBluetoothAudio();
-                }
-                break;
-
-            case EARPIECE:
-                // Switch to either the handset earpiece, or the wired headset (if connected.)
-                // (Do this by simply making sure both speaker and bluetooth are off.)
-                if (isBluetoothAvailable() && isBluetoothAudioConnected()) {
-                    disconnectBluetoothAudio();
-                }
-                if (PhoneUtils.isSpeakerOn(this)) {
-                    PhoneUtils.turnOnSpeaker(this, false, true);
-                }
-                break;
-
-            default:
-                Log.wtf(LOG_TAG, "switchInCallAudio: unexpected mode " + newMode);
-                break;
-        }
-
-        // And finally, update the InCallTouchUi widget (since the "audio
-        // mode" button might need to change its appearance based on the
-        // new audio state.)
-        updateInCallTouchUi();
-        */
+        // TODO(klp) this still here to avoid compile errors until remove
+        // the UI from services/Telephony completely.
     }
 
     /**

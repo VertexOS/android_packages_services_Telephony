@@ -61,5 +61,5 @@ oneway interface ICallHandlerService {
      * Called when the supported audio modes change.
      * {@see AudioMode}
      */
-    void onAudioModeSupportChange(in int modeMask);
+    void onSupportedAudioModeChange(in int modeMask);
 }

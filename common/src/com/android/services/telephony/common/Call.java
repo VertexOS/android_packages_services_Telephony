@@ -16,8 +16,13 @@
 
 package com.android.services.telephony.common;
 
+import com.google.common.collect.ImmutableMap;
+
 import android.os.Parcel;
 import android.os.Parcelable;
+
+import java.nio.Buffer;
+import java.util.Map;
 
 import com.android.internal.telephony.PhoneConstants;
 
@@ -51,6 +56,16 @@ final public class Call implements Parcelable {
         // An active phone call placed on hold.
         public static final int ONHOLD = 6;
     }
+
+    private static final Map<Integer, String> STATE_MAP = ImmutableMap.<Integer, String>builder()
+            .put(Call.State.ACTIVE, "ACTIVE")
+            .put(Call.State.CALL_WAITING, "CALL_WAITING")
+            .put(Call.State.DIALING, "DIALING")
+            .put(Call.State.IDLE, "IDLE")
+            .put(Call.State.INCOMING, "INCOMING")
+            .put(Call.State.ONHOLD, "ONHOLD")
+            .put(Call.State.INVALID, "INVALID")
+            .build();
 
     // Number presentation type for caller id display
     // normal
@@ -157,4 +172,13 @@ final public class Call implements Parcelable {
         mCnapName = in.readString();
     }
 
+    @Override
+    public String toString() {
+        StringBuffer buffer = new StringBuffer();
+        buffer.append("callId: ");
+        buffer.append(mCallId);
+        buffer.append(", state: ");
+        buffer.append(STATE_MAP.get(mState));
+        return buffer.toString();
+    }
 }

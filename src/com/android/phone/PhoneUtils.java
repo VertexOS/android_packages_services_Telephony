@@ -2460,11 +2460,15 @@ public class PhoneUtils {
         boolean activated = false;
         if (PhoneGlobals.mDockState != Intent.EXTRA_DOCK_STATE_UNDOCKED) {
             if (DBG) log("activateSpeakerIfDocked(): In a dock -> may need to turn on speaker.");
-            PhoneGlobals app = PhoneGlobals.getInstance();
-            final BluetoothManager btManager = app.getBluetoothManager();
+            final PhoneGlobals app = PhoneGlobals.getInstance();
 
-            if (!app.isHeadsetPlugged() && !btManager.isBluetoothHeadsetAudioOn()) {
-                turnOnSpeaker(phone.getContext(), true, true);
+            // TODO(klp): This function should move to AudioRouter
+            final BluetoothManager btManager = app.getBluetoothManager();
+            final WiredHeadsetManager wiredHeadset = app.getWiredHeadsetManager();
+            final AudioRouter audioRouter = app.getAudioRouter();
+
+            if (!wiredHeadset.isHeadsetPlugged() && !btManager.isBluetoothHeadsetAudioOn()) {
+                audioRouter.setSpeaker(true);
                 activated = true;
             }
         }
