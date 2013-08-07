@@ -19,10 +19,13 @@ package com.android.phone;
 import com.google.android.collect.Lists;
 import com.google.android.collect.Maps;
 import com.google.common.base.Preconditions;
+import com.google.common.collect.ImmutableMap;
 
 import android.os.AsyncResult;
 import android.os.Handler;
 import android.os.Message;
+import android.text.TextUtils;
+import android.util.Log;
 
 import com.android.internal.telephony.CallManager;
 import com.android.internal.telephony.Connection;
@@ -86,7 +89,7 @@ public class CallModeler extends Handler {
         mCallStateMonitor.addListener(this);
     }
 
-    @Override
+    //@Override
     public void handleMessage(Message msg) {
         switch(msg.what) {
             case CallStateMonitor.PHONE_NEW_RINGING_CONNECTION:
@@ -143,6 +146,8 @@ public class CallModeler extends Handler {
     private void onNewRingingConnection(AsyncResult r) {
         final Connection conn = (Connection) r.result;
         final Call call = getCallFromConnection(conn, true);
+
+        updateCallFromConnection(call, conn);
         call.setState(Call.State.INCOMING);
 
         for (int i = 0; i < mListeners.size(); ++i) {
@@ -156,7 +161,9 @@ public class CallModeler extends Handler {
     private void onDisconnect(AsyncResult r) {
         final Connection conn = (Connection) r.result;
         final Call call = getCallFromConnection(conn, false);
-        call.setState(Call.State.IDLE);
+
+        updateCallFromConnection(call, conn);
+        call.setState(Call.State.DISCONNECTED);
 
         if (call != null) {
             mCallMap.remove(conn);
@@ -193,20 +200,69 @@ public class CallModeler extends Handler {
         // Cycle through all the Connections on all the Calls. Update our Call objects
         // to reflect any new state and send the updated Call objects to the handler service.
         for (com.android.internal.telephony.Call telephonyCall : telephonyCalls) {
-            final int state = translateStateFromTelephony(telephonyCall.getState());
 
             for (Connection connection : telephonyCall.getConnections()) {
                 // new connections return a Call with INVALID state, which does not translate to
-                // a state in the Connection object.  This ensures that staleness check below
-                // fails and we always add the item to the update list if it is new.
+                // a state in the internal.telephony.Call object.  This ensures that staleness
+                // check below fails and we always add the item to the update list if it is new.
                 final Call call = getCallFromConnection(connection, true);
 
-                if (fullUpdate || call.getState() != state) {
-                    call.setState(state);
+                boolean changed = updateCallFromConnection(call, connection);
+
+                if (fullUpdate || changed) {
                     out.add(call);
                 }
             }
         }
+    }
+
+    /**
+     * Updates the Call properties to match the state of the connection object
+     * that it represents.
+     */
+    private boolean updateCallFromConnection(Call call, Connection connection) {
+        boolean changed = false;
+
+        com.android.internal.telephony.Call telephonyCall = connection.getCall();
+        final int newState = translateStateFromTelephony(telephonyCall.getState());
+
+        if (call.getState() != newState) {
+            call.setState(newState);
+            changed = true;
+        }
+
+        final String oldNumber = call.getNumber();
+        if (TextUtils.isEmpty(oldNumber) || !oldNumber.equals(connection.getAddress())) {
+            call.setNumber(connection.getAddress());
+            changed = true;
+        }
+
+        final Call.DisconnectCause newDisconnectCause =
+                translateDisconnectCauseFromTelephony(connection.getDisconnectCause());
+        if (call.getDisconnectCause() != newDisconnectCause) {
+            call.setDisconnectCause(newDisconnectCause);
+            changed = true;
+        }
+
+        final int newNumberPresentation = connection.getNumberPresentation();
+        if (call.getNumberPresentation() != newNumberPresentation) {
+            call.setNumberPresentation(newNumberPresentation);
+            changed = true;
+        }
+
+        final int newCnapNamePresentation = connection.getCnapNamePresentation();
+        if (call.getCnapNamePresentation() != newCnapNamePresentation) {
+            call.setCnapNamePresentation(newCnapNamePresentation);
+            changed = true;
+        }
+
+        final String oldCnapName = call.getCnapName();
+        if (TextUtils.isEmpty(oldCnapName) || !oldCnapName.equals(connection.getCnapName())) {
+            call.setCnapName(connection.getCnapName());
+            changed = true;
+        }
+
+        return changed;
     }
 
     private int translateStateFromTelephony(com.android.internal.telephony.Call.State teleState) {
@@ -228,15 +284,86 @@ public class CallModeler extends Handler {
             case HOLDING:
                 retval = State.ONHOLD;
                 break;
+            case DISCONNECTED:
+            case DISCONNECTING:
+                retval = State.DISCONNECTED;
             default:
         }
 
         return retval;
     }
 
+    private final ImmutableMap<Connection.DisconnectCause, Call.DisconnectCause> CAUSE_MAP =
+            ImmutableMap.<Connection.DisconnectCause, Call.DisconnectCause>builder()
+                .put(Connection.DisconnectCause.BUSY, Call.DisconnectCause.BUSY)
+                .put(Connection.DisconnectCause.CALL_BARRED, Call.DisconnectCause.CALL_BARRED)
+                .put(Connection.DisconnectCause.CDMA_ACCESS_BLOCKED,
+                        Call.DisconnectCause.CDMA_ACCESS_BLOCKED)
+                .put(Connection.DisconnectCause.CDMA_ACCESS_FAILURE,
+                        Call.DisconnectCause.CDMA_ACCESS_FAILURE)
+                .put(Connection.DisconnectCause.CDMA_DROP, Call.DisconnectCause.CDMA_DROP)
+                .put(Connection.DisconnectCause.CDMA_INTERCEPT, Call.DisconnectCause.CDMA_INTERCEPT)
+                .put(Connection.DisconnectCause.CDMA_LOCKED_UNTIL_POWER_CYCLE,
+                        Call.DisconnectCause.CDMA_LOCKED_UNTIL_POWER_CYCLE)
+                .put(Connection.DisconnectCause.CDMA_NOT_EMERGENCY,
+                        Call.DisconnectCause.CDMA_NOT_EMERGENCY)
+                .put(Connection.DisconnectCause.CDMA_PREEMPTED, Call.DisconnectCause.CDMA_PREEMPTED)
+                .put(Connection.DisconnectCause.CDMA_REORDER, Call.DisconnectCause.CDMA_REORDER)
+                .put(Connection.DisconnectCause.CDMA_RETRY_ORDER,
+                        Call.DisconnectCause.CDMA_RETRY_ORDER)
+                .put(Connection.DisconnectCause.CDMA_SO_REJECT, Call.DisconnectCause.CDMA_SO_REJECT)
+                .put(Connection.DisconnectCause.CONGESTION, Call.DisconnectCause.CONGESTION)
+                .put(Connection.DisconnectCause.CS_RESTRICTED, Call.DisconnectCause.CS_RESTRICTED)
+                .put(Connection.DisconnectCause.CS_RESTRICTED_EMERGENCY,
+                        Call.DisconnectCause.CS_RESTRICTED_EMERGENCY)
+                .put(Connection.DisconnectCause.CS_RESTRICTED_NORMAL,
+                        Call.DisconnectCause.CS_RESTRICTED_NORMAL)
+                .put(Connection.DisconnectCause.ERROR_UNSPECIFIED,
+                        Call.DisconnectCause.ERROR_UNSPECIFIED)
+                .put(Connection.DisconnectCause.FDN_BLOCKED, Call.DisconnectCause.FDN_BLOCKED)
+                .put(Connection.DisconnectCause.ICC_ERROR, Call.DisconnectCause.ICC_ERROR)
+                .put(Connection.DisconnectCause.INCOMING_MISSED,
+                        Call.DisconnectCause.INCOMING_MISSED)
+                .put(Connection.DisconnectCause.INCOMING_REJECTED,
+                        Call.DisconnectCause.INCOMING_REJECTED)
+                .put(Connection.DisconnectCause.INVALID_CREDENTIALS,
+                        Call.DisconnectCause.INVALID_CREDENTIALS)
+                .put(Connection.DisconnectCause.INVALID_NUMBER,
+                        Call.DisconnectCause.INVALID_NUMBER)
+                .put(Connection.DisconnectCause.LIMIT_EXCEEDED, Call.DisconnectCause.LIMIT_EXCEEDED)
+                .put(Connection.DisconnectCause.LOCAL, Call.DisconnectCause.LOCAL)
+                .put(Connection.DisconnectCause.LOST_SIGNAL, Call.DisconnectCause.LOST_SIGNAL)
+                .put(Connection.DisconnectCause.MMI, Call.DisconnectCause.MMI)
+                .put(Connection.DisconnectCause.NORMAL, Call.DisconnectCause.NORMAL)
+                .put(Connection.DisconnectCause.NOT_DISCONNECTED,
+                        Call.DisconnectCause.NOT_DISCONNECTED)
+                .put(Connection.DisconnectCause.NUMBER_UNREACHABLE,
+                        Call.DisconnectCause.NUMBER_UNREACHABLE)
+                .put(Connection.DisconnectCause.OUT_OF_NETWORK, Call.DisconnectCause.OUT_OF_NETWORK)
+                .put(Connection.DisconnectCause.OUT_OF_SERVICE, Call.DisconnectCause.OUT_OF_SERVICE)
+                .put(Connection.DisconnectCause.POWER_OFF, Call.DisconnectCause.POWER_OFF)
+                .put(Connection.DisconnectCause.SERVER_ERROR, Call.DisconnectCause.SERVER_ERROR)
+                .put(Connection.DisconnectCause.SERVER_UNREACHABLE,
+                        Call.DisconnectCause.SERVER_UNREACHABLE)
+                .put(Connection.DisconnectCause.TIMED_OUT, Call.DisconnectCause.TIMED_OUT)
+                .put(Connection.DisconnectCause.UNOBTAINABLE_NUMBER,
+                        Call.DisconnectCause.UNOBTAINABLE_NUMBER)
+                .build();
+
+    private Call.DisconnectCause translateDisconnectCauseFromTelephony(
+            Connection.DisconnectCause causeSource) {
+
+        if (CAUSE_MAP.containsKey(causeSource)) {
+            return CAUSE_MAP.get(causeSource);
+        }
+
+        return Call.DisconnectCause.UNKNOWN;
+    }
+
     /**
-     * Gets an existing callId for a connection, or creates one
-     * if none exists.
+     * Gets an existing callId for a connection, or creates one if none exists.
+     * This function does NOT set any of the Connection data onto the Call class.
+     * A separate call to updateCallFromConnection must be made for that purpose.
      */
     private Call getCallFromConnection(Connection conn, boolean createIfMissing) {
         Call call = null;
@@ -262,10 +389,7 @@ public class CallModeler extends Handler {
                         mCallMap.containsValue(callId));
 
                 call = new Call(callId);
-                call.setNumber(conn.getAddress());
-                call.setNumberPresentation(conn.getNumberPresentation());
-                call.setCnapNamePresentation(conn.getCnapNamePresentation());
-                call.setCnapName(conn.getCnapName());
+
                 mCallMap.put(conn, call);
             }
         }

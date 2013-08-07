@@ -54,6 +54,59 @@ final public class Call implements Parcelable {
 
         // An active phone call placed on hold.
         public static final int ONHOLD = 6;
+
+        // State after a call disconnects.
+        public static final int DISCONNECTED = 7;
+    }
+
+    /**
+     * Copy of states found in Connection object since Connection object is not available to the UI
+     * code.
+     * TODO: Consider cutting this down to only the types used by the UI.
+     * TODO: Consider adding a CUSTOM cause type and a customDisconnect member variable to
+     *       the Call object.  This would allow OEMs to extend the cause list without
+     *       needing to alter our implementation.
+     */
+    public enum DisconnectCause {
+        NOT_DISCONNECTED,               /* has not yet disconnected */
+        INCOMING_MISSED,                /* an incoming call that was missed and never answered */
+        NORMAL,                         /* normal; remote */
+        LOCAL,                          /* normal; local hangup */
+        BUSY,                           /* outgoing call to busy line */
+        CONGESTION,                     /* outgoing call to congested network */
+        MMI,                            /* not presently used; dial() returns null */
+        INVALID_NUMBER,                 /* invalid dial string */
+        NUMBER_UNREACHABLE,             /* cannot reach the peer */
+        SERVER_UNREACHABLE,             /* cannot reach the server */
+        INVALID_CREDENTIALS,            /* invalid credentials */
+        OUT_OF_NETWORK,                 /* calling from out of network is not allowed */
+        SERVER_ERROR,                   /* server error */
+        TIMED_OUT,                      /* client timed out */
+        LOST_SIGNAL,
+        LIMIT_EXCEEDED,                 /* eg GSM ACM limit exceeded */
+        INCOMING_REJECTED,              /* an incoming call that was rejected */
+        POWER_OFF,                      /* radio is turned off explicitly */
+        OUT_OF_SERVICE,                 /* out of service */
+        ICC_ERROR,                      /* No ICC, ICC locked, or other ICC error */
+        CALL_BARRED,                    /* call was blocked by call barring */
+        FDN_BLOCKED,                    /* call was blocked by fixed dial number */
+        CS_RESTRICTED,                  /* call was blocked by restricted all voice access */
+        CS_RESTRICTED_NORMAL,           /* call was blocked by restricted normal voice access */
+        CS_RESTRICTED_EMERGENCY,        /* call was blocked by restricted emergency voice access */
+        UNOBTAINABLE_NUMBER,            /* Unassigned number (3GPP TS 24.008 table 10.5.123) */
+        CDMA_LOCKED_UNTIL_POWER_CYCLE,  /* MS is locked until next power cycle */
+        CDMA_DROP,
+        CDMA_INTERCEPT,                 /* INTERCEPT order received, MS state idle entered */
+        CDMA_REORDER,                   /* MS has been redirected, call is cancelled */
+        CDMA_SO_REJECT,                 /* service option rejection */
+        CDMA_RETRY_ORDER,               /* requested service is rejected, retry delay is set */
+        CDMA_ACCESS_FAILURE,
+        CDMA_PREEMPTED,
+        CDMA_NOT_EMERGENCY,              /* not an emergency call */
+        CDMA_ACCESS_BLOCKED,            /* Access Blocked by CDMA network */
+        ERROR_UNSPECIFIED,
+
+        UNKNOWN                         /* Disconnect cause doesn't map to any above */
     }
 
     private static final Map<Integer, String> STATE_MAP = ImmutableMap.<Integer, String>builder()
@@ -64,6 +117,7 @@ final public class Call implements Parcelable {
             .put(Call.State.INCOMING, "INCOMING")
             .put(Call.State.ONHOLD, "ONHOLD")
             .put(Call.State.INVALID, "INVALID")
+            .put(Call.State.DISCONNECTED, "DISCONNECTED")
             .build();
 
     // Number presentation type for caller id display
@@ -82,6 +136,7 @@ final public class Call implements Parcelable {
     private int mNumberPresentation = PRESENTATION_ALLOWED;
     private int mCnapNamePresentation = PRESENTATION_ALLOWED;
     private String mCnapName = "";
+    private DisconnectCause mDisconnectCause;
 
     public Call(int callId) {
         mCallId = callId;
@@ -131,6 +186,18 @@ final public class Call implements Parcelable {
         mCnapName = cnapName;
     }
 
+    public DisconnectCause getDisconnectCause() {
+        if (mState == State.DISCONNECTED || mState == State.IDLE) {
+            return mDisconnectCause;
+        }
+
+        return DisconnectCause.NOT_DISCONNECTED;
+    }
+
+    public void setDisconnectCause(DisconnectCause cause) {
+        mDisconnectCause = cause;
+    }
+
     /**
      * Parcelable implementation
      */
@@ -143,6 +210,7 @@ final public class Call implements Parcelable {
         dest.writeInt(mNumberPresentation);
         dest.writeInt(mCnapNamePresentation);
         dest.writeString(mCnapName);
+        dest.writeString(getDisconnectCause().toString());
     }
 
     @Override
@@ -169,6 +237,7 @@ final public class Call implements Parcelable {
         mNumberPresentation = in.readInt();
         mCnapNamePresentation = in.readInt();
         mCnapName = in.readString();
+        mDisconnectCause = DisconnectCause.valueOf(in.readString());
     }
 
     @Override
@@ -178,6 +247,8 @@ final public class Call implements Parcelable {
         buffer.append(mCallId);
         buffer.append(", state: ");
         buffer.append(STATE_MAP.get(mState));
+        buffer.append(", disconnect_cause: ");
+        buffer.append(getDisconnectCause().toString());
         return buffer.toString();
     }
 }
