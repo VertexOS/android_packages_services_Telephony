@@ -21,7 +21,6 @@ import com.google.common.collect.ImmutableMap;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.nio.Buffer;
 import java.util.Map;
 
 import com.android.internal.telephony.PhoneConstants;

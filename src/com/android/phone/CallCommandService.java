@@ -17,6 +17,7 @@
 package com.android.phone;
 
 import android.content.Context;
+import android.os.SystemProperties;
 import android.util.Log;
 
 import com.android.internal.telephony.CallManager;
@@ -30,8 +31,9 @@ import com.android.services.telephony.common.ICallCommandService;
  * Instances of this class are handed to in-call UI via CallMonitorService.
  */
 class CallCommandService extends ICallCommandService.Stub {
-
     private static final String TAG = CallCommandService.class.getSimpleName();
+    private static final boolean DBG =
+            (PhoneGlobals.DBG_LEVEL >= 1) && (SystemProperties.getInt("ro.debuggable", 0) == 1);
 
     private final Context mContext;
     private final CallManager mCallManager;
@@ -95,9 +97,12 @@ class CallCommandService extends ICallCommandService.Stub {
     public void disconnectCall(int callId) {
         try {
             CallResult result = mCallModeler.getCallWithId(callId);
+            if (DBG) Log.d(TAG, "disconnectCall " + result.getCall());
+
             if (result != null) {
                 int state = result.getCall().getState();
-                if (Call.State.ACTIVE == state || Call.State.ONHOLD == state) {
+                if (Call.State.ACTIVE == state || Call.State.ONHOLD == state ||
+                        Call.State.DIALING == state) {
                     result.getConnection().getCall().hangup();
                 }
             }
