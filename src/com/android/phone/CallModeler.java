@@ -30,7 +30,9 @@ import android.util.Log;
 import com.android.internal.telephony.CallManager;
 import com.android.internal.telephony.Connection;
 import com.android.internal.telephony.PhoneConstants;
+import com.android.internal.telephony.TelephonyCapabilities;
 import com.android.services.telephony.common.Call;
+import com.android.services.telephony.common.Call.Capabilities;
 import com.android.services.telephony.common.Call.State;
 
 import java.util.ArrayList;
@@ -262,7 +264,28 @@ public class CallModeler extends Handler {
             changed = true;
         }
 
+        final int newCapabilities = getCapabilitiesFor(connection);
+        if (call.getCapabilities() != newCapabilities) {
+            call.setCapabilities(newCapabilities);
+            changed = true;
+        }
+
         return changed;
+    }
+
+    /**
+     * Returns a mask of capabilities for the connection such as merge, hold, etc.
+     */
+    private int getCapabilitiesFor(Connection connection) {
+        int retval = 0x0;
+
+        final boolean hold = TelephonyCapabilities.supportsAnswerAndHold(connection.getCall().getPhone());
+
+        if (hold) {
+            retval |= Capabilities.HOLD;
+        }
+
+        return retval;
     }
 
     private int translateStateFromTelephony(com.android.internal.telephony.Call.State teleState) {

@@ -49,9 +49,9 @@ final public class Call implements Parcelable {
      * Defines a set of capabilities that a call can have as a bit mask.
      */
     public static class Capabilities {
-        public static final int MERGE = 0x00000001;    /* has ability to merge with another call. */
+        public static final int HOLD = 0x00000001;    /* has ability to hold the call */
 
-        public static final int ALL = MERGE;
+        public static final int ALL = HOLD;
     }
 
     /**
