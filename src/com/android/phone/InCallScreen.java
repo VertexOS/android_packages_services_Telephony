@@ -3507,26 +3507,6 @@ public class InCallScreen extends Activity
         // to lose any previous digits from the current call; see the TODO
         // comment on DTMFTwelvKeyDialer.clearDigits() for more info.)
         mDialer.clearDigits();
-
-        // Swap the fg and bg calls.
-        // In the future we may provides some way for user to choose among
-        // multiple background calls, for now, always act on the first background calll.
-        PhoneUtils.switchHoldingAndActive(mCM.getFirstActiveBgCall());
-
-        // If we have a valid BluetoothPhoneService then since CDMA network or
-        // Telephony FW does not send us information on which caller got swapped
-        // we need to update the second call active state in BluetoothPhoneService internally
-        if (mCM.getBgPhone().getPhoneType() == PhoneConstants.PHONE_TYPE_CDMA) {
-            IBluetoothHeadsetPhone btPhone = mApp.getBluetoothPhoneService();
-            if (btPhone != null) {
-                try {
-                    btPhone.cdmaSwapSecondCallState();
-                } catch (RemoteException e) {
-                    Log.e(LOG_TAG, Log.getStackTraceString(new Throwable()));
-                }
-            }
-        }
-
     }
 
     /**

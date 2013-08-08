@@ -45,6 +45,23 @@ oneway interface ICallCommandService {
     void hold(int callId, boolean hold);
 
     /**
+     * Merge foreground and background calls.
+     */
+    void merge();
+
+    /**
+     * Swap foreground and background calls.
+     */
+    void swap();
+
+    /**
+     * Add another call.
+     * TODO(klp): Should this go through the service at all?
+     *            It could just as easily call dialer directly.
+     */
+    void addCall();
+
+    /**
      * Mute the phone.
      */
     void mute(boolean onOff);

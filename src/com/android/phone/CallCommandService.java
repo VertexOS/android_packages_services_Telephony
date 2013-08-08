@@ -16,11 +16,14 @@
 
 package com.android.phone;
 
+import android.bluetooth.IBluetoothHeadsetPhone;
 import android.content.Context;
+import android.os.RemoteException;
 import android.os.SystemProperties;
 import android.util.Log;
 
 import com.android.internal.telephony.CallManager;
+import com.android.internal.telephony.PhoneConstants;
 import com.android.phone.CallModeler.CallResult;
 import com.android.services.telephony.common.AudioMode;
 import com.android.services.telephony.common.Call;
@@ -129,10 +132,52 @@ class CallCommandService extends ICallCommandService.Stub {
     }
 
     @Override
+    public void merge() {
+        if (PhoneUtils.okToMergeCalls(mCallManager)) {
+            PhoneUtils.mergeCalls(mCallManager);
+        }
+    }
+
+    @Override
+    public void addCall() {
+        // start new call checks okToAddCall() already
+        PhoneUtils.startNewCall(mCallManager);
+    }
+
+
+    @Override
+    public void swap() {
+        if (!PhoneUtils.okToSwapCalls(mCallManager)) {
+            // TODO: throw an error instead?
+            return;
+        }
+
+        // Swap the fg and bg calls.
+        // In the future we may provides some way for user to choose among
+        // multiple background calls, for now, always act on the first background calll.
+        PhoneUtils.switchHoldingAndActive(mCallManager.getFirstActiveBgCall());
+
+        final PhoneGlobals mApp = PhoneGlobals.getInstance();
+
+        // If we have a valid BluetoothPhoneService then since CDMA network or
+        // Telephony FW does not send us information on which caller got swapped
+        // we need to update the second call active state in BluetoothPhoneService internally
+        if (mCallManager.getBgPhone().getPhoneType() == PhoneConstants.PHONE_TYPE_CDMA) {
+            final IBluetoothHeadsetPhone btPhone = mApp.getBluetoothPhoneService();
+            if (btPhone != null) {
+                try {
+                    btPhone.cdmaSwapSecondCallState();
+                } catch (RemoteException e) {
+                    Log.e(TAG, Log.getStackTraceString(new Throwable()));
+                }
+            }
+        }
+    }
+
+    @Override
     public void mute(boolean onOff) {
         try {
-            //PhoneUtils.setMute(onOff);
-            mAudioRouter.setAudioMode(onOff ? AudioMode.BLUETOOTH : AudioMode.EARPIECE);
+            PhoneUtils.setMute(onOff);
         } catch (Exception e) {
             Log.e(TAG, "Error during mute().", e);
         }

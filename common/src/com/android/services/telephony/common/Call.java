@@ -47,11 +47,15 @@ final public class Call implements Parcelable {
 
     /**
      * Defines a set of capabilities that a call can have as a bit mask.
+     * TODO: Should some of these be capabilities of the Phone instead of the call?
      */
     public static class Capabilities {
-        public static final int HOLD = 0x00000001;    /* has ability to hold the call */
+        public static final int HOLD        = 0x00000001;    /* has ability to hold the call */
+        public static final int MERGE_CALLS = 0x00000002;    /* has ability to merge calls */
+        public static final int SWAP_CALLS  = 0x00000004;    /* swap with a background call */
+        public static final int ADD_CALL    = 0x00000008;    /* add another call to this one */
 
-        public static final int ALL = HOLD;
+        public static final int ALL = HOLD | MERGE_CALLS | SWAP_CALLS | ADD_CALL;
     }
 
     /**
@@ -271,6 +275,8 @@ final public class Call implements Parcelable {
         buffer.append(STATE_MAP.get(mState));
         buffer.append(", disconnect_cause: ");
         buffer.append(getDisconnectCause().toString());
+        buffer.append(", capabilities: ");
+        buffer.append(Integer.toHexString(getCapabilities()));
         return buffer.toString();
     }
 }

@@ -29,6 +29,7 @@ import android.util.Log;
 
 import com.android.internal.telephony.CallManager;
 import com.android.internal.telephony.Connection;
+import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneConstants;
 import com.android.internal.telephony.TelephonyCapabilities;
 import com.android.services.telephony.common.Call;
@@ -264,7 +265,10 @@ public class CallModeler extends Handler {
             changed = true;
         }
 
-        final int newCapabilities = getCapabilitiesFor(connection);
+        /**
+         * !!! Uses values from connection and call collected above so this part must be last !!!
+         */
+        final int newCapabilities = getCapabilitiesFor(connection, call);
         if (call.getCapabilities() != newCapabilities) {
             call.setCapabilities(newCapabilities);
             changed = true;
@@ -276,13 +280,43 @@ public class CallModeler extends Handler {
     /**
      * Returns a mask of capabilities for the connection such as merge, hold, etc.
      */
-    private int getCapabilitiesFor(Connection connection) {
+    private int getCapabilitiesFor(Connection connection, Call call) {
+        final boolean callIsActive = (call.getState() == Call.State.ACTIVE);
+        final Phone phone = connection.getCall().getPhone();
+
+        final boolean canHold = TelephonyCapabilities.supportsAnswerAndHold(phone);
+        boolean canAddCall = false;
+        boolean canMergeCall = false;
+        boolean canSwapCall = false;
+
+        // only applies to active calls
+        if (callIsActive) {
+            canAddCall = PhoneUtils.okToAddCall(mCallManager);
+            canMergeCall = PhoneUtils.okToMergeCalls(mCallManager);
+            canSwapCall = PhoneUtils.okToSwapCalls(mCallManager);
+        }
+
+        // special rules section!
+        // CDMA always has Add
+        if (phone.getPhoneType() == PhoneConstants.PHONE_TYPE_CDMA) {
+            canAddCall = true;
+        } else {
+            // if neither merge nor add is on...then allow add
+            canAddCall |= !(canAddCall || canMergeCall);
+        }
+
         int retval = 0x0;
-
-        final boolean hold = TelephonyCapabilities.supportsAnswerAndHold(connection.getCall().getPhone());
-
-        if (hold) {
+        if (canHold) {
             retval |= Capabilities.HOLD;
+        }
+        if (canAddCall) {
+            retval |= Capabilities.ADD_CALL;
+        }
+        if (canMergeCall) {
+            retval |= Capabilities.MERGE_CALLS;
+        }
+        if (canSwapCall) {
+            retval |= Capabilities.SWAP_CALLS;
         }
 
         return retval;
