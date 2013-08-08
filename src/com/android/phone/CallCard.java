@@ -809,6 +809,7 @@ public class CallCard extends LinearLayout
 
         // Check a couple of other special cases (these are all CDMA-specific).
 
+        // TODO(klp): This code should go into the CallModeler logic instead of the UI.
         if (phoneType == PhoneConstants.PHONE_TYPE_CDMA) {
             if ((state == Call.State.ACTIVE)
                 && mApplication.cdmaPhoneCallState.IsThreeWayCallOrigStateDialing()) {

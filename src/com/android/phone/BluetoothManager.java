@@ -34,7 +34,9 @@ import android.os.SystemProperties;
 import android.util.Log;
 
 import com.android.internal.telephony.CallManager;
+import com.android.services.telephony.common.Call;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -42,7 +44,7 @@ import java.util.List;
  * overall audio state for use in the UI layer. Also provides method for connecting the bluetooth
  * headset to the phone call.
  */
-public class BluetoothManager {
+public class BluetoothManager implements CallModeler.Listener {
     private static final String LOG_TAG = BluetoothManager.class.getSimpleName();
     private static final boolean DBG =
             (PhoneGlobals.DBG_LEVEL >= 1) && (SystemProperties.getInt("ro.debuggable", 0) == 1);
@@ -51,6 +53,7 @@ public class BluetoothManager {
     private final BluetoothAdapter mBluetoothAdapter;
     private final CallManager mCallManager;
     private final Context mContext;
+    private final CallModeler mCallModeler;
 
     private BluetoothHeadset mBluetoothHeadset;
     private int mBluetoothHeadsetState = BluetoothProfile.STATE_DISCONNECTED;
@@ -64,9 +67,10 @@ public class BluetoothManager {
 
     private final List<BluetoothIndicatorListener> mListeners = Lists.newArrayList();
 
-    public BluetoothManager(Context context, CallManager callManager) {
+    public BluetoothManager(Context context, CallManager callManager, CallModeler callModeler) {
         mContext = context;
         mCallManager = callManager;
+        mCallModeler = callModeler;
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 
         init(mContext);
@@ -251,6 +255,8 @@ public class BluetoothManager {
                 new IntentFilter(BluetoothHeadset.ACTION_CONNECTION_STATE_CHANGED);
         intentFilter.addAction(BluetoothHeadset.ACTION_AUDIO_STATE_CHANGED);
         context.registerReceiver(mReceiver, intentFilter);
+
+        mCallModeler.addListener(this);
     }
 
     private void tearDown() {
@@ -394,6 +400,23 @@ public class BluetoothManager {
                 updateBluetoothIndication();
             }
         }
+    }
+
+    @Override
+    public void onDisconnect(Call call) {
+        updateBluetoothIndication();
+    }
+
+    @Override
+    public void onIncoming(Call call, ArrayList<String> messages) {
+        // An incoming call can affect bluetooth indicator, so we update it whenever there is
+        // a change to any of the calls.
+        updateBluetoothIndication();
+    }
+
+    @Override
+    public void onUpdate(List<Call> calls, boolean fullUpdate) {
+        updateBluetoothIndication();
     }
 
     private void log(String msg) {
