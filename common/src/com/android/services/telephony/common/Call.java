@@ -36,27 +36,22 @@ final public class Call implements Parcelable {
     /* Defines different states of this call */
     public static class State {
         public static final int INVALID = 0;
+        public static final int IDLE = 1;           /* The call is idle.  Nothing active */
+        public static final int ACTIVE = 2;         /* There is an active call */
+        public static final int INCOMING = 3;       /* A normal incoming phone call */
+        public static final int CALL_WAITING = 4;   /* Incoming call while another is active */
+        public static final int DIALING = 5;        /* An outgoing call during dial phase */
+        public static final int ONHOLD = 6;         /* An active phone call placed on hold */
+        public static final int DISCONNECTED = 7;   /* State after a call disconnects */
+    }
 
-        // The call is idle.  Nothing active.
-        public static final int IDLE = 1;
+    /**
+     * Defines a set of capabilities that a call can have as a bit mask.
+     */
+    public static class Capabilities {
+        public static final int MERGE = 0x00000001;    /* has ability to merge with another call. */
 
-        // There is an active call.
-        public static final int ACTIVE = 2;
-
-        // A normal incoming phone call.
-        public static final int INCOMING = 3;
-
-        // An incoming phone call while another call is active.
-        public static final int CALL_WAITING = 4;
-
-        // A Mobile-originating (MO) call. This call is dialing out.
-        public static final int DIALING = 5;
-
-        // An active phone call placed on hold.
-        public static final int ONHOLD = 6;
-
-        // State after a call disconnects.
-        public static final int DISCONNECTED = 7;
+        public static final int ALL = MERGE;
     }
 
     /**
@@ -137,6 +132,7 @@ final public class Call implements Parcelable {
     private int mCnapNamePresentation = PRESENTATION_ALLOWED;
     private String mCnapName = "";
     private DisconnectCause mDisconnectCause;
+    private int mCapabilities;
 
     public Call(int callId) {
         mCallId = callId;
@@ -198,6 +194,22 @@ final public class Call implements Parcelable {
         mDisconnectCause = cause;
     }
 
+    public int getCapabilities() {
+        return mCapabilities;
+    }
+
+    public void setCapabilities(int capabilities) {
+        mCapabilities = (Capabilities.ALL & capabilities);
+    }
+
+    public boolean can(int capabilities) {
+        return (capabilities == (capabilities & mCapabilities));
+    }
+
+    public void addCapabilities(int capabilities) {
+        setCapabilities(capabilities | mCapabilities);
+    }
+
     /**
      * Parcelable implementation
      */
@@ -211,6 +223,7 @@ final public class Call implements Parcelable {
         dest.writeInt(mCnapNamePresentation);
         dest.writeString(mCnapName);
         dest.writeString(getDisconnectCause().toString());
+        dest.writeInt(getCapabilities());
     }
 
     @Override
@@ -218,18 +231,26 @@ final public class Call implements Parcelable {
         return 0;
     }
 
+    /**
+     * Creates Call objects for Parcelable implementation.
+     */
     public static final Parcelable.Creator<Call> CREATOR
             = new Parcelable.Creator<Call>() {
 
+        @Override
         public Call createFromParcel(Parcel in) {
             return new Call(in);
         }
 
+        @Override
         public Call[] newArray(int size) {
             return new Call[size];
         }
     };
 
+    /**
+     * Constructor for Parcelable implementation.
+     */
     private Call(Parcel in) {
         mCallId = in.readInt();
         mNumber = in.readString();
@@ -238,6 +259,7 @@ final public class Call implements Parcelable {
         mCnapNamePresentation = in.readInt();
         mCnapName = in.readString();
         mDisconnectCause = DisconnectCause.valueOf(in.readString());
+        mCapabilities = in.readInt();
     }
 
     @Override
