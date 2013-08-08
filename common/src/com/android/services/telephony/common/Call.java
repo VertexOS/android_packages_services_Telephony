@@ -19,6 +19,8 @@ package com.android.services.telephony.common;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.android.internal.telephony.PhoneConstants;
+
 /**
  * Class object used across CallHandlerService APIs.
  * Describes a single call and its state.
@@ -50,9 +52,22 @@ final public class Call implements Parcelable {
         public static final int ONHOLD = 6;
     }
 
+    // Number presentation type for caller id display
+    // normal
+    public static int PRESENTATION_ALLOWED = PhoneConstants.PRESENTATION_ALLOWED;
+    // block by user
+    public static int PRESENTATION_RESTRICTED = PhoneConstants.PRESENTATION_RESTRICTED;
+    // no specified or unknown by network
+    public static int PRESENTATION_UNKNOWN = PhoneConstants.PRESENTATION_UNKNOWN;
+    // show pay phone info
+    public static int PRESENTATION_PAYPHONE = PhoneConstants.PRESENTATION_PAYPHONE;
+
     private int mCallId = INVALID_CALL_ID;
     private String mNumber = "";
     private int mState = State.INVALID;
+    private int mNumberPresentation = PRESENTATION_ALLOWED;
+    private int mCnapNamePresentation = PRESENTATION_ALLOWED;
+    private String mCnapName = "";
 
     public Call(int callId) {
         mCallId = callId;
@@ -78,6 +93,30 @@ final public class Call implements Parcelable {
         mState = state;
     }
 
+    public int getNumberPresentation() {
+        return mNumberPresentation;
+    }
+
+    public void setNumberPresentation(int presentation) {
+        mNumberPresentation = presentation;
+    }
+
+    public int getCnapNamePresentation() {
+        return mCnapNamePresentation;
+    }
+
+    public void setCnapNamePresentation(int presentation) {
+        mCnapNamePresentation = presentation;
+    }
+
+    public String getCnapName() {
+        return mCnapName;
+    }
+
+    public void setCnapName(String cnapName) {
+        mCnapName = cnapName;
+    }
+
     /**
      * Parcelable implementation
      */
@@ -87,6 +126,9 @@ final public class Call implements Parcelable {
         dest.writeInt(mCallId);
         dest.writeString(mNumber);
         dest.writeInt(mState);
+        dest.writeInt(mNumberPresentation);
+        dest.writeInt(mCnapNamePresentation);
+        dest.writeString(mCnapName);
     }
 
     @Override
@@ -110,6 +152,9 @@ final public class Call implements Parcelable {
         mCallId = in.readInt();
         mNumber = in.readString();
         mState = in.readInt();
+        mNumberPresentation = in.readInt();
+        mCnapNamePresentation = in.readInt();
+        mCnapName = in.readString();
     }
 
 }
