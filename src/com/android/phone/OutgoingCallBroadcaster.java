@@ -95,7 +95,11 @@ public class OutgoingCallBroadcaster extends Activity
 
     /** Note message codes < 100 are reserved for the PhoneApp. */
     private static final int EVENT_OUTGOING_CALL_TIMEOUT = 101;
+    private static final int EVENT_DELAYED_FINISH = 102;
+
     private static final int OUTGOING_CALL_TIMEOUT_THRESHOLD = 2000; // msec
+    private static final int DELAYED_FINISH_TIME = 2000; // msec
+
     /**
      * ProgressBar object with "spinner" style, which will be shown if we take more than
      * {@link #EVENT_OUTGOING_CALL_TIMEOUT} msec to handle the incoming Intent.
@@ -107,11 +111,21 @@ public class OutgoingCallBroadcaster extends Activity
             if (msg.what == EVENT_OUTGOING_CALL_TIMEOUT) {
                 Log.i(TAG, "Outgoing call takes too long. Showing the spinner.");
                 mWaitingSpinner.setVisibility(View.VISIBLE);
+            } else if (msg.what == EVENT_DELAYED_FINISH) {
+                finish();
             } else {
                 Log.wtf(TAG, "Unknown message id: " + msg.what);
             }
         }
     };
+
+    /**
+     * Starts the delayed finish() of OutgoingCallBroadcaster in order to give the UI
+     * some time to start up.
+     */
+    private void startDelayedFinish() {
+        mHandler.sendEmptyMessageDelayed(EVENT_DELAYED_FINISH, DELAYED_FINISH_TIME);
+    }
 
     /**
      * OutgoingCallReceiver finishes NEW_OUTGOING_CALL broadcasts, starting
@@ -126,7 +140,11 @@ public class OutgoingCallBroadcaster extends Activity
             mHandler.removeMessages(EVENT_OUTGOING_CALL_TIMEOUT);
             doReceive(context, intent);
             if (DBG) Log.v(TAG, "OutgoingCallReceiver is going to finish the Activity itself.");
-            finish();
+
+            // We cannot finish the activity immediately here because it would cause the temporary
+            // black screen of OutgoingBroadcaster to go away and we need it to stay up until the
+            // UI (in a different process) has time to come up.
+            startDelayedFinish();
         }
 
         public void doReceive(Context context, Intent intent) {
