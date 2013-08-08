@@ -253,7 +253,7 @@ import java.util.List;
         int mode = AudioMode.EARPIECE;
 
         // There is a very specific ordering here
-        if (mBluetoothManager.isBluetoothAudioConnectedOrPending()) {
+        if (mBluetoothManager.showBluetoothIndication()) {
             mode = AudioMode.BLUETOOTH;
         } else if (PhoneUtils.isSpeakerOn(mContext)) {
             mode = AudioMode.SPEAKER;
@@ -287,12 +287,11 @@ import java.util.List;
         // only update if it really changed.
         if (mAudioMode != mode) {
             Log.i(LOG_TAG, "Audio mode changing to " + AudioMode.toString(mode));
-
-            mPreviousMode = mAudioMode;
-            mAudioMode = mode;
-
             doNotify = true;
         }
+
+        mPreviousMode = mAudioMode;
+        mAudioMode = mode;
 
         if (doNotify) {
             notifyListeners();

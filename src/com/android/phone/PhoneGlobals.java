@@ -463,12 +463,6 @@ public class PhoneGlobals extends ContextWrapper
                 mBluetoothPhone = null;
             }
 
-            // Bluetooth manager
-            bluetoothManager = new BluetoothManager(this, mCM);
-            bluetoothManager.addBluetoothIndicatorListener(this);
-
-            ringer = Ringer.init(this, bluetoothManager);
-
             // before registering for phone state changes
             mPowerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
             mWakeLock = mPowerManager.newWakeLock(PowerManager.FULL_WAKE_LOCK, LOG_TAG);
@@ -532,6 +526,12 @@ public class PhoneGlobals extends ContextWrapper
             // Manages wired headset state
             wiredHeadsetManager = new WiredHeadsetManager(this);
             wiredHeadsetManager.addWiredHeadsetListener(this);
+
+            // Bluetooth manager
+            bluetoothManager = new BluetoothManager(this, mCM, callModeler);
+            bluetoothManager.addBluetoothIndicatorListener(this);
+
+            ringer = Ringer.init(this, bluetoothManager);
 
             // Audio router
             audioRouter = new AudioRouter(this, bluetoothManager, wiredHeadsetManager, mCM);
