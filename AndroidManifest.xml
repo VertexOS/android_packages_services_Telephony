@@ -507,6 +507,11 @@
                 android:launchMode="singleInstance"
                 android:theme="@style/Empty">
         </activity>
+        <activity android:name=".TextMessagePackageChooser"
+                android:label="@string/respond_via_sms_setting_title"
+                android:configChanges="orientation|screenSize|keyboardHidden"
+                android:theme="@style/Theme.Transparent">
+        </activity>
 
         <receiver android:name="CallerInfoCacheUpdateReceiver">
             <intent-filter>

@@ -80,14 +80,13 @@ class CallCommandService extends ICallCommandService.Stub {
             CallResult result = mCallModeler.getCallWithId(callId);
             if (result != null) {
                 final String number = result.getConnection().getAddress();
+
                 Log.v(TAG, "Hanging up");
                 PhoneUtils.hangupRingingCall(result.getConnection().getCall());
+
                 if (rejectWithMessage) {
-                    if (message != null) {
-                        mRejectWithTextMessageManager.rejectCallWithMessage(number, message);
-                    } else {
-                        mRejectWithTextMessageManager.rejectCallWithNewMessage(number);
-                    }
+                    mRejectWithTextMessageManager.rejectCallWithMessage(
+                            result.getConnection().getCall(), message);
                 }
             }
         } catch (Exception e) {
