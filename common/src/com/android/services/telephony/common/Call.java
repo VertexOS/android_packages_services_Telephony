@@ -129,17 +129,36 @@ final public class Call implements Parcelable {
     // show pay phone info
     public static int PRESENTATION_PAYPHONE = PhoneConstants.PRESENTATION_PAYPHONE;
 
+    // Unique identifier for the call
     private int mCallId = INVALID_CALL_ID;
+
+    // The phone number on the other end of the connection
     private String mNumber = "";
+
+    // The current state of the call
     private int mState = State.INVALID;
+
+    // Number presentation received from the carrier
     private int mNumberPresentation = PRESENTATION_ALLOWED;
+
+    // Name presentation mode received from the carrier
     private int mCnapNamePresentation = PRESENTATION_ALLOWED;
+
+    // Name associated with the other end of the connection; from the carrier.
     private String mCnapName = "";
+
+    // Reason for disconnect. Valid when the call state is DISCONNECTED.
     private DisconnectCause mDisconnectCause;
+
+    // Bit mask of capabilities unique to this call.
     private int mCapabilities;
+
+    // Time that this call transitioned into ACTIVE state from INCOMING, WAITING, or OUTGOING.
+    private long mConnectTime;
 
     public Call(int callId) {
         mCallId = callId;
+        mConnectTime = 0;
     }
 
     public int getCallId() {
@@ -214,6 +233,14 @@ final public class Call implements Parcelable {
         setCapabilities(capabilities | mCapabilities);
     }
 
+    public void setConnectTime(long connectTime) {
+        mConnectTime = connectTime;
+    }
+
+    public long getConnectTime() {
+        return mConnectTime;
+    }
+
     /**
      * Parcelable implementation
      */
@@ -228,6 +255,7 @@ final public class Call implements Parcelable {
         dest.writeString(mCnapName);
         dest.writeString(getDisconnectCause().toString());
         dest.writeInt(getCapabilities());
+        dest.writeLong(getConnectTime());
     }
 
     @Override
@@ -264,6 +292,7 @@ final public class Call implements Parcelable {
         mCnapName = in.readString();
         mDisconnectCause = DisconnectCause.valueOf(in.readString());
         mCapabilities = in.readInt();
+        mConnectTime = in.readLong();
     }
 
     @Override

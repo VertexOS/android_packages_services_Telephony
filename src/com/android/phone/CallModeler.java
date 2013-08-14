@@ -265,6 +265,12 @@ public class CallModeler extends Handler {
             changed = true;
         }
 
+        final long oldConnectTime = call.getConnectTime();
+        if (oldConnectTime != connection.getConnectTime()) {
+            call.setConnectTime(connection.getConnectTime());
+            changed = true;
+        }
+
         /**
          * !!! Uses values from connection and call collected above so this part must be last !!!
          */
