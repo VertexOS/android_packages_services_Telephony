@@ -74,6 +74,7 @@ public class CallHandlerServiceProxy extends Handler implements CallModeler.List
     public void onDisconnect(Call call) {
         if (mCallHandlerService != null) {
             try {
+                if (DBG) Log.d(TAG, "onDisconnect: " + call);
                 mCallHandlerService.onDisconnect(call);
             } catch (RemoteException e) {
                 Log.e(TAG, "Remote exception handling onDisconnect ", e);
@@ -85,6 +86,7 @@ public class CallHandlerServiceProxy extends Handler implements CallModeler.List
     public void onIncoming(Call call, ArrayList<String> textResponses) {
         if (mCallHandlerService != null) {
             try {
+                if (DBG) Log.d(TAG, "onIncoming: " + call);
                 mCallHandlerService.onIncoming(call, textResponses);
             } catch (RemoteException e) {
                 Log.e(TAG, "Remote exception handling onUpdate", e);
@@ -96,6 +98,7 @@ public class CallHandlerServiceProxy extends Handler implements CallModeler.List
     public void onUpdate(List<Call> calls, boolean fullUpdate) {
         if (mCallHandlerService != null) {
             try {
+                if (DBG) Log.d(TAG, "onUpdate: " + calls.toString());
                 mCallHandlerService.onUpdate(calls, fullUpdate);
             } catch (RemoteException e) {
                 Log.e(TAG, "Remote exception handling onUpdate", e);

@@ -18,12 +18,15 @@ package com.android.phone;
 
 import com.google.android.collect.Lists;
 import com.google.android.collect.Maps;
+import com.google.android.collect.Sets;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.ImmutableSortedSet;
 
 import android.os.AsyncResult;
 import android.os.Handler;
 import android.os.Message;
+import android.os.SystemProperties;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -40,6 +43,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
+import java.util.SortedSet;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -73,12 +77,15 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class CallModeler extends Handler {
 
     private static final String TAG = CallModeler.class.getSimpleName();
+    private static final boolean DBG =
+            (PhoneGlobals.DBG_LEVEL >= 1) && (SystemProperties.getInt("ro.debuggable", 0) == 1);
 
     private static final int CALL_ID_START_VALUE = 1;
 
     private final CallStateMonitor mCallStateMonitor;
     private final CallManager mCallManager;
     private final HashMap<Connection, Call> mCallMap = Maps.newHashMap();
+    private final HashMap<Connection, Call> mConfCallMap = Maps.newHashMap();
     private final AtomicInteger mNextCallId = new AtomicInteger(CALL_ID_START_VALUE);
     private final ArrayList<Listener> mListeners = new ArrayList<Listener>();
     private RejectWithTextMessageManager mRejectWithTextMessageManager;
@@ -92,7 +99,7 @@ public class CallModeler extends Handler {
         mCallStateMonitor.addListener(this);
     }
 
-    //@Override
+    @Override
     public void handleMessage(Message msg) {
         switch(msg.what) {
             case CallStateMonitor.PHONE_NEW_RINGING_CONNECTION:
@@ -130,15 +137,29 @@ public class CallModeler extends Handler {
                 return new CallResult(entry.getValue(), entry.getKey());
             }
         }
+
+        for (Entry<Connection, Call> entry : mConfCallMap.entrySet()) {
+            if (entry.getValue().getCallId() == callId) {
+                if (entry.getValue().getChildCallIds().size() == 0) {
+                    return null;
+                }
+                final CallResult child = getCallWithId(entry.getValue().getChildCallIds().first());
+                return new CallResult(entry.getValue(), child.getActionableCall(),
+                        child.getConnection());
+            }
+        }
         return null;
     }
 
     public boolean hasOutstandingActiveCall() {
-        for (Call call : mCallMap.values()) {
-            int state = call.getState();
-            if (Call.State.INVALID != state &&
-                    Call.State.IDLE != state &&
-                    Call.State.INCOMING != state) {
+        return hasOutstandingActiveCallInternal(mCallMap) ||
+                hasOutstandingActiveCallInternal(mConfCallMap);
+    }
+
+    private static boolean hasOutstandingActiveCallInternal(HashMap<Connection, Call> map) {
+        for (Call call : map.values()) {
+            final int state = call.getState();
+            if (Call.State.ACTIVE == state) {
                 return true;
             }
         }
@@ -148,9 +169,9 @@ public class CallModeler extends Handler {
 
     private void onNewRingingConnection(AsyncResult r) {
         final Connection conn = (Connection) r.result;
-        final Call call = getCallFromConnection(conn, true);
+        final Call call = getCallFromMap(mCallMap, conn, true);
 
-        updateCallFromConnection(call, conn);
+        updateCallFromConnection(call, conn, false);
         call.setState(Call.State.INCOMING);
 
         for (int i = 0; i < mListeners.size(); ++i) {
@@ -163,18 +184,29 @@ public class CallModeler extends Handler {
 
     private void onDisconnect(AsyncResult r) {
         final Connection conn = (Connection) r.result;
-        final Call call = getCallFromConnection(conn, false);
-
-        updateCallFromConnection(call, conn);
-        call.setState(Call.State.DISCONNECTED);
+        final Call call = getCallFromMap(mCallMap, conn, false);
 
         if (call != null) {
-            mCallMap.remove(conn);
+            final boolean wasConferenced = call.getState() == State.CONFERENCED;
+
+            updateCallFromConnection(call, conn, false);
+            call.setState(Call.State.DISCONNECTED);
 
             for (int i = 0; i < mListeners.size(); ++i) {
                 mListeners.get(i).onDisconnect(call);
             }
+
+            // If it was a conferenced call, we need to run the entire update
+            // to make the proper changes to parent conference calls.
+            if (wasConferenced) {
+                onPhoneStateChanged(null);
+            }
+
+            mCallMap.remove(conn);
         }
+
+        // TODO(klp): Do a final check to see if there are any active calls.
+        // If there are not, totally cancel all calls
     }
 
     /**
@@ -208,35 +240,91 @@ public class CallModeler extends Handler {
                 // new connections return a Call with INVALID state, which does not translate to
                 // a state in the internal.telephony.Call object.  This ensures that staleness
                 // check below fails and we always add the item to the update list if it is new.
-                final Call call = getCallFromConnection(connection, true);
+                final Call call = getCallFromMap(mCallMap, connection, true);
 
-                boolean changed = updateCallFromConnection(call, connection);
-
+                boolean changed = updateCallFromConnection(call, connection, false);
                 if (fullUpdate || changed) {
                     out.add(call);
                 }
             }
+
+            // We do a second loop to address conference call scenarios.  We do this as a separate
+            // loop to ensure all child calls are up to date before we start updating the parent
+            // conference calls.
+            for (Connection connection : telephonyCall.getConnections()) {
+                updateForConferenceCalls(connection, out);
+            }
+
         }
+    }
+
+    /**
+     * Checks to see if the connection is the first connection in a conference call.
+     * If it is a conference call, we will create a new Conference Call object or
+     * update the existing conference call object for that connection.
+     * If it is not a conference call but a previous associated conference call still exists,
+     * we mark it as idle and remove it from the map.
+     * In both cases above, we add the Calls to be updated to the UI.
+     * @param connection The connection object to check.
+     * @param updatedCalls List of 'updated' calls that will be sent to the UI.
+     */
+    private boolean updateForConferenceCalls(Connection connection, List<Call> updatedCalls) {
+        // We consider this connection a conference connection if the call it
+        // belongs to is a multiparty call AND it is the first connection.
+        final boolean isConferenceCallConnection = isPartOfLiveConferenceCall(connection) &&
+                connection.getCall().getEarliestConnection() == connection;
+
+        boolean changed = false;
+
+        // If this connection is the main connection for the conference call, then create or update
+        // a Call object for that conference call.
+        if (isConferenceCallConnection) {
+            final Call confCall = getCallFromMap(mConfCallMap, connection, true);
+            changed = updateCallFromConnection(confCall, connection, true);
+
+            if (changed) {
+                updatedCalls.add(confCall);
+            }
+
+            if (DBG) Log.d(TAG, "Updating a conference call: " + confCall);
+
+        // It is possible that through a conference call split, there may be lingering conference
+        // calls where this connection was the main connection.  We clean those up here.
+        } else {
+            final Call oldConfCall = getCallFromMap(mConfCallMap, connection, false);
+
+            // We found a conference call for this connection, which is no longer a conference call.
+            // Kill it!
+            if (oldConfCall != null) {
+                if (DBG) Log.d(TAG, "Cleaning up an old conference call: " + oldConfCall);
+                mConfCallMap.remove(connection);
+                oldConfCall.setState(State.IDLE);
+                changed = true;
+
+                // add to the list of calls to update
+                updatedCalls.add(oldConfCall);
+            }
+        }
+
+        return changed;
     }
 
     /**
      * Updates the Call properties to match the state of the connection object
      * that it represents.
+     * @param call The call object to update.
+     * @param connection The connection object from which to update call.
+     * @param isForConference There are slight differences in how we populate data for conference
+     *     calls. This boolean tells us which method to use.
      */
-    private boolean updateCallFromConnection(Call call, Connection connection) {
+    private boolean updateCallFromConnection(Call call, Connection connection,
+            boolean isForConference) {
         boolean changed = false;
 
-        com.android.internal.telephony.Call telephonyCall = connection.getCall();
-        final int newState = translateStateFromTelephony(telephonyCall.getState());
+        final int newState = translateStateFromTelephony(connection, isForConference);
 
         if (call.getState() != newState) {
             call.setState(newState);
-            changed = true;
-        }
-
-        final String oldNumber = call.getNumber();
-        if (TextUtils.isEmpty(oldNumber) || !oldNumber.equals(connection.getAddress())) {
-            call.setNumber(connection.getAddress());
             changed = true;
         }
 
@@ -247,28 +335,55 @@ public class CallModeler extends Handler {
             changed = true;
         }
 
-        final int newNumberPresentation = connection.getNumberPresentation();
-        if (call.getNumberPresentation() != newNumberPresentation) {
-            call.setNumberPresentation(newNumberPresentation);
-            changed = true;
-        }
-
-        final int newCnapNamePresentation = connection.getCnapNamePresentation();
-        if (call.getCnapNamePresentation() != newCnapNamePresentation) {
-            call.setCnapNamePresentation(newCnapNamePresentation);
-            changed = true;
-        }
-
-        final String oldCnapName = call.getCnapName();
-        if (TextUtils.isEmpty(oldCnapName) || !oldCnapName.equals(connection.getCnapName())) {
-            call.setCnapName(connection.getCnapName());
-            changed = true;
-        }
-
         final long oldConnectTime = call.getConnectTime();
         if (oldConnectTime != connection.getConnectTime()) {
             call.setConnectTime(connection.getConnectTime());
             changed = true;
+        }
+
+        if (!isForConference) {
+            final String oldNumber = call.getNumber();
+            if (TextUtils.isEmpty(oldNumber) || !oldNumber.equals(connection.getAddress())) {
+                call.setNumber(connection.getAddress());
+                changed = true;
+            }
+
+            final int newNumberPresentation = connection.getNumberPresentation();
+            if (call.getNumberPresentation() != newNumberPresentation) {
+                call.setNumberPresentation(newNumberPresentation);
+                changed = true;
+            }
+
+            final int newCnapNamePresentation = connection.getCnapNamePresentation();
+            if (call.getCnapNamePresentation() != newCnapNamePresentation) {
+                call.setCnapNamePresentation(newCnapNamePresentation);
+                changed = true;
+            }
+
+            final String oldCnapName = call.getCnapName();
+            if (TextUtils.isEmpty(oldCnapName) || !oldCnapName.equals(connection.getCnapName())) {
+                call.setCnapName(connection.getCnapName());
+                changed = true;
+            }
+        } else {
+
+            // update the list of children by:
+            // 1) Saving the old set
+            // 2) Removing all children
+            // 3) Adding the correct children into the Call
+            // 4) Comparing the new children set with the old children set
+            ImmutableSortedSet<Integer> oldSet = call.getChildCallIds();
+            call.removeAllChildren();
+
+            if (connection.getCall() != null) {
+                for (Connection childConn : connection.getCall().getConnections()) {
+                    final Call childCall = getCallFromMap(mCallMap, childConn, false);
+                    if (childCall != null && childConn.isAlive()) {
+                        call.addChildId(childCall.getCallId());
+                    }
+                }
+            }
+            changed |= oldSet.equals(call.getChildCallIds());
         }
 
         /**
@@ -328,9 +443,30 @@ public class CallModeler extends Handler {
         return retval;
     }
 
-    private int translateStateFromTelephony(com.android.internal.telephony.Call.State teleState) {
+    /**
+     * Returns true if the Connection is part of a multiparty call.
+     * We do this by checking the isMultiparty() method of the telephony.Call object and also
+     * checking to see if more than one of it's children is alive.
+     */
+    private boolean isPartOfLiveConferenceCall(Connection connection) {
+        if (connection.getCall() != null && connection.getCall().isMultiparty()) {
+            int count = 0;
+            for (Connection currConn : connection.getCall().getConnections()) {
+                if (currConn.isAlive()) {
+                    count++;
+                    if (count >= 2) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    private int translateStateFromTelephony(Connection connection, boolean isForConference) {
+
         int retval = State.IDLE;
-        switch (teleState) {
+        switch (connection.getState()) {
             case ACTIVE:
                 retval = State.ACTIVE;
                 break;
@@ -351,6 +487,17 @@ public class CallModeler extends Handler {
             case DISCONNECTING:
                 retval = State.DISCONNECTED;
             default:
+        }
+
+        // If we are dealing with a potential child call (not the parent conference call),
+        // the check to see if we have to set the state to CONFERENCED.
+        if (!isForConference) {
+
+            // if the connection is part of a multiparty call, and it is live,
+            // annotate it with CONFERENCED state instead.
+            if (isPartOfLiveConferenceCall(connection) && connection.isAlive()) {
+                return State.CONFERENCED;
+            }
         }
 
         return retval;
@@ -428,35 +575,41 @@ public class CallModeler extends Handler {
      * This function does NOT set any of the Connection data onto the Call class.
      * A separate call to updateCallFromConnection must be made for that purpose.
      */
-    private Call getCallFromConnection(Connection conn, boolean createIfMissing) {
+    private Call getCallFromMap(HashMap<Connection, Call> map, Connection conn,
+            boolean createIfMissing) {
         Call call = null;
 
         // Find the call id or create if missing and requested.
         if (conn != null) {
-            if (mCallMap.containsKey(conn)) {
-                call = mCallMap.get(conn);
+            if (map.containsKey(conn)) {
+                call = map.get(conn);
             } else if (createIfMissing) {
-                int callId;
-                int newNextCallId;
-                do {
-                    callId = mNextCallId.get();
-
-                    // protect against overflow
-                    newNextCallId = (callId == Integer.MAX_VALUE ?
-                            CALL_ID_START_VALUE : callId + 1);
-
-                    // Keep looping if the change was not atomic OR the value is already taken.
-                    // The call to containsValue() is linear, however, most devices support a
-                    // maximum of 7 connections so it's not expensive.
-                } while (!mNextCallId.compareAndSet(callId, newNextCallId) ||
-                        mCallMap.containsValue(callId));
-
-                call = new Call(callId);
-
-                mCallMap.put(conn, call);
+                call = createNewCall();
+                map.put(conn, call);
             }
         }
         return call;
+    }
+
+    /**
+     * Creates a brand new connection for the call.
+     */
+    private Call createNewCall() {
+        int callId;
+        int newNextCallId;
+        do {
+            callId = mNextCallId.get();
+
+            // protect against overflow
+            newNextCallId = (callId == Integer.MAX_VALUE ?
+                    CALL_ID_START_VALUE : callId + 1);
+
+            // Keep looping if the change was not atomic OR the value is already taken.
+            // The call to containsValue() is linear, however, most devices support a
+            // maximum of 7 connections so it's not expensive.
+        } while (!mNextCallId.compareAndSet(callId, newNextCallId));
+
+        return new Call(callId);
     }
 
     /**
@@ -473,15 +626,26 @@ public class CallModeler extends Handler {
      */
     public static class CallResult {
         public Call mCall;
+        public Call mActionableCall;
         public Connection mConnection;
 
         private CallResult(Call call, Connection connection) {
+            this(call, call, connection);
+        }
+
+        private CallResult(Call call, Call actionableCall, Connection connection) {
             mCall = call;
+            mActionableCall = actionableCall;
             mConnection = connection;
         }
 
         public Call getCall() {
             return mCall;
+        }
+
+        // The call that should be used for call actions like hanging up.
+        public Call getActionableCall() {
+            return mActionableCall;
         }
 
         public Connection getConnection() {

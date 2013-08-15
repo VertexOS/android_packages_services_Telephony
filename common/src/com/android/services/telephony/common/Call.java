@@ -16,12 +16,24 @@
 
 package com.android.services.telephony.common;
 
+import com.google.android.collect.Lists;
+import com.google.android.collect.Sets;
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.ImmutableSet;
+import com.google.common.collect.ImmutableSortedSet;
+import com.google.common.primitives.Ints;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.os.SystemClock;
+import android.text.format.DateUtils;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.SortedSet;
 
 import com.android.internal.telephony.PhoneConstants;
 
@@ -32,6 +44,7 @@ import com.android.internal.telephony.PhoneConstants;
 final public class Call implements Parcelable {
 
     public static final int INVALID_CALL_ID = -1;
+    public static final int MAX_CONFERENCED_CALLS = 5;
 
     /* Defines different states of this call */
     public static class State {
@@ -43,6 +56,7 @@ final public class Call implements Parcelable {
         public static final int DIALING = 5;        /* An outgoing call during dial phase */
         public static final int ONHOLD = 6;         /* An active phone call placed on hold */
         public static final int DISCONNECTED = 7;   /* State after a call disconnects */
+        public static final int CONFERENCED = 8;     /* Call part of a conference call */
     }
 
     /**
@@ -117,6 +131,7 @@ final public class Call implements Parcelable {
             .put(Call.State.ONHOLD, "ONHOLD")
             .put(Call.State.INVALID, "INVALID")
             .put(Call.State.DISCONNECTED, "DISCONNECTED")
+            .put(Call.State.CONFERENCED, "CONFERENCED")
             .build();
 
     // Number presentation type for caller id display
@@ -148,17 +163,19 @@ final public class Call implements Parcelable {
     private String mCnapName = "";
 
     // Reason for disconnect. Valid when the call state is DISCONNECTED.
-    private DisconnectCause mDisconnectCause;
+    private DisconnectCause mDisconnectCause = DisconnectCause.UNKNOWN;
 
     // Bit mask of capabilities unique to this call.
     private int mCapabilities;
 
     // Time that this call transitioned into ACTIVE state from INCOMING, WAITING, or OUTGOING.
-    private long mConnectTime;
+    private long mConnectTime = 0;
+
+    // List of call Ids for for this call.  (Used for managing conference calls).
+    private SortedSet<Integer> mChildCallIds = Sets.newSortedSet();
 
     public Call(int callId) {
         mCallId = callId;
-        mConnectTime = 0;
     }
 
     public int getCallId() {
@@ -241,6 +258,26 @@ final public class Call implements Parcelable {
         return mConnectTime;
     }
 
+    public void removeChildId(int id) {
+        mChildCallIds.remove(id);
+    }
+
+    public void removeAllChildren() {
+        mChildCallIds.clear();
+    }
+
+    public void addChildId(int id) {
+        mChildCallIds.add(id);
+    }
+
+    public ImmutableSortedSet<Integer> getChildCallIds() {
+        return ImmutableSortedSet.copyOf(mChildCallIds);
+    }
+
+    public boolean isConferenceCall() {
+        return mChildCallIds.size() >= 2;
+    }
+
     /**
      * Parcelable implementation
      */
@@ -256,6 +293,23 @@ final public class Call implements Parcelable {
         dest.writeString(getDisconnectCause().toString());
         dest.writeInt(getCapabilities());
         dest.writeLong(getConnectTime());
+        dest.writeIntArray(Ints.toArray(mChildCallIds));
+    }
+
+    /**
+     * Constructor for Parcelable implementation.
+     */
+    private Call(Parcel in) {
+        mCallId = in.readInt();
+        mNumber = in.readString();
+        mState = in.readInt();
+        mNumberPresentation = in.readInt();
+        mCnapNamePresentation = in.readInt();
+        mCnapName = in.readString();
+        mDisconnectCause = DisconnectCause.valueOf(in.readString());
+        mCapabilities = in.readInt();
+        mConnectTime = in.readLong();
+        mChildCallIds.addAll(Ints.asList(in.createIntArray()));
     }
 
     @Override
@@ -280,21 +334,6 @@ final public class Call implements Parcelable {
         }
     };
 
-    /**
-     * Constructor for Parcelable implementation.
-     */
-    private Call(Parcel in) {
-        mCallId = in.readInt();
-        mNumber = in.readString();
-        mState = in.readInt();
-        mNumberPresentation = in.readInt();
-        mCnapNamePresentation = in.readInt();
-        mCnapName = in.readString();
-        mDisconnectCause = DisconnectCause.valueOf(in.readString());
-        mCapabilities = in.readInt();
-        mConnectTime = in.readLong();
-    }
-
     @Override
     public String toString() {
         StringBuffer buffer = new StringBuffer();
@@ -306,6 +345,13 @@ final public class Call implements Parcelable {
         buffer.append(getDisconnectCause().toString());
         buffer.append(", capabilities: ");
         buffer.append(Integer.toHexString(getCapabilities()));
+
+        final long duration = System.currentTimeMillis() - getConnectTime();
+        buffer.append(", elapsedTime: ");
+        buffer.append(DateUtils.formatElapsedTime(duration / 1000));
+        buffer.append(", childCalls: ");
+        buffer.append(mChildCallIds.toString());
+
         return buffer.toString();
     }
 }
