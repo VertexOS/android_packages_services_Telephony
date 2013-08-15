@@ -104,8 +104,10 @@ class CallCommandService extends ICallCommandService.Stub {
 
             if (result != null) {
                 int state = result.getCall().getState();
-                if (Call.State.ACTIVE == state || Call.State.ONHOLD == state ||
-                        Call.State.DIALING == state) {
+                if (Call.State.ACTIVE == state ||
+                        Call.State.ONHOLD == state ||
+                        Call.State.DIALING == state ||
+                        Call.State.CONFERENCED == state) {
                     result.getConnection().getCall().hangup();
                 }
             }
