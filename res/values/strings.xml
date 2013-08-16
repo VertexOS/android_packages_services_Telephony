@@ -56,6 +56,9 @@
     <!-- Label for "Manage conference call" panel [CHAR LIMIT=40] -->
     <string name="manageConferenceLabel">Manage conference call</string>
 
+    <!-- Positive button label ("OK") used in several dialogs in the phone UI [CHAR LIMIT=10] -->
+    <string name="ok">OK</string>
+
     <!-- "Audio mode" popup menu: Item label to select the speakerphone [CHAR LIMIT=25] -->
     <string name="audio_mode_speaker">Speaker</string>
     <!-- "Audio mode" popup menu: Item label to select the handset earpiece [CHAR LIMIT=25] -->
