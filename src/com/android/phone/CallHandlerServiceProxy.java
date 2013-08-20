@@ -62,12 +62,8 @@ public class CallHandlerServiceProxy extends Handler implements CallModeler.List
         mCallModeler = callModeler;
         mAudioRouter = audioRouter;
 
-        setupServiceConnection();
         mAudioRouter.addAudioModeListener(this);
         mCallModeler.addListener(this);
-
-        // start the whole process
-        onUpdate(mCallModeler.getFullList(), true);
     }
 
     @Override
@@ -76,6 +72,7 @@ public class CallHandlerServiceProxy extends Handler implements CallModeler.List
             try {
                 if (DBG) Log.d(TAG, "onDisconnect: " + call);
                 mCallHandlerService.onDisconnect(call);
+                maybeUnbind();
             } catch (RemoteException e) {
                 Log.e(TAG, "Remote exception handling onDisconnect ", e);
             }
@@ -84,7 +81,7 @@ public class CallHandlerServiceProxy extends Handler implements CallModeler.List
 
     @Override
     public void onIncoming(Call call, ArrayList<String> textResponses) {
-        if (mCallHandlerService != null) {
+        if (maybeBindToService() && mCallHandlerService != null) {
             try {
                 if (DBG) Log.d(TAG, "onIncoming: " + call);
                 mCallHandlerService.onIncoming(call, textResponses);
@@ -96,10 +93,11 @@ public class CallHandlerServiceProxy extends Handler implements CallModeler.List
 
     @Override
     public void onUpdate(List<Call> calls, boolean fullUpdate) {
-        if (mCallHandlerService != null) {
+        if (maybeBindToService() && mCallHandlerService != null) {
             try {
                 if (DBG) Log.d(TAG, "onUpdate: " + calls.toString());
                 mCallHandlerService.onUpdate(calls, fullUpdate);
+                maybeUnbind();
             } catch (RemoteException e) {
                 Log.e(TAG, "Remote exception handling onUpdate", e);
             }
@@ -151,19 +149,55 @@ public class CallHandlerServiceProxy extends Handler implements CallModeler.List
 
             @Override
             public void onServiceDisconnected(ComponentName className) {
-                // TODO(klp): handle the case where the in call ui crashed or gets destroyed.
-                // In the near term, we need to re-bind to the service when ever it's gone.
-                // Longer term, we need a way to catch the crash and allow the users to choose
-                // a different in-call screen.
-                Log.e(TAG, "Yikes! no in call ui!");
+                Log.i(TAG, "Disconnected from UI service.");
                 mCallHandlerService = null;
+
+                // clean up our current binding.
+                mContext.unbindService(mConnection);
+                mConnection = null;
+
+                // potentially attempt to rebind if there are still active calls.
+                maybeBindToService();
             }
         };
 
-        Intent serviceIntent = new Intent(ICallHandlerService.class.getName());
+        final Intent serviceIntent = new Intent(ICallHandlerService.class.getName());
+        final ComponentName component = new ComponentName(
+                mContext.getResources().getString(R.string.incall_ui_default_package),
+                mContext.getResources().getString(R.string.incall_ui_default_class));
+        serviceIntent.setComponent(component);
         if (!mContext.bindService(serviceIntent, mConnection, Context.BIND_AUTO_CREATE)) {
             Log.e(TAG, "Cound not bind to ICallHandlerService");
         }
+    }
+
+    /**
+     * Checks To see if there are any calls left.  If not, unbind the callhandler service.
+     */
+    private void maybeUnbind() {
+        if (!mCallModeler.hasLiveCall()) {
+            if (mConnection != null) {
+                mContext.unbindService(mConnection);
+                mConnection = null;
+            }
+        }
+    }
+
+    /**
+     * Checks to see if there are any active calls.  If so, binds the call handler service.
+     * @return true if already bound. False otherwise.
+     */
+    private boolean maybeBindToService() {
+        if (mCallModeler.hasLiveCall()) {
+            // mConnection is set to non-null once an attempt is made to connect.
+            // We do not check against mCallHandlerService here because we could potentially
+            // create multiple bindings to the UI.
+            if (mConnection != null) {
+                return true;
+            }
+            setupServiceConnection();
+        }
+        return false;
     }
 
     /**
@@ -174,6 +208,9 @@ public class CallHandlerServiceProxy extends Handler implements CallModeler.List
 
         try {
             mCallHandlerService.setCallCommandService(mCallCommandService);
+
+            // start with a full update
+            onUpdate(mCallModeler.getFullList(), true);
         } catch (RemoteException e) {
             Log.e(TAG, "Remote exception calling CallHandlerService::setCallCommandService", e);
         }
