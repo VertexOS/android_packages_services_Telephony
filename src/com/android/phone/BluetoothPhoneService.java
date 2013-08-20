@@ -122,12 +122,11 @@ public class BluetoothPhoneService extends Service {
 
         if(VDBG) Log.d(TAG, "registerForServiceStateChanged");
         // register for updates
-        mCM.registerForPreciseCallStateChanged(mHandler,
-                                               PRECISE_CALL_STATE_CHANGED, null);
-        mCM.registerForCallWaiting(mHandler,
-                                   PHONE_CDMA_CALL_WAITING, null);
+        mCM.registerForPreciseCallStateChanged(mHandler, PRECISE_CALL_STATE_CHANGED, null);
+        mCM.registerForCallWaiting(mHandler, PHONE_CDMA_CALL_WAITING, null);
+        mCM.registerForDisconnect(mHandler, PHONE_ON_DISCONNECT, null);
+
         // TODO(BT) registerForIncomingRing?
-        // TODO(BT) registerdisconnection?
         mClccTimestamps = new long[GSM_MAX_CONNECTIONS];
         mClccUsed = new boolean[GSM_MAX_CONNECTIONS];
         for (int i = 0; i < GSM_MAX_CONNECTIONS; i++) {
@@ -161,6 +160,7 @@ public class BluetoothPhoneService extends Service {
     private static final int QUERY_PHONE_STATE = 4;
     private static final int CDMA_SWAP_SECOND_CALL_STATE = 5;
     private static final int CDMA_SET_SECOND_CALL_STATE = 6;
+    private static final int PHONE_ON_DISCONNECT = 7;
 
     private Handler mHandler = new Handler() {
         @Override
@@ -169,6 +169,7 @@ public class BluetoothPhoneService extends Service {
             switch(msg.what) {
                 case PRECISE_CALL_STATE_CHANGED:
                 case PHONE_CDMA_CALL_WAITING:
+                case PHONE_ON_DISCONNECT:
                     Connection connection = null;
                     if (((AsyncResult) msg.obj).result instanceof Connection) {
                         connection = (Connection) ((AsyncResult) msg.obj).result;
@@ -414,10 +415,10 @@ public class BluetoothPhoneService extends Service {
             mType = type;
         }
 
-        private boolean equalTo(CallNumber callNumber) 
+        private boolean equalTo(CallNumber callNumber)
         {
             if (mType != callNumber.mType) return false;
-            
+
             if (mNumber != null && mNumber.compareTo(callNumber.mNumber) == 0) {
                 return true;
             }
@@ -795,7 +796,7 @@ public class BluetoothPhoneService extends Service {
                 } else {
                     Log.e(TAG, "Unexpected phone type: " + phoneType);
                     return false;
-                }                
+                }
             } else {
                 Log.e(TAG, "bad CHLD value: " + chld);
                 return false;
@@ -862,39 +863,55 @@ public class BluetoothPhoneService extends Service {
 
      /* Convert telephony phone call state into hf hal call state */
     static int convertCallState(Call.State ringingState, Call.State foregroundState) {
+        int retval = CALL_STATE_IDLE;
+
         if ((ringingState == Call.State.INCOMING) ||
             (ringingState == Call.State.WAITING) )
-            return CALL_STATE_INCOMING;
+            retval = CALL_STATE_INCOMING;
         else if (foregroundState == Call.State.DIALING)
-            return CALL_STATE_DIALING;
+            retval = CALL_STATE_DIALING;
         else if (foregroundState == Call.State.ALERTING)
-            return CALL_STATE_ALERTING;
+            retval = CALL_STATE_ALERTING;
         else
-            return CALL_STATE_IDLE;
+            retval = CALL_STATE_IDLE;
+
+        if (VDBG) {
+            Log.v(TAG, "Call state Converted2: " + ringingState + "/" + foregroundState + " -> " +
+                    retval);
+        }
+        return retval;
     }
 
     static int convertCallState(Call.State callState) {
+        int retval = CALL_STATE_IDLE;
+
         switch (callState) {
         case IDLE:
         case DISCONNECTED:
         case DISCONNECTING:
-            return CALL_STATE_IDLE;
+            retval = CALL_STATE_IDLE;
         case ACTIVE:
-            return CALL_STATE_ACTIVE;
+            retval = CALL_STATE_ACTIVE;
         case HOLDING:
-            return CALL_STATE_HELD;
+            retval = CALL_STATE_HELD;
         case DIALING:
-            return CALL_STATE_DIALING;
+            retval = CALL_STATE_DIALING;
         case ALERTING:
-            return CALL_STATE_ALERTING;
+            retval = CALL_STATE_ALERTING;
         case INCOMING:
-            return CALL_STATE_INCOMING;
+            retval = CALL_STATE_INCOMING;
         case WAITING:
-            return CALL_STATE_WAITING;
+            retval = CALL_STATE_WAITING;
         default:
             Log.e(TAG, "bad call state: " + callState);
-            return CALL_STATE_IDLE;
+            retval = CALL_STATE_IDLE;
         }
+
+        if (VDBG) {
+            Log.v(TAG, "Call state Converted2: " + callState + " -> " + retval);
+        }
+
+        return retval;
     }
 
     private static void log(String msg) {
