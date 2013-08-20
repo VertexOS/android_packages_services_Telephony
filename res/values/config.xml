@@ -119,4 +119,10 @@
     <bool name="config_apn_expand" translatable="false">true</bool>
     <bool name="config_operator_selection_expand" translatable="false">true</bool>
     <bool name="config_prefer_2g" translatable="false">true</bool>
+
+    <!-- Package name for the default in-call UI Service [DO NOT TRANSLATE] -->
+    <string name="incall_ui_default_package" translatable="false">com.android.incallui</string>
+
+    <!-- Class name for the default in-call UI Service [DO NOT TRANSLATE] -->
+    <string name="incall_ui_default_class" translatable="false">com.android.incallui.CallHandlerService</string>
 </resources>

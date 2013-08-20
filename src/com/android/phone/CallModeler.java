@@ -151,6 +151,26 @@ public class CallModeler extends Handler {
         return null;
     }
 
+    public boolean hasLiveCall() {
+        return hasLiveCallInternal(mCallMap) ||
+            hasLiveCallInternal(mConfCallMap);
+    }
+
+    private boolean hasLiveCallInternal(HashMap<Connection, Call> map) {
+        for (Call call : map.values()) {
+            final int state = call.getState();
+            if (state == Call.State.ACTIVE ||
+                    state == Call.State.CALL_WAITING ||
+                    state == Call.State.CONFERENCED ||
+                    state == Call.State.DIALING ||
+                    state == Call.State.INCOMING ||
+                    state == Call.State.ONHOLD) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public boolean hasOutstandingActiveCall() {
         return hasOutstandingActiveCallInternal(mCallMap) ||
                 hasOutstandingActiveCallInternal(mConfCallMap);
