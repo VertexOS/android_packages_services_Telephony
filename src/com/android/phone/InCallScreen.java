@@ -235,7 +235,6 @@ public class InCallScreen extends Activity
     // current "activity lifecycle" state, we can remove these flags.
     private boolean mIsDestroyed = false;
     private boolean mIsForegroundActivity = false;
-    private boolean mIsForegroundActivityForProximity = false;
     private PowerManager mPowerManager;
 
     // For use with Pause/Wait dialogs
@@ -451,13 +450,6 @@ public class InCallScreen extends Activity
 
         WindowManager.LayoutParams lp = getWindow().getAttributes();
         lp.flags |= flags;
-        if (!mApp.proximitySensorModeEnabled()) {
-            // If we don't have a proximity sensor, then the in-call screen explicitly
-            // controls user activity.  This is to prevent spurious touches from waking
-            // the display.
-            lp.inputFeatures |= WindowManager.LayoutParams.INPUT_FEATURE_DISABLE_USER_ACTIVITY;
-        }
-        getWindow().setAttributes(lp);
 
         setPhone(mApp.phone);  // Sets mPhone
 
@@ -515,7 +507,6 @@ public class InCallScreen extends Activity
         super.onResume();
 
         mIsForegroundActivity = true;
-        mIsForegroundActivityForProximity = true;
 
         // The flag shouldn't be turned on when there are actual phone calls.
         if (mCM.hasActiveFgCall() || mCM.hasActiveBgCall() || mCM.hasActiveRingingCall()) {
@@ -738,11 +729,6 @@ public class InCallScreen extends Activity
         if (DBG) log("onPause()...");
         super.onPause();
 
-        if (mPowerManager.isScreenOn()) {
-            // Set to false when the screen went background *not* by screen turned off. Probably
-            // the user bailed out of the in-call screen (by pressing BACK, HOME, etc.)
-            mIsForegroundActivityForProximity = false;
-        }
         mIsForegroundActivity = false;
 
         // Force a clear of the provider info frame. Since the
@@ -753,10 +739,6 @@ public class InCallScreen extends Activity
         // "show-already-disconnected-state" should be effective just during the first wake-up.
         // We should never allow it to stay true after that.
         mApp.inCallUiState.showAlreadyDisconnectedState = false;
-
-        // A safety measure to disable proximity sensor in case call failed
-        // and the telephony state did not change.
-        mApp.setBeginningCall(false);
 
         // Make sure the "Manage conference" chronometer is stopped when
         // we move away from the foreground.
@@ -985,16 +967,6 @@ public class InCallScreen extends Activity
      */
     /* package */ boolean isForegroundActivity() {
         return mIsForegroundActivity;
-    }
-
-    /**
-     * Returns true when the Activity is in foreground (between onResume() and onPause()),
-     * or, is in background due to user's bailing out of the screen, not by screen turning off.
-     *
-     * @see #isForegroundActivity()
-     */
-    /* package */ boolean isForegroundActivityForProximity() {
-        return mIsForegroundActivityForProximity;
     }
 
     /* package */ void updateKeyguardPolicy(boolean dismissKeyguard) {
@@ -1881,13 +1853,12 @@ public class InCallScreen extends Activity
             // show "DISCONNECTED" state once, with appropriate elapsed time. After showing that
             // we *must* bail out of the screen again, showing screen lock if needed.
             //
-            // See also comments for isForegroundActivityForProximity()
             //
             // TODO: Consider moving this to CallNotifier. This code assumes the InCallScreen
             // never gets destroyed. For this exact case, it works (since InCallScreen won't be
             // destroyed), while technically this isn't right; Activity may be destroyed when
             // in background.
-            if (currentlyIdle && !isForegroundActivity() && isForegroundActivityForProximity()) {
+            if (currentlyIdle && !isForegroundActivity()) {
                 log("Force waking up the screen to let users see \"disconnected\" state");
                 if (call != null) {
                     mCallCard.updateElapsedTimeWidget(call);
@@ -2789,7 +2760,6 @@ public class InCallScreen extends Activity
         } else {
             openDialpadInternal(true);  // do the "opening" animation
         }
-        mApp.updateProximitySensorMode(mCM.getState());
     }
 
     /** Internal wrapper around {@link DTMFTwelveKeyDialer#openDialer(boolean)} */
@@ -4235,15 +4205,9 @@ public class InCallScreen extends Activity
      */
     private void updateExpandedViewState() {
         if (mIsForegroundActivity) {
-            if (mApp.proximitySensorModeEnabled()) {
-                // We should not enable notification's expanded view on RINGING state.
-                mApp.notificationMgr.statusBarHelper.enableExpandedView(
-                        mCM.getState() != PhoneConstants.State.RINGING);
-            } else {
-                // If proximity sensor is unavailable on the device, disable it to avoid false
-                // touches toward notifications.
-                mApp.notificationMgr.statusBarHelper.enableExpandedView(false);
-            }
+            // We should not enable notification's expanded view on RINGING state.
+            mApp.notificationMgr.statusBarHelper.enableExpandedView(
+                    mCM.getState() != PhoneConstants.State.RINGING);
         } else {
             mApp.notificationMgr.statusBarHelper.enableExpandedView(true);
         }
