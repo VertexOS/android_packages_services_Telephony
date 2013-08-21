@@ -97,7 +97,7 @@ public class EmergencyDialer extends Activity implements View.OnClickListener,
 
     private static final int BAD_EMERGENCY_NUMBER_DIALOG = 0;
 
-    private static final int USER_ACTIVITY_TIMEOUT_WHEN_NO_PROX_SENSOR = 15000; // millis
+    // private static final int USER_ACTIVITY_TIMEOUT_WHEN_NO_PROX_SENSOR = 15000; // millis
 
     EditText mDigits;
     private View mDialButton;
@@ -164,10 +164,11 @@ public class EmergencyDialer extends Activity implements View.OnClickListener,
         // Allow this activity to be displayed in front of the keyguard / lockscreen.
         WindowManager.LayoutParams lp = getWindow().getAttributes();
         lp.flags |= WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED;
-        if (!mApp.proximitySensorModeEnabled()) {
-            // When no proximity sensor is available, use a shorter timeout.
-            lp.userActivityTimeout = USER_ACTIVITY_TIMEOUT_WHEN_NO_PROX_SENSOR;
-        }
+
+        // When no proximity sensor is available, use a shorter timeout.
+        // TODO(klp): Do we enable this for non proximity devices any more?
+        // lp.userActivityTimeout = USER_ACTIVITY_TIMEOUT_WHEN_NO_PROX_SENSOR;
+
         getWindow().setAttributes(lp);
 
         setContentView(R.layout.emergency_dialer);
