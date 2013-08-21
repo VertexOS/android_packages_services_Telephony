@@ -271,9 +271,6 @@ public class CallController extends Handler {
                     inCallUiState.clearPendingCallStatusCode();
                 }
 
-                // Notify the phone app that a call is beginning so it can
-                // enable the proximity sensor
-                mApp.setBeginningCall(true);
                 break;
 
             default:
