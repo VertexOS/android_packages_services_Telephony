@@ -392,8 +392,7 @@ public class EmergencyCallHelper extends Handler {
                                               mPhone,
                                               mNumber,
                                               null,  // contactUri
-                                              true,  // isEmergencyCall
-                                              null);  // gatewayUri
+                                              true); // isEmergencyCall
         if (DBG) log("- PhoneUtils.placeCall() returned status = " + callStatus);
 
         boolean success;

@@ -20,6 +20,7 @@ import com.android.internal.telephony.CallManager;
 import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneConstants;
 import com.android.internal.telephony.TelephonyCapabilities;
+import com.android.phone.CallGatewayManager.RawGatewayInfo;
 import com.android.phone.Constants.CallStatusCode;
 import com.android.phone.InCallUiState.InCallScreenMode;
 import com.android.phone.OtaUtils.CdmaOtaScreenState;
@@ -69,9 +70,10 @@ public class CallController extends Handler {
     /** The singleton CallController instance. */
     private static CallController sInstance;
 
-    private PhoneGlobals mApp;
-    private CallManager mCM;
-    private CallLogger mCallLogger;
+    final private PhoneGlobals mApp;
+    final private CallManager mCM;
+    final private CallLogger mCallLogger;
+    final private CallGatewayManager mCallGatewayManager;
 
     /** Helper object for emergency calls in some rare use cases.  Created lazily. */
     private EmergencyCallHelper mEmergencyCallHelper;
@@ -102,10 +104,11 @@ public class CallController extends Handler {
      * PhoneApp's public "callController" field, which is why there's no
      * getInstance() method here.
      */
-    /* package */ static CallController init(PhoneGlobals app, CallLogger callLogger) {
+    /* package */ static CallController init(PhoneGlobals app, CallLogger callLogger,
+            CallGatewayManager callGatewayManager) {
         synchronized (CallController.class) {
             if (sInstance == null) {
-                sInstance = new CallController(app, callLogger);
+                sInstance = new CallController(app, callLogger, callGatewayManager);
             } else {
                 Log.wtf(TAG, "init() called multiple times!  sInstance = " + sInstance);
             }
@@ -117,11 +120,13 @@ public class CallController extends Handler {
      * Private constructor (this is a singleton).
      * @see init()
      */
-    private CallController(PhoneGlobals app, CallLogger callLogger) {
+    private CallController(PhoneGlobals app, CallLogger callLogger,
+            CallGatewayManager callGatewayManager) {
         if (DBG) log("CallController constructor: app = " + app);
         mApp = app;
         mCM = app.mCM;
         mCallLogger = callLogger;
+        mCallGatewayManager = callGatewayManager;
     }
 
     @Override
@@ -242,15 +247,6 @@ public class CallController extends Handler {
         // "Add Call" request), so we should let the mute state be handled
         // by the PhoneUtils phone state change handler.)
         mApp.setRestoreMuteOnInCallResume(false);
-
-        // If a provider is used, extract the info to build the
-        // overlay and route the call.  The overlay will be
-        // displayed when the InCallScreen becomes visible.
-        if (PhoneUtils.hasPhoneProviderExtras(intent)) {
-            inCallUiState.setProviderInfo(intent);
-        } else {
-            inCallUiState.clearProviderInfo();
-        }
 
         CallStatusCode status = placeCallInternal(intent);
 
@@ -477,6 +473,9 @@ public class CallController extends Handler {
         // phone number to use for the outgoing call.
         Uri contactUri = intent.getData();
 
+        // If a gateway is used, extract the data here and pass that into placeCall.
+        final RawGatewayInfo rawGatewayInfo = mCallGatewayManager.getRawGatewayInfo(intent, number);
+
         // Watch out: PhoneUtils.placeCall() returns one of the
         // CALL_STATUS_* constants, not a CallStatusCode enum value.
         int callStatus = PhoneUtils.placeCall(mApp,
@@ -484,7 +483,8 @@ public class CallController extends Handler {
                                               number,
                                               contactUri,
                                               (isEmergencyNumber || isEmergencyIntent),
-                                              inCallUiState.providerGatewayUri);
+                                              rawGatewayInfo,
+                                              mCallGatewayManager);
 
         switch (callStatus) {
             case PhoneUtils.CALL_STATUS_DIALED:
