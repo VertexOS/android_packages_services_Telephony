@@ -101,14 +101,6 @@ public class CallCard extends LinearLayout
     /** Secondary "call info" block (the background "on hold" call) */
     private ViewStub mSecondaryCallInfo;
 
-    /**
-     * Container for both provider info and call state. This will take care of showing/hiding
-     * animation for those views.
-     */
-    private ViewGroup mSecondaryInfoContainer;
-    private ViewGroup mProviderInfo;
-    private TextView mProviderLabel;
-    private TextView mProviderAddress;
 
     // "Call state" widgets
     private TextView mCallStateLabel;
@@ -217,10 +209,6 @@ public class CallCard extends LinearLayout
         mPrimaryCallInfo = (ViewGroup) findViewById(R.id.primary_call_info);
         mPrimaryCallBanner = (ViewGroup) findViewById(R.id.primary_call_banner);
 
-        mSecondaryInfoContainer = (ViewGroup) findViewById(R.id.secondary_info_container);
-        mProviderInfo = (ViewGroup) findViewById(R.id.providerInfo);
-        mProviderLabel = (TextView) findViewById(R.id.providerLabel);
-        mProviderAddress = (TextView) findViewById(R.id.providerAddress);
         mCallStateLabel = (TextView) findViewById(R.id.callStateLabel);
         mElapsedTime = (TextView) findViewById(R.id.elapsedTime);
 
@@ -418,8 +406,6 @@ public class CallCard extends LinearLayout
     private void updateAlreadyDisconnected(CallManager cm) {
         // For the foreground call, we manually set up every component based on previous state.
         mPrimaryCallInfo.setVisibility(View.VISIBLE);
-        mSecondaryInfoContainer.setLayoutTransition(null);
-        mProviderInfo.setVisibility(View.GONE);
         mCallStateLabel.setVisibility(View.VISIBLE);
         mCallStateLabel.setText(mContext.getString(R.string.card_title_call_ended));
         mElapsedTime.setVisibility(View.VISIBLE);
@@ -829,8 +815,7 @@ public class CallCard extends LinearLayout
         final InCallUiState inCallUiState = mApplication.inCallUiState;
         if (DBG) {
             log("==> callStateLabel: '" + callStateLabel
-                    + "', bluetoothIconId = " + bluetoothIconId
-                    + ", providerInfoVisible = " + inCallUiState.providerInfoVisible);
+                    + "', bluetoothIconId = " + bluetoothIconId);
         }
 
         // Animation will be done by mCallerDetail's LayoutTransition, but in some cases, we don't
@@ -841,22 +826,6 @@ public class CallCard extends LinearLayout
                 || state == Call.State.DISCONNECTING
                 || state == Call.State.DISCONNECTED);
         LayoutTransition layoutTransition = null;
-        if (skipAnimation) {
-            // Evict LayoutTransition object to skip animation.
-            layoutTransition = mSecondaryInfoContainer.getLayoutTransition();
-            mSecondaryInfoContainer.setLayoutTransition(null);
-        }
-
-        if (inCallUiState.providerInfoVisible) {
-            mProviderInfo.setVisibility(View.VISIBLE);
-            mProviderLabel.setText(context.getString(R.string.calling_via_template,
-                    inCallUiState.providerLabel));
-            mProviderAddress.setText(inCallUiState.providerAddress);
-
-            mInCallScreen.requestRemoveProviderInfoWithDelay();
-        } else {
-            mProviderInfo.setVisibility(View.GONE);
-        }
 
         if (!TextUtils.isEmpty(callStateLabel)) {
             mCallStateLabel.setVisibility(View.VISIBLE);
@@ -880,10 +849,6 @@ public class CallCard extends LinearLayout
                 mCallStateLabel.setText("");
                 mCallStateLabel.setGravity(Gravity.END);
             }
-        }
-        if (skipAnimation) {
-            // Restore LayoutTransition object to recover animation.
-            mSecondaryInfoContainer.setLayoutTransition(layoutTransition);
         }
 
         // ...and update the elapsed time widget too.

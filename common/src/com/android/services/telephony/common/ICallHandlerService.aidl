@@ -31,7 +31,7 @@ import com.android.services.telephony.common.ICallCommandService;
 oneway interface ICallHandlerService {
 
     /**
-     * Hands a command interface to the CallMonitorService through which
+     * Hands a command interface to the CallHandlerService through which
      * the call monitor can control the phone calls.
      */
     void setCallCommandService(ICallCommandService callCommandService);
