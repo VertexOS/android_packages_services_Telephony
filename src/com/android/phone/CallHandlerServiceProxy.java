@@ -20,7 +20,6 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
-import android.os.AsyncResult;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
@@ -32,31 +31,51 @@ import com.android.phone.AudioRouter.AudioModeListener;
 import com.android.services.telephony.common.AudioMode;
 import com.android.services.telephony.common.Call;
 import com.android.services.telephony.common.ICallHandlerService;
-import com.android.services.telephony.common.ICallCommandService;
+import com.google.common.collect.Lists;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * This class is responsible for passing through call state changes to the CallHandlerService.
  */
-public class CallHandlerServiceProxy extends Handler implements CallModeler.Listener,
-        AudioModeListener {
+public class CallHandlerServiceProxy extends Handler
+        implements CallModeler.Listener, AudioModeListener {
 
     private static final String TAG = CallHandlerServiceProxy.class.getSimpleName();
-    private static final boolean DBG =
-            (PhoneGlobals.DBG_LEVEL >= 1) && (SystemProperties.getInt("ro.debuggable", 0) == 1);
+    private static final boolean DBG = (PhoneGlobals.DBG_LEVEL >= 1) && (SystemProperties.getInt(
+            "ro.debuggable", 0) == 1);
 
+    public static final int RETRY_DELAY_MILLIS = 2000;
+    private static final int BIND_RETRY_MSG = 1;
+    private static final int MAX_RETRY_COUNT = 5;
 
     private AudioRouter mAudioRouter;
     private CallCommandService mCallCommandService;
     private CallModeler mCallModeler;
     private Context mContext;
-    private ICallHandlerService mCallHandlerService;
-    private ServiceConnection mConnection;
+    private ICallHandlerService mCallHandlerServiceGuarded;  // Guarded by mServiceAndQueueLock
+    private List<Call> mIncomingCallQueueGuarded;            // Guarded by mServiceAndQueueLock
+    private List<List<Call>> mUpdateCallQueueGuarded;        // Guarded by mServiceAndQueueLock
+    private List<Call> mDisconnectCallQueueGuarded;        // Guarded by mServiceAndQueueLock
+    private final Object mServiceAndQueueLock = new Object();
+    private int mBindRetryCount = 0;
+
+    @Override
+    public void handleMessage(Message msg) {
+        super.handleMessage(msg);
+
+        switch (msg.what) {
+            case BIND_RETRY_MSG:
+                setupServiceConnection();
+                break;
+        }
+    }
 
     public CallHandlerServiceProxy(Context context, CallModeler callModeler,
             CallCommandService callCommandService, AudioRouter audioRouter) {
+        if (DBG) {
+            Log.d(TAG, "init CallHandlerServiceProxy");
+        }
         mContext = context;
         mCallCommandService = callCommandService;
         mCallModeler = callModeler;
@@ -64,155 +83,263 @@ public class CallHandlerServiceProxy extends Handler implements CallModeler.List
 
         mAudioRouter.addAudioModeListener(this);
         mCallModeler.addListener(this);
+
+        setupServiceConnection();
     }
 
     @Override
     public void onDisconnect(Call call) {
-        if (mCallHandlerService != null) {
-            try {
-                if (DBG) Log.d(TAG, "onDisconnect: " + call);
-                mCallHandlerService.onDisconnect(call);
-                maybeUnbind();
-            } catch (RemoteException e) {
-                Log.e(TAG, "Remote exception handling onDisconnect ", e);
+        try {
+            synchronized (mServiceAndQueueLock) {
+                if (mCallHandlerServiceGuarded == null) {
+                    if (DBG) {
+                        Log.d(TAG, "CallHandlerService not connected.  Enqueue disconnect");
+                    }
+                    enqueueDisconnect(call);
+                    return;
+                }
             }
+            if (DBG) {
+                Log.d(TAG, "onDisconnect: " + call);
+            }
+            mCallHandlerServiceGuarded.onDisconnect(call);
+        } catch (Exception e) {
+            Log.e(TAG, "Remote exception handling onDisconnect ", e);
         }
     }
 
     @Override
-    public void onIncoming(Call call, ArrayList<String> textResponses) {
-        if (maybeBindToService() && mCallHandlerService != null) {
-            try {
-                if (DBG) Log.d(TAG, "onIncoming: " + call);
-                mCallHandlerService.onIncoming(call, textResponses);
-            } catch (RemoteException e) {
-                Log.e(TAG, "Remote exception handling onUpdate", e);
+    public void onIncoming(Call call) {
+        try {
+            synchronized (mServiceAndQueueLock) {
+                if (mCallHandlerServiceGuarded == null) {
+                    if (DBG) {
+                        Log.d(TAG, "CallHandlerService not connected.  Enqueue incoming.");
+                    }
+                    enqueueIncoming(call);
+                    return;
+                }
             }
+            if (DBG) {
+                Log.d(TAG, "onIncoming: " + call);
+            }
+            // TODO(klp): check RespondViaSmsManager.allowRespondViaSmsForCall()
+            // must refactor call method to accept proper call object.
+            mCallHandlerServiceGuarded.onIncoming(call,
+                    RejectWithTextMessageManager.loadCannedResponses());
+        } catch (Exception e) {
+            Log.e(TAG, "Remote exception handling onUpdate", e);
         }
     }
 
     @Override
-    public void onUpdate(List<Call> calls, boolean fullUpdate) {
-        if (maybeBindToService() && mCallHandlerService != null) {
-            try {
-                if (DBG) Log.d(TAG, "onUpdate: " + calls.toString());
-                mCallHandlerService.onUpdate(calls, fullUpdate);
-                maybeUnbind();
-            } catch (RemoteException e) {
-                Log.e(TAG, "Remote exception handling onUpdate", e);
+    public void onUpdate(List<Call> calls) {
+        try {
+            synchronized (mServiceAndQueueLock) {
+                if (mCallHandlerServiceGuarded == null) {
+                    if (DBG) {
+                        Log.d(TAG, "CallHandlerService not connected.  Enqueue update.");
+                    }
+                    enqueueUpdate(calls);
+                    return;
+                }
             }
+
+            if (DBG) {
+                Log.d(TAG, "onUpdate: " + calls.toString());
+            }
+            mCallHandlerServiceGuarded.onUpdate(calls);
+        } catch (Exception e) {
+            Log.e(TAG, "Remote exception handling onUpdate", e);
         }
     }
 
     @Override
     public void onAudioModeChange(int previousMode, int newMode) {
-        // Just do a simple log for now.
-        Log.i(TAG, "Updating with new audio mode: " + AudioMode.toString(newMode) +
-                " from " + AudioMode.toString(previousMode));
-
-        if (mCallHandlerService != null) {
-            try {
-                if (DBG) Log.d(TAG, "onSupportAudioModeChange");
-
-                mCallHandlerService.onAudioModeChange(newMode);
-            } catch (RemoteException e) {
-                Log.e(TAG, "Remote exception handling onAudioModeChange", e);
+        try {
+            synchronized (mServiceAndQueueLock) {
+                // TODO(klp): does this need to be enqueued?
+                if (mCallHandlerServiceGuarded == null) {
+                    if (DBG) {
+                        Log.d(TAG, "CallHandlerService not conneccted. Skipping "
+                                + "onAudioModeChange().");
+                    }
+                    return;
+                }
             }
+
+            // Just do a simple log for now.
+            Log.i(TAG, "Updating with new audio mode: " + AudioMode.toString(newMode) +
+                    " from " + AudioMode.toString(previousMode));
+
+            if (DBG) {
+                Log.d(TAG, "onSupportAudioModeChange");
+            }
+
+            mCallHandlerServiceGuarded.onAudioModeChange(newMode);
+        } catch (Exception e) {
+            Log.e(TAG, "Remote exception handling onAudioModeChange", e);
         }
     }
 
     @Override
     public void onSupportedAudioModeChange(int modeMask) {
-        if (mCallHandlerService != null) {
-            try {
-                if (DBG) Log.d(TAG, "onSupportAudioModeChange: " + AudioMode.toString(modeMask));
+        try {
+            synchronized (mServiceAndQueueLock) {
+                // TODO(klp): does this need to be enqueued?
+                if (mCallHandlerServiceGuarded == null) {
+                    if (DBG) {
+                        Log.d(TAG, "CallHandlerService not conneccted. Skipping"
+                                + "onSupportedAudioModeChange().");
+                    }
+                    return;
+                }
+            }
 
-                mCallHandlerService.onSupportedAudioModeChange(modeMask);
-            } catch (RemoteException e) {
-                Log.e(TAG, "Remote exception handling onAudioModeChange", e);
+            if (DBG) {
+                Log.d(TAG, "onSupportAudioModeChange: " + AudioMode.toString(modeMask));
+            }
+
+            mCallHandlerServiceGuarded.onSupportedAudioModeChange(modeMask);
+        } catch (Exception e) {
+            Log.e(TAG, "Remote exception handling onAudioModeChange", e);
+        }
+
+    }
+
+    private ServiceConnection mConnection = new ServiceConnection() {
+        @Override public void onServiceConnected (ComponentName className, IBinder service){
+            if (DBG) {
+                Log.d(TAG, "Service Connected");
+            }
+            onCallHandlerServiceConnected(ICallHandlerService.Stub.asInterface(service));
+        }
+
+        @Override public void onServiceDisconnected (ComponentName className){
+            Log.i(TAG, "Disconnected from UI service.");
+            synchronized (mServiceAndQueueLock) {
+                mCallHandlerServiceGuarded = null;
+
+                // Technically, unbindService is un-necessary since the framework will schedule and
+                // restart the crashed service.  But there is a exponential backoff for the restart.
+                // Unbind explicitly and setup again to avoid the backoff since it's important to
+                // always have an in call ui.
+                mContext.unbindService(mConnection);
+                setupServiceConnection();
             }
         }
     }
+
+    ;
 
     /**
      * Sets up the connection with ICallHandlerService
      */
     private void setupServiceConnection() {
-        mConnection = new ServiceConnection() {
-            @Override
-            public void onServiceConnected(ComponentName className, IBinder service) {
+        synchronized (mServiceAndQueueLock) {
+            if (mCallHandlerServiceGuarded == null) {
+
+
+                final Intent serviceIntent = new Intent(ICallHandlerService.class.getName());
+                final ComponentName component = new ComponentName(mContext.getResources().getString(
+                        R.string.incall_ui_default_package), mContext.getResources().getString(
+                        R.string.incall_ui_default_class));
+                serviceIntent.setComponent(component);
+
                 if (DBG) {
-                    Log.d(TAG, "Service Connected");
+                    Log.d(TAG, "binding to service " + serviceIntent);
                 }
-                onCallHandlerServiceConnected(ICallHandlerService.Stub.asInterface(service));
-            }
-
-            @Override
-            public void onServiceDisconnected(ComponentName className) {
-                Log.i(TAG, "Disconnected from UI service.");
-                mCallHandlerService = null;
-
-                // clean up our current binding.
-                mContext.unbindService(mConnection);
-                mConnection = null;
-
-                // potentially attempt to rebind if there are still active calls.
-                maybeBindToService();
-            }
-        };
-
-        final Intent serviceIntent = new Intent(ICallHandlerService.class.getName());
-        final ComponentName component = new ComponentName(
-                mContext.getResources().getString(R.string.incall_ui_default_package),
-                mContext.getResources().getString(R.string.incall_ui_default_class));
-        serviceIntent.setComponent(component);
-        if (!mContext.bindService(serviceIntent, mConnection, Context.BIND_AUTO_CREATE)) {
-            Log.e(TAG, "Cound not bind to ICallHandlerService");
-        }
-    }
-
-    /**
-     * Checks To see if there are any calls left.  If not, unbind the callhandler service.
-     */
-    private void maybeUnbind() {
-        if (!mCallModeler.hasLiveCall()) {
-            if (mConnection != null) {
-                mContext.unbindService(mConnection);
-                mConnection = null;
+                if (!mContext.bindService(serviceIntent, mConnection, Context.BIND_AUTO_CREATE)) {
+                    // This happens when the in-call package is in the middle of being installed.
+                    // Delay the retry.
+                    mBindRetryCount++;
+                    if (mBindRetryCount < MAX_RETRY_COUNT) {
+                        Log.e(TAG, "bindService failed on " + serviceIntent + ".  Retrying in " +
+                                RETRY_DELAY_MILLIS + " ms.");
+                        sendMessageDelayed(Message.obtain(this, BIND_RETRY_MSG),
+                                RETRY_DELAY_MILLIS);
+                    } else {
+                        Log.wtf(TAG, "Tried to bind to in-call UI " + MAX_RETRY_COUNT + " times."
+                                + " Giving up.");
+                    }
+                }
             }
         }
-    }
-
-    /**
-     * Checks to see if there are any active calls.  If so, binds the call handler service.
-     * @return true if already bound. False otherwise.
-     */
-    private boolean maybeBindToService() {
-        if (mCallModeler.hasLiveCall()) {
-            // mConnection is set to non-null once an attempt is made to connect.
-            // We do not check against mCallHandlerService here because we could potentially
-            // create multiple bindings to the UI.
-            if (mConnection != null) {
-                return true;
-            }
-            setupServiceConnection();
-        }
-        return false;
     }
 
     /**
      * Called when the in-call UI service is connected.  Send command interface to in-call.
      */
     private void onCallHandlerServiceConnected(ICallHandlerService callHandlerService) {
-        mCallHandlerService = callHandlerService;
+        synchronized (mServiceAndQueueLock) {
+            mCallHandlerServiceGuarded = callHandlerService;
+
+            // TODO(klp): combine queues into a single ordered queue.
+            processIncomingCallQueue();
+            processUpdateCallQueue();
+            processDisconnectQueue();
+        }
 
         try {
-            mCallHandlerService.setCallCommandService(mCallCommandService);
-
-            // start with a full update
-            onUpdate(mCallModeler.getFullList(), true);
+            mCallHandlerServiceGuarded.setCallCommandService(mCallCommandService);
         } catch (RemoteException e) {
             Log.e(TAG, "Remote exception calling CallHandlerService::setCallCommandService", e);
+        }
+    }
+
+
+    private void enqueueDisconnect(Call call) {
+        if (mDisconnectCallQueueGuarded == null) {
+            mDisconnectCallQueueGuarded = Lists.newArrayList();
+        }
+        mDisconnectCallQueueGuarded.add(new Call(call));
+    }
+
+    private void enqueueIncoming(Call call) {
+        if (mIncomingCallQueueGuarded == null) {
+            mIncomingCallQueueGuarded = Lists.newArrayList();
+        }
+        mIncomingCallQueueGuarded.add(new Call(call));
+    }
+
+    private void enqueueUpdate(List<Call> calls) {
+        if (mUpdateCallQueueGuarded == null) {
+            mUpdateCallQueueGuarded = Lists.newArrayList();
+        }
+        final List<Call> copy = Lists.newArrayList();
+        for (Call call : calls) {
+            copy.add(new Call(call));
+        }
+        mUpdateCallQueueGuarded.add(copy);
+    }
+
+    private void processDisconnectQueue() {
+        if (mDisconnectCallQueueGuarded != null) {
+            for (Call call : mDisconnectCallQueueGuarded) {
+                onDisconnect(call);
+            }
+            mDisconnectCallQueueGuarded.clear();
+            mDisconnectCallQueueGuarded = null;
+        }
+    }
+
+    private void processIncomingCallQueue() {
+        if (mIncomingCallQueueGuarded != null) {
+            for (Call call : mIncomingCallQueueGuarded) {
+                onIncoming(call);
+            }
+            mIncomingCallQueueGuarded.clear();
+            mIncomingCallQueueGuarded = null;
+        }
+    }
+
+    private void processUpdateCallQueue() {
+        if (mUpdateCallQueueGuarded != null) {
+            for (List<Call> calls : mUpdateCallQueueGuarded) {
+                onUpdate(calls);
+            }
+            mUpdateCallQueueGuarded.clear();
+            mUpdateCallQueueGuarded = null;
         }
     }
 }

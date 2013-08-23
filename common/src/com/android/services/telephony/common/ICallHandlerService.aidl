@@ -44,7 +44,7 @@ oneway interface ICallHandlerService {
     /**
      * Called when the state of a call changes.
      */
-    void onUpdate(in List<Call> call, boolean fullUpdate);
+    void onUpdate(in List<Call> call);
 
     /**
      * Called when a call disconnects.

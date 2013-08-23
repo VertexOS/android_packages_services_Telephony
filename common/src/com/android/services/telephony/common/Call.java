@@ -16,32 +16,25 @@
 
 package com.android.services.telephony.common;
 
-import com.google.android.collect.Lists;
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import com.android.internal.telephony.PhoneConstants;
 import com.google.android.collect.Sets;
-import com.google.common.collect.ImmutableList;
+import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.ImmutableSortedSet;
 import com.google.common.primitives.Ints;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-import android.os.SystemClock;
-import android.text.format.DateUtils;
-
-import java.util.Arrays;
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.SortedSet;
-
-import com.android.internal.telephony.PhoneConstants;
+import java.util.TreeSet;
 
 /**
  * Class object used across CallHandlerService APIs.
  * Describes a single call and its state.
  */
-final public class Call implements Parcelable {
+public final class Call implements Parcelable {
 
     public static final int INVALID_CALL_ID = -1;
     public static final int MAX_CONFERENCED_CALLS = 5;
@@ -159,22 +152,12 @@ final public class Call implements Parcelable {
     public static int PRESENTATION_PAYPHONE = PhoneConstants.PRESENTATION_PAYPHONE;
 
     // Unique identifier for the call
-    private int mCallId = INVALID_CALL_ID;
+    private int mCallId;
 
-    // The phone number on the other end of the connection
-    private String mNumber = "";
+    private CallIdentification mIdentification;
 
     // The current state of the call
     private int mState = State.INVALID;
-
-    // Number presentation received from the carrier
-    private int mNumberPresentation = PRESENTATION_ALLOWED;
-
-    // Name presentation mode received from the carrier
-    private int mCnapNamePresentation = PRESENTATION_ALLOWED;
-
-    // Name associated with the other end of the connection; from the carrier.
-    private String mCnapName = "";
 
     // Reason for disconnect. Valid when the call state is DISCONNECTED.
     private DisconnectCause mDisconnectCause = DisconnectCause.UNKNOWN;
@@ -196,18 +179,35 @@ final public class Call implements Parcelable {
 
     public Call(int callId) {
         mCallId = callId;
+        mIdentification = new CallIdentification(mCallId);
+    }
+
+    public Call(Call call) {
+        mCallId = call.mCallId;
+        mIdentification = new CallIdentification(call.mIdentification);
+        mState = call.mState;
+        mDisconnectCause = call.mDisconnectCause;
+        mCapabilities = call.mCapabilities;
+        mConnectTime = call.mConnectTime;
+        mChildCallIds = new TreeSet<Integer>(call.mChildCallIds);
+        mGatewayNumber = call.mGatewayNumber;
+        mGatewayPackage = call.mGatewayPackage;
     }
 
     public int getCallId() {
         return mCallId;
     }
 
+    public CallIdentification getIdentification() {
+        return mIdentification;
+    }
+
     public String getNumber() {
-        return mNumber;
+        return mIdentification.getNumber();
     }
 
     public void setNumber(String number) {
-        mNumber = number;
+        mIdentification.setNumber(number);
     }
 
     public int getState() {
@@ -219,27 +219,27 @@ final public class Call implements Parcelable {
     }
 
     public int getNumberPresentation() {
-        return mNumberPresentation;
+        return mIdentification.getNumberPresentation();
     }
 
     public void setNumberPresentation(int presentation) {
-        mNumberPresentation = presentation;
+        mIdentification.setNumberPresentation(presentation);
     }
 
     public int getCnapNamePresentation() {
-        return mCnapNamePresentation;
+        return mIdentification.getCnapNamePresentation();
     }
 
     public void setCnapNamePresentation(int presentation) {
-        mCnapNamePresentation = presentation;
+        mIdentification.setCnapNamePresentation(presentation);
     }
 
     public String getCnapName() {
-        return mCnapName;
+        return mIdentification.getCnapName();
     }
 
     public void setCnapName(String cnapName) {
-        mCnapName = cnapName;
+        mIdentification.setCnapName(cnapName);
     }
 
     public DisconnectCause getDisconnectCause() {
@@ -321,17 +321,14 @@ final public class Call implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(mCallId);
-        dest.writeString(mNumber);
         dest.writeInt(mState);
-        dest.writeInt(mNumberPresentation);
-        dest.writeInt(mCnapNamePresentation);
-        dest.writeString(mCnapName);
         dest.writeString(getDisconnectCause().toString());
         dest.writeInt(getCapabilities());
         dest.writeLong(getConnectTime());
         dest.writeIntArray(Ints.toArray(mChildCallIds));
         dest.writeString(getGatewayNumber());
         dest.writeString(getGatewayPackage());
+        dest.writeParcelable(mIdentification, 0);
     }
 
     /**
@@ -339,17 +336,14 @@ final public class Call implements Parcelable {
      */
     private Call(Parcel in) {
         mCallId = in.readInt();
-        mNumber = in.readString();
         mState = in.readInt();
-        mNumberPresentation = in.readInt();
-        mCnapNamePresentation = in.readInt();
-        mCnapName = in.readString();
         mDisconnectCause = DisconnectCause.valueOf(in.readString());
         mCapabilities = in.readInt();
         mConnectTime = in.readLong();
         mChildCallIds.addAll(Ints.asList(in.createIntArray()));
         mGatewayNumber = in.readString();
         mGatewayPackage = in.readString();
+        mIdentification = in.readParcelable(CallIdentification.class.getClassLoader());
     }
 
     @Override
@@ -376,38 +370,16 @@ final public class Call implements Parcelable {
 
     @Override
     public String toString() {
-        return toString(true);
-    }
-
-    public String toString(boolean safe) {
-        StringBuffer buffer = new StringBuffer();
-        buffer.append("callId: ");
-        buffer.append(mCallId);
-        if (!safe) {
-            buffer.append(", number: ");
-            buffer.append(mNumber);
-            buffer.append(", name: ");
-            buffer.append(mCnapName);
-        }
-        buffer.append(", state: ");
-        buffer.append(STATE_MAP.get(mState));
-        buffer.append(", disconnect_cause: ");
-        buffer.append(getDisconnectCause().toString());
-        buffer.append(", capabilities: ");
-        buffer.append(Integer.toHexString(getCapabilities()));
-
-        final long duration = System.currentTimeMillis() - getConnectTime();
-        buffer.append(", elapsedTime: ");
-        buffer.append(DateUtils.formatElapsedTime(duration / 1000));
-
-        buffer.append(", childCalls: ");
-        buffer.append(mChildCallIds.toString());
-        buffer.append(", gateway: ");
-        if (!safe) {
-            buffer.append(mGatewayNumber);
-        }
-        buffer.append(" [").append(mGatewayPackage).append("]");
-
-        return buffer.toString();
+        return Objects.toStringHelper(this)
+                .add("mCallId", mCallId)
+                .add("mState", mState)
+                .add("mDisconnectCause", mDisconnectCause)
+                .add("mCapabilities", mCapabilities)
+                .add("mConnectTime", mConnectTime)
+                .add("mChildCallIds", mChildCallIds)
+                .add("mGatewayNumber", MoreStrings.toSafeString(mGatewayNumber))
+                .add("mGatewayPackage", mGatewayPackage)
+                .add("mIdentification", mIdentification)
+                .toString();
     }
 }

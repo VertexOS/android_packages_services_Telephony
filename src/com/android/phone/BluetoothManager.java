@@ -408,14 +408,14 @@ public class BluetoothManager implements CallModeler.Listener {
     }
 
     @Override
-    public void onIncoming(Call call, ArrayList<String> messages) {
+    public void onIncoming(Call call) {
         // An incoming call can affect bluetooth indicator, so we update it whenever there is
         // a change to any of the calls.
         updateBluetoothIndication();
     }
 
     @Override
-    public void onUpdate(List<Call> calls, boolean fullUpdate) {
+    public void onUpdate(List<Call> calls) {
         updateBluetoothIndication();
     }
 
