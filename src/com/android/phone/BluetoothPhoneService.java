@@ -890,21 +890,29 @@ public class BluetoothPhoneService extends Service {
         case DISCONNECTED:
         case DISCONNECTING:
             retval = CALL_STATE_IDLE;
+            break;
         case ACTIVE:
             retval = CALL_STATE_ACTIVE;
+            break;
         case HOLDING:
             retval = CALL_STATE_HELD;
+            break;
         case DIALING:
             retval = CALL_STATE_DIALING;
+            break;
         case ALERTING:
             retval = CALL_STATE_ALERTING;
+            break;
         case INCOMING:
             retval = CALL_STATE_INCOMING;
+            break;
         case WAITING:
             retval = CALL_STATE_WAITING;
+            break;
         default:
             Log.e(TAG, "bad call state: " + callState);
             retval = CALL_STATE_IDLE;
+            break;
         }
 
         if (VDBG) {
