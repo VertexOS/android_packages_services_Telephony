@@ -97,29 +97,6 @@ public class InCallScreen extends Activity
     // TODO: Should be EXTRA_SHOW_DIALPAD for consistency.
     static final String SHOW_DIALPAD_EXTRA = "com.android.phone.ShowDialpad";
 
-    /**
-     * Intent extra to specify the package name of the gateway
-     * provider.  Used to get the name displayed in the in-call screen
-     * during the call setup. The value is a string.
-     */
-    // TODO: This extra is currently set by the gateway application as
-    // a temporary measure. Ultimately, the framework will securely
-    // set it.
-    /* package */ static final String EXTRA_GATEWAY_PROVIDER_PACKAGE =
-            "com.android.phone.extra.GATEWAY_PROVIDER_PACKAGE";
-
-    /**
-     * Intent extra to specify the URI of the provider to place the
-     * call. The value is a string. It holds the gateway address
-     * (phone gateway URL should start with the 'tel:' scheme) that
-     * will actually be contacted to call the number passed in the
-     * intent URL or in the EXTRA_PHONE_NUMBER extra.
-     */
-    // TODO: Should the value be a Uri (Parcelable)? Need to make sure
-    // MMI code '#' don't get confused as URI fragments.
-    /* package */ static final String EXTRA_GATEWAY_URI =
-            "com.android.phone.extra.GATEWAY_URI";
-
     // Amount of time (in msec) that we display the "Call ended" state.
     // The "short" value is for calls ended by the local user, and the
     // "long" value is for calls ended by the remote caller.
@@ -371,7 +348,6 @@ public class InCallScreen extends Activity
                     break;
 
                 case EVENT_HIDE_PROVIDER_INFO:
-                    mApp.inCallUiState.providerInfoVisible = false;
                     if (mCallCard != null) {
                         mCallCard.updateState(mCM);
                     }
@@ -730,11 +706,6 @@ public class InCallScreen extends Activity
         super.onPause();
 
         mIsForegroundActivity = false;
-
-        // Force a clear of the provider info frame. Since the
-        // frame is removed using a timed message, it is
-        // possible we missed it if the prev call was interrupted.
-        mApp.inCallUiState.providerInfoVisible = false;
 
         // "show-already-disconnected-state" should be effective just during the first wake-up.
         // We should never allow it to stay true after that.

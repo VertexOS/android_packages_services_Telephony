@@ -35,6 +35,7 @@ import com.android.internal.telephony.Connection;
 import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneConstants;
 import com.android.internal.telephony.TelephonyCapabilities;
+import com.android.phone.CallGatewayManager.RawGatewayInfo;
 import com.android.services.telephony.common.Call;
 import com.android.services.telephony.common.Call.Capabilities;
 import com.android.services.telephony.common.Call.State;
@@ -84,6 +85,7 @@ public class CallModeler extends Handler {
 
     private final CallStateMonitor mCallStateMonitor;
     private final CallManager mCallManager;
+    private final CallGatewayManager mCallGatewayManager;
     private final HashMap<Connection, Call> mCallMap = Maps.newHashMap();
     private final HashMap<Connection, Call> mConfCallMap = Maps.newHashMap();
     private final AtomicInteger mNextCallId = new AtomicInteger(CALL_ID_START_VALUE);
@@ -91,10 +93,12 @@ public class CallModeler extends Handler {
     private RejectWithTextMessageManager mRejectWithTextMessageManager;
 
     public CallModeler(CallStateMonitor callStateMonitor, CallManager callManager,
-            RejectWithTextMessageManager rejectWithTextMessageManager) {
+            RejectWithTextMessageManager rejectWithTextMessageManager,
+            CallGatewayManager callGatewayManager) {
         mCallStateMonitor = callStateMonitor;
         mCallManager = callManager;
         mRejectWithTextMessageManager = rejectWithTextMessageManager;
+        mCallGatewayManager = callGatewayManager;
 
         mCallStateMonitor.addListener(this);
     }
@@ -330,6 +334,29 @@ public class CallModeler extends Handler {
     }
 
     /**
+     * Sets the new call state onto the call and performs some additional logic
+     * associated with setting the state.
+     */
+    private void setNewState(Call call, int newState, Connection connection) {
+        Preconditions.checkState(call.getState() != newState);
+
+        // When starting an outgoing call, we need to grab gateway information
+        // for the call, if available, and set it.
+        final RawGatewayInfo info = mCallGatewayManager.getGatewayInfo(connection);
+
+        if (newState == Call.State.DIALING) {
+            if (!info.isEmpty()) {
+                call.setGatewayNumber(info.getFormattedGatewayNumber());
+                call.setGatewayPackage(info.packageName);
+            }
+        } else if (!Call.State.isConnected(newState)) {
+            mCallGatewayManager.clearGatewayData(connection);
+        }
+
+        call.setState(newState);
+    }
+
+    /**
      * Updates the Call properties to match the state of the connection object
      * that it represents.
      * @param call The call object to update.
@@ -344,7 +371,7 @@ public class CallModeler extends Handler {
         final int newState = translateStateFromTelephony(connection, isForConference);
 
         if (call.getState() != newState) {
-            call.setState(newState);
+            setNewState(call, newState, connection);
             changed = true;
         }
 
@@ -362,27 +389,36 @@ public class CallModeler extends Handler {
         }
 
         if (!isForConference) {
+            // Number
             final String oldNumber = call.getNumber();
-            if (TextUtils.isEmpty(oldNumber) || !oldNumber.equals(connection.getAddress())) {
-                call.setNumber(connection.getAddress());
+            String newNumber = connection.getAddress();
+            RawGatewayInfo info = mCallGatewayManager.getGatewayInfo(connection);
+            if (!info.isEmpty()) {
+                newNumber = info.trueNumber;
+            }
+            if (TextUtils.isEmpty(oldNumber) || !oldNumber.equals(newNumber)) {
+                call.setNumber(newNumber);
                 changed = true;
             }
 
+            // Number presentation
             final int newNumberPresentation = connection.getNumberPresentation();
             if (call.getNumberPresentation() != newNumberPresentation) {
                 call.setNumberPresentation(newNumberPresentation);
                 changed = true;
             }
 
-            final int newCnapNamePresentation = connection.getCnapNamePresentation();
-            if (call.getCnapNamePresentation() != newCnapNamePresentation) {
-                call.setCnapNamePresentation(newCnapNamePresentation);
-                changed = true;
-            }
-
+            // Name
             final String oldCnapName = call.getCnapName();
             if (TextUtils.isEmpty(oldCnapName) || !oldCnapName.equals(connection.getCnapName())) {
                 call.setCnapName(connection.getCnapName());
+                changed = true;
+            }
+
+            // Name Presentation
+            final int newCnapNamePresentation = connection.getCnapNamePresentation();
+            if (call.getCnapNamePresentation() != newCnapNamePresentation) {
+                call.setCnapNamePresentation(newCnapNamePresentation);
                 changed = true;
             }
         } else {

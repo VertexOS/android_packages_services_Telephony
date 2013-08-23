@@ -57,6 +57,20 @@ final public class Call implements Parcelable {
         public static final int ONHOLD = 6;         /* An active phone call placed on hold */
         public static final int DISCONNECTED = 7;   /* State after a call disconnects */
         public static final int CONFERENCED = 8;     /* Call part of a conference call */
+
+        public static boolean isConnected(int state) {
+            switch(state) {
+                case ACTIVE:
+                case INCOMING:
+                case CALL_WAITING:
+                case DIALING:
+                case ONHOLD:
+                case CONFERENCED:
+                    return true;
+                default:
+            }
+            return false;
+        }
     }
 
     /**
@@ -174,6 +188,12 @@ final public class Call implements Parcelable {
     // List of call Ids for for this call.  (Used for managing conference calls).
     private SortedSet<Integer> mChildCallIds = Sets.newSortedSet();
 
+    // Gateway number used to dial this call
+    private String mGatewayNumber;
+
+    // Gateway service package name
+    private String mGatewayPackage;
+
     public Call(int callId) {
         mCallId = callId;
     }
@@ -278,6 +298,22 @@ final public class Call implements Parcelable {
         return mChildCallIds.size() >= 2;
     }
 
+    public String getGatewayNumber() {
+        return mGatewayNumber;
+    }
+
+    public void setGatewayNumber(String number) {
+        mGatewayNumber = number;
+    }
+
+    public String getGatewayPackage() {
+        return mGatewayPackage;
+    }
+
+    public void setGatewayPackage(String packageName) {
+        mGatewayPackage = packageName;
+    }
+
     /**
      * Parcelable implementation
      */
@@ -294,6 +330,8 @@ final public class Call implements Parcelable {
         dest.writeInt(getCapabilities());
         dest.writeLong(getConnectTime());
         dest.writeIntArray(Ints.toArray(mChildCallIds));
+        dest.writeString(getGatewayNumber());
+        dest.writeString(getGatewayPackage());
     }
 
     /**
@@ -310,6 +348,8 @@ final public class Call implements Parcelable {
         mCapabilities = in.readInt();
         mConnectTime = in.readLong();
         mChildCallIds.addAll(Ints.asList(in.createIntArray()));
+        mGatewayNumber = in.readString();
+        mGatewayPackage = in.readString();
     }
 
     @Override
@@ -336,9 +376,19 @@ final public class Call implements Parcelable {
 
     @Override
     public String toString() {
+        return toString(true);
+    }
+
+    public String toString(boolean safe) {
         StringBuffer buffer = new StringBuffer();
         buffer.append("callId: ");
         buffer.append(mCallId);
+        if (!safe) {
+            buffer.append(", number: ");
+            buffer.append(mNumber);
+            buffer.append(", name: ");
+            buffer.append(mCnapName);
+        }
         buffer.append(", state: ");
         buffer.append(STATE_MAP.get(mState));
         buffer.append(", disconnect_cause: ");
@@ -349,8 +399,14 @@ final public class Call implements Parcelable {
         final long duration = System.currentTimeMillis() - getConnectTime();
         buffer.append(", elapsedTime: ");
         buffer.append(DateUtils.formatElapsedTime(duration / 1000));
+
         buffer.append(", childCalls: ");
         buffer.append(mChildCallIds.toString());
+        buffer.append(", gateway: ");
+        if (!safe) {
+            buffer.append(mGatewayNumber);
+        }
+        buffer.append(" [").append(mGatewayPackage).append("]");
 
         return buffer.toString();
     }

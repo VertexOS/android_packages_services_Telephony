@@ -176,7 +176,7 @@ public class SipCallOptionHandler extends Activity implements
         // call via the default pstn network. However, if one just alters
         // the destination directly, then we still let it go through the
         // Internet call option process.
-        if (!PhoneUtils.hasPhoneProviderExtras(mIntent)) {
+        if (!CallGatewayManager.hasPhoneProviderExtras(mIntent)) {
             if (!isNetworkConnected()) {
                 if (!isRegularCall) {
                     showDialog(DIALOG_NO_INTERNET_ERROR);

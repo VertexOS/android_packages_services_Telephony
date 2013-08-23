@@ -59,6 +59,7 @@ import com.android.internal.telephony.TelephonyCapabilities;
 import com.android.internal.telephony.TelephonyProperties;
 import com.android.internal.telephony.cdma.CdmaConnection;
 import com.android.internal.telephony.sip.SipPhone;
+import com.android.phone.CallGatewayManager.RawGatewayInfo;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -561,6 +562,15 @@ public class PhoneUtils {
     }
 
     /**
+     * @see placeCall below
+     */
+    public static int placeCall(Context context, Phone phone, String number, Uri contactRef,
+            boolean isEmergencyCall) {
+        return placeCall(context, phone, number, contactRef, isEmergencyCall,
+                CallGatewayManager.EMPTY_INFO, null);
+    }
+
+    /**
      * Dial the number using the phone passed in.
      *
      * If the connection is establised, this method issues a sync call
@@ -578,12 +588,14 @@ public class PhoneUtils {
      * emergency call
      * @param gatewayUri Is the address used to setup the connection, null
      * if not using a gateway
+     * @param callGateway Class for setting gateway data on a successful call.
      *
      * @return either CALL_STATUS_DIALED or CALL_STATUS_FAILED
      */
-    public static int placeCall(Context context, Phone phone,
-            String number, Uri contactRef, boolean isEmergencyCall,
-            Uri gatewayUri) {
+    public static int placeCall(Context context, Phone phone, String number, Uri contactRef,
+            boolean isEmergencyCall, RawGatewayInfo gatewayInfo, CallGatewayManager callGateway) {
+        final Uri gatewayUri = gatewayInfo.gatewayUri;
+
         if (VDBG) {
             log("placeCall()... number: '" + number + "'"
                     + ", GW:'" + gatewayUri + "'"
@@ -640,6 +652,11 @@ public class PhoneUtils {
             // Note that it's possible for CallManager.dial() to return
             // null *without* throwing an exception; that indicates that
             // we dialed an MMI (see below).
+        }
+
+        // Now that the call is successful, we can save the gateway info for the call
+        if (callGateway != null) {
+            callGateway.setGatewayInfoForConnection(connection, gatewayInfo);
         }
 
         int phoneType = phone.getPhoneType();
@@ -2321,107 +2338,6 @@ public class PhoneUtils {
     //
 
     /**
-     * Check if all the provider's info is present in the intent.
-     * @param intent Expected to have the provider's extra.
-     * @return true if the intent has all the extras to build the
-     * in-call screen's provider info overlay.
-     */
-    /* package */ static boolean hasPhoneProviderExtras(Intent intent) {
-        if (null == intent) {
-            return false;
-        }
-        final String name = intent.getStringExtra(InCallScreen.EXTRA_GATEWAY_PROVIDER_PACKAGE);
-        final String gatewayUri = intent.getStringExtra(InCallScreen.EXTRA_GATEWAY_URI);
-
-        return !TextUtils.isEmpty(name) && !TextUtils.isEmpty(gatewayUri);
-    }
-
-    /**
-     * Copy all the expected extras set when a 3rd party provider is
-     * used from the source intent to the destination one.  Checks all
-     * the required extras are present, if any is missing, none will
-     * be copied.
-     * @param src Intent which may contain the provider's extras.
-     * @param dst Intent where a copy of the extras will be added if applicable.
-     */
-    /* package */ static void checkAndCopyPhoneProviderExtras(Intent src, Intent dst) {
-        if (!hasPhoneProviderExtras(src)) {
-            Log.d(LOG_TAG, "checkAndCopyPhoneProviderExtras: some or all extras are missing.");
-            return;
-        }
-
-        dst.putExtra(InCallScreen.EXTRA_GATEWAY_PROVIDER_PACKAGE,
-                     src.getStringExtra(InCallScreen.EXTRA_GATEWAY_PROVIDER_PACKAGE));
-        dst.putExtra(InCallScreen.EXTRA_GATEWAY_URI,
-                     src.getStringExtra(InCallScreen.EXTRA_GATEWAY_URI));
-    }
-
-    /**
-     * Get the provider's label from the intent.
-     * @param context to lookup the provider's package name.
-     * @param intent with an extra set to the provider's package name.
-     * @return The provider's application label. null if an error
-     * occurred during the lookup of the package name or the label.
-     */
-    /* package */ static CharSequence getProviderLabel(Context context, Intent intent) {
-        String packageName = intent.getStringExtra(InCallScreen.EXTRA_GATEWAY_PROVIDER_PACKAGE);
-        PackageManager pm = context.getPackageManager();
-
-        try {
-            ApplicationInfo info = pm.getApplicationInfo(packageName, 0);
-
-            return pm.getApplicationLabel(info);
-        } catch (PackageManager.NameNotFoundException e) {
-            return null;
-        }
-    }
-
-    /**
-     * Get the provider's icon.
-     * @param context to lookup the provider's icon.
-     * @param intent with an extra set to the provider's package name.
-     * @return The provider's application icon. null if an error occured during the icon lookup.
-     */
-    /* package */ static Drawable getProviderIcon(Context context, Intent intent) {
-        String packageName = intent.getStringExtra(InCallScreen.EXTRA_GATEWAY_PROVIDER_PACKAGE);
-        PackageManager pm = context.getPackageManager();
-
-        try {
-            return pm.getApplicationIcon(packageName);
-        } catch (PackageManager.NameNotFoundException e) {
-            return null;
-        }
-    }
-
-    /**
-     * Return the gateway uri from the intent.
-     * @param intent With the gateway uri extra.
-     * @return The gateway URI or null if not found.
-     */
-    /* package */ static Uri getProviderGatewayUri(Intent intent) {
-        String uri = intent.getStringExtra(InCallScreen.EXTRA_GATEWAY_URI);
-        return TextUtils.isEmpty(uri) ? null : Uri.parse(uri);
-    }
-
-    /**
-     * Return a formatted version of the uri's scheme specific
-     * part. E.g for 'tel:12345678', return '1-234-5678'.
-     * @param uri A 'tel:' URI with the gateway phone number.
-     * @return the provider's address (from the gateway uri) formatted
-     * for user display. null if uri was null or its scheme was not 'tel:'.
-     */
-    /* package */ static String formatProviderUri(Uri uri) {
-        if (null != uri) {
-            if (Constants.SCHEME_TEL.equals(uri.getScheme())) {
-                return PhoneNumberUtils.formatNumber(uri.getSchemeSpecificPart());
-            } else {
-                return uri.toString();
-            }
-        }
-        return null;
-    }
-
-    /**
      * Check if a phone number can be route through a 3rd party
      * gateway. The number must be a global phone number in numerical
      * form (1-800-666-SEXY won't work).
@@ -2432,7 +2348,7 @@ public class PhoneUtils {
      * @param number To be dialed via a 3rd party gateway.
      * @return true If the number can be routed through the 3rd party network.
      */
-    /* package */ static boolean isRoutableViaGateway(String number) {
+    private static boolean isRoutableViaGateway(String number) {
         if (TextUtils.isEmpty(number)) {
             return false;
         }
