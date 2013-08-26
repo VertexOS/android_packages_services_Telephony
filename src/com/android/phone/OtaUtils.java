@@ -459,9 +459,8 @@ public class OtaUtils {
         int callStatus = PhoneUtils.placeCall(context,
                                               phone,
                                               number,
-                                              null,  // contactRef
-                                              false,  //isEmergencyCall
-                                              null);  // gatewayUri
+                                              null,   // contactRef
+                                              false); //isEmergencyCall
 
         if (callStatus == PhoneUtils.CALL_STATUS_DIALED) {
             if (DBG) log("  ==> successful return from placeCall(): callStatus = " + callStatus);

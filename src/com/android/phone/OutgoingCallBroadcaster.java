@@ -300,7 +300,7 @@ public class OutgoingCallBroadcaster extends Activity
 
         Intent newIntent = new Intent(Intent.ACTION_CALL, uri);
         newIntent.putExtra(EXTRA_ACTUAL_NUMBER_TO_DIAL, number);
-        PhoneUtils.checkAndCopyPhoneProviderExtras(intent, newIntent);
+        CallGatewayManager.checkAndCopyPhoneProviderExtras(intent, newIntent);
 
         // Finally, launch the SipCallOptionHandler, with the copy of the
         // original CALL intent stashed away in the EXTRA_NEW_CALL_INTENT
@@ -638,7 +638,7 @@ public class OutgoingCallBroadcaster extends Activity
         if (number != null) {
             broadcastIntent.putExtra(Intent.EXTRA_PHONE_NUMBER, number);
         }
-        PhoneUtils.checkAndCopyPhoneProviderExtras(intent, broadcastIntent);
+        CallGatewayManager.checkAndCopyPhoneProviderExtras(intent, broadcastIntent);
         broadcastIntent.putExtra(EXTRA_ALREADY_CALLED, callNow);
         broadcastIntent.putExtra(EXTRA_ORIGINAL_URI, uri.toString());
         // Need to raise foreground in-call UI as soon as possible while allowing 3rd party app

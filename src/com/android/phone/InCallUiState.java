@@ -340,52 +340,6 @@ public class InCallUiState {
         return (progressIndication != ProgressIndicationType.NONE);
     }
 
-
-    //
-    // (4) Optional info when a 3rd party "provider" is used.
-    //     @see InCallScreen#requestRemoveProviderInfoWithDelay()
-    //     @see CallCard#updateCallStateWidgets()
-    //
-
-    // TODO: maybe isolate all the provider-related stuff out to a
-    //       separate inner class?
-    boolean providerInfoVisible;
-    CharSequence providerLabel;
-    Drawable providerIcon;
-    Uri providerGatewayUri;
-    // The formatted address extracted from mProviderGatewayUri. User visible.
-    String providerAddress;
-
-    /**
-     * Set the fields related to the provider support
-     * based on the specified intent.
-     */
-    public void setProviderInfo(Intent intent) {
-        providerLabel = PhoneUtils.getProviderLabel(mContext, intent);
-        providerIcon = PhoneUtils.getProviderIcon(mContext, intent);
-        providerGatewayUri = PhoneUtils.getProviderGatewayUri(intent);
-        providerAddress = PhoneUtils.formatProviderUri(providerGatewayUri);
-        providerInfoVisible = true;
-
-        // ...but if any of the "required" fields are missing, completely
-        // disable the overlay.
-        if (TextUtils.isEmpty(providerLabel) || providerIcon == null ||
-            providerGatewayUri == null || TextUtils.isEmpty(providerAddress)) {
-            clearProviderInfo();
-        }
-    }
-
-    /**
-     * Clear all the fields related to the provider support.
-     */
-    public void clearProviderInfo() {
-        providerInfoVisible = false;
-        providerLabel = null;
-        providerIcon = null;
-        providerGatewayUri = null;
-        providerAddress = null;
-    }
-
     /**
      * "Call origin" of the most recent phone call.
      *
@@ -435,15 +389,6 @@ public class InCallUiState {
             log("  - pending call status code: none");
         }
         log("  - progressIndication: " + progressIndication);
-        if (providerInfoVisible) {
-            log("  - provider info VISIBLE: "
-                  + providerLabel + " / "
-                  + providerIcon  + " / "
-                  + providerGatewayUri + " / "
-                  + providerAddress);
-        } else {
-            log("  - provider info: none");
-        }
         log("  - latestActiveCallOrigin: " + latestActiveCallOrigin);
     }
 
