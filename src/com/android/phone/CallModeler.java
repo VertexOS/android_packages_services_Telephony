@@ -175,15 +175,17 @@ public class CallModeler extends Handler {
         return false;
     }
 
-    public boolean hasOutstandingActiveCall() {
-        return hasOutstandingActiveCallInternal(mCallMap) ||
-                hasOutstandingActiveCallInternal(mConfCallMap);
+    public boolean hasOutstandingActiveOrDialingCall() {
+        return hasOutstandingActiveOrDialingCallInternal(mCallMap) ||
+                hasOutstandingActiveOrDialingCallInternal(mConfCallMap);
     }
 
-    private static boolean hasOutstandingActiveCallInternal(HashMap<Connection, Call> map) {
+    private static boolean hasOutstandingActiveOrDialingCallInternal(
+            HashMap<Connection, Call> map) {
         for (Call call : map.values()) {
             final int state = call.getState();
-            if (Call.State.ACTIVE == state) {
+            if (state == Call.State.ACTIVE ||
+                    state == Call.State.DIALING) {
                 return true;
             }
         }
@@ -192,6 +194,7 @@ public class CallModeler extends Handler {
     }
 
     private void onNewRingingConnection(AsyncResult r) {
+        Log.i(TAG, "onNewRingingConnection");
         final Connection conn = (Connection) r.result;
         final Call call = getCallFromMap(mCallMap, conn, true);
 
@@ -207,6 +210,7 @@ public class CallModeler extends Handler {
     }
 
     private void onDisconnect(AsyncResult r) {
+        Log.i(TAG, "onDisconnect");
         final Connection conn = (Connection) r.result;
         final Call call = getCallFromMap(mCallMap, conn, false);
 
@@ -237,6 +241,7 @@ public class CallModeler extends Handler {
      * Called when the phone state changes.
      */
     private void onPhoneStateChanged(AsyncResult r) {
+        Log.i(TAG, "onPhoneStateChanged: ");
         final List<Call> updatedCalls = Lists.newArrayList();
         doUpdate(false, updatedCalls);
 
@@ -267,6 +272,8 @@ public class CallModeler extends Handler {
                 final Call call = getCallFromMap(mCallMap, connection, true);
 
                 boolean changed = updateCallFromConnection(call, connection, false);
+
+                Log.i(TAG, "doUpdate: " + call);
                 if (fullUpdate || changed) {
                     out.add(call);
                 }

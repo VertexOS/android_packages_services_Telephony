@@ -327,7 +327,11 @@ public class DTMFTonePlayer implements CallModeler.Listener {
         final int len = calls.size();
 
         for (int i = 0; i < len; i++) {
-            hasActiveCall |= (calls.get(i).getState() == Call.State.ACTIVE);
+            // We can also dial while in DIALING state because there are
+            // some connections that never update to an ACTIVE state (no
+            // indication from the network).
+            hasActiveCall |= (calls.get(i).getState() == Call.State.ACTIVE)
+                    || (calls.get(i).getState() == Call.State.DIALING);
             hasIncomingCall |= (calls.get(i).getState() == Call.State.INCOMING);
         }
 
@@ -365,7 +369,7 @@ public class DTMFTonePlayer implements CallModeler.Listener {
      */
     private void checkCallState() {
         logD("checkCallState");
-        if (mCallModeler.hasOutstandingActiveCall()) {
+        if (mCallModeler.hasOutstandingActiveOrDialingCall()) {
             startDialerSession();
         } else {
             stopDialerSession();
