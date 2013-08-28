@@ -134,6 +134,18 @@ public class CallHandlerServiceProxy extends Handler implements CallModeler.List
         }
     }
 
+    public void bringToForeground() {
+        // only support this call if the service is already connected.
+        if (mCallHandlerService != null && mCallModeler.hasLiveCall()) {
+            try {
+                if (DBG) Log.d(TAG, "bringToForeground");
+                mCallHandlerService.bringToForeground();
+            } catch (RemoteException e) {
+                Log.e(TAG, "Exception handling bringToForeground", e);
+            }
+        }
+    }
+
     /**
      * Sets up the connection with ICallHandlerService
      */
