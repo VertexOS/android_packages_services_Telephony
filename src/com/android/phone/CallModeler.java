@@ -203,8 +203,7 @@ public class CallModeler extends Handler {
 
         for (int i = 0; i < mListeners.size(); ++i) {
             if (call != null) {
-              mListeners.get(i).onIncoming(call,
-                      mRejectWithTextMessageManager.loadCannedResponses());
+              mListeners.get(i).onIncoming(call);
             }
         }
     }
@@ -246,7 +245,7 @@ public class CallModeler extends Handler {
         doUpdate(false, updatedCalls);
 
         for (int i = 0; i < mListeners.size(); ++i) {
-            mListeners.get(i).onUpdate(updatedCalls, false);
+            mListeners.get(i).onUpdate(updatedCalls);
         }
     }
 
@@ -680,8 +679,8 @@ public class CallModeler extends Handler {
      */
     public interface Listener {
         void onDisconnect(Call call);
-        void onIncoming(Call call, ArrayList<String> textReponses);
-        void onUpdate(List<Call> calls, boolean fullUpdate);
+        void onIncoming(Call call);
+        void onUpdate(List<Call> calls);
     }
 
     /**

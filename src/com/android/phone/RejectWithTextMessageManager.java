@@ -104,7 +104,7 @@ public class RejectWithTextMessageManager {
      *
      * @see com.android.phone.RejectWithTextMessageManager.Settings
      */
-    public ArrayList<String> loadCannedResponses() {
+    public static ArrayList<String> loadCannedResponses() {
         if (DBG) log("loadCannedResponses()...");
 
         final SharedPreferences prefs = PhoneGlobals.getInstance().getSharedPreferences(

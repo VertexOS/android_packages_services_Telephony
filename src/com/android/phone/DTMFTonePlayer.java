@@ -116,11 +116,11 @@ public class DTMFTonePlayer implements CallModeler.Listener {
     }
 
     @Override
-    public void onIncoming(Call call, ArrayList<String> textResponses) {
+    public void onIncoming(Call call) {
     }
 
     @Override
-    public void onUpdate(List<Call> calls, boolean full) {
+    public void onUpdate(List<Call> calls) {
         logD("Call updated");
         checkCallState();
     }
