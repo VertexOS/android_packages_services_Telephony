@@ -72,6 +72,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     CallManager mCM;
     AppOpsManager mAppOps;
     MainThreadHandler mMainThreadHandler;
+    CallHandlerServiceProxy mCallHandlerService;
 
     /**
      * A request object for use with {@link MainThreadHandler}. Requesters should wait() on the
@@ -218,10 +219,11 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
      * Initialize the singleton PhoneInterfaceManager instance.
      * This is only done once, at startup, from PhoneApp.onCreate().
      */
-    /* package */ static PhoneInterfaceManager init(PhoneGlobals app, Phone phone) {
+    /* package */ static PhoneInterfaceManager init(PhoneGlobals app, Phone phone,
+            CallHandlerServiceProxy callHandlerService) {
         synchronized (PhoneInterfaceManager.class) {
             if (sInstance == null) {
-                sInstance = new PhoneInterfaceManager(app, phone);
+                sInstance = new PhoneInterfaceManager(app, phone, callHandlerService);
             } else {
                 Log.wtf(LOG_TAG, "init() called multiple times!  sInstance = " + sInstance);
             }
@@ -230,12 +232,14 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     }
 
     /** Private constructor; @see init() */
-    private PhoneInterfaceManager(PhoneGlobals app, Phone phone) {
+    private PhoneInterfaceManager(PhoneGlobals app, Phone phone,
+            CallHandlerServiceProxy callHandlerService) {
         mApp = app;
         mPhone = phone;
         mCM = PhoneGlobals.getInstance().mCM;
         mAppOps = (AppOpsManager)app.getSystemService(Context.APP_OPS_SERVICE);
         mMainThreadHandler = new MainThreadHandler();
+        mCallHandlerService = callHandlerService;
         publish();
     }
 
@@ -303,26 +307,10 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         }
         // If the phone isn't idle then go to the in-call screen
         long callingId = Binder.clearCallingIdentity();
-        try {
-            Intent intent;
-            if (specifyInitialDialpadState) {
-                intent = PhoneGlobals.createInCallIntent(initialDialpadState);
-            } else {
-                intent = PhoneGlobals.createInCallIntent();
-            }
-            try {
-                //mApp.startActivity(intent);
-            } catch (ActivityNotFoundException e) {
-                // It's possible that the in-call UI might not exist
-                // (like on non-voice-capable devices), although we
-                // shouldn't be trying to bring up the InCallScreen on
-                // devices like that in the first place!
-                Log.w(LOG_TAG, "showCallScreenInternal: "
-                      + "transition to InCallScreen failed; intent = " + intent);
-            }
-        } finally {
-            Binder.restoreCallingIdentity(callingId);
-        }
+
+        mCallHandlerService.bringToForeground();
+
+        Binder.restoreCallingIdentity(callingId);
         return true;
     }
 

@@ -430,8 +430,6 @@ public class PhoneGlobals extends ContextWrapper implements WiredHeadsetListener
             // status bar icons and control other status bar behavior.
             notificationMgr = NotificationMgr.init(this);
 
-            phoneMgr = PhoneInterfaceManager.init(this, phone);
-
             mHandler.sendEmptyMessage(EVENT_START_SIP_SERVICE);
 
             int phoneType = phone.getPhoneType();
@@ -524,6 +522,8 @@ public class PhoneGlobals extends ContextWrapper implements WiredHeadsetListener
             // Sends call state to the UI
             callHandlerServiceProxy = new CallHandlerServiceProxy(this, callModeler,
                     callCommandService, audioRouter);
+
+            phoneMgr = PhoneInterfaceManager.init(this, phone, callHandlerServiceProxy);
 
             // Create the CallNotifer singleton, which handles
             // asynchronous events from the telephony layer (like
