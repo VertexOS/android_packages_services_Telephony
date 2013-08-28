@@ -154,7 +154,8 @@
                 android:theme="@style/OutgoingCallBroadcasterTheme"
                 android:permission="android.permission.CALL_PHONE"
                 android:screenOrientation="nosensor"
-                android:configChanges="orientation|screenSize|keyboardHidden">
+                android:configChanges="orientation|screenSize|keyboardHidden"
+                android:excludeFromRecents="true">
             <!-- CALL action intent filters, for the various ways
                  of initiating an outgoing call. -->
             <intent-filter>
