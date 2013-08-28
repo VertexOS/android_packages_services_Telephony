@@ -62,4 +62,9 @@ oneway interface ICallHandlerService {
      * {@see AudioMode}
      */
     void onSupportedAudioModeChange(in int modeMask);
+
+    /**
+     * Called when the system wants to bring the in-call UI into the foreground.
+     */
+    void bringToForeground();
 }
