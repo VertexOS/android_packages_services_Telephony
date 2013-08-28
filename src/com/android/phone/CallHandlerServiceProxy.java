@@ -286,14 +286,26 @@ public class CallHandlerServiceProxy extends Handler
         synchronized (mServiceAndQueueLock) {
             mCallHandlerServiceGuarded = callHandlerService;
 
+            // Before we send any updates, we need to set up the initial service calls.
+            makeInitialServiceCalls();
+
             // TODO(klp): combine queues into a single ordered queue.
             processIncomingCallQueue();
             processUpdateCallQueue();
             processDisconnectQueue();
         }
+    }
 
+    /**
+     * Makes initial service calls to set up callcommandservice and audio modes.
+     */
+    private void makeInitialServiceCalls() {
         try {
             mCallHandlerServiceGuarded.setCallCommandService(mCallCommandService);
+
+            onSupportedAudioModeChange(mAudioRouter.getSupportedAudioModes());
+            final int mode = mAudioRouter.getAudioMode();
+            onAudioModeChange(mode, mode);
         } catch (RemoteException e) {
             Log.e(TAG, "Remote exception calling CallHandlerService::setCallCommandService", e);
         }
