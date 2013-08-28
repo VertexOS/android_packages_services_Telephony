@@ -228,18 +228,18 @@ public class CallHandlerServiceProxy extends Handler
                 setupServiceConnection();
             }
         }
-    }
-
-    ;
+    };
 
     public void bringToForeground() {
         // only support this call if the service is already connected.
-        if (mCallHandlerService != null && mCallModeler.hasLiveCall()) {
-            try {
-                if (DBG) Log.d(TAG, "bringToForeground");
-                mCallHandlerService.bringToForeground();
-            } catch (RemoteException e) {
-                Log.e(TAG, "Exception handling bringToForeground", e);
+        synchronized (mServiceAndQueueLock) {
+            if (mCallHandlerServiceGuarded != null && mCallModeler.hasLiveCall()) {
+                try {
+                    if (DBG) Log.d(TAG, "bringToForeground");
+                    mCallHandlerServiceGuarded.bringToForeground();
+                } catch (RemoteException e) {
+                    Log.e(TAG, "Exception handling bringToForeground", e);
+                }
             }
         }
     }
