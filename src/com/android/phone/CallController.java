@@ -22,9 +22,11 @@ import com.android.internal.telephony.PhoneConstants;
 import com.android.internal.telephony.TelephonyCapabilities;
 import com.android.phone.CallGatewayManager.RawGatewayInfo;
 import com.android.phone.Constants.CallStatusCode;
+import com.android.phone.ErrorDialogActivity;
 import com.android.phone.InCallUiState.InCallScreenMode;
 import com.android.phone.OtaUtils.CdmaOtaScreenState;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Handler;
@@ -657,28 +659,54 @@ public class CallController extends Handler {
      * an outgoing call.
      *
      * Most error conditions are "handled" by simply displaying an error
-     * message to the user.  This is accomplished by setting the
-     * inCallUiState pending call status code flag, which tells the
-     * InCallScreen to display an appropriate message to the user when the
-     * in-call UI comes to the foreground.
+     * message to the user.
      *
      * @param status one of the CallStatusCode error codes.
      */
     private void handleOutgoingCallError(CallStatusCode status) {
         if (DBG) log("handleOutgoingCallError(): status = " + status);
-        final InCallUiState inCallUiState = mApp.inCallUiState;
-
-        // In most cases we simply want to have the InCallScreen display
-        // an appropriate error dialog, so we simply copy the specified
-        // status code into the InCallUiState "pending call status code"
-        // field.  (See InCallScreen.showStatusIndication() for the next
-        // step of the sequence.)
-
+        final Intent intent = new Intent(mApp, ErrorDialogActivity.class);
+        int errorMessageId = -1;
         switch (status) {
             case SUCCESS:
                 // This case shouldn't happen; you're only supposed to call
                 // handleOutgoingCallError() if there was actually an error!
                 Log.wtf(TAG, "handleOutgoingCallError: SUCCESS isn't an error");
+                break;
+
+            case CALL_FAILED:
+                // We couldn't successfully place the call; there was some
+                // failure in the telephony layer.
+                // TODO: Need UI spec for this failure case; for now just
+                // show a generic error.
+                errorMessageId = R.string.incall_error_call_failed;
+                break;
+            case POWER_OFF:
+                // Radio is explictly powered off, presumably because the
+                // device is in airplane mode.
+                //
+                // TODO: For now this UI is ultra-simple: we simply display
+                // a message telling the user to turn off airplane mode.
+                // But it might be nicer for the dialog to offer the option
+                // to turn the radio on right there (and automatically retry
+                // the call once network registration is complete.)
+                errorMessageId = R.string.incall_error_power_off;
+                break;
+            case EMERGENCY_ONLY:
+                // Only emergency numbers are allowed, but we tried to dial
+                // a non-emergency number.
+                // (This state is currently unused; see comments above.)
+                errorMessageId = R.string.incall_error_emergency_only;
+                break;
+            case OUT_OF_SERVICE:
+                // No network connection.
+                errorMessageId = R.string.incall_error_out_of_service;
+                break;
+            case NO_PHONE_NUMBER_SUPPLIED:
+                // The supplied Intent didn't contain a valid phone number.
+                // (This is rare and should only ever happen with broken
+                // 3rd-party apps.) For now just show a generic error.
+                errorMessageId = R.string.incall_error_no_phone_number_supplied;
                 break;
 
             case VOICEMAIL_NUMBER_MISSING:
@@ -689,38 +717,7 @@ public class CallController extends Handler {
                 // Send a request to the InCallScreen to display the
                 // "voicemail missing" dialog when it (the InCallScreen)
                 // comes to the foreground.
-                inCallUiState.setPendingCallStatusCode(CallStatusCode.VOICEMAIL_NUMBER_MISSING);
-                break;
-
-            case POWER_OFF:
-                // Radio is explictly powered off, presumably because the
-                // device is in airplane mode.
-                //
-                // TODO: For now this UI is ultra-simple: we simply display
-                // a message telling the user to turn off airplane mode.
-                // But it might be nicer for the dialog to offer the option
-                // to turn the radio on right there (and automatically retry
-                // the call once network registration is complete.)
-                inCallUiState.setPendingCallStatusCode(CallStatusCode.POWER_OFF);
-                break;
-
-            case EMERGENCY_ONLY:
-                // Only emergency numbers are allowed, but we tried to dial
-                // a non-emergency number.
-                // (This state is currently unused; see comments above.)
-                inCallUiState.setPendingCallStatusCode(CallStatusCode.EMERGENCY_ONLY);
-                break;
-
-            case OUT_OF_SERVICE:
-                // No network connection.
-                inCallUiState.setPendingCallStatusCode(CallStatusCode.OUT_OF_SERVICE);
-                break;
-
-            case NO_PHONE_NUMBER_SUPPLIED:
-                // The supplied Intent didn't contain a valid phone number.
-                // (This is rare and should only ever happen with broken
-                // 3rd-party apps.)  For now just show a generic error.
-                inCallUiState.setPendingCallStatusCode(CallStatusCode.NO_PHONE_NUMBER_SUPPLIED);
+                intent.putExtra(ErrorDialogActivity.SHOW_MISSING_VOICEMAIL_NO_DIALOG_EXTRA, true);
                 break;
 
             case DIALED_MMI:
@@ -740,22 +737,19 @@ public class CallController extends Handler {
                     Toast.makeText(mApp, R.string.incall_status_dialed_mmi, Toast.LENGTH_SHORT)
                             .show();
                 }
-                break;
-
-            case CALL_FAILED:
-                // We couldn't successfully place the call; there was some
-                // failure in the telephony layer.
-                // TODO: Need UI spec for this failure case; for now just
-                // show a generic error.
-                inCallUiState.setPendingCallStatusCode(CallStatusCode.CALL_FAILED);
-                break;
+                return;
 
             default:
                 Log.wtf(TAG, "handleOutgoingCallError: unexpected status code " + status);
                 // Show a generic "call failed" error.
-                inCallUiState.setPendingCallStatusCode(CallStatusCode.CALL_FAILED);
+                errorMessageId = R.string.incall_error_call_failed;
                 break;
         }
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+        if (errorMessageId != -1) {
+            intent.putExtra(ErrorDialogActivity.ERROR_MESSAGE_ID_EXTRA, errorMessageId);
+        }
+        mApp.startActivity(intent);
     }
 
     /**

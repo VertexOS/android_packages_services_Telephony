@@ -502,6 +502,13 @@
             </intent-filter>
         </activity>
 
+        <activity android:name="ErrorDialogActivity"
+                android:configChanges="orientation|screenSize|keyboardHidden"
+                android:excludeFromRecents="true"
+                android:launchMode="singleInstance"
+                android:theme="@style/Empty">
+        </activity>
+
         <receiver android:name="CallerInfoCacheUpdateReceiver">
             <intent-filter>
                 <action android:name="com.android.phone.UPDATE_CALLER_INFO_CACHE" />
