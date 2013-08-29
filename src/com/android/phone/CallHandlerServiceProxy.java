@@ -84,7 +84,9 @@ public class CallHandlerServiceProxy extends Handler
         mAudioRouter.addAudioModeListener(this);
         mCallModeler.addListener(this);
 
-        setupServiceConnection();
+        if (PhoneGlobals.sVoiceCapable) {
+            setupServiceConnection();
+        }
     }
 
     @Override
@@ -250,8 +252,6 @@ public class CallHandlerServiceProxy extends Handler
     private void setupServiceConnection() {
         synchronized (mServiceAndQueueLock) {
             if (mCallHandlerServiceGuarded == null) {
-
-
                 final Intent serviceIntent = new Intent(ICallHandlerService.class.getName());
                 final ComponentName component = new ComponentName(mContext.getResources().getString(
                         R.string.incall_ui_default_package), mContext.getResources().getString(
