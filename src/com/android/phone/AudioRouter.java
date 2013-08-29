@@ -75,6 +75,13 @@ import java.util.List;
     }
 
     /**
+     * Returns the current mute state.
+     */
+    public boolean getMute() {
+        return PhoneUtils.getMute();
+    }
+
+    /**
      * Add a listener to audio mode changes.
      */
     public void addAudioModeListener(AudioModeListener listener) {
@@ -82,7 +89,7 @@ import java.util.List;
             mListeners.add(listener);
 
             // For first notification, mPreviousAudioMode doesn't make sense.
-            listener.onAudioModeChange(mAudioMode, mAudioMode);
+            listener.onAudioModeChange(mAudioMode, getMute());
             listener.onSupportedAudioModeChange(mSupportedModes);
         }
     }
@@ -185,6 +192,11 @@ import java.util.List;
         } else {
             setAudioMode(AudioMode.WIRED_OR_EARPIECE);
         }
+    }
+
+    public void onMuteChange(boolean muted) {
+        logD("onMuteChange: " + muted);
+        notifyListeners();
     }
 
     /**
@@ -323,13 +335,13 @@ import java.util.List;
         logD("Supported AudioMode: " + AudioMode.toString(mSupportedModes));
 
         for (int i = 0; i < mListeners.size(); i++) {
-            mListeners.get(i).onAudioModeChange(mPreviousMode, mAudioMode);
+            mListeners.get(i).onAudioModeChange(mAudioMode, getMute());
             mListeners.get(i).onSupportedAudioModeChange(mSupportedModes);
         }
     }
 
     public interface AudioModeListener {
-        void onAudioModeChange(int previousMode, int newMode);
+        void onAudioModeChange(int newMode, boolean muted);
         void onSupportedAudioModeChange(int modeMask);
     }
 

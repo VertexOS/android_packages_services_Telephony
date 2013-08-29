@@ -372,7 +372,7 @@ public final class Call implements Parcelable {
     public String toString() {
         return Objects.toStringHelper(this)
                 .add("mCallId", mCallId)
-                .add("mState", mState)
+                .add("mState", STATE_MAP.get(mState))
                 .add("mDisconnectCause", mDisconnectCause)
                 .add("mCapabilities", mCapabilities)
                 .add("mConnectTime", mConnectTime)
