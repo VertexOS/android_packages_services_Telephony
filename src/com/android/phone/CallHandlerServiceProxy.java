@@ -53,10 +53,11 @@ public class CallHandlerServiceProxy extends Handler
     private CallCommandService mCallCommandService;
     private CallModeler mCallModeler;
     private Context mContext;
+
     private ICallHandlerService mCallHandlerServiceGuarded;  // Guarded by mServiceAndQueueLock
-    private List<Call> mIncomingCallQueueGuarded;            // Guarded by mServiceAndQueueLock
-    private List<List<Call>> mUpdateCallQueueGuarded;        // Guarded by mServiceAndQueueLock
-    private List<Call> mDisconnectCallQueueGuarded;        // Guarded by mServiceAndQueueLock
+    // Single queue to guarantee ordering
+    private List<QueueParams> mQueue;                        // Guarded by mServiceAndQueueLock
+
     private final Object mServiceAndQueueLock = new Object();
     private int mBindRetryCount = 0;
 
@@ -283,16 +284,14 @@ public class CallHandlerServiceProxy extends Handler
      * Called when the in-call UI service is connected.  Send command interface to in-call.
      */
     private void onCallHandlerServiceConnected(ICallHandlerService callHandlerService) {
+
         synchronized (mServiceAndQueueLock) {
             mCallHandlerServiceGuarded = callHandlerService;
 
             // Before we send any updates, we need to set up the initial service calls.
             makeInitialServiceCalls();
 
-            // TODO(klp): combine queues into a single ordered queue.
-            processIncomingCallQueue();
-            processUpdateCallQueue();
-            processDisconnectQueue();
+            processQueue();
         }
     }
 
@@ -311,59 +310,65 @@ public class CallHandlerServiceProxy extends Handler
         }
     }
 
+    private List<QueueParams> getQueue() {
+        if (mQueue == null) {
+            mQueue = Lists.newArrayList();
+        }
+        return mQueue;
+    }
 
     private void enqueueDisconnect(Call call) {
-        if (mDisconnectCallQueueGuarded == null) {
-            mDisconnectCallQueueGuarded = Lists.newArrayList();
-        }
-        mDisconnectCallQueueGuarded.add(new Call(call));
+        getQueue().add(new QueueParams(QueueParams.METHOD_DISCONNECT, new Call(call)));
     }
 
     private void enqueueIncoming(Call call) {
-        if (mIncomingCallQueueGuarded == null) {
-            mIncomingCallQueueGuarded = Lists.newArrayList();
-        }
-        mIncomingCallQueueGuarded.add(new Call(call));
+        getQueue().add(new QueueParams(QueueParams.METHOD_INCOMING, new Call(call)));
     }
 
     private void enqueueUpdate(List<Call> calls) {
-        if (mUpdateCallQueueGuarded == null) {
-            mUpdateCallQueueGuarded = Lists.newArrayList();
-        }
         final List<Call> copy = Lists.newArrayList();
         for (Call call : calls) {
             copy.add(new Call(call));
         }
-        mUpdateCallQueueGuarded.add(copy);
+        getQueue().add(new QueueParams(QueueParams.METHOD_INCOMING, copy));
     }
 
-    private void processDisconnectQueue() {
-        if (mDisconnectCallQueueGuarded != null) {
-            for (Call call : mDisconnectCallQueueGuarded) {
-                onDisconnect(call);
+    private void processQueue() {
+        List<QueueParams> queue = getQueue();
+        for (QueueParams params : queue) {
+            switch (params.mMethod) {
+                case QueueParams.METHOD_INCOMING:
+                    onIncoming((Call) params.mArg);
+                    break;
+                case QueueParams.METHOD_UPDATE:
+                    onUpdate((List<Call>) params.mArg);
+                    break;
+                case QueueParams.METHOD_DISCONNECT:
+                    onDisconnect((Call) params.mArg);
+                    break;
+                default:
+                    throw new IllegalArgumentException("Method type " + params.mMethod +
+                            " not recognized.");
             }
-            mDisconnectCallQueueGuarded.clear();
-            mDisconnectCallQueueGuarded = null;
         }
+        mQueue.clear();
+        mQueue = null;
     }
 
-    private void processIncomingCallQueue() {
-        if (mIncomingCallQueueGuarded != null) {
-            for (Call call : mIncomingCallQueueGuarded) {
-                onIncoming(call);
-            }
-            mIncomingCallQueueGuarded.clear();
-            mIncomingCallQueueGuarded = null;
-        }
-    }
+    /**
+     * Holds method parameters.
+     */
+    private static class QueueParams {
+        private static final int METHOD_INCOMING = 1;
+        private static final int METHOD_UPDATE = 2;
+        private static final int METHOD_DISCONNECT = 3;
 
-    private void processUpdateCallQueue() {
-        if (mUpdateCallQueueGuarded != null) {
-            for (List<Call> calls : mUpdateCallQueueGuarded) {
-                onUpdate(calls);
-            }
-            mUpdateCallQueueGuarded.clear();
-            mUpdateCallQueueGuarded = null;
+        private final int mMethod;
+        private final Object mArg;
+
+        private QueueParams(int method, Object arg) {
+            mMethod = method;
+            this.mArg = arg;
         }
     }
 }
