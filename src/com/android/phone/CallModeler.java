@@ -199,7 +199,6 @@ public class CallModeler extends Handler {
         final Call call = getCallFromMap(mCallMap, conn, true);
 
         updateCallFromConnection(call, conn, false);
-        call.setState(Call.State.INCOMING);
 
         for (int i = 0; i < mListeners.size(); ++i) {
             if (call != null) {
@@ -217,7 +216,6 @@ public class CallModeler extends Handler {
             final boolean wasConferenced = call.getState() == State.CONFERENCED;
 
             updateCallFromConnection(call, conn, false);
-            call.setState(Call.State.DISCONNECTED);
 
             for (int i = 0; i < mListeners.size(); ++i) {
                 mListeners.get(i).onDisconnect(call);
