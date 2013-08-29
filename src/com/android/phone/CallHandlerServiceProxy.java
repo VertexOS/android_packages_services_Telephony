@@ -303,8 +303,7 @@ public class CallHandlerServiceProxy extends Handler
             mCallHandlerServiceGuarded.setCallCommandService(mCallCommandService);
 
             onSupportedAudioModeChange(mAudioRouter.getSupportedAudioModes());
-            final int mode = mAudioRouter.getAudioMode();
-            onAudioModeChange(mode, mode);
+            onAudioModeChange(mAudioRouter.getAudioMode(), mAudioRouter.getMute());
         } catch (RemoteException e) {
             Log.e(TAG, "Remote exception calling CallHandlerService::setCallCommandService", e);
         }
