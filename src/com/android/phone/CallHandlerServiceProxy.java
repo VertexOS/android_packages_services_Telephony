@@ -158,7 +158,7 @@ public class CallHandlerServiceProxy extends Handler
     }
 
     @Override
-    public void onAudioModeChange(int previousMode, int newMode) {
+    public void onAudioModeChange(int newMode, boolean muted) {
         try {
             synchronized (mServiceAndQueueLock) {
                 // TODO(klp): does this need to be enqueued?
@@ -173,13 +173,13 @@ public class CallHandlerServiceProxy extends Handler
 
             // Just do a simple log for now.
             Log.i(TAG, "Updating with new audio mode: " + AudioMode.toString(newMode) +
-                    " from " + AudioMode.toString(previousMode));
+                    " with mute " + muted);
 
             if (DBG) {
                 Log.d(TAG, "onSupportAudioModeChange");
             }
 
-            mCallHandlerServiceGuarded.onAudioModeChange(newMode);
+            mCallHandlerServiceGuarded.onAudioModeChange(newMode, muted);
         } catch (Exception e) {
             Log.e(TAG, "Remote exception handling onAudioModeChange", e);
         }

@@ -1971,6 +1971,7 @@ public class PhoneUtils {
             phone.setMute(muted);
         }
         app.notificationMgr.updateMuteNotification();
+        app.getAudioRouter().onMuteChange(muted);
     }
 
     /**
