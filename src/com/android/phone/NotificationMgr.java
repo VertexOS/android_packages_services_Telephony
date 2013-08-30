@@ -44,7 +44,6 @@ import android.telephony.PhoneNumberUtils;
 import android.telephony.ServiceState;
 import android.text.TextUtils;
 import android.util.Log;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.android.internal.telephony.Call;
@@ -484,7 +483,8 @@ public class NotificationMgr implements CallerInfoAsyncQuery.OnQueryCompleteList
             String name, String number, String type, Drawable photo, Bitmap photoIcon, long date) {
 
         // When the user clicks this notification, we go to the call log.
-        final Intent callLogIntent = PhoneGlobals.createCallLogIntent();
+        final PendingIntent pendingCallLogIntent = PhoneGlobals.createPendingCallLogIntent(
+                mContext);
 
         // Never display the missed call notification on non-voice-capable
         // devices, even if the device does somehow manage to get an
@@ -537,7 +537,7 @@ public class NotificationMgr implements CallerInfoAsyncQuery.OnQueryCompleteList
                 .setWhen(date)
                 .setContentTitle(mContext.getText(titleResId))
                 .setContentText(expandedText)
-                .setContentIntent(PendingIntent.getActivity(mContext, 0, callLogIntent, 0))
+                .setContentIntent(pendingCallLogIntent)
                 .setAutoCancel(true)
                 .setDeleteIntent(createClearMissedCallsIntent());
 

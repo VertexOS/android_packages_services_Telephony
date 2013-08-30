@@ -20,6 +20,7 @@ import android.app.Activity;
 import android.app.KeyguardManager;
 import android.app.PendingIntent;
 import android.app.ProgressDialog;
+import android.app.TaskStackBuilder;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.IBluetoothHeadsetPhone;
 import android.content.ActivityNotFoundException;
@@ -688,6 +689,13 @@ public class PhoneGlobals extends ContextWrapper implements WiredHeadsetListener
         Intent intent = new Intent(Intent.ACTION_VIEW, null);
         intent.setType("vnd.android.cursor.dir/calls");
         return intent;
+    }
+
+    /* package */static PendingIntent createPendingCallLogIntent(Context context) {
+        final Intent callLogIntent = PhoneGlobals.createCallLogIntent();
+        final TaskStackBuilder taskStackBuilder = TaskStackBuilder.create(context);
+        taskStackBuilder.addNextIntent(callLogIntent);
+        return taskStackBuilder.getPendingIntent(0, 0);
     }
 
     /**
