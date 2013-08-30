@@ -329,7 +329,7 @@ public class CallHandlerServiceProxy extends Handler
         for (Call call : calls) {
             copy.add(new Call(call));
         }
-        getQueue().add(new QueueParams(QueueParams.METHOD_INCOMING, copy));
+        getQueue().add(new QueueParams(QueueParams.METHOD_UPDATE, copy));
     }
 
     private void processQueue() {
