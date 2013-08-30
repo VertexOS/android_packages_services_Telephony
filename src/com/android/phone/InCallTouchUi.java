@@ -1189,48 +1189,6 @@ public class InCallTouchUi extends FrameLayout
         }
         mIncomingCallWidget.setAlpha(1.0f);
 
-        // Update the GlowPadView widget's targets based on the state of
-        // the ringing call.  (Specifically, we need to disable the
-        // "respond via SMS" option for certain types of calls, like SIP
-        // addresses or numbers with blocked caller-id.)
-        final boolean allowRespondViaSms =
-                RespondViaSmsManager.allowRespondViaSmsForCall(mInCallScreen, ringingCall);
-        final int targetResourceId = allowRespondViaSms
-                ? R.array.incoming_call_widget_3way_targets
-                : R.array.incoming_call_widget_2way_targets;
-        // The widget should be updated only when appropriate; if the previous choice can be reused
-        // for this incoming call, we'll just keep using it. Otherwise we'll see UI glitch
-        // everytime when this method is called during a single incoming call.
-        if (targetResourceId != mIncomingCallWidget.getTargetResourceId()) {
-            if (allowRespondViaSms) {
-                // The GlowPadView widget is allowed to have all 3 choices:
-                // Answer, Decline, and Respond via SMS.
-                mIncomingCallWidget.setTargetResources(targetResourceId);
-                mIncomingCallWidget.setTargetDescriptionsResourceId(
-                        R.array.incoming_call_widget_3way_target_descriptions);
-                mIncomingCallWidget.setDirectionDescriptionsResourceId(
-                        R.array.incoming_call_widget_3way_direction_descriptions);
-            } else {
-                // You only get two choices: Answer or Decline.
-                mIncomingCallWidget.setTargetResources(targetResourceId);
-                mIncomingCallWidget.setTargetDescriptionsResourceId(
-                        R.array.incoming_call_widget_2way_target_descriptions);
-                mIncomingCallWidget.setDirectionDescriptionsResourceId(
-                        R.array.incoming_call_widget_2way_direction_descriptions);
-            }
-
-            // This will be used right after this block.
-            mIncomingCallWidgetShouldBeReset = true;
-        }
-        if (mIncomingCallWidgetShouldBeReset) {
-            // Watch out: be sure to call reset() and setVisibility() *after*
-            // updating the target resources, since otherwise the GlowPadView
-            // widget will make the targets visible initially (even before you
-            // touch the widget.)
-            mIncomingCallWidget.reset(false);
-            mIncomingCallWidgetShouldBeReset = false;
-        }
-
         // On an incoming call, if the layout is landscape, then align the "incoming call" text
         // to the left, because the incomingCallWidget (black background with glowing ring)
         // is aligned to the right and would cover the "incoming call" text.
