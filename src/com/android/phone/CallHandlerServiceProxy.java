@@ -20,6 +20,8 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
@@ -216,6 +218,7 @@ public class CallHandlerServiceProxy extends Handler
                 Log.d(TAG, "Service Connected");
             }
             onCallHandlerServiceConnected(ICallHandlerService.Stub.asInterface(service));
+            mBindRetryCount = 0;
         }
 
         @Override public void onServiceDisconnected (ComponentName className){
@@ -251,17 +254,37 @@ public class CallHandlerServiceProxy extends Handler
      * Sets up the connection with ICallHandlerService
      */
     private void setupServiceConnection() {
+        final Intent serviceIntent = new Intent(ICallHandlerService.class.getName());
+        final ComponentName component = new ComponentName(mContext.getResources().getString(
+                R.string.incall_ui_default_package), mContext.getResources().getString(
+                R.string.incall_ui_default_class));
+        serviceIntent.setComponent(component);
+
+        if (DBG) {
+            Log.d(TAG, "binding to service " + serviceIntent);
+        }
+
+        final PackageManager packageManger = mContext.getPackageManager();
+        final List<ResolveInfo> services = packageManger.queryIntentServices(serviceIntent, 0);
+        if (services.size() == 0) {
+            // Service not found, retry again after some delay
+            // This can happen if the service is being installed by the package manager.  Between
+            // deletes and installs, bindService could get a silent service not found error.
+            mBindRetryCount++;
+            if (mBindRetryCount < MAX_RETRY_COUNT) {
+                Log.w(TAG, "InCallUI service not found. " + serviceIntent + ". This happens if " +
+                                "the service is being installed and should be transient. Retrying" +
+                                RETRY_DELAY_MILLIS + " ms.");
+                sendMessageDelayed(Message.obtain(this, BIND_RETRY_MSG), RETRY_DELAY_MILLIS);
+            } else {
+                Log.e(TAG, "Tried to bind to in-call UI " + MAX_RETRY_COUNT + " times."
+                        + " Giving up.");
+            }
+            return;
+        }
+
         synchronized (mServiceAndQueueLock) {
             if (mCallHandlerServiceGuarded == null) {
-                final Intent serviceIntent = new Intent(ICallHandlerService.class.getName());
-                final ComponentName component = new ComponentName(mContext.getResources().getString(
-                        R.string.incall_ui_default_package), mContext.getResources().getString(
-                        R.string.incall_ui_default_class));
-                serviceIntent.setComponent(component);
-
-                if (DBG) {
-                    Log.d(TAG, "binding to service " + serviceIntent);
-                }
                 if (!mContext.bindService(serviceIntent, mConnection, Context.BIND_AUTO_CREATE)) {
                     // This happens when the in-call package is in the middle of being installed.
                     // Delay the retry.
