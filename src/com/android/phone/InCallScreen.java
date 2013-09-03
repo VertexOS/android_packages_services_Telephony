@@ -3371,8 +3371,6 @@ public class InCallScreen extends Activity
         // it to always act on the first ringing call.
         Call ringingCall = mCM.getFirstActiveRingingCall();
 
-        mRespondViaSmsManager.showRespondViaSmsPopup(ringingCall);
-
         // Silence the ringer, since it would be distracting while you're trying
         // to pick a response.  (Note that we'll restart the ringer if you bail
         // out of the popup, though; see RespondViaSmsCancelListener.)

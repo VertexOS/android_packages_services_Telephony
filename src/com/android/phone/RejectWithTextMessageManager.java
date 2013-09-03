@@ -32,7 +32,9 @@ import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Handler;
+import android.telephony.PhoneNumberUtils;
 import android.telephony.TelephonyManager;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -46,6 +48,7 @@ import android.widget.TextView;
 import com.android.internal.telephony.Call;
 import com.android.internal.telephony.Connection;
 import com.android.internal.telephony.PhoneConstants;
+
 import com.google.android.collect.Lists;
 
 import java.util.ArrayList;
@@ -128,29 +131,6 @@ public class RejectWithTextMessageManager {
     }
 
     /**
-     * @return true if the "Respond via SMS" feature should be enabled
-     * for the specified incoming call.
-     *
-     * The general rule is that we *do* allow "Respond via SMS" except for
-     * the few (relatively rare) cases where we know for sure it won't
-     * work, namely:
-     *   - a bogus or blank incoming number
-     *   - a call from a SIP address
-     *   - a "call presentation" that doesn't allow the number to be revealed
-     *
-     * In all other cases, we allow the user to respond via SMS.
-     *
-     * Note that this behavior isn't perfect; for example we have no way
-     * to detect whether the incoming call is from a landline (with most
-     * networks at least), so we still enable this feature even though
-     * SMSes to that number will silently fail.
-     */
-    public static boolean allowRespondViaSmsForCall(Context context, Call ringingCall) {
-        // TODO(klp) implement this!
-        return true;
-    }
-
-    /**
      * Sends a text message without any interaction from the user.
      */
     private void sendText(String phoneNumber, String message, ComponentName component) {
@@ -199,7 +179,7 @@ public class RejectWithTextMessageManager {
      * Queries the System to determine what packages contain services that can handle the instant
      * text response Action AND have permissions to do so.
      */
-    private ArrayList<ComponentName> getPackagesWithInstantTextPermission() {
+    private static ArrayList<ComponentName> getPackagesWithInstantTextPermission() {
         final PackageManager packageManager = PhoneGlobals.getInstance().getPackageManager();
 
         final ArrayList<ComponentName> componentsWithPermission = new ArrayList<ComponentName>();
@@ -251,8 +231,8 @@ public class RejectWithTextMessageManager {
         return intent;
     }
 
-    public void rejectCallWithNewMessage(Call call) {
-        launchSmsCompose(call.getLatestConnection().getAddress());
+    public void rejectCallWithNewMessage(String number) {
+        launchSmsCompose(number);
     }
 
     private ComponentName getSmsService() {
@@ -302,13 +282,103 @@ public class RejectWithTextMessageManager {
     }
 
 
-    public void rejectCallWithMessage(Call call, String message) {
+    public void rejectCallWithMessage(final String number, String message) {
         final ComponentName componentName = getSmsService();
 
         if (componentName != null) {
-            sendTextAndExit(call.getLatestConnection().getAddress(), message, componentName,
+            sendTextAndExit(number, message, componentName,
                     false);
         }
+    }
+
+    /**
+     * @return true if the "Respond via SMS" feature should be enabled
+     * for the specified incoming call.
+     *
+     * The general rule is that we *do* allow "Respond via SMS" except for
+     * the few (relatively rare) cases where we know for sure it won't
+     * work, namely:
+     *   - a bogus or blank incoming number
+     *   - a call from a SIP address
+     *   - a "call presentation" that doesn't allow the number to be revealed
+     *
+     * In all other cases, we allow the user to respond via SMS.
+     *
+     * Note that this behavior isn't perfect; for example we have no way
+     * to detect whether the incoming call is from a landline (with most
+     * networks at least), so we still enable this feature even though
+     * SMSes to that number will silently fail.
+     */
+    public static boolean allowRespondViaSmsForCall(
+            com.android.services.telephony.common.Call call, Connection conn) {
+        if (DBG) log("allowRespondViaSmsForCall(" + call + ")...");
+
+        // First some basic sanity checks:
+        if (call == null) {
+            Log.w(TAG, "allowRespondViaSmsForCall: null ringingCall!");
+            return false;
+        }
+        if (!(call.getState() == com.android.services.telephony.common.Call.State.INCOMING) &&
+                !(call.getState() ==
+                        com.android.services.telephony.common.Call.State.CALL_WAITING)) {
+            // The call is in some state other than INCOMING or WAITING!
+            // (This should almost never happen, but it *could*
+            // conceivably happen if the ringing call got disconnected by
+            // the network just *after* we got it from the CallManager.)
+            Log.w(TAG, "allowRespondViaSmsForCall: ringingCall not ringing! state = "
+                    + call.getState());
+            return false;
+        }
+
+        if (conn == null) {
+            // The call doesn't have any connections! (Again, this can
+            // happen if the ringing call disconnects at the exact right
+            // moment, but should almost never happen in practice.)
+            Log.w(TAG, "allowRespondViaSmsForCall: null Connection!");
+            return false;
+        }
+
+        // Check the incoming number:
+        final String number = conn.getAddress();
+        if (DBG) log("- number: '" + number + "'");
+        if (TextUtils.isEmpty(number)) {
+            Log.w(TAG, "allowRespondViaSmsForCall: no incoming number!");
+            return false;
+        }
+        if (PhoneNumberUtils.isUriNumber(number)) {
+            // The incoming number is actually a URI (i.e. a SIP address),
+            // not a regular PSTN phone number, and we can't send SMSes to
+            // SIP addresses.
+            // (TODO: That might still be possible eventually, though. Is
+            // there some SIP-specific equivalent to sending a text message?)
+            Log.i(TAG, "allowRespondViaSmsForCall: incoming 'number' is a SIP address.");
+            return false;
+        }
+
+        // Finally, check the "call presentation":
+        int presentation = conn.getNumberPresentation();
+        if (DBG) log("- presentation: " + presentation);
+        if (presentation == PhoneConstants.PRESENTATION_RESTRICTED) {
+            // PRESENTATION_RESTRICTED means "caller-id blocked".
+            // The user isn't allowed to see the number in the first
+            // place, so obviously we can't let you send an SMS to it.
+            Log.i(TAG, "allowRespondViaSmsForCall: PRESENTATION_RESTRICTED.");
+            return false;
+        }
+
+        // Allow the feature only when there's a destination for it.
+        if (getPackagesWithInstantTextPermission().size() < 1) {
+            return false;
+        }
+
+        // TODO: with some carriers (in certain countries) you *can* actually
+        // tell whether a given number is a mobile phone or not. So in that
+        // case we could potentially return false here if the incoming call is
+        // from a land line.
+
+        // If none of the above special cases apply, it's OK to enable the
+        // "Respond via SMS" feature.
+        return true;
     }
 
     private static void log(String msg) {
