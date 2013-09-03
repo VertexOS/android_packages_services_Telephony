@@ -16,13 +16,7 @@
 
 package com.android.phone;
 
-import com.google.android.collect.Lists;
-import com.google.android.collect.Maps;
-import com.google.android.collect.Sets;
-import com.google.common.base.Preconditions;
-import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.ImmutableSortedSet;
-
+import android.content.Context;
 import android.os.AsyncResult;
 import android.os.Handler;
 import android.os.Message;
@@ -40,11 +34,16 @@ import com.android.services.telephony.common.Call;
 import com.android.services.telephony.common.Call.Capabilities;
 import com.android.services.telephony.common.Call.State;
 
+import com.google.android.collect.Lists;
+import com.google.android.collect.Maps;
+import com.google.common.base.Preconditions;
+import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.ImmutableSortedSet;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
-import java.util.SortedSet;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -469,6 +468,7 @@ public class CallModeler extends Handler {
         boolean canAddCall = false;
         boolean canMergeCall = false;
         boolean canSwapCall = false;
+        boolean canRespondViaText = false;
 
         // only applies to active calls
         if (callIsActive) {
@@ -476,6 +476,9 @@ public class CallModeler extends Handler {
             canMergeCall = PhoneUtils.okToMergeCalls(mCallManager);
             canSwapCall = PhoneUtils.okToSwapCalls(mCallManager);
         }
+
+        canRespondViaText = RejectWithTextMessageManager.allowRespondViaSmsForCall(call,
+                connection);
 
         // special rules section!
         // CDMA always has Add
@@ -498,6 +501,10 @@ public class CallModeler extends Handler {
         }
         if (canSwapCall) {
             retval |= Capabilities.SWAP_CALLS;
+        }
+
+        if (canRespondViaText) {
+            retval |= Capabilities.RESPOND_VIA_TEXT;
         }
 
         return retval;
