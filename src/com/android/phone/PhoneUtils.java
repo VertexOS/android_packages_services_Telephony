@@ -1796,14 +1796,6 @@ public class PhoneUtils {
             return false;
         }
 
-        // if applicable, mute the call while we're showing the add call UI.
-        if (cm.hasActiveFgCall()) {
-            setMuteInternal(cm.getActiveFgCall().getPhone(), true);
-            // Inform the phone app that this mute state was NOT done
-            // voluntarily by the User.
-            app.setRestoreMuteOnInCallResume(true);
-        }
-
         Intent intent = new Intent(Intent.ACTION_DIAL);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
