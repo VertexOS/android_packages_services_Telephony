@@ -42,6 +42,8 @@ import android.provider.ContactsContract.PhoneLookup;
 import android.provider.Settings;
 import android.telephony.PhoneNumberUtils;
 import android.telephony.ServiceState;
+import android.text.BidiFormatter;
+import android.text.TextDirectionHeuristics;
 import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
@@ -513,7 +515,10 @@ public class NotificationMgr implements CallerInfoAsyncQuery.OnQueryCompleteList
         if (name != null && TextUtils.isGraphic(name)) {
             callName = name;
         } else if (!TextUtils.isEmpty(number)){
-            callName = number;
+            final BidiFormatter bidiFormatter = BidiFormatter.getInstance();
+            // A number should always be displayed LTR using {@link BidiFormatter}
+            // regardless of the content of the rest of the notification.
+            callName = bidiFormatter.unicodeWrap(number, TextDirectionHeuristics.LTR);
         } else {
             // use "unknown" if the caller is unidentifiable.
             callName = mContext.getString(R.string.unknown);
