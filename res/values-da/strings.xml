@@ -25,40 +25,19 @@
     <string name="private_num" msgid="6713286113000232309">"Privat nummer"</string>
     <string name="payphone" msgid="1931775086311769314">"Betalingstelefon"</string>
     <string name="onHold" msgid="9035493194749959955">"Ventende"</string>
-    <string name="callFailed_userBusy" msgid="8851106999809294904">"Linjen er optaget"</string>
-    <string name="callFailed_congestion" msgid="8737761615702718375">"Netværket er optaget"</string>
-    <string name="callFailed_timedOut" msgid="7590961703135543346">"Intet svar, timeout"</string>
-    <string name="callFailed_server_unreachable" msgid="2133506577423869729">"Serveren er ikke tilgængelig"</string>
-    <string name="callFailed_number_unreachable" msgid="7632566442515734778">"Nummeret er ikke tilgængeligt"</string>
-    <string name="callFailed_invalid_credentials" msgid="8226835346196775378">"Forkert brugernavn eller adgangskode"</string>
-    <string name="callFailed_out_of_network" msgid="8740943329772180507">"Opkald uden for netværk"</string>
-    <string name="callFailed_server_error" msgid="5717915213586193217">"Serverfejl. Prøv igen senere."</string>
-    <string name="callFailed_noSignal" msgid="1889803273616031933">"Der er intet signal"</string>
-    <string name="callFailed_limitExceeded" msgid="4958065157970101491">"ACM-grænsen er overskredet"</string>
-    <string name="callFailed_powerOff" msgid="2766035859391549713">"Slå radio fra"</string>
-    <string name="callFailed_simError" msgid="4476360200030635828">"Der er intet SIM-kort, eller der er SIM-kortfejl"</string>
-    <string name="callFailed_outOfService" msgid="4825791466557236225">"Området er uden for netværksdækning"</string>
-    <string name="callFailed_fdn_only" msgid="2850204579765430641">"Udgående opkald er begrænset af faste opkaldsnumre."</string>
-    <string name="callFailed_cb_enabled" msgid="3686963693629739680">"Du kan ikke foretage udgående opkald, mens opkaldsspærring er slået til."</string>
-    <string name="callFailed_dsac_restricted" msgid="2180223622768522345">"Alle opkald er begrænset af adgangskontrol."</string>
-    <string name="callFailed_dsac_restricted_emergency" msgid="4353654268813314466">"Nødopkald er begrænset af adgangskontrol."</string>
-    <string name="callFailed_dsac_restricted_normal" msgid="2680774510252408620">"Normale opkald er begrænset af adgangskontrol."</string>
-    <string name="callFailed_unobtainable_number" msgid="4736290912891155067">"Ugyldigt antal"</string>
-    <string name="confCall" msgid="1904840547188336828">"Telefonmøde"</string>
-    <string name="call_lost" msgid="317670617901479594">"Opkaldet er mistet."</string>
-    <string name="ok" msgid="3811371167865772377">"OK"</string>
     <string name="mmiStarted" msgid="6347869857061147003">"MMI-nummer er startet"</string>
     <string name="ussdRunning" msgid="485588686340541690">"USSD-kode kører ..."</string>
     <string name="mmiCancelled" msgid="2771923949751842276">"MMI-nummer annulleret"</string>
     <string name="cancel" msgid="5044513931633602634">"Annuller"</string>
     <string name="enter_input" msgid="1810529547726803893">"USSD-meddelelse skal være mellem <xliff:g id="MIN_LEN">%d</xliff:g> og <xliff:g id="MAX_LEN">%d</xliff:g> tegn. Prøv igen."</string>
     <string name="manageConferenceLabel" msgid="4691922394301969053">"Administrer telefonmøde"</string>
+    <string name="ok" msgid="3811371167865772377">"OK"</string>
     <string name="audio_mode_speaker" msgid="27649582100085266">"Højttaler"</string>
     <string name="audio_mode_earpiece" msgid="4156527186373869107">"Ørestykke til håndsæt"</string>
     <string name="audio_mode_wired_headset" msgid="1465350758489175975">"Headset med ledning"</string>
     <string name="audio_mode_bluetooth" msgid="3047641300848211128">"Bluetooth"</string>
-    <string name="wait_prompt_str" msgid="7601815427707856238">"Send følgende toner?"\n</string>
-    <string name="pause_prompt_str" msgid="1789964702154314806">"Sender toner"\n</string>
+    <string name="wait_prompt_str" msgid="7601815427707856238">"Send følgende toner?\n"</string>
+    <string name="pause_prompt_str" msgid="1789964702154314806">"Sender toner\n"</string>
     <string name="send_button" msgid="4106860097497818751">"Send"</string>
     <string name="pause_prompt_yes" msgid="3564467212025151797">"Ja"</string>
     <string name="pause_prompt_no" msgid="6686238803236884877">"Nej"</string>
@@ -136,9 +115,9 @@
     <item msgid="1108394741608734023">"Vis nummer"</item>
   </string-array>
     <string name="vm_changed" msgid="380744030726254139">"Voicemailnummeret blev ændret."</string>
-    <string name="vm_change_failed" msgid="3352934863246208918">"Telefonsvarernummeret kunne ikke ændres."\n"Kontakt dit mobilselskab, hvis problemet vedbliver."</string>
-    <string name="fw_change_failed" msgid="5298103228470214665">"Telefonsvarernummeret kunne ikke ændres."\n"Kontakt dit mobilselskab, hvis problemet vedbliver."</string>
-    <string name="fw_get_in_vm_failed" msgid="8862896836093833973">"De aktuelle indstillinger til viderestillingsnummer kunne ikke hentes og gemmes."\n"Vil du skifte til den nye udbyder alligevel?"</string>
+    <string name="vm_change_failed" msgid="3352934863246208918">"Telefonsvarernummeret kunne ikke ændres.\nKontakt dit mobilselskab, hvis problemet vedbliver."</string>
+    <string name="fw_change_failed" msgid="5298103228470214665">"Telefonsvarernummeret kunne ikke ændres.\nKontakt dit mobilselskab, hvis problemet vedbliver."</string>
+    <string name="fw_get_in_vm_failed" msgid="8862896836093833973">"De aktuelle indstillinger til viderestillingsnummer kunne ikke hentes og gemmes.\nVil du skifte til den nye udbyder alligevel?"</string>
     <string name="no_change" msgid="3186040086622435212">"Der blev ikke foretaget nogen ændringer."</string>
     <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"Vælg voicemail-tjeneste"</string>
     <string name="voicemail_default" msgid="5902099213882352338">"Min udbyder"</string>
@@ -209,7 +188,7 @@
     <!-- String.format failed for translation -->
     <!-- no translation found for throttle_data_usage_subtext (6029276011123694701) -->
     <skip />
-    <string name="throttle_data_rate_reduced_subtext" msgid="7492763592720107737">"<xliff:g id="USED_0">%1$s</xliff:g> maksimum er overskredet"\n"Datahastigheden er nedsat til <xliff:g id="USED_1">%2$d</xliff:g> Kb/s"</string>
+    <string name="throttle_data_rate_reduced_subtext" msgid="7492763592720107737">"<xliff:g id="USED_0">%1$s</xliff:g> maksimum er overskredet\nDatahastigheden er nedsat til <xliff:g id="USED_1">%2$d</xliff:g> Kb/s"</string>
     <!-- String.format failed for translation -->
     <!-- no translation found for throttle_time_frame_subtext (7732763021560399960) -->
     <skip />
@@ -476,7 +455,7 @@
   </string-array>
     <string name="network_message" msgid="4483886461245213802">"Netværksbesked"</string>
     <string name="ota_title_activate" msgid="8616918561356194398">"Aktivér din telefon"</string>
-    <string name="ota_touch_activate" msgid="6553212803262586244">"Der skal foretages et særligt opkald for at aktivere din telefontjeneste. "\n\n" Lyt til instruktionerne, når du har trykket på “Aktivér” for at aktivere din telefon."</string>
+    <string name="ota_touch_activate" msgid="6553212803262586244">"Der skal foretages et særligt opkald for at aktivere din telefontjeneste. \n\n Lyt til instruktionerne, når du har trykket på “Aktivér” for at aktivere din telefon."</string>
     <string name="ota_skip_activation_dialog_title" msgid="2943366608272261306">"Spring aktivering over?"</string>
     <string name="ota_skip_activation_dialog_message" msgid="2440770373498870550">"Hvis du springer aktiveringen over, kan du ikke foretage opkald eller oprette forbindelse til mobildatanetværk (du kan dog godt oprette forbindelse til Wi-Fi-netværk). Du vil blive bedt om at aktivere din telefon, hver gang du tænder den, indtil du gør det."</string>
     <string name="ota_skip_activation_dialog_skip_label" msgid="3458532775091563208">"Spring over"</string>
@@ -488,7 +467,7 @@
     <string name="ota_progress" msgid="3420314892609254729">"Vent, mens din telefon programmeres."</string>
     <string name="ota_failure" msgid="4311299546379674378">"Programmering mislykkedes"</string>
     <string name="ota_successful" msgid="1880780692887077407">"Din telefon er nu aktiveret. Det kan tage op til 15 minutter, før tjenesten begynder."</string>
-    <string name="ota_unsuccessful" msgid="8072141612635635357">"Din telefon blev ikke aktiveret. "\n"Du skal muligvis finde et område med bedre dækning (ved et vindue eller udenfor). "\n\n"Prøv igen, eller ring til kundeservice for at få flere oplysninger om andre muligheder."</string>
+    <string name="ota_unsuccessful" msgid="8072141612635635357">"Din telefon blev ikke aktiveret. \nDu skal muligvis finde et område med bedre dækning (ved et vindue eller udenfor). \n\nPrøv igen, eller ring til kundeservice for at få flere oplysninger om andre muligheder."</string>
     <string name="ota_spc_failure" msgid="3909983542575030796">"FOR MANGE SPC-FEJL"</string>
     <string name="ota_call_end" msgid="4537279738134612388">"Tilbage"</string>
     <string name="ota_try_again" msgid="7685477206465902290">"Prøv igen"</string>
@@ -623,7 +602,7 @@
     <string name="accessibility_speakerphone_enabled" msgid="1988512040421036359">"Højttalertelefon aktiveret."</string>
     <string name="accessibility_call_muted" msgid="2776111226185342220">"Lyd slået fra opkald."</string>
     <string name="description_target_answer" msgid="7205604197797472471">"Svar"</string>
-    <string name="description_target_send_sms" msgid="2098326025587950144">"Send SMS"</string>
+    <string name="description_target_send_sms" msgid="2098326025587950144">"Send sms"</string>
     <string name="description_target_decline" msgid="4789834364389731957">"Afvis"</string>
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"Vibration"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"Vibration"</string>
