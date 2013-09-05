@@ -25,40 +25,19 @@
     <string name="private_num" msgid="6713286113000232309">"מספר פרטי"</string>
     <string name="payphone" msgid="1931775086311769314">"טלפון ציבורי"</string>
     <string name="onHold" msgid="9035493194749959955">"בהמתנה"</string>
-    <string name="callFailed_userBusy" msgid="8851106999809294904">"הקו לא פנוי"</string>
-    <string name="callFailed_congestion" msgid="8737761615702718375">"רשת לא פנויה"</string>
-    <string name="callFailed_timedOut" msgid="7590961703135543346">"אין תגובה, החיבור הסתיים"</string>
-    <string name="callFailed_server_unreachable" msgid="2133506577423869729">"אין אפשרות להשיג את השרת"</string>
-    <string name="callFailed_number_unreachable" msgid="7632566442515734778">"אין אפשרות להשיג את המספר"</string>
-    <string name="callFailed_invalid_credentials" msgid="8226835346196775378">"שם משתמש או סיסמה שגויים"</string>
-    <string name="callFailed_out_of_network" msgid="8740943329772180507">"שיחה מחוץ לרשת"</string>
-    <string name="callFailed_server_error" msgid="5717915213586193217">"שגיאת שרת. נסה שוב מאוחר יותר."</string>
-    <string name="callFailed_noSignal" msgid="1889803273616031933">"אין אות"</string>
-    <string name="callFailed_limitExceeded" msgid="4958065157970101491">"חריגה ממגבלת ACM"</string>
-    <string name="callFailed_powerOff" msgid="2766035859391549713">"רדיו כבוי"</string>
-    <string name="callFailed_simError" msgid="4476360200030635828">"אין SIM או שגיאת SIM"</string>
-    <string name="callFailed_outOfService" msgid="4825791466557236225">"מחוץ לאזור שירות"</string>
-    <string name="callFailed_fdn_only" msgid="2850204579765430641">"שיחות יוצאות מוגבלות על ידי FDN."</string>
-    <string name="callFailed_cb_enabled" msgid="3686963693629739680">"לא ניתן לבצע שיחות יוצאות כאשר חסימת שיחות מופעלת."</string>
-    <string name="callFailed_dsac_restricted" msgid="2180223622768522345">"כל השיחות מוגבלות על ידי בקרת גישה."</string>
-    <string name="callFailed_dsac_restricted_emergency" msgid="4353654268813314466">"שיחות חירום מוגבלות על ידי בקרת גישה."</string>
-    <string name="callFailed_dsac_restricted_normal" msgid="2680774510252408620">"שיחות רגילות מוגבלות על ידי בקרת גישה."</string>
-    <string name="callFailed_unobtainable_number" msgid="4736290912891155067">"מספר לא חוקי"</string>
-    <string name="confCall" msgid="1904840547188336828">"שיחת ועידה"</string>
-    <string name="call_lost" msgid="317670617901479594">"השיחה אבדה."</string>
-    <string name="ok" msgid="3811371167865772377">"אישור"</string>
     <string name="mmiStarted" msgid="6347869857061147003">"קוד MMI הופעל"</string>
     <string name="ussdRunning" msgid="485588686340541690">"קוד USSD פועל…"</string>
     <string name="mmiCancelled" msgid="2771923949751842276">"קוד MMI מבוטל"</string>
     <string name="cancel" msgid="5044513931633602634">"ביטול"</string>
     <string name="enter_input" msgid="1810529547726803893">"הודעת USSD חייבת להיות באורך של <xliff:g id="MIN_LEN">%d</xliff:g> עד <xliff:g id="MAX_LEN">%d</xliff:g> תווים. נסה שוב."</string>
     <string name="manageConferenceLabel" msgid="4691922394301969053">"נהל שיחת ועידה"</string>
+    <string name="ok" msgid="3811371167865772377">"אישור"</string>
     <string name="audio_mode_speaker" msgid="27649582100085266">"רמקול"</string>
     <string name="audio_mode_earpiece" msgid="4156527186373869107">"אוזניה"</string>
     <string name="audio_mode_wired_headset" msgid="1465350758489175975">"אוזניות קוויות"</string>
     <string name="audio_mode_bluetooth" msgid="3047641300848211128">"Bluetooth"</string>
-    <string name="wait_prompt_str" msgid="7601815427707856238">"לשלוח את הצלילים הבאים?"\n</string>
-    <string name="pause_prompt_str" msgid="1789964702154314806">"שולח צלילים"\n</string>
+    <string name="wait_prompt_str" msgid="7601815427707856238">"לשלוח את הצלילים הבאים?\n"</string>
+    <string name="pause_prompt_str" msgid="1789964702154314806">"שולח צלילים\n"</string>
     <string name="send_button" msgid="4106860097497818751">"שלח"</string>
     <string name="pause_prompt_yes" msgid="3564467212025151797">"כן"</string>
     <string name="pause_prompt_no" msgid="6686238803236884877">"לא"</string>
@@ -136,9 +115,9 @@
     <item msgid="1108394741608734023">"הצג מספר"</item>
   </string-array>
     <string name="vm_changed" msgid="380744030726254139">"המספר של הדואר הקולי השתנה."</string>
-    <string name="vm_change_failed" msgid="3352934863246208918">"לא ניתן לשנות את מספר הגישה לדואר הקולי."\n"אם הבעיה נמשכת, פנה לספק."</string>
-    <string name="fw_change_failed" msgid="5298103228470214665">"לא ניתן לשנות את מספר ההעברה."\n"אם הבעיה נמשכת, פנה לספק."</string>
-    <string name="fw_get_in_vm_failed" msgid="8862896836093833973">"לא ניתן לאחזר ולשמור את הגדרות מספר ההעברה הנוכחי."\n"לעבור בכל זאת לספק החדש?"</string>
+    <string name="vm_change_failed" msgid="3352934863246208918">"לא ניתן לשנות את מספר הגישה לדואר הקולי.\nאם הבעיה נמשכת, פנה לספק."</string>
+    <string name="fw_change_failed" msgid="5298103228470214665">"לא ניתן לשנות את מספר ההעברה.\nאם הבעיה נמשכת, פנה לספק."</string>
+    <string name="fw_get_in_vm_failed" msgid="8862896836093833973">"לא ניתן לאחזר ולשמור את הגדרות מספר ההעברה הנוכחי.\nלעבור בכל זאת לספק החדש?"</string>
     <string name="no_change" msgid="3186040086622435212">"לא בוצעו שינויים."</string>
     <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"בחר שירות של דואר קולי"</string>
     <string name="voicemail_default" msgid="5902099213882352338">"הספק שלי"</string>
@@ -203,10 +182,10 @@
     <string name="throttle_time_frame" msgid="1915198770363734685">"תקופת השימוש בנתונים"</string>
     <string name="throttle_rate" msgid="4710388992676803508">"מדיניות קצב נתונים"</string>
     <string name="throttle_help" msgid="243651091785169900">"למידע נוסף"</string>
-    <string name="throttle_status_subtext" msgid="1657318943142085170">"<xliff:g id="USED_0">%1$s</xliff:g> (<xliff:g id="USED_1">%2$d</xliff:g>??) מתוך התקופה המרבית של <xliff:g id="USED_2">%3$s</xliff:g>"\n"התקופה הבאה מתחילה בעוד <xliff:g id="USED_3">%4$d</xliff:g> ימים (<xliff:g id="USED_4">%5$s</xliff:g>)"</string>
+    <string name="throttle_status_subtext" msgid="1657318943142085170">"<xliff:g id="USED_0">%1$s</xliff:g> (<xliff:g id="USED_1">%2$d</xliff:g>??) מתוך התקופה המרבית של <xliff:g id="USED_2">%3$s</xliff:g>\nהתקופה הבאה מתחילה בעוד <xliff:g id="USED_3">%4$d</xliff:g> ימים (<xliff:g id="USED_4">%5$s</xliff:g>)"</string>
     <string name="throttle_data_usage_subtext" msgid="6029276011123694701">"<xliff:g id="USED_0">%1$s</xliff:g> (<xliff:g id="USED_1">%2$d</xliff:g>??)  מתוך התקופה המרבית של<xliff:g id="USED_2">%3$s</xliff:g>"</string>
-    <string name="throttle_data_rate_reduced_subtext" msgid="7492763592720107737">"<xliff:g id="USED_0">%1$s</xliff:g> חריגה מהמקסימום"\n"קצב הנתונים ירד ל-‏‎<xliff:g id="USED_1">%2$d</xliff:g> Kb לשנייה"</string>
-    <string name="throttle_time_frame_subtext" msgid="7732763021560399960">"<xliff:g id="USED_0">%1$d</xliff:g>?? מהמחזור חלפו"\n"התקופה הבאה מתחילה בעוד <xliff:g id="USED_1">%2$d</xliff:g> ימים (<xliff:g id="USED_2">%3$s</xliff:g>)"</string>
+    <string name="throttle_data_rate_reduced_subtext" msgid="7492763592720107737">"<xliff:g id="USED_0">%1$s</xliff:g> חריגה מהמקסימום\nקצב הנתונים ירד ל-‏‎<xliff:g id="USED_1">%2$d</xliff:g> Kb לשנייה"</string>
+    <string name="throttle_time_frame_subtext" msgid="7732763021560399960">"<xliff:g id="USED_0">%1$d</xliff:g>?? מהמחזור חלפו\nהתקופה הבאה מתחילה בעוד <xliff:g id="USED_1">%2$d</xliff:g> ימים (<xliff:g id="USED_2">%3$s</xliff:g>)"</string>
     <string name="throttle_rate_subtext" msgid="2149102656120726855">"קצב הנתונים יורד ל-‏‎<xliff:g id="USED">%1$d</xliff:g> Kb לשנייה במקרה של חריגה ממגבלת השימוש בנתונים"</string>
     <string name="throttle_help_subtext" msgid="5217706521499010816">"למידע נוסף על מדיניות השימוש בנתונים ברשת הסלולרית של הספק שלך"</string>
     <string name="cell_broadcast_sms" msgid="5584192824053625842">"SMS בשידור סלולרי"</string>
@@ -470,7 +449,7 @@
   </string-array>
     <string name="network_message" msgid="4483886461245213802">"הודעת רשת"</string>
     <string name="ota_title_activate" msgid="8616918561356194398">"הפעל את הטלפון"</string>
-    <string name="ota_touch_activate" msgid="6553212803262586244">"יש לבצע שיחה מיוחדת כדי להפעיל את השירות לטלפון. "\n\n"לאחר הלחיצה על \'הפעל\', הקשב להוראות להפעלת הטלפון."</string>
+    <string name="ota_touch_activate" msgid="6553212803262586244">"יש לבצע שיחה מיוחדת כדי להפעיל את השירות לטלפון. \n\nלאחר הלחיצה על \'הפעל\', הקשב להוראות להפעלת הטלפון."</string>
     <string name="ota_skip_activation_dialog_title" msgid="2943366608272261306">"לדלג על ההפעלה?"</string>
     <string name="ota_skip_activation_dialog_message" msgid="2440770373498870550">"אם תדלג על ההפעלה, לא תוכל להתקשר או להתחבר לרשתות נתונים לנייד (אך תוכל להתחבר לרשתות Wi-Fi). עד שתפעיל את הטלפון, תתבקש להפעיל אותו בכל פעם שתדליק אותו."</string>
     <string name="ota_skip_activation_dialog_skip_label" msgid="3458532775091563208">"דלג"</string>
@@ -482,7 +461,7 @@
     <string name="ota_progress" msgid="3420314892609254729">"מתבצע תכנות של הטלפון. אנא המתן."</string>
     <string name="ota_failure" msgid="4311299546379674378">"התכנות נכשל"</string>
     <string name="ota_successful" msgid="1880780692887077407">"הטלפון שלך מופעל כעת. ייתכן שתמתין עד 15 דקות להפעלת השירות."</string>
-    <string name="ota_unsuccessful" msgid="8072141612635635357">"הטלפון שלך לא הופעל. "\n"ייתכן שעליך למצוא מקום שהקליטה בו טובה יותר (ליד חלון או בחוץ). "\n\n"נסה שוב או התקשר לשירות לקוחות לקבלת אפשרויות נוספות."</string>
+    <string name="ota_unsuccessful" msgid="8072141612635635357">"הטלפון שלך לא הופעל. \nייתכן שעליך למצוא מקום שהקליטה בו טובה יותר (ליד חלון או בחוץ). \n\nנסה שוב או התקשר לשירות לקוחות לקבלת אפשרויות נוספות."</string>
     <string name="ota_spc_failure" msgid="3909983542575030796">"כשלים מרובים של SPC"</string>
     <string name="ota_call_end" msgid="4537279738134612388">"הקודם"</string>
     <string name="ota_try_again" msgid="7685477206465902290">"נסה שוב"</string>
