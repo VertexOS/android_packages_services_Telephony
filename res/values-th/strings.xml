@@ -25,40 +25,19 @@
     <string name="private_num" msgid="6713286113000232309">"หมายเลขส่วนตัว"</string>
     <string name="payphone" msgid="1931775086311769314">"โทรศัพท์สาธารณะ"</string>
     <string name="onHold" msgid="9035493194749959955">"พักสาย"</string>
-    <string name="callFailed_userBusy" msgid="8851106999809294904">"สายไม่ว่าง"</string>
-    <string name="callFailed_congestion" msgid="8737761615702718375">"เครือข่ายไม่ว่าง"</string>
-    <string name="callFailed_timedOut" msgid="7590961703135543346">"ไม่มีการตอบกลับ หมดเวลา"</string>
-    <string name="callFailed_server_unreachable" msgid="2133506577423869729">"ไม่สามารถเข้าถึงเซิร์ฟเวอร์ได้"</string>
-    <string name="callFailed_number_unreachable" msgid="7632566442515734778">"ไม่สามารถติดต่อเลขหมายนี้ได้"</string>
-    <string name="callFailed_invalid_credentials" msgid="8226835346196775378">"ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง"</string>
-    <string name="callFailed_out_of_network" msgid="8740943329772180507">"โทรจากนอกเครือข่าย"</string>
-    <string name="callFailed_server_error" msgid="5717915213586193217">"ข้อผิดพลาดของเซิร์ฟเวอร์ โปรดลองอีกครั้งในภายหลัง"</string>
-    <string name="callFailed_noSignal" msgid="1889803273616031933">"ไม่มีสัญญาณ"</string>
-    <string name="callFailed_limitExceeded" msgid="4958065157970101491">"เกินจำนวนสูงสุดของ ACM แล้ว"</string>
-    <string name="callFailed_powerOff" msgid="2766035859391549713">"ปิดวิทยุ"</string>
-    <string name="callFailed_simError" msgid="4476360200030635828">"ไม่มีซิมหรือเกิดข้อผิดพลาดกับซิม"</string>
-    <string name="callFailed_outOfService" msgid="4825791466557236225">"นอกพื้นที่ให้บริการ"</string>
-    <string name="callFailed_fdn_only" msgid="2850204579765430641">"การโทรออกถูกจำกัดโดย FDN"</string>
-    <string name="callFailed_cb_enabled" msgid="3686963693629739680">"โทรออกไม่ได้เมื่อระงับการโทรไว้"</string>
-    <string name="callFailed_dsac_restricted" msgid="2180223622768522345">"การโทรทั้งหมดถูกจำกัดโดยการควบคุมการเข้าถึง"</string>
-    <string name="callFailed_dsac_restricted_emergency" msgid="4353654268813314466">"การโทรฉุกเฉินถูกจำกัดโดยการควบคุมการเข้าถึง"</string>
-    <string name="callFailed_dsac_restricted_normal" msgid="2680774510252408620">"การโทรปกติถูกจำกัดโดยการควบคุมการเข้าถึง"</string>
-    <string name="callFailed_unobtainable_number" msgid="4736290912891155067">"หมายเลขไม่ถูกต้อง"</string>
-    <string name="confCall" msgid="1904840547188336828">"การประชุมสาย"</string>
-    <string name="call_lost" msgid="317670617901479594">"สายหลุดไป"</string>
-    <string name="ok" msgid="3811371167865772377">"ตกลง"</string>
     <string name="mmiStarted" msgid="6347869857061147003">"เริ่มรหัส MMI แล้ว"</string>
     <string name="ussdRunning" msgid="485588686340541690">"กำลังรันรหัส USSD..."</string>
     <string name="mmiCancelled" msgid="2771923949751842276">"ยกเลิกรหัส MMI แล้ว"</string>
     <string name="cancel" msgid="5044513931633602634">"ยกเลิก"</string>
     <string name="enter_input" msgid="1810529547726803893">"ข้อความ USSD ต้องมีจำนวนอักขระระหว่าง <xliff:g id="MIN_LEN">%d</xliff:g> และ <xliff:g id="MAX_LEN">%d</xliff:g> อักขระ โปรดลองอีกครั้ง"</string>
     <string name="manageConferenceLabel" msgid="4691922394301969053">"จัดการการประชุมสาย"</string>
+    <string name="ok" msgid="3811371167865772377">"ตกลง"</string>
     <string name="audio_mode_speaker" msgid="27649582100085266">"ลำโพง"</string>
     <string name="audio_mode_earpiece" msgid="4156527186373869107">"ชุดหูฟังโทรศัพท์"</string>
     <string name="audio_mode_wired_headset" msgid="1465350758489175975">"ชุดหูฟังแบบมีสาย"</string>
     <string name="audio_mode_bluetooth" msgid="3047641300848211128">"บลูทูธ"</string>
-    <string name="wait_prompt_str" msgid="7601815427707856238">"ส่งโทนเสียงต่อไปนี้หรือไม่ "\n</string>
-    <string name="pause_prompt_str" msgid="1789964702154314806">"กำลังส่งโทนเสียง"\n</string>
+    <string name="wait_prompt_str" msgid="7601815427707856238">"ส่งโทนเสียงต่อไปนี้หรือไม่ \n"</string>
+    <string name="pause_prompt_str" msgid="1789964702154314806">"กำลังส่งโทนเสียง\n"</string>
     <string name="send_button" msgid="4106860097497818751">"ส่ง"</string>
     <string name="pause_prompt_yes" msgid="3564467212025151797">"ใช่"</string>
     <string name="pause_prompt_no" msgid="6686238803236884877">"ไม่"</string>
@@ -136,9 +115,9 @@
     <item msgid="1108394741608734023">"แสดงหมายเลข"</item>
   </string-array>
     <string name="vm_changed" msgid="380744030726254139">"เปลี่ยนหมายเลขข้อความเสียงแล้ว"</string>
-    <string name="vm_change_failed" msgid="3352934863246208918">"ไม่สามารถเปลี่ยนหมายเลขข้อความเสียง"\n"ติดต่อผู้ให้บริการของคุณหากปัญหานี้ยังคงอยู่"</string>
-    <string name="fw_change_failed" msgid="5298103228470214665">"ไม่สามารถเปลี่ยนหมายเลขที่จะโอน"\n"ติดต่อผู้ให้บริการของคุณหากปัญหานี้ยังคงอยู่"</string>
-    <string name="fw_get_in_vm_failed" msgid="8862896836093833973">"ไม่สามารถดึงและบันทึกการตั้งค่าจำนวนการส่งต่อในปัจจุบัน "\n"ยังคงต้องการสลับไปยังผู้ให้บริการใหม่หรือไม่"</string>
+    <string name="vm_change_failed" msgid="3352934863246208918">"ไม่สามารถเปลี่ยนหมายเลขข้อความเสียง\nติดต่อผู้ให้บริการของคุณหากปัญหานี้ยังคงอยู่"</string>
+    <string name="fw_change_failed" msgid="5298103228470214665">"ไม่สามารถเปลี่ยนหมายเลขที่จะโอน\nติดต่อผู้ให้บริการของคุณหากปัญหานี้ยังคงอยู่"</string>
+    <string name="fw_get_in_vm_failed" msgid="8862896836093833973">"ไม่สามารถดึงและบันทึกการตั้งค่าจำนวนการส่งต่อในปัจจุบัน \nยังคงต้องการสลับไปยังผู้ให้บริการใหม่หรือไม่"</string>
     <string name="no_change" msgid="3186040086622435212">"ไม่มีการเปลี่ยนแปลง"</string>
     <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"เลือกบริการข้อความเสียง"</string>
     <string name="voicemail_default" msgid="5902099213882352338">"ผู้ให้บริการของฉัน"</string>
@@ -203,10 +182,10 @@
     <string name="throttle_time_frame" msgid="1915198770363734685">"ช่วงเวลาการใช้ข้อมูล"</string>
     <string name="throttle_rate" msgid="4710388992676803508">"นโยบายอัตราการส่งข้อมูล"</string>
     <string name="throttle_help" msgid="243651091785169900">"เรียนรู้เพิ่มเติม"</string>
-    <string name="throttle_status_subtext" msgid="1657318943142085170">"<xliff:g id="USED_0">%1$s</xliff:g> (<xliff:g id="USED_1">%2$d</xliff:g>٪) จากช่วงสูงสุด <xliff:g id="USED_2">%3$s</xliff:g> "\n"ช่วงถัดไปจะเริ่มในอีก <xliff:g id="USED_3">%4$d</xliff:g> วัน (<xliff:g id="USED_4">%5$s</xliff:g>)"</string>
+    <string name="throttle_status_subtext" msgid="1657318943142085170">"<xliff:g id="USED_0">%1$s</xliff:g> (<xliff:g id="USED_1">%2$d</xliff:g>٪) จากช่วงสูงสุด <xliff:g id="USED_2">%3$s</xliff:g> \nช่วงถัดไปจะเริ่มในอีก <xliff:g id="USED_3">%4$d</xliff:g> วัน (<xliff:g id="USED_4">%5$s</xliff:g>)"</string>
     <string name="throttle_data_usage_subtext" msgid="6029276011123694701">"<xliff:g id="USED_0">%1$s</xliff:g> (<xliff:g id="USED_1">%2$d</xliff:g>٪) จากช่วงสูงสุด <xliff:g id="USED_2">%3$s</xliff:g>"</string>
-    <string name="throttle_data_rate_reduced_subtext" msgid="7492763592720107737">"<xliff:g id="USED_0">%1$s</xliff:g>เกินจำนวนสูงสุด"\n"อัตราการส่งข้อมูลถูกลดเหลือ<xliff:g id="USED_1">%2$d</xliff:g> Kb/s"</string>
-    <string name="throttle_time_frame_subtext" msgid="7732763021560399960">"<xliff:g id="USED_0">%1$d</xliff:g>٪ ของรอบผ่านไป "\n" ช่วงถัดไปจะเริ่มในอีก <xliff:g id="USED_1">%2$d</xliff:g> วัน (<xliff:g id="USED_2">%3$s</xliff:g>)"</string>
+    <string name="throttle_data_rate_reduced_subtext" msgid="7492763592720107737">"<xliff:g id="USED_0">%1$s</xliff:g>เกินจำนวนสูงสุด\nอัตราการส่งข้อมูลถูกลดเหลือ<xliff:g id="USED_1">%2$d</xliff:g> Kb/s"</string>
+    <string name="throttle_time_frame_subtext" msgid="7732763021560399960">"<xliff:g id="USED_0">%1$d</xliff:g>٪ ของรอบผ่านไป \n ช่วงถัดไปจะเริ่มในอีก <xliff:g id="USED_1">%2$d</xliff:g> วัน (<xliff:g id="USED_2">%3$s</xliff:g>)"</string>
     <string name="throttle_rate_subtext" msgid="2149102656120726855">"อัตราการส่งข้อมูลถูกลดเหลือ <xliff:g id="USED">%1$d</xliff:g> Kb/s เมื่อใช้ข้อมูลเกินขีดจำกัดแล้ว"</string>
     <string name="throttle_help_subtext" msgid="5217706521499010816">"ข้อมูลเพิ่มเติมเกี่ยวกับนโยบายการใช้ข้อมูลของเครือข่ายมือถือจากผู้ให้บริการของคุณ"</string>
     <string name="cell_broadcast_sms" msgid="5584192824053625842">"SMS แจ้งเครือข่ายที่ใช้งาน"</string>
@@ -470,7 +449,7 @@
   </string-array>
     <string name="network_message" msgid="4483886461245213802">"ข้อความจากเครือข่าย"</string>
     <string name="ota_title_activate" msgid="8616918561356194398">"เปิดการใช้งานโทรศัพท์ของคุณ"</string>
-    <string name="ota_touch_activate" msgid="6553212803262586244">"ต้องทำการโทรพิเศษเพื่อเปิดใช้บริการโทรศัพท์ของคุณ "\n\n"หลังจากกด “เปิดการใช้งาน” ให้ฟังคำแนะนำเพื่อเปิดใช้บริการโทรศัพท์ของคุณ"</string>
+    <string name="ota_touch_activate" msgid="6553212803262586244">"ต้องทำการโทรพิเศษเพื่อเปิดใช้บริการโทรศัพท์ของคุณ \n\nหลังจากกด “เปิดการใช้งาน” ให้ฟังคำแนะนำเพื่อเปิดใช้บริการโทรศัพท์ของคุณ"</string>
     <string name="ota_skip_activation_dialog_title" msgid="2943366608272261306">"ข้ามการเปิดใช้งานหรือไม่"</string>
     <string name="ota_skip_activation_dialog_message" msgid="2440770373498870550">"หากคุณข้ามการเปิดใช้งาน คุณจะโทรออกหรือเชื่อมต่อเครือข่ายข้อมูลมือถือไม่ได้ (แม้จะเชื่อมต่อเครือข่าย WiFi ได้ก็ตาม) และระบบจะขอให้คุณเปิดใช้งานทุกครั้งที่คุณเปิดเครื่องจนกว่าคุณจะเปิดใช้งานโทรศัพท์"</string>
     <string name="ota_skip_activation_dialog_skip_label" msgid="3458532775091563208">"ข้าม"</string>
@@ -482,7 +461,7 @@
     <string name="ota_progress" msgid="3420314892609254729">"รอสักครู่ขณะที่กำลังตั้งโปรแกรมโทรศัพท์ของคุณ"</string>
     <string name="ota_failure" msgid="4311299546379674378">"ตั้งโปรแกรมไม่สำเร็จ"</string>
     <string name="ota_successful" msgid="1880780692887077407">"เปิดการใช้งานโทรศัพท์ของคุณแล้ว คุณอาจต้องรอไม่เกิน 15 นาทีเพื่อให้บริการเริ่มทำงาน"</string>
-    <string name="ota_unsuccessful" msgid="8072141612635635357">"โทรศัพท์ของคุณไม่เปิดใช้งาน"\n"คุณอาจต้องหาพื้นที่ที่มีสัญญาณดีกว่านี้ (ใกล้หน้าต่างหรือออกไปข้างนอก)"\n\n"ลองใหม่อีกครั้งหรือติดต่อศูนย์บริการลูกค้าเพื่อรับฟังตัวเลือกเพิ่มเติม"</string>
+    <string name="ota_unsuccessful" msgid="8072141612635635357">"โทรศัพท์ของคุณไม่เปิดใช้งาน\nคุณอาจต้องหาพื้นที่ที่มีสัญญาณดีกว่านี้ (ใกล้หน้าต่างหรือออกไปข้างนอก)\n\nลองใหม่อีกครั้งหรือติดต่อศูนย์บริการลูกค้าเพื่อรับฟังตัวเลือกเพิ่มเติม"</string>
     <string name="ota_spc_failure" msgid="3909983542575030796">"SPC ส่วนเกินล้มเหลว"</string>
     <string name="ota_call_end" msgid="4537279738134612388">"ย้อนกลับ"</string>
     <string name="ota_try_again" msgid="7685477206465902290">"ลองใหม่อีกครั้ง"</string>
