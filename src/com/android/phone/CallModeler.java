@@ -442,7 +442,7 @@ public class CallModeler extends Handler {
                     }
                 }
             }
-            changed |= oldSet.equals(call.getChildCallIds());
+            changed |= !oldSet.equals(call.getChildCallIds());
         }
 
         /**

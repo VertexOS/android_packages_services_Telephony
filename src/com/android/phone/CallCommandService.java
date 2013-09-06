@@ -105,13 +105,31 @@ class CallCommandService extends ICallCommandService.Stub {
                 int state = result.getCall().getState();
                 if (Call.State.ACTIVE == state ||
                         Call.State.ONHOLD == state ||
-                        Call.State.DIALING == state ||
-                        Call.State.CONFERENCED == state) {
+                        Call.State.DIALING == state) {
                     result.getConnection().getCall().hangup();
+                } else if (Call.State.CONFERENCED == state) {
+                    result.getConnection().hangup();
                 }
             }
         } catch (Exception e) {
             Log.e(TAG, "Error during disconnectCall().", e);
+        }
+    }
+
+    @Override
+    public void separateCall(int callId) {
+        try {
+            CallResult result = mCallModeler.getCallWithId(callId);
+            if (DBG) Log.d(TAG, "disconnectCall " + result.getCall());
+
+            if (result != null) {
+                int state = result.getCall().getState();
+                if (Call.State.CONFERENCED == state) {
+                    result.getConnection().separate();
+                }
+            }
+        } catch (Exception e) {
+            Log.e(TAG, "Error trying to separate call.", e);
         }
     }
 
