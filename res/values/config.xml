@@ -125,4 +125,7 @@
 
     <!-- Class name for the default in-call UI Service [DO NOT TRANSLATE] -->
     <string name="incall_ui_default_class" translatable="false">com.android.incallui.CallHandlerService</string>
+
+    <!-- CDMA activation goes through HFA [DO NOT TRANSLATE] -->
+    <bool name="config_use_hfa_for_provisioning" translatable="false">false</bool>
 </resources>

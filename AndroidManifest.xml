@@ -513,6 +513,12 @@
                 android:theme="@style/Theme.Transparent">
         </activity>
 
+        <activity android:name="HfaActivity"
+                android:excludeFromRecents="true"
+                android:launchMode="singleInstance"
+                android:theme="@style/Empty">
+        </activity>
+
         <receiver android:name="CallerInfoCacheUpdateReceiver">
             <intent-filter>
                 <action android:name="com.android.phone.UPDATE_CALLER_INFO_CACHE" />
