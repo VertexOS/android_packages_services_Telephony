@@ -44,7 +44,7 @@ public class CallHandlerServiceProxy extends Handler
         implements CallModeler.Listener, AudioModeListener {
 
     private static final String TAG = CallHandlerServiceProxy.class.getSimpleName();
-    private static final boolean DBG = (PhoneGlobals.DBG_LEVEL >= 0) && (SystemProperties.getInt(
+    private static final boolean DBG = (PhoneGlobals.DBG_LEVEL >= 1) && (SystemProperties.getInt(
             "ro.debuggable", 0) == 1);
 
     public static final int RETRY_DELAY_MILLIS = 2000;
@@ -228,10 +228,6 @@ public class CallHandlerServiceProxy extends Handler
             // Just do a simple log for now.
             Log.i(TAG, "Updating with new audio mode: " + AudioMode.toString(newMode) +
                     " with mute " + muted);
-
-            if (DBG) {
-                Log.d(TAG, "onSupportAudioModeChange");
-            }
 
             mCallHandlerServiceGuarded.onAudioModeChange(newMode, muted);
         } catch (Exception e) {
