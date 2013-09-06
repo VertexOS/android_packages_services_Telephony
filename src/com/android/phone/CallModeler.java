@@ -16,7 +16,6 @@
 
 package com.android.phone;
 
-import android.content.Context;
 import android.os.AsyncResult;
 import android.os.Handler;
 import android.os.Message;
@@ -114,6 +113,9 @@ public class CallModeler extends Handler {
             case CallStateMonitor.PHONE_STATE_CHANGED:
                 onPhoneStateChanged((AsyncResult) msg.obj);
                 break;
+            case CallStateMonitor.PHONE_ON_DIAL_CHARS:
+                onPostDialChars((AsyncResult) msg.obj, (char) msg.arg1);
+                break;
             default:
                 break;
         }
@@ -190,6 +192,41 @@ public class CallModeler extends Handler {
         }
 
         return false;
+    }
+
+
+    /**
+     * Handles the POST_ON_DIAL_CHARS message from the Phone (see our call to
+     * mPhone.setOnPostDialCharacter() above.)
+     *
+     * TODO: NEED TO TEST THIS SEQUENCE now that we no longer handle "dialable" key events here in
+     * the InCallScreen: we do directly to the Dialer UI instead.  Similarly, we may now need to go
+     * directly to the Dialer to handle POST_ON_DIAL_CHARS too.
+     */
+    private void onPostDialChars(AsyncResult r, char ch) {
+        final Connection c = (Connection) r.result;
+
+        if (c != null) {
+            final Connection.PostDialState state = (Connection.PostDialState) r.userObj;
+
+            switch (state) {
+                // TODO(klp): add other post dial related functions
+                case WAIT:
+                    final Call call = getCallFromMap(mCallMap, c, false);
+                    if (call == null) {
+                        Log.i(TAG, "Call no longer exists. Skipping onPostDialWait().");
+                    } else {
+                        for (Listener mListener : mListeners) {
+                            mListener.onPostDialWait(call.getCallId(),
+                                    c.getRemainingPostDialString());
+                        }
+                    }
+                    break;
+
+                default:
+                    break;
+            }
+        }
     }
 
     private void onNewRingingConnection(AsyncResult r) {
@@ -686,6 +723,7 @@ public class CallModeler extends Handler {
         void onDisconnect(Call call);
         void onIncoming(Call call);
         void onUpdate(List<Call> calls);
+        void onPostDialWait(int callId, String remainingChars);
     }
 
     /**

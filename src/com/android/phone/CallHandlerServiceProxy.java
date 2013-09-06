@@ -192,6 +192,26 @@ public class CallHandlerServiceProxy extends Handler
         }
     }
 
+
+    @Override
+    public void onPostDialWait(int callId, String remainingChars) {
+        try {
+            synchronized (mServiceAndQueueLock) {
+                if (mCallHandlerServiceGuarded == null) {
+                    if (DBG) {
+                        Log.d(TAG, "CallHandlerService not conneccted. Skipping "
+                                + "onPostDialWait().");
+                    }
+                    return;
+                }
+            }
+
+            mCallHandlerServiceGuarded.onPostDialWait(callId, remainingChars);
+        } catch (Exception e) {
+            Log.e(TAG, "Remote exception handling onUpdate", e);
+        }
+    }
+
     @Override
     public void onAudioModeChange(int newMode, boolean muted) {
         try {

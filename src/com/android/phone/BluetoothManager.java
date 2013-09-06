@@ -27,8 +27,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.os.Handler;
-import android.os.Message;
 import android.os.SystemClock;
 import android.os.SystemProperties;
 import android.util.Log;
@@ -36,7 +34,6 @@ import android.util.Log;
 import com.android.internal.telephony.CallManager;
 import com.android.services.telephony.common.Call;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -417,6 +414,11 @@ public class BluetoothManager implements CallModeler.Listener {
     @Override
     public void onUpdate(List<Call> calls) {
         updateBluetoothIndication();
+    }
+
+    @Override
+    public void onPostDialWait(int callId, String chars) {
+        // no-op
     }
 
     private void log(String msg) {
