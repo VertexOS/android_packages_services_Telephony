@@ -40,6 +40,11 @@ oneway interface ICallCommandService {
     void disconnectCall(int callId);
 
     /**
+     * Separate a conference call.
+     */
+    void separateCall(int callId);
+
+    /**
      * Place call on hold.
      */
     void hold(int callId, boolean hold);
