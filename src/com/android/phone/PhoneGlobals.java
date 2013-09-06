@@ -1034,16 +1034,12 @@ public class PhoneGlobals extends ContextWrapper implements WiredHeadsetListener
         //
         boolean isRinging = (state == PhoneConstants.State.RINGING);
         boolean isDialing = (phone.getForegroundCall().getState() == Call.State.DIALING);
-        boolean showingQuickResponseDialog = (mInCallScreen != null) &&
-                mInCallScreen.isQuickResponseDialogShowing();
         boolean showingDisconnectedConnection =
                 PhoneUtils.hasDisconnectedConnections(phone) && isShowingCallScreen;
-        boolean keepScreenOn = isRinging || isDialing ||
-                (showingDisconnectedConnection && !showingQuickResponseDialog);
+        boolean keepScreenOn = isRinging || isDialing || showingDisconnectedConnection;
         if (DBG) Log.d(LOG_TAG, "updateWakeState: keepScreenOn = " + keepScreenOn
                        + " (isRinging " + isRinging
                        + ", isDialing " + isDialing
-                       + ", showingQuickResponse " + showingQuickResponseDialog
                        + ", showingDisc " + showingDisconnectedConnection + ")");
         // keepScreenOn == true means we'll hold a full wake lock:
         requestWakeState(keepScreenOn ? WakeState.FULL : WakeState.SLEEP);

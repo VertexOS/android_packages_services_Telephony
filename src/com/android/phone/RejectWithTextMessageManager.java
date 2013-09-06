@@ -73,7 +73,11 @@ public class RejectWithTextMessageManager {
     /** SharedPreferences file name for our persistent settings. */
     private static final String SHARED_PREFERENCES_NAME = "respond_via_sms_prefs";
 
-    // Preference keys for the 4 "canned responses"; see RespondViaSmsManager$Settings.
+    private Intent mIntent;
+
+    private ArrayList<ComponentName> mComponentsWithPermission = new ArrayList<ComponentName>();
+
+            // Preference keys for the 4 "canned responses"; see RespondViaSmsManager$Settings.
     // Since (for now at least) the number of messages is fixed at 4, and since
     // SharedPreferences can't deal with arrays anyway, just store the messages
     // as 4 separate strings.
@@ -82,20 +86,11 @@ public class RejectWithTextMessageManager {
     private static final String KEY_CANNED_RESPONSE_PREF_2 = "canned_response_pref_2";
     private static final String KEY_CANNED_RESPONSE_PREF_3 = "canned_response_pref_3";
     private static final String KEY_CANNED_RESPONSE_PREF_4 = "canned_response_pref_4";
-    private static final String KEY_PREFERRED_PACKAGE = "preferred_package_pref";
-    private static final String KEY_INSTANT_TEXT_DEFAULT_COMPONENT = "instant_text_def_component";
+    /* package */ static final String KEY_INSTANT_TEXT_DEFAULT_COMPONENT =
+            "instant_text_def_component";
 
-    /**
-     * Brings up the standard SMS compose UI.
-     */
-    private void launchSmsCompose(String phoneNumber) {
-        if (DBG) log("launchSmsCompose: number " + phoneNumber);
-
-        final Intent intent = getInstantTextIntent(phoneNumber, null, getSmsService());
-
-        if (DBG) log("- Launching SMS compose UI: " + intent);
-        PhoneGlobals.getInstance().startService(intent);
-    }
+    /* package */ static final String TAG_ALL_SMS_SERVICES = "com.android.phone.AvailablePackages";
+    /* package */ static final String TAG_SEND_SMS = "com.android.phone.MessageIntent";
 
     /**
      * Read the (customizable) canned responses from SharedPreferences,
@@ -130,28 +125,10 @@ public class RejectWithTextMessageManager {
         return responses;
     }
 
-    /**
-     * Sends a text message without any interaction from the user.
-     */
-    private void sendText(String phoneNumber, String message, ComponentName component) {
-        if (DBG) log("sendText: number "
-                      + phoneNumber + ", message '" + message + "'");
-
-        PhoneGlobals.getInstance().startService(getInstantTextIntent(phoneNumber, message,
-                component));
-    }
-
-    private void sendTextAndExit(String phoneNumber, String message, ComponentName component,
-            boolean setDefaultComponent) {
+    private void sendTextAndExit() {
         // Send the selected message immediately with no user interaction.
-        sendText(phoneNumber, message, component);
-
-        if (setDefaultComponent) {
-            final SharedPreferences prefs = PhoneGlobals.getInstance().getSharedPreferences(
-                    SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE);
-            prefs.edit()
-                    .putString(KEY_INSTANT_TEXT_DEFAULT_COMPONENT, component.flattenToString())
-                    .apply();
+        if (mIntent.getComponent() != null) {
+            PhoneGlobals.getInstance().startService(mIntent);
         }
 
         // ...and show a brief confirmation to the user (since
@@ -231,11 +208,7 @@ public class RejectWithTextMessageManager {
         return intent;
     }
 
-    public void rejectCallWithNewMessage(String number) {
-        launchSmsCompose(number);
-    }
-
-    private ComponentName getSmsService() {
+    private boolean getSmsService() {
         if (DBG) log("sendTextToDefaultActivity()...");
         final PackageManager packageManager = PhoneGlobals.getInstance().getPackageManager();
 
@@ -257,7 +230,8 @@ public class RejectWithTextMessageManager {
 
             if (serviceInfo != null &&
                     PERMISSION_SEND_RESPOND_VIA_MESSAGE.equals(serviceInfo.permission)) {
-                return componentName;
+                mIntent.setComponent(componentName);
+                return true;
             } else {
                 SharedPreferences.Editor editor = prefs.edit();
                 editor.remove(KEY_INSTANT_TEXT_DEFAULT_COMPONENT);
@@ -265,29 +239,38 @@ public class RejectWithTextMessageManager {
             }
         }
 
-        final ArrayList<ComponentName> componentsWithPermission =
-            getPackagesWithInstantTextPermission();
+        mComponentsWithPermission = getPackagesWithInstantTextPermission();
 
-        final int size = componentsWithPermission.size();
+        final int size = mComponentsWithPermission.size();
         if (size == 0) {
             Log.e(TAG, "No appropriate package receiving the Intent. Don't send anything");
-            return null;
+            return false;
         } else if (size == 1) {
-            return componentsWithPermission.get(0);
+            mIntent.setComponent(mComponentsWithPermission.get(0));
+            return true;
         } else {
             Log.v(TAG, "Choosing from one of the apps");
             // TODO(klp): Add an app picker.
-            return componentsWithPermission.get(0);
+            final Intent intent = new Intent(Intent.ACTION_VIEW, null);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK |
+                    Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS |
+                    Intent.FLAG_ACTIVITY_NO_ANIMATION  |
+                    Intent.FLAG_ACTIVITY_NO_HISTORY |
+                    Intent.FLAG_FROM_BACKGROUND);
+            intent.setClass(PhoneGlobals.getInstance(), TextMessagePackageChooser.class);
+            intent.putExtra(TAG_ALL_SMS_SERVICES, mComponentsWithPermission);
+            intent.putExtra(TAG_SEND_SMS, mIntent);
+            PhoneGlobals.getInstance().startActivity(intent);
+            return false;
+            // return componentsWithPermission.get(0);
         }
     }
 
-
-    public void rejectCallWithMessage(final String number, String message) {
-        final ComponentName componentName = getSmsService();
-
-        if (componentName != null) {
-            sendTextAndExit(number, message, componentName,
-                    false);
+    public void rejectCallWithMessage(Call call, String message) {
+        mComponentsWithPermission.clear();
+        mIntent = getInstantTextIntent(call.getLatestConnection().getAddress(), message, null);
+        if (getSmsService())  {
+            sendTextAndExit();
         }
     }
 
