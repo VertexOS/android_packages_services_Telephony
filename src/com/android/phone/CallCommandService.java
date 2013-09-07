@@ -237,4 +237,20 @@ class CallCommandService extends ICallCommandService.Stub {
             Log.e(TAG, "Error setting the audio mode.", e);
         }
     }
+
+    @Override
+    public void postDialCancel(int callId) throws RemoteException {
+        final CallResult result = mCallModeler.getCallWithId(callId);
+        if (result != null) {
+            result.getConnection().cancelPostDial();
+        }
+    }
+
+    @Override
+    public void postDialWaitContinue(int callId) throws RemoteException {
+        final CallResult result = mCallModeler.getCallWithId(callId);
+        if (result != null) {
+            result.getConnection().proceedAfterWaitChar();
+        }
+    }
 }

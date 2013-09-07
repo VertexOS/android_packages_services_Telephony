@@ -92,4 +92,8 @@ oneway interface ICallCommandService {
      * {@see AudioMode}
      */
     void setAudioMode(int mode);
+
+    void postDialCancel(int callId);
+
+    void postDialWaitContinue(int callId);
 }
