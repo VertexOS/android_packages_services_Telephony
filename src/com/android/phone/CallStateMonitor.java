@@ -56,6 +56,7 @@ class CallStateMonitor extends Handler {
     public static final int PHONE_ENHANCED_VP_OFF = 10;
     public static final int PHONE_RINGBACK_TONE = 11;
     public static final int PHONE_RESEND_MUTE = 12;
+    public static final int PHONE_ON_DIAL_CHARS = 13;
 
     // Other events from call manager
     public static final int EVENT_OTA_PROVISION_CHANGE = 20;
@@ -88,6 +89,7 @@ class CallStateMonitor extends Handler {
         callManager.registerForInCallVoicePrivacyOff(this, PHONE_ENHANCED_VP_OFF, null);
         callManager.registerForRingbackTone(this, PHONE_RINGBACK_TONE, null);
         callManager.registerForResendIncallMute(this, PHONE_RESEND_MUTE, null);
+        callManager.registerForPostDialCharacter(this, PHONE_ON_DIAL_CHARS, null);
     }
 
     public void addListener(Handler handler) {
@@ -131,6 +133,7 @@ class CallStateMonitor extends Handler {
         callManager.unregisterForResendIncallMute(this);
         callManager.unregisterForInCallVoicePrivacyOn(this);
         callManager.unregisterForInCallVoicePrivacyOff(this);
+        callManager.unregisterForPostDialCharacter(this);
 
         registerForNotifications();
     }
