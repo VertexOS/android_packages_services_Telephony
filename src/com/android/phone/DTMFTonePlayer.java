@@ -31,8 +31,6 @@ import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneConstants;
 import com.android.services.telephony.common.Call;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -123,6 +121,11 @@ public class DTMFTonePlayer implements CallModeler.Listener {
     public void onUpdate(List<Call> calls) {
         logD("Call updated");
         checkCallState();
+    }
+
+    @Override
+    public void onPostDialWait(int callId, String chars) {
+        // no-op
     }
 
     /**
