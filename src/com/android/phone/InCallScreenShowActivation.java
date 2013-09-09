@@ -67,6 +67,14 @@ public class InCallScreenShowActivation extends Activity {
 
         if (intent.getAction().equals(OtaUtils.ACTION_PERFORM_CDMA_PROVISIONING)) {
 
+            boolean usesHfa = getResources().getBoolean(R.bool.config_use_hfa_for_provisioning);
+            if (usesHfa) {
+                Log.d(LOG_TAG, "Starting Hfa from ACTION_PERFORM_CDMA_PROVISIONING");
+                startHfa();
+                finish();
+                return;
+            }
+
             // On voice-capable devices, we perform CDMA provisioning in
             // "interactive" mode by directly launching the InCallScreen.
             // boolean interactiveMode = PhoneGlobals.sVoiceCapable;
@@ -136,5 +144,22 @@ public class InCallScreenShowActivation extends Activity {
         }
 
         finish();
+    }
+
+
+    /**
+     * Starts the HFA provisioning process by bringing up the HFA Activity.
+     */
+    private void startHfa() {
+        final Intent intent = new Intent(this, HfaActivity.class);
+
+        final PendingIntent otaResponseIntent = getIntent().getParcelableExtra(
+                OtaUtils.EXTRA_OTASP_RESULT_CODE_PENDING_INTENT);
+
+        intent.putExtra(OtaUtils.EXTRA_OTASP_RESULT_CODE_PENDING_INTENT, otaResponseIntent);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+
+        Log.v(LOG_TAG, "Starting hfa activation activity");
+        startActivity(intent);
     }
 }
