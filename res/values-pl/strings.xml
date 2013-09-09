@@ -450,6 +450,10 @@
     <string name="network_message" msgid="4483886461245213802">"Komunikat sieciowy"</string>
     <string name="ota_title_activate" msgid="8616918561356194398">"Aktywuj telefon"</string>
     <string name="ota_touch_activate" msgid="6553212803262586244">"Aby aktywować usługę telekomunikacyjną, należy wykonać połączenie specjalne. \n\nPo naciśnięciu przycisku „Aktywuj” posłuchaj dostępnych instrukcji, aby aktywować telefon."</string>
+    <!-- no translation found for ota_hfa_activation_title (2234246934160473981) -->
+    <skip />
+    <!-- no translation found for ota_hfa_activation_dialog_message (8092479227918463415) -->
+    <skip />
     <string name="ota_skip_activation_dialog_title" msgid="2943366608272261306">"Pominąć aktywację?"</string>
     <string name="ota_skip_activation_dialog_message" msgid="2440770373498870550">"Jeśli pominiesz aktywację, nie będzie można wykonywać połączeń ani łączyć się z komórkowymi sieciami transmisji danych (łączenie się z sieciami Wi-Fi będzie jednak możliwe). Do momentu dokonania aktywacji odpowiedni monit będzie wyświetlany po każdym włączeniu telefonu."</string>
     <string name="ota_skip_activation_dialog_skip_label" msgid="3458532775091563208">"Pomiń"</string>

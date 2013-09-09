@@ -454,6 +454,10 @@
     <string name="network_message" msgid="4483886461245213802">"Netwerkboodskap"</string>
     <string name="ota_title_activate" msgid="8616918561356194398">"Aktiveer jou foon"</string>
     <string name="ota_touch_activate" msgid="6553212803262586244">"\'n Spesiale oproep moet gemaak word om jou foondiens te aktiveer. \n\nDruk \"Aktiveer\" en luister dan na die instruksies om jou foon te aktiveer."</string>
+    <!-- no translation found for ota_hfa_activation_title (2234246934160473981) -->
+    <skip />
+    <!-- no translation found for ota_hfa_activation_dialog_message (8092479227918463415) -->
+    <skip />
     <string name="ota_skip_activation_dialog_title" msgid="2943366608272261306">"Slaan aktivering oor?"</string>
     <string name="ota_skip_activation_dialog_message" msgid="2440770373498870550">"As jy aktivering oorslaan, kan jy nie oproepe maak of aan mobiele datanetwerke koppel nie (hoewel jy aan Wi-Fi-netwerke kan koppel). Tot tyd en wyl jy jou foon aktiveer, word jy gevra om dit te aktiveer elke keer wat jy dit aanskakel."</string>
     <string name="ota_skip_activation_dialog_skip_label" msgid="3458532775091563208">"Slaan oor"</string>
