@@ -450,6 +450,10 @@
     <string name="network_message" msgid="4483886461245213802">"Võrgusõnum"</string>
     <string name="ota_title_activate" msgid="8616918561356194398">"Telefoni aktiveerimine"</string>
     <string name="ota_touch_activate" msgid="6553212803262586244">"Telefoniteenuse aktiveerimiseks peate valima konkreetse kõne. \n\nPärast käsu “Aktiveeri“ puudutamist kuulake telefoni aktiveerimise juhiseid."</string>
+    <!-- no translation found for ota_hfa_activation_title (2234246934160473981) -->
+    <skip />
+    <!-- no translation found for ota_hfa_activation_dialog_message (8092479227918463415) -->
+    <skip />
     <string name="ota_skip_activation_dialog_title" msgid="2943366608272261306">"Jätan aktiveerimise vahele?"</string>
     <string name="ota_skip_activation_dialog_message" msgid="2440770373498870550">"Aktiveerimise vahelejätmisel ei saa te kõnesid valida ega luua ühendust mobiilsete andmevõrkudega (kuid saate luua ühenduse WiFi-võrkudega). Telefoni aktiveerimisprotsessi ajal palutakse teil see aktiveerida iga kord, kui telefoni sisse lülitate."</string>
     <string name="ota_skip_activation_dialog_skip_label" msgid="3458532775091563208">"Jäta vahele"</string>

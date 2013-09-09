@@ -450,6 +450,10 @@
     <string name="network_message" msgid="4483886461245213802">"Ağ mesajı"</string>
     <string name="ota_title_activate" msgid="8616918561356194398">"Telefonunuzu aktive edin"</string>
     <string name="ota_touch_activate" msgid="6553212803262586244">"Telefon hizmetinizin aktive edilmesi için özel bir çağrı yapılması gerekiyor. \n\n“Aktive Et”e bastıktan sonra, telefonunuzun aktive edilmesi için sağlanan talimatları dinleyin."</string>
+    <!-- no translation found for ota_hfa_activation_title (2234246934160473981) -->
+    <skip />
+    <!-- no translation found for ota_hfa_activation_dialog_message (8092479227918463415) -->
+    <skip />
     <string name="ota_skip_activation_dialog_title" msgid="2943366608272261306">"Etkinleştirme atlansın mı?"</string>
     <string name="ota_skip_activation_dialog_message" msgid="2440770373498870550">"Etkinleştirmeyi atlarsanız, arama yapamaz veya mobil veri ağlarına bağlanamazsınız (yine de Kablosuz ağlara bağlanabilirsiniz). Telefonunuzu etkinleştirinceye kadar, telefonu her açışınızda ürünü etkinleştirip etkinleştirmeyeceğiniz sorulur."</string>
     <string name="ota_skip_activation_dialog_skip_label" msgid="3458532775091563208">"Atla"</string>
