@@ -935,7 +935,10 @@
     <!-- Message displayed on the OTA activation screen. -->
     <string name="ota_touch_activate">A special call needs to be made to activate your phone service.
     \n\nAfter pressing \u201CActivate\u201D, listen to the instructions provided to activate your phone.</string>
-
+    <!-- Title shown during Hands Free Activation -->
+    <string name="ota_hfa_activation_title">Activating...</string>
+    <!-- Message shown during the hands free activation screen of the setup wizard. -->
+    <string name="ota_hfa_activation_dialog_message">The phone is activating your mobile data service.\n\nThis can take up to 5 minutes.</string>
     <!-- Title of skip activation dialog -->
     <string name="ota_skip_activation_dialog_title">Skip activation\?</string>
     <!-- Message displayed in skip activation dialog  -->

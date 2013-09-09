@@ -1588,4 +1588,5 @@ public class PhoneGlobals extends ContextWrapper implements WiredHeadsetListener
             mBluetoothPhone = null;
         }
     };
+
 }
