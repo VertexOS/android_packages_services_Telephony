@@ -454,6 +454,10 @@
     <string name="network_message" msgid="4483886461245213802">"Mensaje de red"</string>
     <string name="ota_title_activate" msgid="8616918561356194398">"Activar tu teléfono"</string>
     <string name="ota_touch_activate" msgid="6553212803262586244">"Es necesario realizar una llamada especial para activar el servicio telefónico. \n\nTras pulsar \"Activar\", escucha las instrucciones sobre cómo activar el teléfono."</string>
+    <!-- no translation found for ota_hfa_activation_title (2234246934160473981) -->
+    <skip />
+    <!-- no translation found for ota_hfa_activation_dialog_message (8092479227918463415) -->
+    <skip />
     <string name="ota_skip_activation_dialog_title" msgid="2943366608272261306">"¿Quieres omitir la activación?"</string>
     <string name="ota_skip_activation_dialog_message" msgid="2440770373498870550">"Si omites la activación, no podrás realizar llamadas ni conectarte a las redes de datos móviles (aunque sí podrás conectarte a las redes Wi-Fi). Se te pedirá que actives el teléfono cada vez que lo enciendas hasta que realices la activación."</string>
     <string name="ota_skip_activation_dialog_skip_label" msgid="3458532775091563208">"Omitir"</string>
