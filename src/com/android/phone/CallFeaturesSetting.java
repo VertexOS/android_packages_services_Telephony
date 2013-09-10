@@ -2170,11 +2170,7 @@ public class CallFeaturesSetting extends PreferenceActivity
     public boolean onOptionsItemSelected(MenuItem item) {
         final int itemId = item.getItemId();
         if (itemId == android.R.id.home) {  // See ActionBar#setDisplayHomeAsUpEnabled()
-            Intent intent = new Intent();
-            intent.setClassName(UP_ACTIVITY_PACKAGE, UP_ACTIVITY_CLASS);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(intent);
-            finish();
+            onBackPressed();
             return true;
         }
         return super.onOptionsItemSelected(item);
