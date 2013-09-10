@@ -450,6 +450,10 @@
     <string name="network_message" msgid="4483886461245213802">"Сүлжээний зурвас"</string>
     <string name="ota_title_activate" msgid="8616918561356194398">"Утсаа идэвхжүүлнэ үү"</string>
     <string name="ota_touch_activate" msgid="6553212803262586244">"Таны утасны үйлчилгээ идэвхжүүлэхийн тулд тусгай дуудлага хийх шаардлагатай. \n\n“Идэвхжүүлэх” гэснийг дарсны дараа өгч байгаа зааврыг сонсон утсаа идэвхжүүлнэ үү."</string>
+    <!-- no translation found for ota_hfa_activation_title (2234246934160473981) -->
+    <skip />
+    <!-- no translation found for ota_hfa_activation_dialog_message (8092479227918463415) -->
+    <skip />
     <string name="ota_skip_activation_dialog_title" msgid="2943366608272261306">"Идэвхжүүлэхийг алгасах уу?"</string>
     <string name="ota_skip_activation_dialog_message" msgid="2440770373498870550">"Хэрэв та идэвхжүүлэхийг алгасвал дуудлага хийх буюу мобайль дата сүлжээнд холбогдох (хэдийгээр Wi-Fi сүлжээнд холбогдож болох ч) боломжгүй болно. Таныг утсаа идэвхжүүлэх хүртэл утсаа асаах бүрт идэвхжүүлэхийг хүсэх болно."</string>
     <string name="ota_skip_activation_dialog_skip_label" msgid="3458532775091563208">"Алгасах"</string>

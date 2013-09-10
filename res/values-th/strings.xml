@@ -450,6 +450,10 @@
     <string name="network_message" msgid="4483886461245213802">"ข้อความจากเครือข่าย"</string>
     <string name="ota_title_activate" msgid="8616918561356194398">"เปิดการใช้งานโทรศัพท์ของคุณ"</string>
     <string name="ota_touch_activate" msgid="6553212803262586244">"ต้องทำการโทรพิเศษเพื่อเปิดใช้บริการโทรศัพท์ของคุณ \n\nหลังจากกด “เปิดการใช้งาน” ให้ฟังคำแนะนำเพื่อเปิดใช้บริการโทรศัพท์ของคุณ"</string>
+    <!-- no translation found for ota_hfa_activation_title (2234246934160473981) -->
+    <skip />
+    <!-- no translation found for ota_hfa_activation_dialog_message (8092479227918463415) -->
+    <skip />
     <string name="ota_skip_activation_dialog_title" msgid="2943366608272261306">"ข้ามการเปิดใช้งานหรือไม่"</string>
     <string name="ota_skip_activation_dialog_message" msgid="2440770373498870550">"หากคุณข้ามการเปิดใช้งาน คุณจะโทรออกหรือเชื่อมต่อเครือข่ายข้อมูลมือถือไม่ได้ (แม้จะเชื่อมต่อเครือข่าย WiFi ได้ก็ตาม) และระบบจะขอให้คุณเปิดใช้งานทุกครั้งที่คุณเปิดเครื่องจนกว่าคุณจะเปิดใช้งานโทรศัพท์"</string>
     <string name="ota_skip_activation_dialog_skip_label" msgid="3458532775091563208">"ข้าม"</string>

@@ -450,6 +450,10 @@
     <string name="network_message" msgid="4483886461245213802">"پیام شبکه"</string>
     <string name="ota_title_activate" msgid="8616918561356194398">"فعال کردن گوشی خود"</string>
     <string name="ota_touch_activate" msgid="6553212803262586244">"برای فعال کردن سرویس گوشی خود، باید یک تماس ویژه برقرار کنید. \n\nبعد از فشردن \"فعال سازی\"، به دستورالعمل‌های ارائه شده جهت فعال کردن گوشی، گوش کنید."</string>
+    <!-- no translation found for ota_hfa_activation_title (2234246934160473981) -->
+    <skip />
+    <!-- no translation found for ota_hfa_activation_dialog_message (8092479227918463415) -->
+    <skip />
     <string name="ota_skip_activation_dialog_title" msgid="2943366608272261306">"از مرحله فعال سازی رد می‌شوید؟"</string>
     <string name="ota_skip_activation_dialog_message" msgid="2440770373498870550">"در صورت رد شدن از مرحله فعال سازی، نمی‌توانید تماسی برقرار کنید یا به شبکه‌های داده‌ای تلفن همراه متصل شوید (با این وجود می‌توانید به شبکه‌های Wi-Fi متصل شوید). تا زمانی که گوشی خود را فعال نکنید، هر بار که تلفن را روشن می‌کنید از شما درخواست می‌شود آنرا فعال کنید."</string>
     <string name="ota_skip_activation_dialog_skip_label" msgid="3458532775091563208">"رد شدن"</string>
