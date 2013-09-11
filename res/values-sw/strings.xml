@@ -581,7 +581,8 @@
     <string name="respond_via_sms_setting_title_2" msgid="6104662227299493906">"Hariri majibu ya haraka"</string>
     <string name="respond_via_sms_setting_summary" msgid="9150281183930613065"></string>
     <string name="respond_via_sms_edittext_dialog_title" msgid="20379890418289778">"Majibu ya haraka"</string>
-    <string name="respond_via_sms_menu_reset_default_activity" msgid="1461742052902053466">"Weka upya programu chaguo-msingi"</string>
+    <!-- no translation found for respond_via_sms_menu_reset_default_activity (4029277930090150223) -->
+    <skip />
     <string name="respond_via_sms_confirmation_format" msgid="7229149977515784269">"Ujumbe uliotumwa kwa <xliff:g id="PHONE_NUMBER">%s</xliff:g> ."</string>
     <string name="description_image_button_one" msgid="5502718871331943463">"moja"</string>
     <string name="description_image_button_two" msgid="4903738528222924522">"mbili"</string>
@@ -609,6 +610,6 @@
     <string name="ringtone_title" msgid="6374978286202084684">"Mlio wa simu"</string>
     <string name="vibrate_on_ring_title" msgid="9197564612065258960">"Tetema wakati wa kuita"</string>
     <string name="dtmf_tone_enable_title" msgid="827601042915852989">"Toa sauti vitufe vya kupiga vinapoguswa"</string>
-    <string name="dial_pad_autocomplete" msgid="494525952035761075">"Jaza kitufe cha kupiga kiotomatiki"</string>
+    <string name="dial_pad_autocomplete" msgid="494525952035761075">"Jaza nambari kiotomatiki"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"Malio wa simu na Mtetemo"</string>
 </resources>
