@@ -228,6 +228,8 @@
     <style name="DialtactsActionBarStyle"
            parent="@android:style/Widget.Holo.Light.ActionBar">
         <item name="android:background">@color/phone_settings_actionbar_color</item>
+        <!-- Empty icon -->
+        <item name="android:icon">@android:color/transparent</item>
     </style>
 
     <style name="SimImportTheme"

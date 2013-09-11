@@ -54,7 +54,10 @@ import android.provider.MediaStore;
 import android.provider.Settings;
 import android.provider.Settings.SettingNotFoundException;
 import android.telephony.PhoneNumberUtils;
+import android.text.Spannable;
+import android.text.SpannableString;
 import android.text.TextUtils;
+import android.text.style.TypefaceSpan;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.WindowManager;
@@ -1653,7 +1656,14 @@ public class CallFeaturesSetting extends PreferenceActivity
         ActionBar actionBar = getActionBar();
         if (actionBar != null) {
             // android.R.id.home will be triggered in onOptionsItemSelected()
+            actionBar.setDisplayShowHomeEnabled(true);
             actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setDisplayShowTitleEnabled(true);
+
+            final SpannableString s = new SpannableString(getString(R.string.call_settings));
+            s.setSpan(new TypefaceSpan(getString(R.string.call_settings_title_font_family)), 0,
+                    s.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            actionBar.setTitle(s);
         }
     }
 
