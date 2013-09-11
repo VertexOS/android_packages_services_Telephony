@@ -1444,4 +1444,8 @@
          related settings.
          [CHAR LIMIT=30] -->
     <string name="preference_category_ringtone">Ringtone &amp; Vibrate</string>
+
+    <!-- String resource for the font-family to use for the call setting activity's title
+         Do not translate. -->
+    <string name="call_settings_title_font_family">sans-serif-light</string>
 </resources>
