@@ -581,7 +581,8 @@
     <string name="respond_via_sms_setting_title_2" msgid="6104662227299493906">"Edita les respostes ràpides"</string>
     <string name="respond_via_sms_setting_summary" msgid="9150281183930613065"></string>
     <string name="respond_via_sms_edittext_dialog_title" msgid="20379890418289778">"Resposta ràpida"</string>
-    <string name="respond_via_sms_menu_reset_default_activity" msgid="1461742052902053466">"Restableix aplic. predetermin."</string>
+    <!-- no translation found for respond_via_sms_menu_reset_default_activity (4029277930090150223) -->
+    <skip />
     <string name="respond_via_sms_confirmation_format" msgid="7229149977515784269">"Missatge enviat a <xliff:g id="PHONE_NUMBER">%s</xliff:g>."</string>
     <string name="description_image_button_one" msgid="5502718871331943463">"un"</string>
     <string name="description_image_button_two" msgid="4903738528222924522">"dos"</string>
@@ -609,6 +610,6 @@
     <string name="ringtone_title" msgid="6374978286202084684">"To del telèfon"</string>
     <string name="vibrate_on_ring_title" msgid="9197564612065258960">"Vibrar en sonar"</string>
     <string name="dtmf_tone_enable_title" msgid="827601042915852989">"Sonar en marcar els números"</string>
-    <string name="dial_pad_autocomplete" msgid="494525952035761075">"Compleció autom. del teclat"</string>
+    <string name="dial_pad_autocomplete" msgid="494525952035761075">"Autocompletar amb teclat"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"To i vibració"</string>
 </resources>
