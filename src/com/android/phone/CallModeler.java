@@ -278,8 +278,10 @@ public class CallModeler extends Handler {
         final List<Call> updatedCalls = Lists.newArrayList();
         doUpdate(false, updatedCalls);
 
-        for (int i = 0; i < mListeners.size(); ++i) {
-            mListeners.get(i).onUpdate(updatedCalls);
+        if (updatedCalls.size() > 0) {
+            for (int i = 0; i < mListeners.size(); ++i) {
+                mListeners.get(i).onUpdate(updatedCalls);
+            }
         }
     }
 
@@ -299,14 +301,23 @@ public class CallModeler extends Handler {
         for (com.android.internal.telephony.Call telephonyCall : telephonyCalls) {
 
             for (Connection connection : telephonyCall.getConnections()) {
-                // new connections return a Call with INVALID state, which does not translate to
+                // We do not create incoming or disconnected calls on update.  Those are created
+                // from the associated onNewRingingConnection and onDisconnected which do this
+                // process on their own and slightly differently.
+                boolean create = connection.getState().isAlive() &&
+                        !connection.getState().isRinging();
+
+                // New connections return a Call with INVALID state, which does not translate to
                 // a state in the internal.telephony.Call object.  This ensures that staleness
                 // check below fails and we always add the item to the update list if it is new.
-                final Call call = getCallFromMap(mCallMap, connection, true);
+                final Call call = getCallFromMap(mCallMap, connection, create);
+
+                if (call == null) {
+                    continue;
+                }
 
                 boolean changed = updateCallFromConnection(call, connection, false);
 
-                Log.i(TAG, "doUpdate: " + call);
                 if (fullUpdate || changed) {
                     out.add(call);
                 }
