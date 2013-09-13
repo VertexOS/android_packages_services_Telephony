@@ -49,7 +49,7 @@ public final class Call implements Parcelable {
         public static final int DIALING = 5;        /* An outgoing call during dial phase */
         public static final int ONHOLD = 6;         /* An active phone call placed on hold */
         public static final int DISCONNECTED = 7;   /* State after a call disconnects */
-        public static final int CONFERENCED = 8;     /* Call part of a conference call */
+        public static final int CONFERENCED = 8;    /* Call part of a conference call */
 
         public static boolean isConnected(int state) {
             switch(state) {

@@ -402,7 +402,7 @@ public class CallHandlerServiceProxy extends Handler
      */
     private void makeInitialServiceCalls() {
         try {
-            mCallHandlerServiceGuarded.setCallCommandService(mCallCommandService);
+            mCallHandlerServiceGuarded.startCallService(mCallCommandService);
 
             onSupportedAudioModeChange(mAudioRouter.getSupportedAudioModes());
             onAudioModeChange(mAudioRouter.getAudioMode(), mAudioRouter.getMute());
