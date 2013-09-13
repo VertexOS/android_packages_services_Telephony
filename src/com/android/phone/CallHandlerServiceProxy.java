@@ -294,13 +294,13 @@ public class CallHandlerServiceProxy extends Handler
         }
     }
 
-    public void bringToForeground() {
+    public void bringToForeground(boolean showDialpad) {
         // only support this call if the service is already connected.
         synchronized (mServiceAndQueueLock) {
             if (mCallHandlerServiceGuarded != null && mCallModeler.hasLiveCall()) {
                 try {
-                    if (DBG) Log.d(TAG, "bringToForeground");
-                    mCallHandlerServiceGuarded.bringToForeground();
+                    if (DBG) Log.d(TAG, "bringToForeground: " + showDialpad);
+                    mCallHandlerServiceGuarded.bringToForeground(showDialpad);
                 } catch (RemoteException e) {
                     Log.e(TAG, "Exception handling bringToForeground", e);
                 }
