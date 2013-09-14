@@ -450,10 +450,8 @@
     <string name="network_message" msgid="4483886461245213802">"Tinklo pranešimas"</string>
     <string name="ota_title_activate" msgid="8616918561356194398">"Aktyvinkite savo telefoną"</string>
     <string name="ota_touch_activate" msgid="6553212803262586244">"Kad suaktyvintumėte telefono paslaugą, reikia atlikti specialų skambutį. \n\nPaspaudę „Aktyvinti“ klausykite pateikiamų telefono aktyvinimo instrukcijų."</string>
-    <!-- no translation found for ota_hfa_activation_title (2234246934160473981) -->
-    <skip />
-    <!-- no translation found for ota_hfa_activation_dialog_message (8092479227918463415) -->
-    <skip />
+    <string name="ota_hfa_activation_title" msgid="2234246934160473981">"Aktyvinama..."</string>
+    <string name="ota_hfa_activation_dialog_message" msgid="8092479227918463415">"Telefonas aktyvina mobiliųjų duomenų paslaugą.\n\nTai gali užtrukti iki 5 min."</string>
     <string name="ota_skip_activation_dialog_title" msgid="2943366608272261306">"Praleisti aktyvinimą?"</string>
     <string name="ota_skip_activation_dialog_message" msgid="2440770373498870550">"Jei praleisite aktyvinimą, negalėsite skambinti ar prisijungti prie mobilių duomenų tinklų (nors ir galite prisijungti prie „Wi-Fi“ tinklų). Iki tol, kol suaktyvinsite telefoną, aktyvinkite jį kaskart jį įjungdami."</string>
     <string name="ota_skip_activation_dialog_skip_label" msgid="3458532775091563208">"Praleisti"</string>
@@ -581,8 +579,7 @@
     <string name="respond_via_sms_setting_title_2" msgid="6104662227299493906">"Redaguoti greitus atsakus"</string>
     <string name="respond_via_sms_setting_summary" msgid="9150281183930613065"></string>
     <string name="respond_via_sms_edittext_dialog_title" msgid="20379890418289778">"Greitas atsakas"</string>
-    <!-- no translation found for respond_via_sms_menu_reset_default_activity (4029277930090150223) -->
-    <skip />
+    <string name="respond_via_sms_menu_reset_default_activity" msgid="4029277930090150223">"Atkurti numatyt. nustatymus"</string>
     <string name="respond_via_sms_confirmation_format" msgid="7229149977515784269">"Pranešimas išsiųstas numeriu <xliff:g id="PHONE_NUMBER">%s</xliff:g>."</string>
     <string name="description_image_button_one" msgid="5502718871331943463">"vienas"</string>
     <string name="description_image_button_two" msgid="4903738528222924522">"du"</string>
