@@ -345,9 +345,9 @@ public class CallModeler extends Handler {
      */
     private boolean updateForConferenceCalls(Connection connection, List<Call> updatedCalls) {
         // We consider this connection a conference connection if the call it
-        // belongs to is a multiparty call AND it is the first connection.
+        // belongs to is a multiparty call AND it is the first live connection.
         final boolean isConferenceCallConnection = isPartOfLiveConferenceCall(connection) &&
-                connection.getCall().getEarliestConnection() == connection;
+                getEarliestLiveConnection(connection.getCall()) == connection;
 
         boolean changed = false;
 
@@ -382,6 +382,23 @@ public class CallModeler extends Handler {
         }
 
         return changed;
+    }
+
+    private Connection getEarliestLiveConnection(com.android.internal.telephony.Call call) {
+        final List<Connection> connections = call.getConnections();
+        final int size = connections.size();
+        Connection earliestConn = null;
+        long earliestTime = Long.MAX_VALUE;
+        for (int i = 0; i < size; i++) {
+            final Connection connection = connections.get(i);
+            if (!connection.isAlive()) continue;
+            final long time = connection.getCreateTime();
+            if (time < earliestTime) {
+                earliestTime = time;
+                earliestConn = connection;
+            }
+        }
+        return earliestConn;
     }
 
     /**
