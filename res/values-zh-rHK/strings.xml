@@ -456,10 +456,8 @@
     <string name="network_message" msgid="4483886461245213802">"網絡訊息"</string>
     <string name="ota_title_activate" msgid="8616918561356194398">"啟用您的手機"</string>
     <string name="ota_touch_activate" msgid="6553212803262586244">"如要啟用手機服務，您必須撥打一個特別電話。\n\n按「啟用」 後，請聽取手機啟用說明。"</string>
-    <!-- no translation found for ota_hfa_activation_title (2234246934160473981) -->
-    <skip />
-    <!-- no translation found for ota_hfa_activation_dialog_message (8092479227918463415) -->
-    <skip />
+    <string name="ota_hfa_activation_title" msgid="2234246934160473981">"正在啟用…"</string>
+    <string name="ota_hfa_activation_dialog_message" msgid="8092479227918463415">"手機正在啟用流動數據服務。\n\n這個程序最多需時 5 分鐘。"</string>
     <string name="ota_skip_activation_dialog_title" msgid="2943366608272261306">"是否略過啟用？"</string>
     <string name="ota_skip_activation_dialog_message" msgid="2440770373498870550">"如果略過啟用程序，那麼您就無法撥打電話或是連上行動數據網絡 (雖然可連上 Wi-Fi 網絡)。除非您已啟用手機，否則每次開機時，系統都會要求您啟用手機。"</string>
     <string name="ota_skip_activation_dialog_skip_label" msgid="3458532775091563208">"略過"</string>
@@ -587,8 +585,7 @@
     <string name="respond_via_sms_setting_title_2" msgid="6104662227299493906">"編輯快速回應"</string>
     <string name="respond_via_sms_setting_summary" msgid="9150281183930613065"></string>
     <string name="respond_via_sms_edittext_dialog_title" msgid="20379890418289778">"快速回應"</string>
-    <!-- no translation found for respond_via_sms_menu_reset_default_activity (4029277930090150223) -->
-    <skip />
+    <string name="respond_via_sms_menu_reset_default_activity" msgid="4029277930090150223">"還原預設值"</string>
     <string name="respond_via_sms_confirmation_format" msgid="7229149977515784269">"訊息已傳送至 <xliff:g id="PHONE_NUMBER">%s</xliff:g>。"</string>
     <string name="description_image_button_one" msgid="5502718871331943463">"一"</string>
     <string name="description_image_button_two" msgid="4903738528222924522">"二"</string>

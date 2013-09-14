@@ -450,10 +450,8 @@
     <string name="network_message" msgid="4483886461245213802">"ネットワークメッセージ"</string>
     <string name="ota_title_activate" msgid="8616918561356194398">"携帯電話を有効にする"</string>
     <string name="ota_touch_activate" msgid="6553212803262586244">"通話サービスを有効にするには特別な通話が必要です。\n\n[有効にする]を押してから、流れてくる音声に従って電話を有効にしてください。"</string>
-    <!-- no translation found for ota_hfa_activation_title (2234246934160473981) -->
-    <skip />
-    <!-- no translation found for ota_hfa_activation_dialog_message (8092479227918463415) -->
-    <skip />
+    <string name="ota_hfa_activation_title" msgid="2234246934160473981">"有効にしています..."</string>
+    <string name="ota_hfa_activation_dialog_message" msgid="8092479227918463415">"端末はモバイルデータサービスを有効にしています。\n\nこの処理には5分ほどかかることがあります。"</string>
     <string name="ota_skip_activation_dialog_title" msgid="2943366608272261306">"スキップして有効にしない"</string>
     <string name="ota_skip_activation_dialog_message" msgid="2440770373498870550">"スキップして有効にしない場合、通話やモバイルデータネットワークの接続ができません（Wi-Fiネットワークには接続できます）。携帯を有効にするまでは、電源を入れるたびに有効にするかどうかを尋ねるメッセージが表示されます。"</string>
     <string name="ota_skip_activation_dialog_skip_label" msgid="3458532775091563208">"スキップ"</string>
@@ -581,8 +579,7 @@
     <string name="respond_via_sms_setting_title_2" msgid="6104662227299493906">"クイック返信の編集"</string>
     <string name="respond_via_sms_setting_summary" msgid="9150281183930613065"></string>
     <string name="respond_via_sms_edittext_dialog_title" msgid="20379890418289778">"クイック返信"</string>
-    <!-- no translation found for respond_via_sms_menu_reset_default_activity (4029277930090150223) -->
-    <skip />
+    <string name="respond_via_sms_menu_reset_default_activity" msgid="4029277930090150223">"初期設定に戻す"</string>
     <string name="respond_via_sms_confirmation_format" msgid="7229149977515784269">"<xliff:g id="PHONE_NUMBER">%s</xliff:g>にメッセージを送信しました。"</string>
     <string name="description_image_button_one" msgid="5502718871331943463">"1"</string>
     <string name="description_image_button_two" msgid="4903738528222924522">"2"</string>

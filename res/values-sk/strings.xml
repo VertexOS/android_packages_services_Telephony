@@ -450,10 +450,8 @@
     <string name="network_message" msgid="4483886461245213802">"Informácia siete"</string>
     <string name="ota_title_activate" msgid="8616918561356194398">"Aktivujte svoj telefón"</string>
     <string name="ota_touch_activate" msgid="6553212803262586244">"Telefónnu službu je potrebné aktivovať uskutočnením mimoriadneho hovoru. \n\nStlačte tlačidlo Aktivovať a aktivujte telefón podľa poskytnutých pokynov."</string>
-    <!-- no translation found for ota_hfa_activation_title (2234246934160473981) -->
-    <skip />
-    <!-- no translation found for ota_hfa_activation_dialog_message (8092479227918463415) -->
-    <skip />
+    <string name="ota_hfa_activation_title" msgid="2234246934160473981">"Prebieha aktivácia..."</string>
+    <string name="ota_hfa_activation_dialog_message" msgid="8092479227918463415">"V telefóne prebieha aktivácia mobilnej dátovej služby.\n\nMôže to trvať až 5 minút."</string>
     <string name="ota_skip_activation_dialog_title" msgid="2943366608272261306">"Preskočiť aktiváciu?"</string>
     <string name="ota_skip_activation_dialog_message" msgid="2440770373498870550">"Ak preskočíte aktiváciu, nemôžete volať ani sa pripájať k mobilným dátovým sieťam (môžete sa ale pripojiť k sieťam Wi-Fi). Ak svoj telefón neaktivujete, bude sa pri každom zapnutí zobrazovať výzva na aktiváciu."</string>
     <string name="ota_skip_activation_dialog_skip_label" msgid="3458532775091563208">"Preskočiť"</string>
@@ -504,7 +502,7 @@
     <string name="sip_accounts_title" msgid="1212889069281054570">"Účty"</string>
     <string name="sip_receive_calls" msgid="5635685570889971559">"Prijímať prichádzajúce hovory"</string>
     <string name="sip_receive_calls_summary" msgid="8403613238633679184">"Znižuje výdrž batérie"</string>
-    <string name="sip_call_options_title" msgid="27433718808839672">"Použiť internetový volanie"</string>
+    <string name="sip_call_options_title" msgid="27433718808839672">"Použiť internetové volanie"</string>
     <string name="sip_call_options_wifi_only_title" msgid="145572394529090811">"Použiť internetový hovor (iba s pripojením Wi-Fi)"</string>
     <string name="sip_call_options_entry_1" msgid="6556668894178520760">"Pre všetky hovory, pokiaľ je k dispozícii dátová sieť"</string>
     <string name="sip_call_options_entry_2" msgid="6789764029719494361">"Iba pre internetové hovory"</string>
@@ -572,7 +570,7 @@
     <string name="sip_system_decide" msgid="368030746310423471">"Automatické"</string>
     <string name="sip_always_send_keepalive" msgid="8192080724632877132">"Vždy odoslať"</string>
     <string name="not_voice_capable" msgid="2739898841461577811">"Hlasové volanie nie je podporované"</string>
-    <string name="respond_via_sms_canned_response_1" msgid="2461606462788380215">"Nemôžem telefonovať, čo sa deje?"</string>
+    <string name="respond_via_sms_canned_response_1" msgid="2461606462788380215">"Teraz nemôžem hovoriť, o čo ide?"</string>
     <string name="respond_via_sms_canned_response_2" msgid="4074450431532859214">"Zavolám späť."</string>
     <string name="respond_via_sms_canned_response_3" msgid="3496079065723960450">"Zavolám neskôr."</string>
     <string name="respond_via_sms_canned_response_4" msgid="1698989243040062190">"Teraz nemôžem, zavolajte inokedy."</string>
@@ -581,8 +579,7 @@
     <string name="respond_via_sms_setting_title_2" msgid="6104662227299493906">"Upraviť rýchle odpovede"</string>
     <string name="respond_via_sms_setting_summary" msgid="9150281183930613065"></string>
     <string name="respond_via_sms_edittext_dialog_title" msgid="20379890418289778">"Rýchla odpoveď"</string>
-    <!-- no translation found for respond_via_sms_menu_reset_default_activity (4029277930090150223) -->
-    <skip />
+    <string name="respond_via_sms_menu_reset_default_activity" msgid="4029277930090150223">"Obnoviť predvolené nastavenia"</string>
     <string name="respond_via_sms_confirmation_format" msgid="7229149977515784269">"Správa bola odoslaná na číslo <xliff:g id="PHONE_NUMBER">%s</xliff:g>."</string>
     <string name="description_image_button_one" msgid="5502718871331943463">"jeden"</string>
     <string name="description_image_button_two" msgid="4903738528222924522">"dva"</string>
@@ -609,7 +606,7 @@
     <string name="default_notification_description" msgid="78174796906240970">"Predvolený zvuk (<xliff:g id="DEFAULT_SOUND_TITLE">%1$s</xliff:g>)"</string>
     <string name="ringtone_title" msgid="6374978286202084684">"Tón zvonenia telefónu"</string>
     <string name="vibrate_on_ring_title" msgid="9197564612065258960">"Vibrovať pri zvonení"</string>
-    <string name="dtmf_tone_enable_title" msgid="827601042915852989">"Zvuky pri dotyku na číselnú klávesnicu"</string>
+    <string name="dtmf_tone_enable_title" msgid="827601042915852989">"Zvuky pri dotyku číselníku"</string>
     <string name="dial_pad_autocomplete" msgid="494525952035761075">"Automatické dokonč. číselnej klávesnice"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"Tón zvonenia a vibrovanie"</string>
 </resources>
