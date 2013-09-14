@@ -301,18 +301,18 @@ public class CallModeler extends Handler {
         for (com.android.internal.telephony.Call telephonyCall : telephonyCalls) {
 
             for (Connection connection : telephonyCall.getConnections()) {
-                // We do not create incoming or disconnected calls on update.  Those are created
-                // from the associated onNewRingingConnection and onDisconnected which do this
-                // process on their own and slightly differently.
-                boolean create = connection.getState().isAlive() &&
+                // We only send updates for live calls which are not incoming (ringing).
+                // Disconnected and incoming calls are handled by onDisconnect and
+                // onNewRingingConnection.
+                boolean shouldUpdate = connection.getState().isAlive() &&
                         !connection.getState().isRinging();
 
                 // New connections return a Call with INVALID state, which does not translate to
                 // a state in the internal.telephony.Call object.  This ensures that staleness
                 // check below fails and we always add the item to the update list if it is new.
-                final Call call = getCallFromMap(mCallMap, connection, create);
+                final Call call = getCallFromMap(mCallMap, connection, shouldUpdate /* create */);
 
-                if (call == null) {
+                if (call == null || !shouldUpdate) {
                     continue;
                 }
 

@@ -31,10 +31,11 @@ import com.android.services.telephony.common.ICallCommandService;
 oneway interface ICallHandlerService {
 
     /**
+     * First call made when we are ready to start sending events to the service.
      * Hands a command interface to the CallHandlerService through which
      * the call monitor can control the phone calls.
      */
-    void setCallCommandService(ICallCommandService callCommandService);
+    void startCallService(ICallCommandService callCommandService);
 
     /**
      * Called when there is an incoming call.
