@@ -225,14 +225,17 @@ public class HfaActivity extends Activity {
         final PendingIntent otaResponseIntent = getIntent().getParcelableExtra(
                 OtaUtils.EXTRA_OTASP_RESULT_CODE_PENDING_INTENT);
 
-        final Intent extraStuff = new Intent();
-        extraStuff.putExtra(OtaUtils.EXTRA_OTASP_RESULT_CODE, responseCode);
+        if (otaResponseIntent != null) {
+            final Intent extraStuff = new Intent();
+            extraStuff.putExtra(OtaUtils.EXTRA_OTASP_RESULT_CODE, responseCode);
 
-        try {
-            if (VERBOSE) Log.v(TAG, "Sending OTASP confirmation with result code: " + responseCode);
-            otaResponseIntent.send(this, 0 /* resultCode (not used) */, extraStuff);
-        } catch (CanceledException e) {
-            Log.e(TAG, "Pending Intent canceled");
+            try {
+                if (VERBOSE) Log.v(TAG, "Sending OTASP confirmation with result code: "
+                        + responseCode);
+                otaResponseIntent.send(this, 0 /* resultCode (not used) */, extraStuff);
+            } catch (CanceledException e) {
+                Log.e(TAG, "Pending Intent canceled");
+            }
         }
 
         finish();
