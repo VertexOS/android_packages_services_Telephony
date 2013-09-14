@@ -20,6 +20,7 @@ import android.os.AsyncResult;
 import android.os.Handler;
 import android.os.Message;
 import android.os.SystemProperties;
+import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -27,7 +28,6 @@ import com.android.internal.telephony.CallManager;
 import com.android.internal.telephony.Connection;
 import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneConstants;
-import com.android.internal.telephony.TelephonyCapabilities;
 import com.android.phone.CallGatewayManager.RawGatewayInfo;
 import com.android.services.telephony.common.Call;
 import com.android.services.telephony.common.Call.Capabilities;
@@ -512,17 +512,37 @@ public class CallModeler extends Handler {
         final boolean callIsActive = (call.getState() == Call.State.ACTIVE);
         final Phone phone = connection.getCall().getPhone();
 
-        final boolean canHold = TelephonyCapabilities.supportsAnswerAndHold(phone);
         boolean canAddCall = false;
         boolean canMergeCall = false;
         boolean canSwapCall = false;
         boolean canRespondViaText = false;
+        boolean canMute = false;
+
+        final boolean supportHold = PhoneUtils.okToSupportHold(mCallManager);
+        final boolean canHold = PhoneUtils.okToHoldCall(mCallManager);
 
         // only applies to active calls
         if (callIsActive) {
-            canAddCall = PhoneUtils.okToAddCall(mCallManager);
             canMergeCall = PhoneUtils.okToMergeCalls(mCallManager);
             canSwapCall = PhoneUtils.okToSwapCalls(mCallManager);
+        }
+
+        canAddCall = PhoneUtils.okToAddCall(mCallManager);
+
+        // "Mute": only enabled when the foreground call is ACTIVE.
+        // (It's meaningless while on hold, or while DIALING/ALERTING.)
+        // It's also explicitly disabled during emergency calls or if
+        // emergency callback mode (ECM) is active.
+        boolean isEmergencyCall = false;
+        if (connection != null) {
+            isEmergencyCall = PhoneNumberUtils.isLocalEmergencyNumber(connection.getAddress(),
+                    phone.getContext());
+        }
+        boolean isECM = PhoneUtils.isPhoneInEcm(phone);
+        if (isEmergencyCall || isECM) {  // disable "Mute" item
+            canMute = false;
+        } else {
+            canMute = callIsActive;
         }
 
         canRespondViaText = RejectWithTextMessageManager.allowRespondViaSmsForCall(call,
@@ -532,14 +552,14 @@ public class CallModeler extends Handler {
         // CDMA always has Add
         if (phone.getPhoneType() == PhoneConstants.PHONE_TYPE_CDMA) {
             canAddCall = true;
-        } else {
-            // if neither merge nor add is on...then allow add
-            canAddCall |= !(canAddCall || canMergeCall);
         }
 
         int retval = 0x0;
         if (canHold) {
             retval |= Capabilities.HOLD;
+        }
+        if (supportHold) {
+            retval |= Capabilities.SUPPORT_HOLD;
         }
         if (canAddCall) {
             retval |= Capabilities.ADD_CALL;
@@ -550,9 +570,11 @@ public class CallModeler extends Handler {
         if (canSwapCall) {
             retval |= Capabilities.SWAP_CALLS;
         }
-
         if (canRespondViaText) {
             retval |= Capabilities.RESPOND_VIA_TEXT;
+        }
+        if (canMute) {
+            retval |= Capabilities.MUTE;
         }
 
         return retval;

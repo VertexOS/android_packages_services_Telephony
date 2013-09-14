@@ -2149,6 +2149,50 @@ public class PhoneUtils {
     //
 
     /**
+     * @return true if we're allowed to hold calls, given the current
+     * state of the Phone.
+     */
+    /* package */ static boolean okToHoldCall(CallManager cm) {
+        final Call fgCall = cm.getActiveFgCall();
+        final boolean hasHoldingCall = cm.hasActiveBgCall();
+        final Call.State fgCallState = fgCall.getState();
+
+        // The "Hold" control is disabled entirely if there's
+        // no way to either hold or unhold in the current state.
+        final boolean okToHold = (fgCallState == Call.State.ACTIVE) && !hasHoldingCall;
+        final boolean okToUnhold = cm.hasActiveBgCall() && (fgCallState == Call.State.IDLE);
+        final boolean canHold = okToHold || okToUnhold;
+
+        return canHold;
+    }
+
+    /**
+     * @return true if we support holding calls, given the current
+     * state of the Phone.
+     */
+    /* package */ static boolean okToSupportHold(CallManager cm) {
+        boolean supportsHold = false;
+
+        final Call fgCall = cm.getActiveFgCall();
+        final boolean hasHoldingCall = cm.hasActiveBgCall();
+        final Call.State fgCallState = fgCall.getState();
+
+        if (TelephonyCapabilities.supportsHoldAndUnhold(fgCall.getPhone())) {
+            // This phone has the concept of explicit "Hold" and "Unhold" actions.
+            supportsHold = true;
+        } else if (hasHoldingCall && (fgCallState == Call.State.IDLE)) {
+            // Even when foreground phone device doesn't support hold/unhold, phone devices
+            // for background holding calls may do.
+            final Call bgCall = cm.getFirstActiveBgCall();
+            if (bgCall != null &&
+                    TelephonyCapabilities.supportsHoldAndUnhold(bgCall.getPhone())) {
+                supportsHold = true;
+            }
+        }
+        return supportsHold;
+    }
+
+    /**
      * @return true if we're allowed to swap calls, given the current
      * state of the Phone.
      */
