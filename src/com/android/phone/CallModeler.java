@@ -145,12 +145,7 @@ public class CallModeler extends Handler {
 
         for (Entry<Connection, Call> entry : mConfCallMap.entrySet()) {
             if (entry.getValue().getCallId() == callId) {
-                if (entry.getValue().getChildCallIds().size() == 0) {
-                    return null;
-                }
-                final CallResult child = getCallWithId(entry.getValue().getChildCallIds().first());
-                return new CallResult(entry.getValue(), child.getActionableCall(),
-                        child.getConnection());
+                return new CallResult(entry.getValue(), entry.getKey());
             }
         }
         return null;
