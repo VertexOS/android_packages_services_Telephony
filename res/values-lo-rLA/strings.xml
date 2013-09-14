@@ -450,10 +450,8 @@
     <string name="network_message" msgid="4483886461245213802">"ຂໍ້ຄວາມເຄືອຂ່າຍ"</string>
     <string name="ota_title_activate" msgid="8616918561356194398">"ເປີດນຳໃຊ້ໂທລະສັບຂອງທ່ານ"</string>
     <string name="ota_touch_activate" msgid="6553212803262586244">"ຕ້ອງໃຊ້ການໂທພິເສດ ເພື່ອເປີດນຳໃຊ້ບໍລິການໂທລະສັບຂອງທ່ານ. \n\nຫຼັງຈາກກົດປຸ່ມ “ເປີດນຳໃຊ້” ແລ້ວ, ໃຫ້ຟັງຄຳແນະນຳທີ່ລະບຸເພື່ອເປີດນຳໃຊ້ໂທລະສັບຂອງທ່ານ."</string>
-    <!-- no translation found for ota_hfa_activation_title (2234246934160473981) -->
-    <skip />
-    <!-- no translation found for ota_hfa_activation_dialog_message (8092479227918463415) -->
-    <skip />
+    <string name="ota_hfa_activation_title" msgid="2234246934160473981">"ກຳລັງເປີດນຳໃຊ້..."</string>
+    <string name="ota_hfa_activation_dialog_message" msgid="8092479227918463415">"ໂທລະສັບກຳລັງເປີດນຳໃຊ້ບໍລິການຂໍ້ມູນມືຖືຂອງທ່ານ.\n\nຂັ້ນຕອນນີ້ອາດໃຊ້ເວລາເຖິງ 5 ນາທີ."</string>
     <string name="ota_skip_activation_dialog_title" msgid="2943366608272261306">"ຂ້າມການເປີດນຳໃຊ້?"</string>
     <string name="ota_skip_activation_dialog_message" msgid="2440770373498870550">"ຫາກທ່ານຂ້າມການເປີດນຳໃຊ້, ທ່ານຈະບໍ່ສາມາດໂທອອກ ຫຼືເຊື່ອມຕໍ່ເຄືອຂ່າຍຂໍ້ມູນມືຖືໄດ້ (ເຖິງແມ່ນວ່າ ທ່ານຈະສາມາດເຊື່ອມຕໍ່ຫາເຄືອຂ່າຍ Wi-Fi). ທ່ານຈະຖືກຖາມໃຫ້ເປີດນຳໃຊ້ທຸກຄັ້ງທີ່ທ່ານເປີດເຄື່ອງ, ຈົນກວ່າທ່ານຈະສຳເລັດຂັ້ນຕອນ ການເປີດນຳໃຊ້ໂທລະສັບຂອງທ່ານ."</string>
     <string name="ota_skip_activation_dialog_skip_label" msgid="3458532775091563208">"ຂ້າມ"</string>
@@ -581,8 +579,7 @@
     <string name="respond_via_sms_setting_title_2" msgid="6104662227299493906">"ແກ້ໄຂຂໍ້ຄວາມຕອບກັບດ່ວນ"</string>
     <string name="respond_via_sms_setting_summary" msgid="9150281183930613065"></string>
     <string name="respond_via_sms_edittext_dialog_title" msgid="20379890418289778">"ຕອບກັບດ່ວນ"</string>
-    <!-- no translation found for respond_via_sms_menu_reset_default_activity (4029277930090150223) -->
-    <skip />
+    <string name="respond_via_sms_menu_reset_default_activity" msgid="4029277930090150223">"ຄືນໄປຄ່າເລີ່ມຕົ້ນ"</string>
     <string name="respond_via_sms_confirmation_format" msgid="7229149977515784269">"ສົ່ງຂໍ້ຄວາມຫາ <xliff:g id="PHONE_NUMBER">%s</xliff:g> ແລ້ວ."</string>
     <string name="description_image_button_one" msgid="5502718871331943463">"ນຶ່ງ"</string>
     <string name="description_image_button_two" msgid="4903738528222924522">"ສອງ"</string>
