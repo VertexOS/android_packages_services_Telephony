@@ -1659,11 +1659,6 @@ public class CallFeaturesSetting extends PreferenceActivity
             actionBar.setDisplayShowHomeEnabled(true);
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setDisplayShowTitleEnabled(true);
-
-            final SpannableString s = new SpannableString(getString(R.string.call_settings));
-            s.setSpan(new TypefaceSpan(getString(R.string.call_settings_title_font_family)), 0,
-                    s.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-            actionBar.setTitle(s);
         }
     }
 
