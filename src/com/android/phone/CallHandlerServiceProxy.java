@@ -25,7 +25,9 @@ import android.content.pm.ResolveInfo;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
+import android.os.PowerManager;
 import android.os.RemoteException;
+import android.os.SystemClock;
 import android.os.SystemProperties;
 import android.util.Log;
 
@@ -90,6 +92,8 @@ public class CallHandlerServiceProxy extends Handler
 
     @Override
     public void onDisconnect(Call call) {
+        // Wake up in case the screen was off.
+        wakeUpScreen();
         synchronized (mServiceAndQueueLock) {
             if (mCallHandlerServiceGuarded == null) {
                 if (DBG) {
@@ -101,6 +105,12 @@ public class CallHandlerServiceProxy extends Handler
             }
         }
         processDisconnect(call);
+    }
+
+    private void wakeUpScreen() {
+        Log.d(TAG, "wakeUpScreen()");
+        final PowerManager pm = (PowerManager) mContext.getSystemService(Context.POWER_SERVICE);
+        pm.wakeUp(SystemClock.uptimeMillis());
     }
 
     private void processDisconnect(Call call) {
