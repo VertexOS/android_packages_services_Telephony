@@ -141,6 +141,7 @@ public class CallNotifier extends Handler
     private Ringer mRinger;
     private BluetoothHeadset mBluetoothHeadset;
     private CallLogger mCallLogger;
+    private CallModeler mCallModeler;
     private boolean mSilentRingerRequested;
 
     // ToneGenerator instance for playing SignalInfo tones
@@ -175,11 +176,11 @@ public class CallNotifier extends Handler
      */
     /* package */ static CallNotifier init(PhoneGlobals app, Phone phone, Ringer ringer,
             CallLogger callLogger, CallStateMonitor callStateMonitor,
-            BluetoothManager bluetoothManager) {
+            BluetoothManager bluetoothManager, CallModeler callModeler) {
         synchronized (CallNotifier.class) {
             if (sInstance == null) {
                 sInstance = new CallNotifier(app, phone, ringer, callLogger, callStateMonitor,
-                        bluetoothManager);
+                        bluetoothManager, callModeler);
             } else {
                 Log.wtf(LOG_TAG, "init() called multiple times!  sInstance = " + sInstance);
             }
@@ -189,12 +190,14 @@ public class CallNotifier extends Handler
 
     /** Private constructor; @see init() */
     private CallNotifier(PhoneGlobals app, Phone phone, Ringer ringer, CallLogger callLogger,
-            CallStateMonitor callStateMonitor, BluetoothManager bluetoothManager) {
+            CallStateMonitor callStateMonitor, BluetoothManager bluetoothManager,
+            CallModeler callModeler) {
         mApplication = app;
         mCM = app.mCM;
         mCallLogger = callLogger;
         mCallStateMonitor = callStateMonitor;
         mBluetoothManager = bluetoothManager;
+        mCallModeler = callModeler;
 
         mAudioManager = (AudioManager) mApplication.getSystemService(Context.AUDIO_SERVICE);
 
@@ -1680,6 +1683,8 @@ public class CallNotifier extends Handler
             //Create the SignalInfo tone player and pass the ToneID
             new SignalInfoTonePlayer(toneID).start();
         }
+
+        mCallModeler.onCdmaCallWaiting(infoCW);
     }
 
     /**
@@ -1733,6 +1738,10 @@ public class CallNotifier extends Handler
             //Reset the mCallWaitingTimeOut boolean
             mCallWaitingTimeOut = false;
         }
+
+        // Call modeler needs to know about this event regardless of the
+        // state conditionals in the previous code.
+        mCallModeler.onCdmaCallWaitingReject();
     }
 
     /**
