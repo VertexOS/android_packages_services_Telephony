@@ -137,7 +137,6 @@ public class CallNotifier extends Handler
 
     private PhoneGlobals mApplication;
     private CallManager mCM;
-    private CallStateMonitor mCallStateMonitor;
     private Ringer mRinger;
     private BluetoothHeadset mBluetoothHeadset;
     private CallLogger mCallLogger;
@@ -193,7 +192,6 @@ public class CallNotifier extends Handler
         mApplication = app;
         mCM = app.mCM;
         mCallLogger = callLogger;
-        mCallStateMonitor = callStateMonitor;
         mBluetoothManager = bluetoothManager;
 
         mAudioManager = (AudioManager) mApplication.getSystemService(Context.AUDIO_SERVICE);
