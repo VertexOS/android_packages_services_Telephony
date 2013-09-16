@@ -297,7 +297,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     }
 
     private boolean showCallScreenInternal(boolean specifyInitialDialpadState,
-                                           boolean initialDialpadState) {
+                                           boolean showDialpad) {
         if (!PhoneGlobals.sVoiceCapable) {
             // Never allow the InCallScreen to appear on data-only devices.
             return false;
@@ -308,7 +308,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         // If the phone isn't idle then go to the in-call screen
         long callingId = Binder.clearCallingIdentity();
 
-        mCallHandlerService.bringToForeground();
+        mCallHandlerService.bringToForeground(showDialpad);
 
         Binder.restoreCallingIdentity(callingId);
         return true;
