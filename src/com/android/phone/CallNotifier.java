@@ -277,7 +277,7 @@ public class CallNotifier extends Handler
                 break;
 
             case RINGER_CUSTOM_RINGTONE_QUERY_TIMEOUT:
-                onCustomRingtoneQueryTimeout((String) msg.obj);
+                onCustomRingtoneQueryTimeout((Connection) msg.obj);
                 break;
 
             case PHONE_MWI_CHANGED:
@@ -459,7 +459,7 @@ public class CallNotifier extends Handler
             // in this case, just fall through like before, and call
             // showIncomingCall().
             if (DBG) log("- showing incoming call (this is a WAITING call)...");
-            showIncomingCall();
+            notifyCallModelerOfNewRingingCall(c);
         }
 
         // Note we *don't* post a status bar notification here, since
@@ -572,20 +572,20 @@ public class CallNotifier extends Handler
 
             // query the callerinfo to try to get the ringer.
             PhoneUtils.CallerInfoToken cit = PhoneUtils.startGetCallerInfo(
-                    mApplication, c, this, this);
+                    mApplication, c, this, c);
 
             // if this has already been queried then just ring, otherwise
             // we wait for the alloted time before ringing.
             if (cit.isFinal) {
                 if (VDBG) log("- CallerInfo already up to date, using available data");
-                onQueryComplete(0, this, cit.currentInfo);
+                onQueryComplete(0, c, cit.currentInfo);
             } else {
                 if (VDBG) log("- Starting query, posting timeout message.");
 
                 // Phone number (via getAddress()) is stored in the message to remember which
                 // number is actually used for the look up.
                 sendMessageDelayed(
-                        Message.obtain(this, RINGER_CUSTOM_RINGTONE_QUERY_TIMEOUT, c.getAddress()),
+                        Message.obtain(this, RINGER_CUSTOM_RINGTONE_QUERY_TIMEOUT, c),
                         RINGTONE_QUERY_WAIT_TIME);
             }
             // The call to showIncomingCall() will happen after the
@@ -603,7 +603,7 @@ public class CallNotifier extends Handler
             // in this case, just fall through like before, and call
             // showIncomingCall().
             if (DBG) log("- showing incoming call (couldn't start query)...");
-            showIncomingCall();
+            notifyCallModelerOfNewRingingCall(c);
         }
     }
 
@@ -624,7 +624,7 @@ public class CallNotifier extends Handler
      * (We still tell the Ringer to start, but it's going to use the
      * default ringtone.)
      */
-    private void onCustomRingQueryComplete() {
+    private void onCustomRingQueryComplete(Connection c) {
         boolean isQueryExecutionTimeExpired = false;
         synchronized (mCallerInfoQueryStateGuard) {
             if (mCallerInfoQueryState == CALLERINFO_QUERYING) {
@@ -664,7 +664,14 @@ public class CallNotifier extends Handler
 
         // ...and display the incoming call to the user:
         if (DBG) log("- showing incoming call (custom ring query complete)...");
-        showIncomingCall();
+
+        // If the ringing call still does not have any connection anymore, do not send the
+        // notification to the CallModeler.
+        final Call ringingCall = mCM.getFirstActiveRingingCall();
+
+        if (ringingCall != null && ringingCall.getLatestConnection() == c) {
+            notifyCallModelerOfNewRingingCall(c);
+        }
     }
 
     private void onUnknownConnectionAppeared(AsyncResult r) {
@@ -674,7 +681,8 @@ public class CallNotifier extends Handler
             // basically do onPhoneStateChanged + display the incoming call UI
             onPhoneStateChanged(r);
             if (DBG) log("- showing incoming call (unknown connection appeared)...");
-            showIncomingCall();
+            final Connection c = (Connection) r.result;
+            notifyCallModelerOfNewRingingCall(c);
         }
     }
 
@@ -719,6 +727,10 @@ public class CallNotifier extends Handler
         // appear as a notification.)
         if (DBG) log("- updating notification from showIncomingCall()...");
         mApplication.notificationMgr.updateNotificationAndLaunchIncomingCallUi();
+    }
+
+    private void notifyCallModelerOfNewRingingCall(Connection c) {
+        mCallModeler.onNewRingingConnection(c);
     }
 
     /**
@@ -885,7 +897,8 @@ public class CallNotifier extends Handler
             mApplication.notificationMgr.notifyMissedCall(ci.name, ci.phoneNumber,
                     ci.phoneLabel, ci.cachedPhoto, ci.cachedPhotoIcon,
                     ((Long) cookie).longValue());
-        } else if (cookie instanceof CallNotifier) {
+        } else if (cookie instanceof Connection) {
+            final Connection c = (Connection) cookie;
             if (VDBG) log("CallerInfo query complete (for CallNotifier), "
                     + "updating state for incoming call..");
 
@@ -905,18 +918,21 @@ public class CallNotifier extends Handler
                 // send directly to voicemail.
                 if (ci.shouldSendToVoicemail) {
                     if (DBG) log("send to voicemail flag detected. hanging up.");
-                    PhoneUtils.hangupRingingCall(mCM.getFirstActiveRingingCall());
-                    return;
+                    final Call ringingCall = mCM.getFirstActiveRingingCall();
+                    if (ringingCall != null && ringingCall.getLatestConnection() == c) {
+                        PhoneUtils.hangupRingingCall(ringingCall);
+                        return;
+                    }
                 }
 
                 // set the ringtone uri to prepare for the ring.
                 if (ci.contactRingtoneUri != null) {
                     if (DBG) log("custom ringtone found, setting up ringer.");
-                    Ringer r = ((CallNotifier) cookie).mRinger;
+                    Ringer r = mRinger;
                     r.setCustomRingtoneUri(ci.contactRingtoneUri);
                 }
                 // ring, and other post-ring actions.
-                onCustomRingQueryComplete();
+                onCustomRingQueryComplete(c);
             }
         }
     }
@@ -932,7 +948,7 @@ public class CallNotifier extends Handler
      * @param number The phone number used for the async query. This method will take care of
      * formatting or normalization of the number.
      */
-    private void onCustomRingtoneQueryTimeout(String number) {
+    private void onCustomRingtoneQueryTimeout(Connection c) {
         // First of all, this case itself should be rare enough, though we cannot avoid it in
         // some situations (e.g. IPC is slow due to system overload, database is in sync, etc.)
         Log.w(LOG_TAG, "CallerInfo query took too long; look up local fallback cache.");
@@ -940,29 +956,34 @@ public class CallNotifier extends Handler
         // This method is intentionally verbose for now to detect possible bad side-effect for it.
         // TODO: Remove the verbose log when it looks stable and reliable enough.
 
-        final CallerInfoCache.CacheEntry entry =
-                mApplication.callerInfoCache.getCacheEntry(number);
-        if (entry != null) {
-            if (entry.sendToVoicemail) {
-                log("send to voicemail flag detected (in fallback cache). hanging up.");
-                PhoneUtils.hangupRingingCall(mCM.getFirstActiveRingingCall());
-                return;
-            }
 
-            if (entry.customRingtone != null) {
-                log("custom ringtone found (in fallback cache), setting up ringer: "
-                        + entry.customRingtone);
-                this.mRinger.setCustomRingtoneUri(Uri.parse(entry.customRingtone));
+        if (c != null) {
+            final CallerInfoCache.CacheEntry entry =
+                    mApplication.callerInfoCache.getCacheEntry(c.getAddress());
+            if (entry != null) {
+                if (entry.sendToVoicemail) {
+                    log("send to voicemail flag detected (in fallback cache). hanging up.");
+                    if (mCM.getFirstActiveRingingCall().getLatestConnection() == c) {
+                        PhoneUtils.hangupRingingCall(mCM.getFirstActiveRingingCall());
+                        return;
+                    }
+                }
+
+                if (entry.customRingtone != null) {
+                    log("custom ringtone found (in fallback cache), setting up ringer: "
+                            + entry.customRingtone);
+                    this.mRinger.setCustomRingtoneUri(Uri.parse(entry.customRingtone));
+                }
+            } else {
+                // In this case we call onCustomRingQueryComplete(), just
+                // like if the query had completed normally.  (But we're
+                // going to get the default ringtone, since we never got
+                // the chance to call Ringer.setCustomRingtoneUri()).
+                log("Failed to find fallback cache. Use default ringer tone.");
             }
-        } else {
-            // In this case we call onCustomRingQueryComplete(), just
-            // like if the query had completed normally.  (But we're
-            // going to get the default ringtone, since we never got
-            // the chance to call Ringer.setCustomRingtoneUri()).
-            log("Failed to find fallback cache. Use default ringer tone.");
         }
 
-        onCustomRingQueryComplete();
+        onCustomRingQueryComplete(c);
     }
 
     private void onDisconnect(AsyncResult r) {
