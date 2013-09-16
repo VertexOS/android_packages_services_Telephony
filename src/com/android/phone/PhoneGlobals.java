@@ -531,7 +531,7 @@ public class PhoneGlobals extends ContextWrapper implements WiredHeadsetListener
             // launching the incoming-call UI when an incoming call comes
             // in.)
             notifier = CallNotifier.init(this, phone, ringer, callLogger, callStateMonitor,
-                    bluetoothManager);
+                    bluetoothManager, callModeler);
 
             // register for ICC status
             IccCard sim = phone.getIccCard();

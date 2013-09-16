@@ -28,6 +28,8 @@ import com.android.internal.telephony.CallManager;
 import com.android.internal.telephony.Connection;
 import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneConstants;
+import com.android.internal.telephony.TelephonyCapabilities;
+import com.android.internal.telephony.cdma.CdmaCallWaitingNotification;
 import com.android.phone.CallGatewayManager.RawGatewayInfo;
 import com.android.services.telephony.common.Call;
 import com.android.services.telephony.common.Call.Capabilities;
@@ -89,6 +91,7 @@ public class CallModeler extends Handler {
     private final AtomicInteger mNextCallId = new AtomicInteger(CALL_ID_START_VALUE);
     private final ArrayList<Listener> mListeners = new ArrayList<Listener>();
     private RejectWithTextMessageManager mRejectWithTextMessageManager;
+    private Connection mCdmaIncomingConnection;
 
     public CallModeler(CallStateMonitor callStateMonitor, CallManager callManager,
             RejectWithTextMessageManager rejectWithTextMessageManager,
@@ -105,10 +108,10 @@ public class CallModeler extends Handler {
     public void handleMessage(Message msg) {
         switch(msg.what) {
             case CallStateMonitor.PHONE_NEW_RINGING_CONNECTION:
-                onNewRingingConnection((AsyncResult) msg.obj);
+                onNewRingingConnection((Connection) ((AsyncResult) msg.obj).result);
                 break;
             case CallStateMonitor.PHONE_DISCONNECT:
-                onDisconnect((AsyncResult) msg.obj);
+                onDisconnect((Connection) ((AsyncResult) msg.obj).result);
                 break;
             case CallStateMonitor.PHONE_STATE_CHANGED:
                 onPhoneStateChanged((AsyncResult) msg.obj);
@@ -154,6 +157,39 @@ public class CallModeler extends Handler {
     public boolean hasLiveCall() {
         return hasLiveCallInternal(mCallMap) ||
             hasLiveCallInternal(mConfCallMap);
+    }
+
+    public void onCdmaCallWaiting(CdmaCallWaitingNotification callWaitingInfo) {
+        // We dont get the traditional onIncomingCall notification for cdma call waiting,
+        // but the Connection does actually exist.  We need to find it in the set of ringing calls
+        // and pass it through our normal incoming logic.
+        final com.android.internal.telephony.Call teleCall =
+            mCallManager.getFirstActiveRingingCall();
+
+        if (teleCall.getState() == com.android.internal.telephony.Call.State.WAITING) {
+            Connection connection = teleCall.getLatestConnection();
+
+            if (connection != null) {
+                String number = connection.getAddress();
+                if (number != null && number.equals(callWaitingInfo.number)) {
+                    Call call = onNewRingingConnection(connection);
+                    mCdmaIncomingConnection = connection;
+                    return;
+                }
+            }
+        }
+
+        Log.e(TAG, "CDMA Call waiting notification without a matching connection.");
+    }
+
+    public void onCdmaCallWaitingReject() {
+        // Cdma call was rejected...
+        if (mCdmaIncomingConnection != null) {
+            onDisconnect(mCdmaIncomingConnection);
+            mCdmaIncomingConnection = null;
+        } else {
+            Log.e(TAG, "CDMA Call waiting rejection without an incoming call.");
+        }
     }
 
     private boolean hasLiveCallInternal(HashMap<Connection, Call> map) {
@@ -224,9 +260,8 @@ public class CallModeler extends Handler {
         }
     }
 
-    private void onNewRingingConnection(AsyncResult r) {
+    private Call onNewRingingConnection(Connection conn) {
         Log.i(TAG, "onNewRingingConnection");
-        final Connection conn = (Connection) r.result;
         final Call call = getCallFromMap(mCallMap, conn, true);
 
         updateCallFromConnection(call, conn, false);
@@ -236,11 +271,12 @@ public class CallModeler extends Handler {
               mListeners.get(i).onIncoming(call);
             }
         }
+
+        return call;
     }
 
-    private void onDisconnect(AsyncResult r) {
+    private void onDisconnect(Connection conn) {
         Log.i(TAG, "onDisconnect");
-        final Connection conn = (Connection) r.result;
         final Call call = getCallFromMap(mCallMap, conn, false);
 
         if (call != null) {
@@ -296,6 +332,8 @@ public class CallModeler extends Handler {
         for (com.android.internal.telephony.Call telephonyCall : telephonyCalls) {
 
             for (Connection connection : telephonyCall.getConnections()) {
+                if (DBG) Log.d(TAG, "connection: " + connection);
+
                 // We only send updates for live calls which are not incoming (ringing).
                 // Disconnected and incoming calls are handled by onDisconnect and
                 // onNewRingingConnection.
@@ -308,6 +346,7 @@ public class CallModeler extends Handler {
                 final Call call = getCallFromMap(mCallMap, connection, shouldUpdate /* create */);
 
                 if (call == null || !shouldUpdate) {
+                    if (DBG) Log.d(TAG, "update skipped");
                     continue;
                 }
 
