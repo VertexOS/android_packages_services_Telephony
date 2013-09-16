@@ -494,10 +494,6 @@ public class InCallScreen extends Activity
 
         updateExpandedViewState();
 
-        // ...and update the in-call notification too, since the status bar
-        // icon needs to be hidden while we're the foreground activity:
-        mApp.notificationMgr.updateInCallNotification();
-
         // Listen for broadcast intents that might affect the onscreen UI.
         registerReceiver(mReceiver, new IntentFilter(Intent.ACTION_HEADSET_PLUG));
 
@@ -760,8 +756,6 @@ public class InCallScreen extends Activity
 
         updateExpandedViewState();
 
-        // ...and the in-call notification too:
-        mApp.notificationMgr.updateInCallNotification();
         // ...and *always* reset the system bar back to its normal state
         // when leaving the in-call UI.
         // (While we're the foreground activity, we disable navigation in

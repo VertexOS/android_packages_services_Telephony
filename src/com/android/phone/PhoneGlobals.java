@@ -105,7 +105,6 @@ public class PhoneGlobals extends ContextWrapper implements WiredHeadsetListener
     // Message codes; see mHandler below.
     private static final int EVENT_SIM_NETWORK_LOCKED = 3;
     private static final int EVENT_SIM_STATE_CHANGED = 8;
-    private static final int EVENT_UPDATE_INCALL_NOTIFICATION = 9;
     private static final int EVENT_DATA_ROAMING_DISCONNECTED = 10;
     private static final int EVENT_DATA_ROAMING_OK = 11;
     private static final int EVENT_UNSOL_CDMA_INFO_RECORD = 12;
@@ -299,16 +298,6 @@ public class PhoneGlobals extends ContextWrapper implements WiredHeadsetListener
                                 new IccNetworkDepersonalizationPanel(PhoneGlobals.getInstance());
                         ndpPanel.show();
                     }
-                    break;
-
-                case EVENT_UPDATE_INCALL_NOTIFICATION:
-                    // Tell the NotificationMgr to update the "ongoing
-                    // call" icon in the status bar, if necessary.
-                    // Currently, this is triggered by a bluetooth headset
-                    // state change (since the status bar icon needs to
-                    // turn blue when bluetooth is active.)
-                    if (DBG) Log.d (LOG_TAG, "- updating in-call notification from handler...");
-                    notificationMgr.updateInCallNotification();
                     break;
 
                 case EVENT_DATA_ROAMING_DISCONNECTED:
