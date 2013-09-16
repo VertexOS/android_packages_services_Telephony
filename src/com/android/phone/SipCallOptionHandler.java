@@ -36,6 +36,8 @@ import android.net.sip.SipException;
 import android.net.sip.SipManager;
 import android.net.sip.SipProfile;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.os.SystemProperties;
 import android.provider.Settings;
 import android.telephony.PhoneNumberUtils;
@@ -84,6 +86,21 @@ public class SipCallOptionHandler extends Activity implements
     private TextView mUnsetPriamryHint;
     private boolean mUseSipPhone = false;
     private boolean mMakePrimary = false;
+
+    private static final int EVENT_DELAYED_FINISH = 1;
+
+    private static final int DELAYED_FINISH_TIME = 2000; // msec
+
+    private final Handler mHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            if (msg.what == EVENT_DELAYED_FINISH) {
+                finish();
+            } else {
+                Log.wtf(TAG, "Unknown message id: " + msg.what);
+            }
+        }
+    };
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -206,6 +223,14 @@ public class SipCallOptionHandler extends Activity implements
             }
         }
         setResultAndFinish();
+    }
+
+    /**
+     * Starts a delayed finish() in order to give the UI
+     * some time to start up.
+     */
+    private void startDelayedFinish() {
+        mHandler.sendEmptyMessageDelayed(EVENT_DELAYED_FINISH, DELAYED_FINISH_TIME);
     }
 
     @Override
@@ -394,7 +419,7 @@ public class SipCallOptionHandler extends Activity implements
                     // Woo hoo -- it's finally OK to initiate the outgoing call!
                     PhoneGlobals.getInstance().callController.placeCall(mIntent);
                 }
-                finish();
+                startDelayedFinish();
             }
         });
     }
