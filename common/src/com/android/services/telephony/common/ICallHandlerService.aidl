@@ -67,7 +67,7 @@ oneway interface ICallHandlerService {
     /**
      * Called when the system wants to bring the in-call UI into the foreground.
      */
-    void bringToForeground(boolean showDialpad);
+    void bringToForeground();
 
     void onPostDialWait(int callId, String remainingChars);
 }
