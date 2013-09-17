@@ -203,7 +203,6 @@ public class OutgoingCallBroadcaster extends Activity
                     // to take down any OTASP-related UI first.
                     if (dialogState) app.dismissOtaDialogs();
                     app.clearOtaState();
-                    app.clearInCallScreenMode();
                 } else if (isOtaCallActive) {
                     // The actual OTASP call is active.  Don't allow new
                     // outgoing calls at all from this state.
@@ -598,17 +597,6 @@ public class OutgoingCallBroadcaster extends Activity
             // reaches the OutgoingCallReceiver, we'll know not to
             // initiate the call again because of the presence of the
             // EXTRA_ALREADY_CALLED extra.)
-        }
-
-        // Remember the call origin so that users will be able to see an appropriate screen
-        // after the phone call. This should affect both phone calls and SIP calls.
-        final String callOrigin = intent.getStringExtra(PhoneGlobals.EXTRA_CALL_ORIGIN);
-        if (callOrigin != null) {
-            if (DBG) Log.v(TAG, " - Call origin is passed (" + callOrigin + ")");
-            PhoneGlobals.getInstance().setLatestActiveCallOrigin(callOrigin);
-        } else {
-            if (DBG) Log.v(TAG, " - Call origin is not passed. Reset current one.");
-            PhoneGlobals.getInstance().resetLatestActiveCallOrigin();
         }
 
         // For now, SIP calls will be processed directly without a
