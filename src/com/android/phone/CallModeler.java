@@ -592,7 +592,7 @@ public class CallModeler extends Handler {
         boolean canMute = false;
 
         final boolean supportHold = PhoneUtils.okToSupportHold(mCallManager);
-        final boolean canHold = PhoneUtils.okToHoldCall(mCallManager);
+        final boolean canHold = (supportHold ? PhoneUtils.okToHoldCall(mCallManager) : false);
         final boolean genericConf = isForConference &&
                 (connection.getCall().getPhone().getPhoneType() == PhoneConstants.PHONE_TYPE_CDMA);
 
