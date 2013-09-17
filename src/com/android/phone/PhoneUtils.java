@@ -548,7 +548,8 @@ public class PhoneUtils {
      * </pre>
      * @param app The phone instance.
      */
-    private static void updateCdmaCallStateOnNewOutgoingCall(PhoneGlobals app) {
+    private static void updateCdmaCallStateOnNewOutgoingCall(PhoneGlobals app,
+            Connection connection) {
         if (app.cdmaPhoneCallState.getCurrentCallState() ==
             CdmaPhoneCallState.PhoneCallState.IDLE) {
             // This is the first outgoing call. Set the Phone Call State to ACTIVE
@@ -558,6 +559,8 @@ public class PhoneUtils {
             // This is the second outgoing call. Set the Phone Call State to 3WAY
             app.cdmaPhoneCallState.setCurrentCallState(
                 CdmaPhoneCallState.PhoneCallState.THRWAY_ACTIVE);
+
+            app.getCallModeler().setCdmaOutgoing3WayCall(connection);
         }
     }
 
@@ -671,7 +674,7 @@ public class PhoneUtils {
             }
         } else {
             if (phoneType == PhoneConstants.PHONE_TYPE_CDMA) {
-                updateCdmaCallStateOnNewOutgoingCall(app);
+                updateCdmaCallStateOnNewOutgoingCall(app, connection);
             }
 
             // Clean up the number to be displayed.
