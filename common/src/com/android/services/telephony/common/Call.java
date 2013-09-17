@@ -71,16 +71,17 @@ public final class Call implements Parcelable {
      * TODO: Should some of these be capabilities of the Phone instead of the call?
      */
     public static class Capabilities {
-        public static final int HOLD             = 0x00000001; /* has ability to hold the call */
-        public static final int SUPPORT_HOLD = 0x00000002; /* can show the hold button */
-        public static final int MERGE_CALLS      = 0x00000004; /* has ability to merge calls */
-        public static final int SWAP_CALLS       = 0x00000008; /* swap with a background call */
-        public static final int ADD_CALL         = 0x00000010; /* add another call to this one */
-        public static final int RESPOND_VIA_TEXT = 0x00000020; /* has respond via text option */
-        public static final int MUTE             = 0x00000040; /* can mute the call */
+        public static final int HOLD               = 0x00000001; /* has ability to hold the call */
+        public static final int SUPPORT_HOLD       = 0x00000002; /* can show the hold button */
+        public static final int MERGE_CALLS        = 0x00000004; /* has ability to merge calls */
+        public static final int SWAP_CALLS         = 0x00000008; /* swap with a background call */
+        public static final int ADD_CALL           = 0x00000010; /* add another call to this one */
+        public static final int RESPOND_VIA_TEXT   = 0x00000020; /* has respond via text option */
+        public static final int MUTE               = 0x00000040; /* can mute the call */
+        public static final int GENERIC_CONFERENCE = 0x00000080; /* Generic conference mode */
 
         public static final int ALL = HOLD | SUPPORT_HOLD | MERGE_CALLS | SWAP_CALLS | ADD_CALL
-                | RESPOND_VIA_TEXT | MUTE;
+                | RESPOND_VIA_TEXT | MUTE | GENERIC_CONFERENCE;
     }
 
     /**

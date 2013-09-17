@@ -35,13 +35,14 @@ import com.android.services.telephony.common.Call;
 import com.android.services.telephony.common.Call.Capabilities;
 import com.android.services.telephony.common.Call.State;
 
-import com.google.android.collect.Lists;
 import com.google.android.collect.Maps;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSortedSet;
+import com.google.common.collect.Lists;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
@@ -92,6 +93,7 @@ public class CallModeler extends Handler {
     private final ArrayList<Listener> mListeners = new ArrayList<Listener>();
     private RejectWithTextMessageManager mRejectWithTextMessageManager;
     private Connection mCdmaIncomingConnection;
+    private Connection mCdmaOutgoingConnection;
 
     public CallModeler(CallStateMonitor callStateMonitor, CallManager callManager,
             RejectWithTextMessageManager rejectWithTextMessageManager,
@@ -133,9 +135,11 @@ public class CallModeler extends Handler {
     }
 
     public List<Call> getFullList() {
-        final List<Call> retval = Lists.newArrayList();
-        doUpdate(true, retval);
-        return retval;
+        final List<Call> calls =
+                Lists.newArrayListWithCapacity(mCallMap.size() + mConfCallMap.size());
+        calls.addAll(mCallMap.values());
+        calls.addAll(mConfCallMap.values());
+        return calls;
     }
 
     public CallResult getCallWithId(int callId) {
@@ -189,6 +193,24 @@ public class CallModeler extends Handler {
             mCdmaIncomingConnection = null;
         } else {
             Log.e(TAG, "CDMA Call waiting rejection without an incoming call.");
+        }
+    }
+
+    /**
+     * CDMA Calls have no sense of "dialing" state. For outgoing calls 3way calls we want to
+     * mimick this state so that the the UI can notify the user that there is a "dialing"
+     * call.
+     */
+    public void setCdmaOutgoing3WayCall(Connection connection) {
+        boolean wasSet = mCdmaOutgoingConnection != null;
+
+        mCdmaOutgoingConnection = connection;
+
+        // If we reset the connection, that mean we can now tell the user that the call is actually
+        // part of the conference call and move it out of the dialing state. To do this, issue a
+        // new update completely.
+        if (wasSet && mCdmaOutgoingConnection == null) {
+            onPhoneStateChanged(null);
         }
     }
 
@@ -547,7 +569,7 @@ public class CallModeler extends Handler {
         /**
          * !!! Uses values from connection and call collected above so this part must be last !!!
          */
-        final int newCapabilities = getCapabilitiesFor(connection, call);
+        final int newCapabilities = getCapabilitiesFor(connection, call, isForConference);
         if (call.getCapabilities() != newCapabilities) {
             call.setCapabilities(newCapabilities);
             changed = true;
@@ -559,7 +581,7 @@ public class CallModeler extends Handler {
     /**
      * Returns a mask of capabilities for the connection such as merge, hold, etc.
      */
-    private int getCapabilitiesFor(Connection connection, Call call) {
+    private int getCapabilitiesFor(Connection connection, Call call, boolean isForConference) {
         final boolean callIsActive = (call.getState() == Call.State.ACTIVE);
         final Phone phone = connection.getCall().getPhone();
 
@@ -571,6 +593,8 @@ public class CallModeler extends Handler {
 
         final boolean supportHold = PhoneUtils.okToSupportHold(mCallManager);
         final boolean canHold = PhoneUtils.okToHoldCall(mCallManager);
+        final boolean genericConf = isForConference &&
+                (connection.getCall().getPhone().getPhoneType() == PhoneConstants.PHONE_TYPE_CDMA);
 
         // only applies to active calls
         if (callIsActive) {
@@ -627,6 +651,9 @@ public class CallModeler extends Handler {
         if (canMute) {
             retval |= Capabilities.MUTE;
         }
+        if (genericConf) {
+            retval |= Capabilities.GENERIC_CONFERENCE;
+        }
 
         return retval;
     }
@@ -640,7 +667,10 @@ public class CallModeler extends Handler {
         if (connection.getCall() != null && connection.getCall().isMultiparty()) {
             int count = 0;
             for (Connection currConn : connection.getCall().getConnections()) {
-                if (currConn.isAlive()) {
+
+                // Only count connections which are alive and never cound the special
+                // "dialing" 3way call for CDMA calls.
+                if (currConn.isAlive() && currConn != mCdmaOutgoingConnection) {
                     count++;
                     if (count >= 2) {
                         return true;
@@ -652,6 +682,11 @@ public class CallModeler extends Handler {
     }
 
     private int translateStateFromTelephony(Connection connection, boolean isForConference) {
+
+        // For the "fake" outgoing CDMA call, we need to always treat it as an outgoing call.
+        if (mCdmaOutgoingConnection == connection) {
+            return State.DIALING;
+        }
 
         int retval = State.IDLE;
         switch (connection.getState()) {
@@ -680,7 +715,6 @@ public class CallModeler extends Handler {
         // If we are dealing with a potential child call (not the parent conference call),
         // the check to see if we have to set the state to CONFERENCED.
         if (!isForConference) {
-
             // if the connection is part of a multiparty call, and it is live,
             // annotate it with CONFERENCED state instead.
             if (isPartOfLiveConferenceCall(connection) && connection.isAlive()) {

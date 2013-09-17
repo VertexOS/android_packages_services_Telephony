@@ -144,8 +144,7 @@ public class CallController extends Handler {
                     // Reset the mThreeWayCallOrigStateDialing state
                     mApp.cdmaPhoneCallState.setThreeWayCallOrigState(false);
 
-                    // Refresh the in-call UI (based on the current ongoing call)
-                    mApp.updateInCallScreen();
+                    mApp.getCallModeler().setCdmaOutgoing3WayCall(null);
                 }
                 break;
 
