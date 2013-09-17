@@ -18,9 +18,13 @@ package com.android.phone;
 
 import android.app.Activity;
 import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.os.Bundle;
 import android.os.SystemProperties;
+import android.provider.Settings;
 import android.util.Log;
 
 import com.android.internal.telephony.Phone;
@@ -146,20 +150,58 @@ public class InCallScreenShowActivation extends Activity {
         finish();
     }
 
+    /**
+     * On devices that provide a phone initialization wizard (such as Google Setup Wizard),
+     * the wizard displays it's own activation UI. The Hfa activation started by this class
+     * will show a UI or not depending on the status of the setup wizard. If the setup wizard
+     * is running, do not show a UI, otherwise show our own UI since setup wizard will not.
+     *
+     * The method checks two properties:
+     * 1. Does the device require a setup wizard (ro.setupwizard.mode == (REQUIRED|OPTIONAL))
+     * 2. Is device_provisioned set to non-zero--a property that setup wizard sets at completion.
+     * @return true if wizard is running, false otherwise.
+     */
+    private boolean isWizardRunning(Context context) {
+        Intent intent = new Intent("android.intent.action.DEVICE_INITIALIZATION_WIZARD");
+        ResolveInfo resolveInfo = context.getPackageManager().resolveActivity(intent,
+                PackageManager.MATCH_DEFAULT_ONLY);
+        boolean provisioned = Settings.Global.getInt(context.getContentResolver(),
+                Settings.Global.DEVICE_PROVISIONED, 0) != 0;
+        String mode = SystemProperties.get("ro.setupwizard.mode", "REQUIRED");
+        boolean runningSetupWizard = "REQUIRED".equals(mode) || "OPTIONAL".equals(mode);
+        if (DBG) {
+            Log.v(LOG_TAG, "resolvInfo = " + resolveInfo + ", provisioned = " + provisioned
+                    + ", runningSetupWizard = " + runningSetupWizard);
+        }
+        return resolveInfo != null && !provisioned && runningSetupWizard;
+    }
 
     /**
      * Starts the HFA provisioning process by bringing up the HFA Activity.
      */
     private void startHfa() {
-        final Intent intent = new Intent(this, HfaActivity.class);
+        final Intent intent = new Intent();
 
         final PendingIntent otaResponseIntent = getIntent().getParcelableExtra(
                 OtaUtils.EXTRA_OTASP_RESULT_CODE_PENDING_INTENT);
 
-        intent.putExtra(OtaUtils.EXTRA_OTASP_RESULT_CODE_PENDING_INTENT, otaResponseIntent);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+        final boolean showUi = !isWizardRunning(this);
+
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+        if (otaResponseIntent != null) {
+            intent.putExtra(OtaUtils.EXTRA_OTASP_RESULT_CODE_PENDING_INTENT, otaResponseIntent);
+        }
 
         Log.v(LOG_TAG, "Starting hfa activation activity");
-        startActivity(intent);
+        if (showUi) {
+            intent.setClassName(this, HfaActivity.class.getName());
+            startActivity(intent);
+        } else {
+            intent.setClassName(this, HfaService.class.getName());
+            startService(intent);
+        }
+
+        setResult(RESULT_OK);
     }
 }
