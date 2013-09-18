@@ -764,14 +764,6 @@ public class CallCard extends LinearLayout
             case INCOMING:
             case WAITING:
                 callStateLabel = context.getString(R.string.card_title_incoming_call);
-
-                // Also, display a special icon (alongside the "Incoming call"
-                // label) if there's an incoming call and audio will be routed
-                // to bluetooth when you answer it.
-                // TODO(klp): Add bluetooth label to new UI screen for incoming calls.
-                //if (mApplication.showBluetoothIndication()) {
-                //    bluetoothIconId = R.drawable.ic_incoming_call_bluetooth;
-                //}
                 break;
 
             case DISCONNECTING:

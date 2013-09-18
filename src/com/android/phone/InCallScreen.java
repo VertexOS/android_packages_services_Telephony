@@ -2685,12 +2685,6 @@ public class InCallScreen extends Activity
         boolean newSpeakerState = !PhoneUtils.isSpeakerOn(this);
         log("toggleSpeaker(): newSpeakerState = " + newSpeakerState);
 
-        // TODO(klp): Add bluetooth query back in for AudioRouter.
-        /*
-         if (newSpeakerState && isBluetoothAvailable() && isBluetoothAudioConnected()) {
-            disconnectBluetoothAudio();
-        }
-        */
         PhoneUtils.turnOnSpeaker(this, newSpeakerState, true);
 
         // And update the InCallTouchUi widget (since the "audio mode"
@@ -2706,16 +2700,6 @@ public class InCallScreen extends Activity
         boolean newMuteState = !PhoneUtils.getMute();
         log("onMuteClick(): newMuteState = " + newMuteState);
         PhoneUtils.setMute(newMuteState);
-    }
-
-    public void toggleBluetooth() {
-        // TODO(klp) this still here to avoid compile errors until remove
-        // the UI from services/Telephony completely.
-    }
-
-    public void switchInCallAudio(InCallAudioMode newMode) {
-        // TODO(klp) this still here to avoid compile errors until remove
-        // the UI from services/Telephony completely.
     }
 
     /**

@@ -71,7 +71,6 @@ public class BluetoothManager implements CallModeler.Listener {
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 
         init(mContext);
-        // TODO(klp): Listen for changes to the call list/state.
     }
 
     /* package */ boolean isBluetoothHeadsetAudioOn() {

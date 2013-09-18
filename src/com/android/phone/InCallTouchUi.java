@@ -868,7 +868,6 @@ public class InCallTouchUi extends FrameLayout
         MenuItem earpieceItem = menu.findItem(R.id.audio_mode_earpiece);
         MenuItem wiredHeadsetItem = menu.findItem(R.id.audio_mode_wired_headset);
 
-        // TODO(klp): This is a compile stop-gap.  This will all be deleted
         final boolean usingHeadset = false; //mApp.isHeadsetPlugged();
 
         earpieceItem.setVisible(!usingHeadset);
@@ -938,16 +937,16 @@ public class InCallTouchUi extends FrameLayout
 
         switch (item.getItemId()) {
             case R.id.audio_mode_speaker:
-                mInCallScreen.switchInCallAudio(InCallScreen.InCallAudioMode.SPEAKER);
+//                mInCallScreen.switchInCallAudio(InCallScreen.InCallAudioMode.SPEAKER);
                 break;
             case R.id.audio_mode_earpiece:
             case R.id.audio_mode_wired_headset:
                 // InCallAudioMode.EARPIECE means either the handset earpiece,
                 // or the wired headset (if connected.)
-                mInCallScreen.switchInCallAudio(InCallScreen.InCallAudioMode.EARPIECE);
+//                mInCallScreen.switchInCallAudio(InCallScreen.InCallAudioMode.EARPIECE);
                 break;
             case R.id.audio_mode_bluetooth:
-                mInCallScreen.switchInCallAudio(InCallScreen.InCallAudioMode.BLUETOOTH);
+//                mInCallScreen.switchInCallAudio(InCallScreen.InCallAudioMode.BLUETOOTH);
                 break;
             default:
                 Log.wtf(LOG_TAG,
