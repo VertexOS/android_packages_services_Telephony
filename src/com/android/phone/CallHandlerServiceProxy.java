@@ -16,12 +16,14 @@
 
 package com.android.phone;
 
+import android.Manifest;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.content.pm.ServiceInfo;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
@@ -337,7 +339,21 @@ public class CallHandlerServiceProxy extends Handler
                 final PackageManager packageManger = mContext.getPackageManager();
                 final List<ResolveInfo> services = packageManger.queryIntentServices(serviceIntent,
                         0);
-                if (services.size() == 0) {
+
+                ServiceInfo serviceInfo = null;
+
+                for (int i = 0; i < services.size(); i++) {
+                    final ResolveInfo info = services.get(i);
+                    if (info.serviceInfo != null) {
+                        if (Manifest.permission.BIND_CALL_SERVICE.equals(
+                                info.serviceInfo.permission)) {
+                            serviceInfo = info.serviceInfo;
+                            break;
+                        }
+                    }
+                }
+
+                if (serviceInfo == null) {
                     // Service not found, retry again after some delay
                     // This can happen if the service is being installed by the package manager.
                     // Between deletes and installs, bindService could get a silent service not
@@ -356,6 +372,11 @@ public class CallHandlerServiceProxy extends Handler
                     return;
                 }
 
+                // Bind to the first service that has a permission
+                // TODO: Add UI to allow us to select between services
+
+                serviceIntent.setComponent(new ComponentName(serviceInfo.packageName,
+                        serviceInfo.name));
                 if (DBG) {
                     Log.d(TAG, "binding to service " + serviceIntent);
                 }
