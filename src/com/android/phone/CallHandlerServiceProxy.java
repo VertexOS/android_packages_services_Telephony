@@ -32,6 +32,7 @@ import android.os.SystemProperties;
 import android.util.Log;
 
 import com.android.phone.AudioRouter.AudioModeListener;
+import com.android.phone.NotificationMgr.StatusBarHelper;
 import com.android.services.telephony.common.AudioMode;
 import com.android.services.telephony.common.Call;
 import com.android.services.telephony.common.ICallHandlerService;
@@ -383,6 +384,12 @@ public class CallHandlerServiceProxy extends Handler
 
     private void unbind() {
         synchronized (mServiceAndQueueLock) {
+            // On unbind, reenable the notification shade and navigation bar just in case the
+            // in-call UI crashed on an incoming call.
+            final StatusBarHelper statusBarHelper = PhoneGlobals.getInstance().notificationMgr.
+                    statusBarHelper;
+            statusBarHelper.enableSystemBarNavigation(true);
+            statusBarHelper.enableExpandedView(true);
             if (mCallHandlerServiceGuarded != null) {
                 Log.d(TAG, "Unbinding service.");
                 mCallHandlerServiceGuarded = null;
