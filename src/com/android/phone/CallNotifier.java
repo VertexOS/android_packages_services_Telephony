@@ -658,18 +658,17 @@ public class CallNotifier extends Handler
             return;
         }
 
-        // Ring, either with the queried ringtone or default one.
-        if (VDBG) log("RINGING... (onCustomRingQueryComplete)");
-        mRinger.ring();
-
-        // ...and display the incoming call to the user:
-        if (DBG) log("- showing incoming call (custom ring query complete)...");
-
         // If the ringing call still does not have any connection anymore, do not send the
         // notification to the CallModeler.
         final Call ringingCall = mCM.getFirstActiveRingingCall();
 
         if (ringingCall != null && ringingCall.getLatestConnection() == c) {
+            // Ring, either with the queried ringtone or default one.
+            if (VDBG) log("RINGING... (onCustomRingQueryComplete)");
+            mRinger.ring();
+
+            // ...and display the incoming call to the user:
+            if (DBG) log("- showing incoming call (custom ring query complete)...");
             notifyCallModelerOfNewRingingCall(c);
         }
     }
