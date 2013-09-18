@@ -204,7 +204,6 @@ class CallCommandService extends ICallCommandService.Stub {
     @Override
     public void speaker(boolean onOff) {
         try {
-            // TODO(klp): add bluetooth logic from InCallScreen.toggleSpeaker()
             PhoneUtils.turnOnSpeaker(mContext, onOff, true);
         } catch (Exception e) {
             Log.e(TAG, "Error during speaker().", e);
