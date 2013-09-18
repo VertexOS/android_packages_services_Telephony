@@ -110,7 +110,9 @@ public class CallModeler extends Handler {
     public void handleMessage(Message msg) {
         switch(msg.what) {
             case CallStateMonitor.PHONE_NEW_RINGING_CONNECTION:
-                onNewRingingConnection((Connection) ((AsyncResult) msg.obj).result);
+                // We let the CallNotifier handle the new ringing connection first. When the custom
+                // ringtone and send_to_voicemail settings are retrieved, CallNotifier will directly
+                // call CallModeler's onNewRingingConnection.
                 break;
             case CallStateMonitor.PHONE_DISCONNECT:
                 onDisconnect((Connection) ((AsyncResult) msg.obj).result);
@@ -282,15 +284,15 @@ public class CallModeler extends Handler {
         }
     }
 
-    private Call onNewRingingConnection(Connection conn) {
+    /* package */ Call onNewRingingConnection(Connection conn) {
         Log.i(TAG, "onNewRingingConnection");
         final Call call = getCallFromMap(mCallMap, conn, true);
 
-        updateCallFromConnection(call, conn, false);
+        if (call != null) {
+            updateCallFromConnection(call, conn, false);
 
-        for (int i = 0; i < mListeners.size(); ++i) {
-            if (call != null) {
-              mListeners.get(i).onIncoming(call);
+            for (int i = 0; i < mListeners.size(); ++i) {
+                mListeners.get(i).onIncoming(call);
             }
         }
 
