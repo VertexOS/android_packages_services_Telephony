@@ -57,7 +57,7 @@ class CallCommandService extends ICallCommandService.Stub {
     }
 
     /**
-     * TODO(klp): Add a confirmation callback parameter.
+     * TODO: Add a confirmation callback parameter.
      */
     @Override
     public void answerCall(int callId) {
@@ -72,7 +72,7 @@ class CallCommandService extends ICallCommandService.Stub {
     }
 
     /**
-     * TODO(klp): Add a confirmation callback parameter.
+     * TODO: Add a confirmation callback parameter.
      */
     @Override
     public void rejectCall(int callId, boolean rejectWithMessage, String message) {
