@@ -70,7 +70,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * the telephony layer. We use Connection references as identifiers for a call;
  * new reference = new call.
  *
- * TODO(klp): Create a new Call class to replace the simple call Id ints
+ * TODO: Create a new Call class to replace the simple call Id ints
  * being used currently.
  *
  * The new Call models are parcellable for transfer via the CallHandlerService

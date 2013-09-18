@@ -759,7 +759,7 @@ public class CallNotifier extends Handler
         // There's no need to force a UI update since we update the
         // in-call notification ourselves (below), and the InCallScreen
         // listens for phone state changes itself.
-        // TODO(klp): Have BluetoothManager listen to CallModeler instead of relying on
+        // TODO: Have BluetoothManager listen to CallModeler instead of relying on
         // CallNotifier
         mBluetoothManager.updateBluetoothIndication();
 
