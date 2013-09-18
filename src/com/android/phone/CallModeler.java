@@ -318,9 +318,6 @@ public class CallModeler extends Handler {
 
             mCallMap.remove(conn);
         }
-
-        // TODO(klp): Do a final check to see if there are any active calls.
-        // If there are not, totally cancel all calls
     }
 
     /**

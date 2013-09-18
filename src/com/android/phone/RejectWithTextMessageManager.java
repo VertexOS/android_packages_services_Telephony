@@ -250,7 +250,6 @@ public class RejectWithTextMessageManager {
             return true;
         } else {
             Log.v(TAG, "Choosing from one of the apps");
-            // TODO(klp): Add an app picker.
             final Intent intent = new Intent(Intent.ACTION_VIEW, null);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK |
                     Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS |
