@@ -333,9 +333,6 @@ public class CallNotifier extends Handler
                     int toneToPlay = InCallTonePlayer.TONE_VOICE_PRIVACY;
                     new InCallTonePlayer(toneToPlay).start();
                     mVoicePrivacyState = true;
-                    // Update the VP icon:
-                    if (DBG) log("- updating notification for VP state...");
-                    mApplication.notificationMgr.updateInCallNotification();
                 }
                 break;
 
@@ -345,9 +342,6 @@ public class CallNotifier extends Handler
                     int toneToPlay = InCallTonePlayer.TONE_VOICE_PRIVACY;
                     new InCallTonePlayer(toneToPlay).start();
                     mVoicePrivacyState = false;
-                    // Update the VP icon:
-                    if (DBG) log("- updating notification for VP state...");
-                    mApplication.notificationMgr.updateInCallNotification();
                 }
                 break;
 
@@ -357,10 +351,6 @@ public class CallNotifier extends Handler
 
             case CallStateMonitor.PHONE_RESEND_MUTE:
                 onResendMute();
-                break;
-
-            case UPDATE_IN_CALL_NOTIFICATION:
-                mApplication.notificationMgr.updateInCallNotification();
                 break;
 
             default:
@@ -456,6 +446,7 @@ public class CallNotifier extends Handler
                 mCallWaitingTonePlayer = new InCallTonePlayer(InCallTonePlayer.TONE_CALL_WAITING);
                 mCallWaitingTonePlayer.start();
             }
+
             // in this case, just fall through like before, and call
             // showIncomingCall().
             if (DBG) log("- showing incoming call (this is a WAITING call)...");
@@ -679,53 +670,11 @@ public class CallNotifier extends Handler
         if (state == PhoneConstants.State.OFFHOOK) {
             // basically do onPhoneStateChanged + display the incoming call UI
             onPhoneStateChanged(r);
+
             if (DBG) log("- showing incoming call (unknown connection appeared)...");
             final Connection c = (Connection) r.result;
             notifyCallModelerOfNewRingingCall(c);
         }
-    }
-
-    /**
-     * Informs the user about a new incoming call.
-     *
-     * In most cases this means "bring up the full-screen incoming call
-     * UI".  However, if an immersive activity is running, the system
-     * NotificationManager will instead pop up a small notification window
-     * on top of the activity.
-     *
-     * Watch out: be sure to call this method only once per incoming call,
-     * or otherwise we may end up launching the InCallScreen multiple
-     * times (which can lead to slow responsiveness and/or visible
-     * glitches.)
-     *
-     * Note this method handles only the onscreen UI for incoming calls;
-     * the ringer and/or vibrator are started separately (see the various
-     * calls to Ringer.ring() in this class.)
-     *
-     * @see NotificationMgr#updateNotificationAndLaunchIncomingCallUi()
-     */
-    private void showIncomingCall() {
-        log("showIncomingCall()...  phone state = " + mCM.getState());
-
-        // Before bringing up the "incoming call" UI, force any system
-        // dialogs (like "recent tasks" or the power dialog) to close first.
-        try {
-            ActivityManagerNative.getDefault().closeSystemDialogs("call");
-        } catch (RemoteException e) {
-        }
-
-        // Go directly to the in-call screen.
-        // (No need to do anything special if we're already on the in-call
-        // screen; it'll notice the phone state change and update itself.)
-        mApplication.requestWakeState(PhoneGlobals.WakeState.FULL);
-
-        // Post the "incoming call" notification *and* include the
-        // fullScreenIntent that'll launch the incoming-call UI.
-        // (This will usually take us straight to the incoming call
-        // screen, but if an immersive activity is running it'll just
-        // appear as a notification.)
-        if (DBG) log("- updating notification from showIncomingCall()...");
-        mApplication.notificationMgr.updateNotificationAndLaunchIncomingCallUi();
     }
 
     private void notifyCallModelerOfNewRingingCall(Connection c) {
@@ -803,26 +752,6 @@ public class CallNotifier extends Handler
             // remove it!
             if (DBG) log("stopRing()... (OFFHOOK state)");
             mRinger.stopRing();
-
-            // Post a request to update the "in-call" status bar icon.
-            //
-            // We don't call NotificationMgr.updateInCallNotification()
-            // directly here, for two reasons:
-            // (1) a single phone state change might actually trigger multiple
-            //   onPhoneStateChanged() callbacks, so this prevents redundant
-            //   updates of the notification.
-            // (2) we suppress the status bar icon while the in-call UI is
-            //   visible (see updateInCallNotification()).  But when launching
-            //   an outgoing call the phone actually goes OFFHOOK slightly
-            //   *before* the InCallScreen comes up, so the delay here avoids a
-            //   brief flicker of the icon at that point.
-
-            if (DBG) log("- posting UPDATE_IN_CALL_NOTIFICATION request...");
-            // Remove any previous requests in the queue
-            removeMessages(UPDATE_IN_CALL_NOTIFICATION);
-            final int IN_CALL_NOTIFICATION_UPDATE_DELAY = 1000;  // msec
-            sendEmptyMessageDelayed(UPDATE_IN_CALL_NOTIFICATION,
-                                    IN_CALL_NOTIFICATION_UPDATE_DELAY);
         }
 
         if (fgPhone.getPhoneType() == PhoneConstants.PHONE_TYPE_CDMA) {
@@ -1664,13 +1593,6 @@ public class CallNotifier extends Handler
         // else we would not have received Call waiting
         mApplication.cdmaPhoneCallState.setCurrentCallState(
                 CdmaPhoneCallState.PhoneCallState.SINGLE_ACTIVE);
-
-        // Display the incoming call to the user if the InCallScreen isn't
-        // already in the foreground.
-        if (!mApplication.isShowingCallScreen()) {
-            if (DBG) log("- showing incoming call (CDMA call waiting)...");
-            showIncomingCall();
-        }
 
         // Start timer for CW display
         mCallWaitingTimeOut = false;
