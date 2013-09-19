@@ -32,6 +32,8 @@ import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 import android.telephony.PhoneNumberUtils;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
@@ -44,6 +46,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.internal.telephony.Call;
 import com.android.internal.telephony.Connection;
@@ -91,6 +94,7 @@ public class RejectWithTextMessageManager {
 
     /* package */ static final String TAG_ALL_SMS_SERVICES = "com.android.phone.AvailablePackages";
     /* package */ static final String TAG_SEND_SMS = "com.android.phone.MessageIntent";
+    /* package */ static final String TAG_SMS_DESTINATION = "com.android.phone.SmsDestination";
 
     /**
      * Read the (customizable) canned responses from SharedPreferences,
@@ -125,17 +129,42 @@ public class RejectWithTextMessageManager {
         return responses;
     }
 
-    private void sendTextAndExit() {
+    private void sendTextAndExit(final String phoneNumber) {
         // Send the selected message immediately with no user interaction.
         if (mIntent.getComponent() != null) {
             PhoneGlobals.getInstance().startService(mIntent);
+
+            // ...and show a brief confirmation to the user (since
+            // otherwise it's hard to be sure that anything actually
+            // happened.)
+            // Ugly hack to show a toaster from a service.
+            (new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    Looper.prepare();
+                    Handler innerHandler = new Handler() {
+                        @Override
+                        public void handleMessage(Message message) {
+                            final Resources res = PhoneGlobals.getInstance().getResources();
+                            final String formatString = res.getString(
+                                    R.string.respond_via_sms_confirmation_format);
+                            final String confirmationMsg = String.format(formatString, phoneNumber);
+                            Toast.makeText(PhoneGlobals.getInstance(), confirmationMsg,
+                                    Toast.LENGTH_LONG).show();
+                        }
+
+                        @Override
+                        public void dispatchMessage(Message message) {
+                            handleMessage(message);
+                        }
+                    };
+
+                    Message message = innerHandler.obtainMessage();
+                    innerHandler.dispatchMessage(message);
+                    Looper.loop();
+                }
+            })).start();
         }
-
-        // ...and show a brief confirmation to the user (since
-        // otherwise it's hard to be sure that anything actually
-        // happened.)
-        // TODO(klp): Ask the InCallUI to show a confirmation
-
 
         // TODO: If the device is locked, this toast won't actually ever
         // be visible!  (That's because we're about to dismiss the call
@@ -208,7 +237,7 @@ public class RejectWithTextMessageManager {
         return intent;
     }
 
-    private boolean getSmsService() {
+    private boolean getSmsService(String phoneNumber) {
         if (DBG) log("sendTextToDefaultActivity()...");
         final PackageManager packageManager = PhoneGlobals.getInstance().getPackageManager();
 
@@ -259,6 +288,7 @@ public class RejectWithTextMessageManager {
             intent.setClass(PhoneGlobals.getInstance(), TextMessagePackageChooser.class);
             intent.putExtra(TAG_ALL_SMS_SERVICES, mComponentsWithPermission);
             intent.putExtra(TAG_SEND_SMS, mIntent);
+            intent.putExtra(TAG_SMS_DESTINATION, phoneNumber);
             PhoneGlobals.getInstance().startActivity(intent);
             return false;
             // return componentsWithPermission.get(0);
@@ -267,9 +297,10 @@ public class RejectWithTextMessageManager {
 
     public void rejectCallWithMessage(Call call, String message) {
         mComponentsWithPermission.clear();
-        mIntent = getInstantTextIntent(call.getLatestConnection().getAddress(), message, null);
-        if (getSmsService())  {
-            sendTextAndExit();
+        final String phoneNumber = call.getLatestConnection().getAddress();
+        mIntent = getInstantTextIntent(phoneNumber, message, null);
+        if (getSmsService(phoneNumber))  {
+            sendTextAndExit(phoneNumber);
         }
     }
 
