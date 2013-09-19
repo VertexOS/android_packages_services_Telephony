@@ -154,7 +154,7 @@ public class CallHandlerServiceProxy extends Handler
             Log.d(TAG, "onIncoming: " + call);
         }
         try {
-            // TODO(klp): check RespondViaSmsManager.allowRespondViaSmsForCall()
+            // TODO: check RespondViaSmsManager.allowRespondViaSmsForCall()
             // must refactor call method to accept proper call object.
             synchronized (mServiceAndQueueLock) {
                 if (mCallHandlerServiceGuarded != null) {

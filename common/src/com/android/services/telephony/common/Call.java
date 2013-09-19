@@ -48,8 +48,9 @@ public final class Call implements Parcelable {
         public static final int CALL_WAITING = 4;   /* Incoming call while another is active */
         public static final int DIALING = 5;        /* An outgoing call during dial phase */
         public static final int ONHOLD = 6;         /* An active phone call placed on hold */
-        public static final int DISCONNECTED = 7;   /* State after a call disconnects */
-        public static final int CONFERENCED = 8;    /* Call part of a conference call */
+        public static final int DISCONNECTING = 7;  /* A call is being ended. */
+        public static final int DISCONNECTED = 8;   /* State after a call disconnects */
+        public static final int CONFERENCED = 9;    /* Call part of a conference call */
 
         public static boolean isConnected(int state) {
             switch(state) {
@@ -142,6 +143,7 @@ public final class Call implements Parcelable {
             .put(Call.State.INCOMING, "INCOMING")
             .put(Call.State.ONHOLD, "ONHOLD")
             .put(Call.State.INVALID, "INVALID")
+            .put(Call.State.DISCONNECTING, "DISCONNECTING")
             .put(Call.State.DISCONNECTED, "DISCONNECTED")
             .put(Call.State.CONFERENCED, "CONFERENCED")
             .build();
