@@ -25,6 +25,7 @@ import android.util.Log;
 import com.android.internal.telephony.CallManager;
 import com.android.internal.telephony.PhoneConstants;
 import com.android.phone.CallModeler.CallResult;
+import com.android.phone.NotificationMgr.StatusBarHelper;
 import com.android.services.telephony.common.AudioMode;
 import com.android.services.telephony.common.Call;
 import com.android.services.telephony.common.ICallCommandService;
@@ -252,4 +253,17 @@ class CallCommandService extends ICallCommandService.Stub {
             result.getConnection().proceedAfterWaitChar();
         }
     }
+
+    @Override
+    public void setSystemBarNavigationEnabled(boolean enable) {
+        try {
+            final StatusBarHelper statusBarHelper = PhoneGlobals.getInstance().notificationMgr.
+                    statusBarHelper;
+            statusBarHelper.enableSystemBarNavigation(enable);
+            statusBarHelper.enableExpandedView(enable);
+        } catch (Exception e) {
+            Log.e(TAG, "Error enabling or disabling system bar navigation", e);
+        }
+    }
+
 }

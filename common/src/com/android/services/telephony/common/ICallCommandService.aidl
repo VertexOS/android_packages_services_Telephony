@@ -96,4 +96,12 @@ oneway interface ICallCommandService {
     void postDialCancel(int callId);
 
     void postDialWaitContinue(int callId);
+
+    /**
+     * Enables or disables navigation using the system bar, and also prevents the
+     * notification shade from being dragged down.
+     * Hides or shows the home, recent and back buttons in the navigation bar if the
+     * device has soft navigation buttons.
+     */
+    void setSystemBarNavigationEnabled(boolean enable);
 }
