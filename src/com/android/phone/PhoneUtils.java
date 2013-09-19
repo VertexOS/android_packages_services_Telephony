@@ -727,6 +727,12 @@ public class PhoneUtils {
                 info.phoneNumber = number;
                 connection.setUserData(info);
             }
+
+            // Always set mute to off when we are dialing an emergency number
+            if (isEmergencyCall) {
+                setMute(false);
+            }
+
             setAudioMode();
 
             if (DBG) log("about to activate speaker");
@@ -1935,6 +1941,11 @@ public class PhoneUtils {
     static void setMute(boolean muted) {
         CallManager cm = PhoneGlobals.getInstance().mCM;
 
+        // Emergency calls never get muted.
+        if (isInEmergencyCall(cm)) {
+            muted = false;
+        }
+
         // make the call to mute the audio
         setMuteInternal(cm.getFgPhone(), muted);
 
@@ -1946,6 +1957,16 @@ public class PhoneUtils {
             }
             sConnectionMuteTable.put(cn, Boolean.valueOf(muted));
         }
+    }
+
+    static boolean isInEmergencyCall(CallManager cm) {
+        for (Connection cn : cm.getActiveFgCall().getConnections()) {
+            if (PhoneNumberUtils.isLocalEmergencyNumber(cn.getAddress(),
+                    PhoneGlobals.getInstance())) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
