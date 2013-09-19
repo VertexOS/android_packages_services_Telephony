@@ -265,20 +265,23 @@ public class CallModeler extends Handler {
             final Connection.PostDialState state = (Connection.PostDialState) r.userObj;
 
             switch (state) {
-                // TODO(klp): add other post dial related functions
                 case WAIT:
                     final Call call = getCallFromMap(mCallMap, c, false);
                     if (call == null) {
                         Log.i(TAG, "Call no longer exists. Skipping onPostDialWait().");
                     } else {
                         for (Listener mListener : mListeners) {
-                            mListener.onPostDialWait(call.getCallId(),
-                                    c.getRemainingPostDialString());
+                            mListener.onPostDialAction(state, call.getCallId(),
+                                    c.getRemainingPostDialString(), ch);
                         }
                     }
                     break;
-
                 default:
+                    // This is primarily to cause the DTMFTonePlayer to play local tones.
+                    // Other listeners simply perform no-ops.
+                    for (Listener mListener : mListeners) {
+                        mListener.onPostDialAction(state, 0, "", ch);
+                    }
                     break;
             }
         }
@@ -840,7 +843,8 @@ public class CallModeler extends Handler {
         void onDisconnect(Call call);
         void onIncoming(Call call);
         void onUpdate(List<Call> calls);
-        void onPostDialWait(int callId, String remainingChars);
+        void onPostDialAction(Connection.PostDialState state, int callId, String remainingChars,
+                char c);
     }
 
     /**
