@@ -117,6 +117,8 @@ public class CallModeler extends Handler {
             case CallStateMonitor.PHONE_DISCONNECT:
                 onDisconnect((Connection) ((AsyncResult) msg.obj).result);
                 break;
+            case CallStateMonitor.PHONE_UNKNOWN_CONNECTION_APPEARED:
+                // fall through
             case CallStateMonitor.PHONE_STATE_CHANGED:
                 onPhoneStateChanged((AsyncResult) msg.obj);
                 break;
