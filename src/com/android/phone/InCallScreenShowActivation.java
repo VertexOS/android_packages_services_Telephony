@@ -78,7 +78,7 @@ public class InCallScreenShowActivation extends Activity {
             // On voice-capable devices, we perform CDMA provisioning in
             // "interactive" mode by directly launching the InCallScreen.
             // boolean interactiveMode = PhoneGlobals.sVoiceCapable;
-            // TODO(klp): Renable interactive mode for device provisioning.
+            // TODO: Renable interactive mode for device provisioning.
             boolean interactiveMode = false;
             Log.d(LOG_TAG, "ACTION_PERFORM_CDMA_PROVISIONING (interactiveMode = "
                   + interactiveMode + ")...");

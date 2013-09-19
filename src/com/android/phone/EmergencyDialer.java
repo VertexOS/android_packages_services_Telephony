@@ -166,7 +166,7 @@ public class EmergencyDialer extends Activity implements View.OnClickListener,
         lp.flags |= WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED;
 
         // When no proximity sensor is available, use a shorter timeout.
-        // TODO(klp): Do we enable this for non proximity devices any more?
+        // TODO: Do we enable this for non proximity devices any more?
         // lp.userActivityTimeout = USER_ACTIVITY_TIMEOUT_WHEN_NO_PROX_SENSOR;
 
         getWindow().setAttributes(lp);
