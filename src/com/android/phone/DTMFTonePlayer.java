@@ -27,6 +27,7 @@ import android.provider.Settings;
 import android.util.Log;
 
 import com.android.internal.telephony.CallManager;
+import com.android.internal.telephony.Connection.PostDialState;
 import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneConstants;
 import com.android.services.telephony.common.Call;
@@ -124,8 +125,25 @@ public class DTMFTonePlayer implements CallModeler.Listener {
     }
 
     @Override
-    public void onPostDialWait(int callId, String chars) {
-        // no-op
+    public void onPostDialAction(PostDialState state, int callId, String remainingChars,
+            char currentChar) {
+        switch (state) {
+            case STARTED:
+                stopLocalToneIfNeeded();
+                if (!mToneMap.containsKey(currentChar)) {
+                    return;
+                }
+                startLocalToneIfNeeded(currentChar);
+                break;
+            case PAUSE:
+            case WAIT:
+            case WILD:
+            case COMPLETE:
+                stopLocalToneIfNeeded();
+                break;
+            default:
+                break;
+        }
     }
 
     /**
@@ -387,5 +405,4 @@ public class DTMFTonePlayer implements CallModeler.Listener {
             Log.d(LOG_TAG, msg);
         }
     }
-
 }

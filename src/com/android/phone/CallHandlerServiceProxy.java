@@ -31,8 +31,11 @@ import android.os.PowerManager;
 import android.os.RemoteException;
 import android.os.SystemClock;
 import android.os.SystemProperties;
+import android.text.TextUtils;
 import android.util.Log;
 
+import com.android.internal.telephony.Connection;
+import com.android.internal.telephony.Connection.PostDialState;
 import com.android.phone.AudioRouter.AudioModeListener;
 import com.android.phone.NotificationMgr.StatusBarHelper;
 import com.android.services.telephony.common.AudioMode;
@@ -207,7 +210,9 @@ public class CallHandlerServiceProxy extends Handler
 
 
     @Override
-    public void onPostDialWait(int callId, String remainingChars) {
+    public void onPostDialAction(Connection.PostDialState state, int callId, String remainingChars,
+            char currentChar) {
+        if (state != PostDialState.WAIT) return;
         try {
             synchronized (mServiceAndQueueLock) {
                 if (mCallHandlerServiceGuarded == null) {
