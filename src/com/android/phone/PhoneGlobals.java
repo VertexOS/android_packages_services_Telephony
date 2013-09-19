@@ -922,9 +922,8 @@ public class PhoneGlobals extends ContextWrapper implements WiredHeadsetListener
                     mUpdateLock.acquire();
                 }
             } else {
-                if (!mUpdateLock.isHeld()) {
+                if (mUpdateLock.isHeld()) {
                     mUpdateLock.release();
-                } else {
                 }
             }
         }
@@ -932,13 +931,6 @@ public class PhoneGlobals extends ContextWrapper implements WiredHeadsetListener
 
     /* package */ PhoneConstants.State getPhoneState() {
         return mLastPhoneState;
-    }
-
-    /**
-     * Returns UpdateLock object.
-     */
-    /* package */ UpdateLock getUpdateLock() {
-        return mUpdateLock;
     }
 
     KeyguardManager getKeyguardManager() {
