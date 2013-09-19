@@ -47,10 +47,11 @@ public final class Call implements Parcelable {
         public static final int INCOMING = 3;       /* A normal incoming phone call */
         public static final int CALL_WAITING = 4;   /* Incoming call while another is active */
         public static final int DIALING = 5;        /* An outgoing call during dial phase */
-        public static final int ONHOLD = 6;         /* An active phone call placed on hold */
-        public static final int DISCONNECTING = 7;  /* A call is being ended. */
-        public static final int DISCONNECTED = 8;   /* State after a call disconnects */
-        public static final int CONFERENCED = 9;    /* Call part of a conference call */
+        public static final int REDIALING = 6;      /* Subsequent dialing attempt after a failure */
+        public static final int ONHOLD = 7;         /* An active phone call placed on hold */
+        public static final int DISCONNECTING = 8;  /* A call is being ended. */
+        public static final int DISCONNECTED = 9;   /* State after a call disconnects */
+        public static final int CONFERENCED = 10;   /* Call part of a conference call */
 
         public static boolean isConnected(int state) {
             switch(state) {
@@ -58,6 +59,7 @@ public final class Call implements Parcelable {
                 case INCOMING:
                 case CALL_WAITING:
                 case DIALING:
+                case REDIALING:
                 case ONHOLD:
                 case CONFERENCED:
                     return true;
@@ -65,11 +67,17 @@ public final class Call implements Parcelable {
             }
             return false;
         }
+
+        public static boolean isDialing(int state) {
+            return state == DIALING || state == REDIALING;
+        }
     }
 
     /**
      * Defines a set of capabilities that a call can have as a bit mask.
      * TODO: Should some of these be capabilities of the Phone instead of the call?
+     * TODO: This is starting to be a mix of capabilities and call properties.  Capabilities
+     *       and properties should be separated.
      */
     public static class Capabilities {
         public static final int HOLD               = 0x00000001; /* has ability to hold the call */
@@ -139,6 +147,7 @@ public final class Call implements Parcelable {
             .put(Call.State.ACTIVE, "ACTIVE")
             .put(Call.State.CALL_WAITING, "CALL_WAITING")
             .put(Call.State.DIALING, "DIALING")
+            .put(Call.State.REDIALING, "REDIALING")
             .put(Call.State.IDLE, "IDLE")
             .put(Call.State.INCOMING, "INCOMING")
             .put(Call.State.ONHOLD, "ONHOLD")
