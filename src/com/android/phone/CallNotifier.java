@@ -304,7 +304,6 @@ public class CallNotifier extends Handler
                 if (DBG) log("Received CALLWAITING_ADDCALL_DISABLE_TIMEOUT event ...");
                 // Set the mAddCallMenuStateAfterCW state to true
                 mApplication.cdmaPhoneCallState.setAddCallMenuStateAfterCallWaiting(true);
-                mApplication.updateInCallScreen();
                 break;
 
             case CallStateMonitor.PHONE_STATE_DISPLAYINFO:
@@ -526,7 +525,6 @@ public class CallNotifier extends Handler
                 // we should instead provide a higher-level API via OtaUtils.
                 if (dialogState) mApplication.dismissOtaDialogs();
                 mApplication.clearOtaState();
-                mApplication.clearInCallScreenMode();
                 return false;
             }
         }
@@ -737,12 +735,6 @@ public class CallNotifier extends Handler
             if (VDBG) log("onPhoneStateChanged: OFF HOOK");
             // make sure audio is in in-call mode now
             PhoneUtils.setAudioMode(mCM);
-
-            // if the call screen is showing, let it handle the event,
-            // otherwise handle it here.
-            if (!mApplication.isShowingCallScreen()) {
-                mApplication.requestWakeState(PhoneGlobals.WakeState.SLEEP);
-            }
 
             // Since we're now in-call, the Ringer should definitely *not*
             // be ringing any more.  (This is just a sanity-check; we

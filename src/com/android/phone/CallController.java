@@ -23,7 +23,6 @@ import com.android.internal.telephony.TelephonyCapabilities;
 import com.android.phone.CallGatewayManager.RawGatewayInfo;
 import com.android.phone.Constants.CallStatusCode;
 import com.android.phone.ErrorDialogActivity;
-import com.android.phone.InCallUiState.InCallScreenMode;
 import com.android.phone.OtaUtils.CdmaOtaScreenState;
 
 import android.app.AlertDialog;
@@ -194,8 +193,6 @@ public class CallController extends Handler {
         log("placeCall()...  intent = " + intent);
         if (VDBG) log("                extras = " + intent.getExtras());
 
-        final InCallUiState inCallUiState = mApp.inCallUiState;
-
         // TODO: Do we need to hold a wake lock while this method runs?
         //       Or did we already acquire one somewhere earlier
         //       in this sequence (like when we first received the CALL intent?)
@@ -256,18 +253,6 @@ public class CallController extends Handler {
             case SUCCESS:
             case EXITED_ECM:
                 if (DBG) log("==> placeCall(): success from placeCallInternal(): " + status);
-
-                if (status == CallStatusCode.EXITED_ECM) {
-                    // Call succeeded, but we also need to tell the
-                    // InCallScreen to show the "Exiting ECM" warning.
-                    inCallUiState.setPendingCallStatusCode(CallStatusCode.EXITED_ECM);
-                } else {
-                    // Call succeeded.  There's no "error condition" that
-                    // needs to be displayed to the user, so clear out the
-                    // InCallUiState's "pending call status code".
-                    inCallUiState.clearPendingCallStatusCode();
-                }
-
                 break;
 
             default:
@@ -289,20 +274,6 @@ public class CallController extends Handler {
         // in-call UI.  Or if there was an error, the InCallScreen will
         // notice the InCallUiState pending call status code flag and display an
         // error indication instead.)
-
-        // TODO: double-check the behavior of mApp.displayCallScreen()
-        // if the InCallScreen is already visible:
-        // - make sure it forces the UI to refresh
-        // - make sure it does NOT launch a new InCallScreen on top
-        //   of the current one (i.e. the Back button should not take
-        //   you back to the previous InCallScreen)
-        // - it's probably OK to go thru a fresh pause/resume sequence
-        //   though (since that should be fast now)
-        // - if necessary, though, maybe PhoneApp.displayCallScreen()
-        //   could notice that the InCallScreen is already in the foreground,
-        //   and if so simply call updateInCallScreen() instead.
-
-        mApp.displayCallScreen();
     }
 
     /**
@@ -324,7 +295,6 @@ public class CallController extends Handler {
         // TODO: This method is too long.  Break it down into more
         // manageable chunks.
 
-        final InCallUiState inCallUiState = mApp.inCallUiState;
         final Uri uri = intent.getData();
         final String scheme = (uri != null) ? uri.getScheme() : null;
         String number;
@@ -461,13 +431,6 @@ public class CallController extends Handler {
             }
         }
 
-        // Ok, we can proceed with this outgoing call.
-
-        // Reset some InCallUiState flags, just in case they're still set
-        // from a prior call.
-        inCallUiState.needToShowCallLostDialog = false;
-        inCallUiState.clearProgressIndication();
-
         // We have a valid number, so try to actually place a call:
         // make sure we pass along the intent's URI which is a
         // reference to the contact. We may have a provider gateway
@@ -501,40 +464,7 @@ public class CallController extends Handler {
                 //   app.cdmaOtaInCallScreenUiState.state are redundant.
                 //   Combine them.
 
-                if (VDBG) log ("- inCallUiState.inCallScreenMode = "
-                               + inCallUiState.inCallScreenMode);
-                if (inCallUiState.inCallScreenMode == InCallScreenMode.OTA_NORMAL) {
-                    if (VDBG) log ("==>  OTA_NORMAL note: switching to OTA_STATUS_LISTENING.");
-                    mApp.cdmaOtaScreenState.otaScreenState =
-                            CdmaOtaScreenState.OtaScreenState.OTA_STATUS_LISTENING;
-                }
-
                 boolean voicemailUriSpecified = scheme != null && scheme.equals("voicemail");
-                // When voicemail is requested most likely the user wants to open
-                // dialpad immediately, so we show it in the first place.
-                // Otherwise we want to make sure the user can see the regular
-                // in-call UI while the new call is dialing, and when it
-                // first gets connected.)
-                inCallUiState.showDialpad = voicemailUriSpecified;
-
-                // For voicemails, we add context text to let the user know they
-                // are dialing their voicemail.
-                // TODO: This is only set here and becomes problematic when swapping calls
-                inCallUiState.dialpadContextText = voicemailUriSpecified ?
-                    phone.getVoiceMailAlphaTag() : "";
-
-                // Also, in case a previous call was already active (i.e. if
-                // we just did "Add call"), clear out the "history" of DTMF
-                // digits you typed, to make sure it doesn't persist from the
-                // previous call to the new call.
-                // TODO: it would be more precise to do this when the actual
-                // phone state change happens (i.e. when a new foreground
-                // call appears and the previous call moves to the
-                // background), but the InCallScreen doesn't keep enough
-                // state right now to notice that specific transition in
-                // onPhoneStateChanged().
-                inCallUiState.dialpadDigits = null;
-
                 // Check for an obscure ECM-related scenario: If the phone
                 // is currently in ECM (Emergency callback mode) and we
                 // dial a non-emergency number, that automatically
