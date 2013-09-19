@@ -21,7 +21,6 @@ import com.android.internal.telephony.Connection;
 import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneConstants;
 import com.android.phone.Constants.CallStatusCode;
-import com.android.phone.InCallUiState.ProgressIndicationType;
 
 import android.content.Context;
 import android.content.Intent;
@@ -183,10 +182,6 @@ public class EmergencyCallHelper extends Handler {
         // for some reason.
         startRetryTimer();
 
-        // And finally, let the in-call UI know that we need to
-        // display the "Turning on radio..." progress indication.
-        mApp.inCallUiState.setProgressIndication(ProgressIndicationType.TURNING_ON_RADIO);
-
         // (Our caller is responsible for calling mApp.displayCallScreen().)
     }
 
@@ -220,14 +215,7 @@ public class EmergencyCallHelper extends Handler {
             // Deregister for the service state change events.
             unregisterForServiceStateChanged();
 
-            // Take down the "Turning on radio..." indication.
-            mApp.inCallUiState.clearProgressIndication();
-
             placeEmergencyCall();
-
-            // The in-call UI is probably still up at this point,
-            // but make sure of that:
-            mApp.displayCallScreen();
         } else {
             // The service state changed, but we're still not ready to call yet.
             // (This probably was the transition from STATE_POWER_OFF to
@@ -307,9 +295,6 @@ public class EmergencyCallHelper extends Handler {
             // these any more now that the radio is powered-on.
             unregisterForServiceStateChanged();
 
-            // Take down the "Turning on radio..." indication.
-            mApp.inCallUiState.clearProgressIndication();
-
             placeEmergencyCall();  // If the call fails, placeEmergencyCall()
                                    // will schedule a retry.
         } else {
@@ -324,10 +309,6 @@ public class EmergencyCallHelper extends Handler {
             // totally if we've had too many failures.)
             scheduleRetryOrBailOut();
         }
-
-        // Finally, the in-call UI is probably still up at this point,
-        // but make sure of that:
-        mApp.displayCallScreen();
     }
 
     /**
@@ -441,13 +422,9 @@ public class EmergencyCallHelper extends Handler {
         if (mNumRetriesSoFar > MAX_NUM_RETRIES) {
             Log.w(TAG, "scheduleRetryOrBailOut: hit MAX_NUM_RETRIES; giving up...");
             cleanup();
-            // ...and have the InCallScreen display a generic failure
-            // message.
-            mApp.inCallUiState.setPendingCallStatusCode(CallStatusCode.CALL_FAILED);
         } else {
             if (DBG) log("- Scheduling another retry...");
             startRetryTimer();
-            mApp.inCallUiState.setProgressIndication(ProgressIndicationType.RETRYING);
         }
     }
 
@@ -475,9 +452,6 @@ public class EmergencyCallHelper extends Handler {
     private void cleanup() {
         if (DBG) log("cleanup()...");
 
-        // Take down the "Turning on radio..." indication.
-        mApp.inCallUiState.clearProgressIndication();
-
         unregisterForServiceStateChanged();
         unregisterForDisconnect();
         cancelRetryTimer();
@@ -490,10 +464,6 @@ public class EmergencyCallHelper extends Handler {
             }
             mPartialWakeLock = null;
         }
-
-        // And finally, ask the in-call UI to refresh itself (to clean up the
-        // progress indication if necessary), if it's currently visible.
-        mApp.updateInCallScreen();
     }
 
     private void startRetryTimer() {

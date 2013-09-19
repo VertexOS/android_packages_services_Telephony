@@ -645,10 +645,6 @@ public class NotificationMgr {
         // activity, since the in-call UI already provides an onscreen
         // indication of the speaker state.  (This reduces clutter in the
         // status bar.)
-        if (mApp.isShowingCallScreen()) {
-            cancelSpeakerphone();
-            return;
-        }
 
         if (showNotification) {
             notifySpeakerphone();
@@ -684,10 +680,6 @@ public class NotificationMgr {
         // foreground activity, since the in-call UI already provides an
         // onscreen indication of the mute state.  (This reduces clutter
         // in the status bar.)
-        if (mApp.isShowingCallScreen()) {
-            cancelMute();
-            return;
-        }
 
         if ((mCM.getState() == PhoneConstants.State.OFFHOOK) && PhoneUtils.getMute()) {
             if (DBG) log("updateMuteNotification: MUTED");
