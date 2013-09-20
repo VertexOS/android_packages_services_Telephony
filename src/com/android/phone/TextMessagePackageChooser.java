@@ -27,6 +27,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -38,6 +39,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -178,6 +180,17 @@ public class TextMessagePackageChooser extends Activity {
             if (messageIntent != null) {
                 messageIntent.setComponent(component);
                 PhoneGlobals.getInstance().startService(messageIntent);
+
+                // ...and show a brief confirmation to the user (since
+                // otherwise it's hard to be sure that anything actually
+                // happened.)
+                final Resources res = getResources();
+                final String formatString = res.getString(
+                        R.string.respond_via_sms_confirmation_format);
+                final String phoneNumber = (String) getIntent().getStringExtra(
+                        RejectWithTextMessageManager.TAG_SMS_DESTINATION);
+                final String confirmationMsg = String.format(formatString, phoneNumber);
+                Toast.makeText(PhoneGlobals.getInstance(), confirmationMsg, Toast.LENGTH_LONG).show();
             }
             finish();
         }
