@@ -515,9 +515,10 @@
         </activity>
 
         <activity android:name="HfaActivity"
-                android:excludeFromRecents="true"
+                android:configChanges="orientation|screenSize|keyboardHidden"
                 android:launchMode="singleInstance"
-                android:theme="@style/Empty">
+                android:theme="@style/Empty"
+                android:exported="false">
         </activity>
 
         <receiver android:name="CallerInfoCacheUpdateReceiver">
@@ -534,6 +535,9 @@
                 <action android:name="com.android.phone.ACTION_SEND_SMS_FROM_NOTIFICATION" />
             </intent-filter>
         </receiver>
+
+        <!-- service to dump telephony information -->
+        <service android:name="HfaService" android:exported="false"/>
 
     </application>
 </manifest>
