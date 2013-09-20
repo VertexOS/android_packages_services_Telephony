@@ -1097,8 +1097,11 @@ public class CallNotifier extends Handler
                     if (autoretrySetting == InCallScreen.AUTO_RETRY_ON) {
                         // TODO: (Moto): The contact reference data may need to be stored and use
                         // here when redialing a call. For now, pass in NULL as the URI parameter.
-                        PhoneUtils.placeCall(mApplication, phone, number, null, false);
-                        mIsCdmaRedialCall = true;
+                        final int status =
+                                PhoneUtils.placeCall(mApplication, phone, number, null, false);
+                        if (status != PhoneUtils.CALL_STATUS_FAILED) {
+                            mIsCdmaRedialCall = true;
+                        }
                     } else {
                         mIsCdmaRedialCall = false;
                     }
