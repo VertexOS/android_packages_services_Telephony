@@ -223,6 +223,7 @@ public class CallModeler extends Handler {
                     state == Call.State.CALL_WAITING ||
                     state == Call.State.CONFERENCED ||
                     state == Call.State.DIALING ||
+                    state == Call.State.REDIALING ||
                     state == Call.State.INCOMING ||
                     state == Call.State.ONHOLD ||
                     state == Call.State.DISCONNECTING) {
@@ -241,8 +242,7 @@ public class CallModeler extends Handler {
             HashMap<Connection, Call> map) {
         for (Call call : map.values()) {
             final int state = call.getState();
-            if (state == Call.State.ACTIVE ||
-                    state == Call.State.DIALING) {
+            if (state == Call.State.ACTIVE || Call.State.isDialing(state)) {
                 return true;
             }
         }
@@ -475,7 +475,7 @@ public class CallModeler extends Handler {
         // for the call, if available, and set it.
         final RawGatewayInfo info = mCallGatewayManager.getGatewayInfo(connection);
 
-        if (newState == Call.State.DIALING) {
+        if (Call.State.isDialing(newState)) {
             if (!info.isEmpty()) {
                 call.setGatewayNumber(info.getFormattedGatewayNumber());
                 call.setGatewayPackage(info.packageName);
@@ -690,13 +690,15 @@ public class CallModeler extends Handler {
 
     private int translateStateFromTelephony(Connection connection, boolean isForConference) {
 
+        com.android.internal.telephony.Call.State connState = connection.getState();
+
         // For the "fake" outgoing CDMA call, we need to always treat it as an outgoing call.
         if (mCdmaOutgoingConnection == connection) {
-            return State.DIALING;
+            connState = com.android.internal.telephony.Call.State.DIALING;
         }
 
         int retval = State.IDLE;
-        switch (connection.getState()) {
+        switch (connState) {
             case ACTIVE:
                 retval = State.ACTIVE;
                 break;
@@ -705,7 +707,11 @@ public class CallModeler extends Handler {
                 break;
             case DIALING:
             case ALERTING:
-                retval = State.DIALING;
+                if (PhoneGlobals.getInstance().notifier.getIsCdmaRedialCall()) {
+                    retval = State.REDIALING;
+                } else {
+                    retval = State.DIALING;
+                }
                 break;
             case WAITING:
                 retval = State.CALL_WAITING;
