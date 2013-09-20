@@ -297,7 +297,8 @@ public class CallHandlerServiceProxy extends Handler
                 // always have an in call ui.
                 unbind();
 
-                // TODO(klp): hang up all calls.
+                // We were disconnected from the UI.  End all calls.
+                PhoneUtils.hangupAllCalls(PhoneGlobals.getInstance().getCallManager());
             }
         }
     }
