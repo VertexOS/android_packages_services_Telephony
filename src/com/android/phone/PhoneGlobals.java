@@ -651,6 +651,10 @@ public class PhoneGlobals extends ContextWrapper implements WiredHeadsetListener
         return callModeler;
     }
 
+    /* package */ CallManager getCallManager() {
+        return mCM;
+    }
+
     /**
      * Returns an Intent that can be used to go to the "Call log"
      * UI (aka CallLogActivity) in the Contacts app.

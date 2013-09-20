@@ -326,6 +326,28 @@ public class PhoneUtils {
     }
 
     /**
+     * Hangs up all active calls.
+     */
+    static void hangupAllCalls(CallManager cm) {
+        final Call ringing = cm.getFirstActiveRingingCall();
+        final Call fg = cm.getActiveFgCall();
+        final Call bg = cm.getFirstActiveBgCall();
+
+        // We go in reverse order, BG->FG->RINGING because hanging up a ringing call or an active
+        // call can move a bg call to a fg call which would force us to loop over each call
+        // several times.  This ordering works best to ensure we dont have any more calls.
+        if (bg != null && !bg.isIdle()) {
+            hangup(bg);
+        }
+        if (fg != null && !fg.isIdle()) {
+            hangup(fg);
+        }
+        if (ringing != null && !ringing.isIdle()) {
+            hangupRingingCall(fg);
+        }
+    }
+
+    /**
      * Smart "hang up" helper method which hangs up exactly one connection,
      * based on the current Phone state, as follows:
      * <ul>
