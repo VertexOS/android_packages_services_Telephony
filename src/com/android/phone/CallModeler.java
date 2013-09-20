@@ -224,7 +224,8 @@ public class CallModeler extends Handler {
                     state == Call.State.CONFERENCED ||
                     state == Call.State.DIALING ||
                     state == Call.State.INCOMING ||
-                    state == Call.State.ONHOLD) {
+                    state == Call.State.ONHOLD ||
+                    state == Call.State.DISCONNECTING) {
                 return true;
             }
         }
@@ -353,12 +354,16 @@ public class CallModeler extends Handler {
         for (com.android.internal.telephony.Call telephonyCall : telephonyCalls) {
 
             for (Connection connection : telephonyCall.getConnections()) {
-                if (DBG) Log.d(TAG, "connection: " + connection);
+                if (DBG) Log.d(TAG, "connection: " + connection + connection.getState());
 
                 // We only send updates for live calls which are not incoming (ringing).
                 // Disconnected and incoming calls are handled by onDisconnect and
                 // onNewRingingConnection.
-                boolean shouldUpdate = connection.getState().isAlive() &&
+                boolean shouldUpdate =
+                        connection.getState() !=
+                                com.android.internal.telephony.Call.State.DISCONNECTED &&
+                        connection.getState() !=
+                                com.android.internal.telephony.Call.State.IDLE &&
                         !connection.getState().isRinging();
 
                 // New connections return a Call with INVALID state, which does not translate to
@@ -705,8 +710,10 @@ public class CallModeler extends Handler {
             case HOLDING:
                 retval = State.ONHOLD;
                 break;
-            case DISCONNECTED:
             case DISCONNECTING:
+                retval = State.DISCONNECTING;
+                break;
+            case DISCONNECTED:
                 retval = State.DISCONNECTED;
             default:
         }

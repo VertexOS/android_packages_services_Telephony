@@ -2415,7 +2415,7 @@ public class PhoneUtils {
             if (DBG) log("activateSpeakerIfDocked(): In a dock -> may need to turn on speaker.");
             final PhoneGlobals app = PhoneGlobals.getInstance();
 
-            // TODO(klp): This function should move to AudioRouter
+            // TODO: This function should move to AudioRouter
             final BluetoothManager btManager = app.getBluetoothManager();
             final WiredHeadsetManager wiredHeadset = app.getWiredHeadsetManager();
             final AudioRouter audioRouter = app.getAudioRouter();
