@@ -41,7 +41,6 @@ import android.net.Uri;
 import android.os.AsyncResult;
 import android.os.Handler;
 import android.os.Message;
-import android.os.RemoteException;
 import android.os.SystemProperties;
 import android.os.SystemVibrator;
 import android.os.Vibrator;
@@ -437,20 +436,9 @@ public class CallNotifier extends Handler
 
         // - don't ring for call waiting connections
         // - do this before showing the incoming call panel
-        if (PhoneUtils.isRealIncomingCall(state)) {
-            startIncomingCallQuery(c);
-        } else {
-            if (VDBG) log("- starting call waiting tone...");
-            if (mCallWaitingTonePlayer == null) {
-                mCallWaitingTonePlayer = new InCallTonePlayer(InCallTonePlayer.TONE_CALL_WAITING);
-                mCallWaitingTonePlayer.start();
-            }
+        startIncomingCallQuery(c);
 
-            // in this case, just fall through like before, and call
-            // showIncomingCall().
-            if (DBG) log("- showing incoming call (this is a WAITING call)...");
-            notifyCallModelerOfNewRingingCall(c);
-        }
+
 
         // Note we *don't* post a status bar notification here, since
         // we're not necessarily ready to actually show the incoming call
@@ -585,14 +573,7 @@ public class CallNotifier extends Handler
             // and before the timeout window has closed.
             EventLog.writeEvent(EventLogTags.PHONE_UI_MULTIPLE_QUERY);
 
-            // In this case, just log the request and ring.
-            if (VDBG) log("RINGING... (request to ring arrived while query is running)");
-            mRinger.ring();
-
-            // in this case, just fall through like before, and call
-            // showIncomingCall().
-            if (DBG) log("- showing incoming call (couldn't start query)...");
-            notifyCallModelerOfNewRingingCall(c);
+            ringAndNotifyOfIncomingCall(c);
         }
     }
 
@@ -652,13 +633,7 @@ public class CallNotifier extends Handler
         final Call ringingCall = mCM.getFirstActiveRingingCall();
 
         if (ringingCall != null && ringingCall.getLatestConnection() == c) {
-            // Ring, either with the queried ringtone or default one.
-            if (VDBG) log("RINGING... (onCustomRingQueryComplete)");
-            mRinger.ring();
-
-            // ...and display the incoming call to the user:
-            if (DBG) log("- showing incoming call (custom ring query complete)...");
-            notifyCallModelerOfNewRingingCall(c);
+            ringAndNotifyOfIncomingCall(c);
         }
     }
 
@@ -671,11 +646,26 @@ public class CallNotifier extends Handler
 
             if (DBG) log("- showing incoming call (unknown connection appeared)...");
             final Connection c = (Connection) r.result;
-            notifyCallModelerOfNewRingingCall(c);
+            ringAndNotifyOfIncomingCall(c);
         }
     }
 
-    private void notifyCallModelerOfNewRingingCall(Connection c) {
+    /**
+     * Notifies the Call Modeler that there is a new ringing connection.
+     * If it is not a waiting call (there is no other active call in foreground), we will ring the
+     * ringtone. Otherwise we will play the call waiting tone instead.
+     * @param c The new ringing connection.
+     */
+    private void ringAndNotifyOfIncomingCall(Connection c) {
+        if (PhoneUtils.isRealIncomingCall(c.getState())) {
+            mRinger.ring();
+        } else {
+            if (VDBG) log("- starting call waiting tone...");
+            if (mCallWaitingTonePlayer == null) {
+                mCallWaitingTonePlayer = new InCallTonePlayer(InCallTonePlayer.TONE_CALL_WAITING);
+                mCallWaitingTonePlayer.start();
+            }
+        }
         mCallModeler.onNewRingingConnection(c);
     }
 
