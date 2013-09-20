@@ -641,12 +641,9 @@ public class CallNotifier extends Handler
         PhoneConstants.State state = mCM.getState();
 
         if (state == PhoneConstants.State.OFFHOOK) {
-            // basically do onPhoneStateChanged + display the incoming call UI
-            onPhoneStateChanged(r);
+            if (DBG) log("unknown connection appeared...");
 
-            if (DBG) log("- showing incoming call (unknown connection appeared)...");
-            final Connection c = (Connection) r.result;
-            ringAndNotifyOfIncomingCall(c);
+            onPhoneStateChanged(r);
         }
     }
 
