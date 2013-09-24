@@ -19,9 +19,7 @@ package com.android.phone;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.PendingIntent;
-import android.app.PendingIntent.CanceledException;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -39,22 +37,16 @@ import android.util.Log;
 public class HfaActivity extends Activity {
     private static final String TAG = HfaActivity.class.getSimpleName();
 
-    private static final boolean VERBOSE = Log.isLoggable(TAG, Log.VERBOSE);
-
-    public static final int OTASP_UNKNOWN = 0;
-    public static final int OTASP_USER_SKIPPED = 1;
-    public static final int OTASP_SUCCESS = 2;
-    public static final int OTASP_FAILURE = 3;
-
-    private boolean mCanSkip;
     private AlertDialog mDialog;
     private HfaLogic mHfaLogic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.i(TAG, "onCreate");
 
-        if (VERBOSE) Log.v(TAG, "onCreate");
+        final PendingIntent otaResponseIntent = getIntent().getParcelableExtra(
+                OtaUtils.EXTRA_OTASP_RESULT_CODE_PENDING_INTENT);
 
         mHfaLogic = new HfaLogic(this.getApplicationContext(), new HfaLogic.HfaLogicCallback() {
             @Override
@@ -66,7 +58,7 @@ public class HfaActivity extends Activity {
             public void onError(String error) {
                 onHfaError(error);
             }
-        });
+        }, otaResponseIntent);
 
         startProvisioning();
     }
@@ -75,7 +67,7 @@ public class HfaActivity extends Activity {
     protected void onDestroy() {
         super.onDestroy();
 
-        if (VERBOSE) Log.v(TAG, "onDestroy");
+        Log.i(TAG, "onDestroy");
 
         if (mDialog != null && mDialog.isShowing()) {
             mDialog.dismiss();
@@ -89,8 +81,6 @@ public class HfaActivity extends Activity {
     }
 
     private void buildAndShowDialog() {
-        mCanSkip = true;
-
         mDialog = new AlertDialog.Builder(this)
                 .setTitle(R.string.ota_hfa_activation_title)
                 .setMessage(R.string.ota_hfa_activation_dialog_message)
@@ -98,9 +88,7 @@ public class HfaActivity extends Activity {
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface di, int which) {
-                                if (mCanSkip) {
-                                    sendFinalResponse(OTASP_USER_SKIPPED);
-                                }
+                                onUserSkip();
                             }})
                 /*.setOnCancelListener(new DialogInterface.OnCancelListener() {
                     @Override
@@ -113,7 +101,7 @@ public class HfaActivity extends Activity {
         mDialog.setCanceledOnTouchOutside(false);
         mDialog.setCancelable(false);
 
-        if (VERBOSE) Log.v(TAG, "showing dialog");
+        Log.i(TAG, "showing dialog");
         mDialog.show();
     }
 
@@ -127,7 +115,7 @@ public class HfaActivity extends Activity {
                         @Override
                         public void onClick(DialogInterface di, int which) {
                             di.dismiss();
-                            sendFinalResponse(OTASP_USER_SKIPPED);
+                            onUserSkip();
                         }
                     })
             .setNegativeButton(R.string.ota_try_again,
@@ -144,29 +132,11 @@ public class HfaActivity extends Activity {
     }
 
     private void onHfaSuccess() {
-        // User can no longer skip after success.
-        mCanSkip = false;
-
-        sendFinalResponse(OTASP_SUCCESS);
-    }
-
-    private void sendFinalResponse(int responseCode) {
-        final PendingIntent otaResponseIntent = getIntent().getParcelableExtra(
-                OtaUtils.EXTRA_OTASP_RESULT_CODE_PENDING_INTENT);
-
-        if (otaResponseIntent != null) {
-            final Intent extraStuff = new Intent();
-            extraStuff.putExtra(OtaUtils.EXTRA_OTASP_RESULT_CODE, responseCode);
-
-            try {
-                if (VERBOSE) Log.v(TAG, "Sending OTASP confirmation with result code: "
-                        + responseCode);
-                otaResponseIntent.send(this, 0 /* resultCode (not used) */, extraStuff);
-            } catch (CanceledException e) {
-                Log.e(TAG, "Pending Intent canceled");
-            }
-        }
-
         finish();
     }
+
+    private void onUserSkip() {
+        finish();
+    }
+
 }
