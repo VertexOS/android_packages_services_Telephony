@@ -16,6 +16,7 @@
 
 package com.android.phone;
 
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
@@ -29,6 +30,14 @@ public class HfaService extends Service {
 
     @Override
     public void onCreate() {
+        Log.i(TAG, "service started");
+    }
+
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        final PendingIntent otaResponseIntent = intent.getParcelableExtra(
+                OtaUtils.EXTRA_OTASP_RESULT_CODE_PENDING_INTENT);
+
         new HfaLogic(this, new HfaLogic.HfaLogicCallback() {
             @Override
             public void onSuccess() {
@@ -43,9 +52,9 @@ public class HfaService extends Service {
                 // we do the same thing...finish.
                 onComplete();
             }
-        }).start();
+        }, otaResponseIntent).start();
 
-        Log.i(TAG, "service started");
+        return START_STICKY;
     }
 
     @Override
