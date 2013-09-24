@@ -16,6 +16,8 @@
 
 package com.android.phone;
 
+import android.app.PendingIntent;
+import android.app.PendingIntent.CanceledException;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -46,7 +48,6 @@ import com.google.common.base.Preconditions;
  */
 public class HfaLogic {
     private static final String TAG = HfaLogic.class.getSimpleName();
-    private static final boolean VERBOSE = Log.isLoggable(TAG, Log.VERBOSE);
 
     private static final String ACTION_START = "com.android.action.START_HFA";
     private static final String ACTION_ERROR = "com.android.action.ERROR_HFA";
@@ -59,9 +60,15 @@ public class HfaLogic {
     public static final int WAITING_FOR_RADIO_OFF = 1;
     public static final int WAITING_FOR_RADIO_ON = 2;
 
+    public static final int OTASP_UNKNOWN = 0;
+    public static final int OTASP_USER_SKIPPED = 1;
+    public static final int OTASP_SUCCESS = 2;
+    public static final int OTASP_FAILURE = 3;
+
     private int mPhoneMonitorState = NOT_WAITING;
     private BroadcastReceiver mReceiver;
     private HfaLogicCallback mCallback;
+    private PendingIntent mResponseIntent;
     private Context mContext;
 
     public interface HfaLogicCallback {
@@ -69,9 +76,10 @@ public class HfaLogic {
         public void onError(String errorMsg);
     }
 
-    public HfaLogic(Context context, HfaLogicCallback callback) {
+    public HfaLogic(Context context, HfaLogicCallback callback, PendingIntent intent) {
         mCallback = Preconditions.checkNotNull(callback);
         mContext = Preconditions.checkNotNull(context);
+        mResponseIntent = intent;
     }
 
     public void start() {
@@ -85,21 +93,25 @@ public class HfaLogic {
     }
 
     private void sendHfaCommand(String action) {
-        if (VERBOSE) Log.v(TAG, "Sending command: " + action);
+        Log.i(TAG, "Sending command: " + action);
         mContext.sendBroadcast(new Intent(action));
     }
 
     private void onHfaError(String errorMsg) {
+        Log.i(TAG, "HfaError");
         stopHfaIntentReceiver();
+        sendFinalResponse(OTASP_FAILURE, errorMsg);
         mCallback.onError(errorMsg);
     }
 
     private void onHfaSuccess() {
+        Log.i(TAG, "HfaSuccess");
         stopHfaIntentReceiver();
         bounceRadio();
     }
 
     private void onTotalSuccess() {
+        sendFinalResponse(OTASP_SUCCESS, null);
         mCallback.onSuccess();
     }
 
@@ -116,7 +128,7 @@ public class HfaLogic {
         final boolean radioIsOff = state.getVoiceRegState() == ServiceState.STATE_POWER_OFF;
         final Phone phone = PhoneGlobals.getInstance().getPhone();
 
-        if (VERBOSE) Log.v(TAG, "Radio is on: " + !radioIsOff);
+        Log.i(TAG, "Radio is on: " + !radioIsOff);
 
         if (mPhoneMonitorState == WAITING_FOR_RADIO_OFF) {
             if (radioIsOff) {
@@ -144,7 +156,7 @@ public class HfaLogic {
                 if (action.equals(ACTION_ERROR)) {
                     onHfaError(intent.getStringExtra("errorCode"));
                 } else if (action.equals(ACTION_COMPLETE)) {
-                    if (VERBOSE) Log.v(TAG, "Hfa Successful");
+                    Log.i(TAG, "Hfa Successful");
                     onHfaSuccess();
                 }
             }
@@ -157,6 +169,25 @@ public class HfaLogic {
         if (mReceiver != null) {
             mContext.unregisterReceiver(mReceiver);
             mReceiver = null;
+        }
+    }
+
+    private void sendFinalResponse(int responseCode, String errorCode) {
+        if (mResponseIntent != null) {
+            final Intent extraStuff = new Intent();
+            extraStuff.putExtra(OtaUtils.EXTRA_OTASP_RESULT_CODE, responseCode);
+
+            if (responseCode == OTASP_FAILURE && errorCode != null) {
+                extraStuff.putExtra(OtaUtils.EXTRA_OTASP_ERROR_CODE, errorCode);
+            }
+
+            try {
+                Log.i(TAG, "Sending OTASP confirmation with result code: "
+                        + responseCode);
+                mResponseIntent.send(mContext, 0 /* resultCode (not used) */, extraStuff);
+            } catch (CanceledException e) {
+                Log.e(TAG, "Pending Intent canceled");
+            }
         }
     }
 
