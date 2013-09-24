@@ -125,8 +125,11 @@ public class OtaUtils {
 
     // Extra attached to the above PendingIntent that indicates
     // success or failure.
-    public static final String EXTRA_OTASP_RESULT_CODE =
-            "otasp_result_code";
+    public static final String EXTRA_OTASP_RESULT_CODE = "otasp_result_code";
+
+    // Extra attached to the above PendingIntent that contains an error code.
+    public static final String EXTRA_OTASP_ERROR_CODE = "otasp_error_code";
+
     public static final int OTASP_UNKNOWN = 0;
     public static final int OTASP_USER_SKIPPED = 1;  // Only meaningful with interactive OTASP
     public static final int OTASP_SUCCESS = 2;
