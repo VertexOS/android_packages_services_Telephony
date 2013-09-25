@@ -320,8 +320,8 @@ public class CallHandlerServiceProxy extends Handler
     private static Intent getInCallServiceIntent(Context context) {
         final Intent serviceIntent = new Intent(ICallHandlerService.class.getName());
         final ComponentName component = new ComponentName(context.getResources().getString(
-                R.string.incall_ui_default_package), context.getResources().getString(
-                R.string.incall_ui_default_class));
+                R.string.ui_default_package), context.getResources().getString(
+                R.string.incall_default_class));
         serviceIntent.setComponent(component);
         return serviceIntent;
     }
