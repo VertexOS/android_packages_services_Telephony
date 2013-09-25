@@ -91,16 +91,13 @@ public class CallModeler extends Handler {
     private final HashMap<Connection, Call> mConfCallMap = Maps.newHashMap();
     private final AtomicInteger mNextCallId = new AtomicInteger(CALL_ID_START_VALUE);
     private final ArrayList<Listener> mListeners = new ArrayList<Listener>();
-    private RejectWithTextMessageManager mRejectWithTextMessageManager;
     private Connection mCdmaIncomingConnection;
     private Connection mCdmaOutgoingConnection;
 
     public CallModeler(CallStateMonitor callStateMonitor, CallManager callManager,
-            RejectWithTextMessageManager rejectWithTextMessageManager,
             CallGatewayManager callGatewayManager) {
         mCallStateMonitor = callStateMonitor;
         mCallManager = callManager;
-        mRejectWithTextMessageManager = rejectWithTextMessageManager;
         mCallGatewayManager = callGatewayManager;
 
         mCallStateMonitor.addListener(this);

@@ -16,20 +16,11 @@
 
 package com.android.phone;
 
-import android.app.ActivityManager;
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.ComponentName;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.ApplicationInfo;
-import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
-import android.content.pm.ServiceInfo;
 import android.content.res.Resources;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.Looper;
@@ -38,24 +29,14 @@ import android.telephony.PhoneNumberUtils;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.internal.telephony.Call;
 import com.android.internal.telephony.Connection;
 import com.android.internal.telephony.PhoneConstants;
-
-import com.google.android.collect.Lists;
+import com.android.internal.telephony.SmsApplication;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Helper class to manage the "Respond via Message" feature for incoming calls.
@@ -63,24 +44,13 @@ import java.util.List;
  * @see com.android.phone.InCallScreen.internalRespondViaSms()
  */
 public class RejectWithTextMessageManager {
-
     private static final String TAG = RejectWithTextMessageManager.class.getSimpleName();
     private static final boolean DBG = (PhoneGlobals.DBG_LEVEL >= 2);
-
-    private static final String PERMISSION_SEND_RESPOND_VIA_MESSAGE =
-            "android.permission.SEND_RESPOND_VIA_MESSAGE";
-
-    /** The array of "canned responses"; see loadCannedResponses(). */
-    private String[] mCannedResponses;
 
     /** SharedPreferences file name for our persistent settings. */
     private static final String SHARED_PREFERENCES_NAME = "respond_via_sms_prefs";
 
-    private Intent mIntent;
-
-    private ArrayList<ComponentName> mComponentsWithPermission = new ArrayList<ComponentName>();
-
-            // Preference keys for the 4 "canned responses"; see RespondViaSmsManager$Settings.
+    // Preference keys for the 4 "canned responses"; see RespondViaSmsManager$Settings.
     // Since (for now at least) the number of messages is fixed at 4, and since
     // SharedPreferences can't deal with arrays anyway, just store the messages
     // as 4 separate strings.
@@ -89,12 +59,6 @@ public class RejectWithTextMessageManager {
     private static final String KEY_CANNED_RESPONSE_PREF_2 = "canned_response_pref_2";
     private static final String KEY_CANNED_RESPONSE_PREF_3 = "canned_response_pref_3";
     private static final String KEY_CANNED_RESPONSE_PREF_4 = "canned_response_pref_4";
-    /* package */ static final String KEY_INSTANT_TEXT_DEFAULT_COMPONENT =
-            "instant_text_def_component";
-
-    /* package */ static final String TAG_ALL_SMS_SERVICES = "com.android.phone.AvailablePackages";
-    /* package */ static final String TAG_SEND_SMS = "com.android.phone.MessageIntent";
-    /* package */ static final String TAG_SMS_DESTINATION = "com.android.phone.SmsDestination";
 
     /**
      * Read the (customizable) canned responses from SharedPreferences,
@@ -129,42 +93,37 @@ public class RejectWithTextMessageManager {
         return responses;
     }
 
-    private void sendTextAndExit(final String phoneNumber) {
-        // Send the selected message immediately with no user interaction.
-        if (mIntent.getComponent() != null) {
-            PhoneGlobals.getInstance().startService(mIntent);
+    private static void showMessageSentToast(final String phoneNumber) {
+        // ...and show a brief confirmation to the user (since
+        // otherwise it's hard to be sure that anything actually
+        // happened.)
+        // Ugly hack to show a toaster from a service.
+        (new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Looper.prepare();
+                Handler innerHandler = new Handler() {
+                    @Override
+                    public void handleMessage(Message message) {
+                        final Resources res = PhoneGlobals.getInstance().getResources();
+                        final String formatString = res.getString(
+                                R.string.respond_via_sms_confirmation_format);
+                        final String confirmationMsg = String.format(formatString, phoneNumber);
+                        Toast.makeText(PhoneGlobals.getInstance(), confirmationMsg,
+                                Toast.LENGTH_LONG).show();
+                    }
 
-            // ...and show a brief confirmation to the user (since
-            // otherwise it's hard to be sure that anything actually
-            // happened.)
-            // Ugly hack to show a toaster from a service.
-            (new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    Looper.prepare();
-                    Handler innerHandler = new Handler() {
-                        @Override
-                        public void handleMessage(Message message) {
-                            final Resources res = PhoneGlobals.getInstance().getResources();
-                            final String formatString = res.getString(
-                                    R.string.respond_via_sms_confirmation_format);
-                            final String confirmationMsg = String.format(formatString, phoneNumber);
-                            Toast.makeText(PhoneGlobals.getInstance(), confirmationMsg,
-                                    Toast.LENGTH_LONG).show();
-                        }
+                    @Override
+                    public void dispatchMessage(Message message) {
+                        handleMessage(message);
+                    }
+                };
 
-                        @Override
-                        public void dispatchMessage(Message message) {
-                            handleMessage(message);
-                        }
-                    };
-
-                    Message message = innerHandler.obtainMessage();
-                    innerHandler.dispatchMessage(message);
-                    Looper.loop();
-                }
-            })).start();
-        }
+                Message message = innerHandler.obtainMessage();
+                innerHandler.dispatchMessage(message);
+                Looper.loop();
+            }
+        })).start();
 
         // TODO: If the device is locked, this toast won't actually ever
         // be visible!  (That's because we're about to dismiss the call
@@ -173,7 +132,7 @@ public class RejectWithTextMessageManager {
         // Possible fixes:
         // (1) Is it possible to allow a specific Toast to be visible
         //     on top of the keyguard?
-        // (2) Artifically delay the dismissCallScreen() call by 3
+        // (2) Artificially delay the dismissCallScreen() call by 3
         //     seconds to allow the toast to be seen?
         // (3) Don't use a toast at all; instead use a transient state
         //     of the InCallScreen (perhaps via the InCallUiState
@@ -182,125 +141,29 @@ public class RejectWithTextMessageManager {
     }
 
     /**
-     * Queries the System to determine what packages contain services that can handle the instant
-     * text response Action AND have permissions to do so.
+     * Reject the call with the specified message (or launch messaging UX if null message)
      */
-    private static ArrayList<ComponentName> getPackagesWithInstantTextPermission() {
-        final PackageManager packageManager = PhoneGlobals.getInstance().getPackageManager();
-
-        final ArrayList<ComponentName> componentsWithPermission = new ArrayList<ComponentName>();
-
-        // Get list of all services set up to handle the Instant Text intent.
-        final List<ResolveInfo> infos = packageManager.queryIntentServices(
-                getInstantTextIntent("", null, null), 0);
-
-        // Collect all the valid services
-        for (ResolveInfo resolveInfo : infos) {
-            final ServiceInfo serviceInfo = resolveInfo.serviceInfo;
-            if (serviceInfo == null) {
-                Log.w(TAG, "Ignore package without proper service.");
-                continue;
+    public static void rejectCallWithMessage(Call call, String message) {
+        Connection conn = call.getLatestConnection();
+        if (conn != null) {
+            final String phoneNumber = conn.getAddress();
+            final ComponentName component =
+                    SmsApplication.getDefaultRespondViaMessageApplication(
+                            PhoneGlobals.getInstance(), true /*updateIfNeeded*/);
+            if (component != null) {
+                // Build and send the intent
+                final Uri uri = Uri.fromParts(Constants.SCHEME_SMSTO, phoneNumber, null);
+                final Intent intent = new Intent(TelephonyManager.ACTION_RESPOND_VIA_MESSAGE, uri);
+                if (message != null) {
+                    intent.putExtra(Intent.EXTRA_TEXT, message);
+                    showMessageSentToast(phoneNumber);
+                } else {
+                    intent.putExtra("exit_on_sent", true);
+                    intent.putExtra("showUI", true);
+                }
+                intent.setComponent(component);
+                PhoneGlobals.getInstance().startService(intent);
             }
-
-            // A Service is valid only if it requires the permission
-            // PERMISSION_SEND_RESPOND_VIA_MESSAGE
-            if (PERMISSION_SEND_RESPOND_VIA_MESSAGE.equals(serviceInfo.permission)) {
-                componentsWithPermission.add(new ComponentName(serviceInfo.packageName,
-                    serviceInfo.name));
-            }
-        }
-
-        return componentsWithPermission;
-    }
-
-    /**
-     * @param phoneNumber Must not be null.
-     * @param message Can be null. If message is null, the returned Intent will be configured to
-     * launch the SMS compose UI. If non-null, the returned Intent will cause the specified message
-     * to be sent with no interaction from the user.
-     * @param component The component that should handle this intent.
-     * @return Service Intent for the instant response.
-     */
-    private static Intent getInstantTextIntent(String phoneNumber, String message,
-            ComponentName component) {
-        final Uri uri = Uri.fromParts(Constants.SCHEME_SMSTO, phoneNumber, null);
-        final Intent intent = new Intent(TelephonyManager.ACTION_RESPOND_VIA_MESSAGE, uri);
-        if (message != null) {
-            intent.putExtra(Intent.EXTRA_TEXT, message);
-        } else {
-            intent.putExtra("exit_on_sent", true);
-            intent.putExtra("showUI", true);
-        }
-        if (component != null) {
-            intent.setComponent(component);
-        }
-        return intent;
-    }
-
-    private boolean getSmsService(String phoneNumber) {
-        if (DBG) log("sendTextToDefaultActivity()...");
-        final PackageManager packageManager = PhoneGlobals.getInstance().getPackageManager();
-
-        // Check to see if the default component to receive this intent is already saved
-        // and check to see if it still has the corrent permissions.
-        final SharedPreferences prefs = PhoneGlobals.getInstance().
-                getSharedPreferences(SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE);
-        final String flattenedName = prefs.getString(KEY_INSTANT_TEXT_DEFAULT_COMPONENT, null);
-        if (flattenedName != null) {
-            if (DBG) log("Default package was found." + flattenedName);
-
-            final ComponentName componentName = ComponentName.unflattenFromString(flattenedName);
-            ServiceInfo serviceInfo = null;
-            try {
-                serviceInfo = packageManager.getServiceInfo(componentName, 0);
-            } catch (PackageManager.NameNotFoundException e) {
-                Log.w(TAG, "Default service does not have permission.");
-            }
-
-            if (serviceInfo != null &&
-                    PERMISSION_SEND_RESPOND_VIA_MESSAGE.equals(serviceInfo.permission)) {
-                mIntent.setComponent(componentName);
-                return true;
-            } else {
-                SharedPreferences.Editor editor = prefs.edit();
-                editor.remove(KEY_INSTANT_TEXT_DEFAULT_COMPONENT);
-                editor.apply();
-            }
-        }
-
-        mComponentsWithPermission = getPackagesWithInstantTextPermission();
-
-        final int size = mComponentsWithPermission.size();
-        if (size == 0) {
-            Log.e(TAG, "No appropriate package receiving the Intent. Don't send anything");
-            return false;
-        } else if (size == 1) {
-            mIntent.setComponent(mComponentsWithPermission.get(0));
-            return true;
-        } else {
-            Log.v(TAG, "Choosing from one of the apps");
-            final Intent intent = new Intent(Intent.ACTION_VIEW, null);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK |
-                    Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS |
-                    Intent.FLAG_ACTIVITY_NO_ANIMATION  |
-                    Intent.FLAG_ACTIVITY_NO_HISTORY |
-                    Intent.FLAG_FROM_BACKGROUND);
-            intent.setClass(PhoneGlobals.getInstance(), TextMessagePackageChooser.class);
-            intent.putExtra(TAG_ALL_SMS_SERVICES, mComponentsWithPermission);
-            intent.putExtra(TAG_SEND_SMS, mIntent);
-            intent.putExtra(TAG_SMS_DESTINATION, phoneNumber);
-            PhoneGlobals.getInstance().startActivity(intent);
-            return false;
-            // return componentsWithPermission.get(0);
-        }
-    }
-
-    public void rejectCallWithMessage(Call call, String message) {
-        mComponentsWithPermission.clear();
-        final String phoneNumber = call.getLatestConnection().getAddress();
-        mIntent = getInstantTextIntent(phoneNumber, message, null);
-        if (getSmsService(phoneNumber))  {
-            sendTextAndExit(phoneNumber);
         }
     }
 
@@ -379,8 +242,9 @@ public class RejectWithTextMessageManager {
             return false;
         }
 
-        // Allow the feature only when there's a destination for it.
-        if (getPackagesWithInstantTextPermission().size() < 1) {
+        // Is there a valid SMS application on the phone?
+        if (SmsApplication.getDefaultRespondViaMessageApplication(PhoneGlobals.getInstance(),
+                true /*updateIfNeeded*/) == null) {
             return false;
         }
 
