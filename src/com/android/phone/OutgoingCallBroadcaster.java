@@ -26,6 +26,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Binder;
 import android.os.Bundle;
@@ -520,11 +521,12 @@ public class OutgoingCallBroadcaster extends Activity
                 // use the java resolver to find the dialer class (as
                 // opposed to a Context which look up known android
                 // packages only)
-                invokeFrameworkDialer.setClassName("com.android.dialer",
-                                                   "com.android.dialer.DialtactsActivity");
+                final Resources resources = getResources();
+                invokeFrameworkDialer.setClassName(
+                        resources.getString(R.string.ui_default_package),
+                        resources.getString(R.string.dialer_default_class));
                 invokeFrameworkDialer.setAction(Intent.ACTION_DIAL);
                 invokeFrameworkDialer.setData(intent.getData());
-
                 if (DBG) Log.v(TAG, "onCreate(): calling startActivity for Dialer: "
                                + invokeFrameworkDialer);
                 startActivity(invokeFrameworkDialer);
