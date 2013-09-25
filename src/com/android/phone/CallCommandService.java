@@ -44,17 +44,14 @@ class CallCommandService extends ICallCommandService.Stub {
     private final CallModeler mCallModeler;
     private final DTMFTonePlayer mDtmfTonePlayer;
     private final AudioRouter mAudioRouter;
-    private final RejectWithTextMessageManager mRejectWithTextMessageManager;
 
     public CallCommandService(Context context, CallManager callManager, CallModeler callModeler,
-            DTMFTonePlayer dtmfTonePlayer, AudioRouter audioRouter,
-            RejectWithTextMessageManager rejectWithTextMessageManager) {
+            DTMFTonePlayer dtmfTonePlayer, AudioRouter audioRouter) {
         mContext = context;
         mCallManager = callManager;
         mCallModeler = callModeler;
         mDtmfTonePlayer = dtmfTonePlayer;
         mAudioRouter = audioRouter;
-        mRejectWithTextMessageManager = rejectWithTextMessageManager;
     }
 
     /**
@@ -82,13 +79,13 @@ class CallCommandService extends ICallCommandService.Stub {
             if (result != null) {
                 final String number = result.getConnection().getAddress();
 
-                Log.v(TAG, "Hanging up");
-                PhoneUtils.hangupRingingCall(result.getConnection().getCall());
-
                 if (rejectWithMessage) {
-                    mRejectWithTextMessageManager.rejectCallWithMessage(
+                    RejectWithTextMessageManager.rejectCallWithMessage(
                             result.getConnection().getCall(), message);
                 }
+
+                Log.v(TAG, "Hanging up");
+                PhoneUtils.hangupRingingCall(result.getConnection().getCall());
             }
         } catch (Exception e) {
             Log.e(TAG, "Error during rejectCall().", e);
