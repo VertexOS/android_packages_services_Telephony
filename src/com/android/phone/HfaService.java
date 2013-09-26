@@ -28,6 +28,8 @@ import android.util.Log;
 public class HfaService extends Service {
     private static final String TAG = HfaService.class.getSimpleName();
 
+    private HfaLogic mHfaLogic;
+
     @Override
     public void onCreate() {
         Log.i(TAG, "service started");
@@ -38,7 +40,7 @@ public class HfaService extends Service {
         final PendingIntent otaResponseIntent = intent.getParcelableExtra(
                 OtaUtils.EXTRA_OTASP_RESULT_CODE_PENDING_INTENT);
 
-        new HfaLogic(this, new HfaLogic.HfaLogicCallback() {
+        mHfaLogic = new HfaLogic(this, new HfaLogic.HfaLogicCallback() {
             @Override
             public void onSuccess() {
                 Log.i(TAG, "onSuccess");
@@ -52,7 +54,8 @@ public class HfaService extends Service {
                 // we do the same thing...finish.
                 onComplete();
             }
-        }, otaResponseIntent).start();
+        }, otaResponseIntent);
+        mHfaLogic.start();
 
         return START_STICKY;
     }
