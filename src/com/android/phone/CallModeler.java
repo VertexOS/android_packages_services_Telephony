@@ -323,6 +323,7 @@ public class CallModeler extends Handler {
 
             mCallMap.remove(conn);
         }
+        mCallManager.clearDisconnected();
     }
 
     /**
