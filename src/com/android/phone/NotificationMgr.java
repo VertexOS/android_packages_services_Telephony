@@ -249,6 +249,7 @@ public class NotificationMgr {
                 state |= StatusBarManager.DISABLE_HOME;
                 state |= StatusBarManager.DISABLE_RECENT;
                 state |= StatusBarManager.DISABLE_BACK;
+                state |= StatusBarManager.DISABLE_SEARCH;
             }
 
             if (DBG) log("updateStatusBar: state = 0x" + Integer.toHexString(state));
