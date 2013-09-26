@@ -699,14 +699,6 @@ public class PhoneUtils {
                 updateCdmaCallStateOnNewOutgoingCall(app, connection);
             }
 
-            // Clean up the number to be displayed.
-            if (phoneType == PhoneConstants.PHONE_TYPE_CDMA) {
-                number = CdmaConnection.formatDialString(number);
-            }
-            number = PhoneNumberUtils.extractNetworkPortion(number);
-            number = PhoneNumberUtils.convertKeypadLettersToDigits(number);
-            number = PhoneNumberUtils.formatNumber(number);
-
             if (gatewayUri == null) {
                 // phone.dial() succeeded: we're now in a normal phone call.
                 // attach the URI to the CallerInfo Object if it is there,
@@ -730,25 +722,9 @@ public class PhoneUtils {
                         }
                     }
                 }
-            } else {
-                // Get the caller info synchronously because we need the final
-                // CallerInfo object to update the dialed number with the one
-                // requested by the user (and not the provider's gateway number).
-                CallerInfo info = null;
-                String content = phone.getContext().getContentResolver().SCHEME_CONTENT;
-                if ((contactRef != null) && (contactRef.getScheme().equals(content))) {
-                    info = CallerInfo.getCallerInfo(context, contactRef);
-                }
-
-                // Fallback, lookup contact using the phone number if the
-                // contact's URI scheme was not content:// or if is was but
-                // the lookup failed.
-                if (null == info) {
-                    info = CallerInfo.getCallerInfo(context, number);
-                }
-                info.phoneNumber = number;
-                connection.setUserData(info);
             }
+
+            startGetCallerInfo(context, connection, null, null, gatewayInfo);
 
             // Always set mute to off when we are dialing an emergency number
             if (isEmergencyCall) {
@@ -1422,12 +1398,18 @@ public class PhoneUtils {
         return startGetCallerInfo(context, conn, listener, cookie);
     }
 
+    static CallerInfoToken startGetCallerInfo(Context context, Connection c,
+            CallerInfoAsyncQuery.OnQueryCompleteListener listener, Object cookie) {
+        return startGetCallerInfo(context, c, listener, cookie, null);
+    }
+
     /**
      * place a temporary callerinfo object in the hands of the caller and notify
      * caller when the actual query is done.
      */
     static CallerInfoToken startGetCallerInfo(Context context, Connection c,
-            CallerInfoAsyncQuery.OnQueryCompleteListener listener, Object cookie) {
+            CallerInfoAsyncQuery.OnQueryCompleteListener listener, Object cookie,
+            RawGatewayInfo info) {
         CallerInfoToken cit;
 
         if (c == null) {
@@ -1492,6 +1474,12 @@ public class PhoneUtils {
             // No URI, or Existing CallerInfo, so we'll have to make do with
             // querying a new CallerInfo using the connection's phone number.
             String number = c.getAddress();
+
+            if (info != null) {
+                // Gateway number, the connection number is actually the gateway number.
+                // need to lookup via dialed number.
+                number = info.trueNumber;
+            }
 
             if (DBG) {
                 log("PhoneUtils.startGetCallerInfo: new query for phone number...");
@@ -1578,6 +1566,13 @@ public class PhoneUtils {
             } else {
                 // handling case where number/name gets updated later on by the network
                 String updatedNumber = c.getAddress();
+
+                if (info != null) {
+                    // Gateway number, the connection number is actually the gateway number.
+                    // need to lookup via dialed number.
+                    updatedNumber = info.trueNumber;
+                }
+
                 if (DBG) {
                     log("startGetCallerInfo: updatedNumber initially = "
                             + toLogSafePhoneNumber(updatedNumber));
