@@ -299,6 +299,7 @@ public class CallModeler extends Handler {
             }
         }
 
+        PhoneGlobals.getInstance().updateWakeState();
         return call;
     }
 
@@ -323,7 +324,9 @@ public class CallModeler extends Handler {
 
             mCallMap.remove(conn);
         }
+
         mCallManager.clearDisconnected();
+        PhoneGlobals.getInstance().updateWakeState();
     }
 
     /**
@@ -339,6 +342,8 @@ public class CallModeler extends Handler {
                 mListeners.get(i).onUpdate(updatedCalls);
             }
         }
+
+        PhoneGlobals.getInstance().updateWakeState();
     }
 
 
