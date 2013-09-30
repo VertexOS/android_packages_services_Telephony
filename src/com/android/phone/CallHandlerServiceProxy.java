@@ -63,6 +63,7 @@ public class CallHandlerServiceProxy extends Handler
     private CallCommandService mCallCommandService;
     private CallModeler mCallModeler;
     private Context mContext;
+    private boolean mFullUpdateOnConnect;
 
     private ICallHandlerService mCallHandlerServiceGuarded;  // Guarded by mServiceAndQueueLock
     // Single queue to guarantee ordering
@@ -297,8 +298,7 @@ public class CallHandlerServiceProxy extends Handler
                 // always have an in call ui.
                 unbind();
 
-                // We were disconnected from the UI.  End all calls.
-                PhoneUtils.hangupAllCalls(PhoneGlobals.getInstance().getCallManager());
+                reconnectOnRemainingCalls();
             }
         }
     }
@@ -438,6 +438,21 @@ public class CallHandlerServiceProxy extends Handler
             makeInitialServiceCalls();
 
             processQueue();
+
+            if (mFullUpdateOnConnect) {
+                mFullUpdateOnConnect = false;
+                onUpdate(mCallModeler.getFullList());
+            }
+        }
+    }
+
+    /**
+     * Checks to see if there are any live calls left, and if so, try reconnecting the UI.
+     */
+    private void reconnectOnRemainingCalls() {
+        if (mCallModeler.hasLiveCall()) {
+            mFullUpdateOnConnect = true;
+            setupServiceConnection();
         }
     }
 
