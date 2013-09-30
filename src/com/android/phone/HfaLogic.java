@@ -71,6 +71,9 @@ public class HfaLogic {
     private PendingIntent mResponseIntent;
     private Context mContext;
 
+    private static final int DEFAULT_RETRY_COUNT = 1;
+    private int mRetryCount;
+
     public interface HfaLogicCallback {
         public void onSuccess();
         public void onError(String errorMsg);
@@ -83,34 +86,47 @@ public class HfaLogic {
     }
 
     public void start() {
-        Log.i(TAG, "Start Hfa Provisioning.");
+        Log.i(TAG, "start:");
+        mRetryCount = DEFAULT_RETRY_COUNT;
         startHfaIntentReceiver();
         startProvisioning();
     }
 
     private void startProvisioning() {
+        Log.i(TAG, "startProvisioning:");
         sendHfaCommand(ACTION_START);
     }
 
     private void sendHfaCommand(String action) {
-        Log.i(TAG, "Sending command: " + action);
+        Log.i(TAG, "sendHfaCommand: command=" + action);
         mContext.sendBroadcast(new Intent(action));
     }
 
     private void onHfaError(String errorMsg) {
-        Log.i(TAG, "HfaError");
-        stopHfaIntentReceiver();
-        sendFinalResponse(OTASP_FAILURE, errorMsg);
-        mCallback.onError(errorMsg);
+        Log.i(TAG, "onHfaError: call mCallBack.onError errorMsg=" + errorMsg
+                + " mRetryCount=" + mRetryCount);
+        mRetryCount -= 1;
+        if (mRetryCount >= 0) {
+            Log.i(TAG, "onHfaError: retry");
+            startProvisioning();
+        } else {
+            Log.i(TAG, "onHfaError: Declare OTASP_FAILURE");
+            mRetryCount = 0;
+            stopHfaIntentReceiver();
+            sendFinalResponse(OTASP_FAILURE, errorMsg);
+            mCallback.onError(errorMsg);
+        }
     }
 
     private void onHfaSuccess() {
-        Log.i(TAG, "HfaSuccess");
+        Log.i(TAG, "onHfaSuccess: NOT bouncing radio call onTotalSuccess");
         stopHfaIntentReceiver();
-        bounceRadio();
+        // bounceRadio();
+        onTotalSuccess();
     }
 
     private void onTotalSuccess() {
+        Log.i(TAG, "onTotalSuccess: call mCallBack.onSuccess");
         sendFinalResponse(OTASP_SUCCESS, null);
         mCallback.onSuccess();
     }
