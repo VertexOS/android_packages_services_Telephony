@@ -1475,7 +1475,7 @@ public class PhoneUtils {
             // querying a new CallerInfo using the connection's phone number.
             String number = c.getAddress();
 
-            if (info != null) {
+            if (info != null && info != CallGatewayManager.EMPTY_INFO) {
                 // Gateway number, the connection number is actually the gateway number.
                 // need to lookup via dialed number.
                 number = info.trueNumber;
