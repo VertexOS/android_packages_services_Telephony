@@ -1974,6 +1974,17 @@ public class PhoneUtils {
             }
             sConnectionMuteTable.put(cn, Boolean.valueOf(muted));
         }
+
+        // update the background connections to match.  This includes
+        // all the connections on conference calls.
+        if (cm.hasActiveBgCall()) {
+            for (Connection cn : cm.getFirstActiveBgCall().getConnections()) {
+                if (sConnectionMuteTable.get(cn) == null) {
+                    if (DBG) log("problem retrieving mute value for this connection.");
+                }
+                sConnectionMuteTable.put(cn, Boolean.valueOf(muted));
+            }
+        }
     }
 
     static boolean isInEmergencyCall(CallManager cm) {
