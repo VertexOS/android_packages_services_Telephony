@@ -141,11 +141,11 @@ public class RejectWithTextMessageManager {
     }
 
     /**
-     * Reject the call with the specified message (or launch messaging UX if null message)
+     * Reject the call with the specified message. If message is null this call is ignored.
      */
     public static void rejectCallWithMessage(Call call, String message) {
         Connection conn = call.getLatestConnection();
-        if (conn != null) {
+        if (conn != null && message != null) {
             final String phoneNumber = conn.getAddress();
             final ComponentName component =
                     SmsApplication.getDefaultRespondViaMessageApplication(
@@ -154,13 +154,8 @@ public class RejectWithTextMessageManager {
                 // Build and send the intent
                 final Uri uri = Uri.fromParts(Constants.SCHEME_SMSTO, phoneNumber, null);
                 final Intent intent = new Intent(TelephonyManager.ACTION_RESPOND_VIA_MESSAGE, uri);
-                if (message != null) {
-                    intent.putExtra(Intent.EXTRA_TEXT, message);
-                    showMessageSentToast(phoneNumber);
-                } else {
-                    intent.putExtra("exit_on_sent", true);
-                    intent.putExtra("showUI", true);
-                }
+                intent.putExtra(Intent.EXTRA_TEXT, message);
+                showMessageSentToast(phoneNumber);
                 intent.setComponent(component);
                 PhoneGlobals.getInstance().startService(intent);
             }
