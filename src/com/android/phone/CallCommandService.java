@@ -26,7 +26,6 @@ import com.android.internal.telephony.CallManager;
 import com.android.internal.telephony.PhoneConstants;
 import com.android.phone.CallModeler.CallResult;
 import com.android.phone.NotificationMgr.StatusBarHelper;
-import com.android.services.telephony.common.AudioMode;
 import com.android.services.telephony.common.Call;
 import com.android.services.telephony.common.ICallCommandService;
 
@@ -73,19 +72,25 @@ class CallCommandService extends ICallCommandService.Stub {
      * TODO: Add a confirmation callback parameter.
      */
     @Override
-    public void rejectCall(int callId, boolean rejectWithMessage, String message) {
+    public void rejectCall(Call call, boolean rejectWithMessage, String message) {
         try {
+            int callId = Call.INVALID_CALL_ID;
+            String phoneNumber = "";
+            if (call != null) {
+                callId = call.getCallId();
+                phoneNumber = call.getNumber();
+            }
             CallResult result = mCallModeler.getCallWithId(callId);
-            if (result != null) {
-                final String number = result.getConnection().getAddress();
 
-                if (rejectWithMessage) {
-                    RejectWithTextMessageManager.rejectCallWithMessage(
-                            result.getConnection().getCall(), message);
-                }
+            if (result != null) {
+                phoneNumber = result.getConnection().getAddress();
 
                 Log.v(TAG, "Hanging up");
                 PhoneUtils.hangupRingingCall(result.getConnection().getCall());
+            }
+
+            if (rejectWithMessage && !phoneNumber.isEmpty()) {
+                RejectWithTextMessageManager.rejectCallWithMessage(phoneNumber, message);
             }
         } catch (Exception e) {
             Log.e(TAG, "Error during rejectCall().", e);
