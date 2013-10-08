@@ -139,16 +139,29 @@ public class OutgoingCallBroadcaster extends Activity
         @Override
         public void onReceive(Context context, Intent intent) {
             mHandler.removeMessages(EVENT_OUTGOING_CALL_TIMEOUT);
-            doReceive(context, intent);
+            final boolean isAttemptingCall = doReceive(context, intent);
             if (DBG) Log.v(TAG, "OutgoingCallReceiver is going to finish the Activity itself.");
 
             // We cannot finish the activity immediately here because it would cause the temporary
             // black screen of OutgoingBroadcaster to go away and we need it to stay up until the
             // UI (in a different process) has time to come up.
-            startDelayedFinish();
+            // However, if we know we are not attemping a call, we need to finish the activity
+            // immediately so that subsequent CALL intents will retrigger a new
+            // OutgoingCallReceiver. see b/10857203
+            if (isAttemptingCall) {
+                startDelayedFinish();
+            } else {
+                finish();
+            }
         }
 
-        public void doReceive(Context context, Intent intent) {
+
+        /**
+         * Handes receipt of ordered new_outgoing_call intent. Verifies that the return from the
+         * ordered intent is valid.
+         * @return true if the call is being attempted; false if we are canceling the call.
+         */
+        public boolean doReceive(Context context, Intent intent) {
             if (DBG) Log.v(TAG, "doReceive: " + intent);
 
             boolean alreadyCalled;
@@ -159,7 +172,7 @@ public class OutgoingCallBroadcaster extends Activity
                     OutgoingCallBroadcaster.EXTRA_ALREADY_CALLED, false);
             if (alreadyCalled) {
                 if (DBG) Log.v(TAG, "CALL already placed -- returning.");
-                return;
+                return false;
             }
 
             // Once the NEW_OUTGOING_CALL broadcast is finished, the resultData
@@ -208,32 +221,32 @@ public class OutgoingCallBroadcaster extends Activity
                     // The actual OTASP call is active.  Don't allow new
                     // outgoing calls at all from this state.
                     Log.w(TAG, "OTASP call is active: disallowing a new outgoing call.");
-                    return;
+                    return false;
                 }
             }
 
             if (number == null) {
                 if (DBG) Log.v(TAG, "CALL cancelled (null number), returning...");
-                return;
+                return false;
             } else if (TelephonyCapabilities.supportsOtasp(app.phone)
                     && (app.phone.getState() != PhoneConstants.State.IDLE)
                     && (app.phone.isOtaSpNumber(number))) {
                 if (DBG) Log.v(TAG, "Call is active, a 2nd OTA call cancelled -- returning.");
-                return;
+                return false;
             } else if (PhoneNumberUtils.isPotentialLocalEmergencyNumber(number, context)) {
                 // Just like 3rd-party apps aren't allowed to place emergency
                 // calls via the ACTION_CALL intent, we also don't allow 3rd
                 // party apps to use the NEW_OUTGOING_CALL broadcast to rewrite
                 // an outgoing call into an emergency number.
                 Log.w(TAG, "Cannot modify outgoing call to emergency number " + number + ".");
-                return;
+                return false;
             }
 
             originalUri = intent.getStringExtra(
                     OutgoingCallBroadcaster.EXTRA_ORIGINAL_URI);
             if (originalUri == null) {
                 Log.e(TAG, "Intent is missing EXTRA_ORIGINAL_URI -- returning.");
-                return;
+                return false;
             }
 
             Uri uri = Uri.parse(originalUri);
@@ -251,6 +264,8 @@ public class OutgoingCallBroadcaster extends Activity
             if (VDBG) Log.v(TAG, "- actual number to dial: '" + number + "'");
 
             startSipCallOptionHandler(context, intent, uri, number);
+
+            return true;
         }
     }
 
