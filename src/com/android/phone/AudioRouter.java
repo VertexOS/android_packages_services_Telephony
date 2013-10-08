@@ -41,6 +41,9 @@ import java.util.List;
             (PhoneGlobals.DBG_LEVEL >= 1) && (SystemProperties.getInt("ro.debuggable", 0) == 1);
     private static final boolean VDBG = (PhoneGlobals.DBG_LEVEL >= 2);
 
+    private static final boolean ON = true;
+    private static final boolean OFF = false;
+
     private final Context mContext;
     private final BluetoothManager mBluetoothManager;
     private final WiredHeadsetManager mWiredHeadsetManager;
@@ -108,42 +111,23 @@ import java.util.List;
      */
     public void setAudioMode(int mode) {
         logD("setAudioMode " + AudioMode.toString(mode));
+        boolean error = false;
 
-        // Since they are mutually exclusive and one is ALWAYS valid, we allow a special input of
-        // WIRED_OR_EARPIECE so that callers dont have to make a call to check which is supported
-        // before calling setAudioMode.
-        if (mode == AudioMode.WIRED_OR_EARPIECE) {
-            mode = AudioMode.WIRED_OR_EARPIECE & mSupportedModes;
+        // changes WIRED_OR_EARPIECE to appropriate single entry WIRED_HEADSET or EARPIECE
+        mode = selectWiredOrEarpiece(mode);
 
-            if (mode == 0) {
-                Log.wtf(LOG_TAG, "One of wired headset or earpiece should always be valid.");
-                // assume earpiece in this case.
-                mode = AudioMode.EARPIECE;
-            }
-        }
-
+        // If mode is unsupported, do nothing.
         if ((calculateSupportedModes() | mode) == 0) {
             Log.wtf(LOG_TAG, "Asking to set to a mode that is unsupported: " + mode);
             return;
         }
 
         if (AudioMode.SPEAKER == mode) {
-
-            if (!PhoneUtils.isSpeakerOn(mContext)) {
-                // Switch away from Bluetooth, if it was active.
-                if (mBluetoothManager.isBluetoothAvailable() &&
-                        mBluetoothManager.isBluetoothAudioConnected()) {
-
-                    mBluetoothManager.disconnectBluetoothAudio();
-                }
-                PhoneUtils.turnOnSpeaker(mContext, true, true);
-            }
+            turnOnOffBluetooth(OFF);
+            turnOnOffSpeaker(ON);
 
         } else if (AudioMode.BLUETOOTH == mode) {
-
-            // If already connected to BT, there's nothing to do here.
-            if (mBluetoothManager.isBluetoothAvailable() &&
-                    !mBluetoothManager.isBluetoothAudioConnected()) {
+            if (mBluetoothManager.isBluetoothAvailable()) {
                 // Manually turn the speaker phone off, instead of allowing the
                 // Bluetooth audio routing to handle it, since there's other
                 // important state-updating that needs to happen in the
@@ -151,31 +135,30 @@ import java.util.List;
                 // (Similarly, whenever the user turns *on* the speaker, we
                 // manually disconnect the active bluetooth headset;
                 // see toggleSpeaker() and/or switchInCallAudio().)
-                if (PhoneUtils.isSpeakerOn(mContext)) {
-                    PhoneUtils.turnOnSpeaker(mContext, false, true);
+                turnOnOffSpeaker(OFF);
+                if (!turnOnOffBluetooth(ON)) {
+                    error = true;
                 }
-                mBluetoothManager.connectBluetoothAudio();
+            } else {
+                Log.e(LOG_TAG, "Asking to turn on bluetooth when no bluetooth available. " +
+                        "supportedModes: " + AudioMode.toString(calculateSupportedModes()));
+                error = true;
             }
 
         // Wired headset and earpiece work the same way
         } else if (AudioMode.EARPIECE == mode || AudioMode.WIRED_HEADSET == mode) {
-
-            // Switch to either the handset earpiece, or the wired headset (if connected.)
-            // (Do this by simply making sure both speaker and bluetooth are off.)
-            if (mBluetoothManager.isBluetoothAvailable() &&
-                    mBluetoothManager.isBluetoothAudioConnected()) {
-                mBluetoothManager.disconnectBluetoothAudio();
-            }
-            if (PhoneUtils.isSpeakerOn(mContext)) {
-                PhoneUtils.turnOnSpeaker(mContext, false, true);
-            }
+            turnOnOffBluetooth(OFF);
+            turnOnOffSpeaker(OFF);
 
         } else {
-            Log.wtf(LOG_TAG, "Asking us to set to an unsupported mode " +
-                    AudioMode.toString(mode) + " (" + mode + ")");
+            error = true;
+        }
 
-            // set it to the current audio mode
-            mode = mAudioMode;
+        if (error) {
+            mode = calculateModeFromCurrentState();
+            Log.e(LOG_TAG, "There was an error in setting new audio mode. " +
+                    "Resetting mode to " + AudioMode.toString(mode) + ".");
+
         }
 
         updateAudioModeTo(mode);
@@ -222,34 +205,91 @@ import java.util.List;
         // speakerphone, update the "speaker" state.  We ONLY want to do
         // this on the wired headset connect / disconnect events for now
         // though.
-        PhoneConstants.State phoneState = mCallManager.getState();
+        final boolean isOffhook = (mCallManager.getState() == PhoneConstants.State.OFFHOOK);
 
         int newMode = mAudioMode;
 
-        // TODO: Consider using our stored states instead
+        // Change state only if we are not using bluetooth
+        if (!mBluetoothManager.isBluetoothHeadsetAudioOn()) {
 
-        // Do not change speaker state if phone is not off hook
-        if (phoneState == PhoneConstants.State.OFFHOOK &&
-                !mBluetoothManager.isBluetoothHeadsetAudioOn()) {
-            if (!pluggedIn) {
-                // if the state is "not connected", restore the speaker state.
-                PhoneUtils.restoreSpeakerMode(mContext);
+            // Do special logic with speakerphone if we have an ongoing (offhook) call.
+            if (isOffhook) {
+                if (!pluggedIn) {
+                    // if the state is "not connected", restore the speaker state.
+                    PhoneUtils.restoreSpeakerMode(mContext);
 
-                if (PhoneUtils.isSpeakerOn(mContext)) {
-                    newMode = AudioMode.SPEAKER;
+                    if (PhoneUtils.isSpeakerOn(mContext)) {
+                        newMode = AudioMode.SPEAKER;
+                    } else {
+                        newMode = AudioMode.EARPIECE;
+                    }
                 } else {
-                    newMode = AudioMode.EARPIECE;
-                }
-            } else {
-                // if the state is "connected", force the speaker off without
-                // storing the state.
-                PhoneUtils.turnOnSpeaker(mContext, false, false);
+                    // if the state is "connected", force the speaker off without
+                    // storing the state.
+                    PhoneUtils.turnOnSpeaker(mContext, false, false);
 
-                newMode = AudioMode.WIRED_HEADSET;
+                    newMode = AudioMode.WIRED_HEADSET;
+                }
+
+            // if we are outside of a phone call, the logic is simpler
+            } else {
+                newMode = pluggedIn ? AudioMode.WIRED_HEADSET : AudioMode.EARPIECE;
             }
         }
 
         updateAudioModeTo(newMode);
+    }
+
+    /**
+     * Changes WIRED_OR_EARPIECE to appropriate single entry WIRED_HEADSET or EARPIECE.
+     * If mode passed it is not WIRED_OR_EARPIECE, this is a no-op and simply returns
+     * the unchanged mode parameter.
+     */
+    private int selectWiredOrEarpiece(int mode) {
+        // Since they are mutually exclusive and one is ALWAYS valid, we allow a special input of
+        // WIRED_OR_EARPIECE so that callers dont have to make a call to check which is supported
+        // before calling setAudioMode.
+        if (mode == AudioMode.WIRED_OR_EARPIECE) {
+            mode = AudioMode.WIRED_OR_EARPIECE & mSupportedModes;
+
+            if (mode == 0) {
+                Log.wtf(LOG_TAG, "One of wired headset or earpiece should always be valid.");
+                // assume earpiece in this case.
+                mode = AudioMode.EARPIECE;
+            }
+        }
+
+        return mode;
+    }
+
+    /**
+     * Turns on/off bluetooth.  If bluetooth is already in the correct mode, this does
+     * nothing.
+     */
+    private boolean turnOnOffBluetooth(boolean onOff) {
+        if (mBluetoothManager.isBluetoothAvailable()) {
+            final boolean isAlreadyOn = mBluetoothManager.isBluetoothAudioConnected();
+
+            if (onOff && !isAlreadyOn) {
+                mBluetoothManager.connectBluetoothAudio();
+            } else if (!onOff && isAlreadyOn) {
+                mBluetoothManager.disconnectBluetoothAudio();
+            }
+        } else if (onOff) {
+            Log.e(LOG_TAG, "Asking to turn on bluetooth, but there is no bluetooth availabled.");
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Turn on/off speaker.
+     */
+    private void turnOnOffSpeaker(boolean onOff) {
+        if (PhoneUtils.isSpeakerOn(mContext) != onOff) {
+            PhoneUtils.turnOnSpeaker(mContext, onOff, true /* storeState */);
+        }
     }
 
     private void init() {
@@ -291,7 +331,9 @@ import java.util.List;
         // that it went through. If it happens it is likely it is a race condition
         // that will resolve itself when we get updates on the mode change.
         if ((mSupportedModes & mode) == 0) {
-            Log.e(LOG_TAG, "Setting audio mode to an unsupported mode!");
+            Log.e(LOG_TAG, "Setting audio mode to an unsupported mode: " +
+                    AudioMode.toString(mode) + ", supported (" +
+                    AudioMode.toString(mSupportedModes) + ")");
         }
 
         boolean doNotify = oldSupportedModes != mSupportedModes;
