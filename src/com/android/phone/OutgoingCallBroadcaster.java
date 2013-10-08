@@ -677,33 +677,8 @@ public class OutgoingCallBroadcaster extends Activity
     private void handleNonVoiceCapable(Intent intent) {
         if (DBG) Log.v(TAG, "handleNonVoiceCapable: handling " + intent
                        + " on non-voice-capable device...");
-        String action = intent.getAction();
-        Uri uri = intent.getData();
-        String scheme = uri.getScheme();
 
-        // Handle one special case: If this is a regular CALL to a tel: URI,
-        // bring up a UI letting you do something useful with the phone number
-        // (like "Add to contacts" if it isn't a contact yet.)
-        //
-        // This UI is provided by the contacts app in response to a DIAL
-        // intent, so we bring it up here by demoting this CALL to a DIAL and
-        // relaunching.
-        //
-        // TODO: it's strange and unintuitive to manually launch a DIAL intent
-        // to do this; it would be cleaner to have some shared UI component
-        // that we could bring up directly.  (But for now at least, since both
-        // Contacts and Phone are built-in apps, this implementation is fine.)
-
-        if (Intent.ACTION_CALL.equals(action) && (Constants.SCHEME_TEL.equals(scheme))) {
-            Intent newIntent = new Intent(Intent.ACTION_DIAL, uri);
-            if (DBG) Log.v(TAG, "- relaunching as a DIAL intent: " + newIntent);
-            startActivity(newIntent);
-            finish();
-            return;
-        }
-
-        // In all other cases, just show a generic "voice calling not
-        // supported" dialog.
+        // Just show a generic "voice calling not supported" dialog.
         showDialog(DIALOG_NOT_VOICE_CAPABLE);
         // ...and we'll eventually finish() when the user dismisses
         // or cancels the dialog.
