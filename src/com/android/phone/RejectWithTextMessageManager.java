@@ -143,10 +143,8 @@ public class RejectWithTextMessageManager {
     /**
      * Reject the call with the specified message. If message is null this call is ignored.
      */
-    public static void rejectCallWithMessage(Call call, String message) {
-        Connection conn = call.getLatestConnection();
-        if (conn != null && message != null) {
-            final String phoneNumber = conn.getAddress();
+    public static void rejectCallWithMessage(String phoneNumber, String message) {
+        if (message != null) {
             final ComponentName component =
                     SmsApplication.getDefaultRespondViaMessageApplication(
                             PhoneGlobals.getInstance(), true /*updateIfNeeded*/);
