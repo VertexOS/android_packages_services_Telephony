@@ -22,7 +22,7 @@
     <string name="phoneIconLabel" msgid="2331230813161304895">"电话"</string>
     <string name="fdnListLabel" msgid="8630418672279521003">"固定拨号列表"</string>
     <string name="unknown" msgid="6878797917991465859">"未知"</string>
-    <string name="private_num" msgid="6713286113000232309">"私人号码"</string>
+    <string name="private_num" msgid="6713286113000232309">"私密号码"</string>
     <string name="payphone" msgid="1931775086311769314">"公用电话"</string>
     <string name="onHold" msgid="9035493194749959955">"保持"</string>
     <string name="mmiStarted" msgid="6347869857061147003">"MMI 码已启动"</string>
