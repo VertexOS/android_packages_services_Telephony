@@ -614,6 +614,10 @@
     <!-- Preference title for launching an account manager page for prepaid LTE [CHAR LIMIT=30] -->
     <string name="cdma_lte_data_service">Set up data service</string>
 
+    <!-- A menu item in "Mobile network settings" that allows the user to update the phone
+         with mobile operator specific settings. [CHAR LIMIT=25] -->
+    <string name="carrier_settings_title">Carrier settings</string>
+
     <!-- FDN settings strings -->
     <!-- Call settings screen, setting option name -->
     <string name="fdn">Fixed Dialing Numbers</string>
