@@ -81,7 +81,7 @@
     <string name="sum_cfu_enabled" msgid="2450052502198827927">"Reenviar todas las llamadas a <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfu_enabled_no_number" msgid="6591985777096823616">"El número no está disponible"</string>
     <string name="sum_cfu_disabled" msgid="3698472522160364904">"Desactivado"</string>
-    <string name="labelCFB" msgid="218938523102207587">"Reenviar si está ocup."</string>
+    <string name="labelCFB" msgid="218938523102207587">"Reenviar cuando está ocupado"</string>
     <string name="messageCFB" msgid="3711089705936187129">"Número cuando está ocupado"</string>
     <string name="sum_cfb_enabled" msgid="5984198104833116690">"Reenviar a <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfb_disabled" msgid="227440009979537651">"Desactivado"</string>
@@ -275,8 +275,6 @@
     <string name="enable_disable_multi_category" msgid="626771003122899280">"Varias categorías"</string>
     <string name="multi_category_enable" msgid="1179299804641721768">"Varias categorías activadas"</string>
     <string name="multi_category_disable" msgid="880104702904139505">"Varias categorías desactivadas"</string>
-    <string name="prefer_2g" msgid="8442550937280449639">"Utilizar sólo redes 2G"</string>
-    <string name="prefer_2g_summary" msgid="1976491403210690759">"Ahorra batería"</string>
     <string name="cdma_system_select_title" msgid="5757657769327732833">"Sistema seleccionado"</string>
     <string name="cdma_system_select_summary" msgid="60460043745797517">"Cambiar el modo itinerancia CDMA"</string>
     <string name="cdma_system_select_dialogtitle" msgid="6083355415165359075">"Sistema seleccionado"</string>
@@ -297,7 +295,9 @@
   </string-array>
     <string name="cdma_activate_device" msgid="3793805892364814518">"Activar dispositivo"</string>
     <string name="cdma_lte_data_service" msgid="4255018217292548962">"Configurar servicio de datos"</string>
-    <string name="fdn" msgid="7878832555095183202">"Números de marc. fijos"</string>
+    <!-- no translation found for carrier_settings_title (9028166176523012300) -->
+    <skip />
+    <string name="fdn" msgid="7878832555095183202">"Números de marcación fijos"</string>
     <string name="manage_fdn_list" msgid="8777755791892122369">"Lista de NMF"</string>
     <string name="fdn_activation" msgid="2156479741307463576">"Activación de NMF"</string>
     <string name="fdn_enabled" msgid="5238109009915521240">"Los números de marcación fija están activados"</string>
