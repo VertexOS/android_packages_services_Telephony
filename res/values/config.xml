@@ -135,4 +135,10 @@
 
     <!-- CDMA activation goes through HFA [DO NOT TRANSLATE] -->
     <bool name="config_use_hfa_for_provisioning" translatable="false">false</bool>
+
+    <!-- Display carrier settings menu if true -->
+    <bool name="config_carrier_settings_enable">false</bool>
+    <!-- carrier settings menu -->
+    <string name="carrier_settings" translatable="false"></string>
+    <string name="carrier_settings_menu" translatable="false"></string>
 </resources>
