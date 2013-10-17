@@ -281,8 +281,6 @@
     <string name="enable_disable_multi_category" msgid="626771003122899280">"Բազմակարգ"</string>
     <string name="multi_category_enable" msgid="1179299804641721768">"Բազմակարգը միացված է"</string>
     <string name="multi_category_disable" msgid="880104702904139505">"Բազմակարգն անջատված է"</string>
-    <string name="prefer_2g" msgid="8442550937280449639">"Օգտագործել միայն 2G ցանցերը"</string>
-    <string name="prefer_2g_summary" msgid="1976491403210690759">"Խնայում է մարտկոցը"</string>
     <string name="cdma_system_select_title" msgid="5757657769327732833">"Համակարգի ընտրություն"</string>
     <string name="cdma_system_select_summary" msgid="60460043745797517">"Փոխել CDMA ռոումինգի ռեժիմը"</string>
     <string name="cdma_system_select_dialogtitle" msgid="6083355415165359075">"Համակարգի ընտրությում"</string>
@@ -303,6 +301,8 @@
   </string-array>
     <string name="cdma_activate_device" msgid="3793805892364814518">"Ակտիվացնել սարքը"</string>
     <string name="cdma_lte_data_service" msgid="4255018217292548962">"Կարգավորել տվյալների ծառայությունը"</string>
+    <!-- no translation found for carrier_settings_title (9028166176523012300) -->
+    <skip />
     <string name="fdn" msgid="7878832555095183202">"Ամրակայված հեռախոսահամարներ"</string>
     <string name="manage_fdn_list" msgid="8777755791892122369">"FDN ցուցակ"</string>
     <string name="fdn_activation" msgid="2156479741307463576">"FDN ակտիվացում"</string>

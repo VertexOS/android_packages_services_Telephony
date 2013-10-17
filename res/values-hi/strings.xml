@@ -103,7 +103,7 @@
     <string name="reverting_settings" msgid="4752151682666912828">"सेटिंग वापस ला रहा है..."</string>
     <string name="response_error" msgid="6674110501330139405">"नेटवर्क से अनपेक्षित प्रतिसाद."</string>
     <string name="exception_error" msgid="7027667130619518211">"नेटवर्क या सिम कार्ड त्रुटि."</string>
-    <string name="fdn_check_failure" msgid="18200614306525434">"आपके फ़ोन एप्‍स की फ़िक्‍स्‍ड डायलिंग नंबर सेटिंग चालू है. इसके परिणामस्‍वरूप, कॉल से संबंधित कुछ सुविधाएं कार्य नहीं कर रही हैं."</string>
+    <string name="fdn_check_failure" msgid="18200614306525434">"आपके फ़ोन ऐप्स की फ़िक्‍स्‍ड डायलिंग नंबर सेटिंग चालू है. इसके परिणामस्‍वरूप, कॉल से संबंधित कुछ सुविधाएं कार्य नहीं कर रही हैं."</string>
     <string name="radio_off_error" msgid="2304459933248513376">"इन सेटिंग को देखने के पहले रेडियो चालू करें."</string>
     <string name="close_dialog" msgid="2365884406356986917">"ठीक है"</string>
     <string name="enable" msgid="1059008390636773574">"सक्षम करें"</string>
@@ -275,8 +275,6 @@
     <string name="enable_disable_multi_category" msgid="626771003122899280">"बहु-श्रेणी"</string>
     <string name="multi_category_enable" msgid="1179299804641721768">"बहु-श्रेणी सक्षम की गई"</string>
     <string name="multi_category_disable" msgid="880104702904139505">"बहु-श्रेणी अक्षम की गई"</string>
-    <string name="prefer_2g" msgid="8442550937280449639">"केवल 2G नेटवर्क का उपयोग करें"</string>
-    <string name="prefer_2g_summary" msgid="1976491403210690759">"बैटरी बचाता है"</string>
     <string name="cdma_system_select_title" msgid="5757657769327732833">"सिस्टम चयन"</string>
     <string name="cdma_system_select_summary" msgid="60460043745797517">"CDMA रोमिंग मोड बदलें"</string>
     <string name="cdma_system_select_dialogtitle" msgid="6083355415165359075">"सिस्टम चयन"</string>
@@ -297,6 +295,8 @@
   </string-array>
     <string name="cdma_activate_device" msgid="3793805892364814518">"उपकरण सक्रिय करें"</string>
     <string name="cdma_lte_data_service" msgid="4255018217292548962">"डेटा सेवा सेट करें"</string>
+    <!-- no translation found for carrier_settings_title (9028166176523012300) -->
+    <skip />
     <string name="fdn" msgid="7878832555095183202">"फ़िक्स्ड डायलिंग नंबर"</string>
     <string name="manage_fdn_list" msgid="8777755791892122369">"FDN सूची"</string>
     <string name="fdn_activation" msgid="2156479741307463576">"FDN सक्रियण"</string>

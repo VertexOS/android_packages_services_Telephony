@@ -275,8 +275,6 @@
     <string name="enable_disable_multi_category" msgid="626771003122899280">"ຫຼາຍໝວດໝູ່"</string>
     <string name="multi_category_enable" msgid="1179299804641721768">"ເປີດການນຳໃຊ້ຫຼາຍໝວດໝູ່ແລ້ວ"</string>
     <string name="multi_category_disable" msgid="880104702904139505">"ປິດການນຳໃຊ້ຫຼາຍໝວດໝູ່ແລ້ວ"</string>
-    <string name="prefer_2g" msgid="8442550937280449639">"ໃຊ້ເຄືອຂ່າຍ 2G ເທົ່ານັ້ນ"</string>
-    <string name="prefer_2g_summary" msgid="1976491403210690759">"ປະຢັດແບັດເຕີຣີ"</string>
     <string name="cdma_system_select_title" msgid="5757657769327732833">"ການເລືອກລະບົບ"</string>
     <string name="cdma_system_select_summary" msgid="60460043745797517">"ປ່ຽນຮູບແບບການໂຣມມິງ CDMA"</string>
     <string name="cdma_system_select_dialogtitle" msgid="6083355415165359075">"ການເລືອກລະບົບ"</string>
@@ -297,6 +295,8 @@
   </string-array>
     <string name="cdma_activate_device" msgid="3793805892364814518">"ເປີດນຳໃຊ້ອຸປະກອນ"</string>
     <string name="cdma_lte_data_service" msgid="4255018217292548962">"ຕັ້ງຄ່າບໍລິການຂໍ້ມູນ"</string>
+    <!-- no translation found for carrier_settings_title (9028166176523012300) -->
+    <skip />
     <string name="fdn" msgid="7878832555095183202">"ໝາຍເລກຈຳກັດການໂທອອກ"</string>
     <string name="manage_fdn_list" msgid="8777755791892122369">"ລາຍ​ຊື່ FDN"</string>
     <string name="fdn_activation" msgid="2156479741307463576">"ການເປີດໃຊ້ FDN"</string>
