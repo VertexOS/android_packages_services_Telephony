@@ -490,7 +490,8 @@
         <activity android:name=".SipCallOptionHandler"
                 android:theme="@style/SipCallOptionHandlerTheme"
                 android:screenOrientation="nosensor"
-                android:configChanges="orientation|screenSize|keyboardHidden">
+                android:configChanges="orientation|screenSize|keyboardHidden"
+                android:excludeFromRecents="true">
         </activity>
 
         <activity android:name="RespondViaSmsManager$Settings"
