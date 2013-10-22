@@ -300,9 +300,9 @@
     <!-- Available networks screen, setting summary text -->
     <string name="sum_select_automatically">Automatically choose preferred network</string>
     <string name="register_automatically">Automatic registration\u2026</string>
-    <string name="preferred_network_mode_title">Network Mode</string>
+    <string name="preferred_network_mode_title">Preferred network type</string>
     <string name="preferred_network_mode_summary">Change the network operating mode</string>
-    <string name="preferred_network_mode_dialogtitle">Preferred network mode</string>
+    <string name="preferred_network_mode_dialogtitle">Preferred network type</string>
     <!-- Mobile network settings, summary for preferred network mode WCDMA preferred[CHAR LIMIT=100] -->
     <string name="preferred_network_mode_wcdma_perf_summary">Preferred network mode: WCDMA preferred</string>
     <!-- Mobile network settings, summary for preferred network mode GSM [CHAR LIMIT=100] -->
@@ -516,13 +516,20 @@
     <string name="multi_category_enable">Multi-category enabled</string>
     <string name="multi_category_disable">Multi-category disabled</string>
 
+    <string name="network_lte">LTE (recommended)</string>
+    <string name="network_4G">4G (recommended)</string>
+    <string name="network_3G" translatable="false">3G</string>
+    <string name="network_2G" translatable="false">2G</string>
+    <string name="network_1x" translatable="false">1x</string>
+    <string name="network_global">Global</string>
+
     <string-array name="enabled_networks_except_gsm_choices" translatable="false">
-        <item>LTE</item>
-        <item>3G</item>
+        <item>@string/network_lte</item>
+        <item>@string/network_3G</item>
     </string-array>
     <string-array name="enabled_networks_except_gsm_4g_choices" translatable="false">
-        <item>4G</item>
-        <item>3G</item>
+        <item>@string/network_4G</item>
+        <item>@string/network_3G</item>
     </string-array>
     <string-array name="enabled_networks_except_gsm_values" translatable="false">
         <item>"9"</item>
@@ -530,8 +537,8 @@
     </string-array>
 
     <string-array name="enabled_networks_except_lte_choices" translatable="false">
-        <item>3G</item>
-        <item>2G</item>
+        <item>@string/network_3G</item>
+        <item>@string/network_2G</item>
     </string-array>
     <string-array name="enabled_networks_except_lte_values" translatable="false">
         <item>"0"</item>
@@ -539,21 +546,21 @@
     </string-array>
 
     <string-array name="enabled_networks_except_gsm_lte_choices" translatable="false">
-        <item>3G</item>
+        <item>@string/network_3G</item>
     </string-array>
     <string-array name="enabled_networks_except_gsm_lte_values" translatable="false">
         <item>"0"</item>
     </string-array>
 
     <string-array name="enabled_networks_choices" translatable="false">
-        <item>LTE</item>
-        <item>3G</item>
-        <item>2G</item>
+        <item>@string/network_lte</item>
+        <item>@string/network_3G</item>
+        <item>@string/network_2G</item>
     </string-array>
     <string-array name="enabled_networks_4g_choices" translatable="false">
-        <item>4G</item>
-        <item>3G</item>
-        <item>2G</item>
+        <item>@string/network_4G</item>
+        <item>@string/network_3G</item>
+        <item>@string/network_2G</item>
     </string-array>
     <string-array name="enabled_networks_values" translatable="false">
         <item>"9"</item>
@@ -562,10 +569,10 @@
     </string-array>
 
     <string-array name="enabled_networks_cdma_choices" translatable="false">
-        <item>LTE</item>
-        <item>3G</item>
-        <item>1x</item>
-        <item>Global</item>
+        <item>@string/network_lte</item>
+        <item>@string/network_3G</item>
+        <item>@string/network_1x</item>
+        <item>@string/network_global</item>
     </string-array>
     <string-array name="enabled_networks_cdma_values" translatable="false">
         <item>"8"</item>
