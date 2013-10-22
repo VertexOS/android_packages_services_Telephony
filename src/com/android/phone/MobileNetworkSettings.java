@@ -652,22 +652,22 @@ public class MobileNetworkSettings extends PreferenceActivity
                 if (!mIsGlobalCdma) {
                     mButtonEnabledNetworks.setValue(
                             Integer.toString(Phone.NT_MODE_WCDMA_PREF));
-                    mButtonEnabledNetworks.setSummary("3G");
+                    mButtonEnabledNetworks.setSummary(R.string.network_3G);
                 } else {
                     mButtonEnabledNetworks.setValue(
                             Integer.toString(Phone.NT_MODE_LTE_CMDA_EVDO_GSM_WCDMA));
-                    mButtonEnabledNetworks.setSummary("Global");
+                    mButtonEnabledNetworks.setSummary(R.string.network_global);
                 }
                 break;
             case Phone.NT_MODE_GSM_ONLY:
                 if (!mIsGlobalCdma) {
                     mButtonEnabledNetworks.setValue(
                             Integer.toString(Phone.NT_MODE_GSM_ONLY));
-                    mButtonEnabledNetworks.setSummary("2G");
+                    mButtonEnabledNetworks.setSummary(R.string.network_2G);
                 } else {
                     mButtonEnabledNetworks.setValue(
                             Integer.toString(Phone.NT_MODE_LTE_CMDA_EVDO_GSM_WCDMA));
-                    mButtonEnabledNetworks.setSummary("Global");
+                    mButtonEnabledNetworks.setSummary(R.string.network_global);
                 }
                 break;
             case Phone.NT_MODE_LTE_GSM_WCDMA:
@@ -676,35 +676,35 @@ public class MobileNetworkSettings extends PreferenceActivity
                 if (!mIsGlobalCdma) {
                     mButtonEnabledNetworks.setValue(
                             Integer.toString(Phone.NT_MODE_LTE_GSM_WCDMA));
-                    final String show4GForLTE = (mShow4GForLTE == true) ? "4G" : "LTE";
-                    mButtonEnabledNetworks.setSummary(show4GForLTE);
+                    mButtonEnabledNetworks.setSummary((mShow4GForLTE == true)
+                            ? R.string.network_4G : R.string.network_lte);
                 } else {
                     mButtonEnabledNetworks.setValue(
                             Integer.toString(Phone.NT_MODE_LTE_CMDA_EVDO_GSM_WCDMA));
-                    mButtonEnabledNetworks.setSummary("Global");
+                    mButtonEnabledNetworks.setSummary(R.string.network_global);
                 }
                 break;
             case Phone.NT_MODE_LTE_CDMA_AND_EVDO:
                 mButtonEnabledNetworks.setValue(
                         Integer.toString(Phone.NT_MODE_LTE_CDMA_AND_EVDO));
-                mButtonEnabledNetworks.setSummary("LTE");
+                mButtonEnabledNetworks.setSummary(R.string.network_lte);
                 break;
             case Phone.NT_MODE_CDMA:
             case Phone.NT_MODE_EVDO_NO_CDMA:
             case Phone.NT_MODE_GLOBAL:
                 mButtonEnabledNetworks.setValue(
                         Integer.toString(Phone.NT_MODE_CDMA));
-                mButtonEnabledNetworks.setSummary("3G");
+                mButtonEnabledNetworks.setSummary(R.string.network_3G);
                 break;
             case Phone.NT_MODE_CDMA_NO_EVDO:
                 mButtonEnabledNetworks.setValue(
                         Integer.toString(Phone.NT_MODE_CDMA_NO_EVDO));
-                mButtonEnabledNetworks.setSummary("1X");
+                mButtonEnabledNetworks.setSummary(R.string.network_1x);
                 break;
             case Phone.NT_MODE_LTE_CMDA_EVDO_GSM_WCDMA:
                 mButtonEnabledNetworks.setValue(
                         Integer.toString(Phone.NT_MODE_LTE_CMDA_EVDO_GSM_WCDMA));
-                mButtonEnabledNetworks.setSummary("Global");
+                mButtonEnabledNetworks.setSummary(R.string.network_global);
                 break;
             default:
                 String errMsg = "Invalid Network Mode (" + NetworkMode + "). Ignore.";
