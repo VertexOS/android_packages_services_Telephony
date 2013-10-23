@@ -70,6 +70,7 @@ public class MobileNetworkSettings extends PreferenceActivity
     private static final String BUTTON_ROAMING_KEY = "button_roaming_key";
     private static final String BUTTON_CDMA_LTE_DATA_SERVICE_KEY = "cdma_lte_data_service_key";
     private static final String BUTTON_ENABLED_NETWORKS_KEY = "enabled_networks_key";
+    private static final String BUTTON_CARRIER_SETTINGS_KEY = "carrier_settings_key";
 
     static final int preferredNetworkMode = Phone.PREFERRED_NT_MODE;
 
@@ -315,6 +316,16 @@ public class MobileNetworkSettings extends PreferenceActivity
             prefSet.removePreference(mLteDataServicePref);
         } else {
             android.util.Log.d(LOG_TAG, "keep ltePref");
+        }
+
+        // Read platform settings for carrier settings
+        final boolean isCarrierSettingsEnabled = getResources().getBoolean(
+                R.bool.config_carrier_settings_enable);
+        if (!isCarrierSettingsEnabled) {
+            Preference pref = prefSet.findPreference(BUTTON_CARRIER_SETTINGS_KEY);
+            if (pref != null) {
+                prefSet.removePreference(pref);
+            }
         }
 
         ActionBar actionBar = getActionBar();
