@@ -136,9 +136,9 @@
     <string name="select_automatically" msgid="5628402124471810174">"Choose automatically"</string>
     <string name="sum_select_automatically" msgid="5614890115123292400">"Automatically choose preferred network"</string>
     <string name="register_automatically" msgid="6017849844573519637">"Automatic registration..."</string>
-    <string name="preferred_network_mode_title" msgid="8873246565334559308">"Network Mode"</string>
+    <string name="preferred_network_mode_title" msgid="2336624679902659306">"Preferred network type"</string>
     <string name="preferred_network_mode_summary" msgid="1434820673166126609">"Change the network operating mode"</string>
-    <string name="preferred_network_mode_dialogtitle" msgid="8176355237105593793">"Preferred network mode"</string>
+    <string name="preferred_network_mode_dialogtitle" msgid="4048082093347807230">"Preferred network type"</string>
     <string name="preferred_network_mode_wcdma_perf_summary" msgid="8521677230113533809">"Preferred network mode: WCDMA preferred"</string>
     <string name="preferred_network_mode_gsm_only_summary" msgid="3352445413437453511">"Preferred network mode: GSM only"</string>
     <string name="preferred_network_mode_wcdma_only_summary" msgid="2836897236221063413">"Preferred network mode: WCDMA only"</string>
@@ -275,6 +275,9 @@
     <string name="enable_disable_multi_category" msgid="626771003122899280">"Multi-category"</string>
     <string name="multi_category_enable" msgid="1179299804641721768">"Multi-category enabled"</string>
     <string name="multi_category_disable" msgid="880104702904139505">"Multi-category disabled"</string>
+    <string name="network_lte" msgid="7702681952521375754">"LTE (recommended)"</string>
+    <string name="network_4G" msgid="2723512640529983138">"4G (recommended)"</string>
+    <string name="network_global" msgid="1323190488685355309">"Global"</string>
     <string name="cdma_system_select_title" msgid="5757657769327732833">"System select"</string>
     <string name="cdma_system_select_summary" msgid="60460043745797517">"Change the CDMA roaming mode"</string>
     <string name="cdma_system_select_dialogtitle" msgid="6083355415165359075">"System select"</string>

@@ -136,9 +136,9 @@
     <string name="select_automatically" msgid="5628402124471810174">"Samodejna izbira"</string>
     <string name="sum_select_automatically" msgid="5614890115123292400">"Samodejna izbira želenega omrežja"</string>
     <string name="register_automatically" msgid="6017849844573519637">"Samodejna registracija ..."</string>
-    <string name="preferred_network_mode_title" msgid="8873246565334559308">"Način omrežja"</string>
+    <string name="preferred_network_mode_title" msgid="2336624679902659306">"Prednostna vrsta omrežja"</string>
     <string name="preferred_network_mode_summary" msgid="1434820673166126609">"Sprememba načina delovanja omrežja"</string>
-    <string name="preferred_network_mode_dialogtitle" msgid="8176355237105593793">"Prednostni način omrežja"</string>
+    <string name="preferred_network_mode_dialogtitle" msgid="4048082093347807230">"Prednostna vrsta omrežja"</string>
     <string name="preferred_network_mode_wcdma_perf_summary" msgid="8521677230113533809">"Prednostni način omrežja: prednostno WCDMA"</string>
     <string name="preferred_network_mode_gsm_only_summary" msgid="3352445413437453511">"Prednostni način omrežja: samo GSM"</string>
     <string name="preferred_network_mode_wcdma_only_summary" msgid="2836897236221063413">"Prednostni način omrežja: samo WCDMA"</string>
@@ -275,6 +275,9 @@
     <string name="enable_disable_multi_category" msgid="626771003122899280">"Več kategorij"</string>
     <string name="multi_category_enable" msgid="1179299804641721768">"Omogočenih več kategorij"</string>
     <string name="multi_category_disable" msgid="880104702904139505">"Več kategorij onemogočenih"</string>
+    <string name="network_lte" msgid="7702681952521375754">"LTE (priporočeno)"</string>
+    <string name="network_4G" msgid="2723512640529983138">"4G (priporočeno)"</string>
+    <string name="network_global" msgid="1323190488685355309">"Globalno"</string>
     <string name="cdma_system_select_title" msgid="5757657769327732833">"Sistemska izbira"</string>
     <string name="cdma_system_select_summary" msgid="60460043745797517">"Spremeni način gostovanja CDMA"</string>
     <string name="cdma_system_select_dialogtitle" msgid="6083355415165359075">"Sistemska izbira"</string>

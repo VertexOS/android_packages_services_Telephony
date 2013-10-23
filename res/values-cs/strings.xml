@@ -136,9 +136,9 @@
     <string name="select_automatically" msgid="5628402124471810174">"Zvolit automaticky"</string>
     <string name="sum_select_automatically" msgid="5614890115123292400">"Automaticky zvolit upřednostňovanou síť"</string>
     <string name="register_automatically" msgid="6017849844573519637">"Automatická registrace..."</string>
-    <string name="preferred_network_mode_title" msgid="8873246565334559308">"Režim sítě"</string>
+    <string name="preferred_network_mode_title" msgid="2336624679902659306">"Preferovaný typ sítě"</string>
     <string name="preferred_network_mode_summary" msgid="1434820673166126609">"Změnit provozní režim sítě"</string>
-    <string name="preferred_network_mode_dialogtitle" msgid="8176355237105593793">"Upřednostňovaný režim sítě"</string>
+    <string name="preferred_network_mode_dialogtitle" msgid="4048082093347807230">"Preferovaný typ sítě"</string>
     <string name="preferred_network_mode_wcdma_perf_summary" msgid="8521677230113533809">"Upřednostňovaný režim sítě: preferováno WCDMA"</string>
     <string name="preferred_network_mode_gsm_only_summary" msgid="3352445413437453511">"Upřednostňovaný režim sítě: pouze GSM"</string>
     <string name="preferred_network_mode_wcdma_only_summary" msgid="2836897236221063413">"Upřednostňovaný režim sítě: pouze WCDMA"</string>
@@ -275,6 +275,9 @@
     <string name="enable_disable_multi_category" msgid="626771003122899280">"Více kategorií"</string>
     <string name="multi_category_enable" msgid="1179299804641721768">"Více kategorií povoleno"</string>
     <string name="multi_category_disable" msgid="880104702904139505">"Více kategorií zakázáno"</string>
+    <string name="network_lte" msgid="7702681952521375754">"LTE (doporučeno)"</string>
+    <string name="network_4G" msgid="2723512640529983138">"4G (doporučeno)"</string>
+    <string name="network_global" msgid="1323190488685355309">"Globální"</string>
     <string name="cdma_system_select_title" msgid="5757657769327732833">"Výběr systému"</string>
     <string name="cdma_system_select_summary" msgid="60460043745797517">"Změnit režim roamingu CDMA"</string>
     <string name="cdma_system_select_dialogtitle" msgid="6083355415165359075">"Výběr systému"</string>

@@ -136,9 +136,11 @@
     <string name="select_automatically" msgid="5628402124471810174">"Ընտրել ավտոմատ"</string>
     <string name="sum_select_automatically" msgid="5614890115123292400">"Ավտոմատ ընտրել նախընտրելի ցանցը"</string>
     <string name="register_automatically" msgid="6017849844573519637">"Ավտոմատ գրանցում..."</string>
-    <string name="preferred_network_mode_title" msgid="8873246565334559308">"Ցանցի ռեժիմը"</string>
+    <!-- no translation found for preferred_network_mode_title (2336624679902659306) -->
+    <skip />
     <string name="preferred_network_mode_summary" msgid="1434820673166126609">"Փոխել ցանցային գործավար ռեժիմը"</string>
-    <string name="preferred_network_mode_dialogtitle" msgid="8176355237105593793">"Նախընտրելի ցանցի ռեժիմը"</string>
+    <!-- no translation found for preferred_network_mode_dialogtitle (4048082093347807230) -->
+    <skip />
     <string name="preferred_network_mode_wcdma_perf_summary" msgid="8521677230113533809">"Նախընտրելի ցանցի ռեժիմը՝ WCDMA նախընտրելի"</string>
     <string name="preferred_network_mode_gsm_only_summary" msgid="3352445413437453511">"Նախընտրելի ցանցի ռեժիմը՝ միայն GSM"</string>
     <string name="preferred_network_mode_wcdma_only_summary" msgid="2836897236221063413">"Նախընտրելի ցանցի ռեժիմը՝ միայն WCDMA"</string>
@@ -281,6 +283,12 @@
     <string name="enable_disable_multi_category" msgid="626771003122899280">"Բազմակարգ"</string>
     <string name="multi_category_enable" msgid="1179299804641721768">"Բազմակարգը միացված է"</string>
     <string name="multi_category_disable" msgid="880104702904139505">"Բազմակարգն անջատված է"</string>
+    <!-- no translation found for network_lte (7702681952521375754) -->
+    <skip />
+    <!-- no translation found for network_4G (2723512640529983138) -->
+    <skip />
+    <!-- no translation found for network_global (1323190488685355309) -->
+    <skip />
     <string name="cdma_system_select_title" msgid="5757657769327732833">"Համակարգի ընտրություն"</string>
     <string name="cdma_system_select_summary" msgid="60460043745797517">"Փոխել CDMA ռոումինգի ռեժիմը"</string>
     <string name="cdma_system_select_dialogtitle" msgid="6083355415165359075">"Համակարգի ընտրությում"</string>

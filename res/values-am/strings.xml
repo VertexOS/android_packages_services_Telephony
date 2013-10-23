@@ -136,9 +136,9 @@
     <string name="select_automatically" msgid="5628402124471810174">"በራስ ሰር ምረጥ"</string>
     <string name="sum_select_automatically" msgid="5614890115123292400">"ተመራጭ አውታረ መረብን በራስ ሰር ምረጥ"</string>
     <string name="register_automatically" msgid="6017849844573519637">"ራስ ሰር ምዝገባ...."</string>
-    <string name="preferred_network_mode_title" msgid="8873246565334559308">"የአውታረ መረብ ሁነታ"</string>
+    <string name="preferred_network_mode_title" msgid="2336624679902659306">"የሚመረጠው የአውታረ መረብ አይነት"</string>
     <string name="preferred_network_mode_summary" msgid="1434820673166126609">"የአውታረመረቡንመከወኛ ሁነታ ለውጥ"</string>
-    <string name="preferred_network_mode_dialogtitle" msgid="8176355237105593793">"ተመራጭ  የአውታረ መረብ ሁነታ"</string>
+    <string name="preferred_network_mode_dialogtitle" msgid="4048082093347807230">"የሚመረጠው የአውታረ መረብ አይነት"</string>
     <string name="preferred_network_mode_wcdma_perf_summary" msgid="8521677230113533809">"ተመራጭ የአውታረመረብ ፡WCDMA ሁነታ ተመራጭ"</string>
     <string name="preferred_network_mode_gsm_only_summary" msgid="3352445413437453511">"ተመራጭ የአውታረመረብ ፡GSM ሁነታ ብቻ"</string>
     <string name="preferred_network_mode_wcdma_only_summary" msgid="2836897236221063413">"ተመራጭ የአውታረመረብ ፡WCDMA ሁነታ ብቻ"</string>
@@ -275,6 +275,9 @@
     <string name="enable_disable_multi_category" msgid="626771003122899280">"ብዙ ምድብ"</string>
     <string name="multi_category_enable" msgid="1179299804641721768">"ብዙ ምድብ ነቅቷል"</string>
     <string name="multi_category_disable" msgid="880104702904139505">"ብዙ-ምድብ አልነቃም"</string>
+    <string name="network_lte" msgid="7702681952521375754">"LTE (የሚመከር)"</string>
+    <string name="network_4G" msgid="2723512640529983138">"4G (የሚመከር)"</string>
+    <string name="network_global" msgid="1323190488685355309">"አለምአቀፍ"</string>
     <string name="cdma_system_select_title" msgid="5757657769327732833">"የሥርዓት ምርጫ"</string>
     <string name="cdma_system_select_summary" msgid="60460043745797517">"የCDMA በእንቅስቃሴ ላይ ሁኔታ ለውጥ"</string>
     <string name="cdma_system_select_dialogtitle" msgid="6083355415165359075">"የሥርዓት ምርጫ"</string>

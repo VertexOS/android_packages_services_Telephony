@@ -136,9 +136,11 @@
     <string name="select_automatically" msgid="5628402124471810174">"เลือกโดยอัตโนมัติ"</string>
     <string name="sum_select_automatically" msgid="5614890115123292400">"เลือกเครือข่ายที่ต้องการอัตโนมัติ"</string>
     <string name="register_automatically" msgid="6017849844573519637">"การลงทะเบียนอัตโนมัติ..."</string>
-    <string name="preferred_network_mode_title" msgid="8873246565334559308">"โหมดเครือข่าย"</string>
+    <!-- no translation found for preferred_network_mode_title (2336624679902659306) -->
+    <skip />
     <string name="preferred_network_mode_summary" msgid="1434820673166126609">"เปลี่ยนโหมดปฏิบัติการของเครือข่าย"</string>
-    <string name="preferred_network_mode_dialogtitle" msgid="8176355237105593793">"โหมดเครือข่ายที่ต้องการ"</string>
+    <!-- no translation found for preferred_network_mode_dialogtitle (4048082093347807230) -->
+    <skip />
     <string name="preferred_network_mode_wcdma_perf_summary" msgid="8521677230113533809">"โหมดเครือข่ายที่ต้องการ: ต้องการ WCDMA"</string>
     <string name="preferred_network_mode_gsm_only_summary" msgid="3352445413437453511">"โหมดเครือข่ายที่ต้องการ: GSM เท่านั้น"</string>
     <string name="preferred_network_mode_wcdma_only_summary" msgid="2836897236221063413">"โหมดเครือข่ายที่ต้องการ: WCDMA เท่านั้น"</string>
@@ -275,6 +277,12 @@
     <string name="enable_disable_multi_category" msgid="626771003122899280">"หลายหมวดหมู่"</string>
     <string name="multi_category_enable" msgid="1179299804641721768">"เปิดใช้งานหลายหมวดหมู่แล้ว"</string>
     <string name="multi_category_disable" msgid="880104702904139505">"ปิดใช้งานหลายหมวดหมู่"</string>
+    <!-- no translation found for network_lte (7702681952521375754) -->
+    <skip />
+    <!-- no translation found for network_4G (2723512640529983138) -->
+    <skip />
+    <!-- no translation found for network_global (1323190488685355309) -->
+    <skip />
     <string name="cdma_system_select_title" msgid="5757657769327732833">"การเลือกระบบ"</string>
     <string name="cdma_system_select_summary" msgid="60460043745797517">"เปลี่ยนโหมดการเชื่อมต่อกับเครือข่าย CDMA อื่น"</string>
     <string name="cdma_system_select_dialogtitle" msgid="6083355415165359075">"การเลือกระบบ"</string>

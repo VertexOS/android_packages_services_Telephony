@@ -136,9 +136,9 @@
     <string name="select_automatically" msgid="5628402124471810174">"Khetha ngokuzenzakalela"</string>
     <string name="sum_select_automatically" msgid="5614890115123292400">"Khetha ngokuzenzakalela inethiwekhi ethandwayo"</string>
     <string name="register_automatically" msgid="6017849844573519637">"Ukubhalisa okuzenzakalelayo..."</string>
-    <string name="preferred_network_mode_title" msgid="8873246565334559308">"Imodi Yenethiwekhi"</string>
+    <string name="preferred_network_mode_title" msgid="2336624679902659306">"Uhlobo lwenethiwekhi oluncamelayo"</string>
     <string name="preferred_network_mode_summary" msgid="1434820673166126609">"Shintsha imodi esebenzayo yenethiwekhi"</string>
-    <string name="preferred_network_mode_dialogtitle" msgid="8176355237105593793">"Imodi yenethiwekhi ekhethwayo"</string>
+    <string name="preferred_network_mode_dialogtitle" msgid="4048082093347807230">"Uhlobo lwenethiwekhi oluncamelayo"</string>
     <string name="preferred_network_mode_wcdma_perf_summary" msgid="8521677230113533809">"Imodi yenethiwekhi ekhethwayo: i-WCDMA ekhethwayo"</string>
     <string name="preferred_network_mode_gsm_only_summary" msgid="3352445413437453511">"Imodi yenethiwekhi ekhethwayo: i-GSM kuphela"</string>
     <string name="preferred_network_mode_wcdma_only_summary" msgid="2836897236221063413">"Imodi yenethiwekhi ekhethwayo: i-WCDMA kuphela"</string>
@@ -279,6 +279,9 @@
     <string name="enable_disable_multi_category" msgid="626771003122899280">"Izigaba-ningi"</string>
     <string name="multi_category_enable" msgid="1179299804641721768">"Izigaba-ningi zivunyelwe"</string>
     <string name="multi_category_disable" msgid="880104702904139505">"Izigaba-ningi zivimbelwe"</string>
+    <string name="network_lte" msgid="7702681952521375754">"I-LTE (inconyiwe)"</string>
+    <string name="network_4G" msgid="2723512640529983138">"I-4G (inconyiwe)"</string>
+    <string name="network_global" msgid="1323190488685355309">"Emhlabeni jikelele"</string>
     <string name="cdma_system_select_title" msgid="5757657769327732833">"Khetha uhlelo"</string>
     <string name="cdma_system_select_summary" msgid="60460043745797517">"Sintsha imodi yokuzulazula ye-cdma"</string>
     <string name="cdma_system_select_dialogtitle" msgid="6083355415165359075">"Khetha uhlelo"</string>
