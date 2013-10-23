@@ -136,9 +136,11 @@
     <string name="select_automatically" msgid="5628402124471810174">"자동으로 선택"</string>
     <string name="sum_select_automatically" msgid="5614890115123292400">"기본 설정 네트워크를 자동으로 선택"</string>
     <string name="register_automatically" msgid="6017849844573519637">"자동 등록..."</string>
-    <string name="preferred_network_mode_title" msgid="8873246565334559308">"네트워크 모드"</string>
+    <!-- no translation found for preferred_network_mode_title (2336624679902659306) -->
+    <skip />
     <string name="preferred_network_mode_summary" msgid="1434820673166126609">"네트워크 작동 모드 변경"</string>
-    <string name="preferred_network_mode_dialogtitle" msgid="8176355237105593793">"기본 설정된 네트워크 모드"</string>
+    <!-- no translation found for preferred_network_mode_dialogtitle (4048082093347807230) -->
+    <skip />
     <string name="preferred_network_mode_wcdma_perf_summary" msgid="8521677230113533809">"기본 네트워크 모드: WCDMA 선호"</string>
     <string name="preferred_network_mode_gsm_only_summary" msgid="3352445413437453511">"기본 네트워크 모드: GSM 전용"</string>
     <string name="preferred_network_mode_wcdma_only_summary" msgid="2836897236221063413">"기본 네트워크 모드: WCDMA 전용"</string>
@@ -275,6 +277,12 @@
     <string name="enable_disable_multi_category" msgid="626771003122899280">"다중 카테고리"</string>
     <string name="multi_category_enable" msgid="1179299804641721768">"다중 카테고리 사용"</string>
     <string name="multi_category_disable" msgid="880104702904139505">"다중 카테고리 사용 중지"</string>
+    <!-- no translation found for network_lte (7702681952521375754) -->
+    <skip />
+    <!-- no translation found for network_4G (2723512640529983138) -->
+    <skip />
+    <!-- no translation found for network_global (1323190488685355309) -->
+    <skip />
     <string name="cdma_system_select_title" msgid="5757657769327732833">"시스템 선택"</string>
     <string name="cdma_system_select_summary" msgid="60460043745797517">"CDMA 로밍 모드 변경"</string>
     <string name="cdma_system_select_dialogtitle" msgid="6083355415165359075">"시스템 선택"</string>
