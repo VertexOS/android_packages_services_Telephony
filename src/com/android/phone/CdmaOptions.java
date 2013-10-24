@@ -43,7 +43,6 @@ public class CdmaOptions {
     private static final String BUTTON_CDMA_SYSTEM_SELECT_KEY = "cdma_system_select_key";
     private static final String BUTTON_CDMA_SUBSCRIPTION_KEY = "cdma_subscription_key";
     private static final String BUTTON_CDMA_ACTIVATE_DEVICE_KEY = "cdma_activate_device_key";
-    private static final String BUTTON_CARRIER_SETTINGS_KEY = "carrier_settings_key";
 
     private PreferenceActivity mPrefActivity;
     private PreferenceScreen mPrefScreen;
@@ -83,16 +82,6 @@ public class CdmaOptions {
             // and is replaced by the LTE data service item on LTE devices
             mPrefScreen.removePreference(
                     mPrefScreen.findPreference(BUTTON_CDMA_ACTIVATE_DEVICE_KEY));
-        }
-
-        // Read platform settings for carrier settings
-        final boolean isCarrierSettingsEnabled = mPrefActivity.getResources().getBoolean(
-                R.bool.config_carrier_settings_enable);
-        if (!isCarrierSettingsEnabled) {
-            Preference pref = mPrefScreen.findPreference(BUTTON_CARRIER_SETTINGS_KEY);
-            if (pref != null) {
-                mPrefScreen.removePreference(pref);
-            }
         }
     }
 
