@@ -136,11 +136,9 @@
     <string name="select_automatically" msgid="5628402124471810174">"Izvēlēties automātiski"</string>
     <string name="sum_select_automatically" msgid="5614890115123292400">"Automātiski izvēlēties vajadzīgo tīklu"</string>
     <string name="register_automatically" msgid="6017849844573519637">"Automātiska reģistrācija..."</string>
-    <!-- no translation found for preferred_network_mode_title (2336624679902659306) -->
-    <skip />
+    <string name="preferred_network_mode_title" msgid="2336624679902659306">"Ieteicamais tīkla veids"</string>
     <string name="preferred_network_mode_summary" msgid="1434820673166126609">"Mainiet tīkla darbības režīmu"</string>
-    <!-- no translation found for preferred_network_mode_dialogtitle (4048082093347807230) -->
-    <skip />
+    <string name="preferred_network_mode_dialogtitle" msgid="4048082093347807230">"Ieteicamais tīkla veids"</string>
     <string name="preferred_network_mode_wcdma_perf_summary" msgid="8521677230113533809">"Ieteicamais tīkla režīms: WCDMA"</string>
     <string name="preferred_network_mode_gsm_only_summary" msgid="3352445413437453511">"Ieteicamais tīkla režīms: tikai GSM"</string>
     <string name="preferred_network_mode_wcdma_only_summary" msgid="2836897236221063413">"Ieteicamais tīkla režīms: tikai WCDMA"</string>
@@ -279,12 +277,9 @@
     <string name="enable_disable_multi_category" msgid="626771003122899280">"Vairākas kategorijas"</string>
     <string name="multi_category_enable" msgid="1179299804641721768">"Vairāku kategoriju režīms ir iespējots."</string>
     <string name="multi_category_disable" msgid="880104702904139505">"Vairāku kategoriju režīms ir atspējots."</string>
-    <!-- no translation found for network_lte (7702681952521375754) -->
-    <skip />
-    <!-- no translation found for network_4G (2723512640529983138) -->
-    <skip />
-    <!-- no translation found for network_global (1323190488685355309) -->
-    <skip />
+    <string name="network_lte" msgid="7702681952521375754">"LTE (ieteicams)"</string>
+    <string name="network_4G" msgid="2723512640529983138">"4G (ieteicams)"</string>
+    <string name="network_global" msgid="1323190488685355309">"Visā pasaulē"</string>
     <string name="cdma_system_select_title" msgid="5757657769327732833">"Sistēmas atlasīšana"</string>
     <string name="cdma_system_select_summary" msgid="60460043745797517">"Mainīt CDMA viesabonēšanas režīmu"</string>
     <string name="cdma_system_select_dialogtitle" msgid="6083355415165359075">"Sistēmas atlasīšana"</string>

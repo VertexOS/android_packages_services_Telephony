@@ -136,11 +136,9 @@
     <string name="select_automatically" msgid="5628402124471810174">"انتخاب به طور خودکار"</string>
     <string name="sum_select_automatically" msgid="5614890115123292400">"به صورت خودکار شبکه برگزیده را انتخاب کنید"</string>
     <string name="register_automatically" msgid="6017849844573519637">"ثبت خودکار..."</string>
-    <!-- no translation found for preferred_network_mode_title (2336624679902659306) -->
-    <skip />
+    <string name="preferred_network_mode_title" msgid="2336624679902659306">"نوع شبکه برگزیده"</string>
     <string name="preferred_network_mode_summary" msgid="1434820673166126609">"تغییر حالت عملکرد شبکه"</string>
-    <!-- no translation found for preferred_network_mode_dialogtitle (4048082093347807230) -->
-    <skip />
+    <string name="preferred_network_mode_dialogtitle" msgid="4048082093347807230">"نوع شبکه برگزیده"</string>
     <string name="preferred_network_mode_wcdma_perf_summary" msgid="8521677230113533809">"حالت شبکه برگزیده: WCDMA برگزیده"</string>
     <string name="preferred_network_mode_gsm_only_summary" msgid="3352445413437453511">"حالت شبکه برگزیده: فقط GSM"</string>
     <string name="preferred_network_mode_wcdma_only_summary" msgid="2836897236221063413">"حالت شبکه برگزیده: فقط WCDMA"</string>
@@ -277,12 +275,9 @@
     <string name="enable_disable_multi_category" msgid="626771003122899280">"دسته‌های متعدد"</string>
     <string name="multi_category_enable" msgid="1179299804641721768">"دسته‌های متعدد فعال شد"</string>
     <string name="multi_category_disable" msgid="880104702904139505">"دسته‌های متعدد غیر فعال شد"</string>
-    <!-- no translation found for network_lte (7702681952521375754) -->
-    <skip />
-    <!-- no translation found for network_4G (2723512640529983138) -->
-    <skip />
-    <!-- no translation found for network_global (1323190488685355309) -->
-    <skip />
+    <string name="network_lte" msgid="7702681952521375754">"LTE (توصیه شده)"</string>
+    <string name="network_4G" msgid="2723512640529983138">"4G (توصیه شده)"</string>
+    <string name="network_global" msgid="1323190488685355309">"سراسری"</string>
     <string name="cdma_system_select_title" msgid="5757657769327732833">"انتخاب سیستم"</string>
     <string name="cdma_system_select_summary" msgid="60460043745797517">"تغییر حالت رومینگ CDMA"</string>
     <string name="cdma_system_select_dialogtitle" msgid="6083355415165359075">"انتخاب سیستم"</string>

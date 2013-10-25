@@ -136,11 +136,9 @@
     <string name="select_automatically" msgid="5628402124471810174">"自動選擇"</string>
     <string name="sum_select_automatically" msgid="5614890115123292400">"自動選擇優先選用網絡"</string>
     <string name="register_automatically" msgid="6017849844573519637">"自動註冊..."</string>
-    <!-- no translation found for preferred_network_mode_title (2336624679902659306) -->
-    <skip />
+    <string name="preferred_network_mode_title" msgid="2336624679902659306">"偏好的網絡類型"</string>
     <string name="preferred_network_mode_summary" msgid="1434820673166126609">"更改網絡操作模式"</string>
-    <!-- no translation found for preferred_network_mode_dialogtitle (4048082093347807230) -->
-    <skip />
+    <string name="preferred_network_mode_dialogtitle" msgid="4048082093347807230">"偏好的網絡類型"</string>
     <string name="preferred_network_mode_wcdma_perf_summary" msgid="8521677230113533809">"慣用網絡模式：偏好 WCDMA"</string>
     <string name="preferred_network_mode_gsm_only_summary" msgid="3352445413437453511">"慣用網絡模式：僅限 GSM"</string>
     <string name="preferred_network_mode_wcdma_only_summary" msgid="2836897236221063413">"慣用網絡模式：僅限 WCDMA"</string>
@@ -283,12 +281,9 @@
     <string name="enable_disable_multi_category" msgid="626771003122899280">"多類別資訊"</string>
     <string name="multi_category_enable" msgid="1179299804641721768">"已啟用多類別資訊"</string>
     <string name="multi_category_disable" msgid="880104702904139505">"多類別資訊已停用"</string>
-    <!-- no translation found for network_lte (7702681952521375754) -->
-    <skip />
-    <!-- no translation found for network_4G (2723512640529983138) -->
-    <skip />
-    <!-- no translation found for network_global (1323190488685355309) -->
-    <skip />
+    <string name="network_lte" msgid="7702681952521375754">"LTE (建議)"</string>
+    <string name="network_4G" msgid="2723512640529983138">"4G (建議)"</string>
+    <string name="network_global" msgid="1323190488685355309">"通用"</string>
     <string name="cdma_system_select_title" msgid="5757657769327732833">"選取系統"</string>
     <string name="cdma_system_select_summary" msgid="60460043745797517">"更改 CDMA 漫遊模式"</string>
     <string name="cdma_system_select_dialogtitle" msgid="6083355415165359075">"選取系統"</string>
