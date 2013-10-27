@@ -19,6 +19,7 @@ package com.android.phone;
 import android.app.ActivityManager;
 import android.app.AppOpsManager;
 import android.content.ActivityNotFoundException;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
@@ -37,14 +38,17 @@ import android.telephony.CellInfo;
 import android.telephony.ServiceState;
 import android.text.TextUtils;
 import android.util.Log;
+import android.util.Pair;
 
 import com.android.internal.telephony.DefaultPhoneNotifier;
 import com.android.internal.telephony.IccCard;
 import com.android.internal.telephony.ITelephony;
+import com.android.internal.telephony.IThirdPartyCallProvider;
 import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.CallManager;
 import com.android.internal.telephony.CommandException;
 import com.android.internal.telephony.PhoneConstants;
+import com.android.internal.telephony.thirdpartyphone.ThirdPartyPhone;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -64,6 +68,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     private static final int CMD_ANSWER_RINGING_CALL = 4;
     private static final int CMD_END_CALL = 5;  // not used yet
     private static final int CMD_SILENCE_RINGER = 6;
+    private static final int CMD_NEW_INCOMING_THIRD_PARTY_CALL = 7;
 
     /** The singleton instance. */
     private static PhoneInterfaceManager sInstance;
@@ -171,6 +176,22 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
                         request.notifyAll();
                     }
                     break;
+                case CMD_NEW_INCOMING_THIRD_PARTY_CALL: {
+                    request = (MainThreadRequest) msg.obj;
+                    Pair<ComponentName, String> pair =
+                            (Pair<ComponentName, String>) request.argument;
+                    for (Phone phone : CallManager.getInstance().getAllPhones()) {
+                        if (phone.getPhoneType() == PhoneConstants.PHONE_TYPE_THIRD_PARTY) {
+                            ThirdPartyPhone thirdPartyPhone = (ThirdPartyPhone) phone;
+                            if (thirdPartyPhone.getCallProviderComponent().equals(pair.first) &&
+                                    thirdPartyPhone.takeIncomingCall(pair.first, pair.second)) {
+                                if (DBG) log("newIncomingThirdPartyCall: call taken");
+                                return;
+                            }
+                        }
+                    }
+                    break;
+                }
 
                 default:
                     Log.w(LOG_TAG, "MainThreadHandler: unexpected message code: " + msg.what);
@@ -214,6 +235,16 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
      */
     private void sendRequestAsync(int command) {
         mMainThreadHandler.sendEmptyMessage(command);
+    }
+
+    /**
+     * Same as {@link #sendRequestAsync(int)} except it takes an argument.
+     * @see {@link #sendRequest(int,Object)}
+     */
+    private void sendRequestAsync(int command, Object argument) {
+        MainThreadRequest request = new MainThreadRequest(argument);
+        Message msg = mMainThreadHandler.obtainMessage(command, request);
+        msg.sendToTarget();
     }
 
     /**
@@ -726,8 +757,19 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         }
     }
 
+    @Override
     public void setCellInfoListRate(int rateInMillis) {
         mPhone.setCellInfoListRate(rateInMillis);
+    }
+
+    @Override
+    public void newIncomingThirdPartyCall(ComponentName component, String callId) {
+        // TODO(sail): Enforce that the component belongs to the calling package.
+        if (DBG) {
+            log("newIncomingThirdPartyCall: component: " + component + " callId: " + callId);
+        }
+        enforceCallPermission();
+        sendRequestAsync(CMD_NEW_INCOMING_THIRD_PARTY_CALL, Pair.create(component, callId));
     }
 
     //
