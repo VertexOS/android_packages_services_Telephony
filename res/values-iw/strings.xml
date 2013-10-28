@@ -337,6 +337,7 @@
     <string name="pin2_invalid" msgid="5470854099230755944">"ה-FDN לא עודכן כיוון שהקלדת PIN שגוי."</string>
     <string name="fdn_invalid_number" msgid="1494755047900009147">"ה-FDN לא עודכן משום שהמספר חורג ממגבלת 20 הספרות."</string>
     <string name="pin2_or_fdn_invalid" msgid="6025144083384701197">"FDN לא עודכן. קוד PIN2 היה שגוי או שמספר הטלפון נדחה."</string>
+    <string name="fdn_failed" msgid="540018079008319747">"פעולת FDN נכשלה."</string>
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"קורא מכרטיס SIM…"</string>
     <string name="simContacts_empty" msgid="5270660846489561932">"אין אנשי קשר בכרטיס ה-SIM."</string>
     <string name="simContacts_title" msgid="1861472842524839921">"בחר אנשי קשר ליבוא"</string>
@@ -357,7 +358,7 @@
     <string name="disable_pin_ok" msgid="5596999379593924850">"ה-PIN של ה-SIM הושבת."</string>
     <string name="pin_failed" msgid="2298841192582192277">"ה-PIN שהקלדת היה שגוי."</string>
     <string name="pin_changed" msgid="4365538014588501049">"ה-PIN של ה-SIM שונה בהצלחה."</string>
-    <string name="puk_requested" msgid="3898394204193202803">"הסיסמה שגויה, ה-SIM נעול! דרוש PUK2‎."</string>
+    <string name="puk_requested" msgid="1796577128488773946">"הסיסמה שגויה. מספר ה-PIN חסום. נשלחה בקשה לקוד PUK."</string>
     <string name="enter_pin2_text" msgid="8339444124477720345">"PIN2"</string>
     <string name="oldPin2Label" msgid="8559146795026261502">"PIN2 ישן"</string>
     <string name="newPin2Label" msgid="4573956902204349054">"PIN2 חדש"</string>
@@ -369,8 +370,11 @@
     <string name="invalidPuk2" msgid="1290977391033057871">"הקלד PUK2 שאורכו 8 ספרות."</string>
     <string name="pin2_changed" msgid="1639666438836544393">"ה-PIN2 שונה בהצלחה."</string>
     <string name="label_puk2_code" msgid="302845876240219560">"הקלד קוד PUK2"</string>
-    <string name="fdn_enable_puk2_requested" msgid="4262894949634885773">"הסיסמה שגויה. שנה את ה-PIN2 ונסה שוב."</string>
+    <string name="fdn_enable_puk2_requested" msgid="3674058967950559397">"הסיסמה שגויה. PIN2 חסום. שנה את קוד PIN2 ונסה שוב!"</string>
     <string name="puk2_requested" msgid="8909278021238716877">"הסיסמה שגויה, ה-SIM נעול. נדרש PUK2‎."</string>
+    <string name="puk2_blocked" msgid="3150263853077280049">"PUK2 נחסם לצמיתות."</string>
+    <string name="pin2_attempts" msgid="7937503107162525324">\n"נותרו <xliff:g id="NUMBER">%d</xliff:g> ניסיונות."</string>
+    <string name="pin2_unblocked" msgid="2903147240919055381">"נעילת PIN2 בוטלה!"</string>
     <string name="doneButton" msgid="2859593360997984240">"סיום"</string>
     <string name="caller_manage_header" msgid="3231519674734638786">"שיחת ועידה <xliff:g id="CONF_CALL_TIME">%s</xliff:g>"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"המספר של הדואר הקולי"</string>

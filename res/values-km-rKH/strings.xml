@@ -337,6 +337,7 @@
     <string name="pin2_invalid" msgid="5470854099230755944">"មិន​បាន​ធ្វើ​បច្ចុប្បន្នភាព FDN ពី​ព្រោះ​អ្នក​បាន​វាយ​បញ្ចូល​កូដ PIN មិន​ត្រឹមត្រូវ។"</string>
     <string name="fdn_invalid_number" msgid="1494755047900009147">"មិន​​បាន​ធ្វើ​បច្ចុប្បន្នភាព FDN ពីព្រោះ​ចំនួន​មិន​អាច​លើស​ពី ២០ តួ​លេខ​​ទេ។"</string>
     <string name="pin2_or_fdn_invalid" msgid="6025144083384701197">"មិន​បាន​ធ្វើ​បច្ចុប្បន្នភាព។ កូដ PIN2 មិន​ត្រឹមត្រូវ ឬ​លេខ​ទូរស័ព្ទ​ត្រូវ​បាន​ច្រានចោល។"</string>
+    <string name="fdn_failed" msgid="540018079008319747">"បាន​បរាជ័យ​ក្នុង​ការ​ប្រតិបត្តិការ FDN ។"</string>
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"កំពុង​អាន​ពី​ស៊ីមកាត…"</string>
     <string name="simContacts_empty" msgid="5270660846489561932">"គ្មាន​ទំនាក់ទំនង​នៅ​លើ​ស៊ីមកាត​របស់​អ្នក​ទេ។"</string>
     <string name="simContacts_title" msgid="1861472842524839921">"ជ្រើស​ទំនាក់​ទំនង​ដើម្បី​នាំចូល"</string>
@@ -357,7 +358,7 @@
     <string name="disable_pin_ok" msgid="5596999379593924850">"បាន​បិទ​កូដ PIN ស៊ីមកាត។"</string>
     <string name="pin_failed" msgid="2298841192582192277">"អ្នក​បាន​វាយ​​បញ្ចូល​កូដ PIN មិន​ត្រឹមត្រូវ។"</string>
     <string name="pin_changed" msgid="4365538014588501049">"បាន​ប្ដូរ​កូដ PIN ស៊ីមកាត​ដោយ​ជោគជ័យ។"</string>
-    <string name="puk_requested" msgid="3898394204193202803">"ពាក្យ​សម្ងាត់​មិន​ត្រឹមត្រូវ  បាន​ចាក់សោ​ស៊ីមកាត! បាន​ស្នើ​កូដ PUK2 ​។"</string>
+    <string name="puk_requested" msgid="1796577128488773946">"ពាក្យ​សម្ងាត់​មិន​ត្រឹមត្រូវ​, បាន​ទប់ស្កាត់​​លេខ​កូដ PIN​! បាន​ស្នើ​លេខ​កូដ PUK ​។"</string>
     <string name="enter_pin2_text" msgid="8339444124477720345">"PIN2"</string>
     <string name="oldPin2Label" msgid="8559146795026261502">"កូដ PIN2 ចាស់"</string>
     <string name="newPin2Label" msgid="4573956902204349054">"កូដ PIN2 ថ្មី"</string>
@@ -369,8 +370,11 @@
     <string name="invalidPuk2" msgid="1290977391033057871">"​វាយ​បញ្ចូល​កូដ PUK2 ដែល​មាន​ចំនួន ៨ ខ្ទង់ ​។"</string>
     <string name="pin2_changed" msgid="1639666438836544393">"បាន​ប្ដូរ​កូដ PIN2 ដោយ​ជោគជ័យ។"</string>
     <string name="label_puk2_code" msgid="302845876240219560">"វាយ​បញ្ចូល​កូដ PUK2"</string>
-    <string name="fdn_enable_puk2_requested" msgid="4262894949634885773">"ពាក្យ​សម្ងាត់​មិន​ត្រឹមត្រូវ។ ប្ដូរ​កូដ PIN2 ហើយ​ព្យាយាម​ម្ដង​ទៀត។"</string>
+    <string name="fdn_enable_puk2_requested" msgid="3674058967950559397">"ពាក្យ​សម្ងាត់​មិន​ត្រឹមត្រូវ​,​បាន​ប្លុក​លេខ​កូដ PIN2 ​។ សូម​​ប្ដូរ​​លេខ​កូដ PIN2 ហើយ​​ព្យាយាម​ម្ដង​ទៀត​!"</string>
     <string name="puk2_requested" msgid="8909278021238716877">"ពាក្យ​សម្ងាត់​មិន​ត្រឹមត្រូវ​  បាន​ចាក់សោ​ស៊ីមកាត។ បាន​ស្នើ​កូដ PUK2 ​។"</string>
+    <string name="puk2_blocked" msgid="3150263853077280049">"លេខ​កូដ PUK2 ត្រូវ​បាន​​ទប់ស្កាត់​ជា​អចិន្ត្រៃយ៍។"</string>
+    <string name="pin2_attempts" msgid="7937503107162525324">\n" មាន <xliff:g id="NUMBER">%d</xliff:g> ការ​ព្យាយាម​ដែល​នៅ​សល់​។"</string>
+    <string name="pin2_unblocked" msgid="2903147240919055381">"មិន​បាន​​ទប់ស្កាត់​​លេខ​កូដ​ PIN2 !"</string>
     <string name="doneButton" msgid="2859593360997984240">"រួចរាល់"</string>
     <string name="caller_manage_header" msgid="3231519674734638786">"ការ​ហៅ​ជា​សន្និសីទ <xliff:g id="CONF_CALL_TIME">%s</xliff:g>"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"លេខ​សារ​ជា​សំឡេង"</string>

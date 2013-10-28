@@ -337,6 +337,8 @@
     <string name="pin2_invalid" msgid="5470854099230755944">"잘못된 PIN을 입력하여 FDN 업데이트 안됨"</string>
     <string name="fdn_invalid_number" msgid="1494755047900009147">"숫자가 20자리를 초과할 수 없으므로 FDN을 업데이트하지 못했습니다."</string>
     <string name="pin2_or_fdn_invalid" msgid="6025144083384701197">"FDN이 업데이트되지 않았습니다. PIN2가 잘못되었거나 전화번호가 거부되었습니다."</string>
+    <!-- no translation found for fdn_failed (540018079008319747) -->
+    <skip />
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"SIM 카드에서 읽는 중..."</string>
     <string name="simContacts_empty" msgid="5270660846489561932">"SIM 카드에 주소록이 없습니다."</string>
     <string name="simContacts_title" msgid="1861472842524839921">"가져올 주소록 선택"</string>
@@ -357,7 +359,8 @@
     <string name="disable_pin_ok" msgid="5596999379593924850">"SIM PIN 사용 안함"</string>
     <string name="pin_failed" msgid="2298841192582192277">"입력한 PIN이 올바르지 않습니다."</string>
     <string name="pin_changed" msgid="4365538014588501049">"SIM PIN이 변경되었습니다."</string>
-    <string name="puk_requested" msgid="3898394204193202803">"비밀번호 틀림. SIM 잠겨 있음! PUK2 요청됨."</string>
+    <!-- no translation found for puk_requested (1796577128488773946) -->
+    <skip />
     <string name="enter_pin2_text" msgid="8339444124477720345">"PIN2"</string>
     <string name="oldPin2Label" msgid="8559146795026261502">"이전 PIN2"</string>
     <string name="newPin2Label" msgid="4573956902204349054">"새 PIN2"</string>
@@ -369,8 +372,15 @@
     <string name="invalidPuk2" msgid="1290977391033057871">"8자리 숫자로 된 PUK2를 입력하세요."</string>
     <string name="pin2_changed" msgid="1639666438836544393">"PIN2가 변경되었습니다."</string>
     <string name="label_puk2_code" msgid="302845876240219560">"PUK2 코드 입력"</string>
-    <string name="fdn_enable_puk2_requested" msgid="4262894949634885773">"비밀번호가 잘못되었습니다. PIN2를 변경한 후 다시 시도하세요."</string>
+    <!-- no translation found for fdn_enable_puk2_requested (3674058967950559397) -->
+    <skip />
     <string name="puk2_requested" msgid="8909278021238716877">"비밀번호 틀림. SIM 잠겨 있음. PUK2 요청한 상태임."</string>
+    <!-- no translation found for puk2_blocked (3150263853077280049) -->
+    <skip />
+    <!-- no translation found for pin2_attempts (7937503107162525324) -->
+    <skip />
+    <!-- no translation found for pin2_unblocked (2903147240919055381) -->
+    <skip />
     <string name="doneButton" msgid="2859593360997984240">"완료"</string>
     <string name="caller_manage_header" msgid="3231519674734638786">"다자간 통화 <xliff:g id="CONF_CALL_TIME">%s</xliff:g>"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"음성사서함 번호"</string>

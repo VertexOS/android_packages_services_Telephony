@@ -337,6 +337,8 @@
     <string name="pin2_invalid" msgid="5470854099230755944">"Nie zaktualizowano usługi FDN, ponieważ wpisano nieprawidłowy kod PIN."</string>
     <string name="fdn_invalid_number" msgid="1494755047900009147">"Nie zaktualizowano usługi FDN, ponieważ numer nie może być dłuższy niż 20 cyfr."</string>
     <string name="pin2_or_fdn_invalid" msgid="6025144083384701197">"Nie zaktualizowano FDN. PIN2 był niepoprawny lub numer telefonu został odrzucony."</string>
+    <!-- no translation found for fdn_failed (540018079008319747) -->
+    <skip />
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"Czytanie z karty SIM..."</string>
     <string name="simContacts_empty" msgid="5270660846489561932">"Brak kontaktów na karcie SIM"</string>
     <string name="simContacts_title" msgid="1861472842524839921">"Wybierz kontakty do importowania"</string>
@@ -357,7 +359,8 @@
     <string name="disable_pin_ok" msgid="5596999379593924850">"PIN do karty SIM jest wyłączony."</string>
     <string name="pin_failed" msgid="2298841192582192277">"Wpisany kod PIN był nieprawidłowy."</string>
     <string name="pin_changed" msgid="4365538014588501049">"Kod PIN do karty SIM został zmieniony."</string>
-    <string name="puk_requested" msgid="3898394204193202803">"Błędne hasło, karta SIM jest zablokowana! Wymagany kod PUK2."</string>
+    <!-- no translation found for puk_requested (1796577128488773946) -->
+    <skip />
     <string name="enter_pin2_text" msgid="8339444124477720345">"PIN2"</string>
     <string name="oldPin2Label" msgid="8559146795026261502">"Stary kod PIN2"</string>
     <string name="newPin2Label" msgid="4573956902204349054">"Nowy PIN2"</string>
@@ -369,8 +372,15 @@
     <string name="invalidPuk2" msgid="1290977391033057871">"Wprowadź 8-cyfrowy kod PUK2."</string>
     <string name="pin2_changed" msgid="1639666438836544393">"Kod PIN2 został pomyślnie zmieniony."</string>
     <string name="label_puk2_code" msgid="302845876240219560">"Wprowadź kod PUK2"</string>
-    <string name="fdn_enable_puk2_requested" msgid="4262894949634885773">"Błędne hasło. Zmień kod PIN2 i spróbuj ponownie."</string>
+    <!-- no translation found for fdn_enable_puk2_requested (3674058967950559397) -->
+    <skip />
     <string name="puk2_requested" msgid="8909278021238716877">"Błędne hasło, karta SIM jest zablokowana. Wymagany kod PUK2."</string>
+    <!-- no translation found for puk2_blocked (3150263853077280049) -->
+    <skip />
+    <!-- no translation found for pin2_attempts (7937503107162525324) -->
+    <skip />
+    <!-- no translation found for pin2_unblocked (2903147240919055381) -->
+    <skip />
     <string name="doneButton" msgid="2859593360997984240">"Gotowe"</string>
     <string name="caller_manage_header" msgid="3231519674734638786">"Poł. konferencyjne <xliff:g id="CONF_CALL_TIME">%s</xliff:g>"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"Numer poczty głosowej"</string>
