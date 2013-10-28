@@ -297,6 +297,15 @@ public class FdnSetting extends PreferenceActivity
                                         .setMessage(R.string.puk2_requested)
                                         .setCancelable(true)
                                         .setOnCancelListener(FdnSetting.this)
+                                        .setNeutralButton(android.R.string.ok,
+                                                new DialogInterface.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(DialogInterface dialog,
+                                                            int which) {
+                                                        resetPinChangeStateForPUK2();
+                                                        displayPinChangeDialog(0,true);
+                                                    }
+                                                })
                                         .create();
                                     a.getWindow().addFlags(
                                             WindowManager.LayoutParams.FLAG_DIM_BEHIND);
