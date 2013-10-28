@@ -337,6 +337,8 @@
     <string name="pin2_invalid" msgid="5470854099230755944">"Фіксований номер (FDN) не оновлено, оскільки введено неправильний PIN-код."</string>
     <string name="fdn_invalid_number" msgid="1494755047900009147">"Фіксований номер (FDN) не оновлено, оскільки кількість цифр не може перевищувати 20."</string>
     <string name="pin2_or_fdn_invalid" msgid="6025144083384701197">"Фіксований номер (FDN) не оновлено. PIN2-код неправильний або номер телефону відхилено."</string>
+    <!-- no translation found for fdn_failed (540018079008319747) -->
+    <skip />
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"Читання з SIM-карти…"</string>
     <string name="simContacts_empty" msgid="5270660846489561932">"У SIM-карті немає контактів."</string>
     <string name="simContacts_title" msgid="1861472842524839921">"Виберіть контакти для імпорту"</string>
@@ -357,7 +359,8 @@
     <string name="disable_pin_ok" msgid="5596999379593924850">"PIN-код SIM-карти вимкнено."</string>
     <string name="pin_failed" msgid="2298841192582192277">"Введений PIN-код не правильний."</string>
     <string name="pin_changed" msgid="4365538014588501049">"PIN-код SIM-карти змінено."</string>
-    <string name="puk_requested" msgid="3898394204193202803">"Пароль неправильний, SIM-картку заблок! Необх. PUK2."</string>
+    <!-- no translation found for puk_requested (1796577128488773946) -->
+    <skip />
     <string name="enter_pin2_text" msgid="8339444124477720345">"PIN2"</string>
     <string name="oldPin2Label" msgid="8559146795026261502">"Старий PIN2"</string>
     <string name="newPin2Label" msgid="4573956902204349054">"Новий PIN2"</string>
@@ -369,8 +372,15 @@
     <string name="invalidPuk2" msgid="1290977391033057871">"Введіть PUK2 з 8 чисел."</string>
     <string name="pin2_changed" msgid="1639666438836544393">"PIN2-код змінено."</string>
     <string name="label_puk2_code" msgid="302845876240219560">"Введіть PUK2-код"</string>
-    <string name="fdn_enable_puk2_requested" msgid="4262894949634885773">"Пароль не правильний. Змініть PIN2-код і повторіть спробу."</string>
+    <!-- no translation found for fdn_enable_puk2_requested (3674058967950559397) -->
+    <skip />
     <string name="puk2_requested" msgid="8909278021238716877">"Пароль не правильний. SIM-карту заблоковано. Потрібен PUK2."</string>
+    <!-- no translation found for puk2_blocked (3150263853077280049) -->
+    <skip />
+    <!-- no translation found for pin2_attempts (7937503107162525324) -->
+    <skip />
+    <!-- no translation found for pin2_unblocked (2903147240919055381) -->
+    <skip />
     <string name="doneButton" msgid="2859593360997984240">"Готово"</string>
     <string name="caller_manage_header" msgid="3231519674734638786">"Конференц-виклик <xliff:g id="CONF_CALL_TIME">%s</xliff:g>"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"Номер голос. пошти"</string>

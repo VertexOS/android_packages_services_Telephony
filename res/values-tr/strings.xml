@@ -337,6 +337,8 @@
     <string name="pin2_invalid" msgid="5470854099230755944">"Yanlış PIN girdiğiniz için FDN güncellenmedi."</string>
     <string name="fdn_invalid_number" msgid="1494755047900009147">"Sayı 20 basamaktan uzun olamayacağından FDN güncellenmedi."</string>
     <string name="pin2_or_fdn_invalid" msgid="6025144083384701197">"FDN güncellenmedi. PIN2 doğru değildi veya telefon numarası reddedildi."</string>
+    <!-- no translation found for fdn_failed (540018079008319747) -->
+    <skip />
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"SIM karttan okunuyor..."</string>
     <string name="simContacts_empty" msgid="5270660846489561932">"SIM kartınızda hiçbir kişi yok."</string>
     <string name="simContacts_title" msgid="1861472842524839921">"İçe aktarılacak kişileri seçin"</string>
@@ -357,7 +359,8 @@
     <string name="disable_pin_ok" msgid="5596999379593924850">"SIM PIN kodu devre dışı."</string>
     <string name="pin_failed" msgid="2298841192582192277">"Yazdığınız PIN hatalı."</string>
     <string name="pin_changed" msgid="4365538014588501049">"SIM PIN kodu başarıyla değiştirildi."</string>
-    <string name="puk_requested" msgid="3898394204193202803">"Şifre hatalı, SIM kilitlendi! PUK2 isteniyor."</string>
+    <!-- no translation found for puk_requested (1796577128488773946) -->
+    <skip />
     <string name="enter_pin2_text" msgid="8339444124477720345">"PIN2"</string>
     <string name="oldPin2Label" msgid="8559146795026261502">"Eski PIN2"</string>
     <string name="newPin2Label" msgid="4573956902204349054">"Yeni PIN2"</string>
@@ -369,8 +372,15 @@
     <string name="invalidPuk2" msgid="1290977391033057871">"8 haneli bir PUK2 yazın."</string>
     <string name="pin2_changed" msgid="1639666438836544393">"PIN2 başarıyla değiştirildi."</string>
     <string name="label_puk2_code" msgid="302845876240219560">"PUK2 kodunu yazın"</string>
-    <string name="fdn_enable_puk2_requested" msgid="4262894949634885773">"Şifre hatalı. PIN2 kodunu değiştirin ve tekrar deneyin."</string>
+    <!-- no translation found for fdn_enable_puk2_requested (3674058967950559397) -->
+    <skip />
     <string name="puk2_requested" msgid="8909278021238716877">"Şifre hatalı, SIM kilitlendi! PUK2 isteniyor."</string>
+    <!-- no translation found for puk2_blocked (3150263853077280049) -->
+    <skip />
+    <!-- no translation found for pin2_attempts (7937503107162525324) -->
+    <skip />
+    <!-- no translation found for pin2_unblocked (2903147240919055381) -->
+    <skip />
     <string name="doneButton" msgid="2859593360997984240">"Bitti"</string>
     <string name="caller_manage_header" msgid="3231519674734638786">"Konferans görüşmesi <xliff:g id="CONF_CALL_TIME">%s</xliff:g>"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"Sesli mesaj numarası"</string>
