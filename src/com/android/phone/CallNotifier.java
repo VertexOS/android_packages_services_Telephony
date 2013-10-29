@@ -802,7 +802,7 @@ public class CallNotifier extends Handler
             if (VDBG) log("CallerInfo query complete, posting missed call notification");
 
             mApplication.notificationMgr.notifyMissedCall(ci.name, ci.phoneNumber,
-                    ci.phoneLabel, ci.cachedPhoto, ci.cachedPhotoIcon,
+                    ci.numberPresentation, ci.phoneLabel, ci.cachedPhoto, ci.cachedPhotoIcon,
                     ((Long) cookie).longValue());
         } else if (cookie instanceof Connection) {
             final Connection c = (Connection) cookie;
@@ -1715,7 +1715,7 @@ public class CallNotifier extends Handler
                     number = PhoneUtils.modifyForSpecialCnapCases(mApplication,
                             ci, number, ci.numberPresentation);
                 }
-                mApplication.notificationMgr.notifyMissedCall(name, number,
+                mApplication.notificationMgr.notifyMissedCall(name, number, ci.numberPresentation,
                         ci.phoneLabel, ci.cachedPhoto, ci.cachedPhotoIcon, date);
             }
         } else {
