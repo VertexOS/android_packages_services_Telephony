@@ -337,8 +337,7 @@
     <string name="pin2_invalid" msgid="5470854099230755944">"የተሳሳተ ፒን ስላስገባህ FDN አልዘመነም፡፡"</string>
     <string name="fdn_invalid_number" msgid="1494755047900009147">"ቁጥሩ ከ20 አሀዞች በላይ መብለጥ ስለማይችል FDN አልዘመነም፡፡"</string>
     <string name="pin2_or_fdn_invalid" msgid="6025144083384701197">"FDN አልዘመነም። ፒን2 ትክክል አልነበረም፣ ወይም የስልክ ቁጥሩ ተቀባይነት አላገኘም።"</string>
-    <!-- no translation found for fdn_failed (540018079008319747) -->
-    <skip />
+    <string name="fdn_failed" msgid="540018079008319747">"FDN ክወና አልተሳካም!"</string>
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"ከSIM ካርድ ላይ በማንበብ ላይ..."</string>
     <string name="simContacts_empty" msgid="5270660846489561932">"በ SIM ካርድዎ ላይ ዕውቂያዎች የሉም።"</string>
     <string name="simContacts_title" msgid="1861472842524839921">"ለማስገባት ዕውቂያዎች ምረጥ"</string>
@@ -359,8 +358,7 @@
     <string name="disable_pin_ok" msgid="5596999379593924850">"SIM ፒን  ቦዝኗል"</string>
     <string name="pin_failed" msgid="2298841192582192277">"የተየብከው PIN የተሳሳተ ነበር።"</string>
     <string name="pin_changed" msgid="4365538014588501049">"SIM PIN በተሳካ ተለውጧል"</string>
-    <!-- no translation found for puk_requested (1796577128488773946) -->
-    <skip />
+    <string name="puk_requested" msgid="1796577128488773946">"የይለፍ ቃሉ የተሳሳተ ነው፣ ን ታግዷል! PUK ያስፈልጋል።"</string>
     <string name="enter_pin2_text" msgid="8339444124477720345">"PIN2"</string>
     <string name="oldPin2Label" msgid="8559146795026261502">"የድሮ PIN2"</string>
     <string name="newPin2Label" msgid="4573956902204349054">"አዲስPIN2"</string>
@@ -372,15 +370,11 @@
     <string name="invalidPuk2" msgid="1290977391033057871">"8 ቁጥሮች የሆኑ PUK2  ተይብ።"</string>
     <string name="pin2_changed" msgid="1639666438836544393">"PIN2 በተሳካ ተለውጧል"</string>
     <string name="label_puk2_code" msgid="302845876240219560">"የPUK2 ኮድ ተይብ"</string>
-    <!-- no translation found for fdn_enable_puk2_requested (3674058967950559397) -->
-    <skip />
+    <string name="fdn_enable_puk2_requested" msgid="3674058967950559397">"የይለፍ ቃል ትክክል አይደለም፣ ፒን2 ታግዷል። እባክዎ ፒን2ን ይቀይሩ እና እንደገና ይሞክሩ።"</string>
     <string name="puk2_requested" msgid="8909278021238716877">"የተሳሳተ ይለፍ ቃል፣ SIM ተቆልፏል! PUK2 ይጠየቃል።"</string>
-    <!-- no translation found for puk2_blocked (3150263853077280049) -->
-    <skip />
-    <!-- no translation found for pin2_attempts (7937503107162525324) -->
-    <skip />
-    <!-- no translation found for pin2_unblocked (2903147240919055381) -->
-    <skip />
+    <string name="puk2_blocked" msgid="3150263853077280049">"ፒን2 በቋሚነት ታግዷል።"</string>
+    <string name="pin2_attempts" msgid="7937503107162525324">\n" <xliff:g id="NUMBER">%d</xliff:g> ቀሪ ሙከራዎች አሉ።"</string>
+    <string name="pin2_unblocked" msgid="2903147240919055381">"ፒን2 እገዳው ተነስቷል!"</string>
     <string name="doneButton" msgid="2859593360997984240">"ተከናውኗል"</string>
     <string name="caller_manage_header" msgid="3231519674734638786">"የስብሰባ ጥሪ<xliff:g id="CONF_CALL_TIME">%s</xliff:g>"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"የድምፅ መልዕክት ቁጥር"</string>

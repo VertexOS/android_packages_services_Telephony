@@ -341,7 +341,7 @@
     <string name="pin2_invalid" msgid="5470854099230755944">"FDN is nie opgedateer nie omdat jy \'n verkeerde PIN ingevoer het."</string>
     <string name="fdn_invalid_number" msgid="1494755047900009147">"FDN is nie opgedateer nie, omdat die getal nie 20 syfers kan oorskry nie."</string>
     <string name="pin2_or_fdn_invalid" msgid="6025144083384701197">"FDN is nie bygewerk nie. Die PIN2 was verkeerd of die foonnommer is verwerp."</string>
-    <string name="fdn_failed" msgid="540018079008319747">"FDN-operasie het misluk."</string>
+    <string name="fdn_failed" msgid="540018079008319747">"FDN-bewerking het misluk."</string>
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"Lees tans van SIM-kaart af…"</string>
     <string name="simContacts_empty" msgid="5270660846489561932">"Geen kontakte op jou SIM-kaart nie."</string>
     <string name="simContacts_title" msgid="1861472842524839921">"Kies kontakte om in te voer"</string>

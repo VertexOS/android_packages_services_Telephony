@@ -337,8 +337,7 @@
     <string name="pin2_invalid" msgid="5470854099230755944">"Funkce Povolená telefonní čísla nebyla aktualizována, protože jste zadali chybný kód PIN."</string>
     <string name="fdn_invalid_number" msgid="1494755047900009147">"Funkce Povolená telefonní čísla nebyla aktualizována, protože číslo nesmí obsahovat více než 20 číslic."</string>
     <string name="pin2_or_fdn_invalid" msgid="6025144083384701197">"Povolená telefonní čísla (FDN) nebyla aktualizována. Kód PIN2 byl nesprávný nebo bylo telefonní číslo odmítnuto."</string>
-    <!-- no translation found for fdn_failed (540018079008319747) -->
-    <skip />
+    <string name="fdn_failed" msgid="540018079008319747">"Operace s čísly FDN se nezdařila."</string>
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"Čtení ze SIM karty..."</string>
     <string name="simContacts_empty" msgid="5270660846489561932">"Na SIM kartě nejsou žádné kontakty."</string>
     <string name="simContacts_title" msgid="1861472842524839921">"Vybrat kontakty pro import"</string>
@@ -359,8 +358,7 @@
     <string name="disable_pin_ok" msgid="5596999379593924850">"PIN SIM karty je zakázán."</string>
     <string name="pin_failed" msgid="2298841192582192277">"Zadaný kód PIN není správný."</string>
     <string name="pin_changed" msgid="4365538014588501049">"PIN SIM karty byl úspěšně změněn."</string>
-    <!-- no translation found for puk_requested (1796577128488773946) -->
-    <skip />
+    <string name="puk_requested" msgid="1796577128488773946">"Nesprávné heslo, kód PIN je zablokován. Je požadován kód PUK."</string>
     <string name="enter_pin2_text" msgid="8339444124477720345">"PIN2"</string>
     <string name="oldPin2Label" msgid="8559146795026261502">"Původní kód PIN2"</string>
     <string name="newPin2Label" msgid="4573956902204349054">"Nový kód PIN2"</string>
@@ -372,15 +370,11 @@
     <string name="invalidPuk2" msgid="1290977391033057871">"Zadejte 8místný kód PUK2."</string>
     <string name="pin2_changed" msgid="1639666438836544393">"Kód PIN2 byl úspěšně změněn."</string>
     <string name="label_puk2_code" msgid="302845876240219560">"Zadejte kód PUK2"</string>
-    <!-- no translation found for fdn_enable_puk2_requested (3674058967950559397) -->
-    <skip />
+    <string name="fdn_enable_puk2_requested" msgid="3674058967950559397">"Nesprávné heslo, kód PIN2 je zablokován. Změňte kód PIN2 a zkuste to znovu!"</string>
     <string name="puk2_requested" msgid="8909278021238716877">"Neplatné heslo, SIM karta je zablokována. Je požadován kód PUK2."</string>
-    <!-- no translation found for puk2_blocked (3150263853077280049) -->
-    <skip />
-    <!-- no translation found for pin2_attempts (7937503107162525324) -->
-    <skip />
-    <!-- no translation found for pin2_unblocked (2903147240919055381) -->
-    <skip />
+    <string name="puk2_blocked" msgid="3150263853077280049">"PUK2 je trvale zablokován."</string>
+    <string name="pin2_attempts" msgid="7937503107162525324">\n"Počet zbývajících pokusů: <xliff:g id="NUMBER">%d</xliff:g>"</string>
+    <string name="pin2_unblocked" msgid="2903147240919055381">"Kód PIN2 byl odblokován!"</string>
     <string name="doneButton" msgid="2859593360997984240">"Hotovo"</string>
     <string name="caller_manage_header" msgid="3231519674734638786">"Konferenční hovor <xliff:g id="CONF_CALL_TIME">%s</xliff:g>"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"Číslo hlasové schránky"</string>

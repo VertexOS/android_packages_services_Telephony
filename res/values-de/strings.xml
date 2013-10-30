@@ -341,8 +341,7 @@
     <string name="pin2_invalid" msgid="5470854099230755944">"Die Anrufbegrenzung wurde nicht aktualisiert, weil Sie eine falsche PIN eingegeben haben."</string>
     <string name="fdn_invalid_number" msgid="1494755047900009147">"Die Anrufbegrenzung wurde nicht aktualisiert, weil die Nummer maximal 20 Ziffern enthalten darf."</string>
     <string name="pin2_or_fdn_invalid" msgid="6025144083384701197">"FDN wurde nicht aktualisiert. PIN2 war ungültig oder die Telefonnummer wurde abgelehnt."</string>
-    <!-- no translation found for fdn_failed (540018079008319747) -->
-    <skip />
+    <string name="fdn_failed" msgid="540018079008319747">"Fehler bei der Nummernbeschränkung"</string>
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"SIM-Karte wird ausgelesen..."</string>
     <string name="simContacts_empty" msgid="5270660846489561932">"Keine Kontakte auf SIM-Karte"</string>
     <string name="simContacts_title" msgid="1861472842524839921">"Kontakte für Import auswählen"</string>
@@ -363,8 +362,7 @@
     <string name="disable_pin_ok" msgid="5596999379593924850">"PIN-Abfrage für SIM-Karte deaktiviert"</string>
     <string name="pin_failed" msgid="2298841192582192277">"Die eingegebene PIN ist falsch."</string>
     <string name="pin_changed" msgid="4365538014588501049">"PIN der SIM-Karte geändert"</string>
-    <!-- no translation found for puk_requested (1796577128488773946) -->
-    <skip />
+    <string name="puk_requested" msgid="1796577128488773946">"Falsches Passwort, PIN wurde gesperrt. PUK ist erforderlich."</string>
     <string name="enter_pin2_text" msgid="8339444124477720345">"PIN2"</string>
     <string name="oldPin2Label" msgid="8559146795026261502">"Alte PIN2"</string>
     <string name="newPin2Label" msgid="4573956902204349054">"Neue PIN2"</string>
@@ -376,15 +374,11 @@
     <string name="invalidPuk2" msgid="1290977391033057871">"Geben Sie einen 8-stelligen PUK2 ein."</string>
     <string name="pin2_changed" msgid="1639666438836544393">"PIN2 geändert"</string>
     <string name="label_puk2_code" msgid="302845876240219560">"PUK2 eingeben"</string>
-    <!-- no translation found for fdn_enable_puk2_requested (3674058967950559397) -->
-    <skip />
+    <string name="fdn_enable_puk2_requested" msgid="3674058967950559397">"Falsches Passwort. PIN2 wurde gesperrt. Bitte ändern Sie die PIN2 und versuchen Sie es erneut."</string>
     <string name="puk2_requested" msgid="8909278021238716877">"Passwort falsch, SIM-Karte gesperrt. Eingabe des PUK2 erforderlich."</string>
-    <!-- no translation found for puk2_blocked (3150263853077280049) -->
-    <skip />
-    <!-- no translation found for pin2_attempts (7937503107162525324) -->
-    <skip />
-    <!-- no translation found for pin2_unblocked (2903147240919055381) -->
-    <skip />
+    <string name="puk2_blocked" msgid="3150263853077280049">"PUK2 wurde endgültig gesperrt."</string>
+    <string name="pin2_attempts" msgid="7937503107162525324">\n"Sie haben noch <xliff:g id="NUMBER">%d</xliff:g> Versuche."</string>
+    <string name="pin2_unblocked" msgid="2903147240919055381">"PIN2 entsperrt"</string>
     <string name="doneButton" msgid="2859593360997984240">"Fertig"</string>
     <string name="caller_manage_header" msgid="3231519674734638786">"Telefonkonferenz <xliff:g id="CONF_CALL_TIME">%s</xliff:g>"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"Mailboxnummer"</string>
