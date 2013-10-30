@@ -337,8 +337,7 @@
     <string name="pin2_invalid" msgid="5470854099230755944">"系统未更新 FDN，因为键入的 PIN 码有误。"</string>
     <string name="fdn_invalid_number" msgid="1494755047900009147">"系统未更新 FDN，因为号码不能超过 20 位。"</string>
     <string name="pin2_or_fdn_invalid" msgid="6025144083384701197">"FDN 未更新。PIN2 有误，或电话号码遭拒。"</string>
-    <!-- no translation found for fdn_failed (540018079008319747) -->
-    <skip />
+    <string name="fdn_failed" msgid="540018079008319747">"FDN 操作失败。"</string>
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"正在从 SIM 卡读取..."</string>
     <string name="simContacts_empty" msgid="5270660846489561932">"SIM 卡上无联系人。"</string>
     <string name="simContacts_title" msgid="1861472842524839921">"选择要导入的联系人"</string>
@@ -359,8 +358,7 @@
     <string name="disable_pin_ok" msgid="5596999379593924850">"未启用 SIM 卡 PIN 码。"</string>
     <string name="pin_failed" msgid="2298841192582192277">"键入的 PIN 有误。"</string>
     <string name="pin_changed" msgid="4365538014588501049">"已成功更改 SIM 卡 PIN。"</string>
-    <!-- no translation found for puk_requested (1796577128488773946) -->
-    <skip />
+    <string name="puk_requested" msgid="1796577128488773946">"密码不正确，PIN 码已被锁定！请提供 PUK 码。"</string>
     <string name="enter_pin2_text" msgid="8339444124477720345">"PIN2"</string>
     <string name="oldPin2Label" msgid="8559146795026261502">"旧 PIN2"</string>
     <string name="newPin2Label" msgid="4573956902204349054">"新 PIN2"</string>
@@ -372,15 +370,11 @@
     <string name="invalidPuk2" msgid="1290977391033057871">"输入 8 位数字的 PUK2。"</string>
     <string name="pin2_changed" msgid="1639666438836544393">"已成功更改 PIN2。"</string>
     <string name="label_puk2_code" msgid="302845876240219560">"输入 PUK2 码"</string>
-    <!-- no translation found for fdn_enable_puk2_requested (3674058967950559397) -->
-    <skip />
+    <string name="fdn_enable_puk2_requested" msgid="3674058967950559397">"密码不正确，PIN2码已被锁定。请更改PIN2码并重试！"</string>
     <string name="puk2_requested" msgid="8909278021238716877">"密码有误，SIM 卡已锁定。需要 PUK2。"</string>
-    <!-- no translation found for puk2_blocked (3150263853077280049) -->
-    <skip />
-    <!-- no translation found for pin2_attempts (7937503107162525324) -->
-    <skip />
-    <!-- no translation found for pin2_unblocked (2903147240919055381) -->
-    <skip />
+    <string name="puk2_blocked" msgid="3150263853077280049">"PUK2码已被永远锁定。"</string>
+    <string name="pin2_attempts" msgid="7937503107162525324">\n"还有<xliff:g id="NUMBER">%d</xliff:g>次尝试机会。"</string>
+    <string name="pin2_unblocked" msgid="2903147240919055381">"PIN2码已解锁！"</string>
     <string name="doneButton" msgid="2859593360997984240">"完成"</string>
     <string name="caller_manage_header" msgid="3231519674734638786">"电话会议<xliff:g id="CONF_CALL_TIME">%s</xliff:g>"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"语音信箱号码"</string>

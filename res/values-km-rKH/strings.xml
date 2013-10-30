@@ -370,7 +370,7 @@
     <string name="invalidPuk2" msgid="1290977391033057871">"​វាយ​បញ្ចូល​កូដ PUK2 ដែល​មាន​ចំនួន ៨ ខ្ទង់ ​។"</string>
     <string name="pin2_changed" msgid="1639666438836544393">"បាន​ប្ដូរ​កូដ PIN2 ដោយ​ជោគជ័យ។"</string>
     <string name="label_puk2_code" msgid="302845876240219560">"វាយ​បញ្ចូល​កូដ PUK2"</string>
-    <string name="fdn_enable_puk2_requested" msgid="3674058967950559397">"ពាក្យ​សម្ងាត់​មិន​ត្រឹមត្រូវ​,​បាន​ប្លុក​លេខ​កូដ PIN2 ​។ សូម​​ប្ដូរ​​លេខ​កូដ PIN2 ហើយ​​ព្យាយាម​ម្ដង​ទៀត​!"</string>
+    <string name="fdn_enable_puk2_requested" msgid="3674058967950559397">"ពាក្យ​សម្ងាត់​មិន​ត្រឹមត្រូវ​,​បាន​ទប់ស្កាត់​លេខ​កូដ PIN2 ​។ សូម​​ប្ដូរ​​លេខ​កូដ PIN2 ហើយ​​ព្យាយាម​ម្ដង​ទៀត​!"</string>
     <string name="puk2_requested" msgid="8909278021238716877">"ពាក្យ​សម្ងាត់​មិន​ត្រឹមត្រូវ​  បាន​ចាក់សោ​ស៊ីមកាត។ បាន​ស្នើ​កូដ PUK2 ​។"</string>
     <string name="puk2_blocked" msgid="3150263853077280049">"លេខ​កូដ PUK2 ត្រូវ​បាន​​ទប់ស្កាត់​ជា​អចិន្ត្រៃយ៍។"</string>
     <string name="pin2_attempts" msgid="7937503107162525324">\n" មាន <xliff:g id="NUMBER">%d</xliff:g> ការ​ព្យាយាម​ដែល​នៅ​សល់​។"</string>

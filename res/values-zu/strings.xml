@@ -341,8 +341,7 @@
     <string name="pin2_invalid" msgid="5470854099230755944">"I-FDN ayivuselelwanga ngoba uthayiphe i-PIN engalungile."</string>
     <string name="fdn_invalid_number" msgid="1494755047900009147">"I-FDN ayivuselelwanga ngoba inombolo ayikwazi ukudlula ezinombolweni ezingu-20."</string>
     <string name="pin2_or_fdn_invalid" msgid="6025144083384701197">"I-FDN ayibuyekeziwe. I-PIN2 kade ingalungile, noma inombolo yefoni yenqatshelwe."</string>
-    <!-- no translation found for fdn_failed (540018079008319747) -->
-    <skip />
+    <string name="fdn_failed" msgid="540018079008319747">"Umsebenzi we-FDN wehlulekile."</string>
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"Ifunda ekhadini le-SIM..."</string>
     <string name="simContacts_empty" msgid="5270660846489561932">"Abekho othintana nabo ekhadini lakho le-SIM"</string>
     <string name="simContacts_title" msgid="1861472842524839921">"Khetha othintana nabo ozobangenisa"</string>
@@ -363,8 +362,7 @@
     <string name="disable_pin_ok" msgid="5596999379593924850">"I-PIN ye-SIM ivaliwe."</string>
     <string name="pin_failed" msgid="2298841192582192277">"I-PIN oyifakile ayilungile"</string>
     <string name="pin_changed" msgid="4365538014588501049">"I-PIN ye-SIM ishintshwe ngempumelelo"</string>
-    <!-- no translation found for puk_requested (1796577128488773946) -->
-    <skip />
+    <string name="puk_requested" msgid="1796577128488773946">"Iphasiwedi ayilungile, iphinikhodi ivinjiwe, i-PUK iceliwe."</string>
     <string name="enter_pin2_text" msgid="8339444124477720345">"I-PIN2"</string>
     <string name="oldPin2Label" msgid="8559146795026261502">"I-PIN2 endala"</string>
     <string name="newPin2Label" msgid="4573956902204349054">"I-PIN entsha"</string>
@@ -376,15 +374,11 @@
     <string name="invalidPuk2" msgid="1290977391033057871">"Thayipha i-PUK2 enezinombolo ezingu-8."</string>
     <string name="pin2_changed" msgid="1639666438836544393">"I-PIN2 ishintshwe ngokuphumelelayo"</string>
     <string name="label_puk2_code" msgid="302845876240219560">"Thayipha ikhodi ye-PUK2"</string>
-    <!-- no translation found for fdn_enable_puk2_requested (3674058967950559397) -->
-    <skip />
+    <string name="fdn_enable_puk2_requested" msgid="3674058967950559397">"Iphasiwedi ayilungile, i-PIN2 ivinjiwe. Sicela ushintshe i- PIN2 bese uzama futhi!"</string>
     <string name="puk2_requested" msgid="8909278021238716877">"Iphasiwedi ayilungile, i-SIM ivaliwe! Kudingena i-PUK2."</string>
-    <!-- no translation found for puk2_blocked (3150263853077280049) -->
-    <skip />
-    <!-- no translation found for pin2_attempts (7937503107162525324) -->
-    <skip />
-    <!-- no translation found for pin2_unblocked (2903147240919055381) -->
-    <skip />
+    <string name="puk2_blocked" msgid="3150263853077280049">"I-PUK2 ivinjiwe unaphakade."</string>
+    <string name="pin2_attempts" msgid="7937503107162525324">\n"Kukhona imizamo engu-<xliff:g id="NUMBER">%d</xliff:g> esele."</string>
+    <string name="pin2_unblocked" msgid="2903147240919055381">"I-PIN2 ivulelwe!"</string>
     <string name="doneButton" msgid="2859593360997984240">"Kwenziwe"</string>
     <string name="caller_manage_header" msgid="3231519674734638786">"Ikholi yengqungquthela <xliff:g id="CONF_CALL_TIME">%s</xliff:g>"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"Inombolo yevoyisimeyili"</string>
