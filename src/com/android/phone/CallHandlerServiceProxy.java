@@ -56,8 +56,9 @@ public class CallHandlerServiceProxy extends Handler
             "ro.debuggable", 0) == 1);
 
     public static final int RETRY_DELAY_MILLIS = 2000;
+    public static final int RETRY_DELAY_LONG_MILLIS = 30 * 1000; // 30 seconds
     private static final int BIND_RETRY_MSG = 1;
-    private static final int MAX_RETRY_COUNT = 5;
+    private static final int MAX_SHORT_DELAY_RETRY_COUNT = 5;
 
     private AudioRouter mAudioRouter;
     private CallCommandService mCallCommandService;
@@ -78,7 +79,7 @@ public class CallHandlerServiceProxy extends Handler
 
         switch (msg.what) {
             case BIND_RETRY_MSG:
-                setupServiceConnection();
+                handleConnectRetry();
                 break;
         }
     }
@@ -140,6 +141,9 @@ public class CallHandlerServiceProxy extends Handler
 
     @Override
     public void onIncoming(Call call) {
+        // for new incoming calls, reset the retry count.
+        resetConnectRetryCount();
+
         synchronized (mServiceAndQueueLock) {
             if (mCallHandlerServiceGuarded == null) {
                 if (DBG) {
@@ -286,7 +290,7 @@ public class CallHandlerServiceProxy extends Handler
                 Log.d(TAG, "Service Connected");
             }
             onCallHandlerServiceConnected(ICallHandlerService.Stub.asInterface(service));
-            mBindRetryCount = 0;
+            resetConnectRetryCount();
         }
 
         @Override public void onServiceDisconnected (ComponentName className){
@@ -343,6 +347,7 @@ public class CallHandlerServiceProxy extends Handler
             if (mConnection == null) {
                 mConnection = new InCallServiceConnection();
 
+                boolean failedConnection = false;
                 final PackageManager packageManger = mContext.getPackageManager();
                 final List<ResolveInfo> services = packageManger.queryIntentServices(serviceIntent,
                         0);
@@ -365,48 +370,93 @@ public class CallHandlerServiceProxy extends Handler
                     // This can happen if the service is being installed by the package manager.
                     // Between deletes and installs, bindService could get a silent service not
                     // found error.
-                    mBindRetryCount++;
-                    if (mBindRetryCount < MAX_RETRY_COUNT) {
-                        Log.w(TAG, "InCallUI service not found. " + serviceIntent
-                                + ". This happens if the service is being installed and should be"
-                                + " transient. Retrying" + RETRY_DELAY_MILLIS + " ms.");
-                        sendMessageDelayed(Message.obtain(this, BIND_RETRY_MSG),
-                                RETRY_DELAY_MILLIS);
-                    } else {
-                        Log.e(TAG, "Tried to bind to in-call UI " + MAX_RETRY_COUNT + " times."
-                                + " Giving up.");
+                    Log.w(TAG, "Default call handler service not found.");
+                    failedConnection = true;
+                } else {
+
+                    serviceIntent.setComponent(new ComponentName(serviceInfo.packageName,
+                            serviceInfo.name));
+                    if (DBG) {
+                        Log.d(TAG, "binding to service " + serviceIntent);
                     }
-                    return;
-                }
-
-                // Bind to the first service that has a permission
-                // TODO: Add UI to allow us to select between services
-
-                serviceIntent.setComponent(new ComponentName(serviceInfo.packageName,
-                        serviceInfo.name));
-                if (DBG) {
-                    Log.d(TAG, "binding to service " + serviceIntent);
-                }
-                if (!mContext.bindService(serviceIntent, mConnection, Context.BIND_AUTO_CREATE)) {
-                    // This happens when the in-call package is in the middle of being
-                    // installed.
-                    // Delay the retry.
-                    mBindRetryCount++;
-                    if (mBindRetryCount < MAX_RETRY_COUNT) {
-                        Log.e(TAG, "bindService failed on " + serviceIntent + ".  Retrying in "
-                                + RETRY_DELAY_MILLIS + " ms.");
-                        sendMessageDelayed(Message.obtain(this, BIND_RETRY_MSG),
-                                RETRY_DELAY_MILLIS);
-                    } else {
-                        Log.wtf(TAG, "Tried to bind to in-call UI " + MAX_RETRY_COUNT + " times."
-                                + " Giving up.");
+                    if (!mContext.bindService(serviceIntent, mConnection,
+                            Context.BIND_AUTO_CREATE)) {
+                        // This happens when the in-call package is in the middle of being installed
+                        Log.w(TAG, "Could not bind to default call handler service: " +
+                                serviceIntent.getComponent());
+                        failedConnection = true;
                     }
                 }
 
+                if (failedConnection) {
+                    mConnection = null;
+                    enqueueConnectRetry();
+                }
             } else {
                 Log.d(TAG, "Service connection to in call service already started.");
             }
         }
+    }
+
+    private void resetConnectRetryCount() {
+        mBindRetryCount = 0;
+    }
+
+    private void incrementRetryCount() {
+        // Reset to the short delay retry count to avoid overflow
+        if (Integer.MAX_VALUE == mBindRetryCount) {
+            mBindRetryCount = MAX_SHORT_DELAY_RETRY_COUNT;
+        }
+
+        mBindRetryCount++;
+    }
+
+    private void handleConnectRetry() {
+        // Remove any pending messages since we're already performing the action.
+        // If the call to setupServiceConnection() fails, it will queue up another retry.
+        removeMessages(BIND_RETRY_MSG);
+
+        // Something else triggered the connection, cancel.
+        if (mConnection != null) {
+            Log.i(TAG, "Retry: already connected.");
+            return;
+        }
+
+        if (mCallModeler.hasLiveCall()) {
+            // Update the count when we are actually trying the retry instead of when the
+            // retry is queued up.
+            incrementRetryCount();
+
+            Log.i(TAG, "Retrying connection: " + mBindRetryCount);
+            setupServiceConnection();
+        } else {
+            Log.i(TAG, "Canceling connection retry since there are no calls.");
+            // We are not currently connected and there is no call so lets not bother
+            // with the retry. Also, empty the queue of pending messages to send
+            // to the UI.
+            synchronized (mServiceAndQueueLock) {
+                if (mQueue != null) {
+                    mQueue.clear();
+                }
+            }
+
+            // Since we have no calls, reset retry count.
+            resetConnectRetryCount();
+        }
+    }
+
+    /**
+     * Called after the connection failed and a retry is needed.
+     * Queues up a retry to happen with a delay.
+     */
+    private void enqueueConnectRetry() {
+        final boolean isLongDelay = (mBindRetryCount > MAX_SHORT_DELAY_RETRY_COUNT);
+        final int delay = isLongDelay ? RETRY_DELAY_LONG_MILLIS : RETRY_DELAY_MILLIS;
+
+        Log.w(TAG, "InCallUI Connection failed. Enqueuing delayed retry for " + delay + " ms." +
+                " retries(" + mBindRetryCount + ")");
+
+        sendEmptyMessageDelayed(BIND_RETRY_MSG, delay);
     }
 
     private void unbind() {
