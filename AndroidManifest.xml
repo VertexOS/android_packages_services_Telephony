@@ -509,6 +509,14 @@
                 android:launchMode="singleInstance"
                 android:theme="@style/Empty">
         </activity>
+
+        <activity android:name="MMIDialogActivity"
+                android:configChanges="orientation|screenSize|keyboardHidden"
+                android:excludeFromRecents="true"
+                android:launchMode="singleInstance"
+                android:theme="@style/Empty">
+        </activity>
+
         <activity android:name=".TextMessagePackageChooser"
                 android:label="@string/respond_via_sms_setting_title"
                 android:configChanges="orientation|screenSize|keyboardHidden"
