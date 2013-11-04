@@ -358,7 +358,7 @@
     <string name="disable_pin_ok" msgid="5596999379593924850">"PIN ຂອງ SIM ຖືກປິດແລ້ວ."</string>
     <string name="pin_failed" msgid="2298841192582192277">"ລະຫັດ PIN ທີ່ທ່ານພິມບໍ່ຖືກຕ້ອງ."</string>
     <string name="pin_changed" msgid="4365538014588501049">"ປ່ຽນລະຫັດ PIN ຂອງ SIM ສຳເລັດແລ້ວ."</string>
-    <string name="puk_requested" msgid="1796577128488773946">"ລະ​ຫັດ​ຜ່ານ​ບໍ່​ຖືກ​ຕ້ອງ​, PIN ຖືກບລັອກ! PUK ຖືກ​ຮ້ອງຂໍ​​."</string>
+    <string name="puk_requested" msgid="1796577128488773946">"ລະ​ຫັດ​ຜ່ານ​ບໍ່​ຖືກ​ຕ້ອງ​, PIN ຖືກບລັອກ! ຕ້ອງໃຊ້ລະຫັດ PUK​​."</string>
     <string name="enter_pin2_text" msgid="8339444124477720345">"PIN2"</string>
     <string name="oldPin2Label" msgid="8559146795026261502">"ລະຫັດ PIN2 ເກົ່າ"</string>
     <string name="newPin2Label" msgid="4573956902204349054">"ລະຫັດ PIN2 ໃໝ່"</string>

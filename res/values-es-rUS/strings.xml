@@ -337,7 +337,7 @@
     <string name="pin2_invalid" msgid="5470854099230755944">"No se actualizó el FDN porque ingresaste un PIN incorrecto."</string>
     <string name="fdn_invalid_number" msgid="1494755047900009147">"No se actualizó el FDN porque el número no puede superar los 20 dígitos."</string>
     <string name="pin2_or_fdn_invalid" msgid="6025144083384701197">"No se actualizó el FDN. El PIN2 era incorrecto o se rechazó el número de teléfono."</string>
-    <string name="fdn_failed" msgid="540018079008319747">"Ocurrió un error de funcionamiento con el número de marcación fija."</string>
+    <string name="fdn_failed" msgid="540018079008319747">"Ocurrió un error de funcionamiento con el número de marcado fijo."</string>
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"Leyendo la tarjeta SIM..."</string>
     <string name="simContacts_empty" msgid="5270660846489561932">"No hay contactos en tu tarjeta SIM."</string>
     <string name="simContacts_title" msgid="1861472842524839921">"Seleccionar contactos para importar"</string>
