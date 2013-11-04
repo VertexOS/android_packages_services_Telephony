@@ -370,11 +370,11 @@
     <string name="invalidPuk2" msgid="1290977391033057871">"8 haneli bir PUK2 yazın."</string>
     <string name="pin2_changed" msgid="1639666438836544393">"PIN2 başarıyla değiştirildi."</string>
     <string name="label_puk2_code" msgid="302845876240219560">"PUK2 kodunu yazın"</string>
-    <string name="fdn_enable_puk2_requested" msgid="3674058967950559397">"Şifre yanlış. PIN Engellendi. Lütfen PIN2\'yi değiştirin ve yeniden deneyin!"</string>
+    <string name="fdn_enable_puk2_requested" msgid="3674058967950559397">"Şifre yanlış. PIN2 Engellendi. Lütfen PIN2\'yi değiştirin ve yeniden deneyin!"</string>
     <string name="puk2_requested" msgid="8909278021238716877">"Şifre hatalı, SIM kilitlendi! PUK2 isteniyor."</string>
     <string name="puk2_blocked" msgid="3150263853077280049">"PUK2 kalıcı olarak engellendi."</string>
     <string name="pin2_attempts" msgid="7937503107162525324">\n"<xliff:g id="NUMBER">%d</xliff:g> deneme hakkınız kaldı."</string>
-    <string name="pin2_unblocked" msgid="2903147240919055381">"PIN2\'nin Engellenmesi Kaldırıldı!"</string>
+    <string name="pin2_unblocked" msgid="2903147240919055381">"PIN2\'nin Engellemesi Kaldırıldı!"</string>
     <string name="doneButton" msgid="2859593360997984240">"Bitti"</string>
     <string name="caller_manage_header" msgid="3231519674734638786">"Konferans görüşmesi <xliff:g id="CONF_CALL_TIME">%s</xliff:g>"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"Sesli mesaj numarası"</string>

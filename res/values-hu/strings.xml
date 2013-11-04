@@ -337,7 +337,7 @@
     <string name="pin2_invalid" msgid="5470854099230755944">"Az FDN nem volt frissítve, mert hibás PIN-kódot írt be."</string>
     <string name="fdn_invalid_number" msgid="1494755047900009147">"Az FDN nem lett frissítve, mert a szám nem haladhatja meg a 20 számjegyet."</string>
     <string name="pin2_or_fdn_invalid" msgid="6025144083384701197">"Az FDN nem lett frissítve. Hibás a PIN2 kód, vagy a telefonszámot elutasították."</string>
-    <string name="fdn_failed" msgid="540018079008319747">"Az FDN-művelet meghiúsult."</string>
+    <string name="fdn_failed" msgid="540018079008319747">"Az FDN-művelet sikertelen."</string>
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"Beolvasás a SIM-kártyáról..."</string>
     <string name="simContacts_empty" msgid="5270660846489561932">"Nincsenek névjegyek a SIM-kártyán."</string>
     <string name="simContacts_title" msgid="1861472842524839921">"Válassza ki az importálni kívánt névjegyeket"</string>

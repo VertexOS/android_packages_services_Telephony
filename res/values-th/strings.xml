@@ -337,7 +337,7 @@
     <string name="pin2_invalid" msgid="5470854099230755944">"FDN ไม่อัปเดตเพราะคุณป้อน PIN ไม่ถูกต้อง"</string>
     <string name="fdn_invalid_number" msgid="1494755047900009147">"FDN ไม่อัปเดตเพราะหมายเลขจะมีจำนวนเกิน 20 หลักไม่ได้"</string>
     <string name="pin2_or_fdn_invalid" msgid="6025144083384701197">"ไม่ได้อัปเดต FDN เพราะ PIN2 ไม่ถูกต้องหรือหมายเลขโทรศัพท์ถูกปฏิเสธ"</string>
-    <string name="fdn_failed" msgid="540018079008319747">"การดำเนินการ FDN ล้มเหลว"</string>
+    <string name="fdn_failed" msgid="540018079008319747">"การปลดล็อกด้วย FDN ล้มเหลว"</string>
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"กำลังอ่านจากซิมการ์ด…"</string>
     <string name="simContacts_empty" msgid="5270660846489561932">"ไม่มีที่อยู่ติดต่อบนซิมการ์ดของคุณ"</string>
     <string name="simContacts_title" msgid="1861472842524839921">"เลือกสมุดโทรศัพท์ที่จะนำเข้า"</string>
