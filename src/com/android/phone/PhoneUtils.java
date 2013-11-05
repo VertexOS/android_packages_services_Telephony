@@ -112,11 +112,29 @@ public class PhoneUtils {
     /** Phone state changed event*/
     private static final int PHONE_STATE_CHANGED = -1;
 
+    /** check status then decide whether answerCall */
+    private static final int MSG_CHECK_STATUS_ANSWERCALL = 100;
+
+    /** poll phone DISCONNECTING status interval */
+    private static final int DISCONNECTING_POLLING_INTERVAL_MS = 200;
+
+    /** poll phone DISCONNECTING status times limit */
+    private static final int DISCONNECTING_POLLING_TIMES_LIMIT = 8;
+
     /** Define for not a special CNAP string */
     private static final int CNAP_SPECIAL_CASE_NO = -1;
 
     /** Noise suppression status as selected by user */
     private static boolean sIsNoiseSuppressionEnabled = true;
+
+    private static class FgRingCalls {
+        private Call fgCall;
+        private Call ringing;
+        public FgRingCalls(Call fg, Call ring) {
+            fgCall = fg;
+            ringing = ring;
+        }
+    }
 
     /**
      * Handler that tracks the connections and updates the value of the
@@ -125,9 +143,32 @@ public class PhoneUtils {
     private static class ConnectionHandler extends Handler {
         @Override
         public void handleMessage(Message msg) {
-            AsyncResult ar = (AsyncResult) msg.obj;
             switch (msg.what) {
+                case MSG_CHECK_STATUS_ANSWERCALL:
+                    FgRingCalls frC = (FgRingCalls) msg.obj;
+                    // wait for finishing disconnecting
+                    // before check the ringing call state
+                    if ((frC.fgCall != null) &&
+                        (frC.fgCall.getState() == Call.State.DISCONNECTING) &&
+                        (msg.arg1 < DISCONNECTING_POLLING_TIMES_LIMIT)) {
+                        Message retryMsg =
+                            mConnectionHandler.obtainMessage(MSG_CHECK_STATUS_ANSWERCALL);
+                        retryMsg.arg1 = 1 + msg.arg1;
+                        retryMsg.obj = msg.obj;
+                        mConnectionHandler.sendMessageDelayed(retryMsg,
+                            DISCONNECTING_POLLING_INTERVAL_MS);
+                    // since hangupActiveCall() also accepts the ringing call
+                    // check if the ringing call was already answered or not
+                    // only answer it when the call still is ringing
+                    } else if (frC.ringing.isRinging()) {
+                        if (msg.arg1 == DISCONNECTING_POLLING_TIMES_LIMIT) {
+                            Log.e(LOG_TAG, "DISCONNECTING time out");
+                        }
+                        answerCall(frC.ringing);
+                    }
+                    break;
                 case PHONE_STATE_CHANGED:
+                    AsyncResult ar = (AsyncResult) msg.obj;
                     if (DBG) log("ConnectionHandler: updating mute state for each connection");
 
                     CallManager cm = (CallManager) ar.userObj;
@@ -544,17 +585,17 @@ public class PhoneUtils {
         // hanging up the active call also accepts the waiting call
         // while active call and waiting call are from the same phone
         // i.e. both from GSM phone
-        if (!hangupActiveCall(cm.getActiveFgCall())) {
+        Call fgCall = cm.getActiveFgCall();
+        if (!hangupActiveCall(fgCall)) {
             Log.w(LOG_TAG, "end active call failed!");
             return false;
         }
 
-        // since hangupActiveCall() also accepts the ringing call
-        // check if the ringing call was already answered or not
-        // only answer it when the call still is ringing
-        if (ringing.isRinging()) {
-            return answerCall(ringing);
-        }
+        mConnectionHandler.removeMessages(MSG_CHECK_STATUS_ANSWERCALL);
+        Message msg = mConnectionHandler.obtainMessage(MSG_CHECK_STATUS_ANSWERCALL);
+        msg.arg1 = 1;
+        msg.obj = new FgRingCalls(fgCall, ringing);
+        mConnectionHandler.sendMessage(msg);
 
         return true;
     }
