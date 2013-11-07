@@ -160,7 +160,7 @@
         <item name="android:windowCloseOnTouchOutside">true</item>
     </style>
 
-    <style name="SettingsLight" parent="@android:style/Theme.Holo.Light.DialogWhenLarge">
+    <style name="SettingsLight" parent="@android:style/Theme.Holo.Light">
         <item name="android:windowBackground">@color/phone_settings_background_color</item>
         <item name="android:actionBarStyle">@style/DialtactsActionBarStyle</item>
     </style>
