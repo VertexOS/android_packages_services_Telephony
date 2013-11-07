@@ -21,6 +21,7 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.bluetooth.IBluetoothHeadsetPhone;
 import android.content.ActivityNotFoundException;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -55,10 +56,12 @@ import com.android.internal.telephony.Connection;
 import com.android.internal.telephony.MmiCode;
 import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneConstants;
+import com.android.internal.telephony.PhoneFactory;
 import com.android.internal.telephony.TelephonyCapabilities;
 import com.android.internal.telephony.TelephonyProperties;
 import com.android.internal.telephony.cdma.CdmaConnection;
 import com.android.internal.telephony.sip.SipPhone;
+import com.android.internal.telephony.thirdpartyphone.ThirdPartyPhone;
 import com.android.phone.CallGatewayManager.RawGatewayInfo;
 
 import java.util.ArrayList;
@@ -2554,19 +2557,25 @@ public class PhoneUtils {
      * @param scheme the scheme from the data URI that the number originally came from.
      * @param number the phone number, or SIP address.
      */
-    public static Phone pickPhoneBasedOnNumber(CallManager cm,
-            String scheme, String number, String primarySipUri) {
+    public static Phone pickPhoneBasedOnNumber(CallManager cm, String scheme, String number,
+            String primarySipUri, ComponentName thirdPartyCallComponent) {
         if (DBG) {
             log("pickPhoneBasedOnNumber: scheme " + scheme
                     + ", number " + toLogSafePhoneNumber(number)
                     + ", sipUri "
-                    + (primarySipUri != null ? Uri.parse(primarySipUri).toSafeString() : "null"));
+                    + (primarySipUri != null ? Uri.parse(primarySipUri).toSafeString() : "null")
+                    + ", thirdPartyCallComponent: " + thirdPartyCallComponent);
         }
 
         if (primarySipUri != null) {
             Phone phone = getSipPhoneFromUri(cm, primarySipUri);
             if (phone != null) return phone;
         }
+
+        if (thirdPartyCallComponent != null) {
+            return getThirdPartyPhoneFromComponent(cm, thirdPartyCallComponent);
+        }
+
         return cm.getDefaultPhone();
     }
 
@@ -2583,6 +2592,20 @@ public class PhoneUtils {
             }
         }
         return null;
+    }
+
+    public static Phone getThirdPartyPhoneFromComponent(CallManager cm, ComponentName component) {
+        for (Phone phone : cm.getAllPhones()) {
+            if (phone.getPhoneType() == PhoneConstants.PHONE_TYPE_THIRD_PARTY) {
+                ThirdPartyPhone thirdPartyPhone = (ThirdPartyPhone) phone;
+                if (thirdPartyPhone.getCallProviderComponent().equals(component)) {
+                    return thirdPartyPhone;
+                }
+            }
+        }
+        ThirdPartyPhone thirdPartyPhone = PhoneFactory.makeThirdPartyPhone(component);
+        cm.registerPhone(thirdPartyPhone);
+        return thirdPartyPhone;
     }
 
     /**

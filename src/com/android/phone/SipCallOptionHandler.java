@@ -19,6 +19,7 @@ package com.android.phone;
 import com.android.internal.telephony.CallManager;
 import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneFactory;
+import com.android.internal.telephony.thirdpartyphone.ThirdPartyPhone;
 import com.android.phone.sip.SipProfileDb;
 import com.android.phone.sip.SipSettings;
 import com.android.phone.sip.SipSharedPreferences;
@@ -26,9 +27,12 @@ import com.android.phone.sip.SipSharedPreferences;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -181,7 +185,7 @@ public class SipCallOptionHandler extends Activity implements
             if (!isRegularCall) {
                 showDialog(DIALOG_NO_VOIP);
             } else {
-                setResultAndFinish();
+                checkThirdPartyPhone();
             }
             return;
         }
@@ -221,8 +225,10 @@ public class SipCallOptionHandler extends Activity implements
             } else {
                 mUseSipPhone = false;
             }
+            setResultAndFinish();
+        } else {
+            checkThirdPartyPhone();
         }
-        setResultAndFinish();
     }
 
     /**
@@ -469,5 +475,40 @@ public class SipCallOptionHandler extends Activity implements
             if (p.getUriString().equals(primarySipUri)) return p;
         }
         return null;
+    }
+
+    private boolean isConnectedToWifi() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
+        if (cm != null) {
+            NetworkInfo ni = cm.getActiveNetworkInfo();
+            return ni != null && ni.isConnected() && ni.getType() == ConnectivityManager.TYPE_WIFI;
+        }
+        return false;
+    }
+
+    private void checkThirdPartyPhone() {
+        runOnUiThread(new Runnable() {
+            public void run() {
+                // TODO(sail): Move this out of this file or rename this file.
+                // TODO(sail): Move this logic to the switchboard.
+                if (isConnectedToWifi()) {
+                    Intent intent = new Intent(ThirdPartyPhone.ACTION_THIRD_PARTY_CALL_SERVICE);
+                    PackageManager pm = getPackageManager();
+                    // TODO(sail): Need to handle case where there are multiple services.
+                    // TODO(sail): Need to enforce permissions.
+                    ResolveInfo info = pm.resolveService(intent, 0);
+                    if (info != null && info.serviceInfo != null) {
+                        ComponentName component = new ComponentName(info.serviceInfo.packageName,
+                                info.serviceInfo.name);
+                        mIntent.putExtra(OutgoingCallBroadcaster.EXTRA_THIRD_PARTY_CALL_COMPONENT,
+                                component);
+                        PhoneGlobals.getInstance().callController.placeCall(mIntent);
+                        startDelayedFinish();
+                        return;
+                    }
+                }
+                setResultAndFinish();
+            }
+        });
     }
 }

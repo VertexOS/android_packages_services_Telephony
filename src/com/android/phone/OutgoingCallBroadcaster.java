@@ -77,6 +77,8 @@ public class OutgoingCallBroadcaster extends Activity
     public static final String EXTRA_SIP_PHONE_URI = "android.phone.extra.SIP_PHONE_URI";
     public static final String EXTRA_ACTUAL_NUMBER_TO_DIAL =
             "android.phone.extra.ACTUAL_NUMBER_TO_DIAL";
+    public static final String EXTRA_THIRD_PARTY_CALL_COMPONENT =
+            "android.phone.extra.THIRD_PARTY_CALL_COMPONENT";
 
     /**
      * Identifier for intent extra for sending an empty Flash message for

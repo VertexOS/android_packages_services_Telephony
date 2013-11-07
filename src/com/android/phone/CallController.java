@@ -26,6 +26,7 @@ import com.android.phone.ErrorDialogActivity;
 import com.android.phone.OtaUtils.CdmaOtaScreenState;
 
 import android.app.AlertDialog;
+import android.content.ComponentName;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Handler;
@@ -324,7 +325,10 @@ public class CallController extends Handler {
             // or any of combinations
             String sipPhoneUri = intent.getStringExtra(
                     OutgoingCallBroadcaster.EXTRA_SIP_PHONE_URI);
-            phone = PhoneUtils.pickPhoneBasedOnNumber(mCM, scheme, number, sipPhoneUri);
+            ComponentName thirdPartyCallComponent = (ComponentName) intent.getParcelableExtra(
+                    OutgoingCallBroadcaster.EXTRA_THIRD_PARTY_CALL_COMPONENT);
+            phone = PhoneUtils.pickPhoneBasedOnNumber(mCM, scheme, number, sipPhoneUri,
+                    thirdPartyCallComponent);
             if (VDBG) log("- got Phone instance: " + phone + ", class = " + phone.getClass());
 
             // update okToCallStatus based on new phone

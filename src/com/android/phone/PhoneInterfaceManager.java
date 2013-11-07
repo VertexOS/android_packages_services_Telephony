@@ -180,16 +180,9 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
                     request = (MainThreadRequest) msg.obj;
                     Pair<ComponentName, String> pair =
                             (Pair<ComponentName, String>) request.argument;
-                    for (Phone phone : CallManager.getInstance().getAllPhones()) {
-                        if (phone.getPhoneType() == PhoneConstants.PHONE_TYPE_THIRD_PARTY) {
-                            ThirdPartyPhone thirdPartyPhone = (ThirdPartyPhone) phone;
-                            if (thirdPartyPhone.getCallProviderComponent().equals(pair.first) &&
-                                    thirdPartyPhone.takeIncomingCall(pair.first, pair.second)) {
-                                if (DBG) log("newIncomingThirdPartyCall: call taken");
-                                return;
-                            }
-                        }
-                    }
+                    ThirdPartyPhone thirdPartyPhone = (ThirdPartyPhone)
+                            PhoneUtils.getThirdPartyPhoneFromComponent(mCM, pair.first);
+                    thirdPartyPhone.takeIncomingCall(pair.first, pair.second);
                     break;
                 }
 
