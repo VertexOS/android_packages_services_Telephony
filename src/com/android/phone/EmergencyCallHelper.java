@@ -20,7 +20,6 @@ import com.android.internal.telephony.CallManager;
 import com.android.internal.telephony.Connection;
 import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneConstants;
-import com.android.phone.Constants.CallStatusCode;
 
 import android.content.Context;
 import android.content.Intent;
@@ -67,7 +66,6 @@ public class EmergencyCallHelper extends Handler {
     private CallController mCallController;
     private PhoneGlobals mApp;
     private CallManager mCM;
-    private Phone mPhone;
     private String mNumber;  // The emergency number we're trying to dial
     private int mNumRetriesSoFar;
 
@@ -136,7 +134,7 @@ public class EmergencyCallHelper extends Handler {
     /**
      * Actual implementation of startEmergencyCallFromAirplaneModeSequence(),
      * guaranteed to run on the handler thread.
-     * @see startEmergencyCallFromAirplaneModeSequence()
+     * @see #startEmergencyCallFromAirplaneModeSequence
      */
     private void startSequenceInternal(Message msg) {
         if (DBG) log("startSequenceInternal(): msg = " + msg);
@@ -152,9 +150,6 @@ public class EmergencyCallHelper extends Handler {
         if (DBG) log("- startSequenceInternal: Got mNumber: '" + mNumber + "'");
 
         mNumRetriesSoFar = 0;
-
-        // Reset mPhone to whatever the current default phone is right now.
-        mPhone = mApp.mCM.getDefaultPhone();
 
         // Wake lock to make sure the processor doesn't go to sleep midway
         // through the emergency call sequence.
@@ -269,7 +264,7 @@ public class EmergencyCallHelper extends Handler {
      */
     private void onRetryTimeout() {
         PhoneConstants.State phoneState = mCM.getState();
-        int serviceState = mPhone.getServiceState().getState();
+        int serviceState = mCM.getDefaultPhone().getServiceState().getState();
         if (DBG) log("onRetryTimeout():  phone state " + phoneState
                      + ", service state " + serviceState
                      + ", mNumRetriesSoFar = " + mNumRetriesSoFar);
@@ -346,7 +341,7 @@ public class EmergencyCallHelper extends Handler {
             // in airplane mode.)  In this case just turn the radio
             // back on.
             if (DBG) log("==> (Apparently) not in airplane mode; manually powering radio on...");
-            mPhone.setRadioPower(true);
+            mCM.getDefaultPhone().setRadioPower(true);
         }
     }
 
@@ -370,7 +365,7 @@ public class EmergencyCallHelper extends Handler {
 
         if (DBG) log("- placing call to '" + mNumber + "'...");
         int callStatus = PhoneUtils.placeCall(mApp,
-                                              mPhone,
+                                              mCM.getDefaultPhone(),
                                               mNumber,
                                               null,  // contactUri
                                               true); // isEmergencyCall
@@ -479,14 +474,16 @@ public class EmergencyCallHelper extends Handler {
         // Unregister first, just to make sure we never register ourselves
         // twice.  (We need this because Phone.registerForServiceStateChanged()
         // does not prevent multiple registration of the same handler.)
-        mPhone.unregisterForServiceStateChanged(this);  // Safe even if not currently registered
-        mPhone.registerForServiceStateChanged(this, SERVICE_STATE_CHANGED, null);
+        Phone phone = mCM.getDefaultPhone();
+        phone.unregisterForServiceStateChanged(this);  // Safe even if not currently registered
+        phone.registerForServiceStateChanged(this, SERVICE_STATE_CHANGED, null);
     }
 
     private void unregisterForServiceStateChanged() {
         // This method is safe to call even if we haven't set mPhone yet.
-        if (mPhone != null) {
-            mPhone.unregisterForServiceStateChanged(this);  // Safe even if unnecessary
+        Phone phone = mCM.getDefaultPhone();
+        if (phone != null) {
+            phone.unregisterForServiceStateChanged(this);  // Safe even if unnecessary
         }
         removeMessages(SERVICE_STATE_CHANGED);  // Clean up any pending messages too
     }
