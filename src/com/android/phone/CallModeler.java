@@ -36,6 +36,7 @@ import com.android.services.telephony.common.Call.Capabilities;
 import com.android.services.telephony.common.Call.State;
 
 import com.google.android.collect.Maps;
+import com.google.android.collect.Sets;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSortedSet;
@@ -46,6 +47,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
+import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -346,10 +348,14 @@ public class CallModeler extends Handler {
         PhoneGlobals.getInstance().updateWakeState();
     }
 
-
     /**
      * Go through the Calls from CallManager and return the list of calls that were updated.
-     * Or, the full list if requested.
+     * Method also finds any orphaned Calls (Connection objects no longer returned by telephony as
+     * either ringing, foreground, or background).  For each orphaned call, it sets the call state
+     * to IDLE and adds it to the list of calls to update.
+     *
+     * @param fullUpdate Add all calls to out parameter including those that have no updates.
+     * @param out List to populate with Calls that have been updated.
      */
     private void doUpdate(boolean fullUpdate, List<Call> out) {
         final List<com.android.internal.telephony.Call> telephonyCalls = Lists.newArrayList();
@@ -357,12 +363,24 @@ public class CallModeler extends Handler {
         telephonyCalls.addAll(mCallManager.getForegroundCalls());
         telephonyCalls.addAll(mCallManager.getBackgroundCalls());
 
+        // orphanedConnections starts out including all connections we know about.
+        // As we iterate through the connections we get from the telephony layer we
+        // prune this Set down to only the connections we have but telephony no longer
+        // recognizes.
+        final Set<Connection> orphanedConnections = Sets.newHashSet();
+        orphanedConnections.addAll(mCallMap.keySet());
+        orphanedConnections.addAll(mConfCallMap.keySet());
+
         // Cycle through all the Connections on all the Calls. Update our Call objects
         // to reflect any new state and send the updated Call objects to the handler service.
         for (com.android.internal.telephony.Call telephonyCall : telephonyCalls) {
 
             for (Connection connection : telephonyCall.getConnections()) {
                 if (DBG) Log.d(TAG, "connection: " + connection + connection.getState());
+
+                if (orphanedConnections.contains(connection)) {
+                    orphanedConnections.remove(connection);
+                }
 
                 // We only send updates for live calls which are not incoming (ringing).
                 // Disconnected and incoming calls are handled by onDisconnect and
@@ -404,7 +422,26 @@ public class CallModeler extends Handler {
             for (Connection connection : telephonyCall.getConnections()) {
                 updateForConferenceCalls(connection, out);
             }
+        }
 
+        // Iterate through orphaned connections, set them to idle, and remove
+        // them from our internal structures.
+        for (Connection orphanedConnection : orphanedConnections) {
+            if (mCallMap.containsKey(orphanedConnection)) {
+                final Call call = mCallMap.get(orphanedConnection);
+                call.setState(Call.State.IDLE);
+                out.add(call);
+
+                mCallMap.remove(orphanedConnection);
+            }
+
+            if (mConfCallMap.containsKey(orphanedConnection)) {
+                final Call call = mCallMap.get(orphanedConnection);
+                call.setState(Call.State.IDLE);
+                out.add(call);
+
+                mConfCallMap.remove(orphanedConnection);
+            }
         }
     }
 
