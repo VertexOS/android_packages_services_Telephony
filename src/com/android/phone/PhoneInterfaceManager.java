@@ -38,7 +38,6 @@ import android.telephony.CellInfo;
 import android.telephony.ServiceState;
 import android.text.TextUtils;
 import android.util.Log;
-import android.util.Pair;
 
 import com.android.internal.telephony.DefaultPhoneNotifier;
 import com.android.internal.telephony.IccCard;
@@ -92,6 +91,19 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
 
         public MainThreadRequest(Object argument) {
             this.argument = argument;
+        }
+    }
+
+    private static final class IncomingThirdPartyCallArgs {
+        public final ComponentName component;
+        public final String callId;
+        public final String callerDisplayName;
+
+        public IncomingThirdPartyCallArgs(ComponentName component, String callId,
+                String callerDisplayName) {
+            this.component = component;
+            this.callId = callId;
+            this.callerDisplayName = callerDisplayName;
         }
     }
 
@@ -178,11 +190,10 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
                     break;
                 case CMD_NEW_INCOMING_THIRD_PARTY_CALL: {
                     request = (MainThreadRequest) msg.obj;
-                    Pair<ComponentName, String> pair =
-                            (Pair<ComponentName, String>) request.argument;
+                    IncomingThirdPartyCallArgs args = (IncomingThirdPartyCallArgs) request.argument;
                     ThirdPartyPhone thirdPartyPhone = (ThirdPartyPhone)
-                            PhoneUtils.getThirdPartyPhoneFromComponent(mCM, pair.first);
-                    thirdPartyPhone.takeIncomingCall(pair.first, pair.second);
+                            PhoneUtils.getThirdPartyPhoneFromComponent(mCM, args.component);
+                    thirdPartyPhone.takeIncomingCall(args.callId, args.callerDisplayName);
                     break;
                 }
 
@@ -756,13 +767,15 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     }
 
     @Override
-    public void newIncomingThirdPartyCall(ComponentName component, String callId) {
+    public void newIncomingThirdPartyCall(ComponentName component, String callId,
+            String callerDisplayName) {
         // TODO(sail): Enforce that the component belongs to the calling package.
         if (DBG) {
             log("newIncomingThirdPartyCall: component: " + component + " callId: " + callId);
         }
         enforceCallPermission();
-        sendRequestAsync(CMD_NEW_INCOMING_THIRD_PARTY_CALL, Pair.create(component, callId));
+        sendRequestAsync(CMD_NEW_INCOMING_THIRD_PARTY_CALL, new IncomingThirdPartyCallArgs(
+                component, callId, callerDisplayName));
     }
 
     //

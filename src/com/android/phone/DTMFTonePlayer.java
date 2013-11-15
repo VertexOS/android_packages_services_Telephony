@@ -365,7 +365,9 @@ public class DTMFTonePlayer implements CallModeler.Listener {
      */
     private static boolean useShortDtmfTones(Phone phone, Context context) {
         int phoneType = phone.getPhoneType();
-        if (phoneType == PhoneConstants.PHONE_TYPE_GSM) {
+        if (phoneType == PhoneConstants.PHONE_TYPE_GSM
+                || phoneType == PhoneConstants.PHONE_TYPE_SIP
+                || phoneType == PhoneConstants.PHONE_TYPE_THIRD_PARTY) {
             return false;
         } else if (phoneType == PhoneConstants.PHONE_TYPE_CDMA) {
             int toneType = android.provider.Settings.System.getInt(
@@ -377,8 +379,6 @@ public class DTMFTonePlayer implements CallModeler.Listener {
             } else {
                 return false;
             }
-        } else if (phoneType == PhoneConstants.PHONE_TYPE_SIP) {
-            return false;
         } else {
             throw new IllegalStateException("Unexpected phone type: " + phoneType);
         }
