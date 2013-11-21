@@ -332,7 +332,9 @@ public class BluetoothPhoneService extends Service {
         }
         // end the result
         // when index is 0, other parameter does not matter
-        mBluetoothHeadset.clccResponse(0, 0, 0, 0, false, "", 0);
+        if (mBluetoothHeadset != null) {
+            mBluetoothHeadset.clccResponse(0, 0, 0, 0, false, "", 0);
+        }
     }
 
     private void handleQueryPhoneState() {
@@ -527,7 +529,9 @@ public class BluetoothPhoneService extends Service {
             type = PhoneNumberUtils.toaFromString(number);
         }
 
-        mBluetoothHeadset.clccResponse(index + 1, direction, state, 0, mpty, number, type);
+        if (mBluetoothHeadset != null) {
+            mBluetoothHeadset.clccResponse(index + 1, direction, state, 0, mpty, number, type);
+        }
     }
 
     /** Build the +CLCC result for CDMA
@@ -660,7 +664,9 @@ public class BluetoothPhoneService extends Service {
             number = "";
         }
 
-        mBluetoothHeadset.clccResponse(index + 1, direction, state, 0, mpty, number, type);
+        if (mBluetoothHeadset != null) {
+            mBluetoothHeadset.clccResponse(index + 1, direction, state, 0, mpty, number, type);
+        }
     }
 
     private void handleCdmaSwapSecondCallState() {
