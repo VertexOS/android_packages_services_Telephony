@@ -1,4 +1,4 @@
-package com.android.phone.exceptions;
+package com.android.phone.v2.exceptions;
 
 public class OutgoingCallException extends Exception {
   public OutgoingCallException() {

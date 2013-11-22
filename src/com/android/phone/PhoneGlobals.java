@@ -595,7 +595,7 @@ public class PhoneGlobals extends ContextWrapper implements WiredHeadsetListener
                                       CallFeaturesSetting.HAC_VAL_ON :
                                       CallFeaturesSetting.HAC_VAL_OFF);
         }
-   }
+    }
 
     /**
      * Returns the singleton instance of the PhoneApp.

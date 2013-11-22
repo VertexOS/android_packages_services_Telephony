@@ -1,6 +1,6 @@
-package com.android.phone.ui.incall;
+package com.android.phone.v2.ui.incall;
 
-import com.android.phone.control.InCallAdapter;
+import com.android.phone.v2.control.InCallAdapter;
 
 public class InCallController {
 

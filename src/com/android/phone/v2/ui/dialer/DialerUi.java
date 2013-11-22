@@ -1,6 +1,6 @@
-package com.android.phone.ui.dialer;
+package com.android.phone.v2.ui.dialer;
 
-import com.android.phone.ContactInfo;
+import com.android.phone.v2.ContactInfo;
 
 /** Package-private? */
 

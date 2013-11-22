@@ -1,7 +1,7 @@
-package com.android.phone.control;
+package com.android.phone.v2.control;
 
-import com.android.phone.ContactInfo;
-import com.android.phone.exceptions.RestrictedCallException;
+import com.android.phone.v2.ContactInfo;
+import com.android.phone.v2.exceptions.RestrictedCallException;
 
 // Can be used to prevent outgoing calls based on arbitrary restrictions across
 // call services (e.g. black listing a phone number regardless if it is

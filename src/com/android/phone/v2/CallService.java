@@ -1,7 +1,7 @@
-package com.android.phone;
+package com.android.phone.v2;
 
-import com.android.phone.control.CallServiceAdapter;
-import com.android.phone.exceptions.OutgoingCallException;
+import com.android.phone.v2.control.CallServiceAdapter;
+import com.android.phone.v2.exceptions.OutgoingCallException;
 
 public interface CallService {
 

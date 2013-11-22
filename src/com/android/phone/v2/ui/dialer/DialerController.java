@@ -1,9 +1,9 @@
-package com.android.phone.ui.dialer;
+package com.android.phone.v2.ui.dialer;
 
-import com.android.phone.ContactInfo;
-import com.android.phone.control.DialerAdapter;
-import com.android.phone.exceptions.CallServiceUnavailableException;
-import com.android.phone.exceptions.RestrictedCallException;
+import com.android.phone.v2.ContactInfo;
+import com.android.phone.v2.control.DialerAdapter;
+import com.android.phone.v2.exceptions.CallServiceUnavailableException;
+import com.android.phone.v2.exceptions.RestrictedCallException;
 
 public class DialerController {
 

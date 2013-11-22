@@ -1,9 +1,9 @@
-package com.android.phone.control;
+package com.android.phone.v2.control;
 
-import com.android.phone.ContactInfo;
-import com.android.phone.exceptions.CallServiceUnavailableException;
-import com.android.phone.exceptions.RestrictedCallException;
-import com.android.phone.ui.dialer.DialerController;
+import com.android.phone.v2.ContactInfo;
+import com.android.phone.v2.exceptions.CallServiceUnavailableException;
+import com.android.phone.v2.exceptions.RestrictedCallException;
+import com.android.phone.v2.ui.dialer.DialerController;
 
 /** Only exposes the CallsManager APIs that the Dialer should have access to. */
 // TODO: This class may not be necessary since we do not interact with Dialer directly.

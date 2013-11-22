@@ -1,6 +1,6 @@
-package com.android.phone.control;
+package com.android.phone.v2.control;
 
-import com.android.phone.CallService;
+import com.android.phone.v2.CallService;
 
 /**
  * Only exposes the CallsManager APIs that CallService implementations should

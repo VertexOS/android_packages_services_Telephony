@@ -1,4 +1,4 @@
-package com.android.phone.exceptions;
+package com.android.phone.v2.exceptions;
 
 public class NoCompatibleCallServiceException extends Exception {
   public NoCompatibleCallServiceException() {

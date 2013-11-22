@@ -1,9 +1,9 @@
-package com.android.phone.control;
+package com.android.phone.v2.control;
 
-import com.android.phone.CallService;
-import com.android.phone.ContactInfo;
-import com.android.phone.exceptions.CallServiceUnavailableException;
-import com.android.phone.exceptions.RestrictedCallException;
+import com.android.phone.v2.CallService;
+import com.android.phone.v2.ContactInfo;
+import com.android.phone.v2.exceptions.CallServiceUnavailableException;
+import com.android.phone.v2.exceptions.RestrictedCallException;
 
 import java.util.ArrayList;
 import java.util.List;

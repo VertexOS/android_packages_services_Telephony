@@ -1,6 +1,6 @@
-package com.android.phone.control;
+package com.android.phone.v2.control;
 
-import com.android.phone.ui.incall.InCallController;
+import com.android.phone.v2.ui.incall.InCallController;
 
 /** Only exposes the CallsManager APIs that In-Call should have access to. */
 public class InCallAdapter {
