@@ -175,6 +175,12 @@ public final class Call implements Parcelable {
     // The current state of the call
     private int mState = State.INVALID;
 
+    // TODO: Probably need to change to wifi call state.  Re-use mState?
+    // State.WIFI_CONNECTING
+    // State.WIFI_CONNECTED
+    // Using this simple boolean for now so we can see the UI mock.
+    private boolean mIsWifiCall = false;
+
     // Reason for disconnect. Valid when the call state is DISCONNECTED.
     private DisconnectCause mDisconnectCause = DisconnectCause.UNKNOWN;
 
@@ -232,6 +238,10 @@ public final class Call implements Parcelable {
 
     public void setState(int state) {
         mState = state;
+    }
+
+    public boolean isWifiCall() {
+        return mIsWifiCall;
     }
 
     public int getNumberPresentation() {
