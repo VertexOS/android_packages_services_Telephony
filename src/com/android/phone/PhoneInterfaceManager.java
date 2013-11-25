@@ -18,7 +18,6 @@ package com.android.phone;
 
 import android.app.ActivityManager;
 import android.app.AppOpsManager;
-import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -33,9 +32,11 @@ import android.os.Message;
 import android.os.Process;
 import android.os.ServiceManager;
 import android.os.UserHandle;
+import android.provider.Settings;
 import android.telephony.NeighboringCellInfo;
 import android.telephony.CellInfo;
 import android.telephony.ServiceState;
+import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -944,5 +945,25 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
      */
     public int getLteOnCdmaMode() {
         return mPhone.getLteOnCdmaMode();
+    }
+
+    /**
+     * @see android.telephony.TelephonyManager.WifiCallingChoices
+     */
+    public int getWhenToMakeWifiCalls() {
+        try {
+            return Settings.System.getInt(mPhone.getContext().getContentResolver(),
+                    Settings.System.WHEN_TO_MAKE_WIFI_CALLS);
+        } catch (Settings.SettingNotFoundException e) {
+            return TelephonyManager.WifiCallingChoices.NEVER_USE;
+        }
+    }
+
+    /**
+     * @see android.telephony.TelephonyManager.WifiCallingChoices
+     */
+    public void setWhenToMakeWifiCalls(int preference) {
+        Settings.System.putInt(mPhone.getContext().getContentResolver(),
+                Settings.System.WHEN_TO_MAKE_WIFI_CALLS, preference);
     }
 }
