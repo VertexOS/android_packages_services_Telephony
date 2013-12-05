@@ -1149,6 +1149,27 @@
     <!-- Item of the Internet call (Wi-Fi only) option dialog: for routing all outgoing calls via SIP. [CHAR LIMIT=NONE] -->
     <string name="sip_call_options_wifi_only_entry_1">For all calls</string>
 
+    <!-- Start of Wi-Fi calling related strings. -->
+
+    <!-- Title of the Wi-Fi settings section [CHAR LIMIT=NONE] -->
+    <string name="wifi_settings">Wi-Fi call settings</string>
+    <!-- Title of option allowing user to pick when to make Wi-Fi calls [CHAR LIMIT=NONE] -->
+    <string name="when_to_make_wifi_calls_title">When to make Wi-Fi calls</string>
+    <!-- Item of Wi-Fi settings: For always using Wi-Fi to make calls. [CHAR LIMIT=NONE] -->
+    <string name="wifi_calling_choice_entry_always_use">Always use Wi-Fi to make calls</string>
+    <!-- Item of Wi-Fi settings: For never using Wi-Fi to make calls. [CHAR LIMIT=NONE] -->
+    <string name="wifi_calling_choice_entry_never_use">Never use Wi-Fi to make calls</string>
+    <!-- Item of Wi-Fi settings: For asking each time whether to use Wi-Fi. [CHAR LIMIT=NONE] -->
+    <string name="wifi_calling_choice_entry_ask_every_time">Always ask</string>
+
+    <!-- Keep values in sync with android.telephony.TelephonyManager.WifiCallingChoices -->
+    <!-- android.telephony.TelephonyManager.WifiCallingChoices.ALWAYS_USE -->
+    <string translatable="false" name="wifi_calling_choices_always_use">0</string>
+    <!-- android.telephony.TelephonyManager.WifiCallingChoices.NEVER_USE -->
+    <string translatable="false" name="wifi_calling_choices_never_use">1</string>
+    <!-- android.telephony.TelephonyManager.WifiCallingChoices.ASK_EVERY_TIME -->
+    <string translatable="false" name="wifi_calling_choices_ask_every_time">2</string>
+
     <!-- Title of the dialog to select the phone type for the outgoing call. [CHAR LIMIT=NONE] -->
     <string name ="pick_outgoing_call_phone_type">Place call</string>
 

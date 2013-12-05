@@ -52,12 +52,9 @@ import android.preference.PreferenceScreen;
 import android.provider.ContactsContract.CommonDataKinds;
 import android.provider.MediaStore;
 import android.provider.Settings;
-import android.provider.Settings.SettingNotFoundException;
 import android.telephony.PhoneNumberUtils;
-import android.text.Spannable;
-import android.text.SpannableString;
+import android.telephony.TelephonyManager;
 import android.text.TextUtils;
-import android.text.style.TypefaceSpan;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.WindowManager;
@@ -194,6 +191,9 @@ public class CallFeaturesSetting extends PreferenceActivity
     private static final String SIP_SETTINGS_CATEGORY_KEY =
             "sip_settings_category_key";
 
+    private static final String WHEN_TO_MAKE_WIFI_CALLS_KEY =
+            "when_to_make_wifi_calls_key";
+
     private Intent mContactListIntent;
 
     /** Event for Async voicemail change call */
@@ -273,6 +273,7 @@ public class CallFeaturesSetting extends PreferenceActivity
     private ListPreference mButtonDTMF;
     private ListPreference mButtonTTY;
     private ListPreference mButtonSipCallOptions;
+    private ListPreference mWifiCallOptionsPreference;
     private ListPreference mVoicemailProviders;
     private PreferenceScreen mVoicemailSettings;
     private Preference mVoicemailNotificationRingtone;
@@ -591,6 +592,8 @@ public class CallFeaturesSetting extends PreferenceActivity
             }
         } else if (preference == mButtonSipCallOptions) {
             handleSipCallOptionsChange(objValue);
+        } else if (preference == mWifiCallOptionsPreference) {
+            handleWifiCallSettingsChange(objValue);
         }
         // always let the preference setting proceed.
         return true;
@@ -1638,6 +1641,7 @@ public class CallFeaturesSetting extends PreferenceActivity
         updateVoiceNumberField();
         mVMProviderSettingsForced = false;
         createSipCallSettings();
+        createWifiCallSettings();
 
         mRingtoneLookupRunnable = new Runnable() {
             @Override
@@ -1734,6 +1738,38 @@ public class CallFeaturesSetting extends PreferenceActivity
                             mSipSharedPreferences.getSipCallOption()));
             mButtonSipCallOptions.setSummary(mButtonSipCallOptions.getEntry());
         }
+    }
+
+    private void createWifiCallSettings() {
+        addPreferencesFromResource(R.xml.wifi_settings_category);
+        mWifiCallOptionsPreference = (ListPreference) findPreference(WHEN_TO_MAKE_WIFI_CALLS_KEY);
+        mWifiCallOptionsPreference.setOnPreferenceChangeListener(this);
+        mWifiCallOptionsPreference.setValueIndex(
+                mWifiCallOptionsPreference.findIndexOfValue(
+                        getWhenToMakeWifiCalls()));
+        mWifiCallOptionsPreference.setSummary(mWifiCallOptionsPreference.getEntry());
+    }
+
+    /**
+     * @see android.telephony.TelephonyManager.WifiCallingChoices
+     */
+    private String getWhenToMakeWifiCalls() {
+        int setting;
+        try {
+            setting = Settings.System.getInt(mPhone.getContext().getContentResolver(),
+                    Settings.System.WHEN_TO_MAKE_WIFI_CALLS);
+        } catch (Settings.SettingNotFoundException e) {
+            setting = TelephonyManager.WifiCallingChoices.NEVER_USE;
+        }
+        return Integer.toString(setting);
+    }
+
+    /**
+     * @see android.telephony.TelephonyManager.WifiCallingChoices
+     */
+    public void setWhenToMakeWifiCalls(String value) {
+        Settings.System.putInt(mPhone.getContext().getContentResolver(),
+               Settings.System.WHEN_TO_MAKE_WIFI_CALLS, Integer.valueOf(value));
     }
 
     // Gets the call options for SIP depending on whether SIP is allowed only
@@ -1891,6 +1927,14 @@ public class CallFeaturesSetting extends PreferenceActivity
         mButtonSipCallOptions.setValueIndex(
                 mButtonSipCallOptions.findIndexOfValue(option));
         mButtonSipCallOptions.setSummary(mButtonSipCallOptions.getEntry());
+    }
+
+    private void handleWifiCallSettingsChange(Object objValue) {
+        String option = objValue.toString();
+        setWhenToMakeWifiCalls(option);
+        mWifiCallOptionsPreference.setValueIndex(
+                mWifiCallOptionsPreference.findIndexOfValue(option));
+        mWifiCallOptionsPreference.setSummary(mWifiCallOptionsPreference.getEntry());
     }
 
     private void updatePreferredTtyModeSummary(int TtyMode) {
