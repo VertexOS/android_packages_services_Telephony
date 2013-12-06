@@ -53,7 +53,6 @@ import android.provider.ContactsContract.CommonDataKinds;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.telephony.PhoneNumberUtils;
-import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
@@ -1754,22 +1753,14 @@ public class CallFeaturesSetting extends PreferenceActivity
      * @see android.telephony.TelephonyManager.WifiCallingChoices
      */
     private String getWhenToMakeWifiCalls() {
-        int setting;
-        try {
-            setting = Settings.System.getInt(mPhone.getContext().getContentResolver(),
-                    Settings.System.WHEN_TO_MAKE_WIFI_CALLS);
-        } catch (Settings.SettingNotFoundException e) {
-            setting = TelephonyManager.WifiCallingChoices.NEVER_USE;
-        }
-        return Integer.toString(setting);
+        return PhoneInterfaceManager.getWhenToMakeWifiCallsStr(mPhone.getContext());
     }
 
     /**
      * @see android.telephony.TelephonyManager.WifiCallingChoices
      */
     public void setWhenToMakeWifiCalls(String value) {
-        Settings.System.putInt(mPhone.getContext().getContentResolver(),
-               Settings.System.WHEN_TO_MAKE_WIFI_CALLS, Integer.valueOf(value));
+        PhoneInterfaceManager.setWhenToMakeWifiCallsStr(mPhone.getContext(), value);
     }
 
     // Gets the call options for SIP depending on whether SIP is allowed only

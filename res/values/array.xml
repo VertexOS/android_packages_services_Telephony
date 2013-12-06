@@ -48,8 +48,8 @@
     <!-- android.telephony.TelephonyManager.WifiCallingChoices -->
     <string-array name="wifi_calling_choice_values">
         <item>@string/wifi_calling_choices_always_use</item>
-        <item>@string/wifi_calling_choices_never_use</item>
         <item>@string/wifi_calling_choices_ask_every_time</item>
+        <item>@string/wifi_calling_choices_never_use</item>
     </string-array>
 
     <string-array translatable="false" name="phone_type_values">
