@@ -208,6 +208,7 @@ public final class Call implements Parcelable {
         mCallId = call.mCallId;
         mIdentification = new CallIdentification(call.mIdentification);
         mState = call.mState;
+        mIsWifiCall = call.mIsWifiCall;
         mDisconnectCause = call.mDisconnectCause;
         mCapabilities = call.mCapabilities;
         mConnectTime = call.mConnectTime;
@@ -238,6 +239,10 @@ public final class Call implements Parcelable {
 
     public void setState(int state) {
         mState = state;
+    }
+
+    public void setIsWifiCall(boolean isWifiCall) {
+        mIsWifiCall = isWifiCall;
     }
 
     public boolean isWifiCall() {
@@ -348,6 +353,7 @@ public final class Call implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(mCallId);
         dest.writeInt(mState);
+        dest.writeByte((byte) (mIsWifiCall ? 1 : 0));
         dest.writeString(getDisconnectCause().toString());
         dest.writeInt(getCapabilities());
         dest.writeLong(getConnectTime());
@@ -363,6 +369,7 @@ public final class Call implements Parcelable {
     private Call(Parcel in) {
         mCallId = in.readInt();
         mState = in.readInt();
+        mIsWifiCall = in.readByte() != 0;
         mDisconnectCause = DisconnectCause.valueOf(in.readString());
         mCapabilities = in.readInt();
         mConnectTime = in.readLong();
@@ -399,6 +406,7 @@ public final class Call implements Parcelable {
         return Objects.toStringHelper(this)
                 .add("mCallId", mCallId)
                 .add("mState", STATE_MAP.get(mState))
+                .add("mIsWifiCall", mIsWifiCall)
                 .add("mDisconnectCause", mDisconnectCause)
                 .add("mCapabilities", mCapabilities)
                 .add("mConnectTime", mConnectTime)

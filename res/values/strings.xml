@@ -1162,12 +1162,8 @@
     <!-- Item of Wi-Fi settings: For asking each time whether to use Wi-Fi. [CHAR LIMIT=NONE] -->
     <string name="wifi_calling_choice_entry_ask_every_time">Always ask</string>
 
-    <!-- Keep values in sync with android.telephony.TelephonyManager.WifiCallingChoices -->
-    <!-- android.telephony.TelephonyManager.WifiCallingChoices.ALWAYS_USE -->
     <string translatable="false" name="wifi_calling_choices_always_use">ALWAYS_USE</string>
-    <!-- android.telephony.TelephonyManager.WifiCallingChoices.NEVER_USE -->
     <string translatable="false" name="wifi_calling_choices_never_use">NEVER_USE</string>
-    <!-- android.telephony.TelephonyManager.WifiCallingChoices.ASK_EVERY_TIME -->
     <string translatable="false" name="wifi_calling_choices_ask_every_time">ASK_EVERY_TIME</string>
 
     <!-- Title of the dialog to select the phone type for the outgoing call. [CHAR LIMIT=NONE] -->
@@ -1541,4 +1537,13 @@
     <!-- String resource for the font-family to use for the call setting activity's title
          Do not translate. -->
     <string name="call_settings_title_font_family">sans-serif-light</string>
+
+    <!-- Title of the dialog to choose WiFi calling. -->
+    <string name ="choose_wifi_for_call_msg">Use Wi-Fi to place call?</string>
+
+    <!-- Title for button to use WiFi calling. -->
+    <string name ="choose_wifi_for_call_yes">Yes</string>
+
+    <!-- Title for button to not use WiFi calling. -->
+    <string name ="choose_wifi_for_call_no">No</string>
 </resources>

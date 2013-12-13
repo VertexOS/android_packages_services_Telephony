@@ -555,6 +555,13 @@ public class CallModeler extends Handler {
             changed = true;
         }
 
+        final boolean isWifiCall = connection.getCall().getPhone().getPhoneType() ==
+                PhoneConstants.PHONE_TYPE_THIRD_PARTY;
+        if (call.isWifiCall() != isWifiCall) {
+            call.setIsWifiCall(isWifiCall);
+            changed = true;
+        }
+
         final Call.DisconnectCause newDisconnectCause =
                 translateDisconnectCauseFromTelephony(connection.getDisconnectCause());
         if (call.getDisconnectCause() != newDisconnectCause) {
@@ -650,7 +657,7 @@ public class CallModeler extends Handler {
         final boolean supportHold = PhoneUtils.okToSupportHold(mCallManager);
         final boolean canHold = (supportHold ? PhoneUtils.okToHoldCall(mCallManager) : false);
         final boolean genericConf = isForConference &&
-                (connection.getCall().getPhone().getPhoneType() == PhoneConstants.PHONE_TYPE_CDMA);
+                (phone.getPhoneType() == PhoneConstants.PHONE_TYPE_CDMA);
 
         // only applies to active calls
         if (callIsActive) {

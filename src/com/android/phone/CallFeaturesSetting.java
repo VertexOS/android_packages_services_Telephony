@@ -53,6 +53,7 @@ import android.provider.ContactsContract.CommonDataKinds;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.telephony.PhoneNumberUtils;
+import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
@@ -1753,14 +1754,40 @@ public class CallFeaturesSetting extends PreferenceActivity
      * @see android.telephony.TelephonyManager.WifiCallingChoices
      */
     private String getWhenToMakeWifiCalls() {
-        return PhoneInterfaceManager.getWhenToMakeWifiCallsStr(mPhone.getContext());
+        TelephonyManager telephonyManager = (TelephonyManager) getSystemService(
+                Context.TELEPHONY_SERVICE);
+        int intValue = telephonyManager.getWhenToMakeWifiCalls();
+        switch (intValue) {
+            case TelephonyManager.WifiCallingChoices.ALWAYS_USE:
+                return getString(R.string.wifi_calling_choices_always_use);
+            case TelephonyManager.WifiCallingChoices.ASK_EVERY_TIME:
+                return getString(R.string.wifi_calling_choices_ask_every_time);
+            case TelephonyManager.WifiCallingChoices.NEVER_USE:
+                return getString(R.string.wifi_calling_choices_never_use);
+            default:
+                Log.wtf(LOG_TAG, "unknown wifi call int value: " + intValue);
+                return getString(R.string.wifi_calling_choices_always_use);
+        }
     }
 
     /**
      * @see android.telephony.TelephonyManager.WifiCallingChoices
      */
-    public void setWhenToMakeWifiCalls(String value) {
-        PhoneInterfaceManager.setWhenToMakeWifiCallsStr(mPhone.getContext(), value);
+    public void setWhenToMakeWifiCalls(String stringValue) {
+        TelephonyManager telephonyManager = (TelephonyManager) getSystemService(
+                Context.TELEPHONY_SERVICE);
+        int intValue;
+        if (stringValue.equals(getString(R.string.wifi_calling_choices_always_use))) {
+            intValue = TelephonyManager.WifiCallingChoices.ALWAYS_USE;
+        } else if (stringValue.equals(getString(R.string.wifi_calling_choices_ask_every_time))) {
+            intValue = TelephonyManager.WifiCallingChoices.ASK_EVERY_TIME;
+        } else if (stringValue.equals(getString(R.string.wifi_calling_choices_never_use))) {
+            intValue = TelephonyManager.WifiCallingChoices.NEVER_USE;
+        } else {
+            Log.wtf(LOG_TAG, "unknown wifi call string value: " + stringValue);
+            return;
+        }
+        telephonyManager.setWhenToMakeWifiCalls(intValue);
     }
 
     // Gets the call options for SIP depending on whether SIP is allowed only
