@@ -40,15 +40,18 @@ import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.android.internal.telephony.CallManager;
+import com.android.internal.telephony.CommandException;
 import com.android.internal.telephony.DefaultPhoneNotifier;
 import com.android.internal.telephony.IccCard;
 import com.android.internal.telephony.ITelephony;
 import com.android.internal.telephony.IThirdPartyCallProvider;
 import com.android.internal.telephony.Phone;
-import com.android.internal.telephony.CallManager;
-import com.android.internal.telephony.CommandException;
 import com.android.internal.telephony.PhoneConstants;
 import com.android.internal.telephony.thirdpartyphone.ThirdPartyPhone;
+import com.android.internal.telephony.uicc.IccIoResult;
+import com.android.internal.telephony.uicc.IccUtils;
+import com.android.internal.telephony.uicc.UiccController;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -68,7 +71,13 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     private static final int CMD_ANSWER_RINGING_CALL = 4;
     private static final int CMD_END_CALL = 5;  // not used yet
     private static final int CMD_SILENCE_RINGER = 6;
-    private static final int CMD_NEW_INCOMING_THIRD_PARTY_CALL = 7;
+    private static final int CMD_TRANSMIT_APDU = 7;
+    private static final int EVENT_TRANSMIT_APDU_DONE = 8;
+    private static final int CMD_OPEN_CHANNEL = 9;
+    private static final int EVENT_OPEN_CHANNEL_DONE = 10;
+    private static final int CMD_CLOSE_CHANNEL = 11;
+    private static final int EVENT_CLOSE_CHANNEL_DONE = 12;
+    private static final int CMD_NEW_INCOMING_THIRD_PARTY_CALL = 13;
 
     /** The singleton instance. */
     private static PhoneInterfaceManager sInstance;
@@ -79,6 +88,25 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     AppOpsManager mAppOps;
     MainThreadHandler mMainThreadHandler;
     CallHandlerServiceProxy mCallHandlerService;
+
+    /**
+     * A request object to use for transmitting data to an ICC.
+     */
+    private static final class IccAPDUArgument {
+        public int channel, cla, command, p1, p2, p3;
+        public String data;
+
+        public IccAPDUArgument(int channel, int cla, int command,
+                int p1, int p2, int p3, String data) {
+            this.channel = channel;
+            this.cla = cla;
+            this.command = command;
+            this.p1 = p1;
+            this.p2 = p2;
+            this.p3 = p3;
+            this.data = data;
+        }
+    }
 
     /**
      * A request object for use with {@link MainThreadHandler}. Requesters should wait() on the
@@ -189,6 +217,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
                         request.notifyAll();
                     }
                     break;
+
                 case CMD_NEW_INCOMING_THIRD_PARTY_CALL: {
                     request = (MainThreadRequest) msg.obj;
                     IncomingThirdPartyCallArgs args = (IncomingThirdPartyCallArgs) request.argument;
@@ -197,6 +226,95 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
                     thirdPartyPhone.takeIncomingCall(args.callId, args.callerDisplayName);
                     break;
                 }
+
+                case CMD_TRANSMIT_APDU:
+                    request = (MainThreadRequest) msg.obj;
+                    IccAPDUArgument argument = (IccAPDUArgument) request.argument;
+                    onCompleted = obtainMessage(EVENT_TRANSMIT_APDU_DONE, request);
+                    UiccController.getInstance().getUiccCard().iccTransmitApduLogicalChannel(
+                            argument.channel, argument.cla, argument.command,
+                            argument.p1, argument.p2, argument.p3, argument.data,
+                            onCompleted);
+                    break;
+
+                case EVENT_TRANSMIT_APDU_DONE:
+                    ar = (AsyncResult) msg.obj;
+                    request = (MainThreadRequest) ar.userObj;
+                    if (ar.exception == null && ar.result != null) {
+                        request.result = ar.result;
+                    } else {
+                        request.result = new IccIoResult(0x6F, 0, (byte[])null);
+                        if (ar.result == null) {
+                            loge("iccTransmitApduLogicalChannel: Empty response");
+                        } else if (ar.exception != null &&
+                            (ar.exception instanceof CommandException)) {
+                            loge("iccTransmitApduLogicalChannel: CommandException: " +
+                                    (CommandException)ar.exception);
+                        } else {
+                            loge("iccTransmitApduLogicalChannel: Unknown exception");
+                        }
+                    }
+                    synchronized (request) {
+                        request.notifyAll();
+                    }
+                    break;
+
+                case CMD_OPEN_CHANNEL:
+                    request = (MainThreadRequest) msg.obj;
+                    onCompleted = obtainMessage(EVENT_OPEN_CHANNEL_DONE, request);
+                    UiccController.getInstance().getUiccCard().iccOpenLogicalChannel(
+                            (String)request.argument, onCompleted);
+                    break;
+
+                case EVENT_OPEN_CHANNEL_DONE:
+                    ar = (AsyncResult) msg.obj;
+                    request = (MainThreadRequest) ar.userObj;
+                    if (ar.exception == null && ar.result != null) {
+                        request.result = new Integer(((int[])ar.result)[0]);
+                    } else {
+                        request.result = new Integer(-1);
+                        if (ar.result == null) {
+                            loge("iccOpenLogicalChannel: Empty response");
+                        } else if (ar.exception != null &&
+                            (ar.exception instanceof CommandException)) {
+                            loge("iccOpenLogicalChannel: CommandException: " +
+                                    (CommandException)ar.exception);
+                        } else {
+                            loge("iccOpenLogicalChannel: Unknown exception");
+                        }
+                    }
+                    synchronized (request) {
+                        request.notifyAll();
+                    }
+                    break;
+
+                case CMD_CLOSE_CHANNEL:
+                    request = (MainThreadRequest) msg.obj;
+                    onCompleted = obtainMessage(EVENT_CLOSE_CHANNEL_DONE,
+                            request);
+                    UiccController.getInstance().getUiccCard().iccCloseLogicalChannel(
+                            ((Integer)request.argument).intValue(),
+                            onCompleted);
+                    break;
+
+                case EVENT_CLOSE_CHANNEL_DONE:
+                    ar = (AsyncResult) msg.obj;
+                    request = (MainThreadRequest) ar.userObj;
+                    if (ar.exception == null) {
+                        request.result = new Boolean(true);
+                    } else {
+                        request.result = new Boolean(false);
+                        if (ar.exception instanceof CommandException) {
+                            loge("iccCloseLogicalChannel: CommandException: " +
+                                    (CommandException)ar.exception);
+                        } else {
+                            loge("iccCloseLogicalChannel: Unknown exception");
+                        }
+                    }
+                    synchronized (request) {
+                        request.notifyAll();
+                    }
+                    break;
 
                 default:
                     Log.w(LOG_TAG, "MainThreadHandler: unexpected message code: " + msg.what);
@@ -730,7 +848,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
                 cells = (ArrayList<NeighboringCellInfo>) sendRequest(
                         CMD_HANDLE_NEIGHBORING_CELL, null);
             } catch (RuntimeException e) {
-                Log.e(LOG_TAG, "getNeighboringCellInfo " + e);
+                loge("getNeighboringCellInfo " + e);
             }
             return cells;
         } else {
@@ -842,6 +960,14 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         mApp.enforceCallingOrSelfPermission(android.Manifest.permission.CALL_PHONE, null);
     }
 
+    /**
+     * Make sure the caller has SIM_COMMUNICATION permission.
+     *
+     * @throws SecurityException if the caller does not have the required permission.
+     */
+    private void enforceSimCommunicationPermission() {
+        mApp.enforceCallingOrSelfPermission(android.Manifest.permission.SIM_COMMUNICATION, null);
+    }
 
     private String createTelUrl(String number) {
         if (TextUtils.isEmpty(number)) {
@@ -1016,5 +1142,61 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         Settings.System.putString(context.getContentResolver(),
                 Settings.System.WHEN_TO_MAKE_WIFI_CALLS, setting);
         if (DBG) log("setWhenToMakeWifiCallsStr, storing setting = " + setting);
+    }
+
+    @Override
+    public int iccOpenLogicalChannel(String AID) {
+        enforceSimCommunicationPermission();
+
+        if (DBG) log("iccOpenLogicalChannel: " + AID);
+        Integer channel = (Integer)sendRequest(CMD_OPEN_CHANNEL, AID);
+        if (DBG) log("iccOpenLogicalChannel: " + channel);
+        return channel.intValue();
+    }
+
+    @Override
+    public boolean iccCloseLogicalChannel(int channel) {
+        enforceSimCommunicationPermission();
+
+        if (DBG) log("iccCloseLogicalChannel: " + channel);
+        if (channel < 0) {
+          return false;
+        }
+        Boolean success = (Boolean)sendRequest(CMD_CLOSE_CHANNEL,
+            new Integer(channel));
+        if (DBG) log("iccCloseLogicalChannel: " + success);
+        return success;
+    }
+
+    @Override
+    public String iccTransmitApduLogicalChannel(int channel, int cla,
+            int command, int p1, int p2, int p3, String data) {
+        enforceSimCommunicationPermission();
+
+        if (DBG) {
+            log("iccTransmitApduLogicalChannel: chnl=" + channel + " cla=" + cla +
+                    " cmd=" + command + " p1=" + p1 + " p2=" + p2 + " p3=" + p3 +
+                    " data=" + data);
+        }
+
+        if (channel < 0) {
+            return "";
+        }
+
+        IccIoResult response = (IccIoResult)sendRequest(CMD_TRANSMIT_APDU,
+                new IccAPDUArgument(channel, cla, command, p1, p2, p3, data));
+        if (DBG) log("iccTransmitApduLogicalChannel: " + response);
+
+        // If the payload is null, there was an error. Indicate that by returning
+        // an empty string.
+        if (response.payload == null) {
+          return "";
+        }
+
+        // Append the returned status code to the end of the response payload.
+        String s = Integer.toHexString(
+                (response.sw1 << 8) + response.sw2 + 0x10000).substring(1);
+        s = IccUtils.bytesToHexString(response.payload) + s;
+        return s;
     }
 }
