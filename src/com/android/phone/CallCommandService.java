@@ -268,4 +268,13 @@ class CallCommandService extends ICallCommandService.Stub {
         }
     }
 
+    @Override
+    public void videoHandoff(int callId) {
+        // TODO(sail): Implement this.
+    }
+
+    @Override
+    public void connectionHandoff(int callId) {
+        // TODO(sail): Implement this.
+    }
 }

@@ -106,4 +106,14 @@ oneway interface ICallCommandService {
      * device has soft navigation buttons.
      */
     void setSystemBarNavigationEnabled(boolean enable);
+
+    /**
+     * Switch to video mode.
+     */
+    void videoHandoff(int callId);
+
+    /**
+     * Switch between wifi and cell.
+     */
+    void connectionHandoff(int callId);
 }

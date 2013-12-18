@@ -87,10 +87,12 @@ public final class Call implements Parcelable {
         public static final int ADD_CALL           = 0x00000010; /* add another call to this one */
         public static final int RESPOND_VIA_TEXT   = 0x00000020; /* has respond via text option */
         public static final int MUTE               = 0x00000040; /* can mute the call */
-        public static final int GENERIC_CONFERENCE = 0x00000080; /* Generic conference mode */
+        public static final int GENERIC_CONFERENCE = 0x00000080; /* generic conference mode */
+        public static final int VIDEO_HANDOFF      = 0x00000100; /* handoff to video */
+        public static final int CONNECTION_HANDOFF = 0x00000200; /* handoff between wifi and cell */
 
         public static final int ALL = HOLD | SUPPORT_HOLD | MERGE_CALLS | SWAP_CALLS | ADD_CALL
-                | RESPOND_VIA_TEXT | MUTE | GENERIC_CONFERENCE;
+                | RESPOND_VIA_TEXT | MUTE | GENERIC_CONFERENCE | VIDEO_HANDOFF | CONNECTION_HANDOFF;
     }
 
     /**
