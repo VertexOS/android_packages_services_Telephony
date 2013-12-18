@@ -45,6 +45,7 @@ import android.os.Message;
 import android.os.SystemProperties;
 import android.provider.Settings;
 import android.telephony.PhoneNumberUtils;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -77,7 +78,8 @@ public class SipCallOptionHandler extends Activity implements
     static final int DIALOG_START_SIP_SETTINGS = 2;
     static final int DIALOG_NO_INTERNET_ERROR = 3;
     static final int DIALOG_NO_VOIP = 4;
-    static final int DIALOG_SIZE = 5;
+    static final int DIALOG_SELECT_WIFI_CALL = 5;
+    static final int DIALOG_SIZE = 6;
 
     private Intent mIntent;
     private List<SipProfile> mProfileList;
@@ -90,6 +92,7 @@ public class SipCallOptionHandler extends Activity implements
     private TextView mUnsetPriamryHint;
     private boolean mUseSipPhone = false;
     private boolean mMakePrimary = false;
+    private ComponentName mThirdPartyCallComponent;
 
     private static final int EVENT_DELAYED_FINISH = 1;
 
@@ -301,6 +304,14 @@ public class SipCallOptionHandler extends Activity implements
                     .setOnCancelListener(this)
                     .create();
             break;
+        case DIALOG_SELECT_WIFI_CALL:
+            dialog = new AlertDialog.Builder(this)
+                    .setMessage(R.string.choose_wifi_for_call_msg)
+                    .setPositiveButton(R.string.choose_wifi_for_call_yes, this)
+                    .setNegativeButton(R.string.choose_wifi_for_call_no, this)
+                    .setCancelable(false)
+                    .create();
+            break;
         default:
             dialog = null;
         }
@@ -336,7 +347,14 @@ public class SipCallOptionHandler extends Activity implements
     }
 
     public void onClick(DialogInterface dialog, int id) {
-        if (id == DialogInterface.BUTTON_NEGATIVE) {
+        if(dialog == mDialogs[DIALOG_SELECT_WIFI_CALL]) {
+            if (id == DialogInterface.BUTTON_NEGATIVE) {
+                setResultAndFinish();
+            } else {
+                useThirdPartyPhone();
+            }
+            return;
+        } else if (id == DialogInterface.BUTTON_NEGATIVE) {
             // button negative is cancel
             finish();
             return;
@@ -486,24 +504,36 @@ public class SipCallOptionHandler extends Activity implements
         return false;
     }
 
+    private void useThirdPartyPhone() {
+        mIntent.putExtra(OutgoingCallBroadcaster.EXTRA_THIRD_PARTY_CALL_COMPONENT,
+                mThirdPartyCallComponent);
+        PhoneGlobals.getInstance().callController.placeCall(mIntent);
+        startDelayedFinish();
+    }
+
     private void checkThirdPartyPhone() {
         runOnUiThread(new Runnable() {
             public void run() {
                 // TODO(sail): Move this out of this file or rename this file.
                 // TODO(sail): Move this logic to the switchboard.
-                if (isConnectedToWifi()) {
+                TelephonyManager telephonyManager = (TelephonyManager) getSystemService(
+                        Context.TELEPHONY_SERVICE);
+                int setting = telephonyManager.getWhenToMakeWifiCalls();
+                if (setting != TelephonyManager.WifiCallingChoices.NEVER_USE &&
+                        isConnectedToWifi()) {
                     Intent intent = new Intent(ThirdPartyPhone.ACTION_THIRD_PARTY_CALL_SERVICE);
                     PackageManager pm = getPackageManager();
                     // TODO(sail): Need to handle case where there are multiple services.
                     // TODO(sail): Need to enforce permissions.
                     ResolveInfo info = pm.resolveService(intent, 0);
                     if (info != null && info.serviceInfo != null) {
-                        ComponentName component = new ComponentName(info.serviceInfo.packageName,
+                        mThirdPartyCallComponent = new ComponentName(info.serviceInfo.packageName,
                                 info.serviceInfo.name);
-                        mIntent.putExtra(OutgoingCallBroadcaster.EXTRA_THIRD_PARTY_CALL_COMPONENT,
-                                component);
-                        PhoneGlobals.getInstance().callController.placeCall(mIntent);
-                        startDelayedFinish();
+                        if (setting == TelephonyManager.WifiCallingChoices.ASK_EVERY_TIME) {
+                            showDialog(DIALOG_SELECT_WIFI_CALL);
+                        } else {
+                            useThirdPartyPhone();
+                        }
                         return;
                     }
                 }

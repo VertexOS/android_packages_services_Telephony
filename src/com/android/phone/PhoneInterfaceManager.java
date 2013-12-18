@@ -1077,71 +1077,22 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
      * @see android.telephony.TelephonyManager.WifiCallingChoices
      */
     public int getWhenToMakeWifiCalls() {
-        return getWhenToMakeWifiCalls(mPhone.getContext());
+        return Settings.System.getInt(mPhone.getContext().getContentResolver(),
+                Settings.System.WHEN_TO_MAKE_WIFI_CALLS, getWhenToMakeWifiCallsDefaultPreference());
     }
 
     /**
      * @see android.telephony.TelephonyManager.WifiCallingChoices
      */
     public void setWhenToMakeWifiCalls(int preference) {
-        setWhenToMakeWifiCalls(mPhone.getContext(), preference);
+        if (DBG) log("setWhenToMakeWifiCallsStr, storing setting = " + preference);
+        Settings.System.putInt(mPhone.getContext().getContentResolver(),
+                Settings.System.WHEN_TO_MAKE_WIFI_CALLS, preference);
     }
 
-    private static int getWhenToMakeWifiCalls(Context context) {
-        String setting = getWhenToMakeWifiCallsStr(context);
-        if (setting == null) {
-            return TelephonyManager.WifiCallingChoices.NEVER_USE;
-        } else if (setting.equals(context.getString(
-                R.string.wifi_calling_choices_always_use))) {
-            return TelephonyManager.WifiCallingChoices.ALWAYS_USE;
-        } else if (setting.equals(context.getString(
-                R.string.wifi_calling_choices_ask_every_time))) {
-            return TelephonyManager.WifiCallingChoices.ASK_EVERY_TIME;
-        } else if (setting.equals(context.getString(
-                R.string.wifi_calling_choices_never_use))) {
-            return TelephonyManager.WifiCallingChoices.NEVER_USE;
-        } else {
-            // Should be unreachable
-            return TelephonyManager.WifiCallingChoices.NEVER_USE;
-        }
-    }
-
-    private static void setWhenToMakeWifiCalls(Context context, int preference) {
-        int setting;
-        switch (preference) {
-            case TelephonyManager.WifiCallingChoices.ALWAYS_USE:
-                setting = R.string.wifi_calling_choices_always_use;
-                break;
-            case TelephonyManager.WifiCallingChoices.ASK_EVERY_TIME:
-                setting = R.string.wifi_calling_choices_ask_every_time;
-                break;
-            case TelephonyManager.WifiCallingChoices.NEVER_USE:
-                setting = R.string.wifi_calling_choices_never_use;
-                break;
-            default:
-                // Should be unreachable
-                setting = R.string.wifi_calling_choices_never_use;
-                break;
-        }
-        setWhenToMakeWifiCallsStr(context, context.getString(setting));
-    }
-
-    /** Public for utility use by other classes */
-    public static String getWhenToMakeWifiCallsStr(Context context) {
-        String str = Settings.System.getString(context.getContentResolver(),
-                Settings.System.WHEN_TO_MAKE_WIFI_CALLS);
-        if (str == null) {
-            str = context.getString(R.string.wifi_calling_choices_never_use);
-        }
-        if (DBG) log("getWhenToMakeWifiCallsStr, retrieving setting = " + str);
-        return str;
-    }
-
-    /** Public for utility use by other classes */
-    public static void setWhenToMakeWifiCallsStr(Context context, String setting) {
-        Settings.System.putString(context.getContentResolver(),
-                Settings.System.WHEN_TO_MAKE_WIFI_CALLS, setting);
-        if (DBG) log("setWhenToMakeWifiCallsStr, storing setting = " + setting);
+    private static int getWhenToMakeWifiCallsDefaultPreference() {
+        // TODO(sail): Use a build property to choose this value.
+        return TelephonyManager.WifiCallingChoices.NEVER_USE;
     }
 
     @Override
