@@ -1092,7 +1092,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
 
     private static int getWhenToMakeWifiCallsDefaultPreference() {
         // TODO(sail): Use a build property to choose this value.
-        return TelephonyManager.WifiCallingChoices.NEVER_USE;
+        return TelephonyManager.WifiCallingChoices.ALWAYS_USE;
     }
 
     @Override
