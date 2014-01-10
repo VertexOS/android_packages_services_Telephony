@@ -46,6 +46,7 @@ import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
+import android.preference.PreferenceCategory;
 import android.preference.PreferenceGroup;
 import android.preference.PreferenceManager;
 import android.preference.PreferenceScreen;
@@ -173,6 +174,8 @@ public class CallFeaturesSetting extends PreferenceActivity
             "button_voicemail_notification_ringtone_key";
     private static final String BUTTON_FDN_KEY   = "button_fdn_key";
     private static final String BUTTON_RESPOND_VIA_SMS_KEY   = "button_respond_via_sms_key";
+
+    private static final String BUTTON_RINGTONE_CATEGORY = "button_ringtone_category_key";
 
     private static final String BUTTON_RINGTONE_KEY    = "button_ringtone_key";
     private static final String BUTTON_VIBRATE_ON_RING = "button_vibrate_on_ring";
@@ -1539,7 +1542,8 @@ public class CallFeaturesSetting extends PreferenceActivity
             if (vibrator != null && vibrator.hasVibrator()) {
                 mVibrateWhenRinging.setOnPreferenceChangeListener(this);
             } else {
-                prefSet.removePreference(mVibrateWhenRinging);
+                PreferenceCategory ringToneCategory = (PreferenceCategory)findPreference(BUTTON_RINGTONE_CATEGORY);
+                ringToneCategory.removePreference(mVibrateWhenRinging);
                 mVibrateWhenRinging = null;
             }
         }
