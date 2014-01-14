@@ -648,6 +648,7 @@ public class OtaUtils {
             // Send a success or failure indication back to our caller.
             updateNonInteractiveOtaSuccessFailure();
         }
+        cleanOtaScreen(true);
     }
 
     private void otaShowHome() {
