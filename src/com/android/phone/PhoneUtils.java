@@ -720,11 +720,6 @@ public class PhoneUtils {
             // we dialed an MMI (see below).
         }
 
-        // Now that the call is successful, we can save the gateway info for the call
-        if (callGateway != null) {
-            callGateway.setGatewayInfoForConnection(connection, gatewayInfo);
-        }
-
         int phoneType = phone.getPhoneType();
 
         // On GSM phones, null is returned for MMI codes
@@ -736,6 +731,11 @@ public class PhoneUtils {
                 status = CALL_STATUS_FAILED;
             }
         } else {
+            // Now that the call is successful, we can save the gateway info for the call
+            if (callGateway != null) {
+                callGateway.setGatewayInfoForConnection(connection, gatewayInfo);
+            }
+
             if (phoneType == PhoneConstants.PHONE_TYPE_CDMA) {
                 updateCdmaCallStateOnNewOutgoingCall(app, connection);
             }
