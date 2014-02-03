@@ -18,7 +18,6 @@ package com.android.phone;
 
 import android.app.ActivityManager;
 import android.app.AppOpsManager;
-import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
@@ -32,25 +31,27 @@ import android.os.Message;
 import android.os.Process;
 import android.os.ServiceManager;
 import android.os.UserHandle;
-import android.telephony.NeighboringCellInfo;
 import android.telephony.CellInfo;
+import android.telephony.NeighboringCellInfo;
 import android.telephony.ServiceState;
 import android.text.TextUtils;
 import android.util.Log;
+import android.util.Pair;
 
 import com.android.internal.telephony.CallManager;
 import com.android.internal.telephony.CommandException;
 import com.android.internal.telephony.DefaultPhoneNotifier;
-import com.android.internal.telephony.IccCard;
 import com.android.internal.telephony.ITelephony;
+import com.android.internal.telephony.IccCard;
 import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneConstants;
 import com.android.internal.telephony.uicc.IccIoResult;
 import com.android.internal.telephony.uicc.IccUtils;
 import com.android.internal.telephony.uicc.UiccController;
+import com.android.internal.util.HexDump;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Implementation of the ITelephony interface.
@@ -73,6 +74,16 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     private static final int EVENT_OPEN_CHANNEL_DONE = 10;
     private static final int CMD_CLOSE_CHANNEL = 11;
     private static final int EVENT_CLOSE_CHANNEL_DONE = 12;
+    private static final int CMD_NV_READ_ITEM = 13;
+    private static final int EVENT_NV_READ_ITEM_DONE = 14;
+    private static final int CMD_NV_WRITE_ITEM = 15;
+    private static final int EVENT_NV_WRITE_ITEM_DONE = 16;
+    private static final int CMD_NV_WRITE_CDMA_PRL = 17;
+    private static final int EVENT_NV_WRITE_CDMA_PRL_DONE = 18;
+    private static final int CMD_NV_RESET_CONFIG = 19;
+    private static final int EVENT_NV_RESET_CONFIG_DONE = 20;
+    private static final int CMD_SET_RADIO_MODE = 21;
+    private static final int EVENT_SET_RADIO_MODE_DONE = 22;
 
 
     /** The singleton instance. */
@@ -141,8 +152,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
             switch (msg.what) {
                 case CMD_HANDLE_PIN_MMI:
                     request = (MainThreadRequest) msg.obj;
-                    request.result = Boolean.valueOf(
-                            mPhone.handlePinMmi((String) request.argument));
+                    request.result = mPhone.handlePinMmi((String) request.argument);
                     // Wake up the requesting thread
                     synchronized (request) {
                         request.notifyAll();
@@ -163,7 +173,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
                         request.result = ar.result;
                     } else {
                         // create an empty list to notify the waiting thread
-                        request.result = new ArrayList<NeighboringCellInfo>();
+                        request.result = new ArrayList<NeighboringCellInfo>(0);
                     }
                     // Wake up the requesting thread
                     synchronized (request) {
@@ -181,7 +191,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
 
                 case CMD_END_CALL:
                     request = (MainThreadRequest) msg.obj;
-                    boolean hungUp = false;
+                    boolean hungUp;
                     int phoneType = mPhone.getPhoneType();
                     if (phoneType == PhoneConstants.PHONE_TYPE_CDMA) {
                         // CDMA: If the user presses the Power button we treat it as
@@ -220,10 +230,9 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
                         request.result = new IccIoResult(0x6F, 0, (byte[])null);
                         if (ar.result == null) {
                             loge("iccTransmitApduLogicalChannel: Empty response");
-                        } else if (ar.exception != null &&
-                            (ar.exception instanceof CommandException)) {
+                        } else if (ar.exception instanceof CommandException) {
                             loge("iccTransmitApduLogicalChannel: CommandException: " +
-                                    (CommandException)ar.exception);
+                                    ar.exception);
                         } else {
                             loge("iccTransmitApduLogicalChannel: Unknown exception");
                         }
@@ -244,15 +253,14 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
                     ar = (AsyncResult) msg.obj;
                     request = (MainThreadRequest) ar.userObj;
                     if (ar.exception == null && ar.result != null) {
-                        request.result = new Integer(((int[])ar.result)[0]);
+                        request.result = ((int[]) ar.result)[0];
                     } else {
-                        request.result = new Integer(-1);
+                        request.result = -1;
                         if (ar.result == null) {
                             loge("iccOpenLogicalChannel: Empty response");
-                        } else if (ar.exception != null &&
-                            (ar.exception instanceof CommandException)) {
+                        } else if (ar.exception instanceof CommandException) {
                             loge("iccOpenLogicalChannel: CommandException: " +
-                                    (CommandException)ar.exception);
+                                    ar.exception);
                         } else {
                             loge("iccOpenLogicalChannel: Unknown exception");
                         }
@@ -267,22 +275,34 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
                     onCompleted = obtainMessage(EVENT_CLOSE_CHANNEL_DONE,
                             request);
                     UiccController.getInstance().getUiccCard().iccCloseLogicalChannel(
-                            ((Integer)request.argument).intValue(),
+                            (Integer) request.argument,
                             onCompleted);
                     break;
 
                 case EVENT_CLOSE_CHANNEL_DONE:
+                    handleNullReturnEvent(msg, "iccCloseLogicalChannel");
+                    break;
+
+                case CMD_NV_READ_ITEM:
+                    request = (MainThreadRequest) msg.obj;
+                    onCompleted = obtainMessage(EVENT_NV_READ_ITEM_DONE, request);
+                    mPhone.nvReadItem((Integer) request.argument, onCompleted);
+                    break;
+
+                case EVENT_NV_READ_ITEM_DONE:
                     ar = (AsyncResult) msg.obj;
                     request = (MainThreadRequest) ar.userObj;
-                    if (ar.exception == null) {
-                        request.result = new Boolean(true);
+                    if (ar.exception == null && ar.result != null) {
+                        request.result = ar.result;     // String
                     } else {
-                        request.result = new Boolean(false);
-                        if (ar.exception instanceof CommandException) {
-                            loge("iccCloseLogicalChannel: CommandException: " +
-                                    (CommandException)ar.exception);
+                        request.result = "";
+                        if (ar.result == null) {
+                            loge("nvReadItem: Empty response");
+                        } else if (ar.exception instanceof CommandException) {
+                            loge("nvReadItem: CommandException: " +
+                                    ar.exception);
                         } else {
-                            loge("iccCloseLogicalChannel: Unknown exception");
+                            loge("nvReadItem: Unknown exception");
                         }
                     }
                     synchronized (request) {
@@ -290,9 +310,68 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
                     }
                     break;
 
+                case CMD_NV_WRITE_ITEM:
+                    request = (MainThreadRequest) msg.obj;
+                    onCompleted = obtainMessage(EVENT_NV_WRITE_ITEM_DONE, request);
+                    Pair<Integer, String> idValue = (Pair<Integer, String>) request.argument;
+                    mPhone.nvWriteItem(idValue.first, idValue.second, onCompleted);
+                    break;
+
+                case EVENT_NV_WRITE_ITEM_DONE:
+                    handleNullReturnEvent(msg, "nvWriteItem");
+                    break;
+
+                case CMD_NV_WRITE_CDMA_PRL:
+                    request = (MainThreadRequest) msg.obj;
+                    onCompleted = obtainMessage(EVENT_NV_WRITE_CDMA_PRL_DONE, request);
+                    mPhone.nvWriteCdmaPrl((byte[]) request.argument, onCompleted);
+                    break;
+
+                case EVENT_NV_WRITE_CDMA_PRL_DONE:
+                    handleNullReturnEvent(msg, "nvWriteCdmaPrl");
+                    break;
+
+                case CMD_NV_RESET_CONFIG:
+                    request = (MainThreadRequest) msg.obj;
+                    onCompleted = obtainMessage(EVENT_NV_RESET_CONFIG_DONE, request);
+                    mPhone.nvResetConfig((Integer) request.argument, onCompleted);
+                    break;
+
+                case EVENT_NV_RESET_CONFIG_DONE:
+                    handleNullReturnEvent(msg, "nvResetConfig");
+                    break;
+
+                case CMD_SET_RADIO_MODE:
+                    request = (MainThreadRequest) msg.obj;
+                    onCompleted = obtainMessage(EVENT_SET_RADIO_MODE_DONE, request);
+                    mPhone.setRadioMode((Integer) request.argument, onCompleted);
+                    break;
+
+                case EVENT_SET_RADIO_MODE_DONE:
+                    handleNullReturnEvent(msg, "setRadioMode");
+                    break;
+
                 default:
                     Log.w(LOG_TAG, "MainThreadHandler: unexpected message code: " + msg.what);
                     break;
+            }
+        }
+
+        private void handleNullReturnEvent(Message msg, String command) {
+            AsyncResult ar = (AsyncResult) msg.obj;
+            MainThreadRequest request = (MainThreadRequest) ar.userObj;
+            if (ar.exception == null) {
+                request.result = true;
+            } else {
+                request.result = false;
+                if (ar.exception instanceof CommandException) {
+                    loge(command + ": CommandException: " + ar.exception);
+                } else {
+                    loge(command + ": Unknown exception");
+                }
+            }
+            synchronized (request) {
+                request.notifyAll();
             }
         }
     }
@@ -759,7 +838,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
                 android.Manifest.permission.ACCESS_COARSE_LOCATION, null);
         }
 
-        if (checkIfCallerIsSelfOrForegoundUser()) {
+        if (checkIfCallerIsSelfOrForegroundUser()) {
             if (DBG_LOC) log("getCellLocation: is active user");
             Bundle data = new Bundle();
             mPhone.getCellLocation().fillInNotifierBundle(data);
@@ -803,7 +882,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
                 callingPackage) != AppOpsManager.MODE_ALLOWED) {
             return null;
         }
-        if (checkIfCallerIsSelfOrForegoundUser()) {
+        if (checkIfCallerIsSelfOrForegroundUser()) {
             if (DBG_LOC) log("getNeighboringCellInfo: is active user");
 
             ArrayList<NeighboringCellInfo> cells = null;
@@ -835,7 +914,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
                 android.Manifest.permission.ACCESS_COARSE_LOCATION, null);
         }
 
-        if (checkIfCallerIsSelfOrForegoundUser()) {
+        if (checkIfCallerIsSelfOrForegroundUser()) {
             if (DBG_LOC) log("getAllCellInfo: is active user");
             return mPhone.getAllCellInfo();
         } else {
@@ -852,7 +931,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     // Internal helper methods.
     //
 
-    private boolean checkIfCallerIsSelfOrForegoundUser() {
+    private static boolean checkIfCallerIsSelfOrForegroundUser() {
         boolean ok;
 
         boolean self = Binder.getCallingUid() == Process.myUid();
@@ -925,16 +1004,14 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
             return null;
         }
 
-        StringBuilder buf = new StringBuilder("tel:");
-        buf.append(number);
-        return buf.toString();
+        return "tel:" + number;
     }
 
-    private void log(String msg) {
+    private static void log(String msg) {
         Log.d(LOG_TAG, "[PhoneIntfMgr] " + msg);
     }
 
-    private void loge(String msg) {
+    private static void loge(String msg) {
         Log.e(LOG_TAG, "[PhoneIntfMgr] " + msg);
     }
 
@@ -1018,7 +1095,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
      * the mode may be unknown.
      *
      * @return {@link Phone#LTE_ON_CDMA_UNKNOWN}, {@link Phone#LTE_ON_CDMA_FALSE}
-     * or {@link PHone#LTE_ON_CDMA_TRUE}
+     * or {@link Phone#LTE_ON_CDMA_TRUE}
      */
     public int getLteOnCdmaMode() {
         return mPhone.getLteOnCdmaMode();
@@ -1031,7 +1108,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         if (DBG) log("iccOpenLogicalChannel: " + AID);
         Integer channel = (Integer)sendRequest(CMD_OPEN_CHANNEL, AID);
         if (DBG) log("iccOpenLogicalChannel: " + channel);
-        return channel.intValue();
+        return channel;
     }
 
     @Override
@@ -1042,8 +1119,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         if (channel < 0) {
           return false;
         }
-        Boolean success = (Boolean)sendRequest(CMD_CLOSE_CHANNEL,
-            new Integer(channel));
+        Boolean success = (Boolean)sendRequest(CMD_CLOSE_CHANNEL, channel);
         if (DBG) log("iccCloseLogicalChannel: " + success);
         return success;
     }
@@ -1078,5 +1154,88 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
                 (response.sw1 << 8) + response.sw2 + 0x10000).substring(1);
         s = IccUtils.bytesToHexString(response.payload) + s;
         return s;
+    }
+
+    /**
+     * Read one of the NV items defined in {@link com.android.internal.telephony.RadioNVItems}
+     * and {@code ril_nv_items.h}. Used for device configuration by some CDMA operators.
+     *
+     * @param itemID the ID of the item to read
+     * @return the NV item as a String, or null on error.
+     */
+    @Override
+    public String nvReadItem(int itemID) {
+        enforceModifyPermission();
+        if (DBG) log("nvReadItem: item " + itemID);
+        String value = (String) sendRequest(CMD_NV_READ_ITEM, itemID);
+        if (DBG) log("nvReadItem: item " + itemID + " is \"" + value + '"');
+        return value;
+    }
+
+    /**
+     * Write one of the NV items defined in {@link com.android.internal.telephony.RadioNVItems}
+     * and {@code ril_nv_items.h}. Used for device configuration by some CDMA operators.
+     *
+     * @param itemID the ID of the item to read
+     * @param itemValue the value to write, as a String
+     * @return true on success; false on any failure
+     */
+    @Override
+    public boolean nvWriteItem(int itemID, String itemValue) {
+        enforceModifyPermission();
+        if (DBG) log("nvWriteItem: item " + itemID + " value \"" + itemValue + '"');
+        Boolean success = (Boolean) sendRequest(CMD_NV_WRITE_ITEM,
+                new Pair<Integer, String>(itemID, itemValue));
+        if (DBG) log("nvWriteItem: item " + itemID + ' ' + (success ? "ok" : "fail"));
+        return success;
+    }
+
+    /**
+     * Update the CDMA Preferred Roaming List (PRL) in the radio NV storage.
+     * Used for device configuration by some CDMA operators.
+     *
+     * @param preferredRoamingList byte array containing the new PRL
+     * @return true on success; false on any failure
+     */
+    @Override
+    public boolean nvWriteCdmaPrl(byte[] preferredRoamingList) {
+        enforceModifyPermission();
+        if (DBG) log("nvWriteCdmaPrl: value: " + HexDump.toHexString(preferredRoamingList));
+        Boolean success = (Boolean) sendRequest(CMD_NV_WRITE_CDMA_PRL, preferredRoamingList);
+        if (DBG) log("nvWriteCdmaPrl: " + (success ? "ok" : "fail"));
+        return success;
+    }
+
+    /**
+     * Perform the specified type of NV config reset.
+     * Used for device configuration by some CDMA operators.
+     *
+     * @param resetType the type of reset to perform (1 == factory reset; 2 == NV-only reset)
+     * @return true on success; false on any failure
+     */
+    @Override
+    public boolean nvResetConfig(int resetType) {
+        enforceModifyPermission();
+        if (DBG) log("nvResetConfig: type " + resetType);
+        Boolean success = (Boolean) sendRequest(CMD_NV_RESET_CONFIG, resetType);
+        if (DBG) log("nvResetConfig: type " + resetType + ' ' + (success ? "ok" : "fail"));
+        return success;
+    }
+
+    /**
+     * Change the radio to the specified mode.
+     * Used for device configuration by some operators.
+     *
+     * @param radioMode is 0 for offline mode, 1 for online mode, 2 for low-power mode,
+     *                  or 3 to reset the radio.
+     * @return true on success; false on any failure
+     */
+    @Override
+    public boolean setRadioMode(int radioMode) {
+        enforceModifyPermission();
+        if (DBG) log("setRadioMode: mode " + radioMode);
+        Boolean success = (Boolean) sendRequest(CMD_SET_RADIO_MODE, radioMode);
+        if (DBG) log("setRadioMode: mode " + radioMode + ' ' + (success ? "ok" : "fail"));
+        return success;
     }
 }

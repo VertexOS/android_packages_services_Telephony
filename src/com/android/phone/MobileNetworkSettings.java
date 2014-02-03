@@ -402,7 +402,7 @@ public class MobileNetworkSettings extends PreferenceActivity
                     case Phone.NT_MODE_GLOBAL:
                     case Phone.NT_MODE_LTE_CDMA_AND_EVDO:
                     case Phone.NT_MODE_LTE_GSM_WCDMA:
-                    case Phone.NT_MODE_LTE_CMDA_EVDO_GSM_WCDMA:
+                    case Phone.NT_MODE_LTE_CDMA_EVDO_GSM_WCDMA:
                     case Phone.NT_MODE_LTE_ONLY:
                     case Phone.NT_MODE_LTE_WCDMA:
                         // This is one of the modes we recognize
@@ -437,7 +437,7 @@ public class MobileNetworkSettings extends PreferenceActivity
                     case Phone.NT_MODE_WCDMA_PREF:
                     case Phone.NT_MODE_GSM_ONLY:
                     case Phone.NT_MODE_LTE_GSM_WCDMA:
-                    case Phone.NT_MODE_LTE_CMDA_EVDO_GSM_WCDMA:
+                    case Phone.NT_MODE_LTE_CDMA_EVDO_GSM_WCDMA:
                     case Phone.NT_MODE_CDMA:
                     case Phone.NT_MODE_CDMA_NO_EVDO:
                     case Phone.NT_MODE_LTE_CDMA_AND_EVDO:
@@ -514,7 +514,7 @@ public class MobileNetworkSettings extends PreferenceActivity
                         modemNetworkMode == Phone.NT_MODE_GLOBAL ||
                         modemNetworkMode == Phone.NT_MODE_LTE_CDMA_AND_EVDO ||
                         modemNetworkMode == Phone.NT_MODE_LTE_GSM_WCDMA ||
-                        modemNetworkMode == Phone.NT_MODE_LTE_CMDA_EVDO_GSM_WCDMA ||
+                        modemNetworkMode == Phone.NT_MODE_LTE_CDMA_EVDO_GSM_WCDMA ||
                         modemNetworkMode == Phone.NT_MODE_LTE_ONLY ||
                         modemNetworkMode == Phone.NT_MODE_LTE_WCDMA) {
                     if (DBG) {
@@ -637,7 +637,7 @@ public class MobileNetworkSettings extends PreferenceActivity
                 mButtonPreferredNetworkMode.setSummary(
                         R.string.preferred_network_mode_lte_cdma_evdo_summary);
                 break;
-            case Phone.NT_MODE_LTE_CMDA_EVDO_GSM_WCDMA:
+            case Phone.NT_MODE_LTE_CDMA_EVDO_GSM_WCDMA:
                 mButtonPreferredNetworkMode.setSummary(
                         R.string.preferred_network_mode_global_summary);
                 break;
@@ -666,7 +666,7 @@ public class MobileNetworkSettings extends PreferenceActivity
                     mButtonEnabledNetworks.setSummary(R.string.network_3G);
                 } else {
                     mButtonEnabledNetworks.setValue(
-                            Integer.toString(Phone.NT_MODE_LTE_CMDA_EVDO_GSM_WCDMA));
+                            Integer.toString(Phone.NT_MODE_LTE_CDMA_EVDO_GSM_WCDMA));
                     mButtonEnabledNetworks.setSummary(R.string.network_global);
                 }
                 break;
@@ -677,7 +677,7 @@ public class MobileNetworkSettings extends PreferenceActivity
                     mButtonEnabledNetworks.setSummary(R.string.network_2G);
                 } else {
                     mButtonEnabledNetworks.setValue(
-                            Integer.toString(Phone.NT_MODE_LTE_CMDA_EVDO_GSM_WCDMA));
+                            Integer.toString(Phone.NT_MODE_LTE_CDMA_EVDO_GSM_WCDMA));
                     mButtonEnabledNetworks.setSummary(R.string.network_global);
                 }
                 break;
@@ -691,7 +691,7 @@ public class MobileNetworkSettings extends PreferenceActivity
                             ? R.string.network_4G : R.string.network_lte);
                 } else {
                     mButtonEnabledNetworks.setValue(
-                            Integer.toString(Phone.NT_MODE_LTE_CMDA_EVDO_GSM_WCDMA));
+                            Integer.toString(Phone.NT_MODE_LTE_CDMA_EVDO_GSM_WCDMA));
                     mButtonEnabledNetworks.setSummary(R.string.network_global);
                 }
                 break;
@@ -712,9 +712,9 @@ public class MobileNetworkSettings extends PreferenceActivity
                         Integer.toString(Phone.NT_MODE_CDMA_NO_EVDO));
                 mButtonEnabledNetworks.setSummary(R.string.network_1x);
                 break;
-            case Phone.NT_MODE_LTE_CMDA_EVDO_GSM_WCDMA:
+            case Phone.NT_MODE_LTE_CDMA_EVDO_GSM_WCDMA:
                 mButtonEnabledNetworks.setValue(
-                        Integer.toString(Phone.NT_MODE_LTE_CMDA_EVDO_GSM_WCDMA));
+                        Integer.toString(Phone.NT_MODE_LTE_CDMA_EVDO_GSM_WCDMA));
                 mButtonEnabledNetworks.setSummary(R.string.network_global);
                 break;
             default:
