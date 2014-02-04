@@ -91,7 +91,8 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     private static final int EVENT_NV_RESET_CONFIG_DONE = 20;
     private static final int CMD_SET_RADIO_MODE = 21;
     private static final int EVENT_SET_RADIO_MODE_DONE = 22;
-
+    private static final int CMD_SEND_ENVELOPE = 23;
+    private static final int EVENT_SEND_ENVELOPE_DONE = 24;
 
     /** The singleton instance. */
     private static PhoneInterfaceManager sInstance;
@@ -265,6 +266,26 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
                         } else {
                             loge("iccTransmitApduLogicalChannel: Unknown exception");
                         }
+                    }
+                    synchronized (request) {
+                        request.notifyAll();
+                    }
+                    break;
+
+                case CMD_SEND_ENVELOPE:
+                    request = (MainThreadRequest) msg.obj;
+                    onCompleted = obtainMessage(EVENT_SEND_ENVELOPE_DONE, request);
+                    UiccController.getInstance().getUiccCard().sendEnvelope(
+                            (String)request.argument, onCompleted);
+                    break;
+
+                case EVENT_SEND_ENVELOPE_DONE:
+                    ar = (AsyncResult) msg.obj;
+                    request = (MainThreadRequest) ar.userObj;
+                    if (ar.exception == null) {
+                        request.result = (ar.result == null) ? "" : ar.result;
+                    } else {
+                        loge("sendEnvelope: Unknown exception " + ar.exception);
                     }
                     synchronized (request) {
                         request.notifyAll();
@@ -1228,6 +1249,15 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
                 (response.sw1 << 8) + response.sw2 + 0x10000).substring(1);
         s = IccUtils.bytesToHexString(response.payload) + s;
         return s;
+    }
+
+    @Override
+    public String sendEnvelope(String content) {
+        enforceSimCommunicationPermission();
+
+        String response = (String)sendRequest(CMD_SEND_ENVELOPE, content);
+
+        return response;
     }
 
     /**
