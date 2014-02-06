@@ -341,16 +341,6 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
                     handleNullReturnEvent(msg, "nvResetConfig");
                     break;
 
-                case CMD_SET_RADIO_MODE:
-                    request = (MainThreadRequest) msg.obj;
-                    onCompleted = obtainMessage(EVENT_SET_RADIO_MODE_DONE, request);
-                    mPhone.setRadioMode((Integer) request.argument, onCompleted);
-                    break;
-
-                case EVENT_SET_RADIO_MODE_DONE:
-                    handleNullReturnEvent(msg, "setRadioMode");
-                    break;
-
                 default:
                     Log.w(LOG_TAG, "MainThreadHandler: unexpected message code: " + msg.what);
                     break;
@@ -1219,23 +1209,6 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         if (DBG) log("nvResetConfig: type " + resetType);
         Boolean success = (Boolean) sendRequest(CMD_NV_RESET_CONFIG, resetType);
         if (DBG) log("nvResetConfig: type " + resetType + ' ' + (success ? "ok" : "fail"));
-        return success;
-    }
-
-    /**
-     * Change the radio to the specified mode.
-     * Used for device configuration by some operators.
-     *
-     * @param radioMode is 0 for offline mode, 1 for online mode, 2 for low-power mode,
-     *                  or 3 to reset the radio.
-     * @return true on success; false on any failure
-     */
-    @Override
-    public boolean setRadioMode(int radioMode) {
-        enforceModifyPermission();
-        if (DBG) log("setRadioMode: mode " + radioMode);
-        Boolean success = (Boolean) sendRequest(CMD_SET_RADIO_MODE, radioMode);
-        if (DBG) log("setRadioMode: mode " + radioMode + ' ' + (success ? "ok" : "fail"));
         return success;
     }
 }
