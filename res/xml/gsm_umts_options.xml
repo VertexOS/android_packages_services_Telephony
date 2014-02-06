@@ -22,9 +22,7 @@
         android:title="@string/apn_settings"
         android:persistent="false">
 
-        <intent android:action="android.intent.action.MAIN"
-            android:targetPackage="com.android.settings"
-            android:targetClass="com.android.settings.ApnSettings" />
+        <intent android:action="android.settings.APN_SETTINGS" />
 
     </PreferenceScreen>
 
