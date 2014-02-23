@@ -2627,7 +2627,7 @@ public class PhoneUtils {
     /**
      * @return true if this device supports voice calls using the built-in SIP stack.
      */
-    static boolean isVoipSupported() {
+    public static boolean isVoipSupported() {
         return sVoipSupported;
     }
 
