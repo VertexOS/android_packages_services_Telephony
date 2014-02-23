@@ -600,7 +600,7 @@ public class PhoneGlobals extends ContextWrapper implements WiredHeadsetListener
     /**
      * Returns the singleton instance of the PhoneApp.
      */
-    static PhoneGlobals getInstance() {
+    public static PhoneGlobals getInstance() {
         if (sMe == null) {
             throw new IllegalStateException("No PhoneGlobals here!");
         }
@@ -642,7 +642,7 @@ public class PhoneGlobals extends ContextWrapper implements WiredHeadsetListener
         return audioRouter;
     }
 
-    /* package */ CallModeler getCallModeler() {
+    public CallModeler getCallModeler() {
         return callModeler;
     }
 

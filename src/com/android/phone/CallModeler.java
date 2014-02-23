@@ -95,6 +95,8 @@ public class CallModeler extends Handler {
     private final ArrayList<Listener> mListeners = new ArrayList<Listener>();
     private Connection mCdmaIncomingConnection;
     private Connection mCdmaOutgoingConnection;
+    // TODO(sail): Temporary flag to disable sending telephony updates when Telecomm is being used.
+    private boolean mShouldDisableUpdates;
 
     public CallModeler(CallStateMonitor callStateMonitor, CallManager callManager,
             CallGatewayManager callGatewayManager) {
@@ -103,6 +105,12 @@ public class CallModeler extends Handler {
         mCallGatewayManager = callGatewayManager;
 
         mCallStateMonitor.addListener(this);
+    }
+
+    public void setShouldDisableUpdates(boolean shouldDisableUpdates) {
+        Log.i(TAG, "setShouldDisableUpdates " + mShouldDisableUpdates + " -> " +
+                shouldDisableUpdates);
+        mShouldDisableUpdates = shouldDisableUpdates;
     }
 
     @Override
@@ -271,7 +279,7 @@ public class CallModeler extends Handler {
                     final Call call = getCallFromMap(mCallMap, c, false);
                     if (call == null) {
                         Log.i(TAG, "Call no longer exists. Skipping onPostDialWait().");
-                    } else {
+                    } else if (!mShouldDisableUpdates) {
                         for (Listener mListener : mListeners) {
                             mListener.onPostDialAction(state, call.getCallId(),
                                     c.getRemainingPostDialString(), ch);
@@ -281,8 +289,10 @@ public class CallModeler extends Handler {
                 default:
                     // This is primarily to cause the DTMFTonePlayer to play local tones.
                     // Other listeners simply perform no-ops.
-                    for (Listener mListener : mListeners) {
-                        mListener.onPostDialAction(state, 0, "", ch);
+                    if (!mShouldDisableUpdates) {
+                        for (Listener mListener : mListeners) {
+                            mListener.onPostDialAction(state, 0, "", ch);
+                        }
                     }
                     break;
             }
@@ -296,8 +306,10 @@ public class CallModeler extends Handler {
         if (call != null) {
             updateCallFromConnection(call, conn, false);
 
-            for (int i = 0; i < mListeners.size(); ++i) {
-                mListeners.get(i).onIncoming(call);
+            if (!mShouldDisableUpdates) {
+                for (int i = 0; i < mListeners.size(); ++i) {
+                    mListeners.get(i).onIncoming(call);
+                }
             }
         }
 
@@ -314,8 +326,10 @@ public class CallModeler extends Handler {
 
             updateCallFromConnection(call, conn, false);
 
-            for (int i = 0; i < mListeners.size(); ++i) {
-                mListeners.get(i).onDisconnect(call);
+            if (!mShouldDisableUpdates) {
+                for (int i = 0; i < mListeners.size(); ++i) {
+                    mListeners.get(i).onDisconnect(call);
+                }
             }
 
             // If it was a conferenced call, we need to run the entire update
@@ -339,7 +353,7 @@ public class CallModeler extends Handler {
         final List<Call> updatedCalls = Lists.newArrayList();
         doUpdate(false, updatedCalls);
 
-        if (updatedCalls.size() > 0) {
+        if (updatedCalls.size() > 0 && !mShouldDisableUpdates) {
             for (int i = 0; i < mListeners.size(); ++i) {
                 mListeners.get(i).onUpdate(updatedCalls);
             }

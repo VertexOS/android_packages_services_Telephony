@@ -28,6 +28,8 @@ import android.util.Log;
 import com.android.internal.telephony.CallStateException;
 import com.android.internal.telephony.Connection;
 import com.android.internal.telephony.Phone;
+import com.android.phone.PhoneGlobals;
+import com.android.phone.CallModeler;
 
 import java.util.HashMap;
 
@@ -49,6 +51,9 @@ public abstract class BaseTelephonyCallService extends CallService {
      */
     static void onCallConnectionClosing(TelephonyCallConnection callConnection) {
         sCallConnections.remove(callConnection.getCallId());
+        if (sCallConnections.isEmpty()) {
+            PhoneGlobals.getInstance().getCallModeler().setShouldDisableUpdates(false);
+        }
     }
 
     /** {@inheritDoc} */
@@ -113,10 +118,14 @@ public abstract class BaseTelephonyCallService extends CallService {
 
             Connection connection;
             try {
+                PhoneGlobals.getInstance().getCallModeler().setShouldDisableUpdates(true);
                 connection = phone.dial(number);
             } catch (CallStateException e) {
                 Log.e(TAG, "Call to Phone.dial failed with exception", e);
                 mCallServiceAdapter.handleFailedOutgoingCall(callInfo.getId(), e.getMessage());
+                if (sCallConnections.isEmpty()) {
+                    PhoneGlobals.getInstance().getCallModeler().setShouldDisableUpdates(false);
+                }
                 return;
             }
 
