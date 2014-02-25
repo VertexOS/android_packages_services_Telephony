@@ -58,6 +58,12 @@ public abstract class BaseTelephonyCallService extends CallService {
 
     /** {@inheritDoc} */
     @Override
+    public void setIncomingCallId(String callId) {
+        // Incoming calls not implemented yet.
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public void disconnect(String callId) {
         // Maybe null if the connection has already disconnected.
         if (sCallConnections.containsKey(callId)) {
@@ -67,8 +73,12 @@ public abstract class BaseTelephonyCallService extends CallService {
 
     /** {@inheritDoc} */
     @Override
-    public void confirmIncomingCall(String callId, String callToken) {
-        // Incoming calls not implemented yet.
+    public void answer(String callId) {
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void reject(String callId) {
     }
 
     /**
