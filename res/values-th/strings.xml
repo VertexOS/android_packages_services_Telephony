@@ -471,7 +471,7 @@
     <string name="ota_successful" msgid="1880780692887077407">"เปิดการใช้งานโทรศัพท์ของคุณแล้ว คุณอาจต้องรอไม่เกิน 15 นาทีเพื่อให้บริการเริ่มทำงาน"</string>
     <string name="ota_unsuccessful" msgid="8072141612635635357">"โทรศัพท์ของคุณไม่เปิดใช้งาน\nคุณอาจต้องหาพื้นที่ที่มีสัญญาณดีกว่านี้ (ใกล้หน้าต่างหรือออกไปข้างนอก)\n\nลองใหม่อีกครั้งหรือติดต่อศูนย์บริการลูกค้าเพื่อรับฟังตัวเลือกเพิ่มเติม"</string>
     <string name="ota_spc_failure" msgid="3909983542575030796">"SPC ส่วนเกินล้มเหลว"</string>
-    <string name="ota_call_end" msgid="4537279738134612388">"ย้อนกลับ"</string>
+    <string name="ota_call_end" msgid="4537279738134612388">"กลับ"</string>
     <string name="ota_try_again" msgid="7685477206465902290">"ลองใหม่อีกครั้ง"</string>
     <string name="ota_next" msgid="3904945374358235910">"ถัดไป"</string>
     <string name="ecm_exit_dialog" msgid="4448531867763097533">"EcmExitDialog"</string>
