@@ -26,6 +26,7 @@ import com.android.phone.common.CallLogAsync;
 import android.net.Uri;
 import android.os.SystemProperties;
 import android.provider.CallLog.Calls;
+import android.telephony.DisconnectCause;
 import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
 import android.util.Log;
@@ -87,13 +88,13 @@ class CallLogger {
      * Came as logCall(Connection,int) but calculates the call type from the connection object.
      */
     public void logCall(Connection c) {
-        final Connection.DisconnectCause cause = c.getDisconnectCause();
+        final int cause = c.getDisconnectCause();
 
         // Set the "type" to be displayed in the call log (see constants in CallLog.Calls)
         final int callLogType;
 
         if (c.isIncoming()) {
-            callLogType = (cause == Connection.DisconnectCause.INCOMING_MISSED ?
+            callLogType = (cause == DisconnectCause.INCOMING_MISSED ?
                            Calls.MISSED_TYPE : Calls.INCOMING_TYPE);
         } else {
             callLogType = Calls.OUTGOING_TYPE;

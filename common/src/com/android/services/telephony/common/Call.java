@@ -18,6 +18,7 @@ package com.android.services.telephony.common;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.telephony.DisconnectCause;
 
 import com.android.internal.telephony.PhoneConstants;
 import com.google.android.collect.Sets;
@@ -93,56 +94,6 @@ public final class Call implements Parcelable {
                 | RESPOND_VIA_TEXT | MUTE | GENERIC_CONFERENCE;
     }
 
-    /**
-     * Copy of states found in Connection object since Connection object is not available to the UI
-     * code.
-     * TODO: Consider cutting this down to only the types used by the UI.
-     * TODO: Consider adding a CUSTOM cause type and a customDisconnect member variable to
-     *       the Call object.  This would allow OEMs to extend the cause list without
-     *       needing to alter our implementation.
-     */
-    public enum DisconnectCause {
-        NOT_DISCONNECTED,               /* has not yet disconnected */
-        INCOMING_MISSED,                /* an incoming call that was missed and never answered */
-        NORMAL,                         /* normal; remote */
-        LOCAL,                          /* normal; local hangup */
-        BUSY,                           /* outgoing call to busy line */
-        CONGESTION,                     /* outgoing call to congested network */
-        MMI,                            /* not presently used; dial() returns null */
-        INVALID_NUMBER,                 /* invalid dial string */
-        NUMBER_UNREACHABLE,             /* cannot reach the peer */
-        SERVER_UNREACHABLE,             /* cannot reach the server */
-        INVALID_CREDENTIALS,            /* invalid credentials */
-        OUT_OF_NETWORK,                 /* calling from out of network is not allowed */
-        SERVER_ERROR,                   /* server error */
-        TIMED_OUT,                      /* client timed out */
-        LOST_SIGNAL,
-        LIMIT_EXCEEDED,                 /* eg GSM ACM limit exceeded */
-        INCOMING_REJECTED,              /* an incoming call that was rejected */
-        POWER_OFF,                      /* radio is turned off explicitly */
-        OUT_OF_SERVICE,                 /* out of service */
-        ICC_ERROR,                      /* No ICC, ICC locked, or other ICC error */
-        CALL_BARRED,                    /* call was blocked by call barring */
-        FDN_BLOCKED,                    /* call was blocked by fixed dial number */
-        CS_RESTRICTED,                  /* call was blocked by restricted all voice access */
-        CS_RESTRICTED_NORMAL,           /* call was blocked by restricted normal voice access */
-        CS_RESTRICTED_EMERGENCY,        /* call was blocked by restricted emergency voice access */
-        UNOBTAINABLE_NUMBER,            /* Unassigned number (3GPP TS 24.008 table 10.5.123) */
-        CDMA_LOCKED_UNTIL_POWER_CYCLE,  /* MS is locked until next power cycle */
-        CDMA_DROP,
-        CDMA_INTERCEPT,                 /* INTERCEPT order received, MS state idle entered */
-        CDMA_REORDER,                   /* MS has been redirected, call is cancelled */
-        CDMA_SO_REJECT,                 /* service option rejection */
-        CDMA_RETRY_ORDER,               /* requested service is rejected, retry delay is set */
-        CDMA_ACCESS_FAILURE,
-        CDMA_PREEMPTED,
-        CDMA_NOT_EMERGENCY,              /* not an emergency call */
-        CDMA_ACCESS_BLOCKED,            /* Access Blocked by CDMA network */
-        ERROR_UNSPECIFIED,
-
-        UNKNOWN                         /* Disconnect cause doesn't map to any above */
-    }
-
     private static final Map<Integer, String> STATE_MAP = ImmutableMap.<Integer, String>builder()
             .put(Call.State.ACTIVE, "ACTIVE")
             .put(Call.State.CALL_WAITING, "CALL_WAITING")
@@ -176,7 +127,8 @@ public final class Call implements Parcelable {
     private int mState = State.INVALID;
 
     // Reason for disconnect. Valid when the call state is DISCONNECTED.
-    private DisconnectCause mDisconnectCause = DisconnectCause.UNKNOWN;
+    // Valid values are defined in {@link DisconnectCause}.
+    private int mDisconnectCause = DisconnectCause.NOT_VALID;
 
     // Bit mask of capabilities unique to this call.
     private int mCapabilities;
@@ -258,7 +210,8 @@ public final class Call implements Parcelable {
         mIdentification.setCnapName(cnapName);
     }
 
-    public DisconnectCause getDisconnectCause() {
+    /** Returns call disconnect cause; values are defined in {@link DisconnectCause}. */
+    public int getDisconnectCause() {
         if (mState == State.DISCONNECTED || mState == State.IDLE) {
             return mDisconnectCause;
         }
@@ -266,7 +219,8 @@ public final class Call implements Parcelable {
         return DisconnectCause.NOT_DISCONNECTED;
     }
 
-    public void setDisconnectCause(DisconnectCause cause) {
+    /** Sets the call disconnect cause; values are defined in {@link DisconnectCause}. */
+    public void setDisconnectCause(int cause) {
         mDisconnectCause = cause;
     }
 
@@ -338,7 +292,7 @@ public final class Call implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(mCallId);
         dest.writeInt(mState);
-        dest.writeString(getDisconnectCause().toString());
+        dest.writeInt(getDisconnectCause());
         dest.writeInt(getCapabilities());
         dest.writeLong(getConnectTime());
         dest.writeIntArray(Ints.toArray(mChildCallIds));
@@ -353,7 +307,7 @@ public final class Call implements Parcelable {
     private Call(Parcel in) {
         mCallId = in.readInt();
         mState = in.readInt();
-        mDisconnectCause = DisconnectCause.valueOf(in.readString());
+        mDisconnectCause = in.readInt();
         mCapabilities = in.readInt();
         mConnectTime = in.readLong();
         mChildCallIds.addAll(Ints.asList(in.createIntArray()));

@@ -20,6 +20,7 @@ import android.os.AsyncResult;
 import android.os.Handler;
 import android.os.Message;
 import android.os.SystemProperties;
+import android.telephony.DisconnectCause;
 import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
 import android.util.Log;
@@ -38,7 +39,6 @@ import com.android.services.telephony.common.Call.State;
 import com.google.android.collect.Maps;
 import com.google.android.collect.Sets;
 import com.google.common.base.Preconditions;
-import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSortedSet;
 import com.google.common.collect.Lists;
 
@@ -555,8 +555,7 @@ public class CallModeler extends Handler {
             changed = true;
         }
 
-        final Call.DisconnectCause newDisconnectCause =
-                translateDisconnectCauseFromTelephony(connection.getDisconnectCause());
+        final int newDisconnectCause = connection.getDisconnectCause();
         if (call.getDisconnectCause() != newDisconnectCause) {
             call.setDisconnectCause(newDisconnectCause);
             changed = true;
@@ -787,73 +786,6 @@ public class CallModeler extends Handler {
         }
 
         return retval;
-    }
-
-    private final ImmutableMap<Connection.DisconnectCause, Call.DisconnectCause> CAUSE_MAP =
-            ImmutableMap.<Connection.DisconnectCause, Call.DisconnectCause>builder()
-                .put(Connection.DisconnectCause.BUSY, Call.DisconnectCause.BUSY)
-                .put(Connection.DisconnectCause.CALL_BARRED, Call.DisconnectCause.CALL_BARRED)
-                .put(Connection.DisconnectCause.CDMA_ACCESS_BLOCKED,
-                        Call.DisconnectCause.CDMA_ACCESS_BLOCKED)
-                .put(Connection.DisconnectCause.CDMA_ACCESS_FAILURE,
-                        Call.DisconnectCause.CDMA_ACCESS_FAILURE)
-                .put(Connection.DisconnectCause.CDMA_DROP, Call.DisconnectCause.CDMA_DROP)
-                .put(Connection.DisconnectCause.CDMA_INTERCEPT, Call.DisconnectCause.CDMA_INTERCEPT)
-                .put(Connection.DisconnectCause.CDMA_LOCKED_UNTIL_POWER_CYCLE,
-                        Call.DisconnectCause.CDMA_LOCKED_UNTIL_POWER_CYCLE)
-                .put(Connection.DisconnectCause.CDMA_NOT_EMERGENCY,
-                        Call.DisconnectCause.CDMA_NOT_EMERGENCY)
-                .put(Connection.DisconnectCause.CDMA_PREEMPTED, Call.DisconnectCause.CDMA_PREEMPTED)
-                .put(Connection.DisconnectCause.CDMA_REORDER, Call.DisconnectCause.CDMA_REORDER)
-                .put(Connection.DisconnectCause.CDMA_RETRY_ORDER,
-                        Call.DisconnectCause.CDMA_RETRY_ORDER)
-                .put(Connection.DisconnectCause.CDMA_SO_REJECT, Call.DisconnectCause.CDMA_SO_REJECT)
-                .put(Connection.DisconnectCause.CONGESTION, Call.DisconnectCause.CONGESTION)
-                .put(Connection.DisconnectCause.CS_RESTRICTED, Call.DisconnectCause.CS_RESTRICTED)
-                .put(Connection.DisconnectCause.CS_RESTRICTED_EMERGENCY,
-                        Call.DisconnectCause.CS_RESTRICTED_EMERGENCY)
-                .put(Connection.DisconnectCause.CS_RESTRICTED_NORMAL,
-                        Call.DisconnectCause.CS_RESTRICTED_NORMAL)
-                .put(Connection.DisconnectCause.ERROR_UNSPECIFIED,
-                        Call.DisconnectCause.ERROR_UNSPECIFIED)
-                .put(Connection.DisconnectCause.FDN_BLOCKED, Call.DisconnectCause.FDN_BLOCKED)
-                .put(Connection.DisconnectCause.ICC_ERROR, Call.DisconnectCause.ICC_ERROR)
-                .put(Connection.DisconnectCause.INCOMING_MISSED,
-                        Call.DisconnectCause.INCOMING_MISSED)
-                .put(Connection.DisconnectCause.INCOMING_REJECTED,
-                        Call.DisconnectCause.INCOMING_REJECTED)
-                .put(Connection.DisconnectCause.INVALID_CREDENTIALS,
-                        Call.DisconnectCause.INVALID_CREDENTIALS)
-                .put(Connection.DisconnectCause.INVALID_NUMBER,
-                        Call.DisconnectCause.INVALID_NUMBER)
-                .put(Connection.DisconnectCause.LIMIT_EXCEEDED, Call.DisconnectCause.LIMIT_EXCEEDED)
-                .put(Connection.DisconnectCause.LOCAL, Call.DisconnectCause.LOCAL)
-                .put(Connection.DisconnectCause.LOST_SIGNAL, Call.DisconnectCause.LOST_SIGNAL)
-                .put(Connection.DisconnectCause.MMI, Call.DisconnectCause.MMI)
-                .put(Connection.DisconnectCause.NORMAL, Call.DisconnectCause.NORMAL)
-                .put(Connection.DisconnectCause.NOT_DISCONNECTED,
-                        Call.DisconnectCause.NOT_DISCONNECTED)
-                .put(Connection.DisconnectCause.NUMBER_UNREACHABLE,
-                        Call.DisconnectCause.NUMBER_UNREACHABLE)
-                .put(Connection.DisconnectCause.OUT_OF_NETWORK, Call.DisconnectCause.OUT_OF_NETWORK)
-                .put(Connection.DisconnectCause.OUT_OF_SERVICE, Call.DisconnectCause.OUT_OF_SERVICE)
-                .put(Connection.DisconnectCause.POWER_OFF, Call.DisconnectCause.POWER_OFF)
-                .put(Connection.DisconnectCause.SERVER_ERROR, Call.DisconnectCause.SERVER_ERROR)
-                .put(Connection.DisconnectCause.SERVER_UNREACHABLE,
-                        Call.DisconnectCause.SERVER_UNREACHABLE)
-                .put(Connection.DisconnectCause.TIMED_OUT, Call.DisconnectCause.TIMED_OUT)
-                .put(Connection.DisconnectCause.UNOBTAINABLE_NUMBER,
-                        Call.DisconnectCause.UNOBTAINABLE_NUMBER)
-                .build();
-
-    private Call.DisconnectCause translateDisconnectCauseFromTelephony(
-            Connection.DisconnectCause causeSource) {
-
-        if (CAUSE_MAP.containsKey(causeSource)) {
-            return CAUSE_MAP.get(causeSource);
-        }
-
-        return Call.DisconnectCause.UNKNOWN;
     }
 
     /**
