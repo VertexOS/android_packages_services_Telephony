@@ -82,8 +82,10 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     private static final int EVENT_NV_WRITE_CDMA_PRL_DONE = 18;
     private static final int CMD_NV_RESET_CONFIG = 19;
     private static final int EVENT_NV_RESET_CONFIG_DONE = 20;
-    private static final int CMD_SET_RADIO_MODE = 21;
-    private static final int EVENT_SET_RADIO_MODE_DONE = 22;
+    private static final int CMD_GET_PREFERRED_NETWORK_TYPE = 21;
+    private static final int EVENT_GET_PREFERRED_NETWORK_TYPE_DONE = 22;
+    private static final int CMD_SET_PREFERRED_NETWORK_TYPE = 23;
+    private static final int EVENT_SET_PREFERRED_NETWORK_TYPE_DONE = 24;
 
 
     /** The singleton instance. */
@@ -339,6 +341,44 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
 
                 case EVENT_NV_RESET_CONFIG_DONE:
                     handleNullReturnEvent(msg, "nvResetConfig");
+                    break;
+
+                case CMD_GET_PREFERRED_NETWORK_TYPE:
+                    request = (MainThreadRequest) msg.obj;
+                    onCompleted = obtainMessage(EVENT_GET_PREFERRED_NETWORK_TYPE_DONE, request);
+                    mPhone.getPreferredNetworkType(onCompleted);
+                    break;
+
+                case EVENT_GET_PREFERRED_NETWORK_TYPE_DONE:
+                    ar = (AsyncResult) msg.obj;
+                    request = (MainThreadRequest) ar.userObj;
+                    if (ar.exception == null && ar.result != null) {
+                        request.result = ar.result;     // Integer
+                    } else {
+                        request.result = -1;
+                        if (ar.result == null) {
+                            loge("getPreferredNetworkType: Empty response");
+                        } else if (ar.exception instanceof CommandException) {
+                            loge("getPreferredNetworkType: CommandException: " +
+                                    ar.exception);
+                        } else {
+                            loge("getPreferredNetworkType: Unknown exception");
+                        }
+                    }
+                    synchronized (request) {
+                        request.notifyAll();
+                    }
+                    break;
+
+                case CMD_SET_PREFERRED_NETWORK_TYPE:
+                    request = (MainThreadRequest) msg.obj;
+                    onCompleted = obtainMessage(EVENT_SET_PREFERRED_NETWORK_TYPE_DONE, request);
+                    int networkType = (Integer) request.argument;
+                    mPhone.setPreferredNetworkType(networkType, onCompleted);
+                    break;
+
+                case EVENT_SET_PREFERRED_NETWORK_TYPE_DONE:
+                    handleNullReturnEvent(msg, "setPreferredNetworkType");
                     break;
 
                 default:
@@ -1209,6 +1249,38 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         if (DBG) log("nvResetConfig: type " + resetType);
         Boolean success = (Boolean) sendRequest(CMD_NV_RESET_CONFIG, resetType);
         if (DBG) log("nvResetConfig: type " + resetType + ' ' + (success ? "ok" : "fail"));
+        return success;
+    }
+
+    /**
+     * Get the preferred network type.
+     * Used for device configuration by some CDMA operators.
+     *
+     * @return the preferred network type, defined in RILConstants.java.
+     */
+    @Override
+    public int getPreferredNetworkType() {
+        enforceModifyPermission();
+        if (DBG) log("getPreferredNetworkType");
+        int[] result = (int[]) sendRequest(CMD_GET_PREFERRED_NETWORK_TYPE, null);
+        int networkType = (result != null ? result[0] : -1);
+        if (DBG) log("getPreferredNetworkType: " + networkType);
+        return networkType;
+    }
+
+    /**
+     * Set the preferred network type.
+     * Used for device configuration by some CDMA operators.
+     *
+     * @param networkType the preferred network type, defined in RILConstants.java.
+     * @return true on success; false on any failure.
+     */
+    @Override
+    public boolean setPreferredNetworkType(int networkType) {
+        enforceModifyPermission();
+        if (DBG) log("setPreferredNetworkType: type " + networkType);
+        Boolean success = (Boolean) sendRequest(CMD_SET_PREFERRED_NETWORK_TYPE, networkType);
+        if (DBG) log("setPreferredNetworkType: " + (success ? "ok" : "fail"));
         return success;
     }
 }
