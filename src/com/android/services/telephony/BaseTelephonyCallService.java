@@ -17,6 +17,7 @@
 package com.android.services.telephony;
 
 import android.net.Uri;
+import android.os.Bundle;
 import android.os.RemoteException;
 import android.telecomm.CallInfo;
 import android.telecomm.CallService;
@@ -58,7 +59,7 @@ public abstract class BaseTelephonyCallService extends CallService {
 
     /** {@inheritDoc} */
     @Override
-    public void setIncomingCallId(String callId) {
+    public void setIncomingCallId(String callId, Bundle extras) {
         // Incoming calls not implemented yet.
     }
 
