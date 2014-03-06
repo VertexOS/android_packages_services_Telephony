@@ -550,5 +550,26 @@
         <!-- service to dump telephony information -->
         <service android:name="HfaService" android:exported="false"/>
 
+        <!-- Telecomm integration -->
+        <service android:name="com.android.services.telephony.TelephonyCallServiceProvider">
+            <intent-filter>
+                <action android:name="android.telecomm.ICallServiceProvider" />
+            </intent-filter>
+        </service>
+        <service android:name="com.android.services.telephony.GsmCallService">
+            <intent-filter>
+                <action android:name="android.telecomm.ICallService" />
+            </intent-filter>
+        </service>
+        <service android:name="com.android.services.telephony.CdmaCallService">
+            <intent-filter>
+                <action android:name="android.telecomm.ICallService" />
+            </intent-filter>
+        </service>
+        <service android:name="com.android.services.telephony.SipCallService">
+            <intent-filter>
+                <action android:name="android.telecomm.ICallService" />
+            </intent-filter>
+        </service>
     </application>
 </manifest>
