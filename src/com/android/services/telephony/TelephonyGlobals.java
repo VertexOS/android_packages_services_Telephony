@@ -16,6 +16,11 @@
 
 package com.android.services.telephony;
 
+import android.content.Context;
+import android.telephony.TelephonyManager;
+
+import com.android.internal.telephony.PhoneFactory;
+
 /**
  * Singleton entry point for the telephony-services app. Initializes ongoing systems relating to
  * PSTN and SIP calls. This is started when the device starts and will be restarted automatically
@@ -27,7 +32,54 @@ package com.android.services.telephony;
  */
 public class TelephonyGlobals {
 
+    /** The application context. */
+    private final Context mContext;
+
+    /** Handles incoming calls for GSM. */
+    private IncomingCallNotifier mGsmIncomingCallNotifier;
+
+    /** Handles incoming calls for CDMA. */
+    private IncomingCallNotifier mCdmaIncomingCallNotifier;
+
+    /**
+     * Persists the specified parameters.
+     *
+     * @param context The application context.
+     */
+    public TelephonyGlobals(Context context) {
+        mContext = context.getApplicationContext();
+    }
+
     public void onCreate() {
-        // TODO(santoscordon): Start incoming-call listeners.
+        setupIncomingCallNotifiers();
+    }
+
+    /**
+     * Sets up incoming call notifiers for all the call services.
+     */
+    private void setupIncomingCallNotifiers() {
+        TelephonyManager telephonyManager = (TelephonyManager) mContext.getSystemService(
+                Context.TELEPHONY_SERVICE);
+
+        // TODO(santoscordon): getPhoneType() eventually executes
+        // PhoneInterfaceManager.getActivePhoneType() which references the PhoneProxy that is
+        // created in PhoneGlobals.onCreate(). IOW, this only works right now because PhoneApp calls
+        // PhoneGlobals.onCreate() *before* calling TelephonyGlobals.onCreate(). We want to
+        // eventually move that setup code into this method.
+        int phoneType = telephonyManager.getPhoneType();
+
+        if (TelephonyManager.PHONE_TYPE_GSM == phoneType) {
+            mGsmIncomingCallNotifier = new IncomingCallNotifier(
+                    GsmCallService.class, CachedPhoneFactory.getGsmPhone());
+
+        } else if (TelephonyManager.PHONE_TYPE_CDMA == phoneType) {
+            mCdmaIncomingCallNotifier = new IncomingCallNotifier(
+                    CdmaCallService.class, CachedPhoneFactory.getCdmaPhone());
+        }
+
+        // TODO(santoscordon): Do SIP.  SIP will require a slightly different solution since it
+        // doesn't have a phone object in the same way as PSTN calls. Additionally, the user can
+        // set up SIP to do outgoing calls, but not listen for incoming calls (uses extra battery).
+        // We need to make sure we take all of that into account.
     }
 }
