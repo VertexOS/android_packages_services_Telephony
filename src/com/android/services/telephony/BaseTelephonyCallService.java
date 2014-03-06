@@ -65,10 +65,9 @@ public abstract class BaseTelephonyCallService extends CallService {
 
     /** {@inheritDoc} */
     @Override
-    public void disconnect(String callId) {
-        // Maybe null if the connection has already disconnected.
+    public void abort(String callId) {
         if (sCallConnections.containsKey(callId)) {
-            sCallConnections.get(callId).disconnect();
+            sCallConnections.get(callId).disconnect(true);
         }
     }
 
@@ -80,6 +79,15 @@ public abstract class BaseTelephonyCallService extends CallService {
     /** {@inheritDoc} */
     @Override
     public void reject(String callId) {
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void disconnect(String callId) {
+        // Maybe null if the connection has already disconnected.
+        if (sCallConnections.containsKey(callId)) {
+            sCallConnections.get(callId).disconnect(false);
+        }
     }
 
     /**

@@ -34,9 +34,10 @@ class TelephonyCallConnection {
     private static final String TAG = TelephonyCallConnection.class.getSimpleName();
     private static final int EVENT_PRECISE_CALL_STATE_CHANGED = 1;
 
-    private final ICallServiceAdapter mCallServiceAdapter;
     private final String mCallId;
     private final StateHandler mHandler = new StateHandler();
+
+    private ICallServiceAdapter mCallServiceAdapter;
 
     private Connection mConnection;
     private Call.State mOldState = Call.State.IDLE;
@@ -55,7 +56,10 @@ class TelephonyCallConnection {
         return mCallId;
     }
 
-    void disconnect() {
+    void disconnect(boolean shouldAbort) {
+        if (shouldAbort) {
+            mCallServiceAdapter = null;
+        }
         if (mConnection != null) {
             try {
                 mConnection.hangup();
@@ -66,7 +70,7 @@ class TelephonyCallConnection {
     }
 
     private void updateState() {
-        if (mConnection == null) {
+        if (mConnection == null || mCallServiceAdapter == null) {
             return;
         }
 
