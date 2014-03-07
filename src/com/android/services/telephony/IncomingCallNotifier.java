@@ -114,6 +114,7 @@ final class IncomingCallNotifier {
         builder.setNetworkType(CallServiceDescriptor.FLAG_PSTN);
 
         Intent intent = new Intent(TelecommConstants.ACTION_INCOMING_CALL);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtra(TelecommConstants.EXTRA_CALL_SERVICE_DESCRIPTOR, builder.build());
 
         if (DBG) {
