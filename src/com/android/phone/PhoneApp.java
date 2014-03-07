@@ -40,7 +40,7 @@ public class PhoneApp extends Application {
             mPhoneGlobals = new PhoneGlobals(this);
             mPhoneGlobals.onCreate();
 
-            mTelephonyGlobals = new TelephonyGlobals();
+            mTelephonyGlobals = new TelephonyGlobals(this);
             mTelephonyGlobals.onCreate();
         }
     }
