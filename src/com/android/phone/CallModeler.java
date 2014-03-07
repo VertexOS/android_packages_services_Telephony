@@ -132,12 +132,9 @@ public class CallModeler extends Handler {
     public void addListener(Listener listener) {
         Preconditions.checkNotNull(listener);
         Preconditions.checkNotNull(mListeners);
-        // Disable updates to avoid interference between Telecomm and Telephony.
-        /*
         if (!mListeners.contains(listener)) {
             mListeners.add(listener);
         }
-        */
     }
 
     public List<Call> getFullList() {
