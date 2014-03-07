@@ -153,6 +153,7 @@
         </activity>
 
         <activity android:name="OutgoingCallBroadcaster"
+                android:enabled="false"
                 android:theme="@style/OutgoingCallBroadcasterTheme"
                 android:permission="android.permission.CALL_PHONE"
                 android:screenOrientation="nosensor"
@@ -185,6 +186,7 @@
         </activity>
 
         <activity-alias android:name="EmergencyOutgoingCallBroadcaster"
+                android:enabled="false"
                 android:targetActivity="OutgoingCallBroadcaster"
                 android:permission="android.permission.CALL_PRIVILEGED">
             <intent-filter android:priority="1000">
@@ -212,6 +214,7 @@
         </activity-alias>
 
         <activity-alias android:name="PrivilegedOutgoingCallBroadcaster"
+                android:enabled="false"
                 android:targetActivity="OutgoingCallBroadcaster"
                 android:screenOrientation="nosensor"
                 android:permission="android.permission.CALL_PRIVILEGED">
