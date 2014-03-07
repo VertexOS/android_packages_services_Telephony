@@ -30,7 +30,6 @@ import com.android.internal.telephony.PhoneFactory;
  */
 public class GsmCallService extends BaseTelephonyCallService {
     private static final String TAG = GsmCallService.class.getSimpleName();
-    private static Phone sGsmPhone;
 
     static boolean shouldSelect(Context context, CallInfo callInfo) {
         TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(
@@ -51,9 +50,6 @@ public class GsmCallService extends BaseTelephonyCallService {
     /** {@inheritDoc} */
     @Override
     public void call(CallInfo callInfo) {
-        if (sGsmPhone == null) {
-            sGsmPhone = PhoneFactory.getGsmPhone();
-        }
-        startCallWithPhone(sGsmPhone, callInfo);
+        startCallWithPhone(CachedPhoneFactory.getGsmPhone(), callInfo);
     }
 }

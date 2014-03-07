@@ -30,7 +30,6 @@ import com.android.internal.telephony.PhoneFactory;
  */
 public class CdmaCallService extends BaseTelephonyCallService {
     private static final String TAG = CdmaCallService.class.getSimpleName();
-    private static Phone sCdmaPhone;
 
     static boolean shouldSelect(Context context, CallInfo callInfo) {
         TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(
@@ -51,9 +50,6 @@ public class CdmaCallService extends BaseTelephonyCallService {
     /** {@inheritDoc} */
     @Override
     public void call(CallInfo callInfo) {
-        if (sCdmaPhone == null) {
-            sCdmaPhone = PhoneFactory.getCdmaPhone();
-        }
-        startCallWithPhone(sCdmaPhone, callInfo);
+        startCallWithPhone(CachedPhoneFactory.getCdmaPhone(), callInfo);
     }
 }
