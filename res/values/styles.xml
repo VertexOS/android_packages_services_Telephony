@@ -163,6 +163,8 @@
     <style name="SettingsLight" parent="@android:style/Theme.Holo.Light">
         <item name="android:windowBackground">@color/phone_settings_background_color</item>
         <item name="android:actionBarStyle">@style/DialtactsActionBarStyle</item>
+        <item name="android:actionOverflowButtonStyle">@style/DialtactsActionBarOverflow</item>
+        <item name="android:homeAsUpIndicator">@drawable/ic_back_arrow</item>
     </style>
 
     <style name="Empty" parent="@android:style/Theme.Holo">
@@ -225,11 +227,25 @@
         <item name="android:backgroundStacked">@color/people_app_theme_color</item>
     </style>
 
-    <style name="DialtactsActionBarStyle"
-           parent="@android:style/Widget.Holo.Light.ActionBar">
-        <item name="android:background">@color/phone_settings_actionbar_color</item>
+    <!-- Style for the call settings action bar.  Should be kept in sync with Dialer. -->
+    <style name="DialtactsActionBarStyle" parent="android:Widget.Holo.ActionBar">
+        <item name="android:background">@drawable/actionbar_background</item>
+        <item name="android:backgroundStacked">#ffffff</item>
+        <item name="android:titleTextStyle">@style/DialtactsActionBarTitleText</item>
         <!-- Empty icon -->
         <item name="android:icon">@android:color/transparent</item>
+    </style>
+
+    <!-- Text in the action bar at the top of the screen.  Should be kept in sync with Dialer. -->
+    <style name="DialtactsActionBarTitleText"
+           parent="@android:style/TextAppearance.Holo.Widget.ActionBar.Title">
+        <item name="android:textColor">@color/phone_settings_actionbar_text_color</item>
+    </style>
+
+    <!-- Action bar overflow menu icon. -->
+    <style name="DialtactsActionBarOverflow"
+           parent="@android:style/Widget.Holo.ActionButton.Overflow">
+        <item name="android:src">@drawable/ic_menu_overflow_lt</item>
     </style>
 
     <style name="SimImportTheme"
