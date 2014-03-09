@@ -17,10 +17,9 @@
 package com.android.services.telephony;
 
 import android.os.IBinder;
-import android.os.RemoteException;
 import android.telecomm.CallServiceDescriptor;
+import android.telecomm.CallServiceLookupResponse;
 import android.telecomm.CallServiceProvider;
-import android.telecomm.ICallServiceLookupResponse;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -33,7 +32,7 @@ public class TelephonyCallServiceProvider extends CallServiceProvider {
 
     /** {@inheritDoc} */
     @Override
-    public void lookupCallServices(ICallServiceLookupResponse response) {
+    public void lookupCallServices(CallServiceLookupResponse response) {
         ArrayList<CallServiceDescriptor> descriptors = new ArrayList<CallServiceDescriptor>();
         descriptors.add(CallServiceDescriptor.newBuilder(this)
                    .setCallService(GsmCallService.class)
@@ -48,10 +47,6 @@ public class TelephonyCallServiceProvider extends CallServiceProvider {
                    .setNetworkType(CallServiceDescriptor.FLAG_WIFI |
                            CallServiceDescriptor.FLAG_MOBILE)
                    .build());
-        try {
-            response.setCallServiceDescriptors(descriptors);
-        } catch (RemoteException e) {
-            Log.e(TAG, "Call to setCallServices failed with exception", e);
-        }
+        response.setCallServiceDescriptors(descriptors);
     }
 }

@@ -18,10 +18,9 @@ package com.android.services.telephony;
 
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.RemoteException;
 import android.telecomm.CallInfo;
 import android.telecomm.CallService;
-import android.telecomm.ICallServiceAdapter;
+import android.telecomm.CallServiceAdapter;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -40,7 +39,7 @@ import java.util.HashMap;
 public abstract class BaseTelephonyCallService extends CallService {
     private static final String TAG = "BaseTeleCallService";
 
-    protected ICallServiceAdapter mCallServiceAdapter;
+    protected CallServiceAdapter mCallServiceAdapter;
 
     /** Map of all call connections keyed by the call ID.  */
     private static HashMap<String, TelephonyCallConnection> sCallConnections =
@@ -58,7 +57,7 @@ public abstract class BaseTelephonyCallService extends CallService {
 
     /** {@inheritDoc} */
     @Override
-    public void setCallServiceAdapter(ICallServiceAdapter callServiceAdapter) {
+    public void setCallServiceAdapter(CallServiceAdapter callServiceAdapter) {
         mCallServiceAdapter = callServiceAdapter;
     }
 
@@ -99,42 +98,38 @@ public abstract class BaseTelephonyCallService extends CallService {
      * Initiates the call, should be called by the subclass.
      */
     protected void startCallWithPhone(Phone phone, CallInfo callInfo) {
-        try {
-            if (phone == null) {
-                mCallServiceAdapter.handleFailedOutgoingCall(callInfo.getId(), "Phone is null");
-                return;
-            }
-
-            Uri uri = Uri.parse(callInfo.getHandle());
-            String number = null;
-            if (uri != null) {
-                number = uri.getSchemeSpecificPart();
-            }
-            if (TextUtils.isEmpty(number)) {
-                mCallServiceAdapter.handleFailedOutgoingCall(callInfo.getId(),
-                        "Unable to parse number");
-                return;
-            }
-
-            Connection connection;
-            try {
-                PhoneGlobals.getInstance().getCallModeler().setShouldDisableUpdates(true);
-                connection = phone.dial(number);
-            } catch (CallStateException e) {
-                Log.e(TAG, "Call to Phone.dial failed with exception", e);
-                mCallServiceAdapter.handleFailedOutgoingCall(callInfo.getId(), e.getMessage());
-                if (sCallConnections.isEmpty()) {
-                    PhoneGlobals.getInstance().getCallModeler().setShouldDisableUpdates(false);
-                }
-                return;
-            }
-
-            TelephonyCallConnection callConnection =
-                    new TelephonyCallConnection(mCallServiceAdapter, callInfo.getId(), connection);
-            sCallConnections.put(callInfo.getId(), callConnection);
-            mCallServiceAdapter.handleSuccessfulOutgoingCall(callInfo.getId());
-        } catch (RemoteException e) {
-            Log.e(TAG, "Got RemoteException", e);
+        if (phone == null) {
+            mCallServiceAdapter.handleFailedOutgoingCall(callInfo.getId(), "Phone is null");
+            return;
         }
+
+        Uri uri = Uri.parse(callInfo.getHandle());
+        String number = null;
+        if (uri != null) {
+            number = uri.getSchemeSpecificPart();
+        }
+        if (TextUtils.isEmpty(number)) {
+            mCallServiceAdapter.handleFailedOutgoingCall(callInfo.getId(),
+                    "Unable to parse number");
+            return;
+        }
+
+        Connection connection;
+        try {
+            PhoneGlobals.getInstance().getCallModeler().setShouldDisableUpdates(true);
+            connection = phone.dial(number);
+        } catch (CallStateException e) {
+            Log.e(TAG, "Call to Phone.dial failed with exception", e);
+            mCallServiceAdapter.handleFailedOutgoingCall(callInfo.getId(), e.getMessage());
+            if (sCallConnections.isEmpty()) {
+                PhoneGlobals.getInstance().getCallModeler().setShouldDisableUpdates(false);
+            }
+            return;
+        }
+
+        TelephonyCallConnection callConnection =
+                new TelephonyCallConnection(mCallServiceAdapter, callInfo.getId(), connection);
+        sCallConnections.put(callInfo.getId(), callConnection);
+        mCallServiceAdapter.handleSuccessfulOutgoingCall(callInfo.getId());
     }
 }

@@ -17,7 +17,6 @@
 package com.android.services.telephony;
 
 import android.content.Context;
-import android.os.RemoteException;
 import android.net.sip.SipException;
 import android.net.sip.SipManager;
 import android.net.sip.SipProfile;
@@ -85,11 +84,7 @@ public class SipCallService extends BaseTelephonyCallService {
     /** {@inheritDoc} */
     @Override
     public void isCompatibleWith(CallInfo callInfo) {
-        try {
-            mCallServiceAdapter.setCompatibleWith(callInfo.getId(), shouldSelect(this, callInfo));
-        } catch (RemoteException e) {
-            Log.e(TAG, "Call to setCompatibleWith failed with exception", e);
-        }
+        mCallServiceAdapter.setIsCompatibleWith(callInfo.getId(), shouldSelect(this, callInfo));
     }
 
     /** {@inheritDoc} */

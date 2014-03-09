@@ -556,22 +556,22 @@
         <!-- Telecomm integration -->
         <service android:name="com.android.services.telephony.TelephonyCallServiceProvider">
             <intent-filter>
-                <action android:name="android.telecomm.ICallServiceProvider" />
+                <action android:name="android.telecomm.CallServiceProvider" />
             </intent-filter>
         </service>
         <service android:name="com.android.services.telephony.GsmCallService">
             <intent-filter>
-                <action android:name="android.telecomm.ICallService" />
+                <action android:name="android.telecomm.CallService" />
             </intent-filter>
         </service>
         <service android:name="com.android.services.telephony.CdmaCallService">
             <intent-filter>
-                <action android:name="android.telecomm.ICallService" />
+                <action android:name="android.telecomm.CallService" />
             </intent-filter>
         </service>
         <service android:name="com.android.services.telephony.SipCallService">
             <intent-filter>
-                <action android:name="android.telecomm.ICallService" />
+                <action android:name="android.telecomm.CallService" />
             </intent-filter>
         </service>
     </application>

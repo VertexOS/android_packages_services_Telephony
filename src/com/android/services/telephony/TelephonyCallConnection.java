@@ -18,8 +18,7 @@ package com.android.services.telephony;
 
 import android.os.Handler;
 import android.os.Message;
-import android.os.RemoteException;
-import android.telecomm.ICallServiceAdapter;
+import android.telecomm.CallServiceAdapter;
 import android.util.Log;
 
 import com.android.internal.telephony.Call;
@@ -28,7 +27,7 @@ import com.android.internal.telephony.Connection;
 
 /**
  * Manages a single phone call. Listens to the call's state changes and updates the
- * ICallServiceAdapter.
+ * CallServiceAdapter.
  */
 class TelephonyCallConnection {
     private static final String TAG = TelephonyCallConnection.class.getSimpleName();
@@ -37,12 +36,12 @@ class TelephonyCallConnection {
     private final String mCallId;
     private final StateHandler mHandler = new StateHandler();
 
-    private ICallServiceAdapter mCallServiceAdapter;
+    private CallServiceAdapter mCallServiceAdapter;
 
     private Connection mConnection;
     private Call.State mOldState = Call.State.IDLE;
 
-    TelephonyCallConnection(ICallServiceAdapter callServiceAdapter, String callId,
+    TelephonyCallConnection(CallServiceAdapter callServiceAdapter, String callId,
             Connection connection) {
         mCallServiceAdapter = callServiceAdapter;
         mCallId = callId;
@@ -80,35 +79,31 @@ class TelephonyCallConnection {
         }
 
         mOldState = newState;
-        try {
-            switch (newState) {
-                case IDLE:
-                    break;
-                case ACTIVE:
-                    mCallServiceAdapter.setActive(mCallId);
-                    break;
-                case HOLDING:
-                    break;
-                case DIALING:
-                    mCallServiceAdapter.setDialing(mCallId);
-                    break;
-                case ALERTING:
-                    mCallServiceAdapter.setDialing(mCallId);
-                    break;
-                case INCOMING:
-                    // Incoming calls not implemented.
-                    break;
-                case WAITING:
-                    break;
-                case DISCONNECTED:
-                    mCallServiceAdapter.setDisconnected(mCallId);
-                    close();
-                    break;
-                case DISCONNECTING:
-                    break;
-            }
-        } catch (RemoteException e) {
-            Log.e(TAG, "Remote exception", e);
+        switch (newState) {
+            case IDLE:
+                break;
+            case ACTIVE:
+                mCallServiceAdapter.setActive(mCallId);
+                break;
+            case HOLDING:
+                break;
+            case DIALING:
+                mCallServiceAdapter.setDialing(mCallId);
+                break;
+            case ALERTING:
+                mCallServiceAdapter.setDialing(mCallId);
+                break;
+            case INCOMING:
+                // Incoming calls not implemented.
+                break;
+            case WAITING:
+                break;
+            case DISCONNECTED:
+                mCallServiceAdapter.setDisconnected(mCallId);
+                close();
+                break;
+            case DISCONNECTING:
+                break;
         }
     }
 
