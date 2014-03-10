@@ -423,7 +423,7 @@
     <string name="emergency_enable_radio_dialog_retry" msgid="3724423402363063736">"Uko mahali pasipokuwa na huduma, inajaribu tena…."</string>
     <string name="dial_emergency_error" msgid="7969515493359619960">"Simu haijatumwa. <xliff:g id="NON_EMERGENCY_NUMBER">%s</xliff:g> sio nambari ya dharura!"</string>
     <string name="dial_emergency_empty_error" msgid="5556166819619323893">"Simu haijatumwa. Piga nambari ya dharura!"</string>
-    <string name="dialerKeyboardHintText" msgid="9192914825413747792">"Tumia kichapishi kubonyeza"</string>
+    <string name="dialerKeyboardHintText" msgid="9192914825413747792">"Tumia kibodi kubonyeza"</string>
     <string name="onscreenHoldText" msgid="2285258239691145872">"Shikilia"</string>
     <string name="onscreenEndCallText" msgid="4403855834875398585">"Mwisho"</string>
     <string name="onscreenShowDialpadText" msgid="8561805492659639893">"Kibao cha kupiga"</string>
@@ -521,7 +521,7 @@
     <string name="pstn_phone" msgid="8782554491484326429">"Kupiga simu ya mkononi"</string>
     <string name="internet_phone" msgid="1147922660195095810">"Simu ya wavuti"</string>
     <string name="no_sip_account_found_title" msgid="6266249392379373628">"Hakuna akaunti ya upigaji simu wa Mtandao"</string>
-    <string name="no_sip_account_found" msgid="724325811961769997">"Hakuna akaunti za kupiga simu za mtandao kwenye simu hii. Je, unataka kuongeza moja sasa?"</string>
+    <string name="no_sip_account_found" msgid="724325811961769997">"Hakuna akaunti za kupiga simu za mtandao kwenye simu hii. Je, ungependa kuongeza akaunti sasa?"</string>
     <string name="sip_menu_add" msgid="8757508498518881500">"Ongeza"</string>
     <string name="add_sip_account" msgid="5904858426290097611">"Ongeza akaunti"</string>
     <string name="remove_sip_account" msgid="7645900420385682570">"Ondoa akaunti"</string>
