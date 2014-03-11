@@ -22,6 +22,7 @@ import android.net.sip.SipManager;
 import android.net.sip.SipProfile;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.provider.Settings;
 import android.telecomm.CallInfo;
 import android.telephony.PhoneNumberUtils;
@@ -91,6 +92,22 @@ public class SipCallService extends BaseTelephonyCallService {
     @Override
     public void call(CallInfo callInfo) {
         new GetSipProfileTask(this, callInfo).execute();
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void setIncomingCallId(String callId, Bundle extras) {
+        // TODO(santoscordon): fill in.
+    }
+
+    /** {@inheritDoc} */
+    public void answer(String callId) {
+        // TODO(santoscordon): fill in.
+    }
+
+    /** {@inheritDoc} */
+    public void reject(String callId) {
+        // TODO(santoscordon): fill in.
     }
 
     /**

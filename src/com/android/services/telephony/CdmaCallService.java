@@ -27,7 +27,7 @@ import com.android.internal.telephony.PhoneFactory;
 /**
  * Call service that uses the CDMA phone.
  */
-public class CdmaCallService extends BaseTelephonyCallService {
+public class CdmaCallService extends PstnCallService {
     private static final String TAG = CdmaCallService.class.getSimpleName();
 
     static boolean shouldSelect(Context context, CallInfo callInfo) {
@@ -44,7 +44,7 @@ public class CdmaCallService extends BaseTelephonyCallService {
 
     /** {@inheritDoc} */
     @Override
-    public void call(CallInfo callInfo) {
-        startCallWithPhone(CachedPhoneFactory.getCdmaPhone(), callInfo);
+    protected Phone getPhone() {
+        return CachedPhoneFactory.getCdmaPhone();
     }
 }

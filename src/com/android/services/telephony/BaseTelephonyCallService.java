@@ -27,10 +27,6 @@ import android.util.Log;
 import com.android.internal.telephony.CallStateException;
 import com.android.internal.telephony.Connection;
 import com.android.internal.telephony.Phone;
-import com.android.phone.PhoneGlobals;
-import com.android.phone.CallModeler;
-
-import java.util.HashMap;
 
 /**
  * The parent class for telephony-based call services. Subclasses provide the specific phone (GSM,
@@ -41,20 +37,6 @@ public abstract class BaseTelephonyCallService extends CallService {
 
     protected CallServiceAdapter mCallServiceAdapter;
 
-    /** Map of all call connections keyed by the call ID.  */
-    private static HashMap<String, TelephonyCallConnection> sCallConnections =
-            new HashMap<String, TelephonyCallConnection>();
-
-    /**
-     * Clears the connection from the list of connections. Called when a phone call disconnects.
-     */
-    static void onCallConnectionClosing(TelephonyCallConnection callConnection) {
-        sCallConnections.remove(callConnection.getCallId());
-        if (sCallConnections.isEmpty()) {
-            PhoneGlobals.getInstance().getCallModeler().setShouldDisableUpdates(false);
-        }
-    }
-
     /** {@inheritDoc} */
     @Override
     public void setCallServiceAdapter(CallServiceAdapter callServiceAdapter) {
@@ -63,34 +45,19 @@ public abstract class BaseTelephonyCallService extends CallService {
 
     /** {@inheritDoc} */
     @Override
-    public void setIncomingCallId(String callId, Bundle extras) {
-        // Incoming calls not implemented yet.
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public void abort(String callId) {
-        if (sCallConnections.containsKey(callId)) {
-            sCallConnections.get(callId).disconnect(true);
+        TelephonyCallConnection callConnection = CallRegistrar.get(callId);
+        if (callConnection != null) {
+            callConnection.disconnect(true);
         }
     }
 
     /** {@inheritDoc} */
     @Override
-    public void answer(String callId) {
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void reject(String callId) {
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public void disconnect(String callId) {
-        // Maybe null if the connection has already disconnected.
-        if (sCallConnections.containsKey(callId)) {
-            sCallConnections.get(callId).disconnect(false);
+        TelephonyCallConnection callConnection = CallRegistrar.get(callId);
+        if (callConnection != null) {
+            callConnection.disconnect(false);
         }
     }
 
@@ -98,8 +65,9 @@ public abstract class BaseTelephonyCallService extends CallService {
      * Initiates the call, should be called by the subclass.
      */
     protected void startCallWithPhone(Phone phone, CallInfo callInfo) {
+        String callId = callInfo.getId();
         if (phone == null) {
-            mCallServiceAdapter.handleFailedOutgoingCall(callInfo.getId(), "Phone is null");
+            mCallServiceAdapter.handleFailedOutgoingCall(callId, "Phone is null");
             return;
         }
 
@@ -109,27 +77,23 @@ public abstract class BaseTelephonyCallService extends CallService {
             number = uri.getSchemeSpecificPart();
         }
         if (TextUtils.isEmpty(number)) {
-            mCallServiceAdapter.handleFailedOutgoingCall(callInfo.getId(),
-                    "Unable to parse number");
+            mCallServiceAdapter.handleFailedOutgoingCall(callId, "Unable to parse number");
             return;
         }
 
         Connection connection;
         try {
-            PhoneGlobals.getInstance().getCallModeler().setShouldDisableUpdates(true);
             connection = phone.dial(number);
         } catch (CallStateException e) {
             Log.e(TAG, "Call to Phone.dial failed with exception", e);
-            mCallServiceAdapter.handleFailedOutgoingCall(callInfo.getId(), e.getMessage());
-            if (sCallConnections.isEmpty()) {
-                PhoneGlobals.getInstance().getCallModeler().setShouldDisableUpdates(false);
-            }
+            mCallServiceAdapter.handleFailedOutgoingCall(callId, e.getMessage());
             return;
         }
 
         TelephonyCallConnection callConnection =
-                new TelephonyCallConnection(mCallServiceAdapter, callInfo.getId(), connection);
-        sCallConnections.put(callInfo.getId(), callConnection);
-        mCallServiceAdapter.handleSuccessfulOutgoingCall(callInfo.getId());
+                new TelephonyCallConnection(mCallServiceAdapter, callId, connection);
+        CallRegistrar.register(callId, callConnection);
+
+        mCallServiceAdapter.handleSuccessfulOutgoingCall(callId);
     }
 }

@@ -16,6 +16,8 @@
 
 package com.android.services.telephony;
 
+import android.content.Context;
+import android.media.AudioManager;
 import android.os.Handler;
 import android.os.Message;
 import android.telecomm.CallServiceAdapter;
@@ -24,6 +26,7 @@ import android.util.Log;
 import com.android.internal.telephony.Call;
 import com.android.internal.telephony.CallStateException;
 import com.android.internal.telephony.Connection;
+import com.android.phone.PhoneGlobals;
 
 /**
  * Manages a single phone call. Listens to the call's state changes and updates the
@@ -38,15 +41,15 @@ class TelephonyCallConnection {
 
     private CallServiceAdapter mCallServiceAdapter;
 
-    private Connection mConnection;
-    private Call.State mOldState = Call.State.IDLE;
+    private Connection mOriginalConnection;
+    private Call.State mState = Call.State.IDLE;
 
     TelephonyCallConnection(CallServiceAdapter callServiceAdapter, String callId,
             Connection connection) {
         mCallServiceAdapter = callServiceAdapter;
         mCallId = callId;
-        mConnection = connection;
-        mConnection.getCall().getPhone().registerForPreciseCallStateChanged(mHandler,
+        mOriginalConnection = connection;
+        mOriginalConnection.getCall().getPhone().registerForPreciseCallStateChanged(mHandler,
                 EVENT_PRECISE_CALL_STATE_CHANGED, null);
         updateState();
     }
@@ -55,13 +58,18 @@ class TelephonyCallConnection {
         return mCallId;
     }
 
+    Connection getOriginalConnection() {
+        return mOriginalConnection;
+    }
+
     void disconnect(boolean shouldAbort) {
         if (shouldAbort) {
             mCallServiceAdapter = null;
+            close();
         }
-        if (mConnection != null) {
+        if (mOriginalConnection != null) {
             try {
-                mConnection.hangup();
+                mOriginalConnection.hangup();
             } catch (CallStateException e) {
                 Log.e(TAG, "Call to Connection.hangup failed with exception", e);
             }
@@ -69,16 +77,16 @@ class TelephonyCallConnection {
     }
 
     private void updateState() {
-        if (mConnection == null || mCallServiceAdapter == null) {
+        if (mOriginalConnection == null || mCallServiceAdapter == null) {
             return;
         }
 
-        Call.State newState = mConnection.getState();
-        if (mOldState == newState) {
+        Call.State newState = mOriginalConnection.getState();
+        if (mState == newState) {
             return;
         }
 
-        mOldState = newState;
+        mState = newState;
         switch (newState) {
             case IDLE:
                 break;
@@ -88,15 +96,12 @@ class TelephonyCallConnection {
             case HOLDING:
                 break;
             case DIALING:
-                mCallServiceAdapter.setDialing(mCallId);
-                break;
             case ALERTING:
                 mCallServiceAdapter.setDialing(mCallId);
                 break;
             case INCOMING:
-                // Incoming calls not implemented.
-                break;
             case WAITING:
+                mCallServiceAdapter.setRinging(mCallId);
                 break;
             case DISCONNECTED:
                 mCallServiceAdapter.setDisconnected(mCallId);
@@ -105,17 +110,49 @@ class TelephonyCallConnection {
             case DISCONNECTING:
                 break;
         }
+
+        setAudioMode(Call.State.ACTIVE);
     }
 
     private void close() {
-        if (mConnection != null) {
-            Call call = mConnection.getCall();
+        if (mOriginalConnection != null) {
+            Call call = mOriginalConnection.getCall();
             if (call != null) {
                 call.getPhone().unregisterForPreciseCallStateChanged(mHandler);
             }
-            mConnection = null;
+            mOriginalConnection = null;
         }
-        BaseTelephonyCallService.onCallConnectionClosing(this);
+        CallRegistrar.unregister(mCallId);
+    }
+
+    /**
+     * Sets the audio mode according to the specified state of the call.
+     * TODO(santoscordon): This will not be necessary once Telecomm manages audio focus. This does
+     * not handle multiple calls well, specifically when there are multiple active call services
+     * within services/Telephony.
+     *
+     * @param state The state of the call.
+     */
+    private static void setAudioMode(Call.State state) {
+        Context context = PhoneGlobals.getInstance();
+        AudioManager audioManager =
+                (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
+
+        if (Call.State.ACTIVE == state) {
+            // Set the IN_CALL mode only when the call is active.
+            if (audioManager.getMode() != AudioManager.MODE_IN_CALL) {
+                audioManager.requestAudioFocusForCall(
+                        AudioManager.STREAM_VOICE_CALL, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
+                audioManager.setMode(AudioManager.MODE_IN_CALL);
+            }
+        } else {
+            // Non active calls go back to normal mode. This breaks down if there are multiple calls
+            // due to non-deterministic execution order across call services. But that will be fixed
+            // as soon as this moves to Telecomm where it is aware of all active calls.
+            if (audioManager.getMode() != AudioManager.MODE_NORMAL) {
+                audioManager.abandonAudioFocusForCall();
+            }
+        }
     }
 
     private class StateHandler extends Handler {

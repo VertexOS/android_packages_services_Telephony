@@ -27,7 +27,7 @@ import com.android.internal.telephony.PhoneFactory;
 /**
  * Call service that uses the GSM phone.
  */
-public class GsmCallService extends BaseTelephonyCallService {
+public class GsmCallService extends PstnCallService {
     private static final String TAG = GsmCallService.class.getSimpleName();
 
     static boolean shouldSelect(Context context, CallInfo callInfo) {
@@ -44,7 +44,7 @@ public class GsmCallService extends BaseTelephonyCallService {
 
     /** {@inheritDoc} */
     @Override
-    public void call(CallInfo callInfo) {
-        startCallWithPhone(CachedPhoneFactory.getGsmPhone(), callInfo);
+    protected Phone getPhone() {
+        return CachedPhoneFactory.getGsmPhone();
     }
 }
