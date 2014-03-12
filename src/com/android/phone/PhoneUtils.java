@@ -139,6 +139,10 @@ public class PhoneUtils {
         }
     }
 
+    /** USSD information used to aggregate all USSD messages */
+    private static AlertDialog sUssdDialog = null;
+    private static StringBuilder sUssdMsg = new StringBuilder();
+
     /**
      * Handler that tracks the connections and updates the value of the
      * Mute settings for each connection as needed.
@@ -1104,18 +1108,33 @@ public class PhoneUtils {
                 // displaying system alert dialog on the screen instead of
                 // using another activity to display the message.  This
                 // places the message at the forefront of the UI.
-                AlertDialog newDialog = new AlertDialog.Builder(context)
-                        .setMessage(text)
-                        .setPositiveButton(R.string.ok, null)
-                        .setCancelable(true)
-                        .create();
 
-                newDialog.getWindow().setType(
-                        WindowManager.LayoutParams.TYPE_SYSTEM_DIALOG);
-                newDialog.getWindow().addFlags(
-                        WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+                if (sUssdDialog == null) {
+                    sUssdDialog = new AlertDialog.Builder(context)
+                            .setPositiveButton(R.string.ok, null)
+                            .setCancelable(true)
+                            .setOnDismissListener(new DialogInterface.OnDismissListener() {
+                                @Override
+                                public void onDismiss(DialogInterface dialog) {
+                                    sUssdMsg.setLength(0);
+                                }
+                            })
+                            .create();
 
-                newDialog.show();
+                    sUssdDialog.getWindow().setType(
+                            WindowManager.LayoutParams.TYPE_SYSTEM_DIALOG);
+                    sUssdDialog.getWindow().addFlags(
+                            WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+                }
+                if (sUssdMsg.length() != 0) {
+                    sUssdMsg
+                            .insert(0, "\n")
+                            .insert(0, app.getResources().getString(R.string.ussd_dialog_sep))
+                            .insert(0, "\n");
+                }
+                sUssdMsg.insert(0, text);
+                sUssdDialog.setMessage(sUssdMsg.toString());
+                sUssdDialog.show();
             } else {
                 if (DBG) log("USSD code has requested user input. Constructing input dialog.");
 

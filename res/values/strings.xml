@@ -379,6 +379,10 @@
     <string name="roaming_reenable_message">You\'ve lost data connectivity because you left your home network with data roaming turned off.</string>
     <!-- Mobile network settings screen, dialog message when user selects the Data roaming check box -->
     <string name="roaming_warning">Allow data roaming? You may incur significant roaming charges!</string>
+
+    <!-- USSD aggregation dialog box: separator strings between messages (new-lines will be added before and after) -->
+    <string name="ussd_dialog_sep" translatable="false">----------</string>
+
     <string name="gsm_umts_options">GSM/UMTS Options</string>
     <string name="cdma_options">CDMA Options</string>
 
