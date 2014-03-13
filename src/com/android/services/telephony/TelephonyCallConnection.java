@@ -76,6 +76,32 @@ class TelephonyCallConnection {
         }
     }
 
+    void hold() {
+        if (Call.State.ACTIVE == mState) {
+            try {
+                // TODO: This doesn't handle multiple calls across call services yet
+                mOriginalConnection.getCall().getPhone().switchHoldingAndActive();
+            } catch (CallStateException e) {
+                Log.e(TAG, "Exception occurred while trying to put call on hold.", e);
+            }
+        } else {
+            Log.e(TAG, "Cannot put a call that is not currently active on hold.");
+        }
+    }
+
+    void unhold() {
+        if (Call.State.HOLDING == mState) {
+            try {
+                // TODO: This doesn't handle multiple calls across call services yet
+                mOriginalConnection.getCall().getPhone().switchHoldingAndActive();
+            } catch (CallStateException e) {
+                Log.e(TAG, "Exception occurred while trying to release call from hold.", e);
+            }
+        } else {
+            Log.e(TAG, "Cannot release a call that is not already on hold from hold.");
+        }
+    }
+
     private void updateState() {
         if (mOriginalConnection == null || mCallServiceAdapter == null) {
             return;
@@ -94,6 +120,7 @@ class TelephonyCallConnection {
                 mCallServiceAdapter.setActive(mCallId);
                 break;
             case HOLDING:
+                mCallServiceAdapter.setOnHold(mCallId);
                 break;
             case DIALING:
             case ALERTING:
