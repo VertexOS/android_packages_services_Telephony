@@ -17,7 +17,6 @@
 package com.android.services.telephony;
 
 import android.net.Uri;
-import android.os.Bundle;
 import android.telecomm.CallInfo;
 import android.telecomm.CallService;
 import android.telecomm.CallServiceAdapter;
@@ -58,6 +57,26 @@ public abstract class BaseTelephonyCallService extends CallService {
         TelephonyCallConnection callConnection = CallRegistrar.get(callId);
         if (callConnection != null) {
             callConnection.disconnect(false);
+        }
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void hold(String callId) {
+        Log.d(TAG, "Attempting to put call on hold - " + callId);
+        TelephonyCallConnection callConnection = CallRegistrar.get(callId);
+        if (callConnection != null) {
+            callConnection.hold();
+        }
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void unhold(String callId) {
+        Log.d(TAG, "Attempting to release call from hold - " + callId);
+        TelephonyCallConnection callConnection = CallRegistrar.get(callId);
+        if (callConnection != null) {
+            callConnection.unhold();
         }
     }
 
