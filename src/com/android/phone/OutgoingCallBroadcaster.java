@@ -466,7 +466,7 @@ public class OutgoingCallBroadcaster extends Activity
             launchedFromUid = -1;
             launchedFromPackage = null;
         }
-        if (appOps.noteOp(AppOpsManager.OP_CALL_PHONE, launchedFromUid, launchedFromPackage)
+        if (appOps.noteOpNoThrow(AppOpsManager.OP_CALL_PHONE, launchedFromUid, launchedFromPackage)
                 != AppOpsManager.MODE_ALLOWED) {
             Log.w(TAG, "Rejecting call from uid " + launchedFromUid + " package "
                     + launchedFromPackage);
