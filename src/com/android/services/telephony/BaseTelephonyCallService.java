@@ -103,11 +103,12 @@ public abstract class BaseTelephonyCallService extends CallService {
             return;
         }
 
-        Uri uri = Uri.parse(callInfo.getHandle());
-        String number = null;
-        if (uri != null) {
-            number = uri.getSchemeSpecificPart();
+        if (callInfo.getHandle() == null) {
+            mCallServiceAdapter.handleFailedOutgoingCall(callInfo.getId(), "Handle is null");
+            return;
         }
+
+        String number = callInfo.getHandle().getSchemeSpecificPart();
         if (TextUtils.isEmpty(number)) {
             mCallServiceAdapter.handleFailedOutgoingCall(callInfo.getId(),
                     "Unable to parse number");
