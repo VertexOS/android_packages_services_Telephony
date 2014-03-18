@@ -16,6 +16,7 @@
 
 package com.android.services.telephony;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.telecomm.CallInfo;
 import android.telecomm.CallState;
@@ -25,6 +26,7 @@ import com.android.internal.telephony.Call;
 import com.android.internal.telephony.CallStateException;
 import com.android.internal.telephony.Connection;
 import com.android.internal.telephony.Phone;
+import com.android.phone.Constants;
 
 /**
  * The parent class for PSTN-based call services. Handles shared functionality between all PSTN
@@ -67,8 +69,8 @@ public abstract class PstnCallService extends BaseTelephonyCallService {
                 CallRegistrar.register(callId, callConnection);
 
                 // Notify Telecomm of the incoming call.
-                CallInfo callInfo =
-                        new CallInfo(callId, CallState.RINGING, connection.getAddress());
+                Uri handle = Uri.fromParts(Constants.SCHEME_TEL, connection.getAddress(), null);
+                CallInfo callInfo = new CallInfo(callId, CallState.RINGING, handle);
                 mCallServiceAdapter.notifyIncomingCall(callInfo);
             }
         } else {
