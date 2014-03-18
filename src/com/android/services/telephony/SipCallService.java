@@ -46,7 +46,7 @@ public class SipCallService extends BaseTelephonyCallService {
     private static HashMap<String, SipPhone> sSipPhones = new HashMap<String, SipPhone>();
 
     static boolean shouldSelect(Context context, CallInfo callInfo) {
-        Uri uri = Uri.parse(callInfo.getHandle());
+        Uri uri = callInfo.getHandle();
         return shouldUseSipPhone(context, uri.getScheme(), uri.getSchemeSpecificPart());
     }
 
