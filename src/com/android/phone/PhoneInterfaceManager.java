@@ -277,17 +277,25 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
                 case CMD_SEND_ENVELOPE:
                     request = (MainThreadRequest) msg.obj;
                     onCompleted = obtainMessage(EVENT_SEND_ENVELOPE_DONE, request);
-                    UiccController.getInstance().getUiccCard().sendEnvelope(
+                    UiccController.getInstance().getUiccCard().sendEnvelopeWithStatus(
                             (String)request.argument, onCompleted);
                     break;
 
                 case EVENT_SEND_ENVELOPE_DONE:
                     ar = (AsyncResult) msg.obj;
                     request = (MainThreadRequest) ar.userObj;
-                    if (ar.exception == null) {
-                        request.result = (ar.result == null) ? "" : ar.result;
+                    if (ar.exception == null && ar.result != null) {
+                        request.result = ar.result;
                     } else {
-                        loge("sendEnvelope: Unknown exception " + ar.exception);
+                        request.result = new IccIoResult(0x6F, 0, (byte[])null);
+                        if (ar.result == null) {
+                            loge("sendEnvelopeWithStatus: Empty response");
+                        } else if (ar.exception instanceof CommandException) {
+                            loge("sendEnvelopeWithStatus: CommandException: " +
+                                    ar.exception);
+                        } else {
+                            loge("sendEnvelopeWithStatus: exception:" + ar.exception);
+                        }
                     }
                     synchronized (request) {
                         request.notifyAll();
@@ -1282,12 +1290,19 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     }
 
     @Override
-    public String sendEnvelope(String content) {
+    public String sendEnvelopeWithStatus(String content) {
         enforceSimCommunicationPermission();
 
-        String response = (String)sendRequest(CMD_SEND_ENVELOPE, content);
+        IccIoResult response = (IccIoResult)sendRequest(CMD_SEND_ENVELOPE, content);
+        if (response.payload == null) {
+          return "";
+        }
 
-        return response;
+        // Append the returned status code to the end of the response payload.
+        String s = Integer.toHexString(
+                (response.sw1 << 8) + response.sw2 + 0x10000).substring(1);
+        s = IccUtils.bytesToHexString(response.payload) + s;
+        return s;
     }
 
     /**
