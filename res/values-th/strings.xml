@@ -511,7 +511,7 @@
     <string name="sip_call_options_title" msgid="27433718808839672">"ใช้การโทรทางอินเทอร์เน็ต"</string>
     <string name="sip_call_options_wifi_only_title" msgid="145572394529090811">"ใช้การโทรทางอินเทอร์เน็ต (WiFi เท่านั้น)"</string>
     <string name="sip_call_options_entry_1" msgid="6556668894178520760">"สำหรับทุกสายเมื่อเครือข่ายข้อมูลใช้งานได้"</string>
-    <string name="sip_call_options_entry_2" msgid="6789764029719494361">"สำหรับการโทรทางอินเทอร์เน็ตเท่านั้น"</string>
+    <string name="sip_call_options_entry_2" msgid="6789764029719494361">"สำหรับโทรทางอินเทอร์เน็ตเท่านั้น"</string>
     <string name="sip_call_options_entry_3" msgid="7474809001402649185">"ถามทุกครั้งที่โทรออก"</string>
     <string name="sip_call_options_wifi_only_entry_1" msgid="7423523864471650069">"สำหรับการโทรออกทั้งหมด"</string>
     <string name="pick_outgoing_call_phone_type" msgid="5622916534828338675">"โทรออก"</string>
