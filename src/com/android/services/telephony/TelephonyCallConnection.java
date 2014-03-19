@@ -17,7 +17,6 @@
 package com.android.services.telephony;
 
 import android.content.Context;
-import android.media.AudioManager;
 import android.os.Handler;
 import android.os.Message;
 import android.telecomm.CallServiceAdapter;
@@ -137,8 +136,6 @@ class TelephonyCallConnection {
             case DISCONNECTING:
                 break;
         }
-
-        setAudioMode(Call.State.ACTIVE);
     }
 
     private void close() {
@@ -150,36 +147,6 @@ class TelephonyCallConnection {
             mOriginalConnection = null;
         }
         CallRegistrar.unregister(mCallId);
-    }
-
-    /**
-     * Sets the audio mode according to the specified state of the call.
-     * TODO(santoscordon): This will not be necessary once Telecomm manages audio focus. This does
-     * not handle multiple calls well, specifically when there are multiple active call services
-     * within services/Telephony.
-     *
-     * @param state The state of the call.
-     */
-    private static void setAudioMode(Call.State state) {
-        Context context = PhoneGlobals.getInstance();
-        AudioManager audioManager =
-                (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
-
-        if (Call.State.ACTIVE == state) {
-            // Set the IN_CALL mode only when the call is active.
-            if (audioManager.getMode() != AudioManager.MODE_IN_CALL) {
-                audioManager.requestAudioFocusForCall(
-                        AudioManager.STREAM_VOICE_CALL, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
-                audioManager.setMode(AudioManager.MODE_IN_CALL);
-            }
-        } else {
-            // Non active calls go back to normal mode. This breaks down if there are multiple calls
-            // due to non-deterministic execution order across call services. But that will be fixed
-            // as soon as this moves to Telecomm where it is aware of all active calls.
-            if (audioManager.getMode() != AudioManager.MODE_NORMAL) {
-                audioManager.abandonAudioFocusForCall();
-            }
-        }
     }
 
     private class StateHandler extends Handler {
