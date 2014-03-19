@@ -17,6 +17,7 @@
 package com.android.services.telephony;
 
 import android.net.Uri;
+import android.telecomm.CallAudioState;
 import android.telecomm.CallInfo;
 import android.telecomm.CallService;
 import android.telecomm.CallServiceAdapter;
@@ -77,6 +78,15 @@ public abstract class BaseTelephonyCallService extends CallService {
         TelephonyCallConnection callConnection = CallRegistrar.get(callId);
         if (callConnection != null) {
             callConnection.unhold();
+        }
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void onAudioStateChanged(String activeCallId, CallAudioState audioState) {
+        TelephonyCallConnection callConnection = CallRegistrar.get(activeCallId);
+        if (callConnection != null) {
+            callConnection.onAudioStateChanged(audioState);
         }
     }
 
