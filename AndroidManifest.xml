@@ -559,6 +559,11 @@
                 <action android:name="android.telecomm.CallServiceProvider" />
             </intent-filter>
         </service>
+        <service android:name="com.android.services.telephony.TelephonyCallServiceSelector">
+            <intent-filter>
+                <action android:name="android.telecomm.CallServiceSelector" />
+            </intent-filter>
+        </service>
         <service android:name="com.android.services.telephony.GsmCallService">
             <intent-filter>
                 <action android:name="android.telecomm.CallService" />
