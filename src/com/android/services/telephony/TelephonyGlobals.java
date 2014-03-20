@@ -63,12 +63,8 @@ public class TelephonyGlobals {
         TelephonyManager telephonyManager = (TelephonyManager) mContext.getSystemService(
                 Context.TELEPHONY_SERVICE);
 
-        // TODO(santoscordon): getPhoneType() eventually executes
-        // PhoneInterfaceManager.getActivePhoneType() which references the PhoneProxy that is
-        // created in PhoneGlobals.onCreate(). IOW, this only works right now because PhoneApp calls
-        // PhoneGlobals.onCreate() *before* calling TelephonyGlobals.onCreate(). We want to
-        // eventually move that setup code into this method.
-        int phoneType = telephonyManager.getPhoneType();
+        int networkType = PhoneFactory.calculatePreferredNetworkType(mContext);
+        int phoneType = TelephonyManager.getPhoneType(networkType);
 
         if (TelephonyManager.PHONE_TYPE_GSM == phoneType) {
             Log.d(TAG, "Phone type GSM found");
