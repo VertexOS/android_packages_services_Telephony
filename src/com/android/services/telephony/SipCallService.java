@@ -108,6 +108,18 @@ public class SipCallService extends BaseTelephonyCallService {
         // TODO(santoscordon): fill in.
     }
 
+    /** {@inheritDoc} */
+    @Override
+    public void playDtmfTone(String callId, char digit) {
+        // TODO(ihab): fill in
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void stopDtmfTone(String callId) {
+        // TODO(ihab): fill in
+    }
+
     /**
      * Asynchronously looks up the SIP profile to use for the given call.
      */

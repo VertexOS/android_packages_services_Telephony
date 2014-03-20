@@ -44,4 +44,16 @@ public class CdmaCallService extends PstnCallService {
     protected Phone getPhone() {
         return CachedPhoneFactory.getCdmaPhone();
     }
+
+    /** {@inheritDoc} */
+    @Override
+    public void playDtmfTone(String callId, char digit) {
+        // TODO(ihab)
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void stopDtmfTone(String callId) {
+        // TODO(ihab)
+    }
 }

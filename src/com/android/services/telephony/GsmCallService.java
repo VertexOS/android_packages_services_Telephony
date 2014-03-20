@@ -44,4 +44,16 @@ public class GsmCallService extends PstnCallService {
     protected Phone getPhone() {
         return CachedPhoneFactory.getGsmPhone();
     }
+
+    /** {@inheritDoc} */
+    @Override
+    public void playDtmfTone(String callId, char digit) {
+        // TODO(ihab)
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void stopDtmfTone(String callId) {
+        // TODO(ihab)
+    }
 }
