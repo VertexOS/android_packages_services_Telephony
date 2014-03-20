@@ -253,7 +253,7 @@ public class Ringer {
     private class VibratorThread extends Thread {
         public void run() {
             while (mContinueVibrating) {
-                mVibrator.vibrate(VIBRATE_LENGTH);
+                mVibrator.vibrate(VIBRATE_LENGTH, AudioManager.STREAM_RING);
                 SystemClock.sleep(VIBRATE_LENGTH + PAUSE_LENGTH);
             }
         }
