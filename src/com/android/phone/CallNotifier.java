@@ -1771,7 +1771,7 @@ public class CallNotifier extends Handler
             } else if (mIsEmergencyToneOn == EMERGENCY_TONE_VIBRATE) {
                 log("EmergencyTonePlayerVibrator.start(): emergency vibrate...");
                 if (mEmgVibrator != null) {
-                    mEmgVibrator.vibrate(mVibratePattern, 0);
+                    mEmgVibrator.vibrate(mVibratePattern, 0, AudioManager.STREAM_VOICE_CALL);
                     mCurrentEmergencyToneState = EMERGENCY_TONE_VIBRATE;
                 }
             }
