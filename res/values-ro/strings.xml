@@ -25,40 +25,19 @@
     <string name="private_num" msgid="6713286113000232309">"Număr privat"</string>
     <string name="payphone" msgid="1931775086311769314">"Telefon public"</string>
     <string name="onHold" msgid="9035493194749959955">"În aşteptare"</string>
-    <string name="callFailed_userBusy" msgid="8851106999809294904">"Linie ocupată"</string>
-    <string name="callFailed_congestion" msgid="8737761615702718375">"Reţea ocupată"</string>
-    <string name="callFailed_timedOut" msgid="7590961703135543346">"Fără răspuns, durata a expirat"</string>
-    <string name="callFailed_server_unreachable" msgid="2133506577423869729">"Server neaccesibil"</string>
-    <string name="callFailed_number_unreachable" msgid="7632566442515734778">"Numărul nu poate fi contactat"</string>
-    <string name="callFailed_invalid_credentials" msgid="8226835346196775378">"Nume de utilizator sau parolă incorecte"</string>
-    <string name="callFailed_out_of_network" msgid="8740943329772180507">"Apelat din afara reţelei"</string>
-    <string name="callFailed_server_error" msgid="5717915213586193217">"Eroare de server. Încercaţi din nou mai târziu."</string>
-    <string name="callFailed_noSignal" msgid="1889803273616031933">"Niciun semnal"</string>
-    <string name="callFailed_limitExceeded" msgid="4958065157970101491">"Limită ACM depăşită"</string>
-    <string name="callFailed_powerOff" msgid="2766035859391549713">"Radio oprit"</string>
-    <string name="callFailed_simError" msgid="4476360200030635828">"Nu există SIM sau eroare de SIM"</string>
-    <string name="callFailed_outOfService" msgid="4825791466557236225">"În afara ariei de acoperire"</string>
-    <string name="callFailed_fdn_only" msgid="2850204579765430641">"Apelurile trimise sunt restricţionate de FDN."</string>
-    <string name="callFailed_cb_enabled" msgid="3686963693629739680">"Nu puteţi efectua apeluri de ieşire în timp ce blocarea apelurilor este activă."</string>
-    <string name="callFailed_dsac_restricted" msgid="2180223622768522345">"Toate apelurile sunt restricţionate de controlul de acces."</string>
-    <string name="callFailed_dsac_restricted_emergency" msgid="4353654268813314466">"Apelurile de urgenţă sunt restricţionate de controlul de acces."</string>
-    <string name="callFailed_dsac_restricted_normal" msgid="2680774510252408620">"Apelurile normale sunt restricţionate de controlul de acces."</string>
-    <string name="callFailed_unobtainable_number" msgid="4736290912891155067">"Număr nevalid"</string>
-    <string name="confCall" msgid="1904840547188336828">"Teleconferinţă"</string>
-    <string name="call_lost" msgid="317670617901479594">"Apelul s-a pierdut."</string>
-    <string name="ok" msgid="3811371167865772377">"OK"</string>
     <string name="mmiStarted" msgid="6347869857061147003">"Cod MMI pornit"</string>
     <string name="ussdRunning" msgid="485588686340541690">"Se rulează codul USSD..."</string>
     <string name="mmiCancelled" msgid="2771923949751842276">"Cod MMI anulat"</string>
     <string name="cancel" msgid="5044513931633602634">"Anulaţi"</string>
     <string name="enter_input" msgid="1810529547726803893">"Mesajul USSD trebuie să aibă între <xliff:g id="MIN_LEN">%d</xliff:g> și <xliff:g id="MAX_LEN">%d</xliff:g> caractere. Încercați din nou."</string>
     <string name="manageConferenceLabel" msgid="4691922394301969053">"Gestionaţi teleconferinţa"</string>
+    <string name="ok" msgid="3811371167865772377">"OK"</string>
     <string name="audio_mode_speaker" msgid="27649582100085266">"Difuzor"</string>
     <string name="audio_mode_earpiece" msgid="4156527186373869107">"Casca dispozitivului"</string>
     <string name="audio_mode_wired_headset" msgid="1465350758489175975">"Cască cu fir"</string>
     <string name="audio_mode_bluetooth" msgid="3047641300848211128">"Bluetooth"</string>
-    <string name="wait_prompt_str" msgid="7601815427707856238">"Trimiteţi următoarele tonuri?"\n</string>
-    <string name="pause_prompt_str" msgid="1789964702154314806">"Se trimit tonuri"\n</string>
+    <string name="wait_prompt_str" msgid="7601815427707856238">"Trimiteţi următoarele tonuri?\n"</string>
+    <string name="pause_prompt_str" msgid="1789964702154314806">"Se trimit tonuri\n"</string>
     <string name="send_button" msgid="4106860097497818751">"Trimiteţi"</string>
     <string name="pause_prompt_yes" msgid="3564467212025151797">"Da"</string>
     <string name="pause_prompt_no" msgid="6686238803236884877">"Nu"</string>
@@ -136,9 +115,9 @@
     <item msgid="1108394741608734023">"Afişaţi numărul"</item>
   </string-array>
     <string name="vm_changed" msgid="380744030726254139">"Număr mesagerie vocală modificat."</string>
-    <string name="vm_change_failed" msgid="3352934863246208918">"Nu s-a putut schimba numărul de mesagerie vocală."\n"Contactaţi operatorul în cazul în care această problemă persistă."</string>
-    <string name="fw_change_failed" msgid="5298103228470214665">"Nu s-a putut schimba numărul de redirecţionare."\n"Contactaţi operatorul dvs. în cazul în care această problemă persistă."</string>
-    <string name="fw_get_in_vm_failed" msgid="8862896836093833973">"Nu s-au putut prelua şi salva setările actuale ale numărului de redirecţionare."\n"Doriţi să comutaţi oricum către un nou furnizor de servicii?"</string>
+    <string name="vm_change_failed" msgid="3352934863246208918">"Nu s-a putut schimba numărul de mesagerie vocală.\nContactaţi operatorul în cazul în care această problemă persistă."</string>
+    <string name="fw_change_failed" msgid="5298103228470214665">"Nu s-a putut schimba numărul de redirecţionare.\nContactaţi operatorul dvs. în cazul în care această problemă persistă."</string>
+    <string name="fw_get_in_vm_failed" msgid="8862896836093833973">"Nu s-au putut prelua şi salva setările actuale ale numărului de redirecţionare.\nDoriţi să comutaţi oricum către un nou furnizor de servicii?"</string>
     <string name="no_change" msgid="3186040086622435212">"Nicio schimbare efectuată."</string>
     <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"Alegeţi serviciul de mesagerie vocală"</string>
     <string name="voicemail_default" msgid="5902099213882352338">"Operatorul meu"</string>
@@ -157,9 +136,9 @@
     <string name="select_automatically" msgid="5628402124471810174">"Selectaţi în mod automat"</string>
     <string name="sum_select_automatically" msgid="5614890115123292400">"Selectaţi în mod automat reţeaua preferată"</string>
     <string name="register_automatically" msgid="6017849844573519637">"Înregistrare automată..."</string>
-    <string name="preferred_network_mode_title" msgid="8873246565334559308">"Mod reţea"</string>
+    <string name="preferred_network_mode_title" msgid="2336624679902659306">"Tipul de rețea preferat"</string>
     <string name="preferred_network_mode_summary" msgid="1434820673166126609">"Schimbaţi modul de operare a reţelei"</string>
-    <string name="preferred_network_mode_dialogtitle" msgid="8176355237105593793">"Mod de reţea preferat"</string>
+    <string name="preferred_network_mode_dialogtitle" msgid="4048082093347807230">"Tipul de rețea preferat"</string>
     <string name="preferred_network_mode_wcdma_perf_summary" msgid="8521677230113533809">"Mod de reţea preferat: de preferat WCDMA"</string>
     <string name="preferred_network_mode_gsm_only_summary" msgid="3352445413437453511">"Mod de reţea preferat: numai GSM"</string>
     <string name="preferred_network_mode_wcdma_only_summary" msgid="2836897236221063413">"Mod de reţea preferat: numai WCDMA"</string>
@@ -198,15 +177,15 @@
     <string name="roaming_warning" msgid="7820963598559553967">"Permiteţi roamingul de date? Puteţi acumula taxe considerabile pentru roaming!"</string>
     <string name="gsm_umts_options" msgid="6538311689850981686">"Opţiuni GSM/UMTS"</string>
     <string name="cdma_options" msgid="4016822858172249884">"Opţiuni CDMA"</string>
-    <string name="throttle_data_usage" msgid="3715677828160555808">"Rata de utilizare a datelor"</string>
+    <string name="throttle_data_usage" msgid="3715677828160555808">"Utilizarea datelor"</string>
     <string name="throttle_current_usage" msgid="8762280193043815361">"Datele utilizate în perioada curentă"</string>
     <string name="throttle_time_frame" msgid="1915198770363734685">"Perioada de utilizare a datelor"</string>
     <string name="throttle_rate" msgid="4710388992676803508">"Politica ratei de transfer a datelor"</string>
     <string name="throttle_help" msgid="243651091785169900">"Aflaţi mai multe"</string>
-    <string name="throttle_status_subtext" msgid="1657318943142085170">"<xliff:g id="USED_0">%1$s</xliff:g> (<xliff:g id="USED_1">%2$d</xliff:g>٪) din <xliff:g id="USED_2">%3$s</xliff:g> perioada maximă"\n"Următoarea perioadă începe în <xliff:g id="USED_3">%4$d</xliff:g> (de) zile (<xliff:g id="USED_4">%5$s</xliff:g>)"</string>
+    <string name="throttle_status_subtext" msgid="1657318943142085170">"<xliff:g id="USED_0">%1$s</xliff:g> (<xliff:g id="USED_1">%2$d</xliff:g>٪) din <xliff:g id="USED_2">%3$s</xliff:g> perioada maximă\nUrmătoarea perioadă începe în <xliff:g id="USED_3">%4$d</xliff:g> (de) zile (<xliff:g id="USED_4">%5$s</xliff:g>)"</string>
     <string name="throttle_data_usage_subtext" msgid="6029276011123694701">"<xliff:g id="USED_0">%1$s</xliff:g> (<xliff:g id="USED_1">%2$d</xliff:g>٪) din <xliff:g id="USED_2">%3$s</xliff:g> perioadă maximă"</string>
-    <string name="throttle_data_rate_reduced_subtext" msgid="7492763592720107737">"<xliff:g id="USED_0">%1$s</xliff:g> maximum depăşit"\n"Rata de transfer se reduce la <xliff:g id="USED_1">%2$d</xliff:g> Kb/s"</string>
-    <string name="throttle_time_frame_subtext" msgid="7732763021560399960">"<xliff:g id="USED_0">%1$d</xliff:g>٪ din ciclul trecut"\n"Perioada următoare începe în <xliff:g id="USED_1">%2$d</xliff:g> (de) zile (<xliff:g id="USED_2">%3$s</xliff:g>)"</string>
+    <string name="throttle_data_rate_reduced_subtext" msgid="7492763592720107737">"<xliff:g id="USED_0">%1$s</xliff:g> maximum depăşit\nRata de transfer se reduce la <xliff:g id="USED_1">%2$d</xliff:g> Kb/s"</string>
+    <string name="throttle_time_frame_subtext" msgid="7732763021560399960">"<xliff:g id="USED_0">%1$d</xliff:g>٪ din ciclul trecut\nPerioada următoare începe în <xliff:g id="USED_1">%2$d</xliff:g> (de) zile (<xliff:g id="USED_2">%3$s</xliff:g>)"</string>
     <string name="throttle_rate_subtext" msgid="2149102656120726855">"Rata de transfer a datelor se reduce la <xliff:g id="USED">%1$d</xliff:g> Kb/s, dacă limita de utilizare este depăşită."</string>
     <string name="throttle_help_subtext" msgid="5217706521499010816">"Mai multe informaţii despre politica de utilizare a datelor aplicată de operatorul dvs. de telefonie mobilă"</string>
     <string name="cell_broadcast_sms" msgid="5584192824053625842">"Transmisie celulară a mesajelor SMS"</string>
@@ -296,8 +275,9 @@
     <string name="enable_disable_multi_category" msgid="626771003122899280">"Categorii multiple"</string>
     <string name="multi_category_enable" msgid="1179299804641721768">"Categorii multiple activate"</string>
     <string name="multi_category_disable" msgid="880104702904139505">"Categorii multiple dezactivate"</string>
-    <string name="prefer_2g" msgid="8442550937280449639">"Utilizaţi doar reţele 2G"</string>
-    <string name="prefer_2g_summary" msgid="1976491403210690759">"Economisiţi bateria"</string>
+    <string name="network_lte" msgid="7702681952521375754">"LTE (recomandat)"</string>
+    <string name="network_4G" msgid="2723512640529983138">"4G (recomandat)"</string>
+    <string name="network_global" msgid="1323190488685355309">"Global"</string>
     <string name="cdma_system_select_title" msgid="5757657769327732833">"Selectaţi sistemul"</string>
     <string name="cdma_system_select_summary" msgid="60460043745797517">"Schimbaţi modul de roaming CDMA"</string>
     <string name="cdma_system_select_dialogtitle" msgid="6083355415165359075">"Selectaţi sistemul"</string>
@@ -318,6 +298,7 @@
   </string-array>
     <string name="cdma_activate_device" msgid="3793805892364814518">"Activaţi dispozitivul"</string>
     <string name="cdma_lte_data_service" msgid="4255018217292548962">"Configuraţi serviciul de date"</string>
+    <string name="carrier_settings_title" msgid="9028166176523012300">"Setări operator"</string>
     <string name="fdn" msgid="7878832555095183202">"Numere cu apelări restricţionate"</string>
     <string name="manage_fdn_list" msgid="8777755791892122369">"Listă FDN"</string>
     <string name="fdn_activation" msgid="2156479741307463576">"Activare FDN"</string>
@@ -356,6 +337,7 @@
     <string name="pin2_invalid" msgid="5470854099230755944">"FDN nu a fost actualizat, deoarece aţi introdus un cod PIN incorect."</string>
     <string name="fdn_invalid_number" msgid="1494755047900009147">"FDN nu a fost actualizat, deoarece numărul nu poate depăşi 20 de cifre."</string>
     <string name="pin2_or_fdn_invalid" msgid="6025144083384701197">"Numărul FDN nu a fost actualizat. Codul PIN2 a fost incorect sau numărul de telefon a fost respins."</string>
+    <string name="fdn_failed" msgid="540018079008319747">"Operațiunea FDN nu a reușit."</string>
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"Se citeşte de pe cardul SIM..."</string>
     <string name="simContacts_empty" msgid="5270660846489561932">"Nicio persoană în agenda de pe cardul dvs. SIM."</string>
     <string name="simContacts_title" msgid="1861472842524839921">"Selectaţi persoanele din agendă care se importă"</string>
@@ -376,7 +358,7 @@
     <string name="disable_pin_ok" msgid="5596999379593924850">"Codul PIN al cardului SIM este dezactivat."</string>
     <string name="pin_failed" msgid="2298841192582192277">"Codul PIN introdus a fost incorect."</string>
     <string name="pin_changed" msgid="4365538014588501049">"Codul PIN pentru SIM a fost modificat."</string>
-    <string name="puk_requested" msgid="3898394204193202803">"Parolă incorectă, SIM blocat! Se solicită PUK2."</string>
+    <string name="puk_requested" msgid="1796577128488773946">"Parolă incorectă, codul PIN a fost blocat! Se solicită codul PUK."</string>
     <string name="enter_pin2_text" msgid="8339444124477720345">"PIN2"</string>
     <string name="oldPin2Label" msgid="8559146795026261502">"Codul PIN2 vechi"</string>
     <string name="newPin2Label" msgid="4573956902204349054">"Cod PIN2 nou"</string>
@@ -388,8 +370,11 @@
     <string name="invalidPuk2" msgid="1290977391033057871">"Introduceţi un cod PUK2 format din 8 cifre."</string>
     <string name="pin2_changed" msgid="1639666438836544393">"Codul PIN2 a fost schimbat."</string>
     <string name="label_puk2_code" msgid="302845876240219560">"Introduceţi codul PUK2"</string>
-    <string name="fdn_enable_puk2_requested" msgid="4262894949634885773">"Parolă incorectă. Schimbaţi codul PIN2 şi încercaţi din nou."</string>
+    <string name="fdn_enable_puk2_requested" msgid="3674058967950559397">"Parolă incorectă, codul PIN2 a fost blocat. Schimbați codul PIN2 și încercați din nou!"</string>
     <string name="puk2_requested" msgid="8909278021238716877">"Parolă incorectă, SIM blocat. Se solicită codul PUK2."</string>
+    <string name="puk2_blocked" msgid="3150263853077280049">"Codul PUK2 este blocat definitiv."</string>
+    <string name="pin2_attempts" msgid="7937503107162525324">\n"Au mai rămas <xliff:g id="NUMBER">%d</xliff:g> încercări."</string>
+    <string name="pin2_unblocked" msgid="2903147240919055381">"Codul PIN2 a fost deblocat!"</string>
     <string name="doneButton" msgid="2859593360997984240">"Terminat"</string>
     <string name="caller_manage_header" msgid="3231519674734638786">"Teleconferinţă <xliff:g id="CONF_CALL_TIME">%s</xliff:g>"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"Număr mesagerie vocală"</string>
@@ -470,7 +455,9 @@
   </string-array>
     <string name="network_message" msgid="4483886461245213802">"Mesaj de reţea"</string>
     <string name="ota_title_activate" msgid="8616918561356194398">"Activaţi-vă telefonul"</string>
-    <string name="ota_touch_activate" msgid="6553212803262586244">"Pentru a vă activa serviciul de telefonie, trebuie să efectuaţi un apel special. "\n\n"După ce apăsaţi „Activaţi”, ascultaţi instrucţiunile furnizate pentru a vă activa telefonul."</string>
+    <string name="ota_touch_activate" msgid="6553212803262586244">"Pentru a vă activa serviciul de telefonie, trebuie să efectuaţi un apel special. \n\nDupă ce apăsaţi „Activaţi”, ascultaţi instrucţiunile furnizate pentru a vă activa telefonul."</string>
+    <string name="ota_hfa_activation_title" msgid="2234246934160473981">"Se activează..."</string>
+    <string name="ota_hfa_activation_dialog_message" msgid="8092479227918463415">"Serviciul de date mobile este în curs de activare pe telefonul dvs.\n\nAcest proces poate dura până la 5 minute."</string>
     <string name="ota_skip_activation_dialog_title" msgid="2943366608272261306">"Omiteţi activarea?"</string>
     <string name="ota_skip_activation_dialog_message" msgid="2440770373498870550">"Dacă omiteţi activarea, nu puteţi efectua apeluri şi nici nu vă puteţi conecta la o reţea de date mobilă (deşi vă puteţi conecta la reţele Wi-Fi). Până veţi activa telefonul, vi se va solicita să-l activaţi de fiecare dată când îl porniţi."</string>
     <string name="ota_skip_activation_dialog_skip_label" msgid="3458532775091563208">"Omiteţi"</string>
@@ -482,7 +469,7 @@
     <string name="ota_progress" msgid="3420314892609254729">"Aşteptaţi, telefonul dvs. se programează."</string>
     <string name="ota_failure" msgid="4311299546379674378">"Programarea nu a reuşit"</string>
     <string name="ota_successful" msgid="1880780692887077407">"Telefonul dvs. este acum activat. Poate să dureze până la 15 minute până la pornirea serviciului."</string>
-    <string name="ota_unsuccessful" msgid="8072141612635635357">"Telefonul dvs. nu s-a activat. "\n"Vă recomandăm să găsiţi o zonă cu acoperire mai bună (lângă fereastră sau afară). "\n\n"Pentru mai multe opţiuni, încercaţi din nou sau apelaţi serviciul pentru clienţi."</string>
+    <string name="ota_unsuccessful" msgid="8072141612635635357">"Telefonul dvs. nu s-a activat. \nVă recomandăm să găsiţi o zonă cu acoperire mai bună (lângă fereastră sau afară). \n\nPentru mai multe opţiuni, încercaţi din nou sau apelaţi serviciul pentru clienţi."</string>
     <string name="ota_spc_failure" msgid="3909983542575030796">"ERORI DE DEPĂȘIRE SPC"</string>
     <string name="ota_call_end" msgid="4537279738134612388">"Înapoi"</string>
     <string name="ota_try_again" msgid="7685477206465902290">"Încercaţi din nou"</string>
@@ -598,7 +585,7 @@
     <string name="respond_via_sms_setting_title_2" msgid="6104662227299493906">"Editaţi răspunsurile rapide"</string>
     <string name="respond_via_sms_setting_summary" msgid="9150281183930613065"></string>
     <string name="respond_via_sms_edittext_dialog_title" msgid="20379890418289778">"Răspuns rapid"</string>
-    <string name="respond_via_sms_menu_reset_default_activity" msgid="1461742052902053466">"Resetați aplic. prestabilită"</string>
+    <string name="respond_via_sms_menu_reset_default_activity" msgid="4029277930090150223">"Restabiliți valorile implicite"</string>
     <string name="respond_via_sms_confirmation_format" msgid="7229149977515784269">"Mesajul a fost trimis la <xliff:g id="PHONE_NUMBER">%s</xliff:g>."</string>
     <string name="description_image_button_one" msgid="5502718871331943463">"unu"</string>
     <string name="description_image_button_two" msgid="4903738528222924522">"doi"</string>
