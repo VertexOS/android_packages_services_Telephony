@@ -840,6 +840,33 @@ public class PhoneUtils {
         }
     }
 
+    static void swap() {
+        final PhoneGlobals mApp = PhoneGlobals.getInstance();
+        if (!okToSwapCalls(mApp.mCM)) {
+            // TODO: throw an error instead?
+            return;
+        }
+
+        // Swap the fg and bg calls.
+        // In the future we may provide some way for user to choose among
+        // multiple background calls, for now, always act on the first background call.
+        PhoneUtils.switchHoldingAndActive(mApp.mCM.getFirstActiveBgCall());
+
+        // If we have a valid BluetoothPhoneService then since CDMA network or
+        // Telephony FW does not send us information on which caller got swapped
+        // we need to update the second call active state in BluetoothPhoneService internally
+        if (mApp.mCM.getBgPhone().getPhoneType() == PhoneConstants.PHONE_TYPE_CDMA) {
+            final IBluetoothHeadsetPhone btPhone = mApp.getBluetoothPhoneService();
+            if (btPhone != null) {
+                try {
+                    btPhone.cdmaSwapSecondCallState();
+                } catch (RemoteException e) {
+                    Log.e(LOG_TAG, Log.getStackTraceString(new Throwable()));
+                }
+            }
+        }
+    }
+
     /**
      * @param heldCall is the background call want to be swapped
      */
