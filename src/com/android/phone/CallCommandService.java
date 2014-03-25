@@ -168,30 +168,10 @@ class CallCommandService extends ICallCommandService.Stub {
 
     @Override
     public void swap() {
-        if (!PhoneUtils.okToSwapCalls(mCallManager)) {
-            // TODO: throw an error instead?
-            return;
-        }
-
-        // Swap the fg and bg calls.
-        // In the future we may provides some way for user to choose among
-        // multiple background calls, for now, always act on the first background calll.
-        PhoneUtils.switchHoldingAndActive(mCallManager.getFirstActiveBgCall());
-
-        final PhoneGlobals mApp = PhoneGlobals.getInstance();
-
-        // If we have a valid BluetoothPhoneService then since CDMA network or
-        // Telephony FW does not send us information on which caller got swapped
-        // we need to update the second call active state in BluetoothPhoneService internally
-        if (mCallManager.getBgPhone().getPhoneType() == PhoneConstants.PHONE_TYPE_CDMA) {
-            final IBluetoothHeadsetPhone btPhone = mApp.getBluetoothPhoneService();
-            if (btPhone != null) {
-                try {
-                    btPhone.cdmaSwapSecondCallState();
-                } catch (RemoteException e) {
-                    Log.e(TAG, Log.getStackTraceString(new Throwable()));
-                }
-            }
+        try {
+            PhoneUtils.swap();
+        } catch (Exception e) {
+            Log.e(TAG, "Error during swap().", e);
         }
     }
 

@@ -489,7 +489,8 @@ public class PhoneGlobals extends ContextWrapper implements WiredHeadsetListener
             callHandlerServiceProxy = new CallHandlerServiceProxy(this, callModeler,
                     callCommandService, audioRouter);
 
-            phoneMgr = PhoneInterfaceManager.init(this, phone, callHandlerServiceProxy);
+            phoneMgr = PhoneInterfaceManager.init(this, phone, callHandlerServiceProxy, callModeler,
+                    dtmfTonePlayer);
 
             // Create the CallNotifer singleton, which handles
             // asynchronous events from the telephony layer (like
