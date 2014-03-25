@@ -314,7 +314,7 @@
     <string name="sum_fdn_manage_list" msgid="8431088265332628316">"Správa telefónneho zoznamu"</string>
     <string name="voice_privacy" msgid="3776841382844614716">"Ochrana osobných údajov hlasovej pošty"</string>
     <string name="voice_privacy_summary" msgid="3159383389833516214">"Povoliť režim vylepšenej ochrany osobných údajov"</string>
-    <string name="tty_mode_option_title" msgid="9033098925144434669">"Režim TTY"</string>
+    <string name="tty_mode_option_title" msgid="9033098925144434669">"Režim textového telefónu"</string>
     <string name="tty_mode_option_summary" msgid="1073835131534808732">"Nastaviť režim TTY"</string>
     <string name="auto_retry_mode_title" msgid="4073265511427813322">"Automaticky skúsiť znova"</string>
     <string name="auto_retry_mode_summary" msgid="4973886004067532288">"Povoliť režim Automaticky skúsiť znova."</string>
