@@ -19,6 +19,7 @@ package com.android.services.telephony;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
+import android.telecomm.CallAudioState;
 import android.telecomm.CallServiceAdapter;
 import android.util.Log;
 
@@ -98,6 +99,17 @@ class TelephonyCallConnection {
             }
         } else {
             Log.e(TAG, "Cannot release a call that is not already on hold from hold.");
+        }
+    }
+
+    void onAudioStateChanged(CallAudioState audioState) {
+        // TODO: update TTY mode.
+        if (mOriginalConnection != null) {
+            Call call = mOriginalConnection.getCall();
+            if (call != null) {
+                call.getPhone().setEchoSuppressionEnabled(
+                        audioState.route == CallAudioState.ROUTE_SPEAKER);
+            }
         }
     }
 
