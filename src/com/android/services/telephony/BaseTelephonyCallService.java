@@ -110,6 +110,11 @@ public abstract class BaseTelephonyCallService extends CallService {
             return;
         }
 
+        if (connection == null) {
+            mCallServiceAdapter.handleFailedOutgoingCall(callId, "Call to phone.dial failed");
+            return;
+        }
+
         TelephonyCallConnection callConnection =
                 new TelephonyCallConnection(mCallServiceAdapter, callId, connection);
         CallRegistrar.register(callId, callConnection);
