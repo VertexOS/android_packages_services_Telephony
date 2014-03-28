@@ -29,6 +29,7 @@ import android.os.Message;
 import android.os.PowerManager;
 import android.os.UserHandle;
 import android.provider.Settings;
+import android.telephony.DisconnectCause;
 import android.telephony.ServiceState;
 import android.util.Log;
 
@@ -234,11 +235,12 @@ public class EmergencyCallHelper extends Handler {
      */
     private void onDisconnect(Message msg) {
         Connection conn = (Connection) ((AsyncResult) msg.obj).result;
-        Connection.DisconnectCause cause = conn.getDisconnectCause();
+        int cause = conn.getDisconnectCause();
         if (DBG) log("onDisconnect: connection '" + conn
-                     + "', addr '" + conn.getAddress() + "', cause = " + cause);
+                     + "', addr '" + conn.getAddress()
+                     + "', cause = " + DisconnectCause.toString(cause));
 
-        if (cause == Connection.DisconnectCause.OUT_OF_SERVICE) {
+        if (cause == DisconnectCause.OUT_OF_SERVICE) {
             // Wait a bit more and try again (or just bail out totally if
             // we've had too many failures.)
             if (DBG) log("- onDisconnect: OUT_OF_SERVICE, need to retry...");
