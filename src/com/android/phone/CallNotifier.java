@@ -46,6 +46,7 @@ import android.os.SystemVibrator;
 import android.os.Vibrator;
 import android.provider.CallLog.Calls;
 import android.provider.Settings;
+import android.telephony.DisconnectCause;
 import android.telephony.PhoneNumberUtils;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
@@ -899,7 +900,7 @@ public class CallNotifier extends Handler
         mVoicePrivacyState = false;
         Connection c = (Connection) r.result;
         if (c != null) {
-            log("onDisconnect: cause = " + c.getDisconnectCause()
+            log("onDisconnect: cause = " + DisconnectCause.toString(c.getDisconnectCause())
                   + ", incoming = " + c.isIncoming()
                   + ", date = " + c.getCreateTime());
         } else {
@@ -974,34 +975,34 @@ public class CallNotifier extends Handler
 
         // The "Busy" or "Congestion" tone is the highest priority:
         if (c != null) {
-            Connection.DisconnectCause cause = c.getDisconnectCause();
-            if (cause == Connection.DisconnectCause.BUSY) {
+            int cause = c.getDisconnectCause();
+            if (cause == DisconnectCause.BUSY) {
                 if (DBG) log("- need to play BUSY tone!");
                 toneToPlay = InCallTonePlayer.TONE_BUSY;
-            } else if (cause == Connection.DisconnectCause.CONGESTION) {
+            } else if (cause == DisconnectCause.CONGESTION) {
                 if (DBG) log("- need to play CONGESTION tone!");
                 toneToPlay = InCallTonePlayer.TONE_CONGESTION;
-            } else if (((cause == Connection.DisconnectCause.NORMAL)
-                    || (cause == Connection.DisconnectCause.LOCAL))
+            } else if (((cause == DisconnectCause.NORMAL)
+                    || (cause == DisconnectCause.LOCAL))
                     && (mApplication.isOtaCallInActiveState())) {
                 if (DBG) log("- need to play OTA_CALL_END tone!");
                 toneToPlay = InCallTonePlayer.TONE_OTA_CALL_END;
-            } else if (cause == Connection.DisconnectCause.CDMA_REORDER) {
+            } else if (cause == DisconnectCause.CDMA_REORDER) {
                 if (DBG) log("- need to play CDMA_REORDER tone!");
                 toneToPlay = InCallTonePlayer.TONE_REORDER;
-            } else if (cause == Connection.DisconnectCause.CDMA_INTERCEPT) {
+            } else if (cause == DisconnectCause.CDMA_INTERCEPT) {
                 if (DBG) log("- need to play CDMA_INTERCEPT tone!");
                 toneToPlay = InCallTonePlayer.TONE_INTERCEPT;
-            } else if (cause == Connection.DisconnectCause.CDMA_DROP) {
+            } else if (cause == DisconnectCause.CDMA_DROP) {
                 if (DBG) log("- need to play CDMA_DROP tone!");
                 toneToPlay = InCallTonePlayer.TONE_CDMA_DROP;
-            } else if (cause == Connection.DisconnectCause.OUT_OF_SERVICE) {
+            } else if (cause == DisconnectCause.OUT_OF_SERVICE) {
                 if (DBG) log("- need to play OUT OF SERVICE tone!");
                 toneToPlay = InCallTonePlayer.TONE_OUT_OF_SERVICE;
-            } else if (cause == Connection.DisconnectCause.UNOBTAINABLE_NUMBER) {
+            } else if (cause == DisconnectCause.UNOBTAINABLE_NUMBER) {
                 if (DBG) log("- need to play TONE_UNOBTAINABLE_NUMBER tone!");
                 toneToPlay = InCallTonePlayer.TONE_UNOBTAINABLE_NUMBER;
-            } else if (cause == Connection.DisconnectCause.ERROR_UNSPECIFIED) {
+            } else if (cause == DisconnectCause.ERROR_UNSPECIFIED) {
                 if (DBG) log("- DisconnectCause is ERROR_UNSPECIFIED: play TONE_CALL_ENDED!");
                 toneToPlay = InCallTonePlayer.TONE_CALL_ENDED;
             }
@@ -1017,9 +1018,9 @@ public class CallNotifier extends Handler
         if ((toneToPlay == InCallTonePlayer.TONE_NONE)
             && (mCM.getState() == PhoneConstants.State.IDLE)
             && (c != null)) {
-            Connection.DisconnectCause cause = c.getDisconnectCause();
-            if ((cause == Connection.DisconnectCause.NORMAL)  // remote hangup
-                || (cause == Connection.DisconnectCause.LOCAL)) {  // local hangup
+            int cause = c.getDisconnectCause();
+            if ((cause == DisconnectCause.NORMAL)  // remote hangup
+                || (cause == DisconnectCause.LOCAL)) {  // local hangup
                 if (VDBG) log("- need to play CALL_ENDED tone!");
                 toneToPlay = InCallTonePlayer.TONE_CALL_ENDED;
                 mIsCdmaRedialCall = false;
@@ -1055,9 +1056,9 @@ public class CallNotifier extends Handler
             }
 
             final long date = c.getCreateTime();
-            final Connection.DisconnectCause cause = c.getDisconnectCause();
+            final int cause = c.getDisconnectCause();
             final boolean missedCall = c.isIncoming() &&
-                    (cause == Connection.DisconnectCause.INCOMING_MISSED);
+                    (cause == DisconnectCause.INCOMING_MISSED);
             if (missedCall) {
                 // Show the "Missed call" notification.
                 // (Note we *don't* do this if this was an incoming call that
@@ -1086,10 +1087,10 @@ public class CallNotifier extends Handler
             if (((mPreviousCdmaCallState == Call.State.DIALING)
                     || (mPreviousCdmaCallState == Call.State.ALERTING))
                     && (!isEmergencyNumber)
-                    && (cause != Connection.DisconnectCause.INCOMING_MISSED )
-                    && (cause != Connection.DisconnectCause.NORMAL)
-                    && (cause != Connection.DisconnectCause.LOCAL)
-                    && (cause != Connection.DisconnectCause.INCOMING_REJECTED)) {
+                    && (cause != DisconnectCause.INCOMING_MISSED )
+                    && (cause != DisconnectCause.NORMAL)
+                    && (cause != DisconnectCause.LOCAL)
+                    && (cause != DisconnectCause.INCOMING_REJECTED)) {
                 if (!mIsCdmaRedialCall) {
                     if (autoretrySetting == InCallScreen.AUTO_RETRY_ON) {
                         // TODO: (Moto): The contact reference data may need to be stored and use
