@@ -68,8 +68,14 @@ public abstract class PstnCallService extends BaseTelephonyCallService {
                         new TelephonyCallConnection(mCallServiceAdapter, callId, connection);
                 CallRegistrar.register(callId, callConnection);
 
+                // Address can be null for blocked calls.
+                String address = connection.getAddress();
+                if (address == null) {
+                    address = "";
+                }
+
                 // Notify Telecomm of the incoming call.
-                Uri handle = Uri.fromParts(Constants.SCHEME_TEL, connection.getAddress(), null);
+                Uri handle = Uri.fromParts(Constants.SCHEME_TEL, address, null);
                 CallInfo callInfo = new CallInfo(callId, CallState.RINGING, handle);
                 mCallServiceAdapter.notifyIncomingCall(callInfo);
             }
