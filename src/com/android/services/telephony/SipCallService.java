@@ -26,7 +26,6 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.telecomm.CallInfo;
 import android.telephony.PhoneNumberUtils;
-import android.util.Log;
 
 import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneFactory;
@@ -42,7 +41,6 @@ import java.util.HashMap;
  * Call service that uses the SIP phone.
  */
 public class SipCallService extends BaseTelephonyCallService {
-    private static final String TAG = SipCallService.class.getSimpleName();
     private static HashMap<String, SipPhone> sSipPhones = new HashMap<String, SipPhone>();
 
     static boolean shouldSelect(Context context, CallInfo callInfo) {
@@ -153,7 +151,7 @@ public class SipCallService extends BaseTelephonyCallService {
                     phone = (SipPhone) PhoneFactory.makeSipPhone(sipUri);
                     sSipPhones.put(sipUri, phone);
                 } catch (SipException e) {
-                    Log.e(TAG, "Failed to make a SIP phone", e);
+                    Log.e(this, e, "Failed to make a SIP phone");
                 }
             }
         }

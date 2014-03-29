@@ -18,7 +18,6 @@ package com.android.services.telephony;
 
 import android.content.Context;
 import android.telephony.TelephonyManager;
-import android.util.Log;
 
 import com.android.internal.telephony.PhoneFactory;
 
@@ -32,8 +31,6 @@ import com.android.internal.telephony.PhoneFactory;
  * {@link #onCreate}.
  */
 public class TelephonyGlobals {
-    private static final String TAG = TelephonyGlobals.class.getSimpleName();
-
     /** The application context. */
     private final Context mContext;
 
@@ -67,12 +64,12 @@ public class TelephonyGlobals {
         int phoneType = TelephonyManager.getPhoneType(networkType);
 
         if (TelephonyManager.PHONE_TYPE_GSM == phoneType) {
-            Log.d(TAG, "Phone type GSM found");
+            Log.d(this, "Phone type GSM found");
             mGsmIncomingCallNotifier = new IncomingCallNotifier(
                     GsmCallService.class, CachedPhoneFactory.getGsmPhone());
 
         } else if (TelephonyManager.PHONE_TYPE_CDMA == phoneType) {
-            Log.d(TAG, "Phone type CDMA found");
+            Log.d(this, "Phone type CDMA found");
             mCdmaIncomingCallNotifier = new IncomingCallNotifier(
                     CdmaCallService.class, CachedPhoneFactory.getCdmaPhone());
         }

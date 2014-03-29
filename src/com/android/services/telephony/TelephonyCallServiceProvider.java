@@ -20,7 +20,6 @@ import android.os.IBinder;
 import android.telecomm.CallServiceDescriptor;
 import android.telecomm.CallServiceLookupResponse;
 import android.telecomm.CallServiceProvider;
-import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -28,8 +27,6 @@ import java.util.ArrayList;
  * This class is used to get a list of all CallServices.
  */
 public class TelephonyCallServiceProvider extends CallServiceProvider {
-    private static final String TAG = "TeleCallServiceProvider";
-
     /** {@inheritDoc} */
     @Override
     public void lookupCallServices(CallServiceLookupResponse response) {

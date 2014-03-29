@@ -19,7 +19,6 @@ package com.android.services.telephony;
 import android.content.Context;
 import android.telecomm.CallInfo;
 import android.telephony.TelephonyManager;
-import android.util.Log;
 
 import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneFactory;
@@ -28,8 +27,6 @@ import com.android.internal.telephony.PhoneFactory;
  * Call service that uses the CDMA phone.
  */
 public class CdmaCallService extends PstnCallService {
-    private static final String TAG = CdmaCallService.class.getSimpleName();
-
     static boolean shouldSelect(Context context, CallInfo callInfo) {
         TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(
                 Context.TELEPHONY_SERVICE);

@@ -18,9 +18,6 @@ package com.android.services.telephony;
 
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Maps;
-
-import android.util.Log;
-
 import com.android.internal.telephony.Connection;
 
 import java.util.Collection;
@@ -47,7 +44,7 @@ final class CallRegistrar {
         Preconditions.checkNotNull(callConnection);
 
         if (sCallConnections.containsKey(callId)) {
-            Log.wtf(TAG, "Reregistering the call " + callId);
+            Log.wtf(TAG, "Reregistering the call: %s", callId);
         } else {
             sCallConnections.put(callId, callConnection);
         }

@@ -20,7 +20,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.telecomm.CallInfo;
 import android.telecomm.CallState;
-import android.util.Log;
 
 import com.android.internal.telephony.Call;
 import com.android.internal.telephony.CallStateException;
@@ -33,9 +32,6 @@ import com.android.phone.Constants;
  * call services.
  */
 public abstract class PstnCallService extends BaseTelephonyCallService {
-    private static final String TAG = PstnCallService.class.getSimpleName();
-    private static final boolean DBG = Log.isLoggable(TAG, Log.DEBUG);
-
     /** {@inheritDoc} */
     @Override
     public final void call(CallInfo callInfo) {
@@ -50,9 +46,7 @@ public abstract class PstnCallService extends BaseTelephonyCallService {
      */
     @Override
     public final void setIncomingCallId(String callId, Bundle extras) {
-        if (DBG) {
-            Log.d(TAG, "setIncomingCallId: " + callId);
-        }
+        Log.d(this, "setIncomingCallId: %s", callId);
         Phone phone = getPhone();
         Call call = getPhone().getRingingCall();
 
@@ -61,7 +55,7 @@ public abstract class PstnCallService extends BaseTelephonyCallService {
             Connection connection = call.getEarliestConnection();
 
             if (CallRegistrar.isConnectionRegistered(connection)) {
-                Log.e(TAG, "Cannot set incoming call ID, ringing connection already registered.");
+                Log.w(this, "Cannot set incoming call ID, ringing connection already registered.");
             } else {
                 // Create and register a new call connection.
                 TelephonyCallConnection callConnection =
@@ -74,7 +68,7 @@ public abstract class PstnCallService extends BaseTelephonyCallService {
                 mCallServiceAdapter.notifyIncomingCall(callInfo);
             }
         } else {
-            Log.e(TAG, "Found no ringing call, call state: " + call.getState());
+            Log.w(this, "Found no ringing call, call state: %s", call.getState());
         }
     }
 
@@ -84,12 +78,12 @@ public abstract class PstnCallService extends BaseTelephonyCallService {
         // TODO(santoscordon): Tons of hairy logic is missing here around multiple active calls on
         // CDMA devices. See {@link CallManager.acceptCall}.
 
-        Log.i(TAG, "answer: " + callId);
+        Log.i(this, "answer: %s", callId);
         if (isValidRingingCall(callId)) {
             try {
                 getPhone().acceptCall();
             } catch (CallStateException e) {
-                Log.e(TAG, "Failed to accept call " + callId, e);
+                Log.e(this, e, "Failed to accept call: %s", callId);
             }
         }
     }
@@ -97,12 +91,12 @@ public abstract class PstnCallService extends BaseTelephonyCallService {
     /** {@inheritDoc} */
     @Override
     public void reject(String callId) {
-        Log.i(TAG, "reject: " + callId);
+        Log.i(this, "reject: %s", callId);
         if (isValidRingingCall(callId)) {
             try {
                 getPhone().rejectCall();
             } catch (CallStateException e) {
-                Log.e(TAG, "Failed to reject call " + callId, e);
+                Log.e(this, e, "Failed to reject call: %s", callId);
             }
         }
     }
@@ -123,9 +117,7 @@ public abstract class PstnCallService extends BaseTelephonyCallService {
         TelephonyCallConnection callConnection = CallRegistrar.get(callId);
 
         if (callConnection == null) {
-            if (DBG) {
-                Log.d(TAG, "Unknown call ID while testing for a ringing call.");
-            }
+            Log.d(this, "Unknown call ID while testing for a ringing call.");
         } else {
             Phone phone = getPhone();
             Call ringingCall = phone.getRingingCall();
@@ -137,10 +129,10 @@ public abstract class PstnCallService extends BaseTelephonyCallService {
                     // The ringing connection is the same one for this call. We have a match!
                     return true;
                 } else {
-                    Log.w(TAG, "A ringing connection exists, but it is not the same connection.");
+                    Log.w(this, "A ringing connection exists, but it is not the same connection.");
                 }
             } else {
-                Log.i(TAG, "There is no longer a ringing call.");
+                Log.i(this, "There is no longer a ringing call.");
             }
         }
 

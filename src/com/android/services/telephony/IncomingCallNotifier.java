@@ -26,7 +26,6 @@ import android.os.Message;
 import android.telecomm.CallService;
 import android.telecomm.CallServiceDescriptor;
 import android.telecomm.TelecommConstants;
-import android.util.Log;
 
 import com.android.internal.telephony.Call;
 import com.android.internal.telephony.Connection;
@@ -37,10 +36,6 @@ import com.android.internal.telephony.Phone;
  * occurence. One instance of these exists for each of the telephony-based call services.
  */
 final class IncomingCallNotifier {
-
-    private static final String TAG = IncomingCallNotifier.class.getSimpleName();
-    private static final boolean DBG = Log.isLoggable(TAG, Log.DEBUG);
-
     /** New ringing connection event code. */
     private static final int EVENT_NEW_RINGING_CONNECTION = 100;
 
@@ -88,10 +83,7 @@ final class IncomingCallNotifier {
      * @param asyncResult The result object from the new ringing event.
      */
     private void handleNewRingingConnection(AsyncResult asyncResult) {
-        if (DBG) {
-            Log.d(TAG, "handleNewRingingConnection");
-        }
-
+        Log.d(this, "handleNewRingingConnection");
         Connection connection = (Connection) asyncResult.result;
         if (connection != null) {
             Call call = connection.getCall();
@@ -117,10 +109,7 @@ final class IncomingCallNotifier {
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtra(TelecommConstants.EXTRA_CALL_SERVICE_DESCRIPTOR, builder.build());
 
-        if (DBG) {
-            Log.d(TAG, "Sending incoming call intent: " + intent);
-        }
-
+        Log.d(this, "Sending incoming call intent: %s", intent);
         context.startActivity(intent);
     }
 }

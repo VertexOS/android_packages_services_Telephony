@@ -21,7 +21,6 @@ import android.os.Handler;
 import android.os.Message;
 import android.telecomm.CallAudioState;
 import android.telecomm.CallServiceAdapter;
-import android.util.Log;
 
 import com.android.internal.telephony.Call;
 import com.android.internal.telephony.CallStateException;
@@ -33,7 +32,6 @@ import com.android.phone.PhoneGlobals;
  * CallServiceAdapter.
  */
 class TelephonyCallConnection {
-    private static final String TAG = TelephonyCallConnection.class.getSimpleName();
     private static final int EVENT_PRECISE_CALL_STATE_CHANGED = 1;
 
     private final String mCallId;
@@ -71,7 +69,7 @@ class TelephonyCallConnection {
             try {
                 mOriginalConnection.hangup();
             } catch (CallStateException e) {
-                Log.e(TAG, "Call to Connection.hangup failed with exception", e);
+                Log.e(this, e, "Call to Connection.hangup failed with exception");
             }
         }
     }
@@ -82,10 +80,10 @@ class TelephonyCallConnection {
                 // TODO: This doesn't handle multiple calls across call services yet
                 mOriginalConnection.getCall().getPhone().switchHoldingAndActive();
             } catch (CallStateException e) {
-                Log.e(TAG, "Exception occurred while trying to put call on hold.", e);
+                Log.e(this, e, "Exception occurred while trying to put call on hold.");
             }
         } else {
-            Log.e(TAG, "Cannot put a call that is not currently active on hold.");
+            Log.w(this, "Cannot put a call that is not currently active on hold.");
         }
     }
 
@@ -95,10 +93,10 @@ class TelephonyCallConnection {
                 // TODO: This doesn't handle multiple calls across call services yet
                 mOriginalConnection.getCall().getPhone().switchHoldingAndActive();
             } catch (CallStateException e) {
-                Log.e(TAG, "Exception occurred while trying to release call from hold.", e);
+                Log.e(this, e, "Exception occurred while trying to release call from hold.");
             }
         } else {
-            Log.e(TAG, "Cannot release a call that is not already on hold from hold.");
+            Log.w(this, "Cannot release a call that is not already on hold from hold.");
         }
     }
 

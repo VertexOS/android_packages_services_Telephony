@@ -22,7 +22,6 @@ import android.telecomm.CallInfo;
 import android.telecomm.CallService;
 import android.telecomm.CallServiceAdapter;
 import android.text.TextUtils;
-import android.util.Log;
 
 import com.android.internal.telephony.CallStateException;
 import com.android.internal.telephony.Connection;
@@ -33,8 +32,6 @@ import com.android.internal.telephony.Phone;
  * CDMA, etc...) to use.
  */
 public abstract class BaseTelephonyCallService extends CallService {
-    private static final String TAG = "BaseTeleCallService";
-
     protected CallServiceAdapter mCallServiceAdapter;
 
     /** {@inheritDoc} */
@@ -64,7 +61,7 @@ public abstract class BaseTelephonyCallService extends CallService {
     /** {@inheritDoc} */
     @Override
     public void hold(String callId) {
-        Log.d(TAG, "Attempting to put call on hold - " + callId);
+        Log.d(this, "Attempting to put call on hold: %s", callId);
         TelephonyCallConnection callConnection = CallRegistrar.get(callId);
         if (callConnection != null) {
             callConnection.hold();
@@ -74,7 +71,7 @@ public abstract class BaseTelephonyCallService extends CallService {
     /** {@inheritDoc} */
     @Override
     public void unhold(String callId) {
-        Log.d(TAG, "Attempting to release call from hold - " + callId);
+        Log.d(this, "Attempting to release call from hold: %s", callId);
         TelephonyCallConnection callConnection = CallRegistrar.get(callId);
         if (callConnection != null) {
             callConnection.unhold();
@@ -115,7 +112,7 @@ public abstract class BaseTelephonyCallService extends CallService {
         try {
             connection = phone.dial(number);
         } catch (CallStateException e) {
-            Log.e(TAG, "Call to Phone.dial failed with exception", e);
+            Log.e(this, e, "Call to Phone.dial failed with exception");
             mCallServiceAdapter.handleFailedOutgoingCall(callId, e.getMessage());
             return;
         }
