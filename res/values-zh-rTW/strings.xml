@@ -177,7 +177,7 @@
     <string name="roaming_warning" msgid="7820963598559553967">"要允許漫遊服務嗎？您可能會需要支付龐大漫遊費用！"</string>
     <string name="gsm_umts_options" msgid="6538311689850981686">"GSM/UMTS 選項"</string>
     <string name="cdma_options" msgid="4016822858172249884">"CDMA 選項"</string>
-    <string name="throttle_data_usage" msgid="3715677828160555808">"資料用量"</string>
+    <string name="throttle_data_usage" msgid="3715677828160555808">"數據用量"</string>
     <string name="throttle_current_usage" msgid="8762280193043815361">"目前週期已使用的資料量"</string>
     <string name="throttle_time_frame" msgid="1915198770363734685">"資料使用量週期"</string>
     <string name="throttle_rate" msgid="4710388992676803508">"資料傳輸速率政策"</string>
