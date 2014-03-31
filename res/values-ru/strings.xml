@@ -173,7 +173,7 @@
     <string name="roaming" msgid="8871412572928323707">"Интернет-роуминг"</string>
     <string name="roaming_enable" msgid="7331106985174381987">"Подключаться к службам передачи данных в роуминге"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"Подключаться к службам передачи данных в роуминге"</string>
-    <string name="roaming_reenable_message" msgid="8913735676127858115">"Передача данных прекращена, потому что телефон находится за пределами домашней сети, а интернет-роуминг выключен."</string>
+    <string name="roaming_reenable_message" msgid="8913735676127858115">"Мобильный Интернет в роуминге отключен. Вы можете включить интернет-роуминг в настройках."</string>
     <string name="roaming_warning" msgid="7820963598559553967">"Разрешить интернет-роуминг? Возможны высокие расходы за использование роуминга."</string>
     <string name="gsm_umts_options" msgid="6538311689850981686">"Параметры GSM/UMTS"</string>
     <string name="cdma_options" msgid="4016822858172249884">"Параметры CDMA"</string>
