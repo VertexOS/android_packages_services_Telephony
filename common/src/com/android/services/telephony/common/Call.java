@@ -53,7 +53,6 @@ public final class Call implements Parcelable {
         public static final int DISCONNECTING = 8;  /* A call is being ended. */
         public static final int DISCONNECTED = 9;   /* State after a call disconnects */
         public static final int CONFERENCED = 10;   /* Call part of a conference call */
-        public static final int RINGING = 11;       /* Outgoing call is ringing */
 
         public static boolean isConnected(int state) {
             switch(state) {
