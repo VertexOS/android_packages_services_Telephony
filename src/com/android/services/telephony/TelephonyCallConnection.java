@@ -16,7 +16,6 @@
 
 package com.android.services.telephony;
 
-import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
 import android.telecomm.CallAudioState;
@@ -25,7 +24,6 @@ import android.telecomm.CallServiceAdapter;
 import com.android.internal.telephony.Call;
 import com.android.internal.telephony.CallStateException;
 import com.android.internal.telephony.Connection;
-import com.android.phone.PhoneGlobals;
 
 /**
  * Manages a single phone call. Listens to the call's state changes and updates the
@@ -140,7 +138,8 @@ class TelephonyCallConnection {
                 mCallServiceAdapter.setRinging(mCallId);
                 break;
             case DISCONNECTED:
-                mCallServiceAdapter.setDisconnected(mCallId);
+                mCallServiceAdapter.setDisconnected(
+                        mCallId, mOriginalConnection.getDisconnectCause(), null);
                 close();
                 break;
             case DISCONNECTING:
