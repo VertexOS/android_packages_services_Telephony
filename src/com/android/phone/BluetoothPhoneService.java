@@ -758,6 +758,10 @@ public class BluetoothPhoneService extends Service {
                     }
                     return true;
                 } else if (phoneType == PhoneConstants.PHONE_TYPE_GSM) {
+                    if (ringingCall.isRinging() && (mNumHeld > 0 && mNumActive == 0)) {
+                       if (VDBG) log("CHLD:1 Answer the Call");
+                       return PhoneUtils.answerCall(ringingCall);
+                    }
                     // Hangup active call, answer held call
                     return PhoneUtils.answerAndEndActive(PhoneGlobals.getInstance().mCM, ringingCall);
                 } else {
@@ -790,7 +794,11 @@ public class BluetoothPhoneService extends Service {
                     Log.e(TAG, "CDMA fail to do hold active and accept held");
                     return false;
                 } else if (phoneType == PhoneConstants.PHONE_TYPE_GSM) {
-                    PhoneUtils.switchHoldingAndActive(backgroundCall);
+                    if (ringingCall.isRinging() && (mNumHeld > 0 && mNumActive == 0)) {
+                       PhoneUtils.answerCall(ringingCall);
+                    } else {
+                       PhoneUtils.switchHoldingAndActive(backgroundCall);
+                    }
                     return true;
                 } else {
                     Log.e(TAG, "Unexpected phone type: " + phoneType);
