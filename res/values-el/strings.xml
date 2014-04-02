@@ -136,9 +136,9 @@
     <string name="select_automatically" msgid="5628402124471810174">"Αυτόματη επιλογή"</string>
     <string name="sum_select_automatically" msgid="5614890115123292400">"Αυτόματη επιλογή προτιμώμενου δικτύου"</string>
     <string name="register_automatically" msgid="6017849844573519637">"Αυτόματη εγγραφή..."</string>
-    <string name="preferred_network_mode_title" msgid="8873246565334559308">"Λειτουργία δικτύου"</string>
+    <string name="preferred_network_mode_title" msgid="2336624679902659306">"Προτιμώμενος τύπος δικτύου"</string>
     <string name="preferred_network_mode_summary" msgid="1434820673166126609">"Αλλαγή κατάστασης λειτουργίας δικτύου"</string>
-    <string name="preferred_network_mode_dialogtitle" msgid="8176355237105593793">"Προτιμώμενη λειτουργία δικτύου"</string>
+    <string name="preferred_network_mode_dialogtitle" msgid="4048082093347807230">"Προτιμώμενος τύπος δικτύου"</string>
     <string name="preferred_network_mode_wcdma_perf_summary" msgid="8521677230113533809">"Προτιμώμενη λειτουργία δικτύου: προτιμώμενο WCDMA"</string>
     <string name="preferred_network_mode_gsm_only_summary" msgid="3352445413437453511">"Προτιμώμενη λειτουργία δικτύου: μόνο GSM"</string>
     <string name="preferred_network_mode_wcdma_only_summary" msgid="2836897236221063413">"Προτιμώμενη λειτουργία δικτύου: μόνο WCDMA"</string>
@@ -275,8 +275,9 @@
     <string name="enable_disable_multi_category" msgid="626771003122899280">"Πολλές κατηγορίες"</string>
     <string name="multi_category_enable" msgid="1179299804641721768">"Ενεργοποιήθηκε η προβολή πολλών κατηγοριών"</string>
     <string name="multi_category_disable" msgid="880104702904139505">"Απενεργοποιήθηκε η προβολή πολλών κατηγοριών"</string>
-    <string name="prefer_2g" msgid="8442550937280449639">"Χρήση μόνο δικτύων 2G"</string>
-    <string name="prefer_2g_summary" msgid="1976491403210690759">"Εξοικονόμηση μπαταρίας"</string>
+    <string name="network_lte" msgid="7702681952521375754">"LTE (συνιστάται)"</string>
+    <string name="network_4G" msgid="2723512640529983138">"4G (συνιστάται)"</string>
+    <string name="network_global" msgid="1323190488685355309">"Παγκοσμίως"</string>
     <string name="cdma_system_select_title" msgid="5757657769327732833">"Επιλογή συστήματος"</string>
     <string name="cdma_system_select_summary" msgid="60460043745797517">"Αλλαγή της λειτουργίας περιαγωγής CDMA"</string>
     <string name="cdma_system_select_dialogtitle" msgid="6083355415165359075">"Επιλογή συστήματος"</string>
@@ -297,6 +298,7 @@
   </string-array>
     <string name="cdma_activate_device" msgid="3793805892364814518">"Ενεργοποίηση συσκευής"</string>
     <string name="cdma_lte_data_service" msgid="4255018217292548962">"Ρύθμιση υπηρεσίας δεδομένων"</string>
+    <string name="carrier_settings_title" msgid="9028166176523012300">"Ρυθμ. εταιρ. κιν. τηλεφ."</string>
     <string name="fdn" msgid="7878832555095183202">"Αριθμοί κλήσης καθορισμένων αριθμών"</string>
     <string name="manage_fdn_list" msgid="8777755791892122369">"Λίστα FDN"</string>
     <string name="fdn_activation" msgid="2156479741307463576">"Ενεργοποίηση FDN"</string>
@@ -335,6 +337,7 @@
     <string name="pin2_invalid" msgid="5470854099230755944">"Το FDN δεν ενημερώθηκε, επειδή πληκτρολογήσατε εσφαλμένο PIN."</string>
     <string name="fdn_invalid_number" msgid="1494755047900009147">"Το FDN δεν ενημερώθηκε διότι ο αριθμός δεν μπορεί να ξεπερνάει τα 20 ψηφία."</string>
     <string name="pin2_or_fdn_invalid" msgid="6025144083384701197">"Δεν έγινε ενημέρωση του FDN. Το PIN2 ήταν λανθασμένο ή ο αριθμός του τηλεφώνου απορρίφθηκε."</string>
+    <string name="fdn_failed" msgid="540018079008319747">"Αποτυχία λειτουργίας FDN."</string>
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"Ανάγνωση από κάρτα SIM…"</string>
     <string name="simContacts_empty" msgid="5270660846489561932">"Δεν υπάρχουν επαφές στην κάρτα SIM."</string>
     <string name="simContacts_title" msgid="1861472842524839921">"Επιλέξτε επαφές για εισαγωγή"</string>
@@ -355,7 +358,7 @@
     <string name="disable_pin_ok" msgid="5596999379593924850">"Το PIN της κάρτας SIM απενεργοποιήθηκε."</string>
     <string name="pin_failed" msgid="2298841192582192277">"Ο αριθμός PIN που πληκτρολογήσατε ήταν λανθασμένος."</string>
     <string name="pin_changed" msgid="4365538014588501049">"Ο αριθμός PIN της κάρτας SIM άλλαξε επιτυχώς."</string>
-    <string name="puk_requested" msgid="3898394204193202803">"Λανθασμένος κωδικός πρόσβασης, η κάρτα SIM κλειδώθηκε! Ζητήθηκε κωδικός PUK2."</string>
+    <string name="puk_requested" msgid="1796577128488773946">"Εσφαλμένος κωδικός πρόσβασης. Ο κωδικός PIN έχει μπλοκαριστεί! Απαιτείται η εισαγωγή του κωδικού PUK."</string>
     <string name="enter_pin2_text" msgid="8339444124477720345">"Αριθμός PIN2"</string>
     <string name="oldPin2Label" msgid="8559146795026261502">"Παλιός αριθμός PIN2"</string>
     <string name="newPin2Label" msgid="4573956902204349054">"Νέος αριθμός PIN2"</string>
@@ -367,8 +370,11 @@
     <string name="invalidPuk2" msgid="1290977391033057871">"Πληκτρολογήστε έναν αριθμό PUK2 που αποτελείται από 8 αριθμούς."</string>
     <string name="pin2_changed" msgid="1639666438836544393">"Η αλλαγή του αριθμού PIN2 ήταν επιτυχημένη."</string>
     <string name="label_puk2_code" msgid="302845876240219560">"Πληκτρολογήστε τον κώδικα PUK2"</string>
-    <string name="fdn_enable_puk2_requested" msgid="4262894949634885773">"Ο κωδικός πρόσβασης είναι λανθασμένος. Αλλάξτε τον αριθμό PIN2 και δοκιμάστε ξανά!"</string>
+    <string name="fdn_enable_puk2_requested" msgid="3674058967950559397">"Εσφαλμένος κωδικός πρόσβασης. Ο κωδικός PIN2 έχει μπλοκαριστεί. Αλλάξτε κωδικό PIN2 και προσπαθήστε ξανά!"</string>
     <string name="puk2_requested" msgid="8909278021238716877">"Λανθασμένος κωδικός πρόσβασης, η κάρτα SIM κλειδώθηκε. Ζητήθηκε κωδικός PUK2."</string>
+    <string name="puk2_blocked" msgid="3150263853077280049">"Ο κωδικός PUK2 έχει μπλοκαριστεί οριστικά."</string>
+    <string name="pin2_attempts" msgid="7937503107162525324">\n"Απομένουν <xliff:g id="NUMBER">%d</xliff:g> προσπάθειες."</string>
+    <string name="pin2_unblocked" msgid="2903147240919055381">"Απεμπλοκή PIN2!"</string>
     <string name="doneButton" msgid="2859593360997984240">"Τέλος"</string>
     <string name="caller_manage_header" msgid="3231519674734638786">"Κλήση συνδιάσκεψης <xliff:g id="CONF_CALL_TIME">%s</xliff:g>"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"Αριθμός αυτόματου τηλεφωνητή"</string>

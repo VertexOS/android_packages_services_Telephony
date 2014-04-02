@@ -136,9 +136,9 @@
     <string name="select_automatically" msgid="5628402124471810174">"Pilih secara automatik"</string>
     <string name="sum_select_automatically" msgid="5614890115123292400">"Pilih rangkaian keutamaan secara automatik"</string>
     <string name="register_automatically" msgid="6017849844573519637">"Pendaftaran automatik..."</string>
-    <string name="preferred_network_mode_title" msgid="8873246565334559308">"Mod Rangkaian"</string>
+    <string name="preferred_network_mode_title" msgid="2336624679902659306">"Jenis rangkaian pilihan"</string>
     <string name="preferred_network_mode_summary" msgid="1434820673166126609">"Tukar mod pengendalian rangkaian"</string>
-    <string name="preferred_network_mode_dialogtitle" msgid="8176355237105593793">"Mod rangkaian diutamakan"</string>
+    <string name="preferred_network_mode_dialogtitle" msgid="4048082093347807230">"Jenis rangkaian pilihan"</string>
     <string name="preferred_network_mode_wcdma_perf_summary" msgid="8521677230113533809">"Mod rangkaian pilihan: WCDMA diutamakan"</string>
     <string name="preferred_network_mode_gsm_only_summary" msgid="3352445413437453511">"Mod rangkaian pilihan: GSM sahaja"</string>
     <string name="preferred_network_mode_wcdma_only_summary" msgid="2836897236221063413">"Mod rangkaian pilihan: WCDMA sahaja"</string>
@@ -275,8 +275,9 @@
     <string name="enable_disable_multi_category" msgid="626771003122899280">"Berbilang kategori"</string>
     <string name="multi_category_enable" msgid="1179299804641721768">"Berbilang kategori didayakan"</string>
     <string name="multi_category_disable" msgid="880104702904139505">"Berbilang kategori dilumpuhkan"</string>
-    <string name="prefer_2g" msgid="8442550937280449639">"Gunakan rangkaian 2G sahaja"</string>
-    <string name="prefer_2g_summary" msgid="1976491403210690759">"Menjimatkan bateri"</string>
+    <string name="network_lte" msgid="7702681952521375754">"LTE (disyorkan)"</string>
+    <string name="network_4G" msgid="2723512640529983138">"4G (disyorkan)"</string>
+    <string name="network_global" msgid="1323190488685355309">"Global"</string>
     <string name="cdma_system_select_title" msgid="5757657769327732833">"Pilihan sistem"</string>
     <string name="cdma_system_select_summary" msgid="60460043745797517">"Tukar mod perayauan CDMA"</string>
     <string name="cdma_system_select_dialogtitle" msgid="6083355415165359075">"Pilihan sistem"</string>
@@ -297,6 +298,7 @@
   </string-array>
     <string name="cdma_activate_device" msgid="3793805892364814518">"Aktifkan peranti"</string>
     <string name="cdma_lte_data_service" msgid="4255018217292548962">"Penyediaan perkhidmatan data"</string>
+    <string name="carrier_settings_title" msgid="9028166176523012300">"Tetapan pembawa"</string>
     <string name="fdn" msgid="7878832555095183202">"Nombor Dailan Tetap"</string>
     <string name="manage_fdn_list" msgid="8777755791892122369">"Senarai FDN"</string>
     <string name="fdn_activation" msgid="2156479741307463576">"Pengaktifan FDN"</string>
@@ -335,6 +337,7 @@
     <string name="pin2_invalid" msgid="5470854099230755944">"FDN tidak dikemaskini kerana anda telah menaip PIN yang salah."</string>
     <string name="fdn_invalid_number" msgid="1494755047900009147">"FDN tidak dikemas kini kerana nombor tidak boleh melebihi 20 digit."</string>
     <string name="pin2_or_fdn_invalid" msgid="6025144083384701197">"FDN tidak dikemaskini. PIN2 salah atau nombor telefon telah ditolak."</string>
+    <string name="fdn_failed" msgid="540018079008319747">"Operasi FDN gagal."</string>
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"Membaca dari kad SIM..."</string>
     <string name="simContacts_empty" msgid="5270660846489561932">"Tiada kenalan pada kad SIM anda."</string>
     <string name="simContacts_title" msgid="1861472842524839921">"Pilih kenalan untuk diimport"</string>
@@ -355,7 +358,7 @@
     <string name="disable_pin_ok" msgid="5596999379593924850">"PIN SIM dilumpuhkan."</string>
     <string name="pin_failed" msgid="2298841192582192277">"PIN yang anda taipkan adalah salah."</string>
     <string name="pin_changed" msgid="4365538014588501049">"PIN SIM berjaya ditukar."</string>
-    <string name="puk_requested" msgid="3898394204193202803">"Kata laluan salah, SIM dikunci! PUK2 diminta."</string>
+    <string name="puk_requested" msgid="1796577128488773946">"Kata laluan tidak betul, PIN Disekat! PUK diminta."</string>
     <string name="enter_pin2_text" msgid="8339444124477720345">"PIN2"</string>
     <string name="oldPin2Label" msgid="8559146795026261502">"PIN2 lama"</string>
     <string name="newPin2Label" msgid="4573956902204349054">"PIN2 baru"</string>
@@ -367,8 +370,11 @@
     <string name="invalidPuk2" msgid="1290977391033057871">"Taipkan PUK2 yang mengandungi 8 nombor."</string>
     <string name="pin2_changed" msgid="1639666438836544393">"PIN2 berjaya ditukar."</string>
     <string name="label_puk2_code" msgid="302845876240219560">"Taipkan kod PUK2"</string>
-    <string name="fdn_enable_puk2_requested" msgid="4262894949634885773">"Kata laluan tidak betul. Tukar PIN2 dan cuba lagi."</string>
+    <string name="fdn_enable_puk2_requested" msgid="3674058967950559397">"Kata laluan tidak betul, PIN2 Disekat. Sila tukar PIN2 dan cuba lagi!"</string>
     <string name="puk2_requested" msgid="8909278021238716877">"Kata laluan salah, SIM dikunci. PUK2 diminta."</string>
+    <string name="puk2_blocked" msgid="3150263853077280049">"PUK2 disekat secara kekal."</string>
+    <string name="pin2_attempts" msgid="7937503107162525324">\n"Masih ada <xliff:g id="NUMBER">%d</xliff:g> percubaan lagi."</string>
+    <string name="pin2_unblocked" msgid="2903147240919055381">"PIN2 Dinyahsekat!"</string>
     <string name="doneButton" msgid="2859593360997984240">"Selesai"</string>
     <string name="caller_manage_header" msgid="3231519674734638786">"Panggilan sidang <xliff:g id="CONF_CALL_TIME">%s</xliff:g>"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"Nombor mel suara"</string>

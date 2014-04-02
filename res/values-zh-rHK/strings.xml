@@ -136,9 +136,9 @@
     <string name="select_automatically" msgid="5628402124471810174">"自動選擇"</string>
     <string name="sum_select_automatically" msgid="5614890115123292400">"自動選擇優先選用網絡"</string>
     <string name="register_automatically" msgid="6017849844573519637">"自動註冊..."</string>
-    <string name="preferred_network_mode_title" msgid="8873246565334559308">"網絡模式"</string>
+    <string name="preferred_network_mode_title" msgid="2336624679902659306">"偏好的網絡類型"</string>
     <string name="preferred_network_mode_summary" msgid="1434820673166126609">"更改網絡操作模式"</string>
-    <string name="preferred_network_mode_dialogtitle" msgid="8176355237105593793">"慣用網絡模式"</string>
+    <string name="preferred_network_mode_dialogtitle" msgid="4048082093347807230">"偏好的網絡類型"</string>
     <string name="preferred_network_mode_wcdma_perf_summary" msgid="8521677230113533809">"慣用網絡模式：偏好 WCDMA"</string>
     <string name="preferred_network_mode_gsm_only_summary" msgid="3352445413437453511">"慣用網絡模式：僅限 GSM"</string>
     <string name="preferred_network_mode_wcdma_only_summary" msgid="2836897236221063413">"慣用網絡模式：僅限 WCDMA"</string>
@@ -281,8 +281,9 @@
     <string name="enable_disable_multi_category" msgid="626771003122899280">"多類別資訊"</string>
     <string name="multi_category_enable" msgid="1179299804641721768">"已啟用多類別資訊"</string>
     <string name="multi_category_disable" msgid="880104702904139505">"多類別資訊已停用"</string>
-    <string name="prefer_2g" msgid="8442550937280449639">"僅使用 2G 網絡"</string>
-    <string name="prefer_2g_summary" msgid="1976491403210690759">"節省電力"</string>
+    <string name="network_lte" msgid="7702681952521375754">"LTE (建議)"</string>
+    <string name="network_4G" msgid="2723512640529983138">"4G (建議)"</string>
+    <string name="network_global" msgid="1323190488685355309">"通用"</string>
     <string name="cdma_system_select_title" msgid="5757657769327732833">"選取系統"</string>
     <string name="cdma_system_select_summary" msgid="60460043745797517">"更改 CDMA 漫遊模式"</string>
     <string name="cdma_system_select_dialogtitle" msgid="6083355415165359075">"選取系統"</string>
@@ -303,6 +304,7 @@
   </string-array>
     <string name="cdma_activate_device" msgid="3793805892364814518">"啟動裝置"</string>
     <string name="cdma_lte_data_service" msgid="4255018217292548962">"設定數據傳輸服務"</string>
+    <string name="carrier_settings_title" msgid="9028166176523012300">"流動網絡供應商設定"</string>
     <string name="fdn" msgid="7878832555095183202">"固定撥號號碼"</string>
     <string name="manage_fdn_list" msgid="8777755791892122369">"FDN 清單"</string>
     <string name="fdn_activation" msgid="2156479741307463576">"FDN 啟用"</string>
@@ -341,6 +343,7 @@
     <string name="pin2_invalid" msgid="5470854099230755944">"您所輸入的 PIN 碼不正確，FDN 未更新。"</string>
     <string name="fdn_invalid_number" msgid="1494755047900009147">"號碼超過 20 位數上限，FDN 未更新。"</string>
     <string name="pin2_or_fdn_invalid" msgid="6025144083384701197">"FDN 無法更新。PIN2 碼不正確或電話號碼被拒。"</string>
+    <string name="fdn_failed" msgid="540018079008319747">"FDN 操作失敗。"</string>
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"正在從 SIM 卡讀取..."</string>
     <string name="simContacts_empty" msgid="5270660846489561932">"SIM 卡中沒有聯絡人。"</string>
     <string name="simContacts_title" msgid="1861472842524839921">"選取要匯入的聯絡人"</string>
@@ -361,7 +364,7 @@
     <string name="disable_pin_ok" msgid="5596999379593924850">"已停用 SIM 卡 PIN 碼。"</string>
     <string name="pin_failed" msgid="2298841192582192277">"您所輸入的 PIN 碼不正確。"</string>
     <string name="pin_changed" msgid="4365538014588501049">"已成功更改 SIM 卡 PIN 碼。"</string>
-    <string name="puk_requested" msgid="3898394204193202803">"密碼不正確，SIM 已鎖定！需要輸入 PUK2。"</string>
+    <string name="puk_requested" msgid="1796577128488773946">"密碼不正確，PIN 碼已被封鎖。請提供 PUK 碼。"</string>
     <string name="enter_pin2_text" msgid="8339444124477720345">"PIN2"</string>
     <string name="oldPin2Label" msgid="8559146795026261502">"舊 PIN2"</string>
     <string name="newPin2Label" msgid="4573956902204349054">"新增 PIN2"</string>
@@ -373,8 +376,11 @@
     <string name="invalidPuk2" msgid="1290977391033057871">"請輸入 8 位數的 PUK2。"</string>
     <string name="pin2_changed" msgid="1639666438836544393">"已成功更改 PIN2 碼。"</string>
     <string name="label_puk2_code" msgid="302845876240219560">"輸入 PUK2 碼"</string>
-    <string name="fdn_enable_puk2_requested" msgid="4262894949634885773">"密碼不正確，請更改 PIN2 後再重試。"</string>
+    <string name="fdn_enable_puk2_requested" msgid="3674058967950559397">"密碼不正確，PIN2 碼已被封鎖。請變更 PIN2 碼後再重試！"</string>
     <string name="puk2_requested" msgid="8909278021238716877">"密碼不正確，SIM 卡已鎖定，需要輸入 PUK2 碼。"</string>
+    <string name="puk2_blocked" msgid="3150263853077280049">"PUK2 碼已被永久封鎖。"</string>
+    <string name="pin2_attempts" msgid="7937503107162525324">\n"還剩下 <xliff:g id="NUMBER">%d</xliff:g> 次機會輸入。"</string>
+    <string name="pin2_unblocked" msgid="2903147240919055381">"PIN2 碼已解除封鎖！"</string>
     <string name="doneButton" msgid="2859593360997984240">"完成"</string>
     <string name="caller_manage_header" msgid="3231519674734638786">"電話會議 <xliff:g id="CONF_CALL_TIME">%s</xliff:g>"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"留言信箱號碼"</string>

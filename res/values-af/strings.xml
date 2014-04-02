@@ -136,9 +136,9 @@
     <string name="select_automatically" msgid="5628402124471810174">"Kies outomaties"</string>
     <string name="sum_select_automatically" msgid="5614890115123292400">"Kies voorkeurnetwerk outomaties"</string>
     <string name="register_automatically" msgid="6017849844573519637">"Outomatiese registrasie..."</string>
-    <string name="preferred_network_mode_title" msgid="8873246565334559308">"Netwerkmodus"</string>
+    <string name="preferred_network_mode_title" msgid="2336624679902659306">"Voorkeurnetwerktipe"</string>
     <string name="preferred_network_mode_summary" msgid="1434820673166126609">"Verander die netwerkbedryfsmodus"</string>
-    <string name="preferred_network_mode_dialogtitle" msgid="8176355237105593793">"Voorkeurnetwerk-modus"</string>
+    <string name="preferred_network_mode_dialogtitle" msgid="4048082093347807230">"Voorkeurnetwerktipe"</string>
     <string name="preferred_network_mode_wcdma_perf_summary" msgid="8521677230113533809">"Voorkeurnetwerk-modus: WCDMA verkies"</string>
     <string name="preferred_network_mode_gsm_only_summary" msgid="3352445413437453511">"Voorkeurnetwerk-modus: net GSM"</string>
     <string name="preferred_network_mode_wcdma_only_summary" msgid="2836897236221063413">"Voorkeurnetwerk-modus: net WCDMA"</string>
@@ -279,8 +279,9 @@
     <string name="enable_disable_multi_category" msgid="626771003122899280">"Multikategorie"</string>
     <string name="multi_category_enable" msgid="1179299804641721768">"Multikategorie geaktiveer"</string>
     <string name="multi_category_disable" msgid="880104702904139505">"Multikategorie gedeaktiveer"</string>
-    <string name="prefer_2g" msgid="8442550937280449639">"Gebruik slegs 2G-netwerke"</string>
-    <string name="prefer_2g_summary" msgid="1976491403210690759">"Spaar battery"</string>
+    <string name="network_lte" msgid="7702681952521375754">"LTE (aanbeveel)"</string>
+    <string name="network_4G" msgid="2723512640529983138">"4G (aanbeveel)"</string>
+    <string name="network_global" msgid="1323190488685355309">"Globaal"</string>
     <string name="cdma_system_select_title" msgid="5757657769327732833">"Stelselkeuse"</string>
     <string name="cdma_system_select_summary" msgid="60460043745797517">"Verander die CDMA-swerfmodus"</string>
     <string name="cdma_system_select_dialogtitle" msgid="6083355415165359075">"Stelselkeuse"</string>
@@ -301,6 +302,7 @@
   </string-array>
     <string name="cdma_activate_device" msgid="3793805892364814518">"Aktiveer toestel"</string>
     <string name="cdma_lte_data_service" msgid="4255018217292548962">"Stel datadiens op"</string>
+    <string name="carrier_settings_title" msgid="9028166176523012300">"Diensverskaffer-instellings"</string>
     <string name="fdn" msgid="7878832555095183202">"Belbeperking-nommers"</string>
     <string name="manage_fdn_list" msgid="8777755791892122369">"FDN-lys"</string>
     <string name="fdn_activation" msgid="2156479741307463576">"FDN-aktivering"</string>
@@ -339,6 +341,7 @@
     <string name="pin2_invalid" msgid="5470854099230755944">"FDN is nie opgedateer nie omdat jy \'n verkeerde PIN ingevoer het."</string>
     <string name="fdn_invalid_number" msgid="1494755047900009147">"FDN is nie opgedateer nie, omdat die getal nie 20 syfers kan oorskry nie."</string>
     <string name="pin2_or_fdn_invalid" msgid="6025144083384701197">"FDN is nie bygewerk nie. Die PIN2 was verkeerd of die foonnommer is verwerp."</string>
+    <string name="fdn_failed" msgid="540018079008319747">"FDN-bewerking het misluk."</string>
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"Lees tans van SIM-kaart af…"</string>
     <string name="simContacts_empty" msgid="5270660846489561932">"Geen kontakte op jou SIM-kaart nie."</string>
     <string name="simContacts_title" msgid="1861472842524839921">"Kies kontakte om in te voer"</string>
@@ -359,7 +362,7 @@
     <string name="disable_pin_ok" msgid="5596999379593924850">"SIM-PIN gedeaktiveer."</string>
     <string name="pin_failed" msgid="2298841192582192277">"Die PIN wat jy ingevoer het, is verkeerd."</string>
     <string name="pin_changed" msgid="4365538014588501049">"SIM-PIN suksesvol verander."</string>
-    <string name="puk_requested" msgid="3898394204193202803">"Wagwoord verkeerd, SIM is gesluit! PUK2 versoek."</string>
+    <string name="puk_requested" msgid="1796577128488773946">"Wagwoord verkeerd, PIN geblokkeer! PUK word versoek."</string>
     <string name="enter_pin2_text" msgid="8339444124477720345">"PIN2"</string>
     <string name="oldPin2Label" msgid="8559146795026261502">"Ou PIN2"</string>
     <string name="newPin2Label" msgid="4573956902204349054">"Nuwe PIN2"</string>
@@ -371,8 +374,11 @@
     <string name="invalidPuk2" msgid="1290977391033057871">"Sleutel \'n 8-nommer-PUK2 in."</string>
     <string name="pin2_changed" msgid="1639666438836544393">"PIN2 suksesvol verander"</string>
     <string name="label_puk2_code" msgid="302845876240219560">"Sleutel PUK2-kode in"</string>
-    <string name="fdn_enable_puk2_requested" msgid="4262894949634885773">"Wagwoord verkeerd. Verander PIN2 en probeer weer!"</string>
+    <string name="fdn_enable_puk2_requested" msgid="3674058967950559397">"Wagwoord verkeerd, PIN2 geblokkeer. Verander asseblief PIN2 en probeer weer!"</string>
     <string name="puk2_requested" msgid="8909278021238716877">"Wagwoord verkeerd, SIM is gesluit. PUK2 word versoek."</string>
+    <string name="puk2_blocked" msgid="3150263853077280049">"PUK2 is permanent geblokkeer."</string>
+    <string name="pin2_attempts" msgid="7937503107162525324">\n"Daar is <xliff:g id="NUMBER">%d</xliff:g> oorblywende pogings."</string>
+    <string name="pin2_unblocked" msgid="2903147240919055381">"PIN2 gedeblokkeer!"</string>
     <string name="doneButton" msgid="2859593360997984240">"Klaar"</string>
     <string name="caller_manage_header" msgid="3231519674734638786">"Konferensie-oproep <xliff:g id="CONF_CALL_TIME">%s</xliff:g>"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"Stemboodskapnommer"</string>

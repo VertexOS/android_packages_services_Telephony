@@ -136,9 +136,9 @@
     <string name="select_automatically" msgid="5628402124471810174">"自動的に選択"</string>
     <string name="sum_select_automatically" msgid="5614890115123292400">"最適なネットワークを自動的に選択する"</string>
     <string name="register_automatically" msgid="6017849844573519637">"自動登録..."</string>
-    <string name="preferred_network_mode_title" msgid="8873246565334559308">"ネットワークモード"</string>
+    <string name="preferred_network_mode_title" msgid="2336624679902659306">"優先ネットワークタイプ"</string>
     <string name="preferred_network_mode_summary" msgid="1434820673166126609">"ネットワーク動作モードの変更"</string>
-    <string name="preferred_network_mode_dialogtitle" msgid="8176355237105593793">"優先ネットワークモード"</string>
+    <string name="preferred_network_mode_dialogtitle" msgid="4048082093347807230">"優先ネットワークタイプ"</string>
     <string name="preferred_network_mode_wcdma_perf_summary" msgid="8521677230113533809">"優先ネットワークモード: WCDMA優先"</string>
     <string name="preferred_network_mode_gsm_only_summary" msgid="3352445413437453511">"優先ネットワークモード: GSMのみ"</string>
     <string name="preferred_network_mode_wcdma_only_summary" msgid="2836897236221063413">"優先ネットワークモード: WCDMAのみ"</string>
@@ -275,8 +275,9 @@
     <string name="enable_disable_multi_category" msgid="626771003122899280">"複数カテゴリ"</string>
     <string name="multi_category_enable" msgid="1179299804641721768">"複数カテゴリは有効になっています"</string>
     <string name="multi_category_disable" msgid="880104702904139505">"複数カテゴリは無効になっています"</string>
-    <string name="prefer_2g" msgid="8442550937280449639">"2Gネットワークのみ使用"</string>
-    <string name="prefer_2g_summary" msgid="1976491403210690759">"電池を節約する"</string>
+    <string name="network_lte" msgid="7702681952521375754">"LTE（推奨）"</string>
+    <string name="network_4G" msgid="2723512640529983138">"4G（推奨）"</string>
+    <string name="network_global" msgid="1323190488685355309">"グローバル"</string>
     <string name="cdma_system_select_title" msgid="5757657769327732833">"システムの選択"</string>
     <string name="cdma_system_select_summary" msgid="60460043745797517">"CDMAローミングモードを変更する"</string>
     <string name="cdma_system_select_dialogtitle" msgid="6083355415165359075">"システムの選択"</string>
@@ -297,6 +298,7 @@
   </string-array>
     <string name="cdma_activate_device" msgid="3793805892364814518">"端末を有効にする"</string>
     <string name="cdma_lte_data_service" msgid="4255018217292548962">"データサービスの設定"</string>
+    <string name="carrier_settings_title" msgid="9028166176523012300">"携帯通信会社の設定"</string>
     <string name="fdn" msgid="7878832555095183202">"発信番号制限"</string>
     <string name="manage_fdn_list" msgid="8777755791892122369">"発信番号制限リスト"</string>
     <string name="fdn_activation" msgid="2156479741307463576">"発信番号制限の有効化"</string>
@@ -335,6 +337,7 @@
     <string name="pin2_invalid" msgid="5470854099230755944">"発信番号制限は更新されませんでした。入力したPINは正しくありません。"</string>
     <string name="fdn_invalid_number" msgid="1494755047900009147">"発信番号制限は更新されませんでした。20桁を超える番号は指定できません。"</string>
     <string name="pin2_or_fdn_invalid" msgid="6025144083384701197">"発信番号制限は更新されませんでした。PIN2が正しくないか、電話番号が拒否されました。"</string>
+    <string name="fdn_failed" msgid="540018079008319747">"発信番号制限操作に失敗しました。"</string>
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"SIMカードから読み取り中..."</string>
     <string name="simContacts_empty" msgid="5270660846489561932">"SIMカードに連絡先がありません。"</string>
     <string name="simContacts_title" msgid="1861472842524839921">"インポートする連絡先の選択"</string>
@@ -355,7 +358,7 @@
     <string name="disable_pin_ok" msgid="5596999379593924850">"SIM PINは無効です"</string>
     <string name="pin_failed" msgid="2298841192582192277">"入力したPINは正しくありませんでした。"</string>
     <string name="pin_changed" msgid="4365538014588501049">"SIM PINを変更しました。"</string>
-    <string name="puk_requested" msgid="3898394204193202803">"パスワードが正しくありません。SIMがロックされています。PUK2を入力してください。"</string>
+    <string name="puk_requested" msgid="1796577128488773946">"パスワードが正しくありません。PINはブロックされています。PUKがリクエストされました。"</string>
     <string name="enter_pin2_text" msgid="8339444124477720345">"PIN2"</string>
     <string name="oldPin2Label" msgid="8559146795026261502">"古いPIN2"</string>
     <string name="newPin2Label" msgid="4573956902204349054">"新しいPIN2"</string>
@@ -367,8 +370,11 @@
     <string name="invalidPuk2" msgid="1290977391033057871">"8桁の数字のPUK2を入力してください。"</string>
     <string name="pin2_changed" msgid="1639666438836544393">"PIN2を変更しました。"</string>
     <string name="label_puk2_code" msgid="302845876240219560">"PUK2コードを入力"</string>
-    <string name="fdn_enable_puk2_requested" msgid="4262894949634885773">"パスワードが正しくありません。PIN2を変更してもう一度お試しください。"</string>
+    <string name="fdn_enable_puk2_requested" msgid="3674058967950559397">"パスワードが正しくありません。PIN2はブロックされています。PIN2を変更して再入力してください。"</string>
     <string name="puk2_requested" msgid="8909278021238716877">"パスワードが正しくありません。SIMはロックされています。PUK2を入力してください。"</string>
+    <string name="puk2_blocked" msgid="3150263853077280049">"PUK2は完全にブロックされています。"</string>
+    <string name="pin2_attempts" msgid="7937503107162525324">\n"入力できるのはあと<xliff:g id="NUMBER">%d</xliff:g>回です。"</string>
+    <string name="pin2_unblocked" msgid="2903147240919055381">"PIN2のブロックが解除されました。"</string>
     <string name="doneButton" msgid="2859593360997984240">"完了"</string>
     <string name="caller_manage_header" msgid="3231519674734638786">"グループ通話 <xliff:g id="CONF_CALL_TIME">%s</xliff:g>"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"ボイスメールの番号"</string>

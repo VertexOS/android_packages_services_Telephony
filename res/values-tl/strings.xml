@@ -136,9 +136,9 @@
     <string name="select_automatically" msgid="5628402124471810174">"Awtomatikong pumili"</string>
     <string name="sum_select_automatically" msgid="5614890115123292400">"Awtomatikong pumili ng ninanais na network"</string>
     <string name="register_automatically" msgid="6017849844573519637">"Awtomatikong pagpaparehistro..."</string>
-    <string name="preferred_network_mode_title" msgid="8873246565334559308">"Network Mode"</string>
+    <string name="preferred_network_mode_title" msgid="2336624679902659306">"Gustong uri ng network"</string>
     <string name="preferred_network_mode_summary" msgid="1434820673166126609">"Baguhin ang network operating mode"</string>
-    <string name="preferred_network_mode_dialogtitle" msgid="8176355237105593793">"Ninanais na network mode"</string>
+    <string name="preferred_network_mode_dialogtitle" msgid="4048082093347807230">"Gustong uri ng network"</string>
     <string name="preferred_network_mode_wcdma_perf_summary" msgid="8521677230113533809">"Mas gustong mode ng network: WCDMA ang mas gusto"</string>
     <string name="preferred_network_mode_gsm_only_summary" msgid="3352445413437453511">"Mas gustong mode ng network: GSM lamang"</string>
     <string name="preferred_network_mode_wcdma_only_summary" msgid="2836897236221063413">"Mas gustong mode ng network: WCDMA lamang"</string>
@@ -275,8 +275,9 @@
     <string name="enable_disable_multi_category" msgid="626771003122899280">"Multi-category"</string>
     <string name="multi_category_enable" msgid="1179299804641721768">"Pinagana ang multi-category"</string>
     <string name="multi_category_disable" msgid="880104702904139505">"Hindi pinagana ang multi-category"</string>
-    <string name="prefer_2g" msgid="8442550937280449639">"Gumamit lang ng mga 2G network"</string>
-    <string name="prefer_2g_summary" msgid="1976491403210690759">"Nakakatipid ng baterya"</string>
+    <string name="network_lte" msgid="7702681952521375754">"LTE (inirerekomenda)"</string>
+    <string name="network_4G" msgid="2723512640529983138">"4G (inirerekomenda)"</string>
+    <string name="network_global" msgid="1323190488685355309">"Pandaigdigan"</string>
     <string name="cdma_system_select_title" msgid="5757657769327732833">"Pagpili ng system"</string>
     <string name="cdma_system_select_summary" msgid="60460043745797517">"Baguhin ang mode ng pag-roam ng CDMA"</string>
     <string name="cdma_system_select_dialogtitle" msgid="6083355415165359075">"Pagpili ng system"</string>
@@ -297,6 +298,7 @@
   </string-array>
     <string name="cdma_activate_device" msgid="3793805892364814518">"I-activate ang device"</string>
     <string name="cdma_lte_data_service" msgid="4255018217292548962">"I-set up ang serbisyo ng data"</string>
+    <string name="carrier_settings_title" msgid="9028166176523012300">"Mga setting ng carrier"</string>
     <string name="fdn" msgid="7878832555095183202">"Mga Fixed Dialing Number"</string>
     <string name="manage_fdn_list" msgid="8777755791892122369">"Listahan ng FDN"</string>
     <string name="fdn_activation" msgid="2156479741307463576">"Pag-activate ng FDN"</string>
@@ -335,6 +337,7 @@
     <string name="pin2_invalid" msgid="5470854099230755944">"Hindi na-update ang FDN dahil maling PIN ang iyong na-type."</string>
     <string name="fdn_invalid_number" msgid="1494755047900009147">"Hindi pa na-update ang FDN dahil hindi maaaring humigit sa 20 digit ang numero."</string>
     <string name="pin2_or_fdn_invalid" msgid="6025144083384701197">"Hindi na-update ang FDN. Hindi wasto ang PIN2, o tinanggihan ang numero ng telepono."</string>
+    <string name="fdn_failed" msgid="540018079008319747">"Nagbigo ang operasyon ng FDN."</string>
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"Nagbabasa mula sa SIM card…"</string>
     <string name="simContacts_empty" msgid="5270660846489561932">"Walang mga contact sa iyong SIM card."</string>
     <string name="simContacts_title" msgid="1861472842524839921">"Piliin ang mga contact upang i-import"</string>
@@ -355,7 +358,7 @@
     <string name="disable_pin_ok" msgid="5596999379593924850">"Hindi pinagana ang PIN ng SIM."</string>
     <string name="pin_failed" msgid="2298841192582192277">"Mali ang na-type mong PIN."</string>
     <string name="pin_changed" msgid="4365538014588501049">"Matagumpay na nabago ang PIN ng SIM."</string>
-    <string name="puk_requested" msgid="3898394204193202803">"Mali ang password, na-lock ang SIM! hinihiling ang PUK2."</string>
+    <string name="puk_requested" msgid="1796577128488773946">"Maling password, Na-block ang PIN! Hiniling ang PUK."</string>
     <string name="enter_pin2_text" msgid="8339444124477720345">"PIN2"</string>
     <string name="oldPin2Label" msgid="8559146795026261502">"Lumang PIN2"</string>
     <string name="newPin2Label" msgid="4573956902204349054">"Bagong PIN2"</string>
@@ -367,8 +370,11 @@
     <string name="invalidPuk2" msgid="1290977391033057871">"Mag-type ng PUK2 na 8 numero."</string>
     <string name="pin2_changed" msgid="1639666438836544393">"Matagumpay na napalitan ang PIN2."</string>
     <string name="label_puk2_code" msgid="302845876240219560">"I-type ang PUK2 code"</string>
-    <string name="fdn_enable_puk2_requested" msgid="4262894949634885773">"Mali ang password. Pakibago ang PIN2 at subukang muli."</string>
+    <string name="fdn_enable_puk2_requested" msgid="3674058967950559397">"Maling password, Na-block ang PIN2. Pakibago ang PIN2 at subukang muli!"</string>
     <string name="puk2_requested" msgid="8909278021238716877">"Mali ang password, na-lock ang SIM. Hinihiling ang PUK2."</string>
+    <string name="puk2_blocked" msgid="3150263853077280049">"Permanenteng na-block ang PUK2."</string>
+    <string name="pin2_attempts" msgid="7937503107162525324">\n"Mayroong <xliff:g id="NUMBER">%d</xliff:g> (na) natitirang pagsubok."</string>
+    <string name="pin2_unblocked" msgid="2903147240919055381">"Na-unblock ang PIN2!"</string>
     <string name="doneButton" msgid="2859593360997984240">"Tapos na"</string>
     <string name="caller_manage_header" msgid="3231519674734638786">"Conference na tawag <xliff:g id="CONF_CALL_TIME">%s</xliff:g>"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"Numero ng voicemail"</string>

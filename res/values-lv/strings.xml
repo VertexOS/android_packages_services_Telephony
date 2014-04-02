@@ -136,9 +136,9 @@
     <string name="select_automatically" msgid="5628402124471810174">"Izvēlēties automātiski"</string>
     <string name="sum_select_automatically" msgid="5614890115123292400">"Automātiski izvēlēties vajadzīgo tīklu"</string>
     <string name="register_automatically" msgid="6017849844573519637">"Automātiska reģistrācija..."</string>
-    <string name="preferred_network_mode_title" msgid="8873246565334559308">"Tīkla režīms"</string>
+    <string name="preferred_network_mode_title" msgid="2336624679902659306">"Ieteicamais tīkla veids"</string>
     <string name="preferred_network_mode_summary" msgid="1434820673166126609">"Mainiet tīkla darbības režīmu"</string>
-    <string name="preferred_network_mode_dialogtitle" msgid="8176355237105593793">"Vēlamais tīkla režīms"</string>
+    <string name="preferred_network_mode_dialogtitle" msgid="4048082093347807230">"Ieteicamais tīkla veids"</string>
     <string name="preferred_network_mode_wcdma_perf_summary" msgid="8521677230113533809">"Ieteicamais tīkla režīms: WCDMA"</string>
     <string name="preferred_network_mode_gsm_only_summary" msgid="3352445413437453511">"Ieteicamais tīkla režīms: tikai GSM"</string>
     <string name="preferred_network_mode_wcdma_only_summary" msgid="2836897236221063413">"Ieteicamais tīkla režīms: tikai WCDMA"</string>
@@ -277,8 +277,9 @@
     <string name="enable_disable_multi_category" msgid="626771003122899280">"Vairākas kategorijas"</string>
     <string name="multi_category_enable" msgid="1179299804641721768">"Vairāku kategoriju režīms ir iespējots."</string>
     <string name="multi_category_disable" msgid="880104702904139505">"Vairāku kategoriju režīms ir atspējots."</string>
-    <string name="prefer_2g" msgid="8442550937280449639">"Izmantot tikai 2G tīklus"</string>
-    <string name="prefer_2g_summary" msgid="1976491403210690759">"Ietaupa akumulatora jaudu"</string>
+    <string name="network_lte" msgid="7702681952521375754">"LTE (ieteicams)"</string>
+    <string name="network_4G" msgid="2723512640529983138">"4G (ieteicams)"</string>
+    <string name="network_global" msgid="1323190488685355309">"Visā pasaulē"</string>
     <string name="cdma_system_select_title" msgid="5757657769327732833">"Sistēmas atlasīšana"</string>
     <string name="cdma_system_select_summary" msgid="60460043745797517">"Mainīt CDMA viesabonēšanas režīmu"</string>
     <string name="cdma_system_select_dialogtitle" msgid="6083355415165359075">"Sistēmas atlasīšana"</string>
@@ -299,6 +300,7 @@
   </string-array>
     <string name="cdma_activate_device" msgid="3793805892364814518">"Ierīces aktivizēšana"</string>
     <string name="cdma_lte_data_service" msgid="4255018217292548962">"Datu pakalpojuma iestatīšana"</string>
+    <string name="carrier_settings_title" msgid="9028166176523012300">"Operatora iestatījumi"</string>
     <string name="fdn" msgid="7878832555095183202">"Fiksētie numuru sastādīšanas numuri"</string>
     <string name="manage_fdn_list" msgid="8777755791892122369">"FNSN saraksts"</string>
     <string name="fdn_activation" msgid="2156479741307463576">"FNSN aktivizācija"</string>
@@ -337,6 +339,7 @@
     <string name="pin2_invalid" msgid="5470854099230755944">"FDN nav atjaunināts, jo tika ievadīts nepareizs PIN."</string>
     <string name="fdn_invalid_number" msgid="1494755047900009147">"FDN netika atjaunināts, jo numurā nedrīkst būt vairāk par 20 cipariem."</string>
     <string name="pin2_or_fdn_invalid" msgid="6025144083384701197">"FDN netika atjaunināts. Ievadītais PIN2 nebija pareizs, vai tālruņa numurs tika noraidīts."</string>
+    <string name="fdn_failed" msgid="540018079008319747">"FNSN ievadīšana neizdevās."</string>
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"Notiek lasīšana no SIM kartes..."</string>
     <string name="simContacts_empty" msgid="5270660846489561932">"SIM kartē nav nevienas kontaktpersonas."</string>
     <string name="simContacts_title" msgid="1861472842524839921">"Importējamo kontaktpersonu atlasīšana"</string>
@@ -357,7 +360,7 @@
     <string name="disable_pin_ok" msgid="5596999379593924850">"SIM kartes PIN ir atspējots."</string>
     <string name="pin_failed" msgid="2298841192582192277">"Ievadītais PIN nav pareizs."</string>
     <string name="pin_changed" msgid="4365538014588501049">"SIM kartes PIN ir veiksmīgi mainīts."</string>
-    <string name="puk_requested" msgid="3898394204193202803">"Parole nav pareiza, SIM ir bloķēts. Ir jāievada PUK2 kods."</string>
+    <string name="puk_requested" msgid="1796577128488773946">"Parole nav pareiza, PIN kods ir bloķēts. Ievadiet PUK kodu."</string>
     <string name="enter_pin2_text" msgid="8339444124477720345">"PIN2"</string>
     <string name="oldPin2Label" msgid="8559146795026261502">"Iepriekšējais PIN2"</string>
     <string name="newPin2Label" msgid="4573956902204349054">"Jauns PIN2"</string>
@@ -369,8 +372,11 @@
     <string name="invalidPuk2" msgid="1290977391033057871">"Ierakstiet PUK2, kas sastāv no 8 cipariem."</string>
     <string name="pin2_changed" msgid="1639666438836544393">"PIN2 ir mainīts veiksmīgi."</string>
     <string name="label_puk2_code" msgid="302845876240219560">"Ierakstiet PUK2 kodu"</string>
-    <string name="fdn_enable_puk2_requested" msgid="4262894949634885773">"Parole nav pareiza. Mainiet PIN2 un mēģiniet vēlreiz."</string>
+    <string name="fdn_enable_puk2_requested" msgid="3674058967950559397">"Parole nav pareiza, PIN2 kods ir bloķēts. Lūdzu, mainiet PIN2 kodu un mēģiniet vēlreiz!"</string>
     <string name="puk2_requested" msgid="8909278021238716877">"Parole nav pareiza, SIM karte ir bloķēta. Ir jāievada PUK2 kods."</string>
+    <string name="puk2_blocked" msgid="3150263853077280049">"PUK2 kods ir neatgriezeniski bloķēts."</string>
+    <string name="pin2_attempts" msgid="7937503107162525324">\n"Varat mēģināt vēl <xliff:g id="NUMBER">%d</xliff:g> reizi(-es)."</string>
+    <string name="pin2_unblocked" msgid="2903147240919055381">"PIN2 kods ir atbloķēts!"</string>
     <string name="doneButton" msgid="2859593360997984240">"Gatavs"</string>
     <string name="caller_manage_header" msgid="3231519674734638786">"Konferences zvans <xliff:g id="CONF_CALL_TIME">%s</xliff:g>"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"Balss pasta numurs"</string>

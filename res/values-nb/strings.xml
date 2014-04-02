@@ -136,9 +136,9 @@
     <string name="select_automatically" msgid="5628402124471810174">"Velg automatisk"</string>
     <string name="sum_select_automatically" msgid="5614890115123292400">"Velg foretrukket nettverk automatisk"</string>
     <string name="register_automatically" msgid="6017849844573519637">"Automatisk registrering"</string>
-    <string name="preferred_network_mode_title" msgid="8873246565334559308">"Nettverksmodus"</string>
+    <string name="preferred_network_mode_title" msgid="2336624679902659306">"Foretrukket nettverkstype"</string>
     <string name="preferred_network_mode_summary" msgid="1434820673166126609">"Bytt nettverksmodus"</string>
-    <string name="preferred_network_mode_dialogtitle" msgid="8176355237105593793">"Foretrukket nettverksmodus"</string>
+    <string name="preferred_network_mode_dialogtitle" msgid="4048082093347807230">"Foretrukket nettverkstype"</string>
     <string name="preferred_network_mode_wcdma_perf_summary" msgid="8521677230113533809">"Foretrukket nettverksmodus: WCDMA foretrekkes"</string>
     <string name="preferred_network_mode_gsm_only_summary" msgid="3352445413437453511">"Foretrukket nettverksmodus: kun GSM"</string>
     <string name="preferred_network_mode_wcdma_only_summary" msgid="2836897236221063413">"Foretrukket nettverksmodus: kun WCDMA"</string>
@@ -281,10 +281,11 @@
     <string name="enable_disable_multi_category" msgid="626771003122899280">"Multikategori"</string>
     <string name="multi_category_enable" msgid="1179299804641721768">"Multikategori aktivert"</string>
     <string name="multi_category_disable" msgid="880104702904139505">"Multikategori deaktivert"</string>
-    <string name="prefer_2g" msgid="8442550937280449639">"Bruk kun 2G-nettverk"</string>
-    <string name="prefer_2g_summary" msgid="1976491403210690759">"Sparer batteri"</string>
+    <string name="network_lte" msgid="7702681952521375754">"LTE (anbefales)"</string>
+    <string name="network_4G" msgid="2723512640529983138">"4G (anbefales)"</string>
+    <string name="network_global" msgid="1323190488685355309">"Global"</string>
     <string name="cdma_system_select_title" msgid="5757657769327732833">"Systemvalg"</string>
-    <string name="cdma_system_select_summary" msgid="60460043745797517">"Velg streifingsmodus for CDMA"</string>
+    <string name="cdma_system_select_summary" msgid="60460043745797517">"Velg roamingmodus for CDMA"</string>
     <string name="cdma_system_select_dialogtitle" msgid="6083355415165359075">"Systemvalg"</string>
   <string-array name="cdma_system_select_choices">
     <item msgid="176474317493999285">"Kun hjemmenett"</item>
@@ -303,6 +304,7 @@
   </string-array>
     <string name="cdma_activate_device" msgid="3793805892364814518">"Aktiver enhet"</string>
     <string name="cdma_lte_data_service" msgid="4255018217292548962">"Konfigurer datatjeneste"</string>
+    <string name="carrier_settings_title" msgid="9028166176523012300">"Operatørinnstillinger"</string>
     <string name="fdn" msgid="7878832555095183202">"Faste nummer"</string>
     <string name="manage_fdn_list" msgid="8777755791892122369">"Liste over faste nummer"</string>
     <string name="fdn_activation" msgid="2156479741307463576">"Aktivering av faste nummer"</string>
@@ -341,6 +343,7 @@
     <string name="pin2_invalid" msgid="5470854099230755944">"FDN er ikke oppdatert fordi du skrev inn feil PIN-kode."</string>
     <string name="fdn_invalid_number" msgid="1494755047900009147">"FDN ble ikke oppdatert fordi tallet ikke kan overstige 20 sifre."</string>
     <string name="pin2_or_fdn_invalid" msgid="6025144083384701197">"Fast nummer ble ikke oppdatert. PIN2 var feil, eller telefonnummeret ble avvist."</string>
+    <string name="fdn_failed" msgid="540018079008319747">"FDN-handlingen mislyktes."</string>
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"Leser fra SIM-kort…"</string>
     <string name="simContacts_empty" msgid="5270660846489561932">"Ingen kontakter på SIM-kortet."</string>
     <string name="simContacts_title" msgid="1861472842524839921">"Velg kontakter som skal importeres"</string>
@@ -361,7 +364,7 @@
     <string name="disable_pin_ok" msgid="5596999379593924850">"Personlig kode for SIM-kort deaktivert."</string>
     <string name="pin_failed" msgid="2298841192582192277">"Den personlige koden du skrev inn, er feil."</string>
     <string name="pin_changed" msgid="4365538014588501049">"Personlig kode for SIM-kort er endret."</string>
-    <string name="puk_requested" msgid="3898394204193202803">"Galt passord, SIM-kortet er låst! Skriv inn PUK2-koden."</string>
+    <string name="puk_requested" msgid="1796577128488773946">"Feil passord – PIN-koden er sperret. PUK-kode forespurt."</string>
     <string name="enter_pin2_text" msgid="8339444124477720345">"PIN2-kode"</string>
     <string name="oldPin2Label" msgid="8559146795026261502">"Gammel PIN2-kode"</string>
     <string name="newPin2Label" msgid="4573956902204349054">"Ny PIN2-kode"</string>
@@ -373,8 +376,11 @@
     <string name="invalidPuk2" msgid="1290977391033057871">"Skriv inn en PUK2-kode som er 8 siffer."</string>
     <string name="pin2_changed" msgid="1639666438836544393">"Personlig kode (PIN2) er endret"</string>
     <string name="label_puk2_code" msgid="302845876240219560">"Skriv inn PUk2-kode"</string>
-    <string name="fdn_enable_puk2_requested" msgid="4262894949634885773">"Passordet er feil. Endre PIN2 og prøv på nytt."</string>
+    <string name="fdn_enable_puk2_requested" msgid="3674058967950559397">"Passordet er feil og PIN2 er sperret. Endre PIN2 og prøv på nytt."</string>
     <string name="puk2_requested" msgid="8909278021238716877">"Feil passord – SIM-kortet er låst. Bruk PUK2 for å låse opp."</string>
+    <string name="puk2_blocked" msgid="3150263853077280049">"PUK2 er permanent sperret."</string>
+    <string name="pin2_attempts" msgid="7937503107162525324">\n"Det er <xliff:g id="NUMBER">%d</xliff:g> forsøk igjen."</string>
+    <string name="pin2_unblocked" msgid="2903147240919055381">"Sperring av PIN2 er opphevet"</string>
     <string name="doneButton" msgid="2859593360997984240">"Ferdig"</string>
     <string name="caller_manage_header" msgid="3231519674734638786">"Telefonmøte <xliff:g id="CONF_CALL_TIME">%s</xliff:g>"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"Nummer til telefonsvarer"</string>

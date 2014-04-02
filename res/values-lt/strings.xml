@@ -116,7 +116,7 @@
   </string-array>
     <string name="vm_changed" msgid="380744030726254139">"Pasikeitė balso pašto numeris."</string>
     <string name="vm_change_failed" msgid="3352934863246208918">"Balso pašto numerio pakeisti nepavyko.\nJei ši problema kartosis, kreipkitės į operatorių."</string>
-    <string name="fw_change_failed" msgid="5298103228470214665">"Persiuntimo numerio pakeisti nepavyko.\nJei ši problema kartosis, kreipkitės į operatorių."</string>
+    <string name="fw_change_failed" msgid="5298103228470214665">"Peradresavimo numerio pakeisti nepavyko.\nJei ši problema kartosis, kreipkitės į operatorių."</string>
     <string name="fw_get_in_vm_failed" msgid="8862896836093833973">"Nepavyko pateikti ir išsaugoti dabartinio peradresavimo numerio nustatymų.\nVis tiek perjungti naują teikėją?"</string>
     <string name="no_change" msgid="3186040086622435212">"Neatlikta jokių pakeitimų."</string>
     <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"Pasirinkti balso pašto paslaugą"</string>
@@ -136,9 +136,9 @@
     <string name="select_automatically" msgid="5628402124471810174">"Pasirinkti automatiškai"</string>
     <string name="sum_select_automatically" msgid="5614890115123292400">"Automatiškai pasirinkti pageidaujamą tinklą"</string>
     <string name="register_automatically" msgid="6017849844573519637">"Automatinė registracija..."</string>
-    <string name="preferred_network_mode_title" msgid="8873246565334559308">"Tinklo režimas"</string>
+    <string name="preferred_network_mode_title" msgid="2336624679902659306">"Pageidaujamas tinklo tipas"</string>
     <string name="preferred_network_mode_summary" msgid="1434820673166126609">"Pakeisti tinklo veikimo režimą"</string>
-    <string name="preferred_network_mode_dialogtitle" msgid="8176355237105593793">"Pageidaujamas tinklo režimas"</string>
+    <string name="preferred_network_mode_dialogtitle" msgid="4048082093347807230">"Pageidaujamas tinklo tipas"</string>
     <string name="preferred_network_mode_wcdma_perf_summary" msgid="8521677230113533809">"Pageidaujamas tinklo režimas: pageidautina WCDMA"</string>
     <string name="preferred_network_mode_gsm_only_summary" msgid="3352445413437453511">"Pageidaujamas tinklo režimas: tik GSM"</string>
     <string name="preferred_network_mode_wcdma_only_summary" msgid="2836897236221063413">"Pageidaujamas tinklo režimas: tik WCDMA"</string>
@@ -275,8 +275,9 @@
     <string name="enable_disable_multi_category" msgid="626771003122899280">"Kelios kategorijos"</string>
     <string name="multi_category_enable" msgid="1179299804641721768">"Įgalintos kelios kategorijos"</string>
     <string name="multi_category_disable" msgid="880104702904139505">"Išjungtos kelios kategorijos"</string>
-    <string name="prefer_2g" msgid="8442550937280449639">"Naudoti tik 2G tinklus"</string>
-    <string name="prefer_2g_summary" msgid="1976491403210690759">"Taupo akumuliatorių"</string>
+    <string name="network_lte" msgid="7702681952521375754">"LTE (rekomenduojamas)"</string>
+    <string name="network_4G" msgid="2723512640529983138">"4G (rekomenduojamas)"</string>
+    <string name="network_global" msgid="1323190488685355309">"Visuotinis"</string>
     <string name="cdma_system_select_title" msgid="5757657769327732833">"Sistemos pasirinkimas"</string>
     <string name="cdma_system_select_summary" msgid="60460043745797517">"Pakeisti tarptinklinio CDMA ryšio režimą"</string>
     <string name="cdma_system_select_dialogtitle" msgid="6083355415165359075">"Sistemos pasirinkimas"</string>
@@ -297,6 +298,7 @@
   </string-array>
     <string name="cdma_activate_device" msgid="3793805892364814518">"Suaktyvinti įrenginį"</string>
     <string name="cdma_lte_data_service" msgid="4255018217292548962">"Nustatyti duomenų paslaugą"</string>
+    <string name="carrier_settings_title" msgid="9028166176523012300">"Operatoriaus nustatymai"</string>
     <string name="fdn" msgid="7878832555095183202">"Fiksuoto rinkimo numeriai"</string>
     <string name="manage_fdn_list" msgid="8777755791892122369">"FDN sąrašas"</string>
     <string name="fdn_activation" msgid="2156479741307463576">"FDN aktyvinimas"</string>
@@ -335,6 +337,7 @@
     <string name="pin2_invalid" msgid="5470854099230755944">"FDN neatnaujintas, nes įvedėte neteisingą PIN kodą."</string>
     <string name="fdn_invalid_number" msgid="1494755047900009147">"FDN neatnaujintas, nes numerį gali sudaryti ne daugiau kaip 20 skaitmenų."</string>
     <string name="pin2_or_fdn_invalid" msgid="6025144083384701197">"FDN nebuvo atnaujintas. Įvestas PIN2 kodas buvo netinkamas arba telefono numeris buvo atmestas."</string>
+    <string name="fdn_failed" msgid="540018079008319747">"Nepavyko atlikti FDN operacijos."</string>
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"Skaitoma iš SIM kortelės..."</string>
     <string name="simContacts_empty" msgid="5270660846489561932">"SIM kortelėje adresatų nėra."</string>
     <string name="simContacts_title" msgid="1861472842524839921">"Pasirinkti importuojamus adresatus"</string>
@@ -355,7 +358,7 @@
     <string name="disable_pin_ok" msgid="5596999379593924850">"SIM kortelės PIN kodas neleidžiamas."</string>
     <string name="pin_failed" msgid="2298841192582192277">"Įvestas PIN kodas neteisingas."</string>
     <string name="pin_changed" msgid="4365538014588501049">"SIM kortelės PIN kodas pakeistas sėkmingai."</string>
-    <string name="puk_requested" msgid="3898394204193202803">"Slaptažodis neteisingas, SIM kortelė užrakinta! Reikia PUK2 kodo."</string>
+    <string name="puk_requested" msgid="1796577128488773946">"Slaptažodis netinkamas, PIN kodas užblokuotas. Būtina įvesti PUK kodą."</string>
     <string name="enter_pin2_text" msgid="8339444124477720345">"PIN2"</string>
     <string name="oldPin2Label" msgid="8559146795026261502">"Senas PIN2 kodas"</string>
     <string name="newPin2Label" msgid="4573956902204349054">"Naujas PIN2 kodas"</string>
@@ -367,8 +370,11 @@
     <string name="invalidPuk2" msgid="1290977391033057871">"Įveskite 8 skaičių PUK2."</string>
     <string name="pin2_changed" msgid="1639666438836544393">"PIN2 kodas pakeistas sėkmingai."</string>
     <string name="label_puk2_code" msgid="302845876240219560">"Įveskite PUK2 kodą"</string>
-    <string name="fdn_enable_puk2_requested" msgid="4262894949634885773">"Neteisingas slaptažodis. Pakeiskite PIN2 kodą ir bandykite dar kartą."</string>
+    <string name="fdn_enable_puk2_requested" msgid="3674058967950559397">"Netinkamas slaptažodis, PIN2 kodas užblokuotas. Pakeiskite PIN2 kodą ir bandykite iš naujo."</string>
     <string name="puk2_requested" msgid="8909278021238716877">"Slaptažodis neteisingas, todėl SIM kortelė užrakinta. Būtina įvesti PUK2 kodą."</string>
+    <string name="puk2_blocked" msgid="3150263853077280049">"PUK2 kodas visam laikui užblokuotas."</string>
+    <string name="pin2_attempts" msgid="7937503107162525324">\n"Liko <xliff:g id="NUMBER">%d</xliff:g> band."</string>
+    <string name="pin2_unblocked" msgid="2903147240919055381">"PIN2 kodas atblokuotas."</string>
     <string name="doneButton" msgid="2859593360997984240">"Atlikta"</string>
     <string name="caller_manage_header" msgid="3231519674734638786">"Konferencinis skambutis <xliff:g id="CONF_CALL_TIME">%s</xliff:g>"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"Balso pašto numeris"</string>

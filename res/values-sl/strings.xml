@@ -136,9 +136,9 @@
     <string name="select_automatically" msgid="5628402124471810174">"Samodejna izbira"</string>
     <string name="sum_select_automatically" msgid="5614890115123292400">"Samodejna izbira želenega omrežja"</string>
     <string name="register_automatically" msgid="6017849844573519637">"Samodejna registracija ..."</string>
-    <string name="preferred_network_mode_title" msgid="8873246565334559308">"Način omrežja"</string>
+    <string name="preferred_network_mode_title" msgid="2336624679902659306">"Prednostna vrsta omrežja"</string>
     <string name="preferred_network_mode_summary" msgid="1434820673166126609">"Sprememba načina delovanja omrežja"</string>
-    <string name="preferred_network_mode_dialogtitle" msgid="8176355237105593793">"Prednostni način omrežja"</string>
+    <string name="preferred_network_mode_dialogtitle" msgid="4048082093347807230">"Prednostna vrsta omrežja"</string>
     <string name="preferred_network_mode_wcdma_perf_summary" msgid="8521677230113533809">"Prednostni način omrežja: prednostno WCDMA"</string>
     <string name="preferred_network_mode_gsm_only_summary" msgid="3352445413437453511">"Prednostni način omrežja: samo GSM"</string>
     <string name="preferred_network_mode_wcdma_only_summary" msgid="2836897236221063413">"Prednostni način omrežja: samo WCDMA"</string>
@@ -275,8 +275,9 @@
     <string name="enable_disable_multi_category" msgid="626771003122899280">"Več kategorij"</string>
     <string name="multi_category_enable" msgid="1179299804641721768">"Omogočenih več kategorij"</string>
     <string name="multi_category_disable" msgid="880104702904139505">"Več kategorij onemogočenih"</string>
-    <string name="prefer_2g" msgid="8442550937280449639">"Uporabi samo omrežja 2G"</string>
-    <string name="prefer_2g_summary" msgid="1976491403210690759">"Varčevanje z baterijo"</string>
+    <string name="network_lte" msgid="7702681952521375754">"LTE (priporočeno)"</string>
+    <string name="network_4G" msgid="2723512640529983138">"4G (priporočeno)"</string>
+    <string name="network_global" msgid="1323190488685355309">"Globalno"</string>
     <string name="cdma_system_select_title" msgid="5757657769327732833">"Sistemska izbira"</string>
     <string name="cdma_system_select_summary" msgid="60460043745797517">"Spremeni način gostovanja CDMA"</string>
     <string name="cdma_system_select_dialogtitle" msgid="6083355415165359075">"Sistemska izbira"</string>
@@ -297,6 +298,7 @@
   </string-array>
     <string name="cdma_activate_device" msgid="3793805892364814518">"Vklop naprave"</string>
     <string name="cdma_lte_data_service" msgid="4255018217292548962">"Nastavite podatkovni prenos"</string>
+    <string name="carrier_settings_title" msgid="9028166176523012300">"Nastavitve operaterja"</string>
     <string name="fdn" msgid="7878832555095183202">"Zapore odhodnih klicev"</string>
     <string name="manage_fdn_list" msgid="8777755791892122369">"Seznam FDN"</string>
     <string name="fdn_activation" msgid="2156479741307463576">"Aktiviranje FDN"</string>
@@ -335,6 +337,7 @@
     <string name="pin2_invalid" msgid="5470854099230755944">"FDN ni bil posodobljen, ker ste vnesli napačno kodo PIN."</string>
     <string name="fdn_invalid_number" msgid="1494755047900009147">"FDN ni bil posodobljen, ker število ne sme presegati 20 mest."</string>
     <string name="pin2_or_fdn_invalid" msgid="6025144083384701197">"FDN ni bil posodobljen. Koda PIN2 je bila napačna ali pa je bila telefonska številka zavrnjena."</string>
+    <string name="fdn_failed" msgid="540018079008319747">"Postopek za omejeno klicanje ni uspel."</string>
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"Branje kartice SIM ..."</string>
     <string name="simContacts_empty" msgid="5270660846489561932">"Na kartici SIM ni stikov."</string>
     <string name="simContacts_title" msgid="1861472842524839921">"Izberite stike, ki jih želite uvoziti"</string>
@@ -355,7 +358,7 @@
     <string name="disable_pin_ok" msgid="5596999379593924850">"PIN za kartico SIM onemogočen."</string>
     <string name="pin_failed" msgid="2298841192582192277">"PIN, ki ste ga vnesli, ni bil pravilen."</string>
     <string name="pin_changed" msgid="4365538014588501049">"Sprememba kode PIN za kartico SIM je uspela."</string>
-    <string name="puk_requested" msgid="3898394204193202803">"Nepravilno geslo, kartica SIM je zaklenjena. Vnesti morate kodo PUK2."</string>
+    <string name="puk_requested" msgid="1796577128488773946">"Napačno geslo, koda PIN je blokirana. Vnesti morate kodo PUK."</string>
     <string name="enter_pin2_text" msgid="8339444124477720345">"PIN2"</string>
     <string name="oldPin2Label" msgid="8559146795026261502">"Stari PIN2"</string>
     <string name="newPin2Label" msgid="4573956902204349054">"Novi PIN2"</string>
@@ -367,8 +370,11 @@
     <string name="invalidPuk2" msgid="1290977391033057871">"Vnesite osemmestno kodo PUK2."</string>
     <string name="pin2_changed" msgid="1639666438836544393">"Koda PIN2 je bila uspešno spremenjena."</string>
     <string name="label_puk2_code" msgid="302845876240219560">"Vnesite kodo PUK2"</string>
-    <string name="fdn_enable_puk2_requested" msgid="4262894949634885773">"Napačno geslo. Spremenite PIN2 in poskusite znova."</string>
+    <string name="fdn_enable_puk2_requested" msgid="3674058967950559397">"Napačno geslo, koda PIN2 je blokirana. Spremenite kodo PIN2 in poskusite znova."</string>
     <string name="puk2_requested" msgid="8909278021238716877">"Nepravilno geslo, kartica SIM je zaklenjena. Vnesti morate kodo PUK2."</string>
+    <string name="puk2_blocked" msgid="3150263853077280049">"Koda PUK2 je trajno blokirana."</string>
+    <string name="pin2_attempts" msgid="7937503107162525324">\n"Poskusite lahko še <xliff:g id="NUMBER">%d</xliff:g>-krat."</string>
+    <string name="pin2_unblocked" msgid="2903147240919055381">"Koda PIN2 je odblokirana."</string>
     <string name="doneButton" msgid="2859593360997984240">"Dokončano"</string>
     <string name="caller_manage_header" msgid="3231519674734638786">"Konferenčni klic <xliff:g id="CONF_CALL_TIME">%s</xliff:g>"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"Številka glasovne pošte"</string>

@@ -136,9 +136,9 @@
     <string name="select_automatically" msgid="5628402124471810174">"자동으로 선택"</string>
     <string name="sum_select_automatically" msgid="5614890115123292400">"기본 설정 네트워크를 자동으로 선택"</string>
     <string name="register_automatically" msgid="6017849844573519637">"자동 등록..."</string>
-    <string name="preferred_network_mode_title" msgid="8873246565334559308">"네트워크 모드"</string>
+    <string name="preferred_network_mode_title" msgid="2336624679902659306">"기본 네트워크 유형"</string>
     <string name="preferred_network_mode_summary" msgid="1434820673166126609">"네트워크 작동 모드 변경"</string>
-    <string name="preferred_network_mode_dialogtitle" msgid="8176355237105593793">"기본 설정된 네트워크 모드"</string>
+    <string name="preferred_network_mode_dialogtitle" msgid="4048082093347807230">"기본 네트워크 유형"</string>
     <string name="preferred_network_mode_wcdma_perf_summary" msgid="8521677230113533809">"기본 네트워크 모드: WCDMA 선호"</string>
     <string name="preferred_network_mode_gsm_only_summary" msgid="3352445413437453511">"기본 네트워크 모드: GSM 전용"</string>
     <string name="preferred_network_mode_wcdma_only_summary" msgid="2836897236221063413">"기본 네트워크 모드: WCDMA 전용"</string>
@@ -275,8 +275,9 @@
     <string name="enable_disable_multi_category" msgid="626771003122899280">"다중 카테고리"</string>
     <string name="multi_category_enable" msgid="1179299804641721768">"다중 카테고리 사용"</string>
     <string name="multi_category_disable" msgid="880104702904139505">"다중 카테고리 사용 중지"</string>
-    <string name="prefer_2g" msgid="8442550937280449639">"2G 네트워크만 사용"</string>
-    <string name="prefer_2g_summary" msgid="1976491403210690759">"배터리 절약"</string>
+    <string name="network_lte" msgid="7702681952521375754">"LTE(권장)"</string>
+    <string name="network_4G" msgid="2723512640529983138">"4G(권장)"</string>
+    <string name="network_global" msgid="1323190488685355309">"전체"</string>
     <string name="cdma_system_select_title" msgid="5757657769327732833">"시스템 선택"</string>
     <string name="cdma_system_select_summary" msgid="60460043745797517">"CDMA 로밍 모드 변경"</string>
     <string name="cdma_system_select_dialogtitle" msgid="6083355415165359075">"시스템 선택"</string>
@@ -297,6 +298,7 @@
   </string-array>
     <string name="cdma_activate_device" msgid="3793805892364814518">"기기 활성화"</string>
     <string name="cdma_lte_data_service" msgid="4255018217292548962">"데이터 서비스 설정"</string>
+    <string name="carrier_settings_title" msgid="9028166176523012300">"이동통신사 설정"</string>
     <string name="fdn" msgid="7878832555095183202">"발신 허용 번호"</string>
     <string name="manage_fdn_list" msgid="8777755791892122369">"FDN 목록"</string>
     <string name="fdn_activation" msgid="2156479741307463576">"FDN 활성화"</string>
@@ -335,6 +337,7 @@
     <string name="pin2_invalid" msgid="5470854099230755944">"잘못된 PIN을 입력하여 FDN 업데이트 안됨"</string>
     <string name="fdn_invalid_number" msgid="1494755047900009147">"숫자가 20자리를 초과할 수 없으므로 FDN을 업데이트하지 못했습니다."</string>
     <string name="pin2_or_fdn_invalid" msgid="6025144083384701197">"FDN이 업데이트되지 않았습니다. PIN2가 잘못되었거나 전화번호가 거부되었습니다."</string>
+    <string name="fdn_failed" msgid="540018079008319747">"FDN 작업이 실패했습니다."</string>
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"SIM 카드에서 읽는 중..."</string>
     <string name="simContacts_empty" msgid="5270660846489561932">"SIM 카드에 주소록이 없습니다."</string>
     <string name="simContacts_title" msgid="1861472842524839921">"가져올 주소록 선택"</string>
@@ -355,7 +358,7 @@
     <string name="disable_pin_ok" msgid="5596999379593924850">"SIM PIN 사용 안함"</string>
     <string name="pin_failed" msgid="2298841192582192277">"입력한 PIN이 올바르지 않습니다."</string>
     <string name="pin_changed" msgid="4365538014588501049">"SIM PIN이 변경되었습니다."</string>
-    <string name="puk_requested" msgid="3898394204193202803">"비밀번호 틀림. SIM 잠겨 있음! PUK2 요청됨."</string>
+    <string name="puk_requested" msgid="1796577128488773946">"비밀번호가 잘못되어 PIN이 차단되었습니다. PUK를 요청했습니다."</string>
     <string name="enter_pin2_text" msgid="8339444124477720345">"PIN2"</string>
     <string name="oldPin2Label" msgid="8559146795026261502">"이전 PIN2"</string>
     <string name="newPin2Label" msgid="4573956902204349054">"새 PIN2"</string>
@@ -367,8 +370,11 @@
     <string name="invalidPuk2" msgid="1290977391033057871">"8자리 숫자로 된 PUK2를 입력하세요."</string>
     <string name="pin2_changed" msgid="1639666438836544393">"PIN2가 변경되었습니다."</string>
     <string name="label_puk2_code" msgid="302845876240219560">"PUK2 코드 입력"</string>
-    <string name="fdn_enable_puk2_requested" msgid="4262894949634885773">"비밀번호가 잘못되었습니다. PIN2를 변경한 후 다시 시도하세요."</string>
+    <string name="fdn_enable_puk2_requested" msgid="3674058967950559397">"비밀번호가 잘못되어 PIN2가 차단되었습니다. PIN2를 변경한 후 다시 시도하세요."</string>
     <string name="puk2_requested" msgid="8909278021238716877">"비밀번호 틀림. SIM 잠겨 있음. PUK2 요청한 상태임."</string>
+    <string name="puk2_blocked" msgid="3150263853077280049">"PUK2가 완전히 차단되었습니다."</string>
+    <string name="pin2_attempts" msgid="7937503107162525324">\n"<xliff:g id="NUMBER">%d</xliff:g>번의 기회가 남았습니다."</string>
+    <string name="pin2_unblocked" msgid="2903147240919055381">"PIN2이 차단 해제되었습니다."</string>
     <string name="doneButton" msgid="2859593360997984240">"완료"</string>
     <string name="caller_manage_header" msgid="3231519674734638786">"다자간 통화 <xliff:g id="CONF_CALL_TIME">%s</xliff:g>"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"음성사서함 번호"</string>

@@ -136,9 +136,9 @@
     <string name="select_automatically" msgid="5628402124471810174">"Escolher automaticamente"</string>
     <string name="sum_select_automatically" msgid="5614890115123292400">"Escolher automaticamente a rede preferencial"</string>
     <string name="register_automatically" msgid="6017849844573519637">"Registro automático..."</string>
-    <string name="preferred_network_mode_title" msgid="8873246565334559308">"Modo de rede"</string>
+    <string name="preferred_network_mode_title" msgid="2336624679902659306">"Tipo de rede preferencial"</string>
     <string name="preferred_network_mode_summary" msgid="1434820673166126609">"Alterar o modo de operação de rede"</string>
-    <string name="preferred_network_mode_dialogtitle" msgid="8176355237105593793">"Modo de rede de preferência"</string>
+    <string name="preferred_network_mode_dialogtitle" msgid="4048082093347807230">"Tipo de rede preferencial"</string>
     <string name="preferred_network_mode_wcdma_perf_summary" msgid="8521677230113533809">"Modo de rede preferencial: WCDMA"</string>
     <string name="preferred_network_mode_gsm_only_summary" msgid="3352445413437453511">"Modo de rede preferencial: somente GSM"</string>
     <string name="preferred_network_mode_wcdma_only_summary" msgid="2836897236221063413">"Modo de rede preferencial: somente WCDMA"</string>
@@ -275,8 +275,9 @@
     <string name="enable_disable_multi_category" msgid="626771003122899280">"Várias categorias"</string>
     <string name="multi_category_enable" msgid="1179299804641721768">"Várias categorias ativadas"</string>
     <string name="multi_category_disable" msgid="880104702904139505">"Várias categorias desativadas"</string>
-    <string name="prefer_2g" msgid="8442550937280449639">"Usar apenas redes 2G"</string>
-    <string name="prefer_2g_summary" msgid="1976491403210690759">"Economiza bateria"</string>
+    <string name="network_lte" msgid="7702681952521375754">"LTE (recomendável)"</string>
+    <string name="network_4G" msgid="2723512640529983138">"4G (recomendável)"</string>
+    <string name="network_global" msgid="1323190488685355309">"Global"</string>
     <string name="cdma_system_select_title" msgid="5757657769327732833">"Seleção de sistema"</string>
     <string name="cdma_system_select_summary" msgid="60460043745797517">"Alterar o modo de roaming CDMA"</string>
     <string name="cdma_system_select_dialogtitle" msgid="6083355415165359075">"Selecionar sistema"</string>
@@ -297,6 +298,7 @@
   </string-array>
     <string name="cdma_activate_device" msgid="3793805892364814518">"Ativar aparelho"</string>
     <string name="cdma_lte_data_service" msgid="4255018217292548962">"Configurar serviço de dados"</string>
+    <string name="carrier_settings_title" msgid="9028166176523012300">"Config. da operadora"</string>
     <string name="fdn" msgid="7878832555095183202">"Chamadas fixas"</string>
     <string name="manage_fdn_list" msgid="8777755791892122369">"Lista FDN"</string>
     <string name="fdn_activation" msgid="2156479741307463576">"Ativação do FDN"</string>
@@ -335,6 +337,7 @@
     <string name="pin2_invalid" msgid="5470854099230755944">"O FDN não foi atualizado porque você digitou um PIN incorreto."</string>
     <string name="fdn_invalid_number" msgid="1494755047900009147">"O FDN não foi atualizado porque o número não pode exceder 20 dígitos."</string>
     <string name="pin2_or_fdn_invalid" msgid="6025144083384701197">"O FDN não foi atualizado. O PIN2 estava incorreto, ou o número de telefone foi rejeitado."</string>
+    <string name="fdn_failed" msgid="540018079008319747">"Falha na operação de FDN."</string>
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"Lendo a partir do cartão SIM…"</string>
     <string name="simContacts_empty" msgid="5270660846489561932">"Não há contatos no seu cartão SIM."</string>
     <string name="simContacts_title" msgid="1861472842524839921">"Selecione os contatos a serem importados"</string>
@@ -355,7 +358,7 @@
     <string name="disable_pin_ok" msgid="5596999379593924850">"PIN do SIM desativado."</string>
     <string name="pin_failed" msgid="2298841192582192277">"O PIN digitado estava incorreto."</string>
     <string name="pin_changed" msgid="4365538014588501049">"PIN do SIM alterado."</string>
-    <string name="puk_requested" msgid="3898394204193202803">"Senha incorreta. SIM bloqueado! PUK2 solicitado."</string>
+    <string name="puk_requested" msgid="1796577128488773946">"Senha incorreta. PIN bloqueado. PUK solicitado."</string>
     <string name="enter_pin2_text" msgid="8339444124477720345">"PIN2"</string>
     <string name="oldPin2Label" msgid="8559146795026261502">"PIN2 antigo"</string>
     <string name="newPin2Label" msgid="4573956902204349054">"Novo PIN2"</string>
@@ -367,8 +370,11 @@
     <string name="invalidPuk2" msgid="1290977391033057871">"Digite um PUK2 com 8 números."</string>
     <string name="pin2_changed" msgid="1639666438836544393">"PIN2 alterado."</string>
     <string name="label_puk2_code" msgid="302845876240219560">"Digitar o código PUK2"</string>
-    <string name="fdn_enable_puk2_requested" msgid="4262894949634885773">"Senha incorreta. Altere o PIN2 e tente novamente."</string>
+    <string name="fdn_enable_puk2_requested" msgid="3674058967950559397">"Senha incorreta. PIN2 bloqueado. Altere o PIN2 e tente novamente."</string>
     <string name="puk2_requested" msgid="8909278021238716877">"Senha incorreta. SIM bloqueado. PUK2 solicitado."</string>
+    <string name="puk2_blocked" msgid="3150263853077280049">"PUK2 permanentemente bloqueado."</string>
+    <string name="pin2_attempts" msgid="7937503107162525324">\n"Tentativas restantes: <xliff:g id="NUMBER">%d</xliff:g>."</string>
+    <string name="pin2_unblocked" msgid="2903147240919055381">"PIN2 desbloqueado."</string>
     <string name="doneButton" msgid="2859593360997984240">"Concluído"</string>
     <string name="caller_manage_header" msgid="3231519674734638786">"Conferência telefônica <xliff:g id="CONF_CALL_TIME">%s</xliff:g>"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"Número correio de voz"</string>

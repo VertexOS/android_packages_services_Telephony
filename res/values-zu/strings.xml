@@ -136,9 +136,9 @@
     <string name="select_automatically" msgid="5628402124471810174">"Khetha ngokuzenzakalela"</string>
     <string name="sum_select_automatically" msgid="5614890115123292400">"Khetha ngokuzenzakalela inethiwekhi ethandwayo"</string>
     <string name="register_automatically" msgid="6017849844573519637">"Ukubhalisa okuzenzakalelayo..."</string>
-    <string name="preferred_network_mode_title" msgid="8873246565334559308">"Imodi Yenethiwekhi"</string>
+    <string name="preferred_network_mode_title" msgid="2336624679902659306">"Uhlobo lwenethiwekhi oluncamelayo"</string>
     <string name="preferred_network_mode_summary" msgid="1434820673166126609">"Shintsha imodi esebenzayo yenethiwekhi"</string>
-    <string name="preferred_network_mode_dialogtitle" msgid="8176355237105593793">"Imodi yenethiwekhi ekhethwayo"</string>
+    <string name="preferred_network_mode_dialogtitle" msgid="4048082093347807230">"Uhlobo lwenethiwekhi oluncamelayo"</string>
     <string name="preferred_network_mode_wcdma_perf_summary" msgid="8521677230113533809">"Imodi yenethiwekhi ekhethwayo: i-WCDMA ekhethwayo"</string>
     <string name="preferred_network_mode_gsm_only_summary" msgid="3352445413437453511">"Imodi yenethiwekhi ekhethwayo: i-GSM kuphela"</string>
     <string name="preferred_network_mode_wcdma_only_summary" msgid="2836897236221063413">"Imodi yenethiwekhi ekhethwayo: i-WCDMA kuphela"</string>
@@ -279,8 +279,9 @@
     <string name="enable_disable_multi_category" msgid="626771003122899280">"Izigaba-ningi"</string>
     <string name="multi_category_enable" msgid="1179299804641721768">"Izigaba-ningi zivunyelwe"</string>
     <string name="multi_category_disable" msgid="880104702904139505">"Izigaba-ningi zivimbelwe"</string>
-    <string name="prefer_2g" msgid="8442550937280449639">"Sebenzisa i-2G kuphela"</string>
-    <string name="prefer_2g_summary" msgid="1976491403210690759">"Ilondoloza ibhetri"</string>
+    <string name="network_lte" msgid="7702681952521375754">"I-LTE (inconyiwe)"</string>
+    <string name="network_4G" msgid="2723512640529983138">"I-4G (inconyiwe)"</string>
+    <string name="network_global" msgid="1323190488685355309">"Emhlabeni jikelele"</string>
     <string name="cdma_system_select_title" msgid="5757657769327732833">"Khetha uhlelo"</string>
     <string name="cdma_system_select_summary" msgid="60460043745797517">"Sintsha imodi yokuzulazula ye-cdma"</string>
     <string name="cdma_system_select_dialogtitle" msgid="6083355415165359075">"Khetha uhlelo"</string>
@@ -301,6 +302,7 @@
   </string-array>
     <string name="cdma_activate_device" msgid="3793805892364814518">"Yenza idivaysi isebenze"</string>
     <string name="cdma_lte_data_service" msgid="4255018217292548962">"Setha isevisi yedatha"</string>
+    <string name="carrier_settings_title" msgid="9028166176523012300">"Izilungiselelo zenkampini yenethiwekhi"</string>
     <string name="fdn" msgid="7878832555095183202">"Izinombolo Zokudayela Okungaguquki"</string>
     <string name="manage_fdn_list" msgid="8777755791892122369">"Uhlu lwe-FDN"</string>
     <string name="fdn_activation" msgid="2156479741307463576">"Ukwenza kusebenze i-FDN"</string>
@@ -339,6 +341,7 @@
     <string name="pin2_invalid" msgid="5470854099230755944">"I-FDN ayivuselelwanga ngoba uthayiphe i-PIN engalungile."</string>
     <string name="fdn_invalid_number" msgid="1494755047900009147">"I-FDN ayivuselelwanga ngoba inombolo ayikwazi ukudlula ezinombolweni ezingu-20."</string>
     <string name="pin2_or_fdn_invalid" msgid="6025144083384701197">"I-FDN ayibuyekeziwe. I-PIN2 kade ingalungile, noma inombolo yefoni yenqatshelwe."</string>
+    <string name="fdn_failed" msgid="540018079008319747">"Umsebenzi we-FDN wehlulekile."</string>
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"Ifunda ekhadini le-SIM..."</string>
     <string name="simContacts_empty" msgid="5270660846489561932">"Abekho othintana nabo ekhadini lakho le-SIM"</string>
     <string name="simContacts_title" msgid="1861472842524839921">"Khetha othintana nabo ozobangenisa"</string>
@@ -359,7 +362,7 @@
     <string name="disable_pin_ok" msgid="5596999379593924850">"I-PIN ye-SIM ivaliwe."</string>
     <string name="pin_failed" msgid="2298841192582192277">"I-PIN oyifakile ayilungile"</string>
     <string name="pin_changed" msgid="4365538014588501049">"I-PIN ye-SIM ishintshwe ngempumelelo"</string>
-    <string name="puk_requested" msgid="3898394204193202803">"Iphasiwedi ayilungile, i-SIM ivaliwe! Kudingena i-PUK2."</string>
+    <string name="puk_requested" msgid="1796577128488773946">"Iphasiwedi ayilungile, iphinikhodi ivinjiwe, i-PUK iceliwe."</string>
     <string name="enter_pin2_text" msgid="8339444124477720345">"I-PIN2"</string>
     <string name="oldPin2Label" msgid="8559146795026261502">"I-PIN2 endala"</string>
     <string name="newPin2Label" msgid="4573956902204349054">"I-PIN entsha"</string>
@@ -371,8 +374,11 @@
     <string name="invalidPuk2" msgid="1290977391033057871">"Thayipha i-PUK2 enezinombolo ezingu-8."</string>
     <string name="pin2_changed" msgid="1639666438836544393">"I-PIN2 ishintshwe ngokuphumelelayo"</string>
     <string name="label_puk2_code" msgid="302845876240219560">"Thayipha ikhodi ye-PUK2"</string>
-    <string name="fdn_enable_puk2_requested" msgid="4262894949634885773">"Iphasiwedi ayilungile, sicela ushintshe i-PIN2 bese uzama futhi!"</string>
+    <string name="fdn_enable_puk2_requested" msgid="3674058967950559397">"Iphasiwedi ayilungile, i-PIN2 ivinjiwe. Sicela ushintshe i- PIN2 bese uzama futhi!"</string>
     <string name="puk2_requested" msgid="8909278021238716877">"Iphasiwedi ayilungile, i-SIM ivaliwe! Kudingena i-PUK2."</string>
+    <string name="puk2_blocked" msgid="3150263853077280049">"I-PUK2 ivinjiwe unaphakade."</string>
+    <string name="pin2_attempts" msgid="7937503107162525324">\n"Kukhona imizamo engu-<xliff:g id="NUMBER">%d</xliff:g> esele."</string>
+    <string name="pin2_unblocked" msgid="2903147240919055381">"I-PIN2 ivulelwe!"</string>
     <string name="doneButton" msgid="2859593360997984240">"Kwenziwe"</string>
     <string name="caller_manage_header" msgid="3231519674734638786">"Ikholi yengqungquthela <xliff:g id="CONF_CALL_TIME">%s</xliff:g>"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"Inombolo yevoyisimeyili"</string>

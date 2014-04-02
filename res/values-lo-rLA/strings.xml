@@ -136,9 +136,9 @@
     <string name="select_automatically" msgid="5628402124471810174">"ເລືອກອັດຕະໂນມັດ"</string>
     <string name="sum_select_automatically" msgid="5614890115123292400">"ເລືອກເຄືອຂ່າຍທີ່ຕ້ອງການອັດຕະໂນມັດ"</string>
     <string name="register_automatically" msgid="6017849844573519637">"ການລົງທະບຽນອັດຕະໂນມັດ..."</string>
-    <string name="preferred_network_mode_title" msgid="8873246565334559308">"ຮູບແບບເຄືອຂ່າຍ"</string>
+    <string name="preferred_network_mode_title" msgid="2336624679902659306">"ປະ​ເພດ​ເຄືອ​ຂ່າຍທີ່ຕ້ອງການ"</string>
     <string name="preferred_network_mode_summary" msgid="1434820673166126609">"ປ່ຽນຮູບແບບປະຕິບັດການຂອງເຄືອຂ່າຍ"</string>
-    <string name="preferred_network_mode_dialogtitle" msgid="8176355237105593793">"ຮູບແບບເຄືອຂ່າຍທີ່ຕ້ອງການ"</string>
+    <string name="preferred_network_mode_dialogtitle" msgid="4048082093347807230">"ປະ​ເພດ​ເຄືອ​ຂ່າຍທີ່ຕ້ອງການ"</string>
     <string name="preferred_network_mode_wcdma_perf_summary" msgid="8521677230113533809">"ຮູບແບບເຄືອຂ່າຍທີ່ຕ້ອງການ: ຕ້ອງການ WCDMA"</string>
     <string name="preferred_network_mode_gsm_only_summary" msgid="3352445413437453511">"ຮູບແບບເຄືອຂ່າຍທີ່ຕ້ອງການ: GSM ເທົ່ານັ້ນ"</string>
     <string name="preferred_network_mode_wcdma_only_summary" msgid="2836897236221063413">"ຮູບແບບເຄືອຂ່າຍທີ່ຕ້ອງການ: WCDMA ເທົ່ານັ້ນ"</string>
@@ -275,8 +275,9 @@
     <string name="enable_disable_multi_category" msgid="626771003122899280">"ຫຼາຍໝວດໝູ່"</string>
     <string name="multi_category_enable" msgid="1179299804641721768">"ເປີດການນຳໃຊ້ຫຼາຍໝວດໝູ່ແລ້ວ"</string>
     <string name="multi_category_disable" msgid="880104702904139505">"ປິດການນຳໃຊ້ຫຼາຍໝວດໝູ່ແລ້ວ"</string>
-    <string name="prefer_2g" msgid="8442550937280449639">"ໃຊ້ເຄືອຂ່າຍ 2G ເທົ່ານັ້ນ"</string>
-    <string name="prefer_2g_summary" msgid="1976491403210690759">"ປະຢັດແບັດເຕີຣີ"</string>
+    <string name="network_lte" msgid="7702681952521375754">"LTE (ແນະ​ນໍາ​)"</string>
+    <string name="network_4G" msgid="2723512640529983138">"4G (ແນະ​ນໍາ​)"</string>
+    <string name="network_global" msgid="1323190488685355309">"ທົ່ວໂລກ"</string>
     <string name="cdma_system_select_title" msgid="5757657769327732833">"ການເລືອກລະບົບ"</string>
     <string name="cdma_system_select_summary" msgid="60460043745797517">"ປ່ຽນຮູບແບບການໂຣມມິງ CDMA"</string>
     <string name="cdma_system_select_dialogtitle" msgid="6083355415165359075">"ການເລືອກລະບົບ"</string>
@@ -297,6 +298,7 @@
   </string-array>
     <string name="cdma_activate_device" msgid="3793805892364814518">"ເປີດນຳໃຊ້ອຸປະກອນ"</string>
     <string name="cdma_lte_data_service" msgid="4255018217292548962">"ຕັ້ງຄ່າບໍລິການຂໍ້ມູນ"</string>
+    <string name="carrier_settings_title" msgid="9028166176523012300">"ການຕັ້ງຄ່າຜູ່ໃຫ້ບໍລິການ"</string>
     <string name="fdn" msgid="7878832555095183202">"ໝາຍເລກຈຳກັດການໂທອອກ"</string>
     <string name="manage_fdn_list" msgid="8777755791892122369">"ລາຍ​ຊື່ FDN"</string>
     <string name="fdn_activation" msgid="2156479741307463576">"ການເປີດໃຊ້ FDN"</string>
@@ -335,6 +337,7 @@
     <string name="pin2_invalid" msgid="5470854099230755944">"FDN ບໍ່ໄດ້ອັບເດດເທື່ອ ເນື່ອງຈາກທ່ານໃສ່ລະຫັດ PIN ບໍ່ຖືກຕ້ອງ."</string>
     <string name="fdn_invalid_number" msgid="1494755047900009147">"FDN ບໍ່ໄດ້ອັບເດດເທື່ອ ເນື່ອງຈາກໂຕເລກບໍ່ສາມາດມີເກີນ 20​ ໂຕໄດ້."</string>
     <string name="pin2_or_fdn_invalid" msgid="6025144083384701197">"FDN ບໍ່ໄດ້ອັບເດດເທື່ອ. ລະຫັດ PIN2 ບໍ່ຖືກຕ້ອງ ຫຼືເບີໂທລະສັບຖືກປະຕິເສດ."</string>
+    <string name="fdn_failed" msgid="540018079008319747">"FDN ເຮັດວຽກລົ້ມເຫຼວ!"</string>
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"ກຳລັງອ່ານຈາກ SIM card..."</string>
     <string name="simContacts_empty" msgid="5270660846489561932">"ບໍ່ມີລາຍຊື່ຜູ່ຕິດຕໍ່ໃນ SIM card ຂອງທ່ານ."</string>
     <string name="simContacts_title" msgid="1861472842524839921">"ເລືອກລາຍຊື່ເພື່ອນຳເຂົ້າ"</string>
@@ -355,7 +358,7 @@
     <string name="disable_pin_ok" msgid="5596999379593924850">"PIN ຂອງ SIM ຖືກປິດແລ້ວ."</string>
     <string name="pin_failed" msgid="2298841192582192277">"ລະຫັດ PIN ທີ່ທ່ານພິມບໍ່ຖືກຕ້ອງ."</string>
     <string name="pin_changed" msgid="4365538014588501049">"ປ່ຽນລະຫັດ PIN ຂອງ SIM ສຳເລັດແລ້ວ."</string>
-    <string name="puk_requested" msgid="3898394204193202803">"ລະຫັດຜ່ານບໍ່ຖືກຕ້ອງ, SIM ຖືກລັອກ! ຕ້ອງໃຊ້ລະຫັດ PUK2."</string>
+    <string name="puk_requested" msgid="1796577128488773946">"ລະ​ຫັດ​ຜ່ານ​ບໍ່​ຖືກ​ຕ້ອງ​, PIN ຖືກບລັອກ! ຕ້ອງໃຊ້ລະຫັດ PUK​​."</string>
     <string name="enter_pin2_text" msgid="8339444124477720345">"PIN2"</string>
     <string name="oldPin2Label" msgid="8559146795026261502">"ລະຫັດ PIN2 ເກົ່າ"</string>
     <string name="newPin2Label" msgid="4573956902204349054">"ລະຫັດ PIN2 ໃໝ່"</string>
@@ -367,8 +370,11 @@
     <string name="invalidPuk2" msgid="1290977391033057871">"ພິມລະຫັດ PUK2 ທີ່ມີ 8 ໂຕເລກ."</string>
     <string name="pin2_changed" msgid="1639666438836544393">"ປ່ຽນລະຫັດ PIN2 ສຳເລັດແລ້ວ."</string>
     <string name="label_puk2_code" msgid="302845876240219560">"ພິມລະຫັດ PUK2"</string>
-    <string name="fdn_enable_puk2_requested" msgid="4262894949634885773">"ລະຫັດຜ່ານບໍ່ຖືກຕ້ອງ. ກະລຸນາປ່ຽນລະຫັດ PIN2 ແລ້ວລອງໃໝ່."</string>
+    <string name="fdn_enable_puk2_requested" msgid="3674058967950559397">"ລະ​ຫັດ​ຜ່ານ​ບໍ່​ຖືກ​ຕ້ອງ​, PIN2 ຖືກບລັອກ. ກະ​ລຸ​ນາ​​ປ່ຽນ​ PIN2 ແລະລອງໃໝ່ອີກ!"</string>
     <string name="puk2_requested" msgid="8909278021238716877">"ລະຫັດຜ່ານບໍ່ຖືກຕ້ອງ, SIM ຖືກລັອກ. ຕ້ອງໃຊ້ລະຫັດ PUK2."</string>
+    <string name="puk2_blocked" msgid="3150263853077280049">"PUK2 ຖືກບລັອກຢ່າງຖາວອນແລ້ວ."</string>
+    <string name="pin2_attempts" msgid="7937503107162525324">\n"ທ່ານສາມາດລອງໄດ້ອີກ <xliff:g id="NUMBER">%d</xliff:g> ເທື່ອ."</string>
+    <string name="pin2_unblocked" msgid="2903147240919055381">"PIN2 ຖືກປົດບລັອກແລ້ວ!"</string>
     <string name="doneButton" msgid="2859593360997984240">"ແລ້ວໆ"</string>
     <string name="caller_manage_header" msgid="3231519674734638786">"ປະຊຸມສາຍ <xliff:g id="CONF_CALL_TIME">%s</xliff:g>"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"ເບີຂໍ້ຄວາມສຽງ"</string>

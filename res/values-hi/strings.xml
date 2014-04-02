@@ -103,7 +103,7 @@
     <string name="reverting_settings" msgid="4752151682666912828">"सेटिंग वापस ला रहा है..."</string>
     <string name="response_error" msgid="6674110501330139405">"नेटवर्क से अनपेक्षित प्रतिसाद."</string>
     <string name="exception_error" msgid="7027667130619518211">"नेटवर्क या सिम कार्ड त्रुटि."</string>
-    <string name="fdn_check_failure" msgid="18200614306525434">"आपके फ़ोन एप्‍स की फ़िक्‍स्‍ड डायलिंग नंबर सेटिंग चालू है. इसके परिणामस्‍वरूप, कॉल से संबंधित कुछ सुविधाएं कार्य नहीं कर रही हैं."</string>
+    <string name="fdn_check_failure" msgid="18200614306525434">"आपके फ़ोन ऐप्स की फ़िक्‍स्‍ड डायलिंग नंबर सेटिंग चालू है. इसके परिणामस्‍वरूप, कॉल से संबंधित कुछ सुविधाएं कार्य नहीं कर रही हैं."</string>
     <string name="radio_off_error" msgid="2304459933248513376">"इन सेटिंग को देखने के पहले रेडियो चालू करें."</string>
     <string name="close_dialog" msgid="2365884406356986917">"ठीक है"</string>
     <string name="enable" msgid="1059008390636773574">"सक्षम करें"</string>
@@ -136,9 +136,9 @@
     <string name="select_automatically" msgid="5628402124471810174">"अपने आप चुनें"</string>
     <string name="sum_select_automatically" msgid="5614890115123292400">"पसंदीदा नेटवर्क अपने आप चुनें"</string>
     <string name="register_automatically" msgid="6017849844573519637">"स्वचालित पंजीकरण..."</string>
-    <string name="preferred_network_mode_title" msgid="8873246565334559308">"नेटवर्क मोड"</string>
+    <string name="preferred_network_mode_title" msgid="2336624679902659306">"पसंदीदा नेटवर्क प्रकार"</string>
     <string name="preferred_network_mode_summary" msgid="1434820673166126609">"नेटवर्क संचालन मोड बदलें"</string>
-    <string name="preferred_network_mode_dialogtitle" msgid="8176355237105593793">"पसंदीदा नेटवर्क मोड"</string>
+    <string name="preferred_network_mode_dialogtitle" msgid="4048082093347807230">"पसंदीदा नेटवर्क प्रकार"</string>
     <string name="preferred_network_mode_wcdma_perf_summary" msgid="8521677230113533809">"पसंदीदा नेटवर्क मोड: WCDMA को प्राथमिकता"</string>
     <string name="preferred_network_mode_gsm_only_summary" msgid="3352445413437453511">"पसंदीदा नेटवर्क मोड: केवल GSM"</string>
     <string name="preferred_network_mode_wcdma_only_summary" msgid="2836897236221063413">"पसंदीदा नेटवर्क मोड: केवल WCDMA"</string>
@@ -275,8 +275,9 @@
     <string name="enable_disable_multi_category" msgid="626771003122899280">"बहु-श्रेणी"</string>
     <string name="multi_category_enable" msgid="1179299804641721768">"बहु-श्रेणी सक्षम की गई"</string>
     <string name="multi_category_disable" msgid="880104702904139505">"बहु-श्रेणी अक्षम की गई"</string>
-    <string name="prefer_2g" msgid="8442550937280449639">"केवल 2G नेटवर्क का उपयोग करें"</string>
-    <string name="prefer_2g_summary" msgid="1976491403210690759">"बैटरी बचाता है"</string>
+    <string name="network_lte" msgid="7702681952521375754">"LTE (अनुशंसित)"</string>
+    <string name="network_4G" msgid="2723512640529983138">"4G (अनुशंसित)"</string>
+    <string name="network_global" msgid="1323190488685355309">"वैश्विक"</string>
     <string name="cdma_system_select_title" msgid="5757657769327732833">"सिस्टम चयन"</string>
     <string name="cdma_system_select_summary" msgid="60460043745797517">"CDMA रोमिंग मोड बदलें"</string>
     <string name="cdma_system_select_dialogtitle" msgid="6083355415165359075">"सिस्टम चयन"</string>
@@ -297,6 +298,7 @@
   </string-array>
     <string name="cdma_activate_device" msgid="3793805892364814518">"उपकरण सक्रिय करें"</string>
     <string name="cdma_lte_data_service" msgid="4255018217292548962">"डेटा सेवा सेट करें"</string>
+    <string name="carrier_settings_title" msgid="9028166176523012300">"वाहक सेटिंग"</string>
     <string name="fdn" msgid="7878832555095183202">"फ़िक्स्ड डायलिंग नंबर"</string>
     <string name="manage_fdn_list" msgid="8777755791892122369">"FDN सूची"</string>
     <string name="fdn_activation" msgid="2156479741307463576">"FDN सक्रियण"</string>
@@ -335,6 +337,7 @@
     <string name="pin2_invalid" msgid="5470854099230755944">"FDN पे नई जानकारी नहीं है क्योंकि आपने गलत पिन लिखा है."</string>
     <string name="fdn_invalid_number" msgid="1494755047900009147">"FDN पे नई जानकारी नहीं है क्योंकि नंबर में 20 से अधिक अंक नहीं हो सकते."</string>
     <string name="pin2_or_fdn_invalid" msgid="6025144083384701197">"FDN पे नई जानकारी नहीं है. PIN2 गलत था, या फ़ोन नंबर अस्वीकृत था."</string>
+    <string name="fdn_failed" msgid="540018079008319747">"FDN की कार्यवाही विफल रही."</string>
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"सिम कार्ड से पढ़ रहा है…"</string>
     <string name="simContacts_empty" msgid="5270660846489561932">"आपके सिम कार्ड पर कोई संपर्क नहीं है."</string>
     <string name="simContacts_title" msgid="1861472842524839921">"आयात करने के लिए संपर्कों को चुनें"</string>
@@ -355,7 +358,7 @@
     <string name="disable_pin_ok" msgid="5596999379593924850">"सिम पिन अक्षम"</string>
     <string name="pin_failed" msgid="2298841192582192277">"आपके द्वारा लिखा गया पिन गलत था."</string>
     <string name="pin_changed" msgid="4365538014588501049">"सिम पिन सफलतापूर्वक बदला गया."</string>
-    <string name="puk_requested" msgid="3898394204193202803">"पासवर्ड गलत, सिम लॉक की गई है! PUK2 का अनुरोध किया गया है."</string>
+    <string name="puk_requested" msgid="1796577128488773946">"पासवर्ड गलत है, PIN अवरोधित किया गया! PUK का अनुरोध किया गया."</string>
     <string name="enter_pin2_text" msgid="8339444124477720345">"पिन2"</string>
     <string name="oldPin2Label" msgid="8559146795026261502">"पुराना पिन2"</string>
     <string name="newPin2Label" msgid="4573956902204349054">"नया पिन2"</string>
@@ -367,8 +370,11 @@
     <string name="invalidPuk2" msgid="1290977391033057871">"वह PUK2 टाइप करें जिसमें 8 नंबर हों."</string>
     <string name="pin2_changed" msgid="1639666438836544393">"पिन2 सफलतापूर्वक बदला गया"</string>
     <string name="label_puk2_code" msgid="302845876240219560">"PUK2 कोड टाइप करें"</string>
-    <string name="fdn_enable_puk2_requested" msgid="4262894949634885773">"पासवर्ड गलत. पिन2 बदलें और पुनः प्रयास करें."</string>
+    <string name="fdn_enable_puk2_requested" msgid="3674058967950559397">"पासवर्ड गलत है, PIN2 अवरोधित किया गया. कृपया PIN2 को बदलें और पुन: प्रयास करें!"</string>
     <string name="puk2_requested" msgid="8909278021238716877">"पासवर्ड गलत है, सिम लॉक हो गया है. PUK2 का अनुरोध किया गया."</string>
+    <string name="puk2_blocked" msgid="3150263853077280049">"PUK2 स्थायी रूप से अवरोधित है."</string>
+    <string name="pin2_attempts" msgid="7937503107162525324">\n"<xliff:g id="NUMBER">%d</xliff:g> प्रयास शेष हैं."</string>
+    <string name="pin2_unblocked" msgid="2903147240919055381">"PIN2 अनब्लॉक किया गया!"</string>
     <string name="doneButton" msgid="2859593360997984240">"पूर्ण"</string>
     <string name="caller_manage_header" msgid="3231519674734638786">"कॉन्फ़्रेंस कॉल <xliff:g id="CONF_CALL_TIME">%s</xliff:g>"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"ध्‍वनिमेल नबंर"</string>
@@ -477,8 +483,8 @@
     <item quantity="other" msgid="3122217344579273583">"<xliff:g id="COUNT">%s</xliff:g> मिनट के लिए कोई डेटा कनेक्शन नहीं"</item>
   </plurals>
   <plurals name="alert_dialog_exit_ecm">
-    <item quantity="one" msgid="8060210887681426682">"फ़ोन <xliff:g id="COUNT">%s</xliff:g> मिनट के लिए आपातकालीन कॉलबैक मोड में रहेगा. हालांकि, इस मोड में होने पर डेटा कनेक्शन का उपयोग करने वाले किसी एप्स का उपयोग नहीं किया जा सकता. क्या आप अभी बाहर निकलना चाहते हैं?"</item>
-    <item quantity="other" msgid="8617116564023933114">"फ़ोन <xliff:g id="COUNT">%s</xliff:g> मिनट के लिए आपातकालीन कॉलबैक मोड में रहेगा. हालांकि, इस मोड में होने पर डेटा कनेक्शन का उपयोग करने वाले किसी एप्स का उपयोग नहीं किया जा सकता. क्या आप अभी बाहर निकलना चाहते हैं?"</item>
+    <item quantity="one" msgid="8060210887681426682">"फ़ोन <xliff:g id="COUNT">%s</xliff:g> मिनट के लिए आपातकालीन कॉलबैक मोड में रहेगा. हालांकि, इस मोड में होने पर डेटा कनेक्शन का उपयोग करने वाले किसी ऐप्स  का उपयोग नहीं किया जा सकता. क्या आप अभी बाहर निकलना चाहते हैं?"</item>
+    <item quantity="other" msgid="8617116564023933114">"फ़ोन <xliff:g id="COUNT">%s</xliff:g> मिनट के लिए आपातकालीन कॉलबैक मोड में रहेगा. हालांकि, इस मोड में होने पर डेटा कनेक्शन का उपयोग करने वाले किसी ऐप्स  का उपयोग नहीं किया जा सकता. क्या आप अभी बाहर निकलना चाहते हैं?"</item>
   </plurals>
   <plurals name="alert_dialog_not_avaialble_in_ecm">
     <item quantity="one" msgid="2585506997024726599">"आपातकालीन कॉलबैक मोड के समय चयनित क्रिया उपलब्ध नहीं है. फ़ोन <xliff:g id="COUNT">%s</xliff:g> मिनट तक इस मोड में रहेगा. क्या आप अभी बाहर निकलना चाहते हैं?"</item>
@@ -539,7 +545,7 @@
     <string name="registration_status_failed_try_later" msgid="5214474354451220581">"खाता पंजीकरण विफल: (<xliff:g id="REGISTRATION_ERROR_MESSAGE">%s</xliff:g>); बाद में पुन: प्रयास किया जाएगा"</string>
     <string name="registration_status_invalid_credentials" msgid="4908446367559341757">"खाता पंजीकरण विफल: गलत उपयोगकर्ता नाम या पासवर्ड."</string>
     <string name="registration_status_server_unreachable" msgid="5733421582468991276">"खाता पंजीकरण विफल: सर्वर नाम जांचें."</string>
-    <string name="third_party_account_summary" msgid="2532526738862533028">"वर्तमान में इस खाते का उपयोग <xliff:g id="ACCOUNT_OWNER">%s</xliff:g> एप्स द्वारा किया जा रहा है."</string>
+    <string name="third_party_account_summary" msgid="2532526738862533028">"वर्तमान में इस खाते का उपयोग <xliff:g id="ACCOUNT_OWNER">%s</xliff:g> ऐप्स  द्वारा किया जा रहा है."</string>
     <string name="sip_edit_title" msgid="489288416435014385">"SIP खाता विवरण"</string>
     <string name="sip_edit_new_title" msgid="3659149255856520385">"SIP खाता विवरण"</string>
     <string name="domain_address_title" msgid="9071787581316160480">"सर्वर"</string>

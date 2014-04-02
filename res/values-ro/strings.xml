@@ -136,9 +136,9 @@
     <string name="select_automatically" msgid="5628402124471810174">"Selectaţi în mod automat"</string>
     <string name="sum_select_automatically" msgid="5614890115123292400">"Selectaţi în mod automat reţeaua preferată"</string>
     <string name="register_automatically" msgid="6017849844573519637">"Înregistrare automată..."</string>
-    <string name="preferred_network_mode_title" msgid="8873246565334559308">"Mod reţea"</string>
+    <string name="preferred_network_mode_title" msgid="2336624679902659306">"Tipul de rețea preferat"</string>
     <string name="preferred_network_mode_summary" msgid="1434820673166126609">"Schimbaţi modul de operare a reţelei"</string>
-    <string name="preferred_network_mode_dialogtitle" msgid="8176355237105593793">"Mod de reţea preferat"</string>
+    <string name="preferred_network_mode_dialogtitle" msgid="4048082093347807230">"Tipul de rețea preferat"</string>
     <string name="preferred_network_mode_wcdma_perf_summary" msgid="8521677230113533809">"Mod de reţea preferat: de preferat WCDMA"</string>
     <string name="preferred_network_mode_gsm_only_summary" msgid="3352445413437453511">"Mod de reţea preferat: numai GSM"</string>
     <string name="preferred_network_mode_wcdma_only_summary" msgid="2836897236221063413">"Mod de reţea preferat: numai WCDMA"</string>
@@ -275,8 +275,9 @@
     <string name="enable_disable_multi_category" msgid="626771003122899280">"Categorii multiple"</string>
     <string name="multi_category_enable" msgid="1179299804641721768">"Categorii multiple activate"</string>
     <string name="multi_category_disable" msgid="880104702904139505">"Categorii multiple dezactivate"</string>
-    <string name="prefer_2g" msgid="8442550937280449639">"Utilizaţi doar reţele 2G"</string>
-    <string name="prefer_2g_summary" msgid="1976491403210690759">"Economisiţi bateria"</string>
+    <string name="network_lte" msgid="7702681952521375754">"LTE (recomandat)"</string>
+    <string name="network_4G" msgid="2723512640529983138">"4G (recomandat)"</string>
+    <string name="network_global" msgid="1323190488685355309">"Global"</string>
     <string name="cdma_system_select_title" msgid="5757657769327732833">"Selectaţi sistemul"</string>
     <string name="cdma_system_select_summary" msgid="60460043745797517">"Schimbaţi modul de roaming CDMA"</string>
     <string name="cdma_system_select_dialogtitle" msgid="6083355415165359075">"Selectaţi sistemul"</string>
@@ -297,6 +298,7 @@
   </string-array>
     <string name="cdma_activate_device" msgid="3793805892364814518">"Activaţi dispozitivul"</string>
     <string name="cdma_lte_data_service" msgid="4255018217292548962">"Configuraţi serviciul de date"</string>
+    <string name="carrier_settings_title" msgid="9028166176523012300">"Setări operator"</string>
     <string name="fdn" msgid="7878832555095183202">"Numere cu apelări restricţionate"</string>
     <string name="manage_fdn_list" msgid="8777755791892122369">"Listă FDN"</string>
     <string name="fdn_activation" msgid="2156479741307463576">"Activare FDN"</string>
@@ -335,6 +337,7 @@
     <string name="pin2_invalid" msgid="5470854099230755944">"FDN nu a fost actualizat, deoarece aţi introdus un cod PIN incorect."</string>
     <string name="fdn_invalid_number" msgid="1494755047900009147">"FDN nu a fost actualizat, deoarece numărul nu poate depăşi 20 de cifre."</string>
     <string name="pin2_or_fdn_invalid" msgid="6025144083384701197">"Numărul FDN nu a fost actualizat. Codul PIN2 a fost incorect sau numărul de telefon a fost respins."</string>
+    <string name="fdn_failed" msgid="540018079008319747">"Operațiunea FDN nu a reușit."</string>
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"Se citeşte de pe cardul SIM..."</string>
     <string name="simContacts_empty" msgid="5270660846489561932">"Nicio persoană în agenda de pe cardul dvs. SIM."</string>
     <string name="simContacts_title" msgid="1861472842524839921">"Selectaţi persoanele din agendă care se importă"</string>
@@ -355,7 +358,7 @@
     <string name="disable_pin_ok" msgid="5596999379593924850">"Codul PIN al cardului SIM este dezactivat."</string>
     <string name="pin_failed" msgid="2298841192582192277">"Codul PIN introdus a fost incorect."</string>
     <string name="pin_changed" msgid="4365538014588501049">"Codul PIN pentru SIM a fost modificat."</string>
-    <string name="puk_requested" msgid="3898394204193202803">"Parolă incorectă, SIM blocat! Se solicită PUK2."</string>
+    <string name="puk_requested" msgid="1796577128488773946">"Parolă incorectă, codul PIN a fost blocat! Se solicită codul PUK."</string>
     <string name="enter_pin2_text" msgid="8339444124477720345">"PIN2"</string>
     <string name="oldPin2Label" msgid="8559146795026261502">"Codul PIN2 vechi"</string>
     <string name="newPin2Label" msgid="4573956902204349054">"Cod PIN2 nou"</string>
@@ -367,8 +370,11 @@
     <string name="invalidPuk2" msgid="1290977391033057871">"Introduceţi un cod PUK2 format din 8 cifre."</string>
     <string name="pin2_changed" msgid="1639666438836544393">"Codul PIN2 a fost schimbat."</string>
     <string name="label_puk2_code" msgid="302845876240219560">"Introduceţi codul PUK2"</string>
-    <string name="fdn_enable_puk2_requested" msgid="4262894949634885773">"Parolă incorectă. Schimbaţi codul PIN2 şi încercaţi din nou."</string>
+    <string name="fdn_enable_puk2_requested" msgid="3674058967950559397">"Parolă incorectă, codul PIN2 a fost blocat. Schimbați codul PIN2 și încercați din nou!"</string>
     <string name="puk2_requested" msgid="8909278021238716877">"Parolă incorectă, SIM blocat. Se solicită codul PUK2."</string>
+    <string name="puk2_blocked" msgid="3150263853077280049">"Codul PUK2 este blocat definitiv."</string>
+    <string name="pin2_attempts" msgid="7937503107162525324">\n"Au mai rămas <xliff:g id="NUMBER">%d</xliff:g> încercări."</string>
+    <string name="pin2_unblocked" msgid="2903147240919055381">"Codul PIN2 a fost deblocat!"</string>
     <string name="doneButton" msgid="2859593360997984240">"Terminat"</string>
     <string name="caller_manage_header" msgid="3231519674734638786">"Teleconferinţă <xliff:g id="CONF_CALL_TIME">%s</xliff:g>"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"Număr mesagerie vocală"</string>
