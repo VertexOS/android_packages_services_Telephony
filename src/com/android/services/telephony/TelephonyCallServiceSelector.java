@@ -19,6 +19,7 @@ package com.android.services.telephony;
 import android.telecomm.CallInfo;
 import android.telecomm.CallServiceDescriptor;
 import android.telecomm.CallServiceSelector;;
+import android.telecomm.CallServiceSelectorAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,17 +28,17 @@ import java.util.List;
  * Decides which call service should be used to place outgoing calls or to switch the call to.
  */
 public class TelephonyCallServiceSelector extends CallServiceSelector {
+    private CallServiceSelectorAdapter mAdapter;
+
     /** {@inheritDoc} */
     @Override
-    protected void isSwitchable(CallInfo callInfo, CallSwitchabilityResponse response) {
-        response.setSwitchable(false);
+    protected void setCallServiceSelectorAdapter(CallServiceSelectorAdapter adapter) {
+        mAdapter = adapter;
     }
 
     /** {@inheritDoc} */
     @Override
-    protected void select(CallInfo callInfo, List<CallServiceDescriptor> descriptors,
-            CallServiceSelectionResponse response) {
-
+    protected void select(CallInfo callInfo, List<CallServiceDescriptor> descriptors) {
         ArrayList<CallServiceDescriptor> selectedDescriptors =
                 new ArrayList<CallServiceDescriptor>();
         for (CallServiceDescriptor descriptor : descriptors) {
@@ -60,6 +61,6 @@ public class TelephonyCallServiceSelector extends CallServiceSelector {
                 }
             }
         }
-        response.setSelectedCallServices(selectedDescriptors);
+        mAdapter.setSelectedCallServices(callInfo.getId(), selectedDescriptors);
     }
 }
