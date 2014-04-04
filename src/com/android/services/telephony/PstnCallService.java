@@ -59,7 +59,7 @@ public abstract class PstnCallService extends BaseTelephonyCallService {
             } else {
                 // Create and register a new call connection.
                 TelephonyCallConnection callConnection =
-                        new TelephonyCallConnection(mCallServiceAdapter, callId, connection);
+                        new TelephonyCallConnection(getAdapter(), callId, connection);
                 CallRegistrar.register(callId, callConnection);
 
                 // Address can be null for blocked calls.
@@ -71,7 +71,7 @@ public abstract class PstnCallService extends BaseTelephonyCallService {
                 // Notify Telecomm of the incoming call.
                 Uri handle = Uri.fromParts(Constants.SCHEME_TEL, address, null);
                 CallInfo callInfo = new CallInfo(callId, CallState.RINGING, handle);
-                mCallServiceAdapter.notifyIncomingCall(callInfo);
+                getAdapter().notifyIncomingCall(callInfo);
             }
         } else {
             Log.w(this, "Found no ringing call, call state: %s", call.getState());

@@ -36,7 +36,7 @@ public class GsmCallService extends PstnCallService {
     /** {@inheritDoc} */
     @Override
     public void isCompatibleWith(CallInfo callInfo) {
-        mCallServiceAdapter.setIsCompatibleWith(callInfo.getId(), shouldSelect(this, callInfo));
+        getAdapter().setIsCompatibleWith(callInfo.getId(), shouldSelect(this, callInfo));
     }
 
     /** {@inheritDoc} */

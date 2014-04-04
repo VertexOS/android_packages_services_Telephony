@@ -83,7 +83,7 @@ public class SipCallService extends BaseTelephonyCallService {
     /** {@inheritDoc} */
     @Override
     public void isCompatibleWith(CallInfo callInfo) {
-        mCallServiceAdapter.setIsCompatibleWith(callInfo.getId(), shouldSelect(this, callInfo));
+        getAdapter().setIsCompatibleWith(callInfo.getId(), shouldSelect(this, callInfo));
     }
 
     /** {@inheritDoc} */

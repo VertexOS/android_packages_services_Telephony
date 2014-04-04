@@ -28,13 +28,6 @@ import java.util.List;
  * Decides which call service should be used to place outgoing calls or to switch the call to.
  */
 public class TelephonyCallServiceSelector extends CallServiceSelector {
-    private CallServiceSelectorAdapter mAdapter;
-
-    /** {@inheritDoc} */
-    @Override
-    protected void setCallServiceSelectorAdapter(CallServiceSelectorAdapter adapter) {
-        mAdapter = adapter;
-    }
 
     /** {@inheritDoc} */
     @Override
@@ -61,6 +54,6 @@ public class TelephonyCallServiceSelector extends CallServiceSelector {
                 }
             }
         }
-        mAdapter.setSelectedCallServices(callInfo.getId(), selectedDescriptors);
+        getAdapter().setSelectedCallServices(callInfo.getId(), selectedDescriptors);
     }
 }

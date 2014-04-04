@@ -32,14 +32,6 @@ import com.android.internal.telephony.Phone;
  * CDMA, etc...) to use.
  */
 public abstract class BaseTelephonyCallService extends CallService {
-    protected CallServiceAdapter mCallServiceAdapter;
-
-    /** {@inheritDoc} */
-    @Override
-    public void setCallServiceAdapter(CallServiceAdapter callServiceAdapter) {
-        mCallServiceAdapter = callServiceAdapter;
-    }
-
     /** {@inheritDoc} */
     @Override
     public void abort(String callId) {
@@ -93,18 +85,18 @@ public abstract class BaseTelephonyCallService extends CallService {
     protected void startCallWithPhone(Phone phone, CallInfo callInfo) {
         String callId = callInfo.getId();
         if (phone == null) {
-            mCallServiceAdapter.handleFailedOutgoingCall(callId, "Phone is null");
+            getAdapter().handleFailedOutgoingCall(callId, "Phone is null");
             return;
         }
 
         if (callInfo.getHandle() == null) {
-            mCallServiceAdapter.handleFailedOutgoingCall(callInfo.getId(), "Handle is null");
+            getAdapter().handleFailedOutgoingCall(callInfo.getId(), "Handle is null");
             return;
         }
 
         String number = callInfo.getHandle().getSchemeSpecificPart();
         if (TextUtils.isEmpty(number)) {
-            mCallServiceAdapter.handleFailedOutgoingCall(callId, "Unable to parse number");
+            getAdapter().handleFailedOutgoingCall(callId, "Unable to parse number");
             return;
         }
 
@@ -113,19 +105,19 @@ public abstract class BaseTelephonyCallService extends CallService {
             connection = phone.dial(number);
         } catch (CallStateException e) {
             Log.e(this, e, "Call to Phone.dial failed with exception");
-            mCallServiceAdapter.handleFailedOutgoingCall(callId, e.getMessage());
+            getAdapter().handleFailedOutgoingCall(callId, e.getMessage());
             return;
         }
 
         if (connection == null) {
-            mCallServiceAdapter.handleFailedOutgoingCall(callId, "Call to phone.dial failed");
+            getAdapter().handleFailedOutgoingCall(callId, "Call to phone.dial failed");
             return;
         }
 
         TelephonyCallConnection callConnection =
-                new TelephonyCallConnection(mCallServiceAdapter, callId, connection);
+                new TelephonyCallConnection(getAdapter(), callId, connection);
         CallRegistrar.register(callId, callConnection);
 
-        mCallServiceAdapter.handleSuccessfulOutgoingCall(callId);
+        getAdapter().handleSuccessfulOutgoingCall(callId);
     }
 }
