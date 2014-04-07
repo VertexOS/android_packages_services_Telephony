@@ -202,7 +202,7 @@
     <string name="emergency_broadcast_disable" msgid="3665199821267569426">"Difusión de emergencia inhabilitada"</string>
     <string name="enable_disable_administrative" msgid="6501582322182059412">"Servicios administrativos"</string>
     <string name="administrative_enable" msgid="1750086122962032235">"Servicios administrativos habilitados"</string>
-    <string name="administrative_disable" msgid="8433273857248698539">"Servicios administrativos habilitados"</string>
+    <string name="administrative_disable" msgid="8433273857248698539">"Servicios administrativos deshabilitados"</string>
     <string name="enable_disable_maintenance" msgid="1819693083025106678">"Mantenimiento"</string>
     <string name="maintenance_enable" msgid="8566636458770971189">"Mantenimiento habilitado"</string>
     <string name="maintenance_disable" msgid="7340189100885066077">"Mantenimiento inhabilitado"</string>
