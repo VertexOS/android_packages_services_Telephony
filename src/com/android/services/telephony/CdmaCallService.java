@@ -48,12 +48,17 @@ public class CdmaCallService extends PstnCallService {
     /** {@inheritDoc} */
     @Override
     public void playDtmfTone(String callId, char digit) {
-        // TODO(ihab)
+        // TODO(santoscordon): There are conditions where we should play dtmf tones with different
+        // timeouts.
+        // TODO(santoscordon): We get explicit response from the phone via a Message when the burst
+        // tone has completed. During this time we can get subsequent requests. We need to stop
+        // passing in null as the message and start handling it to implement a queue.
+        getPhone().sendBurstDtmf(Character.toString(digit), 0, 0, null);
     }
 
     /** {@inheritDoc} */
     @Override
     public void stopDtmfTone(String callId) {
-        // TODO(ihab)
+        // no-op, we only play timed dtmf tones for cdma.
     }
 }

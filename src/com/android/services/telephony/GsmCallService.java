@@ -48,12 +48,12 @@ public class GsmCallService extends PstnCallService {
     /** {@inheritDoc} */
     @Override
     public void playDtmfTone(String callId, char digit) {
-        // TODO(ihab)
+        getPhone().startDtmf(digit);
     }
 
     /** {@inheritDoc} */
     @Override
     public void stopDtmfTone(String callId) {
-        // TODO(ihab)
+        getPhone().stopDtmf();
     }
 }
