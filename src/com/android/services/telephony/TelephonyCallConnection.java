@@ -24,6 +24,7 @@ import android.telecomm.CallServiceAdapter;
 import com.android.internal.telephony.Call;
 import com.android.internal.telephony.CallStateException;
 import com.android.internal.telephony.Connection;
+import com.android.internal.telephony.Phone;
 
 /**
  * Manages a single phone call. Listens to the call's state changes and updates the
@@ -73,10 +74,29 @@ class TelephonyCallConnection {
     }
 
     void hold() {
+        // TODO(santoscordon): Can dialing calls be put on hold as well since they take up the
+        // foreground call slot?
         if (Call.State.ACTIVE == mState) {
+            Log.v(this, "Holding active call %s.", mCallId);
             try {
-                // TODO: This doesn't handle multiple calls across call services yet
-                mOriginalConnection.getCall().getPhone().switchHoldingAndActive();
+                Phone phone = mOriginalConnection.getCall().getPhone();
+                Call ringingCall = phone.getRingingCall();
+
+                // Although the method says switchHoldingAndActive, it eventually calls a RIL method
+                // called switchWaitingOrHoldingAndActive. What this means is that if we try to put
+                // a call on hold while a call-waiting call exists, it'll end up accepting the
+                // call-waiting call, which is bad if that was not the user's intention. We are
+                // cheating here and simply skipping it because we know any attempt to hold a call
+                // while a call-waiting call is happening is likely a request from Telecomm prior to
+                // accepting the call-waiting call.
+                // TODO(santoscordon): Investigate a better solution. It would be great here if we
+                // could "fake" hold by silencing the audio and microphone streams for this call
+                // instead of actually putting it on hold.
+                if (ringingCall.getState() != Call.State.WAITING) {
+                    phone.switchHoldingAndActive();
+                }
+
+                // TODO(santoscordon): Cdma calls are slightly different.
             } catch (CallStateException e) {
                 Log.e(this, e, "Exception occurred while trying to put call on hold.");
             }
