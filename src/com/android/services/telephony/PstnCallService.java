@@ -21,21 +21,65 @@ import android.os.Bundle;
 import android.telecomm.CallInfo;
 import android.telecomm.CallState;
 
+import android.telephony.PhoneNumberUtils;
+
 import com.android.internal.telephony.Call;
 import com.android.internal.telephony.CallStateException;
 import com.android.internal.telephony.Connection;
 import com.android.internal.telephony.Phone;
 import com.android.phone.Constants;
+import com.google.android.collect.Sets;
+
+import java.util.Set;
 
 /**
  * The parent class for PSTN-based call services. Handles shared functionality between all PSTN
  * call services.
  */
 public abstract class PstnCallService extends BaseTelephonyCallService {
+    private EmergencyCallHelper mEmergencyCallHelper;
+    private Set<String> mPendingOutgoingEmergencyCalls = Sets.newHashSet();
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        mEmergencyCallHelper = new EmergencyCallHelper(this);
+    }
+
     /** {@inheritDoc} */
     @Override
-    public final void call(CallInfo callInfo) {
-        startCallWithPhone(getPhone(), callInfo);
+    public final void call(final CallInfo callInfo) {
+        // TODO: Consider passing call emergency information as part of CallInfo so that we dont
+        // have to make the check here once again.
+        String handle = callInfo.getHandle().getSchemeSpecificPart();
+        final Phone phone = getPhone();
+        if (PhoneNumberUtils.isPotentialEmergencyNumber(handle)) {
+            final String callId = callInfo.getId();
+
+            EmergencyCallHelper.Callback callback = new EmergencyCallHelper.Callback() {
+                @Override
+                public void onComplete(boolean isRadioReady) {
+                    if (mPendingOutgoingEmergencyCalls.remove(callId)) {
+                        // The emergency call was still pending (not aborted) so continue with the
+                        // rest of the logic.
+
+                        if (isRadioReady) {
+                            startCallWithPhone(phone, callInfo);
+                        } else {
+                            getAdapter().handleFailedOutgoingCall(
+                                    callInfo.getId(), "Failed to turn on radio.");
+                        }
+                    }
+                }
+            };
+
+            mPendingOutgoingEmergencyCalls.add(callId);
+
+            // If the radio is already on, this will call us back fairly quickly.
+            mEmergencyCallHelper.startTurnOnRadioSequence(phone, callback);
+        } else {
+            startCallWithPhone(phone, callInfo);
+        }
     }
 
     /**
@@ -105,6 +149,13 @@ public abstract class PstnCallService extends BaseTelephonyCallService {
                 Log.e(this, e, "Failed to reject call: %s", callId);
             }
         }
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void abort(String callId) {
+        mPendingOutgoingEmergencyCalls.remove(callId);
+        super.abort(callId);
     }
 
     /**
