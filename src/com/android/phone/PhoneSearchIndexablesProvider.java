@@ -21,6 +21,14 @@ import android.database.MatrixCursor;
 import android.provider.SearchIndexableResource;
 import android.provider.SearchIndexablesProvider;
 
+import static android.provider.SearchIndexablesContract.COLUMN_INDEX_XML_RES_RANK;
+import static android.provider.SearchIndexablesContract.COLUMN_INDEX_XML_RES_RESID;
+import static android.provider.SearchIndexablesContract.COLUMN_INDEX_XML_RES_CLASS_NAME;
+import static android.provider.SearchIndexablesContract.COLUMN_INDEX_XML_RES_ICON_RESID;
+import static android.provider.SearchIndexablesContract.COLUMN_INDEX_XML_RES_INTENT_ACTION;
+import static android.provider.SearchIndexablesContract.COLUMN_INDEX_XML_RES_INTENT_TARGET_PACKAGE;
+import static android.provider.SearchIndexablesContract.COLUMN_INDEX_XML_RES_INTENT_TARGET_CLASS;
+
 import static android.provider.SearchIndexablesContract.INDEXABLES_RAW_COLUMNS;
 import static android.provider.SearchIndexablesContract.INDEXABLES_XML_RES_COLUMNS;
 
@@ -44,13 +52,13 @@ public class PhoneSearchIndexablesProvider extends SearchIndexablesProvider {
         final int count = INDEXABLE_RES.length;
         for (int n = 0; n < count; n++) {
             Object[] ref = new Object[7];
-            ref[0] = INDEXABLE_RES[n].rank;
-            ref[1] = INDEXABLE_RES[n].xmlResId;
-            ref[2] = null;
-            ref[3] = INDEXABLE_RES[n].iconResId;
-            ref[4] = "android.intent.action.MAIN";
-            ref[5] = "com.android.phone";
-            ref[6] = MobileNetworkSettings.class.getName();
+            ref[COLUMN_INDEX_XML_RES_RANK] = INDEXABLE_RES[n].rank;
+            ref[COLUMN_INDEX_XML_RES_RESID] = INDEXABLE_RES[n].xmlResId;
+            ref[COLUMN_INDEX_XML_RES_CLASS_NAME] = null;
+            ref[COLUMN_INDEX_XML_RES_ICON_RESID] = INDEXABLE_RES[n].iconResId;
+            ref[COLUMN_INDEX_XML_RES_INTENT_ACTION] = "android.intent.action.MAIN";
+            ref[COLUMN_INDEX_XML_RES_INTENT_TARGET_PACKAGE] = "com.android.phone";
+            ref[COLUMN_INDEX_XML_RES_INTENT_TARGET_CLASS] = INDEXABLE_RES[n].className;
             cursor.addRow(ref);
         }
         return cursor;
