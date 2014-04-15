@@ -18,6 +18,7 @@ package com.android.phone;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.ActivityOptions;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -95,8 +96,9 @@ import java.util.Map;
 public class CallFeaturesSetting extends PreferenceActivity
         implements DialogInterface.OnClickListener,
         Preference.OnPreferenceChangeListener,
+        Preference.OnPreferenceClickListener,
         EditPhoneNumberPreference.OnDialogClosedListener,
-        EditPhoneNumberPreference.GetDefaultNumberListener{
+        EditPhoneNumberPreference.GetDefaultNumberListener {
     private static final String LOG_TAG = "CallFeaturesSetting";
     private static final boolean DBG = (PhoneGlobals.DBG_LEVEL >= 2);
 
@@ -193,6 +195,8 @@ public class CallFeaturesSetting extends PreferenceActivity
 
     private static final String WHEN_TO_MAKE_WIFI_CALLS_KEY =
             "when_to_make_wifi_calls_key";
+    private static final String WIFI_CALLING_ACCOUNT_KEY =
+            "wifi_calling_account_key";
 
     private Intent mContactListIntent;
 
@@ -273,7 +277,8 @@ public class CallFeaturesSetting extends PreferenceActivity
     private ListPreference mButtonDTMF;
     private ListPreference mButtonTTY;
     private ListPreference mButtonSipCallOptions;
-    private ListPreference mWifiCallOptionsPreference;
+    private Preference mWifiCallOptionsPreference;
+    private Preference mWifiCallAccountPreference;
     private ListPreference mVoicemailProviders;
     private PreferenceScreen mVoicemailSettings;
     private Preference mVoicemailNotificationRingtone;
@@ -592,10 +597,16 @@ public class CallFeaturesSetting extends PreferenceActivity
             }
         } else if (preference == mButtonSipCallOptions) {
             handleSipCallOptionsChange(objValue);
-        } else if (preference == mWifiCallOptionsPreference) {
-            handleWifiCallSettingsChange(objValue);
         }
         // always let the preference setting proceed.
+        return true;
+    }
+
+    @Override
+    public boolean onPreferenceClick(Preference preference) {
+        if (preference == mWifiCallOptionsPreference || preference == mWifiCallAccountPreference) {
+            handleWifiCallSettingsClick(preference);
+        }
         return true;
     }
 
@@ -1742,52 +1753,19 @@ public class CallFeaturesSetting extends PreferenceActivity
 
     private void createWifiCallSettings() {
         addPreferencesFromResource(R.xml.wifi_settings_category);
-        mWifiCallOptionsPreference = (ListPreference) findPreference(WHEN_TO_MAKE_WIFI_CALLS_KEY);
-        mWifiCallOptionsPreference.setOnPreferenceChangeListener(this);
-        mWifiCallOptionsPreference.setValueIndex(
-                mWifiCallOptionsPreference.findIndexOfValue(
-                        getWhenToMakeWifiCalls()));
-        mWifiCallOptionsPreference.setSummary(mWifiCallOptionsPreference.getEntry());
+        mWifiCallOptionsPreference = (Preference) findPreference(WHEN_TO_MAKE_WIFI_CALLS_KEY);
+        mWifiCallOptionsPreference.setOnPreferenceClickListener(this);
+        mWifiCallOptionsPreference.setEnabled(
+                canLaunchIntent(mWifiCallOptionsPreference.getIntent()));
+        mWifiCallAccountPreference = (Preference) findPreference(WIFI_CALLING_ACCOUNT_KEY);
+        mWifiCallAccountPreference.setOnPreferenceClickListener(this);
+        mWifiCallAccountPreference.setEnabled(
+                canLaunchIntent(mWifiCallAccountPreference.getIntent()));
     }
 
-    /**
-     * @see android.telephony.TelephonyManager.WifiCallingChoices
-     */
-    private String getWhenToMakeWifiCalls() {
-        TelephonyManager telephonyManager = (TelephonyManager) getSystemService(
-                Context.TELEPHONY_SERVICE);
-        int intValue = telephonyManager.getWhenToMakeWifiCalls();
-        switch (intValue) {
-            case TelephonyManager.WifiCallingChoices.ALWAYS_USE:
-                return getString(R.string.wifi_calling_choices_always_use);
-            case TelephonyManager.WifiCallingChoices.ASK_EVERY_TIME:
-                return getString(R.string.wifi_calling_choices_ask_every_time);
-            case TelephonyManager.WifiCallingChoices.NEVER_USE:
-                return getString(R.string.wifi_calling_choices_never_use);
-            default:
-                Log.wtf(LOG_TAG, "unknown wifi call int value: " + intValue);
-                return getString(R.string.wifi_calling_choices_always_use);
-        }
-    }
-
-    /**
-     * @see android.telephony.TelephonyManager.WifiCallingChoices
-     */
-    public void setWhenToMakeWifiCalls(String stringValue) {
-        TelephonyManager telephonyManager = (TelephonyManager) getSystemService(
-                Context.TELEPHONY_SERVICE);
-        int intValue;
-        if (stringValue.equals(getString(R.string.wifi_calling_choices_always_use))) {
-            intValue = TelephonyManager.WifiCallingChoices.ALWAYS_USE;
-        } else if (stringValue.equals(getString(R.string.wifi_calling_choices_ask_every_time))) {
-            intValue = TelephonyManager.WifiCallingChoices.ASK_EVERY_TIME;
-        } else if (stringValue.equals(getString(R.string.wifi_calling_choices_never_use))) {
-            intValue = TelephonyManager.WifiCallingChoices.NEVER_USE;
-        } else {
-            Log.wtf(LOG_TAG, "unknown wifi call string value: " + stringValue);
-            return;
-        }
-        telephonyManager.setWhenToMakeWifiCalls(intValue);
+    private boolean canLaunchIntent(Intent intent) {
+        PackageManager pm = getPackageManager();
+        return pm.resolveActivity(intent, PackageManager.GET_ACTIVITIES) != null;
     }
 
     // Gets the call options for SIP depending on whether SIP is allowed only
@@ -1947,12 +1925,13 @@ public class CallFeaturesSetting extends PreferenceActivity
         mButtonSipCallOptions.setSummary(mButtonSipCallOptions.getEntry());
     }
 
-    private void handleWifiCallSettingsChange(Object objValue) {
-        String option = objValue.toString();
-        setWhenToMakeWifiCalls(option);
-        mWifiCallOptionsPreference.setValueIndex(
-                mWifiCallOptionsPreference.findIndexOfValue(option));
-        mWifiCallOptionsPreference.setSummary(mWifiCallOptionsPreference.getEntry());
+    private void handleWifiCallSettingsClick(Preference preference) {
+        Intent intent = preference.getIntent();
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        // TODO - Restrict to a (the?) blessed Wi-Fi calling app.
+
+        Bundle noAnimations = ActivityOptions.makeCustomAnimation(this, 0, 0).toBundle();
+        startActivity(intent, noAnimations);
     }
 
     private void updatePreferredTtyModeSummary(int TtyMode) {

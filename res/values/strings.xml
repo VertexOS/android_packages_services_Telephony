@@ -1159,16 +1159,12 @@
     <string name="wifi_settings">Wi-Fi call settings</string>
     <!-- Title of option allowing user to pick when to make Wi-Fi calls [CHAR LIMIT=NONE] -->
     <string name="when_to_make_wifi_calls_title">When to make Wi-Fi calls</string>
-    <!-- Item of Wi-Fi settings: For always using Wi-Fi to make calls. [CHAR LIMIT=NONE] -->
-    <string name="wifi_calling_choice_entry_always_use">Always use Wi-Fi to make calls</string>
-    <!-- Item of Wi-Fi settings: For never using Wi-Fi to make calls. [CHAR LIMIT=NONE] -->
-    <string name="wifi_calling_choice_entry_never_use">Never use Wi-Fi to make calls</string>
-    <!-- Item of Wi-Fi settings: For asking each time whether to use Wi-Fi. [CHAR LIMIT=NONE] -->
-    <string name="wifi_calling_choice_entry_ask_every_time">Always ask</string>
-
-    <string translatable="false" name="wifi_calling_choices_always_use">ALWAYS_USE</string>
-    <string translatable="false" name="wifi_calling_choices_never_use">NEVER_USE</string>
-    <string translatable="false" name="wifi_calling_choices_ask_every_time">ASK_EVERY_TIME</string>
+    <!-- Summary of option allowing user to pick when to make Wi-Fi calls [CHAR LIMIT=NONE] -->
+    <string name="when_to_make_wifi_calls_summary">Control when to place calls using Wi-Fi</string>
+    <!-- Title of option allowing user to pick account used to make Wi-Fi calls [CHAR LIMIT=NONE]-->
+    <string name="wifi_calling_account_title">Wi-Fi calling account</string>
+    <!-- Summary of option allowing user to pick account used to make Wi-Fi calls [CHAR LIMIT=NONE] -->
+    <string name="wifi_calling_account_summary">Pick which account is used for to place Wi-Fi calls</string>
 
     <!-- Title of the dialog to select the phone type for the outgoing call. [CHAR LIMIT=NONE] -->
     <string name ="pick_outgoing_call_phone_type">Place call</string>

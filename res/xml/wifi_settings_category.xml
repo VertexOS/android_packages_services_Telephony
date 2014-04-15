@@ -20,12 +20,24 @@
             android:title="@string/wifi_settings"
             android:persistent="false">
 
-        <ListPreference
+        <Preference
                 android:key="when_to_make_wifi_calls_key"
                 android:title="@string/when_to_make_wifi_calls_title"
-                android:persistent="true"
-                android:entries="@array/wifi_calling_choice_entries"
-                android:entryValues="@array/wifi_calling_choice_values"/>
+                android:summary="@string/when_to_make_wifi_calls_summary"
+                android:persistent="false">
+            <intent
+                android:action="android.telecomm.CONTROL_WIFI_CALLING"
+                android:category="android.intent.category.DEFAULT" />
+        </Preference>
 
+        <Preference
+                android:key="wifi_calling_account_key"
+                android:title="@string/wifi_calling_account_title"
+                android:summary="@string/wifi_calling_account_summary"
+                android:persistent="false">
+            <intent
+                android:action="android.telecomm.CHOOSE_WIFI_CALLING_ACCOUNT"
+                android:category="android.intent.category.DEFAULT" />
+        </Preference>
     </PreferenceCategory>
 </PreferenceScreen>

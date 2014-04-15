@@ -39,19 +39,6 @@
         <item>@string/sip_ask_me_each_time</item>
     </string-array>
 
-    <string-array translatable="true" name="wifi_calling_choice_entries">
-        <item>@string/wifi_calling_choice_entry_always_use</item>
-        <item>@string/wifi_calling_choice_entry_ask_every_time</item>
-        <item>@string/wifi_calling_choice_entry_never_use</item>
-    </string-array>
-
-    <!-- android.telephony.TelephonyManager.WifiCallingChoices -->
-    <string-array translatable="false" name="wifi_calling_choice_values">
-        <item>@string/wifi_calling_choices_always_use</item>
-        <item>@string/wifi_calling_choices_ask_every_time</item>
-        <item>@string/wifi_calling_choices_never_use</item>
-    </string-array>
-
     <string-array translatable="false" name="phone_type_values">
         <item>@string/pstn_phone</item>
         <item>@string/internet_phone</item>
