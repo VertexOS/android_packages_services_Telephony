@@ -229,7 +229,7 @@
 
     <!-- Style for the call settings action bar.  Should be kept in sync with Dialer. -->
     <style name="DialtactsActionBarStyle" parent="android:Widget.Holo.ActionBar">
-        <item name="android:background">@drawable/actionbar_background</item>
+        <item name="android:background">@color/actionbar_background_color</item>
         <item name="android:backgroundStacked">#ffffff</item>
         <item name="android:titleTextStyle">@style/DialtactsActionBarTitleText</item>
         <!-- Empty icon -->

@@ -40,8 +40,5 @@
     <color name="phone_settings_actionbar_text_color">#FFFFFF</color>
     <!-- Background color of action bars.  Ensure this stays in sync with Dialer
          actionbar_background_color. -->
-    <color name="actionbar_background_color">#3B77E7</color>
-    <!-- Underline color of action bars.  Ensure this stays in sync with Dialer
-         actionbar_underline. -->
-    <color name="actionbar_underline">#3265C1</color>
+    <color name="actionbar_background_color">#00AFCC</color>
 </resources>
