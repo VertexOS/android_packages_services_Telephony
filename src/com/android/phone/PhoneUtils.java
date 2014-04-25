@@ -1911,7 +1911,7 @@ public class PhoneUtils {
         // in use.
         app.updateWakeState();
 
-        app.mCM.setEchoSuppressionEnabled(flag);
+        app.mCM.setEchoSuppressionEnabled();
     }
 
     /**
