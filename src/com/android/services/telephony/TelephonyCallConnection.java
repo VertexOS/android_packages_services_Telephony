@@ -123,8 +123,7 @@ class TelephonyCallConnection {
         if (mOriginalConnection != null) {
             Call call = mOriginalConnection.getCall();
             if (call != null) {
-                call.getPhone().setEchoSuppressionEnabled(
-                        audioState.route == CallAudioState.ROUTE_SPEAKER);
+                call.getPhone().setEchoSuppressionEnabled();
             }
         }
     }
