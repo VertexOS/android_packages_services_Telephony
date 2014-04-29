@@ -447,7 +447,7 @@ public class PhoneGlobals extends ContextWrapper implements WiredHeadsetListener
 
             CallLogger callLogger = new CallLogger(this, new CallLogAsync());
 
-            callGatewayManager = new CallGatewayManager();
+            callGatewayManager = CallGatewayManager.getInstance();
 
             // Create the CallController singleton, which is the interface
             // to the telephony layer for user-initiated telephony functionality
@@ -489,7 +489,8 @@ public class PhoneGlobals extends ContextWrapper implements WiredHeadsetListener
             callHandlerServiceProxy = new CallHandlerServiceProxy(this, callModeler,
                     callCommandService, audioRouter);
 
-            phoneMgr = PhoneInterfaceManager.init(this, phone, callHandlerServiceProxy);
+            phoneMgr = PhoneInterfaceManager.init(this, phone, callHandlerServiceProxy, callModeler,
+                    dtmfTonePlayer);
 
             // Create the CallNotifer singleton, which handles
             // asynchronous events from the telephony layer (like

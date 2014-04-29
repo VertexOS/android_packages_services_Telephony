@@ -25,7 +25,7 @@ import android.util.Log;
 import com.android.internal.telephony.Connection;
 import com.google.android.collect.Maps;
 
-import java.util.HashMap;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * This class manages gateway information for outgoing calls. When calls are made, they may contain
@@ -68,9 +68,19 @@ public class CallGatewayManager {
 
     public static final RawGatewayInfo EMPTY_INFO = new RawGatewayInfo(null, null, null);
 
-    private final HashMap<Connection, RawGatewayInfo> mMap = Maps.newHashMap();
+    private final ConcurrentHashMap<Connection, RawGatewayInfo> mMap =
+        new ConcurrentHashMap<Connection, RawGatewayInfo>(4, 0.9f, 1);
 
-    public CallGatewayManager() {
+    private static CallGatewayManager sSingleton;
+
+    public static synchronized CallGatewayManager getInstance() {
+        if (sSingleton == null) {
+            sSingleton = new CallGatewayManager();
+        }
+        return sSingleton;
+    }
+
+    private CallGatewayManager() {
     }
 
     /**
