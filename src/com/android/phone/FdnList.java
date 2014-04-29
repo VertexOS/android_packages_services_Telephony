@@ -27,7 +27,8 @@ import android.view.View;
 import android.widget.ListView;
 
 /**
- * FDN List UI for the Phone app.
+ * Fixed Dialing Number (FDN) List UI for the Phone app. FDN is a feature of the service provider
+ * that allows a user to specify a limited set of phone numbers that the SIM can dial.
  */
 public class FdnList extends ADNList {
     private static final int MENU_ADD = 1;
