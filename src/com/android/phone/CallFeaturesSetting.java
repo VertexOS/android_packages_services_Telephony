@@ -193,11 +193,6 @@ public class CallFeaturesSetting extends PreferenceActivity
     private static final String SIP_SETTINGS_CATEGORY_KEY =
             "sip_settings_category_key";
 
-    private static final String WHEN_TO_MAKE_WIFI_CALLS_KEY =
-            "when_to_make_wifi_calls_key";
-    private static final String WIFI_CALLING_ACCOUNT_KEY =
-            "wifi_calling_account_key";
-
     private Intent mContactListIntent;
 
     /** Event for Async voicemail change call */
@@ -1652,7 +1647,6 @@ public class CallFeaturesSetting extends PreferenceActivity
         updateVoiceNumberField();
         mVMProviderSettingsForced = false;
         createSipCallSettings();
-        createWifiCallSettings();
 
         mRingtoneLookupRunnable = new Runnable() {
             @Override
@@ -1749,18 +1743,6 @@ public class CallFeaturesSetting extends PreferenceActivity
                             mSipSharedPreferences.getSipCallOption()));
             mButtonSipCallOptions.setSummary(mButtonSipCallOptions.getEntry());
         }
-    }
-
-    private void createWifiCallSettings() {
-        addPreferencesFromResource(R.xml.wifi_settings_category);
-        mWifiCallOptionsPreference = (Preference) findPreference(WHEN_TO_MAKE_WIFI_CALLS_KEY);
-        mWifiCallOptionsPreference.setOnPreferenceClickListener(this);
-        mWifiCallOptionsPreference.setEnabled(
-                canLaunchIntent(mWifiCallOptionsPreference.getIntent()));
-        mWifiCallAccountPreference = (Preference) findPreference(WIFI_CALLING_ACCOUNT_KEY);
-        mWifiCallAccountPreference.setOnPreferenceClickListener(this);
-        mWifiCallAccountPreference.setEnabled(
-                canLaunchIntent(mWifiCallAccountPreference.getIntent()));
     }
 
     private boolean canLaunchIntent(Intent intent) {
