@@ -22,30 +22,62 @@ import android.net.sip.SipManager;
 import android.net.sip.SipProfile;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Bundle;
 import android.provider.Settings;
-import android.telecomm.CallInfo;
 import android.telephony.PhoneNumberUtils;
 
-import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneFactory;
 import com.android.internal.telephony.sip.SipPhone;
 import com.android.phone.Constants;
 import com.android.phone.PhoneUtils;
 import com.android.phone.sip.SipProfileDb;
 import com.android.phone.sip.SipSharedPreferences;
+import com.android.services.telecomm.Connection;
+import com.android.services.telecomm.ConnectionRequest;
+import com.android.services.telecomm.Response;
 
 import java.util.HashMap;
 
 /**
  * Call service that uses the SIP phone.
  */
-public class SipCallService extends BaseTelephonyCallService {
+public class SipConnectionService extends TelephonyConnectionService {
     private static HashMap<String, SipPhone> sSipPhones = new HashMap<String, SipPhone>();
 
-    static boolean shouldSelect(Context context, CallInfo callInfo) {
-        Uri uri = callInfo.getHandle();
-        return shouldUseSipPhone(context, uri.getScheme(), uri.getSchemeSpecificPart());
+    /** {@inheritDoc} */
+    @Override
+    public void onCreateConnections(
+            ConnectionRequest request,
+            Response<ConnectionRequest, Connection> callback) {
+        new GetSipProfileTask(this, request, callback).execute();
+        super.onCreateConnections(request, callback);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void onCreateIncomingConnection(
+            ConnectionRequest request,
+            Response<ConnectionRequest, Connection> callback) {
+        super.onCreateIncomingConnection(request, callback);
+        // TODO: fill in
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    protected boolean canCall(Uri handle) {
+        return canCall(this, handle);
+    }
+
+    // TODO: Refactor this out when CallServiceSelector is deprecated
+    /* package */ static boolean canCall(Context context, Uri handle) {
+        return shouldUseSipPhone(context, handle.getScheme(), handle.getSchemeSpecificPart());
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    protected TelephonyConnection onCreateTelephonyConnection(
+            ConnectionRequest request,
+            com.android.internal.telephony.Connection connection) {
+        return new SipConnection(connection);
     }
 
     private static boolean shouldUseSipPhone(Context context, String scheme, String number) {
@@ -80,56 +112,21 @@ public class SipCallService extends BaseTelephonyCallService {
         return true;
     }
 
-    /** {@inheritDoc} */
-    @Override
-    public void isCompatibleWith(CallInfo callInfo) {
-        getAdapter().setIsCompatibleWith(callInfo.getId(), shouldSelect(this, callInfo));
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void call(CallInfo callInfo) {
-        new GetSipProfileTask(this, callInfo).execute();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void setIncomingCallId(String callId, Bundle extras) {
-        // TODO(santoscordon): fill in.
-    }
-
-    /** {@inheritDoc} */
-    public void answer(String callId) {
-        // TODO(santoscordon): fill in.
-    }
-
-    /** {@inheritDoc} */
-    public void reject(String callId) {
-        // TODO(santoscordon): fill in.
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void playDtmfTone(String callId, char digit) {
-        // TODO(ihab): fill in
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void stopDtmfTone(String callId) {
-        // TODO(ihab): fill in
-    }
-
     /**
      * Asynchronously looks up the SIP profile to use for the given call.
      */
     private class GetSipProfileTask extends AsyncTask<Void, Void, SipProfile> {
-        private final CallInfo mCallInfo;
+        private final ConnectionRequest mRequest;
+        private final Response<ConnectionRequest, Connection> mResponse;
         private final SipProfileDb mSipProfileDb;
         private final SipSharedPreferences mSipSharedPreferences;
 
-        GetSipProfileTask(Context context, CallInfo callInfo) {
-            mCallInfo = callInfo;
+        GetSipProfileTask(
+                Context context,
+                ConnectionRequest request,
+                Response<ConnectionRequest, Connection> response) {
+            mRequest = request;
+            mResponse = response;
             mSipProfileDb = new SipProfileDb(context);
             mSipSharedPreferences = new SipSharedPreferences(context);
         }
@@ -148,11 +145,14 @@ public class SipCallService extends BaseTelephonyCallService {
 
         @Override
         protected void onPostExecute(SipProfile profile) {
-            onSipProfileChosen(profile, mCallInfo);
+            onSipProfileChosen(profile, mRequest, mResponse);
         }
     }
 
-    private void onSipProfileChosen(SipProfile profile, CallInfo callInfo) {
+    private void onSipProfileChosen(
+            SipProfile profile,
+            ConnectionRequest request,
+            Response<ConnectionRequest, Connection> response) {
         SipPhone phone = null;
         if (profile != null) {
             String sipUri = profile.getUriString();
@@ -167,6 +167,6 @@ public class SipCallService extends BaseTelephonyCallService {
                 }
             }
         }
-        startCallWithPhone(phone, callInfo);
+        startCallWithPhone(phone, request, response);
     }
 }

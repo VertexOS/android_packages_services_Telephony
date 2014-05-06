@@ -19,65 +19,54 @@ package com.android.services.telephony;
 import android.os.Handler;
 import android.os.Message;
 import android.telecomm.CallAudioState;
-import android.telecomm.CallServiceAdapter;
+import android.telephony.DisconnectCause;
 
 import com.android.internal.telephony.Call;
 import com.android.internal.telephony.CallStateException;
-import com.android.internal.telephony.Connection;
 import com.android.internal.telephony.Phone;
+import com.android.services.telecomm.Connection;
 
 /**
- * Manages a single phone call. Listens to the call's state changes and updates the
- * CallServiceAdapter.
+ * Manages a single phone call in Telephony.
  */
-class TelephonyCallConnection {
+class TelephonyConnection extends Connection {
     private static final int EVENT_PRECISE_CALL_STATE_CHANGED = 1;
 
-    private final String mCallId;
     private final StateHandler mHandler = new StateHandler();
 
-    private CallServiceAdapter mCallServiceAdapter;
-
-    private Connection mOriginalConnection;
+    private com.android.internal.telephony.Connection mOriginalConnection;
     private Call.State mState = Call.State.IDLE;
 
-    TelephonyCallConnection(CallServiceAdapter callServiceAdapter, String callId,
-            Connection connection) {
-        mCallServiceAdapter = callServiceAdapter;
-        mCallId = callId;
-        mOriginalConnection = connection;
+    protected TelephonyConnection(com.android.internal.telephony.Connection originalConnection) {
+        mOriginalConnection = originalConnection;
         mOriginalConnection.getCall().getPhone().registerForPreciseCallStateChanged(mHandler,
                 EVENT_PRECISE_CALL_STATE_CHANGED, null);
         updateState();
     }
 
-    String getCallId() {
-        return mCallId;
-    }
-
-    Connection getOriginalConnection() {
+    com.android.internal.telephony.Connection getOriginalConnection() {
         return mOriginalConnection;
     }
 
-    void disconnect(boolean shouldAbort) {
-        if (shouldAbort) {
-            mCallServiceAdapter = null;
-            close();
-        }
-        if (mOriginalConnection != null) {
-            try {
-                mOriginalConnection.hangup();
-            } catch (CallStateException e) {
-                Log.e(this, e, "Call to Connection.hangup failed with exception");
-            }
-        }
+    @Override
+    protected void onAbort() {
+        hangup();
+        super.onAbort();
     }
 
-    void hold() {
+    @Override
+    protected void onDisconnect() {
+        hangup();
+        super.onDisconnect();
+    }
+
+    @Override
+    protected void onHold() {
+        Log.d(this, "Attempting to put call on hold");
         // TODO(santoscordon): Can dialing calls be put on hold as well since they take up the
         // foreground call slot?
         if (Call.State.ACTIVE == mState) {
-            Log.v(this, "Holding active call %s.", mCallId);
+            Log.v(this, "Holding active call");
             try {
                 Phone phone = mOriginalConnection.getCall().getPhone();
                 Call ringingCall = phone.getRingingCall();
@@ -103,9 +92,12 @@ class TelephonyCallConnection {
         } else {
             Log.w(this, "Cannot put a call that is not currently active on hold.");
         }
+        super.onHold();
     }
 
-    void unhold() {
+    @Override
+    protected void onUnhold() {
+        Log.d(this, "Attempting to release call from hold");
         if (Call.State.HOLDING == mState) {
             try {
                 // TODO: This doesn't handle multiple calls across call services yet
@@ -116,9 +108,11 @@ class TelephonyCallConnection {
         } else {
             Log.w(this, "Cannot release a call that is not already on hold from hold.");
         }
+        super.onUnhold();
     }
 
-    void onAudioStateChanged(CallAudioState audioState) {
+    @Override
+    protected void onSetAudioState(CallAudioState audioState) {
         // TODO: update TTY mode.
         if (mOriginalConnection != null) {
             Call call = mOriginalConnection.getCall();
@@ -126,10 +120,25 @@ class TelephonyCallConnection {
                 call.getPhone().setEchoSuppressionEnabled();
             }
         }
+        super.onSetAudioState(audioState);
+    }
+
+    private void hangup() {
+        if (mOriginalConnection != null) {
+            try {
+                mOriginalConnection.hangup();
+                // Set state deliberately since we are going to close() and will no longer be
+                // listening to state updates from mOriginalConnection
+                setDisconnected(DisconnectCause.NORMAL, null);
+            } catch (CallStateException e) {
+                Log.e(this, e, "Call to Connection.hangup failed with exception");
+            }
+        }
+        close();
     }
 
     private void updateState() {
-        if (mOriginalConnection == null || mCallServiceAdapter == null) {
+        if (mOriginalConnection == null) {
             return;
         }
 
@@ -138,28 +147,28 @@ class TelephonyCallConnection {
             return;
         }
 
+        Log.d(this, "mOriginalConnection new state = %s", newState);
+
         mState = newState;
         switch (newState) {
             case IDLE:
                 break;
             case ACTIVE:
-                mCallServiceAdapter.setActive(mCallId);
+                setActive();
                 break;
             case HOLDING:
-                mCallServiceAdapter.setOnHold(mCallId);
+                setOnHold();
                 break;
             case DIALING:
             case ALERTING:
-                mCallServiceAdapter.setDialing(mCallId);
+                setDialing();
                 break;
             case INCOMING:
             case WAITING:
-                mCallServiceAdapter.setRinging(mCallId);
+                setRinging();
                 break;
             case DISCONNECTED:
-                mCallServiceAdapter.setDisconnected(
-                        mCallId, mOriginalConnection.getDisconnectCause(), null);
-                close();
+                setDisconnected(mOriginalConnection.getDisconnectCause(), null);
                 break;
             case DISCONNECTING:
                 break;
@@ -174,7 +183,6 @@ class TelephonyCallConnection {
             }
             mOriginalConnection = null;
         }
-        CallRegistrar.unregister(mCallId);
     }
 
     private class StateHandler extends Handler {

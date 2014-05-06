@@ -16,49 +16,34 @@
 
 package com.android.services.telephony;
 
-import android.content.Context;
-import android.telecomm.CallInfo;
-import android.telephony.TelephonyManager;
-
+import com.android.internal.telephony.Connection;
 import com.android.internal.telephony.Phone;
-import com.android.internal.telephony.PhoneFactory;
 
 /**
- * Call service that uses the CDMA phone.
+ * Manages a single phone call handled by CDMA.
  */
-public class CdmaCallService extends PstnCallService {
-    static boolean shouldSelect(Context context, CallInfo callInfo) {
-        TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(
-                Context.TELEPHONY_SERVICE);
-        return telephonyManager.getPhoneType() == TelephonyManager.PHONE_TYPE_CDMA;
+public class CdmaConnection extends PstnConnection {
+
+    public CdmaConnection(Phone phone, Connection connection) {
+        super(phone, connection);
     }
 
     /** {@inheritDoc} */
     @Override
-    public void isCompatibleWith(CallInfo callInfo) {
-        getAdapter().setIsCompatibleWith(callInfo.getId(), shouldSelect(this, callInfo));
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    protected Phone getPhone() {
-        return CachedPhoneFactory.getCdmaPhone();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void playDtmfTone(String callId, char digit) {
+    public void onPlayDtmfTone(char digit) {
         // TODO(santoscordon): There are conditions where we should play dtmf tones with different
         // timeouts.
         // TODO(santoscordon): We get explicit response from the phone via a Message when the burst
         // tone has completed. During this time we can get subsequent requests. We need to stop
         // passing in null as the message and start handling it to implement a queue.
         getPhone().sendBurstDtmf(Character.toString(digit), 0, 0, null);
+        super.onPlayDtmfTone(digit);
     }
 
     /** {@inheritDoc} */
     @Override
-    public void stopDtmfTone(String callId) {
+    public void onStopDtmfTone() {
         // no-op, we only play timed dtmf tones for cdma.
+        super.onStopDtmfTone();
     }
 }

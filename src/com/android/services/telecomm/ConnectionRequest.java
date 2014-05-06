@@ -45,4 +45,12 @@ public final class ConnectionRequest {
      * and servant {@code ConnectionService} which agree on a vocabulary for such data.
      */
     public Bundle getExtras() { return mExtras; }
+
+    public String toString() {
+        return String.format("PhoneConnectionRequest %s %s",
+                mHandle == null
+                        ? Uri.EMPTY
+                        : ConnectionService.toLogSafePhoneNumber(mHandle.toString()),
+                mExtras == null ? "" : mExtras);
+    }
 }

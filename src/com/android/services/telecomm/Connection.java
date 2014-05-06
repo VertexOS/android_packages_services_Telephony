@@ -18,6 +18,8 @@ package com.android.services.telecomm;
 
 import com.google.android.collect.Sets;
 
+import com.android.services.telephony.Log;
+
 import android.net.Uri;
 import android.os.Bundle;
 import android.telecomm.CallAudioState;
@@ -34,7 +36,34 @@ public abstract class Connection {
         void onAudioStateChanged(Connection c, CallAudioState state);
         void onHandleChanged(Connection c, Uri newHandle);
         void onSignalChanged(Connection c, Bundle details);
+        void onDisconnected(Connection c, int cause, String message);
         void onDestroyed(Connection c);
+    }
+
+    public static class ListenerBase implements Listener {
+        /** {@inheritDoc} */
+        @Override
+        public void onStateChanged(Connection c, int state) {}
+
+        /** {@inheritDoc} */
+         @Override
+        public void onAudioStateChanged(Connection c, CallAudioState state) {}
+
+        /** {@inheritDoc} */
+        @Override
+        public void onHandleChanged(Connection c, Uri newHandle) {}
+
+        /** {@inheritDoc} */
+        @Override
+        public void onSignalChanged(Connection c, Bundle details) {}
+
+        /** {@inheritDoc} */
+        @Override
+        public void onDisconnected(Connection c, int cause, String message) {}
+
+        /** {@inheritDoc} */
+        @Override
+        public void onDestroyed(Connection c) {}
     }
 
     public final class State {
@@ -52,14 +81,11 @@ public abstract class Connection {
     private int mState = State.NEW;
     private CallAudioState mCallAudioState;
     private Uri mHandle;
-    private long mStartTime = -1L;
-    private long mEndTime = -1L;
 
     /**
      * Create a new Connection.
      */
-    protected Connection() {
-    }
+    protected Connection() {}
 
     /**
      * @return The handle (e.g., phone number) to which this Connection
@@ -95,44 +121,26 @@ public abstract class Connection {
      * Assign a listener to be notified of state changes.
      *
      * @param l A listener.
+     * @return This Connection.
      *
      * @hide
      */
-    public final void addConnectionListener(Listener l) {
+    public final Connection addConnectionListener(Listener l) {
         mListeners.add(l);
+        return this;
     }
 
     /**
      * Remove a previously assigned listener that was being notified of state changes.
      *
      * @param l A Listener.
+     * @return This Connection.
      *
      * @hide
      */
-    public final void removeConnectionListener(Listener l) {
+    public final Connection removeConnectionListener(Listener l) {
         mListeners.remove(l);
-    }
-
-    /**
-     * @return The system time at which this Connection transitioned into the
-     *         {@link State#ACTIVE} state. This value is {@code -1L}
-     *         if it has not been explicitly assigned.
-     *
-     * @hide
-     */
-    public final long getStartTime() {
-        return mStartTime;
-    }
-
-    /**
-     * @return The system time at which this Connection transitioned into the
-     *         {@link State#DISCONNECTED} state. This value is
-     *         {@code -1L} if it has not been explicitly assigned.
-     *
-     * @hide
-     */
-    public final long getEndTime() {
-        return mEndTime;
+        return this;
     }
 
     /**
@@ -143,6 +151,7 @@ public abstract class Connection {
      * @hide
      */
     public final void playDtmfTone(char c) {
+        Log.d(this, "playDtmfTone %c", c);
         onPlayDtmfTone(c);
     }
 
@@ -152,6 +161,7 @@ public abstract class Connection {
      * @hide
      */
     public final void stopDtmfTone() {
+        Log.d(this, "stopDtmfTone");
         onStopDtmfTone();
     }
 
@@ -163,6 +173,7 @@ public abstract class Connection {
      * @hide
      */
     public final void disconnect() {
+        Log.d(this, "disconnect");
         onDisconnect();
     }
 
@@ -174,6 +185,7 @@ public abstract class Connection {
      * @hide
      */
     public final void abort() {
+        Log.d(this, "abort");
         onAbort();
     }
 
@@ -185,6 +197,7 @@ public abstract class Connection {
      * @hide
      */
     public final void hold() {
+        Log.d(this, "hold");
         onHold();
     }
 
@@ -196,6 +209,7 @@ public abstract class Connection {
      * @hide
      */
     public final void unhold() {
+        Log.d(this, "unhold");
         onUnhold();
     }
 
@@ -207,6 +221,7 @@ public abstract class Connection {
      * @hide
      */
     public final void answer() {
+        Log.d(this, "answer");
         if (mState == State.RINGING) {
             onAnswer();
         }
@@ -220,7 +235,10 @@ public abstract class Connection {
      * @hide
      */
     public final void reject() {
-        if (mState == State.RINGING) { onReject(); }
+        Log.d(this, "reject");
+        if (mState == State.RINGING) {
+            onReject();
+        }
     }
 
     /**
@@ -229,16 +247,41 @@ public abstract class Connection {
      * @param state The new audio state.
      */
     public void setAudioState(CallAudioState state) {
+        Log.d(this, "setAudioState %s", state);
         onSetAudioState(state);
     }
 
     /**
-     * Notifies this Connection and listeners that the {@link #getHandle()} property
-     * has a new value.
+     * @param state An integer value from {@link State}.
+     * @return A string representation of the value.
+     */
+    public static String stateToString(int state) {
+        switch (state) {
+            case State.NEW:
+                return "NEW";
+            case State.RINGING:
+                return "RINGING";
+            case State.DIALING:
+                return "DIALING";
+            case State.ACTIVE:
+                return "ACTIVE";
+            case State.HOLDING:
+                return "HOLDING";
+            case State.DISCONNECTED:
+                return "DISCONNECTED";
+            default:
+                Log.wtf(Connection.class, "Unknown state %d", state);
+                return "UNKNOWN";
+        }
+    }
+
+    /**
+     * Sets the value of the {@link #getHandle()} property and notifies listeners.
      *
      * @param handle The new handle.
      */
-    protected void onSetHandle(Uri handle) {
+    protected void setHandle(Uri handle) {
+        Log.d(this, "setHandle %s", handle);
         // TODO: Enforce super called
         mHandle = handle;
         for (Listener l : mListeners) {
@@ -247,37 +290,50 @@ public abstract class Connection {
     }
 
     /**
-     * Notifies this Connection and listeners that the {@link #getState()} property
-     * has a new value.
-     *
-     * @param state The new state.
+     * Sets state to active (e.g., an ongoing call where two or more parties can actively
+     * communicate).
      */
-    protected void onSetState(int state) {
-        // TODO: Enforce super called
-        this.mState = state;
-        // TODO: This can also check for only VALID state transitions
-        if (state == State.ACTIVE) {
-            mStartTime = System.currentTimeMillis();
-        }
-        if (state == State.DISCONNECTED) {
-            mEndTime = System.currentTimeMillis();
-        }
-        for (Listener l : mListeners) {
-            l.onStateChanged(this, state);
-        }
+    protected void setActive() {
+        setState(State.ACTIVE);
     }
 
     /**
-     * Notifies this Connection and listeners that the {@link #getState()} property
-     * has a new value, and specifies a reason.
-     *
-     * TODO: needed for disconnect cause -- consider how that will be supported
-     *
-     * @param state The new state.
-     * @param reason The reason for the change.
+     * Sets state to ringing (e.g., an inbound ringing call).
      */
-    protected void onSetState(int state, String reason) {
-        // TODO: Enforce super called
+    protected void setRinging() {
+        setState(State.RINGING);
+    }
+
+    /**
+     * Sets state to dialing (e.g., dialing an outbound call).
+     */
+    protected void setDialing() {
+        setState(State.DIALING);
+    }
+
+    /**
+     * Sets state to be on hold.
+     */
+    protected void setOnHold() {
+        setState(State.HOLDING);
+    }
+
+    /**
+     * Sets state to disconnected. This will first notify listeners with an
+     * {@link Listener#onStateChanged(Connection, int)} event, then will fire an
+     * {@link Listener#onDisconnected(Connection, int, String)} event with additional
+     * details.
+     *
+     * @param cause The reason for the disconnection, any of
+     *         {@link android.telephony.DisconnectCause}.
+     * @param message Optional call-service-provided message about the disconnect.
+     */
+    protected void setDisconnected(int cause, String message) {
+        setState(State.DISCONNECTED);
+        Log.d(this, "Disconnected with cause %d, message \"%s\"", cause, message);
+        for (Listener l : mListeners) {
+            l.onDisconnected(this, cause, message);
+        }
     }
 
     /**
@@ -350,4 +406,12 @@ public abstract class Connection {
      * a request to reject.
      */
     protected void onReject() {}
+
+    private void setState(int state) {
+        Log.d(this, "setState: %s", stateToString(state));
+        this.mState = state;
+        for (Listener l : mListeners) {
+            l.onStateChanged(this, state);
+        }
+    }
 }

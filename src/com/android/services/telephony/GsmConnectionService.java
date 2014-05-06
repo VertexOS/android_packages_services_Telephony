@@ -17,28 +17,18 @@
 package com.android.services.telephony;
 
 import android.content.Context;
-import android.telecomm.CallInfo;
+import android.net.Uri;
 import android.telephony.TelephonyManager;
 
+import com.android.internal.telephony.Connection;
 import com.android.internal.telephony.Phone;
-import com.android.internal.telephony.PhoneFactory;
+import com.android.phone.Constants;
+import com.android.services.telecomm.ConnectionRequest;
 
 /**
- * Call service that uses the GSM phone.
+ * Connnection service that uses GSM.
  */
-public class GsmCallService extends PstnCallService {
-    static boolean shouldSelect(Context context, CallInfo callInfo) {
-        TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(
-                Context.TELEPHONY_SERVICE);
-        return telephonyManager.getPhoneType() == TelephonyManager.PHONE_TYPE_GSM;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void isCompatibleWith(CallInfo callInfo) {
-        getAdapter().setIsCompatibleWith(callInfo.getId(), shouldSelect(this, callInfo));
-    }
-
+public class GsmConnectionService extends PstnConnectionService {
     /** {@inheritDoc} */
     @Override
     protected Phone getPhone() {
@@ -47,13 +37,22 @@ public class GsmCallService extends PstnCallService {
 
     /** {@inheritDoc} */
     @Override
-    public void playDtmfTone(String callId, char digit) {
-        getPhone().startDtmf(digit);
+    protected boolean canCall(Uri handle) {
+        return canCall(this, handle);
+    }
+
+    // TODO: Refactor this out when CallServiceSelector is deprecated
+    /* package */ static boolean canCall(Context context, Uri handle) {
+        TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(
+                Context.TELEPHONY_SERVICE);
+        return telephonyManager.getPhoneType() == TelephonyManager.PHONE_TYPE_GSM
+                && Constants.SCHEME_TEL.equals(handle.getScheme());
     }
 
     /** {@inheritDoc} */
     @Override
-    public void stopDtmfTone(String callId) {
-        getPhone().stopDtmf();
+    protected TelephonyConnection onCreateTelephonyConnection(
+            ConnectionRequest request, Connection connection) {
+        return new GsmConnection(getPhone(), connection);
     }
 }

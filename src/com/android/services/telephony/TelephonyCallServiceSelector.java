@@ -19,7 +19,6 @@ package com.android.services.telephony;
 import android.telecomm.CallInfo;
 import android.telecomm.CallServiceDescriptor;
 import android.telecomm.CallServiceSelector;
-import android.telecomm.CallServiceSelectorAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,16 +39,16 @@ public class TelephonyCallServiceSelector extends CallServiceSelector {
             }
 
             String name = descriptor.getServiceComponent().getClassName();
-            if (name.equals(CdmaCallService.class.getName())) {
-                if (CdmaCallService.shouldSelect(this, callInfo)) {
+            if (name.equals(CdmaConnectionService.class.getName())) {
+                if (CdmaConnectionService.canCall(this, callInfo.getHandle())) {
                     selectedDescriptors.add(descriptor);
                 }
-            } else if (name.equals(GsmCallService.class.getName())) {
-                if (GsmCallService.shouldSelect(this, callInfo)) {
+            } else if (name.equals(GsmConnectionService.class.getName())) {
+                if (GsmConnectionService.canCall(this, callInfo.getHandle())) {
                     selectedDescriptors.add(descriptor);
                 }
-            } else if (name.equals(SipCallService.class.getName())) {
-                if (SipCallService.shouldSelect(this, callInfo)) {
+            } else if (name.equals(SipConnectionService.class.getName())) {
+                if (SipConnectionService.canCall(this, callInfo.getHandle())) {
                     selectedDescriptors.add(descriptor);
                 }
             }

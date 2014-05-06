@@ -19,7 +19,13 @@ package com.android.services.telecomm;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+/**
+ * Represents a distinct subscription, line of service or call placement method that
+ * a {@link ConnectionService} can use to place phone calls.
+ */
 public class Subscription implements Parcelable {
+
+    public Subscription() {}
 
     public int describeContents() {
         return 0;

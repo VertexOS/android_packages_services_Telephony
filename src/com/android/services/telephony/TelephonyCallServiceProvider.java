@@ -16,7 +16,6 @@
 
 package com.android.services.telephony;
 
-import android.os.IBinder;
 import android.telecomm.CallServiceDescriptor;
 import android.telecomm.CallServiceLookupResponse;
 import android.telecomm.CallServiceProvider;
@@ -32,18 +31,18 @@ public class TelephonyCallServiceProvider extends CallServiceProvider {
     public void lookupCallServices(CallServiceLookupResponse response) {
         ArrayList<CallServiceDescriptor> descriptors = new ArrayList<CallServiceDescriptor>();
         descriptors.add(CallServiceDescriptor.newBuilder(this)
-                   .setCallService(GsmCallService.class)
+                   .setCallService(GsmConnectionService.class)
                    .setNetworkType(CallServiceDescriptor.FLAG_PSTN)
                    .build());
         descriptors.add(CallServiceDescriptor.newBuilder(this)
-                   .setCallService(CdmaCallService.class)
+                   .setCallService(CdmaConnectionService.class)
                    .setNetworkType(CallServiceDescriptor.FLAG_PSTN)
                    .build());
         descriptors.add(CallServiceDescriptor.newBuilder(this)
-                   .setCallService(SipCallService.class)
-                   .setNetworkType(CallServiceDescriptor.FLAG_WIFI |
-                           CallServiceDescriptor.FLAG_MOBILE)
-                   .build());
+                .setCallService(SipConnectionService.class)
+                .setNetworkType(CallServiceDescriptor.FLAG_WIFI |
+                        CallServiceDescriptor.FLAG_MOBILE)
+                .build());
         response.setCallServiceDescriptors(descriptors);
     }
 }
