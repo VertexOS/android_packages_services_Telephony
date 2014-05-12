@@ -33,6 +33,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.os.SystemProperties;
+import android.os.UserManager;
 import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
@@ -87,6 +88,7 @@ public class MobileNetworkSettings extends PreferenceActivity
 
     private static final String iface = "rmnet0"; //TODO: this will go away
 
+    private UserManager mUm;
     private Phone mPhone;
     private MyHandler mHandler;
     private boolean mOkClicked;
@@ -98,6 +100,7 @@ public class MobileNetworkSettings extends PreferenceActivity
     private Preference mClickedPreference;
     private boolean mShow4GForLTE;
     private boolean mIsGlobalCdma;
+    private boolean mUnavailable;
 
     //This is a method implemented for DialogInterface.OnClickListener.
     //  Used to dismiss the dialogs when they come up.
@@ -211,10 +214,17 @@ public class MobileNetworkSettings extends PreferenceActivity
     protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
 
-        addPreferencesFromResource(R.xml.network_setting);
-
         mPhone = PhoneGlobals.getPhone();
         mHandler = new MyHandler();
+        mUm = (UserManager) getSystemService(Context.USER_SERVICE);
+
+        if (mUm.hasUserRestriction(UserManager.DISALLOW_CONFIG_MOBILE_NETWORKS)) {
+            mUnavailable = true;
+            setContentView(R.layout.telephony_disallowed_preference_screen);
+            return;
+        }
+
+        addPreferencesFromResource(R.xml.network_setting);
 
         try {
             Context con = createPackageContext("com.android.systemui", 0);
@@ -337,6 +347,10 @@ public class MobileNetworkSettings extends PreferenceActivity
     @Override
     protected void onResume() {
         super.onResume();
+
+        if (mUnavailable) {
+            return;
+        }
 
         // upon resumption from the sub-activity, make sure we re-enable the
         // preferences.
