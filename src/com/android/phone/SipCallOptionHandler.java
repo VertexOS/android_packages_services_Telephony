@@ -19,7 +19,6 @@ package com.android.phone;
 import com.android.internal.telephony.CallManager;
 import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneFactory;
-import com.android.internal.telephony.thirdpartyphone.ThirdPartyPhone;
 import com.android.phone.sip.SipProfileDb;
 import com.android.phone.sip.SipSettings;
 import com.android.phone.sip.SipSharedPreferences;
@@ -187,8 +186,6 @@ public class SipCallOptionHandler extends Activity implements
         if (!voipSupported) {
             if (!isRegularCall) {
                 showDialog(DIALOG_NO_VOIP);
-            } else {
-                checkThirdPartyPhone();
             }
             return;
         }
@@ -229,8 +226,6 @@ public class SipCallOptionHandler extends Activity implements
                 mUseSipPhone = false;
             }
             setResultAndFinish();
-        } else {
-            checkThirdPartyPhone();
         }
     }
 
@@ -350,8 +345,6 @@ public class SipCallOptionHandler extends Activity implements
         if(dialog == mDialogs[DIALOG_SELECT_WIFI_CALL]) {
             if (id == DialogInterface.BUTTON_NEGATIVE) {
                 setResultAndFinish();
-            } else {
-                useThirdPartyPhone();
             }
             return;
         } else if (id == DialogInterface.BUTTON_NEGATIVE) {
@@ -502,43 +495,5 @@ public class SipCallOptionHandler extends Activity implements
             return ni != null && ni.isConnected() && ni.getType() == ConnectivityManager.TYPE_WIFI;
         }
         return false;
-    }
-
-    private void useThirdPartyPhone() {
-        mIntent.putExtra(OutgoingCallBroadcaster.EXTRA_THIRD_PARTY_CALL_COMPONENT,
-                mThirdPartyCallComponent);
-        PhoneGlobals.getInstance().callController.placeCall(mIntent);
-        startDelayedFinish();
-    }
-
-    private void checkThirdPartyPhone() {
-        runOnUiThread(new Runnable() {
-            public void run() {
-                // TODO(sail): Move this out of this file or rename this file.
-                // TODO(sail): Move this logic to the switchboard.
-                TelephonyManager telephonyManager = (TelephonyManager) getSystemService(
-                        Context.TELEPHONY_SERVICE);
-                int setting = telephonyManager.getWhenToMakeWifiCalls();
-                if (setting != TelephonyManager.WifiCallingChoices.NEVER_USE &&
-                        isConnectedToWifi()) {
-                    Intent intent = new Intent(ThirdPartyPhone.ACTION_THIRD_PARTY_CALL_SERVICE);
-                    PackageManager pm = getPackageManager();
-                    // TODO(sail): Need to handle case where there are multiple services.
-                    // TODO(sail): Need to enforce permissions.
-                    ResolveInfo info = pm.resolveService(intent, 0);
-                    if (info != null && info.serviceInfo != null) {
-                        mThirdPartyCallComponent = new ComponentName(info.serviceInfo.packageName,
-                                info.serviceInfo.name);
-                        if (setting == TelephonyManager.WifiCallingChoices.ASK_EVERY_TIME) {
-                            showDialog(DIALOG_SELECT_WIFI_CALL);
-                        } else {
-                            useThirdPartyPhone();
-                        }
-                        return;
-                    }
-                }
-                setResultAndFinish();
-            }
-        });
     }
 }

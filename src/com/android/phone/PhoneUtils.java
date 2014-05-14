@@ -61,7 +61,6 @@ import com.android.internal.telephony.TelephonyCapabilities;
 import com.android.internal.telephony.TelephonyProperties;
 import com.android.internal.telephony.cdma.CdmaConnection;
 import com.android.internal.telephony.sip.SipPhone;
-import com.android.internal.telephony.thirdpartyphone.ThirdPartyPhone;
 import com.android.phone.CallGatewayManager.RawGatewayInfo;
 
 import java.util.ArrayList;
@@ -2618,10 +2617,6 @@ public class PhoneUtils {
             if (phone != null) return phone;
         }
 
-        if (thirdPartyCallComponent != null) {
-            return getThirdPartyPhoneFromComponent(cm, thirdPartyCallComponent);
-        }
-
         return cm.getDefaultPhone();
     }
 
@@ -2638,20 +2633,6 @@ public class PhoneUtils {
             }
         }
         return null;
-    }
-
-    public static Phone getThirdPartyPhoneFromComponent(CallManager cm, ComponentName component) {
-        for (Phone phone : cm.getAllPhones()) {
-            if (phone.getPhoneType() == PhoneConstants.PHONE_TYPE_THIRD_PARTY) {
-                ThirdPartyPhone thirdPartyPhone = (ThirdPartyPhone) phone;
-                if (thirdPartyPhone.getCallProviderComponent().equals(component)) {
-                    return thirdPartyPhone;
-                }
-            }
-        }
-        ThirdPartyPhone thirdPartyPhone = PhoneFactory.makeThirdPartyPhone(component);
-        cm.registerPhone(thirdPartyPhone);
-        return thirdPartyPhone;
     }
 
     /**

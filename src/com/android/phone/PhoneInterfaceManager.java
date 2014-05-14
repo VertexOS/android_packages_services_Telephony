@@ -49,11 +49,9 @@ import com.android.internal.telephony.Connection;
 import com.android.internal.telephony.DefaultPhoneNotifier;
 import com.android.internal.telephony.ITelephony;
 import com.android.internal.telephony.ITelephonyListener;
-import com.android.internal.telephony.IThirdPartyCallProvider;
 import com.android.internal.telephony.IccCard;
 import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneConstants;
-import com.android.internal.telephony.thirdpartyphone.ThirdPartyPhone;
 import com.android.internal.telephony.uicc.IccIoResult;
 import com.android.internal.telephony.uicc.IccUtils;
 import com.android.internal.telephony.uicc.UiccController;
@@ -87,8 +85,6 @@ public class PhoneInterfaceManager extends ITelephony.Stub implements CallModele
     private static final int EVENT_OPEN_CHANNEL_DONE = 10;
     private static final int CMD_CLOSE_CHANNEL = 11;
     private static final int EVENT_CLOSE_CHANNEL_DONE = 12;
-    // TODO: Remove this.
-    private static final int CMD_NEW_INCOMING_THIRD_PARTY_CALL = 100;
     private static final int CMD_NV_READ_ITEM = 13;
     private static final int EVENT_NV_READ_ITEM_DONE = 14;
     private static final int CMD_NV_WRITE_ITEM = 15;
@@ -249,15 +245,6 @@ public class PhoneInterfaceManager extends ITelephony.Stub implements CallModele
                         request.notifyAll();
                     }
                     break;
-
-                case CMD_NEW_INCOMING_THIRD_PARTY_CALL: {
-                    request = (MainThreadRequest) msg.obj;
-                    IncomingThirdPartyCallArgs args = (IncomingThirdPartyCallArgs) request.argument;
-                    ThirdPartyPhone thirdPartyPhone = (ThirdPartyPhone)
-                            PhoneUtils.getThirdPartyPhoneFromComponent(mCM, args.component);
-                    thirdPartyPhone.takeIncomingCall(args.callId, args.callerDisplayName);
-                    break;
-                }
 
                 case CMD_TRANSMIT_APDU:
                     request = (MainThreadRequest) msg.obj;
@@ -1048,18 +1035,6 @@ public class PhoneInterfaceManager extends ITelephony.Stub implements CallModele
         mPhone.setCellInfoListRate(rateInMillis);
     }
 
-    @Override
-    public void newIncomingThirdPartyCall(ComponentName component, String callId,
-            String callerDisplayName) {
-        // TODO(sail): Enforce that the component belongs to the calling package.
-        if (DBG) {
-            log("newIncomingThirdPartyCall: component: " + component + " callId: " + callId);
-        }
-        enforceCallPermission();
-        sendRequestAsync(CMD_NEW_INCOMING_THIRD_PARTY_CALL, new IncomingThirdPartyCallArgs(
-                component, callId, callerDisplayName));
-    }
-
     //
     // Internal helper methods.
     //
@@ -1310,22 +1285,6 @@ public class PhoneInterfaceManager extends ITelephony.Stub implements CallModele
 
         // If the payload is null, there was an error. Indicate that by returning
         // an empty string.
-        if (response.payload == null) {
-          return "";
-        }
-
-        // Append the returned status code to the end of the response payload.
-        String s = Integer.toHexString(
-                (response.sw1 << 8) + response.sw2 + 0x10000).substring(1);
-        s = IccUtils.bytesToHexString(response.payload) + s;
-        return s;
-    }
-
-    @Override
-    public String sendEnvelopeWithStatus(String content) {
-        enforceSimCommunicationPermission();
-
-        IccIoResult response = (IccIoResult)sendRequest(CMD_SEND_ENVELOPE, content);
         if (response.payload == null) {
           return "";
         }
