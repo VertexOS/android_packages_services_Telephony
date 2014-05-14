@@ -136,9 +136,9 @@
     <string name="select_automatically" msgid="5628402124471810174">"自动选择"</string>
     <string name="sum_select_automatically" msgid="5614890115123292400">"自动选择首选网络"</string>
     <string name="register_automatically" msgid="6017849844573519637">"自动注册..."</string>
-    <string name="preferred_network_mode_title" msgid="2336624679902659306">"首选网络类型"</string>
+    <string name="preferred_network_mode_title" msgid="8873246565334559308">"网络模式"</string>
     <string name="preferred_network_mode_summary" msgid="1434820673166126609">"更改网络运行方式"</string>
-    <string name="preferred_network_mode_dialogtitle" msgid="4048082093347807230">"首选网络类型"</string>
+    <string name="preferred_network_mode_dialogtitle" msgid="8176355237105593793">"首选网络模式"</string>
     <string name="preferred_network_mode_wcdma_perf_summary" msgid="8521677230113533809">"首选网络模式：首选 WCDMA"</string>
     <string name="preferred_network_mode_gsm_only_summary" msgid="3352445413437453511">"首选网络模式：仅限 GSM"</string>
     <string name="preferred_network_mode_wcdma_only_summary" msgid="2836897236221063413">"首选网络模式：仅限 WCDMA"</string>
@@ -275,9 +275,6 @@
     <string name="enable_disable_multi_category" msgid="626771003122899280">"多类别"</string>
     <string name="multi_category_enable" msgid="1179299804641721768">"已启用多类别"</string>
     <string name="multi_category_disable" msgid="880104702904139505">"已停用多类别"</string>
-    <string name="network_lte" msgid="7702681952521375754">"LTE（建议）"</string>
-    <string name="network_4G" msgid="2723512640529983138">"4G（建议）"</string>
-    <string name="network_global" msgid="1323190488685355309">"通用"</string>
     <string name="cdma_system_select_title" msgid="5757657769327732833">"系统选择"</string>
     <string name="cdma_system_select_summary" msgid="60460043745797517">"更改 CDMA 漫游模式"</string>
     <string name="cdma_system_select_dialogtitle" msgid="6083355415165359075">"系统选择"</string>
@@ -298,7 +295,8 @@
   </string-array>
     <string name="cdma_activate_device" msgid="3793805892364814518">"激活设备"</string>
     <string name="cdma_lte_data_service" msgid="4255018217292548962">"设置数据服务"</string>
-    <string name="carrier_settings_title" msgid="9028166176523012300">"运营商设置"</string>
+    <!-- no translation found for carrier_settings_title (9028166176523012300) -->
+    <skip />
     <string name="fdn" msgid="7878832555095183202">"固定拨号"</string>
     <string name="manage_fdn_list" msgid="8777755791892122369">"固定拨号列表"</string>
     <string name="fdn_activation" msgid="2156479741307463576">"激活固定拨号"</string>
@@ -337,7 +335,6 @@
     <string name="pin2_invalid" msgid="5470854099230755944">"系统未更新 FDN，因为键入的 PIN 码有误。"</string>
     <string name="fdn_invalid_number" msgid="1494755047900009147">"系统未更新 FDN，因为号码不能超过 20 位。"</string>
     <string name="pin2_or_fdn_invalid" msgid="6025144083384701197">"FDN 未更新。PIN2 有误，或电话号码遭拒。"</string>
-    <string name="fdn_failed" msgid="540018079008319747">"FDN 操作失败。"</string>
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"正在从 SIM 卡读取..."</string>
     <string name="simContacts_empty" msgid="5270660846489561932">"SIM 卡上无联系人。"</string>
     <string name="simContacts_title" msgid="1861472842524839921">"选择要导入的联系人"</string>
@@ -358,7 +355,7 @@
     <string name="disable_pin_ok" msgid="5596999379593924850">"未启用 SIM 卡 PIN 码。"</string>
     <string name="pin_failed" msgid="2298841192582192277">"键入的 PIN 有误。"</string>
     <string name="pin_changed" msgid="4365538014588501049">"已成功更改 SIM 卡 PIN。"</string>
-    <string name="puk_requested" msgid="1796577128488773946">"密码不正确，PIN 码已被锁定！请提供 PUK 码。"</string>
+    <string name="puk_requested" msgid="3898394204193202803">"密码不正确，SIM 已锁定！需要 PUK2。"</string>
     <string name="enter_pin2_text" msgid="8339444124477720345">"PIN2"</string>
     <string name="oldPin2Label" msgid="8559146795026261502">"旧 PIN2"</string>
     <string name="newPin2Label" msgid="4573956902204349054">"新 PIN2"</string>
@@ -370,11 +367,8 @@
     <string name="invalidPuk2" msgid="1290977391033057871">"输入 8 位数字的 PUK2。"</string>
     <string name="pin2_changed" msgid="1639666438836544393">"已成功更改 PIN2。"</string>
     <string name="label_puk2_code" msgid="302845876240219560">"输入 PUK2 码"</string>
-    <string name="fdn_enable_puk2_requested" msgid="3674058967950559397">"密码不正确，PIN2码已被锁定。请更改PIN2码并重试！"</string>
+    <string name="fdn_enable_puk2_requested" msgid="4262894949634885773">"密码有误，请更改 PIN2 并重试。"</string>
     <string name="puk2_requested" msgid="8909278021238716877">"密码有误，SIM 卡已锁定。需要 PUK2。"</string>
-    <string name="puk2_blocked" msgid="3150263853077280049">"PUK2码已被永远锁定。"</string>
-    <string name="pin2_attempts" msgid="7937503107162525324">\n"还有<xliff:g id="NUMBER">%d</xliff:g>次尝试机会。"</string>
-    <string name="pin2_unblocked" msgid="2903147240919055381">"PIN2码已解锁！"</string>
     <string name="doneButton" msgid="2859593360997984240">"完成"</string>
     <string name="caller_manage_header" msgid="3231519674734638786">"电话会议<xliff:g id="CONF_CALL_TIME">%s</xliff:g>"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"语音信箱号码"</string>
@@ -406,9 +400,9 @@
     <string name="notification_missedCall_message" msgid="3049928912736917988">"短信"</string>
     <string name="incall_error_power_off" msgid="6550191216405193368">"要进行呼叫，请先关闭飞行模式。"</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"尚未注册网络。"</string>
-    <string name="incall_error_out_of_service" msgid="8587993036435080418">"无法连接到移动网络"</string>
-    <string name="incall_error_no_phone_number_supplied" msgid="4197432103471807739">"拨号失败，因为输入的号码无效。"</string>
-    <string name="incall_error_call_failed" msgid="4313552620858880999">"拨号失败。"</string>
+    <string name="incall_error_out_of_service" msgid="8587993036435080418">"无法访问移动网络"</string>
+    <string name="incall_error_no_phone_number_supplied" msgid="4197432103471807739">"拨号未送出，因为输入的号码无效。"</string>
+    <string name="incall_error_call_failed" msgid="4313552620858880999">"拨号未送出。"</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"正在启动 MMI 序列..."</string>
     <string name="incall_error_supp_service_unknown" msgid="2991054870745666038">"不支持此服务。"</string>
     <string name="incall_error_supp_service_switch" msgid="3503552565745872241">"无法切换通话。"</string>
@@ -524,10 +518,10 @@
     <string name="no_sip_account_found" msgid="724325811961769997">"此手机上没有互联网呼叫帐户，要立即添加一个吗？"</string>
     <string name="sip_menu_add" msgid="8757508498518881500">"添加"</string>
     <string name="add_sip_account" msgid="5904858426290097611">"添加帐户"</string>
-    <string name="remove_sip_account" msgid="7645900420385682570">"移除帐户"</string>
+    <string name="remove_sip_account" msgid="7645900420385682570">"删除帐户"</string>
     <string name="sip_account_list" msgid="5480058210652194306">"SIP 帐户"</string>
     <string name="saving_account" msgid="52903398217017954">"正在保存帐户..."</string>
-    <string name="removing_account" msgid="7183999896088628100">"正在移除帐户..."</string>
+    <string name="removing_account" msgid="7183999896088628100">"正在删除帐户..."</string>
     <string name="sip_menu_save" msgid="5842531129356014943">"保存"</string>
     <string name="sip_menu_discard" msgid="524075892158789701">"舍弃"</string>
     <string name="alert_dialog_close" msgid="7759635137627626235">"关闭个人资料"</string>
@@ -580,11 +574,12 @@
     <string name="respond_via_sms_canned_response_2" msgid="4074450431532859214">"我马上会打给你。"</string>
     <string name="respond_via_sms_canned_response_3" msgid="3496079065723960450">"我稍后会再打给你。"</string>
     <string name="respond_via_sms_canned_response_4" msgid="1698989243040062190">"现在无法接听。能稍后再打给我吗？"</string>
+    <string name="respond_via_sms_custom_message" msgid="6158880869935281078">"自行撰写回复…"</string>
     <string name="respond_via_sms_setting_title" msgid="3754000371039709383">"快速回复"</string>
     <string name="respond_via_sms_setting_title_2" msgid="6104662227299493906">"修改快速回复"</string>
     <string name="respond_via_sms_setting_summary" msgid="9150281183930613065"></string>
     <string name="respond_via_sms_edittext_dialog_title" msgid="20379890418289778">"快速回复"</string>
-    <string name="respond_via_sms_menu_reset_default_activity" msgid="1461742052902053466">"重置默认应用"</string>
+    <string name="respond_via_sms_menu_reset_default_activity" msgid="4029277930090150223">"还原默认设置"</string>
     <string name="respond_via_sms_confirmation_format" msgid="7229149977515784269">"讯息已发送至 <xliff:g id="PHONE_NUMBER">%s</xliff:g>。"</string>
     <string name="description_image_button_one" msgid="5502718871331943463">"一"</string>
     <string name="description_image_button_two" msgid="4903738528222924522">"二"</string>

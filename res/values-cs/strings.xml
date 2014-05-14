@@ -136,9 +136,9 @@
     <string name="select_automatically" msgid="5628402124471810174">"Zvolit automaticky"</string>
     <string name="sum_select_automatically" msgid="5614890115123292400">"Automaticky zvolit upřednostňovanou síť"</string>
     <string name="register_automatically" msgid="6017849844573519637">"Automatická registrace..."</string>
-    <string name="preferred_network_mode_title" msgid="2336624679902659306">"Preferovaný typ sítě"</string>
+    <string name="preferred_network_mode_title" msgid="8873246565334559308">"Režim sítě"</string>
     <string name="preferred_network_mode_summary" msgid="1434820673166126609">"Změnit provozní režim sítě"</string>
-    <string name="preferred_network_mode_dialogtitle" msgid="4048082093347807230">"Preferovaný typ sítě"</string>
+    <string name="preferred_network_mode_dialogtitle" msgid="8176355237105593793">"Upřednostňovaný režim sítě"</string>
     <string name="preferred_network_mode_wcdma_perf_summary" msgid="8521677230113533809">"Upřednostňovaný režim sítě: preferováno WCDMA"</string>
     <string name="preferred_network_mode_gsm_only_summary" msgid="3352445413437453511">"Upřednostňovaný režim sítě: pouze GSM"</string>
     <string name="preferred_network_mode_wcdma_only_summary" msgid="2836897236221063413">"Upřednostňovaný režim sítě: pouze WCDMA"</string>
@@ -188,11 +188,11 @@
     <string name="throttle_time_frame_subtext" msgid="7732763021560399960">"Uplynulo <xliff:g id="USED_0">%1$d</xliff:g>٪ cyklu\nPočet dní do začátku dalšího období: <xliff:g id="USED_1">%2$d</xliff:g> (<xliff:g id="USED_2">%3$s</xliff:g>)"</string>
     <string name="throttle_rate_subtext" msgid="2149102656120726855">"V případě překročení limitu využití dat se přenosová rychlost sníží na <xliff:g id="USED">%1$d</xliff:g> kb/s"</string>
     <string name="throttle_help_subtext" msgid="5217706521499010816">"Další informace o zásadách využití dat v mobilní síti vašeho mobilního operátora"</string>
-    <string name="cell_broadcast_sms" msgid="5584192824053625842">"Zprávy SMS informační služby"</string>
-    <string name="enable_disable_cell_bc_sms" msgid="4851147873691392255">"Zprávy SMS informační služby"</string>
-    <string name="cell_bc_sms_enable" msgid="6441688565738921084">"Zprávy SMS informační služby povoleny"</string>
-    <string name="cell_bc_sms_disable" msgid="3398365088309408749">"Zprávy SMS informační služby zakázány"</string>
-    <string name="cb_sms_settings" msgid="651715019785107312">"Nastavení zpráv SMS informační služby"</string>
+    <string name="cell_broadcast_sms" msgid="5584192824053625842">"SMS Cell Broadcast"</string>
+    <string name="enable_disable_cell_bc_sms" msgid="4851147873691392255">"SMS Cell Broadcast"</string>
+    <string name="cell_bc_sms_enable" msgid="6441688565738921084">"SMS Cell Broadcast povoleny"</string>
+    <string name="cell_bc_sms_disable" msgid="3398365088309408749">"SMS Cell Broadcast zakázány"</string>
+    <string name="cb_sms_settings" msgid="651715019785107312">"Nastavení SMS Cell Broadcast"</string>
     <string name="enable_disable_emergency_broadcast" msgid="2157014609041245335">"Tísňové vysílání"</string>
     <string name="emergency_broadcast_enable" msgid="2645980025414010211">"Tísňové vysílání povoleno"</string>
     <string name="emergency_broadcast_disable" msgid="3665199821267569426">"Tísňové vysílání zakázáno"</string>
@@ -275,9 +275,6 @@
     <string name="enable_disable_multi_category" msgid="626771003122899280">"Více kategorií"</string>
     <string name="multi_category_enable" msgid="1179299804641721768">"Více kategorií povoleno"</string>
     <string name="multi_category_disable" msgid="880104702904139505">"Více kategorií zakázáno"</string>
-    <string name="network_lte" msgid="7702681952521375754">"LTE (doporučeno)"</string>
-    <string name="network_4G" msgid="2723512640529983138">"4G (doporučeno)"</string>
-    <string name="network_global" msgid="1323190488685355309">"Globální"</string>
     <string name="cdma_system_select_title" msgid="5757657769327732833">"Výběr systému"</string>
     <string name="cdma_system_select_summary" msgid="60460043745797517">"Změnit režim roamingu CDMA"</string>
     <string name="cdma_system_select_dialogtitle" msgid="6083355415165359075">"Výběr systému"</string>
@@ -298,7 +295,8 @@
   </string-array>
     <string name="cdma_activate_device" msgid="3793805892364814518">"Aktivovat zařízení"</string>
     <string name="cdma_lte_data_service" msgid="4255018217292548962">"Nastavit datovou službu"</string>
-    <string name="carrier_settings_title" msgid="9028166176523012300">"Nastavení operátora"</string>
+    <!-- no translation found for carrier_settings_title (9028166176523012300) -->
+    <skip />
     <string name="fdn" msgid="7878832555095183202">"Povolená telefonní čísla"</string>
     <string name="manage_fdn_list" msgid="8777755791892122369">"Seznam povolených telefonních čísel"</string>
     <string name="fdn_activation" msgid="2156479741307463576">"Aktivace povolených telefonních čísel"</string>
@@ -337,7 +335,6 @@
     <string name="pin2_invalid" msgid="5470854099230755944">"Funkce Povolená telefonní čísla nebyla aktualizována, protože jste zadali chybný kód PIN."</string>
     <string name="fdn_invalid_number" msgid="1494755047900009147">"Funkce Povolená telefonní čísla nebyla aktualizována, protože číslo nesmí obsahovat více než 20 číslic."</string>
     <string name="pin2_or_fdn_invalid" msgid="6025144083384701197">"Povolená telefonní čísla (FDN) nebyla aktualizována. Kód PIN2 byl nesprávný nebo bylo telefonní číslo odmítnuto."</string>
-    <string name="fdn_failed" msgid="540018079008319747">"Operace s čísly FDN se nezdařila."</string>
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"Čtení ze SIM karty..."</string>
     <string name="simContacts_empty" msgid="5270660846489561932">"Na SIM kartě nejsou žádné kontakty."</string>
     <string name="simContacts_title" msgid="1861472842524839921">"Vybrat kontakty pro import"</string>
@@ -358,7 +355,7 @@
     <string name="disable_pin_ok" msgid="5596999379593924850">"PIN SIM karty je zakázán."</string>
     <string name="pin_failed" msgid="2298841192582192277">"Zadaný kód PIN není správný."</string>
     <string name="pin_changed" msgid="4365538014588501049">"PIN SIM karty byl úspěšně změněn."</string>
-    <string name="puk_requested" msgid="1796577128488773946">"Nesprávné heslo, kód PIN je zablokován. Je požadován kód PUK."</string>
+    <string name="puk_requested" msgid="3898394204193202803">"Neplatné heslo, SIM karta je zablokována. Zadejte kód PUK2."</string>
     <string name="enter_pin2_text" msgid="8339444124477720345">"PIN2"</string>
     <string name="oldPin2Label" msgid="8559146795026261502">"Původní kód PIN2"</string>
     <string name="newPin2Label" msgid="4573956902204349054">"Nový kód PIN2"</string>
@@ -370,11 +367,8 @@
     <string name="invalidPuk2" msgid="1290977391033057871">"Zadejte 8místný kód PUK2."</string>
     <string name="pin2_changed" msgid="1639666438836544393">"Kód PIN2 byl úspěšně změněn."</string>
     <string name="label_puk2_code" msgid="302845876240219560">"Zadejte kód PUK2"</string>
-    <string name="fdn_enable_puk2_requested" msgid="3674058967950559397">"Nesprávné heslo, kód PIN2 je zablokován. Změňte kód PIN2 a zkuste to znovu!"</string>
+    <string name="fdn_enable_puk2_requested" msgid="4262894949634885773">"Heslo není správné. Změňte kód PIN2 a zkuste to znovu."</string>
     <string name="puk2_requested" msgid="8909278021238716877">"Neplatné heslo, SIM karta je zablokována. Je požadován kód PUK2."</string>
-    <string name="puk2_blocked" msgid="3150263853077280049">"PUK2 je trvale zablokován."</string>
-    <string name="pin2_attempts" msgid="7937503107162525324">\n"Počet zbývajících pokusů: <xliff:g id="NUMBER">%d</xliff:g>"</string>
-    <string name="pin2_unblocked" msgid="2903147240919055381">"Kód PIN2 byl odblokován!"</string>
     <string name="doneButton" msgid="2859593360997984240">"Hotovo"</string>
     <string name="caller_manage_header" msgid="3231519674734638786">"Konferenční hovor <xliff:g id="CONF_CALL_TIME">%s</xliff:g>"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"Číslo hlasové schránky"</string>
@@ -527,7 +521,7 @@
     <string name="remove_sip_account" msgid="7645900420385682570">"Odebrat účet"</string>
     <string name="sip_account_list" msgid="5480058210652194306">"Účty SIP"</string>
     <string name="saving_account" msgid="52903398217017954">"Ukládání účtu..."</string>
-    <string name="removing_account" msgid="7183999896088628100">"Odstraňování účtu..."</string>
+    <string name="removing_account" msgid="7183999896088628100">"Odebírání účtu..."</string>
     <string name="sip_menu_save" msgid="5842531129356014943">"Uložit"</string>
     <string name="sip_menu_discard" msgid="524075892158789701">"Zahodit"</string>
     <string name="alert_dialog_close" msgid="7759635137627626235">"Zavřít profil"</string>
@@ -580,11 +574,12 @@
     <string name="respond_via_sms_canned_response_2" msgid="4074450431532859214">"Zavolám zpátky."</string>
     <string name="respond_via_sms_canned_response_3" msgid="3496079065723960450">"Zavolám později."</string>
     <string name="respond_via_sms_canned_response_4" msgid="1698989243040062190">"Nemůžu telefonovat, volejte jindy."</string>
+    <string name="respond_via_sms_custom_message" msgid="6158880869935281078">"Napsat vlastní odpověď..."</string>
     <string name="respond_via_sms_setting_title" msgid="3754000371039709383">"Rychlé odpovědi"</string>
     <string name="respond_via_sms_setting_title_2" msgid="6104662227299493906">"Upravit rychlé odpovědi"</string>
     <string name="respond_via_sms_setting_summary" msgid="9150281183930613065"></string>
     <string name="respond_via_sms_edittext_dialog_title" msgid="20379890418289778">"Rychlá odpověď"</string>
-    <string name="respond_via_sms_menu_reset_default_activity" msgid="1461742052902053466">"Resetovat výchozí aplikaci"</string>
+    <string name="respond_via_sms_menu_reset_default_activity" msgid="4029277930090150223">"Obnovit výchozí nastavení"</string>
     <string name="respond_via_sms_confirmation_format" msgid="7229149977515784269">"Zpráva byla odeslána na číslo <xliff:g id="PHONE_NUMBER">%s</xliff:g>."</string>
     <string name="description_image_button_one" msgid="5502718871331943463">"jedna"</string>
     <string name="description_image_button_two" msgid="4903738528222924522">"dvě"</string>

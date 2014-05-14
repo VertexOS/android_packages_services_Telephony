@@ -1522,4 +1522,13 @@
     <!-- String resource for the font-family to use for the call setting activity's title
          Do not translate. -->
     <string name="call_settings_title_font_family">sans-serif-light</string>
+
+    <!-- Title of the dialog to choose WiFi calling. -->
+    <string name ="choose_wifi_for_call_msg">Use Wi-Fi to place call?</string>
+
+    <!-- Title for button to use WiFi calling. -->
+    <string name ="choose_wifi_for_call_yes">Yes</string>
+
+    <!-- Title for button to not use WiFi calling. -->
+    <string name ="choose_wifi_for_call_no">No</string>
 </resources>

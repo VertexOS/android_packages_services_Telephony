@@ -21,6 +21,7 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.bluetooth.IBluetoothHeadsetPhone;
 import android.content.ActivityNotFoundException;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -55,10 +56,12 @@ import com.android.internal.telephony.Connection;
 import com.android.internal.telephony.MmiCode;
 import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneConstants;
+import com.android.internal.telephony.PhoneFactory;
 import com.android.internal.telephony.TelephonyCapabilities;
 import com.android.internal.telephony.TelephonyProperties;
 import com.android.internal.telephony.cdma.CdmaConnection;
 import com.android.internal.telephony.sip.SipPhone;
+import com.android.internal.telephony.thirdpartyphone.ThirdPartyPhone;
 import com.android.phone.CallGatewayManager.RawGatewayInfo;
 
 import java.util.ArrayList;
@@ -910,7 +913,8 @@ public class PhoneUtils {
                 shouldMute = sConnectionMuteTable.get(
                         phone.getForegroundCall().getLatestConnection());
             } else if ((phoneType == PhoneConstants.PHONE_TYPE_GSM)
-                    || (phoneType == PhoneConstants.PHONE_TYPE_SIP)) {
+                    || (phoneType == PhoneConstants.PHONE_TYPE_SIP)
+                    || (phoneType == PhoneConstants.PHONE_TYPE_THIRD_PARTY)) {
                 shouldMute = sConnectionMuteTable.get(c);
             }
             if (shouldMute == null) {
@@ -1476,7 +1480,8 @@ public class PhoneUtils {
         if (phoneType == PhoneConstants.PHONE_TYPE_CDMA) {
             conn = call.getLatestConnection();
         } else if ((phoneType == PhoneConstants.PHONE_TYPE_GSM)
-                || (phoneType == PhoneConstants.PHONE_TYPE_SIP)) {
+                || (phoneType == PhoneConstants.PHONE_TYPE_SIP)
+                || (phoneType == PhoneConstants.PHONE_TYPE_THIRD_PARTY)) {
             conn = call.getEarliestConnection();
         } else {
             throw new IllegalStateException("Unexpected phone type: " + phoneType);
@@ -1580,6 +1585,9 @@ public class PhoneUtils {
                     case PhoneConstants.PHONE_TYPE_GSM: log("  ==> PHONE_TYPE_GSM"); break;
                     case PhoneConstants.PHONE_TYPE_CDMA: log("  ==> PHONE_TYPE_CDMA"); break;
                     case PhoneConstants.PHONE_TYPE_SIP: log("  ==> PHONE_TYPE_SIP"); break;
+                    case PhoneConstants.PHONE_TYPE_THIRD_PARTY:
+                        log("  ==> PHONE_TYPE_THIRD_PARTY");
+                        break;
                     default: log("  ==> Unknown phone type"); break;
                 }
             }
@@ -2200,7 +2208,8 @@ public class PhoneUtils {
             if (phoneType == PhoneConstants.PHONE_TYPE_CDMA) {
                 answerCall(phone.getRingingCall());
             } else if ((phoneType == PhoneConstants.PHONE_TYPE_GSM)
-                    || (phoneType == PhoneConstants.PHONE_TYPE_SIP)) {
+                    || (phoneType == PhoneConstants.PHONE_TYPE_SIP)
+                    || (phoneType == PhoneConstants.PHONE_TYPE_THIRD_PARTY)) {
                 if (hasActiveCall && hasHoldingCall) {
                     if (DBG) log("handleHeadsetHook: ringing (both lines in use) ==> answer!");
                     answerAndEndActive(app.mCM, phone.getRingingCall());
@@ -2344,7 +2353,8 @@ public class PhoneUtils {
             return (app.cdmaPhoneCallState.getCurrentCallState()
                     == CdmaPhoneCallState.PhoneCallState.CONF_CALL);
         } else if ((phoneType == PhoneConstants.PHONE_TYPE_GSM)
-                || (phoneType == PhoneConstants.PHONE_TYPE_SIP)) {
+                || (phoneType == PhoneConstants.PHONE_TYPE_SIP)
+                || (phoneType == PhoneConstants.PHONE_TYPE_THIRD_PARTY)) {
             // GSM: "Swap" is available if both lines are in use and there's no
             // incoming call.  (Actually we need to verify that the active
             // call really is in the ACTIVE state and the holding call really
@@ -2403,7 +2413,8 @@ public class PhoneUtils {
             return ((fgCallState == Call.State.ACTIVE)
                     && (app.cdmaPhoneCallState.getAddCallMenuStateAfterCallWaiting()));
         } else if ((phoneType == PhoneConstants.PHONE_TYPE_GSM)
-                || (phoneType == PhoneConstants.PHONE_TYPE_SIP)) {
+                || (phoneType == PhoneConstants.PHONE_TYPE_SIP)
+                || (phoneType == PhoneConstants.PHONE_TYPE_THIRD_PARTY)) {
             // GSM: "Add call" is available only if ALL of the following are true:
             // - There's no incoming ringing call
             // - There's < 2 lines in use
@@ -2592,19 +2603,25 @@ public class PhoneUtils {
      * @param scheme the scheme from the data URI that the number originally came from.
      * @param number the phone number, or SIP address.
      */
-    public static Phone pickPhoneBasedOnNumber(CallManager cm,
-            String scheme, String number, String primarySipUri) {
+    public static Phone pickPhoneBasedOnNumber(CallManager cm, String scheme, String number,
+            String primarySipUri, ComponentName thirdPartyCallComponent) {
         if (DBG) {
             log("pickPhoneBasedOnNumber: scheme " + scheme
                     + ", number " + toLogSafePhoneNumber(number)
                     + ", sipUri "
-                    + (primarySipUri != null ? Uri.parse(primarySipUri).toSafeString() : "null"));
+                    + (primarySipUri != null ? Uri.parse(primarySipUri).toSafeString() : "null")
+                    + ", thirdPartyCallComponent: " + thirdPartyCallComponent);
         }
 
         if (primarySipUri != null) {
             Phone phone = getSipPhoneFromUri(cm, primarySipUri);
             if (phone != null) return phone;
         }
+
+        if (thirdPartyCallComponent != null) {
+            return getThirdPartyPhoneFromComponent(cm, thirdPartyCallComponent);
+        }
+
         return cm.getDefaultPhone();
     }
 
@@ -2621,6 +2638,20 @@ public class PhoneUtils {
             }
         }
         return null;
+    }
+
+    public static Phone getThirdPartyPhoneFromComponent(CallManager cm, ComponentName component) {
+        for (Phone phone : cm.getAllPhones()) {
+            if (phone.getPhoneType() == PhoneConstants.PHONE_TYPE_THIRD_PARTY) {
+                ThirdPartyPhone thirdPartyPhone = (ThirdPartyPhone) phone;
+                if (thirdPartyPhone.getCallProviderComponent().equals(component)) {
+                    return thirdPartyPhone;
+                }
+            }
+        }
+        ThirdPartyPhone thirdPartyPhone = PhoneFactory.makeThirdPartyPhone(component);
+        cm.registerPhone(thirdPartyPhone);
+        return thirdPartyPhone;
     }
 
     /**
@@ -2642,7 +2673,7 @@ public class PhoneUtils {
     /**
      * @return true if this device supports voice calls using the built-in SIP stack.
      */
-    static boolean isVoipSupported() {
+    public static boolean isVoipSupported() {
         return sVoipSupported;
     }
 

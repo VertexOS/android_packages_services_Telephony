@@ -18,6 +18,7 @@ package com.android.phone;
 
 import android.app.ActivityManager;
 import android.app.AppOpsManager;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
@@ -33,9 +34,11 @@ import android.os.Process;
 import android.os.RemoteException;
 import android.os.ServiceManager;
 import android.os.UserHandle;
+import android.provider.Settings;
 import android.telephony.CellInfo;
 import android.telephony.NeighboringCellInfo;
 import android.telephony.ServiceState;
+import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.Pair;
@@ -46,9 +49,11 @@ import com.android.internal.telephony.Connection;
 import com.android.internal.telephony.DefaultPhoneNotifier;
 import com.android.internal.telephony.ITelephony;
 import com.android.internal.telephony.ITelephonyListener;
+import com.android.internal.telephony.IThirdPartyCallProvider;
 import com.android.internal.telephony.IccCard;
 import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneConstants;
+import com.android.internal.telephony.thirdpartyphone.ThirdPartyPhone;
 import com.android.internal.telephony.uicc.IccIoResult;
 import com.android.internal.telephony.uicc.IccUtils;
 import com.android.internal.telephony.uicc.UiccController;
@@ -82,6 +87,8 @@ public class PhoneInterfaceManager extends ITelephony.Stub implements CallModele
     private static final int EVENT_OPEN_CHANNEL_DONE = 10;
     private static final int CMD_CLOSE_CHANNEL = 11;
     private static final int EVENT_CLOSE_CHANNEL_DONE = 12;
+    // TODO: Remove this.
+    private static final int CMD_NEW_INCOMING_THIRD_PARTY_CALL = 100;
     private static final int CMD_NV_READ_ITEM = 13;
     private static final int EVENT_NV_READ_ITEM_DONE = 14;
     private static final int CMD_NV_WRITE_ITEM = 15;
@@ -94,7 +101,8 @@ public class PhoneInterfaceManager extends ITelephony.Stub implements CallModele
     private static final int EVENT_GET_PREFERRED_NETWORK_TYPE_DONE = 22;
     private static final int CMD_SET_PREFERRED_NETWORK_TYPE = 23;
     private static final int EVENT_SET_PREFERRED_NETWORK_TYPE_DONE = 24;
-
+    private static final int CMD_SEND_ENVELOPE = 25;
+    private static final int EVENT_SEND_ENVELOPE_DONE = 26;
 
     /** The singleton instance. */
     private static PhoneInterfaceManager sInstance;
@@ -145,6 +153,19 @@ public class PhoneInterfaceManager extends ITelephony.Stub implements CallModele
 
         public MainThreadRequest(Object argument) {
             this.argument = argument;
+        }
+    }
+
+    private static final class IncomingThirdPartyCallArgs {
+        public final ComponentName component;
+        public final String callId;
+        public final String callerDisplayName;
+
+        public IncomingThirdPartyCallArgs(ComponentName component, String callId,
+                String callerDisplayName) {
+            this.component = component;
+            this.callId = callId;
+            this.callerDisplayName = callerDisplayName;
         }
     }
 
@@ -229,6 +250,15 @@ public class PhoneInterfaceManager extends ITelephony.Stub implements CallModele
                     }
                     break;
 
+                case CMD_NEW_INCOMING_THIRD_PARTY_CALL: {
+                    request = (MainThreadRequest) msg.obj;
+                    IncomingThirdPartyCallArgs args = (IncomingThirdPartyCallArgs) request.argument;
+                    ThirdPartyPhone thirdPartyPhone = (ThirdPartyPhone)
+                            PhoneUtils.getThirdPartyPhoneFromComponent(mCM, args.component);
+                    thirdPartyPhone.takeIncomingCall(args.callId, args.callerDisplayName);
+                    break;
+                }
+
                 case CMD_TRANSMIT_APDU:
                     request = (MainThreadRequest) msg.obj;
                     IccAPDUArgument argument = (IccAPDUArgument) request.argument;
@@ -253,6 +283,34 @@ public class PhoneInterfaceManager extends ITelephony.Stub implements CallModele
                                     ar.exception);
                         } else {
                             loge("iccTransmitApduLogicalChannel: Unknown exception");
+                        }
+                    }
+                    synchronized (request) {
+                        request.notifyAll();
+                    }
+                    break;
+
+                case CMD_SEND_ENVELOPE:
+                    request = (MainThreadRequest) msg.obj;
+                    onCompleted = obtainMessage(EVENT_SEND_ENVELOPE_DONE, request);
+                    UiccController.getInstance().getUiccCard().sendEnvelopeWithStatus(
+                            (String)request.argument, onCompleted);
+                    break;
+
+                case EVENT_SEND_ENVELOPE_DONE:
+                    ar = (AsyncResult) msg.obj;
+                    request = (MainThreadRequest) ar.userObj;
+                    if (ar.exception == null && ar.result != null) {
+                        request.result = ar.result;
+                    } else {
+                        request.result = new IccIoResult(0x6F, 0, (byte[])null);
+                        if (ar.result == null) {
+                            loge("sendEnvelopeWithStatus: Empty response");
+                        } else if (ar.exception instanceof CommandException) {
+                            loge("sendEnvelopeWithStatus: CommandException: " +
+                                    ar.exception);
+                        } else {
+                            loge("sendEnvelopeWithStatus: exception:" + ar.exception);
                         }
                     }
                     synchronized (request) {
@@ -457,6 +515,16 @@ public class PhoneInterfaceManager extends ITelephony.Stub implements CallModele
      */
     private void sendRequestAsync(int command) {
         mMainThreadHandler.sendEmptyMessage(command);
+    }
+
+    /**
+     * Same as {@link #sendRequestAsync(int)} except it takes an argument.
+     * @see {@link #sendRequest(int,Object)}
+     */
+    private void sendRequestAsync(int command, Object argument) {
+        MainThreadRequest request = new MainThreadRequest(argument);
+        Message msg = mMainThreadHandler.obtainMessage(command, request);
+        msg.sendToTarget();
     }
 
     /**
@@ -975,8 +1043,21 @@ public class PhoneInterfaceManager extends ITelephony.Stub implements CallModele
         }
     }
 
+    @Override
     public void setCellInfoListRate(int rateInMillis) {
         mPhone.setCellInfoListRate(rateInMillis);
+    }
+
+    @Override
+    public void newIncomingThirdPartyCall(ComponentName component, String callId,
+            String callerDisplayName) {
+        // TODO(sail): Enforce that the component belongs to the calling package.
+        if (DBG) {
+            log("newIncomingThirdPartyCall: component: " + component + " callId: " + callId);
+        }
+        enforceCallPermission();
+        sendRequestAsync(CMD_NEW_INCOMING_THIRD_PARTY_CALL, new IncomingThirdPartyCallArgs(
+                component, callId, callerDisplayName));
     }
 
     //
@@ -1163,6 +1244,28 @@ public class PhoneInterfaceManager extends ITelephony.Stub implements CallModele
         return mPhone.getLteOnCdmaMode();
     }
 
+    /**
+     * @see android.telephony.TelephonyManager.WifiCallingChoices
+     */
+    public int getWhenToMakeWifiCalls() {
+        return Settings.System.getInt(mPhone.getContext().getContentResolver(),
+                Settings.System.WHEN_TO_MAKE_WIFI_CALLS, getWhenToMakeWifiCallsDefaultPreference());
+    }
+
+    /**
+     * @see android.telephony.TelephonyManager.WifiCallingChoices
+     */
+    public void setWhenToMakeWifiCalls(int preference) {
+        if (DBG) log("setWhenToMakeWifiCallsStr, storing setting = " + preference);
+        Settings.System.putInt(mPhone.getContext().getContentResolver(),
+                Settings.System.WHEN_TO_MAKE_WIFI_CALLS, preference);
+    }
+
+    private static int getWhenToMakeWifiCallsDefaultPreference() {
+        // TODO(sail): Use a build property to choose this value.
+        return TelephonyManager.WifiCallingChoices.ALWAYS_USE;
+    }
+
     @Override
     public int iccOpenLogicalChannel(String AID) {
         enforceSimCommunicationPermission();
@@ -1207,6 +1310,22 @@ public class PhoneInterfaceManager extends ITelephony.Stub implements CallModele
 
         // If the payload is null, there was an error. Indicate that by returning
         // an empty string.
+        if (response.payload == null) {
+          return "";
+        }
+
+        // Append the returned status code to the end of the response payload.
+        String s = Integer.toHexString(
+                (response.sw1 << 8) + response.sw2 + 0x10000).substring(1);
+        s = IccUtils.bytesToHexString(response.payload) + s;
+        return s;
+    }
+
+    @Override
+    public String sendEnvelopeWithStatus(String content) {
+        enforceSimCommunicationPermission();
+
+        IccIoResult response = (IccIoResult)sendRequest(CMD_SEND_ENVELOPE, content);
         if (response.payload == null) {
           return "";
         }

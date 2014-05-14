@@ -18,6 +18,7 @@ package com.android.phone;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.ActivityOptions;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -52,12 +53,9 @@ import android.preference.PreferenceScreen;
 import android.provider.ContactsContract.CommonDataKinds;
 import android.provider.MediaStore;
 import android.provider.Settings;
-import android.provider.Settings.SettingNotFoundException;
 import android.telephony.PhoneNumberUtils;
-import android.text.Spannable;
-import android.text.SpannableString;
+import android.telephony.TelephonyManager;
 import android.text.TextUtils;
-import android.text.style.TypefaceSpan;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.WindowManager;
@@ -98,8 +96,9 @@ import java.util.Map;
 public class CallFeaturesSetting extends PreferenceActivity
         implements DialogInterface.OnClickListener,
         Preference.OnPreferenceChangeListener,
+        Preference.OnPreferenceClickListener,
         EditPhoneNumberPreference.OnDialogClosedListener,
-        EditPhoneNumberPreference.GetDefaultNumberListener{
+        EditPhoneNumberPreference.GetDefaultNumberListener {
     private static final String LOG_TAG = "CallFeaturesSetting";
     private static final boolean DBG = (PhoneGlobals.DBG_LEVEL >= 2);
 
@@ -273,6 +272,8 @@ public class CallFeaturesSetting extends PreferenceActivity
     private ListPreference mButtonDTMF;
     private ListPreference mButtonTTY;
     private ListPreference mButtonSipCallOptions;
+    private Preference mWifiCallOptionsPreference;
+    private Preference mWifiCallAccountPreference;
     private ListPreference mVoicemailProviders;
     private PreferenceScreen mVoicemailSettings;
     private Preference mVoicemailNotificationRingtone;
@@ -593,6 +594,14 @@ public class CallFeaturesSetting extends PreferenceActivity
             handleSipCallOptionsChange(objValue);
         }
         // always let the preference setting proceed.
+        return true;
+    }
+
+    @Override
+    public boolean onPreferenceClick(Preference preference) {
+        if (preference == mWifiCallOptionsPreference || preference == mWifiCallAccountPreference) {
+            handleWifiCallSettingsClick(preference);
+        }
         return true;
     }
 
@@ -1736,6 +1745,11 @@ public class CallFeaturesSetting extends PreferenceActivity
         }
     }
 
+    private boolean canLaunchIntent(Intent intent) {
+        PackageManager pm = getPackageManager();
+        return pm.resolveActivity(intent, PackageManager.GET_ACTIVITIES) != null;
+    }
+
     // Gets the call options for SIP depending on whether SIP is allowed only
     // on Wi-Fi only; also make the other options preference invisible.
     private ListPreference getSipCallOptionPreference() {
@@ -1891,6 +1905,15 @@ public class CallFeaturesSetting extends PreferenceActivity
         mButtonSipCallOptions.setValueIndex(
                 mButtonSipCallOptions.findIndexOfValue(option));
         mButtonSipCallOptions.setSummary(mButtonSipCallOptions.getEntry());
+    }
+
+    private void handleWifiCallSettingsClick(Preference preference) {
+        Intent intent = preference.getIntent();
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        // TODO - Restrict to a (the?) blessed Wi-Fi calling app.
+
+        Bundle noAnimations = ActivityOptions.makeCustomAnimation(this, 0, 0).toBundle();
+        startActivity(intent, noAnimations);
     }
 
     private void updatePreferredTtyModeSummary(int TtyMode) {

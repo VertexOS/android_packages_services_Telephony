@@ -764,11 +764,12 @@ public class CallNotifier extends Handler
             }
         }
 
-        if ((fgPhone.getPhoneType() == PhoneConstants.PHONE_TYPE_GSM)
-                || (fgPhone.getPhoneType() == PhoneConstants.PHONE_TYPE_SIP)) {
+        if (fgPhone.getPhoneType() == PhoneConstants.PHONE_TYPE_GSM
+                || fgPhone.getPhoneType() == PhoneConstants.PHONE_TYPE_SIP
+                || fgPhone.getPhoneType() == PhoneConstants.PHONE_TYPE_THIRD_PARTY) {
             Call.State callState = mCM.getActiveFgCallState();
             if (!callState.isDialing()) {
-                // If call get activated or disconnected before the ringback
+                // If call gets activated or disconnected before the ringback
                 // tone stops, we have to stop it to prevent disturbing.
                 if (mInCallRingbackTonePlayer != null) {
                     mInCallRingbackTonePlayer.stopTone();
@@ -1275,8 +1276,9 @@ public class CallNotifier extends Handler
                         toneType = ToneGenerator.TONE_CDMA_NETWORK_BUSY_ONE_SHOT;
                         toneVolume = TONE_RELATIVE_VOLUME_LOPRI;
                         toneLengthMillis = 1000;
-                    } else if ((phoneType == PhoneConstants.PHONE_TYPE_GSM)
-                            || (phoneType == PhoneConstants.PHONE_TYPE_SIP)) {
+                    } else if (phoneType == PhoneConstants.PHONE_TYPE_GSM
+                            || phoneType == PhoneConstants.PHONE_TYPE_SIP
+                            || phoneType == PhoneConstants.PHONE_TYPE_THIRD_PARTY) {
                         toneType = ToneGenerator.TONE_SUP_BUSY;
                         toneVolume = TONE_RELATIVE_VOLUME_HIPRI;
                         toneLengthMillis = 4000;

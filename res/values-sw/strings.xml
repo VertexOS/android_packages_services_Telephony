@@ -136,9 +136,9 @@
     <string name="select_automatically" msgid="5628402124471810174">"Chagua kiotomatiki"</string>
     <string name="sum_select_automatically" msgid="5614890115123292400">"Chagua mtandao unaoupendelea kiotomatiki"</string>
     <string name="register_automatically" msgid="6017849844573519637">"Usajili otomatiki..."</string>
-    <string name="preferred_network_mode_title" msgid="2336624679902659306">"Aina ya mtandao unaopendekezwa"</string>
+    <string name="preferred_network_mode_title" msgid="8873246565334559308">"Hali ya Mtandao"</string>
     <string name="preferred_network_mode_summary" msgid="1434820673166126609">"Badilisha gumzo ya utendaji wa mtandao"</string>
-    <string name="preferred_network_mode_dialogtitle" msgid="4048082093347807230">"Aina ya mtandao unaopendekezwa"</string>
+    <string name="preferred_network_mode_dialogtitle" msgid="8176355237105593793">"hali ya mtandao unaopendelewa"</string>
     <string name="preferred_network_mode_wcdma_perf_summary" msgid="8521677230113533809">"Modi pendekezwa ya mtandao: WCDMA pendekezwa"</string>
     <string name="preferred_network_mode_gsm_only_summary" msgid="3352445413437453511">"Modi pendekezwa ya mtandao: GSM  pekee"</string>
     <string name="preferred_network_mode_wcdma_only_summary" msgid="2836897236221063413">"Modi pendekezwa ya mtandao: WCDMA pekee"</string>
@@ -275,9 +275,6 @@
     <string name="enable_disable_multi_category" msgid="626771003122899280">"Kategoria anuwai"</string>
     <string name="multi_category_enable" msgid="1179299804641721768">"Kategoria anuwai imewezeshwa"</string>
     <string name="multi_category_disable" msgid="880104702904139505">"Kategoria anuwai imelemazwa"</string>
-    <string name="network_lte" msgid="7702681952521375754">"LTE (inapendekezwa)"</string>
-    <string name="network_4G" msgid="2723512640529983138">"4G (inapendekezwa)"</string>
-    <string name="network_global" msgid="1323190488685355309">"Ulimwenguni Kote"</string>
     <string name="cdma_system_select_title" msgid="5757657769327732833">"Chagua mfumo"</string>
     <string name="cdma_system_select_summary" msgid="60460043745797517">"Badilisha hali ya urandaji ya CDMA"</string>
     <string name="cdma_system_select_dialogtitle" msgid="6083355415165359075">"Chagua mfumo"</string>
@@ -298,7 +295,8 @@
   </string-array>
     <string name="cdma_activate_device" msgid="3793805892364814518">"Wezesha kifaa"</string>
     <string name="cdma_lte_data_service" msgid="4255018217292548962">"Sanidi huduma ya data"</string>
-    <string name="carrier_settings_title" msgid="9028166176523012300">"Mipangilio ya mtoa huduma"</string>
+    <!-- no translation found for carrier_settings_title (9028166176523012300) -->
+    <skip />
     <string name="fdn" msgid="7878832555095183202">"Nambari za kupiga zisizobadilishwa"</string>
     <string name="manage_fdn_list" msgid="8777755791892122369">"Orodha ya FDN"</string>
     <string name="fdn_activation" msgid="2156479741307463576">"Uwezeshaji wa FDN"</string>
@@ -337,7 +335,6 @@
     <string name="pin2_invalid" msgid="5470854099230755944">"FDN haikusasishwa kwa sababu uliweka PIN isiyo sahihi."</string>
     <string name="fdn_invalid_number" msgid="1494755047900009147">"FDN haikusasishwa kwa sababu namba haiwezi kuzidisha herufi 20."</string>
     <string name="pin2_or_fdn_invalid" msgid="6025144083384701197">"FDN haikusasishwa. PIN2 haikuwa sahihi, au namba ya simu ilikataliwa."</string>
-    <string name="fdn_failed" msgid="540018079008319747">"Utendakazi wa FDN ulishindwa."</string>
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"Inasoma kutoka kwa SIM kadi…"</string>
     <string name="simContacts_empty" msgid="5270660846489561932">"Hakuna anwani kwenye SIM kadi yako."</string>
     <string name="simContacts_title" msgid="1861472842524839921">"Chagua anwani za kuingiza"</string>
@@ -358,7 +355,7 @@
     <string name="disable_pin_ok" msgid="5596999379593924850">"PIN ya SIM imelemazwa."</string>
     <string name="pin_failed" msgid="2298841192582192277">"PIN uliyochapa haikuwa sahihi."</string>
     <string name="pin_changed" msgid="4365538014588501049">"Umefaulu kubadilisha PIN ya SIM."</string>
-    <string name="puk_requested" msgid="1796577128488773946">"Nenosiri lisilo sahihi, PIN Imezuiwa! PUK imeombwa."</string>
+    <string name="puk_requested" msgid="3898394204193202803">"Nenosiri sio sahihi, SIM imefungwa! PUK2 imeombwa."</string>
     <string name="enter_pin2_text" msgid="8339444124477720345">"PIN2"</string>
     <string name="oldPin2Label" msgid="8559146795026261502">"Nenosiri la zamani"</string>
     <string name="newPin2Label" msgid="4573956902204349054">"Nenosiri la 2 mpya"</string>
@@ -370,11 +367,8 @@
     <string name="invalidPuk2" msgid="1290977391033057871">"Chapisha PUK2 ambayo ina namba 8."</string>
     <string name="pin2_changed" msgid="1639666438836544393">"PIN2 imefaulu kubadilishwa."</string>
     <string name="label_puk2_code" msgid="302845876240219560">"Andika msimbo wa PUK ya 2."</string>
-    <string name="fdn_enable_puk2_requested" msgid="3674058967950559397">"Nenosiri lisilo sahihi, PIN2 Imezuiwa. Tafadhali badilisha PIN2 na ujaribu tena!"</string>
+    <string name="fdn_enable_puk2_requested" msgid="4262894949634885773">"Nenosiri sio sahihi. Badilisha PIN2 na ujaribu tena."</string>
     <string name="puk2_requested" msgid="8909278021238716877">"Nenosiri sio sahihi, SIM imefungwa. PUK2 imeombwa."</string>
-    <string name="puk2_blocked" msgid="3150263853077280049">"PUK2 Imezuiwa kabisa."</string>
-    <string name="pin2_attempts" msgid="7937503107162525324">\n"Kuna majaribio <xliff:g id="NUMBER">%d</xliff:g> yaliyosalia."</string>
-    <string name="pin2_unblocked" msgid="2903147240919055381">"PIN2 Imeondolewa kizuizi!"</string>
     <string name="doneButton" msgid="2859593360997984240">"Kwisha"</string>
     <string name="caller_manage_header" msgid="3231519674734638786">"Simu ya kongamano <xliff:g id="CONF_CALL_TIME">%s</xliff:g>"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"Nambari ya ujumbe wa sauti"</string>
@@ -423,7 +417,7 @@
     <string name="emergency_enable_radio_dialog_retry" msgid="3724423402363063736">"Uko mahali pasipokuwa na huduma, inajaribu tena…."</string>
     <string name="dial_emergency_error" msgid="7969515493359619960">"Simu haijatumwa. <xliff:g id="NON_EMERGENCY_NUMBER">%s</xliff:g> sio nambari ya dharura!"</string>
     <string name="dial_emergency_empty_error" msgid="5556166819619323893">"Simu haijatumwa. Piga nambari ya dharura!"</string>
-    <string name="dialerKeyboardHintText" msgid="9192914825413747792">"Tumia kibodi kubonyeza"</string>
+    <string name="dialerKeyboardHintText" msgid="9192914825413747792">"Tumia kichapishi kubonyeza"</string>
     <string name="onscreenHoldText" msgid="2285258239691145872">"Shikilia"</string>
     <string name="onscreenEndCallText" msgid="4403855834875398585">"Mwisho"</string>
     <string name="onscreenShowDialpadText" msgid="8561805492659639893">"Kibao cha kupiga"</string>
@@ -521,7 +515,7 @@
     <string name="pstn_phone" msgid="8782554491484326429">"Kupiga simu ya mkononi"</string>
     <string name="internet_phone" msgid="1147922660195095810">"Simu ya wavuti"</string>
     <string name="no_sip_account_found_title" msgid="6266249392379373628">"Hakuna akaunti ya upigaji simu wa Mtandao"</string>
-    <string name="no_sip_account_found" msgid="724325811961769997">"Hakuna akaunti za kupiga simu za mtandao kwenye simu hii. Je, ungependa kuongeza akaunti sasa?"</string>
+    <string name="no_sip_account_found" msgid="724325811961769997">"Hakuna akaunti za kupiga simu za mtandao kwenye simu hii. Je, unataka kuongeza moja sasa?"</string>
     <string name="sip_menu_add" msgid="8757508498518881500">"Ongeza"</string>
     <string name="add_sip_account" msgid="5904858426290097611">"Ongeza akaunti"</string>
     <string name="remove_sip_account" msgid="7645900420385682570">"Ondoa akaunti"</string>
@@ -580,11 +574,12 @@
     <string name="respond_via_sms_canned_response_2" msgid="4074450431532859214">"Nitakupigia sasa hivi."</string>
     <string name="respond_via_sms_canned_response_3" msgid="3496079065723960450">"Nitakupigia baadaye."</string>
     <string name="respond_via_sms_canned_response_4" msgid="1698989243040062190">"Siwezi kuongea sasa. Nipigie baadaye"</string>
+    <string name="respond_via_sms_custom_message" msgid="6158880869935281078">"Andika yako binafsi..."</string>
     <string name="respond_via_sms_setting_title" msgid="3754000371039709383">"Majibu ya haraka"</string>
     <string name="respond_via_sms_setting_title_2" msgid="6104662227299493906">"Hariri majibu ya haraka"</string>
     <string name="respond_via_sms_setting_summary" msgid="9150281183930613065"></string>
     <string name="respond_via_sms_edittext_dialog_title" msgid="20379890418289778">"Majibu ya haraka"</string>
-    <string name="respond_via_sms_menu_reset_default_activity" msgid="1461742052902053466">"Weka upya programu chaguo-msingi"</string>
+    <string name="respond_via_sms_menu_reset_default_activity" msgid="4029277930090150223">"Rejesha chaguo-msingi"</string>
     <string name="respond_via_sms_confirmation_format" msgid="7229149977515784269">"Ujumbe uliotumwa kwa <xliff:g id="PHONE_NUMBER">%s</xliff:g> ."</string>
     <string name="description_image_button_one" msgid="5502718871331943463">"moja"</string>
     <string name="description_image_button_two" msgid="4903738528222924522">"mbili"</string>

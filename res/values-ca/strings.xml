@@ -54,7 +54,7 @@
     <string name="unlock_success" msgid="6770085622238180152">"Desbloqueig de la xarxa correcte."</string>
     <string name="labelGSMMore" msgid="5930842194056092106">"Configuració de trucades GSM"</string>
     <string name="labelCDMAMore" msgid="1630676740428229339">"Configuració de trucades CDMA"</string>
-    <string name="apn_settings" msgid="9043423184895642077">"APN"</string>
+    <string name="apn_settings" msgid="9043423184895642077">"Noms de punts d\'accés"</string>
     <string name="settings_label" msgid="3876743539816984008">"Configuració de xarxa"</string>
     <string name="voicemail" msgid="8693759337917898954">"Correu de veu"</string>
     <string name="voicemail_abbreviated" msgid="2215592488517217448">"CV:"</string>
@@ -136,9 +136,9 @@
     <string name="select_automatically" msgid="5628402124471810174">"Selecció automàtica"</string>
     <string name="sum_select_automatically" msgid="5614890115123292400">"Selecciona automàticament la xarxa preferida"</string>
     <string name="register_automatically" msgid="6017849844573519637">"Registre automàtic..."</string>
-    <string name="preferred_network_mode_title" msgid="2336624679902659306">"Tipus de xarxa preferida"</string>
+    <string name="preferred_network_mode_title" msgid="8873246565334559308">"Mode de xarxa"</string>
     <string name="preferred_network_mode_summary" msgid="1434820673166126609">"Canvia el mode de funcionament de la xarxa"</string>
-    <string name="preferred_network_mode_dialogtitle" msgid="4048082093347807230">"Tipus de xarxa preferida"</string>
+    <string name="preferred_network_mode_dialogtitle" msgid="8176355237105593793">"Mode de xarxa preferit"</string>
     <string name="preferred_network_mode_wcdma_perf_summary" msgid="8521677230113533809">"Mode de xarxa preferit: WCDMA preferit"</string>
     <string name="preferred_network_mode_gsm_only_summary" msgid="3352445413437453511">"Mode de xarxa preferit: només GSM"</string>
     <string name="preferred_network_mode_wcdma_only_summary" msgid="2836897236221063413">"Mode de xarxa preferit: només WCDMA"</string>
@@ -169,7 +169,7 @@
     <item msgid="3817924849415716259">"GSM/WCDMA preferit"</item>
   </string-array>
     <string name="data_enabled" msgid="5972538663568715366">"Dades activades"</string>
-    <string name="data_enable_summary" msgid="5022018967714633874">"Permet l\'accés a dades a les través de la xarxa mòbil"</string>
+    <string name="data_enable_summary" msgid="5022018967714633874">"Permet l\'accés a dades a través de la xarxa mòbil"</string>
     <string name="roaming" msgid="8871412572928323707">"Itinerància de dades"</string>
     <string name="roaming_enable" msgid="7331106985174381987">"Estableix connexió amb serveis de dades en itinerància"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"Estableix connexió amb serveis de dades en itinerància"</string>
@@ -275,9 +275,6 @@
     <string name="enable_disable_multi_category" msgid="626771003122899280">"Multicategoria"</string>
     <string name="multi_category_enable" msgid="1179299804641721768">"Multicategoria activada"</string>
     <string name="multi_category_disable" msgid="880104702904139505">"Multicategoria desactivada"</string>
-    <string name="network_lte" msgid="7702681952521375754">"LTE (opció recomanada)"</string>
-    <string name="network_4G" msgid="2723512640529983138">"4G (opció recomanada)"</string>
-    <string name="network_global" msgid="1323190488685355309">"Global"</string>
     <string name="cdma_system_select_title" msgid="5757657769327732833">"Selecció del sistema"</string>
     <string name="cdma_system_select_summary" msgid="60460043745797517">"Canvia el mode d\'itinerància CDMA"</string>
     <string name="cdma_system_select_dialogtitle" msgid="6083355415165359075">"Selecció del sistema"</string>
@@ -298,7 +295,8 @@
   </string-array>
     <string name="cdma_activate_device" msgid="3793805892364814518">"Activació del dispositiu"</string>
     <string name="cdma_lte_data_service" msgid="4255018217292548962">"Configuració del servei de dades"</string>
-    <string name="carrier_settings_title" msgid="9028166176523012300">"Configuració d\'operador"</string>
+    <!-- no translation found for carrier_settings_title (9028166176523012300) -->
+    <skip />
     <string name="fdn" msgid="7878832555095183202">"Números de marcatge fix"</string>
     <string name="manage_fdn_list" msgid="8777755791892122369">"Llista FDN"</string>
     <string name="fdn_activation" msgid="2156479741307463576">"Activació d\'FDN"</string>
@@ -337,7 +335,6 @@
     <string name="pin2_invalid" msgid="5470854099230755944">"FDN no s\'ha actualitzat ja que has escrit un PIN incorrecte."</string>
     <string name="fdn_invalid_number" msgid="1494755047900009147">"FDN no s\'ha actualitzat ja que el nombre no pot excedir els 20 dígits."</string>
     <string name="pin2_or_fdn_invalid" msgid="6025144083384701197">"El número FDN no s\'ha actualitzat. El PIN2 no és correcte o bé s\'ha rebutjat el número de telèfon."</string>
-    <string name="fdn_failed" msgid="540018079008319747">"Hi ha hagut un problema en l\'operació FDN."</string>
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"S\'està llegint de la targeta SIM..."</string>
     <string name="simContacts_empty" msgid="5270660846489561932">"No hi ha cap contacte a la targeta SIM."</string>
     <string name="simContacts_title" msgid="1861472842524839921">"Seleccioneu contactes per importar-los"</string>
@@ -358,7 +355,7 @@
     <string name="disable_pin_ok" msgid="5596999379593924850">"PIN de la SIM desactivat."</string>
     <string name="pin_failed" msgid="2298841192582192277">"El PIN que has escrit és incorrecte."</string>
     <string name="pin_changed" msgid="4365538014588501049">"El PIN de la SIM s\'ha modificat correctament."</string>
-    <string name="puk_requested" msgid="1796577128488773946">"La contrasenya no és correcta; s\'ha bloquejat el PIN. S\'ha sol·licitat el PUK."</string>
+    <string name="puk_requested" msgid="3898394204193202803">"Contrasenya incorrecta; s\'ha bloquejat la SIM. S\'ha sol·licitat el codi PUK2."</string>
     <string name="enter_pin2_text" msgid="8339444124477720345">"PIN2"</string>
     <string name="oldPin2Label" msgid="8559146795026261502">"PIN2 antic"</string>
     <string name="newPin2Label" msgid="4573956902204349054">"PIN2 nou"</string>
@@ -370,11 +367,8 @@
     <string name="invalidPuk2" msgid="1290977391033057871">"Escriviu un PUK2 de 8 números."</string>
     <string name="pin2_changed" msgid="1639666438836544393">"El PIN2 s\'ha modificat correctament."</string>
     <string name="label_puk2_code" msgid="302845876240219560">"Escriviu el codi PUK2"</string>
-    <string name="fdn_enable_puk2_requested" msgid="3674058967950559397">"La contrasenya no és correcta; s\'ha bloquejat el PIN2. Canvia el PIN2 i torna-ho a provar."</string>
+    <string name="fdn_enable_puk2_requested" msgid="4262894949634885773">"Contrasenya incorrecta. Canvia el PIN2 i torna-ho a provar."</string>
     <string name="puk2_requested" msgid="8909278021238716877">"Contrasenya incorrecta; s\'ha bloquejat la SIM. S\'ha sol·licitat el codi PUK2."</string>
-    <string name="puk2_blocked" msgid="3150263853077280049">"El PUK2 s\'ha bloquejat de manera permanent."</string>
-    <string name="pin2_attempts" msgid="7937503107162525324">\n"Queden <xliff:g id="NUMBER">%d</xliff:g> intents."</string>
-    <string name="pin2_unblocked" msgid="2903147240919055381">"S\'ha desbloquejat el PIN2."</string>
     <string name="doneButton" msgid="2859593360997984240">"Fet"</string>
     <string name="caller_manage_header" msgid="3231519674734638786">"Trucada de conferència <xliff:g id="CONF_CALL_TIME">%s</xliff:g>"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"Número del correu de veu"</string>
@@ -580,11 +574,12 @@
     <string name="respond_via_sms_canned_response_2" msgid="4074450431532859214">"Et truco de seguida."</string>
     <string name="respond_via_sms_canned_response_3" msgid="3496079065723960450">"Et truco més tard."</string>
     <string name="respond_via_sms_canned_response_4" msgid="1698989243040062190">"Ara no puc parlar. Truques després?"</string>
+    <string name="respond_via_sms_custom_message" msgid="6158880869935281078">"Escriu la teva…"</string>
     <string name="respond_via_sms_setting_title" msgid="3754000371039709383">"Respostes ràpides"</string>
     <string name="respond_via_sms_setting_title_2" msgid="6104662227299493906">"Edita les respostes ràpides"</string>
     <string name="respond_via_sms_setting_summary" msgid="9150281183930613065"></string>
     <string name="respond_via_sms_edittext_dialog_title" msgid="20379890418289778">"Resposta ràpida"</string>
-    <string name="respond_via_sms_menu_reset_default_activity" msgid="1461742052902053466">"Restableix aplic. predetermin."</string>
+    <string name="respond_via_sms_menu_reset_default_activity" msgid="4029277930090150223">"Restaura els valors predeterminats"</string>
     <string name="respond_via_sms_confirmation_format" msgid="7229149977515784269">"Missatge enviat a <xliff:g id="PHONE_NUMBER">%s</xliff:g>."</string>
     <string name="description_image_button_one" msgid="5502718871331943463">"un"</string>
     <string name="description_image_button_two" msgid="4903738528222924522">"dos"</string>

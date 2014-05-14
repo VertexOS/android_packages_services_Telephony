@@ -154,6 +154,7 @@
         </activity>
 
         <activity android:name="OutgoingCallBroadcaster"
+                android:enabled="false"
                 android:theme="@style/OutgoingCallBroadcasterTheme"
                 android:permission="android.permission.CALL_PHONE"
                 android:screenOrientation="nosensor"
@@ -186,6 +187,7 @@
         </activity>
 
         <activity-alias android:name="EmergencyOutgoingCallBroadcaster"
+                android:enabled="false"
                 android:targetActivity="OutgoingCallBroadcaster"
                 android:permission="android.permission.CALL_PRIVILEGED">
             <intent-filter android:priority="1000">
@@ -213,6 +215,7 @@
         </activity-alias>
 
         <activity-alias android:name="PrivilegedOutgoingCallBroadcaster"
+                android:enabled="false"
                 android:targetActivity="OutgoingCallBroadcaster"
                 android:screenOrientation="nosensor"
                 android:permission="android.permission.CALL_PRIVILEGED">
@@ -551,6 +554,32 @@
         <!-- service to dump telephony information -->
         <service android:name="HfaService" android:exported="false"/>
 
+        <!-- Telecomm integration -->
+        <service android:name="com.android.services.telephony.TelephonyCallServiceProvider">
+            <intent-filter>
+                <action android:name="android.telecomm.CallServiceProvider" />
+            </intent-filter>
+        </service>
+        <service android:name="com.android.services.telephony.TelephonyCallServiceSelector">
+            <intent-filter>
+                <action android:name="android.telecomm.CallServiceSelector" />
+            </intent-filter>
+        </service>
+        <service android:name="com.android.services.telephony.GsmCallService">
+            <intent-filter>
+                <action android:name="android.telecomm.CallService" />
+            </intent-filter>
+        </service>
+        <service android:name="com.android.services.telephony.CdmaCallService">
+            <intent-filter>
+                <action android:name="android.telecomm.CallService" />
+            </intent-filter>
+        </service>
+        <service android:name="com.android.services.telephony.SipCallService">
+            <intent-filter>
+                <action android:name="android.telecomm.CallService" />
+            </intent-filter>
+        </service>
         <provider
                 android:name="PhoneSearchIndexablesProvider"
                 android:authorities="com.android.phone"

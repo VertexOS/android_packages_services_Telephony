@@ -88,10 +88,12 @@ public final class Call implements Parcelable {
         public static final int ADD_CALL           = 0x00000010; /* add another call to this one */
         public static final int RESPOND_VIA_TEXT   = 0x00000020; /* has respond via text option */
         public static final int MUTE               = 0x00000040; /* can mute the call */
-        public static final int GENERIC_CONFERENCE = 0x00000080; /* Generic conference mode */
+        public static final int GENERIC_CONFERENCE = 0x00000080; /* generic conference mode */
+        public static final int VIDEO_HANDOFF      = 0x00000100; /* handoff to video */
+        public static final int CONNECTION_HANDOFF = 0x00000200; /* handoff between wifi and cell */
 
         public static final int ALL = HOLD | SUPPORT_HOLD | MERGE_CALLS | SWAP_CALLS | ADD_CALL
-                | RESPOND_VIA_TEXT | MUTE | GENERIC_CONFERENCE;
+                | RESPOND_VIA_TEXT | MUTE | GENERIC_CONFERENCE | VIDEO_HANDOFF | CONNECTION_HANDOFF;
     }
 
     private static final Map<Integer, String> STATE_MAP = ImmutableMap.<Integer, String>builder()
@@ -126,6 +128,12 @@ public final class Call implements Parcelable {
     // The current state of the call
     private int mState = State.INVALID;
 
+    // TODO: Probably need to change to wifi call state.  Re-use mState?
+    // State.WIFI_CONNECTING
+    // State.WIFI_CONNECTED
+    // Using this simple boolean for now so we can see the UI mock.
+    private boolean mIsWifiCall = false;
+
     // Reason for disconnect. Valid when the call state is DISCONNECTED.
     // Valid values are defined in {@link DisconnectCause}.
     private int mDisconnectCause = DisconnectCause.NOT_VALID;
@@ -154,6 +162,7 @@ public final class Call implements Parcelable {
         mCallId = call.mCallId;
         mIdentification = new CallIdentification(call.mIdentification);
         mState = call.mState;
+        mIsWifiCall = call.mIsWifiCall;
         mDisconnectCause = call.mDisconnectCause;
         mCapabilities = call.mCapabilities;
         mConnectTime = call.mConnectTime;
@@ -184,6 +193,14 @@ public final class Call implements Parcelable {
 
     public void setState(int state) {
         mState = state;
+    }
+
+    public void setIsWifiCall(boolean isWifiCall) {
+        mIsWifiCall = isWifiCall;
+    }
+
+    public boolean isWifiCall() {
+        return mIsWifiCall;
     }
 
     public int getNumberPresentation() {
@@ -292,6 +309,7 @@ public final class Call implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(mCallId);
         dest.writeInt(mState);
+        dest.writeByte((byte) (mIsWifiCall ? 1 : 0));
         dest.writeInt(getDisconnectCause());
         dest.writeInt(getCapabilities());
         dest.writeLong(getConnectTime());
@@ -307,6 +325,7 @@ public final class Call implements Parcelable {
     private Call(Parcel in) {
         mCallId = in.readInt();
         mState = in.readInt();
+        mIsWifiCall = in.readByte() != 0;
         mDisconnectCause = in.readInt();
         mCapabilities = in.readInt();
         mConnectTime = in.readLong();
@@ -343,6 +362,7 @@ public final class Call implements Parcelable {
         return Objects.toStringHelper(this)
                 .add("mCallId", mCallId)
                 .add("mState", STATE_MAP.get(mState))
+                .add("mIsWifiCall", mIsWifiCall)
                 .add("mDisconnectCause", mDisconnectCause)
                 .add("mCapabilities", mCapabilities)
                 .add("mConnectTime", mConnectTime)
