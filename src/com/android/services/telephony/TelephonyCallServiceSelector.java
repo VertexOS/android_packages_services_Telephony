@@ -34,21 +34,21 @@ public class TelephonyCallServiceSelector extends CallServiceSelector {
         ArrayList<CallServiceDescriptor> selectedDescriptors =
                 new ArrayList<CallServiceDescriptor>();
 
-        CallServiceDescriptor descriptor = getDescriptor(descriptors, CdmaCallService.class);
+        CallServiceDescriptor descriptor = getDescriptor(descriptors, CdmaConnectionService.class);
         if (descriptor != null) {
-            if (CdmaCallService.shouldSelect(this, callInfo)) {
+            if (CdmaConnectionService.canCall(this, callInfo.getHandle())) {
                 selectedDescriptors.add(descriptor);
             }
         }
-        descriptor = getDescriptor(descriptors, GsmCallService.class);
+        descriptor = getDescriptor(descriptors, GsmConnectionService.class);
         if (descriptor != null) {
-            if (GsmCallService.shouldSelect(this, callInfo)) {
+            if (GsmConnectionService.canCall(this, callInfo.getHandle())) {
                 selectedDescriptors.add(descriptor);
             }
         }
-        descriptor = getDescriptor(descriptors, SipCallService.class);
+        descriptor = getDescriptor(descriptors, SipConnectionService.class);
         if (descriptor != null) {
-            if (SipCallService.shouldSelect(this, callInfo)) {
+            if (SipConnectionService.canCall(this, callInfo.getHandle())) {
                 selectedDescriptors.add(descriptor);
             }
         }
