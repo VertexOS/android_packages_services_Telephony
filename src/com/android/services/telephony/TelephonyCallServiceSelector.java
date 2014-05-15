@@ -33,26 +33,42 @@ public class TelephonyCallServiceSelector extends CallServiceSelector {
     protected void select(CallInfo callInfo, List<CallServiceDescriptor> descriptors) {
         ArrayList<CallServiceDescriptor> selectedDescriptors =
                 new ArrayList<CallServiceDescriptor>();
+
+        CallServiceDescriptor descriptor = getDescriptor(descriptors, CdmaCallService.class);
+        if (descriptor != null) {
+            if (CdmaCallService.shouldSelect(this, callInfo)) {
+                selectedDescriptors.add(descriptor);
+            }
+        }
+        descriptor = getDescriptor(descriptors, GsmCallService.class);
+        if (descriptor != null) {
+            if (GsmCallService.shouldSelect(this, callInfo)) {
+                selectedDescriptors.add(descriptor);
+            }
+        }
+        descriptor = getDescriptor(descriptors, SipCallService.class);
+        if (descriptor != null) {
+            if (SipCallService.shouldSelect(this, callInfo)) {
+                selectedDescriptors.add(descriptor);
+            }
+        }
+
+        getAdapter().setSelectedCallServices(callInfo.getId(), selectedDescriptors);
+    }
+
+    private CallServiceDescriptor getDescriptor(
+            List<CallServiceDescriptor> descriptors, Class<?> clazz) {
+
         for (CallServiceDescriptor descriptor : descriptors) {
             if (!getPackageName().equals(descriptor.getServiceComponent().getPackageName())) {
                 continue;
             }
 
-            String name = descriptor.getServiceComponent().getClassName();
-            if (name.equals(CdmaConnectionService.class.getName())) {
-                if (CdmaConnectionService.canCall(this, callInfo.getHandle())) {
-                    selectedDescriptors.add(descriptor);
-                }
-            } else if (name.equals(GsmConnectionService.class.getName())) {
-                if (GsmConnectionService.canCall(this, callInfo.getHandle())) {
-                    selectedDescriptors.add(descriptor);
-                }
-            } else if (name.equals(SipConnectionService.class.getName())) {
-                if (SipConnectionService.canCall(this, callInfo.getHandle())) {
-                    selectedDescriptors.add(descriptor);
-                }
+            if (clazz.getName().equals(descriptor.getServiceComponent().getClassName())) {
+                return descriptor;
             }
         }
-        getAdapter().setSelectedCallServices(callInfo.getId(), selectedDescriptors);
+
+        return null;
     }
 }
