@@ -18,7 +18,7 @@ package com.android.services.telephony;
 
 import android.telecomm.CallInfo;
 import android.telecomm.CallServiceDescriptor;
-import android.telecomm.CallServiceSelector;;
+import android.telecomm.CallServiceSelector;
 import android.telecomm.CallServiceSelectorAdapter;
 
 import java.util.ArrayList;
