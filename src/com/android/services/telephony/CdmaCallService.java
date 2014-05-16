@@ -42,7 +42,7 @@ public class CdmaCallService extends PstnCallService {
     /** {@inheritDoc} */
     @Override
     protected Phone getPhone() {
-        return CachedPhoneFactory.getCdmaPhone();
+        return PhoneFactory.getDefaultPhone();
     }
 
     /** {@inheritDoc} */

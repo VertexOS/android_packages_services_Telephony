@@ -42,7 +42,7 @@ public class GsmCallService extends PstnCallService {
     /** {@inheritDoc} */
     @Override
     protected Phone getPhone() {
-        return CachedPhoneFactory.getGsmPhone();
+        return PhoneFactory.getDefaultPhone();
     }
 
     /** {@inheritDoc} */
