@@ -22,6 +22,7 @@ import android.telephony.TelephonyManager;
 
 import com.android.internal.telephony.Connection;
 import com.android.internal.telephony.Phone;
+import com.android.internal.telephony.PhoneFactory;
 import com.android.phone.Constants;
 import com.android.services.telecomm.ConnectionRequest;
 
@@ -32,7 +33,7 @@ public class GsmConnectionService extends PstnConnectionService {
     /** {@inheritDoc} */
     @Override
     protected Phone getPhone() {
-        return CachedPhoneFactory.getGsmPhone();
+        return PhoneFactory.getDefaultPhone();
     }
 
     /** {@inheritDoc} */

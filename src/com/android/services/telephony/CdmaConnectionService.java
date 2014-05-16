@@ -22,6 +22,7 @@ import android.telephony.TelephonyManager;
 
 import com.android.internal.telephony.Connection;
 import com.android.internal.telephony.Phone;
+import com.android.internal.telephony.PhoneFactory;
 import com.android.phone.Constants;
 import com.android.services.telecomm.ConnectionRequest;
 
@@ -33,7 +34,7 @@ public class CdmaConnectionService extends PstnConnectionService {
     /** {@inheritDoc} */
     @Override
     protected Phone getPhone() {
-        return CachedPhoneFactory.getCdmaPhone();
+        return PhoneFactory.getDefaultPhone();
     }
 
     /** {@inheritDoc} */

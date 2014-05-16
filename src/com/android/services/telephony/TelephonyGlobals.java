@@ -66,12 +66,12 @@ public class TelephonyGlobals {
         if (TelephonyManager.PHONE_TYPE_GSM == phoneType) {
             Log.d(this, "Phone type GSM found");
             mGsmIncomingCallNotifier = new IncomingCallNotifier(
-                    GsmConnectionService.class, CachedPhoneFactory.getGsmPhone());
+                    GsmConnectionService.class, PhoneFactory.getDefaultPhone());
 
         } else if (TelephonyManager.PHONE_TYPE_CDMA == phoneType) {
             Log.d(this, "Phone type CDMA found");
             mCdmaIncomingCallNotifier = new IncomingCallNotifier(
-                    CdmaConnectionService.class, CachedPhoneFactory.getCdmaPhone());
+                    CdmaConnectionService.class, PhoneFactory.getDefaultPhone());
         }
 
         // TODO(santoscordon): Do SIP.  SIP will require a slightly different solution since it
