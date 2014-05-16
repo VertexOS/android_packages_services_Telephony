@@ -1296,6 +1296,22 @@ public class PhoneInterfaceManager extends ITelephony.Stub implements CallModele
         return s;
     }
 
+    @Override
+    public String sendEnvelopeWithStatus(String content) {
+        enforceSimCommunicationPermission();
+
+        IccIoResult response = (IccIoResult)sendRequest(CMD_SEND_ENVELOPE, content);
+        if (response.payload == null) {
+          return "";
+        }
+
+        // Append the returned status code to the end of the response payload.
+        String s = Integer.toHexString(
+                (response.sw1 << 8) + response.sw2 + 0x10000).substring(1);
+        s = IccUtils.bytesToHexString(response.payload) + s;
+        return s;
+    }
+
     /**
      * Read one of the NV items defined in {@link com.android.internal.telephony.RadioNVItems}
      * and {@code ril_nv_items.h}. Used for device configuration by some CDMA operators.
