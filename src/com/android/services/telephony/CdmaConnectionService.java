@@ -23,7 +23,7 @@ import android.telephony.TelephonyManager;
 import com.android.internal.telephony.Connection;
 import com.android.internal.telephony.Phone;
 import com.android.phone.Constants;
-import com.android.services.telecomm.ConnectionRequest;
+import android.telecomm.ConnectionRequest;
 
 /**
  * Connection service that uses CDMA.
