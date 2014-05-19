@@ -34,8 +34,8 @@ import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.content.res.Configuration;
 import android.media.AudioManager;
-import android.media.session.Session;
-import android.media.session.SessionManager;
+import android.media.session.MediaSession;
+import android.media.session.MediaSessionManager;
 import android.net.Uri;
 import android.os.AsyncResult;
 import android.os.Binder;
@@ -220,7 +220,7 @@ public class PhoneGlobals extends ContextWrapper implements WiredHeadsetListener
     private final BroadcastReceiver mMediaButtonReceiver = new MediaButtonBroadcastReceiver();
     private final SessionCallback mSessionCallback = new SessionCallback();
 
-    private Session mSession;
+    private MediaSession mSession;
 
     /** boolean indicating restoring mute state on InCallScreen.onResume() */
     private boolean mShouldRestoreMuteOnInCallResume;
@@ -565,11 +565,11 @@ public class PhoneGlobals extends ContextWrapper implements WiredHeadsetListener
 
             // Register a MediaSession but don't enable it yet. This is a
             // replacement for MediaButtonReceiver
-            SessionManager msm = (SessionManager) getSystemService(Context.MEDIA_SESSION_SERVICE);
+            MediaSessionManager msm = (MediaSessionManager) getSystemService(Context.MEDIA_SESSION_SERVICE);
             mSession = msm.createSession(LOG_TAG);
             mSession.addCallback(mSessionCallback);
-            mSession.setFlags(Session.FLAG_EXCLUSIVE_GLOBAL_PRIORITY
-                    | Session.FLAG_HANDLES_MEDIA_BUTTONS);
+            mSession.setFlags(MediaSession.FLAG_EXCLUSIVE_GLOBAL_PRIORITY
+                    | MediaSession.FLAG_HANDLES_MEDIA_BUTTONS);
         }
 
         if (TelephonyCapabilities.supportsOtasp(phone)) {
@@ -1102,7 +1102,7 @@ public class PhoneGlobals extends ContextWrapper implements WiredHeadsetListener
         }
     }
 
-    private class SessionCallback extends Session.Callback {
+    private class SessionCallback extends MediaSession.Callback {
         @Override
         public void onMediaButton(Intent intent) {
             KeyEvent event = (KeyEvent) intent.getParcelableExtra(Intent.EXTRA_KEY_EVENT);
