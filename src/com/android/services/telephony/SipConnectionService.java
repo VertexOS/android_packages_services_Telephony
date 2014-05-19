@@ -31,9 +31,9 @@ import com.android.phone.Constants;
 import com.android.phone.PhoneUtils;
 import com.android.phone.sip.SipProfileDb;
 import com.android.phone.sip.SipSharedPreferences;
-import com.android.services.telecomm.Connection;
-import com.android.services.telecomm.ConnectionRequest;
-import com.android.services.telecomm.Response;
+import android.telecomm.Connection;
+import android.telecomm.ConnectionRequest;
+import android.telecomm.Response;
 
 import java.util.HashMap;
 

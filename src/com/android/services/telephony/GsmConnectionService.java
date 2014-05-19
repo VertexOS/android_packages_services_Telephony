@@ -24,7 +24,7 @@ import com.android.internal.telephony.Connection;
 import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneFactory;
 import com.android.phone.Constants;
-import com.android.services.telecomm.ConnectionRequest;
+import android.telecomm.ConnectionRequest;
 
 /**
  * Connnection service that uses GSM.

@@ -16,7 +16,7 @@
 
 package com.android.services.telephony;
 
-import com.android.services.telecomm.Connection;
+import android.telecomm.Connection;
 
 /**
  * A {@link Connection} object for SIP calls.

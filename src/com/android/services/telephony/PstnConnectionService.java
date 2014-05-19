@@ -23,12 +23,11 @@ import android.telephony.PhoneNumberUtils;
 import com.android.internal.telephony.Call;
 import com.android.internal.telephony.Phone;
 import com.android.phone.Constants;
-import com.android.services.telecomm.Connection;
-import com.android.services.telecomm.ConnectionRequest;
-import com.android.services.telecomm.Response;
+import android.telecomm.Connection;
+import android.telecomm.ConnectionRequest;
+import android.telecomm.Response;
 
-import com.google.android.collect.Sets;
-
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -37,7 +36,7 @@ import java.util.Set;
  */
 public abstract class PstnConnectionService extends TelephonyConnectionService {
     private EmergencyCallHelper mEmergencyCallHelper;
-    private final Set<ConnectionRequest> mPendingOutgoingEmergencyCalls = Sets.newHashSet();
+    private final Set<ConnectionRequest> mPendingOutgoingEmergencyCalls = new HashSet<>();
 
     @Override
     public void onCreate() {

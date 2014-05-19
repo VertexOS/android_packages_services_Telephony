@@ -24,7 +24,7 @@ import android.telephony.DisconnectCause;
 import com.android.internal.telephony.Call;
 import com.android.internal.telephony.CallStateException;
 import com.android.internal.telephony.Phone;
-import com.android.services.telecomm.Connection;
+import android.telecomm.Connection;
 
 /**
  * Manages a single phone call in Telephony.

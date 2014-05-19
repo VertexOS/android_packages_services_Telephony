@@ -21,14 +21,13 @@ import android.text.TextUtils;
 
 import com.android.internal.telephony.CallStateException;
 import com.android.internal.telephony.Phone;
-import com.android.services.telecomm.Connection;
-import com.android.services.telecomm.ConnectionRequest;
-import com.android.services.telecomm.ConnectionService;
-import com.android.services.telecomm.Response;
-import com.android.services.telecomm.Subscription;
+import android.telecomm.Connection;
+import android.telecomm.ConnectionRequest;
+import android.telecomm.ConnectionService;
+import android.telecomm.Response;
+import android.telecomm.Subscription;
 
-import com.google.android.collect.Sets;
-
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -37,7 +36,7 @@ import java.util.Set;
  */
 public abstract class TelephonyConnectionService extends ConnectionService {
     private static final Set<com.android.internal.telephony.Connection> sKnownConnections
-            = Sets.newHashSet();
+            = new HashSet<>();
 
     /** {@inheritDoc} */
     @Override
