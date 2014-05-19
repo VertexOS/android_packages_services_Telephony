@@ -48,7 +48,6 @@ import com.android.internal.telephony.CommandException;
 import com.android.internal.telephony.Connection;
 import com.android.internal.telephony.DefaultPhoneNotifier;
 import com.android.internal.telephony.ITelephony;
-import com.android.internal.telephony.ITelephonyListener;
 import com.android.internal.telephony.IccCard;
 import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneConstants;
@@ -67,7 +66,7 @@ import java.util.Map;
 /**
  * Implementation of the ITelephony interface.
  */
-public class PhoneInterfaceManager extends ITelephony.Stub implements CallModeler.Listener {
+public class PhoneInterfaceManager extends ITelephony.Stub {
     private static final String LOG_TAG = "PhoneInterfaceManager";
     private static final boolean DBG = (PhoneGlobals.DBG_LEVEL >= 2);
     private static final boolean DBG_LOC = false;
@@ -109,14 +108,6 @@ public class PhoneInterfaceManager extends ITelephony.Stub implements CallModele
     AppOpsManager mAppOps;
     MainThreadHandler mMainThreadHandler;
     CallHandlerServiceProxy mCallHandlerService;
-    CallModeler mCallModeler;
-    DTMFTonePlayer mDtmfTonePlayer;
-    Handler mDtmfStopHandler = new Handler();
-    Runnable mDtmfStopRunnable;
-
-    private final List<ITelephonyListener> mListeners = new ArrayList<ITelephonyListener>();
-    private final Map<IBinder, TelephonyListenerDeathRecipient> mDeathRecipients =
-            new HashMap<IBinder, TelephonyListenerDeathRecipient>();
 
     /**
      * A request object to use for transmitting data to an ICC.
@@ -519,12 +510,10 @@ public class PhoneInterfaceManager extends ITelephony.Stub implements CallModele
      * This is only done once, at startup, from PhoneApp.onCreate().
      */
     /* package */ static PhoneInterfaceManager init(PhoneGlobals app, Phone phone,
-                CallHandlerServiceProxy callHandlerService, CallModeler callModeler,
-                DTMFTonePlayer dtmfTonePlayer) {
+                CallHandlerServiceProxy callHandlerService) {
         synchronized (PhoneInterfaceManager.class) {
             if (sInstance == null) {
-                sInstance = new PhoneInterfaceManager(app, phone, callHandlerService, callModeler,
-                        dtmfTonePlayer);
+                sInstance = new PhoneInterfaceManager(app, phone, callHandlerService);
             } else {
                 Log.wtf(LOG_TAG, "init() called multiple times!  sInstance = " + sInstance);
             }
@@ -534,17 +523,13 @@ public class PhoneInterfaceManager extends ITelephony.Stub implements CallModele
 
     /** Private constructor; @see init() */
     private PhoneInterfaceManager(PhoneGlobals app, Phone phone,
-            CallHandlerServiceProxy callHandlerService, CallModeler callModeler,
-            DTMFTonePlayer dtmfTonePlayer) {
+            CallHandlerServiceProxy callHandlerService) {
         mApp = app;
         mPhone = phone;
         mCM = PhoneGlobals.getInstance().mCM;
         mAppOps = (AppOpsManager)app.getSystemService(Context.APP_OPS_SERVICE);
         mMainThreadHandler = new MainThreadHandler();
         mCallHandlerService = callHandlerService;
-        mCallModeler = callModeler;
-        mCallModeler.addListener(this);
-        mDtmfTonePlayer = dtmfTonePlayer;
         publish();
     }
 
@@ -1408,249 +1393,5 @@ public class PhoneInterfaceManager extends ITelephony.Stub implements CallModele
         Boolean success = (Boolean) sendRequest(CMD_SET_PREFERRED_NETWORK_TYPE, networkType);
         if (DBG) log("setPreferredNetworkType: " + (success ? "ok" : "fail"));
         return success;
-    }
-
-    @Override
-    public void toggleHold() {
-        enforceModifyPermission();
-
-        try {
-            PhoneUtils.switchHoldingAndActive(mCM.getFirstActiveBgCall());
-        } catch (Exception e) {
-            Log.e(LOG_TAG, "Error during toggleHold().", e);
-        }
-    }
-
-    @Override
-    public void merge() {
-        enforceModifyPermission();
-
-        try {
-            if (PhoneUtils.okToMergeCalls(mCM)) {
-                PhoneUtils.mergeCalls(mCM);
-            }
-        } catch (Exception e) {
-            Log.e(LOG_TAG, "Error during merge().", e);
-        }
-    }
-
-    @Override
-    public void swap() {
-        enforceModifyPermission();
-
-        try {
-            PhoneUtils.swap();
-        } catch (Exception e) {
-            Log.e(LOG_TAG, "Error during swap().", e);
-        }
-    }
-
-    @Override
-    public void mute(boolean onOff) {
-        enforceModifyPermission();
-
-        try {
-            PhoneUtils.setMute(onOff);
-        } catch (Exception e) {
-            Log.e(LOG_TAG, "Error during mute().", e);
-        }
-    }
-
-    @Override
-    public void playDtmfTone(char digit, boolean timedShortTone) {
-        enforceModifyPermission();
-
-        synchronized (mDtmfStopHandler) {
-            try {
-                mDtmfTonePlayer.playDtmfTone(digit, timedShortTone);
-            } catch (Exception e) {
-                Log.e(LOG_TAG, "Error playing DTMF tone.", e);
-            }
-
-            if (mDtmfStopRunnable != null) {
-                mDtmfStopHandler.removeCallbacks(mDtmfStopRunnable);
-            }
-            mDtmfStopRunnable = new Runnable() {
-                @Override
-                public void run() {
-                    synchronized (mDtmfStopHandler) {
-                        if (mDtmfStopRunnable == this) {
-                            mDtmfTonePlayer.stopDtmfTone();
-                            mDtmfStopRunnable = null;
-                        }
-                    }
-                }
-            };
-            mDtmfStopHandler.postDelayed(mDtmfStopRunnable, 5000);
-        }
-    }
-
-    @Override
-    public void stopDtmfTone() {
-        enforceModifyPermission();
-
-        synchronized (mDtmfStopHandler) {
-            try {
-                mDtmfTonePlayer.stopDtmfTone();
-            } catch (Exception e) {
-                Log.e(LOG_TAG, "Error stopping DTMF tone.", e);
-            }
-
-            if (mDtmfStopRunnable != null) {
-                mDtmfStopHandler.removeCallbacks(mDtmfStopRunnable);
-                mDtmfStopRunnable = null;
-            }
-        }
-    }
-
-    @Override
-    public void addListener(ITelephonyListener listener) {
-        enforcePrivilegedPhoneStatePermission();
-
-        if (listener == null) {
-            throw new IllegalArgumentException("Listener must not be null.");
-        }
-
-        synchronized (mListeners) {
-            IBinder listenerBinder = listener.asBinder();
-            for (ITelephonyListener l : mListeners) {
-                if (l.asBinder().equals(listenerBinder)) {
-                    Log.w(LOG_TAG, "Listener already registered. Ignoring.");
-                    return;
-                }
-            }
-            mListeners.add(listener);
-            mDeathRecipients.put(listener.asBinder(),
-                    new TelephonyListenerDeathRecipient(listener.asBinder()));
-
-            // update the new listener so they get the full call state immediately
-            for (Call call : mCallModeler.getFullList()) {
-                try {
-                    notifyListenerOfCallLocked(call, listener);
-                } catch (RemoteException e) {
-                    Log.e(LOG_TAG, "Error updating new listener. Ignoring.");
-                    removeListenerInternal(listener);
-                }
-            }
-        }
-    }
-
-    @Override
-    public void removeListener(ITelephonyListener listener) {
-        enforcePrivilegedPhoneStatePermission();
-
-        if (listener == null) {
-            throw new IllegalArgumentException("Listener must not be null.");
-        }
-
-        removeListenerInternal(listener);
-    }
-
-    private void removeListenerInternal(ITelephonyListener listener) {
-        IBinder listenerBinder = listener.asBinder();
-
-        synchronized (mListeners) {
-            for (Iterator<ITelephonyListener> it = mListeners.iterator(); it.hasNext(); ) {
-                ITelephonyListener nextListener = it.next();
-                if (nextListener.asBinder().equals(listenerBinder)) {
-                    TelephonyListenerDeathRecipient dr = mDeathRecipients.get(listener.asBinder());
-                    if (dr != null) {
-                        dr.unlinkDeathRecipient();
-                    }
-                    it.remove();
-                }
-            }
-        }
-    }
-
-    /** CallModeler.Listener implementation **/
-
-    @Override
-    public void onDisconnect(Call call) {
-        notifyListenersOfCall(call);
-    }
-
-    @Override
-    public void onIncoming(Call call) {
-        notifyListenersOfCall(call);
-    }
-
-    @Override
-    public void onUpdate(List<Call> calls) {
-        for (Call call : calls) {
-            notifyListenersOfCall(call);
-        }
-    }
-
-    @Override
-    public void onPostDialAction(
-            Connection.PostDialState state, int callId, String remainingChars, char c) { }
-
-    private void notifyListenersOfCall(Call call) {
-        synchronized (mListeners) {
-            for (Iterator<ITelephonyListener> it = mListeners.iterator(); it.hasNext(); ) {
-                ITelephonyListener listener = it.next();
-                try {
-                    notifyListenerOfCallLocked(call, listener);
-                } catch (RemoteException e) {
-                    TelephonyListenerDeathRecipient deathRecipient =
-                            mDeathRecipients.get(listener.asBinder());
-                    if (deathRecipient != null) {
-                        deathRecipient.unlinkDeathRecipient();
-                    }
-                    it.remove();
-                }
-            }
-        }
-    }
-
-    private void notifyListenerOfCallLocked(final Call call,final ITelephonyListener listener)
-            throws RemoteException {
-        if (Binder.isProxy(listener)) {
-            listener.onUpdate(call.getCallId(), call.getState(), call.getNumber());
-        } else {
-            mMainThreadHandler.post(new Runnable() {
-
-                @Override
-                public void run() {
-                    try {
-                        listener.onUpdate(call.getCallId(), call.getState(), call.getNumber());
-                    } catch (RemoteException e) {
-                        Log.wtf(LOG_TAG, "Local binder call failed with RemoteException.", e);
-                    }
-                }
-            });
-        }
-
-    }
-
-    private class TelephonyListenerDeathRecipient implements Binder.DeathRecipient {
-        private final IBinder mBinder;
-
-        public TelephonyListenerDeathRecipient(IBinder listener) {
-            mBinder = listener;
-            try {
-                mBinder.linkToDeath(this, 0);
-            } catch (RemoteException e) {
-                unlinkDeathRecipient();
-            }
-        }
-
-        @Override
-        public void binderDied() {
-            synchronized (mListeners) {
-                if (mListeners.contains(mBinder)) {
-                    mListeners.remove(mBinder);
-                    Log.w(LOG_TAG, "ITelephonyListener died. Removing.");
-                } else {
-                    Log.w(LOG_TAG, "TelephonyListener binder died but the listener " +
-                            "is not registered.");
-                }
-            }
-        }
-
-        public void unlinkDeathRecipient() {
-            mBinder.unlinkToDeath(this, 0);
-        }
     }
 }
