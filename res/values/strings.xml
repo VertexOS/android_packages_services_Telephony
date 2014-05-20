@@ -122,6 +122,10 @@
     <string name="apn_settings">Access Point Names</string>
     <!-- Label for the "Network settings" screen in the Settings UI -->
     <string name="settings_label">Network settings</string>
+    <!-- Label for connection service setting -->
+    <string name="connection_service">Connection service to use</string>
+    <!-- Built-in label for the default connection service setting. -->
+    <string name="connection_service_default_label">Built-in connection service</string>
     <!-- Call settings screen, setting option name -->
     <string name="voicemail">Voicemail</string>
     <!-- Call forwarding dialog box, voicemail number prefix -->
