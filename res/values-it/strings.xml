@@ -136,9 +136,9 @@
     <string name="select_automatically" msgid="5628402124471810174">"Scegli automaticamente"</string>
     <string name="sum_select_automatically" msgid="5614890115123292400">"Scegli automaticamente la rete preferita"</string>
     <string name="register_automatically" msgid="6017849844573519637">"Registrazione automatica..."</string>
-    <string name="preferred_network_mode_title" msgid="8873246565334559308">"Modalità rete"</string>
+    <string name="preferred_network_mode_title" msgid="2336624679902659306">"Tipo di rete preferito"</string>
     <string name="preferred_network_mode_summary" msgid="1434820673166126609">"Cambia la modalità di funzionamento della rete"</string>
-    <string name="preferred_network_mode_dialogtitle" msgid="8176355237105593793">"Modalità di rete preferita"</string>
+    <string name="preferred_network_mode_dialogtitle" msgid="4048082093347807230">"Tipo di rete preferito"</string>
     <string name="preferred_network_mode_wcdma_perf_summary" msgid="8521677230113533809">"Modalità di rete preferita: WCDMA (preferita)"</string>
     <string name="preferred_network_mode_gsm_only_summary" msgid="3352445413437453511">"Modalità di rete preferita: solo GSM"</string>
     <string name="preferred_network_mode_wcdma_only_summary" msgid="2836897236221063413">"Modalità di rete preferita: solo WCDMA"</string>
@@ -279,6 +279,9 @@
     <string name="enable_disable_multi_category" msgid="626771003122899280">"Multicategoria"</string>
     <string name="multi_category_enable" msgid="1179299804641721768">"Multicategoria attivata"</string>
     <string name="multi_category_disable" msgid="880104702904139505">"Multicategoria disattivata"</string>
+    <string name="network_lte" msgid="7702681952521375754">"LTE (opzione consigliata)"</string>
+    <string name="network_4G" msgid="2723512640529983138">"4G (opzione consigliata)"</string>
+    <string name="network_global" msgid="1323190488685355309">"Globale"</string>
     <string name="cdma_system_select_title" msgid="5757657769327732833">"Selezione sistema"</string>
     <string name="cdma_system_select_summary" msgid="60460043745797517">"Cambia la modalità roaming CDMA"</string>
     <string name="cdma_system_select_dialogtitle" msgid="6083355415165359075">"Selezione sistema"</string>
@@ -299,8 +302,7 @@
   </string-array>
     <string name="cdma_activate_device" msgid="3793805892364814518">"Attiva dispositivo"</string>
     <string name="cdma_lte_data_service" msgid="4255018217292548962">"Imposta servizio dati"</string>
-    <!-- no translation found for carrier_settings_title (9028166176523012300) -->
-    <skip />
+    <string name="carrier_settings_title" msgid="9028166176523012300">"Impostazioni operatore"</string>
     <string name="fdn" msgid="7878832555095183202">"Numeri selezione fissa (FDN)"</string>
     <string name="manage_fdn_list" msgid="8777755791892122369">"Elenco FDN"</string>
     <string name="fdn_activation" msgid="2156479741307463576">"Attivazione FDN"</string>
@@ -339,6 +341,7 @@
     <string name="pin2_invalid" msgid="5470854099230755944">"FDN non aggiornato perché il PIN inserito non è corretto."</string>
     <string name="fdn_invalid_number" msgid="1494755047900009147">"FDN non è stato aggiornato perché il numero non può superare 20 cifre."</string>
     <string name="pin2_or_fdn_invalid" msgid="6025144083384701197">"FDN non aggiornato. Il codice PIN2 non era corretto o il numero di telefono è stato rifiutato."</string>
+    <string name="fdn_failed" msgid="540018079008319747">"Operazione FDN non riuscita."</string>
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"Lettura da SIM..."</string>
     <string name="simContacts_empty" msgid="5270660846489561932">"Nessun contatto presente nella SIM."</string>
     <string name="simContacts_title" msgid="1861472842524839921">"Seleziona contatti da importare"</string>
@@ -359,7 +362,7 @@
     <string name="disable_pin_ok" msgid="5596999379593924850">"PIN della SIM disattivato."</string>
     <string name="pin_failed" msgid="2298841192582192277">"Il PIN digitato è errato."</string>
     <string name="pin_changed" msgid="4365538014588501049">"PIN della SIM modificato."</string>
-    <string name="puk_requested" msgid="3898394204193202803">"Password errata. La SIM è bloccata. Inserisci il codice PUK2."</string>
+    <string name="puk_requested" msgid="1796577128488773946">"Password errata, PIN bloccato. Occorre il PUK."</string>
     <string name="enter_pin2_text" msgid="8339444124477720345">"PIN2"</string>
     <string name="oldPin2Label" msgid="8559146795026261502">"PIN2 attuale"</string>
     <string name="newPin2Label" msgid="4573956902204349054">"Nuovo PIN2"</string>
@@ -371,8 +374,11 @@
     <string name="invalidPuk2" msgid="1290977391033057871">"Il PUK2 deve essere di 8 numeri."</string>
     <string name="pin2_changed" msgid="1639666438836544393">"PIN2 modificato."</string>
     <string name="label_puk2_code" msgid="302845876240219560">"Digita il codice PUK2"</string>
-    <string name="fdn_enable_puk2_requested" msgid="4262894949634885773">"Password errata. Modifica il PIN2 e riprova."</string>
+    <string name="fdn_enable_puk2_requested" msgid="3674058967950559397">"Password errata, PIN2 bloccato. Modifica il PIN2 e riprova."</string>
     <string name="puk2_requested" msgid="8909278021238716877">"Password errata. La SIM è bloccata. Inserisci il codice PUK2."</string>
+    <string name="puk2_blocked" msgid="3150263853077280049">"PUK2 bloccato definitivamente."</string>
+    <string name="pin2_attempts" msgid="7937503107162525324">\n"Ancora <xliff:g id="NUMBER">%d</xliff:g> tentativi a disposizione."</string>
+    <string name="pin2_unblocked" msgid="2903147240919055381">"PIN2 sbloccato."</string>
     <string name="doneButton" msgid="2859593360997984240">"Fine"</string>
     <string name="caller_manage_header" msgid="3231519674734638786">"Audioconferenza <xliff:g id="CONF_CALL_TIME">%s</xliff:g>"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"Numero segreteria"</string>
@@ -578,12 +584,11 @@
     <string name="respond_via_sms_canned_response_2" msgid="4074450431532859214">"Ti richiamo subito."</string>
     <string name="respond_via_sms_canned_response_3" msgid="3496079065723960450">"Ti chiamo dopo."</string>
     <string name="respond_via_sms_canned_response_4" msgid="1698989243040062190">"Non posso parlare ora. Mi chiami dopo?"</string>
-    <string name="respond_via_sms_custom_message" msgid="6158880869935281078">"Scrivi risposta personale..."</string>
     <string name="respond_via_sms_setting_title" msgid="3754000371039709383">"Risposte rapide"</string>
     <string name="respond_via_sms_setting_title_2" msgid="6104662227299493906">"Modifica risposte rapide"</string>
     <string name="respond_via_sms_setting_summary" msgid="9150281183930613065"></string>
     <string name="respond_via_sms_edittext_dialog_title" msgid="20379890418289778">"Risposta rapida"</string>
-    <string name="respond_via_sms_menu_reset_default_activity" msgid="4029277930090150223">"Ripristina predefinite"</string>
+    <string name="respond_via_sms_menu_reset_default_activity" msgid="1461742052902053466">"Reimposta app predefinita"</string>
     <string name="respond_via_sms_confirmation_format" msgid="7229149977515784269">"Messaggio inviato a <xliff:g id="PHONE_NUMBER">%s</xliff:g>."</string>
     <string name="description_image_button_one" msgid="5502718871331943463">"uno"</string>
     <string name="description_image_button_two" msgid="4903738528222924522">"due"</string>
@@ -613,4 +618,10 @@
     <string name="dtmf_tone_enable_title" msgid="827601042915852989">"Toni tastierino"</string>
     <string name="dial_pad_autocomplete" msgid="494525952035761075">"Completam. autom. tastierino"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"Suoneria e vibrazione"</string>
+    <!-- no translation found for choose_wifi_for_call_msg (193549297122949976) -->
+    <skip />
+    <!-- no translation found for choose_wifi_for_call_yes (5312994368472630983) -->
+    <skip />
+    <!-- no translation found for choose_wifi_for_call_no (7132239734287157307) -->
+    <skip />
 </resources>

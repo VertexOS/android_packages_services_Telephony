@@ -136,9 +136,9 @@
     <string name="select_automatically" msgid="5628402124471810174">"Choose automatically"</string>
     <string name="sum_select_automatically" msgid="5614890115123292400">"Automatically choose preferred network"</string>
     <string name="register_automatically" msgid="6017849844573519637">"Automatic registration..."</string>
-    <string name="preferred_network_mode_title" msgid="8873246565334559308">"Network Mode"</string>
+    <string name="preferred_network_mode_title" msgid="2336624679902659306">"Preferred network type"</string>
     <string name="preferred_network_mode_summary" msgid="1434820673166126609">"Change the network operating mode"</string>
-    <string name="preferred_network_mode_dialogtitle" msgid="8176355237105593793">"Preferred network mode"</string>
+    <string name="preferred_network_mode_dialogtitle" msgid="4048082093347807230">"Preferred network type"</string>
     <string name="preferred_network_mode_wcdma_perf_summary" msgid="8521677230113533809">"Preferred network mode: WCDMA preferred"</string>
     <string name="preferred_network_mode_gsm_only_summary" msgid="3352445413437453511">"Preferred network mode: GSM only"</string>
     <string name="preferred_network_mode_wcdma_only_summary" msgid="2836897236221063413">"Preferred network mode: WCDMA only"</string>
@@ -275,6 +275,9 @@
     <string name="enable_disable_multi_category" msgid="626771003122899280">"Multi-category"</string>
     <string name="multi_category_enable" msgid="1179299804641721768">"Multi-category enabled"</string>
     <string name="multi_category_disable" msgid="880104702904139505">"Multi-category disabled"</string>
+    <string name="network_lte" msgid="7702681952521375754">"LTE (recommended)"</string>
+    <string name="network_4G" msgid="2723512640529983138">"4G (recommended)"</string>
+    <string name="network_global" msgid="1323190488685355309">"Global"</string>
     <string name="cdma_system_select_title" msgid="5757657769327732833">"System select"</string>
     <string name="cdma_system_select_summary" msgid="60460043745797517">"Change the CDMA roaming mode"</string>
     <string name="cdma_system_select_dialogtitle" msgid="6083355415165359075">"System select"</string>
@@ -295,8 +298,7 @@
   </string-array>
     <string name="cdma_activate_device" msgid="3793805892364814518">"Activate device"</string>
     <string name="cdma_lte_data_service" msgid="4255018217292548962">"Set up data service"</string>
-    <!-- no translation found for carrier_settings_title (9028166176523012300) -->
-    <skip />
+    <string name="carrier_settings_title" msgid="9028166176523012300">"Provider settings"</string>
     <string name="fdn" msgid="7878832555095183202">"Fixed Dialling Numbers"</string>
     <string name="manage_fdn_list" msgid="8777755791892122369">"FDN list"</string>
     <string name="fdn_activation" msgid="2156479741307463576">"FDN activation"</string>
@@ -335,6 +337,7 @@
     <string name="pin2_invalid" msgid="5470854099230755944">"FDN wasn\'t updated because you typed an incorrect PIN."</string>
     <string name="fdn_invalid_number" msgid="1494755047900009147">"FDN wasn\'t updated because the number can\'t exceed 20 digits."</string>
     <string name="pin2_or_fdn_invalid" msgid="6025144083384701197">"FDN wasn\'t updated. The PIN2 was incorrect or the phone number was rejected."</string>
+    <string name="fdn_failed" msgid="540018079008319747">"FDN operation failed."</string>
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"Reading from SIM card…"</string>
     <string name="simContacts_empty" msgid="5270660846489561932">"No contacts on your SIM card."</string>
     <string name="simContacts_title" msgid="1861472842524839921">"Select contacts to import"</string>
@@ -355,7 +358,7 @@
     <string name="disable_pin_ok" msgid="5596999379593924850">"SIM PIN disabled."</string>
     <string name="pin_failed" msgid="2298841192582192277">"The PIN that you typed was incorrect."</string>
     <string name="pin_changed" msgid="4365538014588501049">"SIM PIN changed successfully."</string>
-    <string name="puk_requested" msgid="3898394204193202803">"Password incorrect; SIM is locked! PUK2 requested."</string>
+    <string name="puk_requested" msgid="1796577128488773946">"Password incorrect, PIN Blocked! PUK requested."</string>
     <string name="enter_pin2_text" msgid="8339444124477720345">"PIN2"</string>
     <string name="oldPin2Label" msgid="8559146795026261502">"Old PIN2"</string>
     <string name="newPin2Label" msgid="4573956902204349054">"New PIN2"</string>
@@ -367,8 +370,11 @@
     <string name="invalidPuk2" msgid="1290977391033057871">"Type a PUK2 that is 8 numbers."</string>
     <string name="pin2_changed" msgid="1639666438836544393">"PIN2 changed successfully."</string>
     <string name="label_puk2_code" msgid="302845876240219560">"Type PUK2 code"</string>
-    <string name="fdn_enable_puk2_requested" msgid="4262894949634885773">"Password incorrect. Change PIN2 and retry."</string>
+    <string name="fdn_enable_puk2_requested" msgid="3674058967950559397">"Password incorrect, PIN2 Blocked. Please change PIN2 and retry!"</string>
     <string name="puk2_requested" msgid="8909278021238716877">"Password incorrect, SIM is locked. PUK2 requested."</string>
+    <string name="puk2_blocked" msgid="3150263853077280049">"PUK2 is permanently blocked."</string>
+    <string name="pin2_attempts" msgid="7937503107162525324">\n"There are <xliff:g id="NUMBER">%d</xliff:g> remaining attempts."</string>
+    <string name="pin2_unblocked" msgid="2903147240919055381">"PIN2 Unblocked!"</string>
     <string name="doneButton" msgid="2859593360997984240">"Done"</string>
     <string name="caller_manage_header" msgid="3231519674734638786">"Conference call <xliff:g id="CONF_CALL_TIME">%s</xliff:g>"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"Voicemail number"</string>
@@ -574,12 +580,11 @@
     <string name="respond_via_sms_canned_response_2" msgid="4074450431532859214">"I\'ll call you right back."</string>
     <string name="respond_via_sms_canned_response_3" msgid="3496079065723960450">"I\'ll call you later."</string>
     <string name="respond_via_sms_canned_response_4" msgid="1698989243040062190">"Can\'t talk now. Call me later?"</string>
-    <string name="respond_via_sms_custom_message" msgid="6158880869935281078">"Write your own..."</string>
     <string name="respond_via_sms_setting_title" msgid="3754000371039709383">"Quick responses"</string>
     <string name="respond_via_sms_setting_title_2" msgid="6104662227299493906">"Edit quick responses"</string>
     <string name="respond_via_sms_setting_summary" msgid="9150281183930613065"></string>
     <string name="respond_via_sms_edittext_dialog_title" msgid="20379890418289778">"Quick response"</string>
-    <string name="respond_via_sms_menu_reset_default_activity" msgid="4029277930090150223">"Restore defaults"</string>
+    <string name="respond_via_sms_menu_reset_default_activity" msgid="1461742052902053466">"Reset default app"</string>
     <string name="respond_via_sms_confirmation_format" msgid="7229149977515784269">"Message sent to <xliff:g id="PHONE_NUMBER">%s</xliff:g>."</string>
     <string name="description_image_button_one" msgid="5502718871331943463">"one"</string>
     <string name="description_image_button_two" msgid="4903738528222924522">"two"</string>
@@ -609,4 +614,10 @@
     <string name="dtmf_tone_enable_title" msgid="827601042915852989">"Dial pad touch tones"</string>
     <string name="dial_pad_autocomplete" msgid="494525952035761075">"Dial pad autocomplete"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"Ringtone &amp; Vibrate"</string>
+    <!-- no translation found for choose_wifi_for_call_msg (193549297122949976) -->
+    <skip />
+    <!-- no translation found for choose_wifi_for_call_yes (5312994368472630983) -->
+    <skip />
+    <!-- no translation found for choose_wifi_for_call_no (7132239734287157307) -->
+    <skip />
 </resources>

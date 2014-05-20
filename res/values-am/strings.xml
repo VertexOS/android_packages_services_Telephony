@@ -28,7 +28,7 @@
     <string name="mmiStarted" msgid="6347869857061147003">"የMMI ኮድ ጀምሯል"</string>
     <string name="ussdRunning" msgid="485588686340541690">"የUSSD ኮድ አሂድ ላይ ነው..."</string>
     <string name="mmiCancelled" msgid="2771923949751842276">"የMMI ኮድ ቀርቷል"</string>
-    <string name="cancel" msgid="5044513931633602634">"ሰርዝ"</string>
+    <string name="cancel" msgid="5044513931633602634">"ይቅር"</string>
     <string name="enter_input" msgid="1810529547726803893">"የUSSD መልዕክት በ<xliff:g id="MIN_LEN">%d</xliff:g> እና <xliff:g id="MAX_LEN">%d</xliff:g> ቁምፊዎች መካከል መሆን አለበት። እባክዎ እንደገና ይሞክሩ።"</string>
     <string name="manageConferenceLabel" msgid="4691922394301969053">"የስብሰባስልክ ጥሪ አደራጅ"</string>
     <string name="ok" msgid="3811371167865772377">"እሺ"</string>
@@ -46,7 +46,7 @@
     <string name="no_vm_number_msg" msgid="1300729501030053828">"በSIM ካርዱ ላይምንም የድምፅመልዕክት ቁጥር አልከተቀመጠም።"</string>
     <string name="add_vm_number_str" msgid="4676479471644687453">"ቁጥር አክል"</string>
     <string name="puk_unlocked" msgid="2284912838477558454">"የSIM ካርድዎ አልታገደም። ስልክዎ በመከፈት ላይነው..."</string>
-    <string name="label_ndp" msgid="780479633159517250">"የSIM አውታረመረብ መክፈቻ PIN"</string>
+    <string name="label_ndp" msgid="780479633159517250">"የSIM አውታረመረብ መክፈቻ ፒን"</string>
     <string name="sim_ndp_unlock_text" msgid="683628237760543009">"ክፈት"</string>
     <string name="sim_ndp_dismiss_text" msgid="1604823375752456947">"አጥፋ"</string>
     <string name="requesting_unlock" msgid="6412629401033249351">"አውታረመረብ ለማስከፈት በመጠየቅ ላይ..."</string>
@@ -136,9 +136,9 @@
     <string name="select_automatically" msgid="5628402124471810174">"በራስ ሰር ምረጥ"</string>
     <string name="sum_select_automatically" msgid="5614890115123292400">"ተመራጭ አውታረ መረብን በራስ ሰር ምረጥ"</string>
     <string name="register_automatically" msgid="6017849844573519637">"ራስ ሰር ምዝገባ...."</string>
-    <string name="preferred_network_mode_title" msgid="8873246565334559308">"የአውታረ መረብ ሁነታ"</string>
+    <string name="preferred_network_mode_title" msgid="2336624679902659306">"የሚመረጠው የአውታረ መረብ አይነት"</string>
     <string name="preferred_network_mode_summary" msgid="1434820673166126609">"የአውታረመረቡንመከወኛ ሁነታ ለውጥ"</string>
-    <string name="preferred_network_mode_dialogtitle" msgid="8176355237105593793">"ተመራጭ  የአውታረ መረብ ሁነታ"</string>
+    <string name="preferred_network_mode_dialogtitle" msgid="4048082093347807230">"የሚመረጠው የአውታረ መረብ አይነት"</string>
     <string name="preferred_network_mode_wcdma_perf_summary" msgid="8521677230113533809">"ተመራጭ የአውታረመረብ ፡WCDMA ሁነታ ተመራጭ"</string>
     <string name="preferred_network_mode_gsm_only_summary" msgid="3352445413437453511">"ተመራጭ የአውታረመረብ ፡GSM ሁነታ ብቻ"</string>
     <string name="preferred_network_mode_wcdma_only_summary" msgid="2836897236221063413">"ተመራጭ የአውታረመረብ ፡WCDMA ሁነታ ብቻ"</string>
@@ -185,7 +185,7 @@
     <string name="throttle_status_subtext" msgid="1657318943142085170">"የ<xliff:g id="USED_0">%1$s</xliff:g> (<xliff:g id="USED_1">%2$d</xliff:g>٪)  <xliff:g id="USED_2">%3$s</xliff:g>  ከፍተኛ ክፈለ ጊዜ \nቀጣይ ክፍለ ጊዜ በ<xliff:g id="USED_3">%4$d</xliff:g> ቀናቶች (<xliff:g id="USED_4">%5$s</xliff:g>) ይጀምራል።"</string>
     <string name="throttle_data_usage_subtext" msgid="6029276011123694701">"የ<xliff:g id="USED_0">%1$s</xliff:g> (<xliff:g id="USED_1">%2$d</xliff:g>٪) <xliff:g id="USED_2">%3$s</xliff:g> ከፍተኛ ክፈለ ጊዜ"</string>
     <string name="throttle_data_rate_reduced_subtext" msgid="7492763592720107737">"<xliff:g id="USED_0">%1$s</xliff:g>ከከፍተኛው ዘሏል\n የውሂብ ደረጃ ወደ <xliff:g id="USED_1">%2$d</xliff:g> Kb/s ዝቅ ብሏል።"</string>
-    <string name="throttle_time_frame_subtext" msgid="7732763021560399960">"የ<xliff:g id="USED_0">%1$d</xliff:g>٪ ዙር ሄዷል \nቀጣይ ክፍለ ጊዜ በ<xliff:g id="USED_1">%2$d</xliff:g> ቀናት(<xliff:g id="USED_2">%3$s</xliff:g>) ይጀምራል"</string>
+    <string name="throttle_time_frame_subtext" msgid="7732763021560399960">"የ<xliff:g id="USED_0">%1$d</xliff:g>٪ ዙር ሄዷል \nቀጣይ ክፍለ ጊዜ በ<xliff:g id="USED_1">%2$d</xliff:g> ቀኖች(<xliff:g id="USED_2">%3$s</xliff:g>) ይጀምራል"</string>
     <string name="throttle_rate_subtext" msgid="2149102656120726855">"የውሂብ አጠቃቀም ወሰን ከበለጠየውሂብ ደረጃ ወደ <xliff:g id="USED">%1$d</xliff:g>Kb/s ቀንሷል።"</string>
     <string name="throttle_help_subtext" msgid="5217706521499010816">"ተጨማሪ መረጃ ስለ ድምጸ ተያያዥ ሞደምዎ ተንቀሳቃሽ ስልክ አውታረ መረብዎ ውሂብ አጠቃቀም መምሪያ"</string>
     <string name="cell_broadcast_sms" msgid="5584192824053625842">"የተንቀሳቃሽ ስልክ SMS ስርጭት"</string>
@@ -275,6 +275,9 @@
     <string name="enable_disable_multi_category" msgid="626771003122899280">"ብዙ ምድብ"</string>
     <string name="multi_category_enable" msgid="1179299804641721768">"ብዙ ምድብ ነቅቷል"</string>
     <string name="multi_category_disable" msgid="880104702904139505">"ብዙ-ምድብ አልነቃም"</string>
+    <string name="network_lte" msgid="7702681952521375754">"LTE (የሚመከር)"</string>
+    <string name="network_4G" msgid="2723512640529983138">"4G (የሚመከር)"</string>
+    <string name="network_global" msgid="1323190488685355309">"አለምአቀፍ"</string>
     <string name="cdma_system_select_title" msgid="5757657769327732833">"የሥርዓት ምርጫ"</string>
     <string name="cdma_system_select_summary" msgid="60460043745797517">"የCDMA በእንቅስቃሴ ላይ ሁኔታ ለውጥ"</string>
     <string name="cdma_system_select_dialogtitle" msgid="6083355415165359075">"የሥርዓት ምርጫ"</string>
@@ -295,8 +298,7 @@
   </string-array>
     <string name="cdma_activate_device" msgid="3793805892364814518">"መሣሪያ አግብር"</string>
     <string name="cdma_lte_data_service" msgid="4255018217292548962">"የውሂብ አግልግሎት አዋቅር"</string>
-    <!-- no translation found for carrier_settings_title (9028166176523012300) -->
-    <skip />
+    <string name="carrier_settings_title" msgid="9028166176523012300">"የድምጸ ተያያዥ ሞደም ቅንብሮች"</string>
     <string name="fdn" msgid="7878832555095183202">"በቋሚነት የሚደወልባቸው  ቁጥሮች"</string>
     <string name="manage_fdn_list" msgid="8777755791892122369">"FDN ዝርዝር"</string>
     <string name="fdn_activation" msgid="2156479741307463576">"የFDN አግብር"</string>
@@ -308,7 +310,7 @@
     <string name="enable_fdn_ok" msgid="7215588870329688132">"FDN አታስችል"</string>
     <string name="disable_fdn_ok" msgid="5727046928930740173">"FDN አታስችል"</string>
     <string name="sum_fdn" msgid="1959399454900272878">"የቋሚ መደወያቁጥሮችአደራጅ"</string>
-    <string name="sum_fdn_change_pin" msgid="6666549734792827932">"ለFDN ድረስ PIN ለውጥ"</string>
+    <string name="sum_fdn_change_pin" msgid="6666549734792827932">"ለFDN ድረስ ፒን  ለውጥ"</string>
     <string name="sum_fdn_manage_list" msgid="8431088265332628316">"የስልክ ቁጥር ዝርዝር አደራጅ"</string>
     <string name="voice_privacy" msgid="3776841382844614716">"የድምፅ ብቸኝነት"</string>
     <string name="voice_privacy_summary" msgid="3159383389833516214">"የተሻሻለውን የብሕትውነት ሁነታ አስችል"</string>
@@ -335,31 +337,32 @@
     <string name="pin2_invalid" msgid="5470854099230755944">"የተሳሳተ ፒን ስላስገባህ FDN አልዘመነም፡፡"</string>
     <string name="fdn_invalid_number" msgid="1494755047900009147">"ቁጥሩ ከ20 አሀዞች በላይ መብለጥ ስለማይችል FDN አልዘመነም፡፡"</string>
     <string name="pin2_or_fdn_invalid" msgid="6025144083384701197">"FDN አልዘመነም። ፒን2 ትክክል አልነበረም፣ ወይም የስልክ ቁጥሩ ተቀባይነት አላገኘም።"</string>
+    <string name="fdn_failed" msgid="540018079008319747">"FDN ክወና አልተሳካም!"</string>
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"ከSIM ካርድ ላይ በማንበብ ላይ..."</string>
     <string name="simContacts_empty" msgid="5270660846489561932">"በ SIM ካርድዎ ላይ ዕውቂያዎች የሉም።"</string>
     <string name="simContacts_title" msgid="1861472842524839921">"ለማስገባት ዕውቂያዎች ምረጥ"</string>
     <string name="simContacts_airplaneMode" msgid="1846161429087789936">"ከሲም ካርድ ላይ ዕውቂያዎችን ለማስመጣት፣ የአይሮፕላን ሁኔታን መጀመሪያ  አጥፋ፡፡"</string>
-    <string name="enable_pin" msgid="5422767284133234860">"SIM PIN አንቃ/አቦዝን"</string>
-    <string name="change_pin" msgid="9174186126330785343">"የSIM PIN ለውጥ"</string>
-    <string name="enter_pin_text" msgid="8532615714751931951">"SIM PIN:"</string>
-    <string name="oldPinLabel" msgid="5287773661246368314">"የድሮ PIN"</string>
+    <string name="enable_pin" msgid="5422767284133234860">"SIM ፒን  አንቃ/አቦዝን"</string>
+    <string name="change_pin" msgid="9174186126330785343">"የSIM ፒን  ለውጥ"</string>
+    <string name="enter_pin_text" msgid="8532615714751931951">"SIM ፒን :"</string>
+    <string name="oldPinLabel" msgid="5287773661246368314">"የድሮ ፒን"</string>
     <string name="newPinLabel" msgid="207488227285336897">"አዲስPIN"</string>
-    <string name="confirmPinLabel" msgid="257597715098070206">"አዲስ PIN አረጋግጥ"</string>
+    <string name="confirmPinLabel" msgid="257597715098070206">"አዲስ ፒን  አረጋግጥ"</string>
     <string name="badPin" msgid="8955102849303984935">"የተየበከው የድሮ ፒን ትክክል አይደለም። እባክህ እንደገና ሞክር።"</string>
     <string name="mismatchPin" msgid="5923253370683071889">"ያስገባኸው ፒኖች አይዛመዱም። እንደገና ሞክር።"</string>
-    <string name="invalidPin" msgid="5981171102258684792">"ከ4 እስከ 8 ቁጥሮች የያዘ PIN ተይብ"</string>
-    <string name="disable_sim_pin" msgid="3992926931620188855">"የSIM PIN አቦዝን"</string>
-    <string name="enable_sim_pin" msgid="5803702443844458831">"SIM PIN አንቃ"</string>
+    <string name="invalidPin" msgid="5981171102258684792">"ከ4 እስከ 8 ቁጥሮች የያዘ ፒን  ተይብ"</string>
+    <string name="disable_sim_pin" msgid="3992926931620188855">"የSIM ፒን  አቦዝን"</string>
+    <string name="enable_sim_pin" msgid="5803702443844458831">"SIM ፒን  አንቃ"</string>
     <string name="enable_in_progress" msgid="3695303775100109650">"እባክዎ ይጠብቁ…"</string>
-    <string name="enable_pin_ok" msgid="9166061915030865848">"SIM PIN ነቅቷል"</string>
+    <string name="enable_pin_ok" msgid="9166061915030865848">"SIM ፒን  ነቅቷል"</string>
     <string name="disable_pin_ok" msgid="5596999379593924850">"SIM ፒን  ቦዝኗል"</string>
-    <string name="pin_failed" msgid="2298841192582192277">"የተየብከው PIN የተሳሳተ ነበር።"</string>
-    <string name="pin_changed" msgid="4365538014588501049">"SIM PIN በተሳካ ተለውጧል"</string>
-    <string name="puk_requested" msgid="3898394204193202803">"የተሳሳተይለፍ ቃል፣SIM ተቆልፏል! PUK2 ይጠየቃል።"</string>
+    <string name="pin_failed" msgid="2298841192582192277">"የተየብከው ፒን  የተሳሳተ ነበር።"</string>
+    <string name="pin_changed" msgid="4365538014588501049">"SIM ፒን  በተሳካ ተለውጧል"</string>
+    <string name="puk_requested" msgid="1796577128488773946">"የይለፍ ቃሉ የተሳሳተ ነው፣ ን ታግዷል! PUK ያስፈልጋል።"</string>
     <string name="enter_pin2_text" msgid="8339444124477720345">"PIN2"</string>
     <string name="oldPin2Label" msgid="8559146795026261502">"የድሮ PIN2"</string>
     <string name="newPin2Label" msgid="4573956902204349054">"አዲስPIN2"</string>
-    <string name="confirmPin2Label" msgid="8100319484454787708">"አዲስ PIN አረጋግጥ"</string>
+    <string name="confirmPin2Label" msgid="8100319484454787708">"አዲስ ፒን  አረጋግጥ"</string>
     <string name="badPuk2" msgid="4851734468010000418">"የተየብክው PUK2 ኮድ ትክክል አይደለም።እንደገና ሞክር።"</string>
     <string name="badPin2" msgid="1041576234483629991">"የተየብከው የድሮ PIN2 ትክክል አይደለም።እባክህ እንደገና ሞክር።"</string>
     <string name="mismatchPin2" msgid="523029155918113440">"ያስገባኸው PIN2 አይዛመድም። እንደገና ሞክር።"</string>
@@ -367,8 +370,11 @@
     <string name="invalidPuk2" msgid="1290977391033057871">"8 ቁጥሮች የሆኑ PUK2  ተይብ።"</string>
     <string name="pin2_changed" msgid="1639666438836544393">"PIN2 በተሳካ ተለውጧል"</string>
     <string name="label_puk2_code" msgid="302845876240219560">"የPUK2 ኮድ ተይብ"</string>
-    <string name="fdn_enable_puk2_requested" msgid="4262894949634885773">"የተሳሳተ የይለፍ ቃል፣ ፒን2 ለውጥ እና ድጋሚ ሞክር!"</string>
+    <string name="fdn_enable_puk2_requested" msgid="3674058967950559397">"የይለፍ ቃል ትክክል አይደለም፣ ፒን2 ታግዷል። እባክዎ ፒን2ን ይቀይሩ እና እንደገና ይሞክሩ።"</string>
     <string name="puk2_requested" msgid="8909278021238716877">"የተሳሳተ ይለፍ ቃል፣ SIM ተቆልፏል! PUK2 ይጠየቃል።"</string>
+    <string name="puk2_blocked" msgid="3150263853077280049">"ፒን2 በቋሚነት ታግዷል።"</string>
+    <string name="pin2_attempts" msgid="7937503107162525324">\n" <xliff:g id="NUMBER">%d</xliff:g> ቀሪ ሙከራዎች አሉ።"</string>
+    <string name="pin2_unblocked" msgid="2903147240919055381">"ፒን2 እገዳው ተነስቷል!"</string>
     <string name="doneButton" msgid="2859593360997984240">"ተከናውኗል"</string>
     <string name="caller_manage_header" msgid="3231519674734638786">"የስብሰባ ጥሪ<xliff:g id="CONF_CALL_TIME">%s</xliff:g>"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"የድምፅ መልዕክት ቁጥር"</string>
@@ -574,12 +580,11 @@
     <string name="respond_via_sms_canned_response_2" msgid="4074450431532859214">"ወዲያው መልሼ እደውላለሁ።"</string>
     <string name="respond_via_sms_canned_response_3" msgid="3496079065723960450">"ኋላ እደውላለሁ።"</string>
     <string name="respond_via_sms_canned_response_4" msgid="1698989243040062190">"አሁን ማውራት አልችልም። ትንሽ ቆይተው ይደውሉ?"</string>
-    <string name="respond_via_sms_custom_message" msgid="6158880869935281078">"የእራስዎን ይጻፉ..."</string>
     <string name="respond_via_sms_setting_title" msgid="3754000371039709383">"ፈጣን ምላሾች"</string>
     <string name="respond_via_sms_setting_title_2" msgid="6104662227299493906">"ፈጣን ምላሾች አርትዕ"</string>
     <string name="respond_via_sms_setting_summary" msgid="9150281183930613065"></string>
     <string name="respond_via_sms_edittext_dialog_title" msgid="20379890418289778">"ፈጣን ምላሽ"</string>
-    <string name="respond_via_sms_menu_reset_default_activity" msgid="4029277930090150223">"ነባሪዎችን መልስ"</string>
+    <string name="respond_via_sms_menu_reset_default_activity" msgid="1461742052902053466">"ነባሪውን መተግበሪያ ዳግም አስጀምር"</string>
     <string name="respond_via_sms_confirmation_format" msgid="7229149977515784269">"ለ <xliff:g id="PHONE_NUMBER">%s</xliff:g> የተላከ መልዕክት"</string>
     <string name="description_image_button_one" msgid="5502718871331943463">"አንድ"</string>
     <string name="description_image_button_two" msgid="4903738528222924522">"ሁለት"</string>
@@ -609,4 +614,10 @@
     <string name="dtmf_tone_enable_title" msgid="827601042915852989">"የመደወያ ሰሌዳ ድምፆች ዳስ"</string>
     <string name="dial_pad_autocomplete" msgid="494525952035761075">"የመደወያ ሰሌዳ ራስ-ሙላ"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"የደወል ቅላጼ እና ንዘረት"</string>
+    <!-- no translation found for choose_wifi_for_call_msg (193549297122949976) -->
+    <skip />
+    <!-- no translation found for choose_wifi_for_call_yes (5312994368472630983) -->
+    <skip />
+    <!-- no translation found for choose_wifi_for_call_no (7132239734287157307) -->
+    <skip />
 </resources>
