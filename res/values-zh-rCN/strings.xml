@@ -524,10 +524,10 @@
     <string name="no_sip_account_found" msgid="724325811961769997">"此手机上没有互联网呼叫帐户，要立即添加一个吗？"</string>
     <string name="sip_menu_add" msgid="8757508498518881500">"添加"</string>
     <string name="add_sip_account" msgid="5904858426290097611">"添加帐户"</string>
-    <string name="remove_sip_account" msgid="7645900420385682570">"删除帐户"</string>
+    <string name="remove_sip_account" msgid="7645900420385682570">"移除帐户"</string>
     <string name="sip_account_list" msgid="5480058210652194306">"SIP 帐户"</string>
     <string name="saving_account" msgid="52903398217017954">"正在保存帐户..."</string>
-    <string name="removing_account" msgid="7183999896088628100">"正在删除帐户..."</string>
+    <string name="removing_account" msgid="7183999896088628100">"正在移除帐户..."</string>
     <string name="sip_menu_save" msgid="5842531129356014943">"保存"</string>
     <string name="sip_menu_discard" msgid="524075892158789701">"舍弃"</string>
     <string name="alert_dialog_close" msgid="7759635137627626235">"关闭个人资料"</string>
