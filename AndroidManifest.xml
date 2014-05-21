@@ -565,17 +565,23 @@
                 <action android:name="android.telecomm.CallServiceSelector" />
             </intent-filter>
         </service>
-        <service android:name="com.android.services.telephony.GsmConnectionService">
+        <service
+                android:name="com.android.services.telephony.GsmConnectionService"
+                android:label="@string/gsm_connection_service_label">
             <intent-filter>
                 <action android:name="android.telecomm.CallService" />
             </intent-filter>
         </service>
-        <service android:name="com.android.services.telephony.CdmaConnectionService">
+        <service
+                android:name="com.android.services.telephony.CdmaConnectionService"
+                android:label="@string/cdma_connection_service_label">
             <intent-filter>
                 <action android:name="android.telecomm.CallService" />
             </intent-filter>
         </service>
-        <service android:name="com.android.services.telephony.SipConnectionService">
+        <service
+                android:name="com.android.services.telephony.SipConnectionService"
+                android:label="@string/sip_connection_service_label">
             <intent-filter>
                 <action android:name="android.telecomm.CallService" />
             </intent-filter>
