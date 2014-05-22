@@ -21,7 +21,6 @@ import android.app.AppOpsManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.AsyncResult;
 import android.os.Binder;
@@ -867,9 +866,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
 
     public boolean enableDataConnectivity() {
         enforceModifyPermission();
-        ConnectivityManager cm =
-                (ConnectivityManager)mApp.getSystemService(Context.CONNECTIVITY_SERVICE);
-        cm.setMobileDataEnabled(true);
+        mPhone.setDataEnabled(true);
         return true;
     }
 
@@ -885,9 +882,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
 
     public boolean disableDataConnectivity() {
         enforceModifyPermission();
-        ConnectivityManager cm =
-                (ConnectivityManager)mApp.getSystemService(Context.CONNECTIVITY_SERVICE);
-        cm.setMobileDataEnabled(false);
+        mPhone.setDataEnabled(false);
         return true;
     }
 
@@ -1393,5 +1388,28 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         Boolean success = (Boolean) sendRequest(CMD_SET_PREFERRED_NETWORK_TYPE, networkType);
         if (DBG) log("setPreferredNetworkType: " + (success ? "ok" : "fail"));
         return success;
+    }
+
+    /**
+     * Set mobile data enabled
+     * Used by the user through settings etc to turn on/off mobile data
+     *
+     * @param enable {@code true} turn turn data on, else {@code false}
+     */
+    @Override
+    public void setDataEnabled(boolean enable) {
+        enforceModifyPermission();
+        mPhone.setDataEnabled(enable);
+    }
+
+    /**
+     * Get whether mobile data is enabled
+     *
+     * @return {@code true} if data is enabled else {@code false}
+     */
+    @Override
+    public boolean getDataEnabled() {
+        enforceModifyPermission();
+        return mPhone.getDataEnabled();
     }
 }
