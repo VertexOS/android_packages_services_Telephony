@@ -27,7 +27,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager.NameNotFoundException;
-import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.AsyncResult;
 import android.os.Bundle;
@@ -171,10 +170,8 @@ public class MobileNetworkSettings extends PreferenceActivity
             return true;
         } else if (preference == mButtonDataEnabled) {
             if (DBG) log("onPreferenceTreeClick: preference == mButtonDataEnabled.");
-            ConnectivityManager cm =
-                    (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
 
-            cm.setMobileDataEnabled(mButtonDataEnabled.isChecked());
+            mPhone.setDataEnabled(mButtonDataEnabled.isChecked());
             return true;
         } else if (preference == mLteDataServicePref) {
             String tmpl = android.provider.Settings.Global.getString(getContentResolver(),
@@ -345,9 +342,7 @@ public class MobileNetworkSettings extends PreferenceActivity
         // preferences.
         getPreferenceScreen().setEnabled(true);
 
-        ConnectivityManager cm =
-                (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
-        mButtonDataEnabled.setChecked(cm.getMobileDataEnabled());
+        mButtonDataEnabled.setChecked(mPhone.getDataEnabled());
 
         // Set UI state in onResume because a user could go home, launch some
         // app to change this setting's backend, and re-launch this settings app
