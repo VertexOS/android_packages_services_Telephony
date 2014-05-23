@@ -17,9 +17,10 @@
 package com.android.services.telephony;
 
 import android.content.Context;
-import android.telephony.TelephonyManager;
 
+import com.android.internal.telephony.PhoneConstants;
 import com.android.internal.telephony.PhoneFactory;
+import com.android.internal.telephony.PhoneProxy;
 
 /**
  * Singleton entry point for the telephony-services app. Initializes ongoing systems relating to
@@ -57,22 +58,16 @@ public class TelephonyGlobals {
      * Sets up incoming call notifiers for all the call services.
      */
     private void setupIncomingCallNotifiers() {
-        TelephonyManager telephonyManager = (TelephonyManager) mContext.getSystemService(
-                Context.TELEPHONY_SERVICE);
+        PhoneProxy defaultPhone = (PhoneProxy) PhoneFactory.getDefaultPhone();
+        Log.i(this, "Default phone: %s.", defaultPhone);
 
-        int networkType = PhoneFactory.calculatePreferredNetworkType(mContext);
-        int phoneType = TelephonyManager.getPhoneType(networkType);
+        Log.i(this, "Registering the GSM listener.");
+        mGsmIncomingCallNotifier = new IncomingCallNotifier(
+                GsmConnectionService.class, PhoneConstants.PHONE_TYPE_GSM, defaultPhone);
 
-        if (TelephonyManager.PHONE_TYPE_GSM == phoneType) {
-            Log.d(this, "Phone type GSM found");
-            mGsmIncomingCallNotifier = new IncomingCallNotifier(
-                    GsmConnectionService.class, PhoneFactory.getDefaultPhone());
-
-        } else if (TelephonyManager.PHONE_TYPE_CDMA == phoneType) {
-            Log.d(this, "Phone type CDMA found");
-            mCdmaIncomingCallNotifier = new IncomingCallNotifier(
-                    CdmaConnectionService.class, PhoneFactory.getDefaultPhone());
-        }
+        Log.i(this, "Registering the CDMA listener.");
+        mCdmaIncomingCallNotifier = new IncomingCallNotifier(
+                CdmaConnectionService.class, PhoneConstants.PHONE_TYPE_CDMA, defaultPhone);
 
         // TODO(santoscordon): Do SIP.  SIP will require a slightly different solution since it
         // doesn't have a phone object in the same way as PSTN calls. Additionally, the user can
