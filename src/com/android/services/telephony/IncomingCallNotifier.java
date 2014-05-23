@@ -16,10 +16,10 @@
 
 package com.android.services.telephony;
 
-import com.google.common.base.Preconditions;
-
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.AsyncResult;
 import android.os.Handler;
 import android.os.Message;
@@ -30,6 +30,10 @@ import android.telecomm.TelecommConstants;
 import com.android.internal.telephony.Call;
 import com.android.internal.telephony.Connection;
 import com.android.internal.telephony.Phone;
+import com.android.internal.telephony.PhoneConstants;
+import com.android.internal.telephony.PhoneProxy;
+import com.android.internal.telephony.TelephonyIntents;
+import com.google.common.base.Preconditions;
 
 /**
  * Listens to incoming-call events from the associated phone object and notifies Telecomm upon each
@@ -39,14 +43,25 @@ final class IncomingCallNotifier {
     /** New ringing connection event code. */
     private static final int EVENT_NEW_RINGING_CONNECTION = 100;
 
-    /** The phone object to listen to. */
-    private final Phone mPhone;
+    /** The phone proxy object to listen to. */
+    private final PhoneProxy mPhoneProxy;
+
+    /** The phone type for this incoming call notifier. */
+    private final int mPhoneType;
+
+    /**
+     * The base phone implementation behind phone proxy. The underlying phone implementation can
+     * change underneath when the radio technology changes. We listen for these events and update
+     * the base phone in this variable. We save it so that when the change happens, we can
+     * unregister from the events we were listening to.
+     */
+    private Phone mPhoneBase;
 
     /** The class for the associated call service. */
     private final Class<? extends CallService> mCallServiceClass;
 
     /**
-     * Used to listen to events from {@link #mPhone}.
+     * Used to listen to events from {@link #mPhoneBase}.
      */
     private final Handler mHandler = new Handler() {
         @Override
@@ -62,19 +77,69 @@ final class IncomingCallNotifier {
     };
 
     /**
+     * Receiver to listen for radio technology change events.
+     */
+    private final BroadcastReceiver mRATReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            if (TelephonyIntents.ACTION_RADIO_TECHNOLOGY_CHANGED.equals(action)) {
+                String newPhone = intent.getStringExtra(PhoneConstants.PHONE_NAME_KEY);
+                Log.d(this, "Radio technology switched. Now %s is active.", newPhone);
+
+                registerForNotifications();
+            }
+        }
+    };
+
+    /**
      * Persists the specified parameters and starts listening to phone events.
      *
      * @param callServiceClass The call service class.
-     * @param phone The phone object for listening to incoming calls.
+     * @param phoneType The type of phone this class should be listening to.
+     * @param phoneProxy The phone object for listening to incoming calls.
      */
-    IncomingCallNotifier(Class<? extends CallService> callServiceClass, Phone phone) {
+    IncomingCallNotifier(
+            Class<? extends CallService> callServiceClass, int phoneType, PhoneProxy phoneProxy) {
         Preconditions.checkNotNull(callServiceClass);
-        Preconditions.checkNotNull(phone);
+        Preconditions.checkNotNull(phoneProxy);
 
         mCallServiceClass = callServiceClass;
-        mPhone = phone;
+        mPhoneType = phoneType;
+        mPhoneProxy = phoneProxy;
 
-        mPhone.registerForNewRingingConnection(mHandler, EVENT_NEW_RINGING_CONNECTION, null);
+        registerForNotifications();
+
+        IntentFilter intentFilter =
+                new IntentFilter(TelephonyIntents.ACTION_RADIO_TECHNOLOGY_CHANGED);
+        mPhoneProxy.getContext().registerReceiver(mRATReceiver, intentFilter);
+    }
+
+    /**
+     * Register for notifications from the base phone.
+     * TODO(santoscordon): We should only need to interact with the phoneproxy directly. However,
+     * since the phoneproxy only interacts directly with CallManager we either listen to callmanager
+     * or we have to poke into the proxy like this.  Neither is desirable. It would be better if
+     * this class and callManager could register generically with the phone proxy instead and get
+     * radio techonology changes directly.  Or better yet, just register for the notifications
+     * directly with phone proxy and never worry about the technology changes. This requires a
+     * change in opt/telephony code.
+     */
+    private void registerForNotifications() {
+        Phone newPhone = mPhoneProxy.getActivePhone();
+        if (newPhone != mPhoneBase) {
+            if (mPhoneBase != null) {
+                Log.i(this, "Unregistering: %s", mPhoneBase);
+                mPhoneBase.unregisterForNewRingingConnection(mHandler);
+            }
+
+            if (newPhone != null && newPhone.getPhoneType() == mPhoneType) {
+                Log.i(this, "Registering: %s", newPhone);
+                mPhoneBase = newPhone;
+                mPhoneBase.registerForNewRingingConnection(
+                        mHandler, EVENT_NEW_RINGING_CONNECTION, null);
+            }
+        }
     }
 
     /**
@@ -99,7 +164,7 @@ final class IncomingCallNotifier {
      * Sends the incoming call intent to telecomm.
      */
     private void sendIncomingCallIntent() {
-        Context context = mPhone.getContext();
+        Context context = mPhoneProxy.getContext();
 
         CallServiceDescriptor.Builder builder = CallServiceDescriptor.newBuilder(context);
         builder.setCallService(mCallServiceClass);
