@@ -1403,13 +1403,23 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     }
 
     /**
-     * Get whether mobile data is enabled
+     * Get whether mobile data is enabled.
+     *
+     * Note that this used to be available from ConnectivityService, gated by
+     * ACCESS_NETWORK_STATE permission, so this will accept either that or
+     * our MODIFY_PHONE_STATE.
      *
      * @return {@code true} if data is enabled else {@code false}
      */
     @Override
     public boolean getDataEnabled() {
-        enforceModifyPermission();
+        try {
+            mApp.enforceCallingOrSelfPermission(android.Manifest.permission.ACCESS_NETWORK_STATE,
+                    null);
+        } catch (Exception e) {
+            mApp.enforceCallingOrSelfPermission(android.Manifest.permission.MODIFY_PHONE_STATE,
+                    null);
+        }
         return mPhone.getDataEnabled();
     }
 }
