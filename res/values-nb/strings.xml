@@ -56,6 +56,8 @@
     <string name="labelCDMAMore" msgid="1630676740428229339">"Innstillinger for CDMA-samtaler"</string>
     <string name="apn_settings" msgid="9043423184895642077">"Navn på aksesspunkt"</string>
     <string name="settings_label" msgid="3876743539816984008">"Nettverksinnstillinger"</string>
+    <string name="connection_service" msgid="978745922583410219">"Tilkoblingstjenesten som skal brukes"</string>
+    <string name="connection_service_default_label" msgid="1498481943805913754">"Innebygd tilkoblingstjeneste"</string>
     <string name="voicemail" msgid="8693759337917898954">"Telefonsvarer"</string>
     <string name="voicemail_abbreviated" msgid="2215592488517217448">"Svarer:"</string>
     <string name="networks" msgid="8873030692174541976">"Nettoperatører"</string>
@@ -626,4 +628,7 @@
     <skip />
     <!-- no translation found for choose_wifi_for_call_no (7132239734287157307) -->
     <skip />
+    <string name="gsm_connection_service_label" msgid="2332284528867411683">"Innebygd GSM SIM-kort"</string>
+    <string name="cdma_connection_service_label" msgid="5038725238949035222">"Innebygd CDMA SIM-kort"</string>
+    <string name="sip_connection_service_label" msgid="3547998349299125294">"Innebygd Internett-ringing"</string>
 </resources>

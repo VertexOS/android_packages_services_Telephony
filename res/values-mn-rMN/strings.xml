@@ -56,6 +56,8 @@
     <string name="labelCDMAMore" msgid="1630676740428229339">"CDMA дуудлагын тохиргоо"</string>
     <string name="apn_settings" msgid="9043423184895642077">"Хандалтын Цэгийн Нэрс"</string>
     <string name="settings_label" msgid="3876743539816984008">"Сүлжээний тохиргоо"</string>
+    <string name="connection_service" msgid="978745922583410219">"Ашиглах холболтын үйлчилгээ"</string>
+    <string name="connection_service_default_label" msgid="1498481943805913754">"Суурилагдсан холболтын үйлчилгээ"</string>
     <string name="voicemail" msgid="8693759337917898954">"Дуут шуудан"</string>
     <string name="voicemail_abbreviated" msgid="2215592488517217448">"ДШ:"</string>
     <string name="networks" msgid="8873030692174541976">"Сүлжээний операторууд"</string>
@@ -617,4 +619,7 @@
     <string name="choose_wifi_for_call_msg" msgid="193549297122949976">"Дуудлага хийхэд Wi-Fi ашиглах уу?"</string>
     <string name="choose_wifi_for_call_yes" msgid="5312994368472630983">"Тийм"</string>
     <string name="choose_wifi_for_call_no" msgid="7132239734287157307">"Үгүй"</string>
+    <string name="gsm_connection_service_label" msgid="2332284528867411683">"Суурилагдсан GSM SIM карт"</string>
+    <string name="cdma_connection_service_label" msgid="5038725238949035222">"Суурилагдсан CDMA SIM карт"</string>
+    <string name="sip_connection_service_label" msgid="3547998349299125294">"Суурилагдсан Интернет дуудлага"</string>
 </resources>

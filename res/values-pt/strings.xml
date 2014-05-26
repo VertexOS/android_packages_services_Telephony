@@ -56,6 +56,8 @@
     <string name="labelCDMAMore" msgid="1630676740428229339">"Configurações de chamada CDMA"</string>
     <string name="apn_settings" msgid="9043423184895642077">"Nomes dos pontos de acesso"</string>
     <string name="settings_label" msgid="3876743539816984008">"Configurações de rede"</string>
+    <string name="connection_service" msgid="978745922583410219">"Serviço de conexão a usar"</string>
+    <string name="connection_service_default_label" msgid="1498481943805913754">"Serviço de conexão integrado"</string>
     <string name="voicemail" msgid="8693759337917898954">"Correio de voz"</string>
     <string name="voicemail_abbreviated" msgid="2215592488517217448">"VM:"</string>
     <string name="networks" msgid="8873030692174541976">"Operadores de rede"</string>
@@ -614,10 +616,10 @@
     <string name="dtmf_tone_enable_title" msgid="827601042915852989">"Tons de toque teclado numérico"</string>
     <string name="dial_pad_autocomplete" msgid="494525952035761075">"Autopreenchimento do teclado"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"Toque e vibração"</string>
-    <!-- no translation found for choose_wifi_for_call_msg (193549297122949976) -->
-    <skip />
-    <!-- no translation found for choose_wifi_for_call_yes (5312994368472630983) -->
-    <skip />
-    <!-- no translation found for choose_wifi_for_call_no (7132239734287157307) -->
-    <skip />
+    <string name="choose_wifi_for_call_msg" msgid="193549297122949976">"Usar o Wi-Fi para efetuar a chamada?"</string>
+    <string name="choose_wifi_for_call_yes" msgid="5312994368472630983">"Sim"</string>
+    <string name="choose_wifi_for_call_no" msgid="7132239734287157307">"Não"</string>
+    <string name="gsm_connection_service_label" msgid="2332284528867411683">"Cartão SIM GSM integrado"</string>
+    <string name="cdma_connection_service_label" msgid="5038725238949035222">"Cartão SIM CDMA integrado"</string>
+    <string name="sip_connection_service_label" msgid="3547998349299125294">"Chamadas pela Internet integradas"</string>
 </resources>

@@ -56,6 +56,8 @@
     <string name="labelCDMAMore" msgid="1630676740428229339">"CDMA የጥሪ ቅንብሮች"</string>
     <string name="apn_settings" msgid="9043423184895642077">"የድረስ ነጥብ ስም"</string>
     <string name="settings_label" msgid="3876743539816984008">"የአውታረመረብ ቅንብሮች"</string>
+    <string name="connection_service" msgid="978745922583410219">"የሚጠቀሙት የግንኙነት አገልግሎት"</string>
+    <string name="connection_service_default_label" msgid="1498481943805913754">"አብሮ የተገነባ የግንኙነት አገልግሎት"</string>
     <string name="voicemail" msgid="8693759337917898954">"የድምፅ መልዕክት"</string>
     <string name="voicemail_abbreviated" msgid="2215592488517217448">"VM:"</string>
     <string name="networks" msgid="8873030692174541976">"የአውታረ መረብ ትእምርተ ከዋኝ"</string>
@@ -620,4 +622,7 @@
     <skip />
     <!-- no translation found for choose_wifi_for_call_no (7132239734287157307) -->
     <skip />
+    <string name="gsm_connection_service_label" msgid="2332284528867411683">"አብሮ የተሰራ የጂኤስኤም SIM ካርድ"</string>
+    <string name="cdma_connection_service_label" msgid="5038725238949035222">"አብሮ የተሰራ የCDMA SIM ካርድ"</string>
+    <string name="sip_connection_service_label" msgid="3547998349299125294">"አብሮ የተሰራ የበይነመረብ መደወያ"</string>
 </resources>

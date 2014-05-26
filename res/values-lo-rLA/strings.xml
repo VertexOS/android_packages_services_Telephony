@@ -56,6 +56,8 @@
     <string name="labelCDMAMore" msgid="1630676740428229339">"ການຕັ້ງຄ່າໂທ CDMA"</string>
     <string name="apn_settings" msgid="9043423184895642077">"ຊື່ຂອງຈຸດການເຂົ້າເຖິງ (APN)"</string>
     <string name="settings_label" msgid="3876743539816984008">"ການຕັ້ງຄ່າເຄືອຂ່າຍ"</string>
+    <string name="connection_service" msgid="978745922583410219">"ບໍ​ລິ​ການ​ການ​ເຊື່ອມ​ຕໍ່​ເພື່ອ​ໃຊ້"</string>
+    <string name="connection_service_default_label" msgid="1498481943805913754">"ບໍ​ລິ​ການ​ການ​ເຊື່ອມ​ຕໍ່​ທີ່​ມີ​ມາ​ນຳ"</string>
     <string name="voicemail" msgid="8693759337917898954">"ຂໍ້ຄວາມສຽງ"</string>
     <string name="voicemail_abbreviated" msgid="2215592488517217448">"VM​:"</string>
     <string name="networks" msgid="8873030692174541976">"ຜູ່ໃຫ້ບໍລິການເຄືອຂ່າຍ"</string>
@@ -617,4 +619,7 @@
     <string name="choose_wifi_for_call_msg" msgid="193549297122949976">"ໃຊ້ Wi-Fi ເພື່ອ​ໂທ​ບໍ?"</string>
     <string name="choose_wifi_for_call_yes" msgid="5312994368472630983">"ແມ່ນແລ້ວ"</string>
     <string name="choose_wifi_for_call_no" msgid="7132239734287157307">"ບໍ່​"</string>
+    <string name="gsm_connection_service_label" msgid="2332284528867411683">"GSM SIM ​ກາດ​ທີ່​ມາ​ກັບ​ເຄື່ອງ"</string>
+    <string name="cdma_connection_service_label" msgid="5038725238949035222">"CDMA SIM ກາດ​ທີ່​ມາ​ກັບ​ເຄື່ອງ"</string>
+    <string name="sip_connection_service_label" msgid="3547998349299125294">"ການ​ໂທ​ຜ່ານ​ອິນ​ເຕີ​ເນັດ​​ທີ່​ມາ​ກັບ​ເຄື່ອງ"</string>
 </resources>

@@ -56,6 +56,8 @@
     <string name="labelCDMAMore" msgid="1630676740428229339">"Paramètres d\'appel CDMA"</string>
     <string name="apn_settings" msgid="9043423184895642077">"Noms des points d\'accès"</string>
     <string name="settings_label" msgid="3876743539816984008">"Paramètres du réseau"</string>
+    <string name="connection_service" msgid="978745922583410219">"Service de connexion à utiliser"</string>
+    <string name="connection_service_default_label" msgid="1498481943805913754">"Service de connexion intégré"</string>
     <string name="voicemail" msgid="8693759337917898954">"Messagerie vocale"</string>
     <string name="voicemail_abbreviated" msgid="2215592488517217448">"MV :"</string>
     <string name="networks" msgid="8873030692174541976">"Opérateur de réseau"</string>
@@ -618,10 +620,10 @@
     <string name="dtmf_tone_enable_title" msgid="827601042915852989">"Numérotation sonore"</string>
     <string name="dial_pad_autocomplete" msgid="494525952035761075">"Saisie semi-auto pour clavier numérique"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"Sonnerie et vibreur"</string>
-    <!-- no translation found for choose_wifi_for_call_msg (193549297122949976) -->
-    <skip />
-    <!-- no translation found for choose_wifi_for_call_yes (5312994368472630983) -->
-    <skip />
-    <!-- no translation found for choose_wifi_for_call_no (7132239734287157307) -->
-    <skip />
+    <string name="choose_wifi_for_call_msg" msgid="193549297122949976">"Utiliser le Wi-Fi pour faire l\'appel?"</string>
+    <string name="choose_wifi_for_call_yes" msgid="5312994368472630983">"Oui"</string>
+    <string name="choose_wifi_for_call_no" msgid="7132239734287157307">"Non"</string>
+    <string name="gsm_connection_service_label" msgid="2332284528867411683">"Carte SIM GSM intégrée"</string>
+    <string name="cdma_connection_service_label" msgid="5038725238949035222">"Carte SIM CDMA intégrée"</string>
+    <string name="sip_connection_service_label" msgid="3547998349299125294">"Fonctionnalité d\'appel par Internet intégrée"</string>
 </resources>
