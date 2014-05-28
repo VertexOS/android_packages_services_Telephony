@@ -616,12 +616,9 @@
     <string name="dtmf_tone_enable_title" msgid="827601042915852989">"Sonar en marcar els números"</string>
     <string name="dial_pad_autocomplete" msgid="494525952035761075">"Autocompletar amb teclat"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"So i vibració"</string>
-    <!-- no translation found for choose_wifi_for_call_msg (193549297122949976) -->
-    <skip />
-    <!-- no translation found for choose_wifi_for_call_yes (5312994368472630983) -->
-    <skip />
-    <!-- no translation found for choose_wifi_for_call_no (7132239734287157307) -->
-    <skip />
+    <string name="choose_wifi_for_call_msg" msgid="193549297122949976">"Vols fer servir la connexió Wi-Fi per fer trucades?"</string>
+    <string name="choose_wifi_for_call_yes" msgid="5312994368472630983">"Sí"</string>
+    <string name="choose_wifi_for_call_no" msgid="7132239734287157307">"No"</string>
     <string name="gsm_connection_service_label" msgid="2332284528867411683">"Targeta SIM integrada amb GSM"</string>
     <string name="cdma_connection_service_label" msgid="5038725238949035222">"Targeta SIM integrada amb CDMA"</string>
     <string name="sip_connection_service_label" msgid="3547998349299125294">"Trucades d\'Internet integrades"</string>

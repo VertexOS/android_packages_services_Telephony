@@ -625,5 +625,5 @@
     <string name="choose_wifi_for_call_no" msgid="7132239734287157307">"Ei"</string>
     <string name="gsm_connection_service_label" msgid="2332284528867411683">"GSM-yhteyden SIM-kortti"</string>
     <string name="cdma_connection_service_label" msgid="5038725238949035222">"CDMA-yhteyden SIM-kortti"</string>
-    <string name="sip_connection_service_label" msgid="3547998349299125294">"Internet-puheluiden SIP-yhteys"</string>
+    <string name="sip_connection_service_label" msgid="3547998349299125294">"Internetpuheluiden SIP-yhteys"</string>
 </resources>

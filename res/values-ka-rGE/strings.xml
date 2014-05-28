@@ -619,10 +619,7 @@
     <string name="choose_wifi_for_call_msg" msgid="193549297122949976">"გსურთ დასარეკად Wi-Fi-ს გამოყენება?"</string>
     <string name="choose_wifi_for_call_yes" msgid="5312994368472630983">"დიახ"</string>
     <string name="choose_wifi_for_call_no" msgid="7132239734287157307">"არა"</string>
-    <!-- no translation found for gsm_connection_service_label (2332284528867411683) -->
-    <skip />
-    <!-- no translation found for cdma_connection_service_label (5038725238949035222) -->
-    <skip />
-    <!-- no translation found for sip_connection_service_label (3547998349299125294) -->
-    <skip />
+    <string name="gsm_connection_service_label" msgid="2332284528867411683">"ჩაშენებული GSM SIM ბარათი"</string>
+    <string name="cdma_connection_service_label" msgid="5038725238949035222">"ჩაშენებული CDMA SIM ბარათი"</string>
+    <string name="sip_connection_service_label" msgid="3547998349299125294">"ჩაშენებული ინტერნეტ-ზარი"</string>
 </resources>
