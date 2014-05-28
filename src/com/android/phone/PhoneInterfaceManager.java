@@ -95,8 +95,6 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     private static final int EVENT_GET_PREFERRED_NETWORK_TYPE_DONE = 22;
     private static final int CMD_SET_PREFERRED_NETWORK_TYPE = 23;
     private static final int EVENT_SET_PREFERRED_NETWORK_TYPE_DONE = 24;
-    private static final int CMD_SEND_ENVELOPE = 25;
-    private static final int EVENT_SEND_ENVELOPE_DONE = 26;
 
     /** The singleton instance. */
     private static PhoneInterfaceManager sInstance;
@@ -260,34 +258,6 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
                                     ar.exception);
                         } else {
                             loge("iccTransmitApduLogicalChannel: Unknown exception");
-                        }
-                    }
-                    synchronized (request) {
-                        request.notifyAll();
-                    }
-                    break;
-
-                case CMD_SEND_ENVELOPE:
-                    request = (MainThreadRequest) msg.obj;
-                    onCompleted = obtainMessage(EVENT_SEND_ENVELOPE_DONE, request);
-                    UiccController.getInstance().getUiccCard().sendEnvelopeWithStatus(
-                            (String)request.argument, onCompleted);
-                    break;
-
-                case EVENT_SEND_ENVELOPE_DONE:
-                    ar = (AsyncResult) msg.obj;
-                    request = (MainThreadRequest) ar.userObj;
-                    if (ar.exception == null && ar.result != null) {
-                        request.result = ar.result;
-                    } else {
-                        request.result = new IccIoResult(0x6F, 0, (byte[])null);
-                        if (ar.result == null) {
-                            loge("sendEnvelopeWithStatus: Empty response");
-                        } else if (ar.exception instanceof CommandException) {
-                            loge("sendEnvelopeWithStatus: CommandException: " +
-                                    ar.exception);
-                        } else {
-                            loge("sendEnvelopeWithStatus: exception:" + ar.exception);
                         }
                     }
                     synchronized (request) {
@@ -1088,15 +1058,6 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
                 null);
     }
 
-    /**
-     * Make sure the caller has SIM_COMMUNICATION permission.
-     *
-     * @throws SecurityException if the caller does not have the required permission.
-     */
-    private void enforceSimCommunicationPermission() {
-        mApp.enforceCallingOrSelfPermission(android.Manifest.permission.SIM_COMMUNICATION, null);
-    }
-
     private String createTelUrl(String number) {
         if (TextUtils.isEmpty(number)) {
             return null;
@@ -1219,175 +1180,6 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     private static int getWhenToMakeWifiCallsDefaultPreference() {
         // TODO(sail): Use a build property to choose this value.
         return TelephonyManager.WifiCallingChoices.ALWAYS_USE;
-    }
-
-    @Override
-    public int iccOpenLogicalChannel(String AID) {
-        enforceSimCommunicationPermission();
-
-        if (DBG) log("iccOpenLogicalChannel: " + AID);
-        Integer channel = (Integer)sendRequest(CMD_OPEN_CHANNEL, AID);
-        if (DBG) log("iccOpenLogicalChannel: " + channel);
-        return channel;
-    }
-
-    @Override
-    public boolean iccCloseLogicalChannel(int channel) {
-        enforceSimCommunicationPermission();
-
-        if (DBG) log("iccCloseLogicalChannel: " + channel);
-        if (channel < 0) {
-          return false;
-        }
-        Boolean success = (Boolean)sendRequest(CMD_CLOSE_CHANNEL, channel);
-        if (DBG) log("iccCloseLogicalChannel: " + success);
-        return success;
-    }
-
-    @Override
-    public String iccTransmitApduLogicalChannel(int channel, int cla,
-            int command, int p1, int p2, int p3, String data) {
-        enforceSimCommunicationPermission();
-
-        if (DBG) {
-            log("iccTransmitApduLogicalChannel: chnl=" + channel + " cla=" + cla +
-                    " cmd=" + command + " p1=" + p1 + " p2=" + p2 + " p3=" + p3 +
-                    " data=" + data);
-        }
-
-        if (channel < 0) {
-            return "";
-        }
-
-        IccIoResult response = (IccIoResult)sendRequest(CMD_TRANSMIT_APDU,
-                new IccAPDUArgument(channel, cla, command, p1, p2, p3, data));
-        if (DBG) log("iccTransmitApduLogicalChannel: " + response);
-
-        // If the payload is null, there was an error. Indicate that by returning
-        // an empty string.
-        if (response.payload == null) {
-          return "";
-        }
-
-        // Append the returned status code to the end of the response payload.
-        String s = Integer.toHexString(
-                (response.sw1 << 8) + response.sw2 + 0x10000).substring(1);
-        s = IccUtils.bytesToHexString(response.payload) + s;
-        return s;
-    }
-
-    @Override
-    public String sendEnvelopeWithStatus(String content) {
-        enforceSimCommunicationPermission();
-
-        IccIoResult response = (IccIoResult)sendRequest(CMD_SEND_ENVELOPE, content);
-        if (response.payload == null) {
-          return "";
-        }
-
-        // Append the returned status code to the end of the response payload.
-        String s = Integer.toHexString(
-                (response.sw1 << 8) + response.sw2 + 0x10000).substring(1);
-        s = IccUtils.bytesToHexString(response.payload) + s;
-        return s;
-    }
-
-    /**
-     * Read one of the NV items defined in {@link com.android.internal.telephony.RadioNVItems}
-     * and {@code ril_nv_items.h}. Used for device configuration by some CDMA operators.
-     *
-     * @param itemID the ID of the item to read
-     * @return the NV item as a String, or null on error.
-     */
-    @Override
-    public String nvReadItem(int itemID) {
-        enforceModifyPermission();
-        if (DBG) log("nvReadItem: item " + itemID);
-        String value = (String) sendRequest(CMD_NV_READ_ITEM, itemID);
-        if (DBG) log("nvReadItem: item " + itemID + " is \"" + value + '"');
-        return value;
-    }
-
-    /**
-     * Write one of the NV items defined in {@link com.android.internal.telephony.RadioNVItems}
-     * and {@code ril_nv_items.h}. Used for device configuration by some CDMA operators.
-     *
-     * @param itemID the ID of the item to read
-     * @param itemValue the value to write, as a String
-     * @return true on success; false on any failure
-     */
-    @Override
-    public boolean nvWriteItem(int itemID, String itemValue) {
-        enforceModifyPermission();
-        if (DBG) log("nvWriteItem: item " + itemID + " value \"" + itemValue + '"');
-        Boolean success = (Boolean) sendRequest(CMD_NV_WRITE_ITEM,
-                new Pair<Integer, String>(itemID, itemValue));
-        if (DBG) log("nvWriteItem: item " + itemID + ' ' + (success ? "ok" : "fail"));
-        return success;
-    }
-
-    /**
-     * Update the CDMA Preferred Roaming List (PRL) in the radio NV storage.
-     * Used for device configuration by some CDMA operators.
-     *
-     * @param preferredRoamingList byte array containing the new PRL
-     * @return true on success; false on any failure
-     */
-    @Override
-    public boolean nvWriteCdmaPrl(byte[] preferredRoamingList) {
-        enforceModifyPermission();
-        if (DBG) log("nvWriteCdmaPrl: value: " + HexDump.toHexString(preferredRoamingList));
-        Boolean success = (Boolean) sendRequest(CMD_NV_WRITE_CDMA_PRL, preferredRoamingList);
-        if (DBG) log("nvWriteCdmaPrl: " + (success ? "ok" : "fail"));
-        return success;
-    }
-
-    /**
-     * Perform the specified type of NV config reset.
-     * Used for device configuration by some CDMA operators.
-     *
-     * @param resetType the type of reset to perform (1 == factory reset; 2 == NV-only reset)
-     * @return true on success; false on any failure
-     */
-    @Override
-    public boolean nvResetConfig(int resetType) {
-        enforceModifyPermission();
-        if (DBG) log("nvResetConfig: type " + resetType);
-        Boolean success = (Boolean) sendRequest(CMD_NV_RESET_CONFIG, resetType);
-        if (DBG) log("nvResetConfig: type " + resetType + ' ' + (success ? "ok" : "fail"));
-        return success;
-    }
-
-    /**
-     * Get the preferred network type.
-     * Used for device configuration by some CDMA operators.
-     *
-     * @return the preferred network type, defined in RILConstants.java.
-     */
-    @Override
-    public int getPreferredNetworkType() {
-        enforceModifyPermission();
-        if (DBG) log("getPreferredNetworkType");
-        int[] result = (int[]) sendRequest(CMD_GET_PREFERRED_NETWORK_TYPE, null);
-        int networkType = (result != null ? result[0] : -1);
-        if (DBG) log("getPreferredNetworkType: " + networkType);
-        return networkType;
-    }
-
-    /**
-     * Set the preferred network type.
-     * Used for device configuration by some CDMA operators.
-     *
-     * @param networkType the preferred network type, defined in RILConstants.java.
-     * @return true on success; false on any failure.
-     */
-    @Override
-    public boolean setPreferredNetworkType(int networkType) {
-        enforceModifyPermission();
-        if (DBG) log("setPreferredNetworkType: type " + networkType);
-        Boolean success = (Boolean) sendRequest(CMD_SET_PREFERRED_NETWORK_TYPE, networkType);
-        if (DBG) log("setPreferredNetworkType: " + (success ? "ok" : "fail"));
-        return success;
     }
 
     /**
