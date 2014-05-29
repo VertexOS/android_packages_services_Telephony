@@ -114,6 +114,8 @@
 
     <!-- settings strings -->
 
+    <!-- Error message for users that aren't allowed to modify Mobile Network settings [CHAR LIMIT=none] -->
+    <string name="mobile_network_settings_not_available">Mobile network settings are not available for this user</string>
     <!-- GSM Call settings screen, setting option name -->
     <string name="labelGSMMore">GSM call settings</string>
     <!-- CDM Call settings screen, setting option name -->
