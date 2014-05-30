@@ -1103,7 +1103,7 @@ public class PhoneGlobals extends ContextWrapper implements WiredHeadsetListener
 
     private class SessionCallback extends MediaSession.Callback {
         @Override
-        public void onMediaButton(Intent intent) {
+        public void onMediaButtonEvent(Intent intent) {
             KeyEvent event = (KeyEvent) intent.getParcelableExtra(Intent.EXTRA_KEY_EVENT);
             if (VDBG) Log.d(LOG_TAG, "SessionCallback.onMediaButton()...  event = " + event);
             if ((event != null) && (event.getKeyCode() == KeyEvent.KEYCODE_HEADSETHOOK)) {
