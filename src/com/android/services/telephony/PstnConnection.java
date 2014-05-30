@@ -16,6 +16,10 @@
 
 package com.android.services.telephony;
 
+import android.os.AsyncResult;
+import android.os.Handler;
+import android.os.Message;
+
 import android.telephony.DisconnectCause;
 
 import com.android.internal.telephony.Call;
@@ -28,11 +32,33 @@ import com.android.internal.telephony.Phone;
  */
 public abstract class PstnConnection extends TelephonyConnection {
 
+    private static final int EVENT_RINGBACK_TONE = 1;
+
+    private final Handler mHandler = new Handler() {
+        private Connection getForegroundConnection() {
+            return mPhone.getForegroundCall().getEarliestConnection();
+        }
+
+        public void handleMessage(Message msg) {
+            // TODO: This code assumes that there is only one connection in the foreground call,
+            // in other words, it punts on network-mediated conference calling.
+            if (getOriginalConnection() != getForegroundConnection()) {
+                return;
+            }
+            switch (msg.what) {
+                case EVENT_RINGBACK_TONE:
+                    setRequestingRingback((Boolean) ((AsyncResult) msg.obj).result);
+                    break;
+            }
+        }
+    };
+
     private final Phone mPhone;
 
     public PstnConnection(Phone phone, Connection connection) {
         super(connection);
         mPhone = phone;
+        phone.registerForRingbackTone(mHandler, EVENT_RINGBACK_TONE, null);
     }
 
     /** {@inheritDoc} */
@@ -60,6 +86,13 @@ public abstract class PstnConnection extends TelephonyConnection {
             hangup(DisconnectCause.INCOMING_REJECTED);
         }
         super.onReject();
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    protected void onDisconnect() {
+        mPhone.unregisterForRingbackTone(mHandler);
+        super.onDisconnect();
     }
 
     protected Phone getPhone() {
