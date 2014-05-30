@@ -23,6 +23,7 @@ import android.content.IntentFilter;
 import android.os.AsyncResult;
 import android.os.Handler;
 import android.os.Message;
+import android.os.UserHandle;
 import android.telecomm.CallService;
 import android.telecomm.CallServiceDescriptor;
 import android.telecomm.TelecommConstants;
@@ -175,6 +176,6 @@ final class IncomingCallNotifier {
         intent.putExtra(TelecommConstants.EXTRA_CALL_SERVICE_DESCRIPTOR, builder.build());
 
         Log.d(this, "Sending incoming call intent: %s", intent);
-        context.startActivity(intent);
+        context.startActivityAsUser(intent, UserHandle.CURRENT);
     }
 }

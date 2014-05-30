@@ -87,6 +87,7 @@
     <uses-permission android:name="android.permission.USE_SIP" />
     <uses-permission android:name="android.permission.REBOOT" />
     <uses-permission android:name="android.permission.UPDATE_LOCK" />
+    <uses-permission android:name="android.permission.INTERACT_ACROSS_USERS" />
     <uses-permission android:name="android.permission.INTERACT_ACROSS_USERS_FULL" />
     <uses-permission android:name="com.android.smspush.WAPPUSH_MANAGER_BIND" />
     <uses-permission android:name="android.permission.MANAGE_USERS" />
@@ -555,17 +556,20 @@
         <service android:name="HfaService" android:exported="false"/>
 
         <!-- Telecomm integration -->
-        <service android:name="com.android.services.telephony.TelephonyCallServiceProvider">
+        <service android:name="com.android.services.telephony.TelephonyCallServiceProvider"
+                android:singleUser="true">
             <intent-filter>
                 <action android:name="android.telecomm.CallServiceProvider" />
             </intent-filter>
         </service>
-        <service android:name="com.android.services.telephony.TelephonyCallServiceSelector">
+        <service android:name="com.android.services.telephony.TelephonyCallServiceSelector"
+                android:singleUser="true">
             <intent-filter>
                 <action android:name="android.telecomm.CallServiceSelector" />
             </intent-filter>
         </service>
         <service
+                android:singleUser="true"
                 android:name="com.android.services.telephony.GsmConnectionService"
                 android:label="@string/gsm_connection_service_label">
             <intent-filter>
@@ -573,6 +577,7 @@
             </intent-filter>
         </service>
         <service
+                android:singleUser="true"
                 android:name="com.android.services.telephony.CdmaConnectionService"
                 android:label="@string/cdma_connection_service_label">
             <intent-filter>
@@ -580,6 +585,7 @@
             </intent-filter>
         </service>
         <service
+                android:singleUser="true"
                 android:name="com.android.services.telephony.SipConnectionService"
                 android:label="@string/sip_connection_service_label">
             <intent-filter>
