@@ -942,12 +942,7 @@ public class CallNotifier extends Handler
         // the Incoming Call
         Call ringingCall = mCM.getFirstActiveRingingCall();
         if (ringingCall.getPhone().getPhoneType() == PhoneConstants.PHONE_TYPE_CDMA) {
-            if (PhoneUtils.isRealIncomingCall(ringingCall.getState())) {
-                // Also we need to take off the "In Call" icon from the Notification
-                // area as the Out going Call never got connected
-                if (DBG) log("cancelCallInProgressNotifications()... (onDisconnect)");
-                mApplication.notificationMgr.cancelCallInProgressNotifications();
-            } else {
+            if (!PhoneUtils.isRealIncomingCall(ringingCall.getState())) {
                 if (DBG) log("stopRing()... (onDisconnect)");
                 mRinger.stopRing();
             }
@@ -1036,8 +1031,6 @@ public class CallNotifier extends Handler
             if (toneToPlay == InCallTonePlayer.TONE_NONE) {
                 resetAudioStateAfterDisconnect();
             }
-
-            mApplication.notificationMgr.cancelCallInProgressNotifications();
         }
 
         if (c != null) {
