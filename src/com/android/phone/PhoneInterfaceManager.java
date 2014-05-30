@@ -585,36 +585,6 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         mApp.startActivity(intent);
     }
 
-    private boolean showCallScreenInternal(boolean specifyInitialDialpadState,
-                                           boolean showDialpad) {
-        if (!PhoneGlobals.sVoiceCapable) {
-            // Never allow the InCallScreen to appear on data-only devices.
-            return false;
-        }
-        if (isIdle()) {
-            return false;
-        }
-        // If the phone isn't idle then go to the in-call screen
-        long callingId = Binder.clearCallingIdentity();
-
-        mCallHandlerService.bringToForeground(showDialpad);
-
-        Binder.restoreCallingIdentity(callingId);
-        return true;
-    }
-
-    // Show the in-call screen without specifying the initial dialpad state.
-    public boolean showCallScreen() {
-        return showCallScreenInternal(false, false);
-    }
-
-    // The variation of showCallScreen() that specifies the initial dialpad state.
-    // (Ideally this would be called showCallScreen() too, just with a different
-    // signature, but AIDL doesn't allow that.)
-    public boolean showCallScreenWithDialpad(boolean showDialpad) {
-        return showCallScreenInternal(true, showDialpad);
-    }
-
     /**
      * End a call based on call state
      * @return true is a call was ended
