@@ -50,13 +50,13 @@ class TelephonyConnection extends Connection {
 
     @Override
     protected void onAbort() {
-        hangup();
+        hangup(DisconnectCause.LOCAL);
         super.onAbort();
     }
 
     @Override
     protected void onDisconnect() {
-        hangup();
+        hangup(DisconnectCause.LOCAL);
         super.onDisconnect();
     }
 
@@ -123,13 +123,16 @@ class TelephonyConnection extends Connection {
         super.onSetAudioState(audioState);
     }
 
-    private void hangup() {
+    protected void hangup(int disconnectCause) {
         if (mOriginalConnection != null) {
             try {
-                mOriginalConnection.hangup();
+                Call call = mOriginalConnection.getCall();
+                if (call != null) {
+                    call.hangup();
+                }
                 // Set state deliberately since we are going to close() and will no longer be
                 // listening to state updates from mOriginalConnection
-                setDisconnected(DisconnectCause.NORMAL, null);
+                setDisconnected(disconnectCause, null);
             } catch (CallStateException e) {
                 Log.e(this, e, "Call to Connection.hangup failed with exception");
             }

@@ -16,6 +16,8 @@
 
 package com.android.services.telephony;
 
+import android.telephony.DisconnectCause;
+
 import com.android.internal.telephony.Call;
 import com.android.internal.telephony.CallStateException;
 import com.android.internal.telephony.Connection;
@@ -55,11 +57,7 @@ public abstract class PstnConnection extends TelephonyConnection {
     protected void onReject() {
         Log.i(this, "Reject call.");
         if (isValidRingingCall(getOriginalConnection())) {
-            try {
-                mPhone.rejectCall();
-            } catch (CallStateException e) {
-                Log.e(this, e, "Failed to reject call.");
-            }
+            hangup(DisconnectCause.INCOMING_REJECTED);
         }
         super.onReject();
     }
