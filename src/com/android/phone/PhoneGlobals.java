@@ -23,7 +23,6 @@ import android.app.ProgressDialog;
 import android.app.TaskStackBuilder;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.IBluetoothHeadsetPhone;
-import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.ContentResolver;
@@ -32,13 +31,9 @@ import android.content.ContextWrapper;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
-import android.content.res.Configuration;
 import android.media.AudioManager;
-import android.media.session.MediaSession;
-import android.media.session.MediaSessionManager;
 import android.net.Uri;
 import android.os.AsyncResult;
-import android.os.Binder;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.IPowerManager;
@@ -53,10 +48,7 @@ import android.os.UserHandle;
 import android.preference.PreferenceManager;
 import android.provider.Settings.System;
 import android.telephony.ServiceState;
-import android.text.TextUtils;
 import android.util.Log;
-import android.util.Slog;
-import android.view.KeyEvent;
 
 import com.android.internal.telephony.Call;
 import com.android.internal.telephony.CallManager;
@@ -69,11 +61,9 @@ import com.android.internal.telephony.PhoneFactory;
 import com.android.internal.telephony.TelephonyCapabilities;
 import com.android.internal.telephony.TelephonyIntents;
 import com.android.internal.telephony.cdma.TtyIntent;
-import com.android.phone.common.CallLogAsync;
-import com.android.phone.OtaUtils.CdmaOtaScreenState;
 import com.android.phone.WiredHeadsetManager.WiredHeadsetListener;
+import com.android.phone.common.CallLogAsync;
 import com.android.server.sip.SipService;
-import com.android.services.telephony.common.AudioMode;
 
 /**
  * Global state for the telephony subsystem when running in the primary
@@ -215,12 +205,6 @@ public class PhoneGlobals extends ContextWrapper implements WiredHeadsetListener
 
     // Broadcast receiver for various intent broadcasts (see onCreate())
     private final BroadcastReceiver mReceiver = new PhoneAppBroadcastReceiver();
-
-    // Broadcast receiver purely for ACTION_MEDIA_BUTTON broadcasts
-    private final BroadcastReceiver mMediaButtonReceiver = new MediaButtonBroadcastReceiver();
-    private final SessionCallback mSessionCallback = new SessionCallback();
-
-    private MediaSession mSession;
 
     /** boolean indicating restoring mute state on InCallScreen.onResume() */
     private boolean mShouldRestoreMuteOnInCallResume;
@@ -534,24 +518,6 @@ public class PhoneGlobals extends ContextWrapper implements WiredHeadsetListener
             intentFilter.addAction(AudioManager.RINGER_MODE_CHANGED_ACTION);
             registerReceiver(mReceiver, intentFilter);
 
-            // Use a separate receiver for ACTION_MEDIA_BUTTON broadcasts,
-            // since we need to manually adjust its priority (to make sure
-            // we get these intents *before* the media player.)
-            IntentFilter mediaButtonIntentFilter =
-                    new IntentFilter(Intent.ACTION_MEDIA_BUTTON);
-            // TODO verify the independent priority doesn't need to be handled thanks to the
-            //  private intent handler registration
-            // Make sure we're higher priority than the media player's
-            // MediaButtonIntentReceiver (which currently has the default
-            // priority of zero; see apps/Music/AndroidManifest.xml.)
-            mediaButtonIntentFilter.setPriority(1);
-            //
-            registerReceiver(mMediaButtonReceiver, mediaButtonIntentFilter);
-            // register the component so it gets priority for calls
-            AudioManager am = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-            am.registerMediaButtonEventReceiverForCalls(new ComponentName(this.getPackageName(),
-                    MediaButtonBroadcastReceiver.class.getName()));
-
             //set the default values for the preferences in the phone.
             PreferenceManager.setDefaultValues(this, R.xml.network_setting, false);
 
@@ -561,14 +527,6 @@ public class PhoneGlobals extends ContextWrapper implements WiredHeadsetListener
             // audio-mode-related state of our own) is initialized
             // correctly, given the current state of the phone.
             PhoneUtils.setAudioMode(mCM);
-
-            // Register a MediaSession but don't enable it yet. This is a
-            // replacement for MediaButtonReceiver
-            MediaSessionManager msm = (MediaSessionManager) getSystemService(Context.MEDIA_SESSION_SERVICE);
-            mSession = msm.createSession(LOG_TAG);
-            mSession.addCallback(mSessionCallback);
-            mSession.setFlags(MediaSession.FLAG_EXCLUSIVE_GLOBAL_PRIORITY
-                    | MediaSession.FLAG_HANDLES_MEDIA_BUTTONS);
         }
 
         if (TelephonyCapabilities.supportsOtasp(phone)) {
@@ -933,15 +891,9 @@ public class PhoneGlobals extends ContextWrapper implements WiredHeadsetListener
                 if (!mUpdateLock.isHeld()) {
                     mUpdateLock.acquire();
                 }
-                if (!mSession.isActive()) {
-                    mSession.setActive(true);
-                }
             } else {
                 if (mUpdateLock.isHeld()) {
                     mUpdateLock.release();
-                }
-                if (mSession.isActive()) {
-                    mSession.setActive(false);
                 }
             }
         }
@@ -1096,55 +1048,6 @@ public class PhoneGlobals extends ContextWrapper implements WiredHeadsetListener
                         AudioManager.RINGER_MODE_NORMAL);
                 if (ringerMode == AudioManager.RINGER_MODE_SILENT) {
                     notifier.silenceRinger();
-                }
-            }
-        }
-    }
-
-    private class SessionCallback extends MediaSession.Callback {
-        @Override
-        public void onMediaButtonEvent(Intent intent) {
-            KeyEvent event = (KeyEvent) intent.getParcelableExtra(Intent.EXTRA_KEY_EVENT);
-            if (VDBG) Log.d(LOG_TAG, "SessionCallback.onMediaButton()...  event = " + event);
-            if ((event != null) && (event.getKeyCode() == KeyEvent.KEYCODE_HEADSETHOOK)) {
-                if (VDBG) Log.d(LOG_TAG, "SessionCallback: HEADSETHOOK");
-                boolean consumed = PhoneUtils.handleHeadsetHook(phone, event);
-                if (VDBG) Log.d(LOG_TAG, "==> handleHeadsetHook(): consumed = " + consumed);
-            }
-        }
-    }
-
-    /**
-     * Broadcast receiver for the ACTION_MEDIA_BUTTON broadcast intent.
-     *
-     * This functionality isn't lumped in with the other intents in
-     * PhoneAppBroadcastReceiver because we instantiate this as a totally
-     * separate BroadcastReceiver instance, since we need to manually
-     * adjust its IntentFilter's priority (to make sure we get these
-     * intents *before* the media player.)
-     */
-    private class MediaButtonBroadcastReceiver extends BroadcastReceiver {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            KeyEvent event = (KeyEvent) intent.getParcelableExtra(Intent.EXTRA_KEY_EVENT);
-            if (VDBG) Log.d(LOG_TAG,
-                           "MediaButtonBroadcastReceiver.onReceive()...  event = " + event);
-            if ((event != null)
-                && (event.getKeyCode() == KeyEvent.KEYCODE_HEADSETHOOK)) {
-                if (VDBG) Log.d(LOG_TAG, "MediaButtonBroadcastReceiver: HEADSETHOOK");
-                boolean consumed = PhoneUtils.handleHeadsetHook(phone, event);
-                if (VDBG) Log.d(LOG_TAG, "==> handleHeadsetHook(): consumed = " + consumed);
-                if (consumed) {
-                    abortBroadcast();
-                }
-            } else {
-                if (mCM.getState() != PhoneConstants.State.IDLE) {
-                    // If the phone is anything other than completely idle,
-                    // then we consume and ignore any media key events,
-                    // Otherwise it is too easy to accidentally start
-                    // playing music while a phone call is in progress.
-                    if (VDBG) Log.d(LOG_TAG, "MediaButtonBroadcastReceiver: consumed");
-                    abortBroadcast();
                 }
             }
         }

@@ -1955,9 +1955,6 @@ public class PhoneUtils {
             sIsSpeakerEnabled = flag;
         }
 
-        // Update the status bar icon
-        app.notificationMgr.updateSpeakerNotification(flag);
-
         // We also need to make a fresh call to PhoneApp.updateWakeState()
         // any time the speaker state changes, since the screen timeout is
         // sometimes different depending on whether or not the speaker is
@@ -2108,7 +2105,6 @@ public class PhoneUtils {
             if (DBG) log("setMuteInternal: using phone.setMute(" + muted + ")...");
             phone.setMute(muted);
         }
-        app.notificationMgr.updateMuteNotification();
         app.getAudioRouter().onMuteChange(muted);
     }
 
