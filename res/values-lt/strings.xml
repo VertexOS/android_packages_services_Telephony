@@ -52,6 +52,7 @@
     <string name="requesting_unlock" msgid="6412629401033249351">"Pateikiama užklausa atrakinti tinklą..."</string>
     <string name="unlock_failed" msgid="6490531697031504225">"Nesėkminga tinklo atrakinimo užklausa."</string>
     <string name="unlock_success" msgid="6770085622238180152">"Tinklas sėkmingai atrakintas."</string>
+    <string name="mobile_network_settings_not_available" msgid="7355254462995117896">"Mobiliojo ryšio tinklo nustatymai nepasiekiami šiam naudotojui"</string>
     <string name="labelGSMMore" msgid="5930842194056092106">"GSM skambinimo nustatymai"</string>
     <string name="labelCDMAMore" msgid="1630676740428229339">"CDMA skambučio nustatymai"</string>
     <string name="apn_settings" msgid="9043423184895642077">"Prieigos taškų pavadinimai"</string>
@@ -602,8 +603,6 @@
     <string name="description_image_button_pound" msgid="1716041284529917866">"svaras"</string>
     <string name="description_dial_button" msgid="7459705245418435351">"rinkti numerį"</string>
     <string name="description_delete_button" msgid="4015842181592283903">"naikinimo klavišas"</string>
-    <string name="accessibility_speakerphone_enabled" msgid="1988512040421036359">"Garsiakalbis įgalintas."</string>
-    <string name="accessibility_call_muted" msgid="2776111226185342220">"Skambutis nutildytas."</string>
     <string name="description_target_answer" msgid="7205604197797472471">"Atsakyti"</string>
     <string name="description_target_send_sms" msgid="2098326025587950144">"Siųsti SMS pranešimą"</string>
     <string name="description_target_decline" msgid="4789834364389731957">"Atmesti"</string>

@@ -52,6 +52,7 @@
     <string name="requesting_unlock" msgid="6412629401033249351">"ກຳລັງຮ້ອງຂໍການປົດລັອກເຄືອຂ່າຍ..."</string>
     <string name="unlock_failed" msgid="6490531697031504225">"ຄຳຂໍການປົດລັອກເຄືອຂ່າຍບໍ່ສຳເລັດ."</string>
     <string name="unlock_success" msgid="6770085622238180152">"ການປົດລັອກເຄືອຂ່າຍບໍ່ສຳເລັດ."</string>
+    <string name="mobile_network_settings_not_available" msgid="7355254462995117896">"​ການ​ຕັ້ງ​ຄ່າ​ເຄືອ​ຂ່າຍ​ມ​ື​ຖືບໍ່​ສາ​ມາດ​ໃຊ້​ໄດ້​ກັບ​ຜູ່​ໃຊ້​ນີ້"</string>
     <string name="labelGSMMore" msgid="5930842194056092106">"ການຕັ້ງຄ່າການໂທ GSM"</string>
     <string name="labelCDMAMore" msgid="1630676740428229339">"ການຕັ້ງຄ່າໂທ CDMA"</string>
     <string name="apn_settings" msgid="9043423184895642077">"ຊື່ຂອງຈຸດການເຂົ້າເຖິງ (APN)"</string>
@@ -602,8 +603,6 @@
     <string name="description_image_button_pound" msgid="1716041284529917866">"ພາວ"</string>
     <string name="description_dial_button" msgid="7459705245418435351">"ປຸ່ມໂທ"</string>
     <string name="description_delete_button" msgid="4015842181592283903">"ປຸ່ມ backspace"</string>
-    <string name="accessibility_speakerphone_enabled" msgid="1988512040421036359">"ເປີດລຳໂພງແລ້ວ."</string>
-    <string name="accessibility_call_muted" msgid="2776111226185342220">"ປິດສຽງການໂທແລ້ວ."</string>
     <string name="description_target_answer" msgid="7205604197797472471">"ຄໍາ​ຕອບ"</string>
     <string name="description_target_send_sms" msgid="2098326025587950144">"ສົ່ງ SMS"</string>
     <string name="description_target_decline" msgid="4789834364389731957">"ປະຕິເສດ"</string>
@@ -618,7 +617,7 @@
     <string name="preference_category_ringtone" msgid="5197960752529332721">"ຣິງໂທນ &amp; ການສັ່ນເຕືອນ"</string>
     <string name="choose_wifi_for_call_msg" msgid="193549297122949976">"ໃຊ້ Wi-Fi ເພື່ອ​ໂທ​ບໍ?"</string>
     <string name="choose_wifi_for_call_yes" msgid="5312994368472630983">"ແມ່ນແລ້ວ"</string>
-    <string name="choose_wifi_for_call_no" msgid="7132239734287157307">"ບໍ່"</string>
+    <string name="choose_wifi_for_call_no" msgid="7132239734287157307">"ບໍ່​"</string>
     <string name="gsm_connection_service_label" msgid="2332284528867411683">"GSM SIM ​ກາດ​ທີ່​ມາ​ກັບ​ເຄື່ອງ"</string>
     <string name="cdma_connection_service_label" msgid="5038725238949035222">"CDMA SIM ກາດ​ທີ່​ມາ​ກັບ​ເຄື່ອງ"</string>
     <string name="sip_connection_service_label" msgid="3547998349299125294">"ການ​ໂທ​ຜ່ານ​ອິນ​ເຕີ​ເນັດ​​ທີ່​ມາ​ກັບ​ເຄື່ອງ"</string>

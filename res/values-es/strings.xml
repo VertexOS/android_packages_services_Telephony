@@ -52,6 +52,7 @@
     <string name="requesting_unlock" msgid="6412629401033249351">"Solicitando desbloqueo de red..."</string>
     <string name="unlock_failed" msgid="6490531697031504225">"La solicitud de desbloqueo de red no se ha realizado correctamente."</string>
     <string name="unlock_success" msgid="6770085622238180152">"El desbloqueo de red se ha realizado correctamente."</string>
+    <string name="mobile_network_settings_not_available" msgid="7355254462995117896">"Los ajustes de red móvil no están disponibles para este usuario"</string>
     <string name="labelGSMMore" msgid="5930842194056092106">"Ajustes de llamadas GSM"</string>
     <string name="labelCDMAMore" msgid="1630676740428229339">"Ajustes de llamadas CDMA"</string>
     <string name="apn_settings" msgid="9043423184895642077">"APN"</string>
@@ -606,8 +607,6 @@
     <string name="description_image_button_pound" msgid="1716041284529917866">"libra"</string>
     <string name="description_dial_button" msgid="7459705245418435351">"marcar"</string>
     <string name="description_delete_button" msgid="4015842181592283903">"retroceder un espacio"</string>
-    <string name="accessibility_speakerphone_enabled" msgid="1988512040421036359">"Altavoz habilitado"</string>
-    <string name="accessibility_call_muted" msgid="2776111226185342220">"Llamada silenciada"</string>
     <string name="description_target_answer" msgid="7205604197797472471">"Responder"</string>
     <string name="description_target_send_sms" msgid="2098326025587950144">"Enviar SMS"</string>
     <string name="description_target_decline" msgid="4789834364389731957">"Rechazar"</string>
