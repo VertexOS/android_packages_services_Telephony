@@ -74,6 +74,7 @@ public class NetworkSetting extends PreferenceActivity
     protected boolean mIsForeground = false;
 
     private UserManager mUm;
+    private boolean mUnavailable;
 
     /** message for network selection */
     String mNetworkSelectMsg;
@@ -231,6 +232,7 @@ public class NetworkSetting extends PreferenceActivity
 
         if (mUm.hasUserRestriction(UserManager.DISALLOW_CONFIG_MOBILE_NETWORKS)) {
             setContentView(R.layout.telephony_disallowed_preference_screen);
+            mUnavailable = true;
             return;
         }
 
@@ -272,9 +274,10 @@ public class NetworkSetting extends PreferenceActivity
      */
     @Override
     protected void onDestroy() {
-        // unbind the service.
-        unbindService(mNetworkQueryServiceConnection);
-
+        if (!mUnavailable) {
+            // unbind the service.
+            unbindService(mNetworkQueryServiceConnection);
+        }
         super.onDestroy();
     }
 
