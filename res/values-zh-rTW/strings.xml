@@ -56,6 +56,8 @@
     <string name="labelCDMAMore" msgid="1630676740428229339">"CDMA 通話設定"</string>
     <string name="apn_settings" msgid="9043423184895642077">"存取點名稱 (APN)"</string>
     <string name="settings_label" msgid="3876743539816984008">"網路設定"</string>
+    <string name="connection_service" msgid="978745922583410219">"要使用的連線服務"</string>
+    <string name="connection_service_default_label" msgid="1498481943805913754">"內建連線服務"</string>
     <string name="voicemail" msgid="8693759337917898954">"語音信箱"</string>
     <string name="voicemail_abbreviated" msgid="2215592488517217448">"語音信箱："</string>
     <string name="networks" msgid="8873030692174541976">"電信業者"</string>
@@ -65,7 +67,7 @@
     <string name="additional_cdma_call_settings" msgid="8628958775721886909">"其他 CDMA 通話設定"</string>
     <string name="sum_cdma_call_settings" msgid="284753265979035549">"其他 CDMA 僅限通話設定"</string>
     <string name="labelNwService" msgid="4699970172021870983">"網路服務設定"</string>
-    <string name="labelCallerId" msgid="3888899447379069198">"本機號碼"</string>
+    <string name="labelCallerId" msgid="3888899447379069198">"來電顯示"</string>
     <string name="sum_loading_settings" msgid="1826692909391168620">"正在載入設定…"</string>
     <string name="sum_hide_caller_id" msgid="1071407020290873782">"隱藏本機號碼"</string>
     <string name="sum_show_caller_id" msgid="6768534125447290401">"撥出電話時顯示本機號碼"</string>
@@ -606,8 +608,6 @@
     <string name="description_image_button_pound" msgid="1716041284529917866">"井字鍵"</string>
     <string name="description_dial_button" msgid="7459705245418435351">"撥號"</string>
     <string name="description_delete_button" msgid="4015842181592283903">"Backspace"</string>
-    <string name="accessibility_speakerphone_enabled" msgid="1988512040421036359">"喇叭已啟用"</string>
-    <string name="accessibility_call_muted" msgid="2776111226185342220">"通話已靜音。"</string>
     <string name="description_target_answer" msgid="7205604197797472471">"解答"</string>
     <string name="description_target_send_sms" msgid="2098326025587950144">"傳送簡訊"</string>
     <string name="description_target_decline" msgid="4789834364389731957">"拒絕"</string>
@@ -620,10 +620,10 @@
     <string name="dtmf_tone_enable_title" msgid="827601042915852989">"撥號鍵盤觸控音效"</string>
     <string name="dial_pad_autocomplete" msgid="494525952035761075">"撥號鍵盤自動完成"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"鈴聲與震動"</string>
-    <!-- no translation found for choose_wifi_for_call_msg (193549297122949976) -->
-    <skip />
-    <!-- no translation found for choose_wifi_for_call_yes (5312994368472630983) -->
-    <skip />
-    <!-- no translation found for choose_wifi_for_call_no (7132239734287157307) -->
-    <skip />
+    <string name="choose_wifi_for_call_msg" msgid="193549297122949976">"使用 Wi-Fi 網路撥打電話？"</string>
+    <string name="choose_wifi_for_call_yes" msgid="5312994368472630983">"是"</string>
+    <string name="choose_wifi_for_call_no" msgid="7132239734287157307">"否"</string>
+    <string name="gsm_connection_service_label" msgid="2332284528867411683">"內建 GSM SIM 卡"</string>
+    <string name="cdma_connection_service_label" msgid="5038725238949035222">"內建 CDMA SIM 卡"</string>
+    <string name="sip_connection_service_label" msgid="3547998349299125294">"內建網路通話服務"</string>
 </resources>
