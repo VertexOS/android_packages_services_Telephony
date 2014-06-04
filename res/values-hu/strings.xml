@@ -56,6 +56,8 @@
     <string name="labelCDMAMore" msgid="1630676740428229339">"CDMA-hívásbeállítások"</string>
     <string name="apn_settings" msgid="9043423184895642077">"Hozzáférési pontok nevei"</string>
     <string name="settings_label" msgid="3876743539816984008">"Hálózati beállítások"</string>
+    <string name="connection_service" msgid="978745922583410219">"Használandó kapcsolati szolgáltatás"</string>
+    <string name="connection_service_default_label" msgid="1498481943805913754">"Beépített kapcsolati szolgáltatás"</string>
     <string name="voicemail" msgid="8693759337917898954">"Hangposta"</string>
     <string name="voicemail_abbreviated" msgid="2215592488517217448">"HP:"</string>
     <string name="networks" msgid="8873030692174541976">"Mobilszolgáltatók"</string>
@@ -600,8 +602,6 @@
     <string name="description_image_button_pound" msgid="1716041284529917866">"kettős kereszt"</string>
     <string name="description_dial_button" msgid="7459705245418435351">"tárcsázás"</string>
     <string name="description_delete_button" msgid="4015842181592283903">"Backspace"</string>
-    <string name="accessibility_speakerphone_enabled" msgid="1988512040421036359">"Kihangosítás engedélyezve."</string>
-    <string name="accessibility_call_muted" msgid="2776111226185342220">"Hívás némítva."</string>
     <string name="description_target_answer" msgid="7205604197797472471">"Fogadás"</string>
     <string name="description_target_send_sms" msgid="2098326025587950144">"SMS küldése"</string>
     <string name="description_target_decline" msgid="4789834364389731957">"Elutasítás"</string>
@@ -614,10 +614,10 @@
     <string name="dtmf_tone_enable_title" msgid="827601042915852989">"Tárcsázó érintési hangjai"</string>
     <string name="dial_pad_autocomplete" msgid="494525952035761075">"Tárcsázó automatikus kiegészítés"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"Csengőhang és rezgés"</string>
-    <!-- no translation found for choose_wifi_for_call_msg (193549297122949976) -->
-    <skip />
-    <!-- no translation found for choose_wifi_for_call_yes (5312994368472630983) -->
-    <skip />
-    <!-- no translation found for choose_wifi_for_call_no (7132239734287157307) -->
-    <skip />
+    <string name="choose_wifi_for_call_msg" msgid="193549297122949976">"Wi-Fit szeretne használni a hívásindításhoz?"</string>
+    <string name="choose_wifi_for_call_yes" msgid="5312994368472630983">"Igen"</string>
+    <string name="choose_wifi_for_call_no" msgid="7132239734287157307">"Nem"</string>
+    <string name="gsm_connection_service_label" msgid="2332284528867411683">"Beépített GSM SIM kártya"</string>
+    <string name="cdma_connection_service_label" msgid="5038725238949035222">"Beépített CDMA SIM kártya"</string>
+    <string name="sip_connection_service_label" msgid="3547998349299125294">"Beépített internetes hívás"</string>
 </resources>
