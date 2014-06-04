@@ -135,7 +135,7 @@
     <!-- Mobile network settings screen, setting option name -->
     <string name="networks">Network operators</string>
     <!-- Call settings screen title -->
-    <string name="call_settings">Call settings</string>
+    <string name="call_settings">Call Settings</string>
     <!-- GSM Call settings screen, setting option name -->
     <string name="additional_gsm_call_settings">Additional settings</string>
     <!-- GSM-only Call settings screen, setting option name-->
