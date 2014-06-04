@@ -44,9 +44,9 @@ public abstract class TelephonyConnectionService extends ConnectionService {
             Uri handle,
             Response<Uri, Subscription> response) {
         try {
-            responseResult(handle, response, canCall(handle) ? new Subscription() : null);
+            respondWithResult(handle, response, canCall(handle) ? new Subscription() : null);
         } catch (Exception e) {
-            responseError(handle, response, "onFindSubscriptions error: " + e.toString());
+            respondWithError(handle, response, "onFindSubscriptions error: " + e.toString());
         }
     }
 
@@ -64,18 +64,18 @@ public abstract class TelephonyConnectionService extends ConnectionService {
         Log.d(this, "startCallWithPhone: %s.", request);
 
         if (phone == null) {
-            responseError(request, response, "Phone is null");
+            respondWithError(request, response, "Phone is null");
             return;
         }
 
         if (request.getHandle() == null) {
-            responseError(request, response, "Handle is null");
+            respondWithError(request, response, "Handle is null");
             return;
         }
 
         String number = request.getHandle().getSchemeSpecificPart();
         if (TextUtils.isEmpty(number)) {
-            responseError(request, response, "Unable to parse number");
+            respondWithError(request, response, "Unable to parse number");
             return;
         }
 
@@ -84,44 +84,44 @@ public abstract class TelephonyConnectionService extends ConnectionService {
             connection = phone.dial(number);
         } catch (CallStateException e) {
             Log.e(this, e, "Call to Phone.dial failed with exception");
-            responseError(request, response, e.getMessage());
+            respondWithError(request, response, e.getMessage());
             return;
         }
 
         if (connection == null) {
-            responseError(request, response, "Call to phone.dial failed");
+            respondWithError(request, response, "Call to phone.dial failed");
             return;
         }
 
         try {
-            responseResult(request, response, createTelephonyConnection(request, connection));
+            respondWithResult(request, response, createTelephonyConnection(request, connection));
         } catch (Exception e) {
             Log.e(this, e, "Call to createConnection failed with exception");
-            responseError(request, response, e.getMessage());
+            respondWithError(request, response, e.getMessage());
         }
     }
 
-    protected <REQUEST, RESULT> void responseError(
+    protected <REQUEST, RESULT> void respondWithError(
             REQUEST request,
             Response<REQUEST, RESULT> response,
             String reason) {
-        Log.d(this, "responseError %s: %s", request, reason);
+        Log.d(this, "respondWithError %s: %s", request, reason);
         response.onError(request, reason);
     }
 
-    protected void responseResult(
+    protected void respondWithResult(
             Uri request,
             Response<Uri, Subscription> response,
             Subscription result) {
-        Log.d(this, "responseResult %s -> %s", request, result);
+        Log.d(this, "respondWithResult %s -> %s", request, result);
         response.onResult(request, result);
     }
 
-    protected void responseResult(
+    protected void respondWithResult(
             ConnectionRequest request,
             Response<ConnectionRequest, Connection> response,
             Connection result) {
-        Log.d(this, "responseResult %s -> %s", request, result);
+        Log.d(this, "respondWithResult %s -> %s", request, result);
         response.onResult(request, result);
     }
 

@@ -49,6 +49,13 @@ public abstract class PstnConnectionService extends TelephonyConnectionService {
     public void onCreateConnections(
             final ConnectionRequest request,
             final Response<ConnectionRequest, Connection> response) {
+
+        if (!canCall(request.getHandle())) {
+            Log.d(this, "Cannot place the call with %s", this.getClass().getSimpleName());
+            respondWithError(request, response, "Cannot place call.");
+            return;
+        }
+
         // TODO: Consider passing call emergency information as part of ConnectionRequest so
         // that we do not have to make the check here once again.
         String handle = request.getHandle().getSchemeSpecificPart();
@@ -64,7 +71,7 @@ public abstract class PstnConnectionService extends TelephonyConnectionService {
                         if (isRadioReady) {
                             startCallWithPhone(phone, request, response);
                         } else {
-                            responseError(request, response, "Failed to turn on radio.");
+                            respondWithError(request, response, "Failed to turn on radio.");
                         }
                     }
                 }
@@ -93,7 +100,7 @@ public abstract class PstnConnectionService extends TelephonyConnectionService {
             com.android.internal.telephony.Connection connection = call.getEarliestConnection();
 
             if (isConnectionKnown(connection)) {
-                responseError(
+                respondWithError(
                         request,
                         response,
                         "Cannot set incoming call ID, ringing connection already registered.");
@@ -110,17 +117,17 @@ public abstract class PstnConnectionService extends TelephonyConnectionService {
                 try {
                     telephonyConnection = createTelephonyConnection(request, connection);
                 } catch (Exception e) {
-                    responseError(request, response, e.getMessage());
+                    respondWithError(request, response, e.getMessage());
                     return;
                 }
 
-                responseResult(
+                respondWithResult(
                         new ConnectionRequest(handle, request.getExtras()),
                         response,
                         telephonyConnection);
             }
         } else {
-            responseError(
+            respondWithError(
                     request,
                     response,
                     String.format("Found no ringing call, call state: %s", call.getState()));
