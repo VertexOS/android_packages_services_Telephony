@@ -52,8 +52,7 @@
     <string name="requesting_unlock" msgid="6412629401033249351">"Solicitando o desbloqueio de rede…"</string>
     <string name="unlock_failed" msgid="6490531697031504225">"Falha na solicitação de desbloqueio de rede."</string>
     <string name="unlock_success" msgid="6770085622238180152">"Desbloqueio de rede bem-sucedido."</string>
-    <!-- no translation found for mobile_network_settings_not_available (7355254462995117896) -->
-    <skip />
+    <string name="mobile_network_settings_not_available" msgid="7355254462995117896">"As configurações de rede para dispositivos móveis não estão disponíveis para este usuário"</string>
     <string name="labelGSMMore" msgid="5930842194056092106">"Configurações de chamada GSM"</string>
     <string name="labelCDMAMore" msgid="1630676740428229339">"Configurações de chamada CDMA"</string>
     <string name="apn_settings" msgid="9043423184895642077">"Nomes dos pontos de acesso"</string>
