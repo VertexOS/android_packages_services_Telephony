@@ -52,6 +52,7 @@
     <string name="requesting_unlock" msgid="6412629401033249351">"Запитув. розблок. мережі..."</string>
     <string name="unlock_failed" msgid="6490531697031504225">"Не здійсн. запит розблокування мережі"</string>
     <string name="unlock_success" msgid="6770085622238180152">"Мережу успішно розблоковано."</string>
+    <string name="mobile_network_settings_not_available" msgid="7355254462995117896">"Налаштування мобільної мережі недоступні для цього користувача"</string>
     <string name="labelGSMMore" msgid="5930842194056092106">"Налаштування викликів GSM"</string>
     <string name="labelCDMAMore" msgid="1630676740428229339">"Налашт. викл. в CDMA"</string>
     <string name="apn_settings" msgid="9043423184895642077">"Назва точки доступу"</string>
@@ -602,8 +603,6 @@
     <string name="description_image_button_pound" msgid="1716041284529917866">"решітка"</string>
     <string name="description_dial_button" msgid="7459705245418435351">"дзвонити"</string>
     <string name="description_delete_button" msgid="4015842181592283903">"backspace"</string>
-    <string name="accessibility_speakerphone_enabled" msgid="1988512040421036359">"Гучний зв’язок увімкнено."</string>
-    <string name="accessibility_call_muted" msgid="2776111226185342220">"Звук виклику вимкнено."</string>
     <string name="description_target_answer" msgid="7205604197797472471">"Відповісти"</string>
     <string name="description_target_send_sms" msgid="2098326025587950144">"Надіслати SMS"</string>
     <string name="description_target_decline" msgid="4789834364389731957">"Відхилити"</string>

@@ -52,6 +52,7 @@
     <string name="requesting_unlock" msgid="6412629401033249351">"Pyydetään verkon lukituksen poistoa..."</string>
     <string name="unlock_failed" msgid="6490531697031504225">"Verkon lukituksen poistopyyntö epäonnistui."</string>
     <string name="unlock_success" msgid="6770085622238180152">"Verkon lukituksen poisto onnistui."</string>
+    <string name="mobile_network_settings_not_available" msgid="7355254462995117896">"Mobiiliverkkoasetukset eivät ole käytettävissä tälle käyttäjälle"</string>
     <string name="labelGSMMore" msgid="5930842194056092106">"GSM-puheluasetukset"</string>
     <string name="labelCDMAMore" msgid="1630676740428229339">"CDMA-puheluasetukset"</string>
     <string name="apn_settings" msgid="9043423184895642077">"Tukiasemien nimet"</string>
@@ -606,8 +607,6 @@
     <string name="description_image_button_pound" msgid="1716041284529917866">"punta"</string>
     <string name="description_dial_button" msgid="7459705245418435351">"soita"</string>
     <string name="description_delete_button" msgid="4015842181592283903">"askelpalautin"</string>
-    <string name="accessibility_speakerphone_enabled" msgid="1988512040421036359">"Kaiutin käytössä."</string>
-    <string name="accessibility_call_muted" msgid="2776111226185342220">"Puhelu mykistetty."</string>
     <string name="description_target_answer" msgid="7205604197797472471">"Vastaa"</string>
     <string name="description_target_send_sms" msgid="2098326025587950144">"Lähetä tekstiviesti"</string>
     <string name="description_target_decline" msgid="4789834364389731957">"Hylkää"</string>

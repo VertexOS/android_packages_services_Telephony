@@ -52,6 +52,7 @@
     <string name="requesting_unlock" msgid="6412629401033249351">"正在要求解除網絡鎖定..."</string>
     <string name="unlock_failed" msgid="6490531697031504225">"無法完成解除網絡鎖定的要求"</string>
     <string name="unlock_success" msgid="6770085622238180152">"成功解除網絡鎖定。"</string>
+    <string name="mobile_network_settings_not_available" msgid="7355254462995117896">"此使用者無法修改流動網絡設定"</string>
     <string name="labelGSMMore" msgid="5930842194056092106">"GSM 通話設定"</string>
     <string name="labelCDMAMore" msgid="1630676740428229339">"CDMA 通話設定"</string>
     <string name="apn_settings" msgid="9043423184895642077">"接入點名稱"</string>
@@ -608,8 +609,6 @@
     <string name="description_image_button_pound" msgid="1716041284529917866">"井字鍵"</string>
     <string name="description_dial_button" msgid="7459705245418435351">"撥號"</string>
     <string name="description_delete_button" msgid="4015842181592283903">"退格鍵"</string>
-    <string name="accessibility_speakerphone_enabled" msgid="1988512040421036359">"擴音器已啟用"</string>
-    <string name="accessibility_call_muted" msgid="2776111226185342220">"通話已靜音。"</string>
     <string name="description_target_answer" msgid="7205604197797472471">"接聽"</string>
     <string name="description_target_send_sms" msgid="2098326025587950144">"發送短訊"</string>
     <string name="description_target_decline" msgid="4789834364389731957">"拒絕"</string>
