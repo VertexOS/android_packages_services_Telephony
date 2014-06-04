@@ -20,6 +20,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.text.method.DigitsKeyListener;
 import android.util.Log;
@@ -49,6 +50,8 @@ public class GetPin2Screen extends Activity implements TextView.OnEditorActionLi
         mPin2Field.setKeyListener(DigitsKeyListener.getInstance());
         mPin2Field.setMovementMethod(null);
         mPin2Field.setOnEditorActionListener(this);
+        mPin2Field.setInputType(
+                InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_PASSWORD);
 
         mOkButton = (Button) findViewById(R.id.ok);
         mOkButton.setOnClickListener(mClicked);
