@@ -18,6 +18,7 @@ package com.android.services.telephony;
 
 import android.net.Uri;
 
+import android.telephony.DisconnectCause;
 import android.telephony.PhoneNumberUtils;
 
 import com.android.internal.telephony.Call;
@@ -52,7 +53,11 @@ public abstract class PstnConnectionService extends TelephonyConnectionService {
 
         if (!canCall(request.getHandle())) {
             Log.d(this, "Cannot place the call with %s", this.getClass().getSimpleName());
-            respondWithError(request, response, "Cannot place call.");
+            respondWithError(
+                    request,
+                    response,
+                    DisconnectCause.ERROR_UNSPECIFIED,  // TODO: Code for "ConnSvc cannot call"
+                    "Cannot place call.");
             return;
         }
 
@@ -71,7 +76,11 @@ public abstract class PstnConnectionService extends TelephonyConnectionService {
                         if (isRadioReady) {
                             startCallWithPhone(phone, request, response);
                         } else {
-                            respondWithError(request, response, "Failed to turn on radio.");
+                            respondWithError(
+                                    request,
+                                    response,
+                                    DisconnectCause.POWER_OFF,
+                                    "Failed to turn on radio.");
                         }
                     }
                 }
@@ -103,6 +112,7 @@ public abstract class PstnConnectionService extends TelephonyConnectionService {
                 respondWithError(
                         request,
                         response,
+                        DisconnectCause.ERROR_UNSPECIFIED,  // Internal error
                         "Cannot set incoming call ID, ringing connection already registered.");
             } else {
                 // Address can be null for blocked calls.
@@ -117,7 +127,11 @@ public abstract class PstnConnectionService extends TelephonyConnectionService {
                 try {
                     telephonyConnection = createTelephonyConnection(request, connection);
                 } catch (Exception e) {
-                    respondWithError(request, response, e.getMessage());
+                    respondWithError(
+                            request,
+                            response,
+                            DisconnectCause.ERROR_UNSPECIFIED,  // Internal error
+                            e.getMessage());
                     return;
                 }
 
@@ -130,6 +144,7 @@ public abstract class PstnConnectionService extends TelephonyConnectionService {
             respondWithError(
                     request,
                     response,
+                    DisconnectCause.INCOMING_MISSED,  // Most likely cause
                     String.format("Found no ringing call, call state: %s", call.getState()));
         }
         super.onCreateIncomingConnection(request, response);
