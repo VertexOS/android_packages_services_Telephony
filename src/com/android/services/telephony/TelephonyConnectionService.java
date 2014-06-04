@@ -17,10 +17,13 @@
 package com.android.services.telephony;
 
 import android.net.Uri;
+import android.telephony.DisconnectCause;
+import android.telephony.ServiceState;
 import android.text.TextUtils;
 
 import com.android.internal.telephony.CallStateException;
 import com.android.internal.telephony.Phone;
+
 import android.telecomm.Connection;
 import android.telecomm.ConnectionRequest;
 import android.telecomm.ConnectionService;
@@ -46,7 +49,11 @@ public abstract class TelephonyConnectionService extends ConnectionService {
         try {
             respondWithResult(handle, response, canCall(handle) ? new Subscription() : null);
         } catch (Exception e) {
-            respondWithError(handle, response, "onFindSubscriptions error: " + e.toString());
+            respondWithError(
+                    handle,
+                    response,
+                    DisconnectCause.ERROR_UNSPECIFIED,  // Internal error
+                    "onFindSubscriptions error: " + e.toString());
         }
     }
 
@@ -64,18 +71,34 @@ public abstract class TelephonyConnectionService extends ConnectionService {
         Log.d(this, "startCallWithPhone: %s.", request);
 
         if (phone == null) {
-            respondWithError(request, response, "Phone is null");
+            respondWithError(
+                    request,
+                    response,
+                    DisconnectCause.ERROR_UNSPECIFIED,  // Generic internal error
+                    "Phone is null");
             return;
         }
 
         if (request.getHandle() == null) {
-            respondWithError(request, response, "Handle is null");
+            respondWithError(
+                    request,
+                    response,
+                    DisconnectCause.NO_PHONE_NUMBER_SUPPLIED,
+                    "Handle is null");
             return;
         }
 
         String number = request.getHandle().getSchemeSpecificPart();
         if (TextUtils.isEmpty(number)) {
-            respondWithError(request, response, "Unable to parse number");
+            respondWithError(
+                    request,
+                    response,
+                    DisconnectCause.INVALID_NUMBER,
+                    "Unable to parse number");
+            return;
+        }
+
+        if (!checkServiceStateForOutgoingCall(phone, request, response)) {
             return;
         }
 
@@ -84,12 +107,20 @@ public abstract class TelephonyConnectionService extends ConnectionService {
             connection = phone.dial(number);
         } catch (CallStateException e) {
             Log.e(this, e, "Call to Phone.dial failed with exception");
-            respondWithError(request, response, e.getMessage());
+            respondWithError(
+                    request,
+                    response,
+                    DisconnectCause.ERROR_UNSPECIFIED,  // Generic internal error
+                    e.getMessage());
             return;
         }
 
         if (connection == null) {
-            respondWithError(request, response, "Call to phone.dial failed");
+            respondWithError(
+                    request,
+                    response,
+                    DisconnectCause.ERROR_UNSPECIFIED,  // Generic internal error
+                    "Call to phone.dial failed");
             return;
         }
 
@@ -97,16 +128,63 @@ public abstract class TelephonyConnectionService extends ConnectionService {
             respondWithResult(request, response, createTelephonyConnection(request, connection));
         } catch (Exception e) {
             Log.e(this, e, "Call to createConnection failed with exception");
-            respondWithError(request, response, e.getMessage());
+            respondWithError(
+                    request,
+                    response,
+                    DisconnectCause.ERROR_UNSPECIFIED,  // Generic internal error
+                    e.getMessage());
         }
+    }
+
+    private boolean checkServiceStateForOutgoingCall(
+            Phone phone,
+            ConnectionRequest request,
+            Response<ConnectionRequest, Connection> response) {
+        int state = phone.getServiceState().getState();
+        switch (state) {
+            case ServiceState.STATE_IN_SERVICE:
+                return true;
+            case ServiceState.STATE_OUT_OF_SERVICE:
+                respondWithError(
+                        request,
+                        response,
+                        DisconnectCause.OUT_OF_SERVICE,
+                        null);
+                break;
+            case ServiceState.STATE_EMERGENCY_ONLY:
+                respondWithError(
+                        request,
+                        response,
+                        DisconnectCause.EMERGENCY_ONLY,
+                        null);
+                break;
+            case ServiceState.STATE_POWER_OFF:
+                respondWithError(
+                        request,
+                        response,
+                        DisconnectCause.POWER_OFF,
+                        null);
+                break;
+            default:
+                // Internal error, but we pass it upwards and do not crash.
+                Log.d(this, "Unrecognized service state %d", state);
+                respondWithError(
+                        request,
+                        response,
+                        DisconnectCause.ERROR_UNSPECIFIED,
+                        "Unrecognized service state " + state);
+                break;
+        }
+        return false;
     }
 
     protected <REQUEST, RESULT> void respondWithError(
             REQUEST request,
             Response<REQUEST, RESULT> response,
-            String reason) {
-        Log.d(this, "respondWithError %s: %s", request, reason);
-        response.onError(request, reason);
+            int errorCode,
+            String errorMsg) {
+        Log.d(this, "respondWithError %s: %d %s", request, errorCode, errorMsg);
+        response.onError(request, errorCode, errorMsg);
     }
 
     protected void respondWithResult(
