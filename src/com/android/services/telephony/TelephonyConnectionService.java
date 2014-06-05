@@ -22,6 +22,7 @@ import android.telephony.ServiceState;
 import android.text.TextUtils;
 
 import com.android.internal.telephony.CallStateException;
+import com.android.internal.telephony.Connection.PostDialListener;
 import com.android.internal.telephony.Phone;
 
 import android.telecomm.Connection;
@@ -125,7 +126,19 @@ public abstract class TelephonyConnectionService extends ConnectionService {
         }
 
         try {
-            respondWithResult(request, response, createTelephonyConnection(request, connection));
+            final TelephonyConnection telephonyConnection =
+                    createTelephonyConnection(request, connection);
+            respondWithResult(request, response, telephonyConnection);
+
+            final com.android.internal.telephony.Connection connectionCopy = connection;
+            PostDialListener postDialListener = new PostDialListener() {
+                @Override
+                public void onPostDialWait() {
+                    TelephonyConnectionService.this.onPostDialWait(telephonyConnection,
+                            connectionCopy.getRemainingPostDialString());
+                }
+            };
+            connection.addPostDialListener(postDialListener);
         } catch (Exception e) {
             Log.e(this, e, "Call to createConnection failed with exception");
             respondWithError(
@@ -216,6 +229,7 @@ public abstract class TelephonyConnectionService extends ConnectionService {
                 sKnownConnections.remove(connection);
             }
         });
+
         return telephonyConnection;
     }
 
