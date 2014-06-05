@@ -16,6 +16,7 @@
 
 package com.android.services.telephony;
 
+import com.android.internal.telephony.CallStateException;
 import com.android.internal.telephony.Connection;
 import com.android.internal.telephony.Phone;
 
@@ -40,5 +41,22 @@ public class GsmConnection extends PstnConnection {
     public void onStopDtmfTone() {
         getPhone().stopDtmf();
         super.onStopDtmfTone();
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void onConference() {
+        try {
+            Log.d(this, "conference - %s", this);
+            getPhone().conference();
+        } catch (CallStateException e) {
+            Log.e(this, e, "Failed to conference call.");
+        }
+    }
+
+    @Override
+    public void setIsConferenceCapable(boolean isConferenceCapable) {
+        // This method increases access modifier.
+        super.setIsConferenceCapable(isConferenceCapable);
     }
 }
