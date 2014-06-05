@@ -240,7 +240,7 @@ public class OutgoingCallBroadcaster extends Activity
                     && (app.phone.isOtaSpNumber(number))) {
                 if (DBG) Log.v(TAG, "Call is active, a 2nd OTA call cancelled -- returning.");
                 return false;
-            } else if (PhoneNumberUtils.isPotentialLocalEmergencyNumber(number, context)) {
+            } else if (PhoneNumberUtils.isPotentialLocalEmergencyNumber(context, number)) {
                 // Just like 3rd-party apps aren't allowed to place emergency
                 // calls via the ACTION_CALL intent, we also don't allow 3rd
                 // party apps to use the NEW_OUTGOING_CALL broadcast to rewrite
@@ -502,9 +502,9 @@ public class OutgoingCallBroadcaster extends Activity
         // emergency number but might still result in an emergency call
         // with some networks.)
         final boolean isExactEmergencyNumber =
-                (number != null) && PhoneNumberUtils.isLocalEmergencyNumber(number, this);
+                (number != null) && PhoneNumberUtils.isLocalEmergencyNumber(this, number);
         final boolean isPotentialEmergencyNumber =
-                (number != null) && PhoneNumberUtils.isPotentialLocalEmergencyNumber(number, this);
+                (number != null) && PhoneNumberUtils.isPotentialLocalEmergencyNumber(this, number);
         if (VDBG) {
             Log.v(TAG, " - Checking restrictions for number '" + number + "':");
             Log.v(TAG, "     isExactEmergencyNumber     = " + isExactEmergencyNumber);
