@@ -2080,8 +2080,8 @@ public class PhoneUtils {
 
     static boolean isInEmergencyCall(CallManager cm) {
         for (Connection cn : cm.getActiveFgCall().getConnections()) {
-            if (PhoneNumberUtils.isLocalEmergencyNumber(cn.getAddress(),
-                    PhoneGlobals.getInstance())) {
+            if (PhoneNumberUtils.isLocalEmergencyNumber(PhoneGlobals.getInstance(),
+                    cn.getAddress())) {
                 return true;
             }
         }
@@ -2227,8 +2227,8 @@ public class PhoneUtils {
                      event.getRepeatCount() == 0) {
                 Connection c = phone.getForegroundCall().getLatestConnection();
                 // If it is NOT an emg #, toggle the mute state. Otherwise, ignore the hook.
-                if (c != null && !PhoneNumberUtils.isLocalEmergencyNumber(c.getAddress(),
-                                                                          PhoneGlobals.getInstance())) {
+                if (c != null && !PhoneNumberUtils.isLocalEmergencyNumber(
+                        PhoneGlobals.getInstance(), c.getAddress())) {
                     if (getMute()) {
                         if (DBG) log("handleHeadsetHook: UNmuting...");
                         setMute(false);

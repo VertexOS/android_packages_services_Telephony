@@ -737,8 +737,8 @@ public class CallNotifier extends Handler
 
         if (fgPhone.getPhoneType() == PhoneConstants.PHONE_TYPE_CDMA) {
             Connection c = fgPhone.getForegroundCall().getLatestConnection();
-            if ((c != null) && (PhoneNumberUtils.isLocalEmergencyNumber(c.getAddress(),
-                                                                        mApplication))) {
+            if ((c != null) && (PhoneNumberUtils.isLocalEmergencyNumber(mApplication,
+                                                                        c.getAddress()))) {
                 if (VDBG) log("onPhoneStateChanged: it is an emergency call.");
                 Call.State callState = fgPhone.getForegroundCall().getState();
                 if (mEmergencyTonePlayerVibrator == null) {
@@ -1039,7 +1039,7 @@ public class CallNotifier extends Handler
             final String number = c.getAddress();
             final Phone phone = c.getCall().getPhone();
             final boolean isEmergencyNumber =
-                    PhoneNumberUtils.isLocalEmergencyNumber(number, mApplication);
+                    PhoneNumberUtils.isLocalEmergencyNumber(mApplication, number);
 
             if (phone.getPhoneType() == PhoneConstants.PHONE_TYPE_CDMA) {
                 if ((isEmergencyNumber)

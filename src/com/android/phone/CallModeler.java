@@ -672,8 +672,8 @@ public class CallModeler extends Handler {
         // emergency callback mode (ECM) is active.
         boolean isEmergencyCall = false;
         if (connection != null) {
-            isEmergencyCall = PhoneNumberUtils.isLocalEmergencyNumber(connection.getAddress(),
-                    phone.getContext());
+            isEmergencyCall = PhoneNumberUtils.isLocalEmergencyNumber(phone.getContext(),
+                    connection.getAddress());
         }
         boolean isECM = PhoneUtils.isPhoneInEcm(phone);
         if (isEmergencyCall || isECM) {  // disable "Mute" item

@@ -109,8 +109,8 @@ class CallLogger {
      */
     public void logCall(CallerInfo ci, String number, int presentation, int callType, long start,
                         long duration) {
-        final boolean isEmergencyNumber = PhoneNumberUtils.isLocalEmergencyNumber(number,
-                mApplication);
+        final boolean isEmergencyNumber = PhoneNumberUtils.isLocalEmergencyNumber(mApplication,
+                number);
 
         // On some devices, to avoid accidental redialing of
         // emergency numbers, we *never* log emergency calls to
