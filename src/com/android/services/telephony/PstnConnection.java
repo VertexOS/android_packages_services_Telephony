@@ -95,6 +95,15 @@ public abstract class PstnConnection extends TelephonyConnection {
         super.onDisconnect();
     }
 
+    @Override
+    public void onPostDialContinue(boolean proceed) {
+        if (proceed) {
+            getOriginalConnection().proceedAfterWaitChar();
+        } else {
+            getOriginalConnection().cancelPostDial();
+        }
+    }
+
     protected Phone getPhone() {
         return mPhone;
     }

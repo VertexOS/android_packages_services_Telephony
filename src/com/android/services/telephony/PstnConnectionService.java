@@ -19,14 +19,14 @@ package com.android.services.telephony;
 import android.net.Uri;
 
 import android.telephony.DisconnectCause;
+import android.telecomm.Connection;
+import android.telecomm.ConnectionRequest;
+import android.telecomm.Response;
 import android.telephony.PhoneNumberUtils;
 
 import com.android.internal.telephony.Call;
 import com.android.internal.telephony.Phone;
 import com.android.phone.Constants;
-import android.telecomm.Connection;
-import android.telecomm.ConnectionRequest;
-import android.telecomm.Response;
 
 import java.util.HashSet;
 import java.util.Set;
