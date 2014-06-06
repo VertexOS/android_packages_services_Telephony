@@ -160,7 +160,7 @@
         <item name="android:windowCloseOnTouchOutside">true</item>
     </style>
 
-    <style name="SettingsLight" parent="android:Theme.Quantum.Light">
+    <style name="SettingsLight" parent="android:Theme.Material.Light">
         <item name="android:windowBackground">@color/phone_settings_background_color</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:actionBarStyle">@style/DialtactsActionBarStyle</item>
@@ -235,7 +235,7 @@
     </style>
 
     <!-- Style for the call settings action bar.  Should be kept in sync with Dialer. -->
-    <style name="DialtactsActionBarStyle" parent="android:Widget.Quantum.ActionBar">
+    <style name="DialtactsActionBarStyle" parent="android:Widget.Material.ActionBar">
         <item name="android:background">@color/actionbar_background_color</item>
         <item name="android:titleTextStyle">@style/DialtactsActionBarTitleText</item>
         <item name="android:height">@dimen/action_bar_height</item>
