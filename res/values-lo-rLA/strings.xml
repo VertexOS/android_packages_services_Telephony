@@ -61,7 +61,8 @@
     <string name="voicemail" msgid="8693759337917898954">"ຂໍ້ຄວາມສຽງ"</string>
     <string name="voicemail_abbreviated" msgid="2215592488517217448">"VM​:"</string>
     <string name="networks" msgid="8873030692174541976">"ຜູ່ໃຫ້ບໍລິການເຄືອຂ່າຍ"</string>
-    <string name="call_settings" msgid="6112441768261754562">"ການຕັ້ງຄ່າການໂທ"</string>
+    <!-- no translation found for call_settings (1630474923393095156) -->
+    <skip />
     <string name="additional_gsm_call_settings" msgid="1391795981938800617">"ການຕັ້ງຄ່າເພີ່ມເຕີມ"</string>
     <string name="sum_gsm_call_settings" msgid="4076647190996778012">"ການຕັ້ງຄ່າເພີ່ມເຕີມສະເພາະຂອງການໂທ GSM"</string>
     <string name="additional_cdma_call_settings" msgid="8628958775721886909">"ການຕັ້ງຄ່າການໂທ CDMA ເພີ່ມເຕີມ"</string>
@@ -616,7 +617,7 @@
     <string name="preference_category_ringtone" msgid="5197960752529332721">"ຣິງໂທນ &amp; ການສັ່ນເຕືອນ"</string>
     <string name="choose_wifi_for_call_msg" msgid="193549297122949976">"ໃຊ້ Wi-Fi ເພື່ອ​ໂທ​ບໍ?"</string>
     <string name="choose_wifi_for_call_yes" msgid="5312994368472630983">"ແມ່ນແລ້ວ"</string>
-    <string name="choose_wifi_for_call_no" msgid="7132239734287157307">"ບໍ່​"</string>
+    <string name="choose_wifi_for_call_no" msgid="7132239734287157307">"ບໍ່"</string>
     <string name="gsm_connection_service_label" msgid="2332284528867411683">"GSM SIM ​ກາດ​ທີ່​ມາ​ກັບ​ເຄື່ອງ"</string>
     <string name="cdma_connection_service_label" msgid="5038725238949035222">"CDMA SIM ກາດ​ທີ່​ມາ​ກັບ​ເຄື່ອງ"</string>
     <string name="sip_connection_service_label" msgid="3547998349299125294">"ການ​ໂທ​ຜ່ານ​ອິນ​ເຕີ​ເນັດ​​ທີ່​ມາ​ກັບ​ເຄື່ອງ"</string>

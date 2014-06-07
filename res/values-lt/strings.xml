@@ -61,7 +61,8 @@
     <string name="voicemail" msgid="8693759337917898954">"Balso paštas"</string>
     <string name="voicemail_abbreviated" msgid="2215592488517217448">"BP:"</string>
     <string name="networks" msgid="8873030692174541976">"Tinklo operatoriai"</string>
-    <string name="call_settings" msgid="6112441768261754562">"Skambinimo nustatymai"</string>
+    <!-- no translation found for call_settings (1630474923393095156) -->
+    <skip />
     <string name="additional_gsm_call_settings" msgid="1391795981938800617">"Papildomi nustatymai"</string>
     <string name="sum_gsm_call_settings" msgid="4076647190996778012">"Papildomi tik GSM skambinimo nustatymai"</string>
     <string name="additional_cdma_call_settings" msgid="8628958775721886909">"Papildomi CDMA skambučio nustatymai"</string>
