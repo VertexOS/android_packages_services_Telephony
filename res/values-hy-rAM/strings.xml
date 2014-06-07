@@ -52,8 +52,7 @@
     <string name="requesting_unlock" msgid="6412629401033249351">"Հայցվում է ցանցի ապակողպում..."</string>
     <string name="unlock_failed" msgid="6490531697031504225">"Ցանցի ապակողպման հարցումը խափանվեց:"</string>
     <string name="unlock_success" msgid="6770085622238180152">"Ցանցի ապակողպումը խափանվեց"</string>
-    <!-- no translation found for mobile_network_settings_not_available (7355254462995117896) -->
-    <skip />
+    <string name="mobile_network_settings_not_available" msgid="7355254462995117896">"Բջջային ցանցի կարգավորումներն անհասանելի են այս օգտվողի համար"</string>
     <string name="labelGSMMore" msgid="5930842194056092106">"GSM զանգերի կարգավորումներ"</string>
     <string name="labelCDMAMore" msgid="1630676740428229339">"CDMA զանգերի կարգավորումներ"</string>
     <string name="apn_settings" msgid="9043423184895642077">"Մատչման կետերի Անունները"</string>
