@@ -62,7 +62,7 @@
     <string name="voicemail" msgid="8693759337917898954">"Correu de veu"</string>
     <string name="voicemail_abbreviated" msgid="2215592488517217448">"CV:"</string>
     <string name="networks" msgid="8873030692174541976">"Operadors de xarxa"</string>
-    <string name="call_settings" msgid="6112441768261754562">"Configuració de trucada"</string>
+    <string name="call_settings" msgid="1630474923393095156">"Configuració de trucada"</string>
     <string name="additional_gsm_call_settings" msgid="1391795981938800617">"Configuració addicional"</string>
     <string name="sum_gsm_call_settings" msgid="4076647190996778012">"Configuració addicional de trucades només GSM"</string>
     <string name="additional_cdma_call_settings" msgid="8628958775721886909">"Configuració addicional de trucades CDMA"</string>

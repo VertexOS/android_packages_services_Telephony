@@ -62,7 +62,7 @@
     <string name="voicemail" msgid="8693759337917898954">"Говорна пошта"</string>
     <string name="voicemail_abbreviated" msgid="2215592488517217448">"VM:"</string>
     <string name="networks" msgid="8873030692174541976">"Мрежни оператери"</string>
-    <string name="call_settings" msgid="6112441768261754562">"Подешавања позива"</string>
+    <string name="call_settings" msgid="1630474923393095156">"Подешавања позива"</string>
     <string name="additional_gsm_call_settings" msgid="1391795981938800617">"Додатна подешавања"</string>
     <string name="sum_gsm_call_settings" msgid="4076647190996778012">"Додатна подешавања позива само за GSM"</string>
     <string name="additional_cdma_call_settings" msgid="8628958775721886909">"Додатна CDMA подешавања позива"</string>

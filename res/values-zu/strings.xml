@@ -62,7 +62,7 @@
     <string name="voicemail" msgid="8693759337917898954">"Ivoyisimeyili"</string>
     <string name="voicemail_abbreviated" msgid="2215592488517217448">"VM:"</string>
     <string name="networks" msgid="8873030692174541976">"Imisebenzi yenethiwekhi"</string>
-    <string name="call_settings" msgid="6112441768261754562">"Izilungiselelo zekholi"</string>
+    <string name="call_settings" msgid="1630474923393095156">"Izilungiselelo zekholi"</string>
     <string name="additional_gsm_call_settings" msgid="1391795981938800617">"Izilungiselelo ezengeziwe"</string>
     <string name="sum_gsm_call_settings" msgid="4076647190996778012">"Izilungiselelo zekholi ezengeziwe ze-GSM kuphela"</string>
     <string name="additional_cdma_call_settings" msgid="8628958775721886909">"Izilungiselelo zekholi Ezengeziwe ze-CDMA"</string>

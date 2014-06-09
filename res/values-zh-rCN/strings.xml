@@ -62,7 +62,7 @@
     <string name="voicemail" msgid="8693759337917898954">"语音信箱"</string>
     <string name="voicemail_abbreviated" msgid="2215592488517217448">"语音信箱："</string>
     <string name="networks" msgid="8873030692174541976">"网络运营商"</string>
-    <string name="call_settings" msgid="6112441768261754562">"通话设置"</string>
+    <string name="call_settings" msgid="1630474923393095156">"通话设置"</string>
     <string name="additional_gsm_call_settings" msgid="1391795981938800617">"其他设置"</string>
     <string name="sum_gsm_call_settings" msgid="4076647190996778012">"其他仅适用于 GSM 通话的设置"</string>
     <string name="additional_cdma_call_settings" msgid="8628958775721886909">"其他 CDMA 通话设置"</string>

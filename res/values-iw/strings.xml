@@ -62,13 +62,13 @@
     <string name="voicemail" msgid="8693759337917898954">"דואר קולי"</string>
     <string name="voicemail_abbreviated" msgid="2215592488517217448">"דואר קולי:"</string>
     <string name="networks" msgid="8873030692174541976">"מפעילי רשת"</string>
-    <string name="call_settings" msgid="6112441768261754562">"הגדרות שיחה"</string>
+    <string name="call_settings" msgid="1630474923393095156">"הגדרות שיחה"</string>
     <string name="additional_gsm_call_settings" msgid="1391795981938800617">"הגדרות נוספות"</string>
     <string name="sum_gsm_call_settings" msgid="4076647190996778012">"‏הגדרות שיחה נוספות של GSM בלבד"</string>
     <string name="additional_cdma_call_settings" msgid="8628958775721886909">"‏הגדרות שיחה נוספות של CDMA"</string>
     <string name="sum_cdma_call_settings" msgid="284753265979035549">"‏הגדרות שיחה נוספות של CDMA בלבד"</string>
     <string name="labelNwService" msgid="4699970172021870983">"הגדרות שירות רשת"</string>
-    <string name="labelCallerId" msgid="3888899447379069198">"זיהוי מתקשר"</string>
+    <string name="labelCallerId" msgid="3888899447379069198">"שיחה מזוהה"</string>
     <string name="sum_loading_settings" msgid="1826692909391168620">"טוען הגדרות..."</string>
     <string name="sum_hide_caller_id" msgid="1071407020290873782">"המספר מוסתר בשיחות יוצאות"</string>
     <string name="sum_show_caller_id" msgid="6768534125447290401">"מספר המוצג בשיחות יוצאות"</string>
