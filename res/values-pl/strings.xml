@@ -61,8 +61,7 @@
     <string name="voicemail" msgid="8693759337917898954">"Poczta głosowa"</string>
     <string name="voicemail_abbreviated" msgid="2215592488517217448">"Poczta głosowa:"</string>
     <string name="networks" msgid="8873030692174541976">"Operatorzy sieci"</string>
-    <!-- no translation found for call_settings (1630474923393095156) -->
-    <skip />
+    <string name="call_settings" msgid="1630474923393095156">"Ustawienia połączeń"</string>
     <string name="additional_gsm_call_settings" msgid="1391795981938800617">"Ustawienia dodatkowe"</string>
     <string name="sum_gsm_call_settings" msgid="4076647190996778012">"Dodatkowe ustawienia: tylko połączenia GSM"</string>
     <string name="additional_cdma_call_settings" msgid="8628958775721886909">"Dodatkowe ustawienia połączenia CDMA"</string>

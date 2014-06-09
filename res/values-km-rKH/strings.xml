@@ -28,10 +28,10 @@
     <string name="mmiStarted" msgid="6347869857061147003">"បាន​ចាប់ផ្ដើម​កូដ MMI"</string>
     <string name="ussdRunning" msgid="485588686340541690">"កូដ USSD កំពុង​ដំណើរការ…"</string>
     <string name="mmiCancelled" msgid="2771923949751842276">"បាន​បោះបង់​កូដ MMI"</string>
-    <string name="cancel" msgid="5044513931633602634">"បោះ​បង់"</string>
+    <string name="cancel" msgid="5044513931633602634">"បោះ​បង់​"</string>
     <string name="enter_input" msgid="1810529547726803893">"សារ USSD ត្រូវ​តែ​មាន​តួអក្សរ​ចន្លោះ <xliff:g id="MIN_LEN">%d</xliff:g> និង <xliff:g id="MAX_LEN">%d</xliff:g> ។ សូម​ព្យាយាម​ម្ដងទៀត​។"</string>
     <string name="manageConferenceLabel" msgid="4691922394301969053">"គ្រប់គ្រង​ការ​ហៅ​​ជា​សន្និសីទ"</string>
-    <string name="ok" msgid="3811371167865772377">"យល់​ព្រម"</string>
+    <string name="ok" msgid="3811371167865772377">"យល់​ព្រម​"</string>
     <string name="audio_mode_speaker" msgid="27649582100085266">"អូប៉ាល័រ"</string>
     <string name="audio_mode_earpiece" msgid="4156527186373869107">"កាស"</string>
     <string name="audio_mode_wired_headset" msgid="1465350758489175975">"កាស​មាន​ខ្សែ"</string>
@@ -61,8 +61,7 @@
     <string name="voicemail" msgid="8693759337917898954">"សារ​ជា​សំឡេង"</string>
     <string name="voicemail_abbreviated" msgid="2215592488517217448">"VM:"</string>
     <string name="networks" msgid="8873030692174541976">"ប្រតិបត្តិ​ករ​​​បណ្ដាញ"</string>
-    <!-- no translation found for call_settings (1630474923393095156) -->
-    <skip />
+    <string name="call_settings" msgid="1630474923393095156">"កំណត់​ការ​ហៅ"</string>
     <string name="additional_gsm_call_settings" msgid="1391795981938800617">"ការ​កំណត់​បន្ថែម"</string>
     <string name="sum_gsm_call_settings" msgid="4076647190996778012">"កំណត់​ការ​ហៅ​តែ GSM បន្ថែម​ប៉ុណ្ណោះ"</string>
     <string name="additional_cdma_call_settings" msgid="8628958775721886909">"កំណត់​ការ​ហៅ CDMA បន្ថែម"</string>
@@ -108,7 +107,7 @@
     <string name="exception_error" msgid="7027667130619518211">"កំហុស​ស៊ីមកាត ឬ​បណ្ដាញ។"</string>
     <string name="fdn_check_failure" msgid="18200614306525434">"បាន​បើក​ការ​កំណត់​លេខ​ហៅ​​ថេរ​​​នៃ​កម្មវិធី​ទូរស័ព្ទ​របស់​អ្នក។ ជា​លទ្ធផល លក្ខណៈ​មួយ​ចំនួន​ដែល​ទាក់ទង​នឹង​ការ​ហៅ​មិន​ដំណើរការ។"</string>
     <string name="radio_off_error" msgid="2304459933248513376">"បើក​​វិទ្យុ​មុន​ពេល​មើល​ការ​កំណត់​ទាំង​នេះ​។"</string>
-    <string name="close_dialog" msgid="2365884406356986917">"យល់​ព្រម"</string>
+    <string name="close_dialog" msgid="2365884406356986917">"យល់​ព្រម​"</string>
     <string name="enable" msgid="1059008390636773574">"បើក"</string>
     <string name="disable" msgid="7274240979164762320">"បិទ"</string>
     <string name="change_num" msgid="239476305819844391">"ធ្វើ​បច្ចុប្បន្នភាព"</string>
@@ -169,7 +168,7 @@
     <item msgid="5958053792390386668">"GSM/WCDMA ស្វ័យប្រវត្តិ"</item>
     <item msgid="7913148405605373434">"តែ WCDMA ប៉ុណ្ណោះ"</item>
     <item msgid="1524224863879435516">"តែ GSM ប៉ុណ្ណោះ"</item>
-    <item msgid="3817924849415716259">"GSM/WCDMA ដែល​ចូលចិត្ត"</item>
+    <item msgid="3817924849415716259">"GSM/WCDMA ដែល​ចូលចិត្ត​"</item>
   </string-array>
     <string name="data_enabled" msgid="5972538663568715366">"បាន​បើក​ទិន្នន័យ"</string>
     <string name="data_enable_summary" msgid="5022018967714633874">"បើក​ចូល​ដំណើរការ​ទិន្នន័យ​លើ​​បណ្ដាញ​ឧបករណ៍​ចល័ត"</string>
@@ -181,7 +180,7 @@
     <string name="gsm_umts_options" msgid="6538311689850981686">"ជម្រើស GSM/UMTS"</string>
     <string name="cdma_options" msgid="4016822858172249884">"ជម្រើស CDMA"</string>
     <string name="throttle_data_usage" msgid="3715677828160555808">"ការ​ប្រើ​ប្រាស់​ទិន្នន័យ"</string>
-    <string name="throttle_current_usage" msgid="8762280193043815361">"បច្ចុប្បន្ន​បាន​ប្រើ​ទិន្នន័យ"</string>
+    <string name="throttle_current_usage" msgid="8762280193043815361">"បច្ចុប្បន្ន​បាន​ប្រើ​ទិន្នន័យ​​"</string>
     <string name="throttle_time_frame" msgid="1915198770363734685">"ទិន្នន័យ​ប្រើ​រយៈ​ពេល"</string>
     <string name="throttle_rate" msgid="4710388992676803508">"គោល​ន​យោ​បាយ​អត្រា​ទិន្នន័យ"</string>
     <string name="throttle_help" msgid="243651091785169900">"ស្វែងយល់​បន្ថែម"</string>
@@ -213,7 +212,7 @@
     <string name="local_enable" msgid="6370463247609136359">"បាន​បើក​ព័ត៌មាន​ក្នុង​ស្រុក"</string>
     <string name="local_disable" msgid="4405691986943795798">"បាន​បិទ​ព័ត៌មាន​ក្នុង​ស្រុក"</string>
     <string name="enable_disable_regional" msgid="4905652414535565872">"នៃ​តំបន់"</string>
-    <string name="regional_enable" msgid="4434680415437834759">"បាន​បើក​ព័ត៌មាន​ក្នុង​តំបន់"</string>
+    <string name="regional_enable" msgid="4434680415437834759">"បាន​បើក​ព័ត៌មាន​ក្នុង​តំបន់​"</string>
     <string name="regional_disable" msgid="5359325527213850077">"បាន​បិទ​ព័ត៌មាន​ក្នុង​តំបន់"</string>
     <string name="enable_disable_national" msgid="236278090206880734">"ជាតិ"</string>
     <string name="national_enable" msgid="1172443648912246952">"បាន​បើក​ព័ត៌មាន​ជាតិ"</string>
@@ -249,11 +248,11 @@
     <string name="atr_enable" msgid="5541757457789181799">"បាន​បើក​របាយ​ការណ៍​​​ចរាចរណ៍​តំបន់"</string>
     <string name="atr_disable" msgid="7085558154727596455">"បាន​បិទ​របាយការណ៍​ចរាចរណ៍​តំបន់"</string>
     <string name="enable_disable_lafs" msgid="668189073721277199">"កាលវិភាគ​ហោះហើរ​អាកាសយានដ្ឋាន​ក្នុងស្រុក"</string>
-    <string name="lafs_enable" msgid="2791978667205137052">"បាន​បើក​កាលវិភាគ​ហោះហើរ​អាកាសយានដ្ឋាន​ក្នុង​ស្រុក"</string>
-    <string name="lafs_disable" msgid="2391212397725495350">"បាន​បិទ​​​កាលវិភាគ​ហោះហើរ​អាកាសយានដ្ឋាន​ក្នុង​ស្រុក"</string>
+    <string name="lafs_enable" msgid="2791978667205137052">"បាន​បើក​កាលវិភាគ​ហោះហើរ​អាកាសយានដ្ឋាន​ក្នុង​ស្រុក​"</string>
+    <string name="lafs_disable" msgid="2391212397725495350">"បាន​បិទ​​​កាលវិភាគ​ហោះហើរ​អាកាសយានដ្ឋាន​ក្នុង​ស្រុក​"</string>
     <string name="enable_disable_restaurants" msgid="6240381945336814024">"ភោជនីយដ្ឋាន"</string>
     <string name="restaurants_enable" msgid="5137657479469118847">"បាន​បើក​ភោជនីយដ្ឋាន"</string>
-    <string name="restaurants_disable" msgid="3678480270938424092">"បាន​បិទ​ភោជនីយដ្ឋាន"</string>
+    <string name="restaurants_disable" msgid="3678480270938424092">"បាន​បិទ​ភោជនីយដ្ឋាន​"</string>
     <string name="enable_disable_lodgings" msgid="1822029172658551202">"បណ្ដោះ​អាសន្ន"</string>
     <string name="lodgings_enable" msgid="3230042508992850322">"បាន​បើក​ជា​បណ្ដោះ​អាសន្ន"</string>
     <string name="lodgings_disable" msgid="3387879742320682391">"បាន​បិទ​ជា​បណ្ដោះ​អាសន្ន"</string>
@@ -267,7 +266,7 @@
     <string name="stock_quotes_enable" msgid="4384802470887170543">"បាន​បើក​សម្រង់​ស្ដុក"</string>
     <string name="stock_quotes_disable" msgid="4781450084565594998">"បាន​បិទ​សម្រង់​ស្ដុក"</string>
     <string name="enable_disable_eo" msgid="4863043263443942494">"ឱកាស​ការងារ"</string>
-    <string name="eo_enable" msgid="8623559062015685813">"បាន​បើក​ឱកាស​ការងារ"</string>
+    <string name="eo_enable" msgid="8623559062015685813">"បាន​បើក​ឱកាស​ការងារ​"</string>
     <string name="eo_disable" msgid="3863812478090907609">"បាន​បិទ​ឱកាស​​ការងារ"</string>
     <string name="enable_disable_mhh" msgid="908214593528968522">"វេជ្ជសាស្ត្រ  សុខភាព ​និង​មន្ទីរពេទ្យ"</string>
     <string name="mhh_enable" msgid="5544500632306446815">"បាន​​បើក វេជ្ជសាស្ត្រ  សុខភាព ​និង​មន្ទីរពេទ្យ"</string>
@@ -464,7 +463,7 @@
     <string name="ota_skip_activation_dialog_title" msgid="2943366608272261306">"រំលង​ការ​ធ្វើ​ឲ្យ​សកម្ម​?"</string>
     <string name="ota_skip_activation_dialog_message" msgid="2440770373498870550">"ប្រសិនបើ​អ្នក​រំលង​ការ​ធ្វើ​ឲ្យ​សកម្ម អ្នក​មិន​អាច​កំណត់​ការ​ហៅ ឬ​តភ្ជាប់​បណ្ដាញ​​ទិន្នន័យ​ឧបករណ៍​​ចល័ត​បាន​ទេ (អ្នក​អាច​តភ្ជាប់​តាម​បណ្ដាញ​​វ៉ាយហ្វាយ )។ លុះត្រាតែ​​​អ្នកធ្វើ​ឲ្យ​ទូរស័ព្ទ​របស់​អ្នក​សកម្ម អ្នក​ត្រូវ​បាន​ស្នើ​ធ្វើ​ឲ្យ​វា​សកម្ម​នៅ​ពេល​ដែល​អ្នក​បិទ​វា។"</string>
     <string name="ota_skip_activation_dialog_skip_label" msgid="3458532775091563208">"រំលង"</string>
-    <string name="ota_activate" msgid="1368528132525626264">"ធ្វើ​ឲ្យ​សកម្ម"</string>
+    <string name="ota_activate" msgid="1368528132525626264">"ធ្វើ​ឲ្យ​សកម្ម​"</string>
     <string name="ota_title_activate_success" msgid="6570240212263372046">"បាន​ធ្វើ​ឲ្យ​ទូរស័ព្ទ​សកម្ម។"</string>
     <string name="ota_title_problem_with_activation" msgid="7095824491970084367">"មាន​បញ្ហា​ជាមួយ​នឹង​ការ​ធ្វើ​ឲ្យ​​សកម្ម"</string>
     <string name="ota_listen" msgid="162923839877584937">"​អនុវត្ត​តាម​សេចក្ដី​ណែនាំ​ដែល​បាន​​និយាយ​រហូត​ដល់​លោកអ្នក​ស្ដាប់​​ឮ​ហើយ​ធ្វើ​ឲ្យ​សកម្ម​​ពេញលេញ​។"</string>
@@ -476,7 +475,7 @@
     <string name="ota_spc_failure" msgid="3909983542575030796">"ការ​បរាជ័យ SPC លើស"</string>
     <string name="ota_call_end" msgid="4537279738134612388">"ថយក្រោយ"</string>
     <string name="ota_try_again" msgid="7685477206465902290">"ព្យាយាម​ម្ដង​ទៀត"</string>
-    <string name="ota_next" msgid="3904945374358235910">"បន្ទាប់"</string>
+    <string name="ota_next" msgid="3904945374358235910">"បន្ទាប់​"</string>
     <string name="ecm_exit_dialog" msgid="4448531867763097533">"EcmExitDialog"</string>
     <string name="phone_entered_ecm_text" msgid="6266424252578731203">"បាន​បញ្ចូល​របៀប​ការ​ហៅ​ទៅ​វិញ​ពេល​មាន​អាសន្ន"</string>
     <string name="phone_in_ecm_notification_title" msgid="3226896828951687085">"របៀប​ហៅ​ទៅ​វិញ​ពេល​មាន​អាសន្ន"</string>
@@ -486,7 +485,7 @@
     <item quantity="other" msgid="3122217344579273583">"ការ​តភ្ជាប់​គ្មាន​ទិន្នន័យ​សម្រាប់ <xliff:g id="COUNT">%s</xliff:g> នាទី"</item>
   </plurals>
   <plurals name="alert_dialog_exit_ecm">
-    <item quantity="one" msgid="8060210887681426682">"ទូរស័ព្ទ​​នឹង​នៅ​ក្នុង​របៀប​ហៅ​ទៅ​វិញ​សម្រាប់​តម្រូវ​ការ​បន្ទាន់ <xliff:g id="COUNT">%s</xliff:g> នាទី។ ខណៈ​ពេល​ដែល​នៅ​ក្នុង​របៀប​នេះ​គ្មាន​កម្មវិធី​ដែល​ប្រើ​ការ​តភ្ជាប់​ទិន្នន័យ​ឡើយ។ តើ​អ្នក​ចង់​ចាកចេញ​ឥឡូវ​នេះ​ឬ?"</item>
+    <item quantity="one" msgid="8060210887681426682">"ទូរស័ព្ទ​​នឹង​នៅ​ក្នុង​របៀប​ហៅ​ទៅ​វិញ​សម្រាប់​តម្រូវ​ការ​បន្ទាន់ <xliff:g id="COUNT">%s</xliff:g> នាទី។ ខណៈ​ពេល​ដែល​នៅ​ក្នុង​របៀប​នេះ​គ្មាន​កម្មវិធី​ដែល​ប្រើ​ការ​តភ្ជាប់​ទិន្នន័យ​ឡើយ។ តើ​អ្នក​ចង់​ចាកចេញ​ឥឡូវ​នេះ​ឬ?​"</item>
     <item quantity="other" msgid="8617116564023933114">"ទូរស័ព្ទ​នឹង​នៅ​ក្នុង​របៀប​ហៅ​ទៅ​វិញ​សម្រាប់​ពេល​មាន​អាសន្ន <xliff:g id="COUNT">%s</xliff:g> នាទី។ ខណៈ​ពេល​ដែល​នៅ​ក្នុង​របៀប​នេះ​គ្មាន​កម្មវិធី​​ដែល​​បាន​ប្រើ​ការ​តភ្ជាប់​ទិន្នន័យ​ឡើយ។ តើ​អ្នក​ចង់​ចាកចេញ​ឥឡូវ​នេះ​ឬ?"</item>
   </plurals>
   <plurals name="alert_dialog_not_avaialble_in_ecm">
@@ -534,8 +533,8 @@
     <string name="sip_menu_save" msgid="5842531129356014943">"រក្សាទុក"</string>
     <string name="sip_menu_discard" msgid="524075892158789701">"បោះបង់"</string>
     <string name="alert_dialog_close" msgid="7759635137627626235">"បិទ​​ជីវប្រវត្តិ"</string>
-    <string name="alert_dialog_ok" msgid="3580379406983564080">"យល់​ព្រម"</string>
-    <string name="close_profile" msgid="6886968271423155284">"បិទ"</string>
+    <string name="alert_dialog_ok" msgid="3580379406983564080">"យល់​ព្រម​"</string>
+    <string name="close_profile" msgid="6886968271423155284">"បិទ​"</string>
     <string name="primary_account_summary_with" msgid="1633960536212343187">"គណនី​​ចម្បង។ <xliff:g id="REGISTRATION_STATUS">%s</xliff:g>"</string>
     <string name="registration_status_checking_status" msgid="3381868307694056727">"កំពុង​ពិនិត្យ​មើល​ស្ថានភាព​ ..."</string>
     <string name="registration_status_registering" msgid="4288401139400232968">"កំពុង​ចុះឈ្មោះ…"</string>
@@ -552,8 +551,8 @@
     <string name="sip_edit_title" msgid="489288416435014385">"សេចក្ដី​លម្អិត​គណនី​ SIP"</string>
     <string name="sip_edit_new_title" msgid="3659149255856520385">"សេចក្ដី​លម្អិត​គណនី SIP"</string>
     <string name="domain_address_title" msgid="9071787581316160480">"ម៉ាស៊ីន​មេ"</string>
-    <string name="username_title" msgid="2479375923477682328">"ឈ្មោះ​អ្នក​ប្រើ"</string>
-    <string name="password_title" msgid="3323555249068171531">"ពាក្យសម្ងាត់"</string>
+    <string name="username_title" msgid="2479375923477682328">"ឈ្មោះ​អ្នក​ប្រើ​"</string>
+    <string name="password_title" msgid="3323555249068171531">"ពាក្យសម្ងាត់​"</string>
     <string name="display_name_title" msgid="2459768196312249937">"បង្ហាញ​ឈ្មោះ"</string>
     <string name="proxy_address_title" msgid="4828301345351614273">"អាសយដ្ឋាន​ប្រូកស៊ី​ចេញ"</string>
     <string name="port_title" msgid="5952939408078626657">"លេខ​ច្រក"</string>
@@ -571,8 +570,8 @@
     <string name="advanced_settings_hide" msgid="217398292824758079">"ប៉ះ ▽ ដើម្បី​លាក់​ទាំងអស់"</string>
     <string name="empty_alert" msgid="6839103946505432390">"មិន​​អាច​ទុក​ឲ្យ​នៅ​ទទេ និង​បាន​ទាមទារ <xliff:g id="INPUT_FIELD_NAME">%s</xliff:g> ។"</string>
     <string name="not_a_valid_port" msgid="4796149266434630292">"លេខ​ច្រក​គួរតែ​នៅ​ចន្លោះ ១០០០ និង ៦៥៥៣៤។"</string>
-    <string name="no_internet_available_title" msgid="3327109242858406165">"គ្មាន​ការ​តភ្ជាប់​អ៊ីនធឺណិត"</string>
-    <string name="no_wifi_available_title" msgid="747881033089378758">"គ្មាន​ការ​តភ្ជាប់​តាម​​វ៉ាយហ្វាយ"</string>
+    <string name="no_internet_available_title" msgid="3327109242858406165">"គ្មាន​ការ​តភ្ជាប់​អ៊ីនធឺណិត​"</string>
+    <string name="no_wifi_available_title" msgid="747881033089378758">"គ្មាន​ការ​តភ្ជាប់​តាម​​វ៉ាយហ្វាយ​"</string>
     <string name="no_internet_available" msgid="7877142631803238549">"ដើម្បី​កំណត់​ការ​ហៅ​តាម​អ៊ីនធឺណិត ពិនិត្យមើល​ការ​តភ្ជាប់​អ៊ីនធឺណិត​របស់​អ្នក​ដំបូង។"</string>
     <string name="no_wifi_available" msgid="1225073547318465713">"អ្នក​ត្រូវ​តភ្ជាប់​តាម​បណ្ដាញ​​វ៉ាយហ្វាយ​សម្រាប់​​ហៅ​តាម​អ៊ីនធឺណិត (ប្រើ​ការ​កំណត់​បណ្ដាញ​ឥត​ខ្សែ &amp; )។"</string>
     <string name="no_voip" msgid="8901474054537199865">"មិន​បាន​គាំទ្រ​ការ​ហៅ​តាម​អ៊ីនធឺណិត"</string>

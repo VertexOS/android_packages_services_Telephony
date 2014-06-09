@@ -61,8 +61,7 @@
     <string name="voicemail" msgid="8693759337917898954">"البريد الصوتي"</string>
     <string name="voicemail_abbreviated" msgid="2215592488517217448">"VM:"</string>
     <string name="networks" msgid="8873030692174541976">"مشغلو الشبكة"</string>
-    <!-- no translation found for call_settings (1630474923393095156) -->
-    <skip />
+    <string name="call_settings" msgid="1630474923393095156">"إعدادات المكالمات"</string>
     <string name="additional_gsm_call_settings" msgid="1391795981938800617">"إعدادات إضافية"</string>
     <string name="sum_gsm_call_settings" msgid="4076647190996778012">"‏إعدادات اتصال GSM الإضافية فقط"</string>
     <string name="additional_cdma_call_settings" msgid="8628958775721886909">"‏إعدادات اتصال CDMA الإضافية"</string>
