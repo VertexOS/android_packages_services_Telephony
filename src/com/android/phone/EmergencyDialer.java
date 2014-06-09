@@ -82,7 +82,6 @@ public class EmergencyDialer extends Activity implements View.OnClickListener,
     private static final boolean DBG = false;
     private static final String LOG_TAG = "EmergencyDialer";
 
-    private PhoneGlobals mApp;
     private StatusBarManager mStatusBarManager;
     private AccessibilityManager mAccessibilityManager;
 
@@ -157,7 +156,6 @@ public class EmergencyDialer extends Activity implements View.OnClickListener,
     protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
 
-        mApp = PhoneGlobals.getInstance();
         mStatusBarManager = (StatusBarManager) getSystemService(Context.STATUS_BAR_SERVICE);
         mAccessibilityManager = (AccessibilityManager) getSystemService(ACCESSIBILITY_SERVICE);
 
