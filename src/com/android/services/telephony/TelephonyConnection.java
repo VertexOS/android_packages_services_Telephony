@@ -61,6 +61,18 @@ class TelephonyConnection extends Connection {
     }
 
     @Override
+    protected void onSeparate() {
+        if (mOriginalConnection != null) {
+            try {
+                mOriginalConnection.separate();
+            } catch (CallStateException e) {
+                Log.e(this, e, "Call to Connection.separate failed with exception");
+            }
+        }
+        super.onSeparate();
+    }
+
+    @Override
     protected void onHold() {
         Log.d(this, "Attempting to put call on hold");
         // TODO(santoscordon): Can dialing calls be put on hold as well since they take up the
@@ -127,8 +139,10 @@ class TelephonyConnection extends Connection {
         if (mOriginalConnection != null) {
             try {
                 Call call = mOriginalConnection.getCall();
-                if (call != null) {
+                if (call != null && !call.isMultiparty()) {
                     call.hangup();
+                } else {
+                    mOriginalConnection.hangup();
                 }
                 // Set state deliberately since we are going to close() and will no longer be
                 // listening to state updates from mOriginalConnection
@@ -146,35 +160,34 @@ class TelephonyConnection extends Connection {
         }
 
         Call.State newState = mOriginalConnection.getState();
-        if (mState == newState) {
-            return;
-        }
+        Log.v(this, "Update state from %s to %s for %s", mState, newState, this);
+        if (mState != newState) {
+            Log.d(this, "mOriginalConnection new state = %s", newState);
 
-        Log.d(this, "mOriginalConnection new state = %s", newState);
-
-        mState = newState;
-        switch (newState) {
-            case IDLE:
-                break;
-            case ACTIVE:
-                setActive();
-                break;
-            case HOLDING:
-                setOnHold();
-                break;
-            case DIALING:
-            case ALERTING:
-                setDialing();
-                break;
-            case INCOMING:
-            case WAITING:
-                setRinging();
-                break;
-            case DISCONNECTED:
-                setDisconnected(mOriginalConnection.getDisconnectCause(), null);
-                break;
-            case DISCONNECTING:
-                break;
+            mState = newState;
+            switch (newState) {
+                case IDLE:
+                    break;
+                case ACTIVE:
+                    setActive();
+                    break;
+                case HOLDING:
+                    setOnHold();
+                    break;
+                case DIALING:
+                case ALERTING:
+                    setDialing();
+                    break;
+                case INCOMING:
+                case WAITING:
+                    setRinging();
+                    break;
+                case DISCONNECTED:
+                    setDisconnected(mOriginalConnection.getDisconnectCause(), null);
+                    break;
+                case DISCONNECTING:
+                    break;
+            }
         }
     }
 
@@ -185,6 +198,7 @@ class TelephonyConnection extends Connection {
                 call.getPhone().unregisterForPreciseCallStateChanged(mHandler);
             }
             mOriginalConnection = null;
+            setDestroyed();
         }
     }
 
