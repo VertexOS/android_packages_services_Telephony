@@ -1327,31 +1327,10 @@
          on this device. [CHAR LIMIT=40] -->
     <string name="not_voice_capable">Voice calling not supported</string>
 
-    <!-- Canned response for the "Respond via SMS" feature for incoming calls. [CHAR LIMIT=35] -->
-    <string name="respond_via_sms_canned_response_1">Can\'t talk now. What\'s up?</string>
-    <!-- Canned response for the "Respond via SMS" feature for incoming calls. [CHAR LIMIT=35] -->
-    <string name="respond_via_sms_canned_response_2">I\'ll call you right back.</string>
-    <!-- Canned response for the "Respond via SMS" feature for incoming calls. [CHAR LIMIT=35] -->
-    <string name="respond_via_sms_canned_response_3">I\'ll call you later.</string>
-    <!-- Canned response for the "Respond via SMS" feature for incoming calls. [CHAR LIMIT=35] -->
-    <string name="respond_via_sms_canned_response_4">Can\'t talk now. Call me later?</string>
-
     <!-- Title of settings screen for managing the "Respond via SMS" feature. [CHAR LIMIT=30] -->
     <string name="respond_via_sms_setting_title">Quick responses</string>
-    <!-- Slightly more verbose title of settings screen for managing the
-         "Respond via SMS" feature. [CHAR LIMIT=30] -->
-    <string name="respond_via_sms_setting_title_2">Edit quick responses</string>
     <!-- Settings summary string for the "Respond via SMS" feature. [CHAR LIMIT=40] -->
     <string name="respond_via_sms_setting_summary"></string>
-    <!-- Dialog title when changing a string for the "Respond via SMS" feature. [CHAR LIMIT=30] -->
-    <string name="respond_via_sms_edittext_dialog_title">Quick response</string>
-    <!-- Menu option in  "Respond via SMS" that allows user to reset the default
-         activity used to handle "Respond via SMS" [CHAR LIMIT=30] -->
-    <string name="respond_via_sms_menu_reset_default_activity">Reset default app</string>
-
-    <!-- "Respond via SMS": Confirmation message shown after sending
-         a text response. [CHAR LIMIT=40] -->
-    <string name="respond_via_sms_confirmation_format">Message sent to <xliff:g id="phone_number">%s</xliff:g>.</string>
 
     <!-- String describing the image on ImageButton one
 

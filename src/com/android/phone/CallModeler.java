@@ -682,8 +682,8 @@ public class CallModeler extends Handler {
             canMute = callIsActive;
         }
 
-        canRespondViaText = RejectWithTextMessageManager.allowRespondViaSmsForCall(call,
-                connection);
+        canRespondViaText = false /* RejectWithTextMessageManager.allowRespondViaSmsForCall(call,
+                connection) */;
 
         // special rules section!
         // CDMA always has Add

@@ -90,7 +90,7 @@ class CallCommandService extends ICallCommandService.Stub {
             }
 
             if (rejectWithMessage && !phoneNumber.isEmpty()) {
-                RejectWithTextMessageManager.rejectCallWithMessage(phoneNumber, message);
+                // RejectWithTextMessageManager.rejectCallWithMessage(phoneNumber, message);
             }
         } catch (Exception e) {
             Log.e(TAG, "Error during rejectCall().", e);

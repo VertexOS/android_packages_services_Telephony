@@ -107,8 +107,8 @@
       android:persistent="false">
       <intent
           android:action="android.intent.action.MAIN"
-          android:targetPackage="com.android.phone"
-          android:targetClass="com.android.phone.RespondViaSmsManager$Settings" />
+          android:targetPackage="com.android.telecomm"
+          android:targetClass="com.android.telecomm.RespondViaSmsSettings$Settings" />
   </PreferenceScreen>
 
   <PreferenceScreen
