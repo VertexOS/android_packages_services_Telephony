@@ -153,6 +153,12 @@ public final class Call implements Parcelable {
     // Gateway service package name
     private String mGatewayPackage;
 
+    // The subscription id
+    private long mSubId;
+
+    // The call type
+    private int mType;
+
     public Call(int callId) {
         mCallId = callId;
         mIdentification = new CallIdentification(mCallId);
@@ -169,6 +175,8 @@ public final class Call implements Parcelable {
         mChildCallIds = new TreeSet<Integer>(call.mChildCallIds);
         mGatewayNumber = call.mGatewayNumber;
         mGatewayPackage = call.mGatewayPackage;
+        mSubId = call.mSubId;
+        mType = call.mType;
     }
 
     public int getCallId() {
@@ -301,6 +309,22 @@ public final class Call implements Parcelable {
         mGatewayPackage = packageName;
     }
 
+    public long getSubId() {
+        return mSubId;
+    }
+
+    public void setSubId(long subId) {
+        mSubId = subId;
+    }
+
+    public void setType(int type) {
+        mType = type;
+    }
+
+    public int getType() {
+        return mType;
+    }
+
     /**
      * Parcelable implementation
      */
@@ -317,6 +341,8 @@ public final class Call implements Parcelable {
         dest.writeString(getGatewayNumber());
         dest.writeString(getGatewayPackage());
         dest.writeParcelable(mIdentification, 0);
+        dest.writeLong(mSubId);
+        dest.writeInt(mType);
     }
 
     /**
@@ -333,6 +359,8 @@ public final class Call implements Parcelable {
         mGatewayNumber = in.readString();
         mGatewayPackage = in.readString();
         mIdentification = in.readParcelable(CallIdentification.class.getClassLoader());
+        mSubId = in.readLong();
+        mType = in.readInt();
     }
 
     @Override
@@ -370,6 +398,8 @@ public final class Call implements Parcelable {
                 .add("mGatewayNumber", MoreStrings.toSafeString(mGatewayNumber))
                 .add("mGatewayPackage", mGatewayPackage)
                 .add("mIdentification", mIdentification)
+                .add("mSubId", mSubId)
+                .add("mType", mType)
                 .toString();
     }
 }
