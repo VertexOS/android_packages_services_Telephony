@@ -188,7 +188,7 @@ public class CallHandlerServiceProxy extends Handler
             synchronized (mServiceAndQueueLock) {
                 if (mCallHandlerServiceGuarded != null) {
                     mCallHandlerServiceGuarded.onIncoming(call,
-                            RejectWithTextMessageManager.loadCannedResponses());
+                            null /* RejectWithTextMessageManager.loadCannedResponses() */);
                 }
             }
         } catch (Exception e) {

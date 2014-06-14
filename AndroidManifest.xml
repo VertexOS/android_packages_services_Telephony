@@ -501,15 +501,6 @@
                 android:excludeFromRecents="true">
         </activity>
 
-        <activity android:name="RespondViaSmsManager$Settings"
-                android:label="@string/respond_via_sms_setting_title"
-                android:configChanges="orientation|screenSize|keyboardHidden"
-                android:theme="@style/SettingsLight">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-            </intent-filter>
-        </activity>
-
         <activity android:name="ErrorDialogActivity"
                 android:configChanges="orientation|screenSize|keyboardHidden"
                 android:excludeFromRecents="true"
