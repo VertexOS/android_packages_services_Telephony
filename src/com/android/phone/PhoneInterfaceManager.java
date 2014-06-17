@@ -471,7 +471,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
      * @see #sendRequestAsync
      */
     private Object sendRequest(int command, Object argument) {
-        return sendRequest(command, argument);
+        return sendRequest(command, argument, null);
     }
 
     /**
