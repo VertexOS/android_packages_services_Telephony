@@ -57,7 +57,7 @@ public class HfaService extends Service {
         }, otaResponseIntent);
         mHfaLogic.start();
 
-        return START_STICKY;
+        return START_REDELIVER_INTENT;
     }
 
     @Override
