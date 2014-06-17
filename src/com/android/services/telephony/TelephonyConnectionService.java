@@ -16,9 +16,11 @@
 
 package com.android.services.telephony;
 
+import android.content.ComponentName;
 import android.net.Uri;
 import android.telephony.DisconnectCause;
 import android.telephony.ServiceState;
+import android.telecomm.Subscription;
 import android.text.TextUtils;
 
 import com.android.internal.telephony.CallStateException;
@@ -29,7 +31,6 @@ import android.telecomm.Connection;
 import android.telecomm.ConnectionRequest;
 import android.telecomm.ConnectionService;
 import android.telecomm.Response;
-import android.telecomm.Subscription;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -42,13 +43,16 @@ public abstract class TelephonyConnectionService extends ConnectionService {
     private static final Set<com.android.internal.telephony.Connection> sKnownConnections
             = new HashSet<>();
 
+    private static final Subscription sStaticSubscription = new Subscription(
+            null, "Telephony", null, 0, 0, 0, true, false);
+
     /** {@inheritDoc} */
     @Override
     public void onFindSubscriptions(
             Uri handle,
             Response<Uri, Subscription> response) {
         try {
-            respondWithResult(handle, response, canCall(handle) ? new Subscription() : null);
+            respondWithResult(handle, response, canCall(handle) ? sStaticSubscription : null);
         } catch (Exception e) {
             respondWithError(
                     handle,
