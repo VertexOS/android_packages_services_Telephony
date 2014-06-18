@@ -941,32 +941,6 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         return true;
     }
 
-    public int enableApnTypeUsingSub(long subId, String type) {
-        enforceModifyPermission();
-        log("enableApnTypeUsingSub subId = " + subId);
-        return DctController.getInstance().enableApnType(subId, type);
-    }
-
-    public int disableApnTypeUsingSub(long subId, String type) {
-        enforceModifyPermission();
-        log("enableApnTypeUsingSub subId = " + subId);
-        return DctController.getInstance().disableApnType(subId, type);
-    }
-
-    // FIXME: subId version needed
-    public int enableApnType(String type) {
-        enforceModifyPermission();
-        long subId = SubscriptionManager.getDefaultDataSubId();
-        return getPhone(subId).enableApnType(type);
-    }
-
-    // FIXME: subId version needed
-    public int disableApnType(String type) {
-        enforceModifyPermission();
-        long subId = SubscriptionManager.getDefaultDataSubId();
-        return getPhone(subId).disableApnType(type);
-    }
-
     // FIXME: subId version needed
     public boolean disableDataConnectivity() {
         enforceModifyPermission();
