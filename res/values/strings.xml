@@ -1511,11 +1511,8 @@
     <!-- Title for button to not use WiFi calling. -->
     <string name ="choose_wifi_for_call_no">No</string>
 
-    <!-- Label for GSM connection service. -->
-    <string name="gsm_connection_service_label">Built-in GSM SIM card</string>
-
-    <!-- Label for CDMA connection service. -->
-    <string name="cdma_connection_service_label">Built-in CDMA SIM card</string>
+    <!-- Label for PSTN connection service. -->
+    <string name="pstn_connection_service_label">Built-in SIM cards</string>
 
     <!-- Label for SIP connection service. -->
     <string name="sip_connection_service_label">Built-in Internet calling</string>

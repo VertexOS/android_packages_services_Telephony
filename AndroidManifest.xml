@@ -553,24 +553,10 @@
                 <action android:name="android.telecomm.CallServiceProvider" />
             </intent-filter>
         </service>
-        <service android:name="com.android.services.telephony.TelephonyCallServiceSelector"
-                android:singleUser="true">
-            <intent-filter>
-                <action android:name="android.telecomm.CallServiceSelector" />
-            </intent-filter>
-        </service>
         <service
                 android:singleUser="true"
-                android:name="com.android.services.telephony.GsmConnectionService"
-                android:label="@string/gsm_connection_service_label">
-            <intent-filter>
-                <action android:name="android.telecomm.CallService" />
-            </intent-filter>
-        </service>
-        <service
-                android:singleUser="true"
-                android:name="com.android.services.telephony.CdmaConnectionService"
-                android:label="@string/cdma_connection_service_label">
+                android:name="com.android.services.telephony.PstnConnectionService"
+                android:label="@string/pstn_connection_service_label">
             <intent-filter>
                 <action android:name="android.telecomm.CallService" />
             </intent-filter>

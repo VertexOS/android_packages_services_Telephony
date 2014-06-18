@@ -18,7 +18,6 @@ package com.android.services.telephony;
 
 import android.content.Context;
 
-import com.android.internal.telephony.PhoneConstants;
 import com.android.internal.telephony.PhoneFactory;
 import com.android.internal.telephony.PhoneProxy;
 
@@ -35,11 +34,8 @@ public class TelephonyGlobals {
     /** The application context. */
     private final Context mContext;
 
-    /** Handles incoming calls for GSM. */
-    private IncomingCallNotifier mGsmIncomingCallNotifier;
-
-    /** Handles incoming calls for CDMA. */
-    private IncomingCallNotifier mCdmaIncomingCallNotifier;
+    /** Handles incoming calls for PSTN calls. */
+    private PstnIncomingCallNotifier mPtsnIncomingCallNotifier;
 
     /**
      * Persists the specified parameters.
@@ -61,13 +57,8 @@ public class TelephonyGlobals {
         PhoneProxy defaultPhone = (PhoneProxy) PhoneFactory.getDefaultPhone();
         Log.i(this, "Default phone: %s.", defaultPhone);
 
-        Log.i(this, "Registering the GSM listener.");
-        mGsmIncomingCallNotifier = new IncomingCallNotifier(
-                GsmConnectionService.class, PhoneConstants.PHONE_TYPE_GSM, defaultPhone);
-
-        Log.i(this, "Registering the CDMA listener.");
-        mCdmaIncomingCallNotifier = new IncomingCallNotifier(
-                CdmaConnectionService.class, PhoneConstants.PHONE_TYPE_CDMA, defaultPhone);
+        Log.i(this, "Registering the PSTN listener.");
+        mPtsnIncomingCallNotifier = new PstnIncomingCallNotifier(defaultPhone);
 
         // TODO(santoscordon): Do SIP.  SIP will require a slightly different solution since it
         // doesn't have a phone object in the same way as PSTN calls. Additionally, the user can

@@ -25,6 +25,7 @@ import android.os.AsyncTask;
 import android.provider.Settings;
 import android.telephony.PhoneNumberUtils;
 
+import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneFactory;
 import com.android.internal.telephony.sip.SipPhone;
 import com.android.phone.Constants;
@@ -64,23 +65,19 @@ public class SipConnectionService extends TelephonyConnectionService {
     /** {@inheritDoc} */
     @Override
     protected boolean canCall(Uri handle) {
-        return canCall(this, handle);
-    }
-
-    // TODO: Refactor this out when CallServiceSelector is deprecated
-    /* package */ static boolean canCall(Context context, Uri handle) {
-        return shouldUseSipPhone(context, handle.getScheme(), handle.getSchemeSpecificPart());
+        return shouldUseSipPhone(handle.getScheme(), handle.getSchemeSpecificPart());
     }
 
     /** {@inheritDoc} */
     @Override
     protected TelephonyConnection onCreateTelephonyConnection(
             ConnectionRequest request,
+            Phone phone,
             com.android.internal.telephony.Connection connection) {
         return new SipConnection(connection);
     }
 
-    private static boolean shouldUseSipPhone(Context context, String scheme, String number) {
+    private boolean shouldUseSipPhone(String scheme, String number) {
         // Scheme must be "sip" or "tel".
         boolean isKnownCallScheme = Constants.SCHEME_TEL.equals(scheme)
                 || Constants.SCHEME_SIP.equals(scheme);
@@ -95,7 +92,7 @@ public class SipConnectionService extends TelephonyConnectionService {
         }
 
         // Check SIP address only
-        SipSharedPreferences sipSharedPreferences = new SipSharedPreferences(context);
+        SipSharedPreferences sipSharedPreferences = new SipSharedPreferences(this);
         String callOption = sipSharedPreferences.getSipCallOption();
         boolean isRegularNumber = Constants.SCHEME_TEL.equals(scheme)
                 && !PhoneNumberUtils.isUriNumber(number);
@@ -104,7 +101,7 @@ public class SipConnectionService extends TelephonyConnectionService {
         }
 
         // Check if no SIP profiles.
-        SipProfileDb sipProfileDb = new SipProfileDb(context);
+        SipProfileDb sipProfileDb = new SipProfileDb(this);
         if (sipProfileDb.getProfilesCount() == 0 && isRegularNumber) {
             return false;
         }

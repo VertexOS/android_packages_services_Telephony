@@ -16,7 +16,6 @@
 
 package com.android.services.telephony;
 
-import android.content.ComponentName;
 import android.net.Uri;
 import android.telephony.DisconnectCause;
 import android.telephony.ServiceState;
@@ -36,37 +35,17 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * The parent class for telephony-based call services. Subclasses provide the specific phone (GSM,
- * CDMA, etc...) to use.
+ * The parent class for Android's built-in connection services.
  */
 public abstract class TelephonyConnectionService extends ConnectionService {
     private static final Set<com.android.internal.telephony.Connection> sKnownConnections
             = new HashSet<>();
 
-    private static final Subscription sStaticSubscription = new Subscription(
-            null, "Telephony", null, 0, 0, 0, true, false);
-
-    /** {@inheritDoc} */
-    @Override
-    public void onFindSubscriptions(
-            Uri handle,
-            Response<Uri, Subscription> response) {
-        try {
-            respondWithResult(handle, response, canCall(handle) ? sStaticSubscription : null);
-        } catch (Exception e) {
-            respondWithError(
-                    handle,
-                    response,
-                    DisconnectCause.ERROR_UNSPECIFIED,  // Internal error
-                    "onFindSubscriptions error: " + e.toString());
-        }
-    }
-
     /**
      * Initiates the underlying Telephony call, then creates a {@link TelephonyConnection}
      * by calling
-     * {@link #createTelephonyConnection(ConnectionRequest,
-     *         com.android.internal.telephony.Connection)}
+     * {@link #createTelephonyConnection(
+     *         ConnectionRequest,Phone,com.android.internal.telephony.Connection)}
      * at the appropriate time. Should be called by the subclass.
      */
     protected void startCallWithPhone(
@@ -131,15 +110,15 @@ public abstract class TelephonyConnectionService extends ConnectionService {
 
         try {
             final TelephonyConnection telephonyConnection =
-                    createTelephonyConnection(request, connection);
+                    createTelephonyConnection(request, phone, connection);
             respondWithResult(request, response, telephonyConnection);
 
-            final com.android.internal.telephony.Connection connectionCopy = connection;
+            final com.android.internal.telephony.Connection connectionFinal = connection;
             PostDialListener postDialListener = new PostDialListener() {
                 @Override
                 public void onPostDialWait() {
                     TelephonyConnectionService.this.onPostDialWait(telephonyConnection,
-                            connectionCopy.getRemainingPostDialString());
+                            connectionFinal.getRemainingPostDialString());
                 }
             };
             connection.addPostDialListener(postDialListener);
@@ -222,9 +201,10 @@ public abstract class TelephonyConnectionService extends ConnectionService {
 
     protected final TelephonyConnection createTelephonyConnection(
             ConnectionRequest request,
+            Phone phone,
             final com.android.internal.telephony.Connection connection) {
         final TelephonyConnection telephonyConnection =
-                onCreateTelephonyConnection(request, connection);
+                onCreateTelephonyConnection(request, phone, connection);
         sKnownConnections.add(connection);
         telephonyConnection.addConnectionListener(new Connection.ListenerBase() {
             @Override
@@ -255,11 +235,13 @@ public abstract class TelephonyConnectionService extends ConnectionService {
      * Create a Telephony-specific {@link Connection} object.
      *
      * @param request A request for creating a {@link Connection}.
+     * @param phone A {@code Phone} object to use.
      * @param connection An underlying Telephony {@link com.android.internal.telephony.Connection}
      *         to use.
      * @return A new {@link TelephonyConnection}.
      */
     protected abstract TelephonyConnection onCreateTelephonyConnection(
             ConnectionRequest request,
+            Phone phone,
             com.android.internal.telephony.Connection connection);
 }

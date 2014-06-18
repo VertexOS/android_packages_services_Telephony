@@ -23,21 +23,26 @@ import android.telecomm.Connection;
 import android.telecomm.ConnectionRequest;
 import android.telecomm.Response;
 import android.telephony.PhoneNumberUtils;
+import android.telephony.TelephonyManager;
 
 import com.android.internal.telephony.Call;
 import com.android.internal.telephony.Phone;
+import com.android.internal.telephony.PhoneFactory;
 import com.android.phone.Constants;
 
 import java.util.HashSet;
 import java.util.Set;
 
 /**
- * The parent class for PSTN-based call services. Handles shared functionality between all PSTN
- * call services.
+ * The connection service for making PSTN connections using built-in SIM cards.
  */
-public abstract class PstnConnectionService extends TelephonyConnectionService {
+public final class PstnConnectionService extends TelephonyConnectionService {
+
     private EmergencyCallHelper mEmergencyCallHelper;
+
     private final Set<ConnectionRequest> mPendingOutgoingEmergencyCalls = new HashSet<>();
+
+    private final GsmConferenceController mGsmConferenceController = new GsmConferenceController();
 
     @Override
     public void onCreate() {
@@ -64,7 +69,7 @@ public abstract class PstnConnectionService extends TelephonyConnectionService {
         // TODO: Consider passing call emergency information as part of ConnectionRequest so
         // that we do not have to make the check here once again.
         String handle = request.getHandle().getSchemeSpecificPart();
-        final Phone phone = getPhone();
+        final Phone phone = PhoneFactory.getDefaultPhone();
         if (PhoneNumberUtils.isPotentialEmergencyNumber(handle)) {
             EmergencyCallHelper.Callback callback = new EmergencyCallHelper.Callback() {
                 @Override
@@ -102,7 +107,7 @@ public abstract class PstnConnectionService extends TelephonyConnectionService {
             ConnectionRequest request,
             Response<ConnectionRequest, Connection> response) {
         Log.d(this, "onCreateIncomingConnection");
-        Call call = getPhone().getRingingCall();
+        Call call = PhoneFactory.getDefaultPhone().getRingingCall();
 
         // The ringing call is always not-null, check if it is truly ringing by checking its state.
         if (call.getState().isRinging()) {
@@ -125,7 +130,10 @@ public abstract class PstnConnectionService extends TelephonyConnectionService {
 
                 TelephonyConnection telephonyConnection;
                 try {
-                    telephonyConnection = createTelephonyConnection(request, connection);
+                    telephonyConnection = createTelephonyConnection(
+                            request,
+                            PhoneFactory.getDefaultPhone(),
+                            connection);
                 } catch (Exception e) {
                     respondWithError(
                             request,
@@ -150,8 +158,51 @@ public abstract class PstnConnectionService extends TelephonyConnectionService {
         super.onCreateIncomingConnection(request, response);
     }
 
-    /**
-     * @return The current phone object behind this call service.
-     */
-    protected abstract Phone getPhone();
+    /** {@inheritDoc} */
+    @Override
+    protected boolean canCall(Uri handle) {
+        return Constants.SCHEME_TEL.equals(handle.getScheme());
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    protected TelephonyConnection onCreateTelephonyConnection(
+            ConnectionRequest request,
+            Phone phone,
+            com.android.internal.telephony.Connection connection) {
+        switch (phone.getPhoneType()) {
+            case TelephonyManager.PHONE_TYPE_GSM: {
+                final GsmConnection gsmConn = new GsmConnection(phone, connection);
+                mGsmConferenceController.add(gsmConn);
+                gsmConn.addConnectionListener(new Connection.ListenerBase() {
+                    @Override
+                    public void onDestroyed(Connection c) {
+                        mGsmConferenceController.remove(gsmConn);
+                    }
+                });
+                return gsmConn;
+            }
+            case TelephonyManager.PHONE_TYPE_CDMA:
+                return new CdmaConnection(phone, connection);
+            default:
+                Log.d(this, "Inappropriate phone type for PSTN: %d", phone.getPhoneType());
+                return null;
+        }
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void onCreateConferenceConnection(
+            String token,
+            Connection connection,
+            Response<String, Connection> callback) {
+        // TODO: Create a more general framework for conferencing. At the moment, our goal is
+        // simply not to break the previous GSM-specific conferencing functionality.
+        if (connection instanceof GsmConnection || connection instanceof ConferenceConnection) {
+            if (connection.isConferenceCapable()) {
+                callback.onResult(token,
+                        mGsmConferenceController.createConferenceConnection(connection));
+            }
+        }
+    }
 }

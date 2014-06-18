@@ -40,15 +40,12 @@ import com.google.common.base.Preconditions;
  * Listens to incoming-call events from the associated phone object and notifies Telecomm upon each
  * occurence. One instance of these exists for each of the telephony-based call services.
  */
-final class IncomingCallNotifier {
+final class PstnIncomingCallNotifier {
     /** New ringing connection event code. */
     private static final int EVENT_NEW_RINGING_CONNECTION = 100;
 
     /** The phone proxy object to listen to. */
     private final PhoneProxy mPhoneProxy;
-
-    /** The phone type for this incoming call notifier. */
-    private final int mPhoneType;
 
     /**
      * The base phone implementation behind phone proxy. The underlying phone implementation can
@@ -57,9 +54,6 @@ final class IncomingCallNotifier {
      * unregister from the events we were listening to.
      */
     private Phone mPhoneBase;
-
-    /** The class for the associated call service. */
-    private final Class<? extends CallService> mCallServiceClass;
 
     /**
      * Used to listen to events from {@link #mPhoneBase}.
@@ -96,17 +90,11 @@ final class IncomingCallNotifier {
     /**
      * Persists the specified parameters and starts listening to phone events.
      *
-     * @param callServiceClass The call service class.
-     * @param phoneType The type of phone this class should be listening to.
      * @param phoneProxy The phone object for listening to incoming calls.
      */
-    IncomingCallNotifier(
-            Class<? extends CallService> callServiceClass, int phoneType, PhoneProxy phoneProxy) {
-        Preconditions.checkNotNull(callServiceClass);
+    PstnIncomingCallNotifier(PhoneProxy phoneProxy) {
         Preconditions.checkNotNull(phoneProxy);
 
-        mCallServiceClass = callServiceClass;
-        mPhoneType = phoneType;
         mPhoneProxy = phoneProxy;
 
         registerForNotifications();
@@ -134,7 +122,7 @@ final class IncomingCallNotifier {
                 mPhoneBase.unregisterForNewRingingConnection(mHandler);
             }
 
-            if (newPhone != null && newPhone.getPhoneType() == mPhoneType) {
+            if (newPhone != null) {
                 Log.i(this, "Registering: %s", newPhone);
                 mPhoneBase = newPhone;
                 mPhoneBase.registerForNewRingingConnection(
@@ -168,7 +156,7 @@ final class IncomingCallNotifier {
         Context context = mPhoneProxy.getContext();
 
         CallServiceDescriptor.Builder builder = CallServiceDescriptor.newBuilder(context);
-        builder.setCallService(mCallServiceClass);
+        builder.setCallService(PstnConnectionService.class);
         builder.setNetworkType(CallServiceDescriptor.FLAG_PSTN);
 
         Intent intent = new Intent(TelecommConstants.ACTION_INCOMING_CALL);
