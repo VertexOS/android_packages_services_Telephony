@@ -4,16 +4,26 @@ LOCAL_PATH:= $(call my-dir)
 # for the 'other' dialer.
 include $(CLEAR_VARS)
 
+phone_common_dir := ../../apps/PhoneCommon
+
+src_dirs := src $(phone_common_dir)/src
+res_dirs := res $(phone_common_dir)/res
+
 LOCAL_JAVA_LIBRARIES := telephony-common voip-common
-LOCAL_STATIC_JAVA_LIBRARIES := com.android.phone.shared \
+LOCAL_STATIC_JAVA_LIBRARIES := \
         com.android.services.telephony.common \
         guava \
 
-LOCAL_SRC_FILES := $(call all-java-files-under, src)
+LOCAL_SRC_FILES := $(call all-java-files-under, $(src_dirs))
 LOCAL_SRC_FILES += \
         src/com/android/phone/EventLogTags.logtags \
         src/com/android/phone/INetworkQueryService.aidl \
         src/com/android/phone/INetworkQueryServiceCallback.aidl
+LOCAL_RESOURCE_DIR := $(addprefix $(LOCAL_PATH)/, $(res_dirs))
+
+LOCAL_AAPT_FLAGS := \
+    --auto-add-overlay \
+    --extra-packages com.android.phone.common
 
 LOCAL_PACKAGE_NAME := TeleService
 
