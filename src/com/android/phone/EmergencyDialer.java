@@ -44,6 +44,7 @@ import android.view.accessibility.AccessibilityManager;
 import android.widget.EditText;
 
 import com.android.phone.common.HapticFeedback;
+import com.android.phone.common.util.ViewUtil;
 
 
 /**
@@ -192,7 +193,7 @@ public class EmergencyDialer extends Activity implements View.OnClickListener,
         mDelete.setOnClickListener(this);
         mDelete.setOnLongClickListener(this);
 
-        mDialButton = findViewById(R.id.dialButton);
+        mDialButton = findViewById(R.id.floating_action_button);
 
         // Check whether we should show the onscreen "Dial" button and co.
         Resources res = getResources();
@@ -201,6 +202,8 @@ public class EmergencyDialer extends Activity implements View.OnClickListener,
         } else {
             mDialButton.setVisibility(View.GONE);
         }
+        View floatingActionButtonContainer = findViewById(R.id.floating_action_button_container);
+        ViewUtil.setupFloatingActionButton(floatingActionButtonContainer, getResources());
 
         if (icicle != null) {
             super.onRestoreInstanceState(icicle);
@@ -405,7 +408,7 @@ public class EmergencyDialer extends Activity implements View.OnClickListener,
                 keyPressed(KeyEvent.KEYCODE_DEL);
                 return;
             }
-            case R.id.dialButton: {
+            case R.id.floating_action_button: {
                 mHaptic.vibrate();  // Vibrate here too, just like we do for the regular keys
                 placeCall();
                 return;
@@ -632,7 +635,6 @@ public class EmergencyDialer extends Activity implements View.OnClickListener,
     private void updateDialAndDeleteButtonStateEnabledAttr() {
         final boolean notEmpty = mDigits.length() != 0;
 
-        mDialButton.setEnabled(notEmpty);
         mDelete.setEnabled(notEmpty);
     }
 }
