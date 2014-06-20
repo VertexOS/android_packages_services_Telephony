@@ -220,6 +220,14 @@
         <item name="*android:windowAnimationStyle">@style/InCallAnimationStyle</item>
     </style>
 
+    <style name="DialpadButtonStyle">
+        <item name="android:layout_width">0dip</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">?android:attr/selectableItemBackground</item>
+        <item name="android:soundEffectsEnabled">false</item>
+    </style>
+
     <style name="ContactsActionBarStyle"
            parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">
         <item name="android:background">@color/people_app_theme_color</item>
@@ -247,13 +255,13 @@
         <item name="android:src">@drawable/ic_menu_overflow_lt</item>
     </style>
 
-    <style name="EmergencyDialerTheme" parent="@android:style/Theme.Material.Light">
-        <item name="dialpad_key_button_touch_tint">@color/dialer_dialpad_touch_tint</item>
-    </style>
-
     <style name="SimImportTheme"
            parent="@android:style/Theme.Holo.Light.DarkActionBar">
         <item name="android:actionBarStyle">@style/ContactsActionBarStyle</item>
+    </style>
+
+    <style name="EmergencyDialerTheme" parent="@android:style/Theme.Holo">
+        <item name="android:windowBackground">@android:color/black</item>
     </style>
 
     <style name="OutgoingCallBroadcasterTheme" parent="@android:style/Theme.Holo.NoActionBar">
