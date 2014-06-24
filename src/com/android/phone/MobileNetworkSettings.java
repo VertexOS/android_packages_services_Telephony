@@ -531,7 +531,7 @@ public class MobileNetworkSettings extends PreferenceActivity
                                 modemNetworkMode);
                     }
 
-                    //check changes in modemNetworkMode and updates settingsNetworkMode
+                    //check changes in modemNetworkMode
                     if (modemNetworkMode != settingsNetworkMode) {
                         if (DBG) {
                             log("handleGetPreferredNetworkTypeResponse: if 2: " +
@@ -543,12 +543,6 @@ public class MobileNetworkSettings extends PreferenceActivity
                         if (DBG) { log("handleGetPreferredNetworkTypeResponse: if 2: " +
                                 "settingsNetworkMode = " + settingsNetworkMode);
                         }
-
-                        //changes the Settings.System accordingly to modemNetworkMode
-                        android.provider.Settings.Global.putInt(
-                                mPhone.getContext().getContentResolver(),
-                                android.provider.Settings.Global.PREFERRED_NETWORK_MODE,
-                                settingsNetworkMode );
                     }
 
                     UpdatePreferredNetworkModeSummary(modemNetworkMode);
