@@ -130,7 +130,7 @@ class CallLogger {
             }
 
             CallLogAsync.AddCallArgs args = new CallLogAsync.AddCallArgs(mApplication, ci, number,
-                    presentation, callType, start, duration);
+                    presentation, callType, null, start, duration);
             mCallLog.addCall(args);
         }
     }
