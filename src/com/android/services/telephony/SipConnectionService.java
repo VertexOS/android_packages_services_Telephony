@@ -48,7 +48,7 @@ public class SipConnectionService extends TelephonyConnectionService {
     @Override
     public void onCreateConnections(
             ConnectionRequest request,
-            Response<ConnectionRequest, Connection> callback) {
+            OutgoingCallResponse callback) {
         new GetSipProfileTask(this, request, callback).execute();
         super.onCreateConnections(request, callback);
     }
@@ -114,14 +114,14 @@ public class SipConnectionService extends TelephonyConnectionService {
      */
     private class GetSipProfileTask extends AsyncTask<Void, Void, SipProfile> {
         private final ConnectionRequest mRequest;
-        private final Response<ConnectionRequest, Connection> mResponse;
+        private final OutgoingCallResponse mResponse;
         private final SipProfileDb mSipProfileDb;
         private final SipSharedPreferences mSipSharedPreferences;
 
         GetSipProfileTask(
                 Context context,
                 ConnectionRequest request,
-                Response<ConnectionRequest, Connection> response) {
+                OutgoingCallResponse response) {
             mRequest = request;
             mResponse = response;
             mSipProfileDb = new SipProfileDb(context);
@@ -149,7 +149,7 @@ public class SipConnectionService extends TelephonyConnectionService {
     private void onSipProfileChosen(
             SipProfile profile,
             ConnectionRequest request,
-            Response<ConnectionRequest, Connection> response) {
+            OutgoingCallResponse response) {
         SipPhone phone = null;
         if (profile != null) {
             String sipUri = profile.getUriString();

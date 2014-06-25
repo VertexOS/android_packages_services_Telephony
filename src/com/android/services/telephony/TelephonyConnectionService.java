@@ -51,7 +51,7 @@ public abstract class TelephonyConnectionService extends ConnectionService {
     protected void startCallWithPhone(
             Phone phone,
             ConnectionRequest request,
-            Response<ConnectionRequest, Connection> response) {
+            OutgoingCallResponse<Connection> response) {
         Log.d(this, "startCallWithPhone: %s.", request);
 
         if (phone == null) {
@@ -135,7 +135,7 @@ public abstract class TelephonyConnectionService extends ConnectionService {
     private boolean checkServiceStateForOutgoingCall(
             Phone phone,
             ConnectionRequest request,
-            Response<ConnectionRequest, Connection> response) {
+            OutgoingCallResponse<Connection> response) {
         int state = phone.getServiceState().getState();
         switch (state) {
             case ServiceState.STATE_IN_SERVICE:
@@ -184,19 +184,28 @@ public abstract class TelephonyConnectionService extends ConnectionService {
     }
 
     protected void respondWithResult(
-            Uri request,
-            Response<Uri, Subscription> response,
-            Subscription result) {
+            ConnectionRequest request,
+            Response<ConnectionRequest, Connection> response,
+            Connection result) {
         Log.d(this, "respondWithResult %s -> %s", request, result);
         response.onResult(request, result);
     }
 
     protected void respondWithResult(
             ConnectionRequest request,
-            Response<ConnectionRequest, Connection> response,
+            OutgoingCallResponse<Connection> response,
             Connection result) {
         Log.d(this, "respondWithResult %s -> %s", request, result);
-        response.onResult(request, result);
+        response.onSuccess(request, result);
+    }
+
+    protected void respondWithError(
+            ConnectionRequest request,
+            OutgoingCallResponse<Connection> response,
+            int errorCode,
+            String errorMsg) {
+        Log.d(this, "respondWithError %s: %d %s", request, errorCode, errorMsg);
+        response.onFailure(request, errorCode, errorMsg);
     }
 
     protected final TelephonyConnection createTelephonyConnection(
