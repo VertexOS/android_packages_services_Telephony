@@ -53,10 +53,4 @@ public class GsmConnection extends PstnConnection {
             Log.e(this, e, "Failed to conference call.");
         }
     }
-
-    @Override
-    public void setIsConferenceCapable(boolean isConferenceCapable) {
-        // This method increases access modifier.
-        super.setIsConferenceCapable(isConferenceCapable);
-    }
 }

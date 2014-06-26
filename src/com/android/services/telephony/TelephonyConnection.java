@@ -124,7 +124,7 @@ class TelephonyConnection extends Connection {
     }
 
     @Override
-    protected void onSetAudioState(CallAudioState audioState) {
+    public void onSetAudioState(CallAudioState audioState) {
         // TODO: update TTY mode.
         if (mOriginalConnection != null) {
             Call call = mOriginalConnection.getCall();
