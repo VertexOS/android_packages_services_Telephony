@@ -54,7 +54,7 @@ public final class PstnConnectionService extends TelephonyConnectionService {
     @Override
     public void onCreateConnections(
             final ConnectionRequest request,
-            final Response<ConnectionRequest, Connection> response) {
+            final OutgoingCallResponse<Connection> response) {
 
         if (!canCall(request.getHandle())) {
             Log.d(this, "Cannot place the call with %s", this.getClass().getSimpleName());
