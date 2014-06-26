@@ -614,7 +614,6 @@
     <string name="choose_wifi_for_call_msg" msgid="193549297122949976">"Utilizzare il Wi-Fi per effettuare la chiamata?"</string>
     <string name="choose_wifi_for_call_yes" msgid="5312994368472630983">"Sì"</string>
     <string name="choose_wifi_for_call_no" msgid="7132239734287157307">"No"</string>
-    <string name="gsm_connection_service_label" msgid="2332284528867411683">"Scheda SIM GSM integrata"</string>
-    <string name="cdma_connection_service_label" msgid="5038725238949035222">"Scheda SIM CDMA integrata"</string>
+    <string name="pstn_connection_service_label" msgid="1743245930577325900">"Schede SIM integrate"</string>
     <string name="sip_connection_service_label" msgid="3547998349299125294">"Chiamate Internet integrate"</string>
 </resources>

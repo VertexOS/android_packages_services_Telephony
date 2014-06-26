@@ -610,7 +610,6 @@
     <string name="choose_wifi_for_call_msg" msgid="193549297122949976">"Дуудлага хийхэд Wi-Fi ашиглах уу?"</string>
     <string name="choose_wifi_for_call_yes" msgid="5312994368472630983">"Тийм"</string>
     <string name="choose_wifi_for_call_no" msgid="7132239734287157307">"Үгүй"</string>
-    <string name="gsm_connection_service_label" msgid="2332284528867411683">"Суурилагдсан GSM SIM карт"</string>
-    <string name="cdma_connection_service_label" msgid="5038725238949035222">"Суурилагдсан CDMA SIM карт"</string>
+    <string name="pstn_connection_service_label" msgid="1743245930577325900">"Суурилагдсан SIM карт"</string>
     <string name="sip_connection_service_label" msgid="3547998349299125294">"Суурилагдсан Интернет дуудлага"</string>
 </resources>

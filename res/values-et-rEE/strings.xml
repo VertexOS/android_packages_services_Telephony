@@ -610,7 +610,6 @@
     <string name="choose_wifi_for_call_msg" msgid="193549297122949976">"Kas kasutada helistamiseks WiFi-t?"</string>
     <string name="choose_wifi_for_call_yes" msgid="5312994368472630983">"Jah"</string>
     <string name="choose_wifi_for_call_no" msgid="7132239734287157307">"Ei"</string>
-    <string name="gsm_connection_service_label" msgid="2332284528867411683">"Sisseehitatud GSM-i SIM-kaart"</string>
-    <string name="cdma_connection_service_label" msgid="5038725238949035222">"Sisseehitatud CDMA SIM-kaart"</string>
+    <string name="pstn_connection_service_label" msgid="1743245930577325900">"Sisseehitatud SIM-kaardid"</string>
     <string name="sip_connection_service_label" msgid="3547998349299125294">"Sisseehitatud Interneti-kõne funktsioon"</string>
 </resources>
