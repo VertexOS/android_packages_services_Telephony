@@ -610,7 +610,6 @@
     <string name="choose_wifi_for_call_msg" msgid="193549297122949976">"‏هل تريد استخدام Wi-Fi لإجراء مكالمة؟"</string>
     <string name="choose_wifi_for_call_yes" msgid="5312994368472630983">"نعم"</string>
     <string name="choose_wifi_for_call_no" msgid="7132239734287157307">"لا"</string>
-    <string name="gsm_connection_service_label" msgid="2332284528867411683">"‏بطاقة SIM مدمجة لنظام GSM"</string>
-    <string name="cdma_connection_service_label" msgid="5038725238949035222">"‏بطاقة SIM مدمجة لاتصال CDMA"</string>
+    <string name="pstn_connection_service_label" msgid="1743245930577325900">"‏بطاقات SIM مدمجة"</string>
     <string name="sip_connection_service_label" msgid="3547998349299125294">"اتصال مدمج بالإنترنت"</string>
 </resources>

@@ -616,7 +616,6 @@
     <string name="choose_wifi_for_call_msg" msgid="193549297122949976">"Vill du ringa samtal via Wi-Fi?"</string>
     <string name="choose_wifi_for_call_yes" msgid="5312994368472630983">"Ja"</string>
     <string name="choose_wifi_for_call_no" msgid="7132239734287157307">"Nej"</string>
-    <string name="gsm_connection_service_label" msgid="2332284528867411683">"Inbyggt SIM-kort för GSM"</string>
-    <string name="cdma_connection_service_label" msgid="5038725238949035222">"Inbyggt SIM-kort för CDMA"</string>
+    <string name="pstn_connection_service_label" msgid="1743245930577325900">"Inbyggda SIM-kort"</string>
     <string name="sip_connection_service_label" msgid="3547998349299125294">"Inbyggd internettelefoni"</string>
 </resources>

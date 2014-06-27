@@ -610,7 +610,6 @@
     <string name="choose_wifi_for_call_msg" msgid="193549297122949976">"Да се използва ли Wi-Fi за извършване на обаждането?"</string>
     <string name="choose_wifi_for_call_yes" msgid="5312994368472630983">"Да"</string>
     <string name="choose_wifi_for_call_no" msgid="7132239734287157307">"Не"</string>
-    <string name="gsm_connection_service_label" msgid="2332284528867411683">"Вградена SIM карта за GSM"</string>
-    <string name="cdma_connection_service_label" msgid="5038725238949035222">"Вградена SIM карта за CDMA"</string>
+    <string name="pstn_connection_service_label" msgid="1743245930577325900">"Вградени SIM карти"</string>
     <string name="sip_connection_service_label" msgid="3547998349299125294">"Вградена услуга за интернет обаждания"</string>
 </resources>

@@ -610,7 +610,6 @@
     <string name="choose_wifi_for_call_msg" msgid="193549297122949976">"Χρήση του Wi-Fi για την πραγματοποίηση της κλήσης;"</string>
     <string name="choose_wifi_for_call_yes" msgid="5312994368472630983">"Ναι"</string>
     <string name="choose_wifi_for_call_no" msgid="7132239734287157307">"Όχι"</string>
-    <string name="gsm_connection_service_label" msgid="2332284528867411683">"Ενσωματωμένη κάρτα SIM GSM"</string>
-    <string name="cdma_connection_service_label" msgid="5038725238949035222">"Ενσωματωμένη κάρτα SIM CDMA"</string>
+    <string name="pstn_connection_service_label" msgid="1743245930577325900">"Ενσωματωμένες κάρτες SIM"</string>
     <string name="sip_connection_service_label" msgid="3547998349299125294">"Ενσωματωμένες κλήσεις διαδικτύου"</string>
 </resources>
