@@ -117,8 +117,7 @@ public abstract class TelephonyConnectionService extends ConnectionService {
             PostDialListener postDialListener = new PostDialListener() {
                 @Override
                 public void onPostDialWait() {
-                    TelephonyConnectionService.this.onPostDialWait(telephonyConnection,
-                            connectionFinal.getRemainingPostDialString());
+                    telephonyConnection.setPostDialWait(connectionFinal.getRemainingPostDialString());
                 }
             };
             connection.addPostDialListener(postDialListener);
