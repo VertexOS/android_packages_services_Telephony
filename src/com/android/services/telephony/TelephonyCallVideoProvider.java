@@ -17,6 +17,8 @@
 package com.android.services.telephony;
 
 import android.telecomm.CallVideoProvider;
+import android.telecomm.VideoCallProfile;
+import android.view.Surface;
 
 
 /**
@@ -27,5 +29,50 @@ public class TelephonyCallVideoProvider extends CallVideoProvider {
     @Override
     public void setCamera(String cameraId) {
         // Stub, to be implemented.
+    }
+
+    @Override
+    public void setPreviewSurface(Surface surface) {
+
+    }
+
+    @Override
+    public void setDisplaySurface(Surface surface) {
+
+    }
+
+    @Override
+    public void setDeviceOrientation(int rotation) {
+
+    }
+
+    @Override
+    public void setZoom(float value) {
+
+    }
+
+    @Override
+    public void sendSessionModifyRequest(VideoCallProfile requestProfile) {
+
+    }
+
+    @Override
+    public void sendSessionModifyResponse(VideoCallProfile responseProfile) {
+
+    }
+
+    @Override
+    public void requestCameraCapabilities() {
+
+    }
+
+    @Override
+    public void requestCallDataUsage() {
+
+    }
+
+    @Override
+    public void setPauseImage(String uri) {
+
     }
 }
