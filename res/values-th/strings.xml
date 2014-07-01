@@ -320,7 +320,7 @@
     <string name="auto_retry_mode_summary" msgid="4973886004067532288">"เปิดใช้งานโหมดลองซ้ำอัตโนมัติ"</string>
     <string name="menu_add" msgid="1882023737425114762">"เพิ่มที่อยู่ติดต่อ"</string>
     <string name="menu_edit" msgid="7143003705504672374">"แก้ไขที่อยู่ติดต่อ"</string>
-    <string name="menu_delete" msgid="3977150783449642851">"ลบที่อยู่ติดต่อ"</string>
+    <string name="menu_delete" msgid="3977150783449642851">"นำออกที่อยู่ติดต่อ"</string>
     <string name="get_pin2" msgid="8204677063922225311">"พิมพ์ PIN2"</string>
     <string name="name" msgid="7329028332786872378">"ชื่อ"</string>
     <string name="number" msgid="7905950798349903858">"หมายเลข"</string>
@@ -331,9 +331,9 @@
     <string name="edit_fdn_contact" msgid="7976936035587081480">"แก้ไขการจำกัดหมายเลขโทรออก"</string>
     <string name="updating_fdn_contact" msgid="8370929876849803600">"กำลังอัปเดตการจำกัดหมายเลขโทรออก…"</string>
     <string name="fdn_contact_updated" msgid="5497828782609005017">"อัปเดตการจำกัดหมายเลขโทรออกแล้ว"</string>
-    <string name="delete_fdn_contact" msgid="6668958073074151717">"ลบการจำกัดหมายเลขโทรออก"</string>
-    <string name="deleting_fdn_contact" msgid="5669163206349319969">"กำลังลบการจำกัดหมายเลขโทรออก…"</string>
-    <string name="fdn_contact_deleted" msgid="7154162327112259569">"ลบการจำกัดหมายเลขโทรออกแล้ว"</string>
+    <string name="delete_fdn_contact" msgid="6668958073074151717">"นำออกการจำกัดหมายเลขโทรออก"</string>
+    <string name="deleting_fdn_contact" msgid="5669163206349319969">"กำลังนำออกการจำกัดหมายเลขโทรออก…"</string>
+    <string name="fdn_contact_deleted" msgid="7154162327112259569">"นำออกการจำกัดหมายเลขโทรออกแล้ว"</string>
     <string name="pin2_invalid" msgid="5470854099230755944">"FDN ไม่อัปเดตเพราะคุณป้อน PIN ไม่ถูกต้อง"</string>
     <string name="fdn_invalid_number" msgid="1494755047900009147">"FDN ไม่อัปเดตเพราะหมายเลขจะมีจำนวนเกิน 20 หลักไม่ได้"</string>
     <string name="pin2_or_fdn_invalid" msgid="6025144083384701197">"ไม่ได้อัปเดต FDN เพราะ PIN2 ไม่ถูกต้องหรือหมายเลขโทรศัพท์ถูกปฏิเสธ"</string>
