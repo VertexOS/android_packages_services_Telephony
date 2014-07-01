@@ -105,6 +105,8 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     private static final int EVENT_SET_PREFERRED_NETWORK_TYPE_DONE = 24;
     private static final int CMD_SEND_ENVELOPE = 25;
     private static final int EVENT_SEND_ENVELOPE_DONE = 26;
+    private static final int CMD_SET_CDMA_SUBSCRIPTION = 27;
+    private static final int EVENT_SET_CDMA_SUBSCRIPTION_DONE = 28;
 
     /** The singleton instance. */
     private static PhoneInterfaceManager sInstance;
@@ -438,6 +440,17 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
 
                 case EVENT_SET_PREFERRED_NETWORK_TYPE_DONE:
                     handleNullReturnEvent(msg, "setPreferredNetworkType");
+                    break;
+
+                case CMD_SET_CDMA_SUBSCRIPTION:
+                    request = (MainThreadRequest) msg.obj;
+                    onCompleted = obtainMessage(EVENT_SET_CDMA_SUBSCRIPTION_DONE, request);
+                    int subscriptionType = (Integer) request.argument;
+                    mPhone.setCdmaSubscription(subscriptionType, onCompleted);
+                    break;
+
+                case EVENT_SET_CDMA_SUBSCRIPTION_DONE:
+                    handleNullReturnEvent(msg, "setCdmaSubscription");
                     break;
 
                 default:
@@ -1569,6 +1582,31 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         if (DBG) log("setPreferredNetworkType: type " + networkType);
         Boolean success = (Boolean) sendRequest(CMD_SET_PREFERRED_NETWORK_TYPE, networkType);
         if (DBG) log("setPreferredNetworkType: " + (success ? "ok" : "fail"));
+        return success;
+    }
+
+    /**
+     * Set the CDMA subscription source.
+     * Used for device supporting both NV and RUIM for CDMA.
+     *
+     * @param subscriptionType the subscription type, 0 for RUIM, 1 for NV.
+     * @return true on success; false on any failure.
+     */
+    @Override
+    public boolean setCdmaSubscription(int subscriptionType) {
+        enforceModifyPermission();
+        if (DBG) log("setCdmaSubscription: type " + subscriptionType);
+        if (subscriptionType != mPhone.CDMA_SUBSCRIPTION_RUIM_SIM &&
+            subscriptionType != mPhone.CDMA_SUBSCRIPTION_NV) {
+           loge("setCdmaSubscription: unsupported subscriptionType.");
+           return false;
+        }
+        Boolean success = (Boolean) sendRequest(CMD_SET_CDMA_SUBSCRIPTION, subscriptionType);
+        if (DBG) log("setCdmaSubscription: " + (success ? "ok" : "fail"));
+        if (success) {
+            Settings.Global.putInt(mPhone.getContext().getContentResolver(),
+                    Settings.Global.CDMA_SUBSCRIPTION_MODE, subscriptionType);
+        }
         return success;
     }
 
