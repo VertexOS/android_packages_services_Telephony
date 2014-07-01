@@ -17,6 +17,7 @@
 package com.android.services.telephony;
 
 import android.telecomm.CallVideoProvider;
+import android.telecomm.RemoteCallVideoClient;
 import android.telecomm.VideoCallProfile;
 import android.view.Surface;
 
@@ -27,52 +28,57 @@ import android.view.Surface;
 public class TelephonyCallVideoProvider extends CallVideoProvider {
 
     @Override
-    public void setCamera(String cameraId) {
-        // Stub, to be implemented.
-    }
-
-    @Override
-    public void setPreviewSurface(Surface surface) {
+    public void onSetCallVideoClient(RemoteCallVideoClient callVideoClient) {
 
     }
 
     @Override
-    public void setDisplaySurface(Surface surface) {
+    public void onSetCamera(String cameraId) {
 
     }
 
     @Override
-    public void setDeviceOrientation(int rotation) {
+    public void onSetPreviewSurface(Surface surface) {
 
     }
 
     @Override
-    public void setZoom(float value) {
+    public void onSetDisplaySurface(Surface surface) {
 
     }
 
     @Override
-    public void sendSessionModifyRequest(VideoCallProfile requestProfile) {
+    public void onSetDeviceOrientation(int rotation) {
 
     }
 
     @Override
-    public void sendSessionModifyResponse(VideoCallProfile responseProfile) {
+    public void onSetZoom(float value) {
 
     }
 
     @Override
-    public void requestCameraCapabilities() {
+    public void onSendSessionModifyRequest(VideoCallProfile requestProfile) {
 
     }
 
     @Override
-    public void requestCallDataUsage() {
+    public void onSendSessionModifyResponse(VideoCallProfile responseProfile) {
 
     }
 
     @Override
-    public void setPauseImage(String uri) {
+    public void onRequestCameraCapabilities() {
+
+    }
+
+    @Override
+    public void onRequestCallDataUsage() {
+
+    }
+
+    @Override
+    public void onSetPauseImage(String uri) {
 
     }
 }
