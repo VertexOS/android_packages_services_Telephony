@@ -19,7 +19,6 @@ package com.android.services.telephony;
 import android.net.Uri;
 import android.telephony.DisconnectCause;
 import android.telephony.ServiceState;
-import android.telecomm.Subscription;
 import android.text.TextUtils;
 
 import com.android.internal.telephony.CallStateException;
@@ -46,7 +45,7 @@ public abstract class TelephonyConnectionService extends ConnectionService {
      * by calling
      * {@link #createTelephonyConnection(
      *         ConnectionRequest,Phone,com.android.internal.telephony.Connection)}
-     * at the appropriate time. Should be called by the subclass.
+     * at the appropriate time. This method should be called by the subclass.
      */
     protected void startCallWithPhone(
             Phone phone,
