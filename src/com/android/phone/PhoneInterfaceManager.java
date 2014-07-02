@@ -977,15 +977,6 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         return (Boolean) sendRequest(CMD_HANDLE_PIN_MMI, dialString, subId);
     }
 
-    public void cancelMissedCallsNotification() {
-        cancelMissedCallsNotificationUsingSubId(getDefaultSubscription());
-    }
-
-    public void cancelMissedCallsNotificationUsingSubId(long subId) {
-        enforceModifyPermission();
-        mApp.notificationMgr.cancelMissedCallNotification();
-    }
-
     public int getCallState() {
         return getCallStateUsingSubId(getDefaultSubscription());
     }
