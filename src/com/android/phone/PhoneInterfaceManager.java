@@ -1554,6 +1554,18 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     }
 
     /**
+     * Get the calculated preferred network type.
+     * Used for debugging incorrect network type.
+     *
+     * @return the preferred network type, defined in RILConstants.java.
+     */
+    @Override
+    public int getCalculatedPreferredNetworkType() {
+        enforceReadPermission();
+        return PhoneFactory.calculatePreferredNetworkType(mPhone.getContext());
+    }
+
+    /**
      * Get the preferred network type.
      * Used for device configuration by some CDMA operators.
      *
