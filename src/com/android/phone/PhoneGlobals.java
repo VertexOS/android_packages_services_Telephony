@@ -147,9 +147,7 @@ public class PhoneGlobals extends ContextWrapper implements WiredHeadsetListener
 
     private AudioRouter audioRouter;
     private BluetoothManager bluetoothManager;
-    private CallCommandService callCommandService;
     private CallGatewayManager callGatewayManager;
-    private CallHandlerServiceProxy callHandlerServiceProxy;
     private CallModeler callModeler;
     private CallStateMonitor callStateMonitor;
     private DTMFTonePlayer dtmfTonePlayer;
@@ -438,7 +436,7 @@ public class PhoneGlobals extends ContextWrapper implements WiredHeadsetListener
             // Monitors call activity from the telephony layer
             callStateMonitor = new CallStateMonitor(mCM);
 
-            // Creates call models for use with CallHandlerService.
+            // Creates call models.
             callModeler = new CallModeler(callStateMonitor, mCM, callGatewayManager);
 
             // Plays DTMF Tones
@@ -456,15 +454,7 @@ public class PhoneGlobals extends ContextWrapper implements WiredHeadsetListener
             // Audio router
             audioRouter = new AudioRouter(this, bluetoothManager, wiredHeadsetManager, mCM);
 
-            // Service used by in-call UI to control calls
-            callCommandService = new CallCommandService(this, mCM, callModeler, dtmfTonePlayer,
-                    audioRouter);
-
-            // Sends call state to the UI
-            callHandlerServiceProxy = new CallHandlerServiceProxy(this, callModeler,
-                    callCommandService, audioRouter);
-
-            phoneMgr = PhoneInterfaceManager.init(this, phone, callHandlerServiceProxy);
+            phoneMgr = PhoneInterfaceManager.init(this, phone);
 
             // Create the CallNotifer singleton, which handles
             // asynchronous events from the telephony layer (like

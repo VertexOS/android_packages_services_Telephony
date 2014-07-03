@@ -74,9 +74,6 @@ import java.util.concurrent.atomic.AtomicInteger;
  *
  * TODO: Create a new Call class to replace the simple call Id ints
  * being used currently.
- *
- * The new Call models are parcellable for transfer via the CallHandlerService
- * API.
  */
 public class CallModeler extends Handler {
 

@@ -127,9 +127,6 @@
     <!-- Package name for the default in-call UI and dialer [DO NOT TRANSLATE] -->
     <string name="ui_default_package" translatable="false">com.android.dialer</string>
 
-    <!-- Class name for the default in-call UI Service [DO NOT TRANSLATE] -->
-    <string name="incall_default_class" translatable="false">com.android.incallui.CallHandlerService</string>
-
     <!-- Class name for the default main Dialer activity [DO NOT TRANSLATE] -->
     <string name="dialer_default_class" translatable="false">com.android.dialer.DialtactsActivity</string>
 
