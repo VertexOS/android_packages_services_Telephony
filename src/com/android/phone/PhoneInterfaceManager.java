@@ -59,6 +59,7 @@ import com.android.internal.telephony.CallManager;
 import com.android.internal.telephony.CommandException;
 import com.android.internal.telephony.PhoneConstants;
 import com.android.internal.telephony.dataconnection.DctController;
+import com.android.internal.telephony.uicc.AdnRecord;
 import com.android.internal.telephony.uicc.IccIoResult;
 import com.android.internal.telephony.uicc.IccUtils;
 import com.android.internal.telephony.uicc.UiccCarrierPrivilegeRules;
@@ -127,6 +128,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
      * subscription.
      */
     Set<Long> mSimplifiedNetworkSettings;
+    Map<Long, AdnRecord> mAdnRecordsForDisplay;
 
     /**
      * A request object to use for transmitting data to an ICC.
@@ -567,6 +569,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         mSimplifiedNetworkSettings = new HashSet<Long>();
         mAppOps = (AppOpsManager)app.getSystemService(Context.APP_OPS_SERVICE);
         mMainThreadHandler = new MainThreadHandler();
+        mAdnRecordsForDisplay = new HashMap<Long, AdnRecord>();
         publish();
     }
 
@@ -1733,5 +1736,37 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     public boolean getSimplifiedNetworkSettingsEnabled(long subId) {
         enforceReadPermission();
         return mSimplifiedNetworkSettings.contains(subId);
+    }
+
+    @Override
+    public void setLine1NumberForDisplay(long subId, String alphaTag, String number) {
+        enforceModifyPermission();
+        mAdnRecordsForDisplay.put(subId, new AdnRecord(alphaTag, number));
+    }
+
+    @Override
+    public String getLine1NumberForDisplay(long subId) {
+        enforceReadPermission();
+        if (!mAdnRecordsForDisplay.containsKey(subId)) {
+            return null;
+        }
+        AdnRecord adnRecord = mAdnRecordsForDisplay.get(subId);
+        if (adnRecord.getNumber() == null || adnRecord.getNumber().isEmpty()) {
+            return null;
+        }
+        return adnRecord.getNumber();
+    }
+
+    @Override
+    public String getLine1AlphaTagForDisplay(long subId) {
+        enforceReadPermission();
+        if (!mAdnRecordsForDisplay.containsKey(subId)) {
+            return null;
+        }
+        AdnRecord adnRecord = mAdnRecordsForDisplay.get(subId);
+        if (adnRecord.getAlphaTag() == null || adnRecord.getAlphaTag().isEmpty()) {
+            return null;
+        }
+        return adnRecord.getAlphaTag();
     }
 }
