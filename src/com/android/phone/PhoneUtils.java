@@ -629,7 +629,8 @@ public class PhoneUtils {
             app.cdmaPhoneCallState.setCurrentCallState(
                 CdmaPhoneCallState.PhoneCallState.THRWAY_ACTIVE);
 
-            app.getCallModeler().setCdmaOutgoing3WayCall(connection);
+            // TODO(sail): Remove this code.
+            //app.getCallModeler().setCdmaOutgoing3WayCall(connection);
         }
     }
 

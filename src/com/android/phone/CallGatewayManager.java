@@ -37,8 +37,7 @@ import java.util.concurrent.ConcurrentHashMap;
  *
  * <p>When an outgoing call is finally placed in PhoneUtils.placeCall, it uses this class to get the
  * proper number to dial. It also saves an association between the connection object and the gateway
- * data into this class.  This association is later used in CallModeler when building Call objects
- * to send to the UI which require the gateway data to show an alert to users.
+ * data into this class.
  */
 public class CallGatewayManager {
     private static final String LOG_TAG = CallGatewayManager.class.getSimpleName();
@@ -98,8 +97,7 @@ public class CallGatewayManager {
     }
 
     /**
-     * This function sets the current mapping from connection to gatewayInfo so that CallModeler
-     * can request this data when creating Call objects.
+     * This function sets the current mapping from connection to gatewayInfo.
      * @param connection The connection object for the placed outgoing call.
      * @param gatewayInfo Gateway info gathered using getRawGatewayInfo.
      */
