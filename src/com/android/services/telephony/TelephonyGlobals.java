@@ -51,7 +51,7 @@ public class TelephonyGlobals {
     }
 
     /**
-     * Sets up incoming call notifiers for all the call services.
+     * Sets up incoming call notifiers for all the connection services.
      */
     private void setupIncomingCallNotifiers() {
         PhoneProxy defaultPhone = (PhoneProxy) PhoneFactory.getDefaultPhone();

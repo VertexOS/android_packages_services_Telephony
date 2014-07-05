@@ -2250,7 +2250,7 @@ public class CallFeaturesSetting extends PreferenceActivity
     }
 
     private void loadConnectionServiceEntries() {
-        Intent intent = new Intent(TelecommConstants.ACTION_CALL_SERVICE);
+        Intent intent = new Intent(TelecommConstants.ACTION_CONNECTION_SERVICE);
         for (ResolveInfo entry : getPackageManager().queryIntentServices(intent, 0)) {
             ServiceInfo serviceInfo = entry.serviceInfo;
             if (serviceInfo != null) {

@@ -555,7 +555,7 @@
                 android:name="com.android.services.telephony.PstnConnectionService"
                 android:label="@string/pstn_connection_service_label">
             <intent-filter>
-                <action android:name="android.telecomm.CallService" />
+                <action android:name="android.telecomm.ConnectionService" />
             </intent-filter>
         </service>
         <service
@@ -563,7 +563,7 @@
                 android:name="com.android.services.telephony.SipConnectionService"
                 android:label="@string/sip_connection_service_label">
             <intent-filter>
-                <action android:name="android.telecomm.CallService" />
+                <action android:name="android.telecomm.ConnectionService" />
             </intent-filter>
         </service>
         <provider

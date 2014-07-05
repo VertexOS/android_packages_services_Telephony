@@ -24,7 +24,6 @@ import android.os.AsyncResult;
 import android.os.Handler;
 import android.os.Message;
 import android.os.UserHandle;
-import android.telecomm.CallService;
 import android.telecomm.CallServiceDescriptor;
 import android.telecomm.TelecommConstants;
 
@@ -156,7 +155,7 @@ final class PstnIncomingCallNotifier {
         Context context = mPhoneProxy.getContext();
 
         CallServiceDescriptor.Builder builder = CallServiceDescriptor.newBuilder(context);
-        builder.setCallService(PstnConnectionService.class);
+        builder.setConnectionService(PstnConnectionService.class);
         builder.setNetworkType(CallServiceDescriptor.FLAG_PSTN);
 
         Intent intent = new Intent(TelecommConstants.ACTION_INCOMING_CALL);

@@ -73,7 +73,7 @@ class TelephonyConnection extends Connection {
     }
 
     @Override
-    protected void onHold() {
+    public void onHold() {
         Log.d(this, "Attempting to put call on hold");
         // TODO(santoscordon): Can dialing calls be put on hold as well since they take up the
         // foreground call slot?
@@ -112,7 +112,7 @@ class TelephonyConnection extends Connection {
         Log.d(this, "Attempting to release call from hold");
         if (Call.State.HOLDING == mState) {
             try {
-                // TODO: This doesn't handle multiple calls across call services yet
+                // TODO: This doesn't handle multiple calls across connection services yet
                 mOriginalConnection.getCall().getPhone().switchHoldingAndActive();
             } catch (CallStateException e) {
                 Log.e(this, e, "Exception occurred while trying to release call from hold.");

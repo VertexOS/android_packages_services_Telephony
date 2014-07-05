@@ -48,7 +48,7 @@ class ConferenceConnection extends Connection {
                 if (origConnection != null && origConnection.getCall() != null) {
                     try {
                         // getCall() returns what is the parent call of all conferenced conections
-                        // so we only need ot call hangup on the main call object. Break once we've
+                        // so we only need to call hangup on the main call object. Break once we've
                         // done that.
                         origConnection.getCall().hangup();
                         break;
@@ -63,11 +63,12 @@ class ConferenceConnection extends Connection {
     /** ${inheritDoc} */
     @Override
     protected void onHold() {
-        List<Connection> children = getChildConnections();
-        if (!children.isEmpty()) {
-            // Hold only needs to be called on one of the children.
-            children.get(0).hold();
+        for (Connection connection : getChildConnections()) {
+            if (connection instanceof TelephonyConnection) {
+                ((TelephonyConnection) connection).onHold();
+                // Hold only needs to be called on one of the children.
+                break;
+            }
         }
     }
-
 }
