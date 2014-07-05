@@ -275,8 +275,8 @@
     <string name="enable_disable_multi_category" msgid="626771003122899280">"बहु-श्रेणी"</string>
     <string name="multi_category_enable" msgid="1179299804641721768">"बहु-श्रेणी सक्षम की गई"</string>
     <string name="multi_category_disable" msgid="880104702904139505">"बहु-श्रेणी अक्षम की गई"</string>
-    <string name="network_lte" msgid="7702681952521375754">"LTE (अनुशंसित)"</string>
-    <string name="network_4G" msgid="2723512640529983138">"4G (अनुशंसित)"</string>
+    <string name="network_lte" msgid="7702681952521375754">"LTE (सुझाये गये)"</string>
+    <string name="network_4G" msgid="2723512640529983138">"4G (सुझाये गये)"</string>
     <string name="network_global" msgid="1323190488685355309">"वैश्विक"</string>
     <string name="cdma_system_select_title" msgid="5757657769327732833">"सिस्टम चयन"</string>
     <string name="cdma_system_select_summary" msgid="60460043745797517">"CDMA रोमिंग मोड बदलें"</string>
@@ -287,7 +287,7 @@
   </string-array>
     <string name="cdma_subscription_title" msgid="1162564010076763284">"CDMA सदस्यता"</string>
     <string name="cdma_subscription_summary" msgid="2530890766115781140">"RUIM/सिम और NV के बीच बदलें"</string>
-    <string name="cdma_subscription_dialogtitle" msgid="2699527950523333110">"ग्राहकी"</string>
+    <string name="cdma_subscription_dialogtitle" msgid="2699527950523333110">"सदस्यता"</string>
   <string-array name="cdma_subscription_choices">
     <item msgid="2258014151300708431">"RUIM/सिम"</item>
     <item msgid="5127722015571873880">"NV"</item>
