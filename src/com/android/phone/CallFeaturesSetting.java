@@ -1624,7 +1624,10 @@ public class CallFeaturesSetting extends PreferenceActivity
                     addPreferencesFromResource(R.xml.cdma_call_privacy);
                 }
             } else if (phoneType == PhoneConstants.PHONE_TYPE_GSM) {
-                addPreferencesFromResource(R.xml.gsm_umts_call_options);
+                if (getResources().getBoolean(
+                            R.bool.config_additional_call_setting)) {
+                    addPreferencesFromResource(R.xml.gsm_umts_call_options);
+                }
             } else {
                 throw new IllegalStateException("Unexpected phone type: " + phoneType);
             }

@@ -914,6 +914,7 @@ public class PhoneUtils {
                         phone.getForegroundCall().getLatestConnection());
             } else if ((phoneType == PhoneConstants.PHONE_TYPE_GSM)
                     || (phoneType == PhoneConstants.PHONE_TYPE_SIP)
+                    || (phoneType == PhoneConstants.PHONE_TYPE_IMS)
                     || (phoneType == PhoneConstants.PHONE_TYPE_THIRD_PARTY)) {
                 shouldMute = sConnectionMuteTable.get(c);
             }
@@ -1481,6 +1482,7 @@ public class PhoneUtils {
             conn = call.getLatestConnection();
         } else if ((phoneType == PhoneConstants.PHONE_TYPE_GSM)
                 || (phoneType == PhoneConstants.PHONE_TYPE_SIP)
+                || (phoneType == PhoneConstants.PHONE_TYPE_IMS)
                 || (phoneType == PhoneConstants.PHONE_TYPE_THIRD_PARTY)) {
             conn = call.getEarliestConnection();
         } else {
@@ -1583,6 +1585,7 @@ public class PhoneUtils {
                 switch (phoneType) {
                     case PhoneConstants.PHONE_TYPE_NONE: log("  ==> PHONE_TYPE_NONE"); break;
                     case PhoneConstants.PHONE_TYPE_GSM: log("  ==> PHONE_TYPE_GSM"); break;
+                    case PhoneConstants.PHONE_TYPE_IMS: log("  ==> PHONE_TYPE_IMS"); break;
                     case PhoneConstants.PHONE_TYPE_CDMA: log("  ==> PHONE_TYPE_CDMA"); break;
                     case PhoneConstants.PHONE_TYPE_SIP: log("  ==> PHONE_TYPE_SIP"); break;
                     case PhoneConstants.PHONE_TYPE_THIRD_PARTY:
@@ -2205,6 +2208,7 @@ public class PhoneUtils {
                 answerCall(phone.getRingingCall());
             } else if ((phoneType == PhoneConstants.PHONE_TYPE_GSM)
                     || (phoneType == PhoneConstants.PHONE_TYPE_SIP)
+                    || (phoneType == PhoneConstants.PHONE_TYPE_IMS)
                     || (phoneType == PhoneConstants.PHONE_TYPE_THIRD_PARTY)) {
                 if (hasActiveCall && hasHoldingCall) {
                     if (DBG) log("handleHeadsetHook: ringing (both lines in use) ==> answer!");
@@ -2350,6 +2354,7 @@ public class PhoneUtils {
                     == CdmaPhoneCallState.PhoneCallState.CONF_CALL);
         } else if ((phoneType == PhoneConstants.PHONE_TYPE_GSM)
                 || (phoneType == PhoneConstants.PHONE_TYPE_SIP)
+                || (phoneType == PhoneConstants.PHONE_TYPE_IMS)
                 || (phoneType == PhoneConstants.PHONE_TYPE_THIRD_PARTY)) {
             // GSM: "Swap" is available if both lines are in use and there's no
             // incoming call.  (Actually we need to verify that the active
@@ -2410,6 +2415,7 @@ public class PhoneUtils {
                     && (app.cdmaPhoneCallState.getAddCallMenuStateAfterCallWaiting()));
         } else if ((phoneType == PhoneConstants.PHONE_TYPE_GSM)
                 || (phoneType == PhoneConstants.PHONE_TYPE_SIP)
+                || (phoneType == PhoneConstants.PHONE_TYPE_IMS)
                 || (phoneType == PhoneConstants.PHONE_TYPE_THIRD_PARTY)) {
             // GSM: "Add call" is available only if ALL of the following are true:
             // - There's no incoming ringing call

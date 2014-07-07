@@ -759,6 +759,7 @@ public class CallNotifier extends Handler
 
         if (fgPhone.getPhoneType() == PhoneConstants.PHONE_TYPE_GSM
                 || fgPhone.getPhoneType() == PhoneConstants.PHONE_TYPE_SIP
+                || fgPhone.getPhoneType() == PhoneConstants.PHONE_TYPE_IMS
                 || fgPhone.getPhoneType() == PhoneConstants.PHONE_TYPE_THIRD_PARTY) {
             Call.State callState = mCM.getActiveFgCallState();
             if (!callState.isDialing()) {
@@ -1249,6 +1250,7 @@ public class CallNotifier extends Handler
                         toneLengthMillis = 1000;
                     } else if (phoneType == PhoneConstants.PHONE_TYPE_GSM
                             || phoneType == PhoneConstants.PHONE_TYPE_SIP
+                            || phoneType == PhoneConstants.PHONE_TYPE_IMS
                             || phoneType == PhoneConstants.PHONE_TYPE_THIRD_PARTY) {
                         toneType = ToneGenerator.TONE_SUP_BUSY;
                         toneVolume = TONE_RELATIVE_VOLUME_HIPRI;

@@ -9,7 +9,7 @@ phone_common_dir := ../../apps/PhoneCommon
 src_dirs := src $(phone_common_dir)/src
 res_dirs := res $(phone_common_dir)/res
 
-LOCAL_JAVA_LIBRARIES := telephony-common voip-common
+LOCAL_JAVA_LIBRARIES := telephony-common voip-common ims-common
 LOCAL_STATIC_JAVA_LIBRARIES := \
         com.android.services.telephony.common \
         guava \
