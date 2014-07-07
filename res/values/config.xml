@@ -142,5 +142,5 @@
     <!-- Default connection service setting.
          TODO: This is GSM specific. Need to define a generic "use the builtin SIMs" Connection
          Service and use it as the default. -->
-    <string name="connection_service_default" translatable="false">com.android.phone/com.android.services.telephony.GsmConnectionService</string>
+    <string name="connection_service_default" translatable="false">com.android.phone/com.android.services.telephony.PstnConnectionService</string>
 </resources>

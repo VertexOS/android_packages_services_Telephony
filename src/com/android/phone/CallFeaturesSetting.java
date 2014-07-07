@@ -2271,8 +2271,9 @@ public class CallFeaturesSetting extends PreferenceActivity
         // for the ListPreference points to something useful and does not throw an NPE) and proceed.
         String connectionServiceDefault = getString(R.string.connection_service_default);
         if (!mConnectionServiceLabelByComponentName.containsKey(connectionServiceDefault)) {
-            Log.wtf(LOG_TAG, "Package manager reports built-in ConnectionService not installed: "
+            Log.w(LOG_TAG, "Package manager reports built-in ConnectionService not installed: "
                     + connectionServiceDefault);
+        } else {
             mConnectionServiceLabelByComponentName.put(
                     connectionServiceDefault,
                     getString(R.string.connection_service_default_label));
