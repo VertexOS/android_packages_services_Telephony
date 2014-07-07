@@ -148,9 +148,7 @@ public class PhoneGlobals extends ContextWrapper implements WiredHeadsetListener
     private AudioRouter audioRouter;
     private BluetoothManager bluetoothManager;
     private CallGatewayManager callGatewayManager;
-    private CallModeler callModeler;
     private CallStateMonitor callStateMonitor;
-    private DTMFTonePlayer dtmfTonePlayer;
     private IBluetoothHeadsetPhone mBluetoothPhone;
     private Ringer ringer;
     private WiredHeadsetManager wiredHeadsetManager;
@@ -436,18 +434,12 @@ public class PhoneGlobals extends ContextWrapper implements WiredHeadsetListener
             // Monitors call activity from the telephony layer
             callStateMonitor = new CallStateMonitor(mCM);
 
-            // Creates call models.
-            callModeler = new CallModeler(callStateMonitor, mCM, callGatewayManager);
-
-            // Plays DTMF Tones
-            dtmfTonePlayer = new DTMFTonePlayer(mCM, callModeler);
-
             // Manages wired headset state
             wiredHeadsetManager = new WiredHeadsetManager(this);
             wiredHeadsetManager.addWiredHeadsetListener(this);
 
             // Bluetooth manager
-            bluetoothManager = new BluetoothManager(this, mCM, callModeler);
+            bluetoothManager = new BluetoothManager();
 
             ringer = Ringer.init(this, bluetoothManager);
 
@@ -461,7 +453,7 @@ public class PhoneGlobals extends ContextWrapper implements WiredHeadsetListener
             // launching the incoming-call UI when an incoming call comes
             // in.)
             notifier = CallNotifier.init(this, phone, ringer, callLogger, callStateMonitor,
-                    bluetoothManager, callModeler);
+                    bluetoothManager);
 
             // register for ICC status
             IccCard sim = phone.getIccCard();
@@ -587,10 +579,6 @@ public class PhoneGlobals extends ContextWrapper implements WiredHeadsetListener
 
     /* package */ AudioRouter getAudioRouter() {
         return audioRouter;
-    }
-
-    public CallModeler getCallModeler() {
-        return callModeler;
     }
 
     /* package */ CallManager getCallManager() {

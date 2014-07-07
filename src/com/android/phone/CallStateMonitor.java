@@ -98,9 +98,8 @@ class CallStateMonitor extends Handler {
                 Log.d(LOG_TAG, "Adding Handler: " + handler);
             }
 
-            // Commented out so that the two listeners do not get phone events:
-            // 1) CallModeler - drives in-call UI, DTMF sessions, Bluetooth.
-            // 2) CallNotifier - Incoming-call sequence (ringer, etc.)
+            // Commented out so that the listener does not get phone events:
+            // 1) CallNotifier - Incoming-call sequence (ringer, etc.)
             //
             // NOTE: This can be deleted, but is left here for documentation purposes until this
             // entire file can be deleted (once we are sure we've addressed each of the events we

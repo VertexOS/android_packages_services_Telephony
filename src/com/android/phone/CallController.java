@@ -141,7 +141,8 @@ public class CallController extends Handler {
                     // Reset the mThreeWayCallOrigStateDialing state
                     mApp.cdmaPhoneCallState.setThreeWayCallOrigState(false);
 
-                    mApp.getCallModeler().setCdmaOutgoing3WayCall(null);
+                    // TODO(sail): Remove this code.
+                    //mApp.getCallModeler().setCdmaOutgoing3WayCall(null);
                 }
                 break;
 

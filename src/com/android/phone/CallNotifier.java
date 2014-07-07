@@ -140,7 +140,6 @@ public class CallNotifier extends Handler
     private Ringer mRinger;
     private BluetoothHeadset mBluetoothHeadset;
     private CallLogger mCallLogger;
-    private CallModeler mCallModeler;
     private boolean mSilentRingerRequested;
 
     // ToneGenerator instance for playing SignalInfo tones
@@ -175,11 +174,11 @@ public class CallNotifier extends Handler
      */
     /* package */ static CallNotifier init(PhoneGlobals app, Phone phone, Ringer ringer,
             CallLogger callLogger, CallStateMonitor callStateMonitor,
-            BluetoothManager bluetoothManager, CallModeler callModeler) {
+            BluetoothManager bluetoothManager) {
         synchronized (CallNotifier.class) {
             if (sInstance == null) {
                 sInstance = new CallNotifier(app, phone, ringer, callLogger, callStateMonitor,
-                        bluetoothManager, callModeler);
+                        bluetoothManager);
             } else {
                 Log.wtf(LOG_TAG, "init() called multiple times!  sInstance = " + sInstance);
             }
@@ -189,13 +188,11 @@ public class CallNotifier extends Handler
 
     /** Private constructor; @see init() */
     private CallNotifier(PhoneGlobals app, Phone phone, Ringer ringer, CallLogger callLogger,
-            CallStateMonitor callStateMonitor, BluetoothManager bluetoothManager,
-            CallModeler callModeler) {
+            CallStateMonitor callStateMonitor, BluetoothManager bluetoothManager) {
         mApplication = app;
         mCM = app.mCM;
         mCallLogger = callLogger;
         mBluetoothManager = bluetoothManager;
-        mCallModeler = callModeler;
 
         mAudioManager = (AudioManager) mApplication.getSystemService(Context.AUDIO_SERVICE);
 
@@ -631,7 +628,7 @@ public class CallNotifier extends Handler
         }
 
         // If the ringing call still does not have any connection anymore, do not send the
-        // notification to the CallModeler.
+        // notification.
         final Call ringingCall = mCM.getFirstActiveRingingCall();
 
         if (ringingCall != null && ringingCall.getLatestConnection() == c) {
@@ -650,7 +647,6 @@ public class CallNotifier extends Handler
     }
 
     /**
-     * Notifies the Call Modeler that there is a new ringing connection.
      * If it is not a waiting call (there is no other active call in foreground), we will ring the
      * ringtone. Otherwise we will play the call waiting tone instead.
      * @param c The new ringing connection.
@@ -665,7 +661,6 @@ public class CallNotifier extends Handler
                 mCallWaitingTonePlayer.start();
             }
         }
-        mCallModeler.onNewRingingConnection(c);
     }
 
     /**
@@ -706,10 +701,7 @@ public class CallNotifier extends Handler
         // There's no need to force a UI update since we update the
         // in-call notification ourselves (below), and the InCallScreen
         // listens for phone state changes itself.
-        // TODO: Have BluetoothManager listen to CallModeler instead of relying on
-        // CallNotifier
         mBluetoothManager.updateBluetoothIndication();
-
 
         // Update the phone state and other sensor/lock.
         mApplication.updatePhoneState(state);
@@ -1588,7 +1580,8 @@ public class CallNotifier extends Handler
             new SignalInfoTonePlayer(toneID).start();
         }
 
-        mCallModeler.onCdmaCallWaiting(infoCW);
+        // TODO(sail): Remove this.
+        //mCallModeler.onCdmaCallWaiting(infoCW);
     }
 
     /**
@@ -1641,7 +1634,8 @@ public class CallNotifier extends Handler
 
         // Call modeler needs to know about this event regardless of the
         // state conditionals in the previous code.
-        mCallModeler.onCdmaCallWaitingReject();
+        // TODO(sail): Remove this.
+        //mCallModeler.onCdmaCallWaitingReject();
     }
 
     /**

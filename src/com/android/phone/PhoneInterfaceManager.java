@@ -60,7 +60,6 @@ import com.android.internal.telephony.uicc.IccIoResult;
 import com.android.internal.telephony.uicc.IccUtils;
 import com.android.internal.telephony.uicc.UiccController;
 import com.android.internal.util.HexDump;
-import com.android.services.telephony.common.Call;
 
 import static com.android.internal.telephony.PhoneConstants.SUBSCRIPTION_KEY;
 
