@@ -116,7 +116,6 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     CallManager mCM;
     AppOpsManager mAppOps;
     MainThreadHandler mMainThreadHandler;
-    CallHandlerServiceProxy mCallHandlerService;
 
     /**
      * A request object to use for transmitting data to an ICC.
@@ -538,11 +537,10 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
      * Initialize the singleton PhoneInterfaceManager instance.
      * This is only done once, at startup, from PhoneApp.onCreate().
      */
-    /* package */ static PhoneInterfaceManager init(PhoneGlobals app, Phone phone,
-                CallHandlerServiceProxy callHandlerService) {
+    /* package */ static PhoneInterfaceManager init(PhoneGlobals app, Phone phone) {
         synchronized (PhoneInterfaceManager.class) {
             if (sInstance == null) {
-                sInstance = new PhoneInterfaceManager(app, phone, callHandlerService);
+                sInstance = new PhoneInterfaceManager(app, phone);
             } else {
                 Log.wtf(LOG_TAG, "init() called multiple times!  sInstance = " + sInstance);
             }
@@ -551,14 +549,12 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     }
 
     /** Private constructor; @see init() */
-    private PhoneInterfaceManager(PhoneGlobals app, Phone phone,
-            CallHandlerServiceProxy callHandlerService) {
+    private PhoneInterfaceManager(PhoneGlobals app, Phone phone) {
         mApp = app;
         mPhone = phone;
         mCM = PhoneGlobals.getInstance().mCM;
         mAppOps = (AppOpsManager)app.getSystemService(Context.APP_OPS_SERVICE);
         mMainThreadHandler = new MainThreadHandler();
-        mCallHandlerService = callHandlerService;
         publish();
     }
 
