@@ -21,6 +21,9 @@ import android.app.AppOpsManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.Signature;
 import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.AsyncResult;
@@ -58,6 +61,7 @@ import com.android.internal.telephony.PhoneConstants;
 import com.android.internal.telephony.dataconnection.DctController;
 import com.android.internal.telephony.uicc.IccIoResult;
 import com.android.internal.telephony.uicc.IccUtils;
+import com.android.internal.telephony.uicc.UiccCarrierPrivilegeRules;
 import com.android.internal.telephony.uicc.UiccController;
 import com.android.internal.util.HexDump;
 
@@ -1627,5 +1631,30 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
                     null);
         }
         return mPhone.getDataEnabled();
+    }
+
+    @Override
+    public int hasCarrierPrivileges() {
+        PackageManager packageManager = mPhone.getContext().getPackageManager();
+        String[] packages = packageManager.getPackagesForUid(Binder.getCallingUid());
+
+        for (String pkg : packages) {
+            try {
+                PackageInfo pInfo = packageManager.getPackageInfo(pkg,
+                    PackageManager.GET_SIGNATURES);
+                Signature[] signatures = pInfo.signatures;
+                for (Signature sig : signatures) {
+                    int hasAccess = UiccController.getInstance().getUiccCard().hasCarrierPrivileges(
+                            sig, pInfo.packageName);
+                    if (hasAccess != TelephonyManager.CARRIER_PRIVILEGE_STATUS_NO_ACCESS) {
+                        return hasAccess;
+                    }
+                }
+            } catch (PackageManager.NameNotFoundException ex) {
+                loge("NameNotFoundException: " + ex);
+                continue;
+            }
+        }
+        return TelephonyManager.CARRIER_PRIVILEGE_STATUS_NO_ACCESS;
     }
 }
