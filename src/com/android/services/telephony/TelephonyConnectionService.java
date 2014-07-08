@@ -87,7 +87,7 @@ public abstract class TelephonyConnectionService extends ConnectionService {
 
         com.android.internal.telephony.Connection connection;
         try {
-            connection = phone.dial(number);
+            connection = phone.dial(number, request.getVideoState());
         } catch (CallStateException e) {
             Log.e(this, e, "Call to Phone.dial failed with exception");
             respondWithError(

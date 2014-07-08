@@ -144,7 +144,8 @@ public final class PstnConnectionService extends TelephonyConnectionService {
                 }
 
                 respondWithResult(
-                        new ConnectionRequest(request.getCallId(), handle, request.getExtras()),
+                        new ConnectionRequest(request.getCallId(), handle, request.getExtras(),
+                                request.getVideoState()),
                         response,
                         telephonyConnection);
             }
