@@ -31,11 +31,11 @@ public class TelephonyCallServiceProvider extends CallServiceProvider {
     public void lookupCallServices(CallServiceLookupResponse response) {
         ArrayList<CallServiceDescriptor> descriptors = new ArrayList<CallServiceDescriptor>();
         descriptors.add(CallServiceDescriptor.newBuilder(this)
-                   .setCallService(PstnConnectionService.class)
+                   .setConnectionService(PstnConnectionService.class)
                    .setNetworkType(CallServiceDescriptor.FLAG_PSTN)
                    .build());
         descriptors.add(CallServiceDescriptor.newBuilder(this)
-                .setCallService(SipConnectionService.class)
+                .setConnectionService(SipConnectionService.class)
                 .setNetworkType(CallServiceDescriptor.FLAG_WIFI |
                         CallServiceDescriptor.FLAG_MOBILE)
                 .build());

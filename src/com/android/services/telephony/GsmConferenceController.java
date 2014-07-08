@@ -74,7 +74,9 @@ public class GsmConferenceController {
             mGsmConferenceConnection = new ConferenceConnection();
             Log.d(this, "creating the conference connection: %s", mGsmConferenceConnection);
         }
-        rootConnection.conference();
+        if (rootConnection instanceof GsmConnection) {
+            ((GsmConnection) rootConnection).performConference();
+        }
         return mGsmConferenceConnection;
     }
 

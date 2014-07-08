@@ -39,7 +39,7 @@ import android.telecomm.Response;
 import java.util.HashMap;
 
 /**
- * Call service that uses the SIP phone.
+ * Connection service that uses the SIP phone.
  */
 public class SipConnectionService extends TelephonyConnectionService {
     private static HashMap<String, SipPhone> sSipPhones = new HashMap<String, SipPhone>();

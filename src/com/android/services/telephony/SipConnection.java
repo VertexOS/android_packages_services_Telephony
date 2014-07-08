@@ -55,7 +55,7 @@ public class SipConnection extends TelephonyConnection {
 
     /** {@inheritDoc} */
     @Override
-    protected void onHold() {
+    public void onHold() {
         super.onHold();
     }
 

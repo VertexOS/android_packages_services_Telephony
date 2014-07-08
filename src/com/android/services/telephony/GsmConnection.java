@@ -43,9 +43,7 @@ public class GsmConnection extends PstnConnection {
         super.onStopDtmfTone();
     }
 
-    /** {@inheritDoc} */
-    @Override
-    public void onConference() {
+    public void performConference() {
         try {
             Log.d(this, "conference - %s", this);
             getPhone().conference();
