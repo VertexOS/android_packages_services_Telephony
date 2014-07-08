@@ -1178,15 +1178,6 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
                 null);
     }
 
-    /**
-     * Make sure the caller has SIM_COMMUNICATION permission.
-     *
-     * @throws SecurityException if the caller does not have the required permission.
-     */
-    private void enforceSimCommunicationPermission() {
-        mApp.enforceCallingOrSelfPermission(android.Manifest.permission.SIM_COMMUNICATION, null);
-    }
-
     private String createTelUrl(String number) {
         if (TextUtils.isEmpty(number)) {
             return null;
@@ -1389,7 +1380,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
 
     @Override
     public int iccOpenLogicalChannel(String AID) {
-        enforceSimCommunicationPermission();
+        enforceModifyPermission();
 
         if (DBG) log("iccOpenLogicalChannel: " + AID);
         Integer channel = (Integer)sendRequest(CMD_OPEN_CHANNEL, AID);
@@ -1399,7 +1390,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
 
     @Override
     public boolean iccCloseLogicalChannel(int channel) {
-        enforceSimCommunicationPermission();
+        enforceModifyPermission();
 
         if (DBG) log("iccCloseLogicalChannel: " + channel);
         if (channel < 0) {
@@ -1413,7 +1404,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     @Override
     public String iccTransmitApduLogicalChannel(int channel, int cla,
             int command, int p1, int p2, int p3, String data) {
-        enforceSimCommunicationPermission();
+        enforceModifyPermission();
 
         if (DBG) {
             log("iccTransmitApduLogicalChannel: chnl=" + channel + " cla=" + cla +
@@ -1444,7 +1435,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
 
     @Override
     public String sendEnvelopeWithStatus(String content) {
-        enforceSimCommunicationPermission();
+        enforceModifyPermission();
 
         IccIoResult response = (IccIoResult)sendRequest(CMD_SEND_ENVELOPE, content);
         if (response.payload == null) {
