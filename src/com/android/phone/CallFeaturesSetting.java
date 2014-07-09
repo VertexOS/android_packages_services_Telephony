@@ -68,7 +68,8 @@ import com.android.internal.telephony.CommandsInterface;
 import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneConstants;
 import com.android.internal.telephony.cdma.TtyIntent;
-import com.android.phone.sip.SipSharedPreferences;
+import com.android.services.telephony.sip.SipSharedPreferences;
+import com.android.services.telephony.sip.SipUtil;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -1751,10 +1752,11 @@ public class CallFeaturesSetting extends PreferenceActivity
 
     private void createSipCallSettings() {
         // Add Internet call settings.
-        if (PhoneUtils.isVoipSupported()) {
+        if (SipUtil.isVoipSupported(this)) {
             mSipManager = SipManager.newInstance(this);
             mSipSharedPreferences = new SipSharedPreferences(this);
-            addPreferencesFromResource(R.xml.sip_settings_category);
+            addPreferencesFromResource(
+                    com.android.services.telephony.sip.R.xml.sip_settings_category);
             mButtonSipCallOptions = getSipCallOptionPreference();
             mButtonSipCallOptions.setOnPreferenceChangeListener(this);
             mButtonSipCallOptions.setValueIndex(

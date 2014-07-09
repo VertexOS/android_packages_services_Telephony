@@ -14,9 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.phone.sip;
-
-import com.android.phone.R;
+package com.android.services.telephony.sip;
 
 import android.content.ContentResolver;
 import android.content.Context;
@@ -30,6 +28,9 @@ import android.util.Log;
  * Wrapper for SIP's shared preferences.
  */
 public class SipSharedPreferences {
+    private static final String PREFIX = "[SipSharedPreferences] ";
+    private static final boolean VERBOSE = true; /* STOP SHIP if true */
+
     private static final String SIP_SHARED_PREFERENCES = "SIP_PREFERENCES";
     private static final String KEY_PRIMARY_ACCOUNT = "primary";
     private static final String KEY_NUMBER_OF_PROFILES = "profiles";
@@ -100,10 +101,14 @@ public class SipSharedPreferences {
             return (Settings.System.getInt(mContext.getContentResolver(),
                     Settings.System.SIP_RECEIVE_CALLS) != 0);
         } catch (SettingNotFoundException e) {
-            Log.d("SIP", "ReceiveCall option is not set; use default value");
+            log("isReceivingCallsEnabled, option not set; use default value, exception: " + e);
             return false;
         }
     }
 
     // TODO: back up to Android Backup
+
+    private static void log(String msg) {
+        Log.d(SipUtil.LOG_TAG, PREFIX + msg);
+    }
 }

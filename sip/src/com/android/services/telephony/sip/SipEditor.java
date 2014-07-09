@@ -14,13 +14,12 @@
  * limitations under the License.
  */
 
-package com.android.phone.sip;
+package com.android.services.telephony.sip;
 
 import com.android.internal.telephony.CallManager;
 import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneConstants;
-import com.android.phone.R;
-import com.android.phone.SipUtil;
+import com.android.services.telephony.sip.SipUtil;
 
 import android.app.ActionBar;
 import android.app.AlertDialog;
@@ -53,11 +52,13 @@ import java.util.Arrays;
  */
 public class SipEditor extends PreferenceActivity
         implements Preference.OnPreferenceChangeListener {
+    private static final String PREFIX = "[SipEditor] ";
+    private static final boolean VERBOSE = true; /* STOP SHIP if true */
+
     private static final int MENU_SAVE = Menu.FIRST;
     private static final int MENU_DISCARD = Menu.FIRST + 1;
     private static final int MENU_REMOVE = Menu.FIRST + 2;
 
-    private static final String TAG = SipEditor.class.getSimpleName();
     private static final String KEY_PROFILE = "profile";
     private static final String GET_METHOD_PREFIX = "get";
     private static final char SCRAMBLED = '*';
@@ -119,8 +120,10 @@ public class SipEditor extends PreferenceActivity
                 String oldValue = getValue();
                 ((EditTextPreference) preference).setText(value);
                 if (this != Password) {
-                    Log.v(TAG, this + ": setValue() " + value + ": " + oldValue
-                            + " --> " + getValue());
+                    if (VERBOSE) {
+                        log(this + ": setValue() " + value + ": " + oldValue + " --> " +
+                                getValue());
+                    }
                 }
             } else if (preference instanceof ListPreference) {
                 ((ListPreference) preference).setValue(value);
@@ -155,7 +158,7 @@ public class SipEditor extends PreferenceActivity
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        Log.v(TAG, "start profile editor");
+        if (VERBOSE) log("onCreate, start profile editor");
         super.onCreate(savedInstanceState);
 
         mSipManager = SipManager.newInstance(this);
@@ -187,7 +190,7 @@ public class SipEditor extends PreferenceActivity
 
     @Override
     public void onPause() {
-        Log.v(TAG, "SipEditor onPause(): finishing? " + isFinishing());
+        if (VERBOSE) log("onPause, finishing: " + isFinishing());
         if (!isFinishing()) {
             mHomeButtonClicked = true;
             validateAndSetResult();
@@ -247,13 +250,12 @@ public class SipEditor extends PreferenceActivity
     private void saveAndRegisterProfile(SipProfile p) throws IOException {
         if (p == null) return;
         mProfileDb.saveProfile(p);
-        if (p.getAutoRegistration()
-                || mSharedPreferences.isPrimaryAccount(p.getUriString())) {
+        if (p.getAutoRegistration() || mSharedPreferences.isPrimaryAccount(p.getUriString())) {
             try {
-                mSipManager.open(p, SipUtil.createIncomingCallPendingIntent(),
-                        null);
+                mSipManager.open(p, SipUtil.createIncomingCallPendingIntent(this), null);
             } catch (Exception e) {
-                Log.e(TAG, "register failed: " + p.getUriString(), e);
+                log("saveAndRegisterProfile, register failed for profile: " + p.getUriString() +
+                        ", exception: " + e);
             }
         }
     }
@@ -268,7 +270,7 @@ public class SipEditor extends PreferenceActivity
         try {
             mSipManager.close(uri);
         } catch (Exception e) {
-            Log.e(TAG, "unregister failed: " + uri, e);
+            log("unregisterProfile, unregister failed for profile: " + uri + ", exception: " + e);
         }
     }
 
@@ -289,7 +291,7 @@ public class SipEditor extends PreferenceActivity
 
     private void showAlert(final String message) {
         if (mHomeButtonClicked) {
-            Log.v(TAG, "Home button clicked, don't show dialog: " + message);
+            if (VERBOSE) log("Home button clicked, don't show dialog: " + message);
             return;
         }
         runOnUiThread(new Runnable() {
@@ -361,29 +363,26 @@ public class SipEditor extends PreferenceActivity
             Intent intent = new Intent(this, SipSettings.class);
             intent.putExtra(SipSettings.KEY_SIP_PROFILE, (Parcelable) profile);
             setResult(RESULT_OK, intent);
-            Toast.makeText(this, R.string.saving_account, Toast.LENGTH_SHORT)
-                    .show();
+            Toast.makeText(this, R.string.saving_account, Toast.LENGTH_SHORT).show();
 
             replaceProfile(mOldProfile, profile);
             // do finish() in replaceProfile() in a background thread
         } catch (Exception e) {
-            Log.w(TAG, "Can not create new SipProfile", e);
+            log("validateAndSetResult, can not create new SipProfile, exception: " + e);
             showAlert(e);
         }
     }
 
     private void unregisterOldPrimaryAccount() {
         String primaryAccountUri = mSharedPreferences.getPrimaryAccount();
-        Log.v(TAG, "old primary: " + primaryAccountUri);
-        if ((primaryAccountUri != null)
-                && !mSharedPreferences.isReceivingCallsEnabled()) {
-            Log.v(TAG, "unregister old primary: " + primaryAccountUri);
+        if (VERBOSE) log("unregisterOldPrimaryAccount, old primary: " + primaryAccountUri);
+        if ((primaryAccountUri != null) && !mSharedPreferences.isReceivingCallsEnabled()) {
+            if (VERBOSE) log("unregisterOldPrimaryAccount, calling unregister");
             unregisterProfile(primaryAccountUri);
         }
     }
 
-    private void replaceProfile(final SipProfile oldProfile,
-            final SipProfile newProfile) {
+    private void replaceProfile(final SipProfile oldProfile, final SipProfile newProfile) {
         // Replace profile in a background thread as it takes time to access the
         // storage; do finish() once everything goes fine.
         // newProfile may be null if the old profile is to be deleted rather
@@ -401,7 +400,7 @@ public class SipEditor extends PreferenceActivity
                     saveAndRegisterProfile(newProfile);
                     finish();
                 } catch (Exception e) {
-                    Log.e(TAG, "Can not save/register new SipProfile", e);
+                    log("replaceProfile, can not save/register new SipProfile, exception: " + e);
                     showAlert(e);
                 }
             }
@@ -414,20 +413,20 @@ public class SipEditor extends PreferenceActivity
     }
 
     private SipProfile createSipProfile() throws Exception {
-            return new SipProfile.Builder(
-                    PreferenceKey.Username.getValue(),
-                    PreferenceKey.DomainAddress.getValue())
-                    .setProfileName(getProfileName())
-                    .setPassword(PreferenceKey.Password.getValue())
-                    .setOutboundProxy(PreferenceKey.ProxyAddress.getValue())
-                    .setProtocol(PreferenceKey.Transport.getValue())
-                    .setDisplayName(PreferenceKey.DisplayName.getValue())
-                    .setPort(Integer.parseInt(PreferenceKey.Port.getValue()))
-                    .setSendKeepAlive(isAlwaysSendKeepAlive())
-                    .setAutoRegistration(
-                            mSharedPreferences.isReceivingCallsEnabled())
-                    .setAuthUserName(PreferenceKey.AuthUserName.getValue())
-                    .build();
+        return new SipProfile.Builder(
+                PreferenceKey.Username.getValue(),
+                PreferenceKey.DomainAddress.getValue())
+                .setProfileName(getProfileName())
+                .setPassword(PreferenceKey.Password.getValue())
+                .setOutboundProxy(PreferenceKey.ProxyAddress.getValue())
+                .setProtocol(PreferenceKey.Transport.getValue())
+                .setDisplayName(PreferenceKey.DisplayName.getValue())
+                .setPort(Integer.parseInt(PreferenceKey.Port.getValue()))
+                .setSendKeepAlive(isAlwaysSendKeepAlive())
+                .setAutoRegistration(
+                        mSharedPreferences.isReceivingCallsEnabled())
+                .setAuthUserName(PreferenceKey.AuthUserName.getValue())
+                .build();
     }
 
     public boolean onPreferenceChange(Preference pref, Object newValue) {
@@ -469,15 +468,14 @@ public class SipEditor extends PreferenceActivity
 
     private void loadPreferencesFromProfile(SipProfile p) {
         if (p != null) {
-            Log.v(TAG, "Edit the existing profile : " + p.getProfileName());
+            if (VERBOSE) log("loadPreferencesFromProfile, existing profile: " + p.getProfileName());
             try {
                 Class profileClass = SipProfile.class;
                 for (PreferenceKey key : PreferenceKey.values()) {
                     Method meth = profileClass.getMethod(GET_METHOD_PREFIX
                             + getString(key.text), (Class[])null);
                     if (key == PreferenceKey.SendKeepAlive) {
-                        boolean value = ((Boolean)
-                                meth.invoke(p, (Object[]) null)).booleanValue();
+                        boolean value = ((Boolean) meth.invoke(p, (Object[]) null)).booleanValue();
                         key.setValue(getString(value
                                 ? R.string.sip_always_send_keepalive
                                 : R.string.sip_system_decide));
@@ -488,10 +486,10 @@ public class SipEditor extends PreferenceActivity
                 }
                 checkIfDisplayNameSet();
             } catch (Exception e) {
-                Log.e(TAG, "Can not load pref from profile", e);
+                log("loadPreferencesFromProfile, can not load pref from profile, exception: " + e);
             }
         } else {
-            Log.v(TAG, "Edit a new profile");
+            if (VERBOSE) log("loadPreferencesFromProfile, edit a new profile");
             for (PreferenceKey key : PreferenceKey.values()) {
                 key.preference.setOnPreferenceChangeListener(this);
 
@@ -509,10 +507,8 @@ public class SipEditor extends PreferenceActivity
     }
 
     private boolean isAlwaysSendKeepAlive() {
-        ListPreference pref = (ListPreference)
-                PreferenceKey.SendKeepAlive.preference;
-        return getString(R.string.sip_always_send_keepalive).equals(
-                pref.getValue());
+        ListPreference pref = (ListPreference) PreferenceKey.SendKeepAlive.preference;
+        return getString(R.string.sip_always_send_keepalive).equals(pref.getValue());
     }
 
     private void setCheckBox(PreferenceKey key, boolean checked) {
@@ -535,7 +531,7 @@ public class SipEditor extends PreferenceActivity
         String displayName = PreferenceKey.DisplayName.getValue();
         mDisplayNameSet = !TextUtils.isEmpty(displayName)
                 && !displayName.equals(getDefaultDisplayName());
-        Log.d(TAG, "displayName set? " + mDisplayNameSet);
+        if (VERBOSE) log("checkIfDisplayNameSet, displayName set: " + mDisplayNameSet);
         if (mDisplayNameSet) {
             PreferenceKey.DisplayName.preference.setSummary(displayName);
         } else {
@@ -562,19 +558,18 @@ public class SipEditor extends PreferenceActivity
         PrimaryAccountSelector(SipProfile profile) {
             mCheckbox = (CheckBoxPreference) getPreferenceScreen()
                     .findPreference(getString(R.string.set_primary));
-            boolean noPrimaryAccountSet =
-                    !mSharedPreferences.hasPrimaryAccount();
+            boolean noPrimaryAccountSet = !mSharedPreferences.hasPrimaryAccount();
             boolean editNewProfile = (profile == null);
-            mWasPrimaryAccount = !editNewProfile
-                    && mSharedPreferences.isPrimaryAccount(
-                            profile.getUriString());
+            mWasPrimaryAccount = !editNewProfile && mSharedPreferences.isPrimaryAccount(
+                    profile.getUriString());
 
-            Log.v(TAG, " noPrimaryAccountSet: " + noPrimaryAccountSet);
-            Log.v(TAG, " editNewProfile: " + editNewProfile);
-            Log.v(TAG, " mWasPrimaryAccount: " + mWasPrimaryAccount);
+            if (VERBOSE) {
+                log(" noPrimaryAccountSet: " + noPrimaryAccountSet);
+                log(" editNewProfile: " + editNewProfile);
+                log(" mWasPrimaryAccount: " + mWasPrimaryAccount);
+            }
 
-            mCheckbox.setChecked(mWasPrimaryAccount
-                    || (editNewProfile && noPrimaryAccountSet));
+            mCheckbox.setChecked(mWasPrimaryAccount || (editNewProfile && noPrimaryAccountSet));
         }
 
         boolean isSelected() {
@@ -588,13 +583,14 @@ public class SipEditor extends PreferenceActivity
             } else if (mWasPrimaryAccount) {
                 mSharedPreferences.unsetPrimaryAccount();
             }
-            Log.d(TAG, " primary account changed to : "
-                    + mSharedPreferences.getPrimaryAccount());
+            if (VERBOSE) {
+                log("PrimaryAccountSelector.commit, new primary account: " +
+                        mSharedPreferences.getPrimaryAccount());
+            }
         }
     }
 
-    private class AdvancedSettings
-            implements Preference.OnPreferenceClickListener {
+    private class AdvancedSettings implements Preference.OnPreferenceClickListener {
         private Preference mAdvancedSettingsTrigger;
         private Preference[] mPreferences;
         private boolean mShowing = false;
@@ -631,7 +627,10 @@ public class SipEditor extends PreferenceActivity
             PreferenceGroup screen = (PreferenceGroup) getPreferenceScreen();
             for (Preference pref : mPreferences) {
                 screen.addPreference(pref);
-                Log.v(TAG, "add pref " + pref.getKey() + ": order=" + pref.getOrder());
+                if (VERBOSE) {
+                    log("AdvancedSettings.show, pref: " + pref.getKey() + ", order: " +
+                            pref.getOrder());
+                }
             }
         }
 
@@ -645,7 +644,7 @@ public class SipEditor extends PreferenceActivity
         }
 
         public boolean onPreferenceClick(Preference preference) {
-            Log.v(TAG, "optional settings clicked");
+            if (VERBOSE) log("AdvancedSettings.onPreferenceClick");
             if (!mShowing) {
                 show();
             } else {
@@ -653,5 +652,9 @@ public class SipEditor extends PreferenceActivity
             }
             return true;
         }
+    }
+
+    private static void log(String msg) {
+        Log.d(SipUtil.LOG_TAG, PREFIX + msg);
     }
 }

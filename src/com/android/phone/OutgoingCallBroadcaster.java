@@ -309,35 +309,7 @@ public class OutgoingCallBroadcaster extends Activity
      */
     private void startSipCallOptionHandler(Context context, Intent intent,
             Uri uri, String number) {
-        if (VDBG) {
-            Log.i(TAG, "startSipCallOptionHandler...");
-            Log.i(TAG, "- intent: " + intent);
-            Log.i(TAG, "- uri: " + uri);
-            Log.i(TAG, "- number: " + number);
-        }
-
-        // Create a copy of the original CALL intent that started the whole
-        // outgoing-call sequence.  This intent will ultimately be passed to
-        // CallController.placeCall() after the SipCallOptionHandler step.
-
-        Intent newIntent = new Intent(Intent.ACTION_CALL, uri);
-        newIntent.putExtra(EXTRA_ACTUAL_NUMBER_TO_DIAL, number);
-        CallGatewayManager.checkAndCopyPhoneProviderExtras(intent, newIntent);
-
-        // Finally, launch the SipCallOptionHandler, with the copy of the
-        // original CALL intent stashed away in the EXTRA_NEW_CALL_INTENT
-        // extra.
-
-        Intent selectPhoneIntent = new Intent(ACTION_SIP_SELECT_PHONE, uri);
-        selectPhoneIntent.setClass(context, SipCallOptionHandler.class);
-        selectPhoneIntent.putExtra(EXTRA_NEW_CALL_INTENT, newIntent);
-        selectPhoneIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        if (DBG) {
-            Log.v(TAG, "startSipCallOptionHandler(): " +
-                    "calling startActivity: " + selectPhoneIntent);
-        }
-        context.startActivity(selectPhoneIntent);
-        // ...and see SipCallOptionHandler.onCreate() for the next step of the sequence.
+        // TODO(sail): Remove this code.
     }
 
     /**

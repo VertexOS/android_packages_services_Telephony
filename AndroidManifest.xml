@@ -466,32 +466,38 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name="SipBroadcastReceiver">
+        <service android:singleUser="true"
+                 android:name="com.android.services.telephony.sip.SipConnectionService"
+                 android:label="@string/sip_connection_service_label">
+            <intent-filter>
+                <action android:name="android.telecomm.ConnectionService" />
+            </intent-filter>
+        </service>
+        <receiver android:name="com.android.services.telephony.sip.SipBroadcastReceiver">
             <intent-filter>
                 <action android:name="com.android.phone.SIP_INCOMING_CALL" />
-                <action android:name="com.android.phone.SIP_ADD_PHONE" />
-                <action android:name="com.android.phone.SIP_REMOVE_PHONE" />
                 <action android:name="android.net.sip.SIP_SERVICE_UP" />
             </intent-filter>
         </receiver>
 
         <activity android:label="Sip Settings"
-                  android:name=".sip.SipSettings"
+                  android:name="com.android.services.telephony.sip.SipSettings"
                   android:theme="@style/SettingsLight"
                   android:launchMode="singleTop"
                   android:configChanges="orientation|screenSize|keyboardHidden"
-                  android:uiOptions="splitActionBarWhenNarrow">
+                  android:uiOptions="splitActionBarWhenNarrow"
+                  android:parentActivityName="com.android.phone.CallFeaturesSetting" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.net.sip.NOTIFY" />
             </intent-filter>
         </activity>
-        <activity android:name=".sip.SipEditor"
+        <activity android:name="com.android.services.telephony.sip.SipEditor"
                 android:theme="@style/SettingsLight"
                 android:configChanges="orientation|screenSize|keyboardHidden"
                 android:uiOptions="splitActionBarWhenNarrow">
         </activity>
-        <activity android:name=".SipCallOptionHandler"
+        <activity android:name="com.android.services.telephony.SipCallOptionHandler"
                 android:theme="@style/SipCallOptionHandlerTheme"
                 android:screenOrientation="nosensor"
                 android:configChanges="orientation|screenSize|keyboardHidden"
@@ -554,14 +560,6 @@
                 android:singleUser="true"
                 android:name="com.android.services.telephony.PstnConnectionService"
                 android:label="@string/pstn_connection_service_label">
-            <intent-filter>
-                <action android:name="android.telecomm.ConnectionService" />
-            </intent-filter>
-        </service>
-        <service
-                android:singleUser="true"
-                android:name="com.android.services.telephony.SipConnectionService"
-                android:label="@string/sip_connection_service_label">
             <intent-filter>
                 <action android:name="android.telecomm.ConnectionService" />
             </intent-filter>

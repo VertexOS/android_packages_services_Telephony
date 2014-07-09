@@ -6,8 +6,8 @@ include $(CLEAR_VARS)
 
 phone_common_dir := ../../apps/PhoneCommon
 
-src_dirs := src $(phone_common_dir)/src
-res_dirs := res $(phone_common_dir)/res
+src_dirs := src $(phone_common_dir)/src sip/src
+res_dirs := res $(phone_common_dir)/res sip/res
 
 LOCAL_JAVA_LIBRARIES := telephony-common voip-common ims-common
 LOCAL_STATIC_JAVA_LIBRARIES := \
@@ -23,14 +23,15 @@ LOCAL_RESOURCE_DIR := $(addprefix $(LOCAL_PATH)/, $(res_dirs))
 
 LOCAL_AAPT_FLAGS := \
     --auto-add-overlay \
-    --extra-packages com.android.phone.common
+    --extra-packages com.android.phone.common \
+    --extra-packages com.android.services.telephony.sip
 
 LOCAL_PACKAGE_NAME := TeleService
 
 LOCAL_CERTIFICATE := platform
 LOCAL_PRIVILEGED_MODULE := true
 
-LOCAL_PROGUARD_FLAG_FILES := proguard.flags
+LOCAL_PROGUARD_FLAG_FILES := proguard.flags sip/proguard.flags
 
 include $(BUILD_PACKAGE)
 

@@ -31,7 +31,6 @@ import android.content.res.Configuration;
 import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
 import android.net.Uri;
-import android.net.sip.SipManager;
 import android.os.AsyncResult;
 import android.os.Handler;
 import android.os.Message;
@@ -2645,21 +2644,6 @@ public class PhoneUtils {
      */
     public static boolean isRealIncomingCall(Call.State state) {
         return (state == Call.State.INCOMING && !PhoneGlobals.getInstance().mCM.hasActiveFgCall());
-    }
-
-    private static boolean sVoipSupported = false;
-    static {
-        PhoneGlobals app = PhoneGlobals.getInstance();
-        sVoipSupported = SipManager.isVoipSupported(app)
-                && app.getResources().getBoolean(com.android.internal.R.bool.config_built_in_sip_phone)
-                && app.getResources().getBoolean(com.android.internal.R.bool.config_voice_capable);
-    }
-
-    /**
-     * @return true if this device supports voice calls using the built-in SIP stack.
-     */
-    public static boolean isVoipSupported() {
-        return sVoipSupported;
     }
 
     public static String getPresentationString(Context context, int presentation) {

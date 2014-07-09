@@ -34,11 +34,6 @@ public class TelephonyCallServiceProvider extends CallServiceProvider {
                    .setConnectionService(PstnConnectionService.class)
                    .setNetworkType(CallServiceDescriptor.FLAG_PSTN)
                    .build());
-        descriptors.add(CallServiceDescriptor.newBuilder(this)
-                .setConnectionService(SipConnectionService.class)
-                .setNetworkType(CallServiceDescriptor.FLAG_WIFI |
-                        CallServiceDescriptor.FLAG_MOBILE)
-                .build());
         response.setCallServiceDescriptors(descriptors);
     }
 }

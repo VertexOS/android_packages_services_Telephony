@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.phone;
+package com.android.services.telephony.sip;
 
 import android.app.PendingIntent;
 import android.content.Context;
@@ -22,14 +22,29 @@ import android.content.Intent;
 import android.net.sip.SipManager;
 
 public class SipUtil {
+    public static final String LOG_TAG = "SIP";
+
+    private static boolean sIsVoipSupported;
+    private static boolean sIsVoipSupportedInitialized;
+
     private SipUtil() {
     }
 
-    public static PendingIntent createIncomingCallPendingIntent() {
-        Context phoneContext = PhoneGlobals.getInstance();
-        Intent intent = new Intent(phoneContext, SipBroadcastReceiver.class);
+    public static boolean isVoipSupported(Context context) {
+        if (!sIsVoipSupportedInitialized) {
+            sIsVoipSupported = SipManager.isVoipSupported(context) &&
+                    context.getResources().getBoolean(
+                            com.android.internal.R.bool.config_built_in_sip_phone) &&
+                    context.getResources().getBoolean(
+                            com.android.internal.R.bool.config_voice_capable);
+        }
+        return sIsVoipSupported;
+    }
+
+    public static PendingIntent createIncomingCallPendingIntent(Context context) {
+        Intent intent = new Intent(context, SipBroadcastReceiver.class);
         intent.setAction(SipManager.ACTION_SIP_INCOMING_CALL);
-        return PendingIntent.getBroadcast(phoneContext, 0, intent,
+        return PendingIntent.getBroadcast(context, 0, intent,
                 PendingIntent.FLAG_UPDATE_CURRENT);
     }
 }

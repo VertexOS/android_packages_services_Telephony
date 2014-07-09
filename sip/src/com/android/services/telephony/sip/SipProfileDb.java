@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.phone.sip;
+package com.android.services.telephony.sip;
 
 import com.android.internal.os.AtomicFile;
 
@@ -36,7 +36,8 @@ import java.util.List;
  * Utility class that helps perform operations on the SipProfile database.
  */
 public class SipProfileDb {
-    private static final String TAG = SipProfileDb.class.getSimpleName();
+    private static final String PREFIX = "[SipProfileDb] ";
+    private static final boolean VERBOSE = true; /* STOP SHIP if true */
 
     private static final String PROFILES_DIR = "/profiles/";
     private static final String PROFILE_OBJ_FILE = ".pobj";
@@ -46,8 +47,7 @@ public class SipProfileDb {
     private int mProfilesCount = -1;
 
     public SipProfileDb(Context context) {
-        mProfilesDirectory = context.getFilesDir().getAbsolutePath()
-                + PROFILES_DIR;
+        mProfilesDirectory = context.getFilesDir().getAbsolutePath() + PROFILES_DIR;
         mSipSharedPreferences = new SipSharedPreferences(context);
     }
 
@@ -71,8 +71,7 @@ public class SipProfileDb {
             if (mProfilesCount < 0) retrieveSipProfileListInternal();
             File f = new File(mProfilesDirectory + p.getProfileName());
             if (!f.exists()) f.mkdirs();
-            AtomicFile atomicFile =
-                    new AtomicFile(new File(f, PROFILE_OBJ_FILE));
+            AtomicFile atomicFile = new AtomicFile(new File(f, PROFILE_OBJ_FILE));
             FileOutputStream fos = null;
             ObjectOutputStream oos = null;
             try {
@@ -92,8 +91,7 @@ public class SipProfileDb {
     }
 
     public int getProfilesCount() {
-        return (mProfilesCount < 0) ?
-                mSipSharedPreferences.getProfilesCount() : mProfilesCount;
+        return (mProfilesCount < 0) ?  mSipSharedPreferences.getProfilesCount() : mProfilesCount;
     }
 
     public List<SipProfile> retrieveSipProfileList() {
@@ -119,7 +117,7 @@ public class SipProfileDb {
 
                 sipProfileList.add(p);
             } catch (IOException e) {
-                Log.e(TAG, "retrieveProfileListFromStorage()", e);
+                log("retrieveSipProfileListInternal, exception: " + e);
             }
         }
         mProfilesCount = sipProfileList.size();
@@ -135,10 +133,14 @@ public class SipProfileDb {
             SipProfile p = (SipProfile) ois.readObject();
             return p;
         } catch (ClassNotFoundException e) {
-            Log.w(TAG, "deserialize a profile: " + e);
+            log("deserialize, exception: " + e);
         } finally {
             if (ois!= null) ois.close();
         }
         return null;
+    }
+
+    private static void log(String msg) {
+        Log.d(SipUtil.LOG_TAG, PREFIX + msg);
     }
 }
