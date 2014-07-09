@@ -69,9 +69,11 @@ import static com.android.internal.telephony.PhoneConstants.SUBSCRIPTION_KEY;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * Implementation of the ITelephony interface.
@@ -119,6 +121,12 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     CallManager mCM;
     AppOpsManager mAppOps;
     MainThreadHandler mMainThreadHandler;
+
+    /**
+     * Indicates if Android should display a simplified Mobile Network Settings UI in a specific
+     * subscription.
+     */
+    Set<Long> mSimplifiedNetworkSettings;
 
     /**
      * A request object to use for transmitting data to an ICC.
@@ -556,6 +564,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         mApp = app;
         mPhone = phone;
         mCM = PhoneGlobals.getInstance().mCM;
+        mSimplifiedNetworkSettings = new HashSet<Long>();
         mAppOps = (AppOpsManager)app.getSystemService(Context.APP_OPS_SERVICE);
         mMainThreadHandler = new MainThreadHandler();
         publish();
@@ -1708,5 +1717,21 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
             loge("NameNotFoundException: " + ex);
         }
         return TelephonyManager.CARRIER_PRIVILEGE_STATUS_NO_ACCESS;
+    }
+
+    @Override
+    public void enableSimplifiedNetworkSettings(long subId, boolean enable) {
+        enforceModifyPermission();
+        if (enable) {
+            mSimplifiedNetworkSettings.add(subId);
+        } else {
+            mSimplifiedNetworkSettings.remove(subId);
+        }
+    }
+
+    @Override
+    public boolean getSimplifiedNetworkSettingsEnabled(long subId) {
+        enforceReadPermission();
+        return mSimplifiedNetworkSettings.contains(subId);
     }
 }

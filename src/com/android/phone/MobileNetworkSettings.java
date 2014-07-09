@@ -39,6 +39,7 @@ import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceScreen;
+import android.telephony.SubscriptionManager;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
@@ -250,7 +251,12 @@ public class MobileNetworkSettings extends PreferenceActivity
 
         boolean isLteOnCdma = mPhone.getLteOnCdmaMode() == PhoneConstants.LTE_ON_CDMA_TRUE;
         mIsGlobalCdma = isLteOnCdma && getResources().getBoolean(R.bool.config_show_cdma);
-        if (getResources().getBoolean(R.bool.world_phone) == true) {
+        TelephonyManager tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+        if (tm.getSimplifiedNetworkSettingsEnabled(SubscriptionManager.getDefaultSubId())) {
+            prefSet.removePreference(mButtonPreferredNetworkMode);
+            prefSet.removePreference(mButtonEnabledNetworks);
+            prefSet.removePreference(mLteDataServicePref);
+        } else if (getResources().getBoolean(R.bool.world_phone) == true) {
             prefSet.removePreference(mButtonEnabledNetworks);
             // set the listener for the mButtonPreferredNetworkMode list preference so we can issue
             // change Preferred Network Mode.
