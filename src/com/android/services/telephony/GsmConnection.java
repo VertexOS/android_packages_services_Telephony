@@ -65,7 +65,7 @@ public class GsmConnection extends PstnConnection {
     @Override
     protected int buildCallCapabilities() {
         int capabilities = CallCapabilities.MUTE | CallCapabilities.SUPPORT_HOLD;
-        if (getState() == State.ACTIVE || getSate() == State.HOLDING) {
+        if (getState() == State.ACTIVE || getState() == State.HOLDING) {
             capabilities |= CallCapabilities.HOLD;
         }
         if (mIsConferenceCapable) {
