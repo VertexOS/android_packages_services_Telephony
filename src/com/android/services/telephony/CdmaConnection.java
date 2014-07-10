@@ -16,6 +16,8 @@
 
 package com.android.services.telephony;
 
+import android.telecomm.CallCapabilities;
+
 import com.android.internal.telephony.Connection;
 import com.android.internal.telephony.Phone;
 
@@ -45,5 +47,11 @@ public class CdmaConnection extends PstnConnection {
     public void onStopDtmfTone() {
         // no-op, we only play timed dtmf tones for cdma.
         super.onStopDtmfTone();
+    }
+
+    @Override
+    protected int buildCallCapabilities() {
+        int capabilities = CallCapabilities.MUTE;
+        return capabilities;
     }
 }

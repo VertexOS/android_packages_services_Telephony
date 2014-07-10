@@ -16,6 +16,8 @@
 
 package com.android.services.telephony;
 
+import android.telecomm.CallCapabilities;
+
 import com.android.internal.telephony.CallStateException;
 import com.android.internal.telephony.Connection;
 import com.android.internal.telephony.Phone;
@@ -24,6 +26,7 @@ import com.android.internal.telephony.Phone;
  * Manages a single phone call handled by GSM.
  */
 public class GsmConnection extends PstnConnection {
+    private boolean mIsConferenceCapable;
 
     public GsmConnection(Phone phone, Connection connection) {
         super(phone, connection);
@@ -43,6 +46,13 @@ public class GsmConnection extends PstnConnection {
         super.onStopDtmfTone();
     }
 
+    void setIsConferenceCapable(boolean isConferenceCapable) {
+        if (mIsConferenceCapable != isConferenceCapable) {
+            mIsConferenceCapable = isConferenceCapable;
+            updateCallCapabilities();
+        }
+    }
+
     public void performConference() {
         try {
             Log.d(this, "conference - %s", this);
@@ -50,5 +60,17 @@ public class GsmConnection extends PstnConnection {
         } catch (CallStateException e) {
             Log.e(this, e, "Failed to conference call.");
         }
+    }
+
+    @Override
+    protected int buildCallCapabilities() {
+        int capabilities = CallCapabilities.MUTE | CallCapabilities.SUPPORT_HOLD;
+        if (getState() == State.ACTIVE || getSate() == State.HOLDING) {
+            capabilities |= CallCapabilities.HOLD;
+        }
+        if (mIsConferenceCapable) {
+            capabilities |= CallCapabilities.MERGE_CALLS;
+        }
+        return capabilities;
     }
 }

@@ -29,7 +29,7 @@ import android.telecomm.Connection;
 /**
  * Manages a single phone call in Telephony.
  */
-class TelephonyConnection extends Connection {
+abstract class TelephonyConnection extends Connection {
     private static final int EVENT_PRECISE_CALL_STATE_CHANGED = 1;
 
     private final StateHandler mHandler = new StateHandler();
@@ -135,6 +135,15 @@ class TelephonyConnection extends Connection {
         super.onSetAudioState(audioState);
     }
 
+    protected abstract int buildCallCapabilities();
+
+    final void updateCallCapabilities() {
+        int newCallCapabilities = buildCallCapabilities();
+        if (getCallCapabilities() != newCallCapabilities) {
+            setCallCapabilities(newCallCapabilities);
+        }
+    }
+
     protected void hangup(int disconnectCause) {
         if (mOriginalConnection != null) {
             try {
@@ -188,6 +197,7 @@ class TelephonyConnection extends Connection {
                 case DISCONNECTING:
                     break;
             }
+            updateCallCapabilities();
         }
     }
 

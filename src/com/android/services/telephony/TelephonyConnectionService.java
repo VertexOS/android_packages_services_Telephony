@@ -111,12 +111,14 @@ public abstract class TelephonyConnectionService extends ConnectionService {
             final TelephonyConnection telephonyConnection =
                     createTelephonyConnection(request, phone, connection);
             respondWithResult(request, response, telephonyConnection);
+            telephonyConnection.updateCallCapabilities();
 
             final com.android.internal.telephony.Connection connectionFinal = connection;
             PostDialListener postDialListener = new PostDialListener() {
                 @Override
                 public void onPostDialWait() {
-                    telephonyConnection.setPostDialWait(connectionFinal.getRemainingPostDialString());
+                    telephonyConnection.setPostDialWait(
+                            connectionFinal.getRemainingPostDialString());
                 }
             };
             connection.addPostDialListener(postDialListener);

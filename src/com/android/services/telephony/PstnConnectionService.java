@@ -19,6 +19,7 @@ package com.android.services.telephony;
 import android.net.Uri;
 
 import android.telephony.DisconnectCause;
+import android.telecomm.CallCapabilities;
 import android.telecomm.Connection;
 import android.telecomm.ConnectionRequest;
 import android.telecomm.Response;
@@ -200,7 +201,7 @@ public final class PstnConnectionService extends TelephonyConnectionService {
         // TODO: Create a more general framework for conferencing. At the moment, our goal is
         // simply not to break the previous GSM-specific conferencing functionality.
         if (connection instanceof GsmConnection || connection instanceof ConferenceConnection) {
-            if (connection.isConferenceCapable()) {
+            if ((connection.getCallCapabilities() & CallCapabilities.MERGE_CALLS) != 0) {
                 callback.onResult(token,
                         mGsmConferenceController.createConferenceConnection(connection));
             }
