@@ -1160,6 +1160,35 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     }
 
     /**
+     * Make sure either system app or the caller has carrier privilege.
+     *
+     * @throws SecurityException if the caller does not have the required permission/privilege
+     */
+    private void enforceModifyPermissionOrCarrierPrivilege() {
+        try {
+          mApp.enforceCallingOrSelfPermission(android.Manifest.permission.MODIFY_PHONE_STATE, null);
+        } catch (SecurityException e) {
+            log("No modify permission, check carrier privilege next.");
+            if (hasCarrierPrivileges() != TelephonyManager.CARRIER_PRIVILEGE_STATUS_HAS_ACCESS) {
+              loge("No Carrier Privilege.");
+              throw new SecurityException("No modify permission or carrier privilege.");
+            }
+        }
+    }
+
+    /**
+     * Make sure the caller has carrier privilege.
+     *
+     * @throws SecurityException if the caller does not have the required permission
+     */
+    private void enforceCarrierPrivilege() {
+        if (hasCarrierPrivileges() != TelephonyManager.CARRIER_PRIVILEGE_STATUS_HAS_ACCESS) {
+          loge("No Carrier Privilege.");
+          throw new SecurityException("No Carrier Privilege.");
+        }
+    }
+
+    /**
      * Make sure the caller has the CALL_PHONE permission.
      *
      * @throws SecurityException if the caller does not have the required permission
@@ -1380,7 +1409,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
 
     @Override
     public int iccOpenLogicalChannel(String AID) {
-        enforceModifyPermission();
+        enforceModifyPermissionOrCarrierPrivilege();
 
         if (DBG) log("iccOpenLogicalChannel: " + AID);
         Integer channel = (Integer)sendRequest(CMD_OPEN_CHANNEL, AID);
@@ -1390,7 +1419,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
 
     @Override
     public boolean iccCloseLogicalChannel(int channel) {
-        enforceModifyPermission();
+        enforceModifyPermissionOrCarrierPrivilege();
 
         if (DBG) log("iccCloseLogicalChannel: " + channel);
         if (channel < 0) {
@@ -1404,7 +1433,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     @Override
     public String iccTransmitApduLogicalChannel(int channel, int cla,
             int command, int p1, int p2, int p3, String data) {
-        enforceModifyPermission();
+        enforceModifyPermissionOrCarrierPrivilege();
 
         if (DBG) {
             log("iccTransmitApduLogicalChannel: chnl=" + channel + " cla=" + cla +
@@ -1435,7 +1464,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
 
     @Override
     public String sendEnvelopeWithStatus(String content) {
-        enforceModifyPermission();
+        enforceModifyPermissionOrCarrierPrivilege();
 
         IccIoResult response = (IccIoResult)sendRequest(CMD_SEND_ENVELOPE, content);
         if (response.payload == null) {
@@ -1458,7 +1487,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
      */
     @Override
     public String nvReadItem(int itemID) {
-        enforceModifyPermission();
+        enforceModifyPermissionOrCarrierPrivilege();
         if (DBG) log("nvReadItem: item " + itemID);
         String value = (String) sendRequest(CMD_NV_READ_ITEM, itemID);
         if (DBG) log("nvReadItem: item " + itemID + " is \"" + value + '"');
@@ -1475,7 +1504,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
      */
     @Override
     public boolean nvWriteItem(int itemID, String itemValue) {
-        enforceModifyPermission();
+        enforceModifyPermissionOrCarrierPrivilege();
         if (DBG) log("nvWriteItem: item " + itemID + " value \"" + itemValue + '"');
         Boolean success = (Boolean) sendRequest(CMD_NV_WRITE_ITEM,
                 new Pair<Integer, String>(itemID, itemValue));
@@ -1492,7 +1521,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
      */
     @Override
     public boolean nvWriteCdmaPrl(byte[] preferredRoamingList) {
-        enforceModifyPermission();
+        enforceModifyPermissionOrCarrierPrivilege();
         if (DBG) log("nvWriteCdmaPrl: value: " + HexDump.toHexString(preferredRoamingList));
         Boolean success = (Boolean) sendRequest(CMD_NV_WRITE_CDMA_PRL, preferredRoamingList);
         if (DBG) log("nvWriteCdmaPrl: " + (success ? "ok" : "fail"));
@@ -1508,7 +1537,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
      */
     @Override
     public boolean nvResetConfig(int resetType) {
-        enforceModifyPermission();
+        enforceModifyPermissionOrCarrierPrivilege();
         if (DBG) log("nvResetConfig: type " + resetType);
         Boolean success = (Boolean) sendRequest(CMD_NV_RESET_CONFIG, resetType);
         if (DBG) log("nvResetConfig: type " + resetType + ' ' + (success ? "ok" : "fail"));
@@ -1554,7 +1583,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
      */
     @Override
     public int getPreferredNetworkType() {
-        enforceModifyPermission();
+        enforceModifyPermissionOrCarrierPrivilege();
         if (DBG) log("getPreferredNetworkType");
         int[] result = (int[]) sendRequest(CMD_GET_PREFERRED_NETWORK_TYPE, null);
         int networkType = (result != null ? result[0] : -1);
@@ -1571,7 +1600,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
      */
     @Override
     public boolean setPreferredNetworkType(int networkType) {
-        enforceModifyPermission();
+        enforceModifyPermissionOrCarrierPrivilege();
         if (DBG) log("setPreferredNetworkType: type " + networkType);
         Boolean success = (Boolean) sendRequest(CMD_SET_PREFERRED_NETWORK_TYPE, networkType);
         if (DBG) log("setPreferredNetworkType: " + (success ? "ok" : "fail"));
@@ -1587,7 +1616,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
      */
     @Override
     public boolean setCdmaSubscription(int subscriptionType) {
-        enforceModifyPermission();
+        enforceModifyPermissionOrCarrierPrivilege();
         if (DBG) log("setCdmaSubscription: type " + subscriptionType);
         if (subscriptionType != mPhone.CDMA_SUBSCRIPTION_RUIM_SIM &&
             subscriptionType != mPhone.CDMA_SUBSCRIPTION_NV) {
