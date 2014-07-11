@@ -1691,7 +1691,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     }
 
     @Override
-    public int hasCarrierPrivileges(String pkgname) {
+    public int checkCarrierPrivilegesForPackage(String pkgname) {
         PackageManager packageManager = mPhone.getContext().getPackageManager();
         try {
             PackageInfo pInfo = packageManager.getPackageInfo(pkgname,
