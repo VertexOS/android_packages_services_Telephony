@@ -1689,4 +1689,24 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         }
         return TelephonyManager.CARRIER_PRIVILEGE_STATUS_NO_ACCESS;
     }
+
+    @Override
+    public int hasCarrierPrivileges(String pkgname) {
+        PackageManager packageManager = mPhone.getContext().getPackageManager();
+        try {
+            PackageInfo pInfo = packageManager.getPackageInfo(pkgname,
+                PackageManager.GET_SIGNATURES);
+            Signature[] signatures = pInfo.signatures;
+            for (Signature sig : signatures) {
+                int hasAccess = UiccController.getInstance().getUiccCard().hasCarrierPrivileges(
+                        sig, pInfo.packageName);
+                if (hasAccess != TelephonyManager.CARRIER_PRIVILEGE_STATUS_NO_ACCESS) {
+                    return hasAccess;
+                }
+            }
+        } catch (PackageManager.NameNotFoundException ex) {
+            loge("NameNotFoundException: " + ex);
+        }
+        return TelephonyManager.CARRIER_PRIVILEGE_STATUS_NO_ACCESS;
+    }
 }
