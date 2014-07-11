@@ -20,9 +20,16 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.net.sip.SipManager;
+import android.telecomm.TelecommManager;
 
 public class SipUtil {
-    public static final String LOG_TAG = "SIP";
+    static final String LOG_TAG = "SIP";
+    static final String EXTRA_INCOMING_CALL_INTENT =
+            "com.android.services.telephony.sip.incoming_call_intent";
+    static final String GATEWAY_PROVIDER_PACKAGE =
+            "com.android.phone.extra.GATEWAY_PROVIDER_PACKAGE";
+    static final String SCHEME_TEL = "tel";
+    static final String SCHEME_SIP = "sip";
 
     private static boolean sIsVoipSupported;
     private static boolean sIsVoipSupportedInitialized;
@@ -41,10 +48,19 @@ public class SipUtil {
         return sIsVoipSupported;
     }
 
-    public static PendingIntent createIncomingCallPendingIntent(Context context) {
+    static PendingIntent createIncomingCallPendingIntent(Context context) {
         Intent intent = new Intent(context, SipBroadcastReceiver.class);
         intent.setAction(SipManager.ACTION_SIP_INCOMING_CALL);
         return PendingIntent.getBroadcast(context, 0, intent,
                 PendingIntent.FLAG_UPDATE_CURRENT);
+    }
+
+    static boolean isPhoneIdle(Context context) {
+        TelecommManager manager = (TelecommManager) context.getSystemService(
+                Context.TELECOMM_SERVICE);
+        if (manager != null) {
+            return !manager.isInAPhoneCall();
+        }
+        return true;
     }
 }

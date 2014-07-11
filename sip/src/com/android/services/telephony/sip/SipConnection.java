@@ -16,26 +16,54 @@
 
 package com.android.services.telephony.sip;
 
+import android.os.Handler;
+import android.os.Message;
 import android.telecomm.CallAudioState;
+import android.telecomm.CallCapabilities;
 import android.telecomm.Connection;
 import android.util.Log;
 
+import com.android.internal.telephony.Call;
+import com.android.internal.telephony.CallStateException;
+import com.android.internal.telephony.sip.SipPhone;
+
 import java.util.List;
 
-public class SipConnection extends Connection {
+final class SipConnection extends Connection {
     private static final String PREFIX = "[SipConnection] ";
     private static final boolean VERBOSE = true; /* STOP SHIP if true */
 
-    private final com.android.internal.telephony.Connection mConnection;
+    private static final int MSG_PRECISE_CALL_STATE_CHANGED = 1;
 
-    public SipConnection(com.android.internal.telephony.Connection connection) {
+    private final Handler mHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case MSG_PRECISE_CALL_STATE_CHANGED:
+                    updateState();
+                    break;
+            }
+        }
+    };
+
+    private com.android.internal.telephony.Connection mOriginalConnection;
+    private Call.State mOriginalConnectionState = Call.State.IDLE;
+
+    SipConnection(com.android.internal.telephony.Connection connection) {
         if (VERBOSE) log("new SipConnection, connection: " + connection);
-        mConnection = connection;
+        mOriginalConnection = connection;
+        if (getPhone() != null) {
+            getPhone().registerForPreciseCallStateChanged(mHandler, MSG_PRECISE_CALL_STATE_CHANGED,
+                    null);
+        }
     }
 
     @Override
     protected void onSetAudioState(CallAudioState state) {
         if (VERBOSE) log("onSetAudioState: " + state);
+        if (getPhone() != null) {
+            getPhone().setEchoSuppressionEnabled();
+        }
     }
 
     @Override
@@ -46,51 +74,103 @@ public class SipConnection extends Connection {
     @Override
     protected void onPlayDtmfTone(char c) {
         if (VERBOSE) log("onPlayDtmfTone");
+        if (getPhone() != null) {
+            getPhone().startDtmf(c);
+        }
     }
 
     @Override
     protected void onStopDtmfTone() {
         if (VERBOSE) log("onStopDtmfTone");
+        if (getPhone() != null) {
+            getPhone().stopDtmf();
+        }
     }
 
     @Override
     protected void onDisconnect() {
         if (VERBOSE) log("onDisconnect");
+        try {
+            if (getCall() != null && !getCall().isMultiparty()) {
+                getCall().hangup();
+            } else if (mOriginalConnection != null) {
+                mOriginalConnection.hangup();
+            }
+        } catch (CallStateException e) {
+            log("onDisconnect, exception: " + e);
+        }
     }
 
     @Override
     protected void onSeparate() {
         if (VERBOSE) log("onSeparate");
+        try {
+            if (mOriginalConnection != null) {
+                mOriginalConnection.separate();
+            }
+        } catch (CallStateException e) {
+            log("onSeparate, exception: " + e);
+        }
     }
 
     @Override
     protected void onAbort() {
         if (VERBOSE) log("onAbort");
+        onDisconnect();
     }
 
     @Override
     protected void onHold() {
         if (VERBOSE) log("onHold");
+        try {
+            if (getPhone() != null && getState() == State.ACTIVE) {
+                getPhone().switchHoldingAndActive();
+            }
+        } catch (CallStateException e) {
+            log("onHold, exception: " + e);
+        }
     }
 
     @Override
     protected void onUnhold() {
         if (VERBOSE) log("onUnhold");
+        try {
+            if (getPhone() != null && getState() == State.HOLDING) {
+                getPhone().switchHoldingAndActive();
+            }
+        } catch (CallStateException e) {
+            log("onUnhold, exception: " + e);
+        }
     }
 
     @Override
     protected void onAnswer() {
         if (VERBOSE) log("onAnswer");
+        try {
+            if (isValidRingingCall() && getPhone() != null) {
+                getPhone().acceptCall();
+            }
+        } catch (CallStateException e) {
+            log("onAnswer, exception: " + e);
+        }
     }
 
     @Override
     protected void onReject() {
         if (VERBOSE) log("onReject");
+        try {
+            if (isValidRingingCall() && getPhone() != null) {
+                getPhone().rejectCall();
+            }
+        } catch (CallStateException e) {
+            log("onReject, exception: " + e);
+        }
     }
 
     @Override
     protected void onPostDialContinue(boolean proceed) {
         if (VERBOSE) log("onPostDialContinue, proceed: " + proceed);
+        // SIP doesn't have post dial support.
     }
 
     @Override
@@ -101,6 +181,93 @@ public class SipConnection extends Connection {
     @Override
     protected void onPhoneAccountClicked() {
         if (VERBOSE) log("onPhoneAccountClicked");
+    }
+
+    private Call getCall() {
+        if (mOriginalConnection != null) {
+            return mOriginalConnection.getCall();
+        }
+        return null;
+    }
+
+    SipPhone getPhone() {
+        Call call = getCall();
+        if (call != null) {
+            return (SipPhone) call.getPhone();
+        }
+        return null;
+    }
+
+    private boolean isValidRingingCall() {
+        Call call = getCall();
+        return call != null && call.getState().isRinging() &&
+                call.getEarliestConnection() == mOriginalConnection;
+    }
+
+    private void updateState() {
+        if (mOriginalConnection == null) {
+            return;
+        }
+
+        Call.State newState = mOriginalConnection.getState();
+        if (VERBOSE) log("updateState, " + mOriginalConnectionState + " -> " + newState);
+        if (mOriginalConnectionState != newState) {
+            mOriginalConnectionState = newState;
+            switch (newState) {
+                case IDLE:
+                    break;
+                case ACTIVE:
+                    setActive();
+                    break;
+                case HOLDING:
+                    setOnHold();
+                    break;
+                case DIALING:
+                case ALERTING:
+                    setDialing();
+                    break;
+                case INCOMING:
+                case WAITING:
+                    setRinging();
+                    break;
+                case DISCONNECTED:
+                    setDisconnected(mOriginalConnection.getDisconnectCause(), null);
+                    close();
+                    break;
+                case DISCONNECTING:
+                    break;
+            }
+            updateCallCapabilities();
+        }
+    }
+
+    private int buildCallCapabilities() {
+        int capabilities = CallCapabilities.MUTE | CallCapabilities.SUPPORT_HOLD;
+        if (getState() == State.ACTIVE || getState() == State.HOLDING) {
+            capabilities |= CallCapabilities.HOLD;
+        }
+        return capabilities;
+    }
+
+    void updateCallCapabilities() {
+        int newCallCapabilities = buildCallCapabilities();
+        if (getCallCapabilities() != newCallCapabilities) {
+            setCallCapabilities(newCallCapabilities);
+        }
+    }
+
+    void onAddedToCallService() {
+        if (VERBOSE) log("onAddedToCallService");
+        updateCallCapabilities();
+        setAudioModeIsVoip(true);
+    }
+
+    private void close() {
+        if (getPhone() != null) {
+            getPhone().unregisterForPreciseCallStateChanged(mHandler);
+        }
+        mOriginalConnection = null;
+        setDestroyed();
     }
 
     private static void log(String msg) {

@@ -16,18 +16,15 @@
 
 package com.android.services.telephony.sip;
 
-import com.android.internal.telephony.Phone;
-import com.android.internal.telephony.PhoneConstants;
-import com.android.internal.telephony.PhoneFactory;
-import com.android.internal.telephony.sip.SipPhone;
-
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.net.sip.SipAudioCall;
 import android.net.sip.SipException;
 import android.net.sip.SipManager;
 import android.net.sip.SipProfile;
+import android.os.Bundle;
+import android.os.UserHandle;
+import android.telecomm.TelecommConstants;
 import android.util.Log;
 
 import java.util.List;
@@ -59,7 +56,17 @@ public class SipBroadcastReceiver extends BroadcastReceiver {
 
     private void takeCall(Context context, Intent intent) {
         if (VERBOSE) log("takeCall, intent: " + intent);
-        // TODO(sail): Add support for incoming SIP calls.
+
+        Bundle extras = new Bundle();
+        extras.putParcelable(SipUtil.EXTRA_INCOMING_CALL_INTENT, intent);
+
+        Intent telecommIntent = new Intent(TelecommConstants.ACTION_INCOMING_CALL);
+        telecommIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        telecommIntent.putExtra(TelecommConstants.EXTRA_CALL_SERVICE_DESCRIPTOR,
+                SipCallServiceProvider.getDescriptor(context));
+        telecommIntent.putExtra(TelecommConstants.EXTRA_INCOMING_CALL_EXTRAS, extras);
+
+        context.startActivityAsUser(telecommIntent, UserHandle.CURRENT);
     }
 
     private void registerAllProfiles(final Context context) {

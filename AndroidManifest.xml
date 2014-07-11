@@ -466,9 +466,16 @@
             </intent-filter>
         </activity>
 
-        <service android:singleUser="true"
-                 android:name="com.android.services.telephony.sip.SipConnectionService"
-                 android:label="@string/sip_connection_service_label">
+        <!-- Start SIP -->
+        <service android:name="com.android.services.telephony.sip.SipCallServiceProvider"
+                 android:singleUser="true" >
+            <intent-filter>
+                <action android:name="android.telecomm.CallServiceProvider" />
+            </intent-filter>
+        </service>
+        <service android:name="com.android.services.telephony.sip.SipConnectionService"
+                 android:label="@string/sip_connection_service_label"
+                 android:singleUser="true" >
             <intent-filter>
                 <action android:name="android.telecomm.ConnectionService" />
             </intent-filter>
@@ -497,12 +504,14 @@
                 android:configChanges="orientation|screenSize|keyboardHidden"
                 android:uiOptions="splitActionBarWhenNarrow">
         </activity>
-        <activity android:name="com.android.services.telephony.SipCallOptionHandler"
+        <activity android:name="com.android.services.telephony.sip.SipProfileChooserDialogs"
                 android:theme="@style/SipCallOptionHandlerTheme"
                 android:screenOrientation="nosensor"
                 android:configChanges="orientation|screenSize|keyboardHidden"
                 android:excludeFromRecents="true">
         </activity>
+
+        <!-- End SIP -->
 
         <activity android:name="ErrorDialogActivity"
                 android:configChanges="orientation|screenSize|keyboardHidden"

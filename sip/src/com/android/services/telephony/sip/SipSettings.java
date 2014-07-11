@@ -16,7 +16,6 @@
 
 package com.android.services.telephony.sip;
 
-import com.android.internal.telephony.CallManager;
 import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneConstants;
 
@@ -73,7 +72,6 @@ public class SipSettings extends PreferenceActivity {
 
     private PackageManager mPackageManager;
     private SipManager mSipManager;
-    private CallManager mCallManager;
     private SipProfileDb mProfileDb;
 
     private SipProfile mProfile; // profile that's being edited
@@ -154,7 +152,6 @@ public class SipSettings extends PreferenceActivity {
         addPreferencesFromResource(R.xml.sip_setting);
         mSipListContainer = (PreferenceCategory) findPreference(PREF_SIP_LIST);
         registerForReceiveCallsCheckBox();
-        mCallManager = CallManager.getInstance();
 
         updateProfilesStatus();
 
@@ -168,11 +165,7 @@ public class SipSettings extends PreferenceActivity {
     public void onResume() {
         super.onResume();
 
-        if (mCallManager.getState() != PhoneConstants.State.IDLE) {
-            mButtonSipReceiveCalls.setEnabled(false);
-        } else {
-            mButtonSipReceiveCalls.setEnabled(true);
-        }
+        mButtonSipReceiveCalls.setEnabled(SipUtil.isPhoneIdle(this));
     }
 
     @Override
@@ -489,8 +482,7 @@ public class SipSettings extends PreferenceActivity {
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-        menu.findItem(MENU_ADD_ACCOUNT).setEnabled(
-                mCallManager.getState() == PhoneConstants.State.IDLE);
+        menu.findItem(MENU_ADD_ACCOUNT).setEnabled(SipUtil.isPhoneIdle(this));
         return super.onPrepareOptionsMenu(menu);
     }
 

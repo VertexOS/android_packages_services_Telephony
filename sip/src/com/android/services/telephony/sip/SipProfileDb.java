@@ -35,7 +35,7 @@ import java.util.List;
 /**
  * Utility class that helps perform operations on the SipProfile database.
  */
-public class SipProfileDb {
+class SipProfileDb {
     private static final String PREFIX = "[SipProfileDb] ";
     private static final boolean VERBOSE = true; /* STOP SHIP if true */
 

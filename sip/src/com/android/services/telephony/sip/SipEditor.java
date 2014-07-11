@@ -16,7 +16,6 @@
 
 package com.android.services.telephony.sip;
 
-import com.android.internal.telephony.CallManager;
 import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneConstants;
 import com.android.services.telephony.sip.SipUtil;
@@ -75,7 +74,6 @@ public class SipEditor extends PreferenceActivity
     private SipManager mSipManager;
     private SipProfileDb mProfileDb;
     private SipProfile mOldProfile;
-    private CallManager mCallManager;
     private Button mRemoveButton;
 
     enum PreferenceKey {
@@ -146,7 +144,7 @@ public class SipEditor extends PreferenceActivity
     public void onResume() {
         super.onResume();
         mHomeButtonClicked = false;
-        if (mCallManager.getState() != PhoneConstants.State.IDLE) {
+        if (!SipUtil.isPhoneIdle(this)) {
             mAdvancedSettings.show();
             getPreferenceScreen().setEnabled(false);
             if (mRemoveButton != null) mRemoveButton.setEnabled(false);
@@ -164,7 +162,6 @@ public class SipEditor extends PreferenceActivity
         mSipManager = SipManager.newInstance(this);
         mSharedPreferences = new SipSharedPreferences(this);
         mProfileDb = new SipProfileDb(this);
-        mCallManager = CallManager.getInstance();
 
         setContentView(R.layout.sip_settings_ui);
         addPreferencesFromResource(R.xml.sip_edit);
