@@ -144,6 +144,15 @@ abstract class TelephonyConnection extends Connection {
         }
     }
 
+    final void onAddedToCallService() {
+        updateCallCapabilities();
+        if (mOriginalConnection != null) {
+            setCallerDisplayName(
+                    mOriginalConnection.getCnapName(),
+                    mOriginalConnection.getCnapNamePresentation());
+        }
+    }
+
     protected void hangup(int disconnectCause) {
         if (mOriginalConnection != null) {
             try {

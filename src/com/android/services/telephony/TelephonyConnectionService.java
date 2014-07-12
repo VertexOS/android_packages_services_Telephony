@@ -111,7 +111,6 @@ public abstract class TelephonyConnectionService extends ConnectionService {
             final TelephonyConnection telephonyConnection =
                     createTelephonyConnection(request, phone, connection);
             respondWithResult(request, response, telephonyConnection);
-            telephonyConnection.updateCallCapabilities();
 
             final com.android.internal.telephony.Connection connectionFinal = connection;
             PostDialListener postDialListener = new PostDialListener() {
@@ -215,7 +214,7 @@ public abstract class TelephonyConnectionService extends ConnectionService {
         final TelephonyConnection telephonyConnection =
                 onCreateTelephonyConnection(request, phone, connection);
         sKnownConnections.add(connection);
-        telephonyConnection.addConnectionListener(new Connection.ListenerBase() {
+        telephonyConnection.addConnectionListener(new Connection.Listener() {
             @Override
             public void onDestroyed(Connection c) {
                 telephonyConnection.removeConnectionListener(this);

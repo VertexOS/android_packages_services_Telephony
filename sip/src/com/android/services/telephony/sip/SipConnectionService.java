@@ -119,7 +119,7 @@ public final class SipConnectionService extends ConnectionService {
             if (VERBOSE) log("onCreateIncomingConnection, new connection: " + originalConnection);
             if (originalConnection != null) {
                 SipConnection connection = new SipConnection(originalConnection);
-                response.onResult(getConnectionRequestForIncomingCall(request, sipAudioCall),
+                response.onResult(getConnectionRequestForIncomingCall(request, originalConnection),
                         connection);
             } else {
                 if (VERBOSE) log("onCreateIncomingConnection, takingIncomingCall failed");
@@ -195,15 +195,10 @@ public final class SipConnectionService extends ConnectionService {
     }
 
     private ConnectionRequest getConnectionRequestForIncomingCall(ConnectionRequest request,
-            SipAudioCall audioCall) {
-        SipProfile callee = audioCall.getPeerProfile();
-        String domain = callee.getSipDomain();
-        if (domain.endsWith(":5060")) {
-            domain = domain.substring(0, domain.length() - 5);
-        }
-        Uri uri = Uri.fromParts(SipUtil.SCHEME_SIP, callee.getUserName() + "@" + domain, null);
+            com.android.internal.telephony.Connection connection) {
+        Uri uri = Uri.fromParts(SipUtil.SCHEME_SIP, connection.getAddress(), null);
         return new ConnectionRequest(request.getAccount(), request.getCallId(), uri,
-                request.getExtras(), 0);
+                connection.getNumberPresentation(), request.getExtras(), 0);
     }
 
     private static void log(String msg) {
