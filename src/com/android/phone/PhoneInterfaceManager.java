@@ -1724,7 +1724,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
 
     @Override
     public void enableSimplifiedNetworkSettings(long subId, boolean enable) {
-        enforceModifyPermission();
+        enforceModifyPermissionOrCarrierPrivilege();
         if (enable) {
             mSimplifiedNetworkSettings.add(subId);
         } else {
@@ -1740,7 +1740,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
 
     @Override
     public void setLine1NumberForDisplay(long subId, String alphaTag, String number) {
-        enforceModifyPermission();
+        enforceModifyPermissionOrCarrierPrivilege();
         mAdnRecordsForDisplay.put(subId, new AdnRecord(alphaTag, number));
     }
 
