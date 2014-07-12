@@ -174,6 +174,12 @@ final class SipConnection extends Connection {
     }
 
     @Override
+    protected void onSwapWithBackgroundCall() {
+        if (VERBOSE) log("onSwapWithBackgroundCall");
+        // TODO(sail): Implement swap.
+    }
+
+    @Override
     protected void onChildrenChanged(List<Connection> children) {
         if (VERBOSE) log("onChildrenChanged, children: " + children);
     }
@@ -260,6 +266,10 @@ final class SipConnection extends Connection {
         if (VERBOSE) log("onAddedToCallService");
         updateCallCapabilities();
         setAudioModeIsVoip(true);
+        if (mOriginalConnection != null) {
+            setCallerDisplayName(mOriginalConnection.getCnapName(),
+                    mOriginalConnection.getCnapNamePresentation());
+        }
     }
 
     private void close() {

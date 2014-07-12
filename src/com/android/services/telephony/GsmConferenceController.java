@@ -30,8 +30,7 @@ import android.telecomm.Connection;
  */
 public class GsmConferenceController {
 
-    private final Connection.Listener mConnectionListener =
-            new Connection.ListenerBase() {
+    private final Connection.Listener mConnectionListener = new Connection.Listener() {
                 @Override
                 public void onStateChanged(Connection c, int state) {
                     // No need to recalculate for conference calls, just traditional calls.
@@ -42,13 +41,11 @@ public class GsmConferenceController {
 
                 /** ${inheritDoc} */
                 @Override
-                public void onDisconnected(
-                        Connection c, int cause, String message) {
+                public void onDisconnected(Connection c, int cause, String message) {
                     // When a connection disconnects, make sure to release its parent reference
                     // so that the parent can move to disconnected as well.
                     c.setParentConnection(null);
                 }
-
             };
 
     /** The known GSM connections. */

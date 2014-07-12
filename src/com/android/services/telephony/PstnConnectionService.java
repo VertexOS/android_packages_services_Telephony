@@ -145,7 +145,12 @@ public final class PstnConnectionService extends TelephonyConnectionService {
                 }
 
                 respondWithResult(
-                        new ConnectionRequest(request.getCallId(), handle, request.getExtras(),
+                        new ConnectionRequest(
+                                request.getAccount(),
+                                request.getCallId(),
+                                handle,
+                                connection.getNumberPresentation(),
+                                request.getExtras(),
                                 request.getVideoState()),
                         response,
                         telephonyConnection);
@@ -158,6 +163,13 @@ public final class PstnConnectionService extends TelephonyConnectionService {
                     String.format("Found no ringing call, call state: %s", call.getState()));
         }
         super.onCreateIncomingConnection(request, response);
+    }
+
+    @Override
+    protected void onConnectionAdded(Connection connection) {
+        if (connection instanceof TelephonyConnection) {
+            ((TelephonyConnection) connection).onAddedToCallService();
+        }
     }
 
     /** {@inheritDoc} */
@@ -176,7 +188,7 @@ public final class PstnConnectionService extends TelephonyConnectionService {
             case TelephonyManager.PHONE_TYPE_GSM: {
                 final GsmConnection gsmConn = new GsmConnection(phone, connection);
                 mGsmConferenceController.add(gsmConn);
-                gsmConn.addConnectionListener(new Connection.ListenerBase() {
+                gsmConn.addConnectionListener(new Connection.Listener() {
                     @Override
                     public void onDestroyed(Connection c) {
                         mGsmConferenceController.remove(gsmConn);
