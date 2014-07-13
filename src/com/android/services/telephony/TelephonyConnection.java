@@ -16,6 +16,7 @@
 
 package com.android.services.telephony;
 
+import android.os.AsyncResult;
 import android.os.Handler;
 import android.os.Message;
 import android.telecomm.CallAudioState;
@@ -23,45 +24,88 @@ import android.telephony.DisconnectCause;
 
 import com.android.internal.telephony.Call;
 import com.android.internal.telephony.CallStateException;
+import com.android.internal.telephony.Connection.PostDialListener;
 import com.android.internal.telephony.Phone;
 import android.telecomm.Connection;
 
+import java.util.List;
+
 /**
- * Manages a single phone call in Telephony.
+ * Base class for CDMA and GSM connections.
  */
 abstract class TelephonyConnection extends Connection {
-    private static final int EVENT_PRECISE_CALL_STATE_CHANGED = 1;
+    private static final int MSG_PRECISE_CALL_STATE_CHANGED = 1;
+    private static final int MSG_RINGBACK_TONE = 2;
 
-    private final StateHandler mHandler = new StateHandler();
+    private final Handler mHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            // TODO: This code assumes that there is only one connection in the foreground call,
+            // in other words, it punts on network-mediated conference calling.
+            if (getOriginalConnection() != getForegroundConnection()) {
+                Log.v(TelephonyConnection.this, "handleMessage, original connection is not " +
+                        "foreground connection, skipping");
+                return;
+            }
+
+            switch (msg.what) {
+                case MSG_PRECISE_CALL_STATE_CHANGED:
+                    Log.v(TelephonyConnection.this, "MSG_PRECISE_CALL_STATE_CHANGED");
+                    updateState();
+                    break;
+                case MSG_RINGBACK_TONE:
+                    Log.v(TelephonyConnection.this, "MSG_RINGBACK_TONE");
+                    setRequestingRingback((Boolean) ((AsyncResult) msg.obj).result);
+                    break;
+            }
+        }
+    };
+
+    private final PostDialListener mPostDialListener = new PostDialListener() {
+        @Override
+        public void onPostDialWait() {
+            Log.v(TelephonyConnection.this, "onPostDialWait");
+            if (mOriginalConnection != null) {
+                setPostDialWait(mOriginalConnection.getRemainingPostDialString());
+            }
+        }
+    };
 
     private com.android.internal.telephony.Connection mOriginalConnection;
-    private Call.State mState = Call.State.IDLE;
+    private Call.State mOriginalConnectionState = Call.State.IDLE;
 
     protected TelephonyConnection(com.android.internal.telephony.Connection originalConnection) {
+        Log.v(this, "new TelephonyConnection, originalConnection: " + originalConnection);
         mOriginalConnection = originalConnection;
-        mOriginalConnection.getCall().getPhone().registerForPreciseCallStateChanged(mHandler,
-                EVENT_PRECISE_CALL_STATE_CHANGED, null);
+        getPhone().registerForPreciseCallStateChanged(
+                mHandler, MSG_PRECISE_CALL_STATE_CHANGED, null);
+        getPhone().registerForRingbackTone(mHandler, MSG_RINGBACK_TONE, null);
+        mOriginalConnection.addPostDialListener(mPostDialListener);
         updateState();
     }
 
-    com.android.internal.telephony.Connection getOriginalConnection() {
-        return mOriginalConnection;
+    @Override
+    protected void onSetAudioState(CallAudioState audioState) {
+        // TODO: update TTY mode.
+        if (getPhone() != null) {
+            getPhone().setEchoSuppressionEnabled();
+        }
     }
 
     @Override
-    protected void onAbort() {
-        hangup(DisconnectCause.LOCAL);
-        super.onAbort();
+    protected void onSetState(int state) {
+        Log.v(this, "onSetState, state: " + Connection.stateToString(state));
     }
 
     @Override
     protected void onDisconnect() {
+        Log.v(this, "onDisconnect");
         hangup(DisconnectCause.LOCAL);
-        super.onDisconnect();
     }
 
     @Override
     protected void onSeparate() {
+        Log.v(this, "onSeparate");
         if (mOriginalConnection != null) {
             try {
                 mOriginalConnection.separate();
@@ -69,15 +113,20 @@ abstract class TelephonyConnection extends Connection {
                 Log.e(this, e, "Call to Connection.separate failed with exception");
             }
         }
-        super.onSeparate();
     }
 
     @Override
-    public void onHold() {
-        Log.d(this, "Attempting to put call on hold");
+    protected void onAbort() {
+        Log.v(this, "onAbort");
+        hangup(DisconnectCause.LOCAL);
+    }
+
+    @Override
+    protected void onHold() {
+        Log.v(this, "onHold");
         // TODO(santoscordon): Can dialing calls be put on hold as well since they take up the
         // foreground call slot?
-        if (Call.State.ACTIVE == mState) {
+        if (Call.State.ACTIVE == mOriginalConnectionState) {
             Log.v(this, "Holding active call");
             try {
                 Phone phone = mOriginalConnection.getCall().getPhone();
@@ -104,13 +153,12 @@ abstract class TelephonyConnection extends Connection {
         } else {
             Log.w(this, "Cannot put a call that is not currently active on hold.");
         }
-        super.onHold();
     }
 
     @Override
     protected void onUnhold() {
-        Log.d(this, "Attempting to release call from hold");
-        if (Call.State.HOLDING == mState) {
+        Log.v(this, "onUnhold");
+        if (Call.State.HOLDING == mOriginalConnectionState) {
             try {
                 // TODO: This doesn't handle multiple calls across connection services yet
                 mOriginalConnection.getCall().getPhone().switchHoldingAndActive();
@@ -120,19 +168,57 @@ abstract class TelephonyConnection extends Connection {
         } else {
             Log.w(this, "Cannot release a call that is not already on hold from hold.");
         }
-        super.onUnhold();
     }
 
     @Override
-    public void onSetAudioState(CallAudioState audioState) {
-        // TODO: update TTY mode.
-        if (mOriginalConnection != null) {
-            Call call = mOriginalConnection.getCall();
-            if (call != null) {
-                call.getPhone().setEchoSuppressionEnabled();
+    protected void onAnswer() {
+        Log.v(this, "onAnswer");
+        // TODO(santoscordon): Tons of hairy logic is missing here around multiple active calls on
+        // CDMA devices. See {@link CallManager.acceptCall}.
+
+        if (isValidRingingCall() && getPhone() != null) {
+            try {
+                getPhone().acceptCall();
+            } catch (CallStateException e) {
+                Log.e(this, e, "Failed to accept call.");
             }
         }
-        super.onSetAudioState(audioState);
+    }
+
+    @Override
+    protected void onReject() {
+        Log.v(this, "onReject");
+        if (isValidRingingCall()) {
+            hangup(DisconnectCause.INCOMING_REJECTED);
+        }
+        super.onReject();
+    }
+
+    @Override
+    protected void onPostDialContinue(boolean proceed) {
+        Log.v(this, "onPostDialContinue, proceed: " + proceed);
+        if (mOriginalConnection != null) {
+            if (proceed) {
+                mOriginalConnection.proceedAfterWaitChar();
+            } else {
+                mOriginalConnection.cancelPostDial();
+            }
+        }
+    }
+
+    @Override
+    protected void onSwapWithBackgroundCall() {
+        Log.v(this, "onSwapWithBackgroundCall");
+    }
+
+    @Override
+    protected void onChildrenChanged(List<Connection> children) {
+        Log.v(this, "onChildrenChanged, children: " + children);
+    }
+
+    @Override
+    protected void onPhoneAccountClicked() {
+        Log.v(this, "onPhoneAccountClicked");
     }
 
     protected abstract int buildCallCapabilities();
@@ -144,7 +230,7 @@ abstract class TelephonyConnection extends Connection {
         }
     }
 
-    final void onAddedToCallService() {
+    void onAddedToCallService() {
         updateCallCapabilities();
         if (mOriginalConnection != null) {
             setCallerDisplayName(
@@ -153,7 +239,10 @@ abstract class TelephonyConnection extends Connection {
         }
     }
 
-    protected void hangup(int disconnectCause) {
+    void onRemovedFromCallService() {
+    }
+
+    private void hangup(int disconnectCause) {
         if (mOriginalConnection != null) {
             try {
                 Call call = mOriginalConnection.getCall();
@@ -172,17 +261,67 @@ abstract class TelephonyConnection extends Connection {
         close();
     }
 
+    com.android.internal.telephony.Connection getOriginalConnection() {
+        return mOriginalConnection;
+    }
+
+    protected Call getCall() {
+        if (mOriginalConnection != null) {
+            return mOriginalConnection.getCall();
+        }
+        return null;
+    }
+
+    Phone getPhone() {
+        Call call = getCall();
+        if (call != null) {
+            return call.getPhone();
+        }
+        return null;
+    }
+
+    private com.android.internal.telephony.Connection getForegroundConnection() {
+        if (getPhone() != null) {
+            return getPhone().getForegroundCall().getEarliestConnection();
+        }
+        return null;
+    }
+
+    /**
+     * Checks to see the original connection corresponds to an active incoming call. Returns false
+     * if there is no such actual call, or if the associated call is not incoming (See
+     * {@link Call.State#isRinging}).
+     */
+    private boolean isValidRingingCall() {
+        if (getPhone() == null) {
+            Log.v(this, "isValidRingingCall, phone is null");
+            return false;
+        }
+
+        Call ringingCall = getPhone().getRingingCall();
+        if (!ringingCall.getState().isRinging()) {
+            Log.v(this, "isValidRingingCall, ringing call is not in ringing state");
+            return false;
+        }
+
+        if (ringingCall.getEarliestConnection() != mOriginalConnection) {
+            Log.v(this, "isValidRingingCall, ringing call connection does not match");
+            return false;
+        }
+
+        Log.v(this, "isValidRingingCall, returning true");
+        return true;
+    }
+
     private void updateState() {
         if (mOriginalConnection == null) {
             return;
         }
 
         Call.State newState = mOriginalConnection.getState();
-        Log.v(this, "Update state from %s to %s for %s", mState, newState, this);
-        if (mState != newState) {
-            Log.d(this, "mOriginalConnection new state = %s", newState);
-
-            mState = newState;
+        Log.v(this, "Update state from %s to %s for %s", mOriginalConnectionState, newState, this);
+        if (mOriginalConnectionState != newState) {
+            mOriginalConnectionState = newState;
             switch (newState) {
                 case IDLE:
                     break;
@@ -211,24 +350,12 @@ abstract class TelephonyConnection extends Connection {
     }
 
     private void close() {
-        if (mOriginalConnection != null) {
-            Call call = mOriginalConnection.getCall();
-            if (call != null) {
-                call.getPhone().unregisterForPreciseCallStateChanged(mHandler);
-            }
-            mOriginalConnection = null;
-            setDestroyed();
+        Log.v(this, "close");
+        if (getPhone() != null) {
+            getPhone().unregisterForPreciseCallStateChanged(mHandler);
+            getPhone().unregisterForRingbackTone(mHandler);
         }
-    }
-
-    private class StateHandler extends Handler {
-        @Override
-        public void handleMessage(Message msg) {
-            switch (msg.what) {
-                case EVENT_PRECISE_CALL_STATE_CHANGED:
-                    updateState();
-                    break;
-            }
-        }
+        mOriginalConnection = null;
+        setDestroyed();
     }
 }

@@ -28,7 +28,8 @@ import android.telecomm.Connection;
  * Maintains a list of all the known GSM connections and implements GSM-specific conference
  * call functionality.
  */
-public class GsmConferenceController {
+final class GsmConferenceController {
+    private static GsmConferenceController sInstance;
 
     private final Connection.Listener mConnectionListener = new Connection.Listener() {
                 @Override
@@ -54,27 +55,41 @@ public class GsmConferenceController {
     /** The GSM conference connection object. */
     private ConferenceConnection mGsmConferenceConnection;
 
-    public void add(GsmConnection connection) {
-        connection.addConnectionListener(mConnectionListener);
-        mGsmConnections.add(connection);
-        recalculate();
+    static void add(GsmConnection connection) {
+        if (sInstance == null) {
+            sInstance = new GsmConferenceController();
+        }
+        connection.addConnectionListener(sInstance.mConnectionListener);
+        sInstance.mGsmConnections.add(connection);
+        sInstance.recalculate();
     }
 
-    public void remove(GsmConnection connection) {
-        connection.removeConnectionListener(mConnectionListener);
-        mGsmConnections.remove(connection);
-        recalculate();
+    static void remove(GsmConnection connection) {
+        if (sInstance != null) {
+            connection.removeConnectionListener(sInstance.mConnectionListener);
+            sInstance.mGsmConnections.remove(connection);
+            sInstance.recalculate();
+
+            if (sInstance.mGsmConnections.size() == 0 &&
+                    sInstance.mGsmConferenceConnection == null) {
+                sInstance = null;
+            }
+        }
     }
 
-    public ConferenceConnection createConferenceConnection(Connection rootConnection) {
-        if (mGsmConferenceConnection == null) {
-            mGsmConferenceConnection = new ConferenceConnection();
-            Log.d(this, "creating the conference connection: %s", mGsmConferenceConnection);
+    static ConferenceConnection createConferenceConnection(Connection rootConnection) {
+        if (sInstance != null) {
+            if (sInstance.mGsmConferenceConnection == null) {
+                sInstance.mGsmConferenceConnection = new ConferenceConnection();
+                Log.d(sInstance, "creating the conference connection: %s",
+                        sInstance.mGsmConferenceConnection);
+            }
+            if (rootConnection instanceof GsmConnection) {
+                ((GsmConnection) rootConnection).performConference();
+            }
+            return sInstance.mGsmConferenceConnection;
         }
-        if (rootConnection instanceof GsmConnection) {
-            ((GsmConnection) rootConnection).performConference();
-        }
-        return mGsmConferenceConnection;
+        return null;
     }
 
     /**

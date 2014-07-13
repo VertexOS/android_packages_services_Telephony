@@ -567,7 +567,7 @@
         </service>
         <service
                 android:singleUser="true"
-                android:name="com.android.services.telephony.PstnConnectionService"
+                android:name="com.android.services.telephony.TelephonyConnectionService"
                 android:label="@string/pstn_connection_service_label">
             <intent-filter>
                 <action android:name="android.telecomm.ConnectionService" />
