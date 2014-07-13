@@ -26,7 +26,7 @@ import java.util.List;
 /**
  * Manages state for a conference call.
  */
-class ConferenceConnection extends Connection {
+final class ConferenceConnection extends Connection {
     @Override
     protected void onChildrenChanged(List<Connection> children) {
         if (children.isEmpty()) {

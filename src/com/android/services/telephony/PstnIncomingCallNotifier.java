@@ -20,11 +20,11 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.net.Uri;
 import android.os.AsyncResult;
 import android.os.Handler;
 import android.os.Message;
 import android.os.UserHandle;
-import android.telecomm.CallServiceDescriptor;
 import android.telecomm.TelecommConstants;
 
 import com.android.internal.telephony.Call;
@@ -143,7 +143,7 @@ final class PstnIncomingCallNotifier {
 
             // Final verification of the ringing state before sending the intent to Telecomm.
             if (call != null && call.getState().isRinging()) {
-                sendIncomingCallIntent();
+                sendIncomingCallIntent(connection);
             }
         }
     }
@@ -151,16 +151,13 @@ final class PstnIncomingCallNotifier {
     /**
      * Sends the incoming call intent to telecomm.
      */
-    private void sendIncomingCallIntent() {
+    private void sendIncomingCallIntent(Connection connection) {
         Context context = mPhoneProxy.getContext();
-
-        CallServiceDescriptor.Builder builder = CallServiceDescriptor.newBuilder(context);
-        builder.setConnectionService(PstnConnectionService.class);
-        builder.setNetworkType(CallServiceDescriptor.FLAG_PSTN);
 
         Intent intent = new Intent(TelecommConstants.ACTION_INCOMING_CALL);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.putExtra(TelecommConstants.EXTRA_CALL_SERVICE_DESCRIPTOR, builder.build());
+        intent.putExtra(TelecommConstants.EXTRA_PHONE_ACCOUNT,
+                TelephonyConnectionService.getPhoneAccount(context));
 
         Log.d(this, "Sending incoming call intent: %s", intent);
         context.startActivityAsUser(intent, UserHandle.CURRENT);
