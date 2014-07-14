@@ -1177,14 +1177,16 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
      * @throws SecurityException if the caller does not have the required permission/privilege
      */
     private void enforceModifyPermissionOrCarrierPrivilege() {
-        try {
-          mApp.enforceCallingOrSelfPermission(android.Manifest.permission.MODIFY_PHONE_STATE, null);
-        } catch (SecurityException e) {
-            log("No modify permission, check carrier privilege next.");
-            if (hasCarrierPrivileges() != TelephonyManager.CARRIER_PRIVILEGE_STATUS_HAS_ACCESS) {
-              loge("No Carrier Privilege.");
-              throw new SecurityException("No modify permission or carrier privilege.");
-            }
+        int permission = mApp.checkCallingOrSelfPermission(
+                android.Manifest.permission.MODIFY_PHONE_STATE);
+        if (permission == PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+
+        log("No modify permission, check carrier privilege next.");
+        if (hasCarrierPrivileges() != TelephonyManager.CARRIER_PRIVILEGE_STATUS_HAS_ACCESS) {
+            loge("No Carrier Privilege.");
+            throw new SecurityException("No modify permission or carrier privilege.");
         }
     }
 
@@ -1195,8 +1197,8 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
      */
     private void enforceCarrierPrivilege() {
         if (hasCarrierPrivileges() != TelephonyManager.CARRIER_PRIVILEGE_STATUS_HAS_ACCESS) {
-          loge("No Carrier Privilege.");
-          throw new SecurityException("No Carrier Privilege.");
+            loge("No Carrier Privilege.");
+            throw new SecurityException("No Carrier Privilege.");
         }
     }
 
@@ -1679,47 +1681,14 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
 
     @Override
     public int hasCarrierPrivileges() {
-        PackageManager packageManager = mPhone.getContext().getPackageManager();
-        String[] packages = packageManager.getPackagesForUid(Binder.getCallingUid());
-
-        for (String pkg : packages) {
-            try {
-                PackageInfo pInfo = packageManager.getPackageInfo(pkg,
-                    PackageManager.GET_SIGNATURES);
-                Signature[] signatures = pInfo.signatures;
-                for (Signature sig : signatures) {
-                    int hasAccess = UiccController.getInstance().getUiccCard().hasCarrierPrivileges(
-                            sig, pInfo.packageName);
-                    if (hasAccess != TelephonyManager.CARRIER_PRIVILEGE_STATUS_NO_ACCESS) {
-                        return hasAccess;
-                    }
-                }
-            } catch (PackageManager.NameNotFoundException ex) {
-                loge("NameNotFoundException: " + ex);
-                continue;
-            }
-        }
-        return TelephonyManager.CARRIER_PRIVILEGE_STATUS_NO_ACCESS;
+        return UiccController.getInstance().getUiccCard().getCarrierPrivilegeStatusForCurrentTransaction(
+                mPhone.getContext().getPackageManager());
     }
 
     @Override
     public int checkCarrierPrivilegesForPackage(String pkgname) {
-        PackageManager packageManager = mPhone.getContext().getPackageManager();
-        try {
-            PackageInfo pInfo = packageManager.getPackageInfo(pkgname,
-                PackageManager.GET_SIGNATURES);
-            Signature[] signatures = pInfo.signatures;
-            for (Signature sig : signatures) {
-                int hasAccess = UiccController.getInstance().getUiccCard().hasCarrierPrivileges(
-                        sig, pInfo.packageName);
-                if (hasAccess != TelephonyManager.CARRIER_PRIVILEGE_STATUS_NO_ACCESS) {
-                    return hasAccess;
-                }
-            }
-        } catch (PackageManager.NameNotFoundException ex) {
-            loge("NameNotFoundException: " + ex);
-        }
-        return TelephonyManager.CARRIER_PRIVILEGE_STATUS_NO_ACCESS;
+        return UiccController.getInstance().getUiccCard().getCarrierPrivilegeStatus(
+                mPhone.getContext().getPackageManager(), pkgname);
     }
 
     @Override
