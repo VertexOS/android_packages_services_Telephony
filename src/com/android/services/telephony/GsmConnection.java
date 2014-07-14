@@ -20,30 +20,32 @@ import android.telecomm.CallCapabilities;
 
 import com.android.internal.telephony.CallStateException;
 import com.android.internal.telephony.Connection;
-import com.android.internal.telephony.Phone;
 
 /**
  * Manages a single phone call handled by GSM.
  */
-public class GsmConnection extends PstnConnection {
+final class GsmConnection extends TelephonyConnection {
     private boolean mIsConferenceCapable;
 
-    public GsmConnection(Phone phone, Connection connection) {
-        super(phone, connection);
+    GsmConnection(Connection connection) {
+        super(connection);
+        GsmConferenceController.add(this);
     }
 
     /** {@inheritDoc} */
     @Override
-    public void onPlayDtmfTone(char digit) {
-        getPhone().startDtmf(digit);
-        super.onPlayDtmfTone(digit);
+    protected void onPlayDtmfTone(char digit) {
+        if (getPhone() != null) {
+            getPhone().startDtmf(digit);
+        }
     }
 
     /** {@inheritDoc} */
     @Override
-    public void onStopDtmfTone() {
-        getPhone().stopDtmf();
-        super.onStopDtmfTone();
+    protected void onStopDtmfTone() {
+        if (getPhone() != null) {
+            getPhone().stopDtmf();
+        }
     }
 
     void setIsConferenceCapable(boolean isConferenceCapable) {
@@ -53,12 +55,14 @@ public class GsmConnection extends PstnConnection {
         }
     }
 
-    public void performConference() {
-        try {
-            Log.d(this, "conference - %s", this);
-            getPhone().conference();
-        } catch (CallStateException e) {
-            Log.e(this, e, "Failed to conference call.");
+    void performConference() {
+        Log.d(this, "performConference - %s", this);
+        if (getPhone() != null) {
+            try {
+                getPhone().conference();
+            } catch (CallStateException e) {
+                Log.e(this, e, "Failed to conference call.");
+            }
         }
     }
 
@@ -72,5 +76,11 @@ public class GsmConnection extends PstnConnection {
             capabilities |= CallCapabilities.MERGE_CALLS;
         }
         return capabilities;
+    }
+
+    @Override
+    void onRemovedFromCallService() {
+        super.onRemovedFromCallService();
+        GsmConferenceController.remove(this);
     }
 }

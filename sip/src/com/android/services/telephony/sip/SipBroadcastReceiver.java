@@ -62,8 +62,8 @@ public class SipBroadcastReceiver extends BroadcastReceiver {
 
         Intent telecommIntent = new Intent(TelecommConstants.ACTION_INCOMING_CALL);
         telecommIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        telecommIntent.putExtra(TelecommConstants.EXTRA_CALL_SERVICE_DESCRIPTOR,
-                SipCallServiceProvider.getDescriptor(context));
+        telecommIntent.putExtra(TelecommConstants.EXTRA_PHONE_ACCOUNT,
+                SipConnectionService.getPhoneAccount(context));
         telecommIntent.putExtra(TelecommConstants.EXTRA_INCOMING_CALL_EXTRAS, extras);
 
         context.startActivityAsUser(telecommIntent, UserHandle.CURRENT);

@@ -16,6 +16,7 @@
 
 package com.android.services.telephony.sip;
 
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.net.sip.SipAudioCall;
@@ -28,6 +29,7 @@ import android.provider.Settings;
 import android.telecomm.Connection;
 import android.telecomm.ConnectionRequest;
 import android.telecomm.ConnectionService;
+import android.telecomm.PhoneAccount;
 import android.telecomm.Response;
 import android.telephony.DisconnectCause;
 import android.telephony.PhoneNumberUtils;
@@ -42,6 +44,14 @@ import java.util.HashMap;
 public final class SipConnectionService extends ConnectionService {
     private static final String PREFIX = "[SipConnectionService] ";
     private static final boolean VERBOSE = true; /* STOP SHIP if true */
+
+    static PhoneAccount getPhoneAccount(Context context) {
+        return new PhoneAccount(
+                new ComponentName(context, SipConnectionService.class),
+                null /* id */,
+                null /* handle */,
+                PhoneAccount.CAPABILITY_CALL_PROVIDER);
+    }
 
     @Override
     protected void onCreateConnections(
