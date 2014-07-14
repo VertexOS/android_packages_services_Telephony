@@ -115,7 +115,7 @@
     <!-- settings strings -->
 
     <!-- Error message for users that aren't allowed to modify Mobile Network settings [CHAR LIMIT=none] -->
-    <string name="mobile_network_settings_not_available">Mobile network settings are not available for this user</string>
+    <string name="mobile_network_settings_not_available">Cellular network settings are not available for this user</string>
     <!-- GSM Call settings screen, setting option name -->
     <string name="labelGSMMore">GSM call settings</string>
     <!-- CDM Call settings screen, setting option name -->
@@ -278,7 +278,7 @@
 
     <!-- networks setting strings --><skip/>
     <!-- Mobile network settings screen title -->
-    <string name="mobile_networks">Mobile network settings</string>
+    <string name="mobile_networks">Cellular network settings</string>
     <!-- Available networks screen title/heading -->
     <string name="label_available">Available networks</string>
     <!-- Mobile network settings screen, toast when searching for available networks -->
@@ -372,7 +372,7 @@
     <!-- Mobile network settings screen, data enabling checkbox name -->
     <string name="data_enabled">Data enabled</string>
     <!-- Mobile network settings screen, setting summary text when check box is not selected (explains what selecting it would do) -->
-    <string name="data_enable_summary">Enable data access over Mobile network</string>
+    <string name="data_enable_summary">Enable data access over Cellular network</string>
     <!-- Mobile network settings screen, setting check box name -->
     <string name="roaming">Data roaming</string>
     <!-- Mobile network settings screen, setting summary text when check box is selected -->
@@ -413,7 +413,7 @@
 
     <string name="throttle_rate_subtext">Data rate reduced to <xliff:g id="used">%1$d</xliff:g> Kb/s if data use limit is exceeded</string>
 
-    <string name="throttle_help_subtext">More information about your carrier\'s mobile network data use policy</string>
+    <string name="throttle_help_subtext">More information about your carrier\'s cellular network data use policy</string>
 
     <string name="cell_broadcast_sms">Cell Broadcast SMS</string>
 
@@ -892,7 +892,7 @@
          This string is currently unused (see comments in InCallScreen.java.) -->
     <string name="incall_error_emergency_only">Not registered on network.</string>
     <!-- In-call screen: call failure message displayed in an error dialog -->
-    <string name="incall_error_out_of_service">Mobile network not available.</string>
+    <string name="incall_error_out_of_service">Cellular network not available.</string>
     <!-- In-call screen: call failure message displayed in an error dialog -->
     <string name="incall_error_no_phone_number_supplied">Call not sent, no valid number entered.</string>
     <!-- In-call screen: call failure message displayed in an error dialog -->
