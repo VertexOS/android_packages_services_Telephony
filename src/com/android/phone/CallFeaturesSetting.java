@@ -2251,7 +2251,7 @@ public class CallFeaturesSetting extends PreferenceActivity
         CharSequence label = mConnectionServiceLabelByComponentName.get(
                 value == null ? mConnectionService.getValue() : value);
         if (label == null) {
-            Log.wtf(LOG_TAG, "Unknown default connection service entry " +
+            Log.w(LOG_TAG, "Unknown default connection service entry " +
                     mConnectionService.getValue());
             mConnectionService.setSummary("");
         }

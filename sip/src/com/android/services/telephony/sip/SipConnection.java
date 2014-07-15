@@ -40,7 +40,7 @@ final class SipConnection extends Connection {
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case MSG_PRECISE_CALL_STATE_CHANGED:
-                    updateState();
+                    updateState(false);
                     break;
             }
         }
@@ -210,14 +210,14 @@ final class SipConnection extends Connection {
                 call.getEarliestConnection() == mOriginalConnection;
     }
 
-    private void updateState() {
+    private void updateState(boolean force) {
         if (mOriginalConnection == null) {
             return;
         }
 
         Call.State newState = mOriginalConnection.getState();
         if (VERBOSE) log("updateState, " + mOriginalConnectionState + " -> " + newState);
-        if (mOriginalConnectionState != newState) {
+        if (force || mOriginalConnectionState != newState) {
             mOriginalConnectionState = newState;
             switch (newState) {
                 case IDLE:
@@ -243,7 +243,7 @@ final class SipConnection extends Connection {
                 case DISCONNECTING:
                     break;
             }
-            updateCallCapabilities();
+            updateCallCapabilities(force);
         }
     }
 
@@ -255,16 +255,17 @@ final class SipConnection extends Connection {
         return capabilities;
     }
 
-    void updateCallCapabilities() {
+    void updateCallCapabilities(boolean force) {
         int newCallCapabilities = buildCallCapabilities();
-        if (getCallCapabilities() != newCallCapabilities) {
+        if (force || getCallCapabilities() != newCallCapabilities) {
             setCallCapabilities(newCallCapabilities);
         }
     }
 
     void onAddedToCallService() {
         if (VERBOSE) log("onAddedToCallService");
-        updateCallCapabilities();
+        updateState(true);
+        updateCallCapabilities(true);
         setAudioModeIsVoip(true);
         if (mOriginalConnection != null) {
             setCallerDisplayName(mOriginalConnection.getCnapName(),

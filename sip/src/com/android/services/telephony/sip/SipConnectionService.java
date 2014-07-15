@@ -54,15 +54,15 @@ public final class SipConnectionService extends ConnectionService {
     }
 
     @Override
-    protected void onCreateConnections(
+    protected void onCreateOutgoingConnection(
             final ConnectionRequest request,
-            final OutgoingCallResponse<Connection> response) {
-        if (VERBOSE) log("onCreateConnections, request: " + request);
+            final CreateConnectionResponse<Connection> response) {
+        if (VERBOSE) log("onCreateOutgoingConnection, request: " + request);
 
         SipProfileChooser.Callback callback = new SipProfileChooser.Callback() {
             @Override
             public void onSipChosen(SipProfile profile) {
-                if (VERBOSE) log("onCreateConnections, onSipChosen: " + profile);
+                if (VERBOSE) log("onCreateOutgoingConnection, onSipChosen: " + profile);
                 SipConnection connection = createConnectionForProfile(profile, request);
                 if (connection == null) {
                     response.onCancel(request);
@@ -73,13 +73,13 @@ public final class SipConnectionService extends ConnectionService {
 
             @Override
             public void onSipNotChosen() {
-                if (VERBOSE) log("onCreateConnections, onSipNotChosen");
+                if (VERBOSE) log("onCreateOutgoingConnection, onSipNotChosen");
                 response.onFailure(request, DisconnectCause.ERROR_UNSPECIFIED, null);
             }
 
             @Override
             public void onCancelCall() {
-                if (VERBOSE) log("onCreateConnections, onCancelCall");
+                if (VERBOSE) log("onCreateOutgoingConnection, onCancelCall");
                 response.onCancel(request);
             }
         };
@@ -99,14 +99,20 @@ public final class SipConnectionService extends ConnectionService {
     @Override
     protected void onCreateIncomingConnection(
             ConnectionRequest request,
-            Response<ConnectionRequest, Connection> response) {
+            CreateConnectionResponse<Connection> response) {
         if (VERBOSE) log("onCreateIncomingConnection, request: " + request);
+
+        if (request.getExtras() == null) {
+            if (VERBOSE) log("onCreateIncomingConnection, no extras");
+            response.onFailure(request, DisconnectCause.ERROR_UNSPECIFIED, null);
+            return;
+        }
 
         Intent sipIntent = (Intent) request.getExtras().getParcelable(
                 SipUtil.EXTRA_INCOMING_CALL_INTENT);
         if (sipIntent == null) {
             if (VERBOSE) log("onCreateIncomingConnection, no SIP intent");
-            response.onError(request, DisconnectCause.ERROR_UNSPECIFIED, null);
+            response.onFailure(request, DisconnectCause.ERROR_UNSPECIFIED, null);
             return;
         }
 
@@ -114,8 +120,8 @@ public final class SipConnectionService extends ConnectionService {
         try {
             sipAudioCall = SipManager.newInstance(this).takeAudioCall(sipIntent, null);
         } catch (SipException e) {
-            log("onCreateConferenceConnection, takeAudioCall exception: " + e);
-            response.onError(request, DisconnectCause.ERROR_UNSPECIFIED, null);
+            log("onCreateIncomingConnection, takeAudioCall exception: " + e);
+            response.onCancel(request);
             return;
         }
 
@@ -129,11 +135,11 @@ public final class SipConnectionService extends ConnectionService {
             if (VERBOSE) log("onCreateIncomingConnection, new connection: " + originalConnection);
             if (originalConnection != null) {
                 SipConnection connection = new SipConnection(originalConnection);
-                response.onResult(getConnectionRequestForIncomingCall(request, originalConnection),
+                response.onSuccess(getConnectionRequestForIncomingCall(request, originalConnection),
                         connection);
             } else {
                 if (VERBOSE) log("onCreateIncomingConnection, takingIncomingCall failed");
-                response.onError(request, DisconnectCause.ERROR_UNSPECIFIED, null);
+                response.onCancel(request);
             }
         }
     }
