@@ -19,6 +19,7 @@ package com.android.services.telephony;
 import android.content.ComponentName;
 import android.content.Context;
 import android.net.Uri;
+import android.os.Debug;
 import android.telephony.DisconnectCause;
 import android.telephony.ServiceState;
 import android.text.TextUtils;
@@ -184,7 +185,7 @@ public class TelephonyConnectionService extends ConnectionService {
 
         if (phone.getPhoneType() == TelephonyManager.PHONE_TYPE_GSM) {
             response.onSuccess(telephonyRequest, new GsmConnection(originalConnection));
-        } else if (phone.getPhoneType() == TelephonyManager.PHONE_TYPE_GSM) {
+        } else if (phone.getPhoneType() == TelephonyManager.PHONE_TYPE_CDMA) {
             response.onSuccess(telephonyRequest, new CdmaConnection(originalConnection));
         } else {
             response.onCancel(request);
@@ -239,9 +240,11 @@ public class TelephonyConnectionService extends ConnectionService {
 
         if (phone.getPhoneType() == TelephonyManager.PHONE_TYPE_GSM) {
             response.onSuccess(telephonyRequest, new GsmConnection(originalConnection));
-        } else if (phone.getPhoneType() == TelephonyManager.PHONE_TYPE_GSM) {
+        } else if (phone.getPhoneType() == TelephonyManager.PHONE_TYPE_CDMA) {
             response.onSuccess(telephonyRequest, new CdmaConnection(originalConnection));
         } else {
+            // TODO(ihab): Tear down 'originalConnection' here, or move recognition of
+            // getPhoneType() earlier in this method before we've already asked phone to dial()
             response.onFailure(request, DisconnectCause.ERROR_UNSPECIFIED, "Invalid phone type");
         }
     }
