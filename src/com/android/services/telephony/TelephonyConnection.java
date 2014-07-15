@@ -16,6 +16,7 @@
 
 package com.android.services.telephony;
 
+import android.net.Uri;
 import android.os.AsyncResult;
 import android.os.Handler;
 import android.os.Message;
@@ -29,6 +30,7 @@ import com.android.internal.telephony.Phone;
 import android.telecomm.Connection;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Base class for CDMA and GSM connections.
@@ -40,21 +42,20 @@ abstract class TelephonyConnection extends Connection {
     private final Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
-            // TODO: This code assumes that there is only one connection in the foreground call,
-            // in other words, it punts on network-mediated conference calling.
-            if (getOriginalConnection() != getForegroundConnection()) {
-                Log.v(TelephonyConnection.this, "handleMessage, original connection is not " +
-                        "foreground connection, skipping");
-                return;
-            }
-
             switch (msg.what) {
                 case MSG_PRECISE_CALL_STATE_CHANGED:
                     Log.v(TelephonyConnection.this, "MSG_PRECISE_CALL_STATE_CHANGED");
-                    updateState();
+                    updateState(false);
                     break;
                 case MSG_RINGBACK_TONE:
                     Log.v(TelephonyConnection.this, "MSG_RINGBACK_TONE");
+                    // TODO: This code assumes that there is only one connection in the foreground
+                    // call, in other words, it punts on network-mediated conference calling.
+                    if (getOriginalConnection() != getForegroundConnection()) {
+                        Log.v(TelephonyConnection.this, "handleMessage, original connection is " +
+                                "not foreground connection, skipping");
+                        return;
+                    }
                     setRequestingRingback((Boolean) ((AsyncResult) msg.obj).result);
                     break;
             }
@@ -81,7 +82,6 @@ abstract class TelephonyConnection extends Connection {
                 mHandler, MSG_PRECISE_CALL_STATE_CHANGED, null);
         getPhone().registerForRingbackTone(mHandler, MSG_RINGBACK_TONE, null);
         mOriginalConnection.addPostDialListener(mPostDialListener);
-        updateState();
     }
 
     @Override
@@ -223,23 +223,40 @@ abstract class TelephonyConnection extends Connection {
 
     protected abstract int buildCallCapabilities();
 
-    final void updateCallCapabilities() {
+    protected final void updateCallCapabilities(boolean force) {
         int newCallCapabilities = buildCallCapabilities();
-        if (getCallCapabilities() != newCallCapabilities) {
+        if (force || getCallCapabilities() != newCallCapabilities) {
             setCallCapabilities(newCallCapabilities);
         }
     }
 
-    void onAddedToCallService() {
-        updateCallCapabilities();
+    protected final void updateHandle(boolean force) {
         if (mOriginalConnection != null) {
-            setCallerDisplayName(
-                    mOriginalConnection.getCnapName(),
-                    mOriginalConnection.getCnapNamePresentation());
+            Uri handle = TelephonyConnectionService.getHandleFromAddress(
+                    mOriginalConnection.getAddress());
+            int presentation = mOriginalConnection.getNumberPresentation();
+            if (force || !Objects.equals(handle, getHandle()) ||
+                    presentation != getHandlePresentation()) {
+                Log.v(this, "updateHandle, handle changed");
+                setHandle(handle, presentation);
+            }
+
+            String name = mOriginalConnection.getCnapName();
+            int namePresentation = mOriginalConnection.getCnapNamePresentation();
+            if (force || !Objects.equals(name, getCallerDisplayName()) ||
+                    namePresentation != getCallerDisplayNamePresentation()) {
+                Log.v(this, "updateHandle, caller display name changed");
+                setCallerDisplayName(name, namePresentation);
+            }
         }
     }
 
+    void onAddedToCallService() {
+        updateState(false);
+    }
+
     void onRemovedFromCallService() {
+        // Subclass can override this to do cleanup.
     }
 
     private void hangup(int disconnectCause) {
@@ -313,14 +330,14 @@ abstract class TelephonyConnection extends Connection {
         return true;
     }
 
-    private void updateState() {
+    private void updateState(boolean force) {
         if (mOriginalConnection == null) {
             return;
         }
 
         Call.State newState = mOriginalConnection.getState();
         Log.v(this, "Update state from %s to %s for %s", mOriginalConnectionState, newState, this);
-        if (mOriginalConnectionState != newState) {
+        if (force || mOriginalConnectionState != newState) {
             mOriginalConnectionState = newState;
             switch (newState) {
                 case IDLE:
@@ -341,12 +358,14 @@ abstract class TelephonyConnection extends Connection {
                     break;
                 case DISCONNECTED:
                     setDisconnected(mOriginalConnection.getDisconnectCause(), null);
+                    close();
                     break;
                 case DISCONNECTING:
                     break;
             }
-            updateCallCapabilities();
         }
+        updateCallCapabilities(force);
+        updateHandle(force);
     }
 
     private void close() {

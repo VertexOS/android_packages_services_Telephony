@@ -51,7 +51,7 @@ final class GsmConnection extends TelephonyConnection {
     void setIsConferenceCapable(boolean isConferenceCapable) {
         if (mIsConferenceCapable != isConferenceCapable) {
             mIsConferenceCapable = isConferenceCapable;
-            updateCallCapabilities();
+            updateCallCapabilities(false);
         }
     }
 
