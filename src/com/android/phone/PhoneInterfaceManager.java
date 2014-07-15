@@ -1616,6 +1616,10 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         if (DBG) log("setPreferredNetworkType: type " + networkType);
         Boolean success = (Boolean) sendRequest(CMD_SET_PREFERRED_NETWORK_TYPE, networkType);
         if (DBG) log("setPreferredNetworkType: " + (success ? "ok" : "fail"));
+        if (success) {
+            Settings.Global.putInt(mPhone.getContext().getContentResolver(),
+                    Settings.Global.PREFERRED_NETWORK_MODE, networkType);
+        }
         return success;
     }
 
