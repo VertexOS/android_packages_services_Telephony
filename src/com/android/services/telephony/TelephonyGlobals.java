@@ -18,12 +18,13 @@ package com.android.services.telephony;
 
 import android.content.Context;
 
+import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneFactory;
 import com.android.internal.telephony.PhoneProxy;
 
 /**
  * Singleton entry point for the telephony-services app. Initializes ongoing systems relating to
- * PSTN and SIP calls. This is started when the device starts and will be restarted automatically
+ * PSTN calls. This is started when the device starts and will be restarted automatically
  * if it goes away for any reason (e.g., crashes).
  * This is separate from the actual Application class because we only support one instance of this
  * app - running as the default user. {@link com.android.phone.PhoneApp} determines whether or not
@@ -37,6 +38,8 @@ public class TelephonyGlobals {
     /** Handles incoming calls for PSTN calls. */
     private PstnIncomingCallNotifier mPtsnIncomingCallNotifier;
 
+    private TtyManager mTtyManager;
+
     /**
      * Persists the specified parameters.
      *
@@ -48,6 +51,11 @@ public class TelephonyGlobals {
 
     public void onCreate() {
         setupIncomingCallNotifiers();
+
+        Phone phone = PhoneFactory.getDefaultPhone();
+        if (phone != null) {
+            mTtyManager = new TtyManager(mContext, phone);
+        }
     }
 
     /**
@@ -59,10 +67,5 @@ public class TelephonyGlobals {
 
         Log.i(this, "Registering the PSTN listener.");
         mPtsnIncomingCallNotifier = new PstnIncomingCallNotifier(defaultPhone);
-
-        // TODO(santoscordon): Do SIP.  SIP will require a slightly different solution since it
-        // doesn't have a phone object in the same way as PSTN calls. Additionally, the user can
-        // set up SIP to do outgoing calls, but not listen for incoming calls (uses extra battery).
-        // We need to make sure we take all of that into account.
     }
 }
