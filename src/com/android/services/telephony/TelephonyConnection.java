@@ -18,16 +18,25 @@ package com.android.services.telephony;
 
 import android.net.Uri;
 import android.os.AsyncResult;
+import android.content.ComponentName;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.telecomm.CallAudioState;
+import android.telecomm.ConnectionService;
+import android.telecomm.StatusHints;
+import android.telecomm.TelecommConstants;
 import android.telephony.DisconnectCause;
 
 import com.android.internal.telephony.Call;
 import com.android.internal.telephony.CallStateException;
 import com.android.internal.telephony.Connection.PostDialListener;
 import com.android.internal.telephony.Phone;
+import com.android.phone.R;
+
 import android.telecomm.Connection;
+import android.telephony.PhoneNumberUtils;
+import android.telephony.TelephonyManager;
 
 import java.util.List;
 import java.util.Objects;
@@ -231,6 +240,7 @@ abstract class TelephonyConnection extends Connection {
     }
 
     protected final void updateHandle(boolean force) {
+        updateCallCapabilities(force);
         if (mOriginalConnection != null) {
             Uri handle = TelephonyConnectionService.getHandleFromAddress(
                     mOriginalConnection.getAddress());
@@ -251,8 +261,30 @@ abstract class TelephonyConnection extends Connection {
         }
     }
 
-    void onAddedToCallService() {
+    void onAddedToCallService(ConnectionService connectionService) {
         updateState(false);
+
+        StatusHints hints = getStatusHints();
+        if (hints == null) {
+            hints = new StatusHints(
+                    new ComponentName(connectionService, TelephonyConnectionService.class),
+                    "", R.mipmap.ic_launcher_phone, new Bundle());
+        }
+
+        Bundle extras = hints.getExtras();
+        String number = getHandle().getSchemeSpecificPart();
+        if (PhoneNumberUtils.isEmergencyNumber(number)) {
+            Phone phone = getOriginalConnection().getCall().getPhone();
+            long subId = phone.getSubId();
+
+            String simNumber = phone.getPhoneSubInfo().getLine1Number();
+            String visibleNumber = TelephonyManager.from(connectionService).getLine1Number(subId);
+            if (!PhoneNumberUtils.compare(simNumber, visibleNumber)) {
+                Log.d(this, "SIM number is different; populate the SIM number");
+                extras.putString(TelecommConstants.EXTRA_EMERGENCY_CALL_BACK_NUMBER, simNumber);
+            }
+        }
+        setStatusHints(hints);
     }
 
     void onRemovedFromCallService() {
