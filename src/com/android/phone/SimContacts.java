@@ -59,10 +59,6 @@ import java.util.ArrayList;
 public class SimContacts extends ADNList {
     private static final String LOG_TAG = "SimContacts";
 
-    private static final String UP_ACTIVITY_PACKAGE = "com.android.contacts";
-    private static final String UP_ACTIVITY_CLASS =
-            "com.android.contacts.activities.PeopleActivity";
-
     static final ContentValues sEmptyContentValues = new ContentValues();
 
     private static final int MENU_IMPORT_ONE = 1;
@@ -274,11 +270,7 @@ public class SimContacts extends ADNList {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                Intent intent = new Intent();
-                intent.setClassName(UP_ACTIVITY_PACKAGE, UP_ACTIVITY_CLASS);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-                finish();
+                onBackPressed();
                 return true;
             case MENU_IMPORT_ALL:
                 CharSequence title = getString(R.string.importAllSimEntries);
