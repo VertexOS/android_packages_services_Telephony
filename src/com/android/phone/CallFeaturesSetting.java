@@ -57,6 +57,7 @@ import android.provider.ContactsContract.CommonDataKinds;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.telecomm.TelecommConstants;
+import android.telecomm.TelecommManager;
 import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
 import android.util.Log;
@@ -68,7 +69,6 @@ import com.android.internal.telephony.CallForwardInfo;
 import com.android.internal.telephony.CommandsInterface;
 import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneConstants;
-import com.android.internal.telephony.cdma.TtyIntent;
 import com.android.services.telephony.sip.SipSharedPreferences;
 import com.android.services.telephony.sip.SipUtil;
 
@@ -209,10 +209,6 @@ public class CallFeaturesSetting extends PreferenceActivity
 
     private static final int MSG_UPDATE_RINGTONE_SUMMARY = 1;
     private static final int MSG_UPDATE_VOICEMAIL_RINGTONE_SUMMARY = 2;
-
-    // preferred TTY mode
-    // Phone.TTY_MODE_xxx
-    static final int preferredTtyMode = Phone.TTY_MODE_OFF;
 
     public static final String HAC_KEY = "HACSetting";
     public static final String HAC_VAL_ON = "ON";
@@ -1604,7 +1600,8 @@ public class CallFeaturesSetting extends PreferenceActivity
         }
 
         if (mButtonTTY != null) {
-            if (getResources().getBoolean(R.bool.tty_enabled)) {
+            TelecommManager telecommManager = TelecommManager.from(this);
+            if (telecommManager != null && telecommManager.isTtySupported()) {
                 mButtonTTY.setOnPreferenceChangeListener(this);
             } else {
                 prefSet.removePreference(mButtonTTY);
@@ -1833,7 +1830,7 @@ public class CallFeaturesSetting extends PreferenceActivity
         if (mButtonTTY != null) {
             int settingsTtyMode = Settings.Secure.getInt(getContentResolver(),
                     Settings.Secure.PREFERRED_TTY_MODE,
-                    Phone.TTY_MODE_OFF);
+                    TelecommConstants.TTY_MODE_OFF);
             mButtonTTY.setValue(Integer.toString(settingsTtyMode));
             updatePreferredTtyModeSummary(settingsTtyMode);
         }
@@ -1899,27 +1896,28 @@ public class CallFeaturesSetting extends PreferenceActivity
         buttonTtyMode = Integer.valueOf((String) objValue).intValue();
         int settingsTtyMode = android.provider.Settings.Secure.getInt(
                 getContentResolver(),
-                android.provider.Settings.Secure.PREFERRED_TTY_MODE, preferredTtyMode);
+                android.provider.Settings.Secure.PREFERRED_TTY_MODE,
+                TelecommConstants.TTY_MODE_OFF);
         if (DBG) log("handleTTYChange: requesting set TTY mode enable (TTY) to" +
                 Integer.toString(buttonTtyMode));
 
         if (buttonTtyMode != settingsTtyMode) {
             switch(buttonTtyMode) {
-            case Phone.TTY_MODE_OFF:
-            case Phone.TTY_MODE_FULL:
-            case Phone.TTY_MODE_HCO:
-            case Phone.TTY_MODE_VCO:
+            case TelecommConstants.TTY_MODE_OFF:
+            case TelecommConstants.TTY_MODE_FULL:
+            case TelecommConstants.TTY_MODE_HCO:
+            case TelecommConstants.TTY_MODE_VCO:
                 android.provider.Settings.Secure.putInt(getContentResolver(),
                         android.provider.Settings.Secure.PREFERRED_TTY_MODE, buttonTtyMode);
                 break;
             default:
-                buttonTtyMode = Phone.TTY_MODE_OFF;
+                buttonTtyMode = TelecommConstants.TTY_MODE_OFF;
             }
 
             mButtonTTY.setValue(Integer.toString(buttonTtyMode));
             updatePreferredTtyModeSummary(buttonTtyMode);
-            Intent ttyModeChanged = new Intent(TtyIntent.TTY_PREFERRED_MODE_CHANGE_ACTION);
-            ttyModeChanged.putExtra(TtyIntent.TTY_PREFFERED_MODE, buttonTtyMode);
+            Intent ttyModeChanged = new Intent(TelecommConstants.ACTION_TTY_PREFERRED_MODE_CHANGED);
+            ttyModeChanged.putExtra(TelecommConstants.EXTRA_TTY_PREFERRED_MODE, buttonTtyMode);
             sendBroadcastAsUser(ttyModeChanged, UserHandle.ALL);
         }
     }
@@ -1944,15 +1942,16 @@ public class CallFeaturesSetting extends PreferenceActivity
     private void updatePreferredTtyModeSummary(int TtyMode) {
         String [] txts = getResources().getStringArray(R.array.tty_mode_entries);
         switch(TtyMode) {
-            case Phone.TTY_MODE_OFF:
-            case Phone.TTY_MODE_HCO:
-            case Phone.TTY_MODE_VCO:
-            case Phone.TTY_MODE_FULL:
+            case TelecommConstants.TTY_MODE_OFF:
+            case TelecommConstants.TTY_MODE_HCO:
+            case TelecommConstants.TTY_MODE_VCO:
+            case TelecommConstants.TTY_MODE_FULL:
                 mButtonTTY.setSummary(txts[TtyMode]);
                 break;
             default:
                 mButtonTTY.setEnabled(false);
-                mButtonTTY.setSummary(txts[Phone.TTY_MODE_OFF]);
+                mButtonTTY.setSummary(txts[TelecommConstants.TTY_MODE_OFF]);
+                break;
         }
     }
 

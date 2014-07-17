@@ -60,7 +60,6 @@ import com.android.internal.telephony.PhoneConstants;
 import com.android.internal.telephony.PhoneFactory;
 import com.android.internal.telephony.TelephonyCapabilities;
 import com.android.internal.telephony.TelephonyIntents;
-import com.android.internal.telephony.cdma.TtyIntent;
 import com.android.phone.WiredHeadsetManager.WiredHeadsetListener;
 import com.android.phone.common.CallLogAsync;
 import com.android.server.sip.SipService;
@@ -69,7 +68,7 @@ import com.android.server.sip.SipService;
  * Global state for the telephony subsystem when running in the primary
  * phone process.
  */
-public class PhoneGlobals extends ContextWrapper implements WiredHeadsetListener {
+public class PhoneGlobals extends ContextWrapper {
     /* package */ static final String LOG_TAG = "PhoneApp";
 
     /**
@@ -101,10 +100,7 @@ public class PhoneGlobals extends ContextWrapper implements WiredHeadsetListener
     private static final int EVENT_DATA_ROAMING_OK = 11;
     private static final int EVENT_UNSOL_CDMA_INFO_RECORD = 12;
     private static final int EVENT_DOCK_STATE_CHANGED = 13;
-    private static final int EVENT_TTY_PREFERRED_MODE_CHANGED = 14;
-    private static final int EVENT_TTY_MODE_GET = 15;
-    private static final int EVENT_TTY_MODE_SET = 16;
-    private static final int EVENT_START_SIP_SERVICE = 17;
+    private static final int EVENT_START_SIP_SERVICE = 14;
 
     // The MMI codes are also used by the InCallScreen.
     public static final int MMI_INITIATE = 51;
@@ -211,11 +207,6 @@ public class PhoneGlobals extends ContextWrapper implements WiredHeadsetListener
     public OtaUtils.CdmaOtaScreenState cdmaOtaScreenState;
     public OtaUtils.CdmaOtaInCallScreenUiState cdmaOtaInCallScreenUiState;
 
-    // TTY feature enabled on this platform
-    private boolean mTtyEnabled;
-    // Current TTY operating mode selected by user
-    private int mPreferredTtyMode = Phone.TTY_MODE_OFF;
-
     /**
      * Set the restore mute state flag. Used when we are setting the mute state
      * OUTSIDE of user interaction {@link PhoneUtils#startNewCall(Phone)}
@@ -313,25 +304,6 @@ public class PhoneGlobals extends ContextWrapper implements WiredHeadsetListener
 
                         PhoneUtils.turnOnSpeaker(getApplicationContext(), inDockMode, true);
                     }
-                    break;
-
-                case EVENT_TTY_PREFERRED_MODE_CHANGED:
-                    // TTY mode is only applied if a headset is connected
-                    int ttyMode;
-                    if (wiredHeadsetManager.isHeadsetPlugged()) {
-                        ttyMode = mPreferredTtyMode;
-                    } else {
-                        ttyMode = Phone.TTY_MODE_OFF;
-                    }
-                    phone.setTTYMode(ttyMode, mHandler.obtainMessage(EVENT_TTY_MODE_SET));
-                    break;
-
-                case EVENT_TTY_MODE_GET:
-                    handleQueryTTYModeResponse(msg);
-                    break;
-
-                case EVENT_TTY_MODE_SET:
-                    handleSetTTYModeResponse(msg);
                     break;
             }
         }
@@ -436,7 +408,6 @@ public class PhoneGlobals extends ContextWrapper implements WiredHeadsetListener
 
             // Manages wired headset state
             wiredHeadsetManager = new WiredHeadsetManager(this);
-            wiredHeadsetManager.addWiredHeadsetListener(this);
 
             // Bluetooth manager
             bluetoothManager = new BluetoothManager();
@@ -468,9 +439,6 @@ public class PhoneGlobals extends ContextWrapper implements WiredHeadsetListener
             // register connection tracking to PhoneUtils
             PhoneUtils.initializeConnectionHandler(mCM);
 
-            // Read platform settings for TTY feature
-            mTtyEnabled = getResources().getBoolean(R.bool.tty_enabled);
-
             // Register for misc other intent broadcasts.
             IntentFilter intentFilter =
                     new IntentFilter(Intent.ACTION_AIRPLANE_MODE_CHANGED);
@@ -480,9 +448,6 @@ public class PhoneGlobals extends ContextWrapper implements WiredHeadsetListener
             intentFilter.addAction(TelephonyIntents.ACTION_RADIO_TECHNOLOGY_CHANGED);
             intentFilter.addAction(TelephonyIntents.ACTION_SERVICE_STATE_CHANGED);
             intentFilter.addAction(TelephonyIntents.ACTION_EMERGENCY_CALLBACK_MODE_CHANGED);
-            if (mTtyEnabled) {
-                intentFilter.addAction(TtyIntent.TTY_PREFERRED_MODE_CHANGE_ACTION);
-            }
             intentFilter.addAction(AudioManager.RINGER_MODE_CHANGED_ACTION);
             registerReceiver(mReceiver, intentFilter);
 
@@ -513,17 +478,6 @@ public class PhoneGlobals extends ContextWrapper implements WiredHeadsetListener
         // TODO: Register for Cdma Information Records
         // phone.registerCdmaInformationRecord(mHandler, EVENT_UNSOL_CDMA_INFO_RECORD, null);
 
-        // Read TTY settings and store it into BP NV.
-        // AP owns (i.e. stores) the TTY setting in AP settings database and pushes the setting
-        // to BP at power up (BP does not need to make the TTY setting persistent storage).
-        // This way, there is a single owner (i.e AP) for the TTY setting in the phone.
-        if (mTtyEnabled) {
-            mPreferredTtyMode = android.provider.Settings.Secure.getInt(
-                    phone.getContext().getContentResolver(),
-                    android.provider.Settings.Secure.PREFERRED_TTY_MODE,
-                    Phone.TTY_MODE_OFF);
-            mHandler.sendMessage(mHandler.obtainMessage(EVENT_TTY_PREFERRED_MODE_CHANGED, 0));
-        }
         // Read HAC settings and configure audio hardware
         if (getResources().getBoolean(R.bool.hac_enabled)) {
             int hac = android.provider.Settings.System.getInt(phone.getContext().getContentResolver(),
@@ -890,20 +844,6 @@ public class PhoneGlobals extends ContextWrapper implements WiredHeadsetListener
         }
     }
 
-
-    /**
-     * This is called when the wired headset state changes.
-     */
-    @Override
-    public void onWiredHeadsetConnection(boolean pluggedIn) {
-        PhoneConstants.State phoneState = mCM.getState();
-
-        // Force TTY state update according to new headset state
-        if (mTtyEnabled) {
-            mHandler.sendMessage(mHandler.obtainMessage(EVENT_TTY_PREFERRED_MODE_CHANGED, 0));
-        }
-    }
-
     /**
      * Receiver for misc intent broadcasts the Phone app cares about.
      */
@@ -965,12 +905,6 @@ public class PhoneGlobals extends ContextWrapper implements WiredHeadsetListener
                         Intent.EXTRA_DOCK_STATE_UNDOCKED);
                 if (VDBG) Log.d(LOG_TAG, "ACTION_DOCK_EVENT -> mDockState = " + mDockState);
                 mHandler.sendMessage(mHandler.obtainMessage(EVENT_DOCK_STATE_CHANGED, 0));
-            } else if (action.equals(TtyIntent.TTY_PREFERRED_MODE_CHANGE_ACTION)) {
-                mPreferredTtyMode = intent.getIntExtra(TtyIntent.TTY_PREFFERED_MODE,
-                                                       Phone.TTY_MODE_OFF);
-                if (VDBG) Log.d(LOG_TAG, "mReceiver: TTY_PREFERRED_MODE_CHANGE_ACTION");
-                if (VDBG) Log.d(LOG_TAG, "    mode: " + mPreferredTtyMode);
-                mHandler.sendMessage(mHandler.obtainMessage(EVENT_TTY_PREFERRED_MODE_CHANGED, 0));
             } else if (action.equals(AudioManager.RINGER_MODE_CHANGED_ACTION)) {
                 int ringerMode = intent.getIntExtra(AudioManager.EXTRA_RINGER_MODE,
                         AudioManager.RINGER_MODE_NORMAL);
@@ -1049,53 +983,6 @@ public class PhoneGlobals extends ContextWrapper implements WiredHeadsetListener
             otaUtils.dismissAllOtaDialogs();
             if (DBG) Log.d(LOG_TAG, "  - dismissOtaDialogs clears OTA dialogs");
         }
-    }
-
-    private void handleQueryTTYModeResponse(Message msg) {
-        AsyncResult ar = (AsyncResult) msg.obj;
-        if (ar.exception != null) {
-            if (DBG) Log.d(LOG_TAG, "handleQueryTTYModeResponse: Error getting TTY state.");
-        } else {
-            if (DBG) Log.d(LOG_TAG,
-                           "handleQueryTTYModeResponse: TTY enable state successfully queried.");
-
-            int ttymode = ((int[]) ar.result)[0];
-            if (DBG) Log.d(LOG_TAG, "handleQueryTTYModeResponse:ttymode=" + ttymode);
-
-            Intent ttyModeChanged = new Intent(TtyIntent.TTY_ENABLED_CHANGE_ACTION);
-            ttyModeChanged.putExtra("ttyEnabled", ttymode != Phone.TTY_MODE_OFF);
-            sendBroadcastAsUser(ttyModeChanged, UserHandle.ALL);
-
-            String audioTtyMode;
-            switch (ttymode) {
-            case Phone.TTY_MODE_FULL:
-                audioTtyMode = "tty_full";
-                break;
-            case Phone.TTY_MODE_VCO:
-                audioTtyMode = "tty_vco";
-                break;
-            case Phone.TTY_MODE_HCO:
-                audioTtyMode = "tty_hco";
-                break;
-            case Phone.TTY_MODE_OFF:
-            default:
-                audioTtyMode = "tty_off";
-                break;
-            }
-            AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-            audioManager.setParameters("tty_mode="+audioTtyMode);
-        }
-    }
-
-    private void handleSetTTYModeResponse(Message msg) {
-        AsyncResult ar = (AsyncResult) msg.obj;
-
-        if (ar.exception != null) {
-            if (DBG) Log.d (LOG_TAG,
-                    "handleSetTTYModeResponse: Error setting TTY mode, ar.exception"
-                    + ar.exception);
-        }
-        phone.queryTTYMode(mHandler.obtainMessage(EVENT_TTY_MODE_GET));
     }
 
     /**
