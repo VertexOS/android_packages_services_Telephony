@@ -180,14 +180,14 @@ abstract class TelephonyConnection extends Connection {
     }
 
     @Override
-    protected void onAnswer() {
+    protected void onAnswer(int videoState) {
         Log.v(this, "onAnswer");
         // TODO(santoscordon): Tons of hairy logic is missing here around multiple active calls on
         // CDMA devices. See {@link CallManager.acceptCall}.
 
         if (isValidRingingCall() && getPhone() != null) {
             try {
-                getPhone().acceptCall();
+                getPhone().acceptCall(videoState);
             } catch (CallStateException e) {
                 Log.e(this, e, "Failed to accept call.");
             }
