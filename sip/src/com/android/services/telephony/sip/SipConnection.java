@@ -144,11 +144,11 @@ final class SipConnection extends Connection {
     }
 
     @Override
-    protected void onAnswer() {
+    protected void onAnswer(int videoState) {
         if (VERBOSE) log("onAnswer");
         try {
             if (isValidRingingCall() && getPhone() != null) {
-                getPhone().acceptCall();
+                getPhone().acceptCall(videoState);
             }
         } catch (CallStateException e) {
             log("onAnswer, exception: " + e);
