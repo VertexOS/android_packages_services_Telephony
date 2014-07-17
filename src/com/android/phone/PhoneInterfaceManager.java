@@ -1738,4 +1738,10 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         }
         return adnRecord.getAlphaTag();
     }
+
+    @Override
+    public boolean setOperatorBrandOverride(String iccId, String brand) {
+        enforceModifyPermissionOrCarrierPrivilege();
+        return mPhone.setOperatorBrandOverride(iccId, brand);
+    }
 }
