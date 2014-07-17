@@ -48,9 +48,7 @@ public final class SipConnectionService extends ConnectionService {
     static PhoneAccount getPhoneAccount(Context context) {
         return new PhoneAccount(
                 new ComponentName(context, SipConnectionService.class),
-                null /* id */,
-                null /* handle */,
-                PhoneAccount.CAPABILITY_CALL_PROVIDER);
+                null /* id */);
     }
 
     @Override
