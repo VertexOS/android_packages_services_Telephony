@@ -52,7 +52,8 @@
     <string name="requesting_unlock" msgid="6412629401033249351">"S\'està sol·licitant el desbloqueig de la xarxa..."</string>
     <string name="unlock_failed" msgid="6490531697031504225">"Sol·licitud de desbloqueig de xarxa incorrecta."</string>
     <string name="unlock_success" msgid="6770085622238180152">"Desbloqueig de la xarxa correcte."</string>
-    <string name="mobile_network_settings_not_available" msgid="7355254462995117896">"La configuració de la xarxa per a mòbils no està disponible per a aquest usuari."</string>
+    <!-- no translation found for mobile_network_settings_not_available (3831911315358856062) -->
+    <skip />
     <string name="labelGSMMore" msgid="5930842194056092106">"Configuració de trucades GSM"</string>
     <string name="labelCDMAMore" msgid="1630676740428229339">"Configuració de trucades CDMA"</string>
     <string name="apn_settings" msgid="9043423184895642077">"APN"</string>
@@ -124,7 +125,8 @@
     <string name="no_change" msgid="3186040086622435212">"No s\'ha fet cap canvi."</string>
     <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"Trieu un servei de correu de veu"</string>
     <string name="voicemail_default" msgid="5902099213882352338">"El meu operador"</string>
-    <string name="mobile_networks" msgid="5540397602919106177">"Configuració de la xarxa mòbil"</string>
+    <!-- no translation found for mobile_networks (2843854043339307375) -->
+    <skip />
     <string name="label_available" msgid="1181658289009300430">"Xarxes disponibles"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"S\'està cercant…"</string>
     <string name="empty_networks_list" msgid="4249426905018815316">"No s\'ha trobat cap xarxa."</string>
@@ -172,7 +174,8 @@
     <item msgid="3817924849415716259">"GSM/WCDMA preferit"</item>
   </string-array>
     <string name="data_enabled" msgid="5972538663568715366">"Dades activades"</string>
-    <string name="data_enable_summary" msgid="5022018967714633874">"Permet l\'accés a dades a les través de la xarxa mòbil"</string>
+    <!-- no translation found for data_enable_summary (2382798156640007971) -->
+    <skip />
     <string name="roaming" msgid="8871412572928323707">"Itinerància de dades"</string>
     <string name="roaming_enable" msgid="7331106985174381987">"Estableix connexió amb serveis de dades en itinerància"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"Estableix connexió amb serveis de dades en itinerància"</string>
@@ -190,7 +193,8 @@
     <string name="throttle_data_rate_reduced_subtext" msgid="7492763592720107737">"<xliff:g id="USED_0">%1$s</xliff:g> màxim superat\nVelocitat de dades reduïda a <xliff:g id="USED_1">%2$d</xliff:g> kbps"</string>
     <string name="throttle_time_frame_subtext" msgid="7732763021560399960">"<xliff:g id="USED_0">%1$d</xliff:g>٪ del cicle transcorregut\nEl període següent comença d\'aquí a <xliff:g id="USED_1">%2$d</xliff:g> dies (<xliff:g id="USED_2">%3$s</xliff:g>)"</string>
     <string name="throttle_rate_subtext" msgid="2149102656120726855">"La velocitat de dades es redueix a <xliff:g id="USED">%1$d</xliff:g> kbps si se supera el límit d\'ús de dades"</string>
-    <string name="throttle_help_subtext" msgid="5217706521499010816">"Més informació sobre la política d\'us de dades de la xarxa mòbil de l\'operador"</string>
+    <!-- no translation found for throttle_help_subtext (3633091498168446044) -->
+    <skip />
     <string name="cell_broadcast_sms" msgid="5584192824053625842">"SMS de difusió de cel·la"</string>
     <string name="enable_disable_cell_bc_sms" msgid="4851147873691392255">"SMS de difusió de cel·la"</string>
     <string name="cell_bc_sms_enable" msgid="6441688565738921084">"SMS de difusió de cel·la activat"</string>
@@ -409,7 +413,8 @@
     <string name="notification_missedCall_message" msgid="3049928912736917988">"Missatge"</string>
     <string name="incall_error_power_off" msgid="6550191216405193368">"Per fer una trucada, primer apagueu el mode d\'avió."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"No registrat a la xarxa."</string>
-    <string name="incall_error_out_of_service" msgid="8587993036435080418">"La xarxa mòbil no està disponible."</string>
+    <!-- no translation found for incall_error_out_of_service (4100065333878929223) -->
+    <skip />
     <string name="incall_error_no_phone_number_supplied" msgid="4197432103471807739">"No s\'ha enviat la trucada perquè no s\'ha introduït cap número vàlid."</string>
     <string name="incall_error_call_failed" msgid="4313552620858880999">"No s\'ha enviat la trucada."</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"S\'està iniciant la seqüència MMI..."</string>
@@ -420,7 +425,6 @@
     <string name="incall_error_supp_service_conference" msgid="2505727299596357312">"No es poden fer trucades de conferència."</string>
     <string name="incall_error_supp_service_reject" msgid="7055164130563826216">"No es pot rebutjar la trucada."</string>
     <string name="incall_error_supp_service_hangup" msgid="7417583238334762737">"No es pot alliberar les trucades."</string>
-    <string name="incall_call_type_label_sip" msgid="2310958283037924371">"Trucada per Internet"</string>
     <string name="emergency_enable_radio_dialog_title" msgid="4627849966634578257">"Trucada d\'emergència"</string>
     <string name="emergency_enable_radio_dialog_message" msgid="207613549344420291">"S\'està activant el senyal mòbil..."</string>
     <string name="emergency_enable_radio_dialog_retry" msgid="3724423402363063736">"Fora de l\'àrea de servei; s\'està tornant a provar..."</string>
@@ -506,98 +510,10 @@
     <string name="contactPhoto" msgid="4713193418046639466">"foto de contacte"</string>
     <string name="goPrivate" msgid="865837794424530980">"passa a privat"</string>
     <string name="selectContact" msgid="781975788478987237">"selecciona el contacte"</string>
-    <string name="sip_settings" msgid="6699045718560859691">"Configuració de les trucades per Internet"</string>
-    <string name="sip_accounts" msgid="2097054001288457163">"Comptes per a trucades per Internet (SIP)"</string>
-    <string name="sip_accounts_title" msgid="1212889069281054570">"Comptes"</string>
-    <string name="sip_receive_calls" msgid="5635685570889971559">"Recepció de trucades entrants"</string>
-    <string name="sip_receive_calls_summary" msgid="8403613238633679184">"Redueix la durada de la bateria"</string>
-    <string name="sip_call_options_title" msgid="27433718808839672">"Trucades per Internet"</string>
-    <string name="sip_call_options_wifi_only_title" msgid="145572394529090811">"Trucades per Internet (només Wi-Fi)"</string>
-    <string name="sip_call_options_entry_1" msgid="6556668894178520760">"Per a totes les trucades quan hi hagi xarxes de dades disponibles"</string>
-    <string name="sip_call_options_entry_2" msgid="6789764029719494361">"Només trucades per Internet"</string>
-    <string name="sip_call_options_entry_3" msgid="7474809001402649185">"Pregunta cada vegada"</string>
-    <string name="sip_call_options_wifi_only_entry_1" msgid="7423523864471650069">"Per a totes les trucades"</string>
-    <string name="pick_outgoing_call_phone_type" msgid="5622916534828338675">"Fes una trucada"</string>
-    <string name="pick_outgoing_sip_phone" msgid="7012322118236208875">"Utilitza el compte per a trucades per Internet:"</string>
-    <string name="remember_my_choice" msgid="7058059586169290705">"Utilitza-ho sempre per fer trucades per Internet"</string>
-    <string name="reset_my_choice_hint" msgid="5523030209803567922">"Pots canviar el compte de trucades per Internet que vols utilitzar de manera predeterminada, accedeix a Telèfon &gt; Configuració &gt; Configuració de trucades per Internet &gt; Comptes."</string>
-    <string name="pstn_phone" msgid="8782554491484326429">"Trucada amb telèfon mòbil"</string>
-    <string name="internet_phone" msgid="1147922660195095810">"Trucada per Internet"</string>
-    <string name="no_sip_account_found_title" msgid="6266249392379373628">"No hi ha cap compte per a trucades per Internet"</string>
-    <string name="no_sip_account_found" msgid="724325811961769997">"En aquest telèfon no hi ha comptes de trucades per Internet. Vols afegir-n\'hi un?"</string>
-    <string name="sip_menu_add" msgid="8757508498518881500">"Afegeix"</string>
-    <string name="add_sip_account" msgid="5904858426290097611">"Afegeix un compte"</string>
-    <string name="remove_sip_account" msgid="7645900420385682570">"Elimina el compte"</string>
-    <string name="sip_account_list" msgid="5480058210652194306">"Comptes SIP"</string>
-    <string name="saving_account" msgid="52903398217017954">"S\'està desant el compte..."</string>
-    <string name="removing_account" msgid="7183999896088628100">"S\'està eliminant el compte..."</string>
-    <string name="sip_menu_save" msgid="5842531129356014943">"Desa"</string>
-    <string name="sip_menu_discard" msgid="524075892158789701">"Descarta"</string>
-    <string name="alert_dialog_close" msgid="7759635137627626235">"Tanca el perfil"</string>
-    <string name="alert_dialog_ok" msgid="3580379406983564080">"D\'acord"</string>
-    <string name="close_profile" msgid="6886968271423155284">"Tanca"</string>
-    <string name="primary_account_summary_with" msgid="1633960536212343187">"Compte principal. <xliff:g id="REGISTRATION_STATUS">%s</xliff:g>"</string>
-    <string name="registration_status_checking_status" msgid="3381868307694056727">"S\'està comprovant l\'estat..."</string>
-    <string name="registration_status_registering" msgid="4288401139400232968">"S\'està registrant..."</string>
-    <string name="registration_status_still_trying" msgid="3185581992666091911">"Encara s\'està provant..."</string>
-    <string name="registration_status_not_receiving" msgid="4185572774980557758">"No s\'estan rebent trucades."</string>
-    <string name="registration_status_no_data" msgid="4901476962360656611">"S\'ha aturat el registre del compte perquè no hi ha connexió a Internet."</string>
-    <string name="registration_status_no_wifi_data" msgid="4038976374713018067">"S\'ha aturat el registre del compte perquè no hi ha cap connexió Wi-Fi."</string>
-    <string name="registration_status_not_running" msgid="4824867184446232131">"S\'ha produït un error en registrar el compte."</string>
-    <string name="registration_status_done" msgid="884630717456439280">"S\'estan rebent trucades."</string>
-    <string name="registration_status_failed_try_later" msgid="5214474354451220581">"S\'ha produït un error en registrar el compte: (<xliff:g id="REGISTRATION_ERROR_MESSAGE">%s</xliff:g>); ho tornarem a provar més tard"</string>
-    <string name="registration_status_invalid_credentials" msgid="4908446367559341757">"S\'ha produït un error en el registre del compte: el nom d\'usuari o la contrasenya no són correctes."</string>
-    <string name="registration_status_server_unreachable" msgid="5733421582468991276">"S\'ha produït un error en el registre del compte: comprova el nom del servidor."</string>
-    <string name="third_party_account_summary" msgid="2532526738862533028">"L\'aplicació <xliff:g id="ACCOUNT_OWNER">%s</xliff:g> està utilitzant aquest compte actualment."</string>
-    <string name="sip_edit_title" msgid="489288416435014385">"Detalls del compte SIP"</string>
-    <string name="sip_edit_new_title" msgid="3659149255856520385">"Detalls del compte SIP"</string>
-    <string name="domain_address_title" msgid="9071787581316160480">"Servidor"</string>
-    <string name="username_title" msgid="2479375923477682328">"Nom d\'usuari"</string>
-    <string name="password_title" msgid="3323555249068171531">"Contrasenya"</string>
-    <string name="display_name_title" msgid="2459768196312249937">"Nom de visualització"</string>
-    <string name="proxy_address_title" msgid="4828301345351614273">"Adreça de servidor intermediari de sortida"</string>
-    <string name="port_title" msgid="5952939408078626657">"Número de port"</string>
-    <string name="transport_title" msgid="8253139511847746640">"Tipus de transport"</string>
-    <string name="send_keepalive_title" msgid="7533342573918645113">"Envia mantenir en línia"</string>
-    <string name="set_primary_title" msgid="5351892327447571451">"Defineix com a compte principal"</string>
-    <string name="set_primary_summary" msgid="2219064654523258577">"Utilitzat per a trucades sortints"</string>
-    <string name="advanced_settings" msgid="8350631795335495338">"Configuració opcional"</string>
-    <string name="auth_username_title" msgid="851473016307947120">"Nom d\'usuari utilitzat per a l\'autenticació"</string>
-    <string name="auth_username_summary" msgid="6782012405225938629">"Nom d\'usuari utilitzat per a l\'autenticació"</string>
-    <string name="default_preference_summary" msgid="868766740121667450">"&lt;No definit&gt;"</string>
-    <string name="display_name_summary" msgid="8636377460518225523">"&lt;Igual que el nom d\'usuari&gt;"</string>
-    <string name="optional_summary" msgid="1464058793789832411">"&lt;Opcional&gt;"</string>
-    <string name="advanced_settings_show" msgid="4668880308290857597">"▷ Toca per mostrar-ho tot"</string>
-    <string name="advanced_settings_hide" msgid="217398292824758079">"▽ Toca per amagar-ho tot"</string>
-    <string name="empty_alert" msgid="6839103946505432390">"<xliff:g id="INPUT_FIELD_NAME">%s</xliff:g> és obligatori, no es pot deixar en blanc."</string>
-    <string name="not_a_valid_port" msgid="4796149266434630292">"El número de port hauria de ser entre 1000 i 65534."</string>
-    <string name="no_internet_available_title" msgid="3327109242858406165">"No hi ha connexió a Internet"</string>
-    <string name="no_wifi_available_title" msgid="747881033089378758">"No hi ha connexió Wi-Fi"</string>
-    <string name="no_internet_available" msgid="7877142631803238549">"Per fer una trucada per Internet, primer comprova la connexió a Internet."</string>
-    <string name="no_wifi_available" msgid="1225073547318465713">"Has d\'estar connectat a una xarxa Wi-Fi per fer trucades per Internet (utilitza la configuració Wi-Fi i Xarxa)"</string>
-    <string name="no_voip" msgid="8901474054537199865">"No s\'admeten les trucades per Internet"</string>
-    <string name="sip_system_decide" msgid="368030746310423471">"Automàtic"</string>
-    <string name="sip_always_send_keepalive" msgid="8192080724632877132">"Envia sempre"</string>
     <string name="not_voice_capable" msgid="2739898841461577811">"No s\'admeten les trucades de veu"</string>
     <string name="respond_via_sms_setting_title" msgid="3754000371039709383">"Respostes ràpides"</string>
     <string name="respond_via_sms_setting_summary" msgid="9150281183930613065"></string>
-    <string name="description_image_button_one" msgid="5502718871331943463">"un"</string>
-    <string name="description_image_button_two" msgid="4903738528222924522">"dos"</string>
-    <string name="description_image_button_three" msgid="5570985408463782329">"tres"</string>
-    <string name="description_image_button_four" msgid="1697520001239289074">"quatre"</string>
-    <string name="description_image_button_five" msgid="3450276493026943454">"cinc"</string>
-    <string name="description_image_button_six" msgid="2070376172268675300">"sis"</string>
-    <string name="description_image_button_seven" msgid="1757351311199993371">"set"</string>
-    <string name="description_image_button_eight" msgid="4734693919020613227">"vuit"</string>
-    <string name="description_image_button_nine" msgid="5568534122590597040">"nou"</string>
-    <string name="description_image_button_star" msgid="1976280813017254462">"estrella"</string>
-    <string name="description_image_button_zero" msgid="4211255756866893605">"zero"</string>
-    <string name="description_image_button_pound" msgid="1716041284529917866">"coixinet"</string>
     <string name="description_dial_button" msgid="7459705245418435351">"marca"</string>
-    <string name="description_delete_button" msgid="4015842181592283903">"retrocés"</string>
-    <string name="description_target_answer" msgid="7205604197797472471">"Resposta"</string>
-    <string name="description_target_send_sms" msgid="2098326025587950144">"Envia SMS"</string>
-    <string name="description_target_decline" msgid="4789834364389731957">"Rebutja"</string>
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"Vibra"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"Vibra"</string>
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"So"</string>
@@ -607,9 +523,9 @@
     <string name="dtmf_tone_enable_title" msgid="827601042915852989">"Sonar en marcar els números"</string>
     <string name="dial_pad_autocomplete" msgid="494525952035761075">"Autocompletar amb teclat"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"So i vibració"</string>
-    <string name="choose_wifi_for_call_msg" msgid="193549297122949976">"Vols fer servir la connexió Wi-Fi per fer trucades?"</string>
-    <string name="choose_wifi_for_call_yes" msgid="5312994368472630983">"Sí"</string>
-    <string name="choose_wifi_for_call_no" msgid="7132239734287157307">"No"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"Targetes SIM integrades"</string>
-    <string name="sip_connection_service_label" msgid="3547998349299125294">"Trucades d\'Internet integrades"</string>
+    <string name="enable_video_calling_title" msgid="7237253660669000899">"Activa les videotrucades"</string>
+    <string name="enable_video_calling_dialog_msg" msgid="6547569773866546434">"Per activar les videotrucades, primer has d\'activar el mode 4G LTE millorat a la configuració del sistema."</string>
+    <string name="enable_video_calling_dialog_settings" msgid="576528473599603249">"Configuració de xarxa"</string>
+    <string name="enable_video_calling_dialog_close" msgid="7411471282167927991">"Tanca"</string>
 </resources>

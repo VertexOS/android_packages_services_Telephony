@@ -52,7 +52,7 @@
     <string name="requesting_unlock" msgid="6412629401033249351">"מבקש ביטול נעילת רשת..."</string>
     <string name="unlock_failed" msgid="6490531697031504225">"הבקשה לביטול נעילת הרשת נכשלה."</string>
     <string name="unlock_success" msgid="6770085622238180152">"ביטול נעילת הרשת התבצע בהצלחה."</string>
-    <string name="mobile_network_settings_not_available" msgid="7355254462995117896">"הגדרות של רשת לנייד אינן זמינות עבור המשתמש הזה"</string>
+    <string name="mobile_network_settings_not_available" msgid="3831911315358856062">"הגדרות רשת סלולרית אינן זמינות עבור המשתמש הזה"</string>
     <string name="labelGSMMore" msgid="5930842194056092106">"‏הגדרות שיחה של GSM"</string>
     <string name="labelCDMAMore" msgid="1630676740428229339">"‏הגדרות שיחה של CDMA"</string>
     <string name="apn_settings" msgid="9043423184895642077">"שמות של נקודות גישה"</string>
@@ -124,7 +124,7 @@
     <string name="no_change" msgid="3186040086622435212">"לא בוצעו שינויים."</string>
     <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"בחר שירות של דואר קולי"</string>
     <string name="voicemail_default" msgid="5902099213882352338">"הספק שלי"</string>
-    <string name="mobile_networks" msgid="5540397602919106177">"הגדרות רשת לנייד"</string>
+    <string name="mobile_networks" msgid="2843854043339307375">"הגדרות רשת סלולרית"</string>
     <string name="label_available" msgid="1181658289009300430">"רשתות זמינות"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"מחפש..."</string>
     <string name="empty_networks_list" msgid="4249426905018815316">"לא נמצאו רשתות."</string>
@@ -172,7 +172,8 @@
     <item msgid="3817924849415716259">"‏GSM/WCDMA מועדף"</item>
   </string-array>
     <string name="data_enabled" msgid="5972538663568715366">"נתונים מופעלים"</string>
-    <string name="data_enable_summary" msgid="5022018967714633874">"אפשר גישת נתונים ברשת לנייד"</string>
+    <!-- no translation found for data_enable_summary (2382798156640007971) -->
+    <skip />
     <string name="roaming" msgid="8871412572928323707">"נדידת נתונים"</string>
     <string name="roaming_enable" msgid="7331106985174381987">"התחבר לשירותי נתונים בעת נדידה"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"התחבר לשירותי נתונים בעת נדידה"</string>
@@ -190,7 +191,7 @@
     <string name="throttle_data_rate_reduced_subtext" msgid="7492763592720107737">"‏<xliff:g id="USED_0">%1$s</xliff:g> חריגה מהמקסימום\nקצב הנתונים ירד ל-‏‎<xliff:g id="USED_1">%2$d</xliff:g> Kb לשנייה"</string>
     <string name="throttle_time_frame_subtext" msgid="7732763021560399960">"<xliff:g id="USED_0">%1$d</xliff:g>?? מהמחזור חלפו\nהתקופה הבאה מתחילה בעוד <xliff:g id="USED_1">%2$d</xliff:g> ימים (<xliff:g id="USED_2">%3$s</xliff:g>)"</string>
     <string name="throttle_rate_subtext" msgid="2149102656120726855">"‏קצב הנתונים יורד ל-‏‎<xliff:g id="USED">%1$d</xliff:g> Kb לשנייה במקרה של חריגה ממגבלת השימוש בנתונים"</string>
-    <string name="throttle_help_subtext" msgid="5217706521499010816">"למידע נוסף על מדיניות השימוש בנתונים ברשת הסלולרית של הספק שלך"</string>
+    <string name="throttle_help_subtext" msgid="3633091498168446044">"מידע נוסף על מדיניות השימוש בנתונים ברשת הסלולרית של הספק שלך"</string>
     <string name="cell_broadcast_sms" msgid="5584192824053625842">"‏SMS בשידור סלולרי"</string>
     <string name="enable_disable_cell_bc_sms" msgid="4851147873691392255">"‏SMS בשידור סלולרי"</string>
     <string name="cell_bc_sms_enable" msgid="6441688565738921084">"‏SMS בשידור סלולרי מופעל"</string>
@@ -409,7 +410,7 @@
     <string name="notification_missedCall_message" msgid="3049928912736917988">"שלח הודעה"</string>
     <string name="incall_error_power_off" msgid="6550191216405193368">"כדי להתקשר, כבה תחילה את מצב טיסה."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"לא רשום ברשת."</string>
-    <string name="incall_error_out_of_service" msgid="8587993036435080418">"הרשת לנייד אינה זמינה."</string>
+    <string name="incall_error_out_of_service" msgid="4100065333878929223">"רשת סלולרית אינה זמינה."</string>
     <string name="incall_error_no_phone_number_supplied" msgid="4197432103471807739">"השיחה לא נשלחה, לא הוזן מספר חוקי."</string>
     <string name="incall_error_call_failed" msgid="4313552620858880999">"השיחה לא נשלחה."</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"‏מתחיל רצף MMI…"</string>
@@ -420,7 +421,6 @@
     <string name="incall_error_supp_service_conference" msgid="2505727299596357312">"אין אפשרות לנהל שיחות ועידה."</string>
     <string name="incall_error_supp_service_reject" msgid="7055164130563826216">"אין אפשרות לדחות את השיחה."</string>
     <string name="incall_error_supp_service_hangup" msgid="7417583238334762737">"אין אפשרות להוציא שיחות."</string>
-    <string name="incall_call_type_label_sip" msgid="2310958283037924371">"שיחת אינטרנט"</string>
     <string name="emergency_enable_radio_dialog_title" msgid="4627849966634578257">"שיחת חירום"</string>
     <string name="emergency_enable_radio_dialog_message" msgid="207613549344420291">"מפעיל את הרדיו…"</string>
     <string name="emergency_enable_radio_dialog_retry" msgid="3724423402363063736">"מחוץ לאזור שירות, מנסה שוב..."</string>
@@ -506,98 +506,10 @@
     <string name="contactPhoto" msgid="4713193418046639466">"תמונה של איש קשר"</string>
     <string name="goPrivate" msgid="865837794424530980">"עבור לשיחה פרטית"</string>
     <string name="selectContact" msgid="781975788478987237">"בחר איש קשר"</string>
-    <string name="sip_settings" msgid="6699045718560859691">"הגדרות שיחת אינטרנט"</string>
-    <string name="sip_accounts" msgid="2097054001288457163">"‏חשבונות (SIP) להתקשרות באינטרנט"</string>
-    <string name="sip_accounts_title" msgid="1212889069281054570">"חשבונות"</string>
-    <string name="sip_receive_calls" msgid="5635685570889971559">"קבל שיחות נכנסות"</string>
-    <string name="sip_receive_calls_summary" msgid="8403613238633679184">"מקצר את חיי הסוללה"</string>
-    <string name="sip_call_options_title" msgid="27433718808839672">"השתמש בהתקשרות באינטרנט"</string>
-    <string name="sip_call_options_wifi_only_title" msgid="145572394529090811">"‏השתמש בהתקשרות באינטרנט (Wi-Fi בלבד)"</string>
-    <string name="sip_call_options_entry_1" msgid="6556668894178520760">"לכל השיחות כאשר רשת הנתונים זמינה"</string>
-    <string name="sip_call_options_entry_2" msgid="6789764029719494361">"לשיחות אינטרנט בלבד"</string>
-    <string name="sip_call_options_entry_3" msgid="7474809001402649185">"שאל עבור כל שיחה"</string>
-    <string name="sip_call_options_wifi_only_entry_1" msgid="7423523864471650069">"לכל השיחות"</string>
-    <string name="pick_outgoing_call_phone_type" msgid="5622916534828338675">"בצע שיחה"</string>
-    <string name="pick_outgoing_sip_phone" msgid="7012322118236208875">"השתמש בחשבון להתקשרות באינטרנט:"</string>
-    <string name="remember_my_choice" msgid="7058059586169290705">"השתמש תמיד כדי לבצע שיחות אינטרנט"</string>
-    <string name="reset_my_choice_hint" msgid="5523030209803567922">"‏ניתן לשנות את חשבון השיחות באינטרנט לשימוש כברירת מחדל דרך \'טלפון\' &gt; \'הגדרות\' &gt; \'הגדרות שיחת אינטרנט\' &gt; \'חשבונות\'."</string>
-    <string name="pstn_phone" msgid="8782554491484326429">"שיחה בטלפון סלולרי"</string>
-    <string name="internet_phone" msgid="1147922660195095810">"שיחת אינטרנט"</string>
-    <string name="no_sip_account_found_title" msgid="6266249392379373628">"אין חשבון להתקשרות באינטרנט"</string>
-    <string name="no_sip_account_found" msgid="724325811961769997">"אין חשבונות שיחת אינטרנט לטלפון זה. האם אתה רוצה להוסיף חשבון כעת?"</string>
-    <string name="sip_menu_add" msgid="8757508498518881500">"הוסף"</string>
-    <string name="add_sip_account" msgid="5904858426290097611">"הוסף חשבון"</string>
-    <string name="remove_sip_account" msgid="7645900420385682570">"הסר חשבון"</string>
-    <string name="sip_account_list" msgid="5480058210652194306">"‏חשבונות SIP"</string>
-    <string name="saving_account" msgid="52903398217017954">"שומר את החשבון..."</string>
-    <string name="removing_account" msgid="7183999896088628100">"מסיר את החשבון..."</string>
-    <string name="sip_menu_save" msgid="5842531129356014943">"שמור"</string>
-    <string name="sip_menu_discard" msgid="524075892158789701">"מחק"</string>
-    <string name="alert_dialog_close" msgid="7759635137627626235">"סגור את הפרופיל"</string>
-    <string name="alert_dialog_ok" msgid="3580379406983564080">"אישור"</string>
-    <string name="close_profile" msgid="6886968271423155284">"סגור"</string>
-    <string name="primary_account_summary_with" msgid="1633960536212343187">"חשבון ראשי. <xliff:g id="REGISTRATION_STATUS">%s</xliff:g>"</string>
-    <string name="registration_status_checking_status" msgid="3381868307694056727">"בודק סטטוס..."</string>
-    <string name="registration_status_registering" msgid="4288401139400232968">"מבצע רישום..."</string>
-    <string name="registration_status_still_trying" msgid="3185581992666091911">"עדיין מנסה..."</string>
-    <string name="registration_status_not_receiving" msgid="4185572774980557758">"לא מקבל שיחות."</string>
-    <string name="registration_status_no_data" msgid="4901476962360656611">"רישום החשבון הופסק כיוון שאין חיבור לאינטרנט."</string>
-    <string name="registration_status_no_wifi_data" msgid="4038976374713018067">"‏רישום החשבון הופסק כיוון שאין חיבור Wi-Fi."</string>
-    <string name="registration_status_not_running" msgid="4824867184446232131">"רישום החשבון נכשל."</string>
-    <string name="registration_status_done" msgid="884630717456439280">"מקבל שיחות."</string>
-    <string name="registration_status_failed_try_later" msgid="5214474354451220581">"הרשמת החשבון נכשלה: (<xliff:g id="REGISTRATION_ERROR_MESSAGE">%s</xliff:g>); יתבצע ניסיון חוזר מאוחר יותר"</string>
-    <string name="registration_status_invalid_credentials" msgid="4908446367559341757">"רישום החשבון נכשל: שם המשתמש או הסיסמה שגויים."</string>
-    <string name="registration_status_server_unreachable" msgid="5733421582468991276">"רישום החשבון נכשל: בדוק את שם השרת."</string>
-    <string name="third_party_account_summary" msgid="2532526738862533028">"האפליקציה <xliff:g id="ACCOUNT_OWNER">%s</xliff:g> משתמש כרגע בחשבון זה."</string>
-    <string name="sip_edit_title" msgid="489288416435014385">"‏פרטי חשבון SIP"</string>
-    <string name="sip_edit_new_title" msgid="3659149255856520385">"‏פרטי חשבון SIP"</string>
-    <string name="domain_address_title" msgid="9071787581316160480">"שרת"</string>
-    <string name="username_title" msgid="2479375923477682328">"שם משתמש"</string>
-    <string name="password_title" msgid="3323555249068171531">"סיסמה"</string>
-    <string name="display_name_title" msgid="2459768196312249937">"שם תצוגה"</string>
-    <string name="proxy_address_title" msgid="4828301345351614273">"‏כתובת שרת Proxy יוצא"</string>
-    <string name="port_title" msgid="5952939408078626657">"מספר יציאה"</string>
-    <string name="transport_title" msgid="8253139511847746640">"סוג העברה"</string>
-    <string name="send_keepalive_title" msgid="7533342573918645113">"שלח אות חיבור"</string>
-    <string name="set_primary_title" msgid="5351892327447571451">"הגדר כחשבון ראשי"</string>
-    <string name="set_primary_summary" msgid="2219064654523258577">"משמש לשיחות יוצאות"</string>
-    <string name="advanced_settings" msgid="8350631795335495338">"הגדרות אופציונליות"</string>
-    <string name="auth_username_title" msgid="851473016307947120">"שם משתמש לאימות"</string>
-    <string name="auth_username_summary" msgid="6782012405225938629">"שם משתמש המשמש לאימות"</string>
-    <string name="default_preference_summary" msgid="868766740121667450">"‏&lt;לא הוגדר&gt;"</string>
-    <string name="display_name_summary" msgid="8636377460518225523">"‏&lt;זהה לשם משתמש&gt;"</string>
-    <string name="optional_summary" msgid="1464058793789832411">"‏&lt;אופציונלי&gt;"</string>
-    <string name="advanced_settings_show" msgid="4668880308290857597">"▷ גע כדי להציג את הכל"</string>
-    <string name="advanced_settings_hide" msgid="217398292824758079">"▽ גע כדי להסתיר את הכל"</string>
-    <string name="empty_alert" msgid="6839103946505432390">"<xliff:g id="INPUT_FIELD_NAME">%s</xliff:g> הוא שדה חובה ולא ניתן להשאירו ריק."</string>
-    <string name="not_a_valid_port" msgid="4796149266434630292">"מספר היציאה צריך להיות בין 1000 ל-65534."</string>
-    <string name="no_internet_available_title" msgid="3327109242858406165">"אין חיבור לאינטרנט"</string>
-    <string name="no_wifi_available_title" msgid="747881033089378758">"‏אין חיבור Wi-Fi"</string>
-    <string name="no_internet_available" msgid="7877142631803238549">"כדי לבצע שיחת אינטרנט, בדוק תחילה את החיבור לאינטרנט."</string>
-    <string name="no_wifi_available" msgid="1225073547318465713">"‏עליך להיות מחובר לרשת Wi-Fi כדי לבצע שיחות באינטרנט (השתמש בהגדרות \'אלחוטי ורשתות\')."</string>
-    <string name="no_voip" msgid="8901474054537199865">"אין תמיכה בהתקשרות באינטרנט"</string>
-    <string name="sip_system_decide" msgid="368030746310423471">"אוטומטי"</string>
-    <string name="sip_always_send_keepalive" msgid="8192080724632877132">"שלח תמיד"</string>
     <string name="not_voice_capable" msgid="2739898841461577811">"חיוג קולי אינו נתמך"</string>
     <string name="respond_via_sms_setting_title" msgid="3754000371039709383">"תגובות מהירות"</string>
     <string name="respond_via_sms_setting_summary" msgid="9150281183930613065"></string>
-    <string name="description_image_button_one" msgid="5502718871331943463">"אחת"</string>
-    <string name="description_image_button_two" msgid="4903738528222924522">"שתיים"</string>
-    <string name="description_image_button_three" msgid="5570985408463782329">"שלוש"</string>
-    <string name="description_image_button_four" msgid="1697520001239289074">"ארבע"</string>
-    <string name="description_image_button_five" msgid="3450276493026943454">"חמש"</string>
-    <string name="description_image_button_six" msgid="2070376172268675300">"שש"</string>
-    <string name="description_image_button_seven" msgid="1757351311199993371">"שבע"</string>
-    <string name="description_image_button_eight" msgid="4734693919020613227">"שמונה"</string>
-    <string name="description_image_button_nine" msgid="5568534122590597040">"תשע"</string>
-    <string name="description_image_button_star" msgid="1976280813017254462">"כוכבית"</string>
-    <string name="description_image_button_zero" msgid="4211255756866893605">"אפס"</string>
-    <string name="description_image_button_pound" msgid="1716041284529917866">"סולמית"</string>
     <string name="description_dial_button" msgid="7459705245418435351">"חייג"</string>
-    <string name="description_delete_button" msgid="4015842181592283903">"Backspace"</string>
-    <string name="description_target_answer" msgid="7205604197797472471">"ענה"</string>
-    <string name="description_target_send_sms" msgid="2098326025587950144">"‏שלח SMS"</string>
-    <string name="description_target_decline" msgid="4789834364389731957">"דחה"</string>
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"רטט"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"רטט"</string>
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"צליל"</string>
@@ -607,9 +519,9 @@
     <string name="dtmf_tone_enable_title" msgid="827601042915852989">"צלילי מגע של לוח חיוג"</string>
     <string name="dial_pad_autocomplete" msgid="494525952035761075">"השלמה אוטומטית בלוח חיוג"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"רינגטון ורטט"</string>
-    <string name="choose_wifi_for_call_msg" msgid="193549297122949976">"‏האם להשתמש ב-Wi-Fi לביצוע השיחה?"</string>
-    <string name="choose_wifi_for_call_yes" msgid="5312994368472630983">"כן"</string>
-    <string name="choose_wifi_for_call_no" msgid="7132239734287157307">"לא"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"‏כרטיסי SIM מובנים"</string>
-    <string name="sip_connection_service_label" msgid="3547998349299125294">"שיחות אינטרנט מובנות"</string>
+    <string name="enable_video_calling_title" msgid="7237253660669000899">"הפעל שיחות וידאו"</string>
+    <string name="enable_video_calling_dialog_msg" msgid="6547569773866546434">"‏להפעלת האפשרות לניהול שיחות וידאו, עליך להפעיל את מצב Enhanced 4G LTE Mode בהגדרות המערכת."</string>
+    <string name="enable_video_calling_dialog_settings" msgid="576528473599603249">"הגדרות רשת"</string>
+    <string name="enable_video_calling_dialog_close" msgid="7411471282167927991">"סגור"</string>
 </resources>
