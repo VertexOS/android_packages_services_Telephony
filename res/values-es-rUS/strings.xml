@@ -52,8 +52,7 @@
     <string name="requesting_unlock" msgid="6412629401033249351">"Solicitando desbloqueo de red..."</string>
     <string name="unlock_failed" msgid="6490531697031504225">"Solicitud de desbloqueo de red incorrecta."</string>
     <string name="unlock_success" msgid="6770085622238180152">"Desbloqueo de red correcto."</string>
-    <!-- no translation found for mobile_network_settings_not_available (3831911315358856062) -->
-    <skip />
+    <string name="mobile_network_settings_not_available" msgid="3831911315358856062">"La configuración de la red móvil no está disponible para este usuario."</string>
     <string name="labelGSMMore" msgid="5930842194056092106">"Config. de llam. GSM"</string>
     <string name="labelCDMAMore" msgid="1630676740428229339">"Configuración de llamadas de CDMA"</string>
     <string name="apn_settings" msgid="9043423184895642077">"Nombres de puntos de acceso"</string>
@@ -125,8 +124,7 @@
     <string name="no_change" msgid="3186040086622435212">"No se realizaron cambios."</string>
     <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"Elegir servicio de buzón de voz"</string>
     <string name="voicemail_default" msgid="5902099213882352338">"Mi proveedor"</string>
-    <!-- no translation found for mobile_networks (2843854043339307375) -->
-    <skip />
+    <string name="mobile_networks" msgid="2843854043339307375">"Configuración de la red móvil"</string>
     <string name="label_available" msgid="1181658289009300430">"Redes disponibles"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"Buscando..."</string>
     <string name="empty_networks_list" msgid="4249426905018815316">"No se encontraron redes."</string>
@@ -193,8 +191,7 @@
     <string name="throttle_data_rate_reduced_subtext" msgid="7492763592720107737">"<xliff:g id="USED_0">%1$s</xliff:g>máximo excedido\nLa velocidad de la transferencia de datos se redujo a <xliff:g id="USED_1">%2$d</xliff:g> kb/seg."</string>
     <string name="throttle_time_frame_subtext" msgid="7732763021560399960">"<xliff:g id="USED_0">%1$d</xliff:g>% del ciclo transcurrido\nEl siguiente período comienza en <xliff:g id="USED_1">%2$d</xliff:g> días (<xliff:g id="USED_2">%3$s</xliff:g>)."</string>
     <string name="throttle_rate_subtext" msgid="2149102656120726855">"La velocidad de la transferencia de datos se reduce a <xliff:g id="USED">%1$d</xliff:g> Kb/seg. si se excede el límite de utilización de datos."</string>
-    <!-- no translation found for throttle_help_subtext (3633091498168446044) -->
-    <skip />
+    <string name="throttle_help_subtext" msgid="3633091498168446044">"Más información sobre la política de uso de datos móviles del proveedor"</string>
     <string name="cell_broadcast_sms" msgid="5584192824053625842">"SMS de emisión celular"</string>
     <string name="enable_disable_cell_bc_sms" msgid="4851147873691392255">"SMS de emisión celular"</string>
     <string name="cell_bc_sms_enable" msgid="6441688565738921084">"SMS de emisión celular activado"</string>
@@ -413,8 +410,7 @@
     <string name="notification_missedCall_message" msgid="3049928912736917988">"Mensaje"</string>
     <string name="incall_error_power_off" msgid="6550191216405193368">"Para realizar una llamada, primero debes desactivar el modo avión."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"No registrado en la red."</string>
-    <!-- no translation found for incall_error_out_of_service (4100065333878929223) -->
-    <skip />
+    <string name="incall_error_out_of_service" msgid="4100065333878929223">"Red móvil no disponible"</string>
     <string name="incall_error_no_phone_number_supplied" msgid="4197432103471807739">"Llamada no enviada. No se ingresó un número válido."</string>
     <string name="incall_error_call_failed" msgid="4313552620858880999">"Llamada no enviada."</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"Iniciar la secuencia de MMI"</string>

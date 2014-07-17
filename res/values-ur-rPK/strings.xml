@@ -52,7 +52,8 @@
     <string name="requesting_unlock" msgid="6412629401033249351">"نیٹ ورک غیر مقفل کرنے کی درخواست کر رہا ہے…"</string>
     <string name="unlock_failed" msgid="6490531697031504225">"نیٹ ورک غیر مقفل کرنے کی درخواست ناکام ہوگئی۔"</string>
     <string name="unlock_success" msgid="6770085622238180152">"نیٹ ورک غیر مقفل کرنا کامیاب رہا۔"</string>
-    <string name="mobile_network_settings_not_available" msgid="7355254462995117896">"اس صارف کیلئے موبائل نیٹ ورک کی ترتیبات دستیاب نہیں ہیں"</string>
+    <!-- no translation found for mobile_network_settings_not_available (3831911315358856062) -->
+    <skip />
     <string name="labelGSMMore" msgid="5930842194056092106">"‏GSM کال کی ترتیبات"</string>
     <string name="labelCDMAMore" msgid="1630676740428229339">"‏CDMA کال کی ترتیبات"</string>
     <string name="apn_settings" msgid="9043423184895642077">"رسائی پوائنٹ کے نام"</string>
@@ -124,7 +125,8 @@
     <string name="no_change" msgid="3186040086622435212">"کوئی تبدیلیاں نہیں ہوئی تھیں۔"</string>
     <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"صوتی میل سروس کا انتخاب کریں"</string>
     <string name="voicemail_default" msgid="5902099213882352338">"میرا کیریئر"</string>
-    <string name="mobile_networks" msgid="5540397602919106177">"موبائل نیٹ ورک کی ترتیبات"</string>
+    <!-- no translation found for mobile_networks (2843854043339307375) -->
+    <skip />
     <string name="label_available" msgid="1181658289009300430">"دستیاب نیٹ ورکس"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"تلاش کر رہا ہے…"</string>
     <string name="empty_networks_list" msgid="4249426905018815316">"کوئی نیٹ ورکس نہیں ملے۔"</string>
@@ -172,7 +174,8 @@
     <item msgid="3817924849415716259">"‏GSM/WCDMA ترجیحی"</item>
   </string-array>
     <string name="data_enabled" msgid="5972538663568715366">"ڈیٹا فعال ہوگیا"</string>
-    <string name="data_enable_summary" msgid="5022018967714633874">"موبائل نیٹ ورک پر ڈیٹا تک رسائی فعال کریں"</string>
+    <!-- no translation found for data_enable_summary (2382798156640007971) -->
+    <skip />
     <string name="roaming" msgid="8871412572928323707">"ڈیٹا رومنگ"</string>
     <string name="roaming_enable" msgid="7331106985174381987">"رومنگ کے وقت ڈیٹا سروسز سے مربوط ہوں"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"رومنگ کے وقت ڈیٹا سروسز سے مربوط ہوں"</string>
@@ -190,7 +193,8 @@
     <string name="throttle_data_rate_reduced_subtext" msgid="7492763592720107737">"‏<xliff:g id="USED_0">%1$s</xliff:g> زیادہ سے زیادہ سے تجاوز کرگیا\nڈیٹا کی شرح گھٹ کر <xliff:g id="USED_1">%2$d</xliff:g> Kb/s ہوگئی"</string>
     <string name="throttle_time_frame_subtext" msgid="7732763021560399960">"<xliff:g id="USED_0">%1$d</xliff:g>٪ از دور ختم ہوگیا\nاگلی مدت <xliff:g id="USED_1">%2$d</xliff:g> دنوں میں شروع ہو گی (<xliff:g id="USED_2">%3$s</xliff:g>)"</string>
     <string name="throttle_rate_subtext" msgid="2149102656120726855">"‏اگر ڈیٹا کے استعمال کی حد سے تجاوز ہو جاتا ہے تو ڈیٹا شرح گھٹ کر <xliff:g id="USED">%1$d</xliff:g> Kb/s ہوجاتی ہے"</string>
-    <string name="throttle_help_subtext" msgid="5217706521499010816">"آپ کے کیریئر کے موبائل نیٹ ورک کے ڈیٹا کے استعمال کی پالیسی کے بارے میں مزید معلومات"</string>
+    <!-- no translation found for throttle_help_subtext (3633091498168446044) -->
+    <skip />
     <string name="cell_broadcast_sms" msgid="5584192824053625842">"‏سیل نشریہ SMS"</string>
     <string name="enable_disable_cell_bc_sms" msgid="4851147873691392255">"‏سیل نشریہ SMS"</string>
     <string name="cell_bc_sms_enable" msgid="6441688565738921084">"‏سیل نشریہ SMS فعال ہوگیا"</string>
@@ -409,7 +413,8 @@
     <string name="notification_missedCall_message" msgid="3049928912736917988">"پیغام"</string>
     <string name="incall_error_power_off" msgid="6550191216405193368">"کال کرنے کیلئے، پہلے ہوائی جہاز طرز کو آف کریں۔"</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"نیٹ ورک پر رجسٹرڈ نہیں ہے۔"</string>
-    <string name="incall_error_out_of_service" msgid="8587993036435080418">"موبائل نیٹ ورک دستیاب نہیں ہے۔"</string>
+    <!-- no translation found for incall_error_out_of_service (4100065333878929223) -->
+    <skip />
     <string name="incall_error_no_phone_number_supplied" msgid="4197432103471807739">"کال نہیں بھیجی گئی، کوئی درست نمبر درج نہیں کیا گیا۔"</string>
     <string name="incall_error_call_failed" msgid="4313552620858880999">"کال نہیں بھیجی گئی۔"</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"‏MMI ترتیب شروع ہو رہی ہے…"</string>
@@ -420,7 +425,6 @@
     <string name="incall_error_supp_service_conference" msgid="2505727299596357312">"کانفرنس کالیں کرنے سے قاصر ہے۔"</string>
     <string name="incall_error_supp_service_reject" msgid="7055164130563826216">"کال مسترد کرنے سے قاصر ہے۔"</string>
     <string name="incall_error_supp_service_hangup" msgid="7417583238334762737">"کال (کالیں) جاری کرنے سے قاصر ہے۔"</string>
-    <string name="incall_call_type_label_sip" msgid="2310958283037924371">"انٹرنیٹ کال"</string>
     <string name="emergency_enable_radio_dialog_title" msgid="4627849966634578257">"ہنگامی کال"</string>
     <string name="emergency_enable_radio_dialog_message" msgid="207613549344420291">"ریڈیو آن کر رہا ہے…"</string>
     <string name="emergency_enable_radio_dialog_retry" msgid="3724423402363063736">"سروس کے علاقے سے باہر، دوبارہ کوشش ہو رہی ہے…"</string>
@@ -506,98 +510,10 @@
     <string name="contactPhoto" msgid="4713193418046639466">"رابطہ کی تصویر"</string>
     <string name="goPrivate" msgid="865837794424530980">"نجی ہوجائیں"</string>
     <string name="selectContact" msgid="781975788478987237">"رابطہ منتخب کریں"</string>
-    <string name="sip_settings" msgid="6699045718560859691">"انٹرنیٹ کال کی ترتیبات"</string>
-    <string name="sip_accounts" msgid="2097054001288457163">"‏انٹرنیٹ کالنگ (SIP) اکاؤنٹس"</string>
-    <string name="sip_accounts_title" msgid="1212889069281054570">"اکاؤنٹس"</string>
-    <string name="sip_receive_calls" msgid="5635685570889971559">"آنے والی کالیں وصول کریں"</string>
-    <string name="sip_receive_calls_summary" msgid="8403613238633679184">"بیٹری کی زندگی کم کر دیتا ہے"</string>
-    <string name="sip_call_options_title" msgid="27433718808839672">"انٹرنیٹ کالنگ کا استعمال کریں"</string>
-    <string name="sip_call_options_wifi_only_title" msgid="145572394529090811">"‏انٹرنیٹ کالنگ کا استعمال کریں (صرف Wi-Fi)"</string>
-    <string name="sip_call_options_entry_1" msgid="6556668894178520760">"ڈیٹا نیٹ ورک دستیاب ہونے پر سبھی کالوں کیلئے"</string>
-    <string name="sip_call_options_entry_2" msgid="6789764029719494361">"صرف انٹرنیٹ کالوں کیلئے"</string>
-    <string name="sip_call_options_entry_3" msgid="7474809001402649185">"ہر کال کیلئے پوچھیں"</string>
-    <string name="sip_call_options_wifi_only_entry_1" msgid="7423523864471650069">"سبھی کالوں کیلئے"</string>
-    <string name="pick_outgoing_call_phone_type" msgid="5622916534828338675">"کال کریں"</string>
-    <string name="pick_outgoing_sip_phone" msgid="7012322118236208875">"انٹرنیٹ کالنگ اکاؤنٹ کا استعمال کریں:"</string>
-    <string name="remember_my_choice" msgid="7058059586169290705">"انٹرنیٹ کالیں کرنے کیلئے ہمیشہ استعمال کریں"</string>
-    <string name="reset_my_choice_hint" msgid="5523030209803567922">"کونسا انٹرنیٹ کالنگ اکاؤنٹ بطور ڈیفالٹ استعمال کرنا ہے آپ اسے فون &gt; ترتیبات &gt; انٹرنیٹ کال کی ترتیبات &gt; اکاؤنٹس کی اسکرین سے تبدیل کرسکتے ہیں۔"</string>
-    <string name="pstn_phone" msgid="8782554491484326429">"سیل فون کال"</string>
-    <string name="internet_phone" msgid="1147922660195095810">"انٹرنیٹ کال"</string>
-    <string name="no_sip_account_found_title" msgid="6266249392379373628">"کوئی انٹرنیٹ کالنگ اکاؤنٹ نہیں ہے"</string>
-    <string name="no_sip_account_found" msgid="724325811961769997">"اس فون پر کوئی انٹرنیٹ کالنگ اکاؤنٹس نہیں ہیں۔ کیا آپ ابھی ایک شامل کرنا چاہتے ہیں؟"</string>
-    <string name="sip_menu_add" msgid="8757508498518881500">"شامل کریں"</string>
-    <string name="add_sip_account" msgid="5904858426290097611">"اکاؤنٹ شامل کریں"</string>
-    <string name="remove_sip_account" msgid="7645900420385682570">"اکاؤنٹ ہٹائیں"</string>
-    <string name="sip_account_list" msgid="5480058210652194306">"‏SIP اکاؤنٹس"</string>
-    <string name="saving_account" msgid="52903398217017954">"اکاؤنٹ محفوظ کر رہا ہے…"</string>
-    <string name="removing_account" msgid="7183999896088628100">"اکاؤنٹ ہٹا رہا ہے…"</string>
-    <string name="sip_menu_save" msgid="5842531129356014943">"محفوظ کریں"</string>
-    <string name="sip_menu_discard" msgid="524075892158789701">"مسترد کریں"</string>
-    <string name="alert_dialog_close" msgid="7759635137627626235">"پروفائل بند کریں"</string>
-    <string name="alert_dialog_ok" msgid="3580379406983564080">"ٹھیک ہے"</string>
-    <string name="close_profile" msgid="6886968271423155284">"بند کریں"</string>
-    <string name="primary_account_summary_with" msgid="1633960536212343187">"بنیادی اکاؤنٹ۔ <xliff:g id="REGISTRATION_STATUS">%s</xliff:g>"</string>
-    <string name="registration_status_checking_status" msgid="3381868307694056727">"حیثیت کی جانچ ہو رہی ہے…"</string>
-    <string name="registration_status_registering" msgid="4288401139400232968">"رجسٹر کر رہا ہے…"</string>
-    <string name="registration_status_still_trying" msgid="3185581992666091911">"اب بھی کوشش ہو رہی ہے…"</string>
-    <string name="registration_status_not_receiving" msgid="4185572774980557758">"کالیں موصول نہیں ہو رہی ہیں۔"</string>
-    <string name="registration_status_no_data" msgid="4901476962360656611">"اکاؤنٹ رجسٹریشن رک گئی کیونکہ کوئی انٹرنیٹ کنکشن نہیں ہے۔"</string>
-    <string name="registration_status_no_wifi_data" msgid="4038976374713018067">"‏اکاؤنٹ رجسٹریشن رک گئی کیونکہ کوئی Wi-Fi کنکشن نہیں ہے۔"</string>
-    <string name="registration_status_not_running" msgid="4824867184446232131">"اکاؤنٹ رجسٹریشن ناکام ہوگئی۔"</string>
-    <string name="registration_status_done" msgid="884630717456439280">"کالیں وصول ہو رہی ہیں۔"</string>
-    <string name="registration_status_failed_try_later" msgid="5214474354451220581">"اکاؤنٹ رجسٹریشن ناکام ہوگئی: (<xliff:g id="REGISTRATION_ERROR_MESSAGE">%s</xliff:g>)؛ بعد میں کوشش کرے گا"</string>
-    <string name="registration_status_invalid_credentials" msgid="4908446367559341757">"اکاؤنٹ رجسٹریشن ناکام ہوگئی: غلط صارف نام یا پاس ورڈ۔"</string>
-    <string name="registration_status_server_unreachable" msgid="5733421582468991276">"اکاؤنٹ رجسٹریشن ناکام ہوگئی: سرور کا نام چیک کریں۔"</string>
-    <string name="third_party_account_summary" msgid="2532526738862533028">"یہ اکاؤنٹ فی الحال <xliff:g id="ACCOUNT_OWNER">%s</xliff:g> ایپ کے ذریعہ زیر استعمال ہے۔"</string>
-    <string name="sip_edit_title" msgid="489288416435014385">"‏SIP اکاؤنٹ کی تفصیلات"</string>
-    <string name="sip_edit_new_title" msgid="3659149255856520385">"‏SIP اکاؤنٹ کی تفصیلات"</string>
-    <string name="domain_address_title" msgid="9071787581316160480">"سرور"</string>
-    <string name="username_title" msgid="2479375923477682328">"صارف نام"</string>
-    <string name="password_title" msgid="3323555249068171531">"پاس ورڈ"</string>
-    <string name="display_name_title" msgid="2459768196312249937">"ڈسپلے نام"</string>
-    <string name="proxy_address_title" msgid="4828301345351614273">"آؤٹ باؤنڈ پراکسی پتہ"</string>
-    <string name="port_title" msgid="5952939408078626657">"پورٹ نمبر"</string>
-    <string name="transport_title" msgid="8253139511847746640">"نقل و حمل کی قسم"</string>
-    <string name="send_keepalive_title" msgid="7533342573918645113">"‏keep-alive بھیجیں"</string>
-    <string name="set_primary_title" msgid="5351892327447571451">"بنیادی اکاؤنٹ کے بطور متعین کریں"</string>
-    <string name="set_primary_summary" msgid="2219064654523258577">"آؤٹ باؤنڈ کالوں کیلئے استعمال کیا گیا"</string>
-    <string name="advanced_settings" msgid="8350631795335495338">"اختیاری ترتیبات"</string>
-    <string name="auth_username_title" msgid="851473016307947120">"تصدیقی صارف نام"</string>
-    <string name="auth_username_summary" msgid="6782012405225938629">"تصدیق کیلئے مستعمل صارف نام"</string>
-    <string name="default_preference_summary" msgid="868766740121667450">"‏&lt;متعین نہیں ہے&gt;"</string>
-    <string name="display_name_summary" msgid="8636377460518225523">"‏&lt;صارف نام جیسا ہی&gt;"</string>
-    <string name="optional_summary" msgid="1464058793789832411">"‏&lt;اختیاری&gt;"</string>
-    <string name="advanced_settings_show" msgid="4668880308290857597">"▽ سبھی کو دکھانے کیلئے چھوئیں"</string>
-    <string name="advanced_settings_hide" msgid="217398292824758079">"▽ سبھی کو چھپانے کیلئے چھوئیں"</string>
-    <string name="empty_alert" msgid="6839103946505432390">"<xliff:g id="INPUT_FIELD_NAME">%s</xliff:g> مطلوب ہے اور خالی نہیں چھوڑا جا سکتا۔"</string>
-    <string name="not_a_valid_port" msgid="4796149266434630292">"پورٹ نمبر 1000 اور 65534 کے اندر ہونا چاہیے۔۔"</string>
-    <string name="no_internet_available_title" msgid="3327109242858406165">"کوئی انٹرنیٹ کنکشن نہیں ہے"</string>
-    <string name="no_wifi_available_title" msgid="747881033089378758">"‏کوئی Wi-Fi کنکشن نہیں ہے"</string>
-    <string name="no_internet_available" msgid="7877142631803238549">"انٹرنیٹ کال کرنے کیلئے، پہلے اپنے انٹرنیٹ کنکشن کی جانچ کریں۔"</string>
-    <string name="no_wifi_available" msgid="1225073547318465713">"‏انٹرنیٹ کالوں کیلئے آپ کو ایک Wi-Fi نیٹ ورک سے مربوط ہونا ہوتا ہے (وائرلیس اور نیٹ ورک کی ترتیبات کا استعمال کریں)۔"</string>
-    <string name="no_voip" msgid="8901474054537199865">"انٹرنیٹ کالنگ تعاون یافتہ نہیں ہے"</string>
-    <string name="sip_system_decide" msgid="368030746310423471">"خودکار"</string>
-    <string name="sip_always_send_keepalive" msgid="8192080724632877132">"ہمیشہ بھیجیں"</string>
     <string name="not_voice_capable" msgid="2739898841461577811">"صوتی کالنگ تعاون یافتہ نہیں ہے"</string>
     <string name="respond_via_sms_setting_title" msgid="3754000371039709383">"فوری جوابات"</string>
     <string name="respond_via_sms_setting_summary" msgid="9150281183930613065"></string>
-    <string name="description_image_button_one" msgid="5502718871331943463">"ایک"</string>
-    <string name="description_image_button_two" msgid="4903738528222924522">"دو"</string>
-    <string name="description_image_button_three" msgid="5570985408463782329">"تین"</string>
-    <string name="description_image_button_four" msgid="1697520001239289074">"چار"</string>
-    <string name="description_image_button_five" msgid="3450276493026943454">"پانچ"</string>
-    <string name="description_image_button_six" msgid="2070376172268675300">"چھ"</string>
-    <string name="description_image_button_seven" msgid="1757351311199993371">"سات"</string>
-    <string name="description_image_button_eight" msgid="4734693919020613227">"آٹھ"</string>
-    <string name="description_image_button_nine" msgid="5568534122590597040">"نو"</string>
-    <string name="description_image_button_star" msgid="1976280813017254462">"ستارہ"</string>
-    <string name="description_image_button_zero" msgid="4211255756866893605">"صفر"</string>
-    <string name="description_image_button_pound" msgid="1716041284529917866">"پاؤنڈ"</string>
     <string name="description_dial_button" msgid="7459705245418435351">"ڈائل کریں"</string>
-    <string name="description_delete_button" msgid="4015842181592283903">"بیک اسپیس"</string>
-    <string name="description_target_answer" msgid="7205604197797472471">"جواب دیں"</string>
-    <string name="description_target_send_sms" msgid="2098326025587950144">"‏SMS بھیجیں"</string>
-    <string name="description_target_decline" msgid="4789834364389731957">"مسترد کریں"</string>
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"وائبریٹ"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"وائبریٹ"</string>
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"آواز"</string>
@@ -607,9 +523,9 @@
     <string name="dtmf_tone_enable_title" msgid="827601042915852989">"ڈائل پیڈ ٹچ ٹونز"</string>
     <string name="dial_pad_autocomplete" msgid="494525952035761075">"ڈائل پیڈ خود کار تکمیل"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"رنگ ٹون اور وائبریٹ"</string>
-    <string name="choose_wifi_for_call_msg" msgid="193549297122949976">"‏کال کرنے کیلئے Wi-Fi کا استعمال کریں؟"</string>
-    <string name="choose_wifi_for_call_yes" msgid="5312994368472630983">"ہاں"</string>
-    <string name="choose_wifi_for_call_no" msgid="7132239734287157307">"نہیں"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"‏پہلے سے شامل SIM کارڈز"</string>
-    <string name="sip_connection_service_label" msgid="3547998349299125294">"پہلے سے شامل انٹرنیٹ کالنگ"</string>
+    <string name="enable_video_calling_title" msgid="7237253660669000899">"ویڈیو کالنگ کو آن کریں"</string>
+    <string name="enable_video_calling_dialog_msg" msgid="6547569773866546434">"‏ویڈیو کالنگ کو آن کرنے کیلئے، آپ کیلئے سسٹم کی ترتیبات میں Enhanced 4G LTE وضع فعال کرنا ضروری ہے۔"</string>
+    <string name="enable_video_calling_dialog_settings" msgid="576528473599603249">"نیٹ ورک کی ترتیبات"</string>
+    <string name="enable_video_calling_dialog_close" msgid="7411471282167927991">"بند کریں"</string>
 </resources>

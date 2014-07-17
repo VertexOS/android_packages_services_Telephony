@@ -52,8 +52,7 @@
     <string name="requesting_unlock" msgid="6412629401033249351">"Versoek tans netwerkontsluiting…"</string>
     <string name="unlock_failed" msgid="6490531697031504225">"Netwerkaanvraag onsuksesvol ontsluit."</string>
     <string name="unlock_success" msgid="6770085622238180152">"Netwerkontsluiting suksesvol."</string>
-    <!-- no translation found for mobile_network_settings_not_available (3831911315358856062) -->
-    <skip />
+    <string name="mobile_network_settings_not_available" msgid="3831911315358856062">"Selnetwerkinstellings is nie vir hierdie gebruiker beskikbaar nie"</string>
     <string name="labelGSMMore" msgid="5930842194056092106">"GSM-oproepinstellings"</string>
     <string name="labelCDMAMore" msgid="1630676740428229339">"CDMA-oproepinstellings"</string>
     <string name="apn_settings" msgid="9043423184895642077">"Toegangspuntname"</string>
@@ -125,8 +124,7 @@
     <string name="no_change" msgid="3186040086622435212">"Geen veranderinge is gemaak nie."</string>
     <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"Kies stemboodskapdiens"</string>
     <string name="voicemail_default" msgid="5902099213882352338">"My draer"</string>
-    <!-- no translation found for mobile_networks (2843854043339307375) -->
-    <skip />
+    <string name="mobile_networks" msgid="2843854043339307375">"Selnetwerkinstellings"</string>
     <string name="label_available" msgid="1181658289009300430">"Beskikbare netwerke"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"Soek tans…"</string>
     <string name="empty_networks_list" msgid="4249426905018815316">"Geen netwerke gevind nie."</string>
@@ -197,8 +195,7 @@
     <!-- no translation found for throttle_time_frame_subtext (7732763021560399960) -->
     <skip />
     <string name="throttle_rate_subtext" msgid="2149102656120726855">"Datatempo verminder na <xliff:g id="USED">%1$d</xliff:g> Kb/s as datagebruiklimiet oorskry word"</string>
-    <!-- no translation found for throttle_help_subtext (3633091498168446044) -->
-    <skip />
+    <string name="throttle_help_subtext" msgid="3633091498168446044">"Meer inligting oor jou diensverskaffer se beleid oor die gebruik van selnetwerkdata"</string>
     <string name="cell_broadcast_sms" msgid="5584192824053625842">"Seluitsending-SMS"</string>
     <string name="enable_disable_cell_bc_sms" msgid="4851147873691392255">"Seluitsending-SMS"</string>
     <string name="cell_bc_sms_enable" msgid="6441688565738921084">"Seluitsending-SMS geaktiveer"</string>
@@ -417,8 +414,7 @@
     <string name="notification_missedCall_message" msgid="3049928912736917988">"Boodskap"</string>
     <string name="incall_error_power_off" msgid="6550191216405193368">"Om \'n oproep te maak, skakel eers vliegtuigmodus af."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"Nie geregistreer op netwerk nie."</string>
-    <!-- no translation found for incall_error_out_of_service (4100065333878929223) -->
-    <skip />
+    <string name="incall_error_out_of_service" msgid="4100065333878929223">"Sellulêre netwerk nie beskikbaar nie."</string>
     <string name="incall_error_no_phone_number_supplied" msgid="4197432103471807739">"Oproep nie gestuur nie, geen geldige nommer ingevoer nie."</string>
     <string name="incall_error_call_failed" msgid="4313552620858880999">"Oproep nie gestuur nie."</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"Begin MMI-volgorde…"</string>

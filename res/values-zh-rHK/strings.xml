@@ -52,8 +52,7 @@
     <string name="requesting_unlock" msgid="6412629401033249351">"正在要求解除網絡鎖定..."</string>
     <string name="unlock_failed" msgid="6490531697031504225">"無法完成解除網絡鎖定的要求"</string>
     <string name="unlock_success" msgid="6770085622238180152">"成功解除網絡鎖定。"</string>
-    <!-- no translation found for mobile_network_settings_not_available (3831911315358856062) -->
-    <skip />
+    <string name="mobile_network_settings_not_available" msgid="3831911315358856062">"這位用戶無法修改流動網絡設定"</string>
     <string name="labelGSMMore" msgid="5930842194056092106">"GSM 通話設定"</string>
     <string name="labelCDMAMore" msgid="1630676740428229339">"CDMA 通話設定"</string>
     <string name="apn_settings" msgid="9043423184895642077">"接入點名稱"</string>
@@ -125,8 +124,7 @@
     <string name="no_change" msgid="3186040086622435212">"沒有更改。"</string>
     <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"選擇語音信箱服務"</string>
     <string name="voicemail_default" msgid="5902099213882352338">"我的流動網絡供應商"</string>
-    <!-- no translation found for mobile_networks (2843854043339307375) -->
-    <skip />
+    <string name="mobile_networks" msgid="2843854043339307375">"流動網絡設定"</string>
     <string name="label_available" msgid="1181658289009300430">"可用的網絡"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"正在搜尋..."</string>
     <string name="empty_networks_list" msgid="4249426905018815316">"找不到網絡。"</string>
@@ -199,8 +197,7 @@
     <!-- no translation found for throttle_time_frame_subtext (7732763021560399960) -->
     <skip />
     <string name="throttle_rate_subtext" msgid="2149102656120726855">"若已達資料用量上限，資料傳輸速率會降低至 <xliff:g id="USED">%1$d</xliff:g> Kb/秒"</string>
-    <!-- no translation found for throttle_help_subtext (3633091498168446044) -->
-    <skip />
+    <string name="throttle_help_subtext" msgid="3633091498168446044">"更多有關流動網絡供應商流動網絡數據使用政策的資料"</string>
     <string name="cell_broadcast_sms" msgid="5584192824053625842">"區域廣播 SMS"</string>
     <string name="enable_disable_cell_bc_sms" msgid="4851147873691392255">"區域廣播 SMS"</string>
     <string name="cell_bc_sms_enable" msgid="6441688565738921084">"區域廣播 SMS 已啟用"</string>
@@ -419,8 +416,7 @@
     <string name="notification_missedCall_message" msgid="3049928912736917988">"短訊"</string>
     <string name="incall_error_power_off" msgid="6550191216405193368">"請先關閉飛行模式後再撥打電話。"</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"未在網絡上完成註冊。"</string>
-    <!-- no translation found for incall_error_out_of_service (4100065333878929223) -->
-    <skip />
+    <string name="incall_error_out_of_service" msgid="4100065333878929223">"無法連線至流動網絡。"</string>
     <string name="incall_error_no_phone_number_supplied" msgid="4197432103471807739">"無法傳送，輸入的號碼無效。"</string>
     <string name="incall_error_call_failed" msgid="4313552620858880999">"無法傳送通話。"</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"開始 MMI 序列..."</string>

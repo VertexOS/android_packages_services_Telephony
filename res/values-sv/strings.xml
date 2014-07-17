@@ -52,8 +52,7 @@
     <string name="requesting_unlock" msgid="6412629401033249351">"Försöker låsa upp nätverket…"</string>
     <string name="unlock_failed" msgid="6490531697031504225">"Det gick inte att låsa upp nätverket."</string>
     <string name="unlock_success" msgid="6770085622238180152">"Nätverket upplåst"</string>
-    <!-- no translation found for mobile_network_settings_not_available (3831911315358856062) -->
-    <skip />
+    <string name="mobile_network_settings_not_available" msgid="3831911315358856062">"Inställningarna för mobilnätverk är inte tillgängliga för den här användaren"</string>
     <string name="labelGSMMore" msgid="5930842194056092106">"Samtalsinst. för GSM"</string>
     <string name="labelCDMAMore" msgid="1630676740428229339">"Samtalsinst. för CDMA"</string>
     <string name="apn_settings" msgid="9043423184895642077">"Åtkomstpunktens namn (APN)"</string>
@@ -125,8 +124,7 @@
     <string name="no_change" msgid="3186040086622435212">"Du har inte gjort några ändringar."</string>
     <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"Välj tjänst för röstbrevlådan"</string>
     <string name="voicemail_default" msgid="5902099213882352338">"Min operatör"</string>
-    <!-- no translation found for mobile_networks (2843854043339307375) -->
-    <skip />
+    <string name="mobile_networks" msgid="2843854043339307375">"Inställningar för mobilnätverk"</string>
     <string name="label_available" msgid="1181658289009300430">"Tillgängliga nätverk"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"Söker…"</string>
     <string name="empty_networks_list" msgid="4249426905018815316">"Hittade inga nätverk."</string>
@@ -199,8 +197,7 @@
     <!-- no translation found for throttle_time_frame_subtext (7732763021560399960) -->
     <skip />
     <string name="throttle_rate_subtext" msgid="2149102656120726855">"Datahastigheten sänks till <xliff:g id="USED">%1$d</xliff:g> kbit/s om dataanvändningsgränsen överskrids"</string>
-    <!-- no translation found for throttle_help_subtext (3633091498168446044) -->
-    <skip />
+    <string name="throttle_help_subtext" msgid="3633091498168446044">"Mer information om operatörens dataanvändningspolicy för mobilnätverket"</string>
     <string name="cell_broadcast_sms" msgid="5584192824053625842">"Cell Broadcast SMS"</string>
     <string name="enable_disable_cell_bc_sms" msgid="4851147873691392255">"Cell Broadcast SMS"</string>
     <string name="cell_bc_sms_enable" msgid="6441688565738921084">"Cell Broadcast SMS aktiverat"</string>
@@ -419,8 +416,7 @@
     <string name="notification_missedCall_message" msgid="3049928912736917988">"Meddelande"</string>
     <string name="incall_error_power_off" msgid="6550191216405193368">"Om du vill ringa ett samtal måste du först inaktivera flygplansläge."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"Inte registrerat på nätverk."</string>
-    <!-- no translation found for incall_error_out_of_service (4100065333878929223) -->
-    <skip />
+    <string name="incall_error_out_of_service" msgid="4100065333878929223">"Det finns inget mobilnät tillgängligt."</string>
     <string name="incall_error_no_phone_number_supplied" msgid="4197432103471807739">"Samtalet har inte skickats. Du måste ange ett giltigt nummer."</string>
     <string name="incall_error_call_failed" msgid="4313552620858880999">"Samtalet har inte skickats."</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"Startar sekvens för MMI-kod…"</string>

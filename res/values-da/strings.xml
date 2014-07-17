@@ -532,6 +532,6 @@
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"Indbyggede SIM-kort"</string>
     <string name="enable_video_calling_title" msgid="7237253660669000899">"Slå videoopkald til"</string>
     <string name="enable_video_calling_dialog_msg" msgid="6547569773866546434">"For at slå videoopkald til, skal du aktivere tilstanden Enhanced 4G LTE i systemindstillinger."</string>
-    <string name="enable_video_calling_dialog_settings" msgid="576528473599603249">"Indstillinger for netværk"</string>
+    <string name="enable_video_calling_dialog_settings" msgid="576528473599603249">"Netværksindstillinger"</string>
     <string name="enable_video_calling_dialog_close" msgid="7411471282167927991">"Luk"</string>
 </resources>
