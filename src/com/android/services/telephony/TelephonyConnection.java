@@ -479,7 +479,7 @@ abstract class TelephonyConnection extends Connection {
      * @return The capabilities with video capabilities applied.
      */
     private int applyVideoCapabilities(int capabilities) {
-        int currentCapabilities = getCallCapabilities();
+        int currentCapabilities = capabilities;
         if (mRemoteVideoCapable) {
             currentCapabilities |= CallCapabilities.SUPPORTS_VT_REMOTE;
         } else {
