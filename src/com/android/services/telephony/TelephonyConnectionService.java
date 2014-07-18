@@ -20,6 +20,8 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Debug;
+import android.telecomm.PhoneAccountMetadata;
+import android.telecomm.TelecommManager;
 import android.telephony.DisconnectCause;
 import android.telephony.ServiceState;
 import android.text.TextUtils;
@@ -44,14 +46,6 @@ public class TelephonyConnectionService extends ConnectionService {
     private static String SCHEME_TEL = "tel";
 
     private EmergencyCallHelper mEmergencyCallHelper;
-
-    static PhoneAccount getPhoneAccount(Context context) {
-        return new PhoneAccount(
-                new ComponentName(context, TelephonyConnectionService.class),
-                null /* id */,
-                null,
-                PhoneAccount.CAPABILITY_SIM_SUBSCRIPTION);
-    }
 
     @Override
     protected void onCreateOutgoingConnection(
@@ -176,7 +170,7 @@ public class TelephonyConnectionService extends ConnectionService {
 
         Uri handle = getHandleFromAddress(originalConnection.getAddress());
         ConnectionRequest telephonyRequest = new ConnectionRequest(
-                getPhoneAccount(this),
+                request.getAccount(),
                 request.getCallId(),
                 handle,
                 originalConnection.getNumberPresentation(),
@@ -231,7 +225,7 @@ public class TelephonyConnectionService extends ConnectionService {
         }
 
         ConnectionRequest telephonyRequest = new ConnectionRequest(
-                getPhoneAccount(this),
+                request.getAccount(),
                 request.getCallId(),
                 request.getHandle(),
                 request.getHandlePresentation(),
