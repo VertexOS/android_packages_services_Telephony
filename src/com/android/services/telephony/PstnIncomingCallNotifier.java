@@ -20,7 +20,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.net.Uri;
 import android.os.AsyncResult;
 import android.os.Handler;
 import android.os.Message;
@@ -157,7 +156,7 @@ final class PstnIncomingCallNotifier {
         Intent intent = new Intent(TelecommConstants.ACTION_INCOMING_CALL);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtra(TelecommConstants.EXTRA_PHONE_ACCOUNT,
-                TelephonyConnectionService.getPhoneAccount(context));
+                AddAccountsReceiver.PHONE_ACCOUNTS[0].getAccount());
 
         Log.d(this, "Sending incoming call intent: %s", intent);
         context.startActivityAsUser(intent, UserHandle.CURRENT);

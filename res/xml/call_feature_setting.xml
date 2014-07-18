@@ -41,11 +41,13 @@
       android:title="@string/other_settings"
       android:persistent="false" />
 
-  <ListPreference
-      android:key="button_connection_service"
-      android:title="@string/connection_service"
-      android:defaultValue="@string/connection_service_default"
-      android:persistent="true" />
+    <Preference
+            android:key="phone_accounts"
+            android:title="@string/phone_accounts" >
+        <intent
+                android:targetClass="com.android.telecomm.PhoneAccountPreferencesActivity"
+                android:targetPackage="com.android.telecomm" />
+    </Preference>
 
   <PreferenceScreen
       android:key="button_voicemail_category_key"
