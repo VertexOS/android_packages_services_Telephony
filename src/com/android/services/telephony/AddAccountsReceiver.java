@@ -17,7 +17,6 @@
 package com.android.services.telephony;
 
 import com.android.phone.R;
-import com.android.services.telephony.sip.SipConnectionService;
 
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
@@ -32,53 +31,43 @@ public class AddAccountsReceiver extends BroadcastReceiver {
 
     private static String SCHEME_TEL = "tel";
 
-    private static final ComponentName PSTN_SERVICE_COMPONENT_NAME = new ComponentName(
-            "com.android.phone",
-            TelephonyConnectionService.class.getName());
-
-    private static final ComponentName SIP_SERVICE_COMPONENT_NAME = new ComponentName(
-            "com.android.phone",
-            SipConnectionService.class.getName());
-
-    public static final PhoneAccountMetadata[] PHONE_ACCOUNTS = new PhoneAccountMetadata[] {
-            new PhoneAccountMetadata(
-                    new PhoneAccount(PSTN_SERVICE_COMPONENT_NAME, "SIM card zero"),
-                    Uri.fromParts(SCHEME_TEL, "650-555-1212", null),
-                    PhoneAccountMetadata.CAPABILITY_CALL_PROVIDER,
-                    R.drawable.fab_ic_call,
-                    "Label for SIM card zero",
-                    "Short description for SIM card zero",
-                    false),
-            new PhoneAccountMetadata(
-                    new PhoneAccount(PSTN_SERVICE_COMPONENT_NAME, "SIM card one"),
-                    Uri.fromParts(SCHEME_TEL, "650-555-1234", null),
-                    PhoneAccountMetadata.CAPABILITY_CALL_PROVIDER,
-                    R.drawable.fab_ic_call,
-                    "Label for SIM card one",
-                    "Short description for SIM card one",
-                    false),
-            new PhoneAccountMetadata(
-                    new PhoneAccount(SIP_SERVICE_COMPONENT_NAME, "SIP Account"),
-                    Uri.fromParts(SCHEME_TEL, "650-555-1111", null),
-                    PhoneAccountMetadata.CAPABILITY_CALL_PROVIDER,
-                    R.drawable.fab_ic_call,
-                    "Label for SIP Account",
-                    "Short description for SIP Account",
-                    false)
-    };
-
     @Override
     public void onReceive(Context context, Intent intent) {
         Log.d(this, "onReceive");
         try {
             TelecommManager telecommManager = TelecommManager.from(context);
-            telecommManager.clearAccounts(PSTN_SERVICE_COMPONENT_NAME.getPackageName());
-            for (int i = 0; i < PHONE_ACCOUNTS.length; i++) {
-                telecommManager.registerPhoneAccount(PHONE_ACCOUNTS[i]);
+            telecommManager.clearAccounts(context.getPackageName());
+            PhoneAccountMetadata[] accounts = makeAccounts(context);
+            for (int i = 0; i < accounts.length; i++) {
+                telecommManager.registerPhoneAccount(accounts[i]);
             }
         } catch (Exception e) {
             Log.e(this, e, "onReceive");
             throw e;
         }
+    }
+
+    public static PhoneAccountMetadata[] makeAccounts(Context context) {
+        ComponentName componentName = new ComponentName(
+                context.getPackageName(),
+                TelephonyConnectionService.class.getName());
+        return new PhoneAccountMetadata[]{
+                new PhoneAccountMetadata(
+                        new PhoneAccount(componentName, "sim_0"),
+                        Uri.fromParts(SCHEME_TEL, "650-555-1212", null),
+                        PhoneAccountMetadata.CAPABILITY_CALL_PROVIDER,
+                        R.drawable.fab_ic_call,
+                        "Zero SIM Account",
+                        "Short description for SIM card zero",
+                        false),
+                new PhoneAccountMetadata(
+                        new PhoneAccount(componentName, "sim_1"),
+                        Uri.fromParts(SCHEME_TEL, "650-555-1234", null),
+                        PhoneAccountMetadata.CAPABILITY_CALL_PROVIDER,
+                        R.drawable.fab_ic_call,
+                        "One SIM Account",
+                        "Short description for SIM card one",
+                        false)
+        };
     }
 }
