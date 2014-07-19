@@ -105,13 +105,13 @@ final class TtyManager {
 
     private static int telecommModeToPhoneMode(int telecommMode) {
         switch (telecommMode) {
-            case TTY_MODE_FULL:
+            case TelecommManager.TTY_MODE_FULL:
                 return Phone.TTY_MODE_FULL;
-            case TTY_MODE_VCO:
+            case TelecommManager.TTY_MODE_VCO:
                 return Phone.TTY_MODE_VCO;
-            case TTY_MODE_HCO:
+            case TelecommManager.TTY_MODE_HCO:
                 return Phone.TTY_MODE_HCO;
-            case TTY_MODE_OFF:
+            case TelecommManager.TTY_MODE_OFF:
             default:
                 return Phone.TTY_MODE_OFF;
         }
