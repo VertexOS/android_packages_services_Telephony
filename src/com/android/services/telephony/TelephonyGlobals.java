@@ -32,11 +32,10 @@ import com.android.internal.telephony.PhoneProxy;
  * {@link #onCreate}.
  */
 public class TelephonyGlobals {
+    private static TelephonyGlobals sInstance;
+
     /** The application context. */
     private final Context mContext;
-
-    /** Handles incoming calls for PSTN calls. */
-    private PstnIncomingCallNotifier mPtsnIncomingCallNotifier;
 
     private TtyManager mTtyManager;
 
@@ -49,23 +48,18 @@ public class TelephonyGlobals {
         mContext = context.getApplicationContext();
     }
 
-    public void onCreate() {
-        setupIncomingCallNotifiers();
+    public static synchronized TelephonyGlobals getInstance(Context context) {
+        if (sInstance == null) {
+            sInstance = new TelephonyGlobals(context);
+        }
+        return sInstance;
+    }
 
+    public void onCreate() {
+        // TODO: Make this work with Multi-SIM devices
         Phone phone = PhoneFactory.getDefaultPhone();
         if (phone != null) {
             mTtyManager = new TtyManager(mContext, phone);
         }
-    }
-
-    /**
-     * Sets up incoming call notifiers for all the connection services.
-     */
-    private void setupIncomingCallNotifiers() {
-        PhoneProxy defaultPhone = (PhoneProxy) PhoneFactory.getDefaultPhone();
-        Log.i(this, "Default phone: %s.", defaultPhone);
-
-        Log.i(this, "Registering the PSTN listener.");
-        mPtsnIncomingCallNotifier = new PstnIncomingCallNotifier(defaultPhone);
     }
 }

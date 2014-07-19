@@ -16,58 +16,17 @@
 
 package com.android.services.telephony;
 
-import com.android.phone.R;
-
 import android.content.BroadcastReceiver;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
-import android.telecomm.PhoneAccount;
-import android.telecomm.PhoneAccountMetadata;
-import android.telecomm.TelecommManager;
 
 public class AddAccountsReceiver extends BroadcastReceiver {
-
-    private static String SCHEME_TEL = "tel";
-
     @Override
     public void onReceive(Context context, Intent intent) {
-        Log.d(this, "onReceive");
-        try {
-            TelecommManager telecommManager = TelecommManager.from(context);
-            telecommManager.clearAccounts(context.getPackageName());
-            PhoneAccountMetadata[] accounts = makeAccounts(context);
-            for (int i = 0; i < accounts.length; i++) {
-                telecommManager.registerPhoneAccount(accounts[i]);
-            }
-        } catch (Exception e) {
-            Log.e(this, e, "onReceive");
-            throw e;
+        String action = intent.getAction();
+        Log.d(this, "onReceive(%s)", action);
+        if (Intent.ACTION_BOOT_COMPLETED.equals(action)) {
+            TelecommAccountRegistry.getInstance(context).setup();
         }
-    }
-
-    public static PhoneAccountMetadata[] makeAccounts(Context context) {
-        ComponentName componentName = new ComponentName(
-                context.getPackageName(),
-                TelephonyConnectionService.class.getName());
-        return new PhoneAccountMetadata[]{
-                new PhoneAccountMetadata(
-                        new PhoneAccount(componentName, "sim_0"),
-                        Uri.fromParts(SCHEME_TEL, "650-555-1212", null),
-                        PhoneAccountMetadata.CAPABILITY_CALL_PROVIDER,
-                        R.drawable.fab_ic_call,
-                        "Zero SIM Account",
-                        "Short description for SIM card zero",
-                        false),
-                new PhoneAccountMetadata(
-                        new PhoneAccount(componentName, "sim_1"),
-                        Uri.fromParts(SCHEME_TEL, "650-555-1234", null),
-                        PhoneAccountMetadata.CAPABILITY_CALL_PROVIDER,
-                        R.drawable.fab_ic_call,
-                        "One SIM Account",
-                        "Short description for SIM card one",
-                        false)
-        };
     }
 }
