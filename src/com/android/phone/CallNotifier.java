@@ -35,6 +35,7 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothHeadset;
 import android.bluetooth.BluetoothProfile;
 import android.content.Context;
+import android.media.AudioAttributes;
 import android.media.AudioManager;
 import android.media.ToneGenerator;
 import android.net.Uri;
@@ -78,6 +79,11 @@ public class CallNotifier extends Handler
 
     // Time to display the  DisplayInfo Record sent by CDMA network
     private static final int DISPLAYINFO_NOTIFICATION_TIME = 2000; // msec
+
+    private static final AudioAttributes VIBRATION_ATTRIBUTES = new AudioAttributes.Builder()
+            .setContentType(AudioAttributes.CONTENT_TYPE_SPEECH)
+            .setUsage(AudioAttributes.USAGE_VOICE_COMMUNICATION)
+            .build();
 
     /** The singleton instance. */
     private static CallNotifier sInstance;
@@ -1705,7 +1711,7 @@ public class CallNotifier extends Handler
             } else if (mIsEmergencyToneOn == EMERGENCY_TONE_VIBRATE) {
                 log("EmergencyTonePlayerVibrator.start(): emergency vibrate...");
                 if (mEmgVibrator != null) {
-                    mEmgVibrator.vibrate(mVibratePattern, 0, AudioManager.STREAM_VOICE_CALL);
+                    mEmgVibrator.vibrate(mVibratePattern, 0, VIBRATION_ATTRIBUTES);
                     mCurrentEmergencyToneState = EMERGENCY_TONE_VIBRATE;
                 }
             }
