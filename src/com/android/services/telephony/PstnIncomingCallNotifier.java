@@ -18,7 +18,6 @@ package com.android.services.telephony;
 
 import android.content.BroadcastReceiver;
 
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -26,9 +25,8 @@ import android.os.AsyncResult;
 import android.os.Handler;
 import android.os.Message;
 import android.os.UserHandle;
-import android.telecomm.PhoneAccount;
-import android.telecomm.TelecommConstants;
 
+import android.telecomm.TelecommManager;
 import com.android.internal.telephony.Call;
 import com.android.internal.telephony.Connection;
 import com.android.internal.telephony.Phone;
@@ -156,9 +154,9 @@ final class PstnIncomingCallNotifier {
     private void sendIncomingCallIntent(Connection connection) {
         Context context = mPhoneProxy.getContext();
 
-        Intent intent = new Intent(TelecommConstants.ACTION_INCOMING_CALL);
+        Intent intent = new Intent(TelecommManager.ACTION_INCOMING_CALL);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.putExtra(TelecommConstants.EXTRA_PHONE_ACCOUNT,
+        intent.putExtra(TelecommManager.EXTRA_PHONE_ACCOUNT,
                 TelecommAccountRegistry.makePstnPhoneAccount(mPhoneProxy));
 
         Log.d(this, "Sending incoming call intent: %s", intent);
