@@ -26,7 +26,6 @@ import android.telecomm.CallAudioState;
 import android.telecomm.CallCapabilities;
 import android.telecomm.ConnectionService;
 import android.telecomm.StatusHints;
-import android.telecomm.TelecommConstants;
 import android.telephony.DisconnectCause;
 
 import com.android.internal.telephony.Call;
