@@ -24,7 +24,7 @@ import android.net.sip.SipManager;
 import android.net.sip.SipProfile;
 import android.os.Bundle;
 import android.os.UserHandle;
-import android.telecomm.TelecommConstants;
+import android.telecomm.TelecommManager;
 import android.util.Log;
 
 import java.util.List;
@@ -60,11 +60,11 @@ public class SipBroadcastReceiver extends BroadcastReceiver {
         Bundle extras = new Bundle();
         extras.putParcelable(SipUtil.EXTRA_INCOMING_CALL_INTENT, intent);
 
-        Intent telecommIntent = new Intent(TelecommConstants.ACTION_INCOMING_CALL);
+        Intent telecommIntent = new Intent(TelecommManager.ACTION_INCOMING_CALL);
         telecommIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        telecommIntent.putExtra(TelecommConstants.EXTRA_PHONE_ACCOUNT,
+        telecommIntent.putExtra(TelecommManager.EXTRA_PHONE_ACCOUNT,
                 SipConnectionService.getPhoneAccount(context));
-        telecommIntent.putExtra(TelecommConstants.EXTRA_INCOMING_CALL_EXTRAS, extras);
+        telecommIntent.putExtra(TelecommManager.EXTRA_INCOMING_CALL_EXTRAS, extras);
 
         context.startActivityAsUser(telecommIntent, UserHandle.CURRENT);
     }
