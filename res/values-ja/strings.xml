@@ -52,8 +52,7 @@
     <string name="requesting_unlock" msgid="6412629401033249351">"ネットワークのロック解除をリクエスト中..."</string>
     <string name="unlock_failed" msgid="6490531697031504225">"ネットワークロックを解除できませんでした。"</string>
     <string name="unlock_success" msgid="6770085622238180152">"ネットワークロックを解除しました。"</string>
-    <!-- no translation found for mobile_network_settings_not_available (3831911315358856062) -->
-    <skip />
+    <string name="mobile_network_settings_not_available" msgid="3831911315358856062">"このユーザーはモバイルネットワーク設定を利用できません。"</string>
     <string name="labelGSMMore" msgid="5930842194056092106">"GSM通話設定"</string>
     <string name="labelCDMAMore" msgid="1630676740428229339">"CDMA通話設定"</string>
     <string name="apn_settings" msgid="9043423184895642077">"アクセスポイント名"</string>
@@ -125,8 +124,7 @@
     <string name="no_change" msgid="3186040086622435212">"変更されていません。"</string>
     <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"ボイスメールサービスを選択"</string>
     <string name="voicemail_default" msgid="5902099213882352338">"携帯通信会社"</string>
-    <!-- no translation found for mobile_networks (2843854043339307375) -->
-    <skip />
+    <string name="mobile_networks" msgid="2843854043339307375">"モバイルネットワーク設定"</string>
     <string name="label_available" msgid="1181658289009300430">"利用可能なネットワーク"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"検索中..."</string>
     <string name="empty_networks_list" msgid="4249426905018815316">"ネットワークが見つかりません。"</string>
@@ -193,8 +191,7 @@
     <string name="throttle_data_rate_reduced_subtext" msgid="7492763592720107737">"最大値<xliff:g id="USED_0">%1$s</xliff:g>を超えました\n転送速度は<xliff:g id="USED_1">%2$d</xliff:g>Kb/秒に低下"</string>
     <string name="throttle_time_frame_subtext" msgid="7732763021560399960">"サイクルの٪<xliff:g id="USED_0">%1$d</xliff:g>を経過\n次の期間は<xliff:g id="USED_1">%2$d</xliff:g>日で始まります（<xliff:g id="USED_2">%3$s</xliff:g>）"</string>
     <string name="throttle_rate_subtext" msgid="2149102656120726855">"データ利用制限を超えると、転送速度が<xliff:g id="USED">%1$d</xliff:g>Kb/秒まで低下します"</string>
-    <!-- no translation found for throttle_help_subtext (3633091498168446044) -->
-    <skip />
+    <string name="throttle_help_subtext" msgid="3633091498168446044">"携帯通信会社のモバイルネットワークデータ利用ポリシーの詳細"</string>
     <string name="cell_broadcast_sms" msgid="5584192824053625842">"緊急警報SMS"</string>
     <string name="enable_disable_cell_bc_sms" msgid="4851147873691392255">"緊急警報SMS"</string>
     <string name="cell_bc_sms_enable" msgid="6441688565738921084">"緊急警報SMSは有効になっています"</string>
@@ -413,8 +410,7 @@
     <string name="notification_missedCall_message" msgid="3049928912736917988">"メッセージ"</string>
     <string name="incall_error_power_off" msgid="6550191216405193368">"機内モードをOFFにしてから発信してください。"</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"ご加入の通信サービスがありません"</string>
-    <!-- no translation found for incall_error_out_of_service (4100065333878929223) -->
-    <skip />
+    <string name="incall_error_out_of_service" msgid="4100065333878929223">"モバイルネットワークが利用できません。"</string>
     <string name="incall_error_no_phone_number_supplied" msgid="4197432103471807739">"発信できません。有効な番号が入力されていません。"</string>
     <string name="incall_error_call_failed" msgid="4313552620858880999">"発信できません。"</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"MMIシーケンスを開始中..."</string>

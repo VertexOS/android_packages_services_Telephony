@@ -52,8 +52,7 @@
     <string name="requesting_unlock" msgid="6412629401033249351">"አውታረመረብ ለማስከፈት በመጠየቅ ላይ..."</string>
     <string name="unlock_failed" msgid="6490531697031504225">"የአውታረ መረብ ክፈትጥየቃአል ተሳካም።"</string>
     <string name="unlock_success" msgid="6770085622238180152">"የአውታረ መረብክፈት ተሳክቷል።"</string>
-    <!-- no translation found for mobile_network_settings_not_available (3831911315358856062) -->
-    <skip />
+    <string name="mobile_network_settings_not_available" msgid="3831911315358856062">"የተንቀሳቃሽ ስልክ አውታረ መረብ ቅንብሮች ለዚህ ተጠቃሚ አይገኙም"</string>
     <string name="labelGSMMore" msgid="5930842194056092106">"የGSM  ጥሪ ቅንብሮች"</string>
     <string name="labelCDMAMore" msgid="1630676740428229339">"CDMA የጥሪ ቅንብሮች"</string>
     <string name="apn_settings" msgid="9043423184895642077">"የድረስ ነጥብ ስም"</string>
@@ -125,8 +124,7 @@
     <string name="no_change" msgid="3186040086622435212">"ምንም ለውጥ አልተደረገም።"</string>
     <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"የድምፅ መልዕክት አገልግሎት ምረጥ"</string>
     <string name="voicemail_default" msgid="5902099213882352338">"ድምጸ ተያያዥ ሞደም"</string>
-    <!-- no translation found for mobile_networks (2843854043339307375) -->
-    <skip />
+    <string name="mobile_networks" msgid="2843854043339307375">"የተንቀሳቃሽ ስልክ አውታረ መረብ ቅንብሮች"</string>
     <string name="label_available" msgid="1181658289009300430">"የሚገኙ አውታረመረቦች"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"በመፈለግ ላይ…"</string>
     <string name="empty_networks_list" msgid="4249426905018815316">"ምንም አውታረመረብ አልተገኘም።"</string>
@@ -174,8 +172,7 @@
     <item msgid="3817924849415716259">"GSM / WCDMA ተመራጭ"</item>
   </string-array>
     <string name="data_enabled" msgid="5972538663568715366">"ውሂብ ነቅቷል"</string>
-    <!-- no translation found for data_enable_summary (2382798156640007971) -->
-    <skip />
+    <string name="data_enable_summary" msgid="2382798156640007971">"የውሂብ አጠቃቀም ፍቀድ"</string>
     <string name="roaming" msgid="8871412572928323707">"ውሂብ በእንቅስቃሴ ላይ"</string>
     <string name="roaming_enable" msgid="7331106985174381987">"በእንቅስቃሴ ላይ ሲሆን ወደ ውሂብ አገልግሎቶች ተያያዝ"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"በእንቅስቃሴ ላይ ሲሆን ወደ ውሂብ አገልግሎቶች ተያያዝ"</string>
@@ -193,8 +190,7 @@
     <string name="throttle_data_rate_reduced_subtext" msgid="7492763592720107737">"<xliff:g id="USED_0">%1$s</xliff:g>ከከፍተኛው ዘሏል\n የውሂብ ደረጃ ወደ <xliff:g id="USED_1">%2$d</xliff:g> Kb/s ዝቅ ብሏል።"</string>
     <string name="throttle_time_frame_subtext" msgid="7732763021560399960">"የ<xliff:g id="USED_0">%1$d</xliff:g>٪ ዙር ሄዷል \nቀጣይ ክፍለ ጊዜ በ<xliff:g id="USED_1">%2$d</xliff:g> ቀኖች(<xliff:g id="USED_2">%3$s</xliff:g>) ይጀምራል"</string>
     <string name="throttle_rate_subtext" msgid="2149102656120726855">"የውሂብ አጠቃቀም ወሰን ከበለጠየውሂብ ደረጃ ወደ <xliff:g id="USED">%1$d</xliff:g>Kb/s ቀንሷል።"</string>
-    <!-- no translation found for throttle_help_subtext (3633091498168446044) -->
-    <skip />
+    <string name="throttle_help_subtext" msgid="3633091498168446044">"ተጨማሪ የአገልግሎት አቅራቢዎ የተንቀሳቃሽ ስልክ አውታረ መረብዎ ውሂብ አጠቃቀም መመሪያ"</string>
     <string name="cell_broadcast_sms" msgid="5584192824053625842">"የተንቀሳቃሽ ስልክ SMS ስርጭት"</string>
     <string name="enable_disable_cell_bc_sms" msgid="4851147873691392255">"የተንቀሳቃሽ ስልክ SMS ስርጭት"</string>
     <string name="cell_bc_sms_enable" msgid="6441688565738921084">"የ SMS ህዋስ ማሰራጫ አልነቃም"</string>
@@ -413,8 +409,7 @@
     <string name="notification_missedCall_message" msgid="3049928912736917988">"መልዕክት"</string>
     <string name="incall_error_power_off" msgid="6550191216405193368">"ለመደወል፣ መጀመሪያየአውሮፕላኑን ሁነታ አጥፋ።"</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"በአውታረ መረቡ ላይ አልተመዘገበም።"</string>
-    <!-- no translation found for incall_error_out_of_service (4100065333878929223) -->
-    <skip />
+    <string name="incall_error_out_of_service" msgid="4100065333878929223">"የተንቀሳቃሽ ስልክ አውታረ መረብ አይገኝም።"</string>
     <string name="incall_error_no_phone_number_supplied" msgid="4197432103471807739">"ጥሪ አልተላከም፣ ትክክለኛ ቁጥር አልገባም።"</string>
     <string name="incall_error_call_failed" msgid="4313552620858880999">"ጥሪ አልተላከም።"</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"የMMI sequence…"</string>

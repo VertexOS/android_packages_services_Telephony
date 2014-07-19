@@ -52,8 +52,7 @@
     <string name="requesting_unlock" msgid="6412629401033249351">"Võrgu avamise taotlemine ..."</string>
     <string name="unlock_failed" msgid="6490531697031504225">"Võrgu avamise taotlus ebaõnnestus."</string>
     <string name="unlock_success" msgid="6770085622238180152">"Võrgu avamine õnnestus."</string>
-    <!-- no translation found for mobile_network_settings_not_available (3831911315358856062) -->
-    <skip />
+    <string name="mobile_network_settings_not_available" msgid="3831911315358856062">"Mobiilsidevõrgu seaded pole selle kasutaja jaoks saadaval"</string>
     <string name="labelGSMMore" msgid="5930842194056092106">"GSM-kõneseaded"</string>
     <string name="labelCDMAMore" msgid="1630676740428229339">"CDMA-kõneseaded"</string>
     <string name="apn_settings" msgid="9043423184895642077">"Pääsupunktide nimed"</string>
@@ -125,8 +124,7 @@
     <string name="no_change" msgid="3186040086622435212">"Muudatusi ei tehtud."</string>
     <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"Valige kõnepostiteenus"</string>
     <string name="voicemail_default" msgid="5902099213882352338">"Minu operaator"</string>
-    <!-- no translation found for mobile_networks (2843854043339307375) -->
-    <skip />
+    <string name="mobile_networks" msgid="2843854043339307375">"Mobiilsidevõrgu seaded"</string>
     <string name="label_available" msgid="1181658289009300430">"Saadaolevad võrgud"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"Otsimine ..."</string>
     <string name="empty_networks_list" msgid="4249426905018815316">"Võrke ei leitud."</string>
@@ -193,8 +191,7 @@
     <string name="throttle_data_rate_reduced_subtext" msgid="7492763592720107737">"<xliff:g id="USED_0">%1$s</xliff:g> maksimaalne ületatud\nAndmeedastuskiirus vähendatud määrale <xliff:g id="USED_1">%2$d</xliff:g> kb/s"</string>
     <string name="throttle_time_frame_subtext" msgid="7732763021560399960">"<xliff:g id="USED_0">%1$d</xliff:g>?? tsüklist möödunud\nJärgmine periood algab <xliff:g id="USED_1">%2$d</xliff:g> päeva pärast (<xliff:g id="USED_2">%3$s</xliff:g>)"</string>
     <string name="throttle_rate_subtext" msgid="2149102656120726855">"Kui andmete kasutuslimiit on ületatud, vähendatakse andmeedastuskiirus <xliff:g id="USED">%1$d</xliff:g> kb/s"</string>
-    <!-- no translation found for throttle_help_subtext (3633091498168446044) -->
-    <skip />
+    <string name="throttle_help_subtext" msgid="3633091498168446044">"Lisateave teie operaatori mobiilsidevõrgu andmete kasutuse eeskirjade kohta"</string>
     <string name="cell_broadcast_sms" msgid="5584192824053625842">"Kärjeteate-SMS"</string>
     <string name="enable_disable_cell_bc_sms" msgid="4851147873691392255">"Kärjeteate-SMS"</string>
     <string name="cell_bc_sms_enable" msgid="6441688565738921084">"Kärjeteate-SMS-id lubatud"</string>
@@ -413,8 +410,7 @@
     <string name="notification_missedCall_message" msgid="3049928912736917988">"Sõnum"</string>
     <string name="incall_error_power_off" msgid="6550191216405193368">"Helistamiseks lülitage lennurežiim välja."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"Ei ole võrku registreeritud."</string>
-    <!-- no translation found for incall_error_out_of_service (4100065333878929223) -->
-    <skip />
+    <string name="incall_error_out_of_service" msgid="4100065333878929223">"Mobiilsidevõrk pole saadaval."</string>
     <string name="incall_error_no_phone_number_supplied" msgid="4197432103471807739">"Kõnet ei tehtud, sisestati kehtetu number."</string>
     <string name="incall_error_call_failed" msgid="4313552620858880999">"Kõnet ei tehtud."</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"MMI-jada alustamine ..."</string>

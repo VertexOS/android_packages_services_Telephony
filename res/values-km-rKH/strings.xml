@@ -52,7 +52,7 @@
     <string name="requesting_unlock" msgid="6412629401033249351">"កំពុង​ស្នើ​​ដោះ​សោ​បណ្ដាញ…"</string>
     <string name="unlock_failed" msgid="6490531697031504225">"បាន​បរាជ័យ​ក្នុង​ការ​ស្នើ​ដោះ​សោ​បណ្ដាញ។"</string>
     <string name="unlock_success" msgid="6770085622238180152">"ដោះ​សោ​បណ្ដាញ​បាន​ជោគជ័យ។"</string>
-    <string name="mobile_network_settings_not_available" msgid="3831911315358856062">"ការ​កំណត់​បណ្ដាញ​ចល័ត​មិន​អាច​ប្រើ​បាន​​សម្រាប់​អ្នក​ប្រើ​នេះ"</string>
+    <string name="mobile_network_settings_not_available" msgid="3831911315358856062">"ការ​កំណត់​បណ្ដាញ​ចល័ត​គឺ​មិន​មាន​​សម្រាប់​អ្នក​ប្រើ​នេះ"</string>
     <string name="labelGSMMore" msgid="5930842194056092106">"កំណត់​ការ​ហៅ GSM"</string>
     <string name="labelCDMAMore" msgid="1630676740428229339">"កំណត់​ការ​ហៅ CDMA"</string>
     <string name="apn_settings" msgid="9043423184895642077">"ចូល​ដំណើរ​ការ​ឈ្មោះ​ចំណុច"</string>
@@ -172,8 +172,7 @@
     <item msgid="3817924849415716259">"GSM/WCDMA ដែល​ចូលចិត្ត​"</item>
   </string-array>
     <string name="data_enabled" msgid="5972538663568715366">"បាន​បើក​ទិន្នន័យ"</string>
-    <!-- no translation found for data_enable_summary (2382798156640007971) -->
-    <skip />
+    <string name="data_enable_summary" msgid="2382798156640007971">"អនុញ្ញាត​​ឲ្យ​​ប្រើ​ប្រាស់​ទិន្នន័យ"</string>
     <string name="roaming" msgid="8871412572928323707">"រ៉ូមីង​​ទិន្នន័យ"</string>
     <string name="roaming_enable" msgid="7331106985174381987">"តភ្ជាប់​ទៅ​កាន់​សេវា​កម្ម​ទិន្នន័យ​នៅ​ពេល​ដែល​រ៉ូ​មីង"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"តភ្ជាប់​ទៅ​កាន់​សេវា​កម្ម​ទិន្នន័យ​នៅ​ពេល​ដែល​រ៉ូ​មីង"</string>
@@ -410,7 +409,7 @@
     <string name="notification_missedCall_message" msgid="3049928912736917988">"សារ"</string>
     <string name="incall_error_power_off" msgid="6550191216405193368">"ដើម្បី​កំណត់​ការ​ហៅ ដំបូង​ត្រូវ​បិទ​របៀប​នៅ​ពេល​ជិះ​យន្តហោះ។"</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"មិន​បាន​ចុះ​ឈ្មោះ​នៅ​លើ​បណ្ដាញ។"</string>
-    <string name="incall_error_out_of_service" msgid="4100065333878929223">"បណ្ដាញ​ចល័ត​ដែល​អាច​ប្រើ​បាន។"</string>
+    <string name="incall_error_out_of_service" msgid="4100065333878929223">"បណ្ដាញ​ចល័ត​មិន​អាច​ប្រើ​បាន។"</string>
     <string name="incall_error_no_phone_number_supplied" msgid="4197432103471807739">"មិន​បាន​ផ្ញើ​ការ​ហៅ លេខ​ដែល​បាន​បញ្ចូល​មិន​ត្រឹមត្រូវ។"</string>
     <string name="incall_error_call_failed" msgid="4313552620858880999">"មិន​បាន​ផ្ញើ​ការ​ហៅ។"</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"កំពុង​ចាប់ផ្ដើម​លំដាប់ MMI ..."</string>
