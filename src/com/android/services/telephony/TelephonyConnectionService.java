@@ -177,12 +177,17 @@ public class TelephonyConnectionService extends ConnectionService {
                 request.getExtras(),
                 request.getVideoState());
 
+        TelephonyConnection connection = null;
         if (phone.getPhoneType() == TelephonyManager.PHONE_TYPE_GSM) {
-            response.onSuccess(telephonyRequest, new GsmConnection(originalConnection));
+            connection = new GsmConnection(originalConnection);
         } else if (phone.getPhoneType() == TelephonyManager.PHONE_TYPE_CDMA) {
-            response.onSuccess(telephonyRequest, new CdmaConnection(originalConnection));
-        } else {
+            connection = new CdmaConnection(originalConnection);
+        }
+
+        if (connection == null) {
             response.onCancel(request);
+        } else {
+            response.onSuccess(telephonyRequest, connection);
         }
     }
 
