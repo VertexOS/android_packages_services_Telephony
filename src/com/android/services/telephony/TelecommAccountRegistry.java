@@ -19,8 +19,8 @@ package com.android.services.telephony;
 import android.content.ComponentName;
 import android.content.Context;
 import android.net.Uri;
+import android.telecomm.PhoneAccount;
 import android.telecomm.PhoneAccountHandle;
-import android.telecomm.PhoneAccountMetadata;
 import android.telecomm.TelecommManager;
 import android.telephony.TelephonyManager;
 
@@ -38,19 +38,19 @@ import java.util.List;
 final class TelecommAccountRegistry {
     private final class AccountEntry {
         private final Phone mPhone;
-        private final PhoneAccountMetadata mMetadata;
+        private final PhoneAccount mAccount;
         private final PstnIncomingCallNotifier mIncomingCallNotifier;
 
         AccountEntry(Phone phone, boolean isDummy) {
             mPhone = phone;
-            mMetadata = registerPstnPhoneAccount(isDummy);
+            mAccount = registerPstnPhoneAccount(isDummy);
             mIncomingCallNotifier = new PstnIncomingCallNotifier((PhoneProxy) mPhone);
         }
 
         /**
          * Registers the specified account with Telecomm as a PhoneAccountHandle.
          */
-        private PhoneAccountMetadata registerPstnPhoneAccount(boolean isDummyAccount) {
+        private PhoneAccount registerPstnPhoneAccount(boolean isDummyAccount) {
             TelephonyManager telephonyManager = TelephonyManager.from(mContext);
             String dummyPrefix = isDummyAccount ? "Dummy " : "";
 
@@ -62,20 +62,20 @@ final class TelecommAccountRegistry {
             // Populate the phone account data.
             long subId = mPhone.getSubId();
             int slotId = mPhone.getPhoneId() + 1;
-            PhoneAccountMetadata metadata = new PhoneAccountMetadata(
+            PhoneAccount account = new PhoneAccount(
                     phoneAccountHandle,
                     Uri.fromParts(TEL_SCHEME, telephonyManager.getLine1Number(subId), null),
                     mPhone.getPhoneSubInfo().getLine1Number(),
-                    PhoneAccountMetadata.CAPABILITY_SIM_SUBSCRIPTION |
-                            PhoneAccountMetadata.CAPABILITY_CALL_PROVIDER,
+                    PhoneAccount.CAPABILITY_SIM_SUBSCRIPTION |
+                            PhoneAccount.CAPABILITY_CALL_PROVIDER,
                     com.android.phone.R.mipmap.ic_launcher_phone,
                     dummyPrefix + "SIM " + slotId,
                     dummyPrefix + "SIM card in slot " + slotId,
                     true /* supportsVideoCalling */);
 
             // Register with Telecomm and put into the account entry.
-            mTelecommManager.registerPhoneAccount(metadata);
-            return metadata;
+            mTelecommManager.registerPhoneAccount(account);
+            return account;
         }
     }
 

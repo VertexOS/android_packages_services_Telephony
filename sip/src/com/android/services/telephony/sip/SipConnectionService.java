@@ -206,7 +206,7 @@ public final class SipConnectionService extends ConnectionService {
     private ConnectionRequest getConnectionRequestForIncomingCall(ConnectionRequest request,
             com.android.internal.telephony.Connection connection) {
         Uri uri = Uri.fromParts(SipUtil.SCHEME_SIP, connection.getAddress(), null);
-        return new ConnectionRequest(request.getAccount(), request.getCallId(), uri,
+        return new ConnectionRequest(request.getAccountHandle(), request.getCallId(), uri,
                 connection.getNumberPresentation(), request.getExtras(), 0);
     }
 
