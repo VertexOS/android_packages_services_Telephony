@@ -207,7 +207,7 @@ public class TelephonyConnectionService extends ConnectionService {
     protected void onConnectionAdded(Connection connection) {
         Log.v(this, "onConnectionAdded, connection: " + connection);
         if (connection instanceof TelephonyConnection) {
-            ((TelephonyConnection) connection).onAddedToCallService(this);
+            ((TelephonyConnection) connection).onAddedToCallService();
         }
     }
 

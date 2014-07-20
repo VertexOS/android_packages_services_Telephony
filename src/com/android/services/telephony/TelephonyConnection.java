@@ -323,30 +323,8 @@ abstract class TelephonyConnection extends Connection {
         }
     }
 
-    void onAddedToCallService(ConnectionService connectionService) {
+    void onAddedToCallService() {
         updateState(false);
-
-        StatusHints hints = getStatusHints();
-        if (hints == null) {
-            hints = new StatusHints(
-                    new ComponentName(connectionService, TelephonyConnectionService.class),
-                    "", R.mipmap.ic_launcher_phone, new Bundle());
-        }
-
-        Bundle extras = hints.getExtras();
-        String number = getHandle().getSchemeSpecificPart();
-        if (PhoneNumberUtils.isEmergencyNumber(number)) {
-            Phone phone = getOriginalConnection().getCall().getPhone();
-            long subId = phone.getSubId();
-
-            String simNumber = phone.getPhoneSubInfo().getLine1Number();
-            String visibleNumber = TelephonyManager.from(connectionService).getLine1Number(subId);
-            if (!PhoneNumberUtils.compare(simNumber, visibleNumber)) {
-                Log.d(this, "SIM number is different; populate the SIM number");
-                extras.putString(TelecommConstants.EXTRA_EMERGENCY_CALL_BACK_NUMBER, simNumber);
-            }
-        }
-        setStatusHints(hints);
     }
 
     void onRemovedFromCallService() {
