@@ -17,27 +17,26 @@
 package com.android.services.telephony;
 
 import android.content.ComponentName;
-import android.content.Context;
 import android.net.Uri;
-import android.os.Debug;
-import android.telecomm.PhoneAccountMetadata;
-import android.telecomm.TelecommManager;
-import android.telephony.DisconnectCause;
-import android.telephony.ServiceState;
-import android.text.TextUtils;
 import android.telecomm.CallCapabilities;
 import android.telecomm.Connection;
 import android.telecomm.ConnectionRequest;
 import android.telecomm.ConnectionService;
 import android.telecomm.PhoneAccount;
 import android.telecomm.Response;
+import android.telephony.DisconnectCause;
 import android.telephony.PhoneNumberUtils;
+import android.telephony.ServiceState;
 import android.telephony.TelephonyManager;
+import android.text.TextUtils;
 
 import com.android.internal.telephony.Call;
 import com.android.internal.telephony.CallStateException;
 import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneFactory;
+import com.android.internal.telephony.SubscriptionController;
+
+import java.util.Objects;
 
 /**
  * Service for making GSM and CDMA connections.
@@ -45,7 +44,14 @@ import com.android.internal.telephony.PhoneFactory;
 public class TelephonyConnectionService extends ConnectionService {
     private static String SCHEME_TEL = "tel";
 
+    private ComponentName mExpectedComponentName = null;
     private EmergencyCallHelper mEmergencyCallHelper;
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        mExpectedComponentName = new ComponentName(this, this.getClass());
+    }
 
     @Override
     protected void onCreateOutgoingConnection(
@@ -75,7 +81,8 @@ public class TelephonyConnectionService extends ConnectionService {
             return;
         }
 
-        final Phone phone = PhoneFactory.getDefaultPhone();
+        // Get the right phone object from the account data passed in.
+        final Phone phone = getPhoneForAccount(request.getAccount());
         if (phone == null) {
             Log.d(this, "onCreateOutgoingConnection, phone is null");
             response.onFailure(request, DisconnectCause.ERROR_UNSPECIFIED, "Phone is null");
@@ -153,7 +160,12 @@ public class TelephonyConnectionService extends ConnectionService {
             CreateConnectionResponse<Connection> response) {
         Log.v(this, "onCreateIncomingConnection, request: " + request);
 
-        Phone phone = PhoneFactory.getDefaultPhone();
+        Phone phone = getPhoneForAccount(request.getAccount());
+        if (phone == null) {
+            response.onFailure(request, DisconnectCause.ERROR_UNSPECIFIED, null);
+            return;
+        }
+
         Call call = phone.getRingingCall();
         if (!call.getState().isRinging()) {
             Log.v(this, "onCreateIncomingConnection, no ringing call");
@@ -259,6 +271,15 @@ public class TelephonyConnectionService extends ConnectionService {
             }
         }
         return false;
+    }
+
+    private Phone getPhoneForAccount(PhoneAccount account) {
+        if (Objects.equals(mExpectedComponentName, account.getComponentName())) {
+            int phoneId = SubscriptionController.getInstance().getPhoneId(
+                    Long.parseLong(account.getId()));
+            return PhoneFactory.getPhone(phoneId);
+        }
+        return null;
     }
 
     static Uri getHandleFromAddress(String address) {
