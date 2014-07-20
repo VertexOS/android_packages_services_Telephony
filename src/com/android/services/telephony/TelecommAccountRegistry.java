@@ -19,7 +19,7 @@ package com.android.services.telephony;
 import android.content.ComponentName;
 import android.content.Context;
 import android.net.Uri;
-import android.telecomm.PhoneAccount;
+import android.telecomm.PhoneAccountHandle;
 import android.telecomm.PhoneAccountMetadata;
 import android.telecomm.TelecommManager;
 import android.telephony.TelephonyManager;
@@ -48,22 +48,22 @@ final class TelecommAccountRegistry {
         }
 
         /**
-         * Registers the specified account with Telecomm as a PhoneAccount.
+         * Registers the specified account with Telecomm as a PhoneAccountHandle.
          */
         private PhoneAccountMetadata registerPstnPhoneAccount(boolean isDummyAccount) {
             TelephonyManager telephonyManager = TelephonyManager.from(mContext);
             String dummyPrefix = isDummyAccount ? "Dummy " : "";
 
             // Build the Phone account handle.
-            PhoneAccount phoneAccount = isDummyAccount ?
-                    makePstnPhoneAccountWithPrefix(mPhone, dummyPrefix) :
-                    makePstnPhoneAccount(mPhone);
+            PhoneAccountHandle phoneAccountHandle = isDummyAccount ?
+                    makePstnPhoneAccountHandleWithPrefix(mPhone, dummyPrefix) :
+                    makePstnPhoneAccountHandle(mPhone);
 
             // Populate the phone account data.
             long subId = mPhone.getSubId();
             int slotId = mPhone.getPhoneId() + 1;
             PhoneAccountMetadata metadata = new PhoneAccountMetadata(
-                    phoneAccount,
+                    phoneAccountHandle,
                     Uri.fromParts(TEL_SCHEME, telephonyManager.getLine1Number(subId), null),
                     mPhone.getPhoneSubInfo().getLine1Number(),
                     PhoneAccountMetadata.CAPABILITY_SIM_SUBSCRIPTION |
@@ -123,14 +123,15 @@ final class TelecommAccountRegistry {
         // TODO: Add SIP accounts.
     }
 
-    static PhoneAccount makePstnPhoneAccount(Phone phone) {
-        return makePstnPhoneAccountWithPrefix(phone, "");
+    static PhoneAccountHandle makePstnPhoneAccountHandle(Phone phone) {
+        return makePstnPhoneAccountHandleWithPrefix(phone, "");
     }
 
-    private static PhoneAccount makePstnPhoneAccountWithPrefix(Phone phone, String prefix) {
+    private static PhoneAccountHandle makePstnPhoneAccountHandleWithPrefix(
+            Phone phone, String prefix) {
         ComponentName pstnConnectionServiceName =
                 new ComponentName(phone.getContext(), TelephonyConnectionService.class);
-        return new PhoneAccount(
+        return new PhoneAccountHandle(
                 pstnConnectionServiceName, prefix + String.valueOf(phone.getSubId()));
     }
 }
