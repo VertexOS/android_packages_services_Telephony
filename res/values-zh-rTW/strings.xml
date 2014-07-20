@@ -52,13 +52,13 @@
     <string name="requesting_unlock" msgid="6412629401033249351">"正在要求解除網路鎖定…"</string>
     <string name="unlock_failed" msgid="6490531697031504225">"網路解鎖失敗。"</string>
     <string name="unlock_success" msgid="6770085622238180152">"網路解鎖成功。"</string>
-    <!-- no translation found for mobile_network_settings_not_available (3831911315358856062) -->
-    <skip />
+    <string name="mobile_network_settings_not_available" msgid="3831911315358856062">"這位使用者無法修改行動網路設定"</string>
     <string name="labelGSMMore" msgid="5930842194056092106">"GSM 通話設定"</string>
     <string name="labelCDMAMore" msgid="1630676740428229339">"CDMA 通話設定"</string>
     <string name="apn_settings" msgid="9043423184895642077">"存取點名稱 (APN)"</string>
     <string name="settings_label" msgid="3876743539816984008">"網路設定"</string>
-    <string name="connection_service" msgid="978745922583410219">"要使用的連線服務"</string>
+    <!-- no translation found for phone_accounts (8810358208981265351) -->
+    <skip />
     <string name="connection_service_default_label" msgid="1498481943805913754">"內建連線服務"</string>
     <string name="voicemail" msgid="8693759337917898954">"語音信箱"</string>
     <string name="voicemail_abbreviated" msgid="2215592488517217448">"語音信箱："</string>
@@ -125,8 +125,7 @@
     <string name="no_change" msgid="3186040086622435212">"未變更設定。"</string>
     <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"選擇語音信箱服務"</string>
     <string name="voicemail_default" msgid="5902099213882352338">"我的服務業者"</string>
-    <!-- no translation found for mobile_networks (2843854043339307375) -->
-    <skip />
+    <string name="mobile_networks" msgid="2843854043339307375">"行動網路設定"</string>
     <string name="label_available" msgid="1181658289009300430">"可用的網路"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"搜尋中…"</string>
     <string name="empty_networks_list" msgid="4249426905018815316">"找不到網路。"</string>
@@ -199,8 +198,7 @@
     <!-- no translation found for throttle_time_frame_subtext (7732763021560399960) -->
     <skip />
     <string name="throttle_rate_subtext" msgid="2149102656120726855">"若已達資料用量上限，資料傳輸速率會降低至 <xliff:g id="USED">%1$d</xliff:g> Kb/秒"</string>
-    <!-- no translation found for throttle_help_subtext (3633091498168446044) -->
-    <skip />
+    <string name="throttle_help_subtext" msgid="3633091498168446044">"更多有關行動業者行動網路資料使用政策的資訊"</string>
     <string name="cell_broadcast_sms" msgid="5584192824053625842">"區域廣播簡訊"</string>
     <string name="enable_disable_cell_bc_sms" msgid="4851147873691392255">"區域廣播簡訊"</string>
     <string name="cell_bc_sms_enable" msgid="6441688565738921084">"已啟用區域廣播簡訊"</string>
@@ -419,8 +417,7 @@
     <string name="notification_missedCall_message" msgid="3049928912736917988">"簡訊"</string>
     <string name="incall_error_power_off" msgid="6550191216405193368">"撥號前，請先關閉飛航模式。"</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"尚未註冊網路。"</string>
-    <!-- no translation found for incall_error_out_of_service (4100065333878929223) -->
-    <skip />
+    <string name="incall_error_out_of_service" msgid="4100065333878929223">"無法連線至行動網路。"</string>
     <string name="incall_error_no_phone_number_supplied" msgid="4197432103471807739">"撥號未送出，未輸入正確號碼。"</string>
     <string name="incall_error_call_failed" msgid="4313552620858880999">"撥號未送出。"</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"開始 MMI 序列…"</string>

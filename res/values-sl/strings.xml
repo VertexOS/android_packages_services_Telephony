@@ -57,7 +57,8 @@
     <string name="labelCDMAMore" msgid="1630676740428229339">"Nastavitve klicev CDMA"</string>
     <string name="apn_settings" msgid="9043423184895642077">"Imena dostopnih točk"</string>
     <string name="settings_label" msgid="3876743539816984008">"Omrežne nastavitve"</string>
-    <string name="connection_service" msgid="978745922583410219">"Storitev povezave za uporabo"</string>
+    <!-- no translation found for phone_accounts (8810358208981265351) -->
+    <skip />
     <string name="connection_service_default_label" msgid="1498481943805913754">"Vgrajena storitev povezave"</string>
     <string name="voicemail" msgid="8693759337917898954">"Glasovna pošta"</string>
     <string name="voicemail_abbreviated" msgid="2215592488517217448">"VM:"</string>
@@ -172,8 +173,7 @@
     <item msgid="3817924849415716259">"Prednostno GSM/WCDMA"</item>
   </string-array>
     <string name="data_enabled" msgid="5972538663568715366">"Podatki omogočeni"</string>
-    <!-- no translation found for data_enable_summary (2382798156640007971) -->
-    <skip />
+    <string name="data_enable_summary" msgid="2382798156640007971">"Dovoli prenos podatkov"</string>
     <string name="roaming" msgid="8871412572928323707">"Podatkovno gostovanje"</string>
     <string name="roaming_enable" msgid="7331106985174381987">"Med gostovanjem vzpostavi povezavo s podatkovnimi storitvami"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"Med gostovanjem vzpostavi povezavo s podatkovnimi storitvami"</string>

@@ -52,13 +52,13 @@
     <string name="requesting_unlock" msgid="6412629401033249351">"Запрос разблокировки сети..."</string>
     <string name="unlock_failed" msgid="6490531697031504225">"Запрос на разблокировку сети не выполнен."</string>
     <string name="unlock_success" msgid="6770085622238180152">"Разблокировка сети успешно завершена."</string>
-    <!-- no translation found for mobile_network_settings_not_available (3831911315358856062) -->
-    <skip />
+    <string name="mobile_network_settings_not_available" msgid="3831911315358856062">"Настройки мобильных сетей недоступны этому пользователю."</string>
     <string name="labelGSMMore" msgid="5930842194056092106">"Настройки вызовов GSM"</string>
     <string name="labelCDMAMore" msgid="1630676740428229339">"Настройки вызовов CDMA"</string>
     <string name="apn_settings" msgid="9043423184895642077">"Точки доступа (APN)"</string>
     <string name="settings_label" msgid="3876743539816984008">"Настройки сети"</string>
-    <string name="connection_service" msgid="978745922583410219">"Служба подключения"</string>
+    <!-- no translation found for phone_accounts (8810358208981265351) -->
+    <skip />
     <string name="connection_service_default_label" msgid="1498481943805913754">"Встроенная служба подключения"</string>
     <string name="voicemail" msgid="8693759337917898954">"Голосовая почта"</string>
     <string name="voicemail_abbreviated" msgid="2215592488517217448">"ГП:"</string>
@@ -125,8 +125,7 @@
     <string name="no_change" msgid="3186040086622435212">"Номер не изменен."</string>
     <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"Выберите службу голосовой почты"</string>
     <string name="voicemail_default" msgid="5902099213882352338">"Мой оператор"</string>
-    <!-- no translation found for mobile_networks (2843854043339307375) -->
-    <skip />
+    <string name="mobile_networks" msgid="2843854043339307375">"Настройки мобильных сетей"</string>
     <string name="label_available" msgid="1181658289009300430">"Доступные сети"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"Поиск…"</string>
     <string name="empty_networks_list" msgid="4249426905018815316">"Сети не найдены."</string>
@@ -195,8 +194,7 @@
     <!-- no translation found for throttle_time_frame_subtext (7732763021560399960) -->
     <skip />
     <string name="throttle_rate_subtext" msgid="2149102656120726855">"Превышение лимита снижает скорость передачи данных до <xliff:g id="USED">%1$d</xliff:g> кбит/с"</string>
-    <!-- no translation found for throttle_help_subtext (3633091498168446044) -->
-    <skip />
+    <string name="throttle_help_subtext" msgid="3633091498168446044">"Подробнее о политике передачи данных вашего оператора мобильной связи…"</string>
     <string name="cell_broadcast_sms" msgid="5584192824053625842">"Широковещательные SMS-службы"</string>
     <string name="enable_disable_cell_bc_sms" msgid="4851147873691392255">"Широковещательные SMS-службы"</string>
     <string name="cell_bc_sms_enable" msgid="6441688565738921084">"Широковещательные SMS-службы включены"</string>
@@ -415,8 +413,7 @@
     <string name="notification_missedCall_message" msgid="3049928912736917988">"Написать"</string>
     <string name="incall_error_power_off" msgid="6550191216405193368">"Перед тем как звонить, отключите режим полета."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"Нет регистрации в сети."</string>
-    <!-- no translation found for incall_error_out_of_service (4100065333878929223) -->
-    <skip />
+    <string name="incall_error_out_of_service" msgid="4100065333878929223">"Мобильная сеть недоступна."</string>
     <string name="incall_error_no_phone_number_supplied" msgid="4197432103471807739">"Вызов не осуществляется, действительный номер телефона не указан."</string>
     <string name="incall_error_call_failed" msgid="4313552620858880999">"Вызов не осуществляется."</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"Запуск последовательности MMI..."</string>

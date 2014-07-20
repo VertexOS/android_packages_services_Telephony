@@ -52,13 +52,13 @@
     <string name="requesting_unlock" msgid="6412629401033249351">"네트워크 잠금해제 요청 중..."</string>
     <string name="unlock_failed" msgid="6490531697031504225">"네트워크 잠금해제 요청이 실패했습니다."</string>
     <string name="unlock_success" msgid="6770085622238180152">"네트워크의 잠금을 해제했습니다."</string>
-    <!-- no translation found for mobile_network_settings_not_available (3831911315358856062) -->
-    <skip />
+    <string name="mobile_network_settings_not_available" msgid="3831911315358856062">"이 사용자는 이동통신망 설정을 사용할 수 없습니다."</string>
     <string name="labelGSMMore" msgid="5930842194056092106">"GSM 통화 설정"</string>
     <string name="labelCDMAMore" msgid="1630676740428229339">"CDMA 통화 설정"</string>
     <string name="apn_settings" msgid="9043423184895642077">"APN"</string>
     <string name="settings_label" msgid="3876743539816984008">"네트워크 설정"</string>
-    <string name="connection_service" msgid="978745922583410219">"사용할 연결 서비스"</string>
+    <!-- no translation found for phone_accounts (8810358208981265351) -->
+    <skip />
     <string name="connection_service_default_label" msgid="1498481943805913754">"내장된 연결 서비스"</string>
     <string name="voicemail" msgid="8693759337917898954">"음성사서함"</string>
     <string name="voicemail_abbreviated" msgid="2215592488517217448">"VM:"</string>
@@ -125,8 +125,7 @@
     <string name="no_change" msgid="3186040086622435212">"변경사항이 없습니다."</string>
     <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"음성사서함 서비스 선택"</string>
     <string name="voicemail_default" msgid="5902099213882352338">"내 이동통신사"</string>
-    <!-- no translation found for mobile_networks (2843854043339307375) -->
-    <skip />
+    <string name="mobile_networks" msgid="2843854043339307375">"이동통신망 설정"</string>
     <string name="label_available" msgid="1181658289009300430">"사용 가능한 네트워크"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"검색 중..."</string>
     <string name="empty_networks_list" msgid="4249426905018815316">"네트워크를 찾을 수 없습니다."</string>
@@ -174,8 +173,7 @@
     <item msgid="3817924849415716259">"GSM/WCDMA로 기본 설정"</item>
   </string-array>
     <string name="data_enabled" msgid="5972538663568715366">"데이터 사용"</string>
-    <!-- no translation found for data_enable_summary (2382798156640007971) -->
-    <skip />
+    <string name="data_enable_summary" msgid="2382798156640007971">"데이터 사용 허용"</string>
     <string name="roaming" msgid="8871412572928323707">"데이터 로밍"</string>
     <string name="roaming_enable" msgid="7331106985174381987">"로밍 시 데이터 서비스에 연결"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"로밍 시 데이터 서비스에 연결"</string>
@@ -193,8 +191,7 @@
     <string name="throttle_data_rate_reduced_subtext" msgid="7492763592720107737">"최대치 <xliff:g id="USED_0">%1$s</xliff:g> 초과\n데이터 속도가 <xliff:g id="USED_1">%2$d</xliff:g>Kb/s로 감소"</string>
     <string name="throttle_time_frame_subtext" msgid="7732763021560399960">"주기의 <xliff:g id="USED_0">%1$d</xliff:g>٪ 경과\n다음 기간은 <xliff:g id="USED_1">%2$d</xliff:g>일 후에 시작(<xliff:g id="USED_2">%3$s</xliff:g>)"</string>
     <string name="throttle_rate_subtext" msgid="2149102656120726855">"데이터 사용량 제한을 초과하면 데이터 속도는 <xliff:g id="USED">%1$d</xliff:g>Kb/s로 줄어듭니다."</string>
-    <!-- no translation found for throttle_help_subtext (3633091498168446044) -->
-    <skip />
+    <string name="throttle_help_subtext" msgid="3633091498168446044">"이동통신사의 이동통신망 데이터 사용 정책에 대한 자세한 정보"</string>
     <string name="cell_broadcast_sms" msgid="5584192824053625842">"셀 브로드캐스트 SMS"</string>
     <string name="enable_disable_cell_bc_sms" msgid="4851147873691392255">"셀 브로드캐스트 SMS"</string>
     <string name="cell_bc_sms_enable" msgid="6441688565738921084">"셀 브로드캐스트 SMS 사용"</string>
@@ -413,8 +410,7 @@
     <string name="notification_missedCall_message" msgid="3049928912736917988">"문자 메시지"</string>
     <string name="incall_error_power_off" msgid="6550191216405193368">"전화를 걸려면 먼저 비행기 모드를 해제하세요."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"네트워크에서 등록되지 않았습니다."</string>
-    <!-- no translation found for incall_error_out_of_service (4100065333878929223) -->
-    <skip />
+    <string name="incall_error_out_of_service" msgid="4100065333878929223">"사용 가능한 이동통신망이 없습니다."</string>
     <string name="incall_error_no_phone_number_supplied" msgid="4197432103471807739">"잘못된 번호를 입력했으므로 전화를 걸지 못했습니다."</string>
     <string name="incall_error_call_failed" msgid="4313552620858880999">"전화를 걸지 못했습니다."</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"MMI 시퀀스 시작 중..."</string>

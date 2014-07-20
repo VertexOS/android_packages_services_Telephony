@@ -52,13 +52,13 @@
     <string name="requesting_unlock" msgid="6412629401033249351">"Solicitando desbloqueo da rede..."</string>
     <string name="unlock_failed" msgid="6490531697031504225">"Solicitude de desbloqueo da rede realizado correctamente."</string>
     <string name="unlock_success" msgid="6770085622238180152">"Desbloqueo da rede realizado correctamente."</string>
-    <!-- no translation found for mobile_network_settings_not_available (3831911315358856062) -->
-    <skip />
+    <string name="mobile_network_settings_not_available" msgid="3831911315358856062">"A configuración de rede móbil non está dispoñible para este usuario"</string>
     <string name="labelGSMMore" msgid="5930842194056092106">"Configuración de chamadas GSM"</string>
     <string name="labelCDMAMore" msgid="1630676740428229339">"Configuración de chamadas CDMA"</string>
     <string name="apn_settings" msgid="9043423184895642077">"Nomes do punto de acceso"</string>
     <string name="settings_label" msgid="3876743539816984008">"Configuración de rede"</string>
-    <string name="connection_service" msgid="978745922583410219">"Servizo de conexión que se vai utilizar"</string>
+    <!-- no translation found for phone_accounts (8810358208981265351) -->
+    <skip />
     <string name="connection_service_default_label" msgid="1498481943805913754">"Servizo de conexión integrado"</string>
     <string name="voicemail" msgid="8693759337917898954">"Correo de voz"</string>
     <string name="voicemail_abbreviated" msgid="2215592488517217448">"CV:"</string>
@@ -125,8 +125,7 @@
     <string name="no_change" msgid="3186040086622435212">"Non se fixeron cambios."</string>
     <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"Escolle o servizo de correo de voz"</string>
     <string name="voicemail_default" msgid="5902099213882352338">"O meu operador"</string>
-    <!-- no translation found for mobile_networks (2843854043339307375) -->
-    <skip />
+    <string name="mobile_networks" msgid="2843854043339307375">"Configuración da rede móbil"</string>
     <string name="label_available" msgid="1181658289009300430">"Redes dispoñibles"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"Buscando..."</string>
     <string name="empty_networks_list" msgid="4249426905018815316">"Non se atopou ningunha rede."</string>
@@ -174,8 +173,7 @@
     <item msgid="3817924849415716259">"GSM/WCDMA preferido"</item>
   </string-array>
     <string name="data_enabled" msgid="5972538663568715366">"Datos activados"</string>
-    <!-- no translation found for data_enable_summary (2382798156640007971) -->
-    <skip />
+    <string name="data_enable_summary" msgid="2382798156640007971">"Permitir o uso de datos"</string>
     <string name="roaming" msgid="8871412572928323707">"Itinerancia de datos"</string>
     <string name="roaming_enable" msgid="7331106985174381987">"Conecta cos servizos de datos durante a itinerancia"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"Conecta cos servizos de datos durante a itinerancia"</string>
@@ -193,8 +191,7 @@
     <string name="throttle_data_rate_reduced_subtext" msgid="7492763592720107737">"<xliff:g id="USED_0">%1$s</xliff:g> máximo superado\nTaxa de datos reducida a <xliff:g id="USED_1">%2$d</xliff:g> Kb/s"</string>
     <string name="throttle_time_frame_subtext" msgid="7732763021560399960">"<xliff:g id="USED_0">%1$d</xliff:g>٪ do ciclo transcorrido\nO seguinte período comeza dentro de <xliff:g id="USED_1">%2$d</xliff:g> días (<xliff:g id="USED_2">%3$s</xliff:g>)"</string>
     <string name="throttle_rate_subtext" msgid="2149102656120726855">"A velocidade de datos redúcese a <xliff:g id="USED">%1$d</xliff:g> Kb/s se se supera o límite de uso de datos"</string>
-    <!-- no translation found for throttle_help_subtext (3633091498168446044) -->
-    <skip />
+    <string name="throttle_help_subtext" msgid="3633091498168446044">"Máis información sobre a política de uso de datos da rede móbil do teu operador"</string>
     <string name="cell_broadcast_sms" msgid="5584192824053625842">"SMS de difusión de cela"</string>
     <string name="enable_disable_cell_bc_sms" msgid="4851147873691392255">"SMS de difusión de cela"</string>
     <string name="cell_bc_sms_enable" msgid="6441688565738921084">"SMS de difusión de cela activado"</string>
@@ -413,8 +410,7 @@
     <string name="notification_missedCall_message" msgid="3049928912736917988">"Mensaxe"</string>
     <string name="incall_error_power_off" msgid="6550191216405193368">"Para facer unha chamada, primeiro desactiva o modo avión."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"Sen rexistro na rede"</string>
-    <!-- no translation found for incall_error_out_of_service (4100065333878929223) -->
-    <skip />
+    <string name="incall_error_out_of_service" msgid="4100065333878929223">"Rece móbil non dispoñible."</string>
     <string name="incall_error_no_phone_number_supplied" msgid="4197432103471807739">"Chamada non enviada; o número introducido non é válido."</string>
     <string name="incall_error_call_failed" msgid="4313552620858880999">"Chamada non enviada"</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"Iniciando secuencia MMI..."</string>

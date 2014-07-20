@@ -52,13 +52,13 @@
     <string name="requesting_unlock" msgid="6412629401033249351">"Spør om fjerning av operatørlås…"</string>
     <string name="unlock_failed" msgid="6490531697031504225">"Fikk ikke fjerne operatørlås."</string>
     <string name="unlock_success" msgid="6770085622238180152">"Operatørlåsen er fjernet."</string>
-    <!-- no translation found for mobile_network_settings_not_available (3831911315358856062) -->
-    <skip />
+    <string name="mobile_network_settings_not_available" msgid="3831911315358856062">"Innstillingene for mobilnettverk er ikke tilgjengelige for denne brukeren"</string>
     <string name="labelGSMMore" msgid="5930842194056092106">"Innstillinger for GSM-samtaler"</string>
     <string name="labelCDMAMore" msgid="1630676740428229339">"Innstillinger for CDMA-samtaler"</string>
     <string name="apn_settings" msgid="9043423184895642077">"Navn på aksesspunkt"</string>
     <string name="settings_label" msgid="3876743539816984008">"Nettverksinnstillinger"</string>
-    <string name="connection_service" msgid="978745922583410219">"Tilkoblingstjenesten som skal brukes"</string>
+    <!-- no translation found for phone_accounts (8810358208981265351) -->
+    <skip />
     <string name="connection_service_default_label" msgid="1498481943805913754">"Innebygd tilkoblingstjeneste"</string>
     <string name="voicemail" msgid="8693759337917898954">"Telefonsvarer"</string>
     <string name="voicemail_abbreviated" msgid="2215592488517217448">"Svarer:"</string>
@@ -125,8 +125,7 @@
     <string name="no_change" msgid="3186040086622435212">"Ingen endringer ble utført."</string>
     <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"Velg talemeldingsleverandør"</string>
     <string name="voicemail_default" msgid="5902099213882352338">"Min teleoperatør"</string>
-    <!-- no translation found for mobile_networks (2843854043339307375) -->
-    <skip />
+    <string name="mobile_networks" msgid="2843854043339307375">"Mobilnettverksinnstillinger"</string>
     <string name="label_available" msgid="1181658289009300430">"Tilgjengelige nettverk"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"Søker…"</string>
     <string name="empty_networks_list" msgid="4249426905018815316">"Fant ingen nettverk."</string>
@@ -174,8 +173,7 @@
     <item msgid="3817924849415716259">"GSM/WCDMA foretrukket"</item>
   </string-array>
     <string name="data_enabled" msgid="5972538663568715366">"Data aktivert"</string>
-    <!-- no translation found for data_enable_summary (2382798156640007971) -->
-    <skip />
+    <string name="data_enable_summary" msgid="2382798156640007971">"Tillat databruk"</string>
     <string name="roaming" msgid="8871412572928323707">"Dataroaming"</string>
     <string name="roaming_enable" msgid="7331106985174381987">"Koble til datatjenester ved roaming"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"Koble til datatjenester ved roaming"</string>
@@ -199,8 +197,7 @@
     <!-- no translation found for throttle_time_frame_subtext (7732763021560399960) -->
     <skip />
     <string name="throttle_rate_subtext" msgid="2149102656120726855">"Datahastigheten reduseres til <xliff:g id="USED">%1$d</xliff:g> Kb/s hvis databruken overskrider grenseverdien"</string>
-    <!-- no translation found for throttle_help_subtext (3633091498168446044) -->
-    <skip />
+    <string name="throttle_help_subtext" msgid="3633091498168446044">"Mer informasjon om mobiloperatørens retningslinjer for bruk av nettverksdata"</string>
     <string name="cell_broadcast_sms" msgid="5584192824053625842">"Kringkastings-SMS"</string>
     <string name="enable_disable_cell_bc_sms" msgid="4851147873691392255">"Kringkastings-SMS"</string>
     <string name="cell_bc_sms_enable" msgid="6441688565738921084">"Kringkastings-SMS aktivert"</string>
@@ -419,8 +416,7 @@
     <string name="notification_missedCall_message" msgid="3049928912736917988">"Melding"</string>
     <string name="incall_error_power_off" msgid="6550191216405193368">"For å ringe, slå av flymodus først."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"Ikke registrert på nettverket."</string>
-    <!-- no translation found for incall_error_out_of_service (4100065333878929223) -->
-    <skip />
+    <string name="incall_error_out_of_service" msgid="4100065333878929223">"Mobilnettverket er ikke tilgjengelig."</string>
     <string name="incall_error_no_phone_number_supplied" msgid="4197432103471807739">"Samtalen ble ikke opprettet, mangler eller ugyldig nummer."</string>
     <string name="incall_error_call_failed" msgid="4313552620858880999">"Samtalen ble ikke opprettet."</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"Begynner MMI-sekvens…"</string>

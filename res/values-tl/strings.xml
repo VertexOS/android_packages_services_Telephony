@@ -58,7 +58,8 @@
     <string name="labelCDMAMore" msgid="1630676740428229339">"Mga setting ng CDMA na tawag"</string>
     <string name="apn_settings" msgid="9043423184895642077">"Mga Pangalan ng Lugar ng Access"</string>
     <string name="settings_label" msgid="3876743539816984008">"Mga Setting ng Network"</string>
-    <string name="connection_service" msgid="978745922583410219">"Serbisyo ng koneksyon na gagamitin"</string>
+    <!-- no translation found for phone_accounts (8810358208981265351) -->
+    <skip />
     <string name="connection_service_default_label" msgid="1498481943805913754">"Built-in na serbisyo ng koneksyon"</string>
     <string name="voicemail" msgid="8693759337917898954">"Voicemail"</string>
     <string name="voicemail_abbreviated" msgid="2215592488517217448">"VM:"</string>

@@ -57,7 +57,8 @@
     <string name="labelCDMAMore" msgid="1630676740428229339">"CDMA የጥሪ ቅንብሮች"</string>
     <string name="apn_settings" msgid="9043423184895642077">"የድረስ ነጥብ ስም"</string>
     <string name="settings_label" msgid="3876743539816984008">"የአውታረመረብ ቅንብሮች"</string>
-    <string name="connection_service" msgid="978745922583410219">"የሚጠቀሙት የግንኙነት አገልግሎት"</string>
+    <!-- no translation found for phone_accounts (8810358208981265351) -->
+    <skip />
     <string name="connection_service_default_label" msgid="1498481943805913754">"አብሮ የተገነባ የግንኙነት አገልግሎት"</string>
     <string name="voicemail" msgid="8693759337917898954">"የድምፅ መልዕክት"</string>
     <string name="voicemail_abbreviated" msgid="2215592488517217448">"VM:"</string>

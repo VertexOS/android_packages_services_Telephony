@@ -57,7 +57,8 @@
     <string name="labelCDMAMore" msgid="1630676740428229339">"CDMA ಕರೆ ಸೆಟ್ಟಿಂಗ್‌ಗಳು"</string>
     <string name="apn_settings" msgid="9043423184895642077">"ಪ್ರವೇಶಿಸುವಿಕೆ ಕೇಂದ್ರದ ಹೆಸರುಗಳು"</string>
     <string name="settings_label" msgid="3876743539816984008">"ನೆಟ್‌ವರ್ಕ್‌ ಸೆಟ್ಟಿಂಗ್‌ಗಳು"</string>
-    <string name="connection_service" msgid="978745922583410219">"ಬಳಸಲು ಸಂಪರ್ಕ ಸೇವೆ"</string>
+    <!-- no translation found for phone_accounts (8810358208981265351) -->
+    <skip />
     <string name="connection_service_default_label" msgid="1498481943805913754">"ಅಂತರ್ನಿರ್ಮಿತ ಸಂಪರ್ಕ ಸೇವೆ"</string>
     <string name="voicemail" msgid="8693759337917898954">"ಧ್ವನಿಮೇಲ್"</string>
     <string name="voicemail_abbreviated" msgid="2215592488517217448">"VM:"</string>
@@ -172,8 +173,7 @@
     <item msgid="3817924849415716259">"GSM/WCDMA ಗೆ ಪ್ರಾಶಸ್ತ್ಯ ನೀಡಲಾಗಿದೆ"</item>
   </string-array>
     <string name="data_enabled" msgid="5972538663568715366">"ಡೇಟಾ ಸಕ್ರಿಯಗೊಂಡಿದೆ"</string>
-    <!-- no translation found for data_enable_summary (2382798156640007971) -->
-    <skip />
+    <string name="data_enable_summary" msgid="2382798156640007971">"ಡೇಟಾ ಬಳಕೆಯನ್ನು ಅನುಮತಿಸಿ"</string>
     <string name="roaming" msgid="8871412572928323707">"ಡೇಟಾ ರೋಮಿಂಗ್"</string>
     <string name="roaming_enable" msgid="7331106985174381987">"ರೋಮಿಂಗ್‌ನಲ್ಲಿರುವಾಗ ಡೇಟಾ ಸೇವೆಗಳಿಗೆ ಸಂಪರ್ಕಿಸು"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"ರೋಮಿಂಗ್‌ನಲ್ಲಿರುವಾಗ ಡೇಟಾ ಸೇವೆಗಳಿಗೆ ಸಂಪರ್ಕಿಸು"</string>

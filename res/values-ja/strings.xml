@@ -57,7 +57,8 @@
     <string name="labelCDMAMore" msgid="1630676740428229339">"CDMA通話設定"</string>
     <string name="apn_settings" msgid="9043423184895642077">"アクセスポイント名"</string>
     <string name="settings_label" msgid="3876743539816984008">"ネットワーク設定"</string>
-    <string name="connection_service" msgid="978745922583410219">"使用する接続サービス"</string>
+    <!-- no translation found for phone_accounts (8810358208981265351) -->
+    <skip />
     <string name="connection_service_default_label" msgid="1498481943805913754">"組み込みの接続サービス"</string>
     <string name="voicemail" msgid="8693759337917898954">"ボイスメール"</string>
     <string name="voicemail_abbreviated" msgid="2215592488517217448">"VM:"</string>
@@ -172,8 +173,7 @@
     <item msgid="3817924849415716259">"GSM/WCDMAを優先"</item>
   </string-array>
     <string name="data_enabled" msgid="5972538663568715366">"データ通信を有効にする"</string>
-    <!-- no translation found for data_enable_summary (2382798156640007971) -->
-    <skip />
+    <string name="data_enable_summary" msgid="2382798156640007971">"データ使用を許可"</string>
     <string name="roaming" msgid="8871412572928323707">"データローミング"</string>
     <string name="roaming_enable" msgid="7331106985174381987">"ローミング時にデータサービスに接続する"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"ローミング時にデータサービスに接続する"</string>

@@ -48,17 +48,17 @@
     <string name="puk_unlocked" msgid="2284912838477558454">"Blokeringen af dit SIM-kort er blevet ophævet. Din telefon låser op ..."</string>
     <string name="label_ndp" msgid="780479633159517250">"Pinkode til oplåsning af SIM-netværket"</string>
     <string name="sim_ndp_unlock_text" msgid="683628237760543009">"Lås op"</string>
-    <string name="sim_ndp_dismiss_text" msgid="1604823375752456947">"Annuller"</string>
+    <string name="sim_ndp_dismiss_text" msgid="1604823375752456947">"Luk"</string>
     <string name="requesting_unlock" msgid="6412629401033249351">"Anmoder om oplåsning af netværk ..."</string>
     <string name="unlock_failed" msgid="6490531697031504225">"Anmodningen om oplåsning af netværk mislykkedes."</string>
     <string name="unlock_success" msgid="6770085622238180152">"Netværket blev låst op."</string>
-    <!-- no translation found for mobile_network_settings_not_available (3831911315358856062) -->
-    <skip />
+    <string name="mobile_network_settings_not_available" msgid="3831911315358856062">"Denne bruger har ikke adgang til mobilnetværksindstillinger"</string>
     <string name="labelGSMMore" msgid="5930842194056092106">"Indstillinger for GSM-opkald"</string>
     <string name="labelCDMAMore" msgid="1630676740428229339">"Indstillinger for CDMA-opkald"</string>
     <string name="apn_settings" msgid="9043423184895642077">"Adgangspunkter"</string>
     <string name="settings_label" msgid="3876743539816984008">"Indstillinger for netværk"</string>
-    <string name="connection_service" msgid="978745922583410219">"Forbindelsestjeneste, der skal bruges"</string>
+    <!-- no translation found for phone_accounts (8810358208981265351) -->
+    <skip />
     <string name="connection_service_default_label" msgid="1498481943805913754">"Indbygget forbindelsestjeneste"</string>
     <string name="voicemail" msgid="8693759337917898954">"Telefonsvarer"</string>
     <string name="voicemail_abbreviated" msgid="2215592488517217448">"VM:"</string>
@@ -125,8 +125,7 @@
     <string name="no_change" msgid="3186040086622435212">"Der blev ikke foretaget nogen ændringer."</string>
     <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"Vælg telefonsvarertjeneste"</string>
     <string name="voicemail_default" msgid="5902099213882352338">"Min udbyder"</string>
-    <!-- no translation found for mobile_networks (2843854043339307375) -->
-    <skip />
+    <string name="mobile_networks" msgid="2843854043339307375">"Mobilnetværksindstillinger"</string>
     <string name="label_available" msgid="1181658289009300430">"Tilgængelige netværk"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"Søger..."</string>
     <string name="empty_networks_list" msgid="4249426905018815316">"Der blev ikke fundet nogen netværk."</string>
@@ -174,8 +173,7 @@
     <item msgid="3817924849415716259">"GSM/WCDMA foretrækkes"</item>
   </string-array>
     <string name="data_enabled" msgid="5972538663568715366">"Data aktiveret"</string>
-    <!-- no translation found for data_enable_summary (2382798156640007971) -->
-    <skip />
+    <string name="data_enable_summary" msgid="2382798156640007971">"Tillad dataforbrug"</string>
     <string name="roaming" msgid="8871412572928323707">"Dataroaming"</string>
     <string name="roaming_enable" msgid="7331106985174381987">"Opret forbindelse til datatjenester under roaming"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"Opret forbindelse til datatjenester under roaming"</string>
@@ -199,8 +197,7 @@
     <!-- no translation found for throttle_time_frame_subtext (7732763021560399960) -->
     <skip />
     <string name="throttle_rate_subtext" msgid="2149102656120726855">"Datahastigheden er nedsat til <xliff:g id="USED">%1$d</xliff:g> Kb/s, hvis datagrænsen overskrides"</string>
-    <!-- no translation found for throttle_help_subtext (3633091498168446044) -->
-    <skip />
+    <string name="throttle_help_subtext" msgid="3633091498168446044">"Flere oplysninger om mobilselskabets politik vedrørende dataforbrug på netværket"</string>
     <string name="cell_broadcast_sms" msgid="5584192824053625842">"Cell Broadcast-sms"</string>
     <string name="enable_disable_cell_bc_sms" msgid="4851147873691392255">"Cell Broadcast-sms"</string>
     <string name="cell_bc_sms_enable" msgid="6441688565738921084">"Cell Broadcast-sms aktiveret"</string>
@@ -419,8 +416,7 @@
     <string name="notification_missedCall_message" msgid="3049928912736917988">"Besked"</string>
     <string name="incall_error_power_off" msgid="6550191216405193368">"Slå Flytilstand fra først for at foretage et opkald."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"Ikke registreret på netværk."</string>
-    <!-- no translation found for incall_error_out_of_service (4100065333878929223) -->
-    <skip />
+    <string name="incall_error_out_of_service" msgid="4100065333878929223">"Mobilnetværket er ikke tilgængeligt."</string>
     <string name="incall_error_no_phone_number_supplied" msgid="4197432103471807739">"Opkaldet blev ikke sendt. Der blev ikke indtastet et gyldigt nummer."</string>
     <string name="incall_error_call_failed" msgid="4313552620858880999">"Opkaldet blev ikke sendt."</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"Starter MMI-sekvens ..."</string>
@@ -507,7 +503,7 @@
     <string name="progress_dialog_exiting_ecm" msgid="4835734101617817074">"Eksisterende nødtilbagekaldstilstand"</string>
     <string name="alert_dialog_yes" msgid="6674268047820703974">"Ja"</string>
     <string name="alert_dialog_no" msgid="1476091437797628703">"Nej"</string>
-    <string name="alert_dialog_dismiss" msgid="2491494287075907171">"Annuller"</string>
+    <string name="alert_dialog_dismiss" msgid="2491494287075907171">"Luk"</string>
     <string name="voicemail_provider" msgid="5135942703327136909">"Tjeneste"</string>
     <string name="voicemail_settings" msgid="72448049107749316">"Konfiguration"</string>
     <string name="voicemail_number_not_set" msgid="6724904736891087856">"&lt;Ikke angivet&gt;"</string>

@@ -22,19 +22,19 @@
     <string name="sip_receive_calls" msgid="426678617137462173">"შემომავალი ზარების მიღება"</string>
     <string name="sip_receive_calls_summary" msgid="7390078407518633658">"ამცირებს ბატარეის ხანგრძლივობას"</string>
     <string name="sip_call_options_title" msgid="1140346343222696780">"ინტერნეტით დარეკვის გამოყენება"</string>
-    <string name="sip_call_options_wifi_only_title" msgid="6659725576735517138">"ინტერნეტით დარკევის გამოყენება (მხოლოდ Wi-Fi)"</string>
+    <string name="sip_call_options_wifi_only_title" msgid="6659725576735517138">"ინტერნეტით დარეკვის გამოყენება (მხოლოდ Wi-Fi)"</string>
     <string name="sip_call_options_entry_1" msgid="7217659161237099900">"ყველა ზარზე, როდესაც მონაცემთა ქსელი ხელმისაწვდომია"</string>
     <string name="sip_call_options_entry_2" msgid="3432624809972300467">"მხოლოდ ინტერნეტ-ზარებზე"</string>
     <string name="sip_call_options_entry_3" msgid="1493464396638124047">"კითხვა ყოველ ზარზე"</string>
     <string name="sip_call_options_wifi_only_entry_1" msgid="1358513095551847314">"ყველა ზარზე"</string>
-    <string name="pick_outgoing_call_phone_type" msgid="7140865415705473564">"Place call"</string>
+    <string name="pick_outgoing_call_phone_type" msgid="7140865415705473564">"ზარის განხორციელება"</string>
     <string name="pick_outgoing_sip_phone" msgid="635431914692273175">"ინტერნეტით დარეკვის ანგარიშის გამოყენება:"</string>
     <string name="remember_my_choice" msgid="6204557816977242680">"მუდამ გამოიყენე ინტერნეტ ზარების განსახორციელდებლად"</string>
     <string name="reset_my_choice_hint" msgid="5681276499400166714">"შეგიძლიათ აირჩიოთ, თუ რომელი ინტერნეტ-დარეკვის ანგარიში გამოიყენება ნაგულისხმევად შემდეგი ეკრანიდან: ტელეფონი &gt; პარამეტრები &gt; ინტერნეტ-დარეკვის პარამეტრები &gt; ანგარიშები."</string>
     <string name="pstn_phone" msgid="9596332924895028">"მობილური სატელეფონო ზარი"</string>
     <string name="internet_phone" msgid="4444458244774004247">"ინტერნეტ-ზარი"</string>
     <string name="no_sip_account_found_title" msgid="1930267380483259657">"ინტერნეტით დარეკვის ანგარიში არ არის"</string>
-    <string name="no_sip_account_found" msgid="2584609532663311723">"ამ ტელეფონზე ინტერნეტით დარეკვის ანგარიშები არ არის. გსურთ დაამატოთ ახლა?"</string>
+    <string name="no_sip_account_found" msgid="2584609532663311723">"ამ ტელეფონზე ინტერნეტით დარეკვის ანგარიშები არ არის. გსურთ, დაამატოთ ახლა?"</string>
     <string name="sip_menu_add" msgid="220996859802365311">"დამატება"</string>
     <string name="add_sip_account" msgid="800843669753980091">"ანგარიშის დამატება"</string>
     <string name="remove_sip_account" msgid="1367664438506503690">"ანგარიშის წაშლა"</string>
@@ -48,7 +48,7 @@
     <string name="close_profile" msgid="3122414058856309881">"დახურვა"</string>
     <string name="primary_account_summary_with" msgid="3590771303761149724">"ძირითადი ანგარიში. <xliff:g id="REGISTRATION_STATUS">%s</xliff:g>"</string>
     <string name="registration_status_checking_status" msgid="6136793741862200337">"სტატუსის შემოწმება..."</string>
-    <string name="registration_status_registering" msgid="2677183977796278749">"მიმდინარეობს რეგისტრაც…"</string>
+    <string name="registration_status_registering" msgid="2677183977796278749">"მიმდინარეობს რეგისტრაცია…"</string>
     <string name="registration_status_still_trying" msgid="7648151061205513458">"ხელახალი მცდელობა…"</string>
     <string name="registration_status_not_receiving" msgid="7620333886153361090">"ზარების მიღება არ ხორციელდება."</string>
     <string name="registration_status_no_data" msgid="2541999976218192413">"ანგარიშის რეგისტრაცია შეჩერდა, რადგან ინტერნეტ-კავშირი არ არის."</string>
@@ -56,7 +56,7 @@
     <string name="registration_status_not_running" msgid="514205414303796800">"ანგარიშის რეგისტრაცია ვერ განხორციელდა."</string>
     <string name="registration_status_done" msgid="3264961069247314253">"იღებს ზარებს."</string>
     <string name="registration_status_failed_try_later" msgid="2199970021756384317">"ანგარიშის რეგისტრაცია ვერ განხორციელდა: (<xliff:g id="REGISTRATION_ERROR_MESSAGE">%s</xliff:g>); მოგვიანებით შევეცდებით"</string>
-    <string name="registration_status_invalid_credentials" msgid="8406872554323334182">"ანგარიშის რეგისტრაცია ვერ განხორციელდა: მომხმარებლის სახელი ან პაროლი არასწორია"</string>
+    <string name="registration_status_invalid_credentials" msgid="8406872554323334182">"ანგარიშის რეგისტრაცია ვერ განხორციელდა: მომხმარებლის სახელი ან პაროლი არასწორია."</string>
     <string name="registration_status_server_unreachable" msgid="7710275557045148634">"ანგარიშის რეგისტრაცია ვერ განხორციელდა: გადაამოწმეთ სერვერის სახელი."</string>
     <string name="third_party_account_summary" msgid="9041060473615403041">"ანგარიში ამჟამად გამოიყენება <xliff:g id="ACCOUNT_OWNER">%s</xliff:g> აპის მიერ."</string>
     <string name="sip_edit_title" msgid="1967247832635750410">"SIP ანგარიშის დეტალები"</string>
@@ -84,9 +84,9 @@
     <string name="no_internet_available_title" msgid="5967612364991972539">"ინტერნეტთან კავშირი არ არის"</string>
     <string name="no_wifi_available_title" msgid="3560623175076099410">"Wi-Fi კავშირი არ არის"</string>
     <string name="no_internet_available" msgid="3166751740849243568">"ინტერნეტ-ზარის განსახორციელებლად, ჯერ გადაამოწმეთ ინტერნეტთან კავშირი."</string>
-    <string name="no_wifi_available" msgid="8786934834522321080">"ინტერნეტით დარეკვისათვის დაკავშირებული უნდა იყოთ Wi-Fi ქსელთან (გამოიყენეთ უსადენო &amp; ქსელის პარამეტრები)."</string>
+    <string name="no_wifi_available" msgid="8786934834522321080">"ინტერნეტით დარეკვისათვის დაკავშირებული უნდა იყოთ Wi-Fi ქსელთან (გამოიყენეთ უსადენო და ქსელის პარამეტრები)."</string>
     <string name="no_voip" msgid="1600568347241920141">"ინტერნეტით დარეკვა მხარდაჭერილი არ არის"</string>
     <string name="sip_system_decide" msgid="5577696249416700671">"ავტომატური"</string>
     <string name="sip_always_send_keepalive" msgid="4773022409239823318">"მუდამ გაგზავნა"</string>
-    <string name="sip_connection_service_label" msgid="9214942431972794760">"Built-in Internet calling"</string>
+    <string name="sip_connection_service_label" msgid="9214942431972794760">"ჩაშენებული ინტერნეტ-ზარი"</string>
 </resources>

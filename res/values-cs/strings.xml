@@ -52,13 +52,13 @@
     <string name="requesting_unlock" msgid="6412629401033249351">"Žádost o odblokování sítě..."</string>
     <string name="unlock_failed" msgid="6490531697031504225">"Požadavek na odblokování sítě se nezdařil."</string>
     <string name="unlock_success" msgid="6770085622238180152">"Síť byla úspěšně odblokována."</string>
-    <!-- no translation found for mobile_network_settings_not_available (3831911315358856062) -->
-    <skip />
+    <string name="mobile_network_settings_not_available" msgid="3831911315358856062">"Nastavení mobilní sítě pro tohoto uživatele není dostupné."</string>
     <string name="labelGSMMore" msgid="5930842194056092106">"Nastavení hovorů GSM"</string>
     <string name="labelCDMAMore" msgid="1630676740428229339">"Nastavení hovorů CDMA"</string>
     <string name="apn_settings" msgid="9043423184895642077">"Názvy přístupových bodů (APN)"</string>
     <string name="settings_label" msgid="3876743539816984008">"Nastavení sítě"</string>
-    <string name="connection_service" msgid="978745922583410219">"Služba připojení, která se má použít"</string>
+    <!-- no translation found for phone_accounts (8810358208981265351) -->
+    <skip />
     <string name="connection_service_default_label" msgid="1498481943805913754">"Integrovaná služba připojení"</string>
     <string name="voicemail" msgid="8693759337917898954">"Hlasová schránka"</string>
     <string name="voicemail_abbreviated" msgid="2215592488517217448">"HS:"</string>
@@ -125,8 +125,7 @@
     <string name="no_change" msgid="3186040086622435212">"Nebyly provedeny žádné změny."</string>
     <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"Zvolte službu hlasové schránky"</string>
     <string name="voicemail_default" msgid="5902099213882352338">"Můj operátor"</string>
-    <!-- no translation found for mobile_networks (2843854043339307375) -->
-    <skip />
+    <string name="mobile_networks" msgid="2843854043339307375">"Nastavení mobilní sítě"</string>
     <string name="label_available" msgid="1181658289009300430">"Dostupné sítě"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"Vyhledávání..."</string>
     <string name="empty_networks_list" msgid="4249426905018815316">"Žádná síť nebyla nalezena."</string>
@@ -193,8 +192,7 @@
     <string name="throttle_data_rate_reduced_subtext" msgid="7492763592720107737">"Byl překročen limit <xliff:g id="USED_0">%1$s</xliff:g>\nPřenosová rychlost byla snížena na <xliff:g id="USED_1">%2$d</xliff:g> kb/s"</string>
     <string name="throttle_time_frame_subtext" msgid="7732763021560399960">"Uplynulo <xliff:g id="USED_0">%1$d</xliff:g>٪ cyklu\nPočet dní do začátku dalšího období: <xliff:g id="USED_1">%2$d</xliff:g> (<xliff:g id="USED_2">%3$s</xliff:g>)"</string>
     <string name="throttle_rate_subtext" msgid="2149102656120726855">"V případě překročení limitu využití dat se přenosová rychlost sníží na <xliff:g id="USED">%1$d</xliff:g> kb/s"</string>
-    <!-- no translation found for throttle_help_subtext (3633091498168446044) -->
-    <skip />
+    <string name="throttle_help_subtext" msgid="3633091498168446044">"Další informace o zásadách využití dat v mobilní síti vašeho mobilního operátora"</string>
     <string name="cell_broadcast_sms" msgid="5584192824053625842">"Zprávy SMS informační služby"</string>
     <string name="enable_disable_cell_bc_sms" msgid="4851147873691392255">"Zprávy SMS informační služby"</string>
     <string name="cell_bc_sms_enable" msgid="6441688565738921084">"Zprávy SMS informační služby povoleny"</string>
@@ -413,8 +411,7 @@
     <string name="notification_missedCall_message" msgid="3049928912736917988">"Zpráva"</string>
     <string name="incall_error_power_off" msgid="6550191216405193368">"Chcete-li telefonovat, vypněte nejprve režim V letadle."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"Přihlášení k síti nebylo úspěšné."</string>
-    <!-- no translation found for incall_error_out_of_service (4100065333878929223) -->
-    <skip />
+    <string name="incall_error_out_of_service" msgid="4100065333878929223">"Mobilní síť je nedostupná."</string>
     <string name="incall_error_no_phone_number_supplied" msgid="4197432103471807739">"Hovor nelze spojit, nebylo zadáno platné číslo."</string>
     <string name="incall_error_call_failed" msgid="4313552620858880999">"Hovor nebyl spojen."</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"Spouštění sekvence MMI..."</string>

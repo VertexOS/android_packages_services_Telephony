@@ -52,13 +52,13 @@
     <string name="requesting_unlock" msgid="6412629401033249351">"Traženje mrežnog otključavanja..."</string>
     <string name="unlock_failed" msgid="6490531697031504225">"Neuspješan zahtjev za otključavanje mreže."</string>
     <string name="unlock_success" msgid="6770085622238180152">"Mrežno otključavanje bilo je uspješno."</string>
-    <!-- no translation found for mobile_network_settings_not_available (3831911315358856062) -->
-    <skip />
+    <string name="mobile_network_settings_not_available" msgid="3831911315358856062">"Postavke mobilne mreže nisu dostupne za tog korisnika"</string>
     <string name="labelGSMMore" msgid="5930842194056092106">"Postavke GSM poziva"</string>
     <string name="labelCDMAMore" msgid="1630676740428229339">"Postavke CDMA poziva"</string>
     <string name="apn_settings" msgid="9043423184895642077">"Nazivi pristupnih točaka"</string>
     <string name="settings_label" msgid="3876743539816984008">"Postavke mreže"</string>
-    <string name="connection_service" msgid="978745922583410219">"Usluga povezivanja koja će se upotrijebiti"</string>
+    <!-- no translation found for phone_accounts (8810358208981265351) -->
+    <skip />
     <string name="connection_service_default_label" msgid="1498481943805913754">"Ugrađena usluga povezivanja"</string>
     <string name="voicemail" msgid="8693759337917898954">"Govorna pošta"</string>
     <string name="voicemail_abbreviated" msgid="2215592488517217448">"VM:"</string>
@@ -125,8 +125,7 @@
     <string name="no_change" msgid="3186040086622435212">"Nisu izvršene nikakve promjene."</string>
     <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"Odaberite uslugu govorne pošte"</string>
     <string name="voicemail_default" msgid="5902099213882352338">"Moj mobilni operater"</string>
-    <!-- no translation found for mobile_networks (2843854043339307375) -->
-    <skip />
+    <string name="mobile_networks" msgid="2843854043339307375">"Postavke mobilne mreže"</string>
     <string name="label_available" msgid="1181658289009300430">"Dostupne mreže"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"Pretraživanje…"</string>
     <string name="empty_networks_list" msgid="4249426905018815316">"Nije pronađena mreža."</string>
@@ -193,8 +192,7 @@
     <string name="throttle_data_rate_reduced_subtext" msgid="7492763592720107737">"<xliff:g id="USED_0">%1$s</xliff:g> maksimum je prekoračen\nBrzina prijenosa podataka smanjena je na <xliff:g id="USED_1">%2$d</xliff:g> Kb/s"</string>
     <string name="throttle_time_frame_subtext" msgid="7732763021560399960">"Proteklo je <xliff:g id="USED_0">%1$d</xliff:g>٪ ciklusa\nSljedeće razdoblje počinje za ovoliko dana: <xliff:g id="USED_1">%2$d</xliff:g> (<xliff:g id="USED_2">%3$s</xliff:g>)"</string>
     <string name="throttle_rate_subtext" msgid="2149102656120726855">"Brzina prijenosa podatak smanjena je na <xliff:g id="USED">%1$d</xliff:g> Kb/s ako se prekorači ograničenje korištenja podataka"</string>
-    <!-- no translation found for throttle_help_subtext (3633091498168446044) -->
-    <skip />
+    <string name="throttle_help_subtext" msgid="3633091498168446044">"Više informacija o pravilima upotrebe mobilne podatkovne mreže vašeg davatelja mobilne usluge"</string>
     <string name="cell_broadcast_sms" msgid="5584192824053625842">"SMS iz mobilne mreže"</string>
     <string name="enable_disable_cell_bc_sms" msgid="4851147873691392255">"SMS iz mobilne mreže"</string>
     <string name="cell_bc_sms_enable" msgid="6441688565738921084">"Omogućen je SMS iz mobilne mreže"</string>
@@ -413,8 +411,7 @@
     <string name="notification_missedCall_message" msgid="3049928912736917988">"Poruka"</string>
     <string name="incall_error_power_off" msgid="6550191216405193368">"Da biste uspostavili poziv, prvo isključite način rada u zrakoplovu."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"Nije registrirano na mreži."</string>
-    <!-- no translation found for incall_error_out_of_service (4100065333878929223) -->
-    <skip />
+    <string name="incall_error_out_of_service" msgid="4100065333878929223">"Mobilna mreža nije dostupna."</string>
     <string name="incall_error_no_phone_number_supplied" msgid="4197432103471807739">"Poziv nije uspostavljen, nije unijet valjani broj."</string>
     <string name="incall_error_call_failed" msgid="4313552620858880999">"Poziv nije poslan."</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"Pokretanje MMI sekvence…"</string>

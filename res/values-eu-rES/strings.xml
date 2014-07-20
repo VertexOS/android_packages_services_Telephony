@@ -52,13 +52,13 @@
     <string name="requesting_unlock" msgid="6412629401033249351">"Sarea desblokeatzeko eskatzen…"</string>
     <string name="unlock_failed" msgid="6490531697031504225">"Sarea desblokeatzeko eskaerak ez du arrakastarik izan."</string>
     <string name="unlock_success" msgid="6770085622238180152">"Sarea desblokeatu egin da."</string>
-    <!-- no translation found for mobile_network_settings_not_available (3831911315358856062) -->
-    <skip />
+    <string name="mobile_network_settings_not_available" msgid="3831911315358856062">"Erabiltzaile honek ez dauzka sare mugikorraren ezarpenak erabilgarri"</string>
     <string name="labelGSMMore" msgid="5930842194056092106">"GSM deien ezarpenak"</string>
     <string name="labelCDMAMore" msgid="1630676740428229339">"CDMA deien ezarpenak"</string>
     <string name="apn_settings" msgid="9043423184895642077">"Sarbide-puntuen izenak"</string>
     <string name="settings_label" msgid="3876743539816984008">"Sareko ezarpenak"</string>
-    <string name="connection_service" msgid="978745922583410219">"Konektatzeko erabili beharreko zerbitzua"</string>
+    <!-- no translation found for phone_accounts (8810358208981265351) -->
+    <skip />
     <string name="connection_service_default_label" msgid="1498481943805913754">"Konektatzeko zerbitzu bateratua"</string>
     <string name="voicemail" msgid="8693759337917898954">"Erantzungailua"</string>
     <string name="voicemail_abbreviated" msgid="2215592488517217448">"Erantzungailua:"</string>
@@ -125,8 +125,7 @@
     <string name="no_change" msgid="3186040086622435212">"Ez da aldaketarik egin."</string>
     <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"Aukeratu erantzungailu-zerbitzua"</string>
     <string name="voicemail_default" msgid="5902099213882352338">"Nire operadorea"</string>
-    <!-- no translation found for mobile_networks (2843854043339307375) -->
-    <skip />
+    <string name="mobile_networks" msgid="2843854043339307375">"Sare mugikorraren ezarpenak"</string>
     <string name="label_available" msgid="1181658289009300430">"Sare erabilgarriak"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"Bilatzen…"</string>
     <string name="empty_networks_list" msgid="4249426905018815316">"Ez da sarerik aurkitu."</string>
@@ -174,8 +173,7 @@
     <item msgid="3817924849415716259">"GSM/WCDMA hobetsita"</item>
   </string-array>
     <string name="data_enabled" msgid="5972538663568715366">"Datuak gaituta"</string>
-    <!-- no translation found for data_enable_summary (2382798156640007971) -->
-    <skip />
+    <string name="data_enable_summary" msgid="2382798156640007971">"Onartu datuak erabiltzea"</string>
     <string name="roaming" msgid="8871412572928323707">"Ibiltaritzako datuak"</string>
     <string name="roaming_enable" msgid="7331106985174381987">"Konektatu datu-zerbitzuetara ibiltaritzan"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"Konektatu datu-zerbitzuetara ibiltaritzan"</string>
@@ -199,8 +197,7 @@
     <!-- no translation found for throttle_time_frame_subtext (7732763021560399960) -->
     <skip />
     <string name="throttle_rate_subtext" msgid="2149102656120726855">"Datuak erabiltzeko muga gainditzen bada, datu-abiadura <xliff:g id="USED">%1$d</xliff:g> Kb/s izango da"</string>
-    <!-- no translation found for throttle_help_subtext (3633091498168446044) -->
-    <skip />
+    <string name="throttle_help_subtext" msgid="3633091498168446044">"Informazio gehiago zure operadoreak sare mugikorretako datu-erabileraren inguruan dituen gidalerroei buruz"</string>
     <string name="cell_broadcast_sms" msgid="5584192824053625842">"Sare mugikor bidezko SMS igorpenak"</string>
     <string name="enable_disable_cell_bc_sms" msgid="4851147873691392255">"Sare mugikor bidezko SMS igorpenak"</string>
     <string name="cell_bc_sms_enable" msgid="6441688565738921084">"Sare mugikor bidezko SMS igorpena gaituta"</string>
@@ -419,8 +416,7 @@
     <string name="notification_missedCall_message" msgid="3049928912736917988">"Mezua"</string>
     <string name="incall_error_power_off" msgid="6550191216405193368">"Dei bat egiteko, Hegaldi modua desaktibatu behar duzu."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"Ez dago sarean erregistratuta."</string>
-    <!-- no translation found for incall_error_out_of_service (4100065333878929223) -->
-    <skip />
+    <string name="incall_error_out_of_service" msgid="4100065333878929223">"Sare mugikorra ez dago erabilgarri."</string>
     <string name="incall_error_no_phone_number_supplied" msgid="4197432103471807739">"Ez da deia bidali ez delako baliozko zenbakirik idatzi."</string>
     <string name="incall_error_call_failed" msgid="4313552620858880999">"Ez da deia bidali."</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"MMI sekuentzia hasten…"</string>

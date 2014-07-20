@@ -57,7 +57,8 @@
     <string name="labelCDMAMore" msgid="1630676740428229339">"CDMA அழைப்பு அமைப்புகள்"</string>
     <string name="apn_settings" msgid="9043423184895642077">"ஆக்சஸ் பாயிண்ட் நேம்கள்"</string>
     <string name="settings_label" msgid="3876743539816984008">"நெட்வொர்க் அமைப்புகள்"</string>
-    <string name="connection_service" msgid="978745922583410219">"பயன்படுத்துவதற்கான இணைப்பு சேவை"</string>
+    <!-- no translation found for phone_accounts (8810358208981265351) -->
+    <skip />
     <string name="connection_service_default_label" msgid="1498481943805913754">"உள்ளமைக்கப்பட்ட இணைப்பு சேவை"</string>
     <string name="voicemail" msgid="8693759337917898954">"குரலஞ்சல்"</string>
     <string name="voicemail_abbreviated" msgid="2215592488517217448">"VM:"</string>
@@ -172,8 +173,7 @@
     <item msgid="3817924849415716259">"GSM/WCDMA பரிந்துரைக்கப்பட்டது"</item>
   </string-array>
     <string name="data_enabled" msgid="5972538663568715366">"தரவு இயக்கப்பட்டது"</string>
-    <!-- no translation found for data_enable_summary (2382798156640007971) -->
-    <skip />
+    <string name="data_enable_summary" msgid="2382798156640007971">"தரவுப் பயன்பாட்டை அனுமதி"</string>
     <string name="roaming" msgid="8871412572928323707">"தரவு ரோமிங்"</string>
     <string name="roaming_enable" msgid="7331106985174381987">"ரோமிங்கின் போது தரவு சேவைகளுடன் இணை"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"ரோமிங்கின் போது தரவு சேவைகளுடன் இணை"</string>

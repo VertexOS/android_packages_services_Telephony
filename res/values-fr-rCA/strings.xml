@@ -52,13 +52,13 @@
     <string name="requesting_unlock" msgid="6412629401033249351">"Demande de déblocage du réseau…"</string>
     <string name="unlock_failed" msgid="6490531697031504225">"Échec de la demande de déblocage du réseau"</string>
     <string name="unlock_success" msgid="6770085622238180152">"Le réseau a été débloqué."</string>
-    <!-- no translation found for mobile_network_settings_not_available (3831911315358856062) -->
-    <skip />
+    <string name="mobile_network_settings_not_available" msgid="3831911315358856062">"Les paramètres de réseau cellulaire ne sont pas accessibles pour cet utilisateur"</string>
     <string name="labelGSMMore" msgid="5930842194056092106">"Paramètres d\'appel GSM"</string>
     <string name="labelCDMAMore" msgid="1630676740428229339">"Paramètres d\'appel CDMA"</string>
     <string name="apn_settings" msgid="9043423184895642077">"Noms des points d\'accès"</string>
     <string name="settings_label" msgid="3876743539816984008">"Paramètres du réseau"</string>
-    <string name="connection_service" msgid="978745922583410219">"Service de connexion à utiliser"</string>
+    <!-- no translation found for phone_accounts (8810358208981265351) -->
+    <skip />
     <string name="connection_service_default_label" msgid="1498481943805913754">"Service de connexion intégré"</string>
     <string name="voicemail" msgid="8693759337917898954">"Messagerie vocale"</string>
     <string name="voicemail_abbreviated" msgid="2215592488517217448">"MV :"</string>
@@ -125,8 +125,7 @@
     <string name="no_change" msgid="3186040086622435212">"Aucune modification n\'a été apportée."</string>
     <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"Choisissez un service de messagerie vocale."</string>
     <string name="voicemail_default" msgid="5902099213882352338">"Mon opérateur"</string>
-    <!-- no translation found for mobile_networks (2843854043339307375) -->
-    <skip />
+    <string name="mobile_networks" msgid="2843854043339307375">"Paramètres des réseaux cellulaires"</string>
     <string name="label_available" msgid="1181658289009300430">"Réseaux disponibles"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"Recherche en cours…"</string>
     <string name="empty_networks_list" msgid="4249426905018815316">"Aucun réseau trouvé"</string>
@@ -197,8 +196,7 @@
     <string name="throttle_data_rate_reduced_subtext" msgid="7492763592720107737">"<xliff:g id="USED_0">%1$s</xliff:g> maximum dépassé\nTaux de transfert des données réduit à <xliff:g id="USED_1">%2$d</xliff:g> Ko/s"</string>
     <string name="throttle_time_frame_subtext" msgid="7732763021560399960">"<xliff:g id="USED_0">%1$d</xliff:g> % du cycle écoulé.\nLa prochaine période démarre dans <xliff:g id="USED_1">%2$d</xliff:g> jours (<xliff:g id="USED_2">%3$s</xliff:g>)."</string>
     <string name="throttle_rate_subtext" msgid="2149102656120726855">"Taux de transfert des données réduit à <xliff:g id="USED">%1$d</xliff:g> Ko/s si le plafond d\'utilisation est dépassé"</string>
-    <!-- no translation found for throttle_help_subtext (3633091498168446044) -->
-    <skip />
+    <string name="throttle_help_subtext" msgid="3633091498168446044">"En savoir plus les politiques de votre fournisseur de services concernant l\'utilisation des données sur son réseau cellulaire"</string>
     <string name="cell_broadcast_sms" msgid="5584192824053625842">"Diffusion cellulaire par SMS"</string>
     <string name="enable_disable_cell_bc_sms" msgid="4851147873691392255">"Diffusion cellulaire par SMS"</string>
     <string name="cell_bc_sms_enable" msgid="6441688565738921084">"Option \"Diffusion cellulaire par SMS\" activée"</string>
@@ -417,8 +415,7 @@
     <string name="notification_missedCall_message" msgid="3049928912736917988">"Message"</string>
     <string name="incall_error_power_off" msgid="6550191216405193368">"Veuillez désactiver le mode Avion avant de passer un appel."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"Non enregistré sur le réseau"</string>
-    <!-- no translation found for incall_error_out_of_service (4100065333878929223) -->
-    <skip />
+    <string name="incall_error_out_of_service" msgid="4100065333878929223">"Réseau cellulaire non disponible."</string>
     <string name="incall_error_no_phone_number_supplied" msgid="4197432103471807739">"L\'appel n\'a pas été effectué. Le numéro composé n\'est pas valide."</string>
     <string name="incall_error_call_failed" msgid="4313552620858880999">"L\'appel n\'a pas été effectué."</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"Lancement de la séquence IHM..."</string>

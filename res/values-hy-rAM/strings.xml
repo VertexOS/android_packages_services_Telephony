@@ -52,13 +52,13 @@
     <string name="requesting_unlock" msgid="6412629401033249351">"Հայցվում է ցանցի ապակողպում..."</string>
     <string name="unlock_failed" msgid="6490531697031504225">"Ցանցի ապակողպման հարցումը խափանվեց:"</string>
     <string name="unlock_success" msgid="6770085622238180152">"Ցանցի ապակողպումը խափանվեց"</string>
-    <!-- no translation found for mobile_network_settings_not_available (3831911315358856062) -->
-    <skip />
+    <string name="mobile_network_settings_not_available" msgid="3831911315358856062">"Բջջային ցանցի կարգավորումներն անհասանելի են այս օգտվողի համար"</string>
     <string name="labelGSMMore" msgid="5930842194056092106">"GSM զանգերի կարգավորումներ"</string>
     <string name="labelCDMAMore" msgid="1630676740428229339">"CDMA զանգերի կարգավորումներ"</string>
     <string name="apn_settings" msgid="9043423184895642077">"Մատչման կետերի Անունները"</string>
     <string name="settings_label" msgid="3876743539816984008">"Ցանցային կարգավորումներ"</string>
-    <string name="connection_service" msgid="978745922583410219">"Օգտագործվող կապի ծառայությունը"</string>
+    <!-- no translation found for phone_accounts (8810358208981265351) -->
+    <skip />
     <string name="connection_service_default_label" msgid="1498481943805913754">"Ներկառուցված կապի ծառայություն"</string>
     <string name="voicemail" msgid="8693759337917898954">"Ձայնային փոստ"</string>
     <string name="voicemail_abbreviated" msgid="2215592488517217448">"ՁՓ՝"</string>
@@ -125,8 +125,7 @@
     <string name="no_change" msgid="3186040086622435212">"Ոչ մի փոփոխություն կատարված չէ:"</string>
     <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"Ընտրել ձայնային փոստի ծառայությունը"</string>
     <string name="voicemail_default" msgid="5902099213882352338">"Իմ սպասարկողը"</string>
-    <!-- no translation found for mobile_networks (2843854043339307375) -->
-    <skip />
+    <string name="mobile_networks" msgid="2843854043339307375">"Բջջային ցանցի կարգավորումները"</string>
     <string name="label_available" msgid="1181658289009300430">"Հասանելի ցանցեր"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"Որոնում..."</string>
     <string name="empty_networks_list" msgid="4249426905018815316">"Ոչ մի ցանց չի գտնվել:"</string>
@@ -199,8 +198,7 @@
     <!-- no translation found for throttle_time_frame_subtext (7732763021560399960) -->
     <skip />
     <string name="throttle_rate_subtext" msgid="2149102656120726855">"Տվյալների ծավալը կնվազի մինչև <xliff:g id="USED">%1$d</xliff:g> Կբ/վ, եթե տվյալների օգտագործման սահմանաչափը գերազանցվի"</string>
-    <!-- no translation found for throttle_help_subtext (3633091498168446044) -->
-    <skip />
+    <string name="throttle_help_subtext" msgid="3633091498168446044">"Լրացուցիչ տեղեկություններ ձեր օպերատորի բջջային ցանցի տվյալների օգտագործման քաղաքականության մասին"</string>
     <string name="cell_broadcast_sms" msgid="5584192824053625842">"Բջջային հեռարձակման SMS"</string>
     <string name="enable_disable_cell_bc_sms" msgid="4851147873691392255">"Բջջային հեռարձակման SMS"</string>
     <string name="cell_bc_sms_enable" msgid="6441688565738921084">"Բջջային հեռարձակման SMS-ը միացված է"</string>
@@ -419,8 +417,7 @@
     <string name="notification_missedCall_message" msgid="3049928912736917988">"Ուղարկել հաղորդագրություն"</string>
     <string name="incall_error_power_off" msgid="6550191216405193368">"Զանգի կատարման համար նախ անջատեք թռիչքային ռեժիմը:"</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"Ցանցում գրանցված չէ:"</string>
-    <!-- no translation found for incall_error_out_of_service (4100065333878929223) -->
-    <skip />
+    <string name="incall_error_out_of_service" msgid="4100065333878929223">"Բջջային ցանցն անհասանելի է:"</string>
     <string name="incall_error_no_phone_number_supplied" msgid="4197432103471807739">"Զանգը չի առաքվել, անվավեր համար է մուտքագրված:"</string>
     <string name="incall_error_call_failed" msgid="4313552620858880999">"Զանգը չի առաքվել:"</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"Մեկնարկում է MMI հաջորդականությունը..."</string>

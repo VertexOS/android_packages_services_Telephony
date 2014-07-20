@@ -57,7 +57,8 @@
     <string name="labelCDMAMore" msgid="1630676740428229339">"CDMA കോൾ ക്രമീകരണങ്ങൾ"</string>
     <string name="apn_settings" msgid="9043423184895642077">"ആക്‌സസ്സ് പോയിന്റ് പേരുകൾ"</string>
     <string name="settings_label" msgid="3876743539816984008">"നെറ്റ്‌വർക്ക് ക്രമീകരണങ്ങൾ"</string>
-    <string name="connection_service" msgid="978745922583410219">"ഉപയോഗിക്കാനുള്ള കണക്ഷൻ സേവനം"</string>
+    <!-- no translation found for phone_accounts (8810358208981265351) -->
+    <skip />
     <string name="connection_service_default_label" msgid="1498481943805913754">"അന്തർ നിർമ്മിത കണക്ഷൻ സേവനം"</string>
     <string name="voicemail" msgid="8693759337917898954">"വോയ്സ് മെയില്‍"</string>
     <string name="voicemail_abbreviated" msgid="2215592488517217448">"VM:"</string>
@@ -172,8 +173,7 @@
     <item msgid="3817924849415716259">"GSM/WCDMA തിരഞ്ഞെടുത്തത്"</item>
   </string-array>
     <string name="data_enabled" msgid="5972538663568715366">"ഡാറ്റ പ്രവർത്തനക്ഷമമാക്കി"</string>
-    <!-- no translation found for data_enable_summary (2382798156640007971) -->
-    <skip />
+    <string name="data_enable_summary" msgid="2382798156640007971">"ഡാറ്റ ഉപയോഗം അനുവദിക്കുക"</string>
     <string name="roaming" msgid="8871412572928323707">"ഡാറ്റ റോമിംഗ്"</string>
     <string name="roaming_enable" msgid="7331106985174381987">"റോമിംഗിലാകുമ്പോൾ ഡാറ്റ സേവനങ്ങളുമായി കണ‌ക്റ്റുചെയ്യുക"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"റോമിംഗിലാകുമ്പോൾ ഡാറ്റ സേവനങ്ങളുമായി കണ‌ക്റ്റുചെയ്യുക"</string>

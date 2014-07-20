@@ -52,13 +52,13 @@
     <string name="requesting_unlock" msgid="6412629401033249351">"নেটওয়ার্ক আনলকের অনুরোধ করা হচ্ছে..."</string>
     <string name="unlock_failed" msgid="6490531697031504225">"নেটওয়ার্ক আনলক করার অনুরোধ অসফল হয়েছে৷"</string>
     <string name="unlock_success" msgid="6770085622238180152">"নেটওয়ার্ক আনলক সফল হয়েছে৷"</string>
-    <!-- no translation found for mobile_network_settings_not_available (3831911315358856062) -->
-    <skip />
+    <string name="mobile_network_settings_not_available" msgid="3831911315358856062">"এই ব্যবহারকারীর জন্য সেলুলার নেটওয়ার্ক সেটিংস উপলব্ধ নয়"</string>
     <string name="labelGSMMore" msgid="5930842194056092106">"GSM কল সেটিংস"</string>
     <string name="labelCDMAMore" msgid="1630676740428229339">"CDMA কল সেটিংস"</string>
     <string name="apn_settings" msgid="9043423184895642077">"অ্যাক্সেস পয়েন্টের নামগুলি"</string>
     <string name="settings_label" msgid="3876743539816984008">"নেটওয়ার্ক সেটিংস"</string>
-    <string name="connection_service" msgid="978745922583410219">"ব্যবহার করার জন্য সংযোগ পরিষেবা"</string>
+    <!-- no translation found for phone_accounts (8810358208981265351) -->
+    <skip />
     <string name="connection_service_default_label" msgid="1498481943805913754">"বিল্ট-ইন সংযোগ পরিষেবা"</string>
     <string name="voicemail" msgid="8693759337917898954">"ভয়েসমেল"</string>
     <string name="voicemail_abbreviated" msgid="2215592488517217448">"VM:"</string>
@@ -125,8 +125,7 @@
     <string name="no_change" msgid="3186040086622435212">"কোনো পরিবর্তন করা হয়নি৷"</string>
     <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"ভয়েসমেল পরিষেবা চয়ন করুন"</string>
     <string name="voicemail_default" msgid="5902099213882352338">"আমার ক্যারিয়ার"</string>
-    <!-- no translation found for mobile_networks (2843854043339307375) -->
-    <skip />
+    <string name="mobile_networks" msgid="2843854043339307375">"সেলুলার নেটওয়ার্ক সেটিংস"</string>
     <string name="label_available" msgid="1181658289009300430">"উপলব্ধ নেটওয়ার্কগুলি"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"অনুসন্ধান করছে..."</string>
     <string name="empty_networks_list" msgid="4249426905018815316">"কোনো নেটওয়ার্ক পাওয়া যায়নি৷"</string>
@@ -174,8 +173,7 @@
     <item msgid="3817924849415716259">"GSM/WCDMA সুবিধাজনক"</item>
   </string-array>
     <string name="data_enabled" msgid="5972538663568715366">"ডেটা সক্ষম করা হয়েছে"</string>
-    <!-- no translation found for data_enable_summary (2382798156640007971) -->
-    <skip />
+    <string name="data_enable_summary" msgid="2382798156640007971">"ডেটা ব্যবহারের অনুমতি দিন"</string>
     <string name="roaming" msgid="8871412572928323707">"ডেটা রোমিং"</string>
     <string name="roaming_enable" msgid="7331106985174381987">"রোমিংয়ে থাকাকালীন ডেটা পরিষেবাগুলির সাথে সংযোগ স্থাপন করুন"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"রোমিংয়ে থাকাকালীন ডেটা পরিষেবাগুলির সাথে সংযোগ স্থাপন করুন"</string>
@@ -193,8 +191,7 @@
     <string name="throttle_data_rate_reduced_subtext" msgid="7492763592720107737">"<xliff:g id="USED_0">%1$s</xliff:g> সর্বোচ্চ সীমা পেরিয়ে গেছে\nডেটার হার <xliff:g id="USED_1">%2$d</xliff:g> Kb/s এ হ্রাস করা হয়েছে"</string>
     <string name="throttle_time_frame_subtext" msgid="7732763021560399960">"এই সময়কালের <xliff:g id="USED_0">%1$d</xliff:g>٪ অতিক্রান্ত হয়েছে\nপরবর্তী সময়কাল <xliff:g id="USED_1">%2$d</xliff:g> দিনের মধ্যে শুরু হবে (<xliff:g id="USED_2">%3$s</xliff:g>)"</string>
     <string name="throttle_rate_subtext" msgid="2149102656120726855">"ডেটা ব্যবহারের সীমা পেরিয়ে গেলে ডেটা হারকে কমিয়ে <xliff:g id="USED">%1$d</xliff:g> Kb/s করা হয়"</string>
-    <!-- no translation found for throttle_help_subtext (3633091498168446044) -->
-    <skip />
+    <string name="throttle_help_subtext" msgid="3633091498168446044">"আপনার পরিষেবা প্রদানকারীর সেলুলার নেটওয়ার্ক ডেটা ব্যবহারের নীতি সম্বন্ধে আরো তথ্য"</string>
     <string name="cell_broadcast_sms" msgid="5584192824053625842">"সেল সম্প্রচার SMS"</string>
     <string name="enable_disable_cell_bc_sms" msgid="4851147873691392255">"সেল সম্প্রচার SMS"</string>
     <string name="cell_bc_sms_enable" msgid="6441688565738921084">"সেল সম্প্রচার SMS সক্ষম করা হয়েছে"</string>
@@ -413,8 +410,7 @@
     <string name="notification_missedCall_message" msgid="3049928912736917988">"বার্তা"</string>
     <string name="incall_error_power_off" msgid="6550191216405193368">"একটি কল করতে, প্রথমে বিমান মোড বন্ধ করুন৷"</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"নেটওয়ার্কে নিবন্ধিত নয়৷"</string>
-    <!-- no translation found for incall_error_out_of_service (4100065333878929223) -->
-    <skip />
+    <string name="incall_error_out_of_service" msgid="4100065333878929223">"সেলুলার নেটওয়ার্ক উপলব্ধ নয়।"</string>
     <string name="incall_error_no_phone_number_supplied" msgid="4197432103471807739">"কল করা যায়নি, কোনো বৈধ নম্বর লেখা হয়নি৷"</string>
     <string name="incall_error_call_failed" msgid="4313552620858880999">"কল করা যায়নি৷"</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"MMI ক্রম চালু হচ্ছে…"</string>
