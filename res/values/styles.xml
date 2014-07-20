@@ -164,6 +164,7 @@
         <item name="android:windowBackground">@color/phone_settings_background_color</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:actionBarStyle">@style/DialtactsActionBarStyle</item>
+        <item name="android:actionMenuTextColor">@color/phone_settings_actionbar_text_color</item>
         <item name="android:actionOverflowButtonStyle">@style/DialtactsActionBarOverflow</item>
         <item name="android:homeAsUpIndicator">@drawable/ic_back_arrow</item>
         <item name="android:windowActionBarOverlay">false</item>
