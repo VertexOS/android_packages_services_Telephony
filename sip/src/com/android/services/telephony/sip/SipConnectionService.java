@@ -24,29 +24,24 @@ import android.net.sip.SipException;
 import android.net.sip.SipManager;
 import android.net.sip.SipProfile;
 import android.net.Uri;
-import android.os.AsyncTask;
-import android.provider.Settings;
 import android.telecomm.Connection;
 import android.telecomm.ConnectionRequest;
 import android.telecomm.ConnectionService;
-import android.telecomm.PhoneAccount;
+import android.telecomm.PhoneAccountHandle;
 import android.telecomm.Response;
 import android.telephony.DisconnectCause;
-import android.telephony.PhoneNumberUtils;
 import android.util.Log;
 
 import com.android.internal.telephony.CallStateException;
 import com.android.internal.telephony.PhoneFactory;
 import com.android.internal.telephony.sip.SipPhone;
 
-import java.util.HashMap;
-
 public final class SipConnectionService extends ConnectionService {
     private static final String PREFIX = "[SipConnectionService] ";
     private static final boolean VERBOSE = true; /* STOP SHIP if true */
 
-    static PhoneAccount getPhoneAccount(Context context) {
-        return new PhoneAccount(
+    static PhoneAccountHandle getPhoneAccountHandle(Context context) {
+        return new PhoneAccountHandle(
                 new ComponentName(context, SipConnectionService.class),
                 null /* id */);
     }
