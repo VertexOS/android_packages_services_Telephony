@@ -22,7 +22,7 @@ import android.telecomm.CallCapabilities;
 import android.telecomm.Connection;
 import android.telecomm.ConnectionRequest;
 import android.telecomm.ConnectionService;
-import android.telecomm.PhoneAccount;
+import android.telecomm.PhoneAccountHandle;
 import android.telecomm.Response;
 import android.telephony.DisconnectCause;
 import android.telephony.PhoneNumberUtils;
@@ -273,10 +273,10 @@ public class TelephonyConnectionService extends ConnectionService {
         return false;
     }
 
-    private Phone getPhoneForAccount(PhoneAccount account) {
-        if (Objects.equals(mExpectedComponentName, account.getComponentName())) {
+    private Phone getPhoneForAccount(PhoneAccountHandle accountHandle) {
+        if (Objects.equals(mExpectedComponentName, accountHandle.getComponentName())) {
             int phoneId = SubscriptionController.getInstance().getPhoneId(
-                    Long.parseLong(account.getId()));
+                    Long.parseLong(accountHandle.getId()));
             return PhoneFactory.getPhone(phoneId);
         }
         return null;
