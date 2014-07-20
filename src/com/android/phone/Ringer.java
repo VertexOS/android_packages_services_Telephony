@@ -52,7 +52,7 @@ public class Ringer {
 
     private static final AudioAttributes VIBRATION_ATTRIBUTES = new AudioAttributes.Builder()
             .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
-            .setUsage(AudioAttributes.USAGE_NOTIFICATION_TELEPHONY_RINGTONE)
+            .setUsage(AudioAttributes.USAGE_NOTIFICATION_RINGTONE)
             .build();
 
     /** The singleton instance. */
