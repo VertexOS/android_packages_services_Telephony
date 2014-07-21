@@ -59,7 +59,7 @@ final class SipConnection extends Connection {
     }
 
     @Override
-    protected void onSetAudioState(CallAudioState state) {
+    public void onSetAudioState(CallAudioState state) {
         if (VERBOSE) log("onSetAudioState: " + state);
         if (getPhone() != null) {
             getPhone().setEchoSuppressionEnabled();
@@ -67,12 +67,12 @@ final class SipConnection extends Connection {
     }
 
     @Override
-    protected void onSetState(int state) {
+    public void onSetState(int state) {
         if (VERBOSE) log("onSetState, state: " + Connection.stateToString(state));
     }
 
     @Override
-    protected void onPlayDtmfTone(char c) {
+    public void onPlayDtmfTone(char c) {
         if (VERBOSE) log("onPlayDtmfTone");
         if (getPhone() != null) {
             getPhone().startDtmf(c);
@@ -80,7 +80,7 @@ final class SipConnection extends Connection {
     }
 
     @Override
-    protected void onStopDtmfTone() {
+    public void onStopDtmfTone() {
         if (VERBOSE) log("onStopDtmfTone");
         if (getPhone() != null) {
             getPhone().stopDtmf();
@@ -88,7 +88,7 @@ final class SipConnection extends Connection {
     }
 
     @Override
-    protected void onDisconnect() {
+    public void onDisconnect() {
         if (VERBOSE) log("onDisconnect");
         try {
             if (getCall() != null && !getCall().isMultiparty()) {
@@ -102,7 +102,7 @@ final class SipConnection extends Connection {
     }
 
     @Override
-    protected void onSeparate() {
+    public void onSeparate() {
         if (VERBOSE) log("onSeparate");
         try {
             if (mOriginalConnection != null) {
@@ -114,13 +114,13 @@ final class SipConnection extends Connection {
     }
 
     @Override
-    protected void onAbort() {
+    public void onAbort() {
         if (VERBOSE) log("onAbort");
         onDisconnect();
     }
 
     @Override
-    protected void onHold() {
+    public void onHold() {
         if (VERBOSE) log("onHold");
         try {
             if (getPhone() != null && getState() == State.ACTIVE) {
@@ -132,7 +132,7 @@ final class SipConnection extends Connection {
     }
 
     @Override
-    protected void onUnhold() {
+    public void onUnhold() {
         if (VERBOSE) log("onUnhold");
         try {
             if (getPhone() != null && getState() == State.HOLDING) {
@@ -144,7 +144,7 @@ final class SipConnection extends Connection {
     }
 
     @Override
-    protected void onAnswer(int videoState) {
+    public void onAnswer(int videoState) {
         if (VERBOSE) log("onAnswer");
         try {
             if (isValidRingingCall() && getPhone() != null) {
@@ -156,7 +156,7 @@ final class SipConnection extends Connection {
     }
 
     @Override
-    protected void onReject() {
+    public void onReject() {
         if (VERBOSE) log("onReject");
         try {
             if (isValidRingingCall() && getPhone() != null) {
@@ -168,24 +168,24 @@ final class SipConnection extends Connection {
     }
 
     @Override
-    protected void onPostDialContinue(boolean proceed) {
+    public void onPostDialContinue(boolean proceed) {
         if (VERBOSE) log("onPostDialContinue, proceed: " + proceed);
         // SIP doesn't have post dial support.
     }
 
     @Override
-    protected void onSwapWithBackgroundCall() {
+    public void onSwapWithBackgroundCall() {
         if (VERBOSE) log("onSwapWithBackgroundCall");
         // TODO(sail): Implement swap.
     }
 
     @Override
-    protected void onChildrenChanged(List<Connection> children) {
+    public void onChildrenChanged(List<Connection> children) {
         if (VERBOSE) log("onChildrenChanged, children: " + children);
     }
 
     @Override
-    protected void onPhoneAccountClicked() {
+    public void onPhoneAccountClicked() {
         if (VERBOSE) log("onPhoneAccountClicked");
     }
 
