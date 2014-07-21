@@ -156,8 +156,8 @@ final class PstnIncomingCallNotifier {
 
         Intent intent = new Intent(TelecommManager.ACTION_INCOMING_CALL);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.putExtra(TelecommManager.EXTRA_PHONE_ACCOUNT,
-                TelecommAccountRegistry.makePstnPhoneAccount(mPhoneProxy));
+        intent.putExtra(TelecommManager.EXTRA_PHONE_ACCOUNT_HANDLE,
+                TelecommAccountRegistry.makePstnPhoneAccountHandle(mPhoneProxy));
 
         Log.d(this, "Sending incoming call intent: %s", intent);
         context.startActivityAsUser(intent, UserHandle.CURRENT);
