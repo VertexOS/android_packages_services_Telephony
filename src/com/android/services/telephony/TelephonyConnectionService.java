@@ -42,7 +42,7 @@ import java.util.Objects;
  * Service for making GSM and CDMA connections.
  */
 public class TelephonyConnectionService extends ConnectionService {
-    private static String SCHEME_TEL = "tel";
+    static String SCHEME_TEL = "tel";
 
     private ComponentName mExpectedComponentName = null;
     private EmergencyCallHelper mEmergencyCallHelper;
@@ -180,15 +180,6 @@ public class TelephonyConnectionService extends ConnectionService {
             return;
         }
 
-        Uri handle = getHandleFromAddress(originalConnection.getAddress());
-        ConnectionRequest telephonyRequest = new ConnectionRequest(
-                request.getAccountHandle(),
-                request.getCallId(),
-                handle,
-                originalConnection.getNumberPresentation(),
-                request.getExtras(),
-                request.getVideoState());
-
         TelephonyConnection connection = null;
         if (phone.getPhoneType() == TelephonyManager.PHONE_TYPE_GSM) {
             connection = new GsmConnection(originalConnection);
@@ -199,16 +190,13 @@ public class TelephonyConnectionService extends ConnectionService {
         if (connection == null) {
             response.onCancel(request);
         } else {
-            response.onSuccess(telephonyRequest, connection);
+            response.onSuccess(request, connection);
         }
     }
 
     @Override
     public void onConnectionAdded(Connection connection) {
         Log.v(this, "onConnectionAdded, connection: " + connection);
-        if (connection instanceof TelephonyConnection) {
-            ((TelephonyConnection) connection).onAddedToCallService();
-        }
     }
 
     @Override
@@ -241,18 +229,10 @@ public class TelephonyConnectionService extends ConnectionService {
             return;
         }
 
-        ConnectionRequest telephonyRequest = new ConnectionRequest(
-                request.getAccountHandle(),
-                request.getCallId(),
-                request.getHandle(),
-                request.getHandlePresentation(),
-                request.getExtras(),
-                request.getVideoState());
-
         if (phone.getPhoneType() == TelephonyManager.PHONE_TYPE_GSM) {
-            response.onSuccess(telephonyRequest, new GsmConnection(originalConnection));
+            response.onSuccess(request, new GsmConnection(originalConnection));
         } else if (phone.getPhoneType() == TelephonyManager.PHONE_TYPE_CDMA) {
-            response.onSuccess(telephonyRequest, new CdmaConnection(originalConnection));
+            response.onSuccess(request, new CdmaConnection(originalConnection));
         } else {
             // TODO(ihab): Tear down 'originalConnection' here, or move recognition of
             // getPhoneType() earlier in this method before we've already asked phone to dial()
@@ -280,13 +260,5 @@ public class TelephonyConnectionService extends ConnectionService {
             return PhoneFactory.getPhone(phoneId);
         }
         return null;
-    }
-
-    static Uri getHandleFromAddress(String address) {
-        // Address can be null for blocked calls.
-        if (address == null) {
-            address = "";
-        }
-        return Uri.fromParts(SCHEME_TEL, address, null);
     }
 }
