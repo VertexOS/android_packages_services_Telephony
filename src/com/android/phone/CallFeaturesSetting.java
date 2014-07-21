@@ -56,6 +56,7 @@ import android.preference.PreferenceScreen;
 import android.provider.ContactsContract.CommonDataKinds;
 import android.provider.MediaStore;
 import android.provider.Settings;
+import android.telecomm.ConnectionService;
 import android.telecomm.TelecommManager;
 import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
@@ -2257,7 +2258,7 @@ public class CallFeaturesSetting extends PreferenceActivity
     }
 
     private void loadConnectionServiceEntries() {
-        Intent intent = new Intent(TelecommManager.ACTION_CONNECTION_SERVICE);
+        Intent intent = new Intent(ConnectionService.SERVICE_INTERFACE);
         for (ResolveInfo entry : getPackageManager().queryIntentServices(intent, 0)) {
             ServiceInfo serviceInfo = entry.serviceInfo;
             if (serviceInfo != null) {
