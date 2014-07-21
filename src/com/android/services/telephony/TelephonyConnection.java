@@ -18,14 +18,10 @@ package com.android.services.telephony;
 
 import android.net.Uri;
 import android.os.AsyncResult;
-import android.content.ComponentName;
-import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.telecomm.CallAudioState;
 import android.telecomm.CallCapabilities;
-import android.telecomm.ConnectionService;
-import android.telecomm.StatusHints;
 import android.telephony.DisconnectCause;
 
 import com.android.internal.telephony.Call;
@@ -35,8 +31,6 @@ import com.android.internal.telephony.Phone;
 import com.android.phone.R;
 
 import android.telecomm.Connection;
-import android.telephony.PhoneNumberUtils;
-import android.telephony.TelephonyManager;
 
 import java.util.List;
 import java.util.Objects;
@@ -446,7 +440,7 @@ abstract class TelephonyConnection extends Connection {
             getPhone().unregisterForRingbackTone(mHandler);
         }
         mOriginalConnection = null;
-        setDestroyed();
+        destroy();
     }
 
     /**
