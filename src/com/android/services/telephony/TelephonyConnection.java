@@ -147,7 +147,7 @@ abstract class TelephonyConnection extends Connection {
     }
 
     @Override
-    protected void onSetAudioState(CallAudioState audioState) {
+    public void onSetAudioState(CallAudioState audioState) {
         // TODO: update TTY mode.
         if (getPhone() != null) {
             getPhone().setEchoSuppressionEnabled();
@@ -155,18 +155,18 @@ abstract class TelephonyConnection extends Connection {
     }
 
     @Override
-    protected void onSetState(int state) {
+    public void onSetState(int state) {
         Log.v(this, "onSetState, state: " + Connection.stateToString(state));
     }
 
     @Override
-    protected void onDisconnect() {
+    public void onDisconnect() {
         Log.v(this, "onDisconnect");
         hangup(DisconnectCause.LOCAL);
     }
 
     @Override
-    protected void onSeparate() {
+    public void onSeparate() {
         Log.v(this, "onSeparate");
         if (mOriginalConnection != null) {
             try {
@@ -178,13 +178,13 @@ abstract class TelephonyConnection extends Connection {
     }
 
     @Override
-    protected void onAbort() {
+    public void onAbort() {
         Log.v(this, "onAbort");
         hangup(DisconnectCause.LOCAL);
     }
 
     @Override
-    protected void onHold() {
+    public void onHold() {
         Log.v(this, "onHold");
         // TODO(santoscordon): Can dialing calls be put on hold as well since they take up the
         // foreground call slot?
@@ -218,7 +218,7 @@ abstract class TelephonyConnection extends Connection {
     }
 
     @Override
-    protected void onUnhold() {
+    public void onUnhold() {
         Log.v(this, "onUnhold");
         if (Call.State.HOLDING == mOriginalConnectionState) {
             try {
@@ -233,7 +233,7 @@ abstract class TelephonyConnection extends Connection {
     }
 
     @Override
-    protected void onAnswer(int videoState) {
+    public void onAnswer(int videoState) {
         Log.v(this, "onAnswer");
         // TODO(santoscordon): Tons of hairy logic is missing here around multiple active calls on
         // CDMA devices. See {@link CallManager.acceptCall}.
@@ -248,7 +248,7 @@ abstract class TelephonyConnection extends Connection {
     }
 
     @Override
-    protected void onReject() {
+    public void onReject() {
         Log.v(this, "onReject");
         if (isValidRingingCall()) {
             hangup(DisconnectCause.INCOMING_REJECTED);
@@ -257,7 +257,7 @@ abstract class TelephonyConnection extends Connection {
     }
 
     @Override
-    protected void onPostDialContinue(boolean proceed) {
+    public void onPostDialContinue(boolean proceed) {
         Log.v(this, "onPostDialContinue, proceed: " + proceed);
         if (mOriginalConnection != null) {
             if (proceed) {
@@ -269,17 +269,17 @@ abstract class TelephonyConnection extends Connection {
     }
 
     @Override
-    protected void onSwapWithBackgroundCall() {
+    public void onSwapWithBackgroundCall() {
         Log.v(this, "onSwapWithBackgroundCall");
     }
 
     @Override
-    protected void onChildrenChanged(List<Connection> children) {
+    public void onChildrenChanged(List<Connection> children) {
         Log.v(this, "onChildrenChanged, children: " + children);
     }
 
     @Override
-    protected void onPhoneAccountClicked() {
+    public void onPhoneAccountClicked() {
         Log.v(this, "onPhoneAccountClicked");
     }
 

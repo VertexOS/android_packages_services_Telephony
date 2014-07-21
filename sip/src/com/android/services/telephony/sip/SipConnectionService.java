@@ -47,7 +47,7 @@ public final class SipConnectionService extends ConnectionService {
     }
 
     @Override
-    protected void onCreateOutgoingConnection(
+    public void onCreateOutgoingConnection(
             final ConnectionRequest request,
             final CreateConnectionResponse<Connection> response) {
         if (VERBOSE) log("onCreateOutgoingConnection, request: " + request);
@@ -82,7 +82,7 @@ public final class SipConnectionService extends ConnectionService {
     }
 
     @Override
-    protected void onCreateConferenceConnection(
+    public void onCreateConferenceConnection(
             String token,
             Connection connection,
             Response<String, Connection> response) {
@@ -90,7 +90,7 @@ public final class SipConnectionService extends ConnectionService {
     }
 
     @Override
-    protected void onCreateIncomingConnection(
+    public void onCreateIncomingConnection(
             ConnectionRequest request,
             CreateConnectionResponse<Connection> response) {
         if (VERBOSE) log("onCreateIncomingConnection, request: " + request);
@@ -138,7 +138,7 @@ public final class SipConnectionService extends ConnectionService {
     }
 
     @Override
-    protected void onConnectionAdded(Connection connection) {
+    public void onConnectionAdded(Connection connection) {
         if (VERBOSE) log("onConnectionAdded, connection: " + connection);
         if (connection instanceof SipConnection) {
             ((SipConnection) connection).onAddedToCallService();
@@ -146,7 +146,7 @@ public final class SipConnectionService extends ConnectionService {
     }
 
     @Override
-    protected void onConnectionRemoved(Connection connection) {
+    public void onConnectionRemoved(Connection connection) {
         if (VERBOSE) log("onConnectionRemoved, connection: " + connection);
     }
 
