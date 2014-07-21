@@ -34,7 +34,7 @@ import java.util.List;
  */
 public class SipBroadcastReceiver extends BroadcastReceiver {
     private static final String PREFIX = "[SipBroadcastReceiver] ";
-    private static final boolean VERBOSE = true; /* STOP SHIP if true */
+    private static final boolean VERBOSE = false; /* STOP SHIP if true */
 
     @Override
     public void onReceive(Context context, final Intent intent) {
@@ -60,13 +60,8 @@ public class SipBroadcastReceiver extends BroadcastReceiver {
         Bundle extras = new Bundle();
         extras.putParcelable(SipUtil.EXTRA_INCOMING_CALL_INTENT, intent);
 
-        Intent telecommIntent = new Intent(TelecommManager.ACTION_INCOMING_CALL);
-        telecommIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        telecommIntent.putExtra(TelecommManager.EXTRA_PHONE_ACCOUNT_HANDLE,
-                SipConnectionService.getPhoneAccountHandle(context));
-        telecommIntent.putExtra(TelecommManager.EXTRA_INCOMING_CALL_EXTRAS, extras);
-
-        context.startActivityAsUser(telecommIntent, UserHandle.CURRENT);
+        TelecommManager.from(context).addNewIncomingCall(
+                SipConnectionService.getPhoneAccountHandle(context), extras);
     }
 
     private void registerAllProfiles(final Context context) {
