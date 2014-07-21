@@ -56,7 +56,6 @@ import android.preference.PreferenceScreen;
 import android.provider.ContactsContract.CommonDataKinds;
 import android.provider.MediaStore;
 import android.provider.Settings;
-import android.telecomm.TelecommConstants;
 import android.telecomm.TelecommManager;
 import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
@@ -1830,7 +1829,7 @@ public class CallFeaturesSetting extends PreferenceActivity
         if (mButtonTTY != null) {
             int settingsTtyMode = Settings.Secure.getInt(getContentResolver(),
                     Settings.Secure.PREFERRED_TTY_MODE,
-                    TelecommConstants.TTY_MODE_OFF);
+                    TelecommManager.TTY_MODE_OFF);
             mButtonTTY.setValue(Integer.toString(settingsTtyMode));
             updatePreferredTtyModeSummary(settingsTtyMode);
         }
@@ -1897,27 +1896,27 @@ public class CallFeaturesSetting extends PreferenceActivity
         int settingsTtyMode = android.provider.Settings.Secure.getInt(
                 getContentResolver(),
                 android.provider.Settings.Secure.PREFERRED_TTY_MODE,
-                TelecommConstants.TTY_MODE_OFF);
+                TelecommManager.TTY_MODE_OFF);
         if (DBG) log("handleTTYChange: requesting set TTY mode enable (TTY) to" +
                 Integer.toString(buttonTtyMode));
 
         if (buttonTtyMode != settingsTtyMode) {
             switch(buttonTtyMode) {
-            case TelecommConstants.TTY_MODE_OFF:
-            case TelecommConstants.TTY_MODE_FULL:
-            case TelecommConstants.TTY_MODE_HCO:
-            case TelecommConstants.TTY_MODE_VCO:
+            case TTY_MODE_OFF:
+            case TTY_MODE_FULL:
+            case TTY_MODE_HCO:
+            case TTY_MODE_VCO:
                 android.provider.Settings.Secure.putInt(getContentResolver(),
                         android.provider.Settings.Secure.PREFERRED_TTY_MODE, buttonTtyMode);
                 break;
             default:
-                buttonTtyMode = TelecommConstants.TTY_MODE_OFF;
+                buttonTtyMode = TelecommManager.TTY_MODE_OFF;
             }
 
             mButtonTTY.setValue(Integer.toString(buttonTtyMode));
             updatePreferredTtyModeSummary(buttonTtyMode);
-            Intent ttyModeChanged = new Intent(TelecommConstants.ACTION_TTY_PREFERRED_MODE_CHANGED);
-            ttyModeChanged.putExtra(TelecommConstants.EXTRA_TTY_PREFERRED_MODE, buttonTtyMode);
+            Intent ttyModeChanged = new Intent(TelecommManager.ACTION_TTY_PREFERRED_MODE_CHANGED);
+            ttyModeChanged.putExtra(TelecommManager.EXTRA_TTY_PREFERRED_MODE, buttonTtyMode);
             sendBroadcastAsUser(ttyModeChanged, UserHandle.ALL);
         }
     }
@@ -1942,15 +1941,15 @@ public class CallFeaturesSetting extends PreferenceActivity
     private void updatePreferredTtyModeSummary(int TtyMode) {
         String [] txts = getResources().getStringArray(R.array.tty_mode_entries);
         switch(TtyMode) {
-            case TelecommConstants.TTY_MODE_OFF:
-            case TelecommConstants.TTY_MODE_HCO:
-            case TelecommConstants.TTY_MODE_VCO:
-            case TelecommConstants.TTY_MODE_FULL:
+            case TTY_MODE_OFF:
+            case TTY_MODE_HCO:
+            case TTY_MODE_VCO:
+            case TTY_MODE_FULL:
                 mButtonTTY.setSummary(txts[TtyMode]);
                 break;
             default:
                 mButtonTTY.setEnabled(false);
-                mButtonTTY.setSummary(txts[TelecommConstants.TTY_MODE_OFF]);
+                mButtonTTY.setSummary(txts[TelecommManager.TTY_MODE_OFF]);
                 break;
         }
     }
@@ -2258,7 +2257,7 @@ public class CallFeaturesSetting extends PreferenceActivity
     }
 
     private void loadConnectionServiceEntries() {
-        Intent intent = new Intent(TelecommConstants.ACTION_CONNECTION_SERVICE);
+        Intent intent = new Intent(TelecommManager.ACTION_CONNECTION_SERVICE);
         for (ResolveInfo entry : getPackageManager().queryIntentServices(intent, 0)) {
             ServiceInfo serviceInfo = entry.serviceInfo;
             if (serviceInfo != null) {

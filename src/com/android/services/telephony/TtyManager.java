@@ -23,7 +23,6 @@ import android.content.IntentFilter;
 import android.os.AsyncResult;
 import android.os.Handler;
 import android.os.Message;
-import android.telecomm.TelecommConstants;
 import android.telecomm.TelecommManager;
 
 import com.android.internal.telephony.Phone;
@@ -73,10 +72,10 @@ final class TtyManager {
         mPhone = phone;
 
         IntentFilter intentFilter = new IntentFilter(
-                TelecommConstants.ACTION_CURRENT_TTY_MODE_CHANGED);
+                TelecommManager.ACTION_CURRENT_TTY_MODE_CHANGED);
         context.registerReceiver(mReceiver, intentFilter);
 
-        int ttyMode = TelecommConstants.TTY_MODE_OFF;
+        int ttyMode = TelecommManager.TTY_MODE_OFF;
         TelecommManager telecommManager = TelecommManager.from(context);
         if (telecommManager != null) {
             ttyMode = telecommManager.getCurrentTtyMode();
@@ -96,9 +95,9 @@ final class TtyManager {
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
             Log.v(TtyManager.this, "onReceive, action: %s", action);
-            if (action.equals(TelecommConstants.ACTION_CURRENT_TTY_MODE_CHANGED)) {
+            if (action.equals(TelecommManager.ACTION_CURRENT_TTY_MODE_CHANGED)) {
                 int ttyMode = intent.getIntExtra(
-                        TelecommConstants.EXTRA_CURRENT_TTY_MODE, TelecommConstants.TTY_MODE_OFF);
+                        TelecommManager.EXTRA_CURRENT_TTY_MODE, TelecommManager.TTY_MODE_OFF);
                 updateTtyMode(ttyMode);
             }
         }
@@ -106,13 +105,13 @@ final class TtyManager {
 
     private static int telecommModeToPhoneMode(int telecommMode) {
         switch (telecommMode) {
-            case TelecommConstants.TTY_MODE_FULL:
+            case TTY_MODE_FULL:
                 return Phone.TTY_MODE_FULL;
-            case TelecommConstants.TTY_MODE_VCO:
+            case TTY_MODE_VCO:
                 return Phone.TTY_MODE_VCO;
-            case TelecommConstants.TTY_MODE_HCO:
+            case TTY_MODE_HCO:
                 return Phone.TTY_MODE_HCO;
-            case TelecommConstants.TTY_MODE_OFF:
+            case TTY_MODE_OFF:
             default:
                 return Phone.TTY_MODE_OFF;
         }
@@ -121,14 +120,14 @@ final class TtyManager {
     private static int phoneModeToTelecommMode(int phoneMode) {
         switch (phoneMode) {
             case Phone.TTY_MODE_FULL:
-                return TelecommConstants.TTY_MODE_FULL;
+                return TelecommManager.TTY_MODE_FULL;
             case Phone.TTY_MODE_VCO:
-                return TelecommConstants.TTY_MODE_VCO;
+                return TelecommManager.TTY_MODE_VCO;
             case Phone.TTY_MODE_HCO:
-                return TelecommConstants.TTY_MODE_HCO;
+                return TelecommManager.TTY_MODE_HCO;
             case Phone.TTY_MODE_OFF:
             default:
-                return TelecommConstants.TTY_MODE_OFF;
+                return TelecommManager.TTY_MODE_OFF;
         }
     }
 }
