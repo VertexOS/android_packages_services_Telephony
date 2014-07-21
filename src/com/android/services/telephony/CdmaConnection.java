@@ -30,7 +30,7 @@ final class CdmaConnection extends TelephonyConnection {
 
     /** {@inheritDoc} */
     @Override
-    protected void onPlayDtmfTone(char digit) {
+    public void onPlayDtmfTone(char digit) {
         // TODO(santoscordon): There are conditions where we should play dtmf tones with different
         // timeouts.
         // TODO(santoscordon): We get explicit response from the phone via a Message when the burst
@@ -43,7 +43,7 @@ final class CdmaConnection extends TelephonyConnection {
 
     /** {@inheritDoc} */
     @Override
-    protected void onStopDtmfTone() {
+    public void onStopDtmfTone() {
         // no-op, we only play timed dtmf tones for cdma.
     }
 

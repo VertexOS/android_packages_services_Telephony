@@ -54,7 +54,7 @@ public class TelephonyConnectionService extends ConnectionService {
     }
 
     @Override
-    protected void onCreateOutgoingConnection(
+    public void onCreateOutgoingConnection(
             final ConnectionRequest request,
             final CreateConnectionResponse<Connection> response) {
         Log.v(this, "onCreateOutgoingConnection, request: " + request);
@@ -141,7 +141,7 @@ public class TelephonyConnectionService extends ConnectionService {
     }
 
     @Override
-    protected void onCreateConferenceConnection(
+    public void onCreateConferenceConnection(
             String token,
             Connection connection,
             Response<String, Connection> response) {
@@ -155,7 +155,7 @@ public class TelephonyConnectionService extends ConnectionService {
     }
 
     @Override
-    protected void onCreateIncomingConnection(
+    public void onCreateIncomingConnection(
             ConnectionRequest request,
             CreateConnectionResponse<Connection> response) {
         Log.v(this, "onCreateIncomingConnection, request: " + request);
@@ -204,7 +204,7 @@ public class TelephonyConnectionService extends ConnectionService {
     }
 
     @Override
-    protected void onConnectionAdded(Connection connection) {
+    public void onConnectionAdded(Connection connection) {
         Log.v(this, "onConnectionAdded, connection: " + connection);
         if (connection instanceof TelephonyConnection) {
             ((TelephonyConnection) connection).onAddedToCallService();
@@ -212,7 +212,7 @@ public class TelephonyConnectionService extends ConnectionService {
     }
 
     @Override
-    protected void onConnectionRemoved(Connection connection) {
+    public void onConnectionRemoved(Connection connection) {
         Log.v(this, "onConnectionRemoved, connection: " + connection);
         if (connection instanceof TelephonyConnection) {
             ((TelephonyConnection) connection).onRemovedFromCallService();

@@ -34,7 +34,7 @@ final class GsmConnection extends TelephonyConnection {
 
     /** {@inheritDoc} */
     @Override
-    protected void onPlayDtmfTone(char digit) {
+    public void onPlayDtmfTone(char digit) {
         if (getPhone() != null) {
             getPhone().startDtmf(digit);
         }
@@ -42,7 +42,7 @@ final class GsmConnection extends TelephonyConnection {
 
     /** {@inheritDoc} */
     @Override
-    protected void onStopDtmfTone() {
+    public void onStopDtmfTone() {
         if (getPhone() != null) {
             getPhone().stopDtmf();
         }
