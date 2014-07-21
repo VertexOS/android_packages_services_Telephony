@@ -48,7 +48,7 @@ abstract class TelephonyConnection extends Connection {
             switch (msg.what) {
                 case MSG_PRECISE_CALL_STATE_CHANGED:
                     Log.v(TelephonyConnection.this, "MSG_PRECISE_CALL_STATE_CHANGED");
-                    updateState(false);
+                    updateState();
                     break;
                 case MSG_RINGBACK_TONE:
                     Log.v(TelephonyConnection.this, "MSG_RINGBACK_TONE");
@@ -144,6 +144,7 @@ abstract class TelephonyConnection extends Connection {
         setVideoState(mOriginalConnection.getVideoState());
         setLocalVideoCapable(mOriginalConnection.isLocalVideoCapable());
         setRemoteVideoCapable(mOriginalConnection.isRemoteVideoCapable());
+        updateHandle();
     }
 
     @Override
@@ -285,22 +286,21 @@ abstract class TelephonyConnection extends Connection {
 
     protected abstract int buildCallCapabilities();
 
-    protected final void updateCallCapabilities(boolean force) {
+    protected final void updateCallCapabilities() {
         int newCallCapabilities = buildCallCapabilities();
         newCallCapabilities = applyVideoCapabilities(newCallCapabilities);
 
-        if (force || getCallCapabilities() != newCallCapabilities) {
+        if (getCallCapabilities() != newCallCapabilities) {
             setCallCapabilities(newCallCapabilities);
         }
     }
 
-    protected final void updateHandle(boolean force) {
-        updateCallCapabilities(force);
+    protected final void updateHandle() {
+        updateCallCapabilities();
         if (mOriginalConnection != null) {
-            Uri handle = TelephonyConnectionService.getHandleFromAddress(
-                    mOriginalConnection.getAddress());
+            Uri handle = getHandleFromAddress(mOriginalConnection.getAddress());
             int presentation = mOriginalConnection.getNumberPresentation();
-            if (force || !Objects.equals(handle, getHandle()) ||
+            if (!Objects.equals(handle, getHandle()) ||
                     presentation != getHandlePresentation()) {
                 Log.v(this, "updateHandle, handle changed");
                 setHandle(handle, presentation);
@@ -308,16 +308,12 @@ abstract class TelephonyConnection extends Connection {
 
             String name = mOriginalConnection.getCnapName();
             int namePresentation = mOriginalConnection.getCnapNamePresentation();
-            if (force || !Objects.equals(name, getCallerDisplayName()) ||
+            if (!Objects.equals(name, getCallerDisplayName()) ||
                     namePresentation != getCallerDisplayNamePresentation()) {
                 Log.v(this, "updateHandle, caller display name changed");
                 setCallerDisplayName(name, namePresentation);
             }
         }
-    }
-
-    void onAddedToCallService() {
-        updateState(false);
     }
 
     void onRemovedFromCallService() {
@@ -395,14 +391,14 @@ abstract class TelephonyConnection extends Connection {
         return true;
     }
 
-    private void updateState(boolean force) {
+    private void updateState() {
         if (mOriginalConnection == null) {
             return;
         }
 
         Call.State newState = mOriginalConnection.getState();
         Log.v(this, "Update state from %s to %s for %s", mOriginalConnectionState, newState, this);
-        if (force || mOriginalConnectionState != newState) {
+        if (mOriginalConnectionState != newState) {
             mOriginalConnectionState = newState;
             switch (newState) {
                 case IDLE:
@@ -429,8 +425,8 @@ abstract class TelephonyConnection extends Connection {
                     break;
             }
         }
-        updateCallCapabilities(force);
-        updateHandle(force);
+        updateCallCapabilities();
+        updateHandle();
     }
 
     private void close() {
@@ -491,7 +487,7 @@ abstract class TelephonyConnection extends Connection {
      */
     public void setLocalVideoCapable(boolean capable) {
         mLocalVideoCapable = capable;
-        updateCallCapabilities(false);
+        updateCallCapabilities();
     }
 
     /**
@@ -502,6 +498,14 @@ abstract class TelephonyConnection extends Connection {
      */
     public void setRemoteVideoCapable(boolean capable) {
         mRemoteVideoCapable = capable;
-        updateCallCapabilities(false);
+        updateCallCapabilities();
+    }
+
+    private static Uri getHandleFromAddress(String address) {
+        // Address can be null for blocked calls.
+        if (address == null) {
+            address = "";
+        }
+        return Uri.fromParts(TelephonyConnectionService.SCHEME_TEL, address, null);
     }
 }
