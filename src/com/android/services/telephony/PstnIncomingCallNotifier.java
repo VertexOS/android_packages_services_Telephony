@@ -25,8 +25,8 @@ import android.os.AsyncResult;
 import android.os.Handler;
 import android.os.Message;
 import android.os.UserHandle;
-
 import android.telecomm.TelecommManager;
+
 import com.android.internal.telephony.Call;
 import com.android.internal.telephony.Connection;
 import com.android.internal.telephony.Phone;
@@ -152,14 +152,7 @@ final class PstnIncomingCallNotifier {
      * Sends the incoming call intent to telecomm.
      */
     private void sendIncomingCallIntent(Connection connection) {
-        Context context = mPhoneProxy.getContext();
-
-        Intent intent = new Intent(TelecommManager.ACTION_INCOMING_CALL);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.putExtra(TelecommManager.EXTRA_PHONE_ACCOUNT_HANDLE,
-                TelecommAccountRegistry.makePstnPhoneAccountHandle(mPhoneProxy));
-
-        Log.d(this, "Sending incoming call intent: %s", intent);
-        context.startActivityAsUser(intent, UserHandle.CURRENT);
+        TelecommManager.from(mPhoneProxy.getContext()).addNewIncomingCall(
+                TelecommAccountRegistry.makePstnPhoneAccountHandle(mPhoneProxy), null);
     }
 }
