@@ -28,7 +28,7 @@ import java.util.List;
  */
 final class ConferenceConnection extends Connection {
     @Override
-    protected void onChildrenChanged(List<Connection> children) {
+    public void onChildrenChanged(List<Connection> children) {
         if (children.isEmpty()) {
             setDisconnected(DisconnectCause.LOCAL, "conference call disconnected.");
             destroy();
@@ -37,7 +37,7 @@ final class ConferenceConnection extends Connection {
 
     /** ${inheritDoc} */
     @Override
-    protected void onDisconnect() {
+    public void onDisconnect() {
         // For conference-level disconnects, we need to make sure we disconnect the entire call,
         // not just one of the connections. To do this, we go through the children and get a
         // reference to the telephony-Call object and call hangup().
@@ -62,7 +62,7 @@ final class ConferenceConnection extends Connection {
 
     /** ${inheritDoc} */
     @Override
-    protected void onHold() {
+    public void onHold() {
         for (Connection connection : getChildConnections()) {
             if (connection instanceof TelephonyConnection) {
                 ((TelephonyConnection) connection).onHold();
