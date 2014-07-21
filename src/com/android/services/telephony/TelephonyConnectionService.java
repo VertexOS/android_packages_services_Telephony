@@ -55,31 +55,29 @@ public class TelephonyConnectionService extends ConnectionService {
     }
 
     @Override
-    public void onCreateOutgoingConnection(
-            final ConnectionRequest request,
-            final CreateConnectionResponse<Connection> response) {
+    public Connection onCreateOutgoingConnection(
+            final ConnectionRequest request) {
         Log.v(this, "onCreateOutgoingConnection, request: " + request);
 
         Uri handle = request.getHandle();
         if (handle == null) {
             Log.d(this, "onCreateOutgoingConnection, handle is null");
-            response.onFailure(request, DisconnectCause.NO_PHONE_NUMBER_SUPPLIED, "Handle is null");
-            return;
+            return Connection.getFailedConnection(DisconnectCause.NO_PHONE_NUMBER_SUPPLIED,
+                    "Handle is null");
         }
 
         if (!SCHEME_TEL.equals(handle.getScheme())) {
             Log.d(this, "onCreateOutgoingConnection, Handle %s is not type tel",
                     handle.getScheme());
-            response.onFailure(request, DisconnectCause.INVALID_NUMBER,
+            return Connection.getFailedConnection(DisconnectCause.INVALID_NUMBER,
                     "Handle scheme is not type tel");
-            return;
         }
 
         final String number = handle.getSchemeSpecificPart();
         if (TextUtils.isEmpty(number)) {
             Log.d(this, "onCreateOutgoingConnection, unable to parse number");
-            response.onFailure(request, DisconnectCause.INVALID_NUMBER, "Unable to parse number");
-            return;
+            return Connection.getFailedConnection(DisconnectCause.INVALID_NUMBER,
+                    "Unable to parse number");
         }
 
         boolean isEmergencyNumber = PhoneNumberUtils.isPotentialEmergencyNumber(number);
@@ -88,36 +86,35 @@ public class TelephonyConnectionService extends ConnectionService {
         final Phone phone = getPhoneForAccount(request.getAccountHandle(), isEmergencyNumber);
         if (phone == null) {
             Log.d(this, "onCreateOutgoingConnection, phone is null");
-            response.onFailure(request, DisconnectCause.OUTGOING_FAILURE, "Phone is null");
-            return;
+            return Connection.getFailedConnection(DisconnectCause.OUTGOING_FAILURE,
+                    "Phone is null");
         }
 
         if (!isEmergencyNumber) {
             int state = phone.getServiceState().getState();
             switch (state) {
                 case ServiceState.STATE_IN_SERVICE:
+                case ServiceState.STATE_EMERGENCY_ONLY:
                     break;
                 case ServiceState.STATE_OUT_OF_SERVICE:
-                    response.onFailure(request, DisconnectCause.OUT_OF_SERVICE,
+                    return Connection.getFailedConnection(DisconnectCause.OUT_OF_SERVICE,
                             "ServiceState.STATE_OUT_OF_SERVICE");
-                    return;
-                case ServiceState.STATE_EMERGENCY_ONLY:
-                    response.onFailure(request, DisconnectCause.EMERGENCY_ONLY,
-                            "ServiceState.STATE_EMERGENCY_ONLY");
-                    return;
                 case ServiceState.STATE_POWER_OFF:
-                    response.onFailure(request, DisconnectCause.POWER_OFF,
+                    return Connection.getFailedConnection(DisconnectCause.POWER_OFF,
                             "ServiceState.STATE_POWER_OFF");
-                    return;
                 default:
                     Log.d(this, "onCreateOutgoingConnection, unkown service state: %d", state);
-                    response.onFailure(request, DisconnectCause.OUTGOING_FAILURE,
-                            "Unkown service state " + state);
-                    return;
+                    return Connection.getFailedConnection(DisconnectCause.OUTGOING_FAILURE,
+                            "Unknown service state " + state);
             }
         }
 
         if (isEmergencyNumber) {
+            final Connection emergencyConnection = startOutgoingCall(request, phone, number);
+
+            // Start the emergency call in the initializing state to wait for the radio to spin up.
+            emergencyConnection.setInitializing();
+
             Log.d(this, "onCreateOutgoingConnection, doing startTurnOnRadioSequence for " +
                     "emergency number");
             if (mEmergencyCallHelper == null) {
@@ -128,18 +125,19 @@ public class TelephonyConnectionService extends ConnectionService {
                         @Override
                         public void onComplete(boolean isRadioReady) {
                             if (isRadioReady) {
-                                startOutgoingCall(request, response, phone, number);
+                                emergencyConnection.setInitialized();
                             } else {
                                 Log.d(this, "onCreateOutgoingConnection, failed to turn on radio");
-                                response.onFailure(request, DisconnectCause.POWER_OFF,
+                                emergencyConnection.setFailed(DisconnectCause.POWER_OFF,
                                         "Failed to turn on radio.");
                             }
                         }
-            });
-            return;
+                    });
+
+            return emergencyConnection;
         }
 
-        startOutgoingCall(request, response, phone, number);
+        return startOutgoingCall(request, phone, number);
     }
 
     @Override
@@ -157,29 +155,26 @@ public class TelephonyConnectionService extends ConnectionService {
     }
 
     @Override
-    public void onCreateIncomingConnection(
-            ConnectionRequest request,
-            CreateConnectionResponse<Connection> response) {
+    public Connection onCreateIncomingConnection(
+            ConnectionRequest request) {
         Log.v(this, "onCreateIncomingConnection, request: " + request);
 
         Phone phone = getPhoneForAccount(request.getAccountHandle(), false);
         if (phone == null) {
-            response.onFailure(request, DisconnectCause.ERROR_UNSPECIFIED, null);
-            return;
+            return Connection.getFailedConnection(DisconnectCause.ERROR_UNSPECIFIED, null);
         }
 
         Call call = phone.getRingingCall();
         if (!call.getState().isRinging()) {
             Log.v(this, "onCreateIncomingConnection, no ringing call");
-            response.onFailure(request, DisconnectCause.INCOMING_MISSED, "Found no ringing call");
-            return;
+            return Connection.getFailedConnection(DisconnectCause.INCOMING_MISSED,
+                    "Found no ringing call");
         }
 
         com.android.internal.telephony.Connection originalConnection = call.getEarliestConnection();
         if (isOriginalConnectionKnown(originalConnection)) {
             Log.v(this, "onCreateIncomingConnection, original connection already registered");
-            response.onCancel(request);
-            return;
+            return Connection.getCanceledConnection();
         }
 
         TelephonyConnection connection = null;
@@ -190,9 +185,9 @@ public class TelephonyConnectionService extends ConnectionService {
         }
 
         if (connection == null) {
-            response.onCancel(request);
+            return Connection.getCanceledConnection();
         } else {
-            response.onSuccess(request, connection);
+            return connection;
         }
     }
 
@@ -209,9 +204,8 @@ public class TelephonyConnectionService extends ConnectionService {
         }
     }
 
-    private void startOutgoingCall(
+    private Connection startOutgoingCall(
             ConnectionRequest request,
-            CreateConnectionResponse<Connection> response,
             Phone phone,
             String number) {
         Log.v(this, "startOutgoingCall");
@@ -221,8 +215,7 @@ public class TelephonyConnectionService extends ConnectionService {
             originalConnection = phone.dial(number, request.getVideoState());
         } catch (CallStateException e) {
             Log.e(this, e, "startOutgoingCall, phone.dial exception: " + e);
-            response.onFailure(request, DisconnectCause.OUTGOING_FAILURE, e.getMessage());
-            return;
+            return Connection.getFailedConnection(DisconnectCause.OUTGOING_FAILURE, e.getMessage());
         }
 
         if (originalConnection == null) {
@@ -233,18 +226,18 @@ public class TelephonyConnectionService extends ConnectionService {
                 disconnectCause = DisconnectCause.DIALED_MMI;
             }
             Log.d(this, "startOutgoingCall, phone.dial returned null");
-            response.onFailure(request, disconnectCause, "Connection is null");
-            return;
+            return Connection.getFailedConnection(disconnectCause, "Connection is null");
         }
 
         if (phone.getPhoneType() == TelephonyManager.PHONE_TYPE_GSM) {
-            response.onSuccess(request, new GsmConnection(originalConnection));
+            return new GsmConnection(originalConnection);
         } else if (phone.getPhoneType() == TelephonyManager.PHONE_TYPE_CDMA) {
-            response.onSuccess(request, new CdmaConnection(originalConnection));
+            return new CdmaConnection(originalConnection);
         } else {
             // TODO(ihab): Tear down 'originalConnection' here, or move recognition of
             // getPhoneType() earlier in this method before we've already asked phone to dial()
-            response.onFailure(request, DisconnectCause.OUTGOING_FAILURE, "Invalid phone type");
+            return Connection.getFailedConnection(DisconnectCause.OUTGOING_FAILURE,
+                    "Invalid phone type");
         }
     }
 
