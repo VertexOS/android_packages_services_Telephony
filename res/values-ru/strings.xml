@@ -173,8 +173,7 @@
     <item msgid="3817924849415716259">"GSM/WCDMA (предпочтительно)"</item>
   </string-array>
     <string name="data_enabled" msgid="5972538663568715366">"Передача данных"</string>
-    <!-- no translation found for data_enable_summary (2382798156640007971) -->
-    <skip />
+    <string name="data_enable_summary" msgid="2382798156640007971">"Разрешить использование данных"</string>
     <string name="roaming" msgid="8871412572928323707">"Интернет-роуминг"</string>
     <string name="roaming_enable" msgid="7331106985174381987">"Подключаться к службам передачи данных в роуминге"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"Подключаться к службам передачи данных в роуминге"</string>

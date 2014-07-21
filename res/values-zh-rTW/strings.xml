@@ -57,8 +57,7 @@
     <string name="labelCDMAMore" msgid="1630676740428229339">"CDMA 通話設定"</string>
     <string name="apn_settings" msgid="9043423184895642077">"存取點名稱 (APN)"</string>
     <string name="settings_label" msgid="3876743539816984008">"網路設定"</string>
-    <!-- no translation found for phone_accounts (8810358208981265351) -->
-    <skip />
+    <string name="phone_accounts" msgid="8810358208981265351">"手機帳戶設定"</string>
     <string name="connection_service_default_label" msgid="1498481943805913754">"內建連線服務"</string>
     <string name="voicemail" msgid="8693759337917898954">"語音信箱"</string>
     <string name="voicemail_abbreviated" msgid="2215592488517217448">"語音信箱："</string>
@@ -173,8 +172,7 @@
     <item msgid="3817924849415716259">"GSM/WCDMA 優先"</item>
   </string-array>
     <string name="data_enabled" msgid="5972538663568715366">"啟用行動數據服務"</string>
-    <!-- no translation found for data_enable_summary (2382798156640007971) -->
-    <skip />
+    <string name="data_enable_summary" msgid="2382798156640007971">"允許使用行動數據"</string>
     <string name="roaming" msgid="8871412572928323707">"漫遊服務"</string>
     <string name="roaming_enable" msgid="7331106985174381987">"漫遊時連線到數據傳輸服務"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"漫遊時連線到數據傳輸服務"</string>
