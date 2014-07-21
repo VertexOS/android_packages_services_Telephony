@@ -82,7 +82,7 @@ public class TelephonyConnectionService extends ConnectionService {
         }
 
         // Get the right phone object from the account data passed in.
-        final Phone phone = getPhoneForAccount(request.getAccount());
+        final Phone phone = getPhoneForAccount(request.getAccountHandle());
         if (phone == null) {
             Log.d(this, "onCreateOutgoingConnection, phone is null");
             response.onFailure(request, DisconnectCause.ERROR_UNSPECIFIED, "Phone is null");
@@ -160,7 +160,7 @@ public class TelephonyConnectionService extends ConnectionService {
             CreateConnectionResponse<Connection> response) {
         Log.v(this, "onCreateIncomingConnection, request: " + request);
 
-        Phone phone = getPhoneForAccount(request.getAccount());
+        Phone phone = getPhoneForAccount(request.getAccountHandle());
         if (phone == null) {
             response.onFailure(request, DisconnectCause.ERROR_UNSPECIFIED, null);
             return;
@@ -182,7 +182,7 @@ public class TelephonyConnectionService extends ConnectionService {
 
         Uri handle = getHandleFromAddress(originalConnection.getAddress());
         ConnectionRequest telephonyRequest = new ConnectionRequest(
-                request.getAccount(),
+                request.getAccountHandle(),
                 request.getCallId(),
                 handle,
                 originalConnection.getNumberPresentation(),
@@ -242,7 +242,7 @@ public class TelephonyConnectionService extends ConnectionService {
         }
 
         ConnectionRequest telephonyRequest = new ConnectionRequest(
-                request.getAccount(),
+                request.getAccountHandle(),
                 request.getCallId(),
                 request.getHandle(),
                 request.getHandlePresentation(),
