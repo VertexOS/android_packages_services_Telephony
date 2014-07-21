@@ -101,6 +101,8 @@ final class TelecommAccountRegistry {
      * Sets up all the phone accounts for SIM and SIP accounts on first boot.
      */
     void setup() {
+        // Initialize the PhoneFactory, since the PhoneApp may not yet have been set up
+        PhoneFactory.makeDefaultPhones(mContext);
         // Before we do anything, we need to clear whatever entries we registered at boot.
         mTelecommManager.clearAccounts(mContext.getPackageName());
 
