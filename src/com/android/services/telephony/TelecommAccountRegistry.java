@@ -65,7 +65,7 @@ final class TelecommAccountRegistry {
             PhoneAccountMetadata metadata = new PhoneAccountMetadata(
                     phoneAccount,
                     Uri.fromParts(TEL_SCHEME, telephonyManager.getLine1Number(subId), null),
-                    PhoneAccount.CAPABILITY_SIM_SUBSCRIPTION |
+                    PhoneAccountMetadata.CAPABILITY_SIM_SUBSCRIPTION |
                             PhoneAccountMetadata.CAPABILITY_CALL_PROVIDER,
                     com.android.phone.R.mipmap.ic_launcher_phone,
                     dummyPrefix + "SIM " + slotId,
