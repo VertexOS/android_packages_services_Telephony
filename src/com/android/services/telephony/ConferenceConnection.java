@@ -31,7 +31,7 @@ final class ConferenceConnection extends Connection {
     protected void onChildrenChanged(List<Connection> children) {
         if (children.isEmpty()) {
             setDisconnected(DisconnectCause.LOCAL, "conference call disconnected.");
-            setDestroyed();
+            destroy();
         }
     }
 

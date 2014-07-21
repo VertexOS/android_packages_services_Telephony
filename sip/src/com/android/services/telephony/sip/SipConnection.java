@@ -278,7 +278,7 @@ final class SipConnection extends Connection {
             getPhone().unregisterForPreciseCallStateChanged(mHandler);
         }
         mOriginalConnection = null;
-        setDestroyed();
+        destroy();
     }
 
     private static void log(String msg) {
