@@ -52,12 +52,13 @@
     <string name="requesting_unlock" msgid="6412629401033249351">"Zahteva za odklepanje omrežja ..."</string>
     <string name="unlock_failed" msgid="6490531697031504225">"Zahteva za odklepanje omrežja neuspešna."</string>
     <string name="unlock_success" msgid="6770085622238180152">"Odklepanje omrežja uspešno."</string>
-    <string name="mobile_network_settings_not_available" msgid="7355254462995117896">"Nastavitve mobilnega omrežja niso na voljo za tega uporabnika"</string>
+    <string name="mobile_network_settings_not_available" msgid="3831911315358856062">"Nastavitve mobilnega omrežja niso na voljo za tega uporabnika"</string>
     <string name="labelGSMMore" msgid="5930842194056092106">"Nastavitve klicev GSM"</string>
     <string name="labelCDMAMore" msgid="1630676740428229339">"Nastavitve klicev CDMA"</string>
     <string name="apn_settings" msgid="9043423184895642077">"Imena dostopnih točk"</string>
     <string name="settings_label" msgid="3876743539816984008">"Omrežne nastavitve"</string>
-    <string name="connection_service" msgid="978745922583410219">"Storitev povezave za uporabo"</string>
+    <!-- no translation found for phone_accounts (8810358208981265351) -->
+    <skip />
     <string name="connection_service_default_label" msgid="1498481943805913754">"Vgrajena storitev povezave"</string>
     <string name="voicemail" msgid="8693759337917898954">"Glasovna pošta"</string>
     <string name="voicemail_abbreviated" msgid="2215592488517217448">"VM:"</string>
@@ -124,7 +125,7 @@
     <string name="no_change" msgid="3186040086622435212">"Narejena ni bila nobena sprememba."</string>
     <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"Izberite storitev glasovne pošte"</string>
     <string name="voicemail_default" msgid="5902099213882352338">"Moj operater"</string>
-    <string name="mobile_networks" msgid="5540397602919106177">"Nastavitve omrežja prenosnega telefona"</string>
+    <string name="mobile_networks" msgid="2843854043339307375">"Nastavitve mobilnega omrežja"</string>
     <string name="label_available" msgid="1181658289009300430">"Razpoložljiva omrežja"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"Iskanje ..."</string>
     <string name="empty_networks_list" msgid="4249426905018815316">"Najdeno ni bilo nobeno omrežje."</string>
@@ -172,7 +173,7 @@
     <item msgid="3817924849415716259">"Prednostno GSM/WCDMA"</item>
   </string-array>
     <string name="data_enabled" msgid="5972538663568715366">"Podatki omogočeni"</string>
-    <string name="data_enable_summary" msgid="5022018967714633874">"Omogoči podatkovni dostop prek mobilnega omrežja"</string>
+    <string name="data_enable_summary" msgid="2382798156640007971">"Dovoli prenos podatkov"</string>
     <string name="roaming" msgid="8871412572928323707">"Podatkovno gostovanje"</string>
     <string name="roaming_enable" msgid="7331106985174381987">"Med gostovanjem vzpostavi povezavo s podatkovnimi storitvami"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"Med gostovanjem vzpostavi povezavo s podatkovnimi storitvami"</string>
@@ -190,7 +191,7 @@
     <string name="throttle_data_rate_reduced_subtext" msgid="7492763592720107737">"<xliff:g id="USED_0">%1$s</xliff:g> omejitev presežena\nPodatki omejeni na <xliff:g id="USED_1">%2$d</xliff:g> Kb/s"</string>
     <string name="throttle_time_frame_subtext" msgid="7732763021560399960">"<xliff:g id="USED_0">%1$d</xliff:g>٪ cikla potečenega\nNaslednje obdobje se začne čez <xliff:g id="USED_1">%2$d</xliff:g> dni (<xliff:g id="USED_2">%3$s</xliff:g>)"</string>
     <string name="throttle_rate_subtext" msgid="2149102656120726855">"Če je presežena omejitev porabe podatkov, se podatkovna hitrost zmanjša na <xliff:g id="USED">%1$d</xliff:g> Kb/s."</string>
-    <string name="throttle_help_subtext" msgid="5217706521499010816">"Več informacij o pravilniku o uporabi podatkov v mobilnem omrežju vašega operaterja"</string>
+    <string name="throttle_help_subtext" msgid="3633091498168446044">"Več informacij o pravilniku o uporabi podatkov v mobilnem omrežju vašega operaterja"</string>
     <string name="cell_broadcast_sms" msgid="5584192824053625842">"Oddajni vmesnik SMS"</string>
     <string name="enable_disable_cell_bc_sms" msgid="4851147873691392255">"Oddajni vmesnik SMS"</string>
     <string name="cell_bc_sms_enable" msgid="6441688565738921084">"Oddajni vmesnik SMS omogočen"</string>
@@ -409,7 +410,7 @@
     <string name="notification_missedCall_message" msgid="3049928912736917988">"Sporočilo"</string>
     <string name="incall_error_power_off" msgid="6550191216405193368">"Če želite poklicati, najprej izklopite način za letalo."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"Ni registrirano v omrežju."</string>
-    <string name="incall_error_out_of_service" msgid="8587993036435080418">"Omrežje prenosnega telefona ni na voljo."</string>
+    <string name="incall_error_out_of_service" msgid="4100065333878929223">"Mobilno omrežje ni na voljo."</string>
     <string name="incall_error_no_phone_number_supplied" msgid="4197432103471807739">"Klic ni bil poslan, veljavna številka ni vnesena."</string>
     <string name="incall_error_call_failed" msgid="4313552620858880999">"Klic ni bil poslan."</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"Začetek zaporedja MMI ..."</string>
@@ -420,7 +421,6 @@
     <string name="incall_error_supp_service_conference" msgid="2505727299596357312">"Konferenčni klici onemogočeni."</string>
     <string name="incall_error_supp_service_reject" msgid="7055164130563826216">"Klica ni mogoče zavrniti."</string>
     <string name="incall_error_supp_service_hangup" msgid="7417583238334762737">"Klicev ni mogoče sprostiti."</string>
-    <string name="incall_call_type_label_sip" msgid="2310958283037924371">"Internetni klic"</string>
     <string name="emergency_enable_radio_dialog_title" msgid="4627849966634578257">"Klic v sili"</string>
     <string name="emergency_enable_radio_dialog_message" msgid="207613549344420291">"Vklop radia …"</string>
     <string name="emergency_enable_radio_dialog_retry" msgid="3724423402363063736">"Zunaj območja storitve, ponovni poskus ..."</string>
@@ -506,98 +506,10 @@
     <string name="contactPhoto" msgid="4713193418046639466">"fotografija stika"</string>
     <string name="goPrivate" msgid="865837794424530980">"zasebno"</string>
     <string name="selectContact" msgid="781975788478987237">"izbira stika"</string>
-    <string name="sip_settings" msgid="6699045718560859691">"Nastavitve internetnega klicanja"</string>
-    <string name="sip_accounts" msgid="2097054001288457163">"Računi za internetno klicanje (SIP)"</string>
-    <string name="sip_accounts_title" msgid="1212889069281054570">"Računi"</string>
-    <string name="sip_receive_calls" msgid="5635685570889971559">"Sprejmi dohodne klice"</string>
-    <string name="sip_receive_calls_summary" msgid="8403613238633679184">"Skrajša delovanje baterije"</string>
-    <string name="sip_call_options_title" msgid="27433718808839672">"Uporaba internetnega klicanja"</string>
-    <string name="sip_call_options_wifi_only_title" msgid="145572394529090811">"Uporaba internetnega klicanja (samo brezžični dostop)"</string>
-    <string name="sip_call_options_entry_1" msgid="6556668894178520760">"Za vse klice, ko podatkovno omrežje ni na voljo"</string>
-    <string name="sip_call_options_entry_2" msgid="6789764029719494361">"Samo za internetne klice"</string>
-    <string name="sip_call_options_entry_3" msgid="7474809001402649185">"Vprašaj za vsak klic"</string>
-    <string name="sip_call_options_wifi_only_entry_1" msgid="7423523864471650069">"Za vse klice"</string>
-    <string name="pick_outgoing_call_phone_type" msgid="5622916534828338675">"Klicanje"</string>
-    <string name="pick_outgoing_sip_phone" msgid="7012322118236208875">"Uporaba računa za internetno klicanje"</string>
-    <string name="remember_my_choice" msgid="7058059586169290705">"Vedno uporabi za internetno klicanje"</string>
-    <string name="reset_my_choice_hint" msgid="5523030209803567922">"Na zaslonu Telefon &gt; Nastavitve &gt; Nastavitve internetnega klicanja &gt; Računi lahko spremenite privzeti račun za internetno klicanje."</string>
-    <string name="pstn_phone" msgid="8782554491484326429">"Klic z mobilnim telefonom"</string>
-    <string name="internet_phone" msgid="1147922660195095810">"Internetni klic"</string>
-    <string name="no_sip_account_found_title" msgid="6266249392379373628">"Ni računa za internetno klicanje"</string>
-    <string name="no_sip_account_found" msgid="724325811961769997">"V tem telefonu ni računov za internetno klicanje. Ali želite dodati račun zdaj?"</string>
-    <string name="sip_menu_add" msgid="8757508498518881500">"Dodaj"</string>
-    <string name="add_sip_account" msgid="5904858426290097611">"Dodaj račun"</string>
-    <string name="remove_sip_account" msgid="7645900420385682570">"Odstrani račun"</string>
-    <string name="sip_account_list" msgid="5480058210652194306">"Računi SIP"</string>
-    <string name="saving_account" msgid="52903398217017954">"Shranjevanje računa ..."</string>
-    <string name="removing_account" msgid="7183999896088628100">"Odstranjevanje računa ..."</string>
-    <string name="sip_menu_save" msgid="5842531129356014943">"Shrani"</string>
-    <string name="sip_menu_discard" msgid="524075892158789701">"Zavrzi"</string>
-    <string name="alert_dialog_close" msgid="7759635137627626235">"Zapiranje profila"</string>
-    <string name="alert_dialog_ok" msgid="3580379406983564080">"V redu"</string>
-    <string name="close_profile" msgid="6886968271423155284">"Zapri"</string>
-    <string name="primary_account_summary_with" msgid="1633960536212343187">"Primarni račun. <xliff:g id="REGISTRATION_STATUS">%s</xliff:g>"</string>
-    <string name="registration_status_checking_status" msgid="3381868307694056727">"Preverjanje stanja ..."</string>
-    <string name="registration_status_registering" msgid="4288401139400232968">"Registriranje ..."</string>
-    <string name="registration_status_still_trying" msgid="3185581992666091911">"Še vedno poskušamo ..."</string>
-    <string name="registration_status_not_receiving" msgid="4185572774980557758">"Ne sprejema klicev."</string>
-    <string name="registration_status_no_data" msgid="4901476962360656611">"Registracija računa je bila ustavljena, ker ni internetne povezave."</string>
-    <string name="registration_status_no_wifi_data" msgid="4038976374713018067">"Registracija računa je bila ustavljena, ker ni povezave Wi-Fi."</string>
-    <string name="registration_status_not_running" msgid="4824867184446232131">"Registracija računa ni uspela."</string>
-    <string name="registration_status_done" msgid="884630717456439280">"Sprejemanje klicev."</string>
-    <string name="registration_status_failed_try_later" msgid="5214474354451220581">"Registracija računa ni uspela: (<xliff:g id="REGISTRATION_ERROR_MESSAGE">%s</xliff:g>); znova poskusite pozneje"</string>
-    <string name="registration_status_invalid_credentials" msgid="4908446367559341757">"Registracija računa ni uspela: napačno uporabniško ime ali geslo."</string>
-    <string name="registration_status_server_unreachable" msgid="5733421582468991276">"Registracija računa ni uspela: preverite ime strežnika."</string>
-    <string name="third_party_account_summary" msgid="2532526738862533028">"Ta račun trenutno uporablja program <xliff:g id="ACCOUNT_OWNER">%s</xliff:g>."</string>
-    <string name="sip_edit_title" msgid="489288416435014385">"Podrobnosti o računu SIP"</string>
-    <string name="sip_edit_new_title" msgid="3659149255856520385">"Podrobnosti o računu SIP"</string>
-    <string name="domain_address_title" msgid="9071787581316160480">"Strežnik"</string>
-    <string name="username_title" msgid="2479375923477682328">"Uporabniško ime"</string>
-    <string name="password_title" msgid="3323555249068171531">"Geslo"</string>
-    <string name="display_name_title" msgid="2459768196312249937">"Prikazno ime"</string>
-    <string name="proxy_address_title" msgid="4828301345351614273">"Naslov strežnika proxy za odhodne klice"</string>
-    <string name="port_title" msgid="5952939408078626657">"Številka vrat"</string>
-    <string name="transport_title" msgid="8253139511847746640">"Vrsta prevoza"</string>
-    <string name="send_keepalive_title" msgid="7533342573918645113">"Pošlji ohranjanje povezave"</string>
-    <string name="set_primary_title" msgid="5351892327447571451">"Nastavi kot primarni račun"</string>
-    <string name="set_primary_summary" msgid="2219064654523258577">"Za odhodne klice"</string>
-    <string name="advanced_settings" msgid="8350631795335495338">"Izbirne nastavitve"</string>
-    <string name="auth_username_title" msgid="851473016307947120">"Uporabniško ime za preverjanje pristnosti"</string>
-    <string name="auth_username_summary" msgid="6782012405225938629">"Uporabniško ime za preverjanje pristnosti"</string>
-    <string name="default_preference_summary" msgid="868766740121667450">"&lt;Ni nastavljeno&gt;"</string>
-    <string name="display_name_summary" msgid="8636377460518225523">"&lt;Enako kot uporabniško ime&gt;"</string>
-    <string name="optional_summary" msgid="1464058793789832411">"&lt;Izbirno&gt;"</string>
-    <string name="advanced_settings_show" msgid="4668880308290857597">"▷ Dotaknite se, da prikažete vse"</string>
-    <string name="advanced_settings_hide" msgid="217398292824758079">"▽ Dotaknite se, če želite skriti vse"</string>
-    <string name="empty_alert" msgid="6839103946505432390">"Polje <xliff:g id="INPUT_FIELD_NAME">%s</xliff:g> je obvezno in ne sme biti prazno."</string>
-    <string name="not_a_valid_port" msgid="4796149266434630292">"Številka vrat mora biti med 1000 in 65534."</string>
-    <string name="no_internet_available_title" msgid="3327109242858406165">"Ni internetne povezave"</string>
-    <string name="no_wifi_available_title" msgid="747881033089378758">"Ni brezžične povezave"</string>
-    <string name="no_internet_available" msgid="7877142631803238549">"Če želite opraviti internetni klic, najprej preverite internetno povezavo."</string>
-    <string name="no_wifi_available" msgid="1225073547318465713">"Če želite klicati po internetu, morate biti v omrežju WiFi (v nastavitvah »Brezžične in omrežne nastavitve«)."</string>
-    <string name="no_voip" msgid="8901474054537199865">"Internetno klicanje ni podprto"</string>
-    <string name="sip_system_decide" msgid="368030746310423471">"Samodejno"</string>
-    <string name="sip_always_send_keepalive" msgid="8192080724632877132">"Vedno pošlji"</string>
     <string name="not_voice_capable" msgid="2739898841461577811">"Glasovno klicanje ni podprto"</string>
     <string name="respond_via_sms_setting_title" msgid="3754000371039709383">"Hitri odgovori"</string>
     <string name="respond_via_sms_setting_summary" msgid="9150281183930613065"></string>
-    <string name="description_image_button_one" msgid="5502718871331943463">"ena"</string>
-    <string name="description_image_button_two" msgid="4903738528222924522">"dve"</string>
-    <string name="description_image_button_three" msgid="5570985408463782329">"tri"</string>
-    <string name="description_image_button_four" msgid="1697520001239289074">"štiri"</string>
-    <string name="description_image_button_five" msgid="3450276493026943454">"pet"</string>
-    <string name="description_image_button_six" msgid="2070376172268675300">"šest"</string>
-    <string name="description_image_button_seven" msgid="1757351311199993371">"sedem"</string>
-    <string name="description_image_button_eight" msgid="4734693919020613227">"osem"</string>
-    <string name="description_image_button_nine" msgid="5568534122590597040">"devet"</string>
-    <string name="description_image_button_star" msgid="1976280813017254462">"zvezda"</string>
-    <string name="description_image_button_zero" msgid="4211255756866893605">"nič"</string>
-    <string name="description_image_button_pound" msgid="1716041284529917866">"funt"</string>
     <string name="description_dial_button" msgid="7459705245418435351">"klicanje"</string>
-    <string name="description_delete_button" msgid="4015842181592283903">"vračalka"</string>
-    <string name="description_target_answer" msgid="7205604197797472471">"Odgovori"</string>
-    <string name="description_target_send_sms" msgid="2098326025587950144">"Pošlji SMS"</string>
-    <string name="description_target_decline" msgid="4789834364389731957">"Zavrni"</string>
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"Vibriraj"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"Vibriraj"</string>
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"Zvok"</string>
@@ -607,9 +519,9 @@
     <string name="dtmf_tone_enable_title" msgid="827601042915852989">"Zvok številčnice"</string>
     <string name="dial_pad_autocomplete" msgid="494525952035761075">"Samodokončanje za tipkovnico"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"Zvonjenje in vibriranje"</string>
-    <string name="choose_wifi_for_call_msg" msgid="193549297122949976">"Želite klicati prek povezave Wi-Fi?"</string>
-    <string name="choose_wifi_for_call_yes" msgid="5312994368472630983">"Da"</string>
-    <string name="choose_wifi_for_call_no" msgid="7132239734287157307">"Ne"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"Vgrajene kartice SIM"</string>
-    <string name="sip_connection_service_label" msgid="3547998349299125294">"Vgrajeno internetno klicanje"</string>
+    <string name="enable_video_calling_title" msgid="7237253660669000899">"Vklop videoklicev"</string>
+    <string name="enable_video_calling_dialog_msg" msgid="6547569773866546434">"Če želite vklopiti videoklice, morate v sistemskih nastavitvah omogočiti način Enhanced 4G LTE."</string>
+    <string name="enable_video_calling_dialog_settings" msgid="576528473599603249">"Omrežne nastavitve"</string>
+    <string name="enable_video_calling_dialog_close" msgid="7411471282167927991">"Zapri"</string>
 </resources>

@@ -52,12 +52,13 @@
     <string name="requesting_unlock" msgid="6412629401033249351">"Sarea desblokeatzeko eskatzen…"</string>
     <string name="unlock_failed" msgid="6490531697031504225">"Sarea desblokeatzeko eskaerak ez du arrakastarik izan."</string>
     <string name="unlock_success" msgid="6770085622238180152">"Sarea desblokeatu egin da."</string>
-    <string name="mobile_network_settings_not_available" msgid="7355254462995117896">"Erabiltzaile honek ez dauzka sare mugikorraren ezarpenak erabilgarri"</string>
+    <string name="mobile_network_settings_not_available" msgid="3831911315358856062">"Erabiltzaile honek ez dauzka sare mugikorraren ezarpenak erabilgarri"</string>
     <string name="labelGSMMore" msgid="5930842194056092106">"GSM deien ezarpenak"</string>
     <string name="labelCDMAMore" msgid="1630676740428229339">"CDMA deien ezarpenak"</string>
     <string name="apn_settings" msgid="9043423184895642077">"Sarbide-puntuen izenak"</string>
     <string name="settings_label" msgid="3876743539816984008">"Sareko ezarpenak"</string>
-    <string name="connection_service" msgid="978745922583410219">"Konektatzeko erabili beharreko zerbitzua"</string>
+    <!-- no translation found for phone_accounts (8810358208981265351) -->
+    <skip />
     <string name="connection_service_default_label" msgid="1498481943805913754">"Konektatzeko zerbitzu bateratua"</string>
     <string name="voicemail" msgid="8693759337917898954">"Erantzungailua"</string>
     <string name="voicemail_abbreviated" msgid="2215592488517217448">"Erantzungailua:"</string>
@@ -124,7 +125,7 @@
     <string name="no_change" msgid="3186040086622435212">"Ez da aldaketarik egin."</string>
     <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"Aukeratu erantzungailu-zerbitzua"</string>
     <string name="voicemail_default" msgid="5902099213882352338">"Nire operadorea"</string>
-    <string name="mobile_networks" msgid="5540397602919106177">"Sare mugikorren ezarpenak"</string>
+    <string name="mobile_networks" msgid="2843854043339307375">"Sare mugikorraren ezarpenak"</string>
     <string name="label_available" msgid="1181658289009300430">"Sare erabilgarriak"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"Bilatzen…"</string>
     <string name="empty_networks_list" msgid="4249426905018815316">"Ez da sarerik aurkitu."</string>
@@ -172,7 +173,7 @@
     <item msgid="3817924849415716259">"GSM/WCDMA hobetsita"</item>
   </string-array>
     <string name="data_enabled" msgid="5972538663568715366">"Datuak gaituta"</string>
-    <string name="data_enable_summary" msgid="5022018967714633874">"Gaitu sare mugikorren bidezko datu-sarbidea"</string>
+    <string name="data_enable_summary" msgid="2382798156640007971">"Onartu datuak erabiltzea"</string>
     <string name="roaming" msgid="8871412572928323707">"Ibiltaritzako datuak"</string>
     <string name="roaming_enable" msgid="7331106985174381987">"Konektatu datu-zerbitzuetara ibiltaritzan"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"Konektatu datu-zerbitzuetara ibiltaritzan"</string>
@@ -196,7 +197,7 @@
     <!-- no translation found for throttle_time_frame_subtext (7732763021560399960) -->
     <skip />
     <string name="throttle_rate_subtext" msgid="2149102656120726855">"Datuak erabiltzeko muga gainditzen bada, datu-abiadura <xliff:g id="USED">%1$d</xliff:g> Kb/s izango da"</string>
-    <string name="throttle_help_subtext" msgid="5217706521499010816">"Informazio gehiago zure operadoreak sare mugikorretako datu-erabileraren inguruan dituen gidalerroei buruz"</string>
+    <string name="throttle_help_subtext" msgid="3633091498168446044">"Informazio gehiago zure operadoreak sare mugikorretako datu-erabileraren inguruan dituen gidalerroei buruz"</string>
     <string name="cell_broadcast_sms" msgid="5584192824053625842">"Sare mugikor bidezko SMS igorpenak"</string>
     <string name="enable_disable_cell_bc_sms" msgid="4851147873691392255">"Sare mugikor bidezko SMS igorpenak"</string>
     <string name="cell_bc_sms_enable" msgid="6441688565738921084">"Sare mugikor bidezko SMS igorpena gaituta"</string>
@@ -415,7 +416,7 @@
     <string name="notification_missedCall_message" msgid="3049928912736917988">"Mezua"</string>
     <string name="incall_error_power_off" msgid="6550191216405193368">"Dei bat egiteko, Hegaldi modua desaktibatu behar duzu."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"Ez dago sarean erregistratuta."</string>
-    <string name="incall_error_out_of_service" msgid="8587993036435080418">"Sare mugikorra ez dago erabilgarri."</string>
+    <string name="incall_error_out_of_service" msgid="4100065333878929223">"Sare mugikorra ez dago erabilgarri."</string>
     <string name="incall_error_no_phone_number_supplied" msgid="4197432103471807739">"Ez da deia bidali ez delako baliozko zenbakirik idatzi."</string>
     <string name="incall_error_call_failed" msgid="4313552620858880999">"Ez da deia bidali."</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"MMI sekuentzia hasten…"</string>
@@ -426,7 +427,6 @@
     <string name="incall_error_supp_service_conference" msgid="2505727299596357312">"Ezin da konferentzia-deirik egin."</string>
     <string name="incall_error_supp_service_reject" msgid="7055164130563826216">"Ezin da deia baztertu."</string>
     <string name="incall_error_supp_service_hangup" msgid="7417583238334762737">"Ezin dira deiak askatu."</string>
-    <string name="incall_call_type_label_sip" msgid="2310958283037924371">"Interneteko deia"</string>
     <string name="emergency_enable_radio_dialog_title" msgid="4627849966634578257">"Larrialdi-deia"</string>
     <string name="emergency_enable_radio_dialog_message" msgid="207613549344420291">"Irratia pizten…"</string>
     <string name="emergency_enable_radio_dialog_retry" msgid="3724423402363063736">"Zerbitzu-eremutik kanpo; berriro saiatzen…"</string>
@@ -512,98 +512,10 @@
     <string name="contactPhoto" msgid="4713193418046639466">"kontaktuaren argazkia"</string>
     <string name="goPrivate" msgid="865837794424530980">"bihurtu pribatu"</string>
     <string name="selectContact" msgid="781975788478987237">"hautatu kontaktua"</string>
-    <string name="sip_settings" msgid="6699045718560859691">"Internet bidezko deien ezarpenak"</string>
-    <string name="sip_accounts" msgid="2097054001288457163">"Internet bidez deitzeko (SIP) kontuak"</string>
-    <string name="sip_accounts_title" msgid="1212889069281054570">"Kontuak"</string>
-    <string name="sip_receive_calls" msgid="5635685570889971559">"Jaso sarrerako deiak"</string>
-    <string name="sip_receive_calls_summary" msgid="8403613238633679184">"Bateriaren iraupena murrizten du"</string>
-    <string name="sip_call_options_title" msgid="27433718808839672">"Erabili Internet bidezko deiak"</string>
-    <string name="sip_call_options_wifi_only_title" msgid="145572394529090811">"Erabili Internet bidezko deiak (Wi-Fi soilik)"</string>
-    <string name="sip_call_options_entry_1" msgid="6556668894178520760">"Dei guztietan datu-sarea erabilgarri dagoenean"</string>
-    <string name="sip_call_options_entry_2" msgid="6789764029719494361">"Internet bidezko deietan soilik"</string>
-    <string name="sip_call_options_entry_3" msgid="7474809001402649185">"Galdetu deitzen den bakoitzean"</string>
-    <string name="sip_call_options_wifi_only_entry_1" msgid="7423523864471650069">"Dei guztietan"</string>
-    <string name="pick_outgoing_call_phone_type" msgid="5622916534828338675">"Egin deia"</string>
-    <string name="pick_outgoing_sip_phone" msgid="7012322118236208875">"Erabili Internet bidez deitzeko kontua:"</string>
-    <string name="remember_my_choice" msgid="7058059586169290705">"Erabili beti Internet bidezko deiak egiteko"</string>
-    <string name="reset_my_choice_hint" msgid="5523030209803567922">"Internet bidezko deiak egiteko kontu lehenetsia alda dezakezu Telefonoa &gt; Ezarpenak &gt; Internet bidezko deien ezarpenak &gt; Kontuak atalean."</string>
-    <string name="pstn_phone" msgid="8782554491484326429">"Telefono mugikorra"</string>
-    <string name="internet_phone" msgid="1147922660195095810">"Interneteko deia"</string>
-    <string name="no_sip_account_found_title" msgid="6266249392379373628">"Ez dago Internet bidez deitzeko konturik"</string>
-    <string name="no_sip_account_found" msgid="724325811961769997">"Ez dago Internet bidez deitzeko konturik telefono honetan. Kontu bat gehitu nahi duzu?"</string>
-    <string name="sip_menu_add" msgid="8757508498518881500">"Gehitu"</string>
-    <string name="add_sip_account" msgid="5904858426290097611">"Gehitu kontua"</string>
-    <string name="remove_sip_account" msgid="7645900420385682570">"Kendu kontua"</string>
-    <string name="sip_account_list" msgid="5480058210652194306">"SIP kontuak"</string>
-    <string name="saving_account" msgid="52903398217017954">"Kontua gordetzen…"</string>
-    <string name="removing_account" msgid="7183999896088628100">"Kontua kentzen…"</string>
-    <string name="sip_menu_save" msgid="5842531129356014943">"Gorde"</string>
-    <string name="sip_menu_discard" msgid="524075892158789701">"Baztertu"</string>
-    <string name="alert_dialog_close" msgid="7759635137627626235">"Itxi profila"</string>
-    <string name="alert_dialog_ok" msgid="3580379406983564080">"Ados"</string>
-    <string name="close_profile" msgid="6886968271423155284">"Itxi"</string>
-    <string name="primary_account_summary_with" msgid="1633960536212343187">"Kontu nagusia. <xliff:g id="REGISTRATION_STATUS">%s</xliff:g>"</string>
-    <string name="registration_status_checking_status" msgid="3381868307694056727">"Egoera egiaztatzen…"</string>
-    <string name="registration_status_registering" msgid="4288401139400232968">"Erregistratzen…"</string>
-    <string name="registration_status_still_trying" msgid="3185581992666091911">"Oraindik saiatzen…"</string>
-    <string name="registration_status_not_receiving" msgid="4185572774980557758">"Ez da deirik jasotzen."</string>
-    <string name="registration_status_no_data" msgid="4901476962360656611">"Kontu-erregistratzea gelditu da ez dagoelako Interneteko konexiorik."</string>
-    <string name="registration_status_no_wifi_data" msgid="4038976374713018067">"Kontu-erregistratzea gelditu da ez dagoelako Wi-Fi konexiorik."</string>
-    <string name="registration_status_not_running" msgid="4824867184446232131">"Ez da kontua erregistratu."</string>
-    <string name="registration_status_done" msgid="884630717456439280">"Deiak jaso daitezke."</string>
-    <string name="registration_status_failed_try_later" msgid="5214474354451220581">"Ez da kontua erregistratu: (<xliff:g id="REGISTRATION_ERROR_MESSAGE">%s</xliff:g>). Geroago saiatuko gara berriro."</string>
-    <string name="registration_status_invalid_credentials" msgid="4908446367559341757">"Ez da kontua erregistratu: erabiltzaile-izena edota pasahitza ez dira zuzenak."</string>
-    <string name="registration_status_server_unreachable" msgid="5733421582468991276">"Ez da kontua erregistratu: egiaztatu zerbitzari-izena."</string>
-    <string name="third_party_account_summary" msgid="2532526738862533028">"Une honetan, <xliff:g id="ACCOUNT_OWNER">%s</xliff:g> jabearen aplikazioa erabiltzen ari da kontua."</string>
-    <string name="sip_edit_title" msgid="489288416435014385">"SIP kontuaren xehetasunak"</string>
-    <string name="sip_edit_new_title" msgid="3659149255856520385">"SIP kontuaren xehetasunak"</string>
-    <string name="domain_address_title" msgid="9071787581316160480">"Zerbitzaria"</string>
-    <string name="username_title" msgid="2479375923477682328">"Erabiltzaile-izena"</string>
-    <string name="password_title" msgid="3323555249068171531">"Pasahitza"</string>
-    <string name="display_name_title" msgid="2459768196312249937">"Bistaratzeko izena"</string>
-    <string name="proxy_address_title" msgid="4828301345351614273">"Irteerako proxyaren helbidea"</string>
-    <string name="port_title" msgid="5952939408078626657">"Ataka-zenbakia"</string>
-    <string name="transport_title" msgid="8253139511847746640">"Garraio mota"</string>
-    <string name="send_keepalive_title" msgid="7533342573918645113">"Bidali konexioa mantentzeko mezua"</string>
-    <string name="set_primary_title" msgid="5351892327447571451">"Ezarri kontu nagusi gisa"</string>
-    <string name="set_primary_summary" msgid="2219064654523258577">"Irteerako deiak egiteko erabiltzen da"</string>
-    <string name="advanced_settings" msgid="8350631795335495338">"Aukerako ezarpenak"</string>
-    <string name="auth_username_title" msgid="851473016307947120">"Autentifikatzeko erabiltzaile-izena"</string>
-    <string name="auth_username_summary" msgid="6782012405225938629">"Autentifikatzeko erabili den erabiltzaile-izena"</string>
-    <string name="default_preference_summary" msgid="868766740121667450">"&lt;Ezarri gabe&gt;"</string>
-    <string name="display_name_summary" msgid="8636377460518225523">"&lt;Erabiltzaile-izenaren berdina&gt;"</string>
-    <string name="optional_summary" msgid="1464058793789832411">"&lt;Aukerakoa&gt;"</string>
-    <string name="advanced_settings_show" msgid="4668880308290857597">"▷ Guztiak erakusteko, ukitu"</string>
-    <string name="advanced_settings_hide" msgid="217398292824758079">"▽ Guztiak ezkutatzeko, ukitu"</string>
-    <string name="empty_alert" msgid="6839103946505432390">"<xliff:g id="INPUT_FIELD_NAME">%s</xliff:g> beharrezkoa da eta ezin da hutsik utzi."</string>
-    <string name="not_a_valid_port" msgid="4796149266434630292">"Ataka-zenbakiak 1000 eta 65534 artean egon beharko luke."</string>
-    <string name="no_internet_available_title" msgid="3327109242858406165">"Ez duzu Interneteko konexiorik"</string>
-    <string name="no_wifi_available_title" msgid="747881033089378758">"Ez dago Wi-Fi konexiorik"</string>
-    <string name="no_internet_available" msgid="7877142631803238549">"Internet bidezko dei bat egin aurretik Interneteko konexioa egiaztatu behar duzu."</string>
-    <string name="no_wifi_available" msgid="1225073547318465713">"Internet bidezko deiak egiteko, Wi-Fi sare batera konektatuta egon behar duzu (erabili Hari gabekoak eta sarea ataleko ezarpenak)."</string>
-    <string name="no_voip" msgid="8901474054537199865">"Ez dira Internet bidezko deiak onartzen"</string>
-    <string name="sip_system_decide" msgid="368030746310423471">"Automatikoa"</string>
-    <string name="sip_always_send_keepalive" msgid="8192080724632877132">"Bidali beti"</string>
     <string name="not_voice_capable" msgid="2739898841461577811">"Ez dira ahots-deiak onartzen"</string>
     <string name="respond_via_sms_setting_title" msgid="3754000371039709383">"Erantzun bizkorrak"</string>
     <string name="respond_via_sms_setting_summary" msgid="9150281183930613065"></string>
-    <string name="description_image_button_one" msgid="5502718871331943463">"bat"</string>
-    <string name="description_image_button_two" msgid="4903738528222924522">"bi"</string>
-    <string name="description_image_button_three" msgid="5570985408463782329">"hiru"</string>
-    <string name="description_image_button_four" msgid="1697520001239289074">"lau"</string>
-    <string name="description_image_button_five" msgid="3450276493026943454">"bost"</string>
-    <string name="description_image_button_six" msgid="2070376172268675300">"sei"</string>
-    <string name="description_image_button_seven" msgid="1757351311199993371">"zazpi"</string>
-    <string name="description_image_button_eight" msgid="4734693919020613227">"zortzi"</string>
-    <string name="description_image_button_nine" msgid="5568534122590597040">"bederatzi"</string>
-    <string name="description_image_button_star" msgid="1976280813017254462">"izarra"</string>
-    <string name="description_image_button_zero" msgid="4211255756866893605">"zero"</string>
-    <string name="description_image_button_pound" msgid="1716041284529917866">"libra"</string>
     <string name="description_dial_button" msgid="7459705245418435351">"markatu"</string>
-    <string name="description_delete_button" msgid="4015842181592283903">"atzera tekla"</string>
-    <string name="description_target_answer" msgid="7205604197797472471">"Erantzun"</string>
-    <string name="description_target_send_sms" msgid="2098326025587950144">"Bidali SMS mezua"</string>
-    <string name="description_target_decline" msgid="4789834364389731957">"Baztertu"</string>
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"Egin dar-dar"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"Egin dar-dar"</string>
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"Soinua"</string>
@@ -613,9 +525,9 @@
     <string name="dtmf_tone_enable_title" msgid="827601042915852989">"Markagailuaren ukipen-tonuak"</string>
     <string name="dial_pad_autocomplete" msgid="494525952035761075">"Osatu markagailua automatikoki"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"Tonua eta dardara"</string>
-    <string name="choose_wifi_for_call_msg" msgid="193549297122949976">"Deia Wi-Fi bidez egin nahi duzu?"</string>
-    <string name="choose_wifi_for_call_yes" msgid="5312994368472630983">"Bai"</string>
-    <string name="choose_wifi_for_call_no" msgid="7132239734287157307">"Ez"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"SIM txartel barneratuak"</string>
-    <string name="sip_connection_service_label" msgid="3547998349299125294">"Internet bidezko dei bateratuak"</string>
+    <string name="enable_video_calling_title" msgid="7237253660669000899">"Aktibatu bideo-deiak"</string>
+    <string name="enable_video_calling_dialog_msg" msgid="6547569773866546434">"Bideo-deiak aktibatzeko, 4G LTE modu hobetua gaitu behar duzu sistemaren ezarpenetan."</string>
+    <string name="enable_video_calling_dialog_settings" msgid="576528473599603249">"Sareko ezarpenak"</string>
+    <string name="enable_video_calling_dialog_close" msgid="7411471282167927991">"Itxi"</string>
 </resources>

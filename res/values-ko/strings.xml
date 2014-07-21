@@ -52,12 +52,13 @@
     <string name="requesting_unlock" msgid="6412629401033249351">"네트워크 잠금해제 요청 중..."</string>
     <string name="unlock_failed" msgid="6490531697031504225">"네트워크 잠금해제 요청이 실패했습니다."</string>
     <string name="unlock_success" msgid="6770085622238180152">"네트워크의 잠금을 해제했습니다."</string>
-    <string name="mobile_network_settings_not_available" msgid="7355254462995117896">"이 사용자는 모바일 네트워크 설정을 사용할 수 없습니다."</string>
+    <string name="mobile_network_settings_not_available" msgid="3831911315358856062">"이 사용자는 이동통신망 설정을 사용할 수 없습니다."</string>
     <string name="labelGSMMore" msgid="5930842194056092106">"GSM 통화 설정"</string>
     <string name="labelCDMAMore" msgid="1630676740428229339">"CDMA 통화 설정"</string>
     <string name="apn_settings" msgid="9043423184895642077">"APN"</string>
     <string name="settings_label" msgid="3876743539816984008">"네트워크 설정"</string>
-    <string name="connection_service" msgid="978745922583410219">"사용할 연결 서비스"</string>
+    <!-- no translation found for phone_accounts (8810358208981265351) -->
+    <skip />
     <string name="connection_service_default_label" msgid="1498481943805913754">"내장된 연결 서비스"</string>
     <string name="voicemail" msgid="8693759337917898954">"음성사서함"</string>
     <string name="voicemail_abbreviated" msgid="2215592488517217448">"VM:"</string>
@@ -124,7 +125,7 @@
     <string name="no_change" msgid="3186040086622435212">"변경사항이 없습니다."</string>
     <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"음성사서함 서비스 선택"</string>
     <string name="voicemail_default" msgid="5902099213882352338">"내 이동통신사"</string>
-    <string name="mobile_networks" msgid="5540397602919106177">"모바일 네트워크 설정"</string>
+    <string name="mobile_networks" msgid="2843854043339307375">"이동통신망 설정"</string>
     <string name="label_available" msgid="1181658289009300430">"사용 가능한 네트워크"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"검색 중..."</string>
     <string name="empty_networks_list" msgid="4249426905018815316">"네트워크를 찾을 수 없습니다."</string>
@@ -172,7 +173,7 @@
     <item msgid="3817924849415716259">"GSM/WCDMA로 기본 설정"</item>
   </string-array>
     <string name="data_enabled" msgid="5972538663568715366">"데이터 사용"</string>
-    <string name="data_enable_summary" msgid="5022018967714633874">"모바일 네트워크에서 데이터 액세스 사용"</string>
+    <string name="data_enable_summary" msgid="2382798156640007971">"데이터 사용 허용"</string>
     <string name="roaming" msgid="8871412572928323707">"데이터 로밍"</string>
     <string name="roaming_enable" msgid="7331106985174381987">"로밍 시 데이터 서비스에 연결"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"로밍 시 데이터 서비스에 연결"</string>
@@ -190,7 +191,7 @@
     <string name="throttle_data_rate_reduced_subtext" msgid="7492763592720107737">"최대치 <xliff:g id="USED_0">%1$s</xliff:g> 초과\n데이터 속도가 <xliff:g id="USED_1">%2$d</xliff:g>Kb/s로 감소"</string>
     <string name="throttle_time_frame_subtext" msgid="7732763021560399960">"주기의 <xliff:g id="USED_0">%1$d</xliff:g>٪ 경과\n다음 기간은 <xliff:g id="USED_1">%2$d</xliff:g>일 후에 시작(<xliff:g id="USED_2">%3$s</xliff:g>)"</string>
     <string name="throttle_rate_subtext" msgid="2149102656120726855">"데이터 사용량 제한을 초과하면 데이터 속도는 <xliff:g id="USED">%1$d</xliff:g>Kb/s로 줄어듭니다."</string>
-    <string name="throttle_help_subtext" msgid="5217706521499010816">"이동통신사의 모바일 네트워크 데이터 사용 정책에 대한 자세한 정보"</string>
+    <string name="throttle_help_subtext" msgid="3633091498168446044">"이동통신사의 이동통신망 데이터 사용 정책에 대한 자세한 정보"</string>
     <string name="cell_broadcast_sms" msgid="5584192824053625842">"셀 브로드캐스트 SMS"</string>
     <string name="enable_disable_cell_bc_sms" msgid="4851147873691392255">"셀 브로드캐스트 SMS"</string>
     <string name="cell_bc_sms_enable" msgid="6441688565738921084">"셀 브로드캐스트 SMS 사용"</string>
@@ -409,7 +410,7 @@
     <string name="notification_missedCall_message" msgid="3049928912736917988">"문자 메시지"</string>
     <string name="incall_error_power_off" msgid="6550191216405193368">"전화를 걸려면 먼저 비행기 모드를 해제하세요."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"네트워크에서 등록되지 않았습니다."</string>
-    <string name="incall_error_out_of_service" msgid="8587993036435080418">"모바일 네트워크를 사용할 수 없습니다."</string>
+    <string name="incall_error_out_of_service" msgid="4100065333878929223">"사용 가능한 이동통신망이 없습니다."</string>
     <string name="incall_error_no_phone_number_supplied" msgid="4197432103471807739">"잘못된 번호를 입력했으므로 전화를 걸지 못했습니다."</string>
     <string name="incall_error_call_failed" msgid="4313552620858880999">"전화를 걸지 못했습니다."</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"MMI 시퀀스 시작 중..."</string>
@@ -420,7 +421,6 @@
     <string name="incall_error_supp_service_conference" msgid="2505727299596357312">"다자간 통화를 할 수 없습니다."</string>
     <string name="incall_error_supp_service_reject" msgid="7055164130563826216">"통화를 거부할 수 없습니다."</string>
     <string name="incall_error_supp_service_hangup" msgid="7417583238334762737">"통화를 끊을 수 없습니다."</string>
-    <string name="incall_call_type_label_sip" msgid="2310958283037924371">"인터넷 전화"</string>
     <string name="emergency_enable_radio_dialog_title" msgid="4627849966634578257">"긴급 전화"</string>
     <string name="emergency_enable_radio_dialog_message" msgid="207613549344420291">"무선을 켜는 중..."</string>
     <string name="emergency_enable_radio_dialog_retry" msgid="3724423402363063736">"서비스 지역을 벗어났습니다. 다시 시도하는 중..."</string>
@@ -506,98 +506,10 @@
     <string name="contactPhoto" msgid="4713193418046639466">"연락처 사진"</string>
     <string name="goPrivate" msgid="865837794424530980">"비공개로 실행"</string>
     <string name="selectContact" msgid="781975788478987237">"연락처 선택"</string>
-    <string name="sip_settings" msgid="6699045718560859691">"인터넷 통화 설정"</string>
-    <string name="sip_accounts" msgid="2097054001288457163">"인터넷 전화(SIP) 계정"</string>
-    <string name="sip_accounts_title" msgid="1212889069281054570">"계정"</string>
-    <string name="sip_receive_calls" msgid="5635685570889971559">"수신전화 받기"</string>
-    <string name="sip_receive_calls_summary" msgid="8403613238633679184">"배터리가 빨리 방전될 수 있습니다."</string>
-    <string name="sip_call_options_title" msgid="27433718808839672">"인터넷 전화 사용"</string>
-    <string name="sip_call_options_wifi_only_title" msgid="145572394529090811">"인터넷 통화 사용(Wi-Fi 전용)"</string>
-    <string name="sip_call_options_entry_1" msgid="6556668894178520760">"데이터 네트워크 사용 가능 시 모든 통화에 사용"</string>
-    <string name="sip_call_options_entry_2" msgid="6789764029719494361">"인터넷 통화 전용"</string>
-    <string name="sip_call_options_entry_3" msgid="7474809001402649185">"통화할 때마다 묻기"</string>
-    <string name="sip_call_options_wifi_only_entry_1" msgid="7423523864471650069">"모든 통화에 사용"</string>
-    <string name="pick_outgoing_call_phone_type" msgid="5622916534828338675">"발신 전화 유형"</string>
-    <string name="pick_outgoing_sip_phone" msgid="7012322118236208875">"인터넷 전화 계정 사용:"</string>
-    <string name="remember_my_choice" msgid="7058059586169290705">"인터넷 전화를 걸 때 항상 사용"</string>
-    <string name="reset_my_choice_hint" msgid="5523030209803567922">"\'휴대전화 &gt; 설정 &gt; 인터넷 통화 설정 &gt; 계정 화면\'에서 기본으로 사용할 인터넷 통화 계정을 변경할 수 있습니다."</string>
-    <string name="pstn_phone" msgid="8782554491484326429">"휴대전화 통화"</string>
-    <string name="internet_phone" msgid="1147922660195095810">"인터넷 전화"</string>
-    <string name="no_sip_account_found_title" msgid="6266249392379373628">"인터넷 전화 계정 없음"</string>
-    <string name="no_sip_account_found" msgid="724325811961769997">"휴대전화에 인터넷 통화 계정이 없습니다. 지금 추가하시겠습니까?"</string>
-    <string name="sip_menu_add" msgid="8757508498518881500">"추가"</string>
-    <string name="add_sip_account" msgid="5904858426290097611">"계정 추가"</string>
-    <string name="remove_sip_account" msgid="7645900420385682570">"계정 삭제"</string>
-    <string name="sip_account_list" msgid="5480058210652194306">"SIP 계정"</string>
-    <string name="saving_account" msgid="52903398217017954">"계정 저장 중..."</string>
-    <string name="removing_account" msgid="7183999896088628100">"계정 삭제 중..."</string>
-    <string name="sip_menu_save" msgid="5842531129356014943">"저장"</string>
-    <string name="sip_menu_discard" msgid="524075892158789701">"취소"</string>
-    <string name="alert_dialog_close" msgid="7759635137627626235">"프로필 닫기"</string>
-    <string name="alert_dialog_ok" msgid="3580379406983564080">"확인"</string>
-    <string name="close_profile" msgid="6886968271423155284">"닫기"</string>
-    <string name="primary_account_summary_with" msgid="1633960536212343187">"기본 계정. <xliff:g id="REGISTRATION_STATUS">%s</xliff:g>"</string>
-    <string name="registration_status_checking_status" msgid="3381868307694056727">"상태 확인 중..."</string>
-    <string name="registration_status_registering" msgid="4288401139400232968">"등록 중..."</string>
-    <string name="registration_status_still_trying" msgid="3185581992666091911">"계속 시도 중..."</string>
-    <string name="registration_status_not_receiving" msgid="4185572774980557758">"전화를 수신하지 않습니다."</string>
-    <string name="registration_status_no_data" msgid="4901476962360656611">"인터넷에 연결되어 있지 않기 때문에 계정 등록이 중지되었습니다."</string>
-    <string name="registration_status_no_wifi_data" msgid="4038976374713018067">"Wi-Fi에 연결되어 있지 않기 때문에 계정 등록이 중지되었습니다."</string>
-    <string name="registration_status_not_running" msgid="4824867184446232131">"계정을 등록하지 못했습니다."</string>
-    <string name="registration_status_done" msgid="884630717456439280">"전화를 수신합니다."</string>
-    <string name="registration_status_failed_try_later" msgid="5214474354451220581">"계정을 등록하지 못했습니다(<xliff:g id="REGISTRATION_ERROR_MESSAGE">%s</xliff:g>). 나중에 다시 시도합니다."</string>
-    <string name="registration_status_invalid_credentials" msgid="4908446367559341757">"계정을 등록하지 못했습니다. 사용자 이름 또는 비밀번호가 잘못되었습니다."</string>
-    <string name="registration_status_server_unreachable" msgid="5733421582468991276">"계정을 등록하지 못했습니다. 서버 이름을 확인하세요."</string>
-    <string name="third_party_account_summary" msgid="2532526738862533028">"<xliff:g id="ACCOUNT_OWNER">%s</xliff:g> 앱에서 현재 이 계정을 사용 중입니다."</string>
-    <string name="sip_edit_title" msgid="489288416435014385">"SIP 계정 세부정보"</string>
-    <string name="sip_edit_new_title" msgid="3659149255856520385">"SIP 계정 세부정보"</string>
-    <string name="domain_address_title" msgid="9071787581316160480">"서버"</string>
-    <string name="username_title" msgid="2479375923477682328">"사용자 이름"</string>
-    <string name="password_title" msgid="3323555249068171531">"비밀번호"</string>
-    <string name="display_name_title" msgid="2459768196312249937">"표시 이름"</string>
-    <string name="proxy_address_title" msgid="4828301345351614273">"발신 프록시 주소"</string>
-    <string name="port_title" msgid="5952939408078626657">"포트 번호"</string>
-    <string name="transport_title" msgid="8253139511847746640">"전송 유형"</string>
-    <string name="send_keepalive_title" msgid="7533342573918645113">"연결 유지 메시지 보내기"</string>
-    <string name="set_primary_title" msgid="5351892327447571451">"기본 계정으로 설정"</string>
-    <string name="set_primary_summary" msgid="2219064654523258577">"발신 전화에 사용됨"</string>
-    <string name="advanced_settings" msgid="8350631795335495338">"설정(선택사항)"</string>
-    <string name="auth_username_title" msgid="851473016307947120">"인증 사용자 이름"</string>
-    <string name="auth_username_summary" msgid="6782012405225938629">"인증에 사용된 사용자 이름"</string>
-    <string name="default_preference_summary" msgid="868766740121667450">"&lt;설정 안 됨&gt;"</string>
-    <string name="display_name_summary" msgid="8636377460518225523">"&lt;사용자 이름과 동일&gt;"</string>
-    <string name="optional_summary" msgid="1464058793789832411">"&lt;선택사항&gt;"</string>
-    <string name="advanced_settings_show" msgid="4668880308290857597">"▷ 모두 표시하려면 터치"</string>
-    <string name="advanced_settings_hide" msgid="217398292824758079">"▽ 모두 숨기려면 터치"</string>
-    <string name="empty_alert" msgid="6839103946505432390">"<xliff:g id="INPUT_FIELD_NAME">%s</xliff:g>은(는) 필수이므로 비워 둘 수 없습니다."</string>
-    <string name="not_a_valid_port" msgid="4796149266434630292">"포트 번호는 1000에서 65534 이내여야 합니다."</string>
-    <string name="no_internet_available_title" msgid="3327109242858406165">"인터넷에 연결되지 않음"</string>
-    <string name="no_wifi_available_title" msgid="747881033089378758">"Wi-Fi 연결 없음"</string>
-    <string name="no_internet_available" msgid="7877142631803238549">"인터넷 전화를 걸려면 먼저 인터넷 연결을 확인하세요."</string>
-    <string name="no_wifi_available" msgid="1225073547318465713">"인터넷 전화를 사용하려면 Wi-Fi 네트워크에 연결되어 있어야 합니다(\'무선 및 네트워크\' 설정 사용)."</string>
-    <string name="no_voip" msgid="8901474054537199865">"인터넷 전화가 지원되지 않습니다."</string>
-    <string name="sip_system_decide" msgid="368030746310423471">"자동"</string>
-    <string name="sip_always_send_keepalive" msgid="8192080724632877132">"항상 보내기"</string>
     <string name="not_voice_capable" msgid="2739898841461577811">"음성통화 지원되지 않음"</string>
     <string name="respond_via_sms_setting_title" msgid="3754000371039709383">"빠른 응답"</string>
     <string name="respond_via_sms_setting_summary" msgid="9150281183930613065"></string>
-    <string name="description_image_button_one" msgid="5502718871331943463">"1"</string>
-    <string name="description_image_button_two" msgid="4903738528222924522">"2"</string>
-    <string name="description_image_button_three" msgid="5570985408463782329">"3"</string>
-    <string name="description_image_button_four" msgid="1697520001239289074">"4"</string>
-    <string name="description_image_button_five" msgid="3450276493026943454">"5"</string>
-    <string name="description_image_button_six" msgid="2070376172268675300">"6"</string>
-    <string name="description_image_button_seven" msgid="1757351311199993371">"7"</string>
-    <string name="description_image_button_eight" msgid="4734693919020613227">"8"</string>
-    <string name="description_image_button_nine" msgid="5568534122590597040">"9"</string>
-    <string name="description_image_button_star" msgid="1976280813017254462">"별"</string>
-    <string name="description_image_button_zero" msgid="4211255756866893605">"0"</string>
-    <string name="description_image_button_pound" msgid="1716041284529917866">"파운드"</string>
     <string name="description_dial_button" msgid="7459705245418435351">"전화걸기"</string>
-    <string name="description_delete_button" msgid="4015842181592283903">"백스페이스"</string>
-    <string name="description_target_answer" msgid="7205604197797472471">"답변"</string>
-    <string name="description_target_send_sms" msgid="2098326025587950144">"SMS 보내기"</string>
-    <string name="description_target_decline" msgid="4789834364389731957">"거부"</string>
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"진동"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"진동"</string>
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"알림음"</string>
@@ -607,9 +519,9 @@
     <string name="dtmf_tone_enable_title" msgid="827601042915852989">"다이얼패드 터치음"</string>
     <string name="dial_pad_autocomplete" msgid="494525952035761075">"다이얼패드 자동완성"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"벨소리 및 진동"</string>
-    <string name="choose_wifi_for_call_msg" msgid="193549297122949976">"전화 걸 때 Wi-Fi를 사용하시겠습니까?"</string>
-    <string name="choose_wifi_for_call_yes" msgid="5312994368472630983">"예"</string>
-    <string name="choose_wifi_for_call_no" msgid="7132239734287157307">"아니요"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"내장된 SIM 카드"</string>
-    <string name="sip_connection_service_label" msgid="3547998349299125294">"내장된 인터넷 전화"</string>
+    <string name="enable_video_calling_title" msgid="7237253660669000899">"화상 통화 사용"</string>
+    <string name="enable_video_calling_dialog_msg" msgid="6547569773866546434">"화상 통화를 사용하려면 시스템 설정에서 고급 4G LTE 모드를 사용하도록 설정해야 합니다."</string>
+    <string name="enable_video_calling_dialog_settings" msgid="576528473599603249">"네트워크 설정"</string>
+    <string name="enable_video_calling_dialog_close" msgid="7411471282167927991">"닫기"</string>
 </resources>

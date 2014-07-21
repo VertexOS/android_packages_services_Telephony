@@ -52,12 +52,12 @@
     <string name="requesting_unlock" msgid="6412629401033249351">"Humihiling ng pag-unlock sa network…"</string>
     <string name="unlock_failed" msgid="6490531697031504225">"Hindi matagumpay ang kahilingan na i-unlock ang network."</string>
     <string name="unlock_success" msgid="6770085622238180152">"Matagumpay ang pag-unlock ng network."</string>
-    <string name="mobile_network_settings_not_available" msgid="7355254462995117896">"Hindi available ang mga setting ng mobile network para sa user na ito"</string>
+    <string name="mobile_network_settings_not_available" msgid="3831911315358856062">"Hindi available ang mga setting ng cellular network para sa user na ito"</string>
     <string name="labelGSMMore" msgid="5930842194056092106">"Mga setting ng tawag ng GSM"</string>
     <string name="labelCDMAMore" msgid="1630676740428229339">"Mga setting ng CDMA na tawag"</string>
     <string name="apn_settings" msgid="9043423184895642077">"Mga Pangalan ng Lugar ng Access"</string>
     <string name="settings_label" msgid="3876743539816984008">"Mga Setting ng Network"</string>
-    <string name="connection_service" msgid="978745922583410219">"Serbisyo ng koneksyon na gagamitin"</string>
+    <string name="phone_accounts" msgid="8810358208981265351">"Mga setting ng account ng telepono"</string>
     <string name="connection_service_default_label" msgid="1498481943805913754">"Built-in na serbisyo ng koneksyon"</string>
     <string name="voicemail" msgid="8693759337917898954">"Voicemail"</string>
     <string name="voicemail_abbreviated" msgid="2215592488517217448">"VM:"</string>
@@ -124,7 +124,7 @@
     <string name="no_change" msgid="3186040086622435212">"Walang ginawang mga pagbabago."</string>
     <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"Piliin ang serbisyo ng voicemail"</string>
     <string name="voicemail_default" msgid="5902099213882352338">"Aking carrier"</string>
-    <string name="mobile_networks" msgid="5540397602919106177">"Mga setting ng mobile network"</string>
+    <string name="mobile_networks" msgid="2843854043339307375">"Mga setting ng cellular network"</string>
     <string name="label_available" msgid="1181658289009300430">"Mga available na network"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"Naghahanap…"</string>
     <string name="empty_networks_list" msgid="4249426905018815316">"Walang nakitang mga network."</string>
@@ -172,7 +172,7 @@
     <item msgid="3817924849415716259">"Ninanais ang GSM/WCDMA"</item>
   </string-array>
     <string name="data_enabled" msgid="5972538663568715366">"Pinagana ang data"</string>
-    <string name="data_enable_summary" msgid="5022018967714633874">"Paganahin ang access sa data sa Mobile network"</string>
+    <string name="data_enable_summary" msgid="2382798156640007971">"Payagan ang paggamit ng data"</string>
     <string name="roaming" msgid="8871412572928323707">"Roaming ng data"</string>
     <string name="roaming_enable" msgid="7331106985174381987">"Kumonekta sa mga serbisyo ng data kapag nagro-roam"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"Kumonekta sa mga serbisyo ng data kapag nagro-roam"</string>
@@ -190,7 +190,7 @@
     <string name="throttle_data_rate_reduced_subtext" msgid="7492763592720107737">"Ang <xliff:g id="USED_0">%1$s</xliff:g> na maximum ay lumagpas sa\nBinabaan ang rate ng data sa <xliff:g id="USED_1">%2$d</xliff:g> Kb/s"</string>
     <string name="throttle_time_frame_subtext" msgid="7732763021560399960">"<xliff:g id="USED_0">%1$d</xliff:g>٪ ng cycle ay lumagpas sa\nMagsisimula ang susunod na tagal ng panahon sa loob ng <xliff:g id="USED_1">%2$d</xliff:g> (na) araw (<xliff:g id="USED_2">%3$s</xliff:g>)"</string>
     <string name="throttle_rate_subtext" msgid="2149102656120726855">"Ibinaba ang rate ng data sa <xliff:g id="USED">%1$d</xliff:g> Kb/s kung nalagpasan ang limitasyon sa paggamit ng data"</string>
-    <string name="throttle_help_subtext" msgid="5217706521499010816">"Higit pang impormasyon tungkol sa patakaran sa paggamit ng data sa mobile network ng iyong carrier"</string>
+    <string name="throttle_help_subtext" msgid="3633091498168446044">"Higit pang impormasyon tungkol sa patakaran sa paggamit ng data sa cellular network ng iyong carrier"</string>
     <string name="cell_broadcast_sms" msgid="5584192824053625842">"Cell Broadcast SMS"</string>
     <string name="enable_disable_cell_bc_sms" msgid="4851147873691392255">"Cell Broadcast SMS"</string>
     <string name="cell_bc_sms_enable" msgid="6441688565738921084">"Pinagana ang Cell Broadcast SMS"</string>
@@ -409,7 +409,7 @@
     <string name="notification_missedCall_message" msgid="3049928912736917988">"Padalhan ng mensahe"</string>
     <string name="incall_error_power_off" msgid="6550191216405193368">"Upang tumawag, paki-off ang Airplane mode."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"Hindi nakarehistro sa network."</string>
-    <string name="incall_error_out_of_service" msgid="8587993036435080418">"Hindi available ang mobile network."</string>
+    <string name="incall_error_out_of_service" msgid="4100065333878929223">"Hindi available ang cellular network"</string>
     <string name="incall_error_no_phone_number_supplied" msgid="4197432103471807739">"Hindi naipadala ang tawag, walang ipinasok na wastong numero."</string>
     <string name="incall_error_call_failed" msgid="4313552620858880999">"Hindi naipadala ang tawag."</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"Sinisimulan ang pagkakasunud-sunod ng MMI…"</string>
@@ -420,7 +420,6 @@
     <string name="incall_error_supp_service_conference" msgid="2505727299596357312">"Hindi nagawang i-conference ang mga tawag."</string>
     <string name="incall_error_supp_service_reject" msgid="7055164130563826216">"Hindi nagawang tanggihan ang tawag."</string>
     <string name="incall_error_supp_service_hangup" msgid="7417583238334762737">"Hindi nagawang mapalabas ang (mga) tawag."</string>
-    <string name="incall_call_type_label_sip" msgid="2310958283037924371">"Tawag sa internet"</string>
     <string name="emergency_enable_radio_dialog_title" msgid="4627849966634578257">"Emergency na tawag"</string>
     <string name="emergency_enable_radio_dialog_message" msgid="207613549344420291">"Ino-on ang radyo…"</string>
     <string name="emergency_enable_radio_dialog_retry" msgid="3724423402363063736">"Lugar na hindi nagseserbisyo, sinusubukang muli…"</string>
@@ -506,98 +505,10 @@
     <string name="contactPhoto" msgid="4713193418046639466">"larawan ng contact"</string>
     <string name="goPrivate" msgid="865837794424530980">"maging pribado"</string>
     <string name="selectContact" msgid="781975788478987237">"pumili ng contact"</string>
-    <string name="sip_settings" msgid="6699045718560859691">"Mga setting ng tawag sa Internet"</string>
-    <string name="sip_accounts" msgid="2097054001288457163">"Mga account sa pagtawag sa Internet (SIP)"</string>
-    <string name="sip_accounts_title" msgid="1212889069281054570">"Mga Account"</string>
-    <string name="sip_receive_calls" msgid="5635685570889971559">"Tumanggap ng mga papasok na tawag"</string>
-    <string name="sip_receive_calls_summary" msgid="8403613238633679184">"Binabawasan ang buhay ng baterya"</string>
-    <string name="sip_call_options_title" msgid="27433718808839672">"Gumamit ng pagtawag sa Internet"</string>
-    <string name="sip_call_options_wifi_only_title" msgid="145572394529090811">"Gumamit ng pagtawag sa Internet (Wi-Fi lang)"</string>
-    <string name="sip_call_options_entry_1" msgid="6556668894178520760">"Para sa lahat ng mga tawag kapag available ang data network"</string>
-    <string name="sip_call_options_entry_2" msgid="6789764029719494361">"Para sa mga tawag sa Internet lang"</string>
-    <string name="sip_call_options_entry_3" msgid="7474809001402649185">"Hingin ang bawat tawag"</string>
-    <string name="sip_call_options_wifi_only_entry_1" msgid="7423523864471650069">"Para sa lahat ng mga tawag"</string>
-    <string name="pick_outgoing_call_phone_type" msgid="5622916534828338675">"Tumawag"</string>
-    <string name="pick_outgoing_sip_phone" msgid="7012322118236208875">"Gumamit ng account sa pagtawag sa Internet:"</string>
-    <string name="remember_my_choice" msgid="7058059586169290705">"Palaging gamitin upang gumawa ng mga tawag sa Internet"</string>
-    <string name="reset_my_choice_hint" msgid="5523030209803567922">"Maaari mong baguhin kung anong account ng pagtawag sa Internet ang default na gagamitin mula sa Telepono &gt; Mga Setting &gt; Mga setting ng tawag sa internet &gt; screen ng Mga account."</string>
-    <string name="pstn_phone" msgid="8782554491484326429">"Tawag sa cell phone"</string>
-    <string name="internet_phone" msgid="1147922660195095810">"Tawag sa internet"</string>
-    <string name="no_sip_account_found_title" msgid="6266249392379373628">"Walang account sa pagtawag sa Internet"</string>
-    <string name="no_sip_account_found" msgid="724325811961769997">"Walang mga account sa pagtawag sa Internet sa teleponong ito. Gusto mo bang magdagdag ng isa ngayon?"</string>
-    <string name="sip_menu_add" msgid="8757508498518881500">"Idagdag"</string>
-    <string name="add_sip_account" msgid="5904858426290097611">"Magdagdag ng account"</string>
-    <string name="remove_sip_account" msgid="7645900420385682570">"Alisin ang account"</string>
-    <string name="sip_account_list" msgid="5480058210652194306">"Mga SIP account"</string>
-    <string name="saving_account" msgid="52903398217017954">"Sine-save ang account..."</string>
-    <string name="removing_account" msgid="7183999896088628100">"Inaalis ang account..."</string>
-    <string name="sip_menu_save" msgid="5842531129356014943">"I-save"</string>
-    <string name="sip_menu_discard" msgid="524075892158789701">"Itapon"</string>
-    <string name="alert_dialog_close" msgid="7759635137627626235">"Isara ang profile"</string>
-    <string name="alert_dialog_ok" msgid="3580379406983564080">"OK"</string>
-    <string name="close_profile" msgid="6886968271423155284">"Isara"</string>
-    <string name="primary_account_summary_with" msgid="1633960536212343187">"Pangunahing account. <xliff:g id="REGISTRATION_STATUS">%s</xliff:g>"</string>
-    <string name="registration_status_checking_status" msgid="3381868307694056727">"Tinitingnan ang katayuan..."</string>
-    <string name="registration_status_registering" msgid="4288401139400232968">"Inirerehistro..."</string>
-    <string name="registration_status_still_trying" msgid="3185581992666091911">"Sinusubukan pa rin..."</string>
-    <string name="registration_status_not_receiving" msgid="4185572774980557758">"Hindi tumatanggap ng mga tawag."</string>
-    <string name="registration_status_no_data" msgid="4901476962360656611">"Nahinto ang pagpaparehistro ng account dahil walang koneksyon sa Internet."</string>
-    <string name="registration_status_no_wifi_data" msgid="4038976374713018067">"Nahinto ang pagpaparehistro ng account dahil walang koneksyon sa Wi-Fi."</string>
-    <string name="registration_status_not_running" msgid="4824867184446232131">"Hindi matagumpay ang pagpaparehistro ng account."</string>
-    <string name="registration_status_done" msgid="884630717456439280">"Tumatanggap ng mga tawag."</string>
-    <string name="registration_status_failed_try_later" msgid="5214474354451220581">"Nabigo ang pagpaparehistro ng account: Susubukan ng (<xliff:g id="REGISTRATION_ERROR_MESSAGE">%s</xliff:g>); sa ibang pagkakataon"</string>
-    <string name="registration_status_invalid_credentials" msgid="4908446367559341757">"Nabigo ang pagpaparehistro ng account: Maling username o password."</string>
-    <string name="registration_status_server_unreachable" msgid="5733421582468991276">"Nabigo ang pagpaparehistro sa account: Tingnan ang pangalan ng server."</string>
-    <string name="third_party_account_summary" msgid="2532526738862533028">"Kasalukuyang ginagamit ang account na ito ng app ng <xliff:g id="ACCOUNT_OWNER">%s</xliff:g>."</string>
-    <string name="sip_edit_title" msgid="489288416435014385">"Mga detalye ng SIP account"</string>
-    <string name="sip_edit_new_title" msgid="3659149255856520385">"Mga detalye ng SIP account"</string>
-    <string name="domain_address_title" msgid="9071787581316160480">"Server"</string>
-    <string name="username_title" msgid="2479375923477682328">"Username"</string>
-    <string name="password_title" msgid="3323555249068171531">"Password"</string>
-    <string name="display_name_title" msgid="2459768196312249937">"Display name"</string>
-    <string name="proxy_address_title" msgid="4828301345351614273">"Address ng papalabas na proxy"</string>
-    <string name="port_title" msgid="5952939408078626657">"Numero ng port"</string>
-    <string name="transport_title" msgid="8253139511847746640">"Uri ng paglilipat"</string>
-    <string name="send_keepalive_title" msgid="7533342573918645113">"Magpadala ng keep-alive"</string>
-    <string name="set_primary_title" msgid="5351892327447571451">"Itakda bilang pangunahing account"</string>
-    <string name="set_primary_summary" msgid="2219064654523258577">"Ginagamit para sa mga papalabas na tawag"</string>
-    <string name="advanced_settings" msgid="8350631795335495338">"Mga opsyonal na setting"</string>
-    <string name="auth_username_title" msgid="851473016307947120">"Username sa pagpapatunay"</string>
-    <string name="auth_username_summary" msgid="6782012405225938629">"Ginamit ang username para sa pagpapatunay"</string>
-    <string name="default_preference_summary" msgid="868766740121667450">"&lt;Hindi nakatakda&gt;"</string>
-    <string name="display_name_summary" msgid="8636377460518225523">"&lt;Katulad ng username&gt;"</string>
-    <string name="optional_summary" msgid="1464058793789832411">"&lt;Opsyonal&gt;"</string>
-    <string name="advanced_settings_show" msgid="4668880308290857597">"▷ Pindutin upang ipakita lahat"</string>
-    <string name="advanced_settings_hide" msgid="217398292824758079">"▽ Pindutin upang itago ang lahat"</string>
-    <string name="empty_alert" msgid="6839103946505432390">"Kinakailangan ang <xliff:g id="INPUT_FIELD_NAME">%s</xliff:g>, hindi maaaring iwanang blangko."</string>
-    <string name="not_a_valid_port" msgid="4796149266434630292">"Dapat na nasa pagitan ng 1000 at 65534 ang numero ng port."</string>
-    <string name="no_internet_available_title" msgid="3327109242858406165">"Walang koneksyon sa Internet"</string>
-    <string name="no_wifi_available_title" msgid="747881033089378758">"Walang koneksyon sa Wi-Fi"</string>
-    <string name="no_internet_available" msgid="7877142631803238549">"Upang tumawag sa Internet, suriin muna ang iyong koneksyon sa Internet."</string>
-    <string name="no_wifi_available" msgid="1225073547318465713">"Kailangan mong maging konektado sa isang Wi-Fi network para sa mga tawag sa Internet (gamitin ang mga setting ng Wireless &amp; Network)."</string>
-    <string name="no_voip" msgid="8901474054537199865">"Hindi suportado ang pagtawag sa Internet"</string>
-    <string name="sip_system_decide" msgid="368030746310423471">"Awtomatiko"</string>
-    <string name="sip_always_send_keepalive" msgid="8192080724632877132">"Palaging ipadala"</string>
     <string name="not_voice_capable" msgid="2739898841461577811">"Hindi suportado ang voice calling"</string>
     <string name="respond_via_sms_setting_title" msgid="3754000371039709383">"Mga mabilisang tugon"</string>
     <string name="respond_via_sms_setting_summary" msgid="9150281183930613065"></string>
-    <string name="description_image_button_one" msgid="5502718871331943463">"isa"</string>
-    <string name="description_image_button_two" msgid="4903738528222924522">"dalawa"</string>
-    <string name="description_image_button_three" msgid="5570985408463782329">"tatlo"</string>
-    <string name="description_image_button_four" msgid="1697520001239289074">"apat"</string>
-    <string name="description_image_button_five" msgid="3450276493026943454">"lima"</string>
-    <string name="description_image_button_six" msgid="2070376172268675300">"anim"</string>
-    <string name="description_image_button_seven" msgid="1757351311199993371">"pito"</string>
-    <string name="description_image_button_eight" msgid="4734693919020613227">"walo"</string>
-    <string name="description_image_button_nine" msgid="5568534122590597040">"siyam"</string>
-    <string name="description_image_button_star" msgid="1976280813017254462">"star"</string>
-    <string name="description_image_button_zero" msgid="4211255756866893605">"zero"</string>
-    <string name="description_image_button_pound" msgid="1716041284529917866">"pound"</string>
     <string name="description_dial_button" msgid="7459705245418435351">"Mag-dial"</string>
-    <string name="description_delete_button" msgid="4015842181592283903">"backspace"</string>
-    <string name="description_target_answer" msgid="7205604197797472471">"Sagutin"</string>
-    <string name="description_target_send_sms" msgid="2098326025587950144">"Magpadala ng SMS"</string>
-    <string name="description_target_decline" msgid="4789834364389731957">"Tanggihan"</string>
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"Mag-vibrate"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"Mag-vibrate"</string>
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"Tunog"</string>
@@ -607,9 +518,9 @@
     <string name="dtmf_tone_enable_title" msgid="827601042915852989">"Mga tone ng pagpindot sa dial pad"</string>
     <string name="dial_pad_autocomplete" msgid="494525952035761075">"Pag-autocomplete ng dial pad"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"Ringtone at Pag-vibrate"</string>
-    <string name="choose_wifi_for_call_msg" msgid="193549297122949976">"Gamitin ang Wi-Fi upang tumawag?"</string>
-    <string name="choose_wifi_for_call_yes" msgid="5312994368472630983">"Oo"</string>
-    <string name="choose_wifi_for_call_no" msgid="7132239734287157307">"Huwag"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"Mga built-in na SIM card"</string>
-    <string name="sip_connection_service_label" msgid="3547998349299125294">"Built-in na pagtawag sa Internet"</string>
+    <string name="enable_video_calling_title" msgid="7237253660669000899">"I-on ang video calling"</string>
+    <string name="enable_video_calling_dialog_msg" msgid="6547569773866546434">"Upang i-on ang video calling, kailangan mong i-enable ang Pinahusay na 4G LTE Mode sa mga setting ng system."</string>
+    <string name="enable_video_calling_dialog_settings" msgid="576528473599603249">"Mga Setting ng Network"</string>
+    <string name="enable_video_calling_dialog_close" msgid="7411471282167927991">"Isara"</string>
 </resources>

@@ -52,12 +52,13 @@
     <string name="requesting_unlock" msgid="6412629401033249351">"Solicitando desbloqueo de red..."</string>
     <string name="unlock_failed" msgid="6490531697031504225">"La solicitud de desbloqueo de red no se ha realizado correctamente."</string>
     <string name="unlock_success" msgid="6770085622238180152">"El desbloqueo de red se ha realizado correctamente."</string>
-    <string name="mobile_network_settings_not_available" msgid="7355254462995117896">"Los ajustes de red móvil no están disponibles para este usuario"</string>
+    <string name="mobile_network_settings_not_available" msgid="3831911315358856062">"Los ajustes de red móvil no están disponibles para este usuario"</string>
     <string name="labelGSMMore" msgid="5930842194056092106">"Ajustes de llamadas GSM"</string>
     <string name="labelCDMAMore" msgid="1630676740428229339">"Ajustes de llamadas CDMA"</string>
     <string name="apn_settings" msgid="9043423184895642077">"APN"</string>
     <string name="settings_label" msgid="3876743539816984008">"Configuración de red"</string>
-    <string name="connection_service" msgid="978745922583410219">"Servicio de conexión que se utilizará"</string>
+    <!-- no translation found for phone_accounts (8810358208981265351) -->
+    <skip />
     <string name="connection_service_default_label" msgid="1498481943805913754">"Servicio de conexión integrado"</string>
     <string name="voicemail" msgid="8693759337917898954">"Buzón de voz"</string>
     <string name="voicemail_abbreviated" msgid="2215592488517217448">"Buzón de voz:"</string>
@@ -124,7 +125,7 @@
     <string name="no_change" msgid="3186040086622435212">"No se ha realizado ningún cambio."</string>
     <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"Seleccionar servicio de buzón de voz"</string>
     <string name="voicemail_default" msgid="5902099213882352338">"Mi operador"</string>
-    <string name="mobile_networks" msgid="5540397602919106177">"Configuración de red móvil"</string>
+    <string name="mobile_networks" msgid="2843854043339307375">"Ajustes de red móvil"</string>
     <string name="label_available" msgid="1181658289009300430">"Redes disponibles"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"Buscando..."</string>
     <string name="empty_networks_list" msgid="4249426905018815316">"No se ha encontrado ninguna red."</string>
@@ -172,7 +173,7 @@
     <item msgid="3817924849415716259">"Preferencia de GSM/WCDMA"</item>
   </string-array>
     <string name="data_enabled" msgid="5972538663568715366">"Habilitar datos"</string>
-    <string name="data_enable_summary" msgid="5022018967714633874">"Permitir el acceso a los datos a través de la red móvil"</string>
+    <string name="data_enable_summary" msgid="2382798156640007971">"Permitir uso de datos"</string>
     <string name="roaming" msgid="8871412572928323707">"Itinerancia de datos"</string>
     <string name="roaming_enable" msgid="7331106985174381987">"Establecer conexión con servicios de datos en itinerancia"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"Establecer conexión con servicios de datos en itinerancia"</string>
@@ -194,7 +195,7 @@
     <string name="throttle_data_rate_reduced_subtext" msgid="7492763592720107737">"Máx de <xliff:g id="USED_0">%1$s</xliff:g> superado.\nFrec datos reducida a <xliff:g id="USED_1">%2$d</xliff:g> Kb/s"</string>
     <string name="throttle_time_frame_subtext" msgid="7732763021560399960">"<xliff:g id="USED_0">%1$d</xliff:g>% del ciclo transcurrido.\nPróx período en <xliff:g id="USED_1">%2$d</xliff:g> días (<xliff:g id="USED_2">%3$s</xliff:g>)"</string>
     <string name="throttle_rate_subtext" msgid="2149102656120726855">"Frec datos se reduce a <xliff:g id="USED">%1$d</xliff:g> Kb/s si se supera límite uso datos"</string>
-    <string name="throttle_help_subtext" msgid="5217706521499010816">"Más información sobre política de uso de datos móviles de tu operador"</string>
+    <string name="throttle_help_subtext" msgid="3633091498168446044">"Más información sobre la política de uso de datos móviles de tu operador"</string>
     <string name="cell_broadcast_sms" msgid="5584192824053625842">"SMS de difusión móvil"</string>
     <string name="enable_disable_cell_bc_sms" msgid="4851147873691392255">"SMS de difusión móvil"</string>
     <string name="cell_bc_sms_enable" msgid="6441688565738921084">"SMS de difusión móvil habilitado"</string>
@@ -413,7 +414,7 @@
     <string name="notification_missedCall_message" msgid="3049928912736917988">"Mensaje"</string>
     <string name="incall_error_power_off" msgid="6550191216405193368">"Para realizar una llamada, primero debes desactivar el modo avión."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"No se ha podido conectar a la red"</string>
-    <string name="incall_error_out_of_service" msgid="8587993036435080418">"La red móvil no está disponible."</string>
+    <string name="incall_error_out_of_service" msgid="4100065333878929223">"La red móvil no está disponible."</string>
     <string name="incall_error_no_phone_number_supplied" msgid="4197432103471807739">"No se ha realizado la llamada; el número introducido no es válido."</string>
     <string name="incall_error_call_failed" msgid="4313552620858880999">"La llamada no se ha enviado."</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"Iniciando secuencia MMI..."</string>
@@ -424,7 +425,6 @@
     <string name="incall_error_supp_service_conference" msgid="2505727299596357312">"No se ha podido realizar la conferencia telefónica."</string>
     <string name="incall_error_supp_service_reject" msgid="7055164130563826216">"No se ha podido rechazar la llamada."</string>
     <string name="incall_error_supp_service_hangup" msgid="7417583238334762737">"No es posible finalizar las llamadas activas."</string>
-    <string name="incall_call_type_label_sip" msgid="2310958283037924371">"Llamada por Internet"</string>
     <string name="emergency_enable_radio_dialog_title" msgid="4627849966634578257">"Llamada de emergencia"</string>
     <string name="emergency_enable_radio_dialog_message" msgid="207613549344420291">"Activando señal móvil…"</string>
     <string name="emergency_enable_radio_dialog_retry" msgid="3724423402363063736">"Área fuera de servicio; reintentando..."</string>
@@ -510,98 +510,10 @@
     <string name="contactPhoto" msgid="4713193418046639466">"foto de contacto"</string>
     <string name="goPrivate" msgid="865837794424530980">"llamada privada"</string>
     <string name="selectContact" msgid="781975788478987237">"seleccionar contacto"</string>
-    <string name="sip_settings" msgid="6699045718560859691">"Ajustes de llamada por Internet"</string>
-    <string name="sip_accounts" msgid="2097054001288457163">"Cuentas (SIP) de llamadas por Internet"</string>
-    <string name="sip_accounts_title" msgid="1212889069281054570">"Cuentas"</string>
-    <string name="sip_receive_calls" msgid="5635685570889971559">"Recibir llamadas"</string>
-    <string name="sip_receive_calls_summary" msgid="8403613238633679184">"Reduce la duración de la batería"</string>
-    <string name="sip_call_options_title" msgid="27433718808839672">"Llamadas por Internet"</string>
-    <string name="sip_call_options_wifi_only_title" msgid="145572394529090811">"Llamadas por Internet (Wi-Fi)"</string>
-    <string name="sip_call_options_entry_1" msgid="6556668894178520760">"Para todas las llamadas cuando haya redes de datos disponibles"</string>
-    <string name="sip_call_options_entry_2" msgid="6789764029719494361">"Solo para llamadas de Internet"</string>
-    <string name="sip_call_options_entry_3" msgid="7474809001402649185">"Preguntar cada vez"</string>
-    <string name="sip_call_options_wifi_only_entry_1" msgid="7423523864471650069">"En todas las llamadas"</string>
-    <string name="pick_outgoing_call_phone_type" msgid="5622916534828338675">"Llamadas"</string>
-    <string name="pick_outgoing_sip_phone" msgid="7012322118236208875">"Usar cuenta de llamada por Internet:"</string>
-    <string name="remember_my_choice" msgid="7058059586169290705">"Usar siempre para realizar llamadas de Internet"</string>
-    <string name="reset_my_choice_hint" msgid="5523030209803567922">"Para cambiar la cuenta de llamadas por Internet que quieres usar de forma predeterminada, accede a Teléfono &gt; Ajustes &gt; Ajustes de llamada por Internet &gt; Cuentas."</string>
-    <string name="pstn_phone" msgid="8782554491484326429">"Llamada de teléfono móvil"</string>
-    <string name="internet_phone" msgid="1147922660195095810">"Llamada de Internet"</string>
-    <string name="no_sip_account_found_title" msgid="6266249392379373628">"Sin cuentas de llamada por Internet"</string>
-    <string name="no_sip_account_found" msgid="724325811961769997">"No hay cuentas de llamadas por Internet en este teléfono. ¿Quieres añadir una cuenta ahora?"</string>
-    <string name="sip_menu_add" msgid="8757508498518881500">"Añadir"</string>
-    <string name="add_sip_account" msgid="5904858426290097611">"Añadir cuenta"</string>
-    <string name="remove_sip_account" msgid="7645900420385682570">"Eliminar cuenta"</string>
-    <string name="sip_account_list" msgid="5480058210652194306">"Cuentas SIP"</string>
-    <string name="saving_account" msgid="52903398217017954">"Guardando la cuenta..."</string>
-    <string name="removing_account" msgid="7183999896088628100">"Eliminando la cuenta..."</string>
-    <string name="sip_menu_save" msgid="5842531129356014943">"Guardar"</string>
-    <string name="sip_menu_discard" msgid="524075892158789701">"Descartar"</string>
-    <string name="alert_dialog_close" msgid="7759635137627626235">"Cerrar el perfil"</string>
-    <string name="alert_dialog_ok" msgid="3580379406983564080">"Aceptar"</string>
-    <string name="close_profile" msgid="6886968271423155284">"Cerrar"</string>
-    <string name="primary_account_summary_with" msgid="1633960536212343187">"Cuenta principal (<xliff:g id="REGISTRATION_STATUS">%s</xliff:g>)"</string>
-    <string name="registration_status_checking_status" msgid="3381868307694056727">"Comprobando estado..."</string>
-    <string name="registration_status_registering" msgid="4288401139400232968">"Registrando..."</string>
-    <string name="registration_status_still_trying" msgid="3185581992666091911">"Seguimos intentándolo..."</string>
-    <string name="registration_status_not_receiving" msgid="4185572774980557758">"Sin recepción de llamadas"</string>
-    <string name="registration_status_no_data" msgid="4901476962360656611">"Se ha detenido el registro de cuenta porque no hay conexión a Internet."</string>
-    <string name="registration_status_no_wifi_data" msgid="4038976374713018067">"Se ha detenido el registro de cuenta porque no hay conexión Wi-Fi."</string>
-    <string name="registration_status_not_running" msgid="4824867184446232131">"Registro de cuenta incorrecto"</string>
-    <string name="registration_status_done" msgid="884630717456439280">"Recibiendo llamadas"</string>
-    <string name="registration_status_failed_try_later" msgid="5214474354451220581">"Error al registrar la cuenta: (<xliff:g id="REGISTRATION_ERROR_MESSAGE">%s</xliff:g>); inténtalo de nuevo más tarde."</string>
-    <string name="registration_status_invalid_credentials" msgid="4908446367559341757">"Registro de cuenta incorrecto: nombre de usuario o contraseña incorrectos."</string>
-    <string name="registration_status_server_unreachable" msgid="5733421582468991276">"Error al registrar la cuenta: comprueba el nombre del servidor."</string>
-    <string name="third_party_account_summary" msgid="2532526738862533028">"La aplicación <xliff:g id="ACCOUNT_OWNER">%s</xliff:g> está utilizando esta cuenta en este momento."</string>
-    <string name="sip_edit_title" msgid="489288416435014385">"Detalles de cuenta SIP"</string>
-    <string name="sip_edit_new_title" msgid="3659149255856520385">"Detalles de cuenta SIP"</string>
-    <string name="domain_address_title" msgid="9071787581316160480">"Servidor"</string>
-    <string name="username_title" msgid="2479375923477682328">"Nombre de usuario"</string>
-    <string name="password_title" msgid="3323555249068171531">"Contraseña"</string>
-    <string name="display_name_title" msgid="2459768196312249937">"Mostrar nombre"</string>
-    <string name="proxy_address_title" msgid="4828301345351614273">"Dirección proxy saliente"</string>
-    <string name="port_title" msgid="5952939408078626657">"Número de puerto"</string>
-    <string name="transport_title" msgid="8253139511847746640">"Tipo de transporte"</string>
-    <string name="send_keepalive_title" msgid="7533342573918645113">"Enviar señal conexión"</string>
-    <string name="set_primary_title" msgid="5351892327447571451">"Establecer como principal"</string>
-    <string name="set_primary_summary" msgid="2219064654523258577">"Se utiliza para llamadas salientes."</string>
-    <string name="advanced_settings" msgid="8350631795335495338">"Ajustes opcionales"</string>
-    <string name="auth_username_title" msgid="851473016307947120">"Nombre de usuario de autenticación"</string>
-    <string name="auth_username_summary" msgid="6782012405225938629">"Nombre de usuario utilizado para la autenticación"</string>
-    <string name="default_preference_summary" msgid="868766740121667450">"&lt;Sin definir&gt;"</string>
-    <string name="display_name_summary" msgid="8636377460518225523">"&lt;Igual que el nombre de usuario&gt;"</string>
-    <string name="optional_summary" msgid="1464058793789832411">"&lt;Opcional&gt;"</string>
-    <string name="advanced_settings_show" msgid="4668880308290857597">"▷ Tocar para mostrar todo"</string>
-    <string name="advanced_settings_hide" msgid="217398292824758079">"▽ Tocar para ocultar todo"</string>
-    <string name="empty_alert" msgid="6839103946505432390">"El campo <xliff:g id="INPUT_FIELD_NAME">%s</xliff:g> es obligatorio y no se puede dejar en blanco."</string>
-    <string name="not_a_valid_port" msgid="4796149266434630292">"El número de puerto debe estar comprendido entre 1.000 y 65.534."</string>
-    <string name="no_internet_available_title" msgid="3327109242858406165">"Sin conexión a Internet"</string>
-    <string name="no_wifi_available_title" msgid="747881033089378758">"Sin conexión Wi-Fi"</string>
-    <string name="no_internet_available" msgid="7877142631803238549">"Para hacer una llamada por Internet, comprueba tu conexión a Internet."</string>
-    <string name="no_wifi_available" msgid="1225073547318465713">"Para hacer llamadas por Internet, debes estar conectado a una red Wi-Fi (usa la opción Conexiones inalámbricas y redes)."</string>
-    <string name="no_voip" msgid="8901474054537199865">"No se admiten llamadas por Internet"</string>
-    <string name="sip_system_decide" msgid="368030746310423471">"Automático"</string>
-    <string name="sip_always_send_keepalive" msgid="8192080724632877132">"Enviar siempre"</string>
     <string name="not_voice_capable" msgid="2739898841461577811">"Llamadas de voz no admitidas"</string>
     <string name="respond_via_sms_setting_title" msgid="3754000371039709383">"Respuestas rápidas"</string>
     <string name="respond_via_sms_setting_summary" msgid="9150281183930613065"></string>
-    <string name="description_image_button_one" msgid="5502718871331943463">"uno"</string>
-    <string name="description_image_button_two" msgid="4903738528222924522">"dos"</string>
-    <string name="description_image_button_three" msgid="5570985408463782329">"tres"</string>
-    <string name="description_image_button_four" msgid="1697520001239289074">"cuatro"</string>
-    <string name="description_image_button_five" msgid="3450276493026943454">"cinco"</string>
-    <string name="description_image_button_six" msgid="2070376172268675300">"seis"</string>
-    <string name="description_image_button_seven" msgid="1757351311199993371">"siete"</string>
-    <string name="description_image_button_eight" msgid="4734693919020613227">"ocho"</string>
-    <string name="description_image_button_nine" msgid="5568534122590597040">"nueve"</string>
-    <string name="description_image_button_star" msgid="1976280813017254462">"estrella"</string>
-    <string name="description_image_button_zero" msgid="4211255756866893605">"cero"</string>
-    <string name="description_image_button_pound" msgid="1716041284529917866">"libra"</string>
     <string name="description_dial_button" msgid="7459705245418435351">"marcar"</string>
-    <string name="description_delete_button" msgid="4015842181592283903">"retroceder un espacio"</string>
-    <string name="description_target_answer" msgid="7205604197797472471">"Responder"</string>
-    <string name="description_target_send_sms" msgid="2098326025587950144">"Enviar SMS"</string>
-    <string name="description_target_decline" msgid="4789834364389731957">"Rechazar"</string>
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"Vibrar"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"Vibrar"</string>
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"Sonido"</string>
@@ -611,9 +523,9 @@
     <string name="dtmf_tone_enable_title" msgid="827601042915852989">"Sonar al marcar número"</string>
     <string name="dial_pad_autocomplete" msgid="494525952035761075">"Autocompletar con teclado"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"Tono y vibración"</string>
-    <string name="choose_wifi_for_call_msg" msgid="193549297122949976">"¿Usar Wi-Fi para hacer llamadas?"</string>
-    <string name="choose_wifi_for_call_yes" msgid="5312994368472630983">"Sí"</string>
-    <string name="choose_wifi_for_call_no" msgid="7132239734287157307">"No"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"Tarjetas SIM integradas"</string>
-    <string name="sip_connection_service_label" msgid="3547998349299125294">"Llamadas por Internet integradas"</string>
+    <string name="enable_video_calling_title" msgid="7237253660669000899">"Activar videollamadas"</string>
+    <string name="enable_video_calling_dialog_msg" msgid="6547569773866546434">"Para activar las videollamadas, debes habilitar el modo mejorado 4G LTE en los ajustes del sistema."</string>
+    <string name="enable_video_calling_dialog_settings" msgid="576528473599603249">"Configuración de red"</string>
+    <string name="enable_video_calling_dialog_close" msgid="7411471282167927991">"Cerrar"</string>
 </resources>

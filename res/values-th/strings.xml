@@ -52,12 +52,12 @@
     <string name="requesting_unlock" msgid="6412629401033249351">"กำลังขอปลดล็อกเครือข่าย..."</string>
     <string name="unlock_failed" msgid="6490531697031504225">"คำขอปลดล็อกเครือข่ายไม่สำเร็จ"</string>
     <string name="unlock_success" msgid="6770085622238180152">"ปลดล็อกเครือข่ายไม่สำเร็จ"</string>
-    <string name="mobile_network_settings_not_available" msgid="7355254462995117896">"การตั้งค่าเครือข่ายมือถือไม่พร้อมใช้งานสำหรับผู้ใช้รายนี้"</string>
+    <string name="mobile_network_settings_not_available" msgid="3831911315358856062">"การตั้งค่าเครือข่ายมือถือไม่พร้อมใช้งานสำหรับผู้ใช้รายนี้"</string>
     <string name="labelGSMMore" msgid="5930842194056092106">"การตั้งค่าการโทร GSM"</string>
     <string name="labelCDMAMore" msgid="1630676740428229339">"การตั้งค่าการโทร CDMA"</string>
     <string name="apn_settings" msgid="9043423184895642077">"ชื่อจุดเข้าใช้งาน"</string>
     <string name="settings_label" msgid="3876743539816984008">"การตั้งค่าเครือข่าย"</string>
-    <string name="connection_service" msgid="978745922583410219">"บริการเชื่อมต่อที่สามารถใช้ได้"</string>
+    <string name="phone_accounts" msgid="8810358208981265351">"การตั้งค่าบัญชีโทรศัพท์"</string>
     <string name="connection_service_default_label" msgid="1498481943805913754">"บริการเชื่อมต่อในตัว"</string>
     <string name="voicemail" msgid="8693759337917898954">"ข้อความเสียง"</string>
     <string name="voicemail_abbreviated" msgid="2215592488517217448">"VM:"</string>
@@ -124,7 +124,7 @@
     <string name="no_change" msgid="3186040086622435212">"ไม่มีการเปลี่ยนแปลง"</string>
     <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"เลือกบริการข้อความเสียง"</string>
     <string name="voicemail_default" msgid="5902099213882352338">"ผู้ให้บริการของฉัน"</string>
-    <string name="mobile_networks" msgid="5540397602919106177">"การตั้งค่าเครือข่ายมือถือ"</string>
+    <string name="mobile_networks" msgid="2843854043339307375">"การตั้งค่าเครือข่ายมือถือ"</string>
     <string name="label_available" msgid="1181658289009300430">"เครือข่ายที่ใช้งานได้"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"กำลังค้นหา…"</string>
     <string name="empty_networks_list" msgid="4249426905018815316">"ไม่พบเครือข่าย"</string>
@@ -172,7 +172,7 @@
     <item msgid="3817924849415716259">"ต้องการ GSM/WCDMA"</item>
   </string-array>
     <string name="data_enabled" msgid="5972538663568715366">"เปิดใช้งานข้อมูลแล้ว"</string>
-    <string name="data_enable_summary" msgid="5022018967714633874">"เปิดใช้งานการเข้าถึงข้อมูลบนเครือข่ายมือถือ"</string>
+    <string name="data_enable_summary" msgid="2382798156640007971">"อนุญาตการใช้ข้อมูล"</string>
     <string name="roaming" msgid="8871412572928323707">"การโรมมิ่งข้อมูล"</string>
     <string name="roaming_enable" msgid="7331106985174381987">"เชื่อมต่อบริการข้อมูลขณะโรมมิ่ง"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"เชื่อมต่อบริการข้อมูลขณะโรมมิ่ง"</string>
@@ -190,7 +190,7 @@
     <string name="throttle_data_rate_reduced_subtext" msgid="7492763592720107737">"<xliff:g id="USED_0">%1$s</xliff:g>เกินจำนวนสูงสุด\nอัตราการส่งข้อมูลถูกลดเหลือ<xliff:g id="USED_1">%2$d</xliff:g> Kb/s"</string>
     <string name="throttle_time_frame_subtext" msgid="7732763021560399960">"<xliff:g id="USED_0">%1$d</xliff:g>٪ ของรอบผ่านไป \n ช่วงถัดไปจะเริ่มในอีก <xliff:g id="USED_1">%2$d</xliff:g> วัน (<xliff:g id="USED_2">%3$s</xliff:g>)"</string>
     <string name="throttle_rate_subtext" msgid="2149102656120726855">"อัตราการส่งข้อมูลถูกลดเหลือ <xliff:g id="USED">%1$d</xliff:g> Kb/s เมื่อใช้ข้อมูลเกินขีดจำกัดแล้ว"</string>
-    <string name="throttle_help_subtext" msgid="5217706521499010816">"ข้อมูลเพิ่มเติมเกี่ยวกับนโยบายการใช้ข้อมูลของเครือข่ายมือถือจากผู้ให้บริการของคุณ"</string>
+    <string name="throttle_help_subtext" msgid="3633091498168446044">"ข้อมูลเพิ่มเติมเกี่ยวกับนโยบายการใช้ข้อมูลผ่านเครือข่ายมือถือของผู้ให้บริการ"</string>
     <string name="cell_broadcast_sms" msgid="5584192824053625842">"SMS แจ้งเครือข่ายที่ใช้งาน"</string>
     <string name="enable_disable_cell_bc_sms" msgid="4851147873691392255">"SMS แจ้งเครือข่ายที่ใช้งาน"</string>
     <string name="cell_bc_sms_enable" msgid="6441688565738921084">"เปิดการใช้งาน SMS แจ้งเครือข่ายที่ใช้งานแล้ว"</string>
@@ -323,7 +323,7 @@
     <string name="auto_retry_mode_summary" msgid="4973886004067532288">"เปิดใช้งานโหมดลองซ้ำอัตโนมัติ"</string>
     <string name="menu_add" msgid="1882023737425114762">"เพิ่มที่อยู่ติดต่อ"</string>
     <string name="menu_edit" msgid="7143003705504672374">"แก้ไขที่อยู่ติดต่อ"</string>
-    <string name="menu_delete" msgid="3977150783449642851">"นำออกที่อยู่ติดต่อ"</string>
+    <string name="menu_delete" msgid="3977150783449642851">"ลบที่อยู่ติดต่อ"</string>
     <string name="get_pin2" msgid="8204677063922225311">"พิมพ์ PIN2"</string>
     <string name="name" msgid="7329028332786872378">"ชื่อ"</string>
     <string name="number" msgid="7905950798349903858">"หมายเลข"</string>
@@ -334,9 +334,9 @@
     <string name="edit_fdn_contact" msgid="7976936035587081480">"แก้ไขการจำกัดหมายเลขโทรออก"</string>
     <string name="updating_fdn_contact" msgid="8370929876849803600">"กำลังอัปเดตการจำกัดหมายเลขโทรออก…"</string>
     <string name="fdn_contact_updated" msgid="5497828782609005017">"อัปเดตการจำกัดหมายเลขโทรออกแล้ว"</string>
-    <string name="delete_fdn_contact" msgid="6668958073074151717">"นำออกการจำกัดหมายเลขโทรออก"</string>
-    <string name="deleting_fdn_contact" msgid="5669163206349319969">"กำลังนำออกการจำกัดหมายเลขโทรออก…"</string>
-    <string name="fdn_contact_deleted" msgid="7154162327112259569">"นำออกการจำกัดหมายเลขโทรออกแล้ว"</string>
+    <string name="delete_fdn_contact" msgid="6668958073074151717">"ลบการจำกัดหมายเลขโทรออก"</string>
+    <string name="deleting_fdn_contact" msgid="5669163206349319969">"กำลังลบการจำกัดหมายเลขโทรออก…"</string>
+    <string name="fdn_contact_deleted" msgid="7154162327112259569">"ลบการจำกัดหมายเลขโทรออกแล้ว"</string>
     <string name="pin2_invalid" msgid="5470854099230755944">"FDN ไม่อัปเดตเพราะคุณป้อน PIN ไม่ถูกต้อง"</string>
     <string name="fdn_invalid_number" msgid="1494755047900009147">"FDN ไม่อัปเดตเพราะหมายเลขจะมีจำนวนเกิน 20 หลักไม่ได้"</string>
     <string name="pin2_or_fdn_invalid" msgid="6025144083384701197">"ไม่ได้อัปเดต FDN เพราะ PIN2 ไม่ถูกต้องหรือหมายเลขโทรศัพท์ถูกปฏิเสธ"</string>
@@ -409,7 +409,7 @@
     <string name="notification_missedCall_message" msgid="3049928912736917988">"ข้อความ"</string>
     <string name="incall_error_power_off" msgid="6550191216405193368">"หากต้องการโทรออก ให้ปิดโหมดใช้งานบนเครื่องบินก่อน"</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"ยังไม่ได้ลงทะเบียนบนเครือข่าย"</string>
-    <string name="incall_error_out_of_service" msgid="8587993036435080418">"เครือข่ายมือถือใช้งานไม่ได้"</string>
+    <string name="incall_error_out_of_service" msgid="4100065333878929223">"เครือข่ายมือถือใช้งานไม่ได้"</string>
     <string name="incall_error_no_phone_number_supplied" msgid="4197432103471807739">"ไม่ได้โทรออก ไม่ได้ป้อนหมายเลขที่ถูกต้อง"</string>
     <string name="incall_error_call_failed" msgid="4313552620858880999">"ไม่ได้โทรออก"</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"กำลังเริ่มต้นลำดับ MMI..."</string>
@@ -420,7 +420,6 @@
     <string name="incall_error_supp_service_conference" msgid="2505727299596357312">"ประชุมทางโทรศัพท์ไม่ได้"</string>
     <string name="incall_error_supp_service_reject" msgid="7055164130563826216">"ปฏิเสธสายไม่ได้"</string>
     <string name="incall_error_supp_service_hangup" msgid="7417583238334762737">"ปล่อยสายไม่ได้"</string>
-    <string name="incall_call_type_label_sip" msgid="2310958283037924371">"การโทรทางอินเทอร์เน็ต"</string>
     <string name="emergency_enable_radio_dialog_title" msgid="4627849966634578257">"หมายเลขฉุกเฉิน"</string>
     <string name="emergency_enable_radio_dialog_message" msgid="207613549344420291">"กำลังเปิดวิทยุ…"</string>
     <string name="emergency_enable_radio_dialog_retry" msgid="3724423402363063736">"นอกพื้นที่ให้บริการ กำลังลองซ้ำ..."</string>
@@ -506,98 +505,10 @@
     <string name="contactPhoto" msgid="4713193418046639466">"ภาพของรายชื่อติดต่อ"</string>
     <string name="goPrivate" msgid="865837794424530980">"เข้าสู่โหมดส่วนตัว"</string>
     <string name="selectContact" msgid="781975788478987237">"เลือกรายชื่อติดต่อ"</string>
-    <string name="sip_settings" msgid="6699045718560859691">"การตั้งค่าการโทรทางอินเทอร์เน็ต"</string>
-    <string name="sip_accounts" msgid="2097054001288457163">"บัญชีการโทรทางอินเทอร์เน็ต (SIP)"</string>
-    <string name="sip_accounts_title" msgid="1212889069281054570">"บัญชี"</string>
-    <string name="sip_receive_calls" msgid="5635685570889971559">"รับสายเรียกเข้า"</string>
-    <string name="sip_receive_calls_summary" msgid="8403613238633679184">"ลดอายุการใช้งานแบตเตอรี่"</string>
-    <string name="sip_call_options_title" msgid="27433718808839672">"ใช้การโทรทางอินเทอร์เน็ต"</string>
-    <string name="sip_call_options_wifi_only_title" msgid="145572394529090811">"ใช้การโทรทางอินเทอร์เน็ต (WiFi เท่านั้น)"</string>
-    <string name="sip_call_options_entry_1" msgid="6556668894178520760">"สำหรับทุกสายเมื่อเครือข่ายข้อมูลใช้งานได้"</string>
-    <string name="sip_call_options_entry_2" msgid="6789764029719494361">"สำหรับโทรทางอินเทอร์เน็ตเท่านั้น"</string>
-    <string name="sip_call_options_entry_3" msgid="7474809001402649185">"ถามทุกครั้งที่โทรออก"</string>
-    <string name="sip_call_options_wifi_only_entry_1" msgid="7423523864471650069">"สำหรับการโทรออกทั้งหมด"</string>
-    <string name="pick_outgoing_call_phone_type" msgid="5622916534828338675">"โทรออก"</string>
-    <string name="pick_outgoing_sip_phone" msgid="7012322118236208875">"ใช้บัญชีการโทรทางอินเทอร์เน็ต:"</string>
-    <string name="remember_my_choice" msgid="7058059586169290705">"ใช้ทุกครั้งที่โทรออกทางอินเทอร์เน็ต"</string>
-    <string name="reset_my_choice_hint" msgid="5523030209803567922">"คุณสามารถเปลี่ยนบัญชีการโทรทางอินเทอร์เน็ตที่จะใช้เป็นค่าเริ่มต้นได้จากหน้าจอโทรศัพท์ &gt; ตั้งค่า &gt; การตั้งค่าการโทรทางอินเทอร์เน็ต &gt; บัญชี"</string>
-    <string name="pstn_phone" msgid="8782554491484326429">"โทรออกด้วยโทรศัพท์มือถือ"</string>
-    <string name="internet_phone" msgid="1147922660195095810">"การโทรทางอินเทอร์เน็ต"</string>
-    <string name="no_sip_account_found_title" msgid="6266249392379373628">"ไม่มีบัญชีการโทรทางอินเทอร์เน็ต"</string>
-    <string name="no_sip_account_found" msgid="724325811961769997">"ไม่มีบัญชีการโทรทางอินเทอร์เน็ตบนโทรศัพท์นี้ คุณต้องการเพิ่มบัญชีตอนนี้หรือไม่"</string>
-    <string name="sip_menu_add" msgid="8757508498518881500">"เพิ่ม"</string>
-    <string name="add_sip_account" msgid="5904858426290097611">"เพิ่มบัญชี"</string>
-    <string name="remove_sip_account" msgid="7645900420385682570">"นำบัญชีออก"</string>
-    <string name="sip_account_list" msgid="5480058210652194306">"บัญชี SIP"</string>
-    <string name="saving_account" msgid="52903398217017954">"กำลังบันทึกบัญชี..."</string>
-    <string name="removing_account" msgid="7183999896088628100">"กำลังนำบัญชีออก..."</string>
-    <string name="sip_menu_save" msgid="5842531129356014943">"บันทึก"</string>
-    <string name="sip_menu_discard" msgid="524075892158789701">"ยกเลิก"</string>
-    <string name="alert_dialog_close" msgid="7759635137627626235">"ปิดโปรไฟล์"</string>
-    <string name="alert_dialog_ok" msgid="3580379406983564080">"ตกลง"</string>
-    <string name="close_profile" msgid="6886968271423155284">"ปิด"</string>
-    <string name="primary_account_summary_with" msgid="1633960536212343187">"บัญชีหลัก <xliff:g id="REGISTRATION_STATUS">%s</xliff:g>"</string>
-    <string name="registration_status_checking_status" msgid="3381868307694056727">"กำลังตรวจสอบสถานะ..."</string>
-    <string name="registration_status_registering" msgid="4288401139400232968">"กำลังลงทะเบียน..."</string>
-    <string name="registration_status_still_trying" msgid="3185581992666091911">"กำลังพยายามอยู่..."</string>
-    <string name="registration_status_not_receiving" msgid="4185572774980557758">"ไม่รับสาย"</string>
-    <string name="registration_status_no_data" msgid="4901476962360656611">"การลงทะเบียนบัญชีหยุดทำงานเนื่องจากไม่มีการเชื่อมต่ออินเทอร์เน็ต"</string>
-    <string name="registration_status_no_wifi_data" msgid="4038976374713018067">"การลงทะเบียนบัญชีหยุดทำงานเนื่องจากไม่มีการเชื่อมต่อ WiFi"</string>
-    <string name="registration_status_not_running" msgid="4824867184446232131">"การลงทะเบียนบัญชีไม่สำเร็จ"</string>
-    <string name="registration_status_done" msgid="884630717456439280">"รับสาย"</string>
-    <string name="registration_status_failed_try_later" msgid="5214474354451220581">"การลงทะเบียนบัญชีไม่สำเร็จ: (<xliff:g id="REGISTRATION_ERROR_MESSAGE">%s</xliff:g>) จะลองใหม่ในภายหลัง"</string>
-    <string name="registration_status_invalid_credentials" msgid="4908446367559341757">"การลงทะเบียนบัญชีไม่สำเร็จ: ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง"</string>
-    <string name="registration_status_server_unreachable" msgid="5733421582468991276">"การลงทะเบียนบัญชีไม่สำเร็จ: ตรวจสอบชื่อเซิร์ฟเวอร์"</string>
-    <string name="third_party_account_summary" msgid="2532526738862533028">"ขณะนี้บัญชีนี้ถูกใช้งานอยู่โดยแอปพลิเคชัน <xliff:g id="ACCOUNT_OWNER">%s</xliff:g>"</string>
-    <string name="sip_edit_title" msgid="489288416435014385">"รายละเอียดบัญชี SIP"</string>
-    <string name="sip_edit_new_title" msgid="3659149255856520385">"รายละเอียดบัญชี SIP"</string>
-    <string name="domain_address_title" msgid="9071787581316160480">"เซิร์ฟเวอร์"</string>
-    <string name="username_title" msgid="2479375923477682328">"ชื่อผู้ใช้"</string>
-    <string name="password_title" msgid="3323555249068171531">"รหัสผ่าน"</string>
-    <string name="display_name_title" msgid="2459768196312249937">"ชื่อที่แสดง"</string>
-    <string name="proxy_address_title" msgid="4828301345351614273">"ที่อยู่พร็อกซีขาออก"</string>
-    <string name="port_title" msgid="5952939408078626657">"หมายเลขพอร์ต"</string>
-    <string name="transport_title" msgid="8253139511847746640">"ประเภทการส่งผ่านข้อมูล"</string>
-    <string name="send_keepalive_title" msgid="7533342573918645113">"ส่งแบบ keep-alive"</string>
-    <string name="set_primary_title" msgid="5351892327447571451">"ตั้งค่าเป็นบัญชีหลัก"</string>
-    <string name="set_primary_summary" msgid="2219064654523258577">"ใช้สำหรับการโทรออก"</string>
-    <string name="advanced_settings" msgid="8350631795335495338">"การตั้งค่าที่เป็นตัวเลือก"</string>
-    <string name="auth_username_title" msgid="851473016307947120">"ชื่อผู้ใช้สำหรับตรวจสอบสิทธิ์"</string>
-    <string name="auth_username_summary" msgid="6782012405225938629">"ชื่อผู้ใช้ที่ใช้ในการตรวจสอบสิทธิ์"</string>
-    <string name="default_preference_summary" msgid="868766740121667450">"&lt;ไม่ได้ตั้งค่า&gt;"</string>
-    <string name="display_name_summary" msgid="8636377460518225523">"&lt;เหมือนกับชื่อผู้ใช้&gt;"</string>
-    <string name="optional_summary" msgid="1464058793789832411">"&lt;ตัวเลือก&gt;"</string>
-    <string name="advanced_settings_show" msgid="4668880308290857597">"▷ แตะเพื่อแสดงทั้งหมด"</string>
-    <string name="advanced_settings_hide" msgid="217398292824758079">"▽ แตะเพื่อซ่อนทั้งหมด"</string>
-    <string name="empty_alert" msgid="6839103946505432390">"ต้องระบุ <xliff:g id="INPUT_FIELD_NAME">%s</xliff:g> และไม่สามารถปล่อยว่างได้"</string>
-    <string name="not_a_valid_port" msgid="4796149266434630292">"หมายเลขพอร์ตควรอยู่ระหว่าง 1000 ถึง 65534"</string>
-    <string name="no_internet_available_title" msgid="3327109242858406165">"ไม่มีการเชื่อมต่ออินเทอร์เน็ต"</string>
-    <string name="no_wifi_available_title" msgid="747881033089378758">"ไม่มีการเชื่อมต่อ WiFi"</string>
-    <string name="no_internet_available" msgid="7877142631803238549">"หากต้องการโทรออกทางอินเทอร์เน็ต ให้ตรวจสอบการเชื่อมต่ออินเทอร์เน็ตของคุณก่อน"</string>
-    <string name="no_wifi_available" msgid="1225073547318465713">"คุณจำเป็นต้องเชื่อมต่อกับเครือข่าย WiFi สำหรับการโทรทางอินเทอร์เน็ต (ใช้การตั้งค่าระบบไร้สายและเครือข่าย)"</string>
-    <string name="no_voip" msgid="8901474054537199865">"ไม่สนับสนุนการโทรทางอินเทอร์เน็ต"</string>
-    <string name="sip_system_decide" msgid="368030746310423471">"อัตโนมัติ"</string>
-    <string name="sip_always_send_keepalive" msgid="8192080724632877132">"ส่งเสมอ"</string>
     <string name="not_voice_capable" msgid="2739898841461577811">"ไม่สนับสนุนการโทรออกด้วยเสียง"</string>
     <string name="respond_via_sms_setting_title" msgid="3754000371039709383">"คำตอบด่วน"</string>
     <string name="respond_via_sms_setting_summary" msgid="9150281183930613065"></string>
-    <string name="description_image_button_one" msgid="5502718871331943463">"หนึ่ง"</string>
-    <string name="description_image_button_two" msgid="4903738528222924522">"สอง"</string>
-    <string name="description_image_button_three" msgid="5570985408463782329">"สาม"</string>
-    <string name="description_image_button_four" msgid="1697520001239289074">"สี่"</string>
-    <string name="description_image_button_five" msgid="3450276493026943454">"ห้า"</string>
-    <string name="description_image_button_six" msgid="2070376172268675300">"หก"</string>
-    <string name="description_image_button_seven" msgid="1757351311199993371">"เจ็ด"</string>
-    <string name="description_image_button_eight" msgid="4734693919020613227">"แปด"</string>
-    <string name="description_image_button_nine" msgid="5568534122590597040">"เก้า"</string>
-    <string name="description_image_button_star" msgid="1976280813017254462">"ดาว"</string>
-    <string name="description_image_button_zero" msgid="4211255756866893605">"ศูนย์"</string>
-    <string name="description_image_button_pound" msgid="1716041284529917866">"ปอนด์"</string>
     <string name="description_dial_button" msgid="7459705245418435351">"หมุนหมายเลข"</string>
-    <string name="description_delete_button" msgid="4015842181592283903">"ถอยหลัง"</string>
-    <string name="description_target_answer" msgid="7205604197797472471">"คำตอบ"</string>
-    <string name="description_target_send_sms" msgid="2098326025587950144">"ส่ง SMS"</string>
-    <string name="description_target_decline" msgid="4789834364389731957">"ปฏิเสธ"</string>
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"สั่น"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"สั่น"</string>
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"เสียง"</string>
@@ -607,9 +518,9 @@
     <string name="dtmf_tone_enable_title" msgid="827601042915852989">"เสียงแตะแป้นหมายเลข"</string>
     <string name="dial_pad_autocomplete" msgid="494525952035761075">"ช่วยเติมอัตโนมัติในแป้นหมายเลข"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"เสียงเรียกเข้าและสั่น"</string>
-    <string name="choose_wifi_for_call_msg" msgid="193549297122949976">"ต้องการใช้ Wi-Fi ในการโทรใช่ไหม"</string>
-    <string name="choose_wifi_for_call_yes" msgid="5312994368472630983">"ใช่"</string>
-    <string name="choose_wifi_for_call_no" msgid="7132239734287157307">"ไม่ใช่"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"ซิมการ์ดในตัว"</string>
-    <string name="sip_connection_service_label" msgid="3547998349299125294">"การโทรทางอินเทอร์เน็ตในตัว"</string>
+    <string name="enable_video_calling_title" msgid="7237253660669000899">"เปิดแฮงเอาท์วิดีโอ"</string>
+    <string name="enable_video_calling_dialog_msg" msgid="6547569773866546434">"หากต้องการเปิดแฮงเอาท์วิดีโอ คุณต้องเปิดใช้โหมด 4G LTE ที่ผ่านการปรับปรุงในการตั้งค่าระบบ"</string>
+    <string name="enable_video_calling_dialog_settings" msgid="576528473599603249">"การตั้งค่าเครือข่าย"</string>
+    <string name="enable_video_calling_dialog_close" msgid="7411471282167927991">"ปิด"</string>
 </resources>
