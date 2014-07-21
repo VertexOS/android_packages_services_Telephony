@@ -17,6 +17,7 @@
 package com.android.phone;
 
 import android.content.Context;
+import android.media.AudioAttributes;
 import android.media.AudioManager;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
@@ -48,6 +49,11 @@ public class Ringer {
 
     private static final int VIBRATE_LENGTH = 1000; // ms
     private static final int PAUSE_LENGTH = 1000; // ms
+
+    private static final AudioAttributes VIBRATION_ATTRIBUTES = new AudioAttributes.Builder()
+            .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+            .setUsage(AudioAttributes.USAGE_NOTIFICATION_TELEPHONY_RINGTONE)
+            .build();
 
     /** The singleton instance. */
     private static Ringer sInstance;
@@ -253,7 +259,7 @@ public class Ringer {
     private class VibratorThread extends Thread {
         public void run() {
             while (mContinueVibrating) {
-                mVibrator.vibrate(VIBRATE_LENGTH, AudioManager.STREAM_RING);
+                mVibrator.vibrate(VIBRATE_LENGTH, VIBRATION_ATTRIBUTES);
                 SystemClock.sleep(VIBRATE_LENGTH + PAUSE_LENGTH);
             }
         }
