@@ -33,6 +33,8 @@ import android.text.TextUtils;
 import com.android.internal.telephony.Call;
 import com.android.internal.telephony.CallStateException;
 import com.android.internal.telephony.Phone;
+
+import com.android.internal.telephony.PhoneConstants;
 import com.android.internal.telephony.PhoneFactory;
 import com.android.internal.telephony.SubscriptionController;
 
@@ -224,8 +226,14 @@ public class TelephonyConnectionService extends ConnectionService {
         }
 
         if (originalConnection == null) {
+            int disconnectCause = DisconnectCause.ERROR_UNSPECIFIED;
+
+            // On GSM phones, null connection means that we dialed an MMI code
+            if (phone.getPhoneType() == PhoneConstants.PHONE_TYPE_GSM) {
+                disconnectCause = DisconnectCause.DIALED_MMI;
+            }
             Log.d(this, "startOutgoingCall, phone.dial returned null");
-            response.onFailure(request, DisconnectCause.ERROR_UNSPECIFIED, "Connection is null");
+            response.onFailure(request, disconnectCause, "Connection is null");
             return;
         }
 
