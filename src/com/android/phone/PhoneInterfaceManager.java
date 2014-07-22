@@ -62,6 +62,7 @@ import com.android.internal.telephony.dataconnection.DctController;
 import com.android.internal.telephony.uicc.AdnRecord;
 import com.android.internal.telephony.uicc.IccIoResult;
 import com.android.internal.telephony.uicc.IccUtils;
+import com.android.internal.telephony.uicc.UiccCard;
 import com.android.internal.telephony.uicc.UiccCarrierPrivilegeRules;
 import com.android.internal.telephony.uicc.UiccController;
 import com.android.internal.util.HexDump;
@@ -195,6 +196,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
             MainThreadRequest request;
             Message onCompleted;
             AsyncResult ar;
+            UiccCard uiccCard = UiccController.getInstance().getUiccCard();
 
             switch (msg.what) {
                 case CMD_HANDLE_PIN_MMI:
@@ -261,11 +263,19 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
                 case CMD_TRANSMIT_APDU:
                     request = (MainThreadRequest) msg.obj;
                     IccAPDUArgument argument = (IccAPDUArgument) request.argument;
-                    onCompleted = obtainMessage(EVENT_TRANSMIT_APDU_DONE, request);
-                    UiccController.getInstance().getUiccCard().iccTransmitApduLogicalChannel(
+                    if (uiccCard == null) {
+                        loge("iccTransmitApduLogicalChannel: No UICC");
+                        request.result = new IccIoResult(0x6F, 0, (byte[])null);
+                        synchronized (request) {
+                            request.notifyAll();
+                        }
+                    } else {
+                        onCompleted = obtainMessage(EVENT_TRANSMIT_APDU_DONE, request);
+                        uiccCard.iccTransmitApduLogicalChannel(
                             argument.channel, argument.cla, argument.command,
                             argument.p1, argument.p2, argument.p3, argument.data,
                             onCompleted);
+                    }
                     break;
 
                 case EVENT_TRANSMIT_APDU_DONE:
@@ -291,9 +301,16 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
 
                 case CMD_SEND_ENVELOPE:
                     request = (MainThreadRequest) msg.obj;
-                    onCompleted = obtainMessage(EVENT_SEND_ENVELOPE_DONE, request);
-                    UiccController.getInstance().getUiccCard().sendEnvelopeWithStatus(
-                            (String)request.argument, onCompleted);
+                    if (uiccCard == null) {
+                        loge("sendEnvelopeWithStatus: No UICC");
+                        request.result = new IccIoResult(0x6F, 0, (byte[])null);
+                        synchronized (request) {
+                            request.notifyAll();
+                        }
+                    } else {
+                        onCompleted = obtainMessage(EVENT_SEND_ENVELOPE_DONE, request);
+                        uiccCard.sendEnvelopeWithStatus((String)request.argument, onCompleted);
+                    }
                     break;
 
                 case EVENT_SEND_ENVELOPE_DONE:
@@ -319,9 +336,16 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
 
                 case CMD_OPEN_CHANNEL:
                     request = (MainThreadRequest) msg.obj;
-                    onCompleted = obtainMessage(EVENT_OPEN_CHANNEL_DONE, request);
-                    UiccController.getInstance().getUiccCard().iccOpenLogicalChannel(
-                            (String)request.argument, onCompleted);
+                    if (uiccCard == null) {
+                        loge("iccOpenLogicalChannel: No UICC");
+                        request.result = new IccIoResult(0x6F, 0, (byte[])null);
+                        synchronized (request) {
+                            request.notifyAll();
+                        }
+                    } else {
+                        onCompleted = obtainMessage(EVENT_OPEN_CHANNEL_DONE, request);
+                        uiccCard.iccOpenLogicalChannel((String)request.argument, onCompleted);
+                    }
                     break;
 
                 case EVENT_OPEN_CHANNEL_DONE:
@@ -347,11 +371,16 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
 
                 case CMD_CLOSE_CHANNEL:
                     request = (MainThreadRequest) msg.obj;
-                    onCompleted = obtainMessage(EVENT_CLOSE_CHANNEL_DONE,
-                            request);
-                    UiccController.getInstance().getUiccCard().iccCloseLogicalChannel(
-                            (Integer) request.argument,
-                            onCompleted);
+                    if (uiccCard == null) {
+                        loge("iccCloseLogicalChannel: No UICC");
+                        request.result = new IccIoResult(0x6F, 0, (byte[])null);
+                        synchronized (request) {
+                            request.notifyAll();
+                        }
+                    } else {
+                        onCompleted = obtainMessage(EVENT_CLOSE_CHANNEL_DONE, request);
+                        uiccCard.iccCloseLogicalChannel((Integer) request.argument, onCompleted);
+                    }
                     break;
 
                 case EVENT_CLOSE_CHANNEL_DONE:
@@ -1685,14 +1714,23 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
 
     @Override
     public int hasCarrierPrivileges() {
-        return UiccController.getInstance().getUiccCard().getCarrierPrivilegeStatusForCurrentTransaction(
+        UiccCard card = UiccController.getInstance().getUiccCard();
+        if (card == null) {
+            loge("hasCarrierPrivileges: No UICC");
+            return TelephonyManager.CARRIER_PRIVILEGE_STATUS_RULES_NOT_LOADED;
+        }
+        return card.getCarrierPrivilegeStatusForCurrentTransaction(
                 mPhone.getContext().getPackageManager());
     }
 
     @Override
     public int checkCarrierPrivilegesForPackage(String pkgname) {
-        return UiccController.getInstance().getUiccCard().getCarrierPrivilegeStatus(
-                mPhone.getContext().getPackageManager(), pkgname);
+        UiccCard card = UiccController.getInstance().getUiccCard();
+        if (card == null) {
+            loge("checkCarrierPrivilegesForPackage: No UICC");
+            return TelephonyManager.CARRIER_PRIVILEGE_STATUS_RULES_NOT_LOADED;
+        }
+        return card.getCarrierPrivilegeStatus(mPhone.getContext().getPackageManager(), pkgname);
     }
 
     @Override
