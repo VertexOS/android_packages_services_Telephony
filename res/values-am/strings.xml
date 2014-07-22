@@ -52,12 +52,13 @@
     <string name="requesting_unlock" msgid="6412629401033249351">"አውታረመረብ ለማስከፈት በመጠየቅ ላይ..."</string>
     <string name="unlock_failed" msgid="6490531697031504225">"የአውታረ መረብ ክፈትጥየቃአል ተሳካም።"</string>
     <string name="unlock_success" msgid="6770085622238180152">"የአውታረ መረብክፈት ተሳክቷል።"</string>
-    <string name="mobile_network_settings_not_available" msgid="7355254462995117896">"የተንቀሳቃሽ ስልክ አውታረ መረብ ቅንብሮች ቅንብሮች ለዚህ ተጠቃሚ አይገኙም"</string>
+    <string name="mobile_network_settings_not_available" msgid="3831911315358856062">"የተንቀሳቃሽ ስልክ አውታረ መረብ ቅንብሮች ለዚህ ተጠቃሚ አይገኙም"</string>
     <string name="labelGSMMore" msgid="5930842194056092106">"የGSM  ጥሪ ቅንብሮች"</string>
     <string name="labelCDMAMore" msgid="1630676740428229339">"CDMA የጥሪ ቅንብሮች"</string>
     <string name="apn_settings" msgid="9043423184895642077">"የድረስ ነጥብ ስም"</string>
     <string name="settings_label" msgid="3876743539816984008">"የአውታረመረብ ቅንብሮች"</string>
-    <string name="connection_service" msgid="978745922583410219">"የሚጠቀሙት የግንኙነት አገልግሎት"</string>
+    <!-- no translation found for phone_accounts (8810358208981265351) -->
+    <skip />
     <string name="connection_service_default_label" msgid="1498481943805913754">"አብሮ የተገነባ የግንኙነት አገልግሎት"</string>
     <string name="voicemail" msgid="8693759337917898954">"የድምፅ መልዕክት"</string>
     <string name="voicemail_abbreviated" msgid="2215592488517217448">"VM:"</string>
@@ -124,7 +125,7 @@
     <string name="no_change" msgid="3186040086622435212">"ምንም ለውጥ አልተደረገም።"</string>
     <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"የድምፅ መልዕክት አገልግሎት ምረጥ"</string>
     <string name="voicemail_default" msgid="5902099213882352338">"ድምጸ ተያያዥ ሞደም"</string>
-    <string name="mobile_networks" msgid="5540397602919106177">"የተንቀሳቃሽ ስልክ አውታረ መረብ ቅንብሮች"</string>
+    <string name="mobile_networks" msgid="2843854043339307375">"የተንቀሳቃሽ ስልክ አውታረ መረብ ቅንብሮች"</string>
     <string name="label_available" msgid="1181658289009300430">"የሚገኙ አውታረመረቦች"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"በመፈለግ ላይ…"</string>
     <string name="empty_networks_list" msgid="4249426905018815316">"ምንም አውታረመረብ አልተገኘም።"</string>
@@ -172,7 +173,7 @@
     <item msgid="3817924849415716259">"GSM / WCDMA ተመራጭ"</item>
   </string-array>
     <string name="data_enabled" msgid="5972538663568715366">"ውሂብ ነቅቷል"</string>
-    <string name="data_enable_summary" msgid="5022018967714633874">"በተንቀሳቃሽ ስልክ አውታረ መረብ ላይ የውሂብ መድረስ አንቃ"</string>
+    <string name="data_enable_summary" msgid="2382798156640007971">"የውሂብ አጠቃቀም ፍቀድ"</string>
     <string name="roaming" msgid="8871412572928323707">"ውሂብ በእንቅስቃሴ ላይ"</string>
     <string name="roaming_enable" msgid="7331106985174381987">"በእንቅስቃሴ ላይ ሲሆን ወደ ውሂብ አገልግሎቶች ተያያዝ"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"በእንቅስቃሴ ላይ ሲሆን ወደ ውሂብ አገልግሎቶች ተያያዝ"</string>
@@ -190,7 +191,7 @@
     <string name="throttle_data_rate_reduced_subtext" msgid="7492763592720107737">"<xliff:g id="USED_0">%1$s</xliff:g>ከከፍተኛው ዘሏል\n የውሂብ ደረጃ ወደ <xliff:g id="USED_1">%2$d</xliff:g> Kb/s ዝቅ ብሏል።"</string>
     <string name="throttle_time_frame_subtext" msgid="7732763021560399960">"የ<xliff:g id="USED_0">%1$d</xliff:g>٪ ዙር ሄዷል \nቀጣይ ክፍለ ጊዜ በ<xliff:g id="USED_1">%2$d</xliff:g> ቀኖች(<xliff:g id="USED_2">%3$s</xliff:g>) ይጀምራል"</string>
     <string name="throttle_rate_subtext" msgid="2149102656120726855">"የውሂብ አጠቃቀም ወሰን ከበለጠየውሂብ ደረጃ ወደ <xliff:g id="USED">%1$d</xliff:g>Kb/s ቀንሷል።"</string>
-    <string name="throttle_help_subtext" msgid="5217706521499010816">"ተጨማሪ መረጃ ስለ ድምጸ ተያያዥ ሞደምዎ ተንቀሳቃሽ ስልክ አውታረ መረብዎ ውሂብ አጠቃቀም መምሪያ"</string>
+    <string name="throttle_help_subtext" msgid="3633091498168446044">"ተጨማሪ የአገልግሎት አቅራቢዎ የተንቀሳቃሽ ስልክ አውታረ መረብዎ ውሂብ አጠቃቀም መመሪያ"</string>
     <string name="cell_broadcast_sms" msgid="5584192824053625842">"የተንቀሳቃሽ ስልክ SMS ስርጭት"</string>
     <string name="enable_disable_cell_bc_sms" msgid="4851147873691392255">"የተንቀሳቃሽ ስልክ SMS ስርጭት"</string>
     <string name="cell_bc_sms_enable" msgid="6441688565738921084">"የ SMS ህዋስ ማሰራጫ አልነቃም"</string>
@@ -409,7 +410,7 @@
     <string name="notification_missedCall_message" msgid="3049928912736917988">"መልዕክት"</string>
     <string name="incall_error_power_off" msgid="6550191216405193368">"ለመደወል፣ መጀመሪያየአውሮፕላኑን ሁነታ አጥፋ።"</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"በአውታረ መረቡ ላይ አልተመዘገበም።"</string>
-    <string name="incall_error_out_of_service" msgid="8587993036435080418">"የተንቀሳቃሽ አደራጅ የለም።"</string>
+    <string name="incall_error_out_of_service" msgid="4100065333878929223">"የተንቀሳቃሽ ስልክ አውታረ መረብ አይገኝም።"</string>
     <string name="incall_error_no_phone_number_supplied" msgid="4197432103471807739">"ጥሪ አልተላከም፣ ትክክለኛ ቁጥር አልገባም።"</string>
     <string name="incall_error_call_failed" msgid="4313552620858880999">"ጥሪ አልተላከም።"</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"የMMI sequence…"</string>
@@ -420,7 +421,6 @@
     <string name="incall_error_supp_service_conference" msgid="2505727299596357312">"ለስብሰባ ጥሪዎች አልተቻለም።"</string>
     <string name="incall_error_supp_service_reject" msgid="7055164130563826216">"ጥሪ አለመቀበል አልተቻለም።"</string>
     <string name="incall_error_supp_service_hangup" msgid="7417583238334762737">"ጥሪ(ዎችን) ለመተው አልተቻለም።"</string>
-    <string name="incall_call_type_label_sip" msgid="2310958283037924371">"የበይነመረብ  ጥሪ"</string>
     <string name="emergency_enable_radio_dialog_title" msgid="4627849966634578257">"የአደጋ ጊዜ ጥሪ"</string>
     <string name="emergency_enable_radio_dialog_message" msgid="207613549344420291">"ሬዲዮ ክፈት"</string>
     <string name="emergency_enable_radio_dialog_retry" msgid="3724423402363063736">"ከአገልግሎት መስጫ ክልል ውጪ፣ ድጋሚ በመሞከር ላይ..."</string>
@@ -506,98 +506,10 @@
     <string name="contactPhoto" msgid="4713193418046639466">"የዕውቂያ ፎቶ"</string>
     <string name="goPrivate" msgid="865837794424530980">"ወደ ብሕታዊነት ሂድ"</string>
     <string name="selectContact" msgid="781975788478987237">"ዕውቂያ ምረጥ"</string>
-    <string name="sip_settings" msgid="6699045718560859691">"የበይነ መረብ ጥሪ ቅንብሮች"</string>
-    <string name="sip_accounts" msgid="2097054001288457163">"የበይነ መረብ ጥሪ (SIP) መለያ"</string>
-    <string name="sip_accounts_title" msgid="1212889069281054570">"መለያዎች"</string>
-    <string name="sip_receive_calls" msgid="5635685570889971559">"ገቢ ጥሪዎች ተቀበል"</string>
-    <string name="sip_receive_calls_summary" msgid="8403613238633679184">"የባትሪ ህይወት ይቀንሳል"</string>
-    <string name="sip_call_options_title" msgid="27433718808839672">"የበየነ መረብ ጥሪ ተጠቀም"</string>
-    <string name="sip_call_options_wifi_only_title" msgid="145572394529090811">"የበይነመረብ ጥሪ(Wi-Fi ብቻ) ተጠቀም"</string>
-    <string name="sip_call_options_entry_1" msgid="6556668894178520760">"ለሁሉም ጥሪዎች የውሂብ አውታረመረብ ሲኖር"</string>
-    <string name="sip_call_options_entry_2" msgid="6789764029719494361">"ለበይነ መረብ ጥሪዎች ብቻ"</string>
-    <string name="sip_call_options_entry_3" msgid="7474809001402649185">"ለእያንዳንዱ ጥሪ ጠይቅ"</string>
-    <string name="sip_call_options_wifi_only_entry_1" msgid="7423523864471650069">"ለሁሉም ጥሪዎች"</string>
-    <string name="pick_outgoing_call_phone_type" msgid="5622916534828338675">"ጥሪ አድርግ"</string>
-    <string name="pick_outgoing_sip_phone" msgid="7012322118236208875">"የበየነ መረብ ጥሪ መለያ ተጠቀም፡"</string>
-    <string name="remember_my_choice" msgid="7058059586169290705">"ሁልጊዜ የበይነመረብ ጥሪዎችን ለማድረግ ተጠቀም"</string>
-    <string name="reset_my_choice_hint" msgid="5523030209803567922">"የትኛውን የበየነ መረብ የመደወያ መለያ ለመጠቀም በነባሪ ከስልኩ&gt; ቅንብሮች  &gt; የበየነ መረብ ቅንብሮች  &gt; የመለያዎች ማሳያ መለወጥ ይችላሉ።"</string>
-    <string name="pstn_phone" msgid="8782554491484326429">"የተንቀሳቃሽ ስልክ ጥሪ"</string>
-    <string name="internet_phone" msgid="1147922660195095810">"የበይነመረብ  ጥሪ"</string>
-    <string name="no_sip_account_found_title" msgid="6266249392379373628">"ምንም የበይነ መረብ ጥሪ መለያ"</string>
-    <string name="no_sip_account_found" msgid="724325811961769997">"በዚህ ስልክ ላይ ምንም የበየነ መረብ መደወያ መለያዎች የሉም። አሁን አንድ ማከል ይፈልጋሉ?"</string>
-    <string name="sip_menu_add" msgid="8757508498518881500">"አክል"</string>
-    <string name="add_sip_account" msgid="5904858426290097611">"መለያ አክል"</string>
-    <string name="remove_sip_account" msgid="7645900420385682570">"መለያ አስወግድ"</string>
-    <string name="sip_account_list" msgid="5480058210652194306">"SIP መለያዎች"</string>
-    <string name="saving_account" msgid="52903398217017954">"መለያውን በማስቀመጥ ላይ.."</string>
-    <string name="removing_account" msgid="7183999896088628100">"መለያውን በማስወገድ ላይ..."</string>
-    <string name="sip_menu_save" msgid="5842531129356014943">"አስቀምጥ"</string>
-    <string name="sip_menu_discard" msgid="524075892158789701">"አስወግድ"</string>
-    <string name="alert_dialog_close" msgid="7759635137627626235">"መገለጫውን ዝጋ"</string>
-    <string name="alert_dialog_ok" msgid="3580379406983564080">"ይሁን"</string>
-    <string name="close_profile" msgid="6886968271423155284">"ዝጋ"</string>
-    <string name="primary_account_summary_with" msgid="1633960536212343187">"ቀዳሚ መለያ፡<xliff:g id="REGISTRATION_STATUS">%s</xliff:g>"</string>
-    <string name="registration_status_checking_status" msgid="3381868307694056727">"ሁኔታን በመመልከት ላይ..."</string>
-    <string name="registration_status_registering" msgid="4288401139400232968">"በመመዝገብ ላይ...."</string>
-    <string name="registration_status_still_trying" msgid="3185581992666091911">"አሁንም በመሞከር ላይ..."</string>
-    <string name="registration_status_not_receiving" msgid="4185572774980557758">"ጥሪዎች አይቀበልም"</string>
-    <string name="registration_status_no_data" msgid="4901476962360656611">"የበይነመረብ ግኑኝነት ስለሌለ የመለያ ምዝገባ ቆሟል፡፡"</string>
-    <string name="registration_status_no_wifi_data" msgid="4038976374713018067">"ምንም የWi-Fi ተያያዥ ስለሌለ የመለያ ምዝገባ ቆሟል"</string>
-    <string name="registration_status_not_running" msgid="4824867184446232131">"የመለያ ምዝገባ ስኬታማ አልነበረም"</string>
-    <string name="registration_status_done" msgid="884630717456439280">"ጥሪዎች በመቀበል ላይ"</string>
-    <string name="registration_status_failed_try_later" msgid="5214474354451220581">"የመለያ ምዝገባ ስኬታማ አልነበረም፤ (<xliff:g id="REGISTRATION_ERROR_MESSAGE">%s</xliff:g>)፣ ኋላ ላይ እንደገና ይሞከራል"</string>
-    <string name="registration_status_invalid_credentials" msgid="4908446367559341757">"የመለያ ምዝገባ ስኬታማ አልነበረም፤ የተሳሳተ ተጠቃሚ ስም ወይም ይለፍ ቃል፡፡"</string>
-    <string name="registration_status_server_unreachable" msgid="5733421582468991276">"የመለያ ምዝገባ ስኬታማ አልነበረም፤ የአገልጋዩን ስም ትክክለኛነት አረጋግጥ፡፡"</string>
-    <string name="third_party_account_summary" msgid="2532526738862533028">"ይህ መለያ በአሁኑ ጊዜ በ <xliff:g id="ACCOUNT_OWNER">%s</xliff:g>ትግበራ ጥቅም ላይ ነው።"</string>
-    <string name="sip_edit_title" msgid="489288416435014385">"SIP መለያ ዝርዝሮች"</string>
-    <string name="sip_edit_new_title" msgid="3659149255856520385">"SIP መለያ ዝርዝሮች"</string>
-    <string name="domain_address_title" msgid="9071787581316160480">"አገልጋይ"</string>
-    <string name="username_title" msgid="2479375923477682328">"የተጠቃሚ ስም"</string>
-    <string name="password_title" msgid="3323555249068171531">" የይለፍ ቃል"</string>
-    <string name="display_name_title" msgid="2459768196312249937">"የማሳያ ስም"</string>
-    <string name="proxy_address_title" msgid="4828301345351614273">"የወደ ውጪ እጅ አዙር አድራሻ"</string>
-    <string name="port_title" msgid="5952939408078626657">"ወደብ ቁጥር"</string>
-    <string name="transport_title" msgid="8253139511847746640">"የማጓጓዣ አይነት"</string>
-    <string name="send_keepalive_title" msgid="7533342573918645113">"keep-alive ላክ"</string>
-    <string name="set_primary_title" msgid="5351892327447571451">"እንደ ቀዳሚ መለያ አዘጋጅ"</string>
-    <string name="set_primary_summary" msgid="2219064654523258577">"ለወደ ውጪ ጥሪዎች ይጠቅማል"</string>
-    <string name="advanced_settings" msgid="8350631795335495338">"አማራጭ ቅንብሮች"</string>
-    <string name="auth_username_title" msgid="851473016307947120">"የማረጋገጫ  ተጠቃሚ ስም"</string>
-    <string name="auth_username_summary" msgid="6782012405225938629">"ተጠቃሚ ስም ለማረጋገጫ ተጠቅሟል"</string>
-    <string name="default_preference_summary" msgid="868766740121667450">"&lt;አልተዘጋጀም &gt;"</string>
-    <string name="display_name_summary" msgid="8636377460518225523">"&lt;እንደ ተጠቃሚ ስም ተመሳሳይ&gt;"</string>
-    <string name="optional_summary" msgid="1464058793789832411">"&lt;አማራጭ&gt;"</string>
-    <string name="advanced_settings_show" msgid="4668880308290857597">"▷ ሁሉን ለማሳየት ንካ"</string>
-    <string name="advanced_settings_hide" msgid="217398292824758079">"ሁሉንም ለመደበቅ ▽ ንካ"</string>
-    <string name="empty_alert" msgid="6839103946505432390">"<xliff:g id="INPUT_FIELD_NAME">%s</xliff:g>ይጠይቃል፣ ባዶ ቦታ መተው አልተቻለም።"</string>
-    <string name="not_a_valid_port" msgid="4796149266434630292">"የወደብ ቁጥር በ1000 እና 65534 ውስጥ መሆን አለበት።"</string>
-    <string name="no_internet_available_title" msgid="3327109242858406165">"ምንም በይነ መረብ ተያያዥ የለም"</string>
-    <string name="no_wifi_available_title" msgid="747881033089378758">"ምንምWi-Fi ትይይዝ የለም"</string>
-    <string name="no_internet_available" msgid="7877142631803238549">"የበይነ መረብ ጥሪ ለማድረግ፣ የበይነ መረብ መጀመሪያ ተያያዥነት ተመልከት"</string>
-    <string name="no_wifi_available" msgid="1225073547318465713">"ለአውታረ መረብ(የገመድ አልባ &amp; አውታረ መረብ ቅንብሮችን ይጠቀሙ) ጥሪዎች ወደ Wi-Fi አውታረ መረብ ማገናኘት አለብዎ።"</string>
-    <string name="no_voip" msgid="8901474054537199865">"የበይነ መረብ ጥሪ አይደገፍም"</string>
-    <string name="sip_system_decide" msgid="368030746310423471">"ራስ ሰር"</string>
-    <string name="sip_always_send_keepalive" msgid="8192080724632877132">"ሁልጊዜ ላክ"</string>
     <string name="not_voice_capable" msgid="2739898841461577811">"የድምፅ ጥሪ አይታገዝም"</string>
     <string name="respond_via_sms_setting_title" msgid="3754000371039709383">"ፈጣን ምላሾች"</string>
     <string name="respond_via_sms_setting_summary" msgid="9150281183930613065"></string>
-    <string name="description_image_button_one" msgid="5502718871331943463">"አንድ"</string>
-    <string name="description_image_button_two" msgid="4903738528222924522">"ሁለት"</string>
-    <string name="description_image_button_three" msgid="5570985408463782329">"ሦስት"</string>
-    <string name="description_image_button_four" msgid="1697520001239289074">"አራት"</string>
-    <string name="description_image_button_five" msgid="3450276493026943454">"አምስት"</string>
-    <string name="description_image_button_six" msgid="2070376172268675300">"ስድስት"</string>
-    <string name="description_image_button_seven" msgid="1757351311199993371">"ሰባት"</string>
-    <string name="description_image_button_eight" msgid="4734693919020613227">"ስምንት"</string>
-    <string name="description_image_button_nine" msgid="5568534122590597040">"ዘጠኝ"</string>
-    <string name="description_image_button_star" msgid="1976280813017254462">"ኮከብ"</string>
-    <string name="description_image_button_zero" msgid="4211255756866893605">"ዜሮ"</string>
-    <string name="description_image_button_pound" msgid="1716041284529917866">"ፓውንድ"</string>
     <string name="description_dial_button" msgid="7459705245418435351">"ደውል"</string>
-    <string name="description_delete_button" msgid="4015842181592283903">"የኋሊት ደምሳሽ"</string>
-    <string name="description_target_answer" msgid="7205604197797472471">"መልስ"</string>
-    <string name="description_target_send_sms" msgid="2098326025587950144">"SMS ላክ"</string>
-    <string name="description_target_decline" msgid="4789834364389731957">"አትቀበል"</string>
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"ንዘር"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"ንዘር"</string>
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"ድምፅ"</string>
@@ -607,9 +519,9 @@
     <string name="dtmf_tone_enable_title" msgid="827601042915852989">"የመደወያ ሰሌዳ ድምፆች ዳስ"</string>
     <string name="dial_pad_autocomplete" msgid="494525952035761075">"የመደወያ ሰሌዳ ራስ-ሙላ"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"የደወል ቅላጼ እና ንዘረት"</string>
-    <string name="choose_wifi_for_call_msg" msgid="193549297122949976">"ጥሪ ለማድረግ Wi-Fi ይጠቀሙ?"</string>
-    <string name="choose_wifi_for_call_yes" msgid="5312994368472630983">"አዎ"</string>
-    <string name="choose_wifi_for_call_no" msgid="7132239734287157307">"አይ"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"አብሮገነብ ሲም ካርዶች"</string>
-    <string name="sip_connection_service_label" msgid="3547998349299125294">"አብሮ የተሰራ የበይነመረብ መደወያ"</string>
+    <string name="enable_video_calling_title" msgid="7237253660669000899">"የቪዲዮ ጥሪ አብራ"</string>
+    <string name="enable_video_calling_dialog_msg" msgid="6547569773866546434">"የቪዲዮ ጥሪ ለማብራት በስርዓት ቅንብሮች ውስጥ የተሻሻለ የ4ጂ LTE ሁነታ ማንቃት አለብዎት።"</string>
+    <string name="enable_video_calling_dialog_settings" msgid="576528473599603249">"የአውታረመረብ ቅንብሮች"</string>
+    <string name="enable_video_calling_dialog_close" msgid="7411471282167927991">"ዝጋ"</string>
 </resources>
