@@ -173,8 +173,7 @@
     <item msgid="3817924849415716259">"‏GSM/WCDMA ترجیحی"</item>
   </string-array>
     <string name="data_enabled" msgid="5972538663568715366">"ڈیٹا فعال ہوگیا"</string>
-    <!-- no translation found for data_enable_summary (2382798156640007971) -->
-    <skip />
+    <string name="data_enable_summary" msgid="2382798156640007971">"ڈیٹا کے استعمال کی اجازت دیں"</string>
     <string name="roaming" msgid="8871412572928323707">"ڈیٹا رومنگ"</string>
     <string name="roaming_enable" msgid="7331106985174381987">"رومنگ کے وقت ڈیٹا سروسز سے مربوط ہوں"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"رومنگ کے وقت ڈیٹا سروسز سے مربوط ہوں"</string>

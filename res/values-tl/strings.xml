@@ -52,14 +52,12 @@
     <string name="requesting_unlock" msgid="6412629401033249351">"Humihiling ng pag-unlock sa network…"</string>
     <string name="unlock_failed" msgid="6490531697031504225">"Hindi matagumpay ang kahilingan na i-unlock ang network."</string>
     <string name="unlock_success" msgid="6770085622238180152">"Matagumpay ang pag-unlock ng network."</string>
-    <!-- no translation found for mobile_network_settings_not_available (3831911315358856062) -->
-    <skip />
+    <string name="mobile_network_settings_not_available" msgid="3831911315358856062">"Hindi available ang mga setting ng cellular network para sa user na ito"</string>
     <string name="labelGSMMore" msgid="5930842194056092106">"Mga setting ng tawag ng GSM"</string>
     <string name="labelCDMAMore" msgid="1630676740428229339">"Mga setting ng CDMA na tawag"</string>
     <string name="apn_settings" msgid="9043423184895642077">"Mga Pangalan ng Lugar ng Access"</string>
     <string name="settings_label" msgid="3876743539816984008">"Mga Setting ng Network"</string>
-    <!-- no translation found for phone_accounts (8810358208981265351) -->
-    <skip />
+    <string name="phone_accounts" msgid="8810358208981265351">"Mga setting ng account ng telepono"</string>
     <string name="connection_service_default_label" msgid="1498481943805913754">"Built-in na serbisyo ng koneksyon"</string>
     <string name="voicemail" msgid="8693759337917898954">"Voicemail"</string>
     <string name="voicemail_abbreviated" msgid="2215592488517217448">"VM:"</string>
@@ -126,8 +124,7 @@
     <string name="no_change" msgid="3186040086622435212">"Walang ginawang mga pagbabago."</string>
     <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"Piliin ang serbisyo ng voicemail"</string>
     <string name="voicemail_default" msgid="5902099213882352338">"Aking carrier"</string>
-    <!-- no translation found for mobile_networks (2843854043339307375) -->
-    <skip />
+    <string name="mobile_networks" msgid="2843854043339307375">"Mga setting ng cellular network"</string>
     <string name="label_available" msgid="1181658289009300430">"Mga available na network"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"Naghahanap…"</string>
     <string name="empty_networks_list" msgid="4249426905018815316">"Walang nakitang mga network."</string>
@@ -175,8 +172,7 @@
     <item msgid="3817924849415716259">"Ninanais ang GSM/WCDMA"</item>
   </string-array>
     <string name="data_enabled" msgid="5972538663568715366">"Pinagana ang data"</string>
-    <!-- no translation found for data_enable_summary (2382798156640007971) -->
-    <skip />
+    <string name="data_enable_summary" msgid="2382798156640007971">"Payagan ang paggamit ng data"</string>
     <string name="roaming" msgid="8871412572928323707">"Roaming ng data"</string>
     <string name="roaming_enable" msgid="7331106985174381987">"Kumonekta sa mga serbisyo ng data kapag nagro-roam"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"Kumonekta sa mga serbisyo ng data kapag nagro-roam"</string>
@@ -194,8 +190,7 @@
     <string name="throttle_data_rate_reduced_subtext" msgid="7492763592720107737">"Ang <xliff:g id="USED_0">%1$s</xliff:g> na maximum ay lumagpas sa\nBinabaan ang rate ng data sa <xliff:g id="USED_1">%2$d</xliff:g> Kb/s"</string>
     <string name="throttle_time_frame_subtext" msgid="7732763021560399960">"<xliff:g id="USED_0">%1$d</xliff:g>٪ ng cycle ay lumagpas sa\nMagsisimula ang susunod na tagal ng panahon sa loob ng <xliff:g id="USED_1">%2$d</xliff:g> (na) araw (<xliff:g id="USED_2">%3$s</xliff:g>)"</string>
     <string name="throttle_rate_subtext" msgid="2149102656120726855">"Ibinaba ang rate ng data sa <xliff:g id="USED">%1$d</xliff:g> Kb/s kung nalagpasan ang limitasyon sa paggamit ng data"</string>
-    <!-- no translation found for throttle_help_subtext (3633091498168446044) -->
-    <skip />
+    <string name="throttle_help_subtext" msgid="3633091498168446044">"Higit pang impormasyon tungkol sa patakaran sa paggamit ng data sa cellular network ng iyong carrier"</string>
     <string name="cell_broadcast_sms" msgid="5584192824053625842">"Cell Broadcast SMS"</string>
     <string name="enable_disable_cell_bc_sms" msgid="4851147873691392255">"Cell Broadcast SMS"</string>
     <string name="cell_bc_sms_enable" msgid="6441688565738921084">"Pinagana ang Cell Broadcast SMS"</string>
@@ -414,8 +409,7 @@
     <string name="notification_missedCall_message" msgid="3049928912736917988">"Padalhan ng mensahe"</string>
     <string name="incall_error_power_off" msgid="6550191216405193368">"Upang tumawag, paki-off ang Airplane mode."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"Hindi nakarehistro sa network."</string>
-    <!-- no translation found for incall_error_out_of_service (4100065333878929223) -->
-    <skip />
+    <string name="incall_error_out_of_service" msgid="4100065333878929223">"Hindi available ang cellular network"</string>
     <string name="incall_error_no_phone_number_supplied" msgid="4197432103471807739">"Hindi naipadala ang tawag, walang ipinasok na wastong numero."</string>
     <string name="incall_error_call_failed" msgid="4313552620858880999">"Hindi naipadala ang tawag."</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"Sinisimulan ang pagkakasunud-sunod ng MMI…"</string>

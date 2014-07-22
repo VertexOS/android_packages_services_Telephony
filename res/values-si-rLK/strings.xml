@@ -173,8 +173,7 @@
     <item msgid="3817924849415716259">"GSM/WCDMA කැමතියි"</item>
   </string-array>
     <string name="data_enabled" msgid="5972538663568715366">"දත්ත සබලයි"</string>
-    <!-- no translation found for data_enable_summary (2382798156640007971) -->
-    <skip />
+    <string name="data_enable_summary" msgid="2382798156640007971">"දත්ත භාවිතයට ඉඩ දෙන්න"</string>
     <string name="roaming" msgid="8871412572928323707">"දත්ත රෝමින්"</string>
     <string name="roaming_enable" msgid="7331106985174381987">"රෝමින් අතරතුර දත්ත සේවා වෙත සම්බන්ධ වන්න"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"රෝමින් අතරතුර දත්ත සේවා වෙත සම්බන්ධ වන්න"</string>
