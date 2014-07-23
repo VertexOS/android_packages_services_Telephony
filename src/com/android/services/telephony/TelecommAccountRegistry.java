@@ -16,8 +16,11 @@
 
 package com.android.services.telephony;
 
+import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.net.Uri;
 import android.telecomm.PhoneAccount;
 import android.telecomm.PhoneAccountHandle;
@@ -27,6 +30,7 @@ import android.telephony.TelephonyManager;
 import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneFactory;
 import com.android.internal.telephony.PhoneProxy;
+import com.android.internal.telephony.TelephonyIntents;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -36,30 +40,36 @@ import java.util.List;
  * removal of SIMs and SIP accounts.
  */
 final class TelecommAccountRegistry {
+
     private final class AccountEntry {
         private final Phone mPhone;
         private final PhoneAccount mAccount;
         private final PstnIncomingCallNotifier mIncomingCallNotifier;
 
-        AccountEntry(Phone phone, boolean isDummy) {
+        AccountEntry(Phone phone, boolean isEmergency, boolean isDummy) {
             mPhone = phone;
-            mAccount = registerPstnPhoneAccount(isDummy);
+            mAccount = registerPstnPhoneAccount(isEmergency, isDummy);
             Log.d(this, "Registered phoneAccount: %s with handle: %s",
                     mAccount, mAccount.getAccountHandle());
             mIncomingCallNotifier = new PstnIncomingCallNotifier((PhoneProxy) mPhone);
         }
 
+        void teardown() {
+            mTelecommManager.unregisterPhoneAccount(mAccount.getAccountHandle());
+            mIncomingCallNotifier.teardown();
+        }
+
         /**
          * Registers the specified account with Telecomm as a PhoneAccountHandle.
          */
-        private PhoneAccount registerPstnPhoneAccount(boolean isDummyAccount) {
+        private PhoneAccount registerPstnPhoneAccount(
+                boolean isEmergency, boolean isDummyAccount) {
             TelephonyManager telephonyManager = TelephonyManager.from(mContext);
             String dummyPrefix = isDummyAccount ? "Dummy " : "";
 
             // Build the Phone account handle.
-            PhoneAccountHandle phoneAccountHandle = isDummyAccount ?
-                    makePstnPhoneAccountHandleWithPrefix(mPhone, dummyPrefix) :
-                    makePstnPhoneAccountHandle(mPhone);
+            PhoneAccountHandle phoneAccountHandle =
+                    makePstnPhoneAccountHandleWithPrefix(mPhone, dummyPrefix, isEmergency);
 
             // Populate the phone account data.
             long subId = mPhone.getSubId();
@@ -68,15 +78,22 @@ final class TelecommAccountRegistry {
             if (line1Number == null) {
                 line1Number = "";
             }
+            String subNumber = isEmergency ? "" : mPhone.getPhoneSubInfo().getLine1Number();
+            String label = isEmergency
+                    ? "Emergency calls"
+                    : dummyPrefix + "SIM " + slotId;
+            String description = isEmergency
+                    ? "Emergency calling only"
+                    : dummyPrefix + "SIM card in slot " + slotId;
             PhoneAccount account = new PhoneAccount(
                     phoneAccountHandle,
                     Uri.fromParts(TEL_SCHEME, line1Number, null),
-                    mPhone.getPhoneSubInfo().getLine1Number(),
+                    subNumber,
                     PhoneAccount.CAPABILITY_SIM_SUBSCRIPTION |
                             PhoneAccount.CAPABILITY_CALL_PROVIDER,
                     com.android.phone.R.mipmap.ic_launcher_phone,
-                    dummyPrefix + "SIM " + slotId,
-                    dummyPrefix + "SIM card in slot " + slotId,
+                    label,
+                    description,
                     true /* supportsVideoCalling */);
 
             // Register with Telecomm and put into the account entry.
@@ -84,6 +101,19 @@ final class TelecommAccountRegistry {
             return account;
         }
     }
+
+    private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            if (TelephonyIntents.ACTION_SIM_STATE_CHANGED.equals(action)) {
+                Log.d(this, "SIM_STATE_CHANGED - rerun setup");
+                // Anytime the SIM state changes...rerun the setup.
+                tearDownAccounts();
+                setupAccounts();
+            }
+        }
+    };
 
     private static final String TEL_SCHEME = "tel";
     private static TelecommAccountRegistry sInstance;
@@ -106,9 +136,29 @@ final class TelecommAccountRegistry {
     /**
      * Sets up all the phone accounts for SIM and SIP accounts on first boot.
      */
-    void setup() {
-        // Initialize the PhoneFactory, since the PhoneApp may not yet have been set up
-        PhoneFactory.makeDefaultPhones(mContext);
+    void setupOnBoot() {
+        IntentFilter intentFilter =
+            new IntentFilter(TelephonyIntents.ACTION_SIM_STATE_CHANGED);
+        mContext.registerReceiver(mReceiver, intentFilter);
+
+        setupAccounts();
+    }
+
+    static PhoneAccountHandle makePstnPhoneAccountHandle(Phone phone) {
+        return makePstnPhoneAccountHandleWithPrefix(phone, "", false);
+    }
+
+    private static PhoneAccountHandle makePstnPhoneAccountHandleWithPrefix(
+            Phone phone, String prefix, boolean isEmergency) {
+        ComponentName pstnConnectionServiceName =
+                new ComponentName(phone.getContext(), TelephonyConnectionService.class);
+        // TODO: Should use some sort of special hidden flag to decorate this account as
+        // an emergency-only account
+        String id = isEmergency ? "E" : prefix + String.valueOf(phone.getSubId());
+        return new PhoneAccountHandle(pstnConnectionServiceName, id);
+    }
+
+    private void setupAccounts() {
         // Before we do anything, we need to clear whatever entries we registered at boot.
         mTelecommManager.clearAccounts(mContext.getPackageName());
 
@@ -119,27 +169,30 @@ final class TelecommAccountRegistry {
             long subscriptionId = phone.getSubId();
             Log.d(this, "Phone with subscription id %d", subscriptionId);
             if (subscriptionId >= 0) {
-                mAccounts.add(new AccountEntry(phone, false /* isDummy */));
+                mAccounts.add(new AccountEntry(phone, false, false /* isDummy */));
             }
+        }
+
+        // If we did not list ANY accounts, we need to provide a "default" SIM account
+        // for emergency numbers since no actual SIM is needed for dialing emergency
+        // numbers but a phone account is.
+        if (mAccounts.isEmpty()) {
+            mAccounts.add(new AccountEntry(
+                    PhoneFactory.getDefaultPhone(), true /*emergency*/, false /*isDummy*/));
         }
 
         // Add a fake account entry.
         if (phones.length > 0 && "TRUE".equals(System.getProperty("dummy_sim"))) {
-            mAccounts.add(new AccountEntry(phones[0], true /* isDummy */));
+            mAccounts.add(new AccountEntry(phones[0], false, true /* isDummy */));
         }
 
         // TODO: Add SIP accounts.
     }
 
-    static PhoneAccountHandle makePstnPhoneAccountHandle(Phone phone) {
-        return makePstnPhoneAccountHandleWithPrefix(phone, "");
-    }
-
-    private static PhoneAccountHandle makePstnPhoneAccountHandleWithPrefix(
-            Phone phone, String prefix) {
-        ComponentName pstnConnectionServiceName =
-                new ComponentName(phone.getContext(), TelephonyConnectionService.class);
-        return new PhoneAccountHandle(
-                pstnConnectionServiceName, prefix + String.valueOf(phone.getSubId()));
+    private void tearDownAccounts() {
+        for (AccountEntry entry : mAccounts) {
+            entry.teardown();
+        }
+        mAccounts.clear();
     }
 }

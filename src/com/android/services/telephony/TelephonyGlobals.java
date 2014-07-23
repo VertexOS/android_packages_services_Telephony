@@ -61,5 +61,7 @@ public class TelephonyGlobals {
         if (phone != null) {
             mTtyManager = new TtyManager(mContext, phone);
         }
+
+        TelecommAccountRegistry.getInstance(mContext).setupOnBoot();
     }
 }
