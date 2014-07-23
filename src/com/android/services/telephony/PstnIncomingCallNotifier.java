@@ -103,6 +103,11 @@ final class PstnIncomingCallNotifier {
         mPhoneProxy.getContext().registerReceiver(mRATReceiver, intentFilter);
     }
 
+    void teardown() {
+        unregisterForNotifications();
+        mPhoneProxy.getContext().unregisterReceiver(mRATReceiver);
+    }
+
     /**
      * Register for notifications from the base phone.
      * TODO(santoscordon): We should only need to interact with the phoneproxy directly. However,
@@ -127,6 +132,12 @@ final class PstnIncomingCallNotifier {
                 mPhoneBase.registerForNewRingingConnection(
                         mHandler, EVENT_NEW_RINGING_CONNECTION, null);
             }
+        }
+    }
+
+    private void unregisterForNotifications() {
+        if (mPhoneBase != null) {
+            mPhoneBase.unregisterForNewRingingConnection(mHandler);
         }
     }
 
