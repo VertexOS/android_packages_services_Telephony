@@ -1734,6 +1734,17 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     }
 
     @Override
+    public List<String> getCarrierPackageNamesForBroadcastIntent(Intent intent) {
+        UiccCard card = UiccController.getInstance().getUiccCard();
+        if (card == null) {
+            loge("getCarrierPackageNamesForBroadcastIntent: No UICC");
+            return null ;
+        }
+        return card.getCarrierPackageNamesForBroadcastIntent(
+            mPhone.getContext().getPackageManager(), intent);
+    }
+
+    @Override
     public void enableSimplifiedNetworkSettings(long subId, boolean enable) {
         enforceModifyPermissionOrCarrierPrivilege();
         if (enable) {
