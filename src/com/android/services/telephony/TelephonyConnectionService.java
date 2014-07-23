@@ -263,9 +263,11 @@ public class TelephonyConnectionService extends ConnectionService {
 
     private Phone getPhoneForAccount(PhoneAccountHandle accountHandle) {
         if (Objects.equals(mExpectedComponentName, accountHandle.getComponentName())) {
-            int phoneId = SubscriptionController.getInstance().getPhoneId(
-                    Long.parseLong(accountHandle.getId()));
-            return PhoneFactory.getPhone(phoneId);
+            if (accountHandle.getId() != null) {
+                int phoneId = SubscriptionController.getInstance().getPhoneId(
+                        Long.parseLong(accountHandle.getId()));
+                return PhoneFactory.getPhone(phoneId);
+            }
         }
         return null;
     }
