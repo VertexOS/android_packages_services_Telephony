@@ -33,7 +33,6 @@ import android.text.TextUtils;
 import com.android.internal.telephony.Call;
 import com.android.internal.telephony.CallStateException;
 import com.android.internal.telephony.Phone;
-
 import com.android.internal.telephony.PhoneConstants;
 import com.android.internal.telephony.PhoneFactory;
 import com.android.internal.telephony.SubscriptionController;
@@ -83,15 +82,16 @@ public class TelephonyConnectionService extends ConnectionService {
             return;
         }
 
+        boolean isEmergencyNumber = PhoneNumberUtils.isPotentialEmergencyNumber(number);
+
         // Get the right phone object from the account data passed in.
-        final Phone phone = getPhoneForAccount(request.getAccountHandle());
+        final Phone phone = getPhoneForAccount(request.getAccountHandle(), isEmergencyNumber);
         if (phone == null) {
             Log.d(this, "onCreateOutgoingConnection, phone is null");
             response.onFailure(request, DisconnectCause.ERROR_UNSPECIFIED, "Phone is null");
             return;
         }
 
-        boolean isEmergencyNumber = PhoneNumberUtils.isPotentialEmergencyNumber(number);
         if (!isEmergencyNumber) {
             int state = phone.getServiceState().getState();
             switch (state) {
@@ -162,7 +162,7 @@ public class TelephonyConnectionService extends ConnectionService {
             CreateConnectionResponse<Connection> response) {
         Log.v(this, "onCreateIncomingConnection, request: " + request);
 
-        Phone phone = getPhoneForAccount(request.getAccountHandle());
+        Phone phone = getPhoneForAccount(request.getAccountHandle(), false);
         if (phone == null) {
             response.onFailure(request, DisconnectCause.ERROR_UNSPECIFIED, null);
             return;
@@ -261,12 +261,20 @@ public class TelephonyConnectionService extends ConnectionService {
         return false;
     }
 
-    private Phone getPhoneForAccount(PhoneAccountHandle accountHandle) {
+    private Phone getPhoneForAccount(PhoneAccountHandle accountHandle, boolean isEmergency) {
+        if (isEmergency) {
+            return PhoneFactory.getDefaultPhone();
+        }
+
         if (Objects.equals(mExpectedComponentName, accountHandle.getComponentName())) {
             if (accountHandle.getId() != null) {
-                int phoneId = SubscriptionController.getInstance().getPhoneId(
-                        Long.parseLong(accountHandle.getId()));
-                return PhoneFactory.getPhone(phoneId);
+                try {
+                    int phoneId = SubscriptionController.getInstance().getPhoneId(
+                            Long.parseLong(accountHandle.getId()));
+                    return PhoneFactory.getPhone(phoneId);
+                } catch (NumberFormatException e) {
+                    Log.w(this, "Could not get subId from account: " + accountHandle.getId());
+                }
             }
         }
         return null;
