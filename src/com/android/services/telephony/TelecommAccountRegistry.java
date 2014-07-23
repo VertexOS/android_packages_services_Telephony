@@ -44,6 +44,8 @@ final class TelecommAccountRegistry {
         AccountEntry(Phone phone, boolean isDummy) {
             mPhone = phone;
             mAccount = registerPstnPhoneAccount(isDummy);
+            Log.d(this, "Registered phoneAccount: %s with handle: %s",
+                    mAccount, mAccount.getAccountHandle());
             mIncomingCallNotifier = new PstnIncomingCallNotifier((PhoneProxy) mPhone);
         }
 
@@ -62,9 +64,13 @@ final class TelecommAccountRegistry {
             // Populate the phone account data.
             long subId = mPhone.getSubId();
             int slotId = mPhone.getPhoneId() + 1;
+            String line1Number = telephonyManager.getLine1Number(subId);
+            if (line1Number == null) {
+                line1Number = "";
+            }
             PhoneAccount account = new PhoneAccount(
                     phoneAccountHandle,
-                    Uri.fromParts(TEL_SCHEME, telephonyManager.getLine1Number(subId), null),
+                    Uri.fromParts(TEL_SCHEME, line1Number, null),
                     mPhone.getPhoneSubInfo().getLine1Number(),
                     PhoneAccount.CAPABILITY_SIM_SUBSCRIPTION |
                             PhoneAccount.CAPABILITY_CALL_PROVIDER,
