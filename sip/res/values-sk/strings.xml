@@ -27,7 +27,7 @@
     <string name="sip_call_options_entry_2" msgid="3432624809972300467">"Iba pre internetové hovory"</string>
     <string name="sip_call_options_entry_3" msgid="1493464396638124047">"Zakaždým sa spýtať"</string>
     <string name="sip_call_options_wifi_only_entry_1" msgid="1358513095551847314">"Pre všetky hovory"</string>
-    <string name="pick_outgoing_call_phone_type" msgid="7140865415705473564">"Uskutočniť hovor"</string>
+    <string name="pick_outgoing_call_phone_type" msgid="7140865415705473564">"Volanie prostredníctvom"</string>
     <string name="pick_outgoing_sip_phone" msgid="635431914692273175">"Použiť účet na internetové hovory:"</string>
     <string name="remember_my_choice" msgid="6204557816977242680">"Vždy používať pri internetových hovoroch"</string>
     <string name="reset_my_choice_hint" msgid="5681276499400166714">"Predvolený účet na internetové hovory môžete zvoliť na obrazovke Telefón &gt; Nastavenia &gt; Nastavenia internetového hovoru &gt; Účty."</string>

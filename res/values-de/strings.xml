@@ -94,7 +94,7 @@
     <string name="sum_cfnry_enabled" msgid="6955775691317662910">"Weiterleitung an <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfnry_disabled" msgid="8422350929957344729">"Deaktiviert"</string>
     <string name="disable_cfnry_forbidden" msgid="4308233959150658058">"Ihr Mobilfunkanbieter unterstützt die Deaktivierung der Anrufweiterleitung bei Nichtbeantwortung nicht."</string>
-    <string name="labelCFNRc" msgid="47183615370850000">"Weiterleiten falls nicht erreichbar"</string>
+    <string name="labelCFNRc" msgid="47183615370850000">"Weiterleiten falls unerreichbar"</string>
     <string name="messageCFNRc" msgid="6380695421020295119">"Nummer falls nicht erreichbar"</string>
     <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"Weiterleitung an <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfnrc_disabled" msgid="7222141261321276464">"Deaktiviert"</string>

@@ -57,8 +57,7 @@
     <string name="labelCDMAMore" msgid="1630676740428229339">"Configuración de llamadas de CDMA"</string>
     <string name="apn_settings" msgid="9043423184895642077">"Nombres de puntos de acceso"</string>
     <string name="settings_label" msgid="3876743539816984008">"Configuración de red"</string>
-    <!-- no translation found for phone_accounts (8810358208981265351) -->
-    <skip />
+    <string name="phone_accounts" msgid="8810358208981265351">"Configuración de cuenta telefónica"</string>
     <string name="connection_service_default_label" msgid="1498481943805913754">"Servicio de conexión integrado"</string>
     <string name="voicemail" msgid="8693759337917898954">"Correo de voz"</string>
     <string name="voicemail_abbreviated" msgid="2215592488517217448">"Correo de voz:"</string>

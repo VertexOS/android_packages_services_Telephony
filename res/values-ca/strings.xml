@@ -57,8 +57,7 @@
     <string name="labelCDMAMore" msgid="1630676740428229339">"Configuració de trucades CDMA"</string>
     <string name="apn_settings" msgid="9043423184895642077">"APN"</string>
     <string name="settings_label" msgid="3876743539816984008">"Configuració de xarxa"</string>
-    <!-- no translation found for phone_accounts (8810358208981265351) -->
-    <skip />
+    <string name="phone_accounts" msgid="8810358208981265351">"Configuració del compte del telèfon"</string>
     <string name="connection_service_default_label" msgid="1498481943805913754">"Servei de connexió incorporat"</string>
     <string name="voicemail" msgid="8693759337917898954">"Correu de veu"</string>
     <string name="voicemail_abbreviated" msgid="2215592488517217448">"CV:"</string>
@@ -135,14 +134,14 @@
     <string name="not_allowed" msgid="5613353860205691579">"La targeta SIM no et permet connectar-te a aquesta xarxa."</string>
     <string name="connect_later" msgid="2308119155752343975">"Ara mateix no es pot connectar a aquesta xarxa. Torna-ho a provar més tard."</string>
     <string name="registration_done" msgid="495135664535876612">"Registrat a la xarxa."</string>
-    <string name="sum_carrier_select" msgid="3494252551249882718">"Selecciona un operador de xarxa"</string>
+    <string name="sum_carrier_select" msgid="3494252551249882718">"Tria un operador de xarxa"</string>
     <string name="sum_search_networks" msgid="2921092249873272715">"Cerca totes les xarxes disponibles"</string>
     <string name="select_automatically" msgid="5628402124471810174">"Selecció automàtica"</string>
     <string name="sum_select_automatically" msgid="5614890115123292400">"Selecciona automàticament la xarxa preferida"</string>
     <string name="register_automatically" msgid="6017849844573519637">"Registre automàtic..."</string>
-    <string name="preferred_network_mode_title" msgid="2336624679902659306">"Tipus de xarxa preferida"</string>
+    <string name="preferred_network_mode_title" msgid="2336624679902659306">"Tipus de xarxa preferit"</string>
     <string name="preferred_network_mode_summary" msgid="1434820673166126609">"Canvia el mode de funcionament de la xarxa"</string>
-    <string name="preferred_network_mode_dialogtitle" msgid="4048082093347807230">"Tipus de xarxa preferida"</string>
+    <string name="preferred_network_mode_dialogtitle" msgid="4048082093347807230">"Tipus de xarxa preferit"</string>
     <string name="preferred_network_mode_wcdma_perf_summary" msgid="8521677230113533809">"Mode de xarxa preferit: WCDMA preferit"</string>
     <string name="preferred_network_mode_gsm_only_summary" msgid="3352445413437453511">"Mode de xarxa preferit: només GSM"</string>
     <string name="preferred_network_mode_wcdma_only_summary" msgid="2836897236221063413">"Mode de xarxa preferit: només WCDMA"</string>
@@ -177,8 +176,8 @@
     <string name="roaming" msgid="8871412572928323707">"Itinerància de dades"</string>
     <string name="roaming_enable" msgid="7331106985174381987">"Estableix connexió amb serveis de dades en itinerància"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"Estableix connexió amb serveis de dades en itinerància"</string>
-    <string name="roaming_reenable_message" msgid="8913735676127858115">"Has perdut la connectivitat de dades perquè has abandonat la xarxa local amb la itinerància de dades desactivada."</string>
-    <string name="roaming_warning" msgid="7820963598559553967">"Voleu permetre la itinerància de dades? Els costos poden ser molt alts."</string>
+    <string name="roaming_reenable_message" msgid="8913735676127858115">"Has perdut la connectivitat de dades, perquè has abandonat la xarxa domèstica i la itinerància de dades està desactivada."</string>
+    <string name="roaming_warning" msgid="7820963598559553967">"Voleu permetre la itinerància de dades? És possible que se\'t facturin càrrecs d\'itinerància elevats."</string>
     <string name="gsm_umts_options" msgid="6538311689850981686">"Opcions de GSM/UMTS"</string>
     <string name="cdma_options" msgid="4016822858172249884">"Opcions de CDMA"</string>
     <string name="throttle_data_usage" msgid="3715677828160555808">"Ús de dades"</string>

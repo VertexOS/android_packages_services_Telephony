@@ -57,8 +57,7 @@
     <string name="labelCDMAMore" msgid="1630676740428229339">"CDMA ඇමතුම් සැකසුම්"</string>
     <string name="apn_settings" msgid="9043423184895642077">"ප්‍රවේශ ලක්ෂ්‍ය නම්"</string>
     <string name="settings_label" msgid="3876743539816984008">"ජාල සැකසුම්"</string>
-    <!-- no translation found for phone_accounts (8810358208981265351) -->
-    <skip />
+    <string name="phone_accounts" msgid="8810358208981265351">"දුරකථන ගිණුම සැකසීම"</string>
     <string name="connection_service_default_label" msgid="1498481943805913754">"තිළැලි සම්බන්ධතා සේවාව"</string>
     <string name="voicemail" msgid="8693759337917898954">"හඬ තැපෑල"</string>
     <string name="voicemail_abbreviated" msgid="2215592488517217448">"VM:"</string>

@@ -43,10 +43,10 @@
     <string name="pause_prompt_no" msgid="6686238803236884877">"否"</string>
     <string name="wild_prompt_str" msgid="5543521676355533577">"将通配符替换为"</string>
     <string name="no_vm_number" msgid="4164780423805688336">"缺少语音信箱号码"</string>
-    <string name="no_vm_number_msg" msgid="1300729501030053828">"SIM 卡上未存储语音信箱号码。"</string>
+    <string name="no_vm_number_msg" msgid="1300729501030053828">"SIM卡上未存储语音信箱号码。"</string>
     <string name="add_vm_number_str" msgid="4676479471644687453">"添加号码"</string>
-    <string name="puk_unlocked" msgid="2284912838477558454">"您的 SIM 卡已解锁。正在解锁您的手机..."</string>
-    <string name="label_ndp" msgid="780479633159517250">"SIM 网络解锁 PIN"</string>
+    <string name="puk_unlocked" msgid="2284912838477558454">"您的SIM卡已解锁。正在解锁您的手机..."</string>
+    <string name="label_ndp" msgid="780479633159517250">"SIM网络解锁PIN码"</string>
     <string name="sim_ndp_unlock_text" msgid="683628237760543009">"解锁"</string>
     <string name="sim_ndp_dismiss_text" msgid="1604823375752456947">"关闭"</string>
     <string name="requesting_unlock" msgid="6412629401033249351">"正在请求网络解锁..."</string>
@@ -57,8 +57,7 @@
     <string name="labelCDMAMore" msgid="1630676740428229339">"CDMA 通话设置"</string>
     <string name="apn_settings" msgid="9043423184895642077">"接入点名称 (APN)"</string>
     <string name="settings_label" msgid="3876743539816984008">"网络设置"</string>
-    <!-- no translation found for phone_accounts (8810358208981265351) -->
-    <skip />
+    <string name="phone_accounts" msgid="8810358208981265351">"电话帐户设置"</string>
     <string name="connection_service_default_label" msgid="1498481943805913754">"内置网络连接服务"</string>
     <string name="voicemail" msgid="8693759337917898954">"语音信箱"</string>
     <string name="voicemail_abbreviated" msgid="2215592488517217448">"语音信箱："</string>
@@ -106,7 +105,7 @@
     <string name="updating_settings" msgid="8171225533884883252">"正在更新设置..."</string>
     <string name="reverting_settings" msgid="4752151682666912828">"正在恢复设置..."</string>
     <string name="response_error" msgid="6674110501330139405">"网络响应异常。"</string>
-    <string name="exception_error" msgid="7027667130619518211">"网络或 SIM 卡出错。"</string>
+    <string name="exception_error" msgid="7027667130619518211">"网络或SIM卡出错。"</string>
     <string name="fdn_check_failure" msgid="18200614306525434">"拨号应用的固定拨号设置已启用。因此，部分与拨号相关的功能将不能正常使用。"</string>
     <string name="radio_off_error" msgid="2304459933248513376">"请先开启无线装置，然后再查看这些设置。"</string>
     <string name="close_dialog" msgid="2365884406356986917">"确定"</string>
@@ -132,7 +131,7 @@
     <string name="search_networks" msgid="1601136049300882441">"搜索网络"</string>
     <string name="network_query_error" msgid="6828516148953325006">"搜索网络时出错。"</string>
     <string name="register_on_network" msgid="9055203954040805084">"正在<xliff:g id="NETWORK">%s</xliff:g>上注册..."</string>
-    <string name="not_allowed" msgid="5613353860205691579">"您的 SIM 卡不允许连接到此网络。"</string>
+    <string name="not_allowed" msgid="5613353860205691579">"您的SIM卡不允许连接到此网络。"</string>
     <string name="connect_later" msgid="2308119155752343975">"目前无法连接到此网络，请稍后重试。"</string>
     <string name="registration_done" msgid="495135664535876612">"已在网络上注册。"</string>
     <string name="sum_carrier_select" msgid="3494252551249882718">"选择网络运营商"</string>
@@ -291,7 +290,7 @@
     <item msgid="1205664026446156265">"自动"</item>
   </string-array>
     <string name="cdma_subscription_title" msgid="1162564010076763284">"CDMA 订阅"</string>
-    <string name="cdma_subscription_summary" msgid="2530890766115781140">"在 RUIM/SIM 和 NV 之间进行切换"</string>
+    <string name="cdma_subscription_summary" msgid="2530890766115781140">"在RUIM/SIM和NV之间切换"</string>
     <string name="cdma_subscription_dialogtitle" msgid="2699527950523333110">"订阅"</string>
   <string-array name="cdma_subscription_choices">
     <item msgid="2258014151300708431">"RUIM/SIM"</item>
@@ -343,40 +342,40 @@
     <string name="fdn_invalid_number" msgid="1494755047900009147">"系统未更新 FDN，因为号码不能超过 20 位。"</string>
     <string name="pin2_or_fdn_invalid" msgid="6025144083384701197">"FDN 未更新。PIN2 有误，或电话号码遭拒。"</string>
     <string name="fdn_failed" msgid="540018079008319747">"FDN 操作失败。"</string>
-    <string name="simContacts_emptyLoading" msgid="2203331234764498011">"正在从 SIM 卡读取..."</string>
-    <string name="simContacts_empty" msgid="5270660846489561932">"SIM 卡上无联系人。"</string>
+    <string name="simContacts_emptyLoading" msgid="2203331234764498011">"正在从SIM卡读取..."</string>
+    <string name="simContacts_empty" msgid="5270660846489561932">"SIM卡上无联系人。"</string>
     <string name="simContacts_title" msgid="1861472842524839921">"选择要导入的联系人"</string>
-    <string name="simContacts_airplaneMode" msgid="1846161429087789936">"要从 SIM 卡导入联系人，请先关闭飞行模式。"</string>
-    <string name="enable_pin" msgid="5422767284133234860">"启用/禁用 SIM 卡 PIN"</string>
-    <string name="change_pin" msgid="9174186126330785343">"更改 SIM 卡 PIN"</string>
-    <string name="enter_pin_text" msgid="8532615714751931951">"SIM 卡 PIN："</string>
+    <string name="simContacts_airplaneMode" msgid="1846161429087789936">"要从SIM卡导入联系人，请先关闭飞行模式。"</string>
+    <string name="enable_pin" msgid="5422767284133234860">"启用/停用SIM卡PIN码"</string>
+    <string name="change_pin" msgid="9174186126330785343">"更改SIM卡PIN码"</string>
+    <string name="enter_pin_text" msgid="8532615714751931951">"SIM卡PIN码："</string>
     <string name="oldPinLabel" msgid="5287773661246368314">"旧 PIN"</string>
     <string name="newPinLabel" msgid="207488227285336897">"新 PIN"</string>
     <string name="confirmPinLabel" msgid="257597715098070206">"确认新 PIN"</string>
     <string name="badPin" msgid="8955102849303984935">"键入的旧 PIN 有误，请重试。"</string>
     <string name="mismatchPin" msgid="5923253370683071889">"键入的 PIN 不一致，请重试。"</string>
     <string name="invalidPin" msgid="5981171102258684792">"输入 4 到 8 位数字的 PIN。"</string>
-    <string name="disable_sim_pin" msgid="3992926931620188855">"停用 SIM 卡 PIN"</string>
-    <string name="enable_sim_pin" msgid="5803702443844458831">"启用 SIM 卡 PIN"</string>
+    <string name="disable_sim_pin" msgid="3992926931620188855">"停用SIM卡PIN码"</string>
+    <string name="enable_sim_pin" msgid="5803702443844458831">"启用SIM卡PIN码"</string>
     <string name="enable_in_progress" msgid="3695303775100109650">"请稍候..."</string>
-    <string name="enable_pin_ok" msgid="9166061915030865848">"SIM 卡 PIN 已启用。"</string>
-    <string name="disable_pin_ok" msgid="5596999379593924850">"未启用 SIM 卡 PIN 码。"</string>
+    <string name="enable_pin_ok" msgid="9166061915030865848">"SIM卡PIN码已启用。"</string>
+    <string name="disable_pin_ok" msgid="5596999379593924850">"未启用SIM卡PIN码。"</string>
     <string name="pin_failed" msgid="2298841192582192277">"键入的 PIN 有误。"</string>
-    <string name="pin_changed" msgid="4365538014588501049">"已成功更改 SIM 卡 PIN。"</string>
-    <string name="puk_requested" msgid="1796577128488773946">"密码不正确，PIN 码已被锁定！请提供 PUK 码。"</string>
+    <string name="pin_changed" msgid="4365538014588501049">"已成功更改SIM卡PIN码。"</string>
+    <string name="puk_requested" msgid="1796577128488773946">"密码不正确，PIN 码已被锁定！请提供PUK码。"</string>
     <string name="enter_pin2_text" msgid="8339444124477720345">"PIN2"</string>
     <string name="oldPin2Label" msgid="8559146795026261502">"旧 PIN2"</string>
     <string name="newPin2Label" msgid="4573956902204349054">"新 PIN2"</string>
     <string name="confirmPin2Label" msgid="8100319484454787708">"确认新 PIN2"</string>
-    <string name="badPuk2" msgid="4851734468010000418">"键入的 PUK2 有误，请重试。"</string>
+    <string name="badPuk2" msgid="4851734468010000418">"输入的PUK2码有误，请重试。"</string>
     <string name="badPin2" msgid="1041576234483629991">"您键入的旧 PIN2 有误，请重试。"</string>
     <string name="mismatchPin2" msgid="523029155918113440">"键入的 PIN2 不一致，请重试。"</string>
     <string name="invalidPin2" msgid="8237110107480395938">"输入 4 到 8 位数字的 PIN2。"</string>
-    <string name="invalidPuk2" msgid="1290977391033057871">"输入 8 位数字的 PUK2。"</string>
+    <string name="invalidPuk2" msgid="1290977391033057871">"输入8位数字的PUK2码。"</string>
     <string name="pin2_changed" msgid="1639666438836544393">"已成功更改 PIN2。"</string>
-    <string name="label_puk2_code" msgid="302845876240219560">"输入 PUK2 码"</string>
+    <string name="label_puk2_code" msgid="302845876240219560">"输入PUK2码"</string>
     <string name="fdn_enable_puk2_requested" msgid="3674058967950559397">"密码不正确，PIN2码已被锁定。请更改PIN2码并重试！"</string>
-    <string name="puk2_requested" msgid="8909278021238716877">"密码有误，SIM 卡已锁定。需要 PUK2。"</string>
+    <string name="puk2_requested" msgid="8909278021238716877">"密码有误，SIM卡已锁定。需要PUK2码。"</string>
     <string name="puk2_blocked" msgid="3150263853077280049">"PUK2码已被永远锁定。"</string>
     <string name="pin2_attempts" msgid="7937503107162525324">\n"还有<xliff:g id="NUMBER">%d</xliff:g>次尝试机会。"</string>
     <string name="pin2_unblocked" msgid="2903147240919055381">"PIN2码已解锁！"</string>
@@ -441,7 +440,7 @@
     <string name="onscreenVideoCallText" msgid="4800924186056115442">"视频通话"</string>
     <string name="importSimEntry" msgid="6614358325359736031">"导入"</string>
     <string name="importAllSimEntries" msgid="1503181169636198673">"全部导入"</string>
-    <string name="importingSimContacts" msgid="7374056215462575769">"正在导入 SIM 联系人"</string>
+    <string name="importingSimContacts" msgid="7374056215462575769">"正在导入SIM联系人"</string>
     <string name="importToFDNfromContacts" msgid="2130620207013368580">"从联系人导入"</string>
     <string name="hac_mode_title" msgid="8740268574688743289">"助听器"</string>
     <string name="hac_mode_summary" msgid="6833851160514929341">"启用助听器兼容模式"</string>

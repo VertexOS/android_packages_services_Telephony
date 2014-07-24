@@ -97,7 +97,7 @@
     <string name="labelCFNRc" msgid="47183615370850000">"ໂອນສາຍເມື່ອຕິດຕໍ່ບໍ່ໄດ້"</string>
     <string name="messageCFNRc" msgid="6380695421020295119">"ເບີໂທເມື່ອຕິດຕໍ່ບໍ່ໄດ້"</string>
     <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"ໂອນສາຍໄປໃຫ້ <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
-    <string name="sum_cfnrc_disabled" msgid="7222141261321276464">"ຖືກປິດການນຳໃຊ້ແລ້ວ"</string>
+    <string name="sum_cfnrc_disabled" msgid="7222141261321276464">"ປິດການນຳໃຊ້ແລ້ວ"</string>
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"ຜູ່ໃຫ້ບໍລິການຂອງທ່ານ ບໍ່ຮອງຮັບການປິດການໂອນສາຍ ເມື່ອໂທລະສັບຂອງທ່ານບໍ່ມີສັນຍານ."</string>
     <string name="updating_title" msgid="6146755386174019046">"ການຕັ້ງຄ່າການໂທ"</string>
     <string name="error_updating_title" msgid="7970259216988931777">"ການຕັ້ງຄ່າການໂທຜິດພາດ"</string>
