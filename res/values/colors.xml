@@ -40,9 +40,9 @@
     <color name="phone_settings_actionbar_text_color">#FFFFFF</color>
     <!-- Background color of action bars.  Ensure this stays in sync with Dialer
          actionbar_background_color. -->
-    <color name="actionbar_background_color">#0fc6dc</color>
+    <color name="actionbar_background_color">@color/dialer_theme_color</color>
     <!-- Dark variant of the action bar color.  Ensure this stays in sync with Dialer version. -->
-    <color name="actionbar_background_color_dark">#008aa1</color>
+    <color name="actionbar_background_color_dark">@color/dialer_theme_color_dark</color>
     <!-- Color for icons in the actionbar. Ensure this stays in sync with Dialer version. -->
     <color name="actionbar_icon_color">#ffffff</color>
 
