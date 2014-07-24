@@ -1596,9 +1596,9 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         return 0;
     }
 
-    public String[] getPcscfAddress() {
+    public String[] getPcscfAddress(String apnType) {
         enforceReadPermission();
-        return mPhone.getPcscfAddress();
+        return mPhone.getPcscfAddress(apnType);
     }
 
     public void setImsRegistrationState(boolean registered) {
