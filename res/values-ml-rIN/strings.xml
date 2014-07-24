@@ -57,8 +57,7 @@
     <string name="labelCDMAMore" msgid="1630676740428229339">"CDMA കോൾ ക്രമീകരണങ്ങൾ"</string>
     <string name="apn_settings" msgid="9043423184895642077">"ആക്‌സസ്സ് പോയിന്റ് പേരുകൾ"</string>
     <string name="settings_label" msgid="3876743539816984008">"നെറ്റ്‌വർക്ക് ക്രമീകരണങ്ങൾ"</string>
-    <!-- no translation found for phone_accounts (8810358208981265351) -->
-    <skip />
+    <string name="phone_accounts" msgid="8810358208981265351">"ഫോൺ അക്കൗണ്ട് ക്രമീകരണങ്ങൾ"</string>
     <string name="connection_service_default_label" msgid="1498481943805913754">"അന്തർ നിർമ്മിത കണക്ഷൻ സേവനം"</string>
     <string name="voicemail" msgid="8693759337917898954">"വോയ്സ് മെയില്‍"</string>
     <string name="voicemail_abbreviated" msgid="2215592488517217448">"VM:"</string>
