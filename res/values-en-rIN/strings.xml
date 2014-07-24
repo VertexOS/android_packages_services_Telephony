@@ -55,7 +55,7 @@
     <string name="mobile_network_settings_not_available" msgid="3831911315358856062">"Mobile network settings are not available for this user"</string>
     <string name="labelGSMMore" msgid="5930842194056092106">"GSM call settings"</string>
     <string name="labelCDMAMore" msgid="1630676740428229339">"CDMA call settings"</string>
-    <string name="apn_settings" msgid="9043423184895642077">"Access Point Names"</string>
+    <string name="apn_settings" msgid="9043423184895642077">"Access point names"</string>
     <string name="settings_label" msgid="3876743539816984008">"Network settings"</string>
     <string name="phone_accounts" msgid="8810358208981265351">"Phone account settings"</string>
     <string name="connection_service_default_label" msgid="1498481943805913754">"Built-in connection service"</string>

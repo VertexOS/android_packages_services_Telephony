@@ -57,8 +57,7 @@
     <string name="labelCDMAMore" msgid="1630676740428229339">"‏CDMA کال کی ترتیبات"</string>
     <string name="apn_settings" msgid="9043423184895642077">"رسائی پوائنٹ کے نام"</string>
     <string name="settings_label" msgid="3876743539816984008">"نیٹ ورک کی ترتیبات"</string>
-    <!-- no translation found for phone_accounts (8810358208981265351) -->
-    <skip />
+    <string name="phone_accounts" msgid="8810358208981265351">"فون اکاؤنٹ کی ترتیبات"</string>
     <string name="connection_service_default_label" msgid="1498481943805913754">"پہلے سے شامل کنکشن سروس"</string>
     <string name="voicemail" msgid="8693759337917898954">"صوتی میل"</string>
     <string name="voicemail_abbreviated" msgid="2215592488517217448">"VM:"</string>
@@ -191,7 +190,7 @@
     <string name="throttle_data_rate_reduced_subtext" msgid="7492763592720107737">"‏<xliff:g id="USED_0">%1$s</xliff:g> زیادہ سے زیادہ سے تجاوز کرگیا\nڈیٹا کی شرح گھٹ کر <xliff:g id="USED_1">%2$d</xliff:g> Kb/s ہوگئی"</string>
     <string name="throttle_time_frame_subtext" msgid="7732763021560399960">"<xliff:g id="USED_0">%1$d</xliff:g>٪ از دور ختم ہوگیا\nاگلی مدت <xliff:g id="USED_1">%2$d</xliff:g> دنوں میں شروع ہو گی (<xliff:g id="USED_2">%3$s</xliff:g>)"</string>
     <string name="throttle_rate_subtext" msgid="2149102656120726855">"‏اگر ڈیٹا کے استعمال کی حد سے تجاوز ہو جاتا ہے تو ڈیٹا شرح گھٹ کر <xliff:g id="USED">%1$d</xliff:g> Kb/s ہوجاتی ہے"</string>
-    <string name="throttle_help_subtext" msgid="3633091498168446044">"آپ کے کریئر کے سیلولر نیٹ ورک کے ڈیٹا کے استعمال کی پالیسی کے بارے میں مزید معلومات"</string>
+    <string name="throttle_help_subtext" msgid="3633091498168446044">"آپ کے کیریئر کے سیلولر نیٹ ورک کے ڈیٹا کے استعمال کی پالیسی کے بارے میں مزید معلومات"</string>
     <string name="cell_broadcast_sms" msgid="5584192824053625842">"‏سیل نشریہ SMS"</string>
     <string name="enable_disable_cell_bc_sms" msgid="4851147873691392255">"‏سیل نشریہ SMS"</string>
     <string name="cell_bc_sms_enable" msgid="6441688565738921084">"‏سیل نشریہ SMS فعال ہوگیا"</string>

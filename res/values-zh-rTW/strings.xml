@@ -196,7 +196,7 @@
     <!-- no translation found for throttle_time_frame_subtext (7732763021560399960) -->
     <skip />
     <string name="throttle_rate_subtext" msgid="2149102656120726855">"若已達資料用量上限，資料傳輸速率會降低至 <xliff:g id="USED">%1$d</xliff:g> Kb/秒"</string>
-    <string name="throttle_help_subtext" msgid="3633091498168446044">"更多有關行動業者行動網路資料使用政策的資訊"</string>
+    <string name="throttle_help_subtext" msgid="3633091498168446044">"更多有關行動業者行動網路數據使用政策的資訊"</string>
     <string name="cell_broadcast_sms" msgid="5584192824053625842">"區域廣播簡訊"</string>
     <string name="enable_disable_cell_bc_sms" msgid="4851147873691392255">"區域廣播簡訊"</string>
     <string name="cell_bc_sms_enable" msgid="6441688565738921084">"已啟用區域廣播簡訊"</string>
@@ -353,7 +353,7 @@
     <string name="simContacts_airplaneMode" msgid="1846161429087789936">"如要從 SIM 卡匯入聯絡人，請先關閉「飛行」模式。"</string>
     <string name="enable_pin" msgid="5422767284133234860">"啟用/停用 SIM PIN"</string>
     <string name="change_pin" msgid="9174186126330785343">"變更 SIM PIN"</string>
-    <string name="enter_pin_text" msgid="8532615714751931951">"SIM PIN："</string>
+    <string name="enter_pin_text" msgid="8532615714751931951">"SIM 卡 PIN 碼："</string>
     <string name="oldPinLabel" msgid="5287773661246368314">"舊的 PIN"</string>
     <string name="newPinLabel" msgid="207488227285336897">"新的 PIN"</string>
     <string name="confirmPinLabel" msgid="257597715098070206">"確認新的 PIN"</string>
@@ -415,7 +415,7 @@
     <string name="notification_missedCall_message" msgid="3049928912736917988">"簡訊"</string>
     <string name="incall_error_power_off" msgid="6550191216405193368">"撥號前，請先關閉飛航模式。"</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"尚未註冊網路。"</string>
-    <string name="incall_error_out_of_service" msgid="4100065333878929223">"無法連線至行動網路。"</string>
+    <string name="incall_error_out_of_service" msgid="4100065333878929223">"無法連線到行動網路。"</string>
     <string name="incall_error_no_phone_number_supplied" msgid="4197432103471807739">"撥號未送出，未輸入正確號碼。"</string>
     <string name="incall_error_call_failed" msgid="4313552620858880999">"撥號未送出。"</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"開始 MMI 序列…"</string>
