@@ -25,6 +25,7 @@ import android.net.Uri;
 import android.telecomm.PhoneAccount;
 import android.telecomm.PhoneAccountHandle;
 import android.telecomm.TelecommManager;
+import android.telephony.SubscriptionManager;
 import android.telephony.TelephonyManager;
 
 import com.android.internal.telephony.Phone;
@@ -78,7 +79,10 @@ final class TelecommAccountRegistry {
             if (line1Number == null) {
                 line1Number = "";
             }
-            String subNumber = isEmergency ? "" : mPhone.getPhoneSubInfo().getLine1Number();
+            String subNumber = mPhone.getPhoneSubInfo().getLine1Number();
+            if (subNumber == null) {
+                subNumber = "";
+            }
             String label = isEmergency
                     ? "Emergency calls"
                     : dummyPrefix + "SIM " + slotId;
@@ -106,9 +110,14 @@ final class TelecommAccountRegistry {
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
-            if (TelephonyIntents.ACTION_SIM_STATE_CHANGED.equals(action)) {
-                Log.d(this, "SIM_STATE_CHANGED - rerun setup");
-                // Anytime the SIM state changes...rerun the setup.
+            if (TelephonyIntents.ACTION_SUBINFO_RECORD_UPDATED.equals(action)) {
+                int status = intent.getIntExtra(
+                        SubscriptionManager.INTENT_KEY_DETECT_STATUS,
+                        SubscriptionManager.EXTRA_VALUE_NOCHANGE);
+                Log.i(this, "SUBINFO_RECORD_UPDATED : %d.", status);
+                // Anytime the SIM state changes...rerun the setup
+                // We rely on this notification even when the status is EXTRA_VALUE_NOCHANGE,
+                // so we explicitly do not check for that here.
                 tearDownAccounts();
                 setupAccounts();
             }
@@ -138,7 +147,7 @@ final class TelecommAccountRegistry {
      */
     void setupOnBoot() {
         IntentFilter intentFilter =
-            new IntentFilter(TelephonyIntents.ACTION_SIM_STATE_CHANGED);
+            new IntentFilter(TelephonyIntents.ACTION_SUBINFO_RECORD_UPDATED);
         mContext.registerReceiver(mReceiver, intentFilter);
 
         setupAccounts();
