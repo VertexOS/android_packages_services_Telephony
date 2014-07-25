@@ -47,38 +47,42 @@ public final class SipConnectionService extends ConnectionService {
     }
 
     @Override
-    public void onCreateOutgoingConnection(
-            final ConnectionRequest request,
-            final CreateConnectionResponse<Connection> response) {
+    public Connection onCreateOutgoingConnection(
+            final ConnectionRequest request) {
         if (VERBOSE) log("onCreateOutgoingConnection, request: " + request);
+
+        final SipConnection connection = new SipConnection();
 
         SipProfileChooser.Callback callback = new SipProfileChooser.Callback() {
             @Override
             public void onSipChosen(SipProfile profile) {
                 if (VERBOSE) log("onCreateOutgoingConnection, onSipChosen: " + profile);
-                SipConnection connection = createConnectionForProfile(profile, request);
-                if (connection == null) {
-                    response.onCancel(request);
+                com.android.internal.telephony.Connection chosenConnection =
+                        createConnectionForProfile(profile, request);
+                if (chosenConnection == null) {
+                    connection.setCanceled();
                 } else {
-                    response.onSuccess(request, connection);
+                    connection.initialize(chosenConnection);
                 }
             }
 
             @Override
             public void onSipNotChosen() {
                 if (VERBOSE) log("onCreateOutgoingConnection, onSipNotChosen");
-                response.onFailure(request, DisconnectCause.ERROR_UNSPECIFIED, null);
+                connection.setFailed(DisconnectCause.ERROR_UNSPECIFIED, null);
             }
 
             @Override
             public void onCancelCall() {
                 if (VERBOSE) log("onCreateOutgoingConnection, onCancelCall");
-                response.onCancel(request);
+                connection.setCanceled();
             }
         };
 
         SipProfileChooser chooser = new SipProfileChooser(this, callback);
         chooser.start(request.getHandle(), request.getExtras());
+
+        return connection;
     }
 
     @Override
@@ -90,23 +94,20 @@ public final class SipConnectionService extends ConnectionService {
     }
 
     @Override
-    public void onCreateIncomingConnection(
-            ConnectionRequest request,
-            CreateConnectionResponse<Connection> response) {
+    public Connection onCreateIncomingConnection(
+            ConnectionRequest request) {
         if (VERBOSE) log("onCreateIncomingConnection, request: " + request);
 
         if (request.getExtras() == null) {
             if (VERBOSE) log("onCreateIncomingConnection, no extras");
-            response.onFailure(request, DisconnectCause.ERROR_UNSPECIFIED, null);
-            return;
+            return Connection.getFailedConnection(DisconnectCause.ERROR_UNSPECIFIED, null);
         }
 
         Intent sipIntent = (Intent) request.getExtras().getParcelable(
                 SipUtil.EXTRA_INCOMING_CALL_INTENT);
         if (sipIntent == null) {
             if (VERBOSE) log("onCreateIncomingConnection, no SIP intent");
-            response.onFailure(request, DisconnectCause.ERROR_UNSPECIFIED, null);
-            return;
+            return Connection.getFailedConnection(DisconnectCause.ERROR_UNSPECIFIED, null);
         }
 
         SipAudioCall sipAudioCall;
@@ -114,8 +115,7 @@ public final class SipConnectionService extends ConnectionService {
             sipAudioCall = SipManager.newInstance(this).takeAudioCall(sipIntent, null);
         } catch (SipException e) {
             log("onCreateIncomingConnection, takeAudioCall exception: " + e);
-            response.onCancel(request);
-            return;
+            return Connection.getCanceledConnection();
         }
 
         SipPhone phone = findPhoneForProfile(sipAudioCall.getLocalProfile());
@@ -127,14 +127,13 @@ public final class SipConnectionService extends ConnectionService {
                     sipAudioCall);
             if (VERBOSE) log("onCreateIncomingConnection, new connection: " + originalConnection);
             if (originalConnection != null) {
-                SipConnection connection = new SipConnection(originalConnection);
-                response.onSuccess(getConnectionRequestForIncomingCall(request, originalConnection),
-                        connection);
+                return new SipConnection();
             } else {
                 if (VERBOSE) log("onCreateIncomingConnection, takingIncomingCall failed");
-                response.onCancel(request);
+                return Connection.getCanceledConnection();
             }
         }
+        return Connection.getFailedConnection(DisconnectCause.ERROR_UNSPECIFIED, null);
     }
 
     @Override
@@ -150,7 +149,7 @@ public final class SipConnectionService extends ConnectionService {
         if (VERBOSE) log("onConnectionRemoved, connection: " + connection);
     }
 
-    private SipConnection createConnectionForProfile(
+    private com.android.internal.telephony.Connection createConnectionForProfile(
             SipProfile profile,
             ConnectionRequest request) {
         SipPhone phone = findPhoneForProfile(profile);
@@ -189,14 +188,15 @@ public final class SipConnectionService extends ConnectionService {
         }
     }
 
-    private SipConnection startCallWithPhone(SipPhone phone, ConnectionRequest request) {
+    private com.android.internal.telephony.Connection startCallWithPhone(
+            SipPhone phone, ConnectionRequest request) {
         String number = request.getHandle().getSchemeSpecificPart();
         if (VERBOSE) log("startCallWithPhone, number: " + number);
 
         try {
             com.android.internal.telephony.Connection originalConnection =
                     phone.dial(number, request.getVideoState());
-            return new SipConnection(originalConnection);
+            return originalConnection;
         } catch (CallStateException e) {
             log("startCallWithPhone, exception: " + e);
             return null;

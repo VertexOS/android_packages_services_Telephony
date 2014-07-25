@@ -49,13 +49,19 @@ final class SipConnection extends Connection {
     private com.android.internal.telephony.Connection mOriginalConnection;
     private Call.State mOriginalConnectionState = Call.State.IDLE;
 
-    SipConnection(com.android.internal.telephony.Connection connection) {
-        if (VERBOSE) log("new SipConnection, connection: " + connection);
+    SipConnection() {
+        if (VERBOSE) log("new SipConnection");
+        setInitializing();
+    }
+
+    void initialize(com.android.internal.telephony.Connection connection) {
+        if (VERBOSE) log("init SipConnection, connection: " + connection);
         mOriginalConnection = connection;
         if (getPhone() != null) {
             getPhone().registerForPreciseCallStateChanged(mHandler, MSG_PRECISE_CALL_STATE_CHANGED,
                     null);
         }
+        setInitialized();
     }
 
     @Override
