@@ -49,4 +49,6 @@
             <enum name="not_reachable" value="3" />
         </attr>
     </declare-styleable>
+
+    <attr name="preferenceBackgroundColor" format="color" />
 </resources>
