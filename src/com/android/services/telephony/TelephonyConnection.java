@@ -22,7 +22,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.telecomm.CallAudioState;
 import android.telecomm.CallCapabilities;
-import android.telecomm.CallVideoProvider;
+import android.telecomm.VideoCallProvider;
 import android.telephony.DisconnectCause;
 
 import com.android.internal.telephony.Call;
@@ -111,13 +111,13 @@ abstract class TelephonyConnection extends Connection {
 
         /**
          * The {@link com.android.internal.telephony.Connection} has reported a change in the
-         * call video provider.
+         * video call provider.
          *
-         * @param callVideoProvider The call video provider.
+         * @param videoCallProvider The video call provider.
          */
         @Override
-        public void onCallVideoProviderChanged(CallVideoProvider callVideoProvider) {
-            setCallVideoProvider(callVideoProvider);
+        public void onVideoCallProviderChanged(VideoCallProvider videoCallProvider) {
+            setVideoCallProvider(videoCallProvider);
         }
     };
 
@@ -157,7 +157,7 @@ abstract class TelephonyConnection extends Connection {
         setVideoState(mOriginalConnection.getVideoState());
         setLocalVideoCapable(mOriginalConnection.isLocalVideoCapable());
         setRemoteVideoCapable(mOriginalConnection.isRemoteVideoCapable());
-        setCallVideoProvider(mOriginalConnection.getCallVideoProvider());
+        setVideoCallProvider(mOriginalConnection.getVideoCallProvider());
 
         updateHandle();
     }
