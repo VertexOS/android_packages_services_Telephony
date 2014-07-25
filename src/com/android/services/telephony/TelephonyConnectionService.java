@@ -70,7 +70,7 @@ public class TelephonyConnectionService extends ConnectionService {
         if (!SCHEME_TEL.equals(handle.getScheme())) {
             Log.d(this, "onCreateOutgoingConnection, Handle %s is not type tel",
                     handle.getScheme());
-            response.onFailure(request, DisconnectCause.ERROR_UNSPECIFIED,
+            response.onFailure(request, DisconnectCause.INVALID_NUMBER,
                     "Handle scheme is not type tel");
             return;
         }
@@ -88,7 +88,7 @@ public class TelephonyConnectionService extends ConnectionService {
         final Phone phone = getPhoneForAccount(request.getAccountHandle(), isEmergencyNumber);
         if (phone == null) {
             Log.d(this, "onCreateOutgoingConnection, phone is null");
-            response.onFailure(request, DisconnectCause.ERROR_UNSPECIFIED, "Phone is null");
+            response.onFailure(request, DisconnectCause.OUTGOING_FAILURE, "Phone is null");
             return;
         }
 
@@ -111,7 +111,7 @@ public class TelephonyConnectionService extends ConnectionService {
                     return;
                 default:
                     Log.d(this, "onCreateOutgoingConnection, unkown service state: %d", state);
-                    response.onFailure(request, DisconnectCause.ERROR_UNSPECIFIED,
+                    response.onFailure(request, DisconnectCause.OUTGOING_FAILURE,
                             "Unkown service state " + state);
                     return;
             }
@@ -221,12 +221,12 @@ public class TelephonyConnectionService extends ConnectionService {
             originalConnection = phone.dial(number, request.getVideoState());
         } catch (CallStateException e) {
             Log.e(this, e, "startOutgoingCall, phone.dial exception: " + e);
-            response.onFailure(request, DisconnectCause.ERROR_UNSPECIFIED, e.getMessage());
+            response.onFailure(request, DisconnectCause.OUTGOING_FAILURE, e.getMessage());
             return;
         }
 
         if (originalConnection == null) {
-            int disconnectCause = DisconnectCause.ERROR_UNSPECIFIED;
+            int disconnectCause = DisconnectCause.OUTGOING_FAILURE;
 
             // On GSM phones, null connection means that we dialed an MMI code
             if (phone.getPhoneType() == PhoneConstants.PHONE_TYPE_GSM) {
@@ -244,7 +244,7 @@ public class TelephonyConnectionService extends ConnectionService {
         } else {
             // TODO(ihab): Tear down 'originalConnection' here, or move recognition of
             // getPhoneType() earlier in this method before we've already asked phone to dial()
-            response.onFailure(request, DisconnectCause.ERROR_UNSPECIFIED, "Invalid phone type");
+            response.onFailure(request, DisconnectCause.OUTGOING_FAILURE, "Invalid phone type");
         }
     }
 
