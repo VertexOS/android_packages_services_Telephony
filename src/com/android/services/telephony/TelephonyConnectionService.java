@@ -56,6 +56,7 @@ public class TelephonyConnectionService extends ConnectionService {
 
     @Override
     public Connection onCreateOutgoingConnection(
+            PhoneAccountHandle connectionManagerPhoneAccount,
             final ConnectionRequest request) {
         Log.v(this, "onCreateOutgoingConnection, request: " + request);
 
@@ -156,6 +157,7 @@ public class TelephonyConnectionService extends ConnectionService {
 
     @Override
     public Connection onCreateIncomingConnection(
+            PhoneAccountHandle connectionManagerPhoneAccount,
             ConnectionRequest request) {
         Log.v(this, "onCreateIncomingConnection, request: " + request);
 
@@ -188,19 +190,6 @@ public class TelephonyConnectionService extends ConnectionService {
             return Connection.getCanceledConnection();
         } else {
             return connection;
-        }
-    }
-
-    @Override
-    public void onConnectionAdded(Connection connection) {
-        Log.v(this, "onConnectionAdded, connection: " + connection);
-    }
-
-    @Override
-    public void onConnectionRemoved(Connection connection) {
-        Log.v(this, "onConnectionRemoved, connection: " + connection);
-        if (connection instanceof TelephonyConnection) {
-            ((TelephonyConnection) connection).onRemovedFromCallService();
         }
     }
 
