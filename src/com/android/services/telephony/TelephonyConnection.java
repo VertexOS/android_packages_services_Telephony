@@ -22,7 +22,6 @@ import android.os.Handler;
 import android.os.Message;
 import android.telecomm.CallAudioState;
 import android.telecomm.CallCapabilities;
-import android.telecomm.VideoCallProvider;
 import android.telephony.DisconnectCause;
 
 import com.android.internal.telephony.Call;
@@ -32,6 +31,7 @@ import com.android.internal.telephony.Phone;
 import com.android.phone.R;
 
 import android.telecomm.Connection;
+import android.telecomm.ConnectionService;
 
 import java.lang.Override;
 import java.util.List;
@@ -116,7 +116,8 @@ abstract class TelephonyConnection extends Connection {
          * @param videoCallProvider The video call provider.
          */
         @Override
-        public void onVideoCallProviderChanged(VideoCallProvider videoCallProvider) {
+        public void onVideoCallProviderChanged(
+                ConnectionService.VideoCallProvider videoCallProvider) {
             setVideoCallProvider(videoCallProvider);
         }
     };
