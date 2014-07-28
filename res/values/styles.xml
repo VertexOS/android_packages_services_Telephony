@@ -234,6 +234,8 @@
         <item name="android:height">@dimen/action_bar_height</item>
         <!-- Empty icon -->
         <item name="android:icon">@android:color/transparent</item>
+        <!-- Shift the title text to the right -->
+        <item name="android:contentInsetStart">@dimen/actionbar_contentInsetStart</item>
     </style>
 
     <!-- Text in the action bar at the top of the screen.  Should be kept in sync with Dialer. -->

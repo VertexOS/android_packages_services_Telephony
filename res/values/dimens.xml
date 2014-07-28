@@ -94,6 +94,7 @@
          Right now answer/decline/reject icons have 38dp width/height.
          So, (94 - 38)/2 ==> 28dp -->
     <dimen name="incoming_call_widget_asset_margin">28dp</dimen>
-    <!-- Height of the action bar.  Keep in sync with same value in Dialer. -->
+    <!-- Action bar dimensions.  Keep in sync with same value in Dialer. -->
     <dimen name="action_bar_height">64dp</dimen>
+    <dimen name="actionbar_contentInsetStart">72dp</dimen>
 </resources>
