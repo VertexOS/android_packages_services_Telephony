@@ -247,7 +247,7 @@
     <!-- Action bar overflow menu icon. -->
     <style name="DialtactsActionBarOverflow"
            parent="@android:style/Widget.Holo.ActionButton.Overflow">
-        <item name="android:src">@drawable/ic_menu_overflow_lt</item>
+        <item name="android:src">@drawable/overflow_menu</item>
     </style>
 
     <style name="EmergencyDialerTheme" parent="@android:style/Theme.Material.Light">
