@@ -20,7 +20,11 @@ import com.android.internal.telephony.Call;
 import com.android.internal.telephony.PhoneFactory;
 
 import java.util.ArrayList;
+
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import android.telecomm.Connection;
 
@@ -92,45 +96,55 @@ final class GsmConferenceController {
         return null;
     }
 
+    private void recalculate() {
+        recalculateConferenceable();
+    }
+
     /**
      * Calculates the conference-capable state of all GSM connections in this connection service.
      */
-    private void recalculate() {
-        Log.v(this, "recalculateGsmConferenceState");
+    private void recalculateConferenceable() {
+        Log.v(this, "recalculateConferenceable : %d", mGsmConnections.size());
+
+        List<Connection> activeConnections = new ArrayList<>(mGsmConnections.size());
+        List<Connection> backgroundConnections = new ArrayList<>(mGsmConnections.size());
+
+        // Loop through and collect all calls which are active or holding
         for (GsmConnection connection : mGsmConnections) {
-            Log.d(this, "recalc - %s", connection);
-            boolean isConferenceCapable = false;
             com.android.internal.telephony.Connection radioConnection =
                     connection.getOriginalConnection();
+            Log.d(this, "recalc - %s %s",
+                    radioConnection == null ? null : radioConnection.getState(), connection);
+
             if (radioConnection != null) {
-
-                // First calculate to see if we are in the conference call. We only support a
-                // single active conference call on PSTN, which makes things a little easier.
-                if (mGsmConferenceConnection != null) {
-                    if (radioConnection.getCall().isMultiparty()) {
-                        connection.setParentConnection(mGsmConferenceConnection);
-                    } else {
-                        connection.setParentConnection(null);
-                    }
+                switch(radioConnection.getState()) {
+                    case ACTIVE:
+                        activeConnections.add(connection);
+                        break;
+                    case HOLDING:
+                        backgroundConnections.add(connection);
+                        break;
+                    default:
+                        connection.setConferenceableConnections(
+                                Collections.<Connection>emptyList());
+                        break;
                 }
-
-                boolean callIsActive = radioConnection.getState() == Call.State.ACTIVE;
-                boolean isConferenced =
-                        callIsActive && radioConnection.getCall().isMultiparty();
-                // TODO: The below does not work when we use PhoneFactory.getGsmPhone() -- the
-                // phone from getGsmPhone() erroneously reports it has no background calls.
-                boolean hasBackgroundCall =
-                        radioConnection.getCall().getPhone().getBackgroundCall().hasConnections();
-                Log.d(this, "recalc: active: %b, is_conf: %b, has_bkgd: %b",
-                        callIsActive, isConferenced, hasBackgroundCall);
-                // We only set conference capable on:
-                // 1) Active calls,
-                // 2) which are not already part of a conference call
-                // 3) and there exists a call on HOLD
-                isConferenceCapable = callIsActive && !isConferenced && hasBackgroundCall;
             }
+        }
 
-            connection.setIsConferenceCapable(isConferenceCapable);
+        Log.v(this, "active: %d, holding: %d",
+                activeConnections.size(), backgroundConnections.size());
+
+        // Go through all the active connections and set the background connections as
+        // conferenceable.
+        for (Connection connection : activeConnections) {
+            connection.setConferenceableConnections(backgroundConnections);
+        }
+
+        // Go through all the background connections and set the active connections as
+        // conferenceable.
+        for (Connection connection : backgroundConnections) {
+            connection.setConferenceableConnections(activeConnections);
         }
     }
 }
