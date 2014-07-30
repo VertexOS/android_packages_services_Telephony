@@ -105,6 +105,7 @@
                  android:persistent="true"
                  android:label="@string/phoneAppLabel"
                  android:icon="@mipmap/ic_launcher_phone"
+                 android:allowBackup="false"
                  android:supportsRtl="true">
             <provider android:name="IccProvider"
                       android:authorities="icc"
