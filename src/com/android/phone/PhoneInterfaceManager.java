@@ -39,6 +39,7 @@ import android.os.ServiceManager;
 import android.os.UserHandle;
 import android.provider.Settings;
 import android.telephony.CellInfo;
+import android.telephony.IccOpenLogicalChannelResponse;
 import android.telephony.NeighboringCellInfo;
 import android.telephony.ServiceState;
 import android.telephony.SubscriptionManager;
@@ -92,8 +93,8 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     private static final int CMD_ANSWER_RINGING_CALL = 4;
     private static final int CMD_END_CALL = 5;  // not used yet
     private static final int CMD_SILENCE_RINGER = 6;
-    private static final int CMD_TRANSMIT_APDU = 7;
-    private static final int EVENT_TRANSMIT_APDU_DONE = 8;
+    private static final int CMD_TRANSMIT_APDU_LOGICAL_CHANNEL = 7;
+    private static final int EVENT_TRANSMIT_APDU_LOGICAL_CHANNEL_DONE = 8;
     private static final int CMD_OPEN_CHANNEL = 9;
     private static final int EVENT_OPEN_CHANNEL_DONE = 10;
     private static final int CMD_CLOSE_CHANNEL = 11;
@@ -116,6 +117,10 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     private static final int EVENT_SET_CDMA_SUBSCRIPTION_DONE = 28;
     private static final int CMD_INVOKE_OEM_RIL_REQUEST_RAW = 29;
     private static final int EVENT_INVOKE_OEM_RIL_REQUEST_RAW_DONE = 30;
+    private static final int CMD_TRANSMIT_APDU_BASIC_CHANNEL = 31;
+    private static final int EVENT_TRANSMIT_APDU_BASIC_CHANNEL_DONE = 32;
+    private static final int CMD_EXCHANGE_SIM_IO = 33;
+    private static final int EVENT_EXCHANGE_SIM_IO_DONE = 34;
 
     /** The singleton instance. */
     private static PhoneInterfaceManager sInstance;
@@ -199,6 +204,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
             Message onCompleted;
             AsyncResult ar;
             UiccCard uiccCard = UiccController.getInstance().getUiccCard();
+            IccAPDUArgument iccArgument;
 
             switch (msg.what) {
                 case CMD_HANDLE_PIN_MMI:
@@ -262,9 +268,9 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
                     }
                     break;
 
-                case CMD_TRANSMIT_APDU:
+                case CMD_TRANSMIT_APDU_LOGICAL_CHANNEL:
                     request = (MainThreadRequest) msg.obj;
-                    IccAPDUArgument argument = (IccAPDUArgument) request.argument;
+                    iccArgument = (IccAPDUArgument) request.argument;
                     if (uiccCard == null) {
                         loge("iccTransmitApduLogicalChannel: No UICC");
                         request.result = new IccIoResult(0x6F, 0, (byte[])null);
@@ -272,15 +278,16 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
                             request.notifyAll();
                         }
                     } else {
-                        onCompleted = obtainMessage(EVENT_TRANSMIT_APDU_DONE, request);
+                        onCompleted = obtainMessage(EVENT_TRANSMIT_APDU_LOGICAL_CHANNEL_DONE,
+                            request);
                         uiccCard.iccTransmitApduLogicalChannel(
-                            argument.channel, argument.cla, argument.command,
-                            argument.p1, argument.p2, argument.p3, argument.data,
+                            iccArgument.channel, iccArgument.cla, iccArgument.command,
+                            iccArgument.p1, iccArgument.p2, iccArgument.p3, iccArgument.data,
                             onCompleted);
                     }
                     break;
 
-                case EVENT_TRANSMIT_APDU_DONE:
+                case EVENT_TRANSMIT_APDU_LOGICAL_CHANNEL_DONE:
                     ar = (AsyncResult) msg.obj;
                     request = (MainThreadRequest) ar.userObj;
                     if (ar.exception == null && ar.result != null) {
@@ -295,6 +302,76 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
                         } else {
                             loge("iccTransmitApduLogicalChannel: Unknown exception");
                         }
+                    }
+                    synchronized (request) {
+                        request.notifyAll();
+                    }
+                    break;
+
+                case CMD_TRANSMIT_APDU_BASIC_CHANNEL:
+                    request = (MainThreadRequest) msg.obj;
+                    iccArgument = (IccAPDUArgument) request.argument;
+                    if (uiccCard == null) {
+                        loge("iccTransmitApduBasicChannel: No UICC");
+                        request.result = new IccIoResult(0x6F, 0, (byte[])null);
+                        synchronized (request) {
+                            request.notifyAll();
+                        }
+                    } else {
+                        onCompleted = obtainMessage(EVENT_TRANSMIT_APDU_BASIC_CHANNEL_DONE,
+                            request);
+                        uiccCard.iccTransmitApduBasicChannel(
+                            iccArgument.cla, iccArgument.command, iccArgument.p1, iccArgument.p2,
+                            iccArgument.p3, iccArgument.data, onCompleted);
+                    }
+                    break;
+
+                case EVENT_TRANSMIT_APDU_BASIC_CHANNEL_DONE:
+                    ar = (AsyncResult) msg.obj;
+                    request = (MainThreadRequest) ar.userObj;
+                    if (ar.exception == null && ar.result != null) {
+                        request.result = ar.result;
+                    } else {
+                        request.result = new IccIoResult(0x6F, 0, (byte[])null);
+                        if (ar.result == null) {
+                            loge("iccTransmitApduBasicChannel: Empty response");
+                        } else if (ar.exception instanceof CommandException) {
+                            loge("iccTransmitApduBasicChannel: CommandException: " +
+                                    ar.exception);
+                        } else {
+                            loge("iccTransmitApduBasicChannel: Unknown exception");
+                        }
+                    }
+                    synchronized (request) {
+                        request.notifyAll();
+                    }
+                    break;
+
+                case CMD_EXCHANGE_SIM_IO:
+                    request = (MainThreadRequest) msg.obj;
+                    iccArgument = (IccAPDUArgument) request.argument;
+                    if (uiccCard == null) {
+                        loge("iccExchangeSimIO: No UICC");
+                        request.result = new IccIoResult(0x6F, 0, (byte[])null);
+                        synchronized (request) {
+                            request.notifyAll();
+                        }
+                    } else {
+                        onCompleted = obtainMessage(EVENT_EXCHANGE_SIM_IO_DONE,
+                                request);
+                        uiccCard.iccExchangeSimIO(iccArgument.cla, /* fileID */
+                                iccArgument.command, iccArgument.p1, iccArgument.p2, iccArgument.p3,
+                                iccArgument.data, onCompleted);
+                    }
+                    break;
+
+                case EVENT_EXCHANGE_SIM_IO_DONE:
+                    ar = (AsyncResult) msg.obj;
+                    request = (MainThreadRequest) ar.userObj;
+                    if (ar.exception == null && ar.result != null) {
+                        request.result = ar.result;
+                    } else {
+                        request.result = new IccIoResult(0x6f, 0, (byte[])null);
                     }
                     synchronized (request) {
                         request.notifyAll();
@@ -353,18 +430,37 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
                 case EVENT_OPEN_CHANNEL_DONE:
                     ar = (AsyncResult) msg.obj;
                     request = (MainThreadRequest) ar.userObj;
+                    IccOpenLogicalChannelResponse openChannelResp;
                     if (ar.exception == null && ar.result != null) {
-                        request.result = ((int[]) ar.result)[0];
+                        int[] result = (int[]) ar.result;
+                        int channelId = result[0];
+                        byte[] selectResponse = null;
+                        if (result.length > 1) {
+                            selectResponse = new byte[result.length - 1];
+                            for (int i = 1; i < result.length; ++i) {
+                                selectResponse[i - 1] = (byte) result[i];
+                            }
+                        }
+                        openChannelResp = new IccOpenLogicalChannelResponse(channelId,
+                            IccOpenLogicalChannelResponse.NO_ERROR, selectResponse );
                     } else {
-                        request.result = -1;
                         if (ar.result == null) {
                             loge("iccOpenLogicalChannel: Empty response");
-                        } else if (ar.exception instanceof CommandException) {
-                            loge("iccOpenLogicalChannel: CommandException: " +
-                                    ar.exception);
-                        } else {
-                            loge("iccOpenLogicalChannel: Unknown exception");
                         }
+                        if (ar.exception != null) {
+                            loge("iccOpenLogicalChannel: Exception: " + ar.exception);
+                        }
+
+                        int errorCode = IccOpenLogicalChannelResponse.UNKNOWN_ERROR;
+                        if ((ar.exception != null) && (ar.exception instanceof CommandException)) {
+                            if (ar.exception.getMessage().compareTo("MISSING_RESOURCE") == 0) {
+                                errorCode = IccOpenLogicalChannelResponse.MISSING_RESOURCE;
+                            } else if (ar.exception.getMessage().compareTo("NO_SUCH_ELEMENT") == 0) {
+                                errorCode = IccOpenLogicalChannelResponse.NO_SUCH_ELEMENT;
+                            }
+                        }
+                        openChannelResp = new IccOpenLogicalChannelResponse(
+                            IccOpenLogicalChannelResponse.INVALID_CHANNEL, errorCode, null);
                     }
                     synchronized (request) {
                         request.notifyAll();
@@ -1468,13 +1564,14 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     }
 
     @Override
-    public int iccOpenLogicalChannel(String AID) {
+    public IccOpenLogicalChannelResponse iccOpenLogicalChannel(String AID) {
         enforceModifyPermissionOrCarrierPrivilege();
 
         if (DBG) log("iccOpenLogicalChannel: " + AID);
-        Integer channel = (Integer)sendRequest(CMD_OPEN_CHANNEL, AID);
-        if (DBG) log("iccOpenLogicalChannel: " + channel);
-        return channel;
+        IccOpenLogicalChannelResponse response = (IccOpenLogicalChannelResponse)sendRequest(
+            CMD_OPEN_CHANNEL, AID);
+        if (DBG) log("iccOpenLogicalChannel: " + response);
+        return response;
     }
 
     @Override
@@ -1505,7 +1602,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
             return "";
         }
 
-        IccIoResult response = (IccIoResult)sendRequest(CMD_TRANSMIT_APDU,
+        IccIoResult response = (IccIoResult)sendRequest(CMD_TRANSMIT_APDU_LOGICAL_CHANNEL,
                 new IccAPDUArgument(channel, cla, command, p1, p2, p3, data));
         if (DBG) log("iccTransmitApduLogicalChannel: " + response);
 
@@ -1520,6 +1617,66 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
                 (response.sw1 << 8) + response.sw2 + 0x10000).substring(1);
         s = IccUtils.bytesToHexString(response.payload) + s;
         return s;
+    }
+
+    @Override
+    public String iccTransmitApduBasicChannel(int cla, int command, int p1, int p2,
+                int p3, String data) {
+        enforceModifyPermissionOrCarrierPrivilege();
+
+        if (DBG) {
+            log("iccTransmitApduBasicChannel: cla=" + cla + " cmd=" + command + " p1="
+                    + p1 + " p2=" + p2 + " p3=" + p3 + " data=" + data);
+        }
+
+        IccIoResult response = (IccIoResult)sendRequest(CMD_TRANSMIT_APDU_BASIC_CHANNEL,
+                new IccAPDUArgument(0, cla, command, p1, p2, p3, data));
+        if (DBG) log("iccTransmitApduBasicChannel: " + response);
+
+        // If the payload is null, there was an error. Indicate that by returning
+        // an empty string.
+        if (response.payload == null) {
+          return "";
+        }
+
+        // Append the returned status code to the end of the response payload.
+        String s = Integer.toHexString(
+                (response.sw1 << 8) + response.sw2 + 0x10000).substring(1);
+        s = IccUtils.bytesToHexString(response.payload) + s;
+        return s;
+    }
+
+    @Override
+    public byte[] iccExchangeSimIO(int fileID, int command, int p1, int p2, int p3,
+            String filePath) {
+        enforceModifyPermissionOrCarrierPrivilege();
+
+        if (DBG) {
+            log("Exchange SIM_IO " + fileID + ":" + command + " " +
+                p1 + " " + p2 + " " + p3 + ":" + filePath);
+        }
+
+        IccIoResult response =
+            (IccIoResult)sendRequest(CMD_EXCHANGE_SIM_IO,
+                    new IccAPDUArgument(fileID, command, -1, p1, p2, p3, filePath));
+
+        if (DBG) {
+          log("Exchange SIM_IO [R]" + response);
+        }
+
+        byte[] result = null;
+        int length = 2;
+        if (response.payload != null) {
+            length = 2 + response.payload.length;
+            result = new byte[length];
+            System.arraycopy(response.payload, 0, result, 0, response.payload.length);
+        } else {
+            result = new byte[length];
+        }
+
+        result[length - 1] = (byte) response.sw2;
+        result[length - 2] = (byte) response.sw1;
+        return result;
     }
 
     @Override
