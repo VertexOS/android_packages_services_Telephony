@@ -48,6 +48,7 @@ public final class SipConnectionService extends ConnectionService {
 
     @Override
     public Connection onCreateOutgoingConnection(
+            PhoneAccountHandle connectionManagerAccount,
             final ConnectionRequest request) {
         if (VERBOSE) log("onCreateOutgoingConnection, request: " + request);
 
@@ -95,6 +96,7 @@ public final class SipConnectionService extends ConnectionService {
 
     @Override
     public Connection onCreateIncomingConnection(
+            PhoneAccountHandle connectionManagerAccount,
             ConnectionRequest request) {
         if (VERBOSE) log("onCreateIncomingConnection, request: " + request);
 

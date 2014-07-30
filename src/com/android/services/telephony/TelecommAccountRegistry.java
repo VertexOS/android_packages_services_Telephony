@@ -97,8 +97,7 @@ final class TelecommAccountRegistry {
                             PhoneAccount.CAPABILITY_CALL_PROVIDER,
                     com.android.phone.R.mipmap.ic_launcher_phone,
                     label,
-                    description,
-                    true /* supportsVideoCalling */);
+                    description);
 
             // Register with Telecomm and put into the account entry.
             mTelecommManager.registerPhoneAccount(account);
