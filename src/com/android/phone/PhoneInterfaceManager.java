@@ -462,6 +462,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
                         openChannelResp = new IccOpenLogicalChannelResponse(
                             IccOpenLogicalChannelResponse.INVALID_CHANNEL, errorCode, null);
                     }
+                    request.result = openChannelResp;
                     synchronized (request) {
                         request.notifyAll();
                     }
