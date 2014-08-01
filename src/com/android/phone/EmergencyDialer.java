@@ -616,6 +616,7 @@ public class EmergencyDialer extends Activity implements View.OnClickListener,
 
             // blur stuff behind the dialog
             dialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_BLUR_BEHIND);
+            dialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
         }
         return dialog;
     }
