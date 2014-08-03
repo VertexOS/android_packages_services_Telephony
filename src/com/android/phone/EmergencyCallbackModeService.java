@@ -74,7 +74,8 @@ public class EmergencyCallbackModeService extends Service {
     @Override
     public void onCreate() {
         // Check if it is CDMA phone
-        if (PhoneFactory.getDefaultPhone().getPhoneType() != PhoneConstants.PHONE_TYPE_CDMA) {
+        if ((PhoneFactory.getDefaultPhone().getPhoneType() != PhoneConstants.PHONE_TYPE_CDMA)
+                && (PhoneFactory.getDefaultPhone().getImsPhone() == null)) {
             Log.e(LOG_TAG, "Error! Emergency Callback Mode not supported for " +
                     PhoneFactory.getDefaultPhone().getPhoneName() + " phones");
             stopSelf();
