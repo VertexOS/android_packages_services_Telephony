@@ -629,7 +629,7 @@ public class PhoneUtils {
             app.cdmaPhoneCallState.setCurrentCallState(
                 CdmaPhoneCallState.PhoneCallState.THRWAY_ACTIVE);
 
-            // TODO(sail): Remove this code.
+            // TODO: Remove this code.
             //app.getCallModeler().setCdmaOutgoing3WayCall(connection);
         }
     }

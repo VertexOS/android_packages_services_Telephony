@@ -141,7 +141,7 @@ public class CallController extends Handler {
                     // Reset the mThreeWayCallOrigStateDialing state
                     mApp.cdmaPhoneCallState.setThreeWayCallOrigState(false);
 
-                    // TODO(sail): Remove this code.
+                    // TODO: Remove this code.
                     //mApp.getCallModeler().setCdmaOutgoing3WayCall(null);
                 }
                 break;
@@ -423,7 +423,7 @@ public class CallController extends Handler {
                 // Note: Normally, many of these values we gather from the Connection object but
                 // since no such object is created for unconnected calls, we have to build them
                 // manually.
-                // TODO(santoscordon): Try to restructure code so that we can handle failure-
+                // TODO: Try to restructure code so that we can handle failure-
                 // condition call logging in a single place (placeCall()) that also has access to
                 // the number we attempted to dial (not placeCall()).
                 mCallLogger.logCall(null /* callerInfo */, number, 0 /* presentation */,

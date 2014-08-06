@@ -223,7 +223,7 @@ public class TelephonyConnectionService extends ConnectionService {
         } else if (phone.getPhoneType() == TelephonyManager.PHONE_TYPE_CDMA) {
             return new CdmaConnection(originalConnection);
         } else {
-            // TODO(ihab): Tear down 'originalConnection' here, or move recognition of
+            // TODO: Tear down 'originalConnection' here, or move recognition of
             // getPhoneType() earlier in this method before we've already asked phone to dial()
             return Connection.getFailedConnection(DisconnectCause.OUTGOING_FAILURE,
                     "Invalid phone type");

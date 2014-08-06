@@ -248,7 +248,7 @@ public class EmergencyCallHelper {
                                    Settings.Global.AIRPLANE_MODE_ON, 0);
 
             // Post the broadcast intend for change in airplane mode
-            // TODO(santoscordon): We really should not be in charge of sending this broadcast.
+            // TODO: We really should not be in charge of sending this broadcast.
             //     If changing the setting is sufficent to trigger all of the rest of the logic,
             //     then that should also trigger the broadcast intent.
             Intent intent = new Intent(Intent.ACTION_AIRPLANE_MODE_CHANGED);
@@ -276,7 +276,7 @@ public class EmergencyCallHelper {
      * EmergencyCallHelper until someone kicks off the whole sequence again with another call to
      * {@link #startTurnOnRadioSequence}
      *
-     * TODO(santoscordon): Do the work for the comment below:
+     * TODO: Do the work for the comment below:
      * Note we don't call this method simply after a successful call to placeCall(), since it's
      * still possible the call will disconnect very quickly with an OUT_OF_SERVICE error.
      */

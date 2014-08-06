@@ -31,9 +31,9 @@ final class CdmaConnection extends TelephonyConnection {
     /** {@inheritDoc} */
     @Override
     public void onPlayDtmfTone(char digit) {
-        // TODO(santoscordon): There are conditions where we should play dtmf tones with different
+        // TODO: There are conditions where we should play dtmf tones with different
         // timeouts.
-        // TODO(santoscordon): We get explicit response from the phone via a Message when the burst
+        // TODO: We get explicit response from the phone via a Message when the burst
         // tone has completed. During this time we can get subsequent requests. We need to stop
         // passing in null as the message and start handling it to implement a queue.
         if (getPhone() != null) {

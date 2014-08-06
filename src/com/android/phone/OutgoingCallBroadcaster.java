@@ -309,7 +309,7 @@ public class OutgoingCallBroadcaster extends Activity
      */
     private void startSipCallOptionHandler(Context context, Intent intent,
             Uri uri, String number) {
-        // TODO(sail): Remove this code.
+        // TODO: Remove this code.
     }
 
     /**
