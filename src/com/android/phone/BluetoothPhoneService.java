@@ -778,7 +778,6 @@ public class BluetoothPhoneService extends Service {
                     if (ringingCall.isRinging()) {
                         if (VDBG) log("CHLD:2 Callwaiting Answer call");
                         PhoneUtils.answerCall(ringingCall);
-                        PhoneUtils.setMute(false);
                         // Setting the second callers state flag to TRUE (i.e. active)
                         cdmaSetSecondCallState(true);
                         return true;

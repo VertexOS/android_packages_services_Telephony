@@ -482,8 +482,6 @@ public class CallController extends Handler {
                     // Start the timer for 3 Way CallerInfo
                     if (mApp.cdmaPhoneCallState.getCurrentCallState()
                             == CdmaPhoneCallState.PhoneCallState.THRWAY_ACTIVE) {
-                        //Unmute for the second MO call
-                        PhoneUtils.setMute(false);
 
                         // This is a "CDMA 3-way call", which means that you're dialing a
                         // 2nd outgoing call while a previous call is already in progress.
