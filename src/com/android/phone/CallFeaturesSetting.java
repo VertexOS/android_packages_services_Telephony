@@ -807,7 +807,7 @@ public class CallFeaturesSetting extends PreferenceActivity
             mChangingVMorFwdDueToProviderChange = isVMProviderSettingsForced;
             final String fwdNum = data.getStringExtra(FWD_NUMBER_EXTRA);
 
-            // TODO(iliat): It would be nice to load the current network setting for this and
+            // TODO: It would be nice to load the current network setting for this and
             // send it to the provider when it's config is invoked so it can use this as default
             final int fwdNumTime = data.getIntExtra(FWD_NUMBER_TIME_EXTRA, 20);
 
@@ -2100,7 +2100,7 @@ public class CallFeaturesSetting extends PreferenceActivity
      * Simulates user clicking on a passed preference.
      * Usually needed when the preference is a dialog preference and we want to invoke
      * a dialog for this preference programmatically.
-     * TODO(iliat): figure out if there is a cleaner way to cause preference dlg to come up
+     * TODO: figure out if there is a cleaner way to cause preference dlg to come up
      */
     private void simulatePreferenceClick(Preference preference) {
         // Go through settings until we find our setting

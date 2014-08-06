@@ -203,7 +203,7 @@ abstract class TelephonyConnection extends Connection {
     @Override
     public void onHold() {
         Log.v(this, "onHold");
-        // TODO(santoscordon): Can dialing calls be put on hold as well since they take up the
+        // TODO: Can dialing calls be put on hold as well since they take up the
         // foreground call slot?
         if (Call.State.ACTIVE == mOriginalConnectionState) {
             Log.v(this, "Holding active call");
@@ -218,14 +218,14 @@ abstract class TelephonyConnection extends Connection {
                 // cheating here and simply skipping it because we know any attempt to hold a call
                 // while a call-waiting call is happening is likely a request from Telecomm prior to
                 // accepting the call-waiting call.
-                // TODO(santoscordon): Investigate a better solution. It would be great here if we
+                // TODO: Investigate a better solution. It would be great here if we
                 // could "fake" hold by silencing the audio and microphone streams for this call
                 // instead of actually putting it on hold.
                 if (ringingCall.getState() != Call.State.WAITING) {
                     phone.switchHoldingAndActive();
                 }
 
-                // TODO(santoscordon): Cdma calls are slightly different.
+                // TODO: Cdma calls are slightly different.
             } catch (CallStateException e) {
                 Log.e(this, e, "Exception occurred while trying to put call on hold.");
             }
@@ -252,7 +252,7 @@ abstract class TelephonyConnection extends Connection {
     @Override
     public void onAnswer(int videoState) {
         Log.v(this, "onAnswer");
-        // TODO(santoscordon): Tons of hairy logic is missing here around multiple active calls on
+        // TODO: Tons of hairy logic is missing here around multiple active calls on
         // CDMA devices. See {@link CallManager.acceptCall}.
 
         if (isValidRingingCall() && getPhone() != null) {

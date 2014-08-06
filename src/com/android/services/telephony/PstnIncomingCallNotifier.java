@@ -110,7 +110,7 @@ final class PstnIncomingCallNotifier {
 
     /**
      * Register for notifications from the base phone.
-     * TODO(santoscordon): We should only need to interact with the phoneproxy directly. However,
+     * TODO: We should only need to interact with the phoneproxy directly. However,
      * since the phoneproxy only interacts directly with CallManager we either listen to callmanager
      * or we have to poke into the proxy like this.  Neither is desirable. It would be better if
      * this class and callManager could register generically with the phone proxy instead and get
