@@ -1607,16 +1607,12 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
                 new IccAPDUArgument(channel, cla, command, p1, p2, p3, data));
         if (DBG) log("iccTransmitApduLogicalChannel: " + response);
 
-        // If the payload is null, there was an error. Indicate that by returning
-        // an empty string.
-        if (response.payload == null) {
-          return "";
-        }
-
         // Append the returned status code to the end of the response payload.
         String s = Integer.toHexString(
                 (response.sw1 << 8) + response.sw2 + 0x10000).substring(1);
-        s = IccUtils.bytesToHexString(response.payload) + s;
+        if (response.payload != null) {
+            s = IccUtils.bytesToHexString(response.payload) + s;
+        }
         return s;
     }
 
@@ -1634,16 +1630,12 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
                 new IccAPDUArgument(0, cla, command, p1, p2, p3, data));
         if (DBG) log("iccTransmitApduBasicChannel: " + response);
 
-        // If the payload is null, there was an error. Indicate that by returning
-        // an empty string.
-        if (response.payload == null) {
-          return "";
-        }
-
         // Append the returned status code to the end of the response payload.
         String s = Integer.toHexString(
                 (response.sw1 << 8) + response.sw2 + 0x10000).substring(1);
-        s = IccUtils.bytesToHexString(response.payload) + s;
+        if (response.payload != null) {
+            s = IccUtils.bytesToHexString(response.payload) + s;
+        }
         return s;
     }
 
