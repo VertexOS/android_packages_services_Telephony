@@ -1588,7 +1588,7 @@ public class CallNotifier extends Handler
             new SignalInfoTonePlayer(toneID).start();
         }
 
-        // TODO(sail): Remove this.
+        // TODO: Remove this.
         //mCallModeler.onCdmaCallWaiting(infoCW);
     }
 
@@ -1642,7 +1642,7 @@ public class CallNotifier extends Handler
 
         // Call modeler needs to know about this event regardless of the
         // state conditionals in the previous code.
-        // TODO(sail): Remove this.
+        // TODO: Remove this.
         //mCallModeler.onCdmaCallWaitingReject();
     }
 

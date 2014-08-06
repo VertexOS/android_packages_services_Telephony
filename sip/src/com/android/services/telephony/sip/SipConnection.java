@@ -182,7 +182,7 @@ final class SipConnection extends Connection {
     @Override
     public void onSwapWithBackgroundCall() {
         if (VERBOSE) log("onSwapWithBackgroundCall");
-        // TODO(sail): Implement swap.
+        // TODO: Implement swap.
     }
 
     @Override
