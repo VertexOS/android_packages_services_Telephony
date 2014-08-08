@@ -22,13 +22,7 @@
         android:title="@string/cdma_lte_data_service">
     </PreferenceScreen>
 
-    <CheckBoxPreference
-        android:key="button_data_enabled_key"
-        android:title="@string/data_enabled"
-        android:persistent="false"
-        android:summary="@string/data_enable_summary"/>
-
-    <CheckBoxPreference
+    <SwitchPreference
         android:key="button_roaming_key"
         android:title="@string/roaming"
         android:persistent="false"
@@ -50,5 +44,11 @@
         android:entries="@array/enabled_networks_choices"
         android:entryValues="@array/enabled_networks_values"
         android:dialogTitle="@string/preferred_network_mode_dialogtitle" />
+
+    <SwitchPreference
+        android:key="enhanced_4g_lte"
+        android:title="@string/enhanced_4g_lte_mode_title"
+        android:persistent="false"
+        android:summary="@string/enhanced_4g_lte_mode_summary"/>
 
 </PreferenceScreen>

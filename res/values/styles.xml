@@ -286,4 +286,9 @@
         <item name="android:windowIsFloating">true</item>
         <item name="android:backgroundDimEnabled">false</item>
     </style>
+
+    <style name="Theme.Material.Settings" parent="@android:style/Theme.Material.Settings">
+        <item name="@*android:actionBarSize">56dip</item>
+        <item name="preferenceBackgroundColor">@drawable/preference_background</item>
+    </style>
 </resources>
