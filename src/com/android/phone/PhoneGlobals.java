@@ -60,7 +60,6 @@ import com.android.internal.telephony.PhoneConstants;
 import com.android.internal.telephony.PhoneFactory;
 import com.android.internal.telephony.TelephonyCapabilities;
 import com.android.internal.telephony.TelephonyIntents;
-import com.android.phone.WiredHeadsetManager.WiredHeadsetListener;
 import com.android.phone.common.CallLogAsync;
 import com.android.server.sip.SipService;
 
@@ -141,13 +140,11 @@ public class PhoneGlobals extends ContextWrapper {
     Phone phone;
     PhoneInterfaceManager phoneMgr;
 
-    private AudioRouter audioRouter;
     private BluetoothManager bluetoothManager;
     private CallGatewayManager callGatewayManager;
     private CallStateMonitor callStateMonitor;
     private IBluetoothHeadsetPhone mBluetoothPhone;
     private Ringer ringer;
-    private WiredHeadsetManager wiredHeadsetManager;
 
     static int mDockState = Intent.EXTRA_DOCK_STATE_UNDOCKED;
     static boolean sVoiceCapable = true;
@@ -298,10 +295,7 @@ public class PhoneGlobals extends ContextWrapper {
 
                     phoneState = mCM.getState();
                     if (phoneState == PhoneConstants.State.OFFHOOK &&
-                            !wiredHeadsetManager.isHeadsetPlugged() &&
                             !bluetoothManager.isBluetoothHeadsetAudioOn()) {
-                        audioRouter.setSpeaker(inDockMode);
-
                         PhoneUtils.turnOnSpeaker(getApplicationContext(), inDockMode, true);
                     }
                     break;
@@ -406,16 +400,10 @@ public class PhoneGlobals extends ContextWrapper {
             // Monitors call activity from the telephony layer
             callStateMonitor = new CallStateMonitor(mCM);
 
-            // Manages wired headset state
-            wiredHeadsetManager = new WiredHeadsetManager(this);
-
             // Bluetooth manager
             bluetoothManager = new BluetoothManager();
 
             ringer = Ringer.init(this, bluetoothManager);
-
-            // Audio router
-            audioRouter = new AudioRouter(this, bluetoothManager, wiredHeadsetManager, mCM);
 
             phoneMgr = PhoneInterfaceManager.init(this, phone);
 
@@ -525,14 +513,6 @@ public class PhoneGlobals extends ContextWrapper {
 
     /* package */ BluetoothManager getBluetoothManager() {
         return bluetoothManager;
-    }
-
-    /* package */ WiredHeadsetManager getWiredHeadsetManager() {
-        return wiredHeadsetManager;
-    }
-
-    /* package */ AudioRouter getAudioRouter() {
-        return audioRouter;
     }
 
     /* package */ CallManager getCallManager() {

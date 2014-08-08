@@ -352,10 +352,6 @@ public class CallNotifier extends Handler
                 // onRingbackTone((AsyncResult) msg.obj);
                 break;
 
-            case CallStateMonitor.PHONE_RESEND_MUTE:
-                onResendMute();
-                break;
-
             default:
                 // super.handleMessage(msg);
         }
@@ -1769,15 +1765,6 @@ public class CallNotifier extends Handler
                 mInCallRingbackTonePlayer = null;
             }
         }
-    }
-
-    /**
-     * Toggle mute and unmute requests while keeping the same mute state
-     */
-    private void onResendMute() {
-        boolean muteState = PhoneUtils.getMute();
-        PhoneUtils.setMute(!muteState);
-        PhoneUtils.setMute(muteState);
     }
 
     private void log(String msg) {

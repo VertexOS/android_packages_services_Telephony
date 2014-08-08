@@ -104,10 +104,6 @@ public class PhoneUtils {
     /** Speaker state, persisting between wired headset connection events */
     private static boolean sIsSpeakerEnabled = false;
 
-    /** Hash table to store mute (Boolean) values based upon the connection.*/
-    private static Hashtable<Connection, Boolean> sConnectionMuteTable =
-        new Hashtable<Connection, Boolean>();
-
     /** Static handler for the connection/mute tracking */
     private static ConnectionHandler mConnectionHandler;
 
@@ -172,70 +168,6 @@ public class PhoneUtils {
                         }
                         answerCall(frC.ringing);
                     }
-                    break;
-                case PHONE_STATE_CHANGED:
-                    AsyncResult ar = (AsyncResult) msg.obj;
-                    if (DBG) log("ConnectionHandler: updating mute state for each connection");
-
-                    CallManager cm = (CallManager) ar.userObj;
-
-                    // update the foreground connections, if there are new connections.
-                    // Have to get all foreground calls instead of the active one
-                    // because there may two foreground calls co-exist in shore period
-                    // (a racing condition based on which phone changes firstly)
-                    // Otherwise the connection may get deleted.
-                    List<Connection> fgConnections = new ArrayList<Connection>();
-                    for (Call fgCall : cm.getForegroundCalls()) {
-                        if (!fgCall.isIdle()) {
-                            fgConnections.addAll(fgCall.getConnections());
-                        }
-                    }
-                    for (Connection cn : fgConnections) {
-                        if (sConnectionMuteTable.get(cn) == null) {
-                            sConnectionMuteTable.put(cn, Boolean.FALSE);
-                        }
-                    }
-
-                    // mute is connection based operation, we need loop over
-                    // all background calls instead of the first one to update
-                    // the background connections, if there are new connections.
-                    List<Connection> bgConnections = new ArrayList<Connection>();
-                    for (Call bgCall : cm.getBackgroundCalls()) {
-                        if (!bgCall.isIdle()) {
-                            bgConnections.addAll(bgCall.getConnections());
-                        }
-                    }
-                    for (Connection cn : bgConnections) {
-                        if (sConnectionMuteTable.get(cn) == null) {
-                          sConnectionMuteTable.put(cn, Boolean.FALSE);
-                        }
-                    }
-
-                    // Check to see if there are any lingering connections here
-                    // (disconnected connections), use old-school iterators to avoid
-                    // concurrent modification exceptions.
-                    Connection cn;
-                    for (Iterator<Connection> cnlist = sConnectionMuteTable.keySet().iterator();
-                            cnlist.hasNext();) {
-                        cn = cnlist.next();
-                        if (!fgConnections.contains(cn) && !bgConnections.contains(cn)) {
-                            if (DBG) log("connection '" + cn + "' not accounted for, removing.");
-                            cnlist.remove();
-                        }
-                    }
-
-                    // Restore the mute state of the foreground call if we're not IDLE,
-                    // otherwise just clear the mute state. This is really saying that
-                    // as long as there is one or more connections, we should update
-                    // the mute state with the earliest connection on the foreground
-                    // call, and that with no connections, we should be back to a
-                    // non-mute state.
-                    if (cm.getState() != PhoneConstants.State.IDLE) {
-                        restoreMuteState();
-                    } else {
-                        setMuteInternal(cm.getFgPhone(), false);
-                    }
-
                     break;
             }
         }
@@ -327,9 +259,6 @@ public class PhoneUtils {
                 //if (DBG) log("sPhone.acceptCall");
                 app.mCM.acceptCall(ringingCall);
                 answered = true;
-
-                // Always reset to "unmuted" for a freshly-answered call
-                setMute(false);
 
                 setAudioMode();
 
@@ -769,11 +698,6 @@ public class PhoneUtils {
 
             startGetCallerInfo(context, connection, null, null, gatewayInfo);
 
-            // Always set mute to off when we are dialing an emergency number
-            if (isEmergencyCall) {
-                setMute(false);
-            }
-
             setAudioMode();
 
             if (DBG) log("about to activate speaker");
@@ -880,49 +804,6 @@ public class PhoneUtils {
         } catch (CallStateException ex) {
             Log.w(LOG_TAG, "switchHoldingAndActive: caught " + ex, ex);
         }
-    }
-
-    /**
-     * Restore the mute setting from the earliest connection of the
-     * foreground call.
-     */
-    static Boolean restoreMuteState() {
-        Phone phone = PhoneGlobals.getInstance().mCM.getFgPhone();
-
-        //get the earliest connection
-        Connection c = phone.getForegroundCall().getEarliestConnection();
-
-        // only do this if connection is not null.
-        if (c != null) {
-
-            int phoneType = phone.getPhoneType();
-
-            // retrieve the mute value.
-            Boolean shouldMute = null;
-
-            // In CDMA, mute is not maintained per Connection. Single mute apply for
-            // a call where  call can have multiple connections such as
-            // Three way and Call Waiting.  Therefore retrieving Mute state for
-            // latest connection can apply for all connection in that call
-            if (phoneType == PhoneConstants.PHONE_TYPE_CDMA) {
-                shouldMute = sConnectionMuteTable.get(
-                        phone.getForegroundCall().getLatestConnection());
-            } else if ((phoneType == PhoneConstants.PHONE_TYPE_GSM)
-                    || (phoneType == PhoneConstants.PHONE_TYPE_SIP)
-                    || (phoneType == PhoneConstants.PHONE_TYPE_IMS)
-                    || (phoneType == PhoneConstants.PHONE_TYPE_THIRD_PARTY)) {
-                shouldMute = sConnectionMuteTable.get(c);
-            }
-            if (shouldMute == null) {
-                if (DBG) log("problem retrieving mute value for this connection.");
-                shouldMute = Boolean.FALSE;
-            }
-
-            // set the mute value and return the result.
-            setMute (shouldMute.booleanValue());
-            return shouldMute;
-        }
-        return Boolean.valueOf(getMute());
     }
 
     static void mergeCalls() {
@@ -2034,49 +1915,6 @@ public class PhoneUtils {
         }
     }
 
-    /**
-     *
-     * Mute / umute the foreground phone, which has the current foreground call
-     *
-     * All muting / unmuting from the in-call UI should go through this
-     * wrapper.
-     *
-     * Wrapper around Phone.setMute() and setMicrophoneMute().
-     * It also updates the connectionMuteTable and mute icon in the status bar.
-     *
-     */
-    static void setMute(boolean muted) {
-        CallManager cm = PhoneGlobals.getInstance().mCM;
-
-        // Emergency calls never get muted.
-        if (isInEmergencyCall(cm)) {
-            muted = false;
-        }
-
-        // make the call to mute the audio
-        setMuteInternal(cm.getFgPhone(), muted);
-
-        // update the foreground connections to match.  This includes
-        // all the connections on conference calls.
-        for (Connection cn : cm.getActiveFgCall().getConnections()) {
-            if (sConnectionMuteTable.get(cn) == null) {
-                if (DBG) log("problem retrieving mute value for this connection.");
-            }
-            sConnectionMuteTable.put(cn, Boolean.valueOf(muted));
-        }
-
-        // update the background connections to match.  This includes
-        // all the connections on conference calls.
-        if (cm.hasActiveBgCall()) {
-            for (Connection cn : cm.getFirstActiveBgCall().getConnections()) {
-                if (sConnectionMuteTable.get(cn) == null) {
-                    if (DBG) log("problem retrieving mute value for this connection.");
-                }
-                sConnectionMuteTable.put(cn, Boolean.valueOf(muted));
-            }
-        }
-    }
-
     static boolean isInEmergencyCall(CallManager cm) {
         for (Connection cn : cm.getActiveFgCall().getConnections()) {
             if (PhoneNumberUtils.isLocalEmergencyNumber(PhoneGlobals.getInstance(),
@@ -2088,172 +1926,20 @@ public class PhoneUtils {
     }
 
     /**
-     * Internally used muting function.
-     */
-    private static void setMuteInternal(Phone phone, boolean muted) {
-        final PhoneGlobals app = PhoneGlobals.getInstance();
-        Context context = phone.getContext();
-        boolean routeToAudioManager =
-            context.getResources().getBoolean(R.bool.send_mic_mute_to_AudioManager);
-        if (routeToAudioManager) {
-            AudioManager audioManager =
-                (AudioManager) phone.getContext().getSystemService(Context.AUDIO_SERVICE);
-            if (DBG) log("setMuteInternal: using setMicrophoneMute(" + muted + ")...");
-            audioManager.setMicrophoneMute(muted);
-        } else {
-            if (DBG) log("setMuteInternal: using phone.setMute(" + muted + ")...");
-            phone.setMute(muted);
-        }
-        app.getAudioRouter().onMuteChange(muted);
-    }
-
-    /**
      * Get the mute state of foreground phone, which has the current
      * foreground call
      */
     static boolean getMute() {
-        final PhoneGlobals app = PhoneGlobals.getInstance();
-
-        boolean routeToAudioManager =
-            app.getResources().getBoolean(R.bool.send_mic_mute_to_AudioManager);
-        if (routeToAudioManager) {
-            AudioManager audioManager =
-                (AudioManager) app.getSystemService(Context.AUDIO_SERVICE);
-            return audioManager.isMicrophoneMute();
-        } else {
-            return app.mCM.getMute();
-        }
+        return false;
     }
 
     /* package */ static void setAudioMode() {
-        setAudioMode(PhoneGlobals.getInstance().mCM);
     }
 
     /**
      * Sets the audio mode per current phone state.
      */
     /* package */ static void setAudioMode(CallManager cm) {
-        if (DBG) Log.d(LOG_TAG, "setAudioMode()..." + cm.getState());
-
-        Context context = PhoneGlobals.getInstance();
-        AudioManager audioManager = (AudioManager)
-                context.getSystemService(Context.AUDIO_SERVICE);
-        int modeBefore = audioManager.getMode();
-        cm.setAudioMode();
-        int modeAfter = audioManager.getMode();
-
-        if (modeBefore != modeAfter) {
-            // Enable stack dump only when actively debugging ("new Throwable()" is expensive!)
-            if (DBG_SETAUDIOMODE_STACK) Log.d(LOG_TAG, "Stack:", new Throwable("stack dump"));
-        } else {
-            if (DBG) Log.d(LOG_TAG, "setAudioMode() no change: "
-                    + audioModeToString(modeBefore));
-        }
-    }
-    private static String audioModeToString(int mode) {
-        switch (mode) {
-            case AudioManager.MODE_INVALID: return "MODE_INVALID";
-            case AudioManager.MODE_CURRENT: return "MODE_CURRENT";
-            case AudioManager.MODE_NORMAL: return "MODE_NORMAL";
-            case AudioManager.MODE_RINGTONE: return "MODE_RINGTONE";
-            case AudioManager.MODE_IN_CALL: return "MODE_IN_CALL";
-            default: return String.valueOf(mode);
-        }
-    }
-
-    /**
-     * Handles the wired headset button while in-call.
-     *
-     * This is called from the PhoneApp, not from the InCallScreen,
-     * since the HEADSETHOOK button means "mute or unmute the current
-     * call" *any* time a call is active, even if the user isn't actually
-     * on the in-call screen.
-     *
-     * @return true if we consumed the event.
-     */
-    /* package */ static boolean handleHeadsetHook(Phone phone, KeyEvent event) {
-        if (DBG) log("handleHeadsetHook()..." + event.getAction() + " " + event.getRepeatCount());
-        final PhoneGlobals app = PhoneGlobals.getInstance();
-
-        // If the phone is totally idle, we ignore HEADSETHOOK events
-        // (and instead let them fall through to the media player.)
-        if (phone.getState() == PhoneConstants.State.IDLE) {
-            return false;
-        }
-
-        // Ok, the phone is in use.
-        // The headset button button means "Answer" if an incoming call is
-        // ringing.  If not, it toggles the mute / unmute state.
-        //
-        // And in any case we *always* consume this event; this means
-        // that the usual mediaplayer-related behavior of the headset
-        // button will NEVER happen while the user is on a call.
-
-        final boolean hasRingingCall = !phone.getRingingCall().isIdle();
-        final boolean hasActiveCall = !phone.getForegroundCall().isIdle();
-        final boolean hasHoldingCall = !phone.getBackgroundCall().isIdle();
-
-        if (hasRingingCall &&
-            event.getRepeatCount() == 0 &&
-            event.getAction() == KeyEvent.ACTION_UP) {
-            // If an incoming call is ringing, answer it (just like with the
-            // CALL button):
-            int phoneType = phone.getPhoneType();
-            if (phoneType == PhoneConstants.PHONE_TYPE_CDMA) {
-                answerCall(phone.getRingingCall());
-            } else if ((phoneType == PhoneConstants.PHONE_TYPE_GSM)
-                    || (phoneType == PhoneConstants.PHONE_TYPE_SIP)
-                    || (phoneType == PhoneConstants.PHONE_TYPE_IMS)
-                    || (phoneType == PhoneConstants.PHONE_TYPE_THIRD_PARTY)) {
-                if (hasActiveCall && hasHoldingCall) {
-                    if (DBG) log("handleHeadsetHook: ringing (both lines in use) ==> answer!");
-                    answerAndEndActive(app.mCM, phone.getRingingCall());
-                } else {
-                    if (DBG) log("handleHeadsetHook: ringing ==> answer!");
-                    // answerCall() will automatically hold the current
-                    // active call, if there is one.
-                    answerCall(phone.getRingingCall());
-                }
-            } else {
-                throw new IllegalStateException("Unexpected phone type: " + phoneType);
-            }
-        } else {
-            // No incoming ringing call.
-            if (event.isLongPress()) {
-                if (DBG) log("handleHeadsetHook: longpress -> hangup");
-                hangup(app.mCM);
-            }
-            else if (event.getAction() == KeyEvent.ACTION_UP &&
-                     event.getRepeatCount() == 0) {
-                Connection c = phone.getForegroundCall().getLatestConnection();
-                // If it is NOT an emg #, toggle the mute state. Otherwise, ignore the hook.
-                if (c != null && !PhoneNumberUtils.isLocalEmergencyNumber(
-                        PhoneGlobals.getInstance(), c.getAddress())) {
-                    if (getMute()) {
-                        if (DBG) log("handleHeadsetHook: UNmuting...");
-                        setMute(false);
-                    } else {
-                        if (DBG) log("handleHeadsetHook: muting...");
-                        setMute(true);
-                    }
-                }
-            }
-        }
-
-        // Even if the InCallScreen is the current activity, there's no
-        // need to force it to update, because (1) if we answered a
-        // ringing call, the InCallScreen will imminently get a phone
-        // state change event (causing an update), and (2) if we muted or
-        // unmuted, the setMute() call automagically updates the status
-        // bar, and there's no "mute" indication in the InCallScreen
-        // itself (other than the menu item, which only ever stays
-        // onscreen for a second anyway.)
-        // TODO: (2) isn't entirely true anymore. Once we return our result
-        // to the PhoneApp, we ask InCallScreen to update its control widgets
-        // in case we changed mute or speaker state and phones with touch-
-        // screen [toggle] buttons need to update themselves.
-
-        return true;
     }
 
     /**
@@ -2561,13 +2247,13 @@ public class PhoneUtils {
 
             // TODO: This function should move to AudioRouter
             final BluetoothManager btManager = app.getBluetoothManager();
-            final WiredHeadsetManager wiredHeadset = app.getWiredHeadsetManager();
-            final AudioRouter audioRouter = app.getAudioRouter();
+            //final WiredHeadsetManager wiredHeadset = app.getWiredHeadsetManager();
+            //final AudioRouter audioRouter = app.getAudioRouter();
 
-            if (!wiredHeadset.isHeadsetPlugged() && !btManager.isBluetoothHeadsetAudioOn()) {
-                audioRouter.setSpeaker(true);
+            /*if (!wiredHeadset.isHeadsetPlugged() && !btManager.isBluetoothHeadsetAudioOn()) {
+                //audioRouter.setSpeaker(true);
                 activated = true;
-            }
+            }*/
         }
         return activated;
     }
