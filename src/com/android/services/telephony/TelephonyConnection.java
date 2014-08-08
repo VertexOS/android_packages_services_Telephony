@@ -120,6 +120,17 @@ abstract class TelephonyConnection extends Connection {
                 ConnectionService.VideoCallProvider videoCallProvider) {
             setVideoCallProvider(videoCallProvider);
         }
+
+        /**
+         * Used by the {@link com.android.internal.telephony.Connection} to report a change in the
+         * audio quality for the current call.
+         *
+         * @param audioQuality The audio quality.
+         */
+        @Override
+        public void onAudioQualityChanged(int audioQuality) {
+            setAudioQuality(audioQuality);
+        }
     };
 
     private com.android.internal.telephony.Connection mOriginalConnection;
@@ -127,7 +138,7 @@ abstract class TelephonyConnection extends Connection {
 
     /**
      * Determines if the {@link TelephonyConnection} has local video capabilities.
-     * This is used when {@link TelephonyConnection#updateCallCapabilities(boolean)}} is called,
+     * This is used when {@link TelephonyConnection#updateCallCapabilities}} is called,
      * ensuring the appropriate {@link CallCapabilities} are set.  Since {@link CallCapabilities}
      * can be rebuilt at any time it is necessary to track the video capabilities between rebuild.
      * The {@link CallCapabilities} (including video capabilities) are communicated to the telecomm
@@ -137,13 +148,20 @@ abstract class TelephonyConnection extends Connection {
 
     /**
      * Determines if the {@link TelephonyConnection} has remote video capabilities.
-     * This is used when {@link TelephonyConnection#updateCallCapabilities(boolean)}} is called,
+     * This is used when {@link TelephonyConnection#updateCallCapabilities}} is called,
      * ensuring the appropriate {@link CallCapabilities} are set.  Since {@link CallCapabilities}
      * can be rebuilt at any time it is necessary to track the video capabilities between rebuild.
      * The {@link CallCapabilities} (including video capabilities) are communicated to the telecomm
      * layer.
      */
     private boolean mRemoteVideoCapable;
+
+    /**
+     * Determines the current audio quality for the {@link TelephonyConnection}.
+     * This is used when {@link TelephonyConnection#updateCallCapabilities}} is called to indicate
+     * whether a call has the {@link android.telecomm.CallCapabilities#VoLTE} capability.
+     */
+    private int mAudioQuality;
 
     protected TelephonyConnection(com.android.internal.telephony.Connection originalConnection) {
         Log.v(this, "new TelephonyConnection, originalConnection: " + originalConnection);
@@ -159,6 +177,7 @@ abstract class TelephonyConnection extends Connection {
         setLocalVideoCapable(mOriginalConnection.isLocalVideoCapable());
         setRemoteVideoCapable(mOriginalConnection.isRemoteVideoCapable());
         setVideoCallProvider(mOriginalConnection.getVideoCallProvider());
+        setAudioQuality(mOriginalConnection.getAudioQuality());
 
         updateHandle();
     }
@@ -305,6 +324,7 @@ abstract class TelephonyConnection extends Connection {
     protected final void updateCallCapabilities() {
         int newCallCapabilities = buildCallCapabilities();
         newCallCapabilities = applyVideoCapabilities(newCallCapabilities);
+        newCallCapabilities = applyAudioQualityCapabilities(newCallCapabilities);
 
         if (getCallCapabilities() != newCallCapabilities) {
             setCallCapabilities(newCallCapabilities);
@@ -464,16 +484,41 @@ abstract class TelephonyConnection extends Connection {
     private int applyVideoCapabilities(int capabilities) {
         int currentCapabilities = capabilities;
         if (mRemoteVideoCapable) {
-            currentCapabilities |= CallCapabilities.SUPPORTS_VT_REMOTE;
+            currentCapabilities = applyCapability(currentCapabilities,
+                    CallCapabilities.SUPPORTS_VT_REMOTE);
         } else {
-            currentCapabilities &= ~CallCapabilities.SUPPORTS_VT_REMOTE;
+            currentCapabilities = removeCapability(currentCapabilities,
+                    CallCapabilities.SUPPORTS_VT_REMOTE);
         }
 
         if (mLocalVideoCapable) {
-            currentCapabilities |= CallCapabilities.SUPPORTS_VT_LOCAL;
+            currentCapabilities = applyCapability(currentCapabilities,
+                    CallCapabilities.SUPPORTS_VT_LOCAL);
         } else {
-            currentCapabilities &= ~CallCapabilities.SUPPORTS_VT_LOCAL;
+            currentCapabilities = removeCapability(currentCapabilities,
+                    CallCapabilities.SUPPORTS_VT_LOCAL);
         }
+        return currentCapabilities;
+    }
+
+    /**
+     * Applies the audio capabilities to the {@code CallCapabilities} bit-mask.  A call with high
+     * definition audio is considered to have the {@code VoLTE} call capability as VoLTE uses high
+     * definition audio.
+     *
+     * @param callCapabilities The {@code CallCapabilities} bit-mask.
+     * @return The capabilities with the audio capabilities applied.
+     */
+    private int applyAudioQualityCapabilities(int callCapabilities) {
+        int currentCapabilities = callCapabilities;
+
+        if (mAudioQuality ==
+                com.android.internal.telephony.Connection.AUDIO_QUALITY_HIGH_DEFINITION) {
+            currentCapabilities = applyCapability(currentCapabilities, CallCapabilities.VoLTE);
+        } else {
+            currentCapabilities = removeCapability(currentCapabilities, CallCapabilities.VoLTE);
+        }
+
         return currentCapabilities;
     }
 
@@ -517,11 +562,46 @@ abstract class TelephonyConnection extends Connection {
         updateCallCapabilities();
     }
 
+    /**
+     * Sets the current call audio quality.  Used during rebuild of the
+     * {@link CallCapabilities} to set or unset the {@link CallCapabilities#VoLTE} capability.
+     *
+     * @param audioQuality The audio quality.
+     */
+    public void setAudioQuality(int audioQuality) {
+        mAudioQuality = audioQuality;
+        updateCallCapabilities();
+    }
+
     private static Uri getHandleFromAddress(String address) {
         // Address can be null for blocked calls.
         if (address == null) {
             address = "";
         }
         return Uri.fromParts(TelephonyConnectionService.SCHEME_TEL, address, null);
+    }
+
+    /**
+     * Applies a capability to a capabilities bit-mask.
+     *
+     * @param capabilities The capabilities bit-mask.
+     * @param capability The capability to apply.
+     * @return The capabilities bit-mask with the capability applied.
+     */
+    private int applyCapability(int capabilities, int capability) {
+        int newCapabilities = capabilities | capability;
+        return newCapabilities;
+    }
+
+    /**
+     * Removes a capability from a capabilities bit-mask.
+     *
+     * @param capabilities The capabilities bit-mask.
+     * @param capability The capability to remove.
+     * @return The capabilities bit-mask with the capability removed.
+     */
+    private int removeCapability(int capabilities, int capability) {
+        int newCapabilities = capabilities & ~capability;
+        return newCapabilities;
     }
 }
