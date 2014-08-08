@@ -16,15 +16,10 @@
 
 package com.android.services.telephony;
 
-import com.android.internal.telephony.Call;
-import com.android.internal.telephony.PhoneFactory;
-
 import java.util.ArrayList;
 
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import android.telecomm.Connection;
 
