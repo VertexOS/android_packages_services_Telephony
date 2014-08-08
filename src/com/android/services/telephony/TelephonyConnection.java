@@ -164,22 +164,9 @@ abstract class TelephonyConnection extends Connection {
     private int mAudioQuality;
 
     protected TelephonyConnection(com.android.internal.telephony.Connection originalConnection) {
-        Log.v(this, "new TelephonyConnection, originalConnection: " + originalConnection);
-        mOriginalConnection = originalConnection;
-        getPhone().registerForPreciseCallStateChanged(
-                mHandler, MSG_PRECISE_CALL_STATE_CHANGED, null);
-        getPhone().registerForRingbackTone(mHandler, MSG_RINGBACK_TONE, null);
-        mOriginalConnection.addPostDialListener(mPostDialListener);
-        mOriginalConnection.addListener(mOriginalConnectionListener);
-
-        // Set video state and capabilities
-        setVideoState(mOriginalConnection.getVideoState());
-        setLocalVideoCapable(mOriginalConnection.isLocalVideoCapable());
-        setRemoteVideoCapable(mOriginalConnection.isRemoteVideoCapable());
-        setVideoCallProvider(mOriginalConnection.getVideoCallProvider());
-        setAudioQuality(mOriginalConnection.getAudioQuality());
-
-        updateHandle();
+        if (originalConnection != null) {
+            setOriginalConnection(originalConnection);
+        }
     }
 
     @Override
@@ -354,6 +341,25 @@ abstract class TelephonyConnection extends Connection {
 
     void onRemovedFromCallService() {
         // Subclass can override this to do cleanup.
+    }
+
+    void setOriginalConnection(com.android.internal.telephony.Connection originalConnection) {
+        Log.v(this, "new TelephonyConnection, originalConnection: " + originalConnection);
+        mOriginalConnection = originalConnection;
+        getPhone().registerForPreciseCallStateChanged(
+                mHandler, MSG_PRECISE_CALL_STATE_CHANGED, null);
+        getPhone().registerForRingbackTone(mHandler, MSG_RINGBACK_TONE, null);
+        mOriginalConnection.addPostDialListener(mPostDialListener);
+        mOriginalConnection.addListener(mOriginalConnectionListener);
+
+        // Set video state and capabilities
+        setVideoState(mOriginalConnection.getVideoState());
+        setLocalVideoCapable(mOriginalConnection.isLocalVideoCapable());
+        setRemoteVideoCapable(mOriginalConnection.isRemoteVideoCapable());
+        setVideoCallProvider(mOriginalConnection.getVideoCallProvider());
+        setAudioQuality(mOriginalConnection.getAudioQuality());
+
+        updateHandle();
     }
 
     private void hangup(int disconnectCause) {
