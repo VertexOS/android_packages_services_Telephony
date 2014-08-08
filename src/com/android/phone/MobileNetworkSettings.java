@@ -16,16 +16,22 @@
 
 package com.android.phone;
 
+import com.android.ims.ImsConfig;
+import com.android.ims.ImsManager;
+import com.android.ims.ImsException;
 import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneConstants;
 import com.android.internal.telephony.TelephonyIntents;
 import com.android.internal.telephony.TelephonyProperties;
+
+import java.util.Map;
 
 import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.net.Uri;
 import android.os.AsyncResult;
@@ -33,12 +39,15 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.os.SystemProperties;
+import android.os.UserHandle;
 import android.os.UserManager;
 import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
+import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceScreen;
+import android.preference.SwitchPreference;
 import android.telephony.SubscriptionManager;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
@@ -63,14 +72,17 @@ public class MobileNetworkSettings extends PreferenceActivity
     // debug data
     private static final String LOG_TAG = "NetworkSettings";
     private static final boolean DBG = true;
+    private static final String IMS_SHARED_PREFERENCES = "IMS_PREFERENCES";
+    private static final String KEY_IMS_ON = "IMS";
     public static final int REQUEST_CODE_EXIT_ECM = 17;
 
     //String keys for preference lookup
-    private static final String BUTTON_DATA_ENABLED_KEY = "button_data_enabled_key";
     private static final String BUTTON_PREFERED_NETWORK_MODE = "preferred_network_mode_key";
     private static final String BUTTON_ROAMING_KEY = "button_roaming_key";
     private static final String BUTTON_CDMA_LTE_DATA_SERVICE_KEY = "cdma_lte_data_service_key";
     private static final String BUTTON_ENABLED_NETWORKS_KEY = "enabled_networks_key";
+    private static final String BUTTON_4G_LTE_KEY = "enhanced_4g_lte";
+    private static final String BUTTON_CELL_BROADCAST_SETTINGS = "cell_broadcast_settings";
 
     static final int preferredNetworkMode = Phone.PREFERRED_NT_MODE;
 
@@ -82,8 +94,8 @@ public class MobileNetworkSettings extends PreferenceActivity
     //UI objects
     private ListPreference mButtonPreferredNetworkMode;
     private ListPreference mButtonEnabledNetworks;
-    private CheckBoxPreference mButtonDataRoam;
-    private CheckBoxPreference mButtonDataEnabled;
+    private SwitchPreference mButtonDataRoam;
+    private SwitchPreference mButton4glte;
     private Preference mLteDataServicePref;
 
     private static final String iface = "rmnet0"; //TODO: this will go away
@@ -114,6 +126,7 @@ public class MobileNetworkSettings extends PreferenceActivity
         }
     }
 
+    @Override
     public void onDismiss(DialogInterface dialog) {
         // Assuming that onClick gets called first
         if (!mOkClicked) {
@@ -129,7 +142,9 @@ public class MobileNetworkSettings extends PreferenceActivity
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
         /** TODO: Refactor and get rid of the if's using subclasses */
-        if (mGsmUmtsOptions != null &&
+        if (preference.getKey().equals(BUTTON_4G_LTE_KEY)) {
+            return true;
+        } else if (mGsmUmtsOptions != null &&
                 mGsmUmtsOptions.preferenceTreeClick(preference) == true) {
             return true;
         } else if (mCdmaOptions != null &&
@@ -151,30 +166,6 @@ public class MobileNetworkSettings extends PreferenceActivity
                     getContentResolver(), android.provider.Settings.Global.PREFERRED_NETWORK_MODE,
                     preferredNetworkMode);
             mButtonPreferredNetworkMode.setValue(Integer.toString(settingsNetworkMode));
-            return true;
-        } else if (preference == mButtonDataRoam) {
-            if (DBG) log("onPreferenceTreeClick: preference == mButtonDataRoam.");
-
-            //normally called on the toggle click
-            if (mButtonDataRoam.isChecked()) {
-                // First confirm with a warning dialog about charges
-                mOkClicked = false;
-                new AlertDialog.Builder(this).setMessage(
-                        getResources().getString(R.string.roaming_warning))
-                        .setTitle(android.R.string.dialog_alert_title)
-                        .setIconAttribute(android.R.attr.alertDialogIcon)
-                        .setPositiveButton(android.R.string.yes, this)
-                        .setNegativeButton(android.R.string.no, this)
-                        .show()
-                        .setOnDismissListener(this);
-            } else {
-                mPhone.setDataRoamingEnabled(false);
-            }
-            return true;
-        } else if (preference == mButtonDataEnabled) {
-            if (DBG) log("onPreferenceTreeClick: preference == mButtonDataEnabled.");
-
-            mPhone.setDataEnabled(mButtonDataEnabled.isChecked());
             return true;
         } else if (preference == mLteDataServicePref) {
             String tmpl = android.provider.Settings.Global.getString(getContentResolver(),
@@ -210,8 +201,23 @@ public class MobileNetworkSettings extends PreferenceActivity
         }
     }
 
+    public boolean isIMSOn() {
+        SharedPreferences imsPref =
+            getSharedPreferences(IMS_SHARED_PREFERENCES, Context.MODE_WORLD_READABLE);
+
+        return imsPref.getBoolean(KEY_IMS_ON, true);
+    }
+
+    private void setIMS(boolean turnOn) {
+        SharedPreferences imsPref =
+            getSharedPreferences(IMS_SHARED_PREFERENCES, Context.MODE_WORLD_READABLE);
+
+        imsPref.edit().putBoolean(KEY_IMS_ON, turnOn).commit();
+    }
+
     @Override
     protected void onCreate(Bundle icicle) {
+        setTheme(R.style.Theme_Material_Settings);
         super.onCreate(icicle);
 
         mPhone = PhoneGlobals.getPhone();
@@ -226,6 +232,11 @@ public class MobileNetworkSettings extends PreferenceActivity
 
         addPreferencesFromResource(R.xml.network_setting);
 
+        mButton4glte = (SwitchPreference)findPreference(BUTTON_4G_LTE_KEY);
+
+        mButton4glte.setOnPreferenceChangeListener(this);
+        mButton4glte.setChecked(isIMSOn());
+
         try {
             Context con = createPackageContext("com.android.systemui", 0);
             int id = con.getResources().getIdentifier("config_show4GForLTE",
@@ -239,12 +250,12 @@ public class MobileNetworkSettings extends PreferenceActivity
         //get UI object references
         PreferenceScreen prefSet = getPreferenceScreen();
 
-        mButtonDataEnabled = (CheckBoxPreference) prefSet.findPreference(BUTTON_DATA_ENABLED_KEY);
-        mButtonDataRoam = (CheckBoxPreference) prefSet.findPreference(BUTTON_ROAMING_KEY);
+        mButtonDataRoam = (SwitchPreference) prefSet.findPreference(BUTTON_ROAMING_KEY);
         mButtonPreferredNetworkMode = (ListPreference) prefSet.findPreference(
                 BUTTON_PREFERED_NETWORK_MODE);
         mButtonEnabledNetworks = (ListPreference) prefSet.findPreference(
                 BUTTON_ENABLED_NETWORKS_KEY);
+        mButtonDataRoam.setOnPreferenceChangeListener(this);
 
         mLteDataServicePref = prefSet.findPreference(BUTTON_CDMA_LTE_DATA_SERVICE_KEY);
 
@@ -337,6 +348,19 @@ public class MobileNetworkSettings extends PreferenceActivity
             // android.R.id.home will be triggered in onOptionsItemSelected()
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
+
+        final boolean isSecondaryUser = UserHandle.myUserId() != UserHandle.USER_OWNER;
+        // Enable link to CMAS app settings depending on the value in config.xml.
+        final boolean isCellBroadcastAppLinkEnabled = this.getResources().getBoolean(
+                com.android.internal.R.bool.config_cellBroadcastAppLinks);
+        if (isSecondaryUser || !isCellBroadcastAppLinkEnabled
+                || mUm.hasUserRestriction(UserManager.DISALLOW_CONFIG_CELL_BROADCASTS)) {
+            PreferenceScreen root = getPreferenceScreen();
+            Preference ps = findPreference(BUTTON_CELL_BROADCAST_SETTINGS);
+            if (ps != null) {
+                root.removePreference(ps);
+            }
+        }
     }
 
     @Override
@@ -350,8 +374,6 @@ public class MobileNetworkSettings extends PreferenceActivity
         // upon resumption from the sub-activity, make sure we re-enable the
         // preferences.
         getPreferenceScreen().setEnabled(true);
-
-        mButtonDataEnabled.setChecked(mPhone.getDataEnabled());
 
         // Set UI state in onResume because a user could go home, launch some
         // app to change this setting's backend, and re-launch this settings app
@@ -462,6 +484,46 @@ public class MobileNetworkSettings extends PreferenceActivity
                 mPhone.setPreferredNetworkType(modemNetworkMode, mHandler
                         .obtainMessage(MyHandler.MESSAGE_SET_PREFERRED_NETWORK_TYPE));
             }
+        } else if (preference == mButton4glte) {
+            ImsManager imsMan = ImsManager.getInstance(getBaseContext(),
+                    SubscriptionManager.getDefaultVoiceSubId());
+            SwitchPreference ltePref = (SwitchPreference)preference;
+
+            if (imsMan != null) {
+                try {
+                    if (ltePref.isChecked()) {
+                        imsMan.turnOffIms();
+                    } else {
+                        imsMan.turnOnIms();
+                    }
+                } catch(ImsException ie) {
+                    ltePref.setChecked(ltePref.isChecked());
+                    return false;
+                }
+                ltePref.setChecked(!ltePref.isChecked());
+                setIMS(ltePref.isChecked());
+            } else {
+                ltePref.setChecked(false);
+            }
+        } else if (preference == mButtonDataRoam) {
+            if (DBG) log("onPreferenceTreeClick: preference == mButtonDataRoam.");
+
+            //normally called on the toggle click
+            if (!mButtonDataRoam.isChecked()) {
+                // First confirm with a warning dialog about charges
+                mOkClicked = false;
+                new AlertDialog.Builder(this).setMessage(
+                        getResources().getString(R.string.roaming_warning))
+                        .setTitle(android.R.string.dialog_alert_title)
+                        .setIconAttribute(android.R.attr.alertDialogIcon)
+                        .setPositiveButton(android.R.string.yes, this)
+                        .setNegativeButton(android.R.string.no, this)
+                        .show()
+                        .setOnDismissListener(this);
+            } else {
+                mPhone.setDataRoamingEnabled(false);
+            }
+            return true;
         }
 
         // always let the preference setting proceed.
