@@ -110,12 +110,15 @@ public class TelephonyConnectionService extends ConnectionService {
             }
         }
 
+        final TelephonyConnection connection = createConnectionFor(phone.getPhoneType(), null);
+        if (connection == null) {
+            return Connection.getFailedConnection(
+                    DisconnectCause.OUTGOING_FAILURE, "Invalid phone type");
+        }
+        connection.setHandle(handle, PhoneConstants.PRESENTATION_ALLOWED);
+        connection.setInitializing();
+
         if (isEmergencyNumber) {
-            final Connection emergencyConnection = startOutgoingCall(request, phone, number);
-
-            // Start the emergency call in the initializing state to wait for the radio to spin up.
-            emergencyConnection.setInitializing();
-
             Log.d(this, "onCreateOutgoingConnection, doing startTurnOnRadioSequence for " +
                     "emergency number");
             if (mEmergencyCallHelper == null) {
@@ -126,19 +129,21 @@ public class TelephonyConnectionService extends ConnectionService {
                         @Override
                         public void onComplete(boolean isRadioReady) {
                             if (isRadioReady) {
-                                emergencyConnection.setInitialized();
+                                connection.setInitialized();
+                                placeOutgoingConnection(connection, phone, request);
                             } else {
                                 Log.d(this, "onCreateOutgoingConnection, failed to turn on radio");
-                                emergencyConnection.setFailed(DisconnectCause.POWER_OFF,
+                                connection.setFailed(DisconnectCause.POWER_OFF,
                                         "Failed to turn on radio.");
                             }
                         }
                     });
 
-            return emergencyConnection;
+        } else {
+            placeOutgoingConnection(connection, phone, request);
         }
 
-        return startOutgoingCall(request, phone, number);
+        return connection;
     }
 
     @Override
@@ -179,32 +184,25 @@ public class TelephonyConnectionService extends ConnectionService {
             return Connection.getCanceledConnection();
         }
 
-        TelephonyConnection connection = null;
-        if (phone.getPhoneType() == TelephonyManager.PHONE_TYPE_GSM) {
-            connection = new GsmConnection(originalConnection);
-        } else if (phone.getPhoneType() == TelephonyManager.PHONE_TYPE_CDMA) {
-            connection = new CdmaConnection(originalConnection);
+        Connection connection = createConnectionFor(phone.getPhoneType(), originalConnection);
+        if (connection == null) {
+            connection = Connection.getCanceledConnection();
         }
 
-        if (connection == null) {
-            return Connection.getCanceledConnection();
-        } else {
-            return connection;
-        }
+        return connection;
     }
 
-    private Connection startOutgoingCall(
-            ConnectionRequest request,
-            Phone phone,
-            String number) {
-        Log.v(this, "startOutgoingCall");
+    private void placeOutgoingConnection(
+            TelephonyConnection connection, Phone phone, ConnectionRequest request) {
+        String number = connection.getHandle().getSchemeSpecificPart();
 
         com.android.internal.telephony.Connection originalConnection;
         try {
             originalConnection = phone.dial(number, request.getVideoState());
         } catch (CallStateException e) {
-            Log.e(this, e, "startOutgoingCall, phone.dial exception: " + e);
-            return Connection.getFailedConnection(DisconnectCause.OUTGOING_FAILURE, e.getMessage());
+            Log.e(this, e, "placeOutgoingConnection, phone.dial exception: " + e);
+            connection.setFailed(DisconnectCause.OUTGOING_FAILURE, e.getMessage());
+            return;
         }
 
         if (originalConnection == null) {
@@ -214,19 +212,21 @@ public class TelephonyConnectionService extends ConnectionService {
             if (phone.getPhoneType() == PhoneConstants.PHONE_TYPE_GSM) {
                 disconnectCause = DisconnectCause.DIALED_MMI;
             }
-            Log.d(this, "startOutgoingCall, phone.dial returned null");
-            return Connection.getFailedConnection(disconnectCause, "Connection is null");
+            Log.d(this, "placeOutgoingConnection, phone.dial returned null");
+            connection.setFailed(disconnectCause, "Connection is null");
+        } else {
+            connection.setOriginalConnection(originalConnection);
         }
+    }
 
-        if (phone.getPhoneType() == TelephonyManager.PHONE_TYPE_GSM) {
+    private TelephonyConnection createConnectionFor(
+            int phoneType, com.android.internal.telephony.Connection originalConnection) {
+        if (phoneType == TelephonyManager.PHONE_TYPE_GSM) {
             return new GsmConnection(originalConnection);
-        } else if (phone.getPhoneType() == TelephonyManager.PHONE_TYPE_CDMA) {
+        } else if (phoneType == TelephonyManager.PHONE_TYPE_CDMA) {
             return new CdmaConnection(originalConnection);
         } else {
-            // TODO: Tear down 'originalConnection' here, or move recognition of
-            // getPhoneType() earlier in this method before we've already asked phone to dial()
-            return Connection.getFailedConnection(DisconnectCause.OUTGOING_FAILURE,
-                    "Invalid phone type");
+            return null;
         }
     }
 
