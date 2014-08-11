@@ -72,8 +72,6 @@ public class MobileNetworkSettings extends PreferenceActivity
     // debug data
     private static final String LOG_TAG = "NetworkSettings";
     private static final boolean DBG = true;
-    private static final String IMS_SHARED_PREFERENCES = "IMS_PREFERENCES";
-    private static final String KEY_IMS_ON = "IMS";
     public static final int REQUEST_CODE_EXIT_ECM = 17;
 
     //String keys for preference lookup
@@ -203,16 +201,16 @@ public class MobileNetworkSettings extends PreferenceActivity
 
     public boolean isIMSOn() {
         SharedPreferences imsPref =
-            getSharedPreferences(IMS_SHARED_PREFERENCES, Context.MODE_WORLD_READABLE);
+            getSharedPreferences(ImsManager.IMS_SHARED_PREFERENCES, Context.MODE_WORLD_READABLE);
 
-        return imsPref.getBoolean(KEY_IMS_ON, true);
+        return imsPref.getBoolean(ImsManager.KEY_IMS_ON, true);
     }
 
     private void setIMS(boolean turnOn) {
         SharedPreferences imsPref =
-            getSharedPreferences(IMS_SHARED_PREFERENCES, Context.MODE_WORLD_READABLE);
+            getSharedPreferences(ImsManager.IMS_SHARED_PREFERENCES, Context.MODE_WORLD_READABLE);
 
-        imsPref.edit().putBoolean(KEY_IMS_ON, turnOn).commit();
+        imsPref.edit().putBoolean(ImsManager.KEY_IMS_ON, turnOn).commit();
     }
 
     @Override
