@@ -490,20 +490,13 @@ public class MobileNetworkSettings extends PreferenceActivity
             SwitchPreference ltePref = (SwitchPreference)preference;
 
             if (imsMan != null) {
-                try {
-                    if (ltePref.isChecked()) {
-                        imsMan.turnOffIms();
-                    } else {
-                        imsMan.turnOnIms();
-                    }
-                } catch(ImsException ie) {
-                    ltePref.setChecked(ltePref.isChecked());
-                    return false;
-                }
                 ltePref.setChecked(!ltePref.isChecked());
                 setIMS(ltePref.isChecked());
-            } else {
-                ltePref.setChecked(false);
+                try {
+                    imsMan.setAdvanced4GMode(ltePref.isChecked());
+                } catch (ImsException ie) {
+                    // do nothing
+                }
             }
         } else if (preference == mButtonDataRoam) {
             if (DBG) log("onPreferenceTreeClick: preference == mButtonDataRoam.");
