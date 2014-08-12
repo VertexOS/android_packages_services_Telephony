@@ -1364,5 +1364,10 @@
     <string name="callFailed_cdma_call_limit">
         There are too many active calls. Please end or merge existing calls before placing a new one.
     </string>
+     <!-- Smart Divert Settings -->
+     <!-- Title for the Smart Divert Feature displayed in Call Settings -->
+     <string name="smart_divert_title">Smart-Divert</string>
+     <!-- Summary for the Smart Divert Feature displayed in Call Settings -->
+     <string name="smart_divert_summary">CFNRc Settings</string>
 
 </resources>

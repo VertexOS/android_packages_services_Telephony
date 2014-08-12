@@ -40,6 +40,17 @@
                 android:targetClass="com.android.server.telecom.settings.EnableAccountPreferenceActivity" />
         </PreferenceScreen>
 
+        <PreferenceScreen
+          android:key="button_smart_divert"
+          android:title="@string/smart_divert_title"
+          android:summary="@string/smart_divert_summary"
+          android:persistent="false"
+          android:order="1500">
+          <intent android:action="android.intent.action.MAIN"
+             android:targetPackage="com.qti.xdivert"
+             android:targetClass="com.qti.xdivert.XDivertSetting" />
+        </PreferenceScreen>
+
     </PreferenceCategory>
 
     <PreferenceCategory

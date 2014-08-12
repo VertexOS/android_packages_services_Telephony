@@ -46,6 +46,8 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
     private static final String DEFAULT_OUTGOING_ACCOUNT_KEY = "default_outgoing_account";
     private static final String ALL_CALLING_ACCOUNTS_KEY = "phone_account_all_calling_accounts";
 
+    private static final String BUTTON_SMART_DIVERT_KEY = "button_smart_divert";
+
     private static final String SIP_SETTINGS_CATEGORY_PREF_KEY =
             "phone_accounts_sip_settings_category_key";
     private static final String USE_SIP_PREF_KEY = "use_sip_calling_options_key";
@@ -149,6 +151,16 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
             }
         } else {
             getPreferenceScreen().removePreference(mAccountList);
+        }
+
+        if (TelephonyManager.getDefault().getMultiSimConfiguration() !=
+                 TelephonyManager.MultiSimVariants.DSDS) {
+            Preference mSmartDivertPref = getPreferenceScreen()
+                .findPreference(BUTTON_SMART_DIVERT_KEY);
+            if (mSmartDivertPref != null) {
+                Log.d(LOG_TAG, "Remove smart divert preference: ");
+                getPreferenceScreen().removePreference(mSmartDivertPref);
+            }
         }
 
         if (isPrimaryUser() && SipUtil.isVoipSupported(getActivity())) {
