@@ -341,6 +341,16 @@ public class MobileNetworkSettings extends PreferenceActivity
             android.util.Log.d(LOG_TAG, "keep ltePref");
         }
 
+        // Enable enhanced 4G LTE mode settings depending on the value in config.xml
+        final boolean isEnhanced4GLteModeEnabled = getResources().getBoolean(
+                R.bool.config_enhanced_4g_lte_mode_enable);
+        if (!isEnhanced4GLteModeEnabled) {
+            Preference pref = prefSet.findPreference(BUTTON_4G_LTE_KEY);
+            if (pref != null) {
+                prefSet.removePreference(pref);
+            }
+        }
+
         ActionBar actionBar = getActionBar();
         if (actionBar != null) {
             // android.R.id.home will be triggered in onOptionsItemSelected()
