@@ -18,9 +18,9 @@ package com.android.services.telephony.sip;
 
 import android.os.Handler;
 import android.os.Message;
-import android.telecomm.CallAudioState;
-import android.telecomm.CallCapabilities;
+import android.telecomm.AudioState;
 import android.telecomm.Connection;
+import android.telecomm.PhoneCapabilities;
 import android.util.Log;
 
 import com.android.internal.telephony.Call;
@@ -65,7 +65,7 @@ final class SipConnection extends Connection {
     }
 
     @Override
-    public void onSetAudioState(CallAudioState state) {
+    public void onSetAudioState(AudioState state) {
         if (VERBOSE) log("onSetAudioState: " + state);
         if (getPhone() != null) {
             getPhone().setEchoSuppressionEnabled();
@@ -129,7 +129,7 @@ final class SipConnection extends Connection {
     public void onHold() {
         if (VERBOSE) log("onHold");
         try {
-            if (getPhone() != null && getState() == State.ACTIVE) {
+            if (getPhone() != null && getState() == STATE_ACTIVE) {
                 getPhone().switchHoldingAndActive();
             }
         } catch (CallStateException e) {
@@ -141,7 +141,7 @@ final class SipConnection extends Connection {
     public void onUnhold() {
         if (VERBOSE) log("onUnhold");
         try {
-            if (getPhone() != null && getState() == State.HOLDING) {
+            if (getPhone() != null && getState() == STATE_HOLDING) {
                 getPhone().switchHoldingAndActive();
             }
         } catch (CallStateException e) {
@@ -177,12 +177,6 @@ final class SipConnection extends Connection {
     public void onPostDialContinue(boolean proceed) {
         if (VERBOSE) log("onPostDialContinue, proceed: " + proceed);
         // SIP doesn't have post dial support.
-    }
-
-    @Override
-    public void onSwapWithBackgroundCall() {
-        if (VERBOSE) log("onSwapWithBackgroundCall");
-        // TODO: Implement swap.
     }
 
     @Override
@@ -254,9 +248,9 @@ final class SipConnection extends Connection {
     }
 
     private int buildCallCapabilities() {
-        int capabilities = CallCapabilities.MUTE | CallCapabilities.SUPPORT_HOLD;
-        if (getState() == State.ACTIVE || getState() == State.HOLDING) {
-            capabilities |= CallCapabilities.HOLD;
+        int capabilities = PhoneCapabilities.MUTE | PhoneCapabilities.SUPPORT_HOLD;
+        if (getState() == STATE_ACTIVE || getState() == STATE_HOLDING) {
+            capabilities |= PhoneCapabilities.HOLD;
         }
         return capabilities;
     }
