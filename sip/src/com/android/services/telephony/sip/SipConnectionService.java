@@ -102,14 +102,14 @@ public final class SipConnectionService extends ConnectionService {
 
         if (request.getExtras() == null) {
             if (VERBOSE) log("onCreateIncomingConnection, no extras");
-            return Connection.getFailedConnection(DisconnectCause.ERROR_UNSPECIFIED, null);
+            return Connection.createFailedConnection(DisconnectCause.ERROR_UNSPECIFIED, null);
         }
 
         Intent sipIntent = (Intent) request.getExtras().getParcelable(
                 SipUtil.EXTRA_INCOMING_CALL_INTENT);
         if (sipIntent == null) {
             if (VERBOSE) log("onCreateIncomingConnection, no SIP intent");
-            return Connection.getFailedConnection(DisconnectCause.ERROR_UNSPECIFIED, null);
+            return Connection.createFailedConnection(DisconnectCause.ERROR_UNSPECIFIED, null);
         }
 
         SipAudioCall sipAudioCall;
@@ -117,7 +117,7 @@ public final class SipConnectionService extends ConnectionService {
             sipAudioCall = SipManager.newInstance(this).takeAudioCall(sipIntent, null);
         } catch (SipException e) {
             log("onCreateIncomingConnection, takeAudioCall exception: " + e);
-            return Connection.getCanceledConnection();
+            return Connection.createCanceledConnection();
         }
 
         SipPhone phone = findPhoneForProfile(sipAudioCall.getLocalProfile());
@@ -132,10 +132,10 @@ public final class SipConnectionService extends ConnectionService {
                 return new SipConnection();
             } else {
                 if (VERBOSE) log("onCreateIncomingConnection, takingIncomingCall failed");
-                return Connection.getCanceledConnection();
+                return Connection.createCanceledConnection();
             }
         }
-        return Connection.getFailedConnection(DisconnectCause.ERROR_UNSPECIFIED, null);
+        return Connection.createFailedConnection(DisconnectCause.ERROR_UNSPECIFIED, null);
     }
 
     @Override
@@ -208,7 +208,7 @@ public final class SipConnectionService extends ConnectionService {
     private ConnectionRequest getConnectionRequestForIncomingCall(ConnectionRequest request,
             com.android.internal.telephony.Connection connection) {
         Uri uri = Uri.fromParts(SipUtil.SCHEME_SIP, connection.getAddress(), null);
-        return new ConnectionRequest(request.getAccountHandle(), request.getCallId(), uri,
+        return new ConnectionRequest(request.getAccountHandle(), uri,
                 connection.getNumberPresentation(), request.getExtras(), 0);
     }
 

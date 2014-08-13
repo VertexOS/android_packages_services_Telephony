@@ -16,7 +16,7 @@
 
 package com.android.services.telephony;
 
-import android.telecomm.CallCapabilities;
+import android.telecomm.PhoneCapabilities;
 
 import com.android.internal.telephony.Connection;
 
@@ -49,7 +49,7 @@ final class CdmaConnection extends TelephonyConnection {
 
     @Override
     protected int buildCallCapabilities() {
-        int capabilities = CallCapabilities.MUTE;
+        int capabilities = PhoneCapabilities.MUTE;
         return capabilities;
     }
 }

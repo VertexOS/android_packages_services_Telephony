@@ -18,8 +18,8 @@ package com.android.services.telephony;
 
 import android.content.ComponentName;
 import android.net.Uri;
-import android.telecomm.CallCapabilities;
 import android.telecomm.Connection;
+import android.telecomm.PhoneCapabilities;
 import android.telecomm.ConnectionRequest;
 import android.telecomm.ConnectionService;
 import android.telecomm.PhoneAccountHandle;
@@ -63,21 +63,21 @@ public class TelephonyConnectionService extends ConnectionService {
         Uri handle = request.getHandle();
         if (handle == null) {
             Log.d(this, "onCreateOutgoingConnection, handle is null");
-            return Connection.getFailedConnection(DisconnectCause.NO_PHONE_NUMBER_SUPPLIED,
+            return Connection.createFailedConnection(DisconnectCause.NO_PHONE_NUMBER_SUPPLIED,
                     "Handle is null");
         }
 
         if (!SCHEME_TEL.equals(handle.getScheme())) {
             Log.d(this, "onCreateOutgoingConnection, Handle %s is not type tel",
                     handle.getScheme());
-            return Connection.getFailedConnection(DisconnectCause.INVALID_NUMBER,
+            return Connection.createFailedConnection(DisconnectCause.INVALID_NUMBER,
                     "Handle scheme is not type tel");
         }
 
         final String number = handle.getSchemeSpecificPart();
         if (TextUtils.isEmpty(number)) {
             Log.d(this, "onCreateOutgoingConnection, unable to parse number");
-            return Connection.getFailedConnection(DisconnectCause.INVALID_NUMBER,
+            return Connection.createFailedConnection(DisconnectCause.INVALID_NUMBER,
                     "Unable to parse number");
         }
 
@@ -87,7 +87,7 @@ public class TelephonyConnectionService extends ConnectionService {
         final Phone phone = getPhoneForAccount(request.getAccountHandle(), isEmergencyNumber);
         if (phone == null) {
             Log.d(this, "onCreateOutgoingConnection, phone is null");
-            return Connection.getFailedConnection(DisconnectCause.OUTGOING_FAILURE,
+            return Connection.createFailedConnection(DisconnectCause.OUTGOING_FAILURE,
                     "Phone is null");
         }
 
@@ -98,21 +98,21 @@ public class TelephonyConnectionService extends ConnectionService {
                 case ServiceState.STATE_EMERGENCY_ONLY:
                     break;
                 case ServiceState.STATE_OUT_OF_SERVICE:
-                    return Connection.getFailedConnection(DisconnectCause.OUT_OF_SERVICE,
+                    return Connection.createFailedConnection(DisconnectCause.OUT_OF_SERVICE,
                             "ServiceState.STATE_OUT_OF_SERVICE");
                 case ServiceState.STATE_POWER_OFF:
-                    return Connection.getFailedConnection(DisconnectCause.POWER_OFF,
+                    return Connection.createFailedConnection(DisconnectCause.POWER_OFF,
                             "ServiceState.STATE_POWER_OFF");
                 default:
                     Log.d(this, "onCreateOutgoingConnection, unkown service state: %d", state);
-                    return Connection.getFailedConnection(DisconnectCause.OUTGOING_FAILURE,
+                    return Connection.createFailedConnection(DisconnectCause.OUTGOING_FAILURE,
                             "Unknown service state " + state);
             }
         }
 
         final TelephonyConnection connection = createConnectionFor(phone.getPhoneType(), null);
         if (connection == null) {
-            return Connection.getFailedConnection(
+            return Connection.createFailedConnection(
                     DisconnectCause.OUTGOING_FAILURE, "Invalid phone type");
         }
         connection.setHandle(handle, PhoneConstants.PRESENTATION_ALLOWED);
@@ -153,7 +153,7 @@ public class TelephonyConnectionService extends ConnectionService {
             Response<String, Connection> response) {
         Log.v(this, "onCreateConferenceConnection, connection: " + connection);
         if (connection instanceof GsmConnection || connection instanceof ConferenceConnection) {
-            if ((connection.getCallCapabilities() & CallCapabilities.MERGE_CALLS) != 0) {
+            if ((connection.getCallCapabilities() & PhoneCapabilities.MERGE_CALLS) != 0) {
                 response.onResult(token,
                         GsmConferenceController.createConferenceConnection(connection));
             }
@@ -168,28 +168,29 @@ public class TelephonyConnectionService extends ConnectionService {
 
         Phone phone = getPhoneForAccount(request.getAccountHandle(), false);
         if (phone == null) {
-            return Connection.getFailedConnection(DisconnectCause.ERROR_UNSPECIFIED, null);
+            return Connection.createFailedConnection(DisconnectCause.ERROR_UNSPECIFIED, null);
         }
 
         Call call = phone.getRingingCall();
         if (!call.getState().isRinging()) {
             Log.v(this, "onCreateIncomingConnection, no ringing call");
-            return Connection.getFailedConnection(DisconnectCause.INCOMING_MISSED,
+            return Connection.createFailedConnection(DisconnectCause.INCOMING_MISSED,
                     "Found no ringing call");
         }
 
         com.android.internal.telephony.Connection originalConnection = call.getEarliestConnection();
         if (isOriginalConnectionKnown(originalConnection)) {
             Log.v(this, "onCreateIncomingConnection, original connection already registered");
-            return Connection.getCanceledConnection();
+            return Connection.createCanceledConnection();
         }
 
         Connection connection = createConnectionFor(phone.getPhoneType(), originalConnection);
         if (connection == null) {
-            connection = Connection.getCanceledConnection();
+            connection = Connection.createCanceledConnection();
+            return Connection.createCanceledConnection();
+        } else {
+            return connection;
         }
-
-        return connection;
     }
 
     private void placeOutgoingConnection(

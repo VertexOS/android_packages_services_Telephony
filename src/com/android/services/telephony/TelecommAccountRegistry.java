@@ -89,15 +89,16 @@ final class TelecommAccountRegistry {
             String description = isEmergency
                     ? "Emergency calling only"
                     : dummyPrefix + "SIM card in slot " + slotId;
-            PhoneAccount account = new PhoneAccount(
-                    phoneAccountHandle,
-                    Uri.fromParts(TEL_SCHEME, line1Number, null),
-                    subNumber,
-                    PhoneAccount.CAPABILITY_SIM_SUBSCRIPTION |
-                            PhoneAccount.CAPABILITY_CALL_PROVIDER,
-                    com.android.phone.R.mipmap.ic_launcher_phone,
-                    label,
-                    description);
+            PhoneAccount account = PhoneAccount.builder()
+                    .withAccountHandle(phoneAccountHandle)
+                    .withHandle(Uri.fromParts(TEL_SCHEME, line1Number, null))
+                    .withSubscriptionNumber(subNumber)
+                    .withCapabilities(PhoneAccount.CAPABILITY_SIM_SUBSCRIPTION |
+                            PhoneAccount.CAPABILITY_CALL_PROVIDER)
+                    .withIconResId(com.android.phone.R.mipmap.ic_launcher_phone)
+                    .withLabel(label)
+                    .withShortDescription(description)
+                    .build();
 
             // Register with Telecomm and put into the account entry.
             mTelecommManager.registerPhoneAccount(account);
