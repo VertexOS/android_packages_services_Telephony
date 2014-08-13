@@ -20,18 +20,15 @@ import android.net.Uri;
 import android.os.AsyncResult;
 import android.os.Handler;
 import android.os.Message;
-import android.telecomm.CallAudioState;
-import android.telecomm.CallCapabilities;
+import android.telecomm.AudioState;
+import android.telecomm.Connection;
+import android.telecomm.PhoneCapabilities;
 import android.telephony.DisconnectCause;
 
 import com.android.internal.telephony.Call;
 import com.android.internal.telephony.CallStateException;
 import com.android.internal.telephony.Connection.PostDialListener;
 import com.android.internal.telephony.Phone;
-import com.android.phone.R;
-
-import android.telecomm.Connection;
-import android.telecomm.ConnectionService;
 
 import java.lang.Override;
 import java.util.List;
@@ -113,12 +110,11 @@ abstract class TelephonyConnection extends Connection {
          * The {@link com.android.internal.telephony.Connection} has reported a change in the
          * video call provider.
          *
-         * @param videoCallProvider The video call provider.
+         * @param videoProvider The video call provider.
          */
         @Override
-        public void onVideoCallProviderChanged(
-                ConnectionService.VideoCallProvider videoCallProvider) {
-            setVideoCallProvider(videoCallProvider);
+        public void onVideoProviderChanged(VideoProvider videoProvider) {
+            setVideoProvider(videoProvider);
         }
 
         /**
@@ -138,20 +134,20 @@ abstract class TelephonyConnection extends Connection {
 
     /**
      * Determines if the {@link TelephonyConnection} has local video capabilities.
-     * This is used when {@link TelephonyConnection#updateCallCapabilities}} is called,
-     * ensuring the appropriate {@link CallCapabilities} are set.  Since {@link CallCapabilities}
+     * This is used when {@link TelephonyConnection#updateCallCapabilities()}} is called,
+     * ensuring the appropriate {@link PhoneCapabilities} are set.  Since {@link PhoneCapabilities}
      * can be rebuilt at any time it is necessary to track the video capabilities between rebuild.
-     * The {@link CallCapabilities} (including video capabilities) are communicated to the telecomm
+     * The {@link PhoneCapabilities} (including video capabilities) are communicated to the telecomm
      * layer.
      */
     private boolean mLocalVideoCapable;
 
     /**
      * Determines if the {@link TelephonyConnection} has remote video capabilities.
-     * This is used when {@link TelephonyConnection#updateCallCapabilities}} is called,
-     * ensuring the appropriate {@link CallCapabilities} are set.  Since {@link CallCapabilities}
+     * This is used when {@link TelephonyConnection#updateCallCapabilities()}} is called,
+     * ensuring the appropriate {@link PhoneCapabilities} are set.  Since {@link PhoneCapabilities}
      * can be rebuilt at any time it is necessary to track the video capabilities between rebuild.
-     * The {@link CallCapabilities} (including video capabilities) are communicated to the telecomm
+     * The {@link PhoneCapabilities} (including video capabilities) are communicated to the telecomm
      * layer.
      */
     private boolean mRemoteVideoCapable;
@@ -170,7 +166,7 @@ abstract class TelephonyConnection extends Connection {
     }
 
     @Override
-    public void onSetAudioState(CallAudioState audioState) {
+    public void onSetAudioState(AudioState audioState) {
         // TODO: update TTY mode.
         if (getPhone() != null) {
             getPhone().setEchoSuppressionEnabled();
@@ -292,11 +288,6 @@ abstract class TelephonyConnection extends Connection {
     }
 
     @Override
-    public void onSwapWithBackgroundCall() {
-        Log.v(this, "onSwapWithBackgroundCall");
-    }
-
-    @Override
     public void onChildrenChanged(List<Connection> children) {
         Log.v(this, "onChildrenChanged, children: " + children);
     }
@@ -356,7 +347,7 @@ abstract class TelephonyConnection extends Connection {
         setVideoState(mOriginalConnection.getVideoState());
         setLocalVideoCapable(mOriginalConnection.isLocalVideoCapable());
         setRemoteVideoCapable(mOriginalConnection.isRemoteVideoCapable());
-        setVideoCallProvider(mOriginalConnection.getVideoCallProvider());
+        setVideoProvider(mOriginalConnection.getVideoProvider());
         setAudioQuality(mOriginalConnection.getAudioQuality());
 
         updateHandle();
@@ -491,18 +482,18 @@ abstract class TelephonyConnection extends Connection {
         int currentCapabilities = capabilities;
         if (mRemoteVideoCapable) {
             currentCapabilities = applyCapability(currentCapabilities,
-                    CallCapabilities.SUPPORTS_VT_REMOTE);
+                    PhoneCapabilities.SUPPORTS_VT_REMOTE);
         } else {
             currentCapabilities = removeCapability(currentCapabilities,
-                    CallCapabilities.SUPPORTS_VT_REMOTE);
+                    PhoneCapabilities.SUPPORTS_VT_REMOTE);
         }
 
         if (mLocalVideoCapable) {
             currentCapabilities = applyCapability(currentCapabilities,
-                    CallCapabilities.SUPPORTS_VT_LOCAL);
+                    PhoneCapabilities.SUPPORTS_VT_LOCAL);
         } else {
             currentCapabilities = removeCapability(currentCapabilities,
-                    CallCapabilities.SUPPORTS_VT_LOCAL);
+                    PhoneCapabilities.SUPPORTS_VT_LOCAL);
         }
         return currentCapabilities;
     }
@@ -520,9 +511,9 @@ abstract class TelephonyConnection extends Connection {
 
         if (mAudioQuality ==
                 com.android.internal.telephony.Connection.AUDIO_QUALITY_HIGH_DEFINITION) {
-            currentCapabilities = applyCapability(currentCapabilities, CallCapabilities.VoLTE);
+            currentCapabilities = applyCapability(currentCapabilities, PhoneCapabilities.VoLTE);
         } else {
-            currentCapabilities = removeCapability(currentCapabilities, CallCapabilities.VoLTE);
+            currentCapabilities = removeCapability(currentCapabilities, PhoneCapabilities.VoLTE);
         }
 
         return currentCapabilities;
@@ -548,7 +539,7 @@ abstract class TelephonyConnection extends Connection {
 
     /**
      * Sets whether video capability is present locally.  Used during rebuild of the
-     * {@link CallCapabilities} to set the video call capabilities.
+     * {@link PhoneCapabilities} to set the video call capabilities.
      *
      * @param capable {@code True} if video capable.
      */
@@ -559,7 +550,7 @@ abstract class TelephonyConnection extends Connection {
 
     /**
      * Sets whether video capability is present remotely.  Used during rebuild of the
-     * {@link CallCapabilities} to set the video call capabilities.
+     * {@link PhoneCapabilities} to set the video call capabilities.
      *
      * @param capable {@code True} if video capable.
      */
@@ -570,7 +561,7 @@ abstract class TelephonyConnection extends Connection {
 
     /**
      * Sets the current call audio quality.  Used during rebuild of the
-     * {@link CallCapabilities} to set or unset the {@link CallCapabilities#VoLTE} capability.
+     * {@link PhoneCapabilities} to set or unset the {@link PhoneCapabilities#VoLTE} capability.
      *
      * @param audioQuality The audio quality.
      */
