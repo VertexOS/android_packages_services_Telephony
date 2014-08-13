@@ -47,6 +47,8 @@ import java.util.Objects;
 public class TelephonyConnectionService extends ConnectionService {
     static String SCHEME_TEL = "tel";
 
+    private final GsmConferenceController mGsmConferenceController =
+            new GsmConferenceController(this);
     private ComponentName mExpectedComponentName = null;
     private EmergencyCallHelper mEmergencyCallHelper;
 
@@ -153,20 +155,6 @@ public class TelephonyConnectionService extends ConnectionService {
     }
 
     @Override
-    public void onCreateConferenceConnection(
-            String token,
-            Connection connection,
-            Response<String, Connection> response) {
-        Log.v(this, "onCreateConferenceConnection, connection: " + connection);
-        if (connection instanceof GsmConnection || connection instanceof ConferenceConnection) {
-            if ((connection.getCallCapabilities() & PhoneCapabilities.MERGE_CALLS) != 0) {
-                response.onResult(token,
-                        GsmConferenceController.createConferenceConnection(connection));
-            }
-        }
-    }
-
-    @Override
     public Connection onCreateIncomingConnection(
             PhoneAccountHandle connectionManagerPhoneAccount,
             ConnectionRequest request) {
@@ -196,6 +184,30 @@ public class TelephonyConnectionService extends ConnectionService {
             return Connection.createCanceledConnection();
         } else {
             return connection;
+        }
+    }
+
+    @Override
+    public void onConference(Connection connection1, Connection connection2) {
+        if (connection1 instanceof TelephonyConnection &&
+                connection2 instanceof TelephonyConnection) {
+            ((TelephonyConnection) connection1).performConference(
+                (TelephonyConnection) connection2);
+        }
+
+    }
+
+    @Override
+    public void onConnectionAdded(Connection connection) {
+        if (connection instanceof GsmConnection) {
+            mGsmConferenceController.add((GsmConnection) connection);
+        }
+    }
+
+    @Override
+    public void onConnectionRemoved(Connection connection) {
+        if (connection instanceof GsmConnection) {
+            mGsmConferenceController.remove((GsmConnection) connection);
         }
     }
 
