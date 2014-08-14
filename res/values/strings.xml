@@ -1139,11 +1139,6 @@
          on this device. [CHAR LIMIT=40] -->
     <string name="not_voice_capable">Voice calling not supported</string>
 
-    <!-- Title of settings screen for managing the "Respond via SMS" feature. [CHAR LIMIT=30] -->
-    <string name="respond_via_sms_setting_title">Quick responses</string>
-    <!-- Settings summary string for the "Respond via SMS" feature. [CHAR LIMIT=40] -->
-    <string name="respond_via_sms_setting_summary"></string>
-
     <!-- String describing the Dial ImageButton
 
          Used by AccessibilityService to announce the purpose of the button.
@@ -1161,12 +1156,6 @@
          [CHAR LIMIT=30] -->
     <string name="voicemail_notification_ringtone_title">Sound</string>
 
-    <!--  The string used to describe a notification if it is the default one in the system. For
-          example, if the user selects the default notification, it will appear as something like
-          Default sound(Capella) in the notification summary.
-          [CHAR LIMIT=40] -->
-    <string name="default_notification_description">Default sound (<xliff:g id="default_sound_title">%1$s</xliff:g>)</string>
-
     <!-- The default value value for voicemail notification. -->
     <string name="voicemail_notification_vibrate_when_default" translatable="false">never</string>
 
@@ -1176,18 +1165,6 @@
         <item>silent</item>
         <item>never</item>
     </string-array>
-
-    <!-- Setting option name to pick ringtone (a list dialog comes up). [CHAR LIMIT=30] -->
-    <string name="ringtone_title" msgid="5379026328015343686">Phone ringtone</string>
-
-    <!-- Setting option name to enable or disable vibration when ringing
-         the phone.
-         [CHAR LIMIT=30] -->
-    <string name="vibrate_on_ring_title">Vibrate when ringing</string>
-
-    <!-- Setting option name to enable or disable DTMF tone sound
-         [CHAR LIMIT=30] -->
-    <string name="dtmf_tone_enable_title">Dial pad touch tones</string>
 
     <!--  Setting option name to enable or disable dialpad autocomplete functionality
          [CHAR LIMIT=30] -->
