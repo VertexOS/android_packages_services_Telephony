@@ -17,6 +17,7 @@
 package com.android.services.telephony;
 
 import android.content.ComponentName;
+import android.content.Intent;
 import android.net.Uri;
 import android.telecomm.Connection;
 import android.telecomm.PhoneCapabilities;
@@ -36,6 +37,7 @@ import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneConstants;
 import com.android.internal.telephony.PhoneFactory;
 import com.android.internal.telephony.SubscriptionController;
+import com.android.phone.MMIDialogActivity;
 
 import java.util.Objects;
 
@@ -211,7 +213,12 @@ public class TelephonyConnectionService extends ConnectionService {
 
             // On GSM phones, null connection means that we dialed an MMI code
             if (phone.getPhoneType() == PhoneConstants.PHONE_TYPE_GSM) {
+                Log.d(this, "dialed MMI code");
                 disconnectCause = DisconnectCause.DIALED_MMI;
+                final Intent intent = new Intent(this, MMIDialogActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK |
+                        Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+                startActivity(intent);
             }
             Log.d(this, "placeOutgoingConnection, phone.dial returned null");
             connection.setFailed(disconnectCause, "Connection is null");
