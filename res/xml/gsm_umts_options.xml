@@ -22,7 +22,7 @@
         android:title="@string/apn_settings"
         android:persistent="false">
 
-        <intent android:action="android.settings.APN_SETTINGS" />
+        <!-- The launching Intent will be defined thru code as we need to pass some Extra -->
 
     </PreferenceScreen>
 
