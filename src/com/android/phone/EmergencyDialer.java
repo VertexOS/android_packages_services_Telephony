@@ -44,6 +44,7 @@ import android.view.accessibility.AccessibilityManager;
 import android.widget.EditText;
 
 import com.android.phone.common.HapticFeedback;
+import com.android.phone.common.dialpad.DialpadKeyButton;
 import com.android.phone.common.util.ViewUtil;
 
 
@@ -65,7 +66,8 @@ import com.android.phone.common.util.ViewUtil;
  * also?
  */
 public class EmergencyDialer extends Activity implements View.OnClickListener,
-        View.OnLongClickListener, View.OnHoverListener, View.OnKeyListener, TextWatcher {
+        View.OnLongClickListener, View.OnKeyListener, TextWatcher,
+        DialpadKeyButton.OnPressedListener {
     // Keys used with onSaveInstanceState().
     private static final String LAST_NUMBER = "lastNumber";
 
@@ -287,9 +289,8 @@ public class EmergencyDialer extends Activity implements View.OnClickListener,
     private void setupKeypad() {
         // Setup the listeners for the buttons
         for (int id : DIALER_KEYS) {
-            final View key = findViewById(id);
-            key.setOnClickListener(this);
-            key.setOnHoverListener(this);
+            final DialpadKeyButton key = (DialpadKeyButton) findViewById(id);
+            key.setOnPressedListener(this);
         }
 
         View view = findViewById(R.id.zero);
@@ -343,6 +344,30 @@ public class EmergencyDialer extends Activity implements View.OnClickListener,
 
     @Override
     public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.deleteButton: {
+                keyPressed(KeyEvent.KEYCODE_DEL);
+                return;
+            }
+            case R.id.floating_action_button: {
+                mHaptic.vibrate();  // Vibrate here too, just like we do for the regular keys
+                placeCall();
+                return;
+            }
+            case R.id.digits: {
+                if (mDigits.length() != 0) {
+                    mDigits.setCursorVisible(true);
+                }
+                return;
+            }
+        }
+    }
+
+    @Override
+    public void onPressed(View view, boolean pressed) {
+        if (!pressed) {
+            return;
+        }
         switch (view.getId()) {
             case R.id.one: {
                 playTone(ToneGenerator.TONE_DTMF_1);
@@ -404,56 +429,7 @@ public class EmergencyDialer extends Activity implements View.OnClickListener,
                 keyPressed(KeyEvent.KEYCODE_STAR);
                 return;
             }
-            case R.id.deleteButton: {
-                keyPressed(KeyEvent.KEYCODE_DEL);
-                return;
-            }
-            case R.id.floating_action_button: {
-                mHaptic.vibrate();  // Vibrate here too, just like we do for the regular keys
-                placeCall();
-                return;
-            }
-            case R.id.digits: {
-                if (mDigits.length() != 0) {
-                    mDigits.setCursorVisible(true);
-                }
-                return;
-            }
         }
-    }
-
-    /**
-     * Implemented for {@link android.view.View.OnHoverListener}. Handles touch
-     * events for accessibility when touch exploration is enabled.
-     */
-    @Override
-    public boolean onHover(View v, MotionEvent event) {
-        // When touch exploration is turned on, lifting a finger while inside
-        // the button's hover target bounds should perform a click action.
-        if (mAccessibilityManager.isEnabled()
-                && mAccessibilityManager.isTouchExplorationEnabled()) {
-
-            switch (event.getActionMasked()) {
-                case MotionEvent.ACTION_HOVER_ENTER:
-                    // Lift-to-type temporarily disables double-tap activation.
-                    v.setClickable(false);
-                    break;
-                case MotionEvent.ACTION_HOVER_EXIT:
-                    final int left = v.getPaddingLeft();
-                    final int right = (v.getWidth() - v.getPaddingRight());
-                    final int top = v.getPaddingTop();
-                    final int bottom = (v.getHeight() - v.getPaddingBottom());
-                    final int x = (int) event.getX();
-                    final int y = (int) event.getY();
-                    if ((x > left) && (x < right) && (y > top) && (y < bottom)) {
-                        v.performClick();
-                    }
-                    v.setClickable(true);
-                    break;
-            }
-        }
-
-        return false;
     }
 
     /**
