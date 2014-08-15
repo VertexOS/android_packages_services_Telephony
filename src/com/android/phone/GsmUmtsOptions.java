@@ -22,7 +22,7 @@ import android.preference.PreferenceActivity;
 import android.preference.PreferenceScreen;
 import android.content.res.Resources;
 
-import com.android.internal.telephony.Phone;
+import android.provider.Settings;
 import com.android.internal.telephony.PhoneConstants;
 import com.android.internal.telephony.PhoneFactory;
 
@@ -50,18 +50,7 @@ public class GsmUmtsOptions {
     protected void create() {
         mPrefActivity.addPreferencesFromResource(R.xml.gsm_umts_options);
         mButtonAPNExpand = (PreferenceScreen) mPrefScreen.findPreference(BUTTON_APN_EXPAND_KEY);
-        mButtonAPNExpand.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-            @Override
-            public boolean onPreferenceClick(Preference preference) {
-                // We need to build the Intent by hand as the Preference Framework does not allow
-                // to add an Intent with some extras into a Preference XML file
-                final Intent intent = new Intent("android.settings.APN_SETTINGS");
-                // This will setup the Home and Search affordance
-                intent.putExtra(":settings:show_fragment_as_subsetting", true);
-                mPrefActivity.startActivity(intent);
-                return true;
-            }
-        });
+        boolean removedAPNExpand = false;
         mButtonOperatorSelectionExpand =
                 (PreferenceScreen) mPrefScreen.findPreference(BUTTON_OPERATOR_SELECTION_EXPAND_KEY);
         if (PhoneFactory.getDefaultPhone().getPhoneType() != PhoneConstants.PHONE_TYPE_GSM) {
@@ -78,6 +67,7 @@ public class GsmUmtsOptions {
             // specific resources or device specific overlays.
             if (!res.getBoolean(R.bool.config_apn_expand) && mButtonAPNExpand != null) {
                 mPrefScreen.removePreference(mButtonAPNExpand);
+                removedAPNExpand = true;
             }
             if (!res.getBoolean(R.bool.config_operator_selection_expand)) {
                 mPrefScreen.removePreference(mPrefScreen
@@ -104,6 +94,22 @@ public class GsmUmtsOptions {
                     mPrefScreen.removePreference(pref);
                 }
             }
+        }
+        if (!removedAPNExpand) {
+            mButtonAPNExpand.setOnPreferenceClickListener(
+                    new Preference.OnPreferenceClickListener() {
+                        @Override
+                        public boolean onPreferenceClick(Preference preference) {
+                            // We need to build the Intent by hand as the Preference Framework
+                            // does not allow to add an Intent with some extras into a Preference
+                            // XML file
+                            final Intent intent = new Intent(Settings.ACTION_APN_SETTINGS);
+                            // This will setup the Home and Search affordance
+                            intent.putExtra(":settings:show_fragment_as_subsetting", true);
+                            mPrefActivity.startActivity(intent);
+                            return true;
+                        }
+            });
         }
     }
 
