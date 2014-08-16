@@ -93,8 +93,14 @@ public class TelephonyConnectionService extends ConnectionService {
                     "Phone is null");
         }
 
-        if (!isEmergencyNumber) {
-            int state = phone.getServiceState().getState();
+        int state = phone.getServiceState().getState();
+        boolean useEmergencyCallHelper = false;
+
+        if (isEmergencyNumber) {
+            if (state == ServiceState.STATE_POWER_OFF) {
+                useEmergencyCallHelper = true;
+            }
+        } else {
             switch (state) {
                 case ServiceState.STATE_IN_SERVICE:
                 case ServiceState.STATE_EMERGENCY_ONLY:
@@ -120,9 +126,7 @@ public class TelephonyConnectionService extends ConnectionService {
         connection.setHandle(handle, PhoneConstants.PRESENTATION_ALLOWED);
         connection.setInitializing();
 
-        if (isEmergencyNumber) {
-            Log.d(this, "onCreateOutgoingConnection, doing startTurnOnRadioSequence for " +
-                    "emergency number");
+        if (useEmergencyCallHelper) {
             if (mEmergencyCallHelper == null) {
                 mEmergencyCallHelper = new EmergencyCallHelper(this);
             }
