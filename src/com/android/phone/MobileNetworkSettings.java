@@ -203,7 +203,8 @@ public class MobileNetworkSettings extends PreferenceActivity
         SharedPreferences imsPref =
             getSharedPreferences(ImsManager.IMS_SHARED_PREFERENCES, Context.MODE_WORLD_READABLE);
 
-        return imsPref.getBoolean(ImsManager.KEY_IMS_ON, ImsManager.IMS_DEFAULT_SETTING);
+        //return imsPref.getBoolean(ImsManager.KEY_IMS_ON, ImsManager.IMS_DEFAULT_SETTING);
+        return false;
     }
 
     private void setIMS(boolean turnOn) {
