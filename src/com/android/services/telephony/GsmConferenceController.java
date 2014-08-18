@@ -17,82 +17,61 @@
 package com.android.services.telephony;
 
 import java.util.ArrayList;
-
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+import android.telecomm.Conference;
 import android.telecomm.Connection;
+
+import com.android.internal.telephony.Call;
 
 /**
  * Maintains a list of all the known GSM connections and implements GSM-specific conference
  * call functionality.
  */
 final class GsmConferenceController {
-    private static GsmConferenceController sInstance;
-
     private final Connection.Listener mConnectionListener = new Connection.Listener() {
                 @Override
                 public void onStateChanged(Connection c, int state) {
-                    // No need to recalculate for conference calls, just traditional calls.
-                    if (c != mGsmConferenceConnection) {
-                        recalculate();
-                    }
+                    recalculate();
                 }
 
                 /** ${inheritDoc} */
                 @Override
                 public void onDisconnected(Connection c, int cause, String message) {
-                    // When a connection disconnects, make sure to release its parent reference
-                    // so that the parent can move to disconnected as well.
-                    c.setParentConnection(null);
+                    recalculate();
                 }
             };
 
     /** The known GSM connections. */
     private final List<GsmConnection> mGsmConnections = new ArrayList<>();
 
+    private final TelephonyConnectionService mConnectionService;
+
+    public GsmConferenceController(TelephonyConnectionService connectionService) {
+        mConnectionService = connectionService;
+    }
+
     /** The GSM conference connection object. */
-    private ConferenceConnection mGsmConferenceConnection;
+    private Conference mGsmConference;
 
-    static void add(GsmConnection connection) {
-        if (sInstance == null) {
-            sInstance = new GsmConferenceController();
-        }
-        connection.addConnectionListener(sInstance.mConnectionListener);
-        sInstance.mGsmConnections.add(connection);
-        sInstance.recalculate();
+    void add(GsmConnection connection) {
+        mGsmConnections.add(connection);
+        connection.addConnectionListener(mConnectionListener);
+        recalculate();
     }
 
-    static void remove(GsmConnection connection) {
-        if (sInstance != null) {
-            connection.removeConnectionListener(sInstance.mConnectionListener);
-            sInstance.mGsmConnections.remove(connection);
-            sInstance.recalculate();
-
-            if (sInstance.mGsmConnections.size() == 0 &&
-                    sInstance.mGsmConferenceConnection == null) {
-                sInstance = null;
-            }
-        }
-    }
-
-    static ConferenceConnection createConferenceConnection(Connection rootConnection) {
-        if (sInstance != null) {
-            if (sInstance.mGsmConferenceConnection == null) {
-                sInstance.mGsmConferenceConnection = new ConferenceConnection();
-                Log.d(sInstance, "creating the conference connection: %s",
-                        sInstance.mGsmConferenceConnection);
-            }
-            if (rootConnection instanceof GsmConnection) {
-                ((GsmConnection) rootConnection).performConference();
-            }
-            return sInstance.mGsmConferenceConnection;
-        }
-        return null;
+    void remove(GsmConnection connection) {
+        connection.removeConnectionListener(mConnectionListener);
+        mGsmConnections.remove(connection);
+        recalculate();
     }
 
     private void recalculate() {
         recalculateConferenceable();
+        recalculateConference();
     }
 
     /**
@@ -140,6 +119,61 @@ final class GsmConferenceController {
         // conferenceable.
         for (Connection connection : backgroundConnections) {
             connection.setConferenceableConnections(activeConnections);
+        }
+        // TODO: Do not allow conferencing of already conferenced connections.
+    }
+
+    private void recalculateConference() {
+        Set<GsmConnection> conferencedConnections = new HashSet<>();
+
+        for (GsmConnection connection : mGsmConnections) {
+            com.android.internal.telephony.Connection radioConnection =
+                connection.getOriginalConnection();
+
+            if (radioConnection != null) {
+                Call.State state = radioConnection.getState();
+                Call call = radioConnection.getCall();
+                if ((state == Call.State.ACTIVE || state == Call.State.HOLDING) &&
+                        (call != null && call.isMultiparty())) {
+                    conferencedConnections.add(connection);
+                }
+            }
+        }
+
+        Log.d(this, "Recalculate conference calls %s %s.",
+                mGsmConference, conferencedConnections);
+
+        if (conferencedConnections.size() < 2) {
+            Log.d(this, "less than two conference calls!");
+            // No more connections are conferenced, destroy any existing conference.
+            if (mGsmConference != null) {
+                Log.d(this, "with a conference to destroy!");
+                mGsmConference.destroy();
+                mGsmConference = null;
+            }
+        } else {
+            if (mGsmConference != null) {
+                List<Connection> existingConnections = mGsmConference.getConnections();
+                // Remove any that no longer exist
+                for (Connection connection : existingConnections) {
+                    if (!conferencedConnections.contains(connection)) {
+                        mGsmConference.removeConnection(connection);
+                    }
+                }
+
+                // Add any new ones
+                for (Connection connection : conferencedConnections) {
+                    if (!existingConnections.contains(connection)) {
+                        mGsmConference.addConnection(connection);
+                    }
+                }
+            } else {
+                mGsmConference = new GsmConference(null);
+                for (Connection connection : conferencedConnections) {
+                    mGsmConference.addConnection(connection);
+                }
+                mConnectionService.addConference(mGsmConference);
+            }
         }
     }
 }
