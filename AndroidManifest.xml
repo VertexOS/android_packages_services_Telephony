@@ -479,7 +479,8 @@
         </service>
         <service android:name="com.android.services.telephony.sip.SipConnectionService"
                  android:label="@string/sip_connection_service_label"
-                 android:singleUser="true" >
+                 android:singleUser="true"
+                 android:permission="android.permission.BIND_CONNECTION_SERVICE" >
             <intent-filter>
                 <action android:name="android.telecomm.ConnectionService" />
             </intent-filter>
@@ -572,7 +573,8 @@
         <service
                 android:singleUser="true"
                 android:name="com.android.services.telephony.TelephonyConnectionService"
-                android:label="@string/pstn_connection_service_label">
+                android:label="@string/pstn_connection_service_label"
+                android:permission="android.permission.BIND_CONNECTION_SERVICE" >
             <intent-filter>
                 <action android:name="android.telecomm.ConnectionService" />
             </intent-filter>
