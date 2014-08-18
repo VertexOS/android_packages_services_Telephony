@@ -125,6 +125,7 @@ public class TelephonyConnectionService extends ConnectionService {
         }
         connection.setHandle(handle, PhoneConstants.PRESENTATION_ALLOWED);
         connection.setInitializing();
+        connection.setVideoState(request.getVideoState());
 
         if (useEmergencyCallHelper) {
             if (mEmergencyCallHelper == null) {
