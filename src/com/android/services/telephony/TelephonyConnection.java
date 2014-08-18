@@ -31,7 +31,6 @@ import com.android.internal.telephony.Connection.PostDialListener;
 import com.android.internal.telephony.Phone;
 
 import java.lang.Override;
-import java.util.List;
 import java.util.Objects;
 
 /**
@@ -204,51 +203,12 @@ abstract class TelephonyConnection extends Connection {
 
     @Override
     public void onHold() {
-        Log.v(this, "onHold");
-        // TODO: Can dialing calls be put on hold as well since they take up the
-        // foreground call slot?
-        if (Call.State.ACTIVE == mOriginalConnectionState) {
-            Log.v(this, "Holding active call");
-            try {
-                Phone phone = mOriginalConnection.getCall().getPhone();
-                Call ringingCall = phone.getRingingCall();
-
-                // Although the method says switchHoldingAndActive, it eventually calls a RIL method
-                // called switchWaitingOrHoldingAndActive. What this means is that if we try to put
-                // a call on hold while a call-waiting call exists, it'll end up accepting the
-                // call-waiting call, which is bad if that was not the user's intention. We are
-                // cheating here and simply skipping it because we know any attempt to hold a call
-                // while a call-waiting call is happening is likely a request from Telecomm prior to
-                // accepting the call-waiting call.
-                // TODO: Investigate a better solution. It would be great here if we
-                // could "fake" hold by silencing the audio and microphone streams for this call
-                // instead of actually putting it on hold.
-                if (ringingCall.getState() != Call.State.WAITING) {
-                    phone.switchHoldingAndActive();
-                }
-
-                // TODO: Cdma calls are slightly different.
-            } catch (CallStateException e) {
-                Log.e(this, e, "Exception occurred while trying to put call on hold.");
-            }
-        } else {
-            Log.w(this, "Cannot put a call that is not currently active on hold.");
-        }
+        performHold();
     }
 
     @Override
     public void onUnhold() {
-        Log.v(this, "onUnhold");
-        if (Call.State.HOLDING == mOriginalConnectionState) {
-            try {
-                // TODO: This doesn't handle multiple calls across connection services yet
-                mOriginalConnection.getCall().getPhone().switchHoldingAndActive();
-            } catch (CallStateException e) {
-                Log.e(this, e, "Exception occurred while trying to release call from hold.");
-            }
-        } else {
-            Log.w(this, "Cannot release a call that is not already on hold from hold.");
-        }
+        performUnhold();
     }
 
     @Override
@@ -288,14 +248,58 @@ abstract class TelephonyConnection extends Connection {
     }
 
     @Override
-    public void onChildrenChanged(List<Connection> children) {
-        Log.v(this, "onChildrenChanged, children: " + children);
-    }
-
-    @Override
     public void onPhoneAccountClicked() {
         Log.v(this, "onPhoneAccountClicked");
     }
+
+    public void performHold() {
+        Log.v(this, "performHold");
+        // TODO: Can dialing calls be put on hold as well since they take up the
+        // foreground call slot?
+        if (Call.State.ACTIVE == mOriginalConnectionState) {
+            Log.v(this, "Holding active call");
+            try {
+                Phone phone = mOriginalConnection.getCall().getPhone();
+                Call ringingCall = phone.getRingingCall();
+
+                // Although the method says switchHoldingAndActive, it eventually calls a RIL method
+                // called switchWaitingOrHoldingAndActive. What this means is that if we try to put
+                // a call on hold while a call-waiting call exists, it'll end up accepting the
+                // call-waiting call, which is bad if that was not the user's intention. We are
+                // cheating here and simply skipping it because we know any attempt to hold a call
+                // while a call-waiting call is happening is likely a request from Telecomm prior to
+                // accepting the call-waiting call.
+                // TODO: Investigate a better solution. It would be great here if we
+                // could "fake" hold by silencing the audio and microphone streams for this call
+                // instead of actually putting it on hold.
+                if (ringingCall.getState() != Call.State.WAITING) {
+                    phone.switchHoldingAndActive();
+                }
+
+                // TODO: Cdma calls are slightly different.
+            } catch (CallStateException e) {
+                Log.e(this, e, "Exception occurred while trying to put call on hold.");
+            }
+        } else {
+            Log.w(this, "Cannot put a call that is not currently active on hold.");
+        }
+    }
+
+    public void performUnhold() {
+        Log.v(this, "performUnhold");
+        if (Call.State.HOLDING == mOriginalConnectionState) {
+            try {
+                // TODO: This doesn't handle multiple calls across connection services yet
+                mOriginalConnection.getCall().getPhone().switchHoldingAndActive();
+            } catch (CallStateException e) {
+                Log.e(this, e, "Exception occurred while trying to release call from hold.");
+            }
+        } else {
+            Log.w(this, "Cannot release a call that is not already on hold from hold.");
+        }
+    }
+
+    public void performConference(TelephonyConnection otherConnection) {}
 
     protected abstract int buildCallCapabilities();
 
@@ -356,12 +360,8 @@ abstract class TelephonyConnection extends Connection {
     private void hangup(int disconnectCause) {
         if (mOriginalConnection != null) {
             try {
-                Call call = mOriginalConnection.getCall();
-                if (call != null && !call.isMultiparty()) {
-                    call.hangup();
-                } else {
-                    mOriginalConnection.hangup();
-                }
+                mOriginalConnection.hangup();
+
                 // Set state deliberately since we are going to close() and will no longer be
                 // listening to state updates from mOriginalConnection
                 setDisconnected(disconnectCause, null);

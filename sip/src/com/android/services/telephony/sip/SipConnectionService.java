@@ -87,14 +87,6 @@ public final class SipConnectionService extends ConnectionService {
     }
 
     @Override
-    public void onCreateConferenceConnection(
-            String token,
-            Connection connection,
-            Response<String, Connection> response) {
-        if (VERBOSE) log("onCreateConferenceConnection, connection: " + connection);
-    }
-
-    @Override
     public Connection onCreateIncomingConnection(
             PhoneAccountHandle connectionManagerAccount,
             ConnectionRequest request) {

@@ -180,11 +180,6 @@ final class SipConnection extends Connection {
     }
 
     @Override
-    public void onChildrenChanged(List<Connection> children) {
-        if (VERBOSE) log("onChildrenChanged, children: " + children);
-    }
-
-    @Override
     public void onPhoneAccountClicked() {
         if (VERBOSE) log("onPhoneAccountClicked");
     }
