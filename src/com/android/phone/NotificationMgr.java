@@ -341,7 +341,8 @@ public class NotificationMgr {
                     .setContentTitle(notificationTitle)
                     .setContentText(notificationText)
                     .setContentIntent(pendingIntent)
-                    .setSound(ringtoneUri);
+                    .setSound(ringtoneUri)
+                    .setColor(mContext.getResources().getColor(R.color.dialer_theme_color));
             Notification notification = builder.getNotification();
 
             CallFeaturesSetting.migrateVoicemailVibrationSettingsIfNeeded(prefs);
@@ -428,6 +429,7 @@ public class NotificationMgr {
         final Notification.Builder builder = new Notification.Builder(mContext);
         builder.setSmallIcon(android.R.drawable.stat_sys_warning);
         builder.setContentTitle(mContext.getText(R.string.roaming));
+        builder.setColor(mContext.getResources().getColor(R.color.dialer_theme_color));
         builder.setContentText(contentText);
         builder.setContentIntent(PendingIntent.getActivity(mContext, 0, intent, 0));
 
