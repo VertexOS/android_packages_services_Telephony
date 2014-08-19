@@ -142,7 +142,7 @@ public class TelephonyConnectionService extends ConnectionService {
                                 placeOutgoingConnection(connection, phone, request);
                             } else {
                                 Log.d(this, "onCreateOutgoingConnection, failed to turn on radio");
-                                connection.setFailed(DisconnectCause.POWER_OFF,
+                                connection.setDisconnected(DisconnectCause.POWER_OFF,
                                         "Failed to turn on radio.");
                             }
                         }
@@ -221,7 +221,7 @@ public class TelephonyConnectionService extends ConnectionService {
             originalConnection = phone.dial(number, request.getVideoState());
         } catch (CallStateException e) {
             Log.e(this, e, "placeOutgoingConnection, phone.dial exception: " + e);
-            connection.setFailed(DisconnectCause.OUTGOING_FAILURE, e.getMessage());
+            connection.setDisconnected(DisconnectCause.OUTGOING_FAILURE, e.getMessage());
             return;
         }
 
@@ -238,7 +238,7 @@ public class TelephonyConnectionService extends ConnectionService {
                 startActivity(intent);
             }
             Log.d(this, "placeOutgoingConnection, phone.dial returned null");
-            connection.setFailed(disconnectCause, "Connection is null");
+            connection.setDisconnected(disconnectCause, "Connection is null");
         } else {
             connection.setOriginalConnection(originalConnection);
         }

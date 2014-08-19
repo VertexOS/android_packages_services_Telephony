@@ -61,7 +61,7 @@ public final class SipConnectionService extends ConnectionService {
                 com.android.internal.telephony.Connection chosenConnection =
                         createConnectionForProfile(profile, request);
                 if (chosenConnection == null) {
-                    connection.setCanceled();
+                    connection.setDisconnected(DisconnectCause.OUTGOING_CANCELED, null);
                 } else {
                     connection.initialize(chosenConnection);
                 }
@@ -70,13 +70,13 @@ public final class SipConnectionService extends ConnectionService {
             @Override
             public void onSipNotChosen() {
                 if (VERBOSE) log("onCreateOutgoingConnection, onSipNotChosen");
-                connection.setFailed(DisconnectCause.ERROR_UNSPECIFIED, null);
+                connection.setDisconnected(DisconnectCause.ERROR_UNSPECIFIED, null);
             }
 
             @Override
             public void onCancelCall() {
                 if (VERBOSE) log("onCreateOutgoingConnection, onCancelCall");
-                connection.setCanceled();
+                connection.setDisconnected(DisconnectCause.OUTGOING_CANCELED, null);
             }
         };
 
