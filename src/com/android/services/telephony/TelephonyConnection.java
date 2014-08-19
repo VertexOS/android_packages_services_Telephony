@@ -361,14 +361,14 @@ abstract class TelephonyConnection extends Connection {
         if (mOriginalConnection != null) {
             try {
                 mOriginalConnection.hangup();
-
-                // Set state deliberately since we are going to close() and will no longer be
-                // listening to state updates from mOriginalConnection
-                setDisconnected(disconnectCause, null);
             } catch (CallStateException e) {
                 Log.e(this, e, "Call to Connection.hangup failed with exception");
             }
         }
+
+        // Set state deliberately since we are going to close() and will no longer be
+        // listening to state updates from mOriginalConnection
+        setDisconnected(disconnectCause, null);
         close();
     }
 
