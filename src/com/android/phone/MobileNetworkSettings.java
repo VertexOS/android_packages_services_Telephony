@@ -16,15 +16,12 @@
 
 package com.android.phone;
 
-import com.android.ims.ImsConfig;
 import com.android.ims.ImsManager;
 import com.android.ims.ImsException;
 import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneConstants;
 import com.android.internal.telephony.TelephonyIntents;
 import com.android.internal.telephony.TelephonyProperties;
-
-import java.util.Map;
 
 import android.app.ActionBar;
 import android.app.AlertDialog;
@@ -41,10 +38,8 @@ import android.os.Message;
 import android.os.SystemProperties;
 import android.os.UserHandle;
 import android.os.UserManager;
-import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
-import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceScreen;
 import android.preference.SwitchPreference;
@@ -199,14 +194,6 @@ public class MobileNetworkSettings extends PreferenceActivity
         }
     }
 
-    public boolean isIMSOn() {
-        SharedPreferences imsPref =
-            getSharedPreferences(ImsManager.IMS_SHARED_PREFERENCES, Context.MODE_WORLD_READABLE);
-
-        //return imsPref.getBoolean(ImsManager.KEY_IMS_ON, ImsManager.IMS_DEFAULT_SETTING);
-        return false;
-    }
-
     private void setIMS(boolean turnOn) {
         SharedPreferences imsPref =
             getSharedPreferences(ImsManager.IMS_SHARED_PREFERENCES, Context.MODE_WORLD_READABLE);
@@ -234,7 +221,7 @@ public class MobileNetworkSettings extends PreferenceActivity
         mButton4glte = (SwitchPreference)findPreference(BUTTON_4G_LTE_KEY);
 
         mButton4glte.setOnPreferenceChangeListener(this);
-        mButton4glte.setChecked(isIMSOn());
+        mButton4glte.setChecked(ImsManager.isEnhanced4gLteModeSettingEnabledByUser(this));
 
         try {
             Context con = createPackageContext("com.android.systemui", 0);
@@ -349,6 +336,13 @@ public class MobileNetworkSettings extends PreferenceActivity
             Preference pref = prefSet.findPreference(BUTTON_4G_LTE_KEY);
             if (pref != null) {
                 prefSet.removePreference(pref);
+            }
+        }
+        Preference pref = prefSet.findPreference(BUTTON_4G_LTE_KEY);
+        if (pref != null) {
+            if (!ImsManager.isEnhanced4gLteModeSettingEnabledByPlatform(this)) {
+                ((SwitchPreference)pref).setChecked(false);
+                pref.setEnabled(false);
             }
         }
 
