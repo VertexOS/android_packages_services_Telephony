@@ -23,4 +23,5 @@
             android:persistent="true"/>
 
     <PreferenceCategory android:key="sip_account_list" android:title="@string/sip_account_list"/>
+
 </PreferenceScreen>
