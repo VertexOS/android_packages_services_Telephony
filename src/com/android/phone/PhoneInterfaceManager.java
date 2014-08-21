@@ -1090,6 +1090,34 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         return true;
     }
 
+    public boolean needMobileRadioShutdown() {
+        /*
+         * If any of the Radios are available, it will need to be
+         * shutdown. So return true if any Radio is available.
+         */
+        for (int i = 0; i < TelephonyManager.getDefault().getPhoneCount(); i++) {
+            Phone phone = PhoneFactory.getPhone(i);
+            if (phone != null && phone.isRadioAvailable()) return true;
+        }
+        logv(TelephonyManager.getDefault().getPhoneCount() + " Phones are shutdown.");
+        return false;
+    }
+
+    public void shutdownMobileRadios() {
+        for (int i = 0; i < TelephonyManager.getDefault().getPhoneCount(); i++) {
+            logv("Shutting down Phone " + i);
+            shutdownRadioUsingPhoneId(i);
+        }
+    }
+
+    private void shutdownRadioUsingPhoneId(int phoneId) {
+        enforceModifyPermission();
+        Phone phone = PhoneFactory.getPhone(phoneId);
+        if (phone != null && phone.isRadioAvailable()) {
+            phone.shutdownRadio();
+        }
+    }
+
     public boolean setRadioPower(boolean turnOn) {
         return setRadioPowerUsingSubId(getDefaultSubscription(), turnOn);
     }
@@ -1374,6 +1402,10 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
 
     private static void log(String msg) {
         Log.d(LOG_TAG, "[PhoneIntfMgr] " + msg);
+    }
+
+    private static void logv(String msg) {
+        Log.v(LOG_TAG, "[PhoneIntfMgr] " + msg);
     }
 
     private static void loge(String msg) {
