@@ -1425,6 +1425,30 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     }
 
     /**
+     * Returns the CDMA MDN.
+     */
+    public String getCdmaMdn(long subId) {
+        enforceModifyPermissionOrCarrierPrivilege();
+        if (mPhone.getPhoneType() == PhoneConstants.PHONE_TYPE_CDMA) {
+            return getPhone(subId).getLine1Number();
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * Returns the CDMA MIN.
+     */
+    public String getCdmaMin(long subId) {
+        enforceModifyPermissionOrCarrierPrivilege();
+        if (mPhone.getPhoneType() == PhoneConstants.PHONE_TYPE_CDMA) {
+            return getPhone(subId).getCdmaMin();
+        } else {
+            return null;
+        }
+    }
+
+    /**
      * Returns true if CDMA provisioning needs to run.
      */
     public boolean needsOtaServiceProvisioning() {
