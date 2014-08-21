@@ -137,13 +137,16 @@ public class TelephonyConnectionService extends ConnectionService {
                     new EmergencyCallHelper.Callback() {
                         @Override
                         public void onComplete(boolean isRadioReady) {
-                            if (isRadioReady) {
+                            if (connection.getState() == Connection.STATE_DISCONNECTED) {
+                                // If the connection has already been disconnected, do nothing.
+                            } else if (isRadioReady) {
                                 connection.setInitialized();
                                 placeOutgoingConnection(connection, phone, request);
                             } else {
                                 Log.d(this, "onCreateOutgoingConnection, failed to turn on radio");
                                 connection.setDisconnected(DisconnectCause.POWER_OFF,
                                         "Failed to turn on radio.");
+                                connection.destroy();
                             }
                         }
                     });

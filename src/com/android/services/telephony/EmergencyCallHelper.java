@@ -46,7 +46,7 @@ public class EmergencyCallHelper {
     }
 
     // Number of times to retry the call, and time between retry attempts.
-    public static final int MAX_NUM_RETRIES = 6;
+    public static final int MAX_NUM_RETRIES = 5;
     public static final long TIME_BETWEEN_RETRIES_MILLIS = 5000;  // msec
 
     // Handler message codes; see handleMessage()
@@ -180,9 +180,13 @@ public class EmergencyCallHelper {
     private boolean isOkToCall(int serviceState, PhoneConstants.State phoneState) {
         // Once we reach either STATE_IN_SERVICE or STATE_EMERGENCY_ONLY, it's finally OK to place
         // the emergency call.
-        return (phoneState == PhoneConstants.State.OFFHOOK)
+        return ((phoneState == PhoneConstants.State.OFFHOOK)
                 || (serviceState == ServiceState.STATE_IN_SERVICE)
-                || (serviceState == ServiceState.STATE_EMERGENCY_ONLY);
+                || (serviceState == ServiceState.STATE_EMERGENCY_ONLY)) ||
+
+                // Allow STATE_OUT_OF_SERVICE if we are at the max number of retries.
+                (mNumRetriesSoFar == MAX_NUM_RETRIES &&
+                 serviceState == ServiceState.STATE_OUT_OF_SERVICE);
     }
 
     /**
