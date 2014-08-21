@@ -148,7 +148,7 @@
 
         <activity android:name="FdnList"
                 android:label="@string/fdnListLabel"
-                android:theme="@style/SettingsLight">
+                android:theme="@style/DialerSettingsLight">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -300,7 +300,7 @@
 
         <activity android:name="GsmUmtsOptions"
                 android:label="@string/gsm_umts_options"
-                android:theme="@style/SettingsLight">
+                android:theme="@style/DialerSettingsLight">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
@@ -308,7 +308,7 @@
 
         <activity android:name="CdmaOptions"
                 android:label="@string/cdma_options"
-                android:theme="@style/SettingsLight">
+                android:theme="@style/DialerSettingsLight">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
@@ -316,7 +316,7 @@
 
         <activity android:name="GsmUmtsCallOptions"
                 android:label="@string/gsm_umts_options"
-                android:theme="@style/SettingsLight">
+                android:theme="@style/DialerSettingsLight">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
@@ -324,7 +324,7 @@
 
         <activity android:name="CdmaCallOptions"
                 android:label="@string/cdma_options"
-                android:theme="@style/SettingsLight">
+                android:theme="@style/DialerSettingsLight">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
@@ -359,7 +359,7 @@
         <!-- fdn setting -->
         <activity android:name="FdnSetting"
                 android:label="@string/fdn"
-                android:theme="@style/SettingsLight">
+                android:theme="@style/DialerSettingsLight">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
@@ -367,7 +367,7 @@
 
         <activity android:name="EnableFdnScreen"
                 android:label=""
-                android:theme="@style/SettingsLight">
+                android:theme="@style/DialerSettingsLight">
         </activity>
 
         <!-- SIM PIN setting -->
@@ -396,12 +396,12 @@
         </activity>
 
         <activity android:name="EditFdnContactScreen"
-                android:theme="@style/SettingsLight"
+                android:theme="@style/DialerSettingsLight"
                 android:windowSoftInputMode="stateVisible">
         </activity>
 
         <activity android:name="DeleteFdnContactScreen"
-                android:theme="@style/SettingsLight"
+                android:theme="@style/DialerSettingsLight"
                 android:label="@string/delete_fdn_contact">
         </activity>
 
@@ -425,7 +425,7 @@
         <activity android:name="CallFeaturesSetting"
                 android:label="@string/call_settings"
                 android:configChanges="orientation|screenSize|keyboardHidden"
-                android:theme="@style/SettingsLight">
+                android:theme="@style/DialerSettingsLight">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <action android:name="android.intent.action.MAIN" />
@@ -493,7 +493,7 @@
 
         <activity android:label="Sip Settings"
                   android:name="com.android.services.telephony.sip.SipSettings"
-                  android:theme="@style/SettingsLight"
+                  android:theme="@style/DialerSettingsLight"
                   android:launchMode="singleTop"
                   android:configChanges="orientation|screenSize|keyboardHidden"
                   android:uiOptions="splitActionBarWhenNarrow"
@@ -504,7 +504,7 @@
             </intent-filter>
         </activity>
         <activity android:name="com.android.services.telephony.sip.SipEditor"
-                android:theme="@style/SettingsLight"
+                android:theme="@style/DialerSettingsLight"
                 android:configChanges="orientation|screenSize|keyboardHidden"
                 android:uiOptions="splitActionBarWhenNarrow">
         </activity>

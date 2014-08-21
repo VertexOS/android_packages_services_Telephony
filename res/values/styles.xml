@@ -175,6 +175,16 @@
         <item name="android:textColorSecondary">@color/setting_secondary_color</item>
     </style>
 
+    <style name="DialerSettingsLight" parent="SettingsLight">
+        <item name="android:colorAccent">@color/dialer_theme_color</item>
+        <item name="android:dialogTheme">@style/DialerAlertDialogTheme</item>
+    </style>
+
+    <style name="DialerAlertDialogTheme"
+        parent="@android:style/Theme.Material.Light.Dialog">
+        <item name="android:colorAccent">@color/dialer_theme_color</item>
+    </style>
+
     <style name="Empty" parent="@android:style/Theme.Holo">
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>
