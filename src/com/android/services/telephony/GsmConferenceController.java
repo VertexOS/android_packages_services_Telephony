@@ -170,6 +170,8 @@ final class GsmConferenceController {
             } else {
                 mGsmConference = new GsmConference(null);
                 for (Connection connection : conferencedConnections) {
+                    Log.d(this, "Adding a connection to a conference call: %s %s",
+                            mGsmConference, connection);
                     mGsmConference.addConnection(connection);
                 }
                 mConnectionService.addConference(mGsmConference);
