@@ -52,4 +52,5 @@
     <color name="setting_secondary_color">#989898</color>
     <color name="dialer_dialpad_touch_tint">#331dc7db</color>
     <color name="dialer_accent_color">#eeff41</color>
+    <color name="dialer_theme_color">#0288d1</color>
 </resources>
