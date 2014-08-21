@@ -293,8 +293,13 @@ public class SipSettings extends PreferenceActivity {
             }
         });
         mSipListContainer.removeAll();
-        for (SipProfile p : mSipProfileList) {
-            addPreferenceFor(p);
+        if (mSipProfileList.isEmpty()) {
+            getPreferenceScreen().removePreference(mSipListContainer);
+        } else {
+            getPreferenceScreen().addPreference(mSipListContainer);
+            for (SipProfile p : mSipProfileList) {
+                addPreferenceFor(p);
+            }
         }
 
         if (!mSipSharedPreferences.isReceivingCallsEnabled()) return;
