@@ -49,8 +49,10 @@ public class GsmConference extends Conference {
         for (Connection connection : getConnections()) {
             Call call = getMultipartyCallForConnection(connection, "onDisconnect");
             if (call != null) {
+                Log.d(this, "Found multiparty call to hangup for conference.");
                 try {
                     call.hangup();
+                    break;
                 } catch (CallStateException e) {
                     Log.e(this, e, "Exception thrown trying to hangup conference");
                 }
