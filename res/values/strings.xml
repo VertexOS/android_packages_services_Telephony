@@ -124,8 +124,25 @@
     <string name="apn_settings">Access Point Names</string>
     <!-- Label for the "Network settings" screen in the Settings UI -->
     <string name="settings_label">Network settings</string>
+
     <!-- Label for connection service setting -->
     <string name="phone_accounts">Phone account settings</string>
+    <!-- Label for list item which opens a dialog to select the default outgoing account -->
+    <string name="phone_accounts_make_calls_with">Make calls with</string>
+    <!-- Entry in dialog to "ask first" for accounts when making a call -->
+    <string name="phone_accounts_ask_every_time">Ask first</string>
+
+    <!-- Title for setting to select Wi-Fi call manager account -->
+    <string name="phone_account_wifi_calling">Wi-Fi calling</string>
+    <!-- Indication for option to not use a Wi-Fi call manager -->
+    <string name="wifi_calling_do_not_use">Do not use Wi-Fi calling</string>
+    <!-- Label for selected Wi-Fi call manager -->
+    <string name="wifi_calling_call_assistant">Call assistant</string>
+    <!-- Label for switch setting to enable/disable the use of SIM call managers. -->
+    <string name="wifi_calling_use_call_assistant">Use call assistant</string>
+    <!-- Summary for the label of a switch setting to enable/disable the use of SIM call managers. -->
+    <string name="wifi_calling_use_call_assistant_summary">Let apps or services manage networks used for calls</string>
+
     <!-- Built-in label for the default connection service setting. -->
     <string name="connection_service_default_label">Built-in connection service</string>
     <!-- Call settings screen, setting option name -->
@@ -180,32 +197,32 @@
     <!-- Call forwarding settings screen, Always forward is enabled but the number is unavailable -->
     <string name="sum_cfu_enabled_no_number">Number is unavailable</string>
     <!-- Call forwarding settings screen, setting summary text when Always forward is disabled -->
-    <string name="sum_cfu_disabled">Disabled</string>
+    <string name="sum_cfu_disabled">Off</string>
 
     <!-- Call forwarding settings screen, setting option name -->
-    <string name="labelCFB">Forward when busy</string>
+    <string name="labelCFB">When busy</string>
     <!-- Call forwarding dialog box, text field label -->
     <string name="messageCFB">Number when busy</string>
     <!-- Call forwarding settings screen, setting summary text when forwarding to specific number when busy -->
     <string name="sum_cfb_enabled">Forwarding to <xliff:g id="phonenumber" example="555-1212">{0}</xliff:g></string>
     <!-- Call forwarding settings screen, setting summary text when forwarding when busy is disabled -->
-    <string name="sum_cfb_disabled">Disabled</string>
+    <string name="sum_cfb_disabled">Off</string>
     <!-- Error message displayed after failing to disable forwarding calls when the phone is busy -->
     <string name="disable_cfb_forbidden">Your operator doesn\'t support disabling call forwarding when your phone is busy.</string>
 
     <!-- Call forwarding settings screen, setting option name -->
-    <string name="labelCFNRy">Forward when unanswered</string>
+    <string name="labelCFNRy">When unanswered</string>
     <!-- Call forwarding dialog box, text field label -->
     <string name="messageCFNRy">Number when unanswered</string>
     <!-- Call forwarding settings screen, setting summary text when forwarding to a specific number when unanswered -->
     <string name="sum_cfnry_enabled">Forwarding to <xliff:g id="phonenumber" example="555-1212">{0}</xliff:g></string>
     <!-- Call forwarding settings screen, setting summary text when Forward when unanswered is disabled -->
-    <string name="sum_cfnry_disabled">Disabled</string>
+    <string name="sum_cfnry_disabled">Off</string>
     <!-- Error message displayed after failing to disable forwarding calls when the phone does not answer -->
     <string name="disable_cfnry_forbidden">Your operator doesn\'t support disabling call forwarding when your phone doesn\'t answer.</string>
 
     <!-- Call forwarding settings screen, setting option name -->
-    <string name="labelCFNRc">Forward when unreachable</string>
+    <string name="labelCFNRc">When unreachable</string>
     <!-- Call forwarding dialog box, text field label -->
     <string name="messageCFNRc">Number when unreachable</string>
     <!-- Call forwarding settings screen, setting summary text when forwarding to a specific number when unreachable-->
@@ -275,8 +292,8 @@
     <string name="no_change">No changes were made.</string>
     <!-- Call settings screen, "Voicemail" provider setting summary text when no provider is selected -->
     <string name="sum_voicemail_choose_provider">Choose voicemail service</string>
-    <!-- Call settings screen, "Voicemail" screen, default option - My Carrier -->
-    <string name="voicemail_default">My carrier</string>
+    <!-- Call settings screen, "Voicemail" screen, default option - Your Carrier -->
+    <string name="voicemail_default">Your carrier</string>
 
     <!-- networks setting strings --><skip/>
     <!-- Mobile network settings screen title -->
@@ -1197,4 +1214,5 @@
 
     <!-- Label for close button in dialog, for video calling setting. -->
     <string name="enable_video_calling_dialog_close">Close</string>
+
 </resources>
