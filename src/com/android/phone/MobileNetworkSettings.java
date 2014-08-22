@@ -488,13 +488,14 @@ public class MobileNetworkSettings extends PreferenceActivity
                         .obtainMessage(MyHandler.MESSAGE_SET_PREFERRED_NETWORK_TYPE));
             }
         } else if (preference == mButton4glte) {
+            SwitchPreference ltePref = (SwitchPreference)preference;
+            ltePref.setChecked(!ltePref.isChecked());
+            setIMS(ltePref.isChecked());
+
             ImsManager imsMan = ImsManager.getInstance(getBaseContext(),
                     SubscriptionManager.getDefaultVoiceSubId());
-            SwitchPreference ltePref = (SwitchPreference)preference;
-
             if (imsMan != null) {
-                ltePref.setChecked(!ltePref.isChecked());
-                setIMS(ltePref.isChecked());
+
                 try {
                     imsMan.setAdvanced4GMode(ltePref.isChecked());
                 } catch (ImsException ie) {
