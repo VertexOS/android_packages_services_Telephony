@@ -25,7 +25,7 @@
     <!-- Title displayed for the button of receiving incoming SIP calls flag. Enabled for receiving calls. [CHAR LIMIT=NONE] -->
     <string name="sip_receive_calls">Receive incoming calls</string>
     <!-- Help user to understand that it will require more battery usage if the 'receiving incoming call' is enabled. [CHAR LIMIT=NONE] -->
-    <string name="sip_receive_calls_summary">Reduces battery life</string>
+    <string name="sip_receive_calls_summary">Uses more battery life</string>
     <!-- Title for the dialog of selecting the way we handle an outgoing call. [CHAR LIMIT=NONE] -->
     <string name="sip_call_options_title">Use SIP calling</string>
     <!-- Title for the dialog of selecting the way we handle an outgoing call (Wi-Fi only). [CHAR LIMIT=NONE] -->
