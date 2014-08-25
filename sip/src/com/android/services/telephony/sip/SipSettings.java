@@ -56,7 +56,7 @@ import java.util.Map;
  */
 public class SipSettings extends PreferenceActivity {
     private static final String PREFIX = "[SipSettings] ";
-    private static final boolean VERBOSE = true; /* STOP SHIP if true */
+    private static final boolean VERBOSE = false; /* STOP SHIP if true */
 
     public static final String SIP_SHARED_PREFERENCES = "SIP_PREFERENCES";
 
@@ -227,7 +227,8 @@ public class SipSettings extends PreferenceActivity {
             p = updateAutoRegistrationFlag(p, enabled);
             try {
                 if (enabled) {
-                    mSipManager.open(p, SipUtil.createIncomingCallPendingIntent(this), null);
+                    mSipManager.open(
+                            p, SipUtil.createIncomingCallPendingIntent(this, sipUri), null);
                 } else {
                     mSipManager.close(sipUri);
                     if (mSipSharedPreferences.isPrimaryAccount(sipUri)) {

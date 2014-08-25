@@ -19,16 +19,20 @@ package com.android.services.telephony.sip;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.sip.SipAudioCall;
 import android.net.sip.SipException;
 import android.net.sip.SipManager;
 import android.net.sip.SipProfile;
-import android.net.Uri;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.ResultReceiver;
 import android.telecomm.Connection;
 import android.telecomm.ConnectionRequest;
 import android.telecomm.ConnectionService;
 import android.telecomm.PhoneAccountHandle;
-import android.telecomm.Response;
+import android.telecomm.PropertyPresentation;
 import android.telephony.DisconnectCause;
 import android.util.Log;
 
@@ -36,9 +40,26 @@ import com.android.internal.telephony.CallStateException;
 import com.android.internal.telephony.PhoneFactory;
 import com.android.internal.telephony.sip.SipPhone;
 
+import java.util.List;
+import java.util.Objects;
+
 public final class SipConnectionService extends ConnectionService {
+    private interface IProfileFinderCallback {
+        void onFound(SipProfile profile);
+    }
+
     private static final String PREFIX = "[SipConnectionService] ";
-    private static final boolean VERBOSE = true; /* STOP SHIP if true */
+    private static final boolean VERBOSE = false; /* STOP SHIP if true */
+
+    private SipProfileDb mSipProfileDb;
+    private Handler mHandler;
+
+    @Override
+    public void onCreate() {
+        mSipProfileDb = new SipProfileDb(this);
+        mHandler = new Handler();
+        super.onCreate();
+    }
 
     static PhoneAccountHandle getPhoneAccountHandle(Context context) {
         return new PhoneAccountHandle(
@@ -52,36 +73,73 @@ public final class SipConnectionService extends ConnectionService {
             final ConnectionRequest request) {
         if (VERBOSE) log("onCreateOutgoingConnection, request: " + request);
 
+        Bundle extras = request.getExtras();
+        if (extras != null && extras.getString(SipUtil.GATEWAY_PROVIDER_PACKAGE) != null) {
+            return Connection.createFailedConnection(
+                    DisconnectCause.CALL_BARRED, "Cannot make a SIP call with a gateway number.");
+        }
+
+        PhoneAccountHandle accountHandle = request.getAccountHandle();
+        ComponentName sipComponentName = new ComponentName(this, SipConnectionService.class);
+        if (!Objects.equals(accountHandle.getComponentName(), sipComponentName)) {
+            return Connection.createFailedConnection(
+                    DisconnectCause.OUTGOING_FAILURE, "Did not match service connection");
+        }
+
+
         final SipConnection connection = new SipConnection();
+        connection.setHandle(request.getHandle(), PropertyPresentation.ALLOWED);
+        connection.setInitializing();
+        boolean attemptCall = true;
 
-        SipProfileChooser.Callback callback = new SipProfileChooser.Callback() {
-            @Override
-            public void onSipChosen(SipProfile profile) {
-                if (VERBOSE) log("onCreateOutgoingConnection, onSipChosen: " + profile);
-                com.android.internal.telephony.Connection chosenConnection =
-                        createConnectionForProfile(profile, request);
-                if (chosenConnection == null) {
-                    connection.setDisconnected(DisconnectCause.OUTGOING_CANCELED, null);
-                } else {
-                    connection.initialize(chosenConnection);
+        if (!SipUtil.isVoipSupported(this)) {
+            SipProfileChooserDialogs.showNoVoip(this, new ResultReceiver(mHandler) {
+                    @Override
+                    protected void onReceiveResult(int choice, Bundle resultData) {
+                        connection.setDisconnected(
+                                DisconnectCause.ERROR_UNSPECIFIED, "VoIP unsupported");
+                    }
+            });
+            attemptCall = false;
+        }
+
+        if (attemptCall && !isNetworkConnected()) {
+            if (VERBOSE) log("start, network not connected, dropping call");
+            SipProfileChooserDialogs.showNoInternetError(this, new ResultReceiver(mHandler) {
+                    @Override
+                    protected void onReceiveResult(int choice, Bundle resultData) {
+                        connection.setDisconnected(DisconnectCause.OUT_OF_SERVICE, null);
+                    }
+            });
+            attemptCall = false;
+        }
+
+        if (attemptCall) {
+            // The ID used for SIP-based phone account is the SIP profile Uri. Use it to find
+            // the actual profile.
+            String profileUri = accountHandle.getId();
+            findProfile(profileUri, new IProfileFinderCallback() {
+                @Override
+                public void onFound(SipProfile profile) {
+                    if (profile == null) {
+                        connection.setDisconnected(
+                                DisconnectCause.OUTGOING_FAILURE, "SIP profile not found.");
+                        connection.destroy();
+                    } else {
+                        com.android.internal.telephony.Connection chosenConnection =
+                                createConnectionForProfile(profile, request);
+                        if (chosenConnection == null) {
+                            connection.setDisconnected(
+                                    DisconnectCause.OUTGOING_FAILURE, "Connection failed.");
+                            connection.destroy();
+                        } else {
+                            if (VERBOSE) log("initializing connection");
+                            connection.initialize(chosenConnection);
+                        }
+                    }
                 }
-            }
-
-            @Override
-            public void onSipNotChosen() {
-                if (VERBOSE) log("onCreateOutgoingConnection, onSipNotChosen");
-                connection.setDisconnected(DisconnectCause.ERROR_UNSPECIFIED, null);
-            }
-
-            @Override
-            public void onCancelCall() {
-                if (VERBOSE) log("onCreateOutgoingConnection, onCancelCall");
-                connection.setDisconnected(DisconnectCause.OUTGOING_CANCELED, null);
-            }
-        };
-
-        SipProfileChooser chooser = new SipProfileChooser(this, callback);
-        chooser.start(request.getHandle(), request.getExtras());
+            });
+        }
 
         return connection;
     }
@@ -121,7 +179,9 @@ public final class SipConnectionService extends ConnectionService {
                     sipAudioCall);
             if (VERBOSE) log("onCreateIncomingConnection, new connection: " + originalConnection);
             if (originalConnection != null) {
-                return new SipConnection();
+                SipConnection sipConnection = new SipConnection();
+                sipConnection.initialize(originalConnection);
+                return sipConnection;
             } else {
                 if (VERBOSE) log("onCreateIncomingConnection, takingIncomingCall failed");
                 return Connection.createCanceledConnection();
@@ -156,6 +216,38 @@ public final class SipConnectionService extends ConnectionService {
         return null;
     }
 
+    /**
+     * Searched for the specified profile in the SIP profile database.  This can take a long time
+     * in communicating with the database, so it is done asynchronously with a separate thread and a
+     * callback interface.
+     */
+    private void findProfile(final String profileUri, final IProfileFinderCallback callback) {
+        if (VERBOSE) log("findProfile");
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                SipProfile profileToUse = null;
+                List<SipProfile> profileList = mSipProfileDb.retrieveSipProfileList();
+                if (profileList != null) {
+                    for (SipProfile profile : profileList) {
+                        if (Objects.equals(profileUri, profile.getUriString())) {
+                            profileToUse = profile;
+                            break;
+                        }
+                    }
+                }
+
+                final SipProfile profileFound = profileToUse;
+                mHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        callback.onFound(profileFound);
+                    }
+                });
+            }
+        }).start();
+    }
+
     private SipPhone findPhoneForProfile(SipProfile profile) {
         if (VERBOSE) log("findPhoneForProfile, profile: " + profile);
         for (Connection connection : getAllConnections()) {
@@ -175,7 +267,7 @@ public final class SipConnectionService extends ConnectionService {
         if (VERBOSE) log("createPhoneForProfile, profile: " + profile);
         try {
             SipManager.newInstance(this).open(profile);
-            return (SipPhone) PhoneFactory.makeSipPhone(profile.getUriString());
+            return PhoneFactory.makeSipPhone(profile.getUriString());
         } catch (SipException e) {
             log("createPhoneForProfile, exception: " + e);
             return null;
@@ -197,11 +289,17 @@ public final class SipConnectionService extends ConnectionService {
         }
     }
 
-    private ConnectionRequest getConnectionRequestForIncomingCall(ConnectionRequest request,
-            com.android.internal.telephony.Connection connection) {
-        Uri uri = Uri.fromParts(SipUtil.SCHEME_SIP, connection.getAddress(), null);
-        return new ConnectionRequest(request.getAccountHandle(), uri,
-                connection.getNumberPresentation(), request.getExtras(), 0);
+    private boolean isNetworkConnected() {
+        ConnectivityManager cm =
+                (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (cm != null) {
+            NetworkInfo ni = cm.getActiveNetworkInfo();
+            if (ni != null && ni.isConnected()) {
+                return ni.getType() == ConnectivityManager.TYPE_WIFI ||
+                        !SipManager.isSipWifiOnly(this);
+            }
+        }
+        return false;
     }
 
     private static void log(String msg) {

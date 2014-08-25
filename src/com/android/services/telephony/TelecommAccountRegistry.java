@@ -149,7 +149,7 @@ final class TelecommAccountRegistry {
     }
 
     /**
-     * Sets up all the phone accounts for SIM and SIP accounts on first boot.
+     * Sets up all the phone accounts for SIMs on first boot.
      */
     void setupOnBoot() {
         IntentFilter intentFilter =
@@ -173,9 +173,20 @@ final class TelecommAccountRegistry {
         return new PhoneAccountHandle(pstnConnectionServiceName, id);
     }
 
+    private void clearCurrentTelephonyAccounts() {
+        ComponentName telephonyComponentName =
+                new ComponentName(mContext, TelephonyConnectionService.class);
+        List<PhoneAccountHandle> accountHandles = mTelecommManager.getEnabledPhoneAccounts();
+        for (PhoneAccountHandle handle : accountHandles) {
+            if (telephonyComponentName.equals(handle.getComponentName())) {
+                mTelecommManager.unregisterPhoneAccount(handle);
+            }
+        }
+    }
+
     private void setupAccounts() {
         // Before we do anything, we need to clear whatever entries we registered at boot.
-        mTelecommManager.clearAccounts(mContext.getPackageName());
+        clearCurrentTelephonyAccounts();
 
         // Use counter to keep track of which default icon we are using
         int currAccountIcon = 0;

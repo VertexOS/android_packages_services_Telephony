@@ -29,7 +29,7 @@ import android.util.Log;
  */
 public class SipSharedPreferences {
     private static final String PREFIX = "[SipSharedPreferences] ";
-    private static final boolean VERBOSE = true; /* STOP SHIP if true */
+    private static final boolean VERBOSE = false; /* STOP SHIP if true */
 
     private static final String SIP_SHARED_PREFERENCES = "SIP_PREFERENCES";
     private static final String KEY_PRIMARY_ACCOUNT = "primary";
