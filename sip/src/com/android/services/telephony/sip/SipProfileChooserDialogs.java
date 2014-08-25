@@ -41,7 +41,7 @@ public final class SipProfileChooserDialogs extends Activity
         implements DialogInterface.OnClickListener,
         DialogInterface.OnCancelListener, CompoundButton.OnCheckedChangeListener {
     private static final String PREFIX = "[SipProfileChooserDialogs] ";
-    private static final boolean VERBOSE = true; /* STOP SHIP if true */
+    private static final boolean VERBOSE = false; /* STOP SHIP if true */
 
     private static final String EXTRA_RESULT_RECEIVER = "result_receiver";
     private static final String EXTRA_DIALOG_ID = "dialog_id";

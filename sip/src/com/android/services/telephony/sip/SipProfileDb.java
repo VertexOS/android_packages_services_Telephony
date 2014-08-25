@@ -37,7 +37,7 @@ import java.util.List;
  */
 class SipProfileDb {
     private static final String PREFIX = "[SipProfileDb] ";
-    private static final boolean VERBOSE = true; /* STOP SHIP if true */
+    private static final boolean VERBOSE = false; /* STOP SHIP if true */
 
     private static final String PROFILES_DIR = "/profiles/";
     private static final String PROFILE_OBJ_FILE = ".pobj";

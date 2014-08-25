@@ -17,15 +17,19 @@
 package com.android.services.telephony.sip;
 
 import android.app.PendingIntent;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.net.sip.SipManager;
+import android.telecomm.PhoneAccountHandle;
 import android.telecomm.TelecommManager;
 
 public class SipUtil {
     static final String LOG_TAG = "SIP";
     static final String EXTRA_INCOMING_CALL_INTENT =
             "com.android.services.telephony.sip.incoming_call_intent";
+    static final String EXTRA_PHONE_ACCOUNT =
+            "com.android.services.telephony.sip.phone_account";
     static final String GATEWAY_PROVIDER_PACKAGE =
             "com.android.phone.extra.GATEWAY_PROVIDER_PACKAGE";
     static final String SCHEME_TEL = "tel";
@@ -48,11 +52,12 @@ public class SipUtil {
         return sIsVoipSupported;
     }
 
-    static PendingIntent createIncomingCallPendingIntent(Context context) {
+    static PendingIntent createIncomingCallPendingIntent(
+            Context context, String sipUri) {
         Intent intent = new Intent(context, SipBroadcastReceiver.class);
         intent.setAction(SipManager.ACTION_SIP_INCOMING_CALL);
-        return PendingIntent.getBroadcast(context, 0, intent,
-                PendingIntent.FLAG_UPDATE_CURRENT);
+        intent.putExtra(EXTRA_PHONE_ACCOUNT, SipUtil.createAccountHandle(context, sipUri));
+        return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
     }
 
     static boolean isPhoneIdle(Context context) {
@@ -62,5 +67,13 @@ public class SipUtil {
             return !manager.isInAPhoneCall();
         }
         return true;
+    }
+
+    /**
+     * Creates a {@link PhoneAccountHandle} from the specified SIP URI.
+     */
+    static PhoneAccountHandle createAccountHandle(Context context, String sipUri) {
+        return new PhoneAccountHandle(
+                new ComponentName(context, SipConnectionService.class), sipUri);
     }
 }
