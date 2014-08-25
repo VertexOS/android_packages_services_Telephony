@@ -64,7 +64,7 @@ public class SipUtil {
         TelecommManager manager = (TelecommManager) context.getSystemService(
                 Context.TELECOMM_SERVICE);
         if (manager != null) {
-            return !manager.isInAPhoneCall();
+            return !manager.isInCall();
         }
         return true;
     }
