@@ -42,6 +42,7 @@ import java.util.List;
  */
 final class TelecommAccountRegistry {
     private final static int[] phoneAccountIcons = {
+        com.android.phone.R.drawable.ic_multi_sim,
         com.android.phone.R.drawable.ic_multi_sim1,
         com.android.phone.R.drawable.ic_multi_sim2,
         com.android.phone.R.drawable.ic_multi_sim3,
@@ -53,9 +54,9 @@ final class TelecommAccountRegistry {
         private final PhoneAccount mAccount;
         private final PstnIncomingCallNotifier mIncomingCallNotifier;
 
-        AccountEntry(Phone phone, int iconResId, boolean isEmergency, boolean isDummy) {
+        AccountEntry(Phone phone, boolean isEmergency, boolean isDummy) {
             mPhone = phone;
-            mAccount = registerPstnPhoneAccount(iconResId, isEmergency, isDummy);
+            mAccount = registerPstnPhoneAccount(isEmergency, isDummy);
             Log.d(this, "Registered phoneAccount: %s with handle: %s",
                     mAccount, mAccount.getAccountHandle());
             mIncomingCallNotifier = new PstnIncomingCallNotifier((PhoneProxy) mPhone);
@@ -69,8 +70,7 @@ final class TelecommAccountRegistry {
         /**
          * Registers the specified account with Telecomm as a PhoneAccountHandle.
          */
-        private PhoneAccount registerPstnPhoneAccount(
-                int iconResId, boolean isEmergency, boolean isDummyAccount) {
+        private PhoneAccount registerPstnPhoneAccount(boolean isEmergency, boolean isDummyAccount) {
             TelephonyManager telephonyManager = TelephonyManager.from(mContext);
             String dummyPrefix = isDummyAccount ? "Dummy " : "";
 
@@ -101,7 +101,7 @@ final class TelecommAccountRegistry {
                     .withSubscriptionNumber(subNumber)
                     .withCapabilities(PhoneAccount.CAPABILITY_SIM_SUBSCRIPTION |
                             PhoneAccount.CAPABILITY_CALL_PROVIDER)
-                    .withIconResId(iconResId)
+                    .withIconResId(getPhoneAccountIcon(slotId))
                     .withLabel(label)
                     .withShortDescription(description)
                     .build();
@@ -188,9 +188,6 @@ final class TelecommAccountRegistry {
         // Before we do anything, we need to clear whatever entries we registered at boot.
         clearCurrentTelephonyAccounts();
 
-        // Use counter to keep track of which default icon we are using
-        int currAccountIcon = 0;
-
         // Go through SIM-based phones and register ourselves
         Phone[] phones = PhoneFactory.getPhones();
         Log.d(this, "Found %d phones.  Attempting to register.", phones.length);
@@ -198,8 +195,7 @@ final class TelecommAccountRegistry {
             long subscriptionId = phone.getSubId();
             Log.d(this, "Phone with subscription id %d", subscriptionId);
             if (subscriptionId >= 0) {
-                mAccounts.add(new AccountEntry(phone, getPhoneAccountIcon(currAccountIcon++),
-                        false /* emergency */, false /* isDummy */));
+                mAccounts.add(new AccountEntry(phone, false /* emergency */, false /* isDummy */));
             }
         }
 
@@ -207,15 +203,13 @@ final class TelecommAccountRegistry {
         // for emergency numbers since no actual SIM is needed for dialing emergency
         // numbers but a phone account is.
         if (mAccounts.isEmpty()) {
-            mAccounts.add(new AccountEntry(
-                    PhoneFactory.getDefaultPhone(), getPhoneAccountIcon(currAccountIcon++),
-                    true /* emergency */, false /* isDummy */));
+            mAccounts.add(new AccountEntry(PhoneFactory.getDefaultPhone(), true /* emergency */,
+                    false /* isDummy */));
         }
 
         // Add a fake account entry.
         if (phones.length > 0 && "TRUE".equals(System.getProperty("dummy_sim"))) {
-            mAccounts.add(new AccountEntry(phones[0], getPhoneAccountIcon(currAccountIcon++),
-                    false /* emergency */, true /* isDummy */));
+            mAccounts.add(new AccountEntry(phones[0], false /* emergency */, true /* isDummy */));
         }
 
         // TODO: Add SIP accounts.
@@ -225,7 +219,8 @@ final class TelecommAccountRegistry {
         if (index < TelecommAccountRegistry.phoneAccountIcons.length) {
             return TelecommAccountRegistry.phoneAccountIcons[index];
         }
-        return com.android.phone.R.drawable.ic_multi_sim;
+        // default blank icon
+        return TelecommAccountRegistry.phoneAccountIcons[0];
     }
 
     private void tearDownAccounts() {
