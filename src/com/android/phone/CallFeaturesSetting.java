@@ -160,7 +160,6 @@ public class CallFeaturesSetting extends PreferenceActivity
 
     // String keys for preference lookup
     // TODO: Naming these "BUTTON_*" is confusing since they're not actually buttons(!)
-    private static final String BUTTON_DEFAULT_CONNECTION_SERVICE = "button_connection_service";
     private static final String BUTTON_VOICEMAIL_KEY = "button_voicemail_key";
     private static final String BUTTON_VOICEMAIL_PROVIDER_KEY = "button_voicemail_provider_key";
     private static final String BUTTON_VOICEMAIL_SETTING_KEY = "button_voicemail_setting_key";
@@ -261,14 +260,11 @@ public class CallFeaturesSetting extends PreferenceActivity
     private ListPreference mButtonSipCallOptions;
     private Preference mWifiCallOptionsPreference;
     private Preference mWifiCallAccountPreference;
-    private ListPreference mConnectionService;
     private ListPreference mVoicemailProviders;
     private PreferenceScreen mVoicemailSettings;
     private Preference mVoicemailNotificationRingtone;
     private CheckBoxPreference mVoicemailNotificationVibrate;
     private SipSharedPreferences mSipSharedPreferences;
-    private final Map<String, CharSequence> mConnectionServiceLabelByComponentName =
-            new HashMap<>();
 
     private class VoiceMailProvider {
         public VoiceMailProvider(String name, Intent intent) {
@@ -576,8 +572,6 @@ public class CallFeaturesSetting extends PreferenceActivity
             }
         } else if (preference == mButtonSipCallOptions) {
             handleSipCallOptionsChange(objValue);
-        } else if (preference == mConnectionService) {
-            updateConnectionServiceSummary((String) objValue);
         }
         // always let the preference setting proceed.
         return true;
@@ -1515,8 +1509,6 @@ public class CallFeaturesSetting extends PreferenceActivity
         mButtonAutoRetry = (CheckBoxPreference) findPreference(BUTTON_RETRY_KEY);
         mButtonHAC = (CheckBoxPreference) findPreference(BUTTON_HAC_KEY);
         mButtonTTY = (ListPreference) findPreference(BUTTON_TTY_KEY);
-        mConnectionService = (ListPreference)
-                findPreference(BUTTON_DEFAULT_CONNECTION_SERVICE);
         mVoicemailProviders = (ListPreference) findPreference(BUTTON_VOICEMAIL_PROVIDER_KEY);
 
         if (mVoicemailProviders != null) {
@@ -1645,12 +1637,6 @@ public class CallFeaturesSetting extends PreferenceActivity
             actionBar.setDisplayShowHomeEnabled(true);
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setDisplayShowTitleEnabled(true);
-        }
-
-        if (mConnectionService != null) {
-            mConnectionService.setOnPreferenceChangeListener(this);
-            setupConnectionServiceOptions();
-            updateConnectionServiceSummary(null);
         }
     }
 
@@ -2104,66 +2090,6 @@ public class CallFeaturesSetting extends PreferenceActivity
             return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    private void setupConnectionServiceOptions() {
-        loadConnectionServiceEntries();
-        String[] entryValues = new String[mConnectionServiceLabelByComponentName.size()];
-        CharSequence[] entries = new CharSequence[mConnectionServiceLabelByComponentName.size()];
-        int i = 0;
-        for (String entryValue : mConnectionServiceLabelByComponentName.keySet()) {
-            entryValues[i] = entryValue;
-            entries[i] = mConnectionServiceLabelByComponentName.get(entryValue);
-            i++;
-        }
-        mConnectionService.setEntryValues(entryValues);
-        mConnectionService.setEntries(entries);
-
-        if (mConnectionService.getValue() == null) {
-            mConnectionService.setValue(getString(R.string.connection_service_default));
-        }
-    }
-
-    private void updateConnectionServiceSummary(String value) {
-        CharSequence label = mConnectionServiceLabelByComponentName.get(
-                value == null ? mConnectionService.getValue() : value);
-        if (label == null) {
-            Log.w(LOG_TAG, "Unknown default connection service entry " +
-                    mConnectionService.getValue());
-            mConnectionService.setSummary("");
-        }
-        mConnectionService.setSummary(label);
-    }
-
-    private void loadConnectionServiceEntries() {
-        Intent intent = new Intent(ConnectionService.SERVICE_INTERFACE);
-        for (ResolveInfo entry : getPackageManager().queryIntentServices(intent, 0)) {
-            ServiceInfo serviceInfo = entry.serviceInfo;
-            if (serviceInfo != null) {
-                // The entry resolves to a proper service, add it to the list of service names
-                ComponentName componentName =
-                        new ComponentName(serviceInfo.packageName, serviceInfo.name);
-                mConnectionServiceLabelByComponentName.put(
-                        componentName.flattenToString(),
-                        serviceInfo.loadLabel(getPackageManager()));
-            }
-        }
-
-        // If the default built-in ConnectionService is not installed, according to the package
-        // manager, then in a newly initialized system, Telecomm is going to read the preference
-        // and find the service to be nonexistent. Telecomm should have error checking for this
-        // case, but it is problematic and it's hard to program around it. Here we simply pretend
-        // like the built-in default is installed anyway (so the default value defined in the XML
-        // for the ListPreference points to something useful and does not throw an NPE) and proceed.
-        String connectionServiceDefault = getString(R.string.connection_service_default);
-        if (!mConnectionServiceLabelByComponentName.containsKey(connectionServiceDefault)) {
-            Log.w(LOG_TAG, "Package manager reports built-in ConnectionService not installed: "
-                    + connectionServiceDefault);
-        } else {
-            mConnectionServiceLabelByComponentName.put(
-                    connectionServiceDefault,
-                    getString(R.string.connection_service_default_label));
-        }
     }
 
     /**

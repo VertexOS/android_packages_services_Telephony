@@ -138,11 +138,6 @@
     <string name="carrier_settings" translatable="false"></string>
     <string name="carrier_settings_menu" translatable="false"></string>
 
-    <!-- Default connection service setting.
-         TODO: This is GSM specific. Need to define a generic "use the builtin SIMs" Connection
-         Service and use it as the default. -->
-    <string name="connection_service_default" translatable="false">com.android.phone/com.android.services.telephony.TelephonyConnectionService</string>
-
     <!-- Does not display additional call seting for IMS phone based on GSM Phone -->
     <bool name="config_additional_call_setting">true</bool>
 </resources>
