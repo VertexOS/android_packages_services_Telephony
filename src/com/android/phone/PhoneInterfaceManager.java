@@ -442,7 +442,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
                             }
                         }
                         openChannelResp = new IccOpenLogicalChannelResponse(channelId,
-                            IccOpenLogicalChannelResponse.NO_ERROR, selectResponse );
+                            IccOpenLogicalChannelResponse.STATUS_NO_ERROR, selectResponse);
                     } else {
                         if (ar.result == null) {
                             loge("iccOpenLogicalChannel: Empty response");
@@ -451,12 +451,12 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
                             loge("iccOpenLogicalChannel: Exception: " + ar.exception);
                         }
 
-                        int errorCode = IccOpenLogicalChannelResponse.UNKNOWN_ERROR;
+                        int errorCode = IccOpenLogicalChannelResponse.STATUS_UNKNOWN_ERROR;
                         if ((ar.exception != null) && (ar.exception instanceof CommandException)) {
                             if (ar.exception.getMessage().compareTo("MISSING_RESOURCE") == 0) {
-                                errorCode = IccOpenLogicalChannelResponse.MISSING_RESOURCE;
+                                errorCode = IccOpenLogicalChannelResponse.STATUS_MISSING_RESOURCE;
                             } else if (ar.exception.getMessage().compareTo("NO_SUCH_ELEMENT") == 0) {
-                                errorCode = IccOpenLogicalChannelResponse.NO_SUCH_ELEMENT;
+                                errorCode = IccOpenLogicalChannelResponse.STATUS_NO_SUCH_ELEMENT;
                             }
                         }
                         openChannelResp = new IccOpenLogicalChannelResponse(
