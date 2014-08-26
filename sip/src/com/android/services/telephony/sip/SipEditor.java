@@ -52,7 +52,7 @@ import java.util.Arrays;
 public class SipEditor extends PreferenceActivity
         implements Preference.OnPreferenceChangeListener {
     private static final String PREFIX = "[SipEditor] ";
-    private static final boolean VERBOSE = true; /* STOP SHIP if true */
+    private static final boolean VERBOSE = false; /* STOP SHIP if true */
 
     private static final int MENU_SAVE = Menu.FIRST;
     private static final int MENU_DISCARD = Menu.FIRST + 1;
@@ -249,7 +249,8 @@ public class SipEditor extends PreferenceActivity
         mProfileDb.saveProfile(p);
         if (p.getAutoRegistration() || mSharedPreferences.isPrimaryAccount(p.getUriString())) {
             try {
-                mSipManager.open(p, SipUtil.createIncomingCallPendingIntent(this), null);
+                mSipManager.open(
+                        p, SipUtil.createIncomingCallPendingIntent(this, p.getUriString()), null);
             } catch (Exception e) {
                 log("saveAndRegisterProfile, register failed for profile: " + p.getUriString() +
                         ", exception: " + e);

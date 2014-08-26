@@ -486,8 +486,10 @@
         </service>
         <receiver android:name="com.android.services.telephony.sip.SipBroadcastReceiver">
             <intent-filter>
-                <action android:name="com.android.phone.SIP_INCOMING_CALL" />
                 <action android:name="android.net.sip.SIP_SERVICE_UP" />
+                <action android:name="com.android.phone.SIP_INCOMING_CALL" />
+                <action android:name="com.android.phone.SIP_ADD_PHONE" />
+                <action android:name="com.android.phone.SIP_REMOVE_PHONE" />
             </intent-filter>
         </receiver>
 
