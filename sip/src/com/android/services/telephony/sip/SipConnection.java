@@ -31,7 +31,7 @@ import java.util.List;
 
 final class SipConnection extends Connection {
     private static final String PREFIX = "[SipConnection] ";
-    private static final boolean VERBOSE = true; /* STOP SHIP if true */
+    private static final boolean VERBOSE = false; /* STOP SHIP if true */
 
     private static final int MSG_PRECISE_CALL_STATE_CHANGED = 1;
 
