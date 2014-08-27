@@ -360,7 +360,12 @@ abstract class TelephonyConnection extends Connection {
     private void hangup(int disconnectCause) {
         if (mOriginalConnection != null) {
             try {
-                mOriginalConnection.hangup();
+                Call call = getCall();
+                if (call != null) {
+                    call.hangup();
+                } else {
+                    Log.w(this, "Attempting to hangup a connection without backing call.");
+                }
             } catch (CallStateException e) {
                 Log.e(this, e, "Call to Connection.hangup failed with exception");
             }
