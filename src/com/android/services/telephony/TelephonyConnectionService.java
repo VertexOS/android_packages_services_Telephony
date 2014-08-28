@@ -36,7 +36,9 @@ import com.android.internal.telephony.CallStateException;
 import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneConstants;
 import com.android.internal.telephony.PhoneFactory;
+import com.android.internal.telephony.PhoneProxy;
 import com.android.internal.telephony.SubscriptionController;
+import com.android.internal.telephony.cdma.CDMAPhone;
 import com.android.phone.MMIDialogActivity;
 
 import java.util.Objects;
@@ -120,7 +122,7 @@ public class TelephonyConnectionService extends ConnectionService {
             }
         }
 
-        final TelephonyConnection connection = createConnectionFor(phone.getPhoneType(), null);
+        final TelephonyConnection connection = createConnectionFor(phone, null);
         if (connection == null) {
             return Connection.createFailedConnection(
                     DisconnectCause.OUTGOING_FAILURE, "Invalid phone type");
@@ -182,7 +184,7 @@ public class TelephonyConnectionService extends ConnectionService {
             return Connection.createCanceledConnection();
         }
 
-        Connection connection = createConnectionFor(phone.getPhoneType(), originalConnection);
+        Connection connection = createConnectionFor(phone, originalConnection);
         if (connection == null) {
             connection = Connection.createCanceledConnection();
             return Connection.createCanceledConnection();
@@ -248,11 +250,13 @@ public class TelephonyConnectionService extends ConnectionService {
     }
 
     private TelephonyConnection createConnectionFor(
-            int phoneType, com.android.internal.telephony.Connection originalConnection) {
+            Phone phone, com.android.internal.telephony.Connection originalConnection) {
+        int phoneType = phone.getPhoneType();
         if (phoneType == TelephonyManager.PHONE_TYPE_GSM) {
             return new GsmConnection(originalConnection);
         } else if (phoneType == TelephonyManager.PHONE_TYPE_CDMA) {
-            return new CdmaConnection(originalConnection);
+            boolean allowMute = allowMute(phone);
+            return new CdmaConnection(originalConnection, allowMute);
         } else {
             return null;
         }
@@ -288,5 +292,27 @@ public class TelephonyConnectionService extends ConnectionService {
             }
         }
         return null;
+    }
+
+    /**
+     * Determines if the connection should allow mute.
+     *
+     * @param phone The current phone.
+     * @return {@code True} if the connection should allow mute.
+     */
+    private boolean allowMute(Phone phone) {
+        // For CDMA phones, check if we are in Emergency Callback Mode (ECM).  Mute is disallowed
+        // in ECM mode.
+        if (phone.getPhoneType() == TelephonyManager.PHONE_TYPE_CDMA) {
+            PhoneProxy phoneProxy = (PhoneProxy)phone;
+            CDMAPhone cdmaPhone = (CDMAPhone)phoneProxy.getActivePhone();
+            if (cdmaPhone != null) {
+                if (cdmaPhone.isInEcm()) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
     }
 }
