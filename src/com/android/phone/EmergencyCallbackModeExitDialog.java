@@ -205,7 +205,7 @@ public class EmergencyCallbackModeExitDialog extends Activity implements OnDismi
         case EXIT_ECM_DIALOG:
             CharSequence text = getDialogText(mEcmTimeout);
             mAlertDialog = new AlertDialog.Builder(EmergencyCallbackModeExitDialog.this)
-                    .setIcon(R.drawable.picture_emergency32x32)
+                    .setIcon(R.drawable.ic_emergency_callback_mode)
                     .setTitle(R.string.phone_in_ecm_notification_title)
                     .setMessage(text)
                     .setPositiveButton(R.string.alert_dialog_yes,
@@ -233,7 +233,7 @@ public class EmergencyCallbackModeExitDialog extends Activity implements OnDismi
 
         case EXIT_ECM_IN_EMERGENCY_CALL_DIALOG:
             mAlertDialog = new AlertDialog.Builder(EmergencyCallbackModeExitDialog.this)
-                    .setIcon(R.drawable.picture_emergency32x32)
+                    .setIcon(R.drawable.ic_emergency_callback_mode)
                     .setTitle(R.string.phone_in_ecm_notification_title)
                     .setMessage(R.string.alert_dialog_in_ecm_call)
                     .setNeutralButton(R.string.alert_dialog_dismiss,
