@@ -24,8 +24,15 @@ import com.android.internal.telephony.Connection;
  * Manages a single phone call handled by CDMA.
  */
 final class CdmaConnection extends TelephonyConnection {
-    CdmaConnection(Connection connection) {
+
+    /**
+     * {@code True} if the CDMA connection should allow mute.
+     */
+    private final boolean mAllowMute;
+
+    CdmaConnection(Connection connection, boolean allowMute) {
         super(connection);
+        mAllowMute = allowMute;
     }
 
     /** {@inheritDoc} */
@@ -49,7 +56,10 @@ final class CdmaConnection extends TelephonyConnection {
 
     @Override
     protected int buildCallCapabilities() {
-        int capabilities = PhoneCapabilities.MUTE;
+        int capabilities = 0;
+        if (mAllowMute) {
+            capabilities = PhoneCapabilities.MUTE;
+        }
         return capabilities;
     }
 }

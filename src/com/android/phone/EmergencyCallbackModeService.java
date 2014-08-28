@@ -25,6 +25,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Resources;
+import android.graphics.BitmapFactory;
 import android.os.AsyncResult;
 import android.os.Binder;
 import android.os.CountDownTimer;
@@ -163,16 +164,19 @@ public class EmergencyCallbackModeService extends Service {
      * Shows notification for Emergency Callback Mode
      */
     private void showNotification(long millisUntilFinished) {
-
-        // Set the icon and text
-        Notification notification = new Notification(
-                R.drawable.picture_emergency25x25,
-                getText(R.string.phone_entered_ecm_text), 0);
+        final Notification.Builder builder = new Notification.Builder(getApplicationContext());
+        builder.setOngoing(true);
+        builder.setPriority(Notification.PRIORITY_HIGH);
+        builder.setSmallIcon(R.drawable.ic_emergency_callback_mode);
+        builder.setTicker(getText(R.string.phone_entered_ecm_text));
+        builder.setContentTitle(getText(R.string.phone_in_ecm_notification_title));
+        builder.setColor(getResources().getColor(R.color.dialer_theme_color));
 
         // PendingIntent to launch Emergency Callback Mode Exit activity if the user selects
         // this notification
         PendingIntent contentIntent = PendingIntent.getActivity(this, 0,
                 new Intent(EmergencyCallbackModeExitDialog.ACTION_SHOW_ECM_EXIT_DIALOG), 0);
+        builder.setContentIntent(contentIntent);
 
         // Format notification string
         String text = null;
@@ -184,14 +188,10 @@ public class EmergencyCallbackModeService extends Service {
             text = String.format(getResources().getQuantityText(
                      R.plurals.phone_in_ecm_notification_time, minutes).toString(), time);
         }
-        // Set the info in the notification
-        notification.setLatestEventInfo(this, getText(R.string.phone_in_ecm_notification_title),
-                text, contentIntent);
-
-        notification.flags = Notification.FLAG_ONGOING_EVENT;
+        builder.setContentText(text);
 
         // Show notification
-        mNotificationManager.notify(R.string.phone_in_ecm_notification_title, notification);
+        mNotificationManager.notify(R.string.phone_in_ecm_notification_title, builder.build());
     }
 
     /**
