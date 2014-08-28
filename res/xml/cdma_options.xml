@@ -34,6 +34,15 @@
         android:dialogTitle="@string/cdma_subscription_dialogtitle" />
 
     <PreferenceScreen
+        android:key="button_apn_key"
+        android:title="@string/apn_settings"
+        android:persistent="false">
+
+        <!-- The launching Intent will be defined thru code as we need to pass some Extra -->
+
+    </PreferenceScreen>
+
+    <PreferenceScreen
         android:key="cdma_activate_device_key"
         android:title="@string/cdma_activate_device">
         <intent android:action="com.android.phone.PERFORM_VOICELESS_CDMA_PROVISIONING">

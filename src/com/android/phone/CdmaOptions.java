@@ -18,6 +18,7 @@ package com.android.phone;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.os.SystemProperties;
 import android.preference.Preference;
@@ -39,11 +40,13 @@ public class CdmaOptions {
 
     private CdmaSystemSelectListPreference mButtonCdmaSystemSelect;
     private CdmaSubscriptionListPreference mButtonCdmaSubscription;
+    private PreferenceScreen mButtonAPNExpand;
 
     private static final String BUTTON_CDMA_SYSTEM_SELECT_KEY = "cdma_system_select_key";
     private static final String BUTTON_CDMA_SUBSCRIPTION_KEY = "cdma_subscription_key";
     private static final String BUTTON_CDMA_ACTIVATE_DEVICE_KEY = "cdma_activate_device_key";
     private static final String BUTTON_CARRIER_SETTINGS_KEY = "carrier_settings_key";
+    private static final String BUTTON_APN_EXPAND_KEY = "button_apn_key";
 
     private PreferenceActivity mPrefActivity;
     private PreferenceScreen mPrefScreen;
@@ -58,6 +61,31 @@ public class CdmaOptions {
 
     protected void create() {
         mPrefActivity.addPreferencesFromResource(R.xml.cdma_options);
+
+        mButtonAPNExpand = (PreferenceScreen) mPrefScreen.findPreference(BUTTON_APN_EXPAND_KEY);
+        boolean removedAPNExpand = false;
+        Resources res = mPrefActivity.getResources();
+        // Some CDMA carriers want the APN settings
+        if (!res.getBoolean(R.bool.config_show_apn_setting_cdma) && mButtonAPNExpand != null) {
+            mPrefScreen.removePreference(mButtonAPNExpand);
+            removedAPNExpand = true;
+        }
+        if (!removedAPNExpand) {
+            mButtonAPNExpand.setOnPreferenceClickListener(
+                    new Preference.OnPreferenceClickListener() {
+                        @Override
+                        public boolean onPreferenceClick(Preference preference) {
+                            // We need to build the Intent by hand as the Preference Framework
+                            // does not allow to add an Intent with some extras into a Preference
+                            // XML file
+                            final Intent intent = new Intent(Settings.ACTION_APN_SETTINGS);
+                            // This will setup the Home and Search affordance
+                            intent.putExtra(":settings:show_fragment_as_subsetting", true);
+                            mPrefActivity.startActivity(intent);
+                            return true;
+                        }
+            });
+        }
 
         mButtonCdmaSystemSelect = (CdmaSystemSelectListPreference)mPrefScreen
                 .findPreference(BUTTON_CDMA_SYSTEM_SELECT_KEY);
