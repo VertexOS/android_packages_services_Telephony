@@ -39,6 +39,7 @@ import java.util.Objects;
 abstract class TelephonyConnection extends Connection {
     private static final int MSG_PRECISE_CALL_STATE_CHANGED = 1;
     private static final int MSG_RINGBACK_TONE = 2;
+    private static final int MSG_HANDOVER_STATE_CHANGED = 3;
 
     private final Handler mHandler = new Handler() {
         @Override
@@ -47,6 +48,13 @@ abstract class TelephonyConnection extends Connection {
                 case MSG_PRECISE_CALL_STATE_CHANGED:
                     Log.v(TelephonyConnection.this, "MSG_PRECISE_CALL_STATE_CHANGED");
                     updateState();
+                    break;
+                case MSG_HANDOVER_STATE_CHANGED:
+                    Log.v(TelephonyConnection.this, "MSG_HANDOVER_STATE_CHANGED");
+                    AsyncResult ar = (AsyncResult) msg.obj;
+                    com.android.internal.telephony.Connection connection =
+                         (com.android.internal.telephony.Connection) ar.result;
+                    setOriginalConnection(connection);
                     break;
                 case MSG_RINGBACK_TONE:
                     Log.v(TelephonyConnection.this, "MSG_RINGBACK_TONE");
@@ -358,9 +366,16 @@ abstract class TelephonyConnection extends Connection {
 
     void setOriginalConnection(com.android.internal.telephony.Connection originalConnection) {
         Log.v(this, "new TelephonyConnection, originalConnection: " + originalConnection);
+        if (mOriginalConnection != null) {
+            getPhone().unregisterForPreciseCallStateChanged(mHandler);
+            getPhone().unregisterForRingbackTone(mHandler);
+            getPhone().unregisterForHandoverStateChanged(mHandler);
+        }
         mOriginalConnection = originalConnection;
         getPhone().registerForPreciseCallStateChanged(
                 mHandler, MSG_PRECISE_CALL_STATE_CHANGED, null);
+        getPhone().registerForHandoverStateChanged(
+                mHandler, MSG_HANDOVER_STATE_CHANGED, null);
         getPhone().registerForRingbackTone(mHandler, MSG_RINGBACK_TONE, null);
         mOriginalConnection.addPostDialListener(mPostDialListener);
         mOriginalConnection.addListener(mOriginalConnectionListener);
@@ -507,6 +522,7 @@ abstract class TelephonyConnection extends Connection {
         if (getPhone() != null) {
             getPhone().unregisterForPreciseCallStateChanged(mHandler);
             getPhone().unregisterForRingbackTone(mHandler);
+            getPhone().unregisterForHandoverStateChanged(mHandler);
         }
         mOriginalConnection = null;
         destroy();
