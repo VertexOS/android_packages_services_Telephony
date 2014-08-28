@@ -1957,13 +1957,13 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     }
 
     @Override
-    public List<String> getCarrierPackageNamesForBroadcastIntent(Intent intent) {
+    public List<String> getCarrierPackageNamesForIntent(Intent intent) {
         UiccCard card = UiccController.getInstance().getUiccCard();
         if (card == null) {
-            loge("getCarrierPackageNamesForBroadcastIntent: No UICC");
+            loge("getCarrierPackageNamesForIntent: No UICC");
             return null ;
         }
-        return card.getCarrierPackageNamesForBroadcastIntent(
+        return card.getCarrierPackageNamesForIntent(
             mPhone.getContext().getPackageManager(), intent);
     }
 
