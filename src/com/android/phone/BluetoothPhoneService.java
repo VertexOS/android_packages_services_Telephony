@@ -22,8 +22,10 @@ import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothHeadset;
 import android.bluetooth.BluetoothProfile;
 import android.bluetooth.IBluetoothHeadsetPhone;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.AsyncResult;
 import android.os.Handler;
 import android.os.IBinder;
@@ -97,6 +99,20 @@ public class BluetoothPhoneService extends Service {
 
     private static final int GSM_MAX_CONNECTIONS = 6;  // Max connections allowed by GSM
     private static final int CDMA_MAX_CONNECTIONS = 2;  // Max connections allowed by CDMA
+    private IntentFilter mIntentFilter;
+
+    private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            int state = intent.getIntExtra(BluetoothAdapter.EXTRA_STATE, BluetoothAdapter.ERROR);
+            if (VDBG) Log.d(TAG, "Received BLUETOOTH_STATE_CHANGED_ACTION state:" + state);
+            if(state == BluetoothAdapter.STATE_ON) {
+                if (DBG) Log.d(TAG, "Bluetooth Turned ON, query phone state");
+                Message msg = Message.obtain(mHandler, QUERY_PHONE_STATE);
+                mHandler.sendMessage(msg);
+            }
+        }
+    };
 
     @Override
     public void onCreate() {
@@ -124,12 +140,14 @@ public class BluetoothPhoneService extends Service {
 
         handlePreciseCallStateChange(null);
 
-        if(VDBG) Log.d(TAG, "registerForServiceStateChanged");
+        if(VDBG) Log.d(TAG, "onCreate register for updates");
         // register for updates
         mCM.registerForPreciseCallStateChanged(mHandler, PRECISE_CALL_STATE_CHANGED, null);
         mCM.registerForCallWaiting(mHandler, PHONE_CDMA_CALL_WAITING, null);
         mCM.registerForDisconnect(mHandler, PHONE_ON_DISCONNECT, null);
 
+        mIntentFilter = new IntentFilter(BluetoothAdapter.ACTION_STATE_CHANGED);
+        this.registerReceiver(mReceiver, mIntentFilter);
         // TODO(BT) registerForIncomingRing?
         mClccTimestamps = new long[GSM_MAX_CONNECTIONS];
         mClccUsed = new boolean[GSM_MAX_CONNECTIONS];
@@ -151,6 +169,7 @@ public class BluetoothPhoneService extends Service {
     public void onDestroy() {
         super.onDestroy();
         if (DBG) log("Stopping Bluetooth BluetoothPhoneService Service");
+        this.unregisterReceiver(mReceiver);
     }
 
     @Override
