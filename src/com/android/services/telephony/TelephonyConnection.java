@@ -289,8 +289,26 @@ abstract class TelephonyConnection extends Connection {
         Log.v(this, "performUnhold");
         if (Call.State.HOLDING == mOriginalConnectionState) {
             try {
-                // TODO: This doesn't handle multiple calls across connection services yet
-                mOriginalConnection.getCall().getPhone().switchHoldingAndActive();
+                // Here's the deal--Telephony hold/unhold is weird because whenever there exists
+                // more than one call, one of them must always be active. In other words, if you
+                // have an active call and holding call, and you put the active call on hold, it
+                // will automatically activate the holding call. This is weird with how Telecomm
+                // sends its commands. When a user opts to "unhold" a background call, telecomm
+                // issues hold commands to all active calls, and then the unhold command to the
+                // background call. This means that we get two commands...each of which reduces to
+                // switchHoldingAndActive(). The result is that they simply cancel each other out.
+                // To fix this so that it works well with telecomm we add a minor hack. If we
+                // have one telephony call, everything works as normally expected. But if we have
+                // two or more calls, we will ignore all requests to "unhold" knowing that the hold
+                // requests already do what we want. If you've read up to this point, I'm very sorry
+                // that we are doing this. I didn't think of a better solution that wouldn't also
+                // make the Telecomm APIs very ugly.
+
+                if (!hasMultipleTopLevelCalls()) {
+                    mOriginalConnection.getCall().getPhone().switchHoldingAndActive();
+                } else {
+                    Log.i(this, "Skipping unhold command for %s", this);
+                }
             } catch (CallStateException e) {
                 Log.e(this, e, "Exception occurred while trying to release call from hold.");
             }
@@ -394,6 +412,23 @@ abstract class TelephonyConnection extends Connection {
             return call.getPhone();
         }
         return null;
+    }
+
+    private boolean hasMultipleTopLevelCalls() {
+        int numCalls = 0;
+        Phone phone = getPhone();
+        if (phone != null) {
+            if (!phone.getRingingCall().isIdle()) {
+                numCalls++;
+            }
+            if (!phone.getForegroundCall().isIdle()) {
+                numCalls++;
+            }
+            if (!phone.getBackgroundCall().isIdle()) {
+                numCalls++;
+            }
+        }
+        return numCalls > 1;
     }
 
     private com.android.internal.telephony.Connection getForegroundConnection() {
