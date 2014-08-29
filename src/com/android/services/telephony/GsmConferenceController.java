@@ -176,6 +176,17 @@ final class GsmConferenceController {
                 }
                 mConnectionService.addConference(mGsmConference);
             }
+
+            // Set the conference state to the same state as its child connections.
+            Connection conferencedConnection = mGsmConference.getConnections().get(0);
+            switch (conferencedConnection.getState()) {
+                case Connection.STATE_ACTIVE:
+                    mGsmConference.setActive();
+                    break;
+                case Connection.STATE_HOLDING:
+                    mGsmConference.setOnHold();
+                    break;
+            }
         }
     }
 }
