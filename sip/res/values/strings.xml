@@ -35,8 +35,6 @@
     <string name="sip_call_options_entry_1">For all calls when data network is available</string>
     <!-- Item of the SIP call option dialog: for routing a outgoing call via SIP if the destination is a SIP URI. [CHAR LIMIT=NONE] -->
     <string name="sip_call_options_entry_2">Only for SIP calls</string>
-    <!-- Item of the SIP call option dialog: for asking user to select the way for each outgoing call. [CHAR LIMIT=NONE] -->
-    <string name="sip_call_options_entry_3">Ask for each call</string>
     <!-- Item of the SIP call (Wi-Fi only) option dialog: for routing all outgoing calls via SIP. [CHAR LIMIT=NONE] -->
     <string name="sip_call_options_wifi_only_entry_1">For all calls</string>
 
@@ -190,7 +188,6 @@
     <!-- Do not translate the following strings. Used for the SIP call options. Need to be in-sync with Settings.System.SIP_ strings. -->
     <string translatable="false" name="sip_always">SIP_ALWAYS</string>
     <string translatable="false" name="sip_address_only">SIP_ADDRESS_ONLY</string>
-    <string translatable="false" name="sip_ask_me_each_time">SIP_ASK_ME_EACH_TIME</string>
 
     <!-- Do not translate the following strings. Used for the preference keys -->
     <string translatable="false" name="domain_address">SipDomain</string>
