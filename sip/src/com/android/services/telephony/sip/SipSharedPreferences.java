@@ -18,7 +18,9 @@ package com.android.services.telephony.sip;
 
 import android.content.ContentResolver;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.sip.SipManager;
 import android.provider.Settings;
 import android.provider.Settings.SettingNotFoundException;
 import android.text.TextUtils;
@@ -82,6 +84,12 @@ public class SipSharedPreferences {
     public void setSipCallOption(String option) {
         Settings.System.putString(mContext.getContentResolver(),
                 Settings.System.SIP_CALL_OPTIONS, option);
+
+        // Notify SipAccountRegistry in the telephony layer that the configuration has changed.
+        // This causes the SIP PhoneAccounts to be re-registered.  This ensures the supported URI
+        // schemes for the SIP PhoneAccounts matches the new SIP_CALL_OPTIONS setting.
+        Intent intent = new Intent(SipManager.ACTION_SIP_CALL_OPTION_CHANGED);
+        mContext.sendBroadcast(intent);
     }
 
     public String getSipCallOption() {
