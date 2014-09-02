@@ -124,6 +124,7 @@ public class MobileNetworkSettings extends PreferenceActivity
         // Assuming that onClick gets called first
         if (!mOkClicked) {
             mButtonDataRoam.setChecked(false);
+            getPreferenceScreen().setEnabled(true);
         }
     }
 
