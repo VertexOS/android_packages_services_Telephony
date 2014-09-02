@@ -24,19 +24,16 @@
     <string-array translatable="true" name="sip_call_options_entries">
         <item>@string/sip_call_options_entry_1</item>
         <item>@string/sip_call_options_entry_2</item>
-        <item>@string/sip_call_options_entry_3</item>
     </string-array>
 
     <string-array translatable="true" name="sip_call_options_wifi_only_entries">
         <item>@string/sip_call_options_wifi_only_entry_1</item>
         <item>@string/sip_call_options_entry_2</item>
-        <item>@string/sip_call_options_entry_3</item>
     </string-array>
 
     <string-array translatable="false" name="sip_call_options_values">
         <item>@string/sip_always</item>
         <item>@string/sip_address_only</item>
-        <item>@string/sip_ask_me_each_time</item>
     </string-array>
 
     <string-array translatable="false" name="phone_type_values">
