@@ -33,17 +33,22 @@ import com.android.internal.telephony.Call;
  */
 final class GsmConferenceController {
     private final Connection.Listener mConnectionListener = new Connection.Listener() {
-                @Override
-                public void onStateChanged(Connection c, int state) {
-                    recalculate();
-                }
+        @Override
+        public void onStateChanged(Connection c, int state) {
+            recalculate();
+        }
 
-                /** ${inheritDoc} */
-                @Override
-                public void onDisconnected(Connection c, int cause, String message) {
-                    recalculate();
-                }
-            };
+        /** ${inheritDoc} */
+        @Override
+        public void onDisconnected(Connection c, int cause, String message) {
+            recalculate();
+        }
+
+        @Override
+        public void onDestroyed(Connection connection) {
+            remove((GsmConnection) connection);
+        }
+    };
 
     /** The known GSM connections. */
     private final List<GsmConnection> mGsmConnections = new ArrayList<>();
