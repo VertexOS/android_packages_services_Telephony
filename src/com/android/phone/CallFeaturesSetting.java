@@ -22,7 +22,6 @@ import android.app.ActivityOptions;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
-import android.content.ComponentName;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -32,7 +31,6 @@ import android.content.SharedPreferences.Editor;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
-import android.content.pm.ServiceInfo;
 import android.database.Cursor;
 import android.media.AudioManager;
 import android.media.RingtoneManager;
@@ -50,7 +48,7 @@ import android.preference.PreferenceManager;
 import android.preference.PreferenceScreen;
 import android.provider.ContactsContract.CommonDataKinds;
 import android.provider.Settings;
-import android.telecomm.ConnectionService;
+import android.telecomm.PhoneAccountHandle;
 import android.telecomm.TelecommManager;
 import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
@@ -64,6 +62,7 @@ import com.android.internal.telephony.CommandsInterface;
 import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneConstants;
 import com.android.phone.common.util.SettingsUtil;
+import com.android.phone.settings.AccountSelectionPreference;
 import com.android.services.telephony.sip.SipSharedPreferences;
 import com.android.services.telephony.sip.SipUtil;
 
@@ -100,7 +99,8 @@ public class CallFeaturesSetting extends PreferenceActivity
                 Preference.OnPreferenceChangeListener,
                 Preference.OnPreferenceClickListener,
                 EditPhoneNumberPreference.OnDialogClosedListener,
-                EditPhoneNumberPreference.GetDefaultNumberListener {
+                EditPhoneNumberPreference.GetDefaultNumberListener,
+                AccountSelectionPreference.AccountSelectionListener {
     private static final String LOG_TAG = "CallFeaturesSetting";
     private static final boolean DBG = (PhoneGlobals.DBG_LEVEL >= 2);
 
@@ -190,6 +190,9 @@ public class CallFeaturesSetting extends PreferenceActivity
     private static final String SIP_SETTINGS_PREFERENCE_SCREEN_KEY =
             "sip_settings_preference_screen_key";
 
+    private static final String DEFAULT_OUTGOING_ACCOUNT_KEY = "default_outgoing_account";
+    private static final String WIFI_CALL_MANAGER_ACCOUNT_KEY = "wifi_call_manager_account";
+
     private Intent mContactListIntent;
 
     /** Event for Async voicemail change call */
@@ -265,6 +268,8 @@ public class CallFeaturesSetting extends PreferenceActivity
     private Preference mVoicemailNotificationRingtone;
     private CheckBoxPreference mVoicemailNotificationVibrate;
     private SipSharedPreferences mSipSharedPreferences;
+    private AccountSelectionPreference mDefaultOutgoingAccount;
+    private AccountSelectionPreference mSimCallManagerAccount;
 
     private class VoiceMailProvider {
         public VoiceMailProvider(String name, Intent intent) {
@@ -583,6 +588,19 @@ public class CallFeaturesSetting extends PreferenceActivity
             handleWifiCallSettingsClick(preference);
         }
         return true;
+    }
+
+    @Override
+    public boolean onAccountSelected(AccountSelectionPreference pref, PhoneAccountHandle account) {
+        TelecommManager telecommManager = TelecommManager.from(this);
+        if (pref == mDefaultOutgoingAccount) {
+            telecommManager.setUserSelectedOutgoingPhoneAccount(account);
+            return true;
+        } else if (pref == mSimCallManagerAccount) {
+            telecommManager.setSimCallManager(account);
+            return true;
+        }
+        return false;
     }
 
     @Override
@@ -1494,6 +1512,8 @@ public class CallFeaturesSetting extends PreferenceActivity
 
         addPreferencesFromResource(R.xml.call_feature_setting);
 
+        initPhoneAccountPreferences();
+
         mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 
         // get buttons
@@ -1637,6 +1657,39 @@ public class CallFeaturesSetting extends PreferenceActivity
             actionBar.setDisplayShowHomeEnabled(true);
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setDisplayShowTitleEnabled(true);
+        }
+    }
+
+    private void initPhoneAccountPreferences() {
+        mDefaultOutgoingAccount = (AccountSelectionPreference)
+                findPreference(DEFAULT_OUTGOING_ACCOUNT_KEY);
+        mSimCallManagerAccount = (AccountSelectionPreference)
+                findPreference(WIFI_CALL_MANAGER_ACCOUNT_KEY);
+
+        TelecommManager telecommManager = TelecommManager.from(this);
+
+        List<PhoneAccountHandle> enabledPhoneAccounts = telecommManager.getEnabledPhoneAccounts();
+        if (enabledPhoneAccounts.size() > 1) {
+            mDefaultOutgoingAccount.setModel(
+                    telecommManager,
+                    enabledPhoneAccounts,
+                    telecommManager.getUserSelectedOutgoingPhoneAccount(),
+                    getString(R.string.phone_accounts_ask_every_time));
+            mDefaultOutgoingAccount.setListener(this);
+        } else {
+            getPreferenceScreen().removePreference(mDefaultOutgoingAccount);
+        }
+
+        List<PhoneAccountHandle> simCallManagers = telecommManager.getSimCallManagers();
+        if (simCallManagers.size() > 1) {
+            mSimCallManagerAccount.setModel(
+                    telecommManager,
+                    simCallManagers,
+                    telecommManager.getSimCallManager(),
+                    getString(R.string.wifi_calling_do_not_use));
+            mSimCallManagerAccount.setListener(this);
+        } else {
+            getPreferenceScreen().removePreference(mSimCallManagerAccount);
         }
     }
 
