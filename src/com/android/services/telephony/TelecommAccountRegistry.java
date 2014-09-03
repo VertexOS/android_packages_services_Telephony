@@ -104,6 +104,8 @@ final class TelecommAccountRegistry {
                     .withIconResId(getPhoneAccountIcon(slotId))
                     .withLabel(label)
                     .withShortDescription(description)
+                    .withSupportedUriScheme(PhoneAccount.SCHEME_TEL)
+                    .withSupportedUriScheme(PhoneAccount.SCHEME_VOICEMAIL)
                     .build();
 
             // Register with Telecomm and put into the account entry.
@@ -131,6 +133,7 @@ final class TelecommAccountRegistry {
     };
 
     private static final String TEL_SCHEME = "tel";
+    private static final String VOICEMAIL_SCHEME = "voicemail";
     private static TelecommAccountRegistry sInstance;
     private final Context mContext;
     private final TelecommManager mTelecommManager;
