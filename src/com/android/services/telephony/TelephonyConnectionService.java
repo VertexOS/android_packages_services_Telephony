@@ -203,20 +203,6 @@ public class TelephonyConnectionService extends ConnectionService {
 
     }
 
-    @Override
-    public void onConnectionAdded(Connection connection) {
-        if (connection instanceof GsmConnection) {
-            mGsmConferenceController.add((GsmConnection) connection);
-        }
-    }
-
-    @Override
-    public void onConnectionRemoved(Connection connection) {
-        if (connection instanceof GsmConnection) {
-            mGsmConferenceController.remove((GsmConnection) connection);
-        }
-    }
-
     private void placeOutgoingConnection(
             TelephonyConnection connection, Phone phone, ConnectionRequest request) {
         String number = connection.getHandle().getSchemeSpecificPart();
@@ -253,7 +239,9 @@ public class TelephonyConnectionService extends ConnectionService {
             Phone phone, com.android.internal.telephony.Connection originalConnection) {
         int phoneType = phone.getPhoneType();
         if (phoneType == TelephonyManager.PHONE_TYPE_GSM) {
-            return new GsmConnection(originalConnection);
+            GsmConnection connection = new GsmConnection(originalConnection);
+            mGsmConferenceController.add(connection);
+            return connection;
         } else if (phoneType == TelephonyManager.PHONE_TYPE_CDMA) {
             boolean allowMute = allowMute(phone);
             return new CdmaConnection(originalConnection, allowMute);

@@ -90,6 +90,7 @@ public final class SipConnectionService extends ConnectionService {
         final SipConnection connection = new SipConnection();
         connection.setHandle(request.getHandle(), PropertyPresentation.ALLOWED);
         connection.setInitializing();
+        connection.onAddedToCallService();
         boolean attemptCall = true;
 
         if (!SipUtil.isVoipSupported(this)) {
@@ -181,6 +182,7 @@ public final class SipConnectionService extends ConnectionService {
             if (originalConnection != null) {
                 SipConnection sipConnection = new SipConnection();
                 sipConnection.initialize(originalConnection);
+                sipConnection.onAddedToCallService();
                 return sipConnection;
             } else {
                 if (VERBOSE) log("onCreateIncomingConnection, takingIncomingCall failed");
@@ -188,19 +190,6 @@ public final class SipConnectionService extends ConnectionService {
             }
         }
         return Connection.createFailedConnection(DisconnectCause.ERROR_UNSPECIFIED, null);
-    }
-
-    @Override
-    public void onConnectionAdded(Connection connection) {
-        if (VERBOSE) log("onConnectionAdded, connection: " + connection);
-        if (connection instanceof SipConnection) {
-            ((SipConnection) connection).onAddedToCallService();
-        }
-    }
-
-    @Override
-    public void onConnectionRemoved(Connection connection) {
-        if (VERBOSE) log("onConnectionRemoved, connection: " + connection);
     }
 
     private com.android.internal.telephony.Connection createConnectionForProfile(
