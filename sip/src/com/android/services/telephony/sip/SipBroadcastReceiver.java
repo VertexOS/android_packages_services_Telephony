@@ -44,7 +44,8 @@ public class SipBroadcastReceiver extends BroadcastReceiver {
         SipAccountRegistry sipAccountRegistry = SipAccountRegistry.getInstance();
         if (action.equals(SipManager.ACTION_SIP_INCOMING_CALL)) {
             takeCall(context, intent);
-        } else if (action.equals(SipManager.ACTION_SIP_SERVICE_UP)) {
+        } else if (action.equals(SipManager.ACTION_SIP_SERVICE_UP) ||
+                action.equals(SipManager.ACTION_SIP_CALL_OPTION_CHANGED)) {
             sipAccountRegistry.setup(context);
         } else if (action.equals(SipManager.ACTION_SIP_ADD_PHONE)) {
             if (VERBOSE) log("SIP_ADD_PHONE " + intent.getStringExtra(SipManager.EXTRA_LOCAL_URI));
