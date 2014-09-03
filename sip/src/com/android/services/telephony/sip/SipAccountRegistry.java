@@ -22,6 +22,7 @@ import android.net.Uri;
 import android.net.sip.SipException;
 import android.net.sip.SipManager;
 import android.net.sip.SipProfile;
+import android.provider.Settings;
 import android.telecomm.PhoneAccount;
 import android.telecomm.PhoneAccountHandle;
 import android.telecomm.TelecommManager;
@@ -65,16 +66,25 @@ final class SipAccountRegistry {
         }
 
         private PhoneAccount createPhoneAccount(Context context) {
+            boolean useSipForPstnCalls = useSipForPstnCalls(context);
+
             PhoneAccountHandle accountHandle =
                     SipUtil.createAccountHandle(context, mProfile.getUriString());
-            return PhoneAccount.builder()
+
+            PhoneAccount.Builder builder = PhoneAccount.builder()
                     .withAccountHandle(accountHandle)
                     .withCapabilities(PhoneAccount.CAPABILITY_CALL_PROVIDER)
                     .withHandle(Uri.parse(mProfile.getUriString()))
                     .withLabel(mProfile.getDisplayName())
                     .withShortDescription(mProfile.getDisplayName())
                     .withIconResId(R.drawable.ic_dialer_sip_black_24dp)
-                    .build();
+                    .withSupportedUriScheme(PhoneAccount.SCHEME_SIP);
+
+            if (useSipForPstnCalls) {
+                builder.withSupportedUriScheme(PhoneAccount.SCHEME_TEL);
+            }
+
+            return builder.build();
         }
     }
 
@@ -144,6 +154,7 @@ final class SipAccountRegistry {
     private void registerAccountForProfile(
             SipProfile profile, SipManager sipManager, Context context) {
         AccountEntry entry = new AccountEntry(profile);
+
         if (entry.register(sipManager, context)) {
             mAccounts.add(entry);
         }
@@ -158,6 +169,16 @@ final class SipAccountRegistry {
                 telecommManager.unregisterPhoneAccount(handle);
             }
         }
+    }
+
+    /**
+     * Determines if the user has chosen to use SIP for PSTN calls as well as SIP calls.
+     * @param context The context.
+     * @return {@code True} if SIP should be used for PSTN calls.
+     */
+    private boolean useSipForPstnCalls(Context context) {
+        final SipSharedPreferences sipSharedPreferences = new SipSharedPreferences(context);
+        return sipSharedPreferences.getSipCallOption().equals(Settings.System.SIP_ALWAYS);
     }
 
     private void log(String message) {

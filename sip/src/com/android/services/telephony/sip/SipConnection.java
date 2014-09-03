@@ -16,6 +16,7 @@
 
 package com.android.services.telephony.sip;
 
+import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
 import android.telecomm.AudioState;
@@ -26,8 +27,10 @@ import android.util.Log;
 import com.android.internal.telephony.Call;
 import com.android.internal.telephony.CallStateException;
 import com.android.internal.telephony.sip.SipPhone;
+import com.android.phone.Constants;
 
 import java.util.List;
+import java.util.Objects;
 
 final class SipConnection extends Connection {
     private static final String PREFIX = "[SipConnection] ";
@@ -61,6 +64,7 @@ final class SipConnection extends Connection {
             getPhone().registerForPreciseCallStateChanged(mHandler, MSG_PRECISE_CALL_STATE_CHANGED,
                     null);
         }
+        updateHandle();
         setInitialized();
     }
 
@@ -266,6 +270,44 @@ final class SipConnection extends Connection {
             setCallerDisplayName(mOriginalConnection.getCnapName(),
                     mOriginalConnection.getCnapNamePresentation());
         }
+    }
+
+    /**
+     * Updates the handle on this connection based on the original connection.
+     */
+    private void updateHandle() {
+        if (mOriginalConnection != null) {
+            Uri handle = getHandleFromAddress(mOriginalConnection.getAddress());
+            int presentation = mOriginalConnection.getNumberPresentation();
+            if (!Objects.equals(handle, getHandle()) ||
+                    presentation != getHandlePresentation()) {
+                com.android.services.telephony.Log.v(this, "updateHandle, handle changed");
+                setHandle(handle, presentation);
+            }
+
+            String name = mOriginalConnection.getCnapName();
+            int namePresentation = mOriginalConnection.getCnapNamePresentation();
+            if (!Objects.equals(name, getCallerDisplayName()) ||
+                    namePresentation != getCallerDisplayNamePresentation()) {
+                com.android.services.telephony.Log
+                        .v(this, "updateHandle, caller display name changed");
+                setCallerDisplayName(name, namePresentation);
+            }
+        }
+    }
+
+    /**
+     * Determines the handle for an incoming number.
+     *
+     * @param address The incoming number.
+     * @return The Uri representing the number.
+     */
+    private static Uri getHandleFromAddress(String address) {
+        // Address can be null for blocked calls.
+        if (address == null) {
+            address = "";
+        }
+        return Uri.fromParts(Constants.SCHEME_SIP, address, null);
     }
 
     private void close() {
