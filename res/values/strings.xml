@@ -125,8 +125,6 @@
     <!-- Label for the "Network settings" screen in the Settings UI -->
     <string name="settings_label">Network settings</string>
 
-    <!-- Label for connection service setting -->
-    <string name="phone_accounts">Phone account settings</string>
     <!-- Label for list item which opens a dialog to select the default outgoing account -->
     <string name="phone_accounts_make_calls_with">Make calls with</string>
     <!-- Entry in dialog to "ask first" for accounts when making a call -->
