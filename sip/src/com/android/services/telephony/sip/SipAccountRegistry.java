@@ -30,6 +30,7 @@ import android.util.Log;
 
 import com.android.phone.R;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -70,19 +71,18 @@ final class SipAccountRegistry {
 
             PhoneAccountHandle accountHandle =
                     SipUtil.createAccountHandle(context, mProfile.getUriString());
-
-            PhoneAccount.Builder builder = PhoneAccount.builder()
-                    .withAccountHandle(accountHandle)
-                    .withCapabilities(PhoneAccount.CAPABILITY_CALL_PROVIDER)
-                    .withHandle(Uri.parse(mProfile.getUriString()))
-                    .withLabel(mProfile.getDisplayName())
-                    .withShortDescription(mProfile.getDisplayName())
-                    .withIconResId(R.drawable.ic_dialer_sip_black_24dp)
-                    .withSupportedUriScheme(PhoneAccount.SCHEME_SIP);
-
+            List supportedUriSchemes = Arrays.asList(PhoneAccount.SCHEME_SIP);
             if (useSipForPstnCalls) {
-                builder.withSupportedUriScheme(PhoneAccount.SCHEME_TEL);
+                supportedUriSchemes.add(PhoneAccount.SCHEME_TEL);
             }
+
+            PhoneAccount.Builder builder = PhoneAccount.builder(
+                        accountHandle, mProfile.getDisplayName())
+                    .setCapabilities(PhoneAccount.CAPABILITY_CALL_PROVIDER)
+                    .setAddress(Uri.parse(mProfile.getUriString()))
+                    .setShortDescription(mProfile.getDisplayName())
+                    .setIconResId(R.drawable.ic_dialer_sip_black_24dp)
+                    .setSupportedUriSchemes(supportedUriSchemes);
 
             return builder.build();
         }
