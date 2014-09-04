@@ -48,6 +48,7 @@ import java.util.Objects;
  */
 public class TelephonyConnectionService extends ConnectionService {
     static String SCHEME_TEL = "tel";
+    static String SCHEME_VOICEMAIL = "voicemail";
 
     private final GsmConferenceController mGsmConferenceController =
             new GsmConferenceController(this);
@@ -73,18 +74,34 @@ public class TelephonyConnectionService extends ConnectionService {
                     "Handle is null");
         }
 
-        if (!SCHEME_TEL.equals(handle.getScheme())) {
-            Log.d(this, "onCreateOutgoingConnection, Handle %s is not type tel",
-                    handle.getScheme());
-            return Connection.createFailedConnection(DisconnectCause.INVALID_NUMBER,
-                    "Handle scheme is not type tel");
-        }
+        String scheme = handle.getScheme();
+        final String number;
+        if (SCHEME_VOICEMAIL.equals(scheme)) {
+            // TODO: We don't check for SecurityException here (requires
+            // CALL_PRIVILEGED permission).
+            final Phone phone = getPhoneForAccount(request.getAccountHandle(), false);
+            number = phone.getVoiceMailNumber();
+            if (TextUtils.isEmpty(number)) {
+                Log.d(this, "onCreateOutgoingConnection, no voicemail number set.");
+                return Connection.createFailedConnection(DisconnectCause.VOICEMAIL_NUMBER_MISSING,
+                        "Voicemail scheme provided but no voicemail number set.");
+            }
 
-        final String number = handle.getSchemeSpecificPart();
-        if (TextUtils.isEmpty(number)) {
-            Log.d(this, "onCreateOutgoingConnection, unable to parse number");
-            return Connection.createFailedConnection(DisconnectCause.INVALID_NUMBER,
-                    "Unable to parse number");
+            // Convert voicemail: to tel:
+            handle = Uri.fromParts(SCHEME_TEL, number, null);
+        } else {
+            if (!SCHEME_TEL.equals(scheme)) {
+                Log.d(this, "onCreateOutgoingConnection, Handle %s is not type tel", scheme);
+                return Connection.createFailedConnection(DisconnectCause.INVALID_NUMBER,
+                        "Handle scheme is not type tel");
+            }
+
+            number = handle.getSchemeSpecificPart();
+            if (TextUtils.isEmpty(number)) {
+                Log.d(this, "onCreateOutgoingConnection, unable to parse number");
+                return Connection.createFailedConnection(DisconnectCause.INVALID_NUMBER,
+                        "Unable to parse number");
+            }
         }
 
         boolean isEmergencyNumber = PhoneNumberUtils.isPotentialEmergencyNumber(number);
@@ -116,7 +133,7 @@ public class TelephonyConnectionService extends ConnectionService {
                     return Connection.createFailedConnection(DisconnectCause.POWER_OFF,
                             "ServiceState.STATE_POWER_OFF");
                 default:
-                    Log.d(this, "onCreateOutgoingConnection, unkown service state: %d", state);
+                    Log.d(this, "onCreateOutgoingConnection, unknown service state: %d", state);
                     return Connection.createFailedConnection(DisconnectCause.OUTGOING_FAILURE,
                             "Unknown service state " + state);
             }
