@@ -222,9 +222,6 @@ abstract class TelephonyConnection extends Connection {
     @Override
     public void onAnswer(int videoState) {
         Log.v(this, "onAnswer");
-        // TODO: Tons of hairy logic is missing here around multiple active calls on
-        // CDMA devices. See {@link CallManager.acceptCall}.
-
         if (isValidRingingCall() && getPhone() != null) {
             try {
                 getPhone().acceptCall(videoState);
@@ -390,7 +387,7 @@ abstract class TelephonyConnection extends Connection {
         updateHandle();
     }
 
-    private void hangup(int disconnectCause) {
+    protected void hangup(int disconnectCause) {
         if (mOriginalConnection != null) {
             try {
                 // Hanging up a ringing call requires that we invoke call.hangup() as opposed to
@@ -490,7 +487,7 @@ abstract class TelephonyConnection extends Connection {
         return true;
     }
 
-    private void updateState() {
+    protected void updateState() {
         if (mOriginalConnection == null) {
             return;
         }
