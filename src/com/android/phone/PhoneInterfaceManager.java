@@ -788,7 +788,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         boolean isValid = false;
         List<SubInfoRecord> slist = SubscriptionManager.getActiveSubInfoList();
         for (SubInfoRecord subInfoRecord : slist) {
-            if (subInfoRecord.mSubId == subId) {
+            if (subInfoRecord.subId == subId) {
                 isValid = true;
                 break;
             }
