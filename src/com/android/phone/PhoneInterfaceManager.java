@@ -113,14 +113,12 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     private static final int EVENT_SET_PREFERRED_NETWORK_TYPE_DONE = 24;
     private static final int CMD_SEND_ENVELOPE = 25;
     private static final int EVENT_SEND_ENVELOPE_DONE = 26;
-    private static final int CMD_SET_CDMA_SUBSCRIPTION = 27;
-    private static final int EVENT_SET_CDMA_SUBSCRIPTION_DONE = 28;
-    private static final int CMD_INVOKE_OEM_RIL_REQUEST_RAW = 29;
-    private static final int EVENT_INVOKE_OEM_RIL_REQUEST_RAW_DONE = 30;
-    private static final int CMD_TRANSMIT_APDU_BASIC_CHANNEL = 31;
-    private static final int EVENT_TRANSMIT_APDU_BASIC_CHANNEL_DONE = 32;
-    private static final int CMD_EXCHANGE_SIM_IO = 33;
-    private static final int EVENT_EXCHANGE_SIM_IO_DONE = 34;
+    private static final int CMD_INVOKE_OEM_RIL_REQUEST_RAW = 27;
+    private static final int EVENT_INVOKE_OEM_RIL_REQUEST_RAW_DONE = 28;
+    private static final int CMD_TRANSMIT_APDU_BASIC_CHANNEL = 29;
+    private static final int EVENT_TRANSMIT_APDU_BASIC_CHANNEL_DONE = 30;
+    private static final int CMD_EXCHANGE_SIM_IO = 31;
+    private static final int EVENT_EXCHANGE_SIM_IO_DONE = 32;
 
     /** The singleton instance. */
     private static PhoneInterfaceManager sInstance;
@@ -580,17 +578,6 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
 
                 case EVENT_SET_PREFERRED_NETWORK_TYPE_DONE:
                     handleNullReturnEvent(msg, "setPreferredNetworkType");
-                    break;
-
-                case CMD_SET_CDMA_SUBSCRIPTION:
-                    request = (MainThreadRequest) msg.obj;
-                    onCompleted = obtainMessage(EVENT_SET_CDMA_SUBSCRIPTION_DONE, request);
-                    int subscriptionType = (Integer) request.argument;
-                    mPhone.setCdmaSubscription(subscriptionType, onCompleted);
-                    break;
-
-                case EVENT_SET_CDMA_SUBSCRIPTION_DONE:
-                    handleNullReturnEvent(msg, "setCdmaSubscription");
                     break;
 
                 case CMD_INVOKE_OEM_RIL_REQUEST_RAW:
@@ -1873,31 +1860,6 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         if (success) {
             Settings.Global.putInt(mPhone.getContext().getContentResolver(),
                     Settings.Global.PREFERRED_NETWORK_MODE, networkType);
-        }
-        return success;
-    }
-
-    /**
-     * Set the CDMA subscription source.
-     * Used for device supporting both NV and RUIM for CDMA.
-     *
-     * @param subscriptionType the subscription type, 0 for RUIM, 1 for NV.
-     * @return true on success; false on any failure.
-     */
-    @Override
-    public boolean setCdmaSubscription(int subscriptionType) {
-        enforceModifyPermissionOrCarrierPrivilege();
-        if (DBG) log("setCdmaSubscription: type " + subscriptionType);
-        if (subscriptionType != mPhone.CDMA_SUBSCRIPTION_RUIM_SIM &&
-            subscriptionType != mPhone.CDMA_SUBSCRIPTION_NV) {
-           loge("setCdmaSubscription: unsupported subscriptionType.");
-           return false;
-        }
-        Boolean success = (Boolean) sendRequest(CMD_SET_CDMA_SUBSCRIPTION, subscriptionType);
-        if (DBG) log("setCdmaSubscription: " + (success ? "ok" : "fail"));
-        if (success) {
-            Settings.Global.putInt(mPhone.getContext().getContentResolver(),
-                    Settings.Global.CDMA_SUBSCRIPTION_MODE, subscriptionType);
         }
         return success;
     }
