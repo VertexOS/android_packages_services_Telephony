@@ -17,15 +17,11 @@
     xmlns:phone="http://schemas.android.com/apk/res/com.android.phone"
     android:title="@string/call_settings">
 
-    <Preference
-        android:key="phone_accounts"
-        android:title="@string/phone_accounts">
-
-        <intent
-            android:targetClass="com.android.telecomm.PhoneAccountPreferencesActivity"
-            android:targetPackage="com.android.telecomm" />
-
-    </Preference>
+    <com.android.phone.settings.AccountSelectionPreference
+        android:key="default_outgoing_account"
+        android:title="@string/phone_accounts_make_calls_with"
+        android:defaultValue=""
+        android:persistent="false" />
 
     <PreferenceScreen
         android:key="button_voicemail_category_key"
@@ -139,5 +135,11 @@
             android:targetClass="com.android.phone.CdmaCallOptions"/>
 
     </PreferenceScreen>
+
+    <com.android.phone.settings.AccountSelectionPreference
+        android:key="wifi_call_manager_account"
+        android:title="@string/phone_account_wifi_calling"
+        android:defaultValue=""
+        android:persistent="false" />
 
 </PreferenceScreen>
