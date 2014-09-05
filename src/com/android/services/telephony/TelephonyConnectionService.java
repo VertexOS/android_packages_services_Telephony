@@ -20,11 +20,9 @@ import android.content.ComponentName;
 import android.content.Intent;
 import android.net.Uri;
 import android.telecomm.Connection;
-import android.telecomm.PhoneCapabilities;
 import android.telecomm.ConnectionRequest;
 import android.telecomm.ConnectionService;
 import android.telecomm.PhoneAccountHandle;
-import android.telecomm.Response;
 import android.telephony.DisconnectCause;
 import android.telephony.PhoneNumberUtils;
 import android.telephony.ServiceState;
@@ -52,6 +50,8 @@ public class TelephonyConnectionService extends ConnectionService {
 
     private final GsmConferenceController mGsmConferenceController =
             new GsmConferenceController(this);
+    private final CdmaConferenceController mCdmaConferenceController =
+            new CdmaConferenceController(this);
     private ComponentName mExpectedComponentName = null;
     private EmergencyCallHelper mEmergencyCallHelper;
 
@@ -65,7 +65,7 @@ public class TelephonyConnectionService extends ConnectionService {
     public Connection onCreateOutgoingConnection(
             PhoneAccountHandle connectionManagerPhoneAccount,
             final ConnectionRequest request) {
-        Log.v(this, "onCreateOutgoingConnection, request: " + request);
+        Log.i(this, "onCreateOutgoingConnection, request: " + request);
 
         Uri handle = request.getHandle();
         if (handle == null) {
@@ -139,7 +139,8 @@ public class TelephonyConnectionService extends ConnectionService {
             }
         }
 
-        final TelephonyConnection connection = createConnectionFor(phone, null);
+        final TelephonyConnection connection =
+                createConnectionFor(phone, null, true /* isOutgoing */);
         if (connection == null) {
             return Connection.createFailedConnection(
                     DisconnectCause.OUTGOING_FAILURE, "Invalid phone type");
@@ -181,7 +182,7 @@ public class TelephonyConnectionService extends ConnectionService {
     public Connection onCreateIncomingConnection(
             PhoneAccountHandle connectionManagerPhoneAccount,
             ConnectionRequest request) {
-        Log.v(this, "onCreateIncomingConnection, request: " + request);
+        Log.i(this, "onCreateIncomingConnection, request: " + request);
 
         Phone phone = getPhoneForAccount(request.getAccountHandle(), false);
         if (phone == null) {
@@ -190,18 +191,21 @@ public class TelephonyConnectionService extends ConnectionService {
 
         Call call = phone.getRingingCall();
         if (!call.getState().isRinging()) {
-            Log.v(this, "onCreateIncomingConnection, no ringing call");
+            Log.i(this, "onCreateIncomingConnection, no ringing call");
             return Connection.createFailedConnection(DisconnectCause.INCOMING_MISSED,
                     "Found no ringing call");
         }
 
-        com.android.internal.telephony.Connection originalConnection = call.getEarliestConnection();
+        com.android.internal.telephony.Connection originalConnection =
+                call.getState() == Call.State.WAITING ?
+                    call.getLatestConnection() : call.getEarliestConnection();
         if (isOriginalConnectionKnown(originalConnection)) {
-            Log.v(this, "onCreateIncomingConnection, original connection already registered");
+            Log.i(this, "onCreateIncomingConnection, original connection already registered");
             return Connection.createCanceledConnection();
         }
 
-        Connection connection = createConnectionFor(phone, originalConnection);
+        Connection connection =
+                createConnectionFor(phone, originalConnection, false /* isOutgoing */);
         if (connection == null) {
             connection = Connection.createCanceledConnection();
             return Connection.createCanceledConnection();
@@ -253,7 +257,9 @@ public class TelephonyConnectionService extends ConnectionService {
     }
 
     private TelephonyConnection createConnectionFor(
-            Phone phone, com.android.internal.telephony.Connection originalConnection) {
+            Phone phone,
+            com.android.internal.telephony.Connection originalConnection,
+            boolean isOutgoing) {
         int phoneType = phone.getPhoneType();
         if (phoneType == TelephonyManager.PHONE_TYPE_GSM) {
             GsmConnection connection = new GsmConnection(originalConnection);
@@ -261,7 +267,10 @@ public class TelephonyConnectionService extends ConnectionService {
             return connection;
         } else if (phoneType == TelephonyManager.PHONE_TYPE_CDMA) {
             boolean allowMute = allowMute(phone);
-            return new CdmaConnection(originalConnection, allowMute);
+            CdmaConnection connection =
+                    new CdmaConnection(originalConnection, allowMute, isOutgoing);
+            mCdmaConferenceController.add(connection);
+            return connection;
         } else {
             return null;
         }

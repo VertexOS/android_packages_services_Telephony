@@ -33,7 +33,10 @@ import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneConstants;
 import com.android.internal.telephony.PhoneProxy;
 import com.android.internal.telephony.TelephonyIntents;
+import com.android.internal.telephony.cdma.CdmaCallWaitingNotification;
 import com.google.common.base.Preconditions;
+
+import java.util.Objects;
 
 /**
  * Listens to incoming-call events from the associated phone object and notifies Telecomm upon each
@@ -42,6 +45,7 @@ import com.google.common.base.Preconditions;
 final class PstnIncomingCallNotifier {
     /** New ringing connection event code. */
     private static final int EVENT_NEW_RINGING_CONNECTION = 100;
+    private static final int EVENT_CDMA_CALL_WAITING = 101;
 
     /** The phone proxy object to listen to. */
     private final PhoneProxy mPhoneProxy;
@@ -63,6 +67,9 @@ final class PstnIncomingCallNotifier {
             switch(msg.what) {
                 case EVENT_NEW_RINGING_CONNECTION:
                     handleNewRingingConnection((AsyncResult) msg.obj);
+                    break;
+                case EVENT_CDMA_CALL_WAITING:
+                    handleCdmaCallWaiting((AsyncResult) msg.obj);
                     break;
                 default:
                     break;
@@ -121,23 +128,24 @@ final class PstnIncomingCallNotifier {
     private void registerForNotifications() {
         Phone newPhone = mPhoneProxy.getActivePhone();
         if (newPhone != mPhoneBase) {
-            if (mPhoneBase != null) {
-                Log.i(this, "Unregistering: %s", mPhoneBase);
-                mPhoneBase.unregisterForNewRingingConnection(mHandler);
-            }
+            unregisterForNotifications();
 
             if (newPhone != null) {
                 Log.i(this, "Registering: %s", newPhone);
                 mPhoneBase = newPhone;
                 mPhoneBase.registerForNewRingingConnection(
                         mHandler, EVENT_NEW_RINGING_CONNECTION, null);
+                mPhoneBase.registerForCallWaiting(
+                        mHandler, EVENT_CDMA_CALL_WAITING, null);
             }
         }
     }
 
     private void unregisterForNotifications() {
         if (mPhoneBase != null) {
+            Log.i(this, "Unregistering: %s", mPhoneBase);
             mPhoneBase.unregisterForNewRingingConnection(mHandler);
+            mPhoneBase.unregisterForCallWaiting(mHandler);
         }
     }
 
@@ -155,6 +163,21 @@ final class PstnIncomingCallNotifier {
             // Final verification of the ringing state before sending the intent to Telecomm.
             if (call != null && call.getState().isRinging()) {
                 sendIncomingCallIntent(connection);
+            }
+        }
+    }
+
+    private void handleCdmaCallWaiting(AsyncResult asyncResult) {
+        Log.d(this, "handleCdmaCallWaiting");
+        CdmaCallWaitingNotification ccwi = (CdmaCallWaitingNotification) asyncResult.result;
+        Call call = mPhoneBase.getRingingCall();
+        if (call.getState() == Call.State.WAITING) {
+            Connection connection = call.getLatestConnection();
+            if (connection != null) {
+                String number = connection.getAddress();
+                if (number != null && Objects.equals(number, ccwi.number)) {
+                    sendIncomingCallIntent(connection);
+                }
             }
         }
     }
