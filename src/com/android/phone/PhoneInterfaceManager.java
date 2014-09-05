@@ -2033,9 +2033,9 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     }
 
     @Override
-    public boolean setOperatorBrandOverride(String iccId, String brand) {
+    public boolean setOperatorBrandOverride(String brand) {
         enforceModifyPermissionOrCarrierPrivilege();
-        return mPhone.setOperatorBrandOverride(iccId, brand);
+        return mPhone.setOperatorBrandOverride(brand);
     }
 
     @Override
