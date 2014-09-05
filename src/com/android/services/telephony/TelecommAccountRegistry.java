@@ -25,13 +25,16 @@ import android.net.Uri;
 import android.telecomm.PhoneAccount;
 import android.telecomm.PhoneAccountHandle;
 import android.telecomm.TelecommManager;
+import android.telephony.SubInfoRecord;
 import android.telephony.SubscriptionManager;
 import android.telephony.TelephonyManager;
+import android.text.TextUtils;
 
 import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneFactory;
 import com.android.internal.telephony.PhoneProxy;
 import com.android.internal.telephony.TelephonyIntents;
+import com.android.phone.R;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -43,11 +46,11 @@ import java.util.List;
  */
 final class TelecommAccountRegistry {
     private final static int[] phoneAccountIcons = {
-        com.android.phone.R.drawable.ic_multi_sim,
-        com.android.phone.R.drawable.ic_multi_sim1,
-        com.android.phone.R.drawable.ic_multi_sim2,
-        com.android.phone.R.drawable.ic_multi_sim3,
-        com.android.phone.R.drawable.ic_multi_sim4
+            R.drawable.ic_multi_sim,
+            R.drawable.ic_multi_sim1,
+            R.drawable.ic_multi_sim2,
+            R.drawable.ic_multi_sim3,
+            R.drawable.ic_multi_sim4
     };
 
     private final class AccountEntry {
@@ -90,12 +93,30 @@ final class TelecommAccountRegistry {
             if (subNumber == null) {
                 subNumber = "";
             }
-            String label = isEmergency
-                    ? "Emergency calls"
-                    : dummyPrefix + "SIM " + slotId;
-            String description = isEmergency
-                    ? "Emergency calling only"
-                    : dummyPrefix + "SIM card in slot " + slotId;
+
+            String subDisplayName = null;
+            SubInfoRecord record = SubscriptionManager.getSubInfoUsingSubId(subId);
+            if (record != null) {
+                subDisplayName = record.displayName;
+            }
+
+            if (TextUtils.isEmpty(subDisplayName)) {
+                // Either the sub record is not there or it has an empty display name.
+                Log.w(this, "Could not get a display name for subid: %d", subId);
+                subDisplayName = mContext.getResources().getString(
+                        R.string.sim_description_default, slotId);
+            }
+
+            // The label is user-visible so let's use the display name that the user may
+            // have set in Settings->Sim cards.
+            String label = isEmergency ?
+                    mContext.getResources().getString(R.string.sim_label_emergency_calls) :
+                    dummyPrefix + subDisplayName;
+            String description = isEmergency ?
+                    mContext.getResources().getString(R.string.sim_description_emergency_calls) :
+                    dummyPrefix + mContext.getResources().getString(
+                            R.string.sim_description_default, slotId);
+
             PhoneAccount account = PhoneAccount.builder(phoneAccountHandle, label)
                     .setAddress(Uri.fromParts(PhoneAccount.SCHEME_TEL, line1Number, null))
                     .setSubscriptionAddress(
@@ -117,6 +138,7 @@ final class TelecommAccountRegistry {
     private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
+            boolean rebuildAccounts = false;
             String action = intent.getAction();
             if (TelephonyIntents.ACTION_SUBINFO_RECORD_UPDATED.equals(action)) {
                 int status = intent.getIntExtra(
@@ -126,6 +148,15 @@ final class TelecommAccountRegistry {
                 // Anytime the SIM state changes...rerun the setup
                 // We rely on this notification even when the status is EXTRA_VALUE_NOCHANGE,
                 // so we explicitly do not check for that here.
+                rebuildAccounts = true;
+            } else if (TelephonyIntents.ACTION_SUBINFO_CONTENT_CHANGE.equals(action)) {
+                String columnName = intent.getStringExtra(TelephonyIntents.EXTRA_COLUMN_NAME);
+                String stringContent = intent.getStringExtra(TelephonyIntents.EXTRA_STRING_CONTENT);
+                Log.v(this, "SUBINFO_CONTENT_CHANGE: Column: %s Content: %s",
+                        columnName, stringContent);
+                rebuildAccounts = true;
+            }
+            if (rebuildAccounts) {
                 tearDownAccounts();
                 setupAccounts();
             }
@@ -153,10 +184,12 @@ final class TelecommAccountRegistry {
      * Sets up all the phone accounts for SIMs on first boot.
      */
     void setupOnBoot() {
-        IntentFilter intentFilter =
-            new IntentFilter(TelephonyIntents.ACTION_SUBINFO_RECORD_UPDATED);
+        // We need to register for both types of intents if we want to see added/removed Subs
+        // along with changes to a given Sub.
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(TelephonyIntents.ACTION_SUBINFO_RECORD_UPDATED);
+        intentFilter.addAction(TelephonyIntents.ACTION_SUBINFO_CONTENT_CHANGE);
         mContext.registerReceiver(mReceiver, intentFilter);
-
         setupAccounts();
     }
 
@@ -212,8 +245,6 @@ final class TelecommAccountRegistry {
         if (phones.length > 0 && "TRUE".equals(System.getProperty("dummy_sim"))) {
             mAccounts.add(new AccountEntry(phones[0], false /* emergency */, true /* isDummy */));
         }
-
-        // TODO: Add SIP accounts.
     }
 
     private int getPhoneAccountIcon(int index) {
