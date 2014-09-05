@@ -21,6 +21,7 @@ import android.app.AppOpsManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
@@ -37,6 +38,7 @@ import android.os.Process;
 import android.os.RemoteException;
 import android.os.ServiceManager;
 import android.os.UserHandle;
+import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.telephony.CellInfo;
 import android.telephony.IccOpenLogicalChannelResponse;
@@ -129,12 +131,11 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     AppOpsManager mAppOps;
     MainThreadHandler mMainThreadHandler;
 
-    /**
-     * Indicates if Android should display a simplified Mobile Network Settings UI in a specific
-     * subscription.
-     */
-    Set<Long> mSimplifiedNetworkSettings;
-    Map<Long, AdnRecord> mAdnRecordsForDisplay;
+    SharedPreferences carrierPrivilegeConfigs;
+    private static final String PREF_CARRIERS_ALPHATAG_PREFIX = "carrier_alphtag_";
+    private static final String PREF_CARRIERS_NUMBER_PREFIX = "carrier_number_";
+    private static final String PREF_CARRIERS_SIMPLIFIED_NETWORK_SETTINGS_PREFIX =
+            "carrier_simplified_network_settings_";
 
     /**
      * A request object to use for transmitting data to an ICC.
@@ -696,10 +697,10 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         mApp = app;
         mPhone = phone;
         mCM = PhoneGlobals.getInstance().mCM;
-        mSimplifiedNetworkSettings = new HashSet<Long>();
         mAppOps = (AppOpsManager)app.getSystemService(Context.APP_OPS_SERVICE);
         mMainThreadHandler = new MainThreadHandler();
-        mAdnRecordsForDisplay = new HashMap<Long, AdnRecord>();
+        carrierPrivilegeConfigs =
+                PreferenceManager.getDefaultSharedPreferences(mPhone.getContext());
         publish();
     }
 
@@ -1929,52 +1930,94 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
             mPhone.getContext().getPackageManager(), intent);
     }
 
+    private String getIccId(long subId) {
+        UiccCard card = getPhone(subId).getUiccCard();
+        if (card == null) {
+            loge("getIccId: No UICC");
+            return null;
+        }
+        String iccId = card.getIccId();
+        if (TextUtils.isEmpty(iccId)) {
+            loge("getIccId: ICC ID is null or empty.");
+            return null;
+        }
+        return iccId;
+    }
+
     @Override
     public void enableSimplifiedNetworkSettings(long subId, boolean enable) {
         enforceModifyPermissionOrCarrierPrivilege();
-        if (enable) {
-            mSimplifiedNetworkSettings.add(subId);
-        } else {
-            mSimplifiedNetworkSettings.remove(subId);
+
+        String iccId = getIccId(subId);
+        if (iccId != null) {
+            String snsPrefKey = PREF_CARRIERS_SIMPLIFIED_NETWORK_SETTINGS_PREFIX + iccId;
+            SharedPreferences.Editor editor = carrierPrivilegeConfigs.edit();
+            if (enable) {
+                editor.putBoolean(snsPrefKey, true);
+            } else {
+                editor.remove(snsPrefKey);
+            }
+            editor.commit();
         }
     }
 
     @Override
     public boolean getSimplifiedNetworkSettingsEnabled(long subId) {
         enforceReadPermission();
-        return mSimplifiedNetworkSettings.contains(subId);
+        String iccId = getIccId(subId);
+        if (iccId != null) {
+            String snsPrefKey = PREF_CARRIERS_SIMPLIFIED_NETWORK_SETTINGS_PREFIX + iccId;
+            return carrierPrivilegeConfigs.getBoolean(snsPrefKey, false);
+        }
+        return false;
     }
 
     @Override
     public void setLine1NumberForDisplay(long subId, String alphaTag, String number) {
         enforceModifyPermissionOrCarrierPrivilege();
-        mAdnRecordsForDisplay.put(subId, new AdnRecord(alphaTag, number));
+
+        String iccId = getIccId(subId);
+        if (iccId != null) {
+            String alphaTagPrefKey = PREF_CARRIERS_ALPHATAG_PREFIX + iccId;
+            SharedPreferences.Editor editor = carrierPrivilegeConfigs.edit();
+            if (alphaTag == null) {
+                editor.remove(alphaTagPrefKey);
+            } else {
+                editor.putString(alphaTagPrefKey, alphaTag);
+            }
+
+            String numberPrefKey = PREF_CARRIERS_NUMBER_PREFIX + iccId;
+            if (number == null) {
+                editor.remove(numberPrefKey);
+            } else {
+                editor.putString(numberPrefKey, number);
+            }
+            editor.commit();
+        }
     }
 
     @Override
     public String getLine1NumberForDisplay(long subId) {
         enforceReadPermission();
-        if (!mAdnRecordsForDisplay.containsKey(subId)) {
-            return null;
+
+        String iccId = getIccId(subId);
+        if (iccId != null) {
+            String numberPrefKey = PREF_CARRIERS_NUMBER_PREFIX + iccId;
+            return carrierPrivilegeConfigs.getString(numberPrefKey, null);
         }
-        AdnRecord adnRecord = mAdnRecordsForDisplay.get(subId);
-        if (adnRecord.getNumber() == null || adnRecord.getNumber().isEmpty()) {
-            return null;
-        }
-        return adnRecord.getNumber();
+        return null;
     }
 
     @Override
     public String getLine1AlphaTagForDisplay(long subId) {
         enforceReadPermission();
-        if (!mAdnRecordsForDisplay.containsKey(subId)) {
-            return null;
+
+        String iccId = getIccId(subId);
+        if (iccId != null) {
+            String alphaTagPrefKey = PREF_CARRIERS_ALPHATAG_PREFIX + iccId;
+            return carrierPrivilegeConfigs.getString(alphaTagPrefKey, null);
         }
-        AdnRecord adnRecord = mAdnRecordsForDisplay.get(subId);
-        if (adnRecord.getAlphaTag() == null || adnRecord.getAlphaTag().isEmpty()) {
-            return null;
-        }
-        return adnRecord.getAlphaTag();
+        return null;
     }
 
     @Override
