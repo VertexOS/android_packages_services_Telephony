@@ -429,8 +429,8 @@
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <action android:name="android.intent.action.MAIN" />
-                <action android:name="android.telecomm.intent.action.SHOW_CALL_SETTINGS" />
-                <action android:name="android.telecomm.intent.action.CHANGE_PHONE_ACCOUNTS" />
+                <action android:name="android.telecomm.action.SHOW_CALL_SETTINGS" />
+                <action android:name="android.telecomm.action.CHANGE_PHONE_ACCOUNTS" />
                 <action android:name="com.android.phone.CallFeaturesSetting.ADD_VOICEMAIL" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
