@@ -25,7 +25,6 @@ import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneConstants;
 import com.android.internal.telephony.PhoneBase;
 import com.android.internal.telephony.TelephonyCapabilities;
-import com.android.internal.telephony.cdma.CdmaCallWaitingNotification;
 import com.android.internal.telephony.cdma.CdmaInformationRecords.CdmaDisplayInfoRec;
 import com.android.internal.telephony.cdma.CdmaInformationRecords.CdmaSignalInfoRec;
 import com.android.internal.telephony.cdma.SignalToneUtil;
@@ -71,12 +70,6 @@ public class CallNotifier extends Handler
     // before giving up and falling back to the default ringtone.
     private static final int RINGTONE_QUERY_WAIT_TIME = 500;  // msec
 
-    // Timers related to CDMA Call Waiting
-    // 1) For displaying Caller Info
-    // 2) For disabling "Add Call" menu option once User selects Ignore or CW Timeout occures
-    private static final int CALLWAITING_CALLERINFO_DISPLAY_TIME = 20000; // msec
-    private static final int CALLWAITING_ADDCALL_DISABLE_TIME = 30000; // msec
-
     // Time to display the  DisplayInfo Record sent by CDMA network
     private static final int DISPLAYINFO_NOTIFICATION_TIME = 2000; // msec
 
@@ -87,33 +80,6 @@ public class CallNotifier extends Handler
 
     /** The singleton instance. */
     private static CallNotifier sInstance;
-
-    // Boolean to keep track of whether or not a CDMA Call Waiting call timed out.
-    //
-    // This is CDMA-specific, because with CDMA we *don't* get explicit
-    // notification from the telephony layer that a call-waiting call has
-    // stopped ringing.  Instead, when a call-waiting call first comes in we
-    // start a 20-second timer (see CALLWAITING_CALLERINFO_DISPLAY_DONE), and
-    // if the timer expires we clean up the call and treat it as a missed call.
-    //
-    // If this field is true, that means that the current Call Waiting call
-    // "timed out" and should be logged in Call Log as a missed call.  If it's
-    // false when we reach onCdmaCallWaitingReject(), we can assume the user
-    // explicitly rejected this call-waiting call.
-    //
-    // This field is reset to false any time a call-waiting call first comes
-    // in, and after cleaning up a missed call-waiting call.  It's only ever
-    // set to true when the CALLWAITING_CALLERINFO_DISPLAY_DONE timer fires.
-    //
-    // TODO: do we really need a member variable for this?  Don't we always
-    // know at the moment we call onCdmaCallWaitingReject() whether this is an
-    // explicit rejection or not?
-    // (Specifically: when we call onCdmaCallWaitingReject() from
-    // PhoneUtils.hangupRingingCall() that means the user deliberately rejected
-    // the call, and if we call onCdmaCallWaitingReject() because of a
-    // CALLWAITING_CALLERINFO_DISPLAY_DONE event that means that it timed
-    // out...)
-    private boolean mCallWaitingTimeOut = false;
 
     // values used to track the query state
     private static final int CALLERINFO_QUERY_READY = 0;
@@ -130,10 +96,7 @@ public class CallNotifier extends Handler
 
     // Events generated internally:
     private static final int PHONE_MWI_CHANGED = 21;
-    private static final int CALLWAITING_CALLERINFO_DISPLAY_DONE = 22;
-    private static final int CALLWAITING_ADDCALL_DISABLE_TIMEOUT = 23;
     private static final int DISPLAYINFO_NOTIFICATION_DONE = 24;
-    private static final int CDMA_CALL_WAITING_REJECT = 26;
     private static final int UPDATE_IN_CALL_NOTIFICATION = 27;
 
     // Emergency call related defines:
@@ -165,9 +128,6 @@ public class CallNotifier extends Handler
 
     // Ringback tone player
     private InCallTonePlayer mInCallRingbackTonePlayer;
-
-    // Call waiting tone player
-    private InCallTonePlayer mCallWaitingTonePlayer;
 
     // Cached AudioManager
     private AudioManager mAudioManager;
@@ -285,28 +245,6 @@ public class CallNotifier extends Handler
 
             case PHONE_MWI_CHANGED:
                 onMwiChanged(mApplication.phone.getMessageWaitingIndicator());
-                break;
-
-            case CallStateMonitor.PHONE_CDMA_CALL_WAITING:
-                if (DBG) log("Received PHONE_CDMA_CALL_WAITING event");
-                onCdmaCallWaiting((AsyncResult) msg.obj);
-                break;
-
-            case CDMA_CALL_WAITING_REJECT:
-                Log.i(LOG_TAG, "Received CDMA_CALL_WAITING_REJECT event");
-                onCdmaCallWaitingReject();
-                break;
-
-            case CALLWAITING_CALLERINFO_DISPLAY_DONE:
-                Log.i(LOG_TAG, "Received CALLWAITING_CALLERINFO_DISPLAY_DONE event");
-                mCallWaitingTimeOut = true;
-                onCdmaCallWaitingReject();
-                break;
-
-            case CALLWAITING_ADDCALL_DISABLE_TIMEOUT:
-                if (DBG) log("Received CALLWAITING_ADDCALL_DISABLE_TIMEOUT event ...");
-                // Set the mAddCallMenuStateAfterCW state to true
-                mApplication.cdmaPhoneCallState.setAddCallMenuStateAfterCallWaiting(true);
                 break;
 
             case CallStateMonitor.PHONE_STATE_DISPLAYINFO:
@@ -573,8 +511,6 @@ public class CallNotifier extends Handler
             // arrives at the same time that the query is still being run,
             // and before the timeout window has closed.
             EventLog.writeEvent(EventLogTags.PHONE_UI_MULTIPLE_QUERY);
-
-            ringAndNotifyOfIncomingCall(c);
         }
     }
 
@@ -628,14 +564,6 @@ public class CallNotifier extends Handler
             // Just bail out.
             return;
         }
-
-        // If the ringing call still does not have any connection anymore, do not send the
-        // notification.
-        final Call ringingCall = mCM.getFirstActiveRingingCall();
-
-        if (ringingCall != null && ringingCall.getLatestConnection() == c) {
-            ringAndNotifyOfIncomingCall(c);
-        }
     }
 
     private void onUnknownConnectionAppeared(AsyncResult r) {
@@ -645,23 +573,6 @@ public class CallNotifier extends Handler
             if (DBG) log("unknown connection appeared...");
 
             onPhoneStateChanged(r);
-        }
-    }
-
-    /**
-     * If it is not a waiting call (there is no other active call in foreground), we will ring the
-     * ringtone. Otherwise we will play the call waiting tone instead.
-     * @param c The new ringing connection.
-     */
-    private void ringAndNotifyOfIncomingCall(Connection c) {
-        if (PhoneUtils.isRealIncomingCall(c.getState())) {
-            mRinger.ring();
-        } else {
-            if (VDBG) log("- starting call waiting tone...");
-            if (mCallWaitingTonePlayer == null) {
-                mCallWaitingTonePlayer = new InCallTonePlayer(InCallTonePlayer.TONE_CALL_WAITING);
-                mCallWaitingTonePlayer.start();
-            }
         }
     }
 
@@ -709,11 +620,6 @@ public class CallNotifier extends Handler
         mApplication.updatePhoneState(state);
 
         if (state == PhoneConstants.State.OFFHOOK) {
-            // stop call waiting tone if needed when answering
-            if (mCallWaitingTonePlayer != null) {
-                mCallWaitingTonePlayer.stopTone();
-                mCallWaitingTonePlayer = null;
-            }
 
             if (VDBG) log("onPhoneStateChanged: OFF HOOK");
             // make sure audio is in in-call mode now
@@ -780,9 +686,6 @@ public class CallNotifier extends Handler
 
         // Clear ringback tone player
         mInCallRingbackTonePlayer = null;
-
-        // Clear call waiting tone player
-        mCallWaitingTonePlayer = null;
 
         // Instantiate mSignalInfoToneGenerator
         createSignalInfoToneGenerator();
@@ -911,10 +814,6 @@ public class CallNotifier extends Handler
         if ((c != null) && (c.getCall().getPhone().getPhoneType() == PhoneConstants.PHONE_TYPE_CDMA)) {
             // Resetting the CdmaPhoneCallState members
             mApplication.cdmaPhoneCallState.resetCdmaPhoneCallState();
-
-            // Remove Call waiting timers
-            removeMessages(CALLWAITING_CALLERINFO_DISPLAY_DONE);
-            removeMessages(CALLWAITING_ADDCALL_DISABLE_TIMEOUT);
         }
 
         // Stop the ringer if it was ringing (for an incoming call that
@@ -939,12 +838,6 @@ public class CallNotifier extends Handler
         } else { // GSM
             if (DBG) log("stopRing()... (onDisconnect)");
             mRinger.stopRing();
-        }
-
-        // stop call waiting tone if needed when disconnecting
-        if (mCallWaitingTonePlayer != null) {
-            mCallWaitingTonePlayer.stopTone();
-            mCallWaitingTonePlayer = null;
         }
 
         // If this is the end of an OTASP call, pass it on to the PhoneApp.
@@ -1539,107 +1432,6 @@ public class CallNotifier extends Handler
     /* package */ void stopSignalInfoTone() {
         if (DBG) log("stopSignalInfoTone: Stopping SignalInfo tone player");
         new SignalInfoTonePlayer(ToneGenerator.TONE_CDMA_SIGNAL_OFF).start();
-    }
-
-    /**
-     * Plays a Call waiting tone if it is present in the second incoming call.
-     */
-    private void onCdmaCallWaiting(AsyncResult r) {
-        // Remove any previous Call waiting timers in the queue
-        removeMessages(CALLWAITING_CALLERINFO_DISPLAY_DONE);
-        removeMessages(CALLWAITING_ADDCALL_DISABLE_TIMEOUT);
-
-        // Set the Phone Call State to SINGLE_ACTIVE as there is only one connection
-        // else we would not have received Call waiting
-        mApplication.cdmaPhoneCallState.setCurrentCallState(
-                CdmaPhoneCallState.PhoneCallState.SINGLE_ACTIVE);
-
-        // Start timer for CW display
-        mCallWaitingTimeOut = false;
-        sendEmptyMessageDelayed(CALLWAITING_CALLERINFO_DISPLAY_DONE,
-                CALLWAITING_CALLERINFO_DISPLAY_TIME);
-
-        // Set the mAddCallMenuStateAfterCW state to false
-        mApplication.cdmaPhoneCallState.setAddCallMenuStateAfterCallWaiting(false);
-
-        // Start the timer for disabling "Add Call" menu option
-        sendEmptyMessageDelayed(CALLWAITING_ADDCALL_DISABLE_TIMEOUT,
-                CALLWAITING_ADDCALL_DISABLE_TIME);
-
-        // Extract the Call waiting information
-        CdmaCallWaitingNotification infoCW = (CdmaCallWaitingNotification) r.result;
-        int isPresent = infoCW.isPresent;
-        if (DBG) log("onCdmaCallWaiting: isPresent=" + isPresent);
-        if (isPresent == 1 ) {//'1' if tone is valid
-            int uSignalType = infoCW.signalType;
-            int uAlertPitch = infoCW.alertPitch;
-            int uSignal = infoCW.signal;
-            if (DBG) log("onCdmaCallWaiting: uSignalType=" + uSignalType + ", uAlertPitch="
-                    + uAlertPitch + ", uSignal=" + uSignal);
-            //Map the Signal to a ToneGenerator ToneID only if Signal info is present
-            int toneID =
-                SignalToneUtil.getAudioToneFromSignalInfo(uSignalType, uAlertPitch, uSignal);
-
-            //Create the SignalInfo tone player and pass the ToneID
-            new SignalInfoTonePlayer(toneID).start();
-        }
-
-        // TODO: Remove this.
-        //mCallModeler.onCdmaCallWaiting(infoCW);
-    }
-
-    /**
-     * Posts a event causing us to clean up after rejecting (or timing-out) a
-     * CDMA call-waiting call.
-     *
-     * This method is safe to call from any thread.
-     * @see #onCdmaCallWaitingReject()
-     */
-    /* package */ void sendCdmaCallWaitingReject() {
-        sendEmptyMessage(CDMA_CALL_WAITING_REJECT);
-    }
-
-    /**
-     * Performs Call logging based on Timeout or Ignore Call Waiting Call for CDMA,
-     * and finally calls Hangup on the Call Waiting connection.
-     *
-     * This method should be called only from the UI thread.
-     * @see #sendCdmaCallWaitingReject()
-     */
-    private void onCdmaCallWaitingReject() {
-        final Call ringingCall = mCM.getFirstActiveRingingCall();
-
-        // Call waiting timeout scenario
-        if (ringingCall.getState() == Call.State.WAITING) {
-            // Code for perform Call logging and missed call notification
-            Connection c = ringingCall.getLatestConnection();
-
-            if (c != null) {
-                final int callLogType = mCallWaitingTimeOut ?
-                        Calls.MISSED_TYPE : Calls.INCOMING_TYPE;
-
-                // TODO: This callLogType override is not ideal. Connection should be astracted away
-                // at a telephony-phone layer that can understand and edit the callTypes within
-                // the abstraction for CDMA devices.
-                mCallLogger.logCall(c, callLogType);
-
-                if (callLogType != Calls.MISSED_TYPE) {
-                    // Remove Call waiting 20 second display timer in the queue
-                    removeMessages(CALLWAITING_CALLERINFO_DISPLAY_DONE);
-                }
-
-                // Hangup the RingingCall connection for CW
-                PhoneUtils.hangup(c);
-            }
-
-            //Reset the mCallWaitingTimeOut boolean
-            mCallWaitingTimeOut = false;
-        }
-
-        // Call modeler needs to know about this event regardless of the
-        // state conditionals in the previous code.
-        // TODO: Remove this.
-        //mCallModeler.onCdmaCallWaitingReject();
     }
 
     /**
