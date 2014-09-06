@@ -81,7 +81,7 @@ final class TelecommAccountRegistry {
             // Populate the phone account data.
             long subId = mPhone.getSubId();
             int slotId = mPhone.getPhoneId() + 1;
-            String line1Number = telephonyManager.getLine1Number(subId);
+            String line1Number = telephonyManager.getLine1NumberForSubscriber(subId);
             if (line1Number == null) {
                 line1Number = "";
             }

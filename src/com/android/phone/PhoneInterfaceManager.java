@@ -1930,7 +1930,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     }
 
     @Override
-    public void enableSimplifiedNetworkSettings(long subId, boolean enable) {
+    public void enableSimplifiedNetworkSettingsForSubscriber(long subId, boolean enable) {
         enforceModifyPermissionOrCarrierPrivilege();
         if (enable) {
             mSimplifiedNetworkSettings.add(subId);
@@ -1940,13 +1940,13 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     }
 
     @Override
-    public boolean getSimplifiedNetworkSettingsEnabled(long subId) {
+    public boolean getSimplifiedNetworkSettingsEnabledForSubscriber(long subId) {
         enforceReadPermission();
         return mSimplifiedNetworkSettings.contains(subId);
     }
 
     @Override
-    public void setLine1NumberForDisplay(long subId, String alphaTag, String number) {
+    public void setLine1NumberForDisplayForSubscriber(long subId, String alphaTag, String number) {
         enforceModifyPermissionOrCarrierPrivilege();
         mAdnRecordsForDisplay.put(subId, new AdnRecord(alphaTag, number));
     }

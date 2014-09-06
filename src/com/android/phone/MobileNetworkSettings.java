@@ -249,7 +249,7 @@ public class MobileNetworkSettings extends PreferenceActivity
         boolean isLteOnCdma = mPhone.getLteOnCdmaMode() == PhoneConstants.LTE_ON_CDMA_TRUE;
         mIsGlobalCdma = isLteOnCdma && getResources().getBoolean(R.bool.config_show_cdma);
         TelephonyManager tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
-        if (tm.getSimplifiedNetworkSettingsEnabled(SubscriptionManager.getDefaultSubId())) {
+        if (tm.getSimplifiedNetworkSettingsEnabledForSubscriber(SubscriptionManager.getDefaultSubId())) {
             prefSet.removePreference(mButtonPreferredNetworkMode);
             prefSet.removePreference(mButtonEnabledNetworks);
             prefSet.removePreference(mLteDataServicePref);
