@@ -120,8 +120,6 @@
     <bool name="config_enabled_lte" translatable="false">false</bool>
     <!-- Show cdma auto network mode in (glabal) roaming -->
     <bool name="config_show_cdma" translatable="false">false</bool>
-    <!-- Display enhanced 4G LTE mode menu if true -->
-    <bool name="config_enhanced_4g_lte_mode_enable" translatable="false">false</bool>
 
     <!-- Package name for the default in-call UI and dialer [DO NOT TRANSLATE] -->
     <string name="ui_default_package" translatable="false">com.android.dialer</string>
