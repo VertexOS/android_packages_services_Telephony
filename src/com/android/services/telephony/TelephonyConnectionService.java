@@ -67,7 +67,7 @@ public class TelephonyConnectionService extends ConnectionService {
             final ConnectionRequest request) {
         Log.v(this, "onCreateOutgoingConnection, request: " + request);
 
-        Uri handle = request.getHandle();
+        Uri handle = request.getAddress();
         if (handle == null) {
             Log.d(this, "onCreateOutgoingConnection, handle is null");
             return Connection.createFailedConnection(DisconnectCause.NO_PHONE_NUMBER_SUPPLIED,
