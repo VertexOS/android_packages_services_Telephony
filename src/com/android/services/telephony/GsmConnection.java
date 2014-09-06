@@ -25,8 +25,6 @@ import com.android.internal.telephony.Connection;
  * Manages a single phone call handled by GSM.
  */
 final class GsmConnection extends TelephonyConnection {
-    private boolean mIsConferenceCapable;
-
     GsmConnection(Connection connection) {
         super(connection);
     }
@@ -44,13 +42,6 @@ final class GsmConnection extends TelephonyConnection {
     public void onStopDtmfTone() {
         if (getPhone() != null) {
             getPhone().stopDtmf();
-        }
-    }
-
-    void setIsConferenceCapable(boolean isConferenceCapable) {
-        if (mIsConferenceCapable != isConferenceCapable) {
-            mIsConferenceCapable = isConferenceCapable;
-            updateCallCapabilities();
         }
     }
 
@@ -76,9 +67,6 @@ final class GsmConnection extends TelephonyConnection {
         int capabilities = PhoneCapabilities.MUTE | PhoneCapabilities.SUPPORT_HOLD;
         if (getState() == STATE_ACTIVE || getState() == STATE_HOLDING) {
             capabilities |= PhoneCapabilities.HOLD;
-        }
-        if (mIsConferenceCapable) {
-            capabilities |= PhoneCapabilities.MERGE_CALLS;
         }
         return capabilities;
     }

@@ -37,7 +37,7 @@ public class GsmConference extends Conference {
                 PhoneCapabilities.SUPPORT_HOLD |
                 PhoneCapabilities.HOLD |
                 PhoneCapabilities.MUTE |
-                PhoneCapabilities.SWAP_CALLS);
+                PhoneCapabilities.MANAGE_CONFERENCE);
         setActive();
     }
 
