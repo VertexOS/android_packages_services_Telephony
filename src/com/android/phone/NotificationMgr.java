@@ -40,6 +40,7 @@ import android.provider.CallLog.Calls;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.PhoneLookup;
 import android.provider.Settings;
+import android.telecomm.PhoneAccount;
 import android.telephony.PhoneNumberUtils;
 import android.telephony.ServiceState;
 import android.text.BidiFormatter;
@@ -322,7 +323,7 @@ public class NotificationMgr {
             }
 
             Intent intent = new Intent(Intent.ACTION_CALL,
-                    Uri.fromParts(Constants.SCHEME_VOICEMAIL, "", null));
+                    Uri.fromParts(PhoneAccount.SCHEME_VOICEMAIL, "", null));
             PendingIntent pendingIntent = PendingIntent.getActivity(mContext, 0, intent, 0);
 
             SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mContext);

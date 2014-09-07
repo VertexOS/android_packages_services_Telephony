@@ -32,8 +32,6 @@ public class SipUtil {
             "com.android.services.telephony.sip.phone_account";
     static final String GATEWAY_PROVIDER_PACKAGE =
             "com.android.phone.extra.GATEWAY_PROVIDER_PACKAGE";
-    static final String SCHEME_TEL = "tel";
-    static final String SCHEME_SIP = "sip";
 
     private static boolean sIsVoipSupported;
     private static boolean sIsVoipSupportedInitialized;
