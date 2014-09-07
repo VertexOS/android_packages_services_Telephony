@@ -22,6 +22,7 @@ import android.net.Uri;
 import android.telecomm.Connection;
 import android.telecomm.ConnectionRequest;
 import android.telecomm.ConnectionService;
+import android.telecomm.PhoneAccount;
 import android.telecomm.PhoneAccountHandle;
 import android.telephony.DisconnectCause;
 import android.telephony.PhoneNumberUtils;
@@ -45,9 +46,6 @@ import java.util.Objects;
  * Service for making GSM and CDMA connections.
  */
 public class TelephonyConnectionService extends ConnectionService {
-    static String SCHEME_TEL = "tel";
-    static String SCHEME_VOICEMAIL = "voicemail";
-
     private final GsmConferenceController mGsmConferenceController =
             new GsmConferenceController(this);
     private final CdmaConferenceController mCdmaConferenceController =
@@ -76,7 +74,7 @@ public class TelephonyConnectionService extends ConnectionService {
 
         String scheme = handle.getScheme();
         final String number;
-        if (SCHEME_VOICEMAIL.equals(scheme)) {
+        if (PhoneAccount.SCHEME_VOICEMAIL.equals(scheme)) {
             // TODO: We don't check for SecurityException here (requires
             // CALL_PRIVILEGED permission).
             final Phone phone = getPhoneForAccount(request.getAccountHandle(), false);
@@ -88,9 +86,9 @@ public class TelephonyConnectionService extends ConnectionService {
             }
 
             // Convert voicemail: to tel:
-            handle = Uri.fromParts(SCHEME_TEL, number, null);
+            handle = Uri.fromParts(PhoneAccount.SCHEME_TEL, number, null);
         } else {
-            if (!SCHEME_TEL.equals(scheme)) {
+            if (!PhoneAccount.SCHEME_TEL.equals(scheme)) {
                 Log.d(this, "onCreateOutgoingConnection, Handle %s is not type tel", scheme);
                 return Connection.createFailedConnection(DisconnectCause.INVALID_NUMBER,
                         "Handle scheme is not type tel");

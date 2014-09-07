@@ -33,6 +33,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.os.RemoteException;
 import android.os.SystemProperties;
+import android.telecomm.PhoneAccount;
 import android.telecomm.VideoProfile;
 import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
@@ -597,7 +598,7 @@ public class PhoneUtils {
         if (useGateway) {
             // TODO: 'tel' should be a constant defined in framework base
             // somewhere (it is in webkit.)
-            if (null == gatewayUri || !Constants.SCHEME_TEL.equals(gatewayUri.getScheme())) {
+            if (null == gatewayUri || !PhoneAccount.SCHEME_TEL.equals(gatewayUri.getScheme())) {
                 Log.e(LOG_TAG, "Unsupported URL:" + gatewayUri);
                 return CALL_STATUS_FAILED;
             }
@@ -1234,7 +1235,7 @@ public class PhoneUtils {
 
         // The sip: scheme is simple: just treat the rest of the URI as a
         // SIP address.
-        if (Constants.SCHEME_SIP.equals(scheme)) {
+        if (PhoneAccount.SCHEME_SIP.equals(scheme)) {
             return uri.getSchemeSpecificPart();
         }
 
@@ -1245,7 +1246,7 @@ public class PhoneUtils {
 
         // Check for a voicemail-dialing request.  If the voicemail number is
         // empty, throw a VoiceMailNumberMissingException.
-        if (Constants.SCHEME_VOICEMAIL.equals(scheme) &&
+        if (PhoneAccount.SCHEME_VOICEMAIL.equals(scheme) &&
                 (number == null || TextUtils.isEmpty(number)))
             throw new VoiceMailNumberMissingException();
 

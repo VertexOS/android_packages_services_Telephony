@@ -37,6 +37,7 @@ import android.os.Handler;
 import android.os.SystemClock;
 import android.os.SystemProperties;
 import android.os.UserHandle;
+import android.telecomm.PhoneAccount;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -687,7 +688,7 @@ public class OtaUtils {
         if (!mApplication.cdmaOtaProvisionData.inOtaSpcState) {
             // Place an outgoing call to the special OTASP number:
             Intent newIntent = new Intent(Intent.ACTION_CALL);
-            newIntent.setData(Uri.fromParts(Constants.SCHEME_TEL, OTASP_NUMBER, null));
+            newIntent.setData(Uri.fromParts(PhoneAccount.SCHEME_TEL, OTASP_NUMBER, null));
 
             // Initiate the outgoing call:
             mApplication.callController.placeCall(newIntent);

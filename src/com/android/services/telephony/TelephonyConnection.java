@@ -22,6 +22,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.telecomm.AudioState;
 import android.telecomm.Connection;
+import android.telecomm.PhoneAccount;
 import android.telecomm.PhoneCapabilities;
 import android.telephony.DisconnectCause;
 
@@ -639,7 +640,7 @@ abstract class TelephonyConnection extends Connection {
         if (address == null) {
             address = "";
         }
-        return Uri.fromParts(TelephonyConnectionService.SCHEME_TEL, address, null);
+        return Uri.fromParts(PhoneAccount.SCHEME_TEL, address, null);
     }
 
     /**
