@@ -97,7 +97,7 @@ final class TelecommAccountRegistry {
                     : dummyPrefix + "SIM card in slot " + slotId;
             PhoneAccount account = PhoneAccount.builder()
                     .withAccountHandle(phoneAccountHandle)
-                    .withHandle(Uri.fromParts(TEL_SCHEME, line1Number, null))
+                    .withHandle(Uri.fromParts(PhoneAccount.SCHEME_TEL, line1Number, null))
                     .withSubscriptionNumber(subNumber)
                     .withCapabilities(PhoneAccount.CAPABILITY_SIM_SUBSCRIPTION |
                             PhoneAccount.CAPABILITY_CALL_PROVIDER)
@@ -132,8 +132,6 @@ final class TelecommAccountRegistry {
         }
     };
 
-    private static final String TEL_SCHEME = "tel";
-    private static final String VOICEMAIL_SCHEME = "voicemail";
     private static TelecommAccountRegistry sInstance;
     private final Context mContext;
     private final TelecommManager mTelecommManager;

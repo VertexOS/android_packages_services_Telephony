@@ -18,6 +18,7 @@ package com.android.phone;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.telecomm.PhoneAccount;
 import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
 import android.util.Log;
@@ -185,7 +186,7 @@ public class CallGatewayManager {
      */
     public static String formatProviderUri(Uri uri) {
         if (uri != null) {
-            if (Constants.SCHEME_TEL.equals(uri.getScheme())) {
+            if (PhoneAccount.SCHEME_TEL.equals(uri.getScheme())) {
                 return PhoneNumberUtils.formatNumber(uri.getSchemeSpecificPart());
             } else {
                 return uri.toString();

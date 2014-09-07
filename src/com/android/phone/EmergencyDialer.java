@@ -30,6 +30,7 @@ import android.media.ToneGenerator;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.telecomm.PhoneAccount;
 import android.telephony.PhoneNumberUtils;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -213,7 +214,7 @@ public class EmergencyDialer extends Activity implements View.OnClickListener,
 
         // Extract phone number from intent
         Uri data = getIntent().getData();
-        if (data != null && (Constants.SCHEME_TEL.equals(data.getScheme()))) {
+        if (data != null && (PhoneAccount.SCHEME_TEL.equals(data.getScheme()))) {
             String number = PhoneNumberUtils.getNumberFromIntent(getIntent(), this);
             if (number != null) {
                 mDigits.setText(number);
@@ -520,7 +521,7 @@ public class EmergencyDialer extends Activity implements View.OnClickListener,
                 return;
             }
             Intent intent = new Intent(Intent.ACTION_CALL_EMERGENCY);
-            intent.setData(Uri.fromParts(Constants.SCHEME_TEL, mLastNumber, null));
+            intent.setData(Uri.fromParts(PhoneAccount.SCHEME_TEL, mLastNumber, null));
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
             finish();
