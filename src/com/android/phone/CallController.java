@@ -32,6 +32,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.os.SystemProperties;
 import android.provider.CallLog.Calls;
+import android.telecomm.PhoneAccount;
 import android.telephony.PhoneNumberUtils;
 import android.telephony.ServiceState;
 import android.util.Log;
@@ -466,7 +467,8 @@ public class CallController extends Handler {
                 //   app.cdmaOtaInCallScreenUiState.state are redundant.
                 //   Combine them.
 
-                boolean voicemailUriSpecified = scheme != null && scheme.equals("voicemail");
+                boolean voicemailUriSpecified = scheme != null &&
+                    scheme.equals(PhoneAccount.SCHEME_VOICEMAIL);
                 // Check for an obscure ECM-related scenario: If the phone
                 // is currently in ECM (Emergency callback mode) and we
                 // dial a non-emergency number, that automatically

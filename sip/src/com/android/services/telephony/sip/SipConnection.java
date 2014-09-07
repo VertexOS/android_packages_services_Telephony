@@ -21,13 +21,13 @@ import android.os.Handler;
 import android.os.Message;
 import android.telecomm.AudioState;
 import android.telecomm.Connection;
+import android.telecomm.PhoneAccount;
 import android.telecomm.PhoneCapabilities;
 import android.util.Log;
 
 import com.android.internal.telephony.Call;
 import com.android.internal.telephony.CallStateException;
 import com.android.internal.telephony.sip.SipPhone;
-import com.android.phone.Constants;
 
 import java.util.List;
 import java.util.Objects;
@@ -307,7 +307,7 @@ final class SipConnection extends Connection {
         if (address == null) {
             address = "";
         }
-        return Uri.fromParts(Constants.SCHEME_SIP, address, null);
+        return Uri.fromParts(PhoneAccount.SCHEME_SIP, address, null);
     }
 
     private void close() {
