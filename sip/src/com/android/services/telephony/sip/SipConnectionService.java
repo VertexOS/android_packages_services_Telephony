@@ -88,7 +88,7 @@ public final class SipConnectionService extends ConnectionService {
 
 
         final SipConnection connection = new SipConnection();
-        connection.setHandle(request.getHandle(), PropertyPresentation.ALLOWED);
+        connection.setHandle(request.getAddress(), PropertyPresentation.ALLOWED);
         connection.setInitializing();
         connection.onAddedToCallService();
         boolean attemptCall = true;
@@ -265,7 +265,7 @@ public final class SipConnectionService extends ConnectionService {
 
     private com.android.internal.telephony.Connection startCallWithPhone(
             SipPhone phone, ConnectionRequest request) {
-        String number = request.getHandle().getSchemeSpecificPart();
+        String number = request.getAddress().getSchemeSpecificPart();
         if (VERBOSE) log("startCallWithPhone, number: " + number);
 
         try {
