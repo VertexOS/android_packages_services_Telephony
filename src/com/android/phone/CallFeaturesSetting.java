@@ -1681,7 +1681,7 @@ public class CallFeaturesSetting extends PreferenceActivity
         }
 
         List<PhoneAccountHandle> simCallManagers = telecommManager.getSimCallManagers();
-        if (simCallManagers.size() > 1) {
+        if (!simCallManagers.isEmpty()) {
             mSimCallManagerAccount.setModel(
                     telecommManager,
                     simCallManagers,
