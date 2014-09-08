@@ -33,6 +33,7 @@ import com.android.internal.telephony.PhoneFactory;
 import com.android.internal.telephony.PhoneProxy;
 import com.android.internal.telephony.TelephonyIntents;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -95,17 +96,16 @@ final class TelecommAccountRegistry {
             String description = isEmergency
                     ? "Emergency calling only"
                     : dummyPrefix + "SIM card in slot " + slotId;
-            PhoneAccount account = PhoneAccount.builder()
-                    .withAccountHandle(phoneAccountHandle)
-                    .withHandle(Uri.fromParts(PhoneAccount.SCHEME_TEL, line1Number, null))
-                    .withSubscriptionNumber(subNumber)
-                    .withCapabilities(PhoneAccount.CAPABILITY_SIM_SUBSCRIPTION |
+            PhoneAccount account = PhoneAccount.builder(phoneAccountHandle, label)
+                    .setAddress(Uri.fromParts(PhoneAccount.SCHEME_TEL, line1Number, null))
+                    .setSubscriptionAddress(
+                            Uri.fromParts(PhoneAccount.SCHEME_TEL, subNumber, null))
+                    .setCapabilities(PhoneAccount.CAPABILITY_SIM_SUBSCRIPTION |
                             PhoneAccount.CAPABILITY_CALL_PROVIDER)
-                    .withIconResId(getPhoneAccountIcon(slotId))
-                    .withLabel(label)
-                    .withShortDescription(description)
-                    .withSupportedUriScheme(PhoneAccount.SCHEME_TEL)
-                    .withSupportedUriScheme(PhoneAccount.SCHEME_VOICEMAIL)
+                    .setIconResId(getPhoneAccountIcon(slotId))
+                    .setShortDescription(description)
+                    .setSupportedUriSchemes(Arrays.asList(
+                            PhoneAccount.SCHEME_TEL, PhoneAccount.SCHEME_VOICEMAIL))
                     .build();
 
             // Register with Telecomm and put into the account entry.
