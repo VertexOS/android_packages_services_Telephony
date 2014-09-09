@@ -64,7 +64,7 @@ final class SipConnection extends Connection {
             getPhone().registerForPreciseCallStateChanged(mHandler, MSG_PRECISE_CALL_STATE_CHANGED,
                     null);
         }
-        updateHandle();
+        updateAddress();
         setInitialized();
     }
 
@@ -231,7 +231,7 @@ final class SipConnection extends Connection {
                 case ALERTING:
                     setDialing();
                     // For SIP calls, we need to ask the framework to play the ringback for us.
-                    setRequestingRingback(true);
+                    setRingbackRequested(true);
                     break;
                 case INCOMING:
                 case WAITING:
@@ -277,14 +277,14 @@ final class SipConnection extends Connection {
     /**
      * Updates the handle on this connection based on the original connection.
      */
-    private void updateHandle() {
+    private void updateAddress() {
         if (mOriginalConnection != null) {
-            Uri handle = getHandleFromAddress(mOriginalConnection.getAddress());
+            Uri address = getAddressFromNumber(mOriginalConnection.getAddress());
             int presentation = mOriginalConnection.getNumberPresentation();
-            if (!Objects.equals(handle, getHandle()) ||
-                    presentation != getHandlePresentation()) {
-                com.android.services.telephony.Log.v(this, "updateHandle, handle changed");
-                setHandle(handle, presentation);
+            if (!Objects.equals(address, getAddress()) ||
+                    presentation != getAddressPresentation()) {
+                com.android.services.telephony.Log.v(this, "updateAddress, address changed");
+                setAddress(address, presentation);
             }
 
             String name = mOriginalConnection.getCnapName();
@@ -292,24 +292,24 @@ final class SipConnection extends Connection {
             if (!Objects.equals(name, getCallerDisplayName()) ||
                     namePresentation != getCallerDisplayNamePresentation()) {
                 com.android.services.telephony.Log
-                        .v(this, "updateHandle, caller display name changed");
+                        .v(this, "updateAddress, caller display name changed");
                 setCallerDisplayName(name, namePresentation);
             }
         }
     }
 
     /**
-     * Determines the handle for an incoming number.
+     * Determines the address for an incoming number.
      *
-     * @param address The incoming number.
+     * @param number The incoming number.
      * @return The Uri representing the number.
      */
-    private static Uri getHandleFromAddress(String address) {
+    private static Uri getAddressFromNumber(String number) {
         // Address can be null for blocked calls.
-        if (address == null) {
-            address = "";
+        if (number == null) {
+            number = "";
         }
-        return Uri.fromParts(PhoneAccount.SCHEME_SIP, address, null);
+        return Uri.fromParts(PhoneAccount.SCHEME_SIP, number, null);
     }
 
     private void close() {

@@ -66,7 +66,7 @@ abstract class TelephonyConnection extends Connection {
                                 "not foreground connection, skipping");
                         return;
                     }
-                    setRequestingRingback((Boolean) ((AsyncResult) msg.obj).result);
+                    setRingbackRequested((Boolean) ((AsyncResult) msg.obj).result);
                     break;
             }
         }
@@ -337,22 +337,22 @@ abstract class TelephonyConnection extends Connection {
         }
     }
 
-    protected final void updateHandle() {
+    protected final void updateAddress() {
         updateCallCapabilities();
         if (mOriginalConnection != null) {
-            Uri handle = getHandleFromAddress(mOriginalConnection.getAddress());
+            Uri address = getAddressFromNumber(mOriginalConnection.getAddress());
             int presentation = mOriginalConnection.getNumberPresentation();
-            if (!Objects.equals(handle, getHandle()) ||
-                    presentation != getHandlePresentation()) {
-                Log.v(this, "updateHandle, handle changed");
-                setHandle(handle, presentation);
+            if (!Objects.equals(address, getAddress()) ||
+                    presentation != getAddressPresentation()) {
+                Log.v(this, "updateAddress, address changed");
+                setAddress(address, presentation);
             }
 
             String name = mOriginalConnection.getCnapName();
             int namePresentation = mOriginalConnection.getCnapNamePresentation();
             if (!Objects.equals(name, getCallerDisplayName()) ||
                     namePresentation != getCallerDisplayNamePresentation()) {
-                Log.v(this, "updateHandle, caller display name changed");
+                Log.v(this, "updateAddress, caller display name changed");
                 setCallerDisplayName(name, namePresentation);
             }
         }
@@ -385,7 +385,7 @@ abstract class TelephonyConnection extends Connection {
         setVideoProvider(mOriginalConnection.getVideoProvider());
         setAudioQuality(mOriginalConnection.getAudioQuality());
 
-        updateHandle();
+        updateAddress();
     }
 
     protected void hangup(int disconnectCause) {
@@ -523,7 +523,7 @@ abstract class TelephonyConnection extends Connection {
             }
         }
         updateCallCapabilities();
-        updateHandle();
+        updateAddress();
     }
 
     private void close() {
@@ -635,12 +635,12 @@ abstract class TelephonyConnection extends Connection {
         updateCallCapabilities();
     }
 
-    private static Uri getHandleFromAddress(String address) {
+    private static Uri getAddressFromNumber(String number) {
         // Address can be null for blocked calls.
-        if (address == null) {
-            address = "";
+        if (number == null) {
+            number = "";
         }
-        return Uri.fromParts(PhoneAccount.SCHEME_TEL, address, null);
+        return Uri.fromParts(PhoneAccount.SCHEME_TEL, number, null);
     }
 
     /**

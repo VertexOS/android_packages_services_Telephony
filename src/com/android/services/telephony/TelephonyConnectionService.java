@@ -143,7 +143,7 @@ public class TelephonyConnectionService extends ConnectionService {
             return Connection.createFailedConnection(
                     DisconnectCause.OUTGOING_FAILURE, "Invalid phone type");
         }
-        connection.setHandle(handle, PhoneConstants.PRESENTATION_ALLOWED);
+        connection.setAddress(handle, PhoneConstants.PRESENTATION_ALLOWED);
         connection.setInitializing();
         connection.setVideoState(request.getVideoState());
 
@@ -224,7 +224,7 @@ public class TelephonyConnectionService extends ConnectionService {
 
     private void placeOutgoingConnection(
             TelephonyConnection connection, Phone phone, ConnectionRequest request) {
-        String number = connection.getHandle().getSchemeSpecificPart();
+        String number = connection.getAddress().getSchemeSpecificPart();
 
         com.android.internal.telephony.Connection originalConnection;
         try {
