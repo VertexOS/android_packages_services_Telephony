@@ -95,7 +95,7 @@ final class TelecommAccountRegistry {
             }
 
             String subDisplayName = null;
-            SubInfoRecord record = SubscriptionManager.getSubInfoUsingSubId(subId);
+            SubInfoRecord record = SubscriptionManager.getSubInfoForSubscriber(subId);
             if (record != null) {
                 subDisplayName = record.displayName;
             }
