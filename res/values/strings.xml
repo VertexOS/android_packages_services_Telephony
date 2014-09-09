@@ -1218,4 +1218,8 @@
     <!-- Label for close button in dialog, for video calling setting. -->
     <string name="enable_video_calling_dialog_close">Close</string>
 
+    <!-- Strings used in Settings->Sim cards for each installed Sim. -->
+    <string name="sim_label_emergency_calls">Emergency calls</string>
+    <string name="sim_description_emergency_calls">Emergency calling only</string>
+    <string name="sim_description_default">SIM card in slot <xliff:g id="slot_id">%d</xliff:g></string>
 </resources>
