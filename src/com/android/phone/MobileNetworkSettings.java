@@ -122,10 +122,7 @@ public class MobileNetworkSettings extends PreferenceActivity
     @Override
     public void onDismiss(DialogInterface dialog) {
         // Assuming that onClick gets called first
-        if (!mOkClicked) {
-            mButtonDataRoam.setChecked(false);
-            getPreferenceScreen().setEnabled(true);
-        }
+        mButtonDataRoam.setChecked(mOkClicked);
     }
 
     /**
@@ -184,6 +181,9 @@ public class MobileNetworkSettings extends PreferenceActivity
                     getContentResolver(), android.provider.Settings.Global.PREFERRED_NETWORK_MODE,
                     preferredNetworkMode);
             mButtonEnabledNetworks.setValue(Integer.toString(settingsNetworkMode));
+            return true;
+        } else if (preference == mButtonDataRoam) {
+            // Do not disable the preference screen if the user clicks Data roaming.
             return true;
         } else {
             // if the button is anything but the simple toggle preference,
