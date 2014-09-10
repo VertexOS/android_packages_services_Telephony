@@ -242,6 +242,7 @@
         <item name="android:background">@color/actionbar_background_color</item>
         <item name="android:titleTextStyle">@style/DialtactsActionBarTitleText</item>
         <item name="android:height">@dimen/action_bar_height</item>
+        <item name="android:elevation">@dimen/action_bar_elevation</item>
         <!-- Empty icon -->
         <item name="android:icon">@android:color/transparent</item>
         <!-- Shift the title text to the right -->
@@ -250,7 +251,7 @@
 
     <!-- Text in the action bar at the top of the screen.  Should be kept in sync with Dialer. -->
     <style name="DialtactsActionBarTitleText"
-           parent="@android:style/TextAppearance.Holo.Widget.ActionBar.Title">
+           parent="@android:style/TextAppearance.Material.Widget.ActionBar.Title">
         <item name="android:textColor">@color/phone_settings_actionbar_text_color</item>
     </style>
 
