@@ -86,8 +86,6 @@
     <!-- Title of the button to show in a alert dialog. [CHAR LIMIT=NONE] -->
     <string name="close_profile">Close</string>
 
-    <!-- Summary of a SIP account in the list of SIP accounts, consists of primary account status and registration status. This string indicates that this SIP account is a primary account and the string placeholder is the registration status, which will be one of the strings with name starting with "registration_status_" below. [CHAR LIMIT=NONE] -->
-    <string name="primary_account_summary_with">Primary account. <xliff:g id="registration_status" example="Registering...">%s</xliff:g></string>
     <!-- Text of SIP-call registration status, checking current registration status with SIP service [CHAR LIMIT=NONE] -->
     <string name="registration_status_checking_status">Checking status...</string>
     <!-- Text of SIP-call registration status, registering with SIP server in order to receive calls on this account [CHAR LIMIT=NONE] -->
@@ -135,10 +133,6 @@
     <string name="transport_title">Transport type</string>
     <!-- Text of the keepalive preference. [CHAR LIMIT=NONE] -->
     <string name="send_keepalive_title">Send keep-alive</string>
-    <!-- Text of the set-primary preference. Simplified from "Make this my primary account". [CHAR LIMIT=NONE] -->
-    <string name="set_primary_title">Set as primary account</string>
-    <!-- Text of the set-primary preference summary. [CHAR LIMIT=NONE] -->
-    <string name="set_primary_summary">Used for outbound calls</string>
     <!-- Text of the advanced settings section. [CHAR LIMIT=NONE] -->
     <string name="advanced_settings">Optional settings</string>
     <!-- Text of the username used in authentication. [CHAR LIMIT=NONE] -->
@@ -198,7 +192,6 @@
     <string translatable="false" name="port">Port</string>
     <string translatable="false" name="transport">Protocol</string>
     <string translatable="false" name="send_keepalive">SendKeepAlive</string>
-    <string translatable="false" name="set_primary">SetPrimary</string>
     <string translatable="false" name="advanced_settings_container">advanced settings container</string>
     <string translatable="false" name="auth_username">AuthUserName</string>
 
