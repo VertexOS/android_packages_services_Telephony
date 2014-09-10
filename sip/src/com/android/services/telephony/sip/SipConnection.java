@@ -230,6 +230,8 @@ final class SipConnection extends Connection {
                 case DIALING:
                 case ALERTING:
                     setDialing();
+                    // For SIP calls, we need to ask the framework to play the ringback for us.
+                    setRequestingRingback(true);
                     break;
                 case INCOMING:
                 case WAITING:
