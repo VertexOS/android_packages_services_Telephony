@@ -15,13 +15,17 @@
 -->
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:phone="http://schemas.android.com/apk/res/com.android.phone"
-    android:title="@string/call_settings">
+    android:title="@string/updating_title">
 
-    <com.android.phone.settings.AccountSelectionPreference
-        android:key="default_outgoing_account"
-        android:title="@string/phone_accounts_make_calls_with"
-        android:defaultValue=""
-        android:persistent="false" />
+    <PreferenceScreen
+        android:key="phone_account_settings_preference_screen"
+        android:title="@string/phone_account_settings">
+
+        <intent
+            android:targetPackage="com.android.phone"
+            android:targetClass="com.android.phone.settings.PhoneAccountSettingsActivity"/>
+
+    </PreferenceScreen>>
 
     <PreferenceScreen
         android:key="button_voicemail_category_key"
@@ -135,11 +139,5 @@
             android:targetClass="com.android.phone.CdmaCallOptions"/>
 
     </PreferenceScreen>
-
-    <com.android.phone.settings.AccountSelectionPreference
-        android:key="wifi_call_manager_account"
-        android:title="@string/phone_account_wifi_calling"
-        android:defaultValue=""
-        android:persistent="false" />
 
 </PreferenceScreen>
