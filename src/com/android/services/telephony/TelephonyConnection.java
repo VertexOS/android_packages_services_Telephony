@@ -30,6 +30,7 @@ import com.android.internal.telephony.Call;
 import com.android.internal.telephony.CallStateException;
 import com.android.internal.telephony.Connection.PostDialListener;
 import com.android.internal.telephony.Phone;
+import com.android.internal.telephony.imsphone.ImsPhoneConnection;
 
 import java.lang.Override;
 import java.util.Objects;
@@ -326,6 +327,7 @@ abstract class TelephonyConnection extends Connection {
         int newCallCapabilities = buildCallCapabilities();
         newCallCapabilities = applyVideoCapabilities(newCallCapabilities);
         newCallCapabilities = applyAudioQualityCapabilities(newCallCapabilities);
+        newCallCapabilities = applyConferenceTerminationCapabilities(newCallCapabilities);
 
         if (getCallCapabilities() != newCallCapabilities) {
             setCallCapabilities(newCallCapabilities);
@@ -580,6 +582,27 @@ abstract class TelephonyConnection extends Connection {
     }
 
     /**
+     * Applies capabilities specific to conferences termination to the
+     * {@code CallCapabilities} bit-mask.
+     *
+     * @param callCapabilities The {@code CallCapabilities} bit-mask.
+     * @return The capabilities with the IMS conference capabilities applied.
+     */
+    private int applyConferenceTerminationCapabilities(int callCapabilities) {
+        int currentCapabilities = callCapabilities;
+
+        // An IMS call cannot be individually disconnected or separated from its parent conference
+        boolean isImsCall = getOriginalConnection() instanceof ImsPhoneConnection;
+        if (!isImsCall) {
+            currentCapabilities |=
+                    PhoneCapabilities.DISCONNECT_FROM_CONFERENCE
+                    | PhoneCapabilities.SEPARATE_FROM_CONFERENCE;
+        }
+
+        return currentCapabilities;
+    }
+
+    /**
      * Returns the local video capability state for the connection.
      *
      * @return {@code True} if the connection has local video capabilities.
@@ -628,6 +651,13 @@ abstract class TelephonyConnection extends Connection {
     public void setAudioQuality(int audioQuality) {
         mAudioQuality = audioQuality;
         updateCallCapabilities();
+    }
+
+    /**
+     * Obtains the current call audio quality.
+     */
+    public int getAudioQuality() {
+        return mAudioQuality;
     }
 
     private static Uri getAddressFromNumber(String number) {
