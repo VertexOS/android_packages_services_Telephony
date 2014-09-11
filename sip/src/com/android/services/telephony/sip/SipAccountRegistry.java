@@ -16,21 +16,15 @@
 
 package com.android.services.telephony.sip;
 
-import android.content.ComponentName;
 import android.content.Context;
-import android.net.Uri;
 import android.net.sip.SipException;
 import android.net.sip.SipManager;
 import android.net.sip.SipProfile;
-import android.provider.Settings;
 import android.telecomm.PhoneAccount;
 import android.telecomm.PhoneAccountHandle;
 import android.telecomm.TelecommManager;
 import android.util.Log;
 
-import com.android.phone.R;
-
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -50,41 +44,58 @@ final class SipAccountRegistry {
             return mProfile;
         }
 
-        boolean register(SipManager sipManager, Context context) {
-            if (VERBOSE) log("register, profile: " + mProfile);
+        /**
+         * Starts the SIP service associated with the SIP profile.
+         *
+         * @param sipManager The SIP manager.
+         * @param context The context.
+         * @param isReceivingCalls {@code True} if the sip service is being started to make and
+         *          receive calls.  {@code False} if the sip service is being started only for
+         *          outgoing calls.
+         * @return {@code True} if the service started successfully.
+         */
+        boolean startSipService(SipManager sipManager, Context context, boolean isReceivingCalls) {
+            if (VERBOSE) log("startSipService, profile: " + mProfile);
             try {
-                sipManager.open(
-                        mProfile,
-                        SipUtil.createIncomingCallPendingIntent(context, mProfile.getUriString()),
-                        null);
-                TelecommManager.from(context).registerPhoneAccount(createPhoneAccount(context));
+                // Stop the Sip service for the profile if it is already running.  This is important
+                // if we are changing the state of the "receive calls" option.
+                sipManager.close(mProfile.getUriString());
+
+                // Start the sip service for the profile.
+                if (isReceivingCalls) {
+                    sipManager.open(
+                            mProfile,
+                            SipUtil.createIncomingCallPendingIntent(context,
+                                    mProfile.getUriString()),
+                            null);
+                } else {
+                    sipManager.open(mProfile);
+                }
                 return true;
             } catch (SipException e) {
-                log("register, profile: " + mProfile.getProfileName() +
+                log("startSipService, profile: " + mProfile.getProfileName() +
                         ", exception: " + e);
             }
             return false;
         }
 
-        private PhoneAccount createPhoneAccount(Context context) {
-            boolean useSipForPstnCalls = useSipForPstnCalls(context);
-
-            PhoneAccountHandle accountHandle =
-                    SipUtil.createAccountHandle(context, mProfile.getUriString());
-            List supportedUriSchemes = Arrays.asList(PhoneAccount.SCHEME_SIP);
-            if (useSipForPstnCalls) {
-                supportedUriSchemes.add(PhoneAccount.SCHEME_TEL);
+        /**
+         * Stops the SIP service associated with the SIP profile.  The {@code SipAccountRegistry} is
+         * informed when the service has been stopped via an intent which triggers
+         * {@link SipAccountRegistry#removeSipProfile(String)}.
+         *
+         * @param sipManager The SIP manager.
+         * @return {@code True} if stop was successful.
+         */
+        boolean stopSipService(SipManager sipManager) {
+            try {
+                sipManager.close(mProfile.getUriString());
+                return true;
+            } catch (Exception e) {
+                log("stopSipService, stop failed for profile: " + mProfile.getUriString() +
+                        ", exception: " + e);
             }
-
-            PhoneAccount.Builder builder = PhoneAccount.builder(
-                        accountHandle, mProfile.getDisplayName())
-                    .setCapabilities(PhoneAccount.CAPABILITY_CALL_PROVIDER)
-                    .setAddress(Uri.parse(mProfile.getUriString()))
-                    .setShortDescription(mProfile.getDisplayName())
-                    .setIconResId(R.drawable.ic_dialer_sip_black_24dp)
-                    .setSupportedUriSchemes(supportedUriSchemes);
-
-            return builder.build();
+            return false;
         }
     }
 
@@ -101,23 +112,86 @@ final class SipAccountRegistry {
     }
 
     void setup(Context context) {
-        clearCurrentSipAccounts(context);
-        registerProfiles(context, null);
+        startSipProfilesAsync((Context) context, (String) null);
     }
 
-    void addPhone(Context context, String sipUri) {
-        registerProfiles(context, sipUri);
+    /**
+     * Starts the SIP service for the specified SIP profile and ensures it has a valid registered
+     * {@link PhoneAccount}.
+     *
+     * @param context The context.
+     * @param sipUri The Uri of the {@link SipProfile} to start, or {@code null} for all.
+     */
+    void startSipService(Context context, String sipUri) {
+        startSipProfilesAsync((Context) context, (String) sipUri);
     }
 
-    void removePhone(Context context, String sipUri) {
-        for (AccountEntry entry : mAccounts) {
-            if (Objects.equals(sipUri, entry.getProfile().getUriString())) {
-                TelecommManager.from(context).unregisterPhoneAccount(
-                        SipUtil.createAccountHandle(context, sipUri));
-                mAccounts.remove(entry);
-                break;
-            }
+    /**
+     * Removes a {@link SipProfile} from the account registry.  Does not stop/close the associated
+     * SIP service (this method is invoked via an intent from the SipService once a profile has
+     * been stopped/closed).
+     *
+     * @param sipUri The Uri of the {@link SipProfile} to remove from the registry.
+     */
+    void removeSipProfile(String sipUri) {
+        AccountEntry accountEntry = getAccountEntry(sipUri);
+
+        if (accountEntry != null) {
+            mAccounts.remove(accountEntry);
         }
+    }
+
+    /**
+     * Stops a SIP profile and un-registers its associated {@link android.telecomm.PhoneAccount}.
+     * Called after a SIP profile is deleted.  The {@link AccountEntry} will be removed when the
+     * service has been stopped.  The {@code SipService} fires the {@code ACTION_SIP_REMOVE_PHONE}
+     * intent, which triggers {@link SipAccountRegistry#removeSipProfile(String)} to perform the
+     * removal.
+     *
+     * @param context The context.
+     * @param sipUri The {@code Uri} of the sip profile.
+     */
+    void stopSipService(Context context, String sipUri) {
+        // Stop the sip service for the profile.
+        AccountEntry accountEntry = getAccountEntry(sipUri);
+        if (accountEntry != null ) {
+            SipManager sipManager = SipManager.newInstance(context);
+            accountEntry.stopSipService(sipManager);
+        }
+
+        // Un-register its PhoneAccount.
+        PhoneAccountHandle handle = SipUtil.createAccountHandle(context, sipUri);
+        TelecommManager.from(context).unregisterPhoneAccount(handle);
+    }
+
+    /**
+     * Causes the SIP service to be restarted for all {@link SipProfile}s.  For example, if the user
+     * toggles the "receive calls" option for SIP, this method handles restarting the SIP services
+     * in the new mode.
+     *
+     * @param context The context.
+     */
+    void restartSipService(Context context) {
+        startSipProfiles(context, null);
+    }
+
+    /**
+     * Performs an asynchronous call to
+     * {@link SipAccountRegistry#startSipProfiles(android.content.Context, String)}, starting the
+     * specified SIP profile and registering its {@link android.telecomm.PhoneAccount}.
+     *
+     * @param context The context.
+     * @param sipUri A specific SIP uri to start.
+     */
+    private void startSipProfilesAsync(final Context context, final String sipUri) {
+        if (VERBOSE) log("startSipProfiles, start auto registration");
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                startSipProfiles(context, sipUri);
+            }}
+        ).start();
     }
 
     /**
@@ -125,60 +199,87 @@ final class SipAccountRegistry {
      * each with the telecomm framework. If a specific sipUri is specified, this will only register
      * the associated SIP account.
      *
+     * Also handles migration from using the primary account shared preference to indicate the
+     * {@link SipProfile} to be used for outgoing Sip connections to using the enabled flag on
+     * {@link android.telecomm.PhoneAccount}s to indicate which profiles can be used for outgoing
+     * or ingoing calls.
+     *
      * @param context The context.
-     * @param sipUri A specific SIP uri to register.
+     * @param sipUri A specific SIP uri to start, or {@code null} to start all.
      */
-    private void registerProfiles(final Context context, final String sipUri) {
-        if (VERBOSE) log("registerProfiles, start auto registration");
+    private void startSipProfiles(Context context, String sipUri) {
         final SipSharedPreferences sipSharedPreferences = new SipSharedPreferences(context);
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                SipManager sipManager = SipManager.newInstance(context);
-                SipProfileDb profileDb = new SipProfileDb(context);
-                String primaryProfile = sipSharedPreferences.getPrimaryAccount();
-                List<SipProfile> sipProfileList = profileDb.retrieveSipProfileList();
-
-                for (SipProfile profile : sipProfileList) {
-                    boolean isPrimaryProfile = profile.getUriString().equals(primaryProfile);
-                    if (profile.getAutoRegistration() || isPrimaryProfile) {
-                        if (sipUri == null || Objects.equals(sipUri, profile.getUriString())) {
-                            registerAccountForProfile(profile, sipManager, context);
-                        }
-                    }
-                }
-            }}
-        ).start();
-    }
-
-    private void registerAccountForProfile(
-            SipProfile profile, SipManager sipManager, Context context) {
-        AccountEntry entry = new AccountEntry(profile);
-
-        if (entry.register(sipManager, context)) {
-            mAccounts.add(entry);
-        }
-    }
-
-    private void clearCurrentSipAccounts(Context context) {
-        ComponentName sipComponentName = new ComponentName(context, SipConnectionService.class);
+        boolean isReceivingCalls = sipSharedPreferences.isReceivingCallsEnabled();
+        String primaryProfile = sipSharedPreferences.getPrimaryAccount();
         TelecommManager telecommManager = TelecommManager.from(context);
-        List<PhoneAccountHandle> accountHandles = telecommManager.getEnabledPhoneAccounts();
-        for (PhoneAccountHandle handle : accountHandles) {
-            if (sipComponentName.equals(handle.getComponentName())) {
-                telecommManager.unregisterPhoneAccount(handle);
+        SipManager sipManager = SipManager.newInstance(context);
+        SipProfileDb profileDb = new SipProfileDb(context);
+        List<SipProfile> sipProfileList = profileDb.retrieveSipProfileList();
+
+        for (SipProfile profile : sipProfileList) {
+            // Register a PhoneAccount for the profile and optionally enable the primary
+            // profile.
+            if (sipUri == null || Objects.equals(sipUri, profile.getUriString())) {
+                PhoneAccount phoneAccount = SipUtil.createPhoneAccount(context, profile);
+                telecommManager.registerPhoneAccount(phoneAccount);
+
+                // If this profile was the primary profile in the past, mark it as enabled.
+                boolean isPrimaryProfile = primaryProfile != null &&
+                        profile.getUriString().equals(primaryProfile);
+                if (isPrimaryProfile) {
+                    telecommManager.setPhoneAccountEnabled(
+                            phoneAccount.getAccountHandle(), true);
+                }
             }
+
+            // Start the SIP service for the profile.
+            if (SipUtil.isPhoneAccountEnabled(context, profile)) {
+                if (sipUri == null || Objects.equals(sipUri, profile.getUriString())) {
+                    startSipServiceForProfile(profile, sipManager, context, isReceivingCalls);
+                }
+            }
+        }
+
+        if (primaryProfile != null) {
+            // Remove the primary account shared preference, ensuring the migration does not
+            // occur again in the future.
+            sipSharedPreferences.cleanupPrimaryAccountSetting();
         }
     }
 
     /**
-     * Determines if the user has chosen to use SIP for PSTN calls as well as SIP calls.
+     * Starts the SIP service for a sip profile and saves a new {@code AccountEntry} in the
+     * registry.
+     *
+     * @param profile The {@link SipProfile} to start.
+     * @param sipManager The SIP manager.
      * @param context The context.
-     * @return {@code True} if SIP should be used for PSTN calls.
+     * @param isReceivingCalls {@code True} if the profile should be started such that it can
+     *      receive incoming calls.
      */
-    private boolean useSipForPstnCalls(Context context) {
-        final SipSharedPreferences sipSharedPreferences = new SipSharedPreferences(context);
-        return sipSharedPreferences.getSipCallOption().equals(Settings.System.SIP_ALWAYS);
+    private void startSipServiceForProfile(SipProfile profile, SipManager sipManager,
+            Context context, boolean isReceivingCalls) {
+        removeSipProfile(profile.getUriString());
+
+        AccountEntry entry = new AccountEntry(profile);
+        if (entry.startSipService(sipManager, context, isReceivingCalls)) {
+            mAccounts.add(entry);
+        }
+    }
+
+    /**
+     * Retrieves the {@link AccountEntry} from the registry with the specified Uri.
+     *
+     * @param sipUri The Uri of the profile to retrieve.
+     * @return The {@link AccountEntry}, or {@code null} is it was not found.
+     */
+    private AccountEntry getAccountEntry(String sipUri) {
+        for (AccountEntry entry : mAccounts) {
+            if (Objects.equals(sipUri, entry.getProfile().getUriString())) {
+                return entry;
+            }
+        }
+        return null;
     }
 
     private void log(String message) {

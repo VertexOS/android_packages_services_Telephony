@@ -39,6 +39,8 @@ import android.preference.Preference;
 import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceCategory;
+import android.telecomm.PhoneAccount;
+import android.telecomm.TelecommManager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
@@ -104,13 +106,9 @@ public class SipSettings extends PreferenceActivity {
 
         void updateSummary(String registrationStatus) {
             int profileUid = mProfile.getCallingUid();
-            boolean isPrimary = mProfile.getUriString().equals(
-                    mSipSharedPreferences.getPrimaryAccount());
             if (VERBOSE) {
                 log("SipPreference.updateSummary, profile uid: " + profileUid +
-                        " isPrimary: " + isPrimary +
                         " registration: " + registrationStatus +
-                        " Primary: " + mSipSharedPreferences.getPrimaryAccount() +
                         " status: " + registrationStatus);
             }
             String summary = "";
@@ -118,9 +116,6 @@ public class SipSettings extends PreferenceActivity {
                 // from third party apps
                 summary = getString(R.string.third_party_account_summary,
                         getPackageNameFromUid(profileUid));
-            } else if (isPrimary) {
-                summary = getString(R.string.primary_account_summary_with,
-                        registrationStatus);
             } else {
                 summary = registrationStatus;
             }
@@ -219,36 +214,35 @@ public class SipSettings extends PreferenceActivity {
                 });
     }
 
-    private synchronized void handleSipReceiveCallsOption(boolean enabled) {
-        mSipSharedPreferences.setReceivingCallsEnabled(enabled);
+    /**
+     * Handles changes to the "receive calls" option.
+     *
+     * @param isReceivingCalls {@code True} if receiving incoming SIP calls.
+     */
+    private synchronized void handleSipReceiveCallsOption(boolean isReceivingCalls) {
+        mSipSharedPreferences.setReceivingCallsEnabled(isReceivingCalls);
+
+        // Mark all profiles as auto-register if we are now receiving calls.
         List<SipProfile> sipProfileList = mProfileDb.retrieveSipProfileList();
         for (SipProfile p : sipProfileList) {
-            String sipUri = p.getUriString();
-            p = updateAutoRegistrationFlag(p, enabled);
-            try {
-                if (enabled) {
-                    mSipManager.open(
-                            p, SipUtil.createIncomingCallPendingIntent(this, sipUri), null);
-                } else {
-                    mSipManager.close(sipUri);
-                    if (mSipSharedPreferences.isPrimaryAccount(sipUri)) {
-                        // re-open in order to make calls
-                        mSipManager.open(p);
-                    }
-                }
-            } catch (Exception e) {
-                log("handleSipReceiveCallsOption, register failed: " + e);
-            }
+            p = updateAutoRegistrationFlag(p, isReceivingCalls);
         }
+
+        // Restart all Sip services to ensure we reflect whether we are receiving calls.
+        SipAccountRegistry sipAccountRegistry = SipAccountRegistry.getInstance();
+        sipAccountRegistry.restartSipService(this);
+
         updateProfilesStatus();
     }
 
-    private SipProfile updateAutoRegistrationFlag(
-            SipProfile p, boolean enabled) {
+    private SipProfile updateAutoRegistrationFlag(SipProfile p, boolean enabled) {
         SipProfile newProfile = new SipProfile.Builder(p)
                 .setAutoRegistration(enabled)
                 .build();
         try {
+            // Note: The profile is updated, but the associated PhoneAccount is left alone since
+            // the only thing that changed is the auto-registration flag, which is not part of the
+            // PhoneAccount.
             mProfileDb.deleteProfile(p);
             mProfileDb.saveProfile(newProfile);
         } catch (Exception e) {
