@@ -32,7 +32,7 @@ import android.telecomm.Connection;
 import android.telecomm.ConnectionRequest;
 import android.telecomm.ConnectionService;
 import android.telecomm.PhoneAccountHandle;
-import android.telecomm.PropertyPresentation;
+import android.telecomm.TelecommManager;
 import android.telephony.DisconnectCause;
 import android.util.Log;
 
@@ -88,7 +88,7 @@ public final class SipConnectionService extends ConnectionService {
 
 
         final SipConnection connection = new SipConnection();
-        connection.setHandle(request.getAddress(), PropertyPresentation.ALLOWED);
+        connection.setHandle(request.getAddress(), TelecommManager.PRESENTATION_ALLOWED);
         connection.setInitializing();
         connection.onAddedToCallService();
         boolean attemptCall = true;
