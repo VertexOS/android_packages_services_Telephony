@@ -45,6 +45,8 @@ import java.util.List;
  * removal of SIMs and SIP accounts.
  */
 final class TelecommAccountRegistry {
+    private static final boolean DBG = false; /* STOP SHIP if true */
+
     private final static int[] phoneAccountIcons = {
             R.drawable.ic_multi_sim,
             R.drawable.ic_multi_sim1,
@@ -67,7 +69,6 @@ final class TelecommAccountRegistry {
         }
 
         void teardown() {
-            mTelecommManager.unregisterPhoneAccount(mAccount.getAccountHandle());
             mIncomingCallNotifier.teardown();
         }
 
@@ -117,21 +118,36 @@ final class TelecommAccountRegistry {
                     dummyPrefix + mContext.getResources().getString(
                             R.string.sim_description_default, slotId);
 
+            // By default all SIM phone accounts can place emergency calls.
+            int capabilities = PhoneAccount.CAPABILITY_SIM_SUBSCRIPTION |
+                    PhoneAccount.CAPABILITY_CALL_PROVIDER |
+                    PhoneAccount.CAPABILITY_PLACE_EMERGENCY_CALLS;
+
+            // Indicate the emergency calling PhoneAccount is ALWAYS enabled.  This capability is
+            // important to ensure the emergency-only PhoneAccount cannot be disabled.
+            if (isEmergency) {
+                capabilities |= PhoneAccount.CAPABILITY_ALWAYS_ENABLED;
+            }
+
             PhoneAccount account = PhoneAccount.builder(phoneAccountHandle, label)
                     .setAddress(Uri.fromParts(PhoneAccount.SCHEME_TEL, line1Number, null))
                     .setSubscriptionAddress(
                             Uri.fromParts(PhoneAccount.SCHEME_TEL, subNumber, null))
-                    .setCapabilities(PhoneAccount.CAPABILITY_SIM_SUBSCRIPTION |
-                            PhoneAccount.CAPABILITY_CALL_PROVIDER)
+                    .setCapabilities(capabilities)
                     .setIconResId(getPhoneAccountIcon(slotId))
                     .setShortDescription(description)
                     .setSupportedUriSchemes(Arrays.asList(
                             PhoneAccount.SCHEME_TEL, PhoneAccount.SCHEME_VOICEMAIL))
+                    .setEnabled(true)
                     .build();
 
             // Register with Telecomm and put into the account entry.
             mTelecommManager.registerPhoneAccount(account);
             return account;
+        }
+
+        public PhoneAccountHandle getPhoneAccountHandle() {
+            return mAccount != null ? mAccount.getAccountHandle() : null;
         }
     }
 
@@ -190,7 +206,6 @@ final class TelecommAccountRegistry {
         intentFilter.addAction(TelephonyIntents.ACTION_SUBINFO_RECORD_UPDATED);
         intentFilter.addAction(TelephonyIntents.ACTION_SUBINFO_CONTENT_CHANGE);
         mContext.registerReceiver(mReceiver, intentFilter);
-        setupAccounts();
     }
 
     static PhoneAccountHandle makePstnPhoneAccountHandle(Phone phone) {
@@ -207,22 +222,43 @@ final class TelecommAccountRegistry {
         return new PhoneAccountHandle(pstnConnectionServiceName, id);
     }
 
-    private void clearCurrentTelephonyAccounts() {
+    /**
+     * Determines if the list of {@link AccountEntry}(s) contains an {@link AccountEntry} with a
+     * specified {@link PhoneAccountHandle}.
+     *
+     * @param handle The {@link PhoneAccountHandle}.
+     * @return {@code True} if an entry exists.
+     */
+    private boolean hasAccountEntryForPhoneAccount(PhoneAccountHandle handle) {
+        for (AccountEntry entry : mAccounts) {
+            if (entry.getPhoneAccountHandle().equals(handle)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Un-registers any {@link PhoneAccount}s which are no longer present in the list
+     * {@code AccountEntry}(s).
+     */
+    private void cleanupPhoneAccounts() {
         ComponentName telephonyComponentName =
                 new ComponentName(mContext, TelephonyConnectionService.class);
-        List<PhoneAccountHandle> accountHandles = mTelecommManager.getEnabledPhoneAccounts();
+
+        List<PhoneAccountHandle> accountHandles = mTelecommManager.getAllPhoneAccountHandles();
         for (PhoneAccountHandle handle : accountHandles) {
-            if (telephonyComponentName.equals(handle.getComponentName())) {
+            if (telephonyComponentName.equals(handle.getComponentName()) &&
+                    !hasAccountEntryForPhoneAccount(handle)) {
+                Log.d(this, "Unregistering phone account %s.", handle);
                 mTelecommManager.unregisterPhoneAccount(handle);
             }
         }
     }
 
     private void setupAccounts() {
-        // Before we do anything, we need to clear whatever entries we registered at boot.
-        clearCurrentTelephonyAccounts();
-
-        // Go through SIM-based phones and register ourselves
+        // Go through SIM-based phones and register ourselves -- registering an existing account
+        // will cause the existing entry to be replaced.
         Phone[] phones = PhoneFactory.getPhones();
         Log.d(this, "Found %d phones.  Attempting to register.", phones.length);
         for (Phone phone : phones) {
@@ -242,9 +278,12 @@ final class TelecommAccountRegistry {
         }
 
         // Add a fake account entry.
-        if (phones.length > 0 && "TRUE".equals(System.getProperty("dummy_sim"))) {
+        if ( DBG && phones.length > 0 && "TRUE".equals(System.getProperty("dummy_sim"))) {
             mAccounts.add(new AccountEntry(phones[0], false /* emergency */, true /* isDummy */));
         }
+
+        // Clean up any PhoneAccounts that are no longer relevant
+        cleanupPhoneAccounts();
     }
 
     private int getPhoneAccountIcon(int index) {

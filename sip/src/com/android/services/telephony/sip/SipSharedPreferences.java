@@ -16,14 +16,12 @@
 
 package com.android.services.telephony.sip;
 
-import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.sip.SipManager;
 import android.provider.Settings;
 import android.provider.Settings.SettingNotFoundException;
-import android.text.TextUtils;
 import android.util.Log;
 
 /**
@@ -34,7 +32,13 @@ public class SipSharedPreferences {
     private static final boolean VERBOSE = false; /* STOP SHIP if true */
 
     private static final String SIP_SHARED_PREFERENCES = "SIP_PREFERENCES";
+
+    /**
+     * @deprecated Primary account selection for SIP accounts is no longer relevant.
+     */
+    @Deprecated
     private static final String KEY_PRIMARY_ACCOUNT = "primary";
+
     private static final String KEY_NUMBER_OF_PROFILES = "profiles";
 
     private SharedPreferences mPreferences;
@@ -46,29 +50,13 @@ public class SipSharedPreferences {
         mContext = context;
     }
 
-    public void setPrimaryAccount(String accountUri) {
-        SharedPreferences.Editor editor = mPreferences.edit();
-        editor.putString(KEY_PRIMARY_ACCOUNT, accountUri);
-        editor.apply();
-    }
-
-    public void unsetPrimaryAccount() {
-        setPrimaryAccount(null);
-    }
-
-    /** Returns the primary account URI or null if it does not exist. */
+    /**
+     * Returns the primary account URI or null if it does not exist.
+     * @deprecated The primary account setting is no longer used.
+     */
+    @Deprecated
     public String getPrimaryAccount() {
         return mPreferences.getString(KEY_PRIMARY_ACCOUNT, null);
-    }
-
-    public boolean isPrimaryAccount(String accountUri) {
-        return accountUri.equals(
-                mPreferences.getString(KEY_PRIMARY_ACCOUNT, null));
-    }
-
-    public boolean hasPrimaryAccount() {
-        return !TextUtils.isEmpty(
-                mPreferences.getString(KEY_PRIMARY_ACCOUNT, null));
     }
 
     public void setProfilesCount(int number) {
@@ -111,6 +99,18 @@ public class SipSharedPreferences {
         } catch (SettingNotFoundException e) {
             log("isReceivingCallsEnabled, option not set; use default value, exception: " + e);
             return false;
+        }
+    }
+
+    /**
+     * Performs cleanup of the shared preferences, removing the deprecated primary account key if
+     * it exists.
+     */
+    public void cleanupPrimaryAccountSetting() {
+        if (mPreferences.contains(KEY_PRIMARY_ACCOUNT)) {
+            SharedPreferences.Editor editor = mPreferences.edit();
+            editor.remove(KEY_PRIMARY_ACCOUNT);
+            editor.apply();
         }
     }
 

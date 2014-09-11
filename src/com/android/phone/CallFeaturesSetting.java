@@ -465,6 +465,11 @@ public class CallFeaturesSetting extends PreferenceActivity
      */
     private boolean mReadingSettingsForDefaultProvider = false;
 
+    /**
+     * Used to indicate that the voicemail preference should be shown.
+     */
+    private boolean mShowVoicemailPreference = false;
+
     /*
      * Click Listeners, handle click based on objects attached to UI.
      */
@@ -601,6 +606,22 @@ public class CallFeaturesSetting extends PreferenceActivity
             return true;
         }
         return false;
+    }
+
+    /**
+     * Called just prior to showing an AccountSelection dialog to re-populate the model of the
+     * AccountSelection dialog.  Important to ensure changes to the enabled state of
+     * {@code PhoneAccount}s are reflected in the dialog.
+     *
+     * @param pref The account selection preference dialog being shown.
+     */
+    @Override
+    public void onAccountSelectionDialogShow(AccountSelectionPreference pref) {
+        if (pref == mDefaultOutgoingAccount) {
+            populateDefaultOutgoingAccountsModel();
+        } else if (pref == mSimCallManagerAccount) {
+            populateSimCallManagerAccountsModel();
+        }
     }
 
     @Override
@@ -1509,12 +1530,120 @@ public class CallFeaturesSetting extends PreferenceActivity
         super.onCreate(icicle);
         if (DBG) log("onCreate(). Intent: " + getIntent());
         mPhone = PhoneGlobals.getPhone();
+        mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+
+        // create intent to bring up contact list
+        mContactListIntent = new Intent(Intent.ACTION_GET_CONTENT);
+        mContactListIntent.setType(android.provider.Contacts.Phones.CONTENT_ITEM_TYPE);
+
+        mVoicemailRingtoneLookupRunnable = new Runnable() {
+            @Override
+            public void run() {
+                if (mVoicemailNotificationRingtone != null) {
+                    SettingsUtil.updateRingtoneName(
+                            mPhone.getContext(),
+                            mVoicemailRingtoneLookupComplete,
+                            RingtoneManager.TYPE_NOTIFICATION,
+                            mVoicemailNotificationRingtone,
+                            MSG_UPDATE_VOICEMAIL_RINGTONE_SUMMARY);
+                }
+            }
+        };
+
+        ActionBar actionBar = getActionBar();
+        if (actionBar != null) {
+            // android.R.id.home will be triggered in onOptionsItemSelected()
+            actionBar.setDisplayShowHomeEnabled(true);
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setDisplayShowTitleEnabled(true);
+        }
+
+        // Show the voicemail preference in onResume if the calling intent specifies the
+        // ACTION_ADD_VOICEMAIL action.
+        mShowVoicemailPreference = (icicle == null) &&
+                getIntent().getAction().equals(ACTION_ADD_VOICEMAIL);
+    }
+
+    private void initPhoneAccountPreferences() {
+        mDefaultOutgoingAccount = (AccountSelectionPreference)
+                findPreference(DEFAULT_OUTGOING_ACCOUNT_KEY);
+        mSimCallManagerAccount = (AccountSelectionPreference)
+                findPreference(WIFI_CALL_MANAGER_ACCOUNT_KEY);
+
+        TelecommManager telecommManager = TelecommManager.from(this);
+
+        int allPhoneAccountsCount = telecommManager.getAllPhoneAccountsCount();
+        // Show the phone accounts preference if there are is more than one phone account (this
+        // includes disabled phone accounts).  The default selection, however, only includes those
+        // PhoneAccounts which are enabled.
+        if (allPhoneAccountsCount > 1) {
+            populateDefaultOutgoingAccountsModel();
+
+            mDefaultOutgoingAccount.setListener(this);
+        } else {
+            getPreferenceScreen().removePreference(mDefaultOutgoingAccount);
+        }
+
+        List<PhoneAccountHandle> simCallManagers = telecommManager.getSimCallManagers();
+        if (!simCallManagers.isEmpty()) {
+            populateSimCallManagerAccountsModel();
+            mSimCallManagerAccount.setListener(this);
+        } else {
+            getPreferenceScreen().removePreference(mSimCallManagerAccount);
+        }
+    }
+
+    private void createSipCallSettings() {
+        // Add Internet call settings.
+        if (SipUtil.isVoipSupported(this)) {
+            mSipManager = SipManager.newInstance(this);
+            mSipSharedPreferences = new SipSharedPreferences(this);
+            addPreferencesFromResource(
+                    com.android.services.telephony.sip.R.xml.sip_settings_category);
+            mButtonSipCallOptions = getSipCallOptionPreference();
+            mButtonSipCallOptions.setOnPreferenceChangeListener(this);
+            mButtonSipCallOptions.setValueIndex(
+                    mButtonSipCallOptions.findIndexOfValue(
+                            mSipSharedPreferences.getSipCallOption()));
+            mButtonSipCallOptions.setSummary(mButtonSipCallOptions.getEntry());
+        }
+    }
+
+    private boolean canLaunchIntent(Intent intent) {
+        PackageManager pm = getPackageManager();
+        return pm.resolveActivity(intent, PackageManager.GET_ACTIVITIES) != null;
+    }
+
+    // Gets the call options for SIP depending on whether SIP is allowed only
+    // on Wi-Fi only; also make the other options preference invisible.
+    private ListPreference getSipCallOptionPreference() {
+        ListPreference wifiAnd3G = (ListPreference)
+                findPreference(BUTTON_SIP_CALL_OPTIONS);
+        ListPreference wifiOnly = (ListPreference)
+                findPreference(BUTTON_SIP_CALL_OPTIONS_WIFI_ONLY);
+        PreferenceScreen sipSettings = (PreferenceScreen)
+                getPreferenceScreen().findPreference(SIP_SETTINGS_PREFERENCE_SCREEN_KEY);
+        if (SipManager.isSipWifiOnly(this)) {
+            sipSettings.removePreference(wifiAnd3G);
+            return wifiOnly;
+        } else {
+            sipSettings.removePreference(wifiOnly);
+            return wifiAnd3G;
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mForeground = true;
+
+        PreferenceScreen preferenceScreen = getPreferenceScreen();
+        if (preferenceScreen != null) {
+            preferenceScreen.removeAll();
+        }
 
         addPreferencesFromResource(R.xml.call_feature_setting);
-
         initPhoneAccountPreferences();
-
-        mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 
         // get buttons
         PreferenceScreen prefSet = getPreferenceScreen();
@@ -1541,7 +1670,6 @@ public class CallFeaturesSetting extends PreferenceActivity
             initVoiceMailProviders();
         }
 
-        final ContentResolver contentResolver = getContentResolver();
 
         if (mButtonDTMF != null) {
             if (getResources().getBoolean(R.bool.dtmf_type_enabled)) {
@@ -1609,133 +1737,28 @@ public class CallFeaturesSetting extends PreferenceActivity
             }
         }
 
-        // create intent to bring up contact list
-        mContactListIntent = new Intent(Intent.ACTION_GET_CONTENT);
-        mContactListIntent.setType(android.provider.Contacts.Phones.CONTENT_ITEM_TYPE);
-
         // check the intent that started this activity and pop up the voicemail
         // dialog if we've been asked to.
         // If we have at least one non default VM provider registered then bring up
         // the selection for the VM provider, otherwise bring up a VM number dialog.
         // We only bring up the dialog the first time we are called (not after orientation change)
-        if (icicle == null) {
-            if (getIntent().getAction().equals(ACTION_ADD_VOICEMAIL) &&
-                    mVoicemailProviders != null) {
-                if (DBG) {
-                    log("ACTION_ADD_VOICEMAIL Intent is thrown. current VM data size: "
-                            + mVMProvidersData.size());
-                }
-                if (mVMProvidersData.size() > 1) {
-                    simulatePreferenceClick(mVoicemailProviders);
-                } else {
-                    onPreferenceChange(mVoicemailProviders, DEFAULT_VM_PROVIDER_KEY);
-                    mVoicemailProviders.setValue(DEFAULT_VM_PROVIDER_KEY);
-                }
+        if (mShowVoicemailPreference && mVoicemailProviders != null) {
+            if (DBG) {
+                log("ACTION_ADD_VOICEMAIL Intent is thrown. current VM data size: "
+                        + mVMProvidersData.size());
             }
+            if (mVMProvidersData.size() > 1) {
+                simulatePreferenceClick(mVoicemailProviders);
+            } else {
+                onPreferenceChange(mVoicemailProviders, DEFAULT_VM_PROVIDER_KEY);
+                mVoicemailProviders.setValue(DEFAULT_VM_PROVIDER_KEY);
+            }
+            mShowVoicemailPreference = false;
         }
+
         updateVoiceNumberField();
         mVMProviderSettingsForced = false;
         createSipCallSettings();
-
-        mVoicemailRingtoneLookupRunnable = new Runnable() {
-            @Override
-            public void run() {
-                if (mVoicemailNotificationRingtone != null) {
-                    SettingsUtil.updateRingtoneName(
-                            mPhone.getContext(),
-                            mVoicemailRingtoneLookupComplete,
-                            RingtoneManager.TYPE_NOTIFICATION,
-                            mVoicemailNotificationRingtone,
-                            MSG_UPDATE_VOICEMAIL_RINGTONE_SUMMARY);
-                }
-            }
-        };
-
-        ActionBar actionBar = getActionBar();
-        if (actionBar != null) {
-            // android.R.id.home will be triggered in onOptionsItemSelected()
-            actionBar.setDisplayShowHomeEnabled(true);
-            actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setDisplayShowTitleEnabled(true);
-        }
-    }
-
-    private void initPhoneAccountPreferences() {
-        mDefaultOutgoingAccount = (AccountSelectionPreference)
-                findPreference(DEFAULT_OUTGOING_ACCOUNT_KEY);
-        mSimCallManagerAccount = (AccountSelectionPreference)
-                findPreference(WIFI_CALL_MANAGER_ACCOUNT_KEY);
-
-        TelecommManager telecommManager = TelecommManager.from(this);
-
-        List<PhoneAccountHandle> enabledPhoneAccounts = telecommManager.getEnabledPhoneAccounts();
-        if (enabledPhoneAccounts.size() > 1) {
-            mDefaultOutgoingAccount.setModel(
-                    telecommManager,
-                    enabledPhoneAccounts,
-                    telecommManager.getUserSelectedOutgoingPhoneAccount(),
-                    getString(R.string.phone_accounts_ask_every_time));
-            mDefaultOutgoingAccount.setListener(this);
-        } else {
-            getPreferenceScreen().removePreference(mDefaultOutgoingAccount);
-        }
-
-        List<PhoneAccountHandle> simCallManagers = telecommManager.getSimCallManagers();
-        if (!simCallManagers.isEmpty()) {
-            mSimCallManagerAccount.setModel(
-                    telecommManager,
-                    simCallManagers,
-                    telecommManager.getSimCallManager(),
-                    getString(R.string.wifi_calling_do_not_use));
-            mSimCallManagerAccount.setListener(this);
-        } else {
-            getPreferenceScreen().removePreference(mSimCallManagerAccount);
-        }
-    }
-
-    private void createSipCallSettings() {
-        // Add Internet call settings.
-        if (SipUtil.isVoipSupported(this)) {
-            mSipManager = SipManager.newInstance(this);
-            mSipSharedPreferences = new SipSharedPreferences(this);
-            addPreferencesFromResource(
-                    com.android.services.telephony.sip.R.xml.sip_settings_category);
-            mButtonSipCallOptions = getSipCallOptionPreference();
-            mButtonSipCallOptions.setOnPreferenceChangeListener(this);
-            mButtonSipCallOptions.setValueIndex(
-                    mButtonSipCallOptions.findIndexOfValue(
-                            mSipSharedPreferences.getSipCallOption()));
-            mButtonSipCallOptions.setSummary(mButtonSipCallOptions.getEntry());
-        }
-    }
-
-    private boolean canLaunchIntent(Intent intent) {
-        PackageManager pm = getPackageManager();
-        return pm.resolveActivity(intent, PackageManager.GET_ACTIVITIES) != null;
-    }
-
-    // Gets the call options for SIP depending on whether SIP is allowed only
-    // on Wi-Fi only; also make the other options preference invisible.
-    private ListPreference getSipCallOptionPreference() {
-        ListPreference wifiAnd3G = (ListPreference)
-                findPreference(BUTTON_SIP_CALL_OPTIONS);
-        ListPreference wifiOnly = (ListPreference)
-                findPreference(BUTTON_SIP_CALL_OPTIONS_WIFI_ONLY);
-        PreferenceScreen sipSettings = (PreferenceScreen)
-                getPreferenceScreen().findPreference(SIP_SETTINGS_PREFERENCE_SCREEN_KEY);
-        if (SipManager.isSipWifiOnly(this)) {
-            sipSettings.removePreference(wifiAnd3G);
-            return wifiOnly;
-        } else {
-            sipSettings.removePreference(wifiOnly);
-            return wifiAnd3G;
-        }
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        mForeground = true;
 
         if (isAirplaneModeOn()) {
             Preference sipSettings = findPreference(SIP_SETTINGS_PREFERENCE_SCREEN_KEY);
@@ -2114,6 +2137,41 @@ public class CallFeaturesSetting extends PreferenceActivity
         VoiceMailProviderSettings settings =  new VoiceMailProviderSettings(vmNumberSetting, cfi);
         if (DBG) log("Loaded settings for " + key + ": " + settings.toString());
         return settings;
+    }
+
+    /**
+     * Populates the phone accounts which could potentially be selected as the default.
+     */
+    private void populateDefaultOutgoingAccountsModel() {
+        if (mDefaultOutgoingAccount == null ) {
+            return;
+        }
+
+        TelecommManager telecommManager = TelecommManager.from(this);
+        List<PhoneAccountHandle> enabledPhoneAccounts = telecommManager.getEnabledPhoneAccounts();
+        mDefaultOutgoingAccount.setModel(
+                telecommManager,
+                enabledPhoneAccounts,
+                telecommManager.getUserSelectedOutgoingPhoneAccount(),
+                getString(R.string.phone_accounts_ask_every_time));
+    }
+
+    /**
+     * Populates the phone accounts which could potentially be selected as the default sim call
+     * manager.
+     */
+    private void populateSimCallManagerAccountsModel() {
+        if (mSimCallManagerAccount == null) {
+            return;
+        }
+
+        TelecommManager telecommManager = TelecommManager.from(this);
+        List<PhoneAccountHandle> simCallManagers = telecommManager.getSimCallManagers();
+        mSimCallManagerAccount.setModel(
+                telecommManager,
+                simCallManagers,
+                telecommManager.getSimCallManager(),
+                getString(R.string.wifi_calling_do_not_use));
     }
 
     /**

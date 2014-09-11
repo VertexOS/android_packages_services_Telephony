@@ -47,14 +47,10 @@ public class SipBroadcastReceiver extends BroadcastReceiver {
         } else if (action.equals(SipManager.ACTION_SIP_SERVICE_UP) ||
                 action.equals(SipManager.ACTION_SIP_CALL_OPTION_CHANGED)) {
             sipAccountRegistry.setup(context);
-        } else if (action.equals(SipManager.ACTION_SIP_ADD_PHONE)) {
-            if (VERBOSE) log("SIP_ADD_PHONE " + intent.getStringExtra(SipManager.EXTRA_LOCAL_URI));
-            sipAccountRegistry.addPhone(context, intent.getStringExtra(SipManager.EXTRA_LOCAL_URI));
         } else if (action.equals(SipManager.ACTION_SIP_REMOVE_PHONE)) {
             if (VERBOSE) log("SIP_REMOVE_PHONE " +
-                    intent.getStringExtra(SipManager.EXTRA_LOCAL_URI));
-            sipAccountRegistry.removePhone(
-                    context, intent.getStringExtra(SipManager.EXTRA_LOCAL_URI));
+                            intent.getStringExtra(SipManager.EXTRA_LOCAL_URI));
+            sipAccountRegistry.removeSipProfile(intent.getStringExtra(SipManager.EXTRA_LOCAL_URI));
         } else {
             if (VERBOSE) log("onReceive, action not processed: " + action);
         }
