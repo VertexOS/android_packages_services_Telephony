@@ -1221,5 +1221,5 @@
     <!-- Strings used in Settings->Sim cards for each installed Sim. -->
     <string name="sim_label_emergency_calls">Emergency calls</string>
     <string name="sim_description_emergency_calls">Emergency calling only</string>
-    <string name="sim_description_default">SIM card in slot <xliff:g id="slot_id">%d</xliff:g></string>
+    <string name="sim_description_default">SIM card, slot: <xliff:g id="slot_id">%s</xliff:g></string>
 </resources>
