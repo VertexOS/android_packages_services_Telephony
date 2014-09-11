@@ -51,6 +51,20 @@ public class SipBroadcastReceiver extends BroadcastReceiver {
             if (VERBOSE) log("SIP_REMOVE_PHONE " +
                             intent.getStringExtra(SipManager.EXTRA_LOCAL_URI));
             sipAccountRegistry.removeSipProfile(intent.getStringExtra(SipManager.EXTRA_LOCAL_URI));
+        } else if (action.equals(TelecommManager.ACTION_PHONE_ACCOUNT_ENABLED)) {
+            PhoneAccountHandle phoneAccountHandle = intent.getParcelableExtra(
+                    TelecommManager.EXTRA_PHONE_ACCOUNT_HANDLE);
+            if (phoneAccountHandle == null) {
+                return;
+            }
+            sipAccountRegistry.setPhoneAccountEnabled(context, phoneAccountHandle);
+        } else if (action.equals(TelecommManager.ACTION_PHONE_ACCOUNT_DISABLED)) {
+            PhoneAccountHandle phoneAccountHandle = intent.getParcelableExtra(
+                    TelecommManager.EXTRA_PHONE_ACCOUNT_HANDLE);
+            if (phoneAccountHandle == null) {
+                return;
+            }
+            sipAccountRegistry.setPhoneAccountDisabled(context, phoneAccountHandle);
         } else {
             if (VERBOSE) log("onReceive, action not processed: " + action);
         }
