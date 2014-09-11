@@ -16,11 +16,6 @@
 
 package com.android.services.telephony.sip;
 
-import com.android.internal.telephony.Phone;
-import com.android.internal.telephony.PhoneConstants;
-import com.android.services.telephony.sip.SipUtil;
-
-import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.net.sip.SipManager;
@@ -38,7 +33,6 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -63,18 +57,16 @@ public class SipEditor extends PreferenceActivity
     private static final char SCRAMBLED = '*';
     private static final int NA = 0;
 
-    private PrimaryAccountSelector mPrimaryAccountSelector;
     private AdvancedSettings mAdvancedSettings;
     private SipSharedPreferences mSharedPreferences;
     private boolean mDisplayNameSet;
     private boolean mHomeButtonClicked;
     private boolean mUpdateRequired;
-    private boolean mUpdatedFieldIsEmpty;
 
-    private SipManager mSipManager;
     private SipProfileDb mProfileDb;
     private SipProfile mOldProfile;
     private Button mRemoveButton;
+    private SipAccountRegistry mSipAccountRegistry;
 
     enum PreferenceKey {
         Username(R.string.username, 0, R.string.default_preference_summary),
@@ -159,9 +151,9 @@ public class SipEditor extends PreferenceActivity
         if (VERBOSE) log("onCreate, start profile editor");
         super.onCreate(savedInstanceState);
 
-        mSipManager = SipManager.newInstance(this);
         mSharedPreferences = new SipSharedPreferences(this);
         mProfileDb = new SipProfileDb(this);
+        mSipAccountRegistry = SipAccountRegistry.getInstance();
 
         setContentView(R.layout.sip_settings_ui);
         addPreferencesFromResource(R.xml.sip_edit);
@@ -180,7 +172,6 @@ public class SipEditor extends PreferenceActivity
         }
 
         mAdvancedSettings = new AdvancedSettings();
-        mPrimaryAccountSelector = new PrimaryAccountSelector(p);
 
         loadPreferencesFromProfile(p);
     }
@@ -244,32 +235,29 @@ public class SipEditor extends PreferenceActivity
         return super.onKeyDown(keyCode, event);
     }
 
+    /**
+     * Saves a {@link SipProfile} and registers the associated
+     * {@link android.telecomm.PhoneAccount}.
+     *
+     * @param p The {@link SipProfile} to register.
+     * @throws IOException Exception resulting from profile save.
+     */
     private void saveAndRegisterProfile(SipProfile p) throws IOException {
         if (p == null) return;
         mProfileDb.saveProfile(p);
-        if (p.getAutoRegistration() || mSharedPreferences.isPrimaryAccount(p.getUriString())) {
-            try {
-                mSipManager.open(
-                        p, SipUtil.createIncomingCallPendingIntent(this, p.getUriString()), null);
-            } catch (Exception e) {
-                log("saveAndRegisterProfile, register failed for profile: " + p.getUriString() +
-                        ", exception: " + e);
-            }
-        }
+        mSipAccountRegistry.startSipService(this, p.getUriString());
     }
 
+    /**
+     * Deletes a {@link SipProfile} and un-registers the associated
+     * {@link android.telecomm.PhoneAccount}.
+     *
+     * @param p The {@link SipProfile} to delete.
+     */
     private void deleteAndUnregisterProfile(SipProfile p) {
         if (p == null) return;
         mProfileDb.deleteProfile(p);
-        unregisterProfile(p.getUriString());
-    }
-
-    private void unregisterProfile(String uri) {
-        try {
-            mSipManager.close(uri);
-        } catch (Exception e) {
-            log("unregisterProfile, unregister failed for profile: " + uri + ", exception: " + e);
-        }
+        mSipAccountRegistry.stopSipService(this, p.getUriString());
     }
 
     private void setRemovedProfileAndFinish() {
@@ -371,15 +359,6 @@ public class SipEditor extends PreferenceActivity
         }
     }
 
-    private void unregisterOldPrimaryAccount() {
-        String primaryAccountUri = mSharedPreferences.getPrimaryAccount();
-        if (VERBOSE) log("unregisterOldPrimaryAccount, old primary: " + primaryAccountUri);
-        if ((primaryAccountUri != null) && !mSharedPreferences.isReceivingCallsEnabled()) {
-            if (VERBOSE) log("unregisterOldPrimaryAccount, calling unregister");
-            unregisterProfile(primaryAccountUri);
-        }
-    }
-
     private void replaceProfile(final SipProfile oldProfile, final SipProfile newProfile) {
         // Replace profile in a background thread as it takes time to access the
         // storage; do finish() once everything goes fine.
@@ -388,12 +367,6 @@ public class SipEditor extends PreferenceActivity
         new Thread(new Runnable() {
             public void run() {
                 try {
-                    // if new profile is primary, unregister the old primary account
-                    if ((newProfile != null) && mPrimaryAccountSelector.isSelected()) {
-                        unregisterOldPrimaryAccount();
-                    }
-
-                    mPrimaryAccountSelector.commit(newProfile);
                     deleteAndUnregisterProfile(oldProfile);
                     saveAndRegisterProfile(newProfile);
                     finish();
@@ -430,10 +403,8 @@ public class SipEditor extends PreferenceActivity
     public boolean onPreferenceChange(Preference pref, Object newValue) {
         if (!mUpdateRequired) {
             mUpdateRequired = true;
-            if (mOldProfile != null) {
-                unregisterProfile(mOldProfile.getUriString());
-            }
         }
+
         if (pref instanceof CheckBoxPreference) {
             invalidateOptionsMenu();
             return true;
@@ -545,47 +516,6 @@ public class SipEditor extends PreferenceActivity
         char[] cc = new char[s.length()];
         Arrays.fill(cc, SCRAMBLED);
         return new String(cc);
-    }
-
-    // only takes care of the primary account setting in SipSharedSettings
-    private class PrimaryAccountSelector {
-        private CheckBoxPreference mCheckbox;
-        private final boolean mWasPrimaryAccount;
-
-        // @param profile profile to be edited; null if adding new profile
-        PrimaryAccountSelector(SipProfile profile) {
-            mCheckbox = (CheckBoxPreference) getPreferenceScreen()
-                    .findPreference(getString(R.string.set_primary));
-            boolean noPrimaryAccountSet = !mSharedPreferences.hasPrimaryAccount();
-            boolean editNewProfile = (profile == null);
-            mWasPrimaryAccount = !editNewProfile && mSharedPreferences.isPrimaryAccount(
-                    profile.getUriString());
-
-            if (VERBOSE) {
-                log(" noPrimaryAccountSet: " + noPrimaryAccountSet);
-                log(" editNewProfile: " + editNewProfile);
-                log(" mWasPrimaryAccount: " + mWasPrimaryAccount);
-            }
-
-            mCheckbox.setChecked(mWasPrimaryAccount || (editNewProfile && noPrimaryAccountSet));
-        }
-
-        boolean isSelected() {
-            return mCheckbox.isChecked();
-        }
-
-        // profile is null if the user removes it
-        void commit(SipProfile profile) {
-            if ((profile != null) && mCheckbox.isChecked()) {
-                mSharedPreferences.setPrimaryAccount(profile.getUriString());
-            } else if (mWasPrimaryAccount) {
-                mSharedPreferences.unsetPrimaryAccount();
-            }
-            if (VERBOSE) {
-                log("PrimaryAccountSelector.commit, new primary account: " +
-                        mSharedPreferences.getPrimaryAccount());
-            }
-        }
     }
 
     private class AdvancedSettings implements Preference.OnPreferenceClickListener {
