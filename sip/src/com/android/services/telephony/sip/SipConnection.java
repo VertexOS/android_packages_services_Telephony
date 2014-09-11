@@ -69,16 +69,16 @@ final class SipConnection extends Connection {
     }
 
     @Override
-    public void onSetAudioState(AudioState state) {
-        if (VERBOSE) log("onSetAudioState: " + state);
+    public void onAudioStateChanged(AudioState state) {
+        if (VERBOSE) log("onAudioStateChanged: " + state);
         if (getPhone() != null) {
             getPhone().setEchoSuppressionEnabled();
         }
     }
 
     @Override
-    public void onSetState(int state) {
-        if (VERBOSE) log("onSetState, state: " + Connection.stateToString(state));
+    public void onStateChanged(int state) {
+        if (VERBOSE) log("onStateChanged, state: " + Connection.stateToString(state));
     }
 
     @Override
@@ -181,11 +181,6 @@ final class SipConnection extends Connection {
     public void onPostDialContinue(boolean proceed) {
         if (VERBOSE) log("onPostDialContinue, proceed: " + proceed);
         // SIP doesn't have post dial support.
-    }
-
-    @Override
-    public void onPhoneAccountClicked() {
-        if (VERBOSE) log("onPhoneAccountClicked");
     }
 
     private Call getCall() {
