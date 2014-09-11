@@ -115,11 +115,11 @@ final class CdmaConnection extends TelephonyConnection {
     }
 
     @Override
-    public void onSetState(int state) {
+    public void onStateChanged(int state) {
         Connection originalConnection = getOriginalConnection();
         mIsCallWaiting = originalConnection != null &&
                 originalConnection.getState() == Call.State.WAITING;
-        super.onSetState(state);
+        super.onStateChanged(state);
     }
 
     @Override

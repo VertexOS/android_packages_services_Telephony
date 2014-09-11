@@ -174,7 +174,7 @@ abstract class TelephonyConnection extends Connection {
     }
 
     @Override
-    public void onSetAudioState(AudioState audioState) {
+    public void onAudioStateChanged(AudioState audioState) {
         // TODO: update TTY mode.
         if (getPhone() != null) {
             getPhone().setEchoSuppressionEnabled();
@@ -182,8 +182,8 @@ abstract class TelephonyConnection extends Connection {
     }
 
     @Override
-    public void onSetState(int state) {
-        Log.v(this, "onSetState, state: " + Connection.stateToString(state));
+    public void onStateChanged(int state) {
+        Log.v(this, "onStateChanged, state: " + Connection.stateToString(state));
     }
 
     @Override
@@ -251,11 +251,6 @@ abstract class TelephonyConnection extends Connection {
                 mOriginalConnection.cancelPostDial();
             }
         }
-    }
-
-    @Override
-    public void onPhoneAccountClicked() {
-        Log.v(this, "onPhoneAccountClicked");
     }
 
     public void performHold() {
