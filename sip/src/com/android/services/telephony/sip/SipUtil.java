@@ -30,8 +30,7 @@ import android.telecomm.PhoneAccount;
 import android.telecomm.PhoneAccountHandle;
 import android.telecomm.TelecommManager;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.ArrayList;
 
 public class SipUtil {
     static final String LOG_TAG = "SIP";
@@ -102,7 +101,8 @@ public class SipUtil {
         PhoneAccountHandle accountHandle =
                 SipUtil.createAccountHandle(context, profile.getUriString());
 
-        List supportedUriSchemes = Arrays.asList(PhoneAccount.SCHEME_SIP);
+        final ArrayList<String> supportedUriSchemes = new ArrayList<String>();
+        supportedUriSchemes.add(PhoneAccount.SCHEME_SIP);
         if (useSipForPstnCalls(context)) {
             supportedUriSchemes.add(PhoneAccount.SCHEME_TEL);
         }
