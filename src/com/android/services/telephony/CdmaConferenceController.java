@@ -18,6 +18,7 @@ package com.android.services.telephony;
 
 import android.os.Handler;
 import android.telecom.Connection;
+import android.telecom.DisconnectCause;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,7 +52,7 @@ final class CdmaConferenceController {
                 }
 
                 @Override
-                public void onDisconnected(Connection c, int cause, String message) {
+                public void onDisconnected(Connection c, DisconnectCause disconnectCause) {
                     recalculateConference();
                 }
 

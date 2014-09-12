@@ -171,7 +171,7 @@ final class CdmaConnection extends TelephonyConnection {
         mHandler.sendEmptyMessageDelayed(MSG_CALL_WAITING_MISSED, TIMEOUT_CALL_WAITING_MILLIS);
     }
 
-    private void hangupCallWaiting(int disconnectCause) {
+    private void hangupCallWaiting(int telephonyDisconnectCause) {
         Connection originalConnection = getOriginalConnection();
         if (originalConnection != null) {
             try {
@@ -179,7 +179,7 @@ final class CdmaConnection extends TelephonyConnection {
             } catch (CallStateException e) {
                 Log.e(this, e, "Failed to hangup call waiting call");
             }
-            setDisconnected(disconnectCause, null);
+            setDisconnected(DisconnectCauseUtil.toTelecomDisconnectCause(telephonyDisconnectCause));
         }
     }
 

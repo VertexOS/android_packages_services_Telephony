@@ -16,15 +16,16 @@
 
 package com.android.services.telephony;
 
+import android.content.Context;
 import android.net.Uri;
 import android.os.AsyncResult;
 import android.os.Handler;
 import android.os.Message;
 import android.telecom.AudioState;
 import android.telecom.Connection;
+import android.telecom.DisconnectCause;
 import android.telecom.PhoneAccount;
 import android.telecom.PhoneCapabilities;
-import android.telephony.DisconnectCause;
 
 import com.android.internal.telephony.Call;
 import com.android.internal.telephony.CallStateException;
@@ -190,7 +191,7 @@ abstract class TelephonyConnection extends Connection {
     @Override
     public void onDisconnect() {
         Log.v(this, "onDisconnect");
-        hangup(DisconnectCause.LOCAL);
+        hangup(android.telephony.DisconnectCause.LOCAL);
     }
 
     @Override
@@ -208,7 +209,7 @@ abstract class TelephonyConnection extends Connection {
     @Override
     public void onAbort() {
         Log.v(this, "onAbort");
-        hangup(DisconnectCause.LOCAL);
+        hangup(android.telephony.DisconnectCause.LOCAL);
     }
 
     @Override
@@ -237,7 +238,7 @@ abstract class TelephonyConnection extends Connection {
     public void onReject() {
         Log.v(this, "onReject");
         if (isValidRingingCall()) {
-            hangup(DisconnectCause.INCOMING_REJECTED);
+            hangup(android.telephony.DisconnectCause.INCOMING_REJECTED);
         }
         super.onReject();
     }
@@ -385,7 +386,7 @@ abstract class TelephonyConnection extends Connection {
         updateAddress();
     }
 
-    protected void hangup(int disconnectCause) {
+    protected void hangup(int telephonyDisconnectCode) {
         if (mOriginalConnection != null) {
             try {
                 // Hanging up a ringing call requires that we invoke call.hangup() as opposed to
@@ -412,7 +413,7 @@ abstract class TelephonyConnection extends Connection {
 
         // Set state deliberately since we are going to close() and will no longer be
         // listening to state updates from mOriginalConnection
-        setDisconnected(disconnectCause, null);
+        setDisconnected(DisconnectCauseUtil.toTelecomDisconnectCause(telephonyDisconnectCode));
         close();
     }
 
@@ -512,7 +513,8 @@ abstract class TelephonyConnection extends Connection {
                     setRinging();
                     break;
                 case DISCONNECTED:
-                    setDisconnected(mOriginalConnection.getDisconnectCause(), null);
+                    setDisconnected(DisconnectCauseUtil.toTelecomDisconnectCause(
+                            mOriginalConnection.getDisconnectCause()));
                     close();
                     break;
                 case DISCONNECTING:
