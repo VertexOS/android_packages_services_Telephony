@@ -69,6 +69,8 @@
     <dimen name="dialpad_horizontal_margin">4dp</dimen>
     <dimen name="dialpad_vertical_margin">2dp</dimen>
     <dimen name="dialpad_digits_text_size">35sp</dimen>
+    <dimen name="dialpad_space_above_keys">29dp</dimen>
+    <dimen name="dialpad_bottom_key_height">113dp</dimen>
 
     <!-- Just used in landscape mode -->
     <dimen name="emergency_dialer_digits_height">0px</dimen>
@@ -98,4 +100,12 @@
     <dimen name="action_bar_height">56dp</dimen>
     <dimen name="action_bar_elevation">2dp</dimen>
     <dimen name="actionbar_contentInsetStart">72dp</dimen>
+
+    <!-- Width, height and bottom margin for the floating action button. These values are
+         intentionally larger than the values used inside Dialer, since the dialpad is larger
+         inside the Emergency Dialer than the regular Dialer. -->
+    <dimen name="floating_action_button_width">67dp</dimen>
+    <dimen name="floating_action_button_height">67dp</dimen>
+    <dimen name="floating_action_button_margin_bottom">26dp</dimen>
+
 </resources>
