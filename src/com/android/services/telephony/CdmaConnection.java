@@ -18,13 +18,18 @@ package com.android.services.telephony;
 
 import android.os.Handler;
 import android.os.Message;
-import android.telecomm.PhoneCapabilities;
 
+import android.provider.Settings;
+import android.telecomm.PhoneCapabilities;
 import android.telephony.DisconnectCause;
 
 import com.android.internal.telephony.Call;
 import com.android.internal.telephony.CallStateException;
 import com.android.internal.telephony.Connection;
+import com.android.phone.Constants;
+
+import java.util.LinkedList;
+import java.util.Queue;
 
 /**
  * Manages a single phone call handled by CDMA.
@@ -32,6 +37,7 @@ import com.android.internal.telephony.Connection;
 final class CdmaConnection extends TelephonyConnection {
 
     private static final int MSG_CALL_WAITING_MISSED = 1;
+    private static final int MSG_DTMF_SEND_CONFIRMATION = 2;
     private static final int TIMEOUT_CALL_WAITING_MILLIS = 20 * 1000;
 
     private final Handler mHandler = new Handler() {
@@ -42,6 +48,9 @@ final class CdmaConnection extends TelephonyConnection {
             switch (msg.what) {
                 case MSG_CALL_WAITING_MISSED:
                     hangupCallWaiting(DisconnectCause.INCOMING_MISSED);
+                    break;
+                case MSG_DTMF_SEND_CONFIRMATION:
+                    handleBurstDtmfConfirmation();
                     break;
                 default:
                     break;
@@ -55,7 +64,11 @@ final class CdmaConnection extends TelephonyConnection {
      */
     private final boolean mAllowMute;
     private final boolean mIsOutgoing;
+    // Queue of pending short-DTMF characters.
+    private final Queue<Character> mDtmfQueue = new LinkedList<>();
 
+    // Indicates that the DTMF confirmation from telephony is pending.
+    private boolean mDtmfBurstConfirmationPending = false;
     private boolean mIsCallWaiting;
 
     CdmaConnection(Connection connection, boolean allowMute, boolean isOutgoing) {
@@ -71,20 +84,21 @@ final class CdmaConnection extends TelephonyConnection {
     /** {@inheritDoc} */
     @Override
     public void onPlayDtmfTone(char digit) {
-        // TODO: There are conditions where we should play dtmf tones with different
-        // timeouts.
-        // TODO: We get explicit response from the phone via a Message when the burst
-        // tone has completed. During this time we can get subsequent requests. We need to stop
-        // passing in null as the message and start handling it to implement a queue.
-        if (getPhone() != null) {
-            getPhone().sendBurstDtmf(Character.toString(digit), 0, 0, null);
+        if (useBurstDtmf()) {
+            Log.i(this, "sending dtmf digit as burst");
+            sendShortDtmfToNetwork(digit);
+        } else {
+            Log.i(this, "sending dtmf digit directly");
+            getPhone().startDtmf(digit);
         }
     }
 
     /** {@inheritDoc} */
     @Override
     public void onStopDtmfTone() {
-        // no-op, we only play timed dtmf tones for cdma.
+        if (!useBurstDtmf()) {
+            getPhone().stopDtmf();
+        }
     }
 
     @Override
@@ -166,6 +180,55 @@ final class CdmaConnection extends TelephonyConnection {
                 Log.e(this, e, "Failed to hangup call waiting call");
             }
             setDisconnected(disconnectCause, null);
+        }
+    }
+
+    /**
+     * Read the settings to determine which type of DTMF method this CDMA phone calls.
+     */
+    private boolean useBurstDtmf() {
+        int dtmfTypeSetting = Settings.System.getInt(
+                getPhone().getContext().getContentResolver(),
+                Settings.System.DTMF_TONE_TYPE_WHEN_DIALING,
+                Constants.DTMF_TONE_TYPE_NORMAL);
+        return dtmfTypeSetting == Constants.DTMF_TONE_TYPE_NORMAL;
+    }
+
+    private void sendShortDtmfToNetwork(char digit) {
+        synchronized(mDtmfQueue) {
+            if (mDtmfBurstConfirmationPending) {
+                mDtmfQueue.add(new Character(digit));
+            } else {
+                sendBurstDtmfStringLocked(Character.toString(digit));
+            }
+        }
+    }
+
+    private void sendBurstDtmfStringLocked(String dtmfString) {
+        getPhone().sendBurstDtmf(
+                dtmfString, 0, 0, mHandler.obtainMessage(MSG_DTMF_SEND_CONFIRMATION));
+        mDtmfBurstConfirmationPending = true;
+    }
+
+    private void handleBurstDtmfConfirmation() {
+        String dtmfDigits = null;
+        synchronized(mDtmfQueue) {
+            mDtmfBurstConfirmationPending = false;
+            if (!mDtmfQueue.isEmpty()) {
+                StringBuilder builder = new StringBuilder(mDtmfQueue.size());
+                while (!mDtmfQueue.isEmpty()) {
+                    builder.append(mDtmfQueue.poll());
+                }
+                dtmfDigits = builder.toString();
+
+                // It would be nice to log the digit, but since DTMF digits can be passwords
+                // to things, or other secure account numbers, we want to keep it away from
+                // the logs.
+                Log.i(this, "%d dtmf character[s] removed from the queue", dtmfDigits.length());
+            }
+            if (dtmfDigits != null) {
+                sendBurstDtmfStringLocked(dtmfDigits);
+            }
         }
     }
 }
