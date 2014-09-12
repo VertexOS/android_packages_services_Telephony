@@ -234,19 +234,22 @@
     <style name="ContactsActionBarStyle"
            parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">
         <item name="android:background">@color/people_app_theme_color</item>
-        <item name="android:backgroundStacked">@color/people_app_theme_color</item>
+        <item name="android:backgroundStacked">@color/people_app_theme_color</item>gs
     </style>
 
     <!-- Style for the call settings action bar.  Should be kept in sync with Dialer. -->
-    <style name="DialtactsActionBarStyle" parent="android:Widget.Material.ActionBar">
+    <style name="DialtactsActionBarStyle" parent="@style/TelephonyActionBarStyle">
+        <!-- Shift the title text to the right -->
+        <item name="android:contentInsetStart">@dimen/actionbar_contentInsetStart</item>
+    </style>
+
+    <style name="TelephonyActionBarStyle" parent="android:Widget.Material.ActionBar">
         <item name="android:background">@color/actionbar_background_color</item>
         <item name="android:titleTextStyle">@style/DialtactsActionBarTitleText</item>
         <item name="android:height">@dimen/action_bar_height</item>
         <item name="android:elevation">@dimen/action_bar_elevation</item>
         <!-- Empty icon -->
         <item name="android:icon">@android:color/transparent</item>
-        <!-- Shift the title text to the right -->
-        <item name="android:contentInsetStart">@dimen/actionbar_contentInsetStart</item>
     </style>
 
     <!-- Text in the action bar at the top of the screen.  Should be kept in sync with Dialer. -->
@@ -263,6 +266,9 @@
 
     <style name="EmergencyDialerTheme" parent="@android:style/Theme.Material.Light">
         <item name="dialpad_key_button_touch_tint">@color/dialer_dialpad_touch_tint</item>
+        <item name="android:actionBarStyle">@style/TelephonyActionBarStyle</item>
+        <item name="android:colorPrimary">@color/dialer_theme_color</item>
+        <item name="android:colorPrimaryDark">@color/dialer_theme_color_dark</item>
     </style>
 
     <style name="SimImportTheme"
