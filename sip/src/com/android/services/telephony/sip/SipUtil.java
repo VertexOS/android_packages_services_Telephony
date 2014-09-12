@@ -39,8 +39,6 @@ public class SipUtil {
             "com.android.services.telephony.sip.incoming_call_intent";
     static final String EXTRA_PHONE_ACCOUNT =
             "com.android.services.telephony.sip.phone_account";
-    static final String GATEWAY_PROVIDER_PACKAGE =
-            "com.android.phone.extra.GATEWAY_PROVIDER_PACKAGE";
 
     private SipUtil() {
     }
