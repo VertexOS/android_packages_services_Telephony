@@ -144,7 +144,6 @@ public class PhoneGlobals extends ContextWrapper {
     private CallGatewayManager callGatewayManager;
     private CallStateMonitor callStateMonitor;
     private IBluetoothHeadsetPhone mBluetoothPhone;
-    private Ringer ringer;
 
     static int mDockState = Intent.EXTRA_DOCK_STATE_UNDOCKED;
     static boolean sVoiceCapable = true;
@@ -403,15 +402,13 @@ public class PhoneGlobals extends ContextWrapper {
             // Bluetooth manager
             bluetoothManager = new BluetoothManager();
 
-            ringer = Ringer.init(this, bluetoothManager);
-
             phoneMgr = PhoneInterfaceManager.init(this, phone);
 
             // Create the CallNotifer singleton, which handles
             // asynchronous events from the telephony layer (like
             // launching the incoming-call UI when an incoming call comes
             // in.)
-            notifier = CallNotifier.init(this, phone, ringer, callLogger, callStateMonitor,
+            notifier = CallNotifier.init(this, phone, callLogger, callStateMonitor,
                     bluetoothManager);
 
             // register for ICC status
@@ -436,7 +433,6 @@ public class PhoneGlobals extends ContextWrapper {
             intentFilter.addAction(TelephonyIntents.ACTION_RADIO_TECHNOLOGY_CHANGED);
             intentFilter.addAction(TelephonyIntents.ACTION_SERVICE_STATE_CHANGED);
             intentFilter.addAction(TelephonyIntents.ACTION_EMERGENCY_CALLBACK_MODE_CHANGED);
-            intentFilter.addAction(AudioManager.RINGER_MODE_CHANGED_ACTION);
             registerReceiver(mReceiver, intentFilter);
 
             //set the default values for the preferences in the phone.
@@ -501,10 +497,6 @@ public class PhoneGlobals extends ContextWrapper {
      */
     static Phone getPhone() {
         return getInstance().phone;
-    }
-
-    Ringer getRinger() {
-        return ringer;
     }
 
     IBluetoothHeadsetPhone getBluetoothPhoneService() {
@@ -802,7 +794,6 @@ public class PhoneGlobals extends ContextWrapper {
             clearOtaState();
         }
 
-        ringer.updateRingerContextAfterRadioTechnologyChange(this.phone);
         notifier.updateCallNotifierRegistrationsAfterRadioTechnologyChange();
         callStateMonitor.updateAfterRadioTechnologyChange();
 
@@ -885,12 +876,6 @@ public class PhoneGlobals extends ContextWrapper {
                         Intent.EXTRA_DOCK_STATE_UNDOCKED);
                 if (VDBG) Log.d(LOG_TAG, "ACTION_DOCK_EVENT -> mDockState = " + mDockState);
                 mHandler.sendMessage(mHandler.obtainMessage(EVENT_DOCK_STATE_CHANGED, 0));
-            } else if (action.equals(AudioManager.RINGER_MODE_CHANGED_ACTION)) {
-                int ringerMode = intent.getIntExtra(AudioManager.EXTRA_RINGER_MODE,
-                        AudioManager.RINGER_MODE_NORMAL);
-                if (ringerMode == AudioManager.RINGER_MODE_SILENT) {
-                    notifier.silenceRinger();
-                }
             }
         }
     }

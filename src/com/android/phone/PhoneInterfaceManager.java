@@ -94,7 +94,6 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     private static final int EVENT_NEIGHBORING_CELL_DONE = 3;
     private static final int CMD_ANSWER_RINGING_CALL = 4;
     private static final int CMD_END_CALL = 5;  // not used yet
-    private static final int CMD_SILENCE_RINGER = 6;
     private static final int CMD_TRANSMIT_APDU_LOGICAL_CHANNEL = 7;
     private static final int EVENT_TRANSMIT_APDU_LOGICAL_CHANNEL_DONE = 8;
     private static final int CMD_OPEN_CHANNEL = 9;
@@ -239,10 +238,6 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
 
                 case CMD_ANSWER_RINGING_CALL:
                     answerRingingCallInternal();
-                    break;
-
-                case CMD_SILENCE_RINGER:
-                    silenceRingerInternal();
                     break;
 
                 case CMD_END_CALL:
@@ -842,27 +837,11 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         }
     }
 
-    public void silenceRinger() {
-        if (DBG) log("silenceRinger...");
-        // TODO: find a more appropriate permission to check here.
-        // (That can probably wait till the big TelephonyManager API overhaul.
-        // For now, protect this call with the MODIFY_PHONE_STATE permission.)
-        enforceModifyPermission();
-        sendRequestAsync(CMD_SILENCE_RINGER);
-    }
-
     /**
-     * Internal implemenation of silenceRinger().
-     * This should only be called from the main thread of the Phone app.
-     * @see #silenceRinger
+     * This method is no longer used and can be removed once TelephonyManager stops referring to it.
      */
-    private void silenceRingerInternal() {
-        if ((mCM.getState() == PhoneConstants.State.RINGING)
-            && mApp.notifier.isRinging()) {
-            // Ringer is actually playing, so silence it.
-            if (DBG) log("silenceRingerInternal: silencing...");
-            mApp.notifier.silenceRinger();
-        }
+    public void silenceRinger() {
+        Log.e(LOG_TAG, "silenseRinger not supported");
     }
 
     public boolean isOffhook() {
