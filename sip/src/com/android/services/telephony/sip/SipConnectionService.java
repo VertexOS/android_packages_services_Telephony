@@ -248,13 +248,7 @@ public final class SipConnectionService extends ConnectionService {
 
     private SipPhone createPhoneForProfile(SipProfile profile) {
         if (VERBOSE) log("createPhoneForProfile, profile: " + profile);
-        try {
-            SipManager.newInstance(this).open(profile);
-            return PhoneFactory.makeSipPhone(profile.getUriString());
-        } catch (SipException e) {
-            log("createPhoneForProfile, exception: " + e);
-            return null;
-        }
+        return PhoneFactory.makeSipPhone(profile.getUriString());
     }
 
     private com.android.internal.telephony.Connection startCallWithPhone(
