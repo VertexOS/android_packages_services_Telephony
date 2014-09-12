@@ -16,13 +16,22 @@
 
 package com.android.services.telephony.sip;
 
+import com.android.phone.R;
+
 import android.app.PendingIntent;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.net.sip.SipManager;
+import android.net.sip.SipProfile;
+import android.provider.Settings;
+import android.telecomm.PhoneAccount;
 import android.telecomm.PhoneAccountHandle;
 import android.telecomm.TelecommManager;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class SipUtil {
     static final String LOG_TAG = "SIP";
@@ -33,21 +42,15 @@ public class SipUtil {
     static final String GATEWAY_PROVIDER_PACKAGE =
             "com.android.phone.extra.GATEWAY_PROVIDER_PACKAGE";
 
-    private static boolean sIsVoipSupported;
-    private static boolean sIsVoipSupportedInitialized;
-
     private SipUtil() {
     }
 
     public static boolean isVoipSupported(Context context) {
-        if (!sIsVoipSupportedInitialized) {
-            sIsVoipSupported = SipManager.isVoipSupported(context) &&
-                    context.getResources().getBoolean(
-                            com.android.internal.R.bool.config_built_in_sip_phone) &&
-                    context.getResources().getBoolean(
-                            com.android.internal.R.bool.config_voice_capable);
-        }
-        return sIsVoipSupported;
+        return SipManager.isVoipSupported(context) &&
+                context.getResources().getBoolean(
+                        com.android.internal.R.bool.config_built_in_sip_phone) &&
+                context.getResources().getBoolean(
+                        com.android.internal.R.bool.config_voice_capable);
     }
 
     static PendingIntent createIncomingCallPendingIntent(
@@ -73,5 +76,56 @@ public class SipUtil {
     static PhoneAccountHandle createAccountHandle(Context context, String sipUri) {
         return new PhoneAccountHandle(
                 new ComponentName(context, SipConnectionService.class), sipUri);
+    }
+
+    /**
+     * Determines if the {@link android.telecomm.PhoneAccount} associated with a {@link SipProfile}
+     * is enabled.
+     *
+     * @param context The {@link Context}.
+     * @param profile The {@link SipProfile}.
+     * @return {@code True} if the {@code PhoneAccount} is enabled.
+     */
+    static boolean isPhoneAccountEnabled(Context context, SipProfile profile) {
+        PhoneAccount phoneAccount = TelecommManager.from(context)
+                .getPhoneAccount(SipUtil.createAccountHandle(context, profile.getUriString()));
+        return phoneAccount != null && phoneAccount.isEnabled();
+    }
+
+    /**
+     * Creates a PhoneAccount for a SipProfile.
+     *
+     * @param context The context
+     * @param profile The SipProfile.
+     * @return The PhoneAccount.
+     */
+    static PhoneAccount createPhoneAccount(Context context, SipProfile profile) {
+
+        PhoneAccountHandle accountHandle =
+                SipUtil.createAccountHandle(context, profile.getUriString());
+
+        List supportedUriSchemes = Arrays.asList(PhoneAccount.SCHEME_SIP);
+        if (useSipForPstnCalls(context)) {
+            supportedUriSchemes.add(PhoneAccount.SCHEME_TEL);
+        }
+
+        PhoneAccount.Builder builder = PhoneAccount.builder(accountHandle, profile.getDisplayName())
+                .setCapabilities(PhoneAccount.CAPABILITY_CALL_PROVIDER)
+                .setAddress(Uri.parse(profile.getUriString()))
+                .setShortDescription(profile.getDisplayName())
+                .setIconResId(R.drawable.ic_dialer_sip_black_24dp)
+                .setSupportedUriSchemes(supportedUriSchemes);
+
+        return builder.build();
+    }
+
+    /**
+     * Determines if the user has chosen to use SIP for PSTN calls as well as SIP calls.
+     * @param context The context.
+     * @return {@code True} if SIP should be used for PSTN calls.
+     */
+    private static boolean useSipForPstnCalls(Context context) {
+        final SipSharedPreferences sipSharedPreferences = new SipSharedPreferences(context);
+        return sipSharedPreferences.getSipCallOption().equals(Settings.System.SIP_ALWAYS);
     }
 }

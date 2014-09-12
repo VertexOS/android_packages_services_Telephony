@@ -45,12 +45,6 @@
         android:singleLine="true"
         android:inputType="textNoSuggestions"/>
 
-    <CheckBoxPreference
-        android:key="@string/set_primary"
-        android:title="@string/set_primary_title"
-        android:persistent="false"
-        android:summary="@string/set_primary_summary"/>
-
     <PreferenceScreen
         android:key="@string/advanced_settings"
         android:title="@string/advanced_settings"

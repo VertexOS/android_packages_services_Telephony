@@ -61,12 +61,6 @@ public final class SipConnectionService extends ConnectionService {
         super.onCreate();
     }
 
-    static PhoneAccountHandle getPhoneAccountHandle(Context context) {
-        return new PhoneAccountHandle(
-                new ComponentName(context, SipConnectionService.class),
-                null /* id */);
-    }
-
     @Override
     public Connection onCreateOutgoingConnection(
             PhoneAccountHandle connectionManagerAccount,
@@ -85,7 +79,6 @@ public final class SipConnectionService extends ConnectionService {
             return Connection.createFailedConnection(
                     DisconnectCause.OUTGOING_FAILURE, "Did not match service connection");
         }
-
 
         final SipConnection connection = new SipConnection();
         connection.setHandle(request.getAddress(), TelecommManager.PRESENTATION_ALLOWED);
