@@ -499,6 +499,8 @@
                 <action android:name="com.android.phone.SIP_INCOMING_CALL" />
                 <action android:name="com.android.phone.SIP_REMOVE_PHONE" />
                 <action android:name="com.android.phone.SIP_CALL_OPTION_CHANGED" />
+                <action android:name="android.telecom.action.PHONE_ACCOUNT_ENABLED" />
+                <action android:name="android.telecom.action.PHONE_ACCOUNT_DISABLED" />
             </intent-filter>
         </receiver>
 
