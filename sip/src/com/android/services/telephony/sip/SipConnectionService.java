@@ -68,7 +68,8 @@ public final class SipConnectionService extends ConnectionService {
         if (VERBOSE) log("onCreateOutgoingConnection, request: " + request);
 
         Bundle extras = request.getExtras();
-        if (extras != null && extras.getString(SipUtil.GATEWAY_PROVIDER_PACKAGE) != null) {
+        if (extras != null &&
+                extras.getString(TelecommManager.GATEWAY_PROVIDER_PACKAGE) != null) {
             return Connection.createFailedConnection(
                     DisconnectCause.CALL_BARRED, "Cannot make a SIP call with a gateway number.");
         }
