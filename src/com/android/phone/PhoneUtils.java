@@ -200,10 +200,6 @@ public class PhoneUtils {
         final PhoneGlobals app = PhoneGlobals.getInstance();
         final CallNotifier notifier = app.notifier;
 
-        // If the ringer is currently ringing and/or vibrating, stop it
-        // right now (before actually answering the call.)
-        notifier.silenceRinger();
-
         final Phone phone = ringingCall.getPhone();
         final boolean phoneIsCdma = (phone.getPhoneType() == PhoneConstants.PHONE_TYPE_CDMA);
         boolean answered = false;
@@ -2383,12 +2379,6 @@ public class PhoneUtils {
                 Log.d(LOG_TAG, "  - CDMA device, but null cdmaPhoneCallState!");
             }
         }
-
-        // Watch out: the isRinging() call below does NOT tell us anything
-        // about the state of the telephony layer; it merely tells us whether
-        // the Ringer manager is currently playing the ringtone.
-        boolean ringing = app.getRinger().isRinging();
-        Log.d(LOG_TAG, "  - Ringer state: " + ringing);
     }
 
     private static void log(String msg) {
