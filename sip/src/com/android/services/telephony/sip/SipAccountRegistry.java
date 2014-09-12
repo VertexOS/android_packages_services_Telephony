@@ -23,6 +23,7 @@ import android.net.sip.SipProfile;
 import android.telecomm.PhoneAccount;
 import android.telecomm.PhoneAccountHandle;
 import android.telecomm.TelecommManager;
+import android.text.TextUtils;
 import android.util.Log;
 
 import java.util.List;
@@ -173,6 +174,38 @@ final class SipAccountRegistry {
      */
     void restartSipService(Context context) {
         startSipProfiles(context, null);
+    }
+
+    /**
+     * Handles a {@link PhoneAccount} becoming enabled by starting the SIP service for the
+     * {@link SipProfile} associated with that {@linke PhoneAccount}.
+     *
+     * @param context The context.
+     * @param phoneAccountHandle The handle for the {@link PhoneAccount} which is enabled.
+     */
+    void setPhoneAccountEnabled(Context context, PhoneAccountHandle phoneAccountHandle) {
+        String sipUri = SipUtil.getSipUriFromPhoneAccount(phoneAccountHandle);
+        if (sipUri == null) {
+            return;
+        }
+
+        startSipService(context, sipUri);
+    }
+
+    /**
+     * Handles a {@link PhoneAccount} becoming disabled by stopping the SIP service for the
+     * {@link SipProfile} associated with that {@linke PhoneAccount}.
+     *
+     * @param context The context.
+     * @param phoneAccountHandle The handle for the {@link PhoneAccount} which is disabled.
+     */
+    void setPhoneAccountDisabled(Context context, PhoneAccountHandle phoneAccountHandle) {
+        String sipUri = SipUtil.getSipUriFromPhoneAccount(phoneAccountHandle);
+        if (sipUri == null) {
+            return;
+        }
+
+        stopSipService(context, sipUri);
     }
 
     /**
