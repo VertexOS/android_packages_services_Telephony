@@ -29,6 +29,7 @@ import android.provider.Settings;
 import android.telecomm.PhoneAccount;
 import android.telecomm.PhoneAccountHandle;
 import android.telecomm.TelecommManager;
+import android.text.TextUtils;
 
 import java.util.ArrayList;
 
@@ -73,6 +74,24 @@ public class SipUtil {
     static PhoneAccountHandle createAccountHandle(Context context, String sipUri) {
         return new PhoneAccountHandle(
                 new ComponentName(context, SipConnectionService.class), sipUri);
+    }
+
+    /**
+     * Determines the SIP Uri for a specified {@link PhoneAccountHandle}.
+     *
+     * @param phoneAccountHandle The {@link PhoneAccountHandle}.
+     * @return The SIP Uri.
+     */
+    static String getSipUriFromPhoneAccount(PhoneAccountHandle phoneAccountHandle) {
+        if (phoneAccountHandle == null) {
+            return null;
+        }
+
+        String sipUri = phoneAccountHandle.getId();
+        if (TextUtils.isEmpty(sipUri)) {
+            return null;
+        }
+        return sipUri;
     }
 
     /**
