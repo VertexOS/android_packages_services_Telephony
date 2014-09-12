@@ -47,13 +47,18 @@ import java.util.List;
 final class TelecommAccountRegistry {
     private static final boolean DBG = false; /* STOP SHIP if true */
 
+    // Slot IDs are zero based indices but the numbered icons represent the first, second,
+    // etc... SIM in the device. So that means that index 0 is SIM 1, index 1 is SIM 2 and so on.
     private final static int[] phoneAccountIcons = {
-            R.drawable.ic_multi_sim,
             R.drawable.ic_multi_sim1,
             R.drawable.ic_multi_sim2,
             R.drawable.ic_multi_sim3,
             R.drawable.ic_multi_sim4
     };
+
+    // This icon is the one that is used when the Slot ID that we have for a particular SIM
+    // is not supported, i.e. SubscriptionManager.INVALID_SLOT_ID or the 5th SIM in a phone.
+    private final static int defaultPhoneAccountIcon =  R.drawable.ic_multi_sim;
 
     private final class AccountEntry {
         private final Phone mPhone;
@@ -85,7 +90,6 @@ final class TelecommAccountRegistry {
 
             // Populate the phone account data.
             long subId = mPhone.getSubId();
-            int slotId = mPhone.getPhoneId() + 1;
             String line1Number = telephonyManager.getLine1NumberForSubscriber(subId);
             if (line1Number == null) {
                 line1Number = "";
@@ -96,16 +100,27 @@ final class TelecommAccountRegistry {
             }
 
             String subDisplayName = null;
+            // We can only get the real slotId from the SubInfoRecord, we can't calculate the
+            // slotId from the subId or the phoneId in all instances.
             SubInfoRecord record = SubscriptionManager.getSubInfoForSubscriber(subId);
+            int slotId = SubscriptionManager.INVALID_SLOT_ID;
             if (record != null) {
                 subDisplayName = record.displayName;
+                slotId = record.slotId;
+            }
+
+            String slotIdString;
+            if (SubscriptionManager.isValidSlotId(slotId)) {
+                slotIdString = Integer.toString(slotId);
+            } else {
+                slotIdString = mContext.getResources().getString(R.string.unknown);
             }
 
             if (TextUtils.isEmpty(subDisplayName)) {
                 // Either the sub record is not there or it has an empty display name.
                 Log.w(this, "Could not get a display name for subid: %d", subId);
                 subDisplayName = mContext.getResources().getString(
-                        R.string.sim_description_default, slotId);
+                        R.string.sim_description_default, slotIdString);
             }
 
             // The label is user-visible so let's use the display name that the user may
@@ -116,7 +131,7 @@ final class TelecommAccountRegistry {
             String description = isEmergency ?
                     mContext.getResources().getString(R.string.sim_description_emergency_calls) :
                     dummyPrefix + mContext.getResources().getString(
-                            R.string.sim_description_default, slotId);
+                            R.string.sim_description_default, slotIdString);
 
             // By default all SIM phone accounts can place emergency calls.
             int capabilities = PhoneAccount.CAPABILITY_SIM_SUBSCRIPTION |
@@ -287,11 +302,13 @@ final class TelecommAccountRegistry {
     }
 
     private int getPhoneAccountIcon(int index) {
-        if (index < TelecommAccountRegistry.phoneAccountIcons.length) {
+        // A valid slot id doesn't necessarily mean that we have an icon for it.
+        if (SubscriptionManager.isValidSlotId(index) &&
+                index < TelecommAccountRegistry.phoneAccountIcons.length) {
             return TelecommAccountRegistry.phoneAccountIcons[index];
         }
-        // default blank icon
-        return TelecommAccountRegistry.phoneAccountIcons[0];
+        // Invalid indices get the default icon that has no number associated with it.
+        return defaultPhoneAccountIcon;
     }
 
     private void tearDownAccounts() {
