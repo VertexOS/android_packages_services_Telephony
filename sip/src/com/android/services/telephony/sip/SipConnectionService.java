@@ -82,7 +82,7 @@ public final class SipConnectionService extends ConnectionService {
         }
 
         final SipConnection connection = new SipConnection();
-        connection.setHandle(request.getAddress(), TelecommManager.PRESENTATION_ALLOWED);
+        connection.setAddress(request.getAddress(), TelecommManager.PRESENTATION_ALLOWED);
         connection.setInitializing();
         connection.onAddedToCallService();
         boolean attemptCall = true;
