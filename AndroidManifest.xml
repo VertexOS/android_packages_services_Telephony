@@ -437,7 +437,7 @@
         </activity>
 
         <activity android:name=".settings.PhoneAccountSelectionPreferenceActivity"
-                  android:label="@string/phone_accounts"
+                  android:label="@string/phone_accounts_selection_header"
                   android:theme="@style/DialerSettingsLight">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
