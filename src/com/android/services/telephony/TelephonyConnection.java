@@ -20,10 +20,10 @@ import android.net.Uri;
 import android.os.AsyncResult;
 import android.os.Handler;
 import android.os.Message;
-import android.telecomm.AudioState;
-import android.telecomm.Connection;
-import android.telecomm.PhoneAccount;
-import android.telecomm.PhoneCapabilities;
+import android.telecom.AudioState;
+import android.telecom.Connection;
+import android.telecom.PhoneAccount;
+import android.telecom.PhoneCapabilities;
 import android.telephony.DisconnectCause;
 
 import com.android.internal.telephony.Call;
@@ -146,7 +146,7 @@ abstract class TelephonyConnection extends Connection {
      * This is used when {@link TelephonyConnection#updateCallCapabilities()}} is called,
      * ensuring the appropriate {@link PhoneCapabilities} are set.  Since {@link PhoneCapabilities}
      * can be rebuilt at any time it is necessary to track the video capabilities between rebuild.
-     * The {@link PhoneCapabilities} (including video capabilities) are communicated to the telecomm
+     * The {@link PhoneCapabilities} (including video capabilities) are communicated to the telecom
      * layer.
      */
     private boolean mLocalVideoCapable;
@@ -156,7 +156,7 @@ abstract class TelephonyConnection extends Connection {
      * This is used when {@link TelephonyConnection#updateCallCapabilities()}} is called,
      * ensuring the appropriate {@link PhoneCapabilities} are set.  Since {@link PhoneCapabilities}
      * can be rebuilt at any time it is necessary to track the video capabilities between rebuild.
-     * The {@link PhoneCapabilities} (including video capabilities) are communicated to the telecomm
+     * The {@link PhoneCapabilities} (including video capabilities) are communicated to the telecom
      * layer.
      */
     private boolean mRemoteVideoCapable;
@@ -164,7 +164,7 @@ abstract class TelephonyConnection extends Connection {
     /**
      * Determines the current audio quality for the {@link TelephonyConnection}.
      * This is used when {@link TelephonyConnection#updateCallCapabilities}} is called to indicate
-     * whether a call has the {@link android.telecomm.CallCapabilities#VoLTE} capability.
+     * whether a call has the {@link android.telecom.CallCapabilities#VoLTE} capability.
      */
     private int mAudioQuality;
 
@@ -269,7 +269,7 @@ abstract class TelephonyConnection extends Connection {
                 // a call on hold while a call-waiting call exists, it'll end up accepting the
                 // call-waiting call, which is bad if that was not the user's intention. We are
                 // cheating here and simply skipping it because we know any attempt to hold a call
-                // while a call-waiting call is happening is likely a request from Telecomm prior to
+                // while a call-waiting call is happening is likely a request from Telecom prior to
                 // accepting the call-waiting call.
                 // TODO: Investigate a better solution. It would be great here if we
                 // could "fake" hold by silencing the audio and microphone streams for this call
@@ -294,17 +294,17 @@ abstract class TelephonyConnection extends Connection {
                 // Here's the deal--Telephony hold/unhold is weird because whenever there exists
                 // more than one call, one of them must always be active. In other words, if you
                 // have an active call and holding call, and you put the active call on hold, it
-                // will automatically activate the holding call. This is weird with how Telecomm
-                // sends its commands. When a user opts to "unhold" a background call, telecomm
+                // will automatically activate the holding call. This is weird with how Telecom
+                // sends its commands. When a user opts to "unhold" a background call, telecom
                 // issues hold commands to all active calls, and then the unhold command to the
                 // background call. This means that we get two commands...each of which reduces to
                 // switchHoldingAndActive(). The result is that they simply cancel each other out.
-                // To fix this so that it works well with telecomm we add a minor hack. If we
+                // To fix this so that it works well with telecom we add a minor hack. If we
                 // have one telephony call, everything works as normally expected. But if we have
                 // two or more calls, we will ignore all requests to "unhold" knowing that the hold
                 // requests already do what we want. If you've read up to this point, I'm very sorry
                 // that we are doing this. I didn't think of a better solution that wouldn't also
-                // make the Telecomm APIs very ugly.
+                // make the Telecom APIs very ugly.
 
                 if (!hasMultipleTopLevelCalls()) {
                     mOriginalConnection.getCall().getPhone().switchHoldingAndActive();

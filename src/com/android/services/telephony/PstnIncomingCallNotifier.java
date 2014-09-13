@@ -27,8 +27,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.os.UserHandle;
-import android.telecomm.PhoneAccount;
-import android.telecomm.TelecommManager;
+import android.telecom.PhoneAccount;
+import android.telecom.TelecomManager;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 
@@ -44,7 +44,7 @@ import com.google.common.base.Preconditions;
 import java.util.Objects;
 
 /**
- * Listens to incoming-call events from the associated phone object and notifies Telecomm upon each
+ * Listens to incoming-call events from the associated phone object and notifies Telecom upon each
  * occurence. One instance of these exists for each of the telephony-based call services.
  */
 final class PstnIncomingCallNotifier {
@@ -155,7 +155,7 @@ final class PstnIncomingCallNotifier {
     }
 
     /**
-     * Verifies the incoming call and triggers sending the incoming-call intent to Telecomm.
+     * Verifies the incoming call and triggers sending the incoming-call intent to Telecom.
      *
      * @param asyncResult The result object from the new ringing event.
      */
@@ -165,7 +165,7 @@ final class PstnIncomingCallNotifier {
         if (connection != null) {
             Call call = connection.getCall();
 
-            // Final verification of the ringing state before sending the intent to Telecomm.
+            // Final verification of the ringing state before sending the intent to Telecom.
             if (call != null && call.getState().isRinging()) {
                 sendIncomingCallIntent(connection);
             }
@@ -188,17 +188,17 @@ final class PstnIncomingCallNotifier {
     }
 
     /**
-     * Sends the incoming call intent to telecomm.
+     * Sends the incoming call intent to telecom.
      */
     private void sendIncomingCallIntent(Connection connection) {
         Bundle extras = null;
-        if (connection.getNumberPresentation() == TelecommManager.PRESENTATION_ALLOWED &&
+        if (connection.getNumberPresentation() == TelecomManager.PRESENTATION_ALLOWED &&
                 !TextUtils.isEmpty(connection.getAddress())) {
             extras = new Bundle();
             Uri uri = Uri.fromParts(PhoneAccount.SCHEME_TEL, connection.getAddress(), null);
             extras.putParcelable(TelephonyManager.EXTRA_INCOMING_NUMBER, uri);
         }
-        TelecommManager.from(mPhoneProxy.getContext()).addNewIncomingCall(
-                TelecommAccountRegistry.makePstnPhoneAccountHandle(mPhoneProxy), extras);
+        TelecomManager.from(mPhoneProxy.getContext()).addNewIncomingCall(
+                TelecomAccountRegistry.makePstnPhoneAccountHandle(mPhoneProxy), extras);
     }
 }

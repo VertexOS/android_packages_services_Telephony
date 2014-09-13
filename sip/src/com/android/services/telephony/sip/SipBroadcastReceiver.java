@@ -21,8 +21,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.sip.SipManager;
 import android.os.Bundle;
-import android.telecomm.PhoneAccountHandle;
-import android.telecomm.TelecommManager;
+import android.telecom.PhoneAccountHandle;
+import android.telecom.TelecomManager;
 import android.util.Log;
 
 /**
@@ -51,16 +51,16 @@ public class SipBroadcastReceiver extends BroadcastReceiver {
             if (VERBOSE) log("SIP_REMOVE_PHONE " +
                             intent.getStringExtra(SipManager.EXTRA_LOCAL_URI));
             sipAccountRegistry.removeSipProfile(intent.getStringExtra(SipManager.EXTRA_LOCAL_URI));
-        } else if (action.equals(TelecommManager.ACTION_PHONE_ACCOUNT_ENABLED)) {
+        } else if (action.equals(TelecomManager.ACTION_PHONE_ACCOUNT_ENABLED)) {
             PhoneAccountHandle phoneAccountHandle = intent.getParcelableExtra(
-                    TelecommManager.EXTRA_PHONE_ACCOUNT_HANDLE);
+                    TelecomManager.EXTRA_PHONE_ACCOUNT_HANDLE);
             if (phoneAccountHandle == null) {
                 return;
             }
             sipAccountRegistry.setPhoneAccountEnabled(context, phoneAccountHandle);
-        } else if (action.equals(TelecommManager.ACTION_PHONE_ACCOUNT_DISABLED)) {
+        } else if (action.equals(TelecomManager.ACTION_PHONE_ACCOUNT_DISABLED)) {
             PhoneAccountHandle phoneAccountHandle = intent.getParcelableExtra(
-                    TelecommManager.EXTRA_PHONE_ACCOUNT_HANDLE);
+                    TelecomManager.EXTRA_PHONE_ACCOUNT_HANDLE);
             if (phoneAccountHandle == null) {
                 return;
             }
@@ -76,7 +76,7 @@ public class SipBroadcastReceiver extends BroadcastReceiver {
         if (accountHandle != null) {
             Bundle extras = new Bundle();
             extras.putParcelable(SipUtil.EXTRA_INCOMING_CALL_INTENT, intent);
-            TelecommManager.from(context).addNewIncomingCall(accountHandle, extras);
+            TelecomManager.from(context).addNewIncomingCall(accountHandle, extras);
         }
     }
 

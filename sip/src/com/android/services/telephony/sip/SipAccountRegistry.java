@@ -20,9 +20,9 @@ import android.content.Context;
 import android.net.sip.SipException;
 import android.net.sip.SipManager;
 import android.net.sip.SipProfile;
-import android.telecomm.PhoneAccount;
-import android.telecomm.PhoneAccountHandle;
-import android.telecomm.TelecommManager;
+import android.telecom.PhoneAccount;
+import android.telecom.PhoneAccountHandle;
+import android.telecom.TelecomManager;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -143,7 +143,7 @@ final class SipAccountRegistry {
     }
 
     /**
-     * Stops a SIP profile and un-registers its associated {@link android.telecomm.PhoneAccount}.
+     * Stops a SIP profile and un-registers its associated {@link android.telecom.PhoneAccount}.
      * Called after a SIP profile is deleted.  The {@link AccountEntry} will be removed when the
      * service has been stopped.  The {@code SipService} fires the {@code ACTION_SIP_REMOVE_PHONE}
      * intent, which triggers {@link SipAccountRegistry#removeSipProfile(String)} to perform the
@@ -162,7 +162,7 @@ final class SipAccountRegistry {
 
         // Un-register its PhoneAccount.
         PhoneAccountHandle handle = SipUtil.createAccountHandle(context, sipUri);
-        TelecommManager.from(context).unregisterPhoneAccount(handle);
+        TelecomManager.from(context).unregisterPhoneAccount(handle);
     }
 
     /**
@@ -211,7 +211,7 @@ final class SipAccountRegistry {
     /**
      * Performs an asynchronous call to
      * {@link SipAccountRegistry#startSipProfiles(android.content.Context, String)}, starting the
-     * specified SIP profile and registering its {@link android.telecomm.PhoneAccount}.
+     * specified SIP profile and registering its {@link android.telecom.PhoneAccount}.
      *
      * @param context The context.
      * @param sipUri A specific SIP uri to start.
@@ -229,12 +229,12 @@ final class SipAccountRegistry {
 
     /**
      * Loops through all SIP accounts from the SIP database, starts each service and registers
-     * each with the telecomm framework. If a specific sipUri is specified, this will only register
+     * each with the telecom framework. If a specific sipUri is specified, this will only register
      * the associated SIP account.
      *
      * Also handles migration from using the primary account shared preference to indicate the
      * {@link SipProfile} to be used for outgoing Sip connections to using the enabled flag on
-     * {@link android.telecomm.PhoneAccount}s to indicate which profiles can be used for outgoing
+     * {@link android.telecom.PhoneAccount}s to indicate which profiles can be used for outgoing
      * or ingoing calls.
      *
      * @param context The context.
@@ -244,7 +244,7 @@ final class SipAccountRegistry {
         final SipSharedPreferences sipSharedPreferences = new SipSharedPreferences(context);
         boolean isReceivingCalls = sipSharedPreferences.isReceivingCallsEnabled();
         String primaryProfile = sipSharedPreferences.getPrimaryAccount();
-        TelecommManager telecommManager = TelecommManager.from(context);
+        TelecomManager telecomManager = TelecomManager.from(context);
         SipManager sipManager = SipManager.newInstance(context);
         SipProfileDb profileDb = new SipProfileDb(context);
         List<SipProfile> sipProfileList = profileDb.retrieveSipProfileList();
@@ -254,13 +254,13 @@ final class SipAccountRegistry {
             // profile.
             if (sipUri == null || Objects.equals(sipUri, profile.getUriString())) {
                 PhoneAccount phoneAccount = SipUtil.createPhoneAccount(context, profile);
-                telecommManager.registerPhoneAccount(phoneAccount);
+                telecomManager.registerPhoneAccount(phoneAccount);
 
                 // If this profile was the primary profile in the past, mark it as enabled.
                 boolean isPrimaryProfile = primaryProfile != null &&
                         profile.getUriString().equals(primaryProfile);
                 if (isPrimaryProfile) {
-                    telecommManager.setPhoneAccountEnabled(
+                    telecomManager.setPhoneAccountEnabled(
                             phoneAccount.getAccountHandle(), true);
                 }
             }

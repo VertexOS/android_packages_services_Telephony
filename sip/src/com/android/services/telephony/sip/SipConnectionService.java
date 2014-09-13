@@ -28,11 +28,11 @@ import android.net.sip.SipProfile;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.ResultReceiver;
-import android.telecomm.Connection;
-import android.telecomm.ConnectionRequest;
-import android.telecomm.ConnectionService;
-import android.telecomm.PhoneAccountHandle;
-import android.telecomm.TelecommManager;
+import android.telecom.Connection;
+import android.telecom.ConnectionRequest;
+import android.telecom.ConnectionService;
+import android.telecom.PhoneAccountHandle;
+import android.telecom.TelecomManager;
 import android.telephony.DisconnectCause;
 import android.util.Log;
 
@@ -69,7 +69,7 @@ public final class SipConnectionService extends ConnectionService {
 
         Bundle extras = request.getExtras();
         if (extras != null &&
-                extras.getString(TelecommManager.GATEWAY_PROVIDER_PACKAGE) != null) {
+                extras.getString(TelecomManager.GATEWAY_PROVIDER_PACKAGE) != null) {
             return Connection.createFailedConnection(
                     DisconnectCause.CALL_BARRED, "Cannot make a SIP call with a gateway number.");
         }
@@ -82,7 +82,7 @@ public final class SipConnectionService extends ConnectionService {
         }
 
         final SipConnection connection = new SipConnection();
-        connection.setAddress(request.getAddress(), TelecommManager.PRESENTATION_ALLOWED);
+        connection.setAddress(request.getAddress(), TelecomManager.PRESENTATION_ALLOWED);
         connection.setInitializing();
         connection.onAddedToCallService();
         boolean attemptCall = true;

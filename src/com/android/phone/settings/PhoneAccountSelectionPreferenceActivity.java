@@ -25,9 +25,9 @@ import android.preference.PreferenceActivity;
 import android.preference.PreferenceCategory;
 import android.preference.PreferenceFragment;
 import android.preference.SwitchPreference;
-import android.telecomm.PhoneAccount;
-import android.telecomm.PhoneAccountHandle;
-import android.telecomm.TelecommManager;
+import android.telecom.PhoneAccount;
+import android.telecom.PhoneAccountHandle;
+import android.telecom.TelecomManager;
 
 import com.android.internal.util.CharSequences;
 import com.android.phone.R;
@@ -49,7 +49,7 @@ public class PhoneAccountSelectionPreferenceActivity extends PreferenceActivity 
             implements Preference.OnPreferenceChangeListener {
         private static final String CATEGORY_PHONE_ACCOUNTS_KEY = "phone_accounts_list";
 
-        private TelecommManager mTelecommManager;
+        private TelecomManager mTelecomManager;
         private PreferenceCategory mPhoneAccountsCategory;
 
         /**
@@ -93,9 +93,9 @@ public class PhoneAccountSelectionPreferenceActivity extends PreferenceActivity 
             addPreferencesFromResource(R.xml.phone_account_selection);
             mPhoneAccountsCategory = (PreferenceCategory) findPreference(
                     CATEGORY_PHONE_ACCOUNTS_KEY);
-            mTelecommManager = TelecommManager.from(this.getActivity());
+            mTelecomManager = TelecomManager.from(this.getActivity());
 
-            List<PhoneAccount> phoneAccounts = mTelecommManager.getAllPhoneAccounts();
+            List<PhoneAccount> phoneAccounts = mTelecomManager.getAllPhoneAccounts();
             Collections.sort(phoneAccounts, new Comparator<PhoneAccount>() {
                 @Override
                 public int compare(PhoneAccount o1, PhoneAccount o2) {
@@ -131,7 +131,7 @@ public class PhoneAccountSelectionPreferenceActivity extends PreferenceActivity 
                 boolean newState = Boolean.valueOf(newValue.toString()).booleanValue();
 
                 if (newState != phoneAccountPreference.getPreviousState()) {
-                    mTelecommManager.setPhoneAccountEnabled(
+                    mTelecomManager.setPhoneAccountEnabled(
                             phoneAccountPreference.getPhoneAccountHandle(), newState);
                 }
                 return true;
