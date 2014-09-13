@@ -16,10 +16,10 @@
 
 package com.android.services.telephony;
 
-import android.telecomm.PhoneCapabilities;
-import android.telecomm.Conference;
-import android.telecomm.Connection;
-import android.telecomm.PhoneAccountHandle;
+import android.telecom.PhoneCapabilities;
+import android.telecom.Conference;
+import android.telecom.Connection;
+import android.telecom.PhoneAccountHandle;
 
 import com.android.internal.telephony.Call;
 import com.android.internal.telephony.CallStateException;

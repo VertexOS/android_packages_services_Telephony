@@ -25,8 +25,8 @@ import android.content.Intent;
 import android.os.UserHandle;
 import android.preference.ListPreference;
 import android.preference.Preference;
-import android.telecomm.PhoneAccountHandle;
-import android.telecomm.TelecommManager;
+import android.telecom.PhoneAccountHandle;
+import android.telecom.TelecomManager;
 import android.util.AttributeSet;
 
 import java.util.List;
@@ -63,7 +63,7 @@ public class AccountSelectionPreference extends ListPreference implements
     }
 
     public void setModel(
-            TelecommManager telecommManager,
+            TelecomManager telecomManager,
             List<PhoneAccountHandle> accountsList,
             PhoneAccountHandle currentSelection,
             CharSequence nullSelectionString) {
@@ -75,7 +75,7 @@ public class AccountSelectionPreference extends ListPreference implements
         int selectedIndex = mAccounts.length;  // Points to nullSelectionString by default
         int i = 0;
         for ( ; i < mAccounts.length; i++) {
-            CharSequence label = telecommManager.getPhoneAccount(mAccounts[i]).getLabel();
+            CharSequence label = telecomManager.getPhoneAccount(mAccounts[i]).getLabel();
             mEntries[i] = label == null ? null : label.toString();
             mEntryValues[i] = Integer.toString(i);
             if (Objects.equals(currentSelection, mAccounts[i])) {

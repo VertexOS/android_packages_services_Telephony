@@ -18,13 +18,12 @@ package com.android.phone;
 
 import android.content.Intent;
 import android.net.Uri;
-import android.telecomm.PhoneAccount;
+import android.telecom.PhoneAccount;
 import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
 import android.util.Log;
 
 import com.android.internal.telephony.Connection;
-import com.google.android.collect.Maps;
 
 import java.util.concurrent.ConcurrentHashMap;
 

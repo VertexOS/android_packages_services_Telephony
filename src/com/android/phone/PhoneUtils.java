@@ -28,13 +28,12 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.media.AudioManager;
 import android.net.Uri;
-import android.os.AsyncResult;
 import android.os.Handler;
 import android.os.Message;
 import android.os.RemoteException;
 import android.os.SystemProperties;
-import android.telecomm.PhoneAccount;
-import android.telecomm.VideoProfile;
+import android.telecom.PhoneAccount;
+import android.telecom.VideoProfile;
 import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
 import android.util.Log;
@@ -59,10 +58,7 @@ import com.android.internal.telephony.TelephonyProperties;
 import com.android.internal.telephony.sip.SipPhone;
 import com.android.phone.CallGatewayManager.RawGatewayInfo;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Hashtable;
-import java.util.Iterator;
 import java.util.List;
 
 /**
