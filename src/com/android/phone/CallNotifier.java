@@ -254,7 +254,7 @@ public class CallNotifier extends Handler {
                 break;
 
             case CallStateMonitor.PHONE_RINGBACK_TONE:
-                // DISABLED. The Telecomm and new ConnectionService layers are now responsible.
+                // DISABLED. The Telecom and new ConnectionService layers are now responsible.
                 // onRingbackTone((AsyncResult) msg.obj);
                 break;
 

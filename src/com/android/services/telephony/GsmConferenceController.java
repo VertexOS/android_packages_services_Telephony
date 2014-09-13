@@ -22,8 +22,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import android.telecomm.Conference;
-import android.telecomm.Connection;
+import android.telecom.Conference;
+import android.telecom.Connection;
 
 import com.android.internal.telephony.Call;
 

@@ -26,9 +26,9 @@ import android.net.Uri;
 import android.net.sip.SipManager;
 import android.net.sip.SipProfile;
 import android.provider.Settings;
-import android.telecomm.PhoneAccount;
-import android.telecomm.PhoneAccountHandle;
-import android.telecomm.TelecommManager;
+import android.telecom.PhoneAccount;
+import android.telecom.PhoneAccountHandle;
+import android.telecom.TelecomManager;
 import android.text.TextUtils;
 
 import java.util.ArrayList;
@@ -60,8 +60,8 @@ public class SipUtil {
     }
 
     static boolean isPhoneIdle(Context context) {
-        TelecommManager manager = (TelecommManager) context.getSystemService(
-                Context.TELECOMM_SERVICE);
+        TelecomManager manager = (TelecomManager) context.getSystemService(
+                Context.TELECOM_SERVICE);
         if (manager != null) {
             return !manager.isInCall();
         }
@@ -95,7 +95,7 @@ public class SipUtil {
     }
 
     /**
-     * Determines if the {@link android.telecomm.PhoneAccount} associated with a {@link SipProfile}
+     * Determines if the {@link android.tlecom.PhoneAccount} associated with a {@link SipProfile}
      * is enabled.
      *
      * @param context The {@link Context}.
@@ -103,7 +103,7 @@ public class SipUtil {
      * @return {@code True} if the {@code PhoneAccount} is enabled.
      */
     static boolean isPhoneAccountEnabled(Context context, SipProfile profile) {
-        PhoneAccount phoneAccount = TelecommManager.from(context)
+        PhoneAccount phoneAccount = TelecomManager.from(context)
                 .getPhoneAccount(SipUtil.createAccountHandle(context, profile.getUriString()));
         return phoneAccount != null && phoneAccount.isEnabled();
     }

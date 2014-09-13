@@ -48,8 +48,8 @@ import android.preference.PreferenceManager;
 import android.preference.PreferenceScreen;
 import android.provider.ContactsContract.CommonDataKinds;
 import android.provider.Settings;
-import android.telecomm.PhoneAccountHandle;
-import android.telecomm.TelecommManager;
+import android.telecom.PhoneAccountHandle;
+import android.telecom.TelecomManager;
 import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
 import android.util.Log;
@@ -597,12 +597,12 @@ public class CallFeaturesSetting extends PreferenceActivity
 
     @Override
     public boolean onAccountSelected(AccountSelectionPreference pref, PhoneAccountHandle account) {
-        TelecommManager telecommManager = TelecommManager.from(this);
+        TelecomManager telecomManager = TelecomManager.from(this);
         if (pref == mDefaultOutgoingAccount) {
-            telecommManager.setUserSelectedOutgoingPhoneAccount(account);
+            telecomManager.setUserSelectedOutgoingPhoneAccount(account);
             return true;
         } else if (pref == mSimCallManagerAccount) {
-            telecommManager.setSimCallManager(account);
+            telecomManager.setSimCallManager(account);
             return true;
         }
         return false;
@@ -865,7 +865,8 @@ public class CallFeaturesSetting extends PreferenceActivity
         saveVoiceMailAndForwardingNumber(
                 getCurrentVoicemailProviderKey(),
                 new VoiceMailProviderSettings(mSubMenuVoicemailSettings.getPhoneNumber(),
-                        FWD_SETTINGS_DONT_TOUCH));
+                        FWD_SETTINGS_DONT_TOUCH)
+        );
     }
 
 
@@ -1570,9 +1571,9 @@ public class CallFeaturesSetting extends PreferenceActivity
         mSimCallManagerAccount = (AccountSelectionPreference)
                 findPreference(WIFI_CALL_MANAGER_ACCOUNT_KEY);
 
-        TelecommManager telecommManager = TelecommManager.from(this);
+        TelecomManager telecomManager = TelecomManager.from(this);
 
-        int allPhoneAccountsCount = telecommManager.getAllPhoneAccountsCount();
+        int allPhoneAccountsCount = telecomManager.getAllPhoneAccountsCount();
         // Show the phone accounts preference if there are is more than one phone account (this
         // includes disabled phone accounts).  The default selection, however, only includes those
         // PhoneAccounts which are enabled.
@@ -1584,7 +1585,7 @@ public class CallFeaturesSetting extends PreferenceActivity
             getPreferenceScreen().removePreference(mDefaultOutgoingAccount);
         }
 
-        List<PhoneAccountHandle> simCallManagers = telecommManager.getSimCallManagers();
+        List<PhoneAccountHandle> simCallManagers = telecomManager.getSimCallManagers();
         if (!simCallManagers.isEmpty()) {
             populateSimCallManagerAccountsModel();
             mSimCallManagerAccount.setListener(this);
@@ -1700,8 +1701,8 @@ public class CallFeaturesSetting extends PreferenceActivity
         }
 
         if (mButtonTTY != null) {
-            TelecommManager telecommManager = TelecommManager.from(this);
-            if (telecommManager != null && telecommManager.isTtySupported()) {
+            TelecomManager telecomManager = TelecomManager.from(this);
+            if (telecomManager != null && telecomManager.isTtySupported()) {
                 mButtonTTY.setOnPreferenceChangeListener(this);
             } else {
                 prefSet.removePreference(mButtonTTY);
@@ -1791,7 +1792,7 @@ public class CallFeaturesSetting extends PreferenceActivity
         if (mButtonTTY != null) {
             int settingsTtyMode = Settings.Secure.getInt(getContentResolver(),
                     Settings.Secure.PREFERRED_TTY_MODE,
-                    TelecommManager.TTY_MODE_OFF);
+                    TelecomManager.TTY_MODE_OFF);
             mButtonTTY.setValue(Integer.toString(settingsTtyMode));
             updatePreferredTtyModeSummary(settingsTtyMode);
         }
@@ -1837,27 +1838,27 @@ public class CallFeaturesSetting extends PreferenceActivity
         int settingsTtyMode = android.provider.Settings.Secure.getInt(
                 getContentResolver(),
                 android.provider.Settings.Secure.PREFERRED_TTY_MODE,
-                TelecommManager.TTY_MODE_OFF);
+                TelecomManager.TTY_MODE_OFF);
         if (DBG) log("handleTTYChange: requesting set TTY mode enable (TTY) to" +
                 Integer.toString(buttonTtyMode));
 
         if (buttonTtyMode != settingsTtyMode) {
             switch(buttonTtyMode) {
-            case TelecommManager.TTY_MODE_OFF:
-            case TelecommManager.TTY_MODE_FULL:
-            case TelecommManager.TTY_MODE_HCO:
-            case TelecommManager.TTY_MODE_VCO:
+            case TelecomManager.TTY_MODE_OFF:
+            case TelecomManager.TTY_MODE_FULL:
+            case TelecomManager.TTY_MODE_HCO:
+            case TelecomManager.TTY_MODE_VCO:
                 android.provider.Settings.Secure.putInt(getContentResolver(),
                         android.provider.Settings.Secure.PREFERRED_TTY_MODE, buttonTtyMode);
                 break;
             default:
-                buttonTtyMode = TelecommManager.TTY_MODE_OFF;
+                buttonTtyMode = TelecomManager.TTY_MODE_OFF;
             }
 
             mButtonTTY.setValue(Integer.toString(buttonTtyMode));
             updatePreferredTtyModeSummary(buttonTtyMode);
-            Intent ttyModeChanged = new Intent(TelecommManager.ACTION_TTY_PREFERRED_MODE_CHANGED);
-            ttyModeChanged.putExtra(TelecommManager.EXTRA_TTY_PREFERRED_MODE, buttonTtyMode);
+            Intent ttyModeChanged = new Intent(TelecomManager.ACTION_TTY_PREFERRED_MODE_CHANGED);
+            ttyModeChanged.putExtra(TelecomManager.EXTRA_TTY_PREFERRED_MODE, buttonTtyMode);
             sendBroadcastAsUser(ttyModeChanged, UserHandle.ALL);
         }
     }
@@ -1882,15 +1883,15 @@ public class CallFeaturesSetting extends PreferenceActivity
     private void updatePreferredTtyModeSummary(int TtyMode) {
         String [] txts = getResources().getStringArray(R.array.tty_mode_entries);
         switch(TtyMode) {
-            case TelecommManager.TTY_MODE_OFF:
-            case TelecommManager.TTY_MODE_HCO:
-            case TelecommManager.TTY_MODE_VCO:
-            case TelecommManager.TTY_MODE_FULL:
+            case TelecomManager.TTY_MODE_OFF:
+            case TelecomManager.TTY_MODE_HCO:
+            case TelecomManager.TTY_MODE_VCO:
+            case TelecomManager.TTY_MODE_FULL:
                 mButtonTTY.setSummary(txts[TtyMode]);
                 break;
             default:
                 mButtonTTY.setEnabled(false);
-                mButtonTTY.setSummary(txts[TelecommManager.TTY_MODE_OFF]);
+                mButtonTTY.setSummary(txts[TelecomManager.TTY_MODE_OFF]);
                 break;
         }
     }
@@ -2147,12 +2148,12 @@ public class CallFeaturesSetting extends PreferenceActivity
             return;
         }
 
-        TelecommManager telecommManager = TelecommManager.from(this);
-        List<PhoneAccountHandle> enabledPhoneAccounts = telecommManager.getEnabledPhoneAccounts();
+        TelecomManager telecomManager = TelecomManager.from(this);
+        List<PhoneAccountHandle> enabledPhoneAccounts = telecomManager.getEnabledPhoneAccounts();
         mDefaultOutgoingAccount.setModel(
-                telecommManager,
+                telecomManager,
                 enabledPhoneAccounts,
-                telecommManager.getUserSelectedOutgoingPhoneAccount(),
+                telecomManager.getUserSelectedOutgoingPhoneAccount(),
                 getString(R.string.phone_accounts_ask_every_time));
     }
 
@@ -2165,12 +2166,12 @@ public class CallFeaturesSetting extends PreferenceActivity
             return;
         }
 
-        TelecommManager telecommManager = TelecommManager.from(this);
-        List<PhoneAccountHandle> simCallManagers = telecommManager.getSimCallManagers();
+        TelecomManager telecomManager = TelecomManager.from(this);
+        List<PhoneAccountHandle> simCallManagers = telecomManager.getSimCallManagers();
         mSimCallManagerAccount.setModel(
-                telecommManager,
+                telecomManager,
                 simCallManagers,
-                telecommManager.getSimCallManager(),
+                telecomManager.getSimCallManager(),
                 getString(R.string.wifi_calling_do_not_use));
     }
 

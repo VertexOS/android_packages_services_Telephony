@@ -17,7 +17,7 @@
 package com.android.services.telephony;
 
 import android.os.Handler;
-import android.telecomm.Connection;
+import android.telecom.Connection;
 
 import java.util.ArrayList;
 import java.util.List;

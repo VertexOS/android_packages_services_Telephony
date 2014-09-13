@@ -237,7 +237,7 @@ public class SipEditor extends PreferenceActivity
 
     /**
      * Saves a {@link SipProfile} and registers the associated
-     * {@link android.telecomm.PhoneAccount}.
+     * {@link android.telecom.PhoneAccount}.
      *
      * @param p The {@link SipProfile} to register.
      * @throws IOException Exception resulting from profile save.
@@ -250,7 +250,7 @@ public class SipEditor extends PreferenceActivity
 
     /**
      * Deletes a {@link SipProfile} and un-registers the associated
-     * {@link android.telecomm.PhoneAccount}.
+     * {@link android.telecom.PhoneAccount}.
      *
      * @param p The {@link SipProfile} to delete.
      */

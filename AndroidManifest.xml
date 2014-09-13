@@ -95,7 +95,7 @@
     <uses-permission android:name="android.permission.SET_PREFERRED_APPLICATIONS" />
     <uses-permission android:name="android.permission.READ_SEARCH_INDEXABLES" />
     <uses-permission
-            android:name="com.android.telecomm.permission.REGISTER_PROVIDER_OR_SUBSCRIPTION" />
+            android:name="com.android.server.telecom.permission.REGISTER_PROVIDER_OR_SUBSCRIPTION" />
 
     <!-- This tells the activity manager to not delay any of our activity
          start requests, even if they happen immediately after the user
@@ -429,8 +429,8 @@
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <action android:name="android.intent.action.MAIN" />
-                <action android:name="android.telecomm.action.SHOW_CALL_SETTINGS" />
-                <action android:name="android.telecomm.action.CHANGE_PHONE_ACCOUNTS" />
+                <action android:name="android.telecom.action.SHOW_CALL_SETTINGS" />
+                <action android:name="android.telecom.action.CHANGE_PHONE_ACCOUNTS" />
                 <action android:name="com.android.phone.CallFeaturesSetting.ADD_VOICEMAIL" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
@@ -482,7 +482,7 @@
         <service android:name="com.android.services.telephony.sip.SipCallServiceProvider"
                  android:singleUser="true" >
             <intent-filter>
-                <action android:name="android.telecomm.CallServiceProvider" />
+                <action android:name="android.telecom.CallServiceProvider" />
             </intent-filter>
         </service>
         <service android:name="com.android.services.telephony.sip.SipConnectionService"
@@ -490,7 +490,7 @@
                  android:singleUser="true"
                  android:permission="android.permission.BIND_CONNECTION_SERVICE" >
             <intent-filter>
-                <action android:name="android.telecomm.ConnectionService" />
+                <action android:name="android.telecom.ConnectionService" />
             </intent-filter>
         </service>
         <receiver android:name="com.android.services.telephony.sip.SipBroadcastReceiver">
@@ -575,11 +575,11 @@
         <!-- service to dump telephony information -->
         <service android:name="HfaService" android:exported="false"/>
 
-        <!-- Telecomm integration -->
+        <!-- Telecom integration -->
         <service android:name="com.android.services.telephony.TelephonyCallServiceProvider"
                 android:singleUser="true">
             <intent-filter>
-                <action android:name="android.telecomm.CallServiceProvider" />
+                <action android:name="android.telecom.CallServiceProvider" />
             </intent-filter>
         </service>
         <service
@@ -588,7 +588,7 @@
                 android:label="@string/pstn_connection_service_label"
                 android:permission="android.permission.BIND_CONNECTION_SERVICE" >
             <intent-filter>
-                <action android:name="android.telecomm.ConnectionService" />
+                <action android:name="android.telecom.ConnectionService" />
             </intent-filter>
         </service>
         <provider

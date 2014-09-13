@@ -22,9 +22,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.Uri;
-import android.telecomm.PhoneAccount;
-import android.telecomm.PhoneAccountHandle;
-import android.telecomm.TelecommManager;
+import android.telecom.PhoneAccount;
+import android.telecom.PhoneAccountHandle;
+import android.telecom.TelecomManager;
 import android.telephony.SubInfoRecord;
 import android.telephony.SubscriptionManager;
 import android.telephony.TelephonyManager;
@@ -41,14 +41,15 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Owns all data we have registered with Telecomm including handling dynamic addition and
+ * Owns all data we have registered with Telecom including handling dynamic addition and
  * removal of SIMs and SIP accounts.
  */
-final class TelecommAccountRegistry {
+final class TelecomAccountRegistry {
     private static final boolean DBG = false; /* STOP SHIP if true */
 
     // Slot IDs are zero based indices but the numbered icons represent the first, second,
     // etc... SIM in the device. So that means that index 0 is SIM 1, index 1 is SIM 2 and so on.
+
     private final static int[] phoneAccountIcons = {
             R.drawable.ic_multi_sim1,
             R.drawable.ic_multi_sim2,
@@ -78,7 +79,7 @@ final class TelecommAccountRegistry {
         }
 
         /**
-         * Registers the specified account with Telecomm as a PhoneAccountHandle.
+         * Registers the specified account with Telecom as a PhoneAccountHandle.
          */
         private PhoneAccount registerPstnPhoneAccount(boolean isEmergency, boolean isDummyAccount) {
             TelephonyManager telephonyManager = TelephonyManager.from(mContext);
@@ -156,8 +157,8 @@ final class TelecommAccountRegistry {
                     .setEnabled(true)
                     .build();
 
-            // Register with Telecomm and put into the account entry.
-            mTelecommManager.registerPhoneAccount(account);
+            // Register with Telecom and put into the account entry.
+            mTelecomManager.registerPhoneAccount(account);
             return account;
         }
 
@@ -194,19 +195,19 @@ final class TelecommAccountRegistry {
         }
     };
 
-    private static TelecommAccountRegistry sInstance;
+    private static TelecomAccountRegistry sInstance;
     private final Context mContext;
-    private final TelecommManager mTelecommManager;
+    private final TelecomManager mTelecomManager;
     private List<AccountEntry> mAccounts = new LinkedList<AccountEntry>();
 
-    TelecommAccountRegistry(Context context) {
+    TelecomAccountRegistry(Context context) {
         mContext = context;
-        mTelecommManager = TelecommManager.from(context);
+        mTelecomManager = TelecomManager.from(context);
     }
 
-    static synchronized final TelecommAccountRegistry getInstance(Context context) {
+    static synchronized final TelecomAccountRegistry getInstance(Context context) {
         if (sInstance == null) {
-            sInstance = new TelecommAccountRegistry(context);
+            sInstance = new TelecomAccountRegistry(context);
         }
         return sInstance;
     }
@@ -260,13 +261,12 @@ final class TelecommAccountRegistry {
     private void cleanupPhoneAccounts() {
         ComponentName telephonyComponentName =
                 new ComponentName(mContext, TelephonyConnectionService.class);
-
-        List<PhoneAccountHandle> accountHandles = mTelecommManager.getAllPhoneAccountHandles();
+        List<PhoneAccountHandle> accountHandles = mTelecomManager.getAllPhoneAccountHandles();
         for (PhoneAccountHandle handle : accountHandles) {
             if (telephonyComponentName.equals(handle.getComponentName()) &&
                     !hasAccountEntryForPhoneAccount(handle)) {
                 Log.d(this, "Unregistering phone account %s.", handle);
-                mTelecommManager.unregisterPhoneAccount(handle);
+                mTelecomManager.unregisterPhoneAccount(handle);
             }
         }
     }
@@ -304,8 +304,8 @@ final class TelecommAccountRegistry {
     private int getPhoneAccountIcon(int index) {
         // A valid slot id doesn't necessarily mean that we have an icon for it.
         if (SubscriptionManager.isValidSlotId(index) &&
-                index < TelecommAccountRegistry.phoneAccountIcons.length) {
-            return TelecommAccountRegistry.phoneAccountIcons[index];
+                index < TelecomAccountRegistry.phoneAccountIcons.length) {
+            return TelecomAccountRegistry.phoneAccountIcons[index];
         }
         // Invalid indices get the default icon that has no number associated with it.
         return defaultPhoneAccountIcon;
