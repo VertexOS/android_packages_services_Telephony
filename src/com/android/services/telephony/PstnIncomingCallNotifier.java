@@ -21,11 +21,16 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.net.Uri;
 import android.os.AsyncResult;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.os.UserHandle;
+import android.telecomm.PhoneAccount;
 import android.telecomm.TelecommManager;
+import android.telephony.TelephonyManager;
+import android.text.TextUtils;
 
 import com.android.internal.telephony.Call;
 import com.android.internal.telephony.Connection;
@@ -186,7 +191,14 @@ final class PstnIncomingCallNotifier {
      * Sends the incoming call intent to telecomm.
      */
     private void sendIncomingCallIntent(Connection connection) {
+        Bundle extras = null;
+        if (connection.getNumberPresentation() == TelecommManager.PRESENTATION_ALLOWED &&
+                !TextUtils.isEmpty(connection.getAddress())) {
+            extras = new Bundle();
+            Uri uri = Uri.fromParts(PhoneAccount.SCHEME_TEL, connection.getAddress(), null);
+            extras.putParcelable(TelephonyManager.EXTRA_INCOMING_NUMBER, uri);
+        }
         TelecommManager.from(mPhoneProxy.getContext()).addNewIncomingCall(
-                TelecommAccountRegistry.makePstnPhoneAccountHandle(mPhoneProxy), null);
+                TelecommAccountRegistry.makePstnPhoneAccountHandle(mPhoneProxy), extras);
     }
 }
