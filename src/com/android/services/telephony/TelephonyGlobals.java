@@ -20,7 +20,6 @@ import android.content.Context;
 
 import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneFactory;
-import com.android.internal.telephony.PhoneProxy;
 
 /**
  * Singleton entry point for the telephony-services app. Initializes ongoing systems relating to
@@ -62,6 +61,6 @@ public class TelephonyGlobals {
             mTtyManager = new TtyManager(mContext, phone);
         }
 
-        TelecommAccountRegistry.getInstance(mContext).setupOnBoot();
+        TelecomAccountRegistry.getInstance(mContext).setupOnBoot();
     }
 }

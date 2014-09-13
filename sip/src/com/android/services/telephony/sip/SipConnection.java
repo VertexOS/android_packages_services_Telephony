@@ -19,17 +19,16 @@ package com.android.services.telephony.sip;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
-import android.telecomm.AudioState;
-import android.telecomm.Connection;
-import android.telecomm.PhoneAccount;
-import android.telecomm.PhoneCapabilities;
+import android.telecom.AudioState;
+import android.telecom.Connection;
+import android.telecom.PhoneAccount;
+import android.telecom.PhoneCapabilities;
 import android.util.Log;
 
 import com.android.internal.telephony.Call;
 import com.android.internal.telephony.CallStateException;
 import com.android.internal.telephony.sip.SipPhone;
 
-import java.util.List;
 import java.util.Objects;
 
 final class SipConnection extends Connection {

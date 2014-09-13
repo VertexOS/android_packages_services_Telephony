@@ -20,7 +20,7 @@ import android.os.Handler;
 import android.os.Message;
 
 import android.provider.Settings;
-import android.telecomm.PhoneCapabilities;
+import android.telecom.PhoneCapabilities;
 import android.telephony.DisconnectCause;
 
 import com.android.internal.telephony.Call;
