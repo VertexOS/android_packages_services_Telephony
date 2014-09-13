@@ -38,7 +38,7 @@ import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.RawContacts;
-import android.telecomm.PhoneAccount;
+import android.telecom.PhoneAccount;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.ContextMenu;
