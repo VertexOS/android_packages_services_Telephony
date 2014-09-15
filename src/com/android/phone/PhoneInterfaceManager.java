@@ -37,6 +37,7 @@ import android.os.Message;
 import android.os.Process;
 import android.os.RemoteException;
 import android.os.ServiceManager;
+import android.os.SystemProperties;
 import android.os.UserHandle;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
@@ -45,6 +46,7 @@ import android.telephony.IccOpenLogicalChannelResponse;
 import android.telephony.NeighboringCellInfo;
 import android.telephony.ServiceState;
 import android.telephony.SubscriptionManager;
+import android.telephony.SubInfoRecord;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
@@ -61,6 +63,7 @@ import com.android.internal.telephony.PhoneFactory;
 import com.android.internal.telephony.CallManager;
 import com.android.internal.telephony.CommandException;
 import com.android.internal.telephony.PhoneConstants;
+import com.android.internal.telephony.TelephonyIntents;
 import com.android.internal.telephony.dataconnection.DctController;
 import com.android.internal.telephony.uicc.AdnRecord;
 import com.android.internal.telephony.uicc.IccIoResult;
@@ -237,17 +240,20 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
                     break;
 
                 case CMD_ANSWER_RINGING_CALL:
-                    answerRingingCallInternal();
+                    request = (MainThreadRequest) msg.obj;
+                    long answer_subId = ((Long)request.argument).longValue();
+                    answerRingingCallInternal(answer_subId);
                     break;
 
                 case CMD_END_CALL:
                     request = (MainThreadRequest) msg.obj;
-                    boolean hungUp;
-                    int phoneType = mPhone.getPhoneType();
+                    long end_subId = ((Long)request.argument).longValue();
+                    final boolean hungUp;
+                    int phoneType = getPhone(end_subId).getPhoneType();
                     if (phoneType == PhoneConstants.PHONE_TYPE_CDMA) {
                         // CDMA: If the user presses the Power button we treat it as
                         // ending the complete call session
-                        hungUp = PhoneUtils.hangupRingingAndActive(mPhone);
+                        hungUp = PhoneUtils.hangupRingingAndActive(getPhone(end_subId));
                     } else if (phoneType == PhoneConstants.PHONE_TYPE_GSM) {
                         // GSM: End the call as per the Phone state
                         hungUp = PhoneUtils.hangup(mCM);
@@ -736,7 +742,6 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         if (state != PhoneConstants.State.OFFHOOK && state != PhoneConstants.State.RINGING) {
             Intent  intent = new Intent(Intent.ACTION_DIAL, Uri.parse(url));
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            intent.putExtra(SUBSCRIPTION_KEY, subId);
             mApp.startActivity(intent);
         }
     }
@@ -763,6 +768,18 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
             return;
         }
 
+        boolean isValid = false;
+        List<SubInfoRecord> slist = SubscriptionManager.getActivatedSubInfoList(null);
+        for (SubInfoRecord subInfoRecord : slist) {
+            if (subInfoRecord.mSubId == subId) {
+                isValid = true;
+                break;
+            }
+        }
+        if (isValid == false) {
+            return;
+        }
+
         Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse(url));
         intent.putExtra(SUBSCRIPTION_KEY, subId);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -783,7 +800,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
      */
     public boolean endCallForSubscriber(long subId) {
         enforceCallPermission();
-        return (Boolean) sendRequest(CMD_END_CALL, subId, null);
+        return (Boolean) sendRequest(CMD_END_CALL, new Long(subId), null);
     }
 
     public void answerRingingCall() {
@@ -796,7 +813,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         // but that can probably wait till the big TelephonyManager API overhaul.
         // For now, protect this call with the MODIFY_PHONE_STATE permission.
         enforceModifyPermission();
-        sendRequestAsync(CMD_ANSWER_RINGING_CALL);
+        sendRequest(CMD_ANSWER_RINGING_CALL, new Long(subId), null);
     }
 
     /**
@@ -812,11 +829,11 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
      * than sendRequestAsync(), and right now we don't actually *need* that
      * return value, so let's just return void for now.
      */
-    private void answerRingingCallInternal() {
-        final boolean hasRingingCall = !mPhone.getRingingCall().isIdle();
+    private void answerRingingCallInternal(long subId) {
+        final boolean hasRingingCall = !getPhone(subId).getRingingCall().isIdle();
         if (hasRingingCall) {
-            final boolean hasActiveCall = !mPhone.getForegroundCall().isIdle();
-            final boolean hasHoldingCall = !mPhone.getBackgroundCall().isIdle();
+            final boolean hasActiveCall = !getPhone(subId).getForegroundCall().isIdle();
+            final boolean hasHoldingCall = !getPhone(subId).getBackgroundCall().isIdle();
             if (hasActiveCall && hasHoldingCall) {
                 // Both lines are in use!
                 // TODO: provide a flag to let the caller specify what
@@ -1805,7 +1822,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     @Override
     public int getCalculatedPreferredNetworkType() {
         enforceReadPermission();
-        return PhoneFactory.calculatePreferredNetworkType(mPhone.getContext());
+        return PhoneFactory.calculatePreferredNetworkType(mPhone.getContext(), 0); // wink FIXME: need to get PhoneId from somewhere.
     }
 
     /**
