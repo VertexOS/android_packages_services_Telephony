@@ -557,12 +557,6 @@
                 android:exported="false">
         </activity>
 
-        <receiver android:name="CallerInfoCacheUpdateReceiver">
-            <intent-filter>
-                <action android:name="com.android.phone.UPDATE_CALLER_INFO_CACHE" />
-            </intent-filter>
-        </receiver>
-
         <!-- BroadcastReceiver for receiving Intents from Notification mechanism. -->
         <receiver android:name="PhoneGlobals$NotificationBroadcastReceiver" android:exported="false">
             <intent-filter>
