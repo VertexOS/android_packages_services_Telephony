@@ -231,12 +231,6 @@
         <item name="*android:windowAnimationStyle">@style/InCallAnimationStyle</item>
     </style>
 
-    <style name="ContactsActionBarStyle"
-           parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">
-        <item name="android:background">@color/people_app_theme_color</item>
-        <item name="android:backgroundStacked">@color/people_app_theme_color</item>gs
-    </style>
-
     <!-- Style for the call settings action bar.  Should be kept in sync with Dialer. -->
     <style name="DialtactsActionBarStyle" parent="@style/TelephonyActionBarStyle">
         <!-- Shift the title text to the right -->
@@ -271,9 +265,9 @@
         <item name="android:colorPrimaryDark">@color/dialer_theme_color_dark</item>
     </style>
 
-    <style name="SimImportTheme"
-           parent="@android:style/Theme.Holo.Light.DarkActionBar">
-        <item name="android:actionBarStyle">@style/ContactsActionBarStyle</item>
+    <style name="SimImportTheme" parent="@android:style/Theme.Material.Light">
+        <item name="android:actionBarStyle">@style/TelephonyActionBarStyle</item>
+        <item name="android:colorPrimaryDark">@color/dialer_theme_color_dark</item>
     </style>
 
     <style name="OutgoingCallBroadcasterTheme" parent="@android:style/Theme.Holo.NoActionBar">
