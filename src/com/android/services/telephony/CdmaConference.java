@@ -90,6 +90,26 @@ public class CdmaConference extends Conference {
     }
 
     @Override
+    public void onPlayDtmfTone(char c) {
+        final CdmaConnection connection = getFirstConnection();
+        if (connection != null) {
+            connection.onPlayDtmfTone(c);
+        } else {
+            Log.w(this, "No CDMA connection found while trying to play dtmf tone.");
+        }
+    }
+
+    @Override
+    public void onStopDtmfTone() {
+        final CdmaConnection connection = getFirstConnection();
+        if (connection != null) {
+            connection.onStopDtmfTone();
+        } else {
+            Log.w(this, "No CDMA connection found while trying to stop dtmf tone.");
+        }
+    }
+
+    @Override
     public void onSwap() {
         Log.i(this, "Swapping CDMA conference call.");
         sendFlash();
@@ -138,5 +158,13 @@ public class CdmaConference extends Conference {
             Log.e(this, null, "Non CDMA connection found in a CDMA conference");
             return null;
         }
+    }
+
+    private CdmaConnection getFirstConnection() {
+        final List<Connection> connections = getConnections();
+        if (connections.isEmpty()) {
+            return null;
+        }
+        return (CdmaConnection) connections.get(0);
     }
 }
