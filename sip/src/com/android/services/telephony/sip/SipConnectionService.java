@@ -39,6 +39,7 @@ import android.util.Log;
 import com.android.internal.telephony.CallStateException;
 import com.android.internal.telephony.PhoneFactory;
 import com.android.internal.telephony.sip.SipPhone;
+import com.android.services.telephony.DisconnectCauseUtil;
 
 import java.util.List;
 import java.util.Objects;
@@ -70,15 +71,15 @@ public final class SipConnectionService extends ConnectionService {
         Bundle extras = request.getExtras();
         if (extras != null &&
                 extras.getString(TelecomManager.GATEWAY_PROVIDER_PACKAGE) != null) {
-            return Connection.createFailedConnection(
-                    DisconnectCause.CALL_BARRED, "Cannot make a SIP call with a gateway number.");
+            return Connection.createFailedConnection(DisconnectCauseUtil.toTelecomDisconnectCause(
+                    DisconnectCause.CALL_BARRED, "Cannot make a SIP call with a gateway number."));
         }
 
         PhoneAccountHandle accountHandle = request.getAccountHandle();
         ComponentName sipComponentName = new ComponentName(this, SipConnectionService.class);
         if (!Objects.equals(accountHandle.getComponentName(), sipComponentName)) {
-            return Connection.createFailedConnection(
-                    DisconnectCause.OUTGOING_FAILURE, "Did not match service connection");
+            return Connection.createFailedConnection(DisconnectCauseUtil.toTelecomDisconnectCause(
+                    DisconnectCause.OUTGOING_FAILURE, "Did not match service connection"));
         }
 
         final SipConnection connection = new SipConnection();
@@ -91,8 +92,8 @@ public final class SipConnectionService extends ConnectionService {
             SipProfileChooserDialogs.showNoVoip(this, new ResultReceiver(mHandler) {
                     @Override
                     protected void onReceiveResult(int choice, Bundle resultData) {
-                        connection.setDisconnected(
-                                DisconnectCause.ERROR_UNSPECIFIED, "VoIP unsupported");
+                        connection.setDisconnected(DisconnectCauseUtil.toTelecomDisconnectCause(
+                                DisconnectCause.ERROR_UNSPECIFIED, "VoIP unsupported"));
                     }
             });
             attemptCall = false;
@@ -103,7 +104,8 @@ public final class SipConnectionService extends ConnectionService {
             SipProfileChooserDialogs.showNoInternetError(this, new ResultReceiver(mHandler) {
                     @Override
                     protected void onReceiveResult(int choice, Bundle resultData) {
-                        connection.setDisconnected(DisconnectCause.OUT_OF_SERVICE, null);
+                        connection.setDisconnected(DisconnectCauseUtil.toTelecomDisconnectCause(
+                                DisconnectCause.OUT_OF_SERVICE, "Network not connected."));
                     }
             });
             attemptCall = false;
@@ -117,15 +119,15 @@ public final class SipConnectionService extends ConnectionService {
                 @Override
                 public void onFound(SipProfile profile) {
                     if (profile == null) {
-                        connection.setDisconnected(
-                                DisconnectCause.OUTGOING_FAILURE, "SIP profile not found.");
+                        connection.setDisconnected(DisconnectCauseUtil.toTelecomDisconnectCause(
+                                DisconnectCause.OUTGOING_FAILURE, "SIP profile not found."));
                         connection.destroy();
                     } else {
                         com.android.internal.telephony.Connection chosenConnection =
                                 createConnectionForProfile(profile, request);
                         if (chosenConnection == null) {
-                            connection.setDisconnected(
-                                    DisconnectCause.OUTGOING_FAILURE, "Connection failed.");
+                            connection.setDisconnected(DisconnectCauseUtil.toTelecomDisconnectCause(
+                                    DisconnectCause.OUTGOING_FAILURE, "Connection failed."));
                             connection.destroy();
                         } else {
                             if (VERBOSE) log("initializing connection");
@@ -147,14 +149,16 @@ public final class SipConnectionService extends ConnectionService {
 
         if (request.getExtras() == null) {
             if (VERBOSE) log("onCreateIncomingConnection, no extras");
-            return Connection.createFailedConnection(DisconnectCause.ERROR_UNSPECIFIED, null);
+            return Connection.createFailedConnection(DisconnectCauseUtil.toTelecomDisconnectCause(
+                    DisconnectCause.ERROR_UNSPECIFIED, "No extras on request."));
         }
 
         Intent sipIntent = (Intent) request.getExtras().getParcelable(
                 SipUtil.EXTRA_INCOMING_CALL_INTENT);
         if (sipIntent == null) {
             if (VERBOSE) log("onCreateIncomingConnection, no SIP intent");
-            return Connection.createFailedConnection(DisconnectCause.ERROR_UNSPECIFIED, null);
+            return Connection.createFailedConnection(DisconnectCauseUtil.toTelecomDisconnectCause(
+                    DisconnectCause.ERROR_UNSPECIFIED, "No SIP intent."));
         }
 
         SipAudioCall sipAudioCall;
@@ -183,7 +187,8 @@ public final class SipConnectionService extends ConnectionService {
                 return Connection.createCanceledConnection();
             }
         }
-        return Connection.createFailedConnection(DisconnectCause.ERROR_UNSPECIFIED, null);
+        return Connection.createFailedConnection(DisconnectCauseUtil.toTelecomDisconnectCause(
+                DisconnectCause.ERROR_UNSPECIFIED));
     }
 
     private com.android.internal.telephony.Connection createConnectionForProfile(
