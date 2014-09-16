@@ -28,6 +28,7 @@ import com.android.internal.telephony.TelephonyCapabilities;
 import com.android.internal.telephony.cdma.CdmaInformationRecords.CdmaDisplayInfoRec;
 import com.android.internal.telephony.cdma.CdmaInformationRecords.CdmaSignalInfoRec;
 import com.android.internal.telephony.cdma.SignalToneUtil;
+import com.android.services.telephony.DisconnectCauseUtil;
 
 import android.app.ActivityManagerNative;
 import android.bluetooth.BluetoothAdapter;
@@ -580,37 +581,10 @@ public class CallNotifier extends Handler {
 
         // The "Busy" or "Congestion" tone is the highest priority:
         if (c != null) {
-            int cause = c.getDisconnectCause();
-            if (cause == DisconnectCause.BUSY) {
-                if (DBG) log("- need to play BUSY tone!");
-                toneToPlay = InCallTonePlayer.TONE_BUSY;
-            } else if (cause == DisconnectCause.CONGESTION) {
-                if (DBG) log("- need to play CONGESTION tone!");
-                toneToPlay = InCallTonePlayer.TONE_CONGESTION;
-            } else if (((cause == DisconnectCause.NORMAL)
-                    || (cause == DisconnectCause.LOCAL))
-                    && (mApplication.isOtaCallInActiveState())) {
-                if (DBG) log("- need to play OTA_CALL_END tone!");
-                toneToPlay = InCallTonePlayer.TONE_OTA_CALL_END;
-            } else if (cause == DisconnectCause.CDMA_REORDER) {
-                if (DBG) log("- need to play CDMA_REORDER tone!");
-                toneToPlay = InCallTonePlayer.TONE_REORDER;
-            } else if (cause == DisconnectCause.CDMA_INTERCEPT) {
-                if (DBG) log("- need to play CDMA_INTERCEPT tone!");
-                toneToPlay = InCallTonePlayer.TONE_INTERCEPT;
-            } else if (cause == DisconnectCause.CDMA_DROP) {
-                if (DBG) log("- need to play CDMA_DROP tone!");
-                toneToPlay = InCallTonePlayer.TONE_CDMA_DROP;
-            } else if (cause == DisconnectCause.OUT_OF_SERVICE) {
-                if (DBG) log("- need to play OUT OF SERVICE tone!");
-                toneToPlay = InCallTonePlayer.TONE_OUT_OF_SERVICE;
-            } else if (cause == DisconnectCause.UNOBTAINABLE_NUMBER) {
-                if (DBG) log("- need to play TONE_UNOBTAINABLE_NUMBER tone!");
-                toneToPlay = InCallTonePlayer.TONE_UNOBTAINABLE_NUMBER;
-            } else if (cause == DisconnectCause.ERROR_UNSPECIFIED) {
-                if (DBG) log("- DisconnectCause is ERROR_UNSPECIFIED: play TONE_CALL_ENDED!");
-                toneToPlay = InCallTonePlayer.TONE_CALL_ENDED;
-            }
+            android.telecom.DisconnectCause disconnectCause =
+                    DisconnectCauseUtil.toTelecomDisconnectCause(c.getDisconnectCause());
+            toneToPlay = disconnectCause.getTone();
+            if (DBG) log("Need to play tone! Tone: " + toneToPlay);
         }
 
         // If we don't need to play BUSY or CONGESTION, then play the
