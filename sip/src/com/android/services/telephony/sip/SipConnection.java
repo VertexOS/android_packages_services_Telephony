@@ -21,6 +21,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.telecom.AudioState;
 import android.telecom.Connection;
+import android.telecom.DisconnectCause;
 import android.telecom.PhoneAccount;
 import android.telecom.PhoneCapabilities;
 import android.util.Log;
@@ -28,6 +29,7 @@ import android.util.Log;
 import com.android.internal.telephony.Call;
 import com.android.internal.telephony.CallStateException;
 import com.android.internal.telephony.sip.SipPhone;
+import com.android.services.telephony.DisconnectCauseUtil;
 
 import java.util.Objects;
 
@@ -232,7 +234,8 @@ final class SipConnection extends Connection {
                     setRinging();
                     break;
                 case DISCONNECTED:
-                    setDisconnected(mOriginalConnection.getDisconnectCause(), null);
+                    setDisconnected(DisconnectCauseUtil.toTelecomDisconnectCause(
+                            mOriginalConnection.getDisconnectCause()));
                     close();
                     break;
                 case DISCONNECTING:
