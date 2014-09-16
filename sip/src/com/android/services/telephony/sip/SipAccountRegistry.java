@@ -177,38 +177,6 @@ final class SipAccountRegistry {
     }
 
     /**
-     * Handles a {@link PhoneAccount} becoming enabled by starting the SIP service for the
-     * {@link SipProfile} associated with that {@linke PhoneAccount}.
-     *
-     * @param context The context.
-     * @param phoneAccountHandle The handle for the {@link PhoneAccount} which is enabled.
-     */
-    void setPhoneAccountEnabled(Context context, PhoneAccountHandle phoneAccountHandle) {
-        String sipUri = SipUtil.getSipUriFromPhoneAccount(phoneAccountHandle);
-        if (sipUri == null) {
-            return;
-        }
-
-        startSipService(context, sipUri);
-    }
-
-    /**
-     * Handles a {@link PhoneAccount} becoming disabled by stopping the SIP service for the
-     * {@link SipProfile} associated with that {@linke PhoneAccount}.
-     *
-     * @param context The context.
-     * @param phoneAccountHandle The handle for the {@link PhoneAccount} which is disabled.
-     */
-    void setPhoneAccountDisabled(Context context, PhoneAccountHandle phoneAccountHandle) {
-        String sipUri = SipUtil.getSipUriFromPhoneAccount(phoneAccountHandle);
-        if (sipUri == null) {
-            return;
-        }
-
-        stopSipService(context, sipUri);
-    }
-
-    /**
      * Performs an asynchronous call to
      * {@link SipAccountRegistry#startSipProfiles(android.content.Context, String)}, starting the
      * specified SIP profile and registering its {@link android.telecom.PhoneAccount}.
@@ -232,11 +200,6 @@ final class SipAccountRegistry {
      * each with the telecom framework. If a specific sipUri is specified, this will only register
      * the associated SIP account.
      *
-     * Also handles migration from using the primary account shared preference to indicate the
-     * {@link SipProfile} to be used for outgoing Sip connections to using the enabled flag on
-     * {@link android.telecom.PhoneAccount}s to indicate which profiles can be used for outgoing
-     * or ingoing calls.
-     *
      * @param context The context.
      * @param sipUri A specific SIP uri to start, or {@code null} to start all.
      */
@@ -255,21 +218,10 @@ final class SipAccountRegistry {
             if (sipUri == null || Objects.equals(sipUri, profile.getUriString())) {
                 PhoneAccount phoneAccount = SipUtil.createPhoneAccount(context, profile);
                 telecomManager.registerPhoneAccount(phoneAccount);
-
-                // If this profile was the primary profile in the past, mark it as enabled.
-                boolean isPrimaryProfile = primaryProfile != null &&
-                        profile.getUriString().equals(primaryProfile);
-                if (isPrimaryProfile) {
-                    telecomManager.setPhoneAccountEnabled(
-                            phoneAccount.getAccountHandle(), true);
-                }
             }
 
-            // Start the SIP service for the profile.
-            if (SipUtil.isPhoneAccountEnabled(context, profile)) {
-                if (sipUri == null || Objects.equals(sipUri, profile.getUriString())) {
-                    startSipServiceForProfile(profile, sipManager, context, isReceivingCalls);
-                }
+            if (sipUri == null || Objects.equals(sipUri, profile.getUriString())) {
+                startSipServiceForProfile(profile, sipManager, context, isReceivingCalls);
             }
         }
 
