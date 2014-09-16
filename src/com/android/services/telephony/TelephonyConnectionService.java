@@ -22,9 +22,9 @@ import android.net.Uri;
 import android.telecom.Connection;
 import android.telecom.ConnectionRequest;
 import android.telecom.ConnectionService;
+import android.telecom.DisconnectCause;
 import android.telecom.PhoneAccount;
 import android.telecom.PhoneAccountHandle;
-import android.telephony.DisconnectCause;
 import android.telephony.PhoneNumberUtils;
 import android.telephony.ServiceState;
 import android.telephony.TelephonyManager;
@@ -68,8 +68,10 @@ public class TelephonyConnectionService extends ConnectionService {
         Uri handle = request.getAddress();
         if (handle == null) {
             Log.d(this, "onCreateOutgoingConnection, handle is null");
-            return Connection.createFailedConnection(DisconnectCause.NO_PHONE_NUMBER_SUPPLIED,
-                    "Handle is null");
+            return Connection.createFailedConnection(
+                    DisconnectCauseUtil.toTelecomDisconnectCause(
+                            android.telephony.DisconnectCause.NO_PHONE_NUMBER_SUPPLIED,
+                            "No phone number supplied"));
         }
 
         String scheme = handle.getScheme();
@@ -81,8 +83,10 @@ public class TelephonyConnectionService extends ConnectionService {
             number = phone.getVoiceMailNumber();
             if (TextUtils.isEmpty(number)) {
                 Log.d(this, "onCreateOutgoingConnection, no voicemail number set.");
-                return Connection.createFailedConnection(DisconnectCause.VOICEMAIL_NUMBER_MISSING,
-                        "Voicemail scheme provided but no voicemail number set.");
+                return Connection.createFailedConnection(
+                        DisconnectCauseUtil.toTelecomDisconnectCause(
+                                android.telephony.DisconnectCause.VOICEMAIL_NUMBER_MISSING,
+                                "Voicemail scheme provided but no voicemail number set."));
             }
 
             // Convert voicemail: to tel:
@@ -90,15 +94,19 @@ public class TelephonyConnectionService extends ConnectionService {
         } else {
             if (!PhoneAccount.SCHEME_TEL.equals(scheme)) {
                 Log.d(this, "onCreateOutgoingConnection, Handle %s is not type tel", scheme);
-                return Connection.createFailedConnection(DisconnectCause.INVALID_NUMBER,
-                        "Handle scheme is not type tel");
+                return Connection.createFailedConnection(
+                        DisconnectCauseUtil.toTelecomDisconnectCause(
+                                android.telephony.DisconnectCause.INVALID_NUMBER,
+                                "Handle scheme is not type tel"));
             }
 
             number = handle.getSchemeSpecificPart();
             if (TextUtils.isEmpty(number)) {
                 Log.d(this, "onCreateOutgoingConnection, unable to parse number");
-                return Connection.createFailedConnection(DisconnectCause.INVALID_NUMBER,
-                        "Unable to parse number");
+                return Connection.createFailedConnection(
+                        DisconnectCauseUtil.toTelecomDisconnectCause(
+                                android.telephony.DisconnectCause.INVALID_NUMBER,
+                                "Unable to parse number"));
             }
         }
 
@@ -108,8 +116,9 @@ public class TelephonyConnectionService extends ConnectionService {
         final Phone phone = getPhoneForAccount(request.getAccountHandle(), isEmergencyNumber);
         if (phone == null) {
             Log.d(this, "onCreateOutgoingConnection, phone is null");
-            return Connection.createFailedConnection(DisconnectCause.OUTGOING_FAILURE,
-                    "Phone is null");
+            return Connection.createFailedConnection(
+                    DisconnectCauseUtil.toTelecomDisconnectCause(
+                            android.telephony.DisconnectCause.OUTGOING_FAILURE, "Phone is null"));
         }
 
         int state = phone.getServiceState().getState();
@@ -125,15 +134,21 @@ public class TelephonyConnectionService extends ConnectionService {
                 case ServiceState.STATE_EMERGENCY_ONLY:
                     break;
                 case ServiceState.STATE_OUT_OF_SERVICE:
-                    return Connection.createFailedConnection(DisconnectCause.OUT_OF_SERVICE,
-                            "ServiceState.STATE_OUT_OF_SERVICE");
+                    return Connection.createFailedConnection(
+                            DisconnectCauseUtil.toTelecomDisconnectCause(
+                                    android.telephony.DisconnectCause.OUT_OF_SERVICE,
+                                    "ServiceState.STATE_OUT_OF_SERVICE"));
                 case ServiceState.STATE_POWER_OFF:
-                    return Connection.createFailedConnection(DisconnectCause.POWER_OFF,
-                            "ServiceState.STATE_POWER_OFF");
+                    return Connection.createFailedConnection(
+                            DisconnectCauseUtil.toTelecomDisconnectCause(
+                                    android.telephony.DisconnectCause.POWER_OFF,
+                                    "ServiceState.STATE_POWER_OFF"));
                 default:
                     Log.d(this, "onCreateOutgoingConnection, unknown service state: %d", state);
-                    return Connection.createFailedConnection(DisconnectCause.OUTGOING_FAILURE,
-                            "Unknown service state " + state);
+                    return Connection.createFailedConnection(
+                            DisconnectCauseUtil.toTelecomDisconnectCause(
+                                    android.telephony.DisconnectCause.OUTGOING_FAILURE,
+                                    "Unknown service state " + state));
             }
         }
 
@@ -141,7 +156,9 @@ public class TelephonyConnectionService extends ConnectionService {
                 createConnectionFor(phone, null, true /* isOutgoing */);
         if (connection == null) {
             return Connection.createFailedConnection(
-                    DisconnectCause.OUTGOING_FAILURE, "Invalid phone type");
+                    DisconnectCauseUtil.toTelecomDisconnectCause(
+                            android.telephony.DisconnectCause.OUTGOING_FAILURE,
+                            "Invalid phone type"));
         }
         connection.setAddress(handle, PhoneConstants.PRESENTATION_ALLOWED);
         connection.setInitializing();
@@ -162,8 +179,10 @@ public class TelephonyConnectionService extends ConnectionService {
                                 placeOutgoingConnection(connection, phone, request);
                             } else {
                                 Log.d(this, "onCreateOutgoingConnection, failed to turn on radio");
-                                connection.setDisconnected(DisconnectCause.POWER_OFF,
-                                        "Failed to turn on radio.");
+                                connection.setDisconnected(
+                                        DisconnectCauseUtil.toTelecomDisconnectCause(
+                                                android.telephony.DisconnectCause.POWER_OFF,
+                                                "Failed to turn on radio."));
                                 connection.destroy();
                             }
                         }
@@ -184,14 +203,18 @@ public class TelephonyConnectionService extends ConnectionService {
 
         Phone phone = getPhoneForAccount(request.getAccountHandle(), false);
         if (phone == null) {
-            return Connection.createFailedConnection(DisconnectCause.ERROR_UNSPECIFIED, null);
+            return Connection.createFailedConnection(
+                    DisconnectCauseUtil.toTelecomDisconnectCause(
+                            android.telephony.DisconnectCause.ERROR_UNSPECIFIED));
         }
 
         Call call = phone.getRingingCall();
         if (!call.getState().isRinging()) {
             Log.i(this, "onCreateIncomingConnection, no ringing call");
-            return Connection.createFailedConnection(DisconnectCause.INCOMING_MISSED,
-                    "Found no ringing call");
+            return Connection.createFailedConnection(
+                    DisconnectCauseUtil.toTelecomDisconnectCause(
+                            android.telephony.DisconnectCause.INCOMING_MISSED,
+                            "Found no ringing call"));
         }
 
         com.android.internal.telephony.Connection originalConnection =
@@ -231,24 +254,26 @@ public class TelephonyConnectionService extends ConnectionService {
             originalConnection = phone.dial(number, request.getVideoState());
         } catch (CallStateException e) {
             Log.e(this, e, "placeOutgoingConnection, phone.dial exception: " + e);
-            connection.setDisconnected(DisconnectCause.OUTGOING_FAILURE, e.getMessage());
+            connection.setDisconnected(DisconnectCauseUtil.toTelecomDisconnectCause(
+                    android.telephony.DisconnectCause.OUTGOING_FAILURE,
+                    e.getMessage()));
             return;
         }
 
         if (originalConnection == null) {
-            int disconnectCause = DisconnectCause.OUTGOING_FAILURE;
-
+            int telephonyDisconnectCause = android.telephony.DisconnectCause.OUTGOING_FAILURE;
             // On GSM phones, null connection means that we dialed an MMI code
             if (phone.getPhoneType() == PhoneConstants.PHONE_TYPE_GSM) {
                 Log.d(this, "dialed MMI code");
-                disconnectCause = DisconnectCause.DIALED_MMI;
+                telephonyDisconnectCause = android.telephony.DisconnectCause.DIALED_MMI;
                 final Intent intent = new Intent(this, MMIDialogActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK |
                         Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
                 startActivity(intent);
             }
             Log.d(this, "placeOutgoingConnection, phone.dial returned null");
-            connection.setDisconnected(disconnectCause, "Connection is null");
+            connection.setDisconnected(DisconnectCauseUtil.toTelecomDisconnectCause(
+                    telephonyDisconnectCause, "Connection is null"));
         } else {
             connection.setOriginalConnection(originalConnection);
         }

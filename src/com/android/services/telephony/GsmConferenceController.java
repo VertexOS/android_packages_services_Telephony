@@ -24,6 +24,7 @@ import java.util.Set;
 
 import android.telecom.Conference;
 import android.telecom.Connection;
+import android.telecom.DisconnectCause;
 
 import com.android.internal.telephony.Call;
 
@@ -40,7 +41,7 @@ final class GsmConferenceController {
 
         /** ${inheritDoc} */
         @Override
-        public void onDisconnected(Connection c, int cause, String message) {
+        public void onDisconnected(Connection c, DisconnectCause disconnectCause) {
             recalculate();
         }
 
