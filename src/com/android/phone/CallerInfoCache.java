@@ -50,12 +50,6 @@ public class CallerInfoCache {
     /** This must not be set to true when submitting changes. */
     private static final boolean VDBG = false;
 
-    /**
-     * Interval used with {@link AlarmManager#setInexactRepeating(int, long, long, PendingIntent)},
-     * which means the actually interval may not be very accurate.
-     */
-    private static final int CACHE_REFRESH_INTERVAL = 8 * 60 * 60 * 1000; // 8 hours in millis.
-
     public static final int MESSAGE_UPDATE_CACHE = 0;
 
     // Assuming DATA.DATA1 corresponds to Phone.NUMBER and SipAddress.ADDRESS, we just use
@@ -162,7 +156,6 @@ public class CallerInfoCache {
         CallerInfoCache cache = new CallerInfoCache(context);
         // The first cache should be available ASAP.
         cache.startAsyncCache();
-        cache.setRepeatingCacheUpdateAlarm();
         return cache;
     }
 
@@ -180,23 +173,6 @@ public class CallerInfoCache {
         }
         mCacheAsyncTask = new CacheAsyncTask();
         mCacheAsyncTask.acquireWakeLockAndExecute();
-    }
-
-    /**
-     * Set up periodic alarm for cache update.
-     */
-    private void setRepeatingCacheUpdateAlarm() {
-        if (DBG) log("setRepeatingCacheUpdateAlarm");
-
-        Intent intent = new Intent(CallerInfoCacheUpdateReceiver.ACTION_UPDATE_CALLER_INFO_CACHE);
-        intent.setClass(mContext, CallerInfoCacheUpdateReceiver.class);
-        PendingIntent pendingIntent =
-                PendingIntent.getBroadcast(mContext, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
-        AlarmManager alarmManager = (AlarmManager) mContext.getSystemService(Context.ALARM_SERVICE);
-        // We don't need precise timer while this should be power efficient.
-        alarmManager.setInexactRepeating(AlarmManager.ELAPSED_REALTIME,
-                SystemClock.uptimeMillis() + CACHE_REFRESH_INTERVAL,
-                CACHE_REFRESH_INTERVAL, pendingIntent);
     }
 
     private void refreshCacheEntry() {
