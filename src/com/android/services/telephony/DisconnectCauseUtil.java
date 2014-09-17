@@ -53,7 +53,7 @@ public class DisconnectCauseUtil {
                 toTelecomDisconnectCauseCode(telephonyDisconnectCause),
                 toTelecomDisconnectCauseLabel(context, telephonyDisconnectCause),
                 toTelecomDisconnectCauseDescription(context, telephonyDisconnectCause),
-                reason,
+                toTelecomDisconnectReason(telephonyDisconnectCause, reason),
                 toTelecomDisconnectCauseTone(telephonyDisconnectCause));
     }
 
@@ -294,6 +294,15 @@ public class DisconnectCauseUtil {
                 break;
         }
         return resourceId == null ? "" : context.getResources().getString(resourceId);
+    }
+
+    private static String toTelecomDisconnectReason(int telephonyDisconnectCause, String reason) {
+        String causeAsString = android.telephony.DisconnectCause.toString(telephonyDisconnectCause);
+        if (reason == null) {
+            return causeAsString;
+        } else {
+            return reason + ", " + causeAsString;
+        }
     }
 
     /**
