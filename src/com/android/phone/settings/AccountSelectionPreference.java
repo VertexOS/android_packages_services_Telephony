@@ -116,26 +116,6 @@ public class AccountSelectionPreference extends ListPreference implements
         // list of enabled accounts can be updated prior to showing the dialog.
         mListener.onAccountSelectionDialogShow(this);
 
-        final DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int whichButton) {
-                showSelectPhoneAccounts();
-            }
-        };
-        builder.setNegativeButton(R.string.phone_accounts_choose_accounts, listener);
         super.onPrepareDialogBuilder(builder);
-    }
-
-    /**
-     * Displays the {@link PhoneAccountSelectionPreferenceActivity} where the user is able to
-     * enable and disable phone accounts.
-     */
-    private void showSelectPhoneAccounts() {
-        Intent intent = new Intent(mContext, PhoneAccountSelectionPreferenceActivity.class);
-        intent.setAction(Intent.ACTION_MAIN);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
-                | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED
-                | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        mContext.startActivityAsUser(intent, null, UserHandle.CURRENT);
     }
 }
