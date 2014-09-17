@@ -17,7 +17,7 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
     <!-- Title displayed SIP settings coming after other call settings in the call features screen. [CHAR LIMIT=NONE] -->
-    <string name="sip_settings">SIP settings</string>
+    <string name="sip_settings">SIP Settings</string>
     <!-- Title displayed SIP account settings in the sip settings category. [CHAR LIMIT=NONE] -->
     <string name="sip_accounts">SIP accounts</string>
     <!-- Title displayed SIP account settings in the sip settings category. [CHAR LIMIT=NONE] -->
