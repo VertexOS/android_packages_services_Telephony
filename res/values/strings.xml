@@ -127,13 +127,21 @@
 
     <!-- Label for list item which opens a dialog to select the default outgoing account -->
     <string name="phone_accounts_make_calls_with">Make calls with</string>
+    <!-- Label for list item which opens a dialog to select the default outgoing account for SIP calls. -->
+    <string name="phone_accounts_make_calls_with">Make SIP calls with</string>
     <!-- Entry in dialog to "ask first" for accounts when making a call -->
     <string name="phone_accounts_ask_every_time">Ask first</string>
 
+    <!-- Label for heading of the accounts section in the phone accounts settings screen. -->
+    <string name="phone_accounts_accounts_header">Accounts</string>
     <!-- Label for invoking phone account selection screen -->
     <string name="phone_accounts_choose_accounts">Choose accounts</string>
     <!-- Label for heading in the phone account selection screen -->
     <string name="phone_accounts_selection_header">Phone accounts</string>
+    <!-- Title for the button to add a new sip account. [CHAR LIMIT=NONE] -->
+    <string name="phone_accounts_add_sip_account">Add SIP account</string>
+    <!-- Description label for icon to configure a phone account's settings. -->
+    <string name="phone_accounts_configure_account_settings">Configure account settings</string>
 
     <!-- Title for setting to select Wi-Fi call manager account -->
     <string name="phone_account_wifi_calling">Wi-Fi calling</string>
@@ -145,6 +153,8 @@
     <string name="wifi_calling_use_call_assistant">Use call assistant</string>
     <!-- Summary for the label of a switch setting to enable/disable the use of SIM call managers. -->
     <string name="wifi_calling_use_call_assistant_summary">Let apps or services manage networks used for calls</string>
+    <!-- Label for setting to configure the selected call assistant. -->
+    <string name="wifi_calling_call_assistant_configure">Configure</string>
 
     <!-- Built-in label for the default connection service setting. -->
     <string name="connection_service_default_label">Built-in connection service</string>
@@ -156,6 +166,8 @@
     <string name="networks">Network operators</string>
     <!-- Cell Broadcast settings title.  [CHAR LIMIT=50] -->
     <string name="cell_broadcast_settings">Emergency broadcasts</string>
+    <!-- Phone accoutnt settings screen title -->
+    <string name="call_settings">Phone account settings</string>
     <!-- Call settings screen title -->
     <string name="call_settings">Call Settings</string>
     <!-- GSM Call settings screen, setting option name -->
