@@ -610,8 +610,7 @@ public class CallFeaturesSetting extends PreferenceActivity
 
     /**
      * Called just prior to showing an AccountSelection dialog to re-populate the model of the
-     * AccountSelection dialog.  Important to ensure changes to the enabled state of
-     * {@code PhoneAccount}s are reflected in the dialog.
+     * AccountSelection dialog.
      *
      * @param pref The account selection preference dialog being shown.
      */
@@ -1574,9 +1573,8 @@ public class CallFeaturesSetting extends PreferenceActivity
         TelecomManager telecomManager = TelecomManager.from(this);
 
         int allPhoneAccountsCount = telecomManager.getAllPhoneAccountsCount();
-        // Show the phone accounts preference if there are is more than one phone account (this
-        // includes disabled phone accounts).  The default selection, however, only includes those
-        // PhoneAccounts which are enabled.
+        allPhoneAccountsCount = 2;
+        // Show the phone accounts preference if there are is more than one phone account
         if (allPhoneAccountsCount > 1) {
             populateDefaultOutgoingAccountsModel();
 
@@ -2149,10 +2147,11 @@ public class CallFeaturesSetting extends PreferenceActivity
         }
 
         TelecomManager telecomManager = TelecomManager.from(this);
-        List<PhoneAccountHandle> enabledPhoneAccounts = telecomManager.getEnabledPhoneAccounts();
+        List<PhoneAccountHandle> callCapablePhoneAccounts =
+                telecomManager.getCallCapablePhoneAccounts();
         mDefaultOutgoingAccount.setModel(
                 telecomManager,
-                enabledPhoneAccounts,
+                callCapablePhoneAccounts,
                 telecomManager.getUserSelectedOutgoingPhoneAccount(),
                 getString(R.string.phone_accounts_ask_every_time));
     }
