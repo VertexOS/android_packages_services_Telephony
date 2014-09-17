@@ -1573,7 +1573,6 @@ public class CallFeaturesSetting extends PreferenceActivity
         TelecomManager telecomManager = TelecomManager.from(this);
 
         int allPhoneAccountsCount = telecomManager.getAllPhoneAccountsCount();
-        allPhoneAccountsCount = 2;
         // Show the phone accounts preference if there are is more than one phone account
         if (allPhoneAccountsCount > 1) {
             populateDefaultOutgoingAccountsModel();
