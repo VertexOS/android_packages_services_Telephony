@@ -139,12 +139,6 @@ final class TelecomAccountRegistry {
                     PhoneAccount.CAPABILITY_CALL_PROVIDER |
                     PhoneAccount.CAPABILITY_PLACE_EMERGENCY_CALLS;
 
-            // Indicate the emergency calling PhoneAccount is ALWAYS enabled.  This capability is
-            // important to ensure the emergency-only PhoneAccount cannot be disabled.
-            if (isEmergency) {
-                capabilities |= PhoneAccount.CAPABILITY_ALWAYS_ENABLED;
-            }
-
             PhoneAccount account = PhoneAccount.builder(phoneAccountHandle, label)
                     .setAddress(Uri.fromParts(PhoneAccount.SCHEME_TEL, line1Number, null))
                     .setSubscriptionAddress(
@@ -154,7 +148,6 @@ final class TelecomAccountRegistry {
                     .setShortDescription(description)
                     .setSupportedUriSchemes(Arrays.asList(
                             PhoneAccount.SCHEME_TEL, PhoneAccount.SCHEME_VOICEMAIL))
-                    .setEnabled(true)
                     .build();
 
             // Register with Telecom and put into the account entry.

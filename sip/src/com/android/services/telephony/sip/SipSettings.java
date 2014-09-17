@@ -99,8 +99,7 @@ public class SipSettings extends PreferenceActivity {
         void setProfile(SipProfile p) {
             mProfile = p;
             setTitle(getProfileName(p));
-            boolean isEnabled = SipUtil.isPhoneAccountEnabled(getContext(), p);
-            updateSummary(isEnabled && mSipSharedPreferences.isReceivingCallsEnabled()
+            updateSummary(mSipSharedPreferences.isReceivingCallsEnabled()
                     ? getString(R.string.registration_status_checking_status)
                     : getString(R.string.registration_status_not_receiving));
         }
@@ -300,8 +299,7 @@ public class SipSettings extends PreferenceActivity {
 
         if (!mSipSharedPreferences.isReceivingCallsEnabled()) return;
         for (SipProfile p : mSipProfileList) {
-            if (mUid == p.getCallingUid() &&
-                    SipUtil.isPhoneAccountEnabled(getApplicationContext(), p)) {
+            if (mUid == p.getCallingUid()) {
                 try {
                     mSipManager.setRegistrationListener(
                             p.getUriString(), createRegistrationListener());
