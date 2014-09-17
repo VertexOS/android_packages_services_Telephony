@@ -28,7 +28,6 @@ import com.android.internal.telephony.TelephonyCapabilities;
 import com.android.internal.telephony.cdma.CdmaInformationRecords.CdmaDisplayInfoRec;
 import com.android.internal.telephony.cdma.CdmaInformationRecords.CdmaSignalInfoRec;
 import com.android.internal.telephony.cdma.SignalToneUtil;
-import com.android.services.telephony.DisconnectCauseUtil;
 
 import android.app.ActivityManagerNative;
 import android.bluetooth.BluetoothAdapter;
@@ -578,14 +577,6 @@ public class CallNotifier extends Handler {
         // Check for the various tones we might need to play (thru the
         // earpiece) after a call disconnects.
         int toneToPlay = InCallTonePlayer.TONE_NONE;
-
-        // The "Busy" or "Congestion" tone is the highest priority:
-        if (c != null) {
-            android.telecom.DisconnectCause disconnectCause =
-                    DisconnectCauseUtil.toTelecomDisconnectCause(c.getDisconnectCause());
-            toneToPlay = disconnectCause.getTone();
-            if (DBG) log("Need to play tone! Tone: " + toneToPlay);
-        }
 
         // If we don't need to play BUSY or CONGESTION, then play the
         // "call ended" tone if this was a "regular disconnect" (i.e. a
