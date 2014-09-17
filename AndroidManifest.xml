@@ -436,14 +436,6 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".settings.PhoneAccountSelectionPreferenceActivity"
-                  android:label="@string/phone_accounts_selection_header"
-                  android:theme="@style/DialerSettingsLight">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-            </intent-filter>
-        </activity>
-
         <!-- bluetooth phone service -->
         <service android:name="BluetoothPhoneService">
             <intent-filter>
@@ -499,8 +491,6 @@
                 <action android:name="com.android.phone.SIP_INCOMING_CALL" />
                 <action android:name="com.android.phone.SIP_REMOVE_PHONE" />
                 <action android:name="com.android.phone.SIP_CALL_OPTION_CHANGED" />
-                <action android:name="android.telecom.action.PHONE_ACCOUNT_ENABLED" />
-                <action android:name="android.telecom.action.PHONE_ACCOUNT_DISABLED" />
             </intent-filter>
         </receiver>
 

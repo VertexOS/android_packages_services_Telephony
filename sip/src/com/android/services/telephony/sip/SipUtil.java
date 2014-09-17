@@ -95,20 +95,6 @@ public class SipUtil {
     }
 
     /**
-     * Determines if the {@link android.tlecom.PhoneAccount} associated with a {@link SipProfile}
-     * is enabled.
-     *
-     * @param context The {@link Context}.
-     * @param profile The {@link SipProfile}.
-     * @return {@code True} if the {@code PhoneAccount} is enabled.
-     */
-    static boolean isPhoneAccountEnabled(Context context, SipProfile profile) {
-        PhoneAccount phoneAccount = TelecomManager.from(context)
-                .getPhoneAccount(SipUtil.createAccountHandle(context, profile.getUriString()));
-        return phoneAccount != null && phoneAccount.isEnabled();
-    }
-
-    /**
      * Creates a PhoneAccount for a SipProfile.
      *
      * @param context The context
