@@ -89,25 +89,21 @@ public final class SipConnectionService extends ConnectionService {
         boolean attemptCall = true;
 
         if (!SipUtil.isVoipSupported(this)) {
-            SipProfileChooserDialogs.showNoVoip(this, new ResultReceiver(mHandler) {
-                    @Override
-                    protected void onReceiveResult(int choice, Bundle resultData) {
-                        connection.setDisconnected(DisconnectCauseUtil.toTelecomDisconnectCause(
-                                DisconnectCause.ERROR_UNSPECIFIED, "VoIP unsupported"));
-                    }
-            });
+            final CharSequence description = getString(R.string.no_voip);
+            connection.setDisconnected(new android.telecom.DisconnectCause(
+                    android.telecom.DisconnectCause.ERROR, null, description,
+                    "VoIP unsupported"));
             attemptCall = false;
         }
 
         if (attemptCall && !isNetworkConnected()) {
             if (VERBOSE) log("start, network not connected, dropping call");
-            SipProfileChooserDialogs.showNoInternetError(this, new ResultReceiver(mHandler) {
-                    @Override
-                    protected void onReceiveResult(int choice, Bundle resultData) {
-                        connection.setDisconnected(DisconnectCauseUtil.toTelecomDisconnectCause(
-                                DisconnectCause.OUT_OF_SERVICE, "Network not connected."));
-                    }
-            });
+            final boolean wifiOnly = SipManager.isSipWifiOnly(this);
+            final CharSequence description = getString(wifiOnly ? R.string.no_wifi_available
+                    : R.string.no_internet_available);
+            connection.setDisconnected(new android.telecom.DisconnectCause(
+                    android.telecom.DisconnectCause.ERROR, null, description,
+                    "Network not connected"));
             attemptCall = false;
         }
 
