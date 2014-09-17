@@ -83,51 +83,51 @@ public class DisconnectCauseUtil {
                 return DisconnectCause.BUSY;
 
             case android.telephony.DisconnectCause.CALL_BARRED:
-            case android.telephony.DisconnectCause.FDN_BLOCKED:
-            case android.telephony.DisconnectCause.CS_RESTRICTED:
-            case android.telephony.DisconnectCause.CS_RESTRICTED_NORMAL:
-            case android.telephony.DisconnectCause.CS_RESTRICTED_EMERGENCY:
             case android.telephony.DisconnectCause.CDMA_ACCESS_BLOCKED:
+            case android.telephony.DisconnectCause.CDMA_NOT_EMERGENCY:
+            case android.telephony.DisconnectCause.CS_RESTRICTED:
+            case android.telephony.DisconnectCause.CS_RESTRICTED_EMERGENCY:
+            case android.telephony.DisconnectCause.CS_RESTRICTED_NORMAL:
+            case android.telephony.DisconnectCause.EMERGENCY_ONLY:
+            case android.telephony.DisconnectCause.FDN_BLOCKED:
+            case android.telephony.DisconnectCause.LIMIT_EXCEEDED:
                 return DisconnectCause.RESTRICTED;
 
-            case android.telephony.DisconnectCause.INVALID_CREDENTIALS:
-            case android.telephony.DisconnectCause.LIMIT_EXCEEDED:
-            case android.telephony.DisconnectCause.OUT_OF_NETWORK:
-            case android.telephony.DisconnectCause.CONGESTION:
-            case android.telephony.DisconnectCause.MMI:
-            case android.telephony.DisconnectCause.INVALID_NUMBER:
-            case android.telephony.DisconnectCause.NUMBER_UNREACHABLE:
-            case android.telephony.DisconnectCause.SERVER_UNREACHABLE:
-            case android.telephony.DisconnectCause.SERVER_ERROR:
-            case android.telephony.DisconnectCause.TIMED_OUT:
-            case android.telephony.DisconnectCause.LOST_SIGNAL:
-            case android.telephony.DisconnectCause.POWER_OFF:
-            case android.telephony.DisconnectCause.OUT_OF_SERVICE:
-            case android.telephony.DisconnectCause.ICC_ERROR:
-            case android.telephony.DisconnectCause.UNOBTAINABLE_NUMBER:
-            case android.telephony.DisconnectCause.CDMA_LOCKED_UNTIL_POWER_CYCLE:
+            case android.telephony.DisconnectCause.CDMA_ACCESS_FAILURE:
+            case android.telephony.DisconnectCause.CDMA_CALL_LOST:
             case android.telephony.DisconnectCause.CDMA_DROP:
             case android.telephony.DisconnectCause.CDMA_INTERCEPT:
-            case android.telephony.DisconnectCause.CDMA_REORDER:
-            case android.telephony.DisconnectCause.CDMA_SO_REJECT:
-            case android.telephony.DisconnectCause.CDMA_RETRY_ORDER:
-            case android.telephony.DisconnectCause.CDMA_ACCESS_FAILURE:
+            case android.telephony.DisconnectCause.CDMA_LOCKED_UNTIL_POWER_CYCLE:
             case android.telephony.DisconnectCause.CDMA_PREEMPTED:
-            case android.telephony.DisconnectCause.CDMA_NOT_EMERGENCY:
+            case android.telephony.DisconnectCause.CDMA_REORDER:
+            case android.telephony.DisconnectCause.CDMA_RETRY_ORDER:
+            case android.telephony.DisconnectCause.CDMA_SO_REJECT:
+            case android.telephony.DisconnectCause.CONGESTION:
+            case android.telephony.DisconnectCause.ICC_ERROR:
+            case android.telephony.DisconnectCause.INVALID_CREDENTIALS:
+            case android.telephony.DisconnectCause.INVALID_NUMBER:
+            case android.telephony.DisconnectCause.LOST_SIGNAL:
             case android.telephony.DisconnectCause.NO_PHONE_NUMBER_SUPPLIED:
-            case android.telephony.DisconnectCause.DIALED_MMI:
-            case android.telephony.DisconnectCause.VOICEMAIL_NUMBER_MISSING:
-            case android.telephony.DisconnectCause.CDMA_CALL_LOST:
-            case android.telephony.DisconnectCause.EMERGENCY_ONLY:
+            case android.telephony.DisconnectCause.NUMBER_UNREACHABLE:
             case android.telephony.DisconnectCause.OUTGOING_FAILURE:
+            case android.telephony.DisconnectCause.OUT_OF_NETWORK:
+            case android.telephony.DisconnectCause.OUT_OF_SERVICE:
+            case android.telephony.DisconnectCause.POWER_OFF:
+            case android.telephony.DisconnectCause.SERVER_ERROR:
+            case android.telephony.DisconnectCause.SERVER_UNREACHABLE:
+            case android.telephony.DisconnectCause.TIMED_OUT:
+            case android.telephony.DisconnectCause.UNOBTAINABLE_NUMBER:
+            case android.telephony.DisconnectCause.VOICEMAIL_NUMBER_MISSING:
+            case android.telephony.DisconnectCause.ERROR_UNSPECIFIED:
                 return DisconnectCause.ERROR;
 
+            case android.telephony.DisconnectCause.DIALED_MMI:
             case android.telephony.DisconnectCause.EXITED_ECM:
+            case android.telephony.DisconnectCause.MMI:
                 return DisconnectCause.OTHER;
 
             case android.telephony.DisconnectCause.NOT_VALID:
             case android.telephony.DisconnectCause.NOT_DISCONNECTED:
-            case android.telephony.DisconnectCause.ERROR_UNSPECIFIED:
                 return DisconnectCause.UNKNOWN;
 
             default:
