@@ -128,7 +128,7 @@
     <!-- Label for list item which opens a dialog to select the default outgoing account -->
     <string name="phone_accounts_make_calls_with">Make calls with</string>
     <!-- Label for list item which opens a dialog to select the default outgoing account for SIP calls. -->
-    <string name="phone_accounts_make_calls_with">Make SIP calls with</string>
+    <string name="phone_accounts_make_sip_calls_with">Make SIP calls with</string>
     <!-- Entry in dialog to "ask first" for accounts when making a call -->
     <string name="phone_accounts_ask_every_time">Ask first</string>
 
@@ -147,14 +147,22 @@
     <string name="phone_account_wifi_calling">Wi-Fi calling</string>
     <!-- Indication for option to not use a Wi-Fi call manager -->
     <string name="wifi_calling_do_not_use">Do not use Wi-Fi calling</string>
+    <!-- Indication for option to not use a call assistant. -->
+    <string name="wifi_calling_do_not_use_call_assistant">Do not use call assistant</string>
     <!-- Label for selected Wi-Fi call manager -->
     <string name="wifi_calling_call_assistant">Call assistant</string>
     <!-- Label for switch setting to enable/disable the use of SIM call managers. -->
     <string name="wifi_calling_use_call_assistant">Use call assistant</string>
+    <!-- Label for selectecting a Wi-Fi call manager -->
+    <string name="wifi_calling_select_call_assistant">Choose call assistant</string>
+    <!-- Summary for the label of a setting to select the SIM call managers to use.-->
+    <string name="wifi_calling_select_call_assistant_summary">Choose an app or service to manage the networks used for calls</string>
     <!-- Summary for the label of a switch setting to enable/disable the use of SIM call managers. -->
     <string name="wifi_calling_use_call_assistant_summary">Let apps or services manage networks used for calls</string>
     <!-- Label for setting to configure the selected call assistant. -->
     <string name="wifi_calling_call_assistant_configure">Configure</string>
+    <!-- Label for setting to configure the seelcted call assistnant when no call assistant is chosen. -->
+    <string name="wifi_calling_call_assistant_configure_no_selection">Call assistant off</string>
 
     <!-- Built-in label for the default connection service setting. -->
     <string name="connection_service_default_label">Built-in connection service</string>
