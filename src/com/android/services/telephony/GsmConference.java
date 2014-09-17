@@ -81,11 +81,10 @@ public class GsmConference extends Conference {
      */
     @Override
     public void onHold() {
-        List<Connection> connections = getConnections();
-        if (connections.isEmpty()) {
-            return;
+        final GsmConnection connection = getFirstConnection();
+        if (connection != null) {
+            connection.performHold();
         }
-        ((GsmConnection) connections.get(0)).performHold();
     }
 
     /**
@@ -93,11 +92,26 @@ public class GsmConference extends Conference {
      */
     @Override
     public void onUnhold() {
-        List<Connection> connections = getConnections();
-        if (connections.isEmpty()) {
-            return;
+        final GsmConnection connection = getFirstConnection();
+        if (connection != null) {
+            connection.performUnhold();
         }
-        ((GsmConnection) connections.get(0)).performUnhold();
+    }
+
+    @Override
+    public void onPlayDtmfTone(char c) {
+        final GsmConnection connection = getFirstConnection();
+        if (connection != null) {
+            connection.onPlayDtmfTone(c);
+        }
+    }
+
+    @Override
+    public void onStopDtmfTone() {
+        final GsmConnection connection = getFirstConnection();
+        if (connection != null) {
+            connection.onStopDtmfTone();
+        }
     }
 
     private Call getMultipartyCallForConnection(Connection connection, String tag) {
@@ -121,5 +135,13 @@ public class GsmConference extends Conference {
             Log.e(this, null, "Non GSM connection found in a Gsm conference (%s)", tag);
             return null;
         }
+    }
+
+    private GsmConnection getFirstConnection() {
+        final List<Connection> connections = getConnections();
+        if (connections.isEmpty()) {
+            return null;
+        }
+        return (GsmConnection) connections.get(0);
     }
 }
