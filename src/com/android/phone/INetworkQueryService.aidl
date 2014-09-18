@@ -34,12 +34,21 @@ oneway interface INetworkQueryService {
      * that will be sent upon query completion.
      */
     void startNetworkQuery(in INetworkQueryServiceCallback cb);
- 
+
     /**
      * Tells the service that the requested query is to be ignored.
-     * This may not do anything for the Query request in the 
+     * This may not do anything for the Query request in the
      * underlying RIL, but it ensures that the callback is removed
      * from the list of notifications.
      */
     void stopNetworkQuery(in INetworkQueryServiceCallback cb);
+
+    /**
+     * Tells the service to unregister the network query callback.
+     * Will not attempt to stop an ongoing network query.
+     * Functionally may be the same as stopNetworkQuery since that
+     * function also does not stop a query request in the underlying
+     * RIL.
+     */
+    void unregisterCallback(in INetworkQueryServiceCallback cb);
 }
