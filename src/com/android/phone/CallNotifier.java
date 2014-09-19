@@ -91,10 +91,6 @@ public class CallNotifier extends Handler {
     private static final int DISPLAYINFO_NOTIFICATION_DONE = 24;
     private static final int UPDATE_IN_CALL_NOTIFICATION = 27;
 
-    // Emergency call related defines:
-    private static final int EMERGENCY_TONE_OFF = 0;
-    private static final int EMERGENCY_TONE_ALERT = 1;
-    private static final int EMERGENCY_TONE_VIBRATE = 2;
 
     private PhoneGlobals mApplication;
     private CallManager mCM;
@@ -110,14 +106,6 @@ public class CallNotifier extends Handler {
     private Call.State mPreviousCdmaCallState;
     private boolean mVoicePrivacyState = false;
     private boolean mIsCdmaRedialCall = false;
-
-    // Emergency call tone and vibrate:
-    private int mIsEmergencyToneOn;
-    private int mCurrentEmergencyToneState = EMERGENCY_TONE_OFF;
-    private EmergencyTonePlayerVibrator mEmergencyTonePlayerVibrator;
-
-    // Ringback tone player
-    private InCallTonePlayer mInCallRingbackTonePlayer;
 
     // Cached AudioManager
     private AudioManager mAudioManager;
@@ -251,11 +239,6 @@ public class CallNotifier extends Handler {
                     new InCallTonePlayer(toneToPlay).start();
                     mVoicePrivacyState = false;
                 }
-                break;
-
-            case CallStateMonitor.PHONE_RINGBACK_TONE:
-                // DISABLED. The Telecom and new ConnectionService layers are now responsible.
-                // onRingbackTone((AsyncResult) msg.obj);
                 break;
 
             default:
@@ -481,58 +464,10 @@ public class CallNotifier extends Handler {
             // make sure audio is in in-call mode now
             PhoneUtils.setAudioMode(mCM);
         }
-
-        if (fgPhone.getPhoneType() == PhoneConstants.PHONE_TYPE_CDMA) {
-            Connection c = fgPhone.getForegroundCall().getLatestConnection();
-            if ((c != null) && (PhoneNumberUtils.isLocalEmergencyNumber(mApplication,
-                                                                        c.getAddress()))) {
-                if (VDBG) log("onPhoneStateChanged: it is an emergency call.");
-                Call.State callState = fgPhone.getForegroundCall().getState();
-                if (mEmergencyTonePlayerVibrator == null) {
-                    mEmergencyTonePlayerVibrator = new EmergencyTonePlayerVibrator();
-                }
-
-                if (callState == Call.State.DIALING || callState == Call.State.ALERTING) {
-                    mIsEmergencyToneOn = Settings.Global.getInt(
-                            mApplication.getContentResolver(),
-                            Settings.Global.EMERGENCY_TONE, EMERGENCY_TONE_OFF);
-                    if (mIsEmergencyToneOn != EMERGENCY_TONE_OFF &&
-                        mCurrentEmergencyToneState == EMERGENCY_TONE_OFF) {
-                        if (mEmergencyTonePlayerVibrator != null) {
-                            mEmergencyTonePlayerVibrator.start();
-                        }
-                    }
-                } else if (callState == Call.State.ACTIVE) {
-                    if (mCurrentEmergencyToneState != EMERGENCY_TONE_OFF) {
-                        if (mEmergencyTonePlayerVibrator != null) {
-                            mEmergencyTonePlayerVibrator.stop();
-                        }
-                    }
-                }
-            }
-        }
-
-        if (fgPhone.getPhoneType() == PhoneConstants.PHONE_TYPE_GSM
-                || fgPhone.getPhoneType() == PhoneConstants.PHONE_TYPE_SIP
-                || fgPhone.getPhoneType() == PhoneConstants.PHONE_TYPE_IMS
-                || fgPhone.getPhoneType() == PhoneConstants.PHONE_TYPE_THIRD_PARTY) {
-            Call.State callState = mCM.getActiveFgCallState();
-            if (!callState.isDialing()) {
-                // If call gets activated or disconnected before the ringback
-                // tone stops, we have to stop it to prevent disturbing.
-                if (mInCallRingbackTonePlayer != null) {
-                    mInCallRingbackTonePlayer.stopTone();
-                    mInCallRingbackTonePlayer = null;
-                }
-            }
-        }
     }
 
     void updateCallNotifierRegistrationsAfterRadioTechnologyChange() {
         if (DBG) Log.d(LOG_TAG, "updateCallNotifierRegistrationsAfterRadioTechnologyChange...");
-
-        // Clear ringback tone player
-        mInCallRingbackTonePlayer = null;
 
         // Instantiate mSignalInfoToneGenerator
         createSignalInfoToneGenerator();
@@ -613,15 +548,6 @@ public class CallNotifier extends Handler {
             final Phone phone = c.getCall().getPhone();
             final boolean isEmergencyNumber =
                     PhoneNumberUtils.isLocalEmergencyNumber(mApplication, number);
-
-            if (phone.getPhoneType() == PhoneConstants.PHONE_TYPE_CDMA) {
-                if ((isEmergencyNumber)
-                        && (mCurrentEmergencyToneState != EMERGENCY_TONE_OFF)) {
-                    if (mEmergencyTonePlayerVibrator != null) {
-                        mEmergencyTonePlayerVibrator.stop();
-                    }
-                }
-            }
 
             // Possibly play a "post-disconnect tone" thru the earpiece.
             // We do this here, rather than from the InCallScreen
@@ -750,7 +676,6 @@ public class CallNotifier extends Handler {
         public static final int TONE_OUT_OF_SERVICE = 9;
         public static final int TONE_REDIAL = 10;
         public static final int TONE_OTA_CALL_END = 11;
-        public static final int TONE_RING_BACK = 12;
         public static final int TONE_UNOBTAINABLE_NUMBER = 13;
 
         // The tone volume relative to other sounds in the stream
@@ -854,12 +779,6 @@ public class CallNotifier extends Handler {
                     toneType = ToneGenerator.TONE_CDMA_ALERT_AUTOREDIAL_LITE;
                     toneVolume = TONE_RELATIVE_VOLUME_LOPRI;
                     toneLengthMillis = 5000;
-                    break;
-                case TONE_RING_BACK:
-                    toneType = ToneGenerator.TONE_SUP_RINGTONE;
-                    toneVolume = TONE_RELATIVE_VOLUME_HIPRI;
-                    // Call ring back tone is stopped by stopTone() method
-                    toneLengthMillis = Integer.MAX_VALUE - TONE_TIMEOUT_BUFFER;
                     break;
                 case TONE_UNOBTAINABLE_NUMBER:
                     toneType = ToneGenerator.TONE_SUP_ERROR;
@@ -1107,78 +1026,7 @@ public class CallNotifier extends Handler {
         return mIsCdmaRedialCall;
     }
 
-    /**
-     *  Inner class to handle emergency call tone and vibrator
-     */
-    private class EmergencyTonePlayerVibrator {
-        private final int EMG_VIBRATE_LENGTH = 1000;  // ms.
-        private final int EMG_VIBRATE_PAUSE  = 1000;  // ms.
-        private final long[] mVibratePattern =
-                new long[] { EMG_VIBRATE_LENGTH, EMG_VIBRATE_PAUSE };
-
-        private ToneGenerator mToneGenerator;
-        // We don't rely on getSystemService(Context.VIBRATOR_SERVICE) to make sure this vibrator
-        // object will be isolated from others.
-        private Vibrator mEmgVibrator = new SystemVibrator();
-        private int mInCallVolume;
-
-        /**
-         * constructor
-         */
-        public EmergencyTonePlayerVibrator() {
-        }
-
-        /**
-         * Start the emergency tone or vibrator.
-         */
-        private void start() {
-            if (VDBG) log("call startEmergencyToneOrVibrate.");
-            int ringerMode = mAudioManager.getRingerMode();
-
-            if ((mIsEmergencyToneOn == EMERGENCY_TONE_ALERT) &&
-                    (ringerMode == AudioManager.RINGER_MODE_NORMAL)) {
-                log("EmergencyTonePlayerVibrator.start(): emergency tone...");
-                mToneGenerator = new ToneGenerator (AudioManager.STREAM_VOICE_CALL,
-                        InCallTonePlayer.TONE_RELATIVE_VOLUME_EMERGENCY);
-                if (mToneGenerator != null) {
-                    mInCallVolume = mAudioManager.getStreamVolume(AudioManager.STREAM_VOICE_CALL);
-                    mAudioManager.setStreamVolume(AudioManager.STREAM_VOICE_CALL,
-                            mAudioManager.getStreamMaxVolume(AudioManager.STREAM_VOICE_CALL),
-                            0);
-                    mToneGenerator.startTone(ToneGenerator.TONE_CDMA_EMERGENCY_RINGBACK);
-                    mCurrentEmergencyToneState = EMERGENCY_TONE_ALERT;
-                }
-            } else if (mIsEmergencyToneOn == EMERGENCY_TONE_VIBRATE) {
-                log("EmergencyTonePlayerVibrator.start(): emergency vibrate...");
-                if (mEmgVibrator != null) {
-                    mEmgVibrator.vibrate(mVibratePattern, 0, VIBRATION_ATTRIBUTES);
-                    mCurrentEmergencyToneState = EMERGENCY_TONE_VIBRATE;
-                }
-            }
-        }
-
-        /**
-         * If the emergency tone is active, stop the tone or vibrator accordingly.
-         */
-        private void stop() {
-            if (VDBG) log("call stopEmergencyToneOrVibrate.");
-
-            if ((mCurrentEmergencyToneState == EMERGENCY_TONE_ALERT)
-                    && (mToneGenerator != null)) {
-                mToneGenerator.stopTone();
-                mToneGenerator.release();
-                mAudioManager.setStreamVolume(AudioManager.STREAM_VOICE_CALL,
-                        mInCallVolume,
-                        0);
-            } else if ((mCurrentEmergencyToneState == EMERGENCY_TONE_VIBRATE)
-                    && (mEmgVibrator != null)) {
-                mEmgVibrator.cancel();
-            }
-            mCurrentEmergencyToneState = EMERGENCY_TONE_OFF;
-        }
-    }
-
-     private BluetoothProfile.ServiceListener mBluetoothProfileServiceListener =
+    private BluetoothProfile.ServiceListener mBluetoothProfileServiceListener =
         new BluetoothProfile.ServiceListener() {
         public void onServiceConnected(int profile, BluetoothProfile proxy) {
             mBluetoothHeadset = (BluetoothHeadset) proxy;
@@ -1189,27 +1037,6 @@ public class CallNotifier extends Handler {
             mBluetoothHeadset = null;
         }
     };
-
-    private void onRingbackTone(AsyncResult r) {
-        boolean playTone = (Boolean)(r.result);
-
-        if (playTone == true) {
-            // Only play when foreground call is in DIALING or ALERTING.
-            // to prevent a late coming playtone after ALERTING.
-            // Don't play ringback tone if it is in play, otherwise it will cut
-            // the current tone and replay it
-            if (mCM.getActiveFgCallState().isDialing() &&
-                mInCallRingbackTonePlayer == null) {
-                mInCallRingbackTonePlayer = new InCallTonePlayer(InCallTonePlayer.TONE_RING_BACK);
-                mInCallRingbackTonePlayer.start();
-            }
-        } else {
-            if (mInCallRingbackTonePlayer != null) {
-                mInCallRingbackTonePlayer.stopTone();
-                mInCallRingbackTonePlayer = null;
-            }
-        }
-    }
 
     private void log(String msg) {
         Log.d(LOG_TAG, msg);
