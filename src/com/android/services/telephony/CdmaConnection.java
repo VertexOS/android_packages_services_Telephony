@@ -22,10 +22,12 @@ import android.os.Message;
 import android.provider.Settings;
 import android.telecom.PhoneCapabilities;
 import android.telephony.DisconnectCause;
+import android.telephony.PhoneNumberUtils;
 
 import com.android.internal.telephony.Call;
 import com.android.internal.telephony.CallStateException;
 import com.android.internal.telephony.Connection;
+import com.android.internal.telephony.Phone;
 import com.android.phone.Constants;
 
 import java.util.LinkedList;
@@ -66,13 +68,20 @@ final class CdmaConnection extends TelephonyConnection {
     private final boolean mIsOutgoing;
     // Queue of pending short-DTMF characters.
     private final Queue<Character> mDtmfQueue = new LinkedList<>();
+    private final EmergencyTonePlayer mEmergencyTonePlayer;
 
     // Indicates that the DTMF confirmation from telephony is pending.
     private boolean mDtmfBurstConfirmationPending = false;
     private boolean mIsCallWaiting;
 
-    CdmaConnection(Connection connection, boolean allowMute, boolean isOutgoing) {
+    CdmaConnection(
+            Connection connection,
+            EmergencyTonePlayer emergencyTonePlayer,
+            boolean allowMute,
+            boolean isOutgoing) {
+
         super(connection);
+        mEmergencyTonePlayer = emergencyTonePlayer;
         mAllowMute = allowMute;
         mIsOutgoing = isOutgoing;
         mIsCallWaiting = connection != null && connection.getState() == Call.State.WAITING;
@@ -133,6 +142,16 @@ final class CdmaConnection extends TelephonyConnection {
         Connection originalConnection = getOriginalConnection();
         mIsCallWaiting = originalConnection != null &&
                 originalConnection.getState() == Call.State.WAITING;
+
+        if (state == android.telecom.Connection.STATE_DIALING) {
+            if (isEmergency()) {
+                mEmergencyTonePlayer.start();
+            }
+        } else {
+            // No need to check if it is an emergency call, since it is a no-op if it isn't started.
+            mEmergencyTonePlayer.stop();
+        }
+
         super.onStateChanged(state);
     }
 
@@ -230,5 +249,12 @@ final class CdmaConnection extends TelephonyConnection {
                 sendBurstDtmfStringLocked(dtmfDigits);
             }
         }
+    }
+
+    private boolean isEmergency() {
+        Phone phone = getPhone();
+        return phone != null &&
+                PhoneNumberUtils.isLocalEmergencyNumber(
+                    phone.getContext(), getAddress().getSchemeSpecificPart());
     }
 }
