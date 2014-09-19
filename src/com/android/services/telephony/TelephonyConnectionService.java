@@ -52,11 +52,13 @@ public class TelephonyConnectionService extends ConnectionService {
             new CdmaConferenceController(this);
     private ComponentName mExpectedComponentName = null;
     private EmergencyCallHelper mEmergencyCallHelper;
+    private EmergencyTonePlayer mEmergencyTonePlayer;
 
     @Override
     public void onCreate() {
         super.onCreate();
         mExpectedComponentName = new ComponentName(this, this.getClass());
+        mEmergencyTonePlayer = new EmergencyTonePlayer(this);
     }
 
     @Override
@@ -290,8 +292,8 @@ public class TelephonyConnectionService extends ConnectionService {
             return connection;
         } else if (phoneType == TelephonyManager.PHONE_TYPE_CDMA) {
             boolean allowMute = allowMute(phone);
-            CdmaConnection connection =
-                    new CdmaConnection(originalConnection, allowMute, isOutgoing);
+            CdmaConnection connection = new CdmaConnection(
+                    originalConnection, mEmergencyTonePlayer, allowMute, isOutgoing);
             mCdmaConferenceController.add(connection);
             return connection;
         } else {
