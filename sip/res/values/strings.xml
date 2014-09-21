@@ -38,31 +38,6 @@
     <!-- Item of the SIP call (Wi-Fi only) option dialog: for routing all outgoing calls via SIP. [CHAR LIMIT=NONE] -->
     <string name="sip_call_options_wifi_only_entry_1">For all calls</string>
 
-    <!-- Title of the dialog to select the phone type for the outgoing call. [CHAR LIMIT=NONE] -->
-    <string name ="pick_outgoing_call_phone_type">Place call</string>
-
-    <!-- Title of the dialog to select the phone among the list of phones for the outgoing call. [CHAR LIMIT=NONE] -->
-    <string name ="pick_outgoing_sip_phone">Use SIP account:</string>
-
-    <!-- Text of checkbox to remember the sip phone for all outbound calls. [CHAR LIMIT=NONE] -->
-    <string name ="remember_my_choice">Always use to place SIP calls</string>
-
-    <!-- Help text of checkbox to unset the default sip phone for all outbound calls. [CHAR LIMIT=NONE] -->
-    <string name ="reset_my_choice_hint">You can change which SIP account to use by default from the Phone &gt; Settings &gt; SIP call settings &gt; Accounts screen.</string>
-
-    <!-- Item of the dialog to select the phone type for outgoing call. [CHAR LIMIT=NONE] -->
-    <string name ="pstn_phone">Cell phone call</string>
-
-    <!-- Item of the dialog to select the phone type for outgoing call. [CHAR LIMIT=NONE] -->
-    <string name ="internet_phone">SIP call</string>
-
-    <!-- Title of the dialog to redirect the user to SIP settings. [CHAR LIMIT=NONE] -->
-    <string name ="no_sip_account_found_title">No SIP account</string>
-    <!-- Message of the dialog to redirect the user to SIP settings. [CHAR LIMIT=NONE] -->
-    <string name ="no_sip_account_found">There are no SIP accounts on this phone. Do you want to add one now?</string>
-    <!-- Menu item for no sip account found dialog -->
-    <string name="sip_menu_add">Add</string>
-
     <!-- Title for the button to add a new sip account. [CHAR LIMIT=NONE] -->
     <string name="add_sip_account">Add account</string>
     <!-- Title for the button to remove a sip account. [CHAR LIMIT=NONE] -->
@@ -163,15 +138,11 @@
     <!-- Showing that port number is out of range in an alert dialog. [CHAR LIMIT=NONE] -->
     <string name="not_a_valid_port">Port number should be within 1000 and 65534.</string>
 
-    <!-- Title of the alert dialog to notify user that there is no Internet connectivity. [CHAR LIMIT=40] -->
-    <string name="no_internet_available_title">No Internet connection</string>
-    <!-- Title of the alert dialog to notify user that there is no Wi-Fi connectivity. [CHAR LIMIT=40] -->
-    <string name="no_wifi_available_title">No Wi-Fi connection</string>
     <!-- Message of the alert dialog to notify user that there is no Internet connectivity. [CHAR LIMIT=NONE] -->
     <string name="no_internet_available">To place a SIP call, check your Internet connection first.</string>
     <!-- Message of the alert dialog to notify user that there is no Wi-Fi connectivity. [CHAR LIMIT=NONE] -->
     <string name="no_wifi_available">You need to be connected to a Wi-Fi network for SIP calls (use the Wireless &amp; Network settings).</string>
-    <!-- Title of the alert dialog to notify user that SIP call is not supported. [CHAR LIMIT=40] -->
+    <!-- Message of the alert dialog to notify user that SIP call is not supported. [CHAR LIMIT=NONE] -->
     <string name="no_voip">SIP calling not supported</string>
 
     <!-- Option for whether the SIP service should send keepalive messages. [CHAR LIMIT=40] -->
