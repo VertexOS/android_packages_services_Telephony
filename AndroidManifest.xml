@@ -511,12 +511,6 @@
                 android:configChanges="orientation|screenSize|keyboardHidden"
                 android:uiOptions="splitActionBarWhenNarrow">
         </activity>
-        <activity android:name="com.android.services.telephony.sip.SipProfileChooserDialogs"
-                android:theme="@style/SipCallOptionHandlerTheme"
-                android:screenOrientation="nosensor"
-                android:configChanges="orientation|screenSize|keyboardHidden"
-                android:excludeFromRecents="true">
-        </activity>
 
         <!-- End SIP -->
 
