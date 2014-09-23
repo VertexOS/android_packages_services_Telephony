@@ -17,8 +17,6 @@
 <!-- Phone app resources that may need to be customized
      for different hardware or product builds. -->
 <resources>
-    <!-- Show APN Settings for some CDMA carriers -->
-    <bool name="config_show_apn_setting_cdma">true</bool>
     <!-- Flag indicating if dtmf tone type is enabled -->
     <bool name="dtmf_type_enabled">true</bool>
 </resources>
