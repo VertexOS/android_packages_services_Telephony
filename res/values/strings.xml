@@ -161,7 +161,7 @@
     <string name="wifi_calling_use_call_assistant_summary">Let apps or services manage networks used for calls</string>
     <!-- Label for setting to configure the selected call assistant. -->
     <string name="wifi_calling_call_assistant_configure">Configure</string>
-    <!-- Label for setting to configure the seelcted call assistnant when no call assistant is chosen. -->
+    <!-- Label for setting to configure the selected call assistant when no call assistant is chosen. -->
     <string name="wifi_calling_call_assistant_configure_no_selection">Call assistant off</string>
 
     <!-- Built-in label for the default connection service setting. -->
