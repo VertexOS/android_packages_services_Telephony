@@ -238,6 +238,7 @@
     </style>
 
     <style name="TelephonyActionBarStyle" parent="android:Widget.Material.ActionBar">
+        <item name="android:displayOptions">showHome|homeAsUp|showTitle</item>
         <item name="android:background">@color/actionbar_background_color</item>
         <item name="android:titleTextStyle">@style/DialtactsActionBarTitleText</item>
         <item name="android:height">@dimen/action_bar_height</item>
