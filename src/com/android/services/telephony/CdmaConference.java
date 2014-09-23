@@ -31,13 +31,11 @@ import java.util.List;
  */
 public class CdmaConference extends Conference {
 
-    private int mCapabilities =
-            PhoneCapabilities.MUTE |
-            PhoneCapabilities.MERGE_CONFERENCE;
+    private int mCapabilities = PhoneCapabilities.MUTE;
 
-    public CdmaConference(PhoneAccountHandle phoneAccount) {
+    public CdmaConference(PhoneAccountHandle phoneAccount, int capabilities) {
         super(phoneAccount);
-        updateCapabilities();
+        setCapabilities(mCapabilities | capabilities);
         setActive();
     }
 
