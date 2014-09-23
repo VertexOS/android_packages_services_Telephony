@@ -149,6 +149,8 @@
     <string name="wifi_calling_do_not_use">Do not use Wi-Fi calling</string>
     <!-- Indication for option to not use a call assistant. -->
     <string name="wifi_calling_do_not_use_call_assistant">Do not use call assistant</string>
+    <!-- Indication for option to not use a call assistant. -->
+    <string name="wifi_calling_call_assistant_none">None</string>
     <!-- Label for selected Wi-Fi call manager -->
     <string name="wifi_calling_call_assistant">Call assistant</string>
     <!-- Label for switch setting to enable/disable the use of SIM call managers. -->

@@ -66,8 +66,6 @@ public class SipSettings extends PreferenceActivity {
 
     static final String KEY_SIP_PROFILE = "sip_profile";
 
-    private static final String BUTTON_SIP_RECEIVE_CALLS =
-            "sip_receive_calls_key";
     private static final String PREF_SIP_LIST = "sip_account_list";
 
     private static final int REQUEST_ADD_OR_EDIT_SIP_PROFILE = 1;
@@ -78,7 +76,6 @@ public class SipSettings extends PreferenceActivity {
 
     private SipProfile mProfile; // profile that's being edited
 
-    private CheckBoxPreference mButtonSipReceiveCalls;
     private PreferenceCategory mSipListContainer;
     private Map<String, SipPreference> mSipPreferenceMap;
     private List<SipProfile> mSipProfileList;
@@ -146,7 +143,6 @@ public class SipSettings extends PreferenceActivity {
         setContentView(R.layout.sip_settings_ui);
         addPreferencesFromResource(R.xml.sip_setting);
         mSipListContainer = (PreferenceCategory) findPreference(PREF_SIP_LIST);
-        registerForReceiveCallsCheckBox();
 
         updateProfilesStatus();
 
@@ -159,8 +155,6 @@ public class SipSettings extends PreferenceActivity {
     @Override
     public void onResume() {
         super.onResume();
-
-        mButtonSipReceiveCalls.setEnabled(SipUtil.isPhoneIdle(this));
     }
 
     @Override
@@ -193,62 +187,6 @@ public class SipSettings extends PreferenceActivity {
                 }
             }
         }.start();
-    }
-
-    private void registerForReceiveCallsCheckBox() {
-        mButtonSipReceiveCalls = (CheckBoxPreference) findPreference
-                (BUTTON_SIP_RECEIVE_CALLS);
-        mButtonSipReceiveCalls.setChecked(
-                mSipSharedPreferences.isReceivingCallsEnabled());
-        mButtonSipReceiveCalls.setOnPreferenceClickListener(
-                new OnPreferenceClickListener() {
-                    public boolean onPreferenceClick(Preference preference) {
-                        final boolean enabled = ((CheckBoxPreference) preference).isChecked();
-                        new Thread(new Runnable() {
-                                public void run() {
-                                    handleSipReceiveCallsOption(enabled);
-                                }
-                        }).start();
-                        return true;
-                    }
-                });
-    }
-
-    /**
-     * Handles changes to the "receive calls" option.
-     *
-     * @param isReceivingCalls {@code True} if receiving incoming SIP calls.
-     */
-    private synchronized void handleSipReceiveCallsOption(boolean isReceivingCalls) {
-        mSipSharedPreferences.setReceivingCallsEnabled(isReceivingCalls);
-
-        // Mark all profiles as auto-register if we are now receiving calls.
-        List<SipProfile> sipProfileList = mProfileDb.retrieveSipProfileList();
-        for (SipProfile p : sipProfileList) {
-            p = updateAutoRegistrationFlag(p, isReceivingCalls);
-        }
-
-        // Restart all Sip services to ensure we reflect whether we are receiving calls.
-        SipAccountRegistry sipAccountRegistry = SipAccountRegistry.getInstance();
-        sipAccountRegistry.restartSipService(this);
-
-        updateProfilesStatus();
-    }
-
-    private SipProfile updateAutoRegistrationFlag(SipProfile p, boolean enabled) {
-        SipProfile newProfile = new SipProfile.Builder(p)
-                .setAutoRegistration(enabled)
-                .build();
-        try {
-            // Note: The profile is updated, but the associated PhoneAccount is left alone since
-            // the only thing that changed is the auto-registration flag, which is not part of the
-            // PhoneAccount.
-            mProfileDb.deleteProfile(p);
-            mProfileDb.saveProfile(newProfile);
-        } catch (Exception e) {
-            log("updateAutoRegistrationFlag, exception: " + e);
-        }
-        return newProfile;
     }
 
     private void updateProfilesStatus() {
@@ -492,6 +430,10 @@ public class SipSettings extends PreferenceActivity {
         switch (itemId) {
             case MENU_ADD_ACCOUNT: {
                 startSipEditor(null);
+                return true;
+            }
+            case android.R.id.home: {
+                onBackPressed();
                 return true;
             }
         }
