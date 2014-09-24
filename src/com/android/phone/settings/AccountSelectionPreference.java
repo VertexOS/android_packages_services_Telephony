@@ -38,6 +38,7 @@ public class AccountSelectionPreference extends ListPreference implements
     public interface AccountSelectionListener {
         boolean onAccountSelected(AccountSelectionPreference pref, PhoneAccountHandle account);
         void onAccountSelectionDialogShow(AccountSelectionPreference pref);
+        void onAccountChanged(AccountSelectionPreference pref);
     }
 
     private final Context mContext;
@@ -45,11 +46,10 @@ public class AccountSelectionPreference extends ListPreference implements
     private PhoneAccountHandle[] mAccounts;
     private String[] mEntryValues;
     private CharSequence[] mEntries;
+    private boolean mShowSelectionInSummary = true;
 
     public AccountSelectionPreference(Context context) {
-        super(context);
-        mContext = context;
-        setOnPreferenceChangeListener(this);
+        this(context, null);
     }
 
     public AccountSelectionPreference(Context context, AttributeSet attrs) {
@@ -60,6 +60,10 @@ public class AccountSelectionPreference extends ListPreference implements
 
     public void setListener(AccountSelectionListener listener) {
         mListener = listener;
+    }
+
+    public void setShowSelectionInSummary(boolean value) {
+        mShowSelectionInSummary = value;
     }
 
     public void setModel(
@@ -88,7 +92,9 @@ public class AccountSelectionPreference extends ListPreference implements
         setEntryValues(mEntryValues);
         setEntries(mEntries);
         setValueIndex(selectedIndex);
-        setSummary(mEntries[selectedIndex]);
+        if (mShowSelectionInSummary) {
+            setSummary(mEntries[selectedIndex]);
+        }
     }
 
     @Override
@@ -97,7 +103,13 @@ public class AccountSelectionPreference extends ListPreference implements
             int index = Integer.parseInt((String) newValue);
             PhoneAccountHandle account = index < mAccounts.length ? mAccounts[index] : null;
             if (mListener.onAccountSelected(this, account)) {
-                setSummary(mEntries[index]);
+                if (mShowSelectionInSummary) {
+                    setSummary(mEntries[index]);
+                }
+                if (index != findIndexOfValue(getValue())) {
+                    setValueIndex(index);
+                    mListener.onAccountChanged(this);
+                }
                 return true;
             }
         }

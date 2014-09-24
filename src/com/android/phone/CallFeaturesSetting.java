@@ -34,7 +34,6 @@ import android.content.pm.ResolveInfo;
 import android.database.Cursor;
 import android.media.AudioManager;
 import android.media.RingtoneManager;
-import android.net.sip.SipManager;
 import android.os.AsyncResult;
 import android.os.Bundle;
 import android.os.Handler;
@@ -63,7 +62,6 @@ import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneConstants;
 import com.android.phone.common.util.SettingsUtil;
 import com.android.phone.settings.AccountSelectionPreference;
-import com.android.services.telephony.sip.SipSharedPreferences;
 import com.android.services.telephony.sip.SipUtil;
 
 import java.lang.String;
@@ -77,11 +75,10 @@ import java.util.Map;
 /**
  * Top level "Call settings" UI; see res/xml/call_feature_setting.xml
  *
- * This preference screen is the root of the "Call settings" hierarchy
- * available from the Phone app; the settings here let you control various
- * features related to phone calls (including voicemail settings, SIP
- * settings, the "Respond via SMS" feature, and others.)  It's used only
- * on voice-capable phone devices.
+ * This preference screen is the root of the "Call settings" hierarchy available from the Phone
+ * app; the settings here let you control various features related to phone calls (including
+ * voicemail settings, the "Respond via SMS" feature, and others.)  It's used only on
+ * voice-capable phone devices.
  *
  * Note that this activity is part of the package com.android.phone, even
  * though you reach it from the "Phone" app (i.e. DialtactsActivity) which
@@ -90,17 +87,15 @@ import java.util.Map;
  * For the "Mobile network settings" screen under the main Settings app,
  * See {@link MobileNetworkSettings}.
  *
- * TODO: Settings should be split into PreferenceFragments where possible (ie. voicemail, SIP).
+ * TODO: Settings should be split into PreferenceFragments where possible (ie. voicemail).
  *
  * @see com.android.phone.MobileNetworkSettings
  */
 public class CallFeaturesSetting extends PreferenceActivity
         implements DialogInterface.OnClickListener,
                 Preference.OnPreferenceChangeListener,
-                Preference.OnPreferenceClickListener,
                 EditPhoneNumberPreference.OnDialogClosedListener,
-                EditPhoneNumberPreference.GetDefaultNumberListener,
-                AccountSelectionPreference.AccountSelectionListener {
+                EditPhoneNumberPreference.GetDefaultNumberListener {
     private static final String LOG_TAG = "CallFeaturesSetting";
     private static final boolean DBG = (PhoneGlobals.DBG_LEVEL >= 2);
 
@@ -184,14 +179,9 @@ public class CallFeaturesSetting extends PreferenceActivity
 
     private static final String VM_NUMBERS_SHARED_PREFERENCES_NAME = "vm_numbers";
 
-    private static final String BUTTON_SIP_CALL_OPTIONS = "sip_call_options_key";
-    private static final String BUTTON_SIP_CALL_OPTIONS_WIFI_ONLY =
-            "sip_call_options_wifi_only_key";
-    private static final String SIP_SETTINGS_PREFERENCE_SCREEN_KEY =
-            "sip_settings_preference_screen_key";
-
     private static final String DEFAULT_OUTGOING_ACCOUNT_KEY = "default_outgoing_account";
-    private static final String WIFI_CALL_MANAGER_ACCOUNT_KEY = "wifi_call_manager_account";
+    private static final String PHONE_ACCOUNT_SETTINGS_KEY =
+            "phone_account_settings_preference_screen";
 
     private Intent mContactListIntent;
 
@@ -213,7 +203,6 @@ public class CallFeaturesSetting extends PreferenceActivity
     private Phone mPhone;
 
     private AudioManager mAudioManager;
-    private SipManager mSipManager;
 
     private static final int VM_NOCHANGE_ERROR = 400;
     private static final int VM_RESPONSE_ERROR = 500;
@@ -260,16 +249,12 @@ public class CallFeaturesSetting extends PreferenceActivity
     private CheckBoxPreference mButtonHAC;
     private ListPreference mButtonDTMF;
     private ListPreference mButtonTTY;
-    private ListPreference mButtonSipCallOptions;
-    private Preference mWifiCallOptionsPreference;
-    private Preference mWifiCallAccountPreference;
+    private Preference mPhoneAccountSettingsPreference;
     private ListPreference mVoicemailProviders;
     private PreferenceScreen mVoicemailSettings;
     private Preference mVoicemailNotificationRingtone;
     private CheckBoxPreference mVoicemailNotificationVibrate;
-    private SipSharedPreferences mSipSharedPreferences;
     private AccountSelectionPreference mDefaultOutgoingAccount;
-    private AccountSelectionPreference mSimCallManagerAccount;
 
     private class VoiceMailProvider {
         public VoiceMailProvider(String name, Intent intent) {
@@ -580,47 +565,9 @@ public class CallFeaturesSetting extends PreferenceActivity
                 mChangingVMorFwdDueToProviderChange = true;
                 saveVoiceMailAndForwardingNumber(newProviderKey, newProviderSettings);
             }
-        } else if (preference == mButtonSipCallOptions) {
-            handleSipCallOptionsChange(objValue);
         }
         // always let the preference setting proceed.
         return true;
-    }
-
-    @Override
-    public boolean onPreferenceClick(Preference preference) {
-        if (preference == mWifiCallOptionsPreference || preference == mWifiCallAccountPreference) {
-            handleWifiCallSettingsClick(preference);
-        }
-        return true;
-    }
-
-    @Override
-    public boolean onAccountSelected(AccountSelectionPreference pref, PhoneAccountHandle account) {
-        TelecomManager telecomManager = TelecomManager.from(this);
-        if (pref == mDefaultOutgoingAccount) {
-            telecomManager.setUserSelectedOutgoingPhoneAccount(account);
-            return true;
-        } else if (pref == mSimCallManagerAccount) {
-            telecomManager.setSimCallManager(account);
-            return true;
-        }
-        return false;
-    }
-
-    /**
-     * Called just prior to showing an AccountSelection dialog to re-populate the model of the
-     * AccountSelection dialog.
-     *
-     * @param pref The account selection preference dialog being shown.
-     */
-    @Override
-    public void onAccountSelectionDialogShow(AccountSelectionPreference pref) {
-        if (pref == mDefaultOutgoingAccount) {
-            populateDefaultOutgoingAccountsModel();
-        } else if (pref == mSimCallManagerAccount) {
-            populateSimCallManagerAccountsModel();
-        }
     }
 
     @Override
@@ -1550,14 +1497,6 @@ public class CallFeaturesSetting extends PreferenceActivity
             }
         };
 
-        ActionBar actionBar = getActionBar();
-        if (actionBar != null) {
-            // android.R.id.home will be triggered in onOptionsItemSelected()
-            actionBar.setDisplayShowHomeEnabled(true);
-            actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setDisplayShowTitleEnabled(true);
-        }
-
         // Show the voicemail preference in onResume if the calling intent specifies the
         // ACTION_ADD_VOICEMAIL action.
         mShowVoicemailPreference = (icicle == null) &&
@@ -1565,69 +1504,20 @@ public class CallFeaturesSetting extends PreferenceActivity
     }
 
     private void initPhoneAccountPreferences() {
-        mDefaultOutgoingAccount = (AccountSelectionPreference)
-                findPreference(DEFAULT_OUTGOING_ACCOUNT_KEY);
-        mSimCallManagerAccount = (AccountSelectionPreference)
-                findPreference(WIFI_CALL_MANAGER_ACCOUNT_KEY);
+        mPhoneAccountSettingsPreference = findPreference(PHONE_ACCOUNT_SETTINGS_KEY);
 
         TelecomManager telecomManager = TelecomManager.from(this);
 
-        int allPhoneAccountsCount = telecomManager.getAllPhoneAccountsCount();
-        // Show the phone accounts preference if there are is more than one phone account
-        if (allPhoneAccountsCount > 1) {
-            populateDefaultOutgoingAccountsModel();
-
-            mDefaultOutgoingAccount.setListener(this);
-        } else {
-            getPreferenceScreen().removePreference(mDefaultOutgoingAccount);
-        }
-
-        List<PhoneAccountHandle> simCallManagers = telecomManager.getSimCallManagers();
-        if (!simCallManagers.isEmpty()) {
-            populateSimCallManagerAccountsModel();
-            mSimCallManagerAccount.setListener(this);
-        } else {
-            getPreferenceScreen().removePreference(mSimCallManagerAccount);
-        }
-    }
-
-    private void createSipCallSettings() {
-        // Add Internet call settings.
-        if (SipUtil.isVoipSupported(this)) {
-            mSipManager = SipManager.newInstance(this);
-            mSipSharedPreferences = new SipSharedPreferences(this);
-            addPreferencesFromResource(
-                    com.android.services.telephony.sip.R.xml.sip_settings_category);
-            mButtonSipCallOptions = getSipCallOptionPreference();
-            mButtonSipCallOptions.setOnPreferenceChangeListener(this);
-            mButtonSipCallOptions.setValueIndex(
-                    mButtonSipCallOptions.findIndexOfValue(
-                            mSipSharedPreferences.getSipCallOption()));
-            mButtonSipCallOptions.setSummary(mButtonSipCallOptions.getEntry());
+        if (telecomManager.getAllPhoneAccountsCount() <= 1
+                && telecomManager.getSimCallManagers().isEmpty()
+                && !SipUtil.isVoipSupported(this)) {
+            getPreferenceScreen().removePreference(mPhoneAccountSettingsPreference);
         }
     }
 
     private boolean canLaunchIntent(Intent intent) {
         PackageManager pm = getPackageManager();
         return pm.resolveActivity(intent, PackageManager.GET_ACTIVITIES) != null;
-    }
-
-    // Gets the call options for SIP depending on whether SIP is allowed only
-    // on Wi-Fi only; also make the other options preference invisible.
-    private ListPreference getSipCallOptionPreference() {
-        ListPreference wifiAnd3G = (ListPreference)
-                findPreference(BUTTON_SIP_CALL_OPTIONS);
-        ListPreference wifiOnly = (ListPreference)
-                findPreference(BUTTON_SIP_CALL_OPTIONS_WIFI_ONLY);
-        PreferenceScreen sipSettings = (PreferenceScreen)
-                getPreferenceScreen().findPreference(SIP_SETTINGS_PREFERENCE_SCREEN_KEY);
-        if (SipManager.isSipWifiOnly(this)) {
-            sipSettings.removePreference(wifiAnd3G);
-            return wifiOnly;
-        } else {
-            sipSettings.removePreference(wifiOnly);
-            return wifiAnd3G;
-        }
     }
 
     @Override
@@ -1756,18 +1646,12 @@ public class CallFeaturesSetting extends PreferenceActivity
 
         updateVoiceNumberField();
         mVMProviderSettingsForced = false;
-        createSipCallSettings();
 
-        if (isAirplaneModeOn()) {
-            Preference sipSettings = findPreference(SIP_SETTINGS_PREFERENCE_SCREEN_KEY);
-            PreferenceScreen screen = getPreferenceScreen();
-            int count = screen.getPreferenceCount();
-            for (int i = 0 ; i < count ; ++i) {
-                Preference pref = screen.getPreference(i);
-                if (pref != sipSettings) pref.setEnabled(false);
-            }
-            return;
+        if (SipUtil.isVoipSupported(this)) {
+            addPreferencesFromResource(
+                    com.android.services.telephony.sip.R.xml.sip_settings_category);
         }
+
 
         if (mButtonDTMF != null) {
             int dtmf = Settings.System.getInt(getContentResolver(),
@@ -1858,23 +1742,6 @@ public class CallFeaturesSetting extends PreferenceActivity
             ttyModeChanged.putExtra(TelecomManager.EXTRA_TTY_PREFERRED_MODE, buttonTtyMode);
             sendBroadcastAsUser(ttyModeChanged, UserHandle.ALL);
         }
-    }
-
-    private void handleSipCallOptionsChange(Object objValue) {
-        String option = objValue.toString();
-        mSipSharedPreferences.setSipCallOption(option);
-        mButtonSipCallOptions.setValueIndex(
-                mButtonSipCallOptions.findIndexOfValue(option));
-        mButtonSipCallOptions.setSummary(mButtonSipCallOptions.getEntry());
-    }
-
-    private void handleWifiCallSettingsClick(Preference preference) {
-        Intent intent = preference.getIntent();
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        // TODO - Restrict to a (the?) blessed Wi-Fi calling app.
-
-        Bundle noAnimations = ActivityOptions.makeCustomAnimation(this, 0, 0).toBundle();
-        startActivity(intent, noAnimations);
     }
 
     private void updatePreferredTtyModeSummary(int TtyMode) {
@@ -2135,42 +2002,6 @@ public class CallFeaturesSetting extends PreferenceActivity
         VoiceMailProviderSettings settings =  new VoiceMailProviderSettings(vmNumberSetting, cfi);
         if (DBG) log("Loaded settings for " + key + ": " + settings.toString());
         return settings;
-    }
-
-    /**
-     * Populates the phone accounts which could potentially be selected as the default.
-     */
-    private void populateDefaultOutgoingAccountsModel() {
-        if (mDefaultOutgoingAccount == null ) {
-            return;
-        }
-
-        TelecomManager telecomManager = TelecomManager.from(this);
-        List<PhoneAccountHandle> callCapablePhoneAccounts =
-                telecomManager.getCallCapablePhoneAccounts();
-        mDefaultOutgoingAccount.setModel(
-                telecomManager,
-                callCapablePhoneAccounts,
-                telecomManager.getUserSelectedOutgoingPhoneAccount(),
-                getString(R.string.phone_accounts_ask_every_time));
-    }
-
-    /**
-     * Populates the phone accounts which could potentially be selected as the default sim call
-     * manager.
-     */
-    private void populateSimCallManagerAccountsModel() {
-        if (mSimCallManagerAccount == null) {
-            return;
-        }
-
-        TelecomManager telecomManager = TelecomManager.from(this);
-        List<PhoneAccountHandle> simCallManagers = telecomManager.getSimCallManagers();
-        mSimCallManagerAccount.setModel(
-                telecomManager,
-                simCallManagers,
-                telecomManager.getSimCallManager(),
-                getString(R.string.wifi_calling_do_not_use));
     }
 
     /**
