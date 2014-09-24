@@ -30,8 +30,10 @@ import android.telecom.PhoneAccount;
 import android.telecom.PhoneAccountHandle;
 import android.telecom.TelecomManager;
 import android.text.TextUtils;
+import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class SipUtil {
     static final String LOG_TAG = "SIP";
@@ -59,7 +61,7 @@ public class SipUtil {
         return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
     }
 
-    static boolean isPhoneIdle(Context context) {
+    public static boolean isPhoneIdle(Context context) {
         TelecomManager manager = (TelecomManager) context.getSystemService(
                 Context.TELECOM_SERVICE);
         if (manager != null) {
@@ -130,5 +132,35 @@ public class SipUtil {
     private static boolean useSipForPstnCalls(Context context) {
         final SipSharedPreferences sipSharedPreferences = new SipSharedPreferences(context);
         return sipSharedPreferences.getSipCallOption().equals(Settings.System.SIP_ALWAYS);
+    }
+
+    /**
+     * Updates SIP accounts to indicate whether they are enabled to receive incoming SIP calls.
+     *
+     * @param isEnabled {@code True} if receiving incoming SIP calls.
+     */
+    public static void useSipToReceiveIncomingCalls(Context context, boolean isEnabled) {
+        SipProfileDb profileDb = new SipProfileDb(context);
+
+        // Mark all profiles as auto-register if we are now receiving calls.
+        List<SipProfile> sipProfileList = profileDb.retrieveSipProfileList();
+        for (SipProfile p : sipProfileList) {
+            updateAutoRegistrationFlag(p, profileDb, isEnabled);
+        }
+    }
+
+    private static void updateAutoRegistrationFlag(
+            SipProfile p, SipProfileDb db, boolean isEnabled) {
+        SipProfile newProfile = new SipProfile.Builder(p).setAutoRegistration(isEnabled).build();
+
+        try {
+            // Note: The profile is updated, but the associated PhoneAccount is left alone since
+            // the only thing that changed is the auto-registration flag, which is not part of the
+            // PhoneAccount.
+            db.deleteProfile(p);
+            db.saveProfile(newProfile);
+        } catch (Exception e) {
+            Log.d(LOG_TAG, "updateAutoRegistrationFlag, exception: " + e);
+        }
     }
 }
