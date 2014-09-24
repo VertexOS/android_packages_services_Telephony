@@ -1647,12 +1647,6 @@ public class CallFeaturesSetting extends PreferenceActivity
         updateVoiceNumberField();
         mVMProviderSettingsForced = false;
 
-        if (SipUtil.isVoipSupported(this)) {
-            addPreferencesFromResource(
-                    com.android.services.telephony.sip.R.xml.sip_settings_category);
-        }
-
-
         if (mButtonDTMF != null) {
             int dtmf = Settings.System.getInt(getContentResolver(),
                     Settings.System.DTMF_TONE_TYPE_WHEN_DIALING, Constants.DTMF_TONE_TYPE_NORMAL);
