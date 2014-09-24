@@ -436,13 +436,6 @@
             </intent-filter>
         </activity>
 
-        <!-- bluetooth phone service -->
-        <service android:name="BluetoothPhoneService">
-            <intent-filter>
-                <action android:name="android.bluetooth.IBluetoothHeadsetPhone" />
-            </intent-filter>
-        </service>
-
         <!-- Broadcast Receiver that will process BOOT Complete and launch OTA -->
         <receiver android:name="OtaStartupReceiver" android:exported="false"
                 androidprv:primaryUserOnly="true">
