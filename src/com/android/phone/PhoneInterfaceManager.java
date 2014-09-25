@@ -712,11 +712,8 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     }
 
     // returns phone associated with the subId.
-    // getPhone(0) returns default phone in single SIM mode.
     private Phone getPhone(long subId) {
-        // FIXME: hack for the moment
-        return mPhone;
-        // return PhoneUtils.getPhoneForSubscriber(subId);
+        return PhoneFactory.getPhone(SubscriptionManager.getPhoneId(subId));
     }
     //
     // Implementation of the ITelephony interface.
