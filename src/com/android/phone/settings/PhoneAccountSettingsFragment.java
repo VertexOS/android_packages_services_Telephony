@@ -70,9 +70,9 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
 
         addPreferencesFromResource(com.android.phone.R.xml.phone_account_settings);
 
+        mDefaultOutgoingAccount = (AccountSelectionPreference)
+                getPreferenceScreen().findPreference(DEFAULT_OUTGOING_ACCOUNT_KEY);
         if (mTelecomManager.getAllPhoneAccountsCount() > 1) {
-            mDefaultOutgoingAccount = (AccountSelectionPreference)
-                    getPreferenceScreen().findPreference(DEFAULT_OUTGOING_ACCOUNT_KEY);
             mDefaultOutgoingAccount.setListener(this);
             updateDefaultOutgoingAccountsModel();
         } else {
