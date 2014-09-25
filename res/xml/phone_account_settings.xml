@@ -32,7 +32,7 @@
         <com.android.phone.settings.AccountSelectionPreference
             android:key="wifi_calling_call_assistant_preference"
             android:title="@string/wifi_calling_call_assistant"
-            android:summary="@string/wifi_calling_call_assistant_configure_no_selection" />
+            android:summary="@string/wifi_calling_call_assistant_none" />
 
         <Preference
             android:key="wifi_calling_configure_call_assistant_preference"
@@ -46,12 +46,28 @@
         android:title="@string/sip_settings"
         android:persistent="false">
 
+        <PreferenceScreen
+            android:title="@string/sip_accounts"
+            android:persistent="false">
+
+            <intent android:action="android.intent.action.MAIN"
+                android:targetPackage="com.android.phone"
+                android:targetClass="com.android.services.telephony.sip.SipSettings" />
+
+        </PreferenceScreen>
+
         <ListPreference
             android:key="use_sip_calling_options_key"
             android:title="@string/sip_call_options_title"
             android:persistent="true"
             android:entries="@array/sip_call_options_entries"
             android:entryValues="@array/sip_call_options_values"/>
+
+        <CheckBoxPreference
+            android:key="sip_receive_calls_key"
+            android:title="@string/sip_receive_calls"
+            android:summary="@string/sip_receive_calls_summary"
+            android:persistent="true"/>
 
     </PreferenceCategory>
 
