@@ -227,19 +227,7 @@ public class PhoneUtils {
                         // should be allowed to add another call in case one of the parties
                         // drops off
                         app.cdmaPhoneCallState.setAddCallMenuStateAfterCallWaiting(true);
-
-                        // If a BluetoothPhoneService is valid we need to set the second call state
-                        // so that the Bluetooth client can update the Call state correctly when
-                        // a call waiting is answered from the Phone.
-                        btPhone = app.getBluetoothPhoneService();
-                        if (btPhone != null) {
-                            try {
-                                btPhone.cdmaSetSecondCallState(true);
-                            } catch (RemoteException e) {
-                                Log.e(LOG_TAG, Log.getStackTraceString(new Throwable()));
-                            }
-                        }
-                  }
+                    }
                 }
 
                 final boolean isRealIncomingCall = isRealIncomingCall(ringingCall.getState());
@@ -737,20 +725,6 @@ public class PhoneUtils {
         // In the future we may provide some way for user to choose among
         // multiple background calls, for now, always act on the first background call.
         PhoneUtils.switchHoldingAndActive(mApp.mCM.getFirstActiveBgCall());
-
-        // If we have a valid BluetoothPhoneService then since CDMA network or
-        // Telephony FW does not send us information on which caller got swapped
-        // we need to update the second call active state in BluetoothPhoneService internally
-        if (mApp.mCM.getBgPhone().getPhoneType() == PhoneConstants.PHONE_TYPE_CDMA) {
-            final IBluetoothHeadsetPhone btPhone = mApp.getBluetoothPhoneService();
-            if (btPhone != null) {
-                try {
-                    btPhone.cdmaSwapSecondCallState();
-                } catch (RemoteException e) {
-                    Log.e(LOG_TAG, Log.getStackTraceString(new Throwable()));
-                }
-            }
-        }
     }
 
     /**
