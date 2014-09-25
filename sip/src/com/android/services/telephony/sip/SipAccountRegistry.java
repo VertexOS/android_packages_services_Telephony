@@ -33,7 +33,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 /**
  * Manages the {@link PhoneAccount} entries for SIP calling.
  */
-final class SipAccountRegistry {
+public final class SipAccountRegistry {
     private final class AccountEntry {
         private final SipProfile mProfile;
 
@@ -108,7 +108,7 @@ final class SipAccountRegistry {
 
     private SipAccountRegistry() {}
 
-    static SipAccountRegistry getInstance() {
+    public static SipAccountRegistry getInstance() {
         return INSTANCE;
     }
 
@@ -172,7 +172,7 @@ final class SipAccountRegistry {
      *
      * @param context The context.
      */
-    void restartSipService(Context context) {
+    public void restartSipService(Context context) {
         startSipProfiles(context, null);
     }
 

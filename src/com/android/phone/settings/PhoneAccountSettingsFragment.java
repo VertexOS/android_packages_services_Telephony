@@ -2,22 +2,18 @@ package com.android.phone.settings;
 
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
 import android.net.sip.SipManager;
-import android.net.sip.SipProfile;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
-import android.preference.PreferenceScreen;
-import android.preference.SwitchPreference;
 import android.telecom.PhoneAccountHandle;
 import android.telecom.TelecomManager;
 import android.util.Log;
 
 import com.android.phone.R;
+import com.android.services.telephony.sip.SipAccountRegistry;
 import com.android.services.telephony.sip.SipSharedPreferences;
 import com.android.services.telephony.sip.SipUtil;
 
@@ -43,6 +39,7 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
 
     private static final String SIP_SETTINGS_CATEGORY_PREF_KEY = "phone_accounts_sip_settings_key";
     private static final String USE_SIP_PREF_KEY = "use_sip_calling_options_key";
+    private static final String SIP_RECEIVE_CALLS_PREF_KEY = "sip_receive_calls_key";
 
     private String LOG_TAG = PhoneAccountSettingsFragment.class.getSimpleName();
 
@@ -53,6 +50,7 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
     private Preference mConfigureCallAssistant;
 
     private ListPreference mUseSipCalling;
+    private CheckBoxPreference mSipReceiveCallsPreference;
     private SipSharedPreferences mSipSharedPreferences;
 
     @Override
@@ -109,6 +107,13 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
             mUseSipCalling.setValueIndex(
                     mUseSipCalling.findIndexOfValue(mSipSharedPreferences.getSipCallOption()));
             mUseSipCalling.setSummary(mUseSipCalling.getEntry());
+
+            mSipReceiveCallsPreference = (CheckBoxPreference)
+                    getPreferenceScreen().findPreference(SIP_RECEIVE_CALLS_PREF_KEY);
+            mSipReceiveCallsPreference.setEnabled(SipUtil.isPhoneIdle(getActivity()));
+            mSipReceiveCallsPreference.setChecked(
+                    mSipSharedPreferences.isReceivingCallsEnabled());
+            mSipReceiveCallsPreference.setOnPreferenceChangeListener(this);
         } else {
             getPreferenceScreen().removePreference(
                     getPreferenceScreen().findPreference(SIP_SETTINGS_CATEGORY_PREF_KEY));
@@ -116,8 +121,7 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
     }
 
     /**
-     * Handles changes to the preferences, namely the switch which controls whether to use the call
-     * assistant or not.
+     * Handles changes to the preferences.
      *
      * @param pref The preference changed.
      * @param objValue The changed value.
@@ -130,6 +134,14 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
             mSipSharedPreferences.setSipCallOption(option);
             mUseSipCalling.setValueIndex(mUseSipCalling.findIndexOfValue(option));
             mUseSipCalling.setSummary(mUseSipCalling.getEntry());
+            return true;
+        } else if (pref == mSipReceiveCallsPreference) {
+            final boolean isEnabled = !mSipReceiveCallsPreference.isChecked();
+            new Thread(new Runnable() {
+                public void run() {
+                    handleSipReceiveCallsOption(isEnabled);
+                }
+            }).start();
             return true;
         }
         return false;
@@ -191,6 +203,16 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
         }
     }
 
+    private synchronized void handleSipReceiveCallsOption(boolean isEnabled) {
+        mSipSharedPreferences.setReceivingCallsEnabled(isEnabled);
+
+        SipUtil.useSipToReceiveIncomingCalls(getActivity(), isEnabled);
+
+        // Restart all Sip services to ensure we reflect whether we are receiving calls.
+        SipAccountRegistry sipAccountRegistry = SipAccountRegistry.getInstance();
+        sipAccountRegistry.restartSipService(getActivity());
+    }
+
     /**
      * Queries the telcomm manager to update the default outgoing account selection preference
      * with the list of outgoing accounts and the current default outgoing account.
@@ -213,7 +235,7 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
                 mTelecomManager,
                 simCallManagers,
                 mTelecomManager.getSimCallManager(),
-                getString(R.string.wifi_calling_do_not_use_call_assistant));
+                getString(R.string.wifi_calling_call_assistant_none));
 
         updateConfigureCallAssistantSummary();
     }
