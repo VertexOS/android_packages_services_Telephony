@@ -81,7 +81,7 @@ public class HfaActivity extends Activity {
     }
 
     private void buildAndShowDialog() {
-        mDialog = new AlertDialog.Builder(this)
+        mDialog = new AlertDialog.Builder(this, AlertDialog.THEME_DEVICE_DEFAULT_LIGHT)
                 .setTitle(R.string.ota_hfa_activation_title)
                 .setMessage(R.string.ota_hfa_activation_dialog_message)
                 .setPositiveButton(R.string.ota_skip_activation_dialog_skip_label,
@@ -108,7 +108,8 @@ public class HfaActivity extends Activity {
     private void onHfaError(String errorMsg) {
         mDialog.dismiss();
 
-        AlertDialog errorDialog = new AlertDialog.Builder(this)
+        AlertDialog errorDialog = new AlertDialog.Builder(this,
+                AlertDialog.THEME_DEVICE_DEFAULT_LIGHT)
             .setMessage(errorMsg)
             .setPositiveButton(R.string.ota_skip_activation_dialog_skip_label,
                     new DialogInterface.OnClickListener() {
