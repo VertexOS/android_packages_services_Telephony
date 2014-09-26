@@ -27,6 +27,7 @@ import android.telephony.PhoneNumberUtils;
 import com.android.internal.telephony.Call;
 import com.android.internal.telephony.CallStateException;
 import com.android.internal.telephony.Connection;
+import com.android.internal.telephony.imsphone.ImsPhoneConnection;
 import com.android.internal.telephony.Phone;
 import com.android.phone.Constants;
 
@@ -205,6 +206,11 @@ final class CdmaConnection extends TelephonyConnection {
      * Read the settings to determine which type of DTMF method this CDMA phone calls.
      */
     private boolean useBurstDtmf() {
+        boolean isImsCall = getOriginalConnection() instanceof ImsPhoneConnection;
+        if (isImsCall) {
+            Log.d(this,"in ims call, return false");
+            return false;
+        }
         int dtmfTypeSetting = Settings.System.getInt(
                 getPhone().getContext().getContentResolver(),
                 Settings.System.DTMF_TONE_TYPE_WHEN_DIALING,
