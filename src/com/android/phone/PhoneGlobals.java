@@ -143,7 +143,6 @@ public class PhoneGlobals extends ContextWrapper {
     private BluetoothManager bluetoothManager;
     private CallGatewayManager callGatewayManager;
     private CallStateMonitor callStateMonitor;
-    private IBluetoothHeadsetPhone mBluetoothPhone;
 
     static int mDockState = Intent.EXTRA_DOCK_STATE_UNDOCKED;
     static boolean sVoiceCapable = true;
@@ -350,17 +349,6 @@ public class PhoneGlobals extends ContextWrapper {
                 cdmaPhoneCallState.CdmaPhoneCallStateInit();
             }
 
-            if (BluetoothAdapter.getDefaultAdapter() != null) {
-                // Start BluetoothPhoneService even if device is not voice capable.
-                // The device can still support VOIP.
-                startService(new Intent(this, BluetoothPhoneService.class));
-                bindService(new Intent(this, BluetoothPhoneService.class),
-                            mBluetoothPhoneConnection, 0);
-            } else {
-                // Device is not bluetooth capable
-                mBluetoothPhone = null;
-            }
-
             // before registering for phone state changes
             mPowerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
             mWakeLock = mPowerManager.newWakeLock(PowerManager.FULL_WAKE_LOCK, LOG_TAG);
@@ -497,10 +485,6 @@ public class PhoneGlobals extends ContextWrapper {
      */
     static Phone getPhone() {
         return getInstance().phone;
-    }
-
-    IBluetoothHeadsetPhone getBluetoothPhoneService() {
-        return mBluetoothPhone;
     }
 
     /* package */ BluetoothManager getBluetoothManager() {
@@ -797,14 +781,6 @@ public class PhoneGlobals extends ContextWrapper {
         notifier.updateCallNotifierRegistrationsAfterRadioTechnologyChange();
         callStateMonitor.updateAfterRadioTechnologyChange();
 
-        if (mBluetoothPhone != null) {
-            try {
-                mBluetoothPhone.updateBtHandsfreeAfterRadioTechnologyChange();
-            } catch (RemoteException e) {
-                Log.e(LOG_TAG, Log.getStackTraceString(new Throwable()));
-            }
-        }
-
         // Update registration for ICC status after radio technology change
         IccCard sim = phone.getIccCard();
         if (sim != null) {
@@ -967,21 +943,4 @@ public class PhoneGlobals extends ContextWrapper {
      * Used to determine if the preserved call origin is fresh enough.
      */
     private static final long CALL_ORIGIN_EXPIRATION_MILLIS = 30 * 1000;
-
-    /** Service connection */
-    private final ServiceConnection mBluetoothPhoneConnection = new ServiceConnection() {
-
-        /** Handle the task of binding the local object to the service */
-        public void onServiceConnected(ComponentName className, IBinder service) {
-            Log.i(LOG_TAG, "Headset phone created, binding local service.");
-            mBluetoothPhone = IBluetoothHeadsetPhone.Stub.asInterface(service);
-        }
-
-        /** Handle the task of cleaning up the local binding */
-        public void onServiceDisconnected(ComponentName className) {
-            Log.i(LOG_TAG, "Headset phone disconnected, cleaning local binding.");
-            mBluetoothPhone = null;
-        }
-    };
-
 }
