@@ -16,14 +16,12 @@
 
 package com.android.services.telephony;
 
-import android.content.Context;
 import android.net.Uri;
 import android.os.AsyncResult;
 import android.os.Handler;
 import android.os.Message;
 import android.telecom.AudioState;
 import android.telecom.Connection;
-import android.telecom.DisconnectCause;
 import android.telecom.PhoneAccount;
 import android.telecom.PhoneCapabilities;
 
@@ -410,11 +408,6 @@ abstract class TelephonyConnection extends Connection {
                 Log.e(this, e, "Call to Connection.hangup failed with exception");
             }
         }
-
-        // Set state deliberately since we are going to close() and will no longer be
-        // listening to state updates from mOriginalConnection
-        setDisconnected(DisconnectCauseUtil.toTelecomDisconnectCause(telephonyDisconnectCode));
-        close();
     }
 
     com.android.internal.telephony.Connection getOriginalConnection() {
