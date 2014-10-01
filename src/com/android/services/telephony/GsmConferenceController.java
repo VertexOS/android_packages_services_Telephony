@@ -126,6 +126,18 @@ final class GsmConferenceController {
         for (Connection connection : backgroundConnections) {
             connection.setConferenceableConnections(activeConnections);
         }
+
+        // Set the conference as conferenceable with all the connections
+        if (mGsmConference != null) {
+            List<Connection> nonConferencedConnections = new ArrayList<>(mGsmConnections.size());
+            for (GsmConnection c : mGsmConnections) {
+                if (c.getConference() == null) {
+                    nonConferencedConnections.add(c);
+                }
+            }
+            mGsmConference.setConferenceableConnections(nonConferencedConnections);
+        }
+
         // TODO: Do not allow conferencing of already conferenced connections.
     }
 
