@@ -23,6 +23,7 @@ import android.telecom.PhoneAccountHandle;
 
 import com.android.internal.telephony.Call;
 import com.android.internal.telephony.CallStateException;
+import com.android.internal.telephony.Phone;
 
 import java.util.List;
 
@@ -73,6 +74,18 @@ public class GsmConference extends Conference {
             radioConnection.separate();
         } catch (CallStateException e) {
             Log.e(this, e, "Exception thrown trying to separate a conference call");
+        }
+    }
+
+    @Override
+    public void onMerge(Connection connection) {
+        try {
+            Phone phone = ((TelephonyConnection) connection).getPhone();
+            if (phone != null) {
+                phone.conference();
+            }
+        } catch (CallStateException e) {
+            Log.e(this, e, "Exception thrown trying to merge call into a conference");
         }
     }
 
