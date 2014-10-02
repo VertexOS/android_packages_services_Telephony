@@ -158,13 +158,13 @@ public class CdmaSystemSelectListPreference extends ListPreference {
 
         private void resetCdmaRoamingModeToDefault() {
             //set the mButtonCdmaRoam
-            setValue(Integer.toString(Phone.CDMA_RM_HOME));
+            setValue(Integer.toString(Phone.CDMA_RM_ANY));
             //set the Settings.System
             Settings.Global.putInt(mPhone.getContext().getContentResolver(),
                         Settings.Global.CDMA_ROAMING_MODE,
-                        Phone.CDMA_RM_HOME );
+                        Phone.CDMA_RM_ANY );
             //Set the Status
-            mPhone.setCdmaRoamingPreference(Phone.CDMA_RM_HOME,
+            mPhone.setCdmaRoamingPreference(Phone.CDMA_RM_ANY,
                     obtainMessage(MyHandler.MESSAGE_SET_ROAMING_PREFERENCE));
         }
     }
