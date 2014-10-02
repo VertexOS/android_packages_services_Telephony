@@ -25,6 +25,8 @@ import android.net.Uri;
 import android.telecom.PhoneAccount;
 import android.telecom.PhoneAccountHandle;
 import android.telecom.TelecomManager;
+import android.telephony.PhoneStateListener;
+import android.telephony.ServiceState;
 import android.telephony.SubInfoRecord;
 import android.telephony.SubscriptionManager;
 import android.telephony.TelephonyManager;
@@ -82,7 +84,6 @@ final class TelecomAccountRegistry {
          * Registers the specified account with Telecom as a PhoneAccountHandle.
          */
         private PhoneAccount registerPstnPhoneAccount(boolean isEmergency, boolean isDummyAccount) {
-            TelephonyManager telephonyManager = TelephonyManager.from(mContext);
             String dummyPrefix = isDummyAccount ? "Dummy " : "";
 
             // Build the Phone account handle.
@@ -91,7 +92,8 @@ final class TelecomAccountRegistry {
 
             // Populate the phone account data.
             long subId = mPhone.getSubId();
-            String line1Number = telephonyManager.getLine1NumberForSubscriber(subId);
+            int slotId = SubscriptionManager.INVALID_SLOT_ID;
+            String line1Number = mTelephonyManager.getLine1NumberForSubscriber(subId);
             if (line1Number == null) {
                 line1Number = "";
             }
@@ -100,39 +102,47 @@ final class TelecomAccountRegistry {
                 subNumber = "";
             }
 
-            String subDisplayName = null;
-            // We can only get the real slotId from the SubInfoRecord, we can't calculate the
-            // slotId from the subId or the phoneId in all instances.
-            SubInfoRecord record = SubscriptionManager.getSubInfoForSubscriber(subId);
-            int slotId = SubscriptionManager.INVALID_SLOT_ID;
-            if (record != null) {
-                subDisplayName = record.displayName;
-                slotId = record.slotId;
-            }
+            String label;
+            String description;
 
-            String slotIdString;
-            if (SubscriptionManager.isValidSlotId(slotId)) {
-                slotIdString = Integer.toString(slotId);
+            if (isEmergency) {
+                label = mContext.getResources().getString(R.string.sim_label_emergency_calls);
+                description =
+                        mContext.getResources().getString(R.string.sim_description_emergency_calls);
+            } else if (mTelephonyManager.getPhoneCount() == 1) {
+                // For single-SIM devices, we show the label and description as whatever the name of
+                // the network is.
+                description = label = mTelephonyManager.getNetworkOperatorName();
             } else {
-                slotIdString = mContext.getResources().getString(R.string.unknown);
-            }
+                String subDisplayName = null;
+                // We can only get the real slotId from the SubInfoRecord, we can't calculate the
+                // slotId from the subId or the phoneId in all instances.
+                SubInfoRecord record = SubscriptionManager.getSubInfoForSubscriber(subId);
+                if (record != null) {
+                    subDisplayName = record.displayName;
+                    slotId = record.slotId;
+                }
 
-            if (TextUtils.isEmpty(subDisplayName)) {
-                // Either the sub record is not there or it has an empty display name.
-                Log.w(this, "Could not get a display name for subid: %d", subId);
-                subDisplayName = mContext.getResources().getString(
-                        R.string.sim_description_default, slotIdString);
-            }
+                String slotIdString;
+                if (SubscriptionManager.isValidSlotId(slotId)) {
+                    slotIdString = Integer.toString(slotId);
+                } else {
+                    slotIdString = mContext.getResources().getString(R.string.unknown);
+                }
 
-            // The label is user-visible so let's use the display name that the user may
-            // have set in Settings->Sim cards.
-            String label = isEmergency ?
-                    mContext.getResources().getString(R.string.sim_label_emergency_calls) :
-                    dummyPrefix + subDisplayName;
-            String description = isEmergency ?
-                    mContext.getResources().getString(R.string.sim_description_emergency_calls) :
-                    dummyPrefix + mContext.getResources().getString(
+                if (TextUtils.isEmpty(subDisplayName)) {
+                    // Either the sub record is not there or it has an empty display name.
+                    Log.w(this, "Could not get a display name for subid: %d", subId);
+                    subDisplayName = mContext.getResources().getString(
                             R.string.sim_description_default, slotIdString);
+                }
+
+                // The label is user-visible so let's use the display name that the user may
+                // have set in Settings->Sim cards.
+                label = dummyPrefix + subDisplayName;
+                description = dummyPrefix + mContext.getResources().getString(
+                                R.string.sim_description_default, slotIdString);
+            }
 
             // By default all SIM phone accounts can place emergency calls.
             int capabilities = PhoneAccount.CAPABILITY_SIM_SUBSCRIPTION |
@@ -188,14 +198,29 @@ final class TelecomAccountRegistry {
         }
     };
 
+    private final PhoneStateListener mPhoneStateListener = new PhoneStateListener() {
+        @Override
+        public void onServiceStateChanged(ServiceState serviceState) {
+            int newState = serviceState.getState();
+            if (newState == ServiceState.STATE_IN_SERVICE && mServiceState != newState) {
+                tearDownAccounts();
+                setupAccounts();
+            }
+            mServiceState = newState;
+        }
+    };
+
     private static TelecomAccountRegistry sInstance;
     private final Context mContext;
     private final TelecomManager mTelecomManager;
+    private final TelephonyManager mTelephonyManager;
     private List<AccountEntry> mAccounts = new LinkedList<AccountEntry>();
+    private int mServiceState = ServiceState.STATE_POWER_OFF;
 
     TelecomAccountRegistry(Context context) {
         mContext = context;
         mTelecomManager = TelecomManager.from(context);
+        mTelephonyManager = TelephonyManager.from(context);
     }
 
     static synchronized final TelecomAccountRegistry getInstance(Context context) {
@@ -215,6 +240,10 @@ final class TelecomAccountRegistry {
         intentFilter.addAction(TelephonyIntents.ACTION_SUBINFO_RECORD_UPDATED);
         intentFilter.addAction(TelephonyIntents.ACTION_SUBINFO_CONTENT_CHANGE);
         mContext.registerReceiver(mReceiver, intentFilter);
+
+        // We also need to listen for changes to the service state (e.g. emergency -> in service)
+        // because this could signal a removal or addition of a SIM in a single SIM phone.
+        mTelephonyManager.listen(mPhoneStateListener, PhoneStateListener.LISTEN_SERVICE_STATE);
     }
 
     static PhoneAccountHandle makePstnPhoneAccountHandle(Phone phone) {
@@ -286,7 +315,7 @@ final class TelecomAccountRegistry {
         }
 
         // Add a fake account entry.
-        if ( DBG && phones.length > 0 && "TRUE".equals(System.getProperty("dummy_sim"))) {
+        if (DBG && phones.length > 0 && "TRUE".equals(System.getProperty("dummy_sim"))) {
             mAccounts.add(new AccountEntry(phones[0], false /* emergency */, true /* isDummy */));
         }
 
