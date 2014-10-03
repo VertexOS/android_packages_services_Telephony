@@ -89,15 +89,27 @@ final class CdmaConferenceController {
 
     void add(final CdmaConnection connection) {
         if (!mCdmaConnections.isEmpty() && connection.isOutgoing()) {
-            connection.forceAsDialing(true);
             // There already exists a connection, so this will probably result in a conference once
-            // it is added. For connections which are added while another connection exists, we
-            // mark them as "dialing" for set amount of time to give the user time to see their
-            // new call as "Dialing" before it turns into a conference call.
+            // it is added. For outgoing connections which are added while another connection
+            // exists, we mark them as "dialing" for a set amount of time to give the user time to
+            // see their new call as "Dialing" before it turns into a conference call.
+            // During that time, we also mark the other calls as "held" or else it can cause issues
+            // due to having an ACTIVE and a DIALING call simultaneously.
+            connection.forceAsDialing(true);
+            final List<CdmaConnection> connectionsToReset =
+                    new ArrayList<>(mCdmaConnections.size());
+            for (CdmaConnection current : mCdmaConnections) {
+                if (current.setHoldingForConference()) {
+                    connectionsToReset.add(current);
+                }
+            }
             mHandler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     connection.forceAsDialing(false);
+                    for (CdmaConnection current : connectionsToReset) {
+                        current.resetStateForConference();
+                    }
                     addInternal(connection);
                 }
             }, ADD_OUTGOING_CONNECTION_DELAY_MILLIS);
