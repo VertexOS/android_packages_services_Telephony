@@ -1688,7 +1688,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
 
         IccIoResult response =
             (IccIoResult)sendRequest(CMD_EXCHANGE_SIM_IO,
-                    new IccAPDUArgument(fileID, command, -1, p1, p2, p3, filePath));
+                    new IccAPDUArgument(-1, fileID, command, p1, p2, p3, filePath));
 
         if (DBG) {
           log("Exchange SIM_IO [R]" + response);
