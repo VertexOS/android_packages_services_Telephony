@@ -33,6 +33,8 @@ import com.android.internal.telephony.Call;
  * call functionality.
  */
 final class GsmConferenceController {
+    private static final int GSM_CONFERENCE_MAX_SIZE = 5;
+
     private final Connection.Listener mConnectionListener = new Connection.Listener() {
         @Override
         public void onStateChanged(Connection c, int state) {
@@ -80,6 +82,15 @@ final class GsmConferenceController {
         recalculateConference();
     }
 
+    private boolean isFullConference(Conference conference) {
+        return conference.getConnections().size() >= GSM_CONFERENCE_MAX_SIZE;
+    }
+
+    private boolean participatesInFullConference(Connection connection) {
+        return connection.getConference() != null &&
+                isFullConference(connection.getConference());
+    }
+
     /**
      * Calculates the conference-capable state of all GSM connections in this connection service.
      */
@@ -91,25 +102,22 @@ final class GsmConferenceController {
 
         // Loop through and collect all calls which are active or holding
         for (GsmConnection connection : mGsmConnections) {
-            com.android.internal.telephony.Connection radioConnection =
-                    connection.getOriginalConnection();
-            Log.d(this, "recalc - %s %s",
-                    radioConnection == null ? null : radioConnection.getState(), connection);
+            Log.d(this, "recalc - %s %s", connection.getState(), connection);
 
-            if (radioConnection != null) {
-                switch(radioConnection.getState()) {
-                    case ACTIVE:
+            if (!participatesInFullConference(connection)) {
+                switch (connection.getState()) {
+                    case Connection.STATE_ACTIVE:
                         activeConnections.add(connection);
-                        break;
-                    case HOLDING:
+                        continue;
+                    case Connection.STATE_HOLDING:
                         backgroundConnections.add(connection);
-                        break;
+                        continue;
                     default:
-                        connection.setConferenceableConnections(
-                                Collections.<Connection>emptyList());
                         break;
                 }
             }
+
+            connection.setConferenceableConnections(Collections.<Connection>emptyList());
         }
 
         Log.v(this, "active: %d, holding: %d",
@@ -128,7 +136,7 @@ final class GsmConferenceController {
         }
 
         // Set the conference as conferenceable with all the connections
-        if (mGsmConference != null) {
+        if (mGsmConference != null && !isFullConference(mGsmConference)) {
             List<Connection> nonConferencedConnections = new ArrayList<>(mGsmConnections.size());
             for (GsmConnection c : mGsmConnections) {
                 if (c.getConference() == null) {
