@@ -655,6 +655,22 @@ abstract class TelephonyConnection extends Connection {
         return mAudioQuality;
     }
 
+    void resetStateForConference() {
+        if (getState() == Connection.STATE_HOLDING) {
+            if (mOriginalConnection.getState() == Call.State.ACTIVE) {
+                setActive();
+            }
+        }
+    }
+
+    boolean setHoldingForConference() {
+        if (getState() == Connection.STATE_ACTIVE) {
+            setOnHold();
+            return true;
+        }
+        return false;
+    }
+
     private static Uri getAddressFromNumber(String number) {
         // Address can be null for blocked calls.
         if (number == null) {
