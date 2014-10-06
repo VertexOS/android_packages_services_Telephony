@@ -41,6 +41,7 @@ abstract class TelephonyConnection extends Connection {
     private static final int MSG_PRECISE_CALL_STATE_CHANGED = 1;
     private static final int MSG_RINGBACK_TONE = 2;
     private static final int MSG_HANDOVER_STATE_CHANGED = 3;
+    private static final int MSG_DISCONNECT = 4;
 
     private final Handler mHandler = new Handler() {
         @Override
@@ -67,6 +68,9 @@ abstract class TelephonyConnection extends Connection {
                         return;
                     }
                     setRingbackRequested((Boolean) ((AsyncResult) msg.obj).result);
+                    break;
+                case MSG_DISCONNECT:
+                    updateState();
                     break;
             }
         }
@@ -364,6 +368,7 @@ abstract class TelephonyConnection extends Connection {
             getPhone().unregisterForPreciseCallStateChanged(mHandler);
             getPhone().unregisterForRingbackTone(mHandler);
             getPhone().unregisterForHandoverStateChanged(mHandler);
+            getPhone().unregisterForDisconnect(mHandler);
         }
         mOriginalConnection = originalConnection;
         getPhone().registerForPreciseCallStateChanged(
@@ -371,6 +376,7 @@ abstract class TelephonyConnection extends Connection {
         getPhone().registerForHandoverStateChanged(
                 mHandler, MSG_HANDOVER_STATE_CHANGED, null);
         getPhone().registerForRingbackTone(mHandler, MSG_RINGBACK_TONE, null);
+        getPhone().registerForDisconnect(mHandler, MSG_DISCONNECT, null);
         mOriginalConnection.addPostDialListener(mPostDialListener);
         mOriginalConnection.addListener(mOriginalConnectionListener);
 
