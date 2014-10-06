@@ -71,7 +71,8 @@ public class HfaLogic {
     private PendingIntent mResponseIntent;
     private Context mContext;
 
-    private static final int DEFAULT_RETRY_COUNT = 1;
+    // No retry at the moment. Increase later if necessary.
+    private static final int DEFAULT_RETRY_COUNT = 0;
     private int mRetryCount;
 
     public interface HfaLogicCallback {
