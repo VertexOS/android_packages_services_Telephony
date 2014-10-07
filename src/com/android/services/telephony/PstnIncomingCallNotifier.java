@@ -17,7 +17,6 @@
 package com.android.services.telephony;
 
 import android.content.BroadcastReceiver;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -27,6 +26,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.os.UserHandle;
+import android.telecom.CallState;
 import android.telecom.PhoneAccount;
 import android.telecom.TelecomManager;
 import android.telephony.TelephonyManager;
@@ -39,6 +39,7 @@ import com.android.internal.telephony.PhoneConstants;
 import com.android.internal.telephony.PhoneProxy;
 import com.android.internal.telephony.TelephonyIntents;
 import com.android.internal.telephony.cdma.CdmaCallWaitingNotification;
+
 import com.google.common.base.Preconditions;
 
 import java.util.Objects;
@@ -51,6 +52,7 @@ final class PstnIncomingCallNotifier {
     /** New ringing connection event code. */
     private static final int EVENT_NEW_RINGING_CONNECTION = 100;
     private static final int EVENT_CDMA_CALL_WAITING = 101;
+    private static final int EVENT_UNKNOWN_CONNECTION = 102;
 
     /** The phone proxy object to listen to. */
     private final PhoneProxy mPhoneProxy;
@@ -75,6 +77,9 @@ final class PstnIncomingCallNotifier {
                     break;
                 case EVENT_CDMA_CALL_WAITING:
                     handleCdmaCallWaiting((AsyncResult) msg.obj);
+                    break;
+                case EVENT_UNKNOWN_CONNECTION:
+                    handleNewUnknownConnection((AsyncResult) msg.obj);
                     break;
                 default:
                     break;
@@ -142,6 +147,8 @@ final class PstnIncomingCallNotifier {
                         mHandler, EVENT_NEW_RINGING_CONNECTION, null);
                 mPhoneBase.registerForCallWaiting(
                         mHandler, EVENT_CDMA_CALL_WAITING, null);
+                mPhoneBase.registerForUnknownConnection(mHandler, EVENT_UNKNOWN_CONNECTION,
+                        null);
             }
         }
     }
@@ -151,6 +158,7 @@ final class PstnIncomingCallNotifier {
             Log.i(this, "Unregistering: %s", mPhoneBase);
             mPhoneBase.unregisterForNewRingingConnection(mHandler);
             mPhoneBase.unregisterForCallWaiting(mHandler);
+            mPhoneBase.unregisterForUnknownConnection(mHandler);
         }
     }
 
@@ -185,6 +193,29 @@ final class PstnIncomingCallNotifier {
                 }
             }
         }
+    }
+
+    private void handleNewUnknownConnection(AsyncResult asyncResult) {
+        Log.i(this, "handleNewUnknownConnection");
+        Connection connection = (Connection) asyncResult.result;
+        if (connection != null) {
+            Call call = connection.getCall();
+            if (call != null && call.getState().isAlive()) {
+                addNewUnknownCall(connection);
+            }
+        }
+    }
+
+    private void addNewUnknownCall(Connection connection) {
+        Bundle extras = null;
+        if (connection.getNumberPresentation() == TelecomManager.PRESENTATION_ALLOWED &&
+                !TextUtils.isEmpty(connection.getAddress())) {
+            extras = new Bundle();
+            Uri uri = Uri.fromParts(PhoneAccount.SCHEME_TEL, connection.getAddress(), null);
+            extras.putParcelable(TelecomManager.EXTRA_UNKNOWN_CALL_HANDLE, uri);
+        }
+        TelecomManager.from(mPhoneProxy.getContext()).addNewUnknownCall(
+                TelecomAccountRegistry.makePstnPhoneAccountHandle(mPhoneProxy), extras);
     }
 
     /**
