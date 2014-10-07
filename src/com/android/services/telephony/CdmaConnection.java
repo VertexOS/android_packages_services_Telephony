@@ -79,7 +79,6 @@ final class CdmaConnection extends TelephonyConnection {
             EmergencyTonePlayer emergencyTonePlayer,
             boolean allowMute,
             boolean isOutgoing) {
-
         super(connection);
         mEmergencyTonePlayer = emergencyTonePlayer;
         mAllowMute = allowMute;
