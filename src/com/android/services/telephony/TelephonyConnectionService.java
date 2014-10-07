@@ -49,6 +49,7 @@ import com.android.internal.telephony.PhoneFactory;
 import com.android.internal.telephony.SubscriptionController;
 import com.android.internal.telephony.imsphone.ImsExternalCallTracker;
 import com.android.internal.telephony.imsphone.ImsPhone;
+import com.android.internal.telephony.TelephonyProperties;
 import com.android.phone.MMIDialogActivity;
 import com.android.phone.PhoneUtils;
 import com.android.phone.R;
@@ -142,15 +143,19 @@ public class TelephonyConnectionService extends ConnectionService {
             final ConnectionRequest request) {
         Log.i(this, "onCreateOutgoingConnection, request: " + request);
 
+        Bundle bundle = request.getExtras();
+        boolean isSkipSchemaOrConfUri = (bundle != null) && (bundle.getBoolean(
+                TelephonyProperties.EXTRA_SKIP_SCHEMA_PARSING, false) ||
+                bundle.getBoolean(TelephonyProperties.EXTRA_DIAL_CONFERENCE_URI, false));
         Uri handle = request.getAddress();
-        if (handle == null) {
+        if (!isSkipSchemaOrConfUri && handle == null) {
             Log.d(this, "onCreateOutgoingConnection, handle is null");
             return Connection.createFailedConnection(
                     DisconnectCauseUtil.toTelecomDisconnectCause(
                             android.telephony.DisconnectCause.NO_PHONE_NUMBER_SUPPLIED,
                             "No phone number supplied"));
         }
-
+        if (handle == null) handle = Uri.EMPTY;
         String scheme = handle.getScheme();
         final String number;
         if (PhoneAccount.SCHEME_VOICEMAIL.equals(scheme)) {
@@ -176,7 +181,7 @@ public class TelephonyConnectionService extends ConnectionService {
             // Convert voicemail: to tel:
             handle = Uri.fromParts(PhoneAccount.SCHEME_TEL, number, null);
         } else {
-            if (!PhoneAccount.SCHEME_TEL.equals(scheme)) {
+            if (!isSkipSchemaOrConfUri && !PhoneAccount.SCHEME_TEL.equals(scheme)) {
                 Log.d(this, "onCreateOutgoingConnection, Handle %s is not type tel", scheme);
                 return Connection.createFailedConnection(
                         DisconnectCauseUtil.toTelecomDisconnectCause(
@@ -185,7 +190,7 @@ public class TelephonyConnectionService extends ConnectionService {
             }
 
             number = handle.getSchemeSpecificPart();
-            if (TextUtils.isEmpty(number)) {
+            if (!isSkipSchemaOrConfUri && TextUtils.isEmpty(number)) {
                 Log.d(this, "onCreateOutgoingConnection, unable to parse number");
                 return Connection.createFailedConnection(
                         DisconnectCauseUtil.toTelecomDisconnectCause(
@@ -548,6 +553,14 @@ public class TelephonyConnectionService extends ConnectionService {
 
     }
 
+    @Override
+    public void onAddParticipant(Connection connection, String participant) {
+        if (connection instanceof TelephonyConnection) {
+            ((TelephonyConnection) connection).performAddParticipant(participant);
+        }
+
+    }
+
     private void placeOutgoingConnection(
             TelephonyConnection connection, Phone phone, ConnectionRequest request) {
         String number = connection.getAddress().getSchemeSpecificPart();
@@ -563,10 +576,19 @@ public class TelephonyConnectionService extends ConnectionService {
             request.setAccountHandle(pHandle);
         }
 
+        Bundle bundle = request.getExtras();
+        boolean isAddParticipant = (bundle != null) && bundle
+                .getBoolean(TelephonyProperties.ADD_PARTICIPANT_KEY, false);
+        Log.d(this, "placeOutgoingConnection isAddParticipant = " + isAddParticipant);
+
         com.android.internal.telephony.Connection originalConnection;
         try {
-            originalConnection =
-                    phone.dial(number, null, request.getVideoState(), request.getExtras());
+            if (isAddParticipant) {
+                phone.addParticipant(number);
+                return;
+            } else {
+                originalConnection = phone.dial(number, null, request.getVideoState(), bundle);
+            }
         } catch (CallStateException e) {
             Log.e(this, e, "placeOutgoingConnection, phone.dial exception: " + e);
             int cause = android.telephony.DisconnectCause.OUTGOING_FAILURE;

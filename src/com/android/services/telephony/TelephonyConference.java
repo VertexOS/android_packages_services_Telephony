@@ -91,6 +91,11 @@ public class TelephonyConference extends Conference {
     }
 
     @Override
+    public void onAddParticipant(String participant) {
+        Log.e(this, new Exception(), "Add participant not supported for GSM conference call.");
+    }
+
+    @Override
     public void onMerge(Connection connection) {
         try {
             Phone phone = ((TelephonyConnection) connection).getPhone();
