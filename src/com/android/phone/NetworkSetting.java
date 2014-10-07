@@ -51,7 +51,7 @@ public class NetworkSetting extends PreferenceActivity
         implements DialogInterface.OnCancelListener {
 
     private static final String LOG_TAG = "phone";
-    private static final boolean DBG = false;
+    private static final boolean DBG = true;
 
     private static final int EVENT_NETWORK_SCAN_COMPLETED = 100;
     private static final int EVENT_NETWORK_SELECTION_DONE = 200;
@@ -106,6 +106,10 @@ public class NetworkSetting extends PreferenceActivity
                         if (DBG) log("manual network selection: succeeded!");
                         displayNetworkSelectionSucceeded();
                     }
+
+                    // update the phone in case replaced as part of selection
+                    mPhone = PhoneGlobals.getPhone();
+
                     break;
                 case EVENT_AUTO_SELECT_DONE:
                     if (DBG) log("hideProgressPanel");
@@ -118,7 +122,7 @@ public class NetworkSetting extends PreferenceActivity
                         // "auto select" is always trigged in foreground, so "auto select" dialog
                         //  should be shown when "auto select" is trigged. Should NOT get
                         // this exception, and Log it.
-                        Log.w(LOG_TAG, "[NetworksList] Fail to dismiss auto select dialog", e);
+                        Log.w(LOG_TAG, "[NetworksList] Fail to dismiss auto select dialog ", e);
                     }
                     getPreferenceScreen().setEnabled(true);
 
@@ -130,6 +134,10 @@ public class NetworkSetting extends PreferenceActivity
                         if (DBG) log("automatic network selection: succeeded!");
                         displayNetworkSelectionSucceeded();
                     }
+
+                    // update the phone in case replaced as part of selection
+                    mPhone = PhoneGlobals.getPhone();
+
                     break;
             }
 
@@ -212,7 +220,7 @@ public class NetworkSetting extends PreferenceActivity
         try {
             mNetworkQueryService.stopNetworkQuery(mCallback);
         } catch (RemoteException e) {
-            throw new RuntimeException(e);
+            log("onCancel: exception from stopNetworkQuery " + e);
         }
         finish();
     }
@@ -274,6 +282,13 @@ public class NetworkSetting extends PreferenceActivity
      */
     @Override
     protected void onDestroy() {
+        try {
+            // used to un-register callback
+            mNetworkQueryService.unregisterCallback(mCallback);
+        } catch (RemoteException e) {
+            log("onDestroy: exception from unregisterCallback " + e);
+        }
+
         if (!mUnavailable) {
             // unbind the service.
             unbindService(mNetworkQueryServiceConnection);
@@ -389,6 +404,14 @@ public class NetworkSetting extends PreferenceActivity
         try {
             mNetworkQueryService.startNetworkQuery(mCallback);
         } catch (RemoteException e) {
+            log("loadNetworksList: exception from startNetworkQuery " + e);
+            if (mIsForeground) {
+                try {
+                    dismissDialog(DIALOG_NETWORK_LIST_LOAD);
+                } catch (IllegalArgumentException e1) {
+                    // do nothing
+                }
+            }
         }
 
         displayEmptyNetworkList(false);
@@ -404,9 +427,15 @@ public class NetworkSetting extends PreferenceActivity
     private void networksListLoaded(List<OperatorInfo> result, int status) {
         if (DBG) log("networks list loaded");
 
+        // used to un-register callback
+        try {
+            mNetworkQueryService.unregisterCallback(mCallback);
+        } catch (RemoteException e) {
+            log("networksListLoaded: exception from unregisterCallback " + e);
+        }
+
         // update the state of the preferences.
         if (DBG) log("hideProgressPanel");
-
 
         // Always try to dismiss the dialog because activity may
         // be moved to background after dialog is shown.
@@ -416,7 +445,7 @@ public class NetworkSetting extends PreferenceActivity
             // It's not a error in following scenario, we just ignore it.
             // "Load list" dialog will not show, if NetworkQueryService is
             // connected after this activity is moved to background.
-            if (DBG) log("Fail to dismiss network load list dialog");
+            if (DBG) log("Fail to dismiss network load list dialog " + e);
         }
 
         getPreferenceScreen().setEnabled(true);
