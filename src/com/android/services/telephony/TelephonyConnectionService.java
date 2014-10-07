@@ -278,14 +278,14 @@ public class TelephonyConnectionService extends ConnectionService {
             return Connection.createCanceledConnection();
         }
 
-        Connection connection =
+        TelephonyConnection connection =
                 createConnectionFor(phone, unknownConnection,
                         !unknownConnection.isIncoming() /* isOutgoing */);
 
         if (connection == null) {
-            connection = Connection.createCanceledConnection();
             return Connection.createCanceledConnection();
         } else {
+            connection.updateState();
             return connection;
         }
     }
