@@ -37,7 +37,8 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
     private static final String SELECT_CALL_ASSISTANT_PREF_KEY =
             "wifi_calling_call_assistant_preference";
 
-    private static final String SIP_SETTINGS_CATEGORY_PREF_KEY = "phone_accounts_sip_settings_key";
+    private static final String SIP_SETTINGS_CATEGORY_PREF_KEY =
+            "phone_accounts_sip_settings_category_key";
     private static final String USE_SIP_PREF_KEY = "use_sip_calling_options_key";
     private static final String SIP_RECEIVE_CALLS_PREF_KEY = "sip_receive_calls_key";
 
