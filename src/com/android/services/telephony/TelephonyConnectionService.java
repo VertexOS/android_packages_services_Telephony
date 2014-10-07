@@ -40,6 +40,8 @@ import com.android.internal.telephony.SubscriptionController;
 import com.android.internal.telephony.cdma.CDMAPhone;
 import com.android.phone.MMIDialogActivity;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -229,6 +231,57 @@ public class TelephonyConnectionService extends ConnectionService {
 
         Connection connection =
                 createConnectionFor(phone, originalConnection, false /* isOutgoing */);
+        if (connection == null) {
+            connection = Connection.createCanceledConnection();
+            return Connection.createCanceledConnection();
+        } else {
+            return connection;
+        }
+    }
+
+    @Override
+    public Connection onCreateUnknownConnection(PhoneAccountHandle connectionManagerPhoneAccount,
+            ConnectionRequest request) {
+        Log.i(this, "onCreateUnknownConnection, request: " + request);
+
+        Phone phone = getPhoneForAccount(request.getAccountHandle(), false);
+        if (phone == null) {
+            return Connection.createFailedConnection(
+                    DisconnectCauseUtil.toTelecomDisconnectCause(
+                            android.telephony.DisconnectCause.ERROR_UNSPECIFIED));
+        }
+
+        final List<com.android.internal.telephony.Connection> allConnections = new ArrayList<>();
+        final Call ringingCall = phone.getRingingCall();
+        if (ringingCall.hasConnections()) {
+            allConnections.addAll(ringingCall.getConnections());
+        }
+        final Call foregroundCall = phone.getForegroundCall();
+        if (foregroundCall.hasConnections()) {
+            allConnections.addAll(foregroundCall.getConnections());
+        }
+        final Call backgroundCall = phone.getBackgroundCall();
+        if (backgroundCall.hasConnections()) {
+            allConnections.addAll(phone.getBackgroundCall().getConnections());
+        }
+
+        com.android.internal.telephony.Connection unknownConnection = null;
+        for (com.android.internal.telephony.Connection telephonyConnection : allConnections) {
+            if (!isOriginalConnectionKnown(telephonyConnection)) {
+                unknownConnection = telephonyConnection;
+                break;
+            }
+        }
+
+        if (unknownConnection == null) {
+            Log.i(this, "onCreateUnknownConnection, did not find previously unknown connection.");
+            return Connection.createCanceledConnection();
+        }
+
+        Connection connection =
+                createConnectionFor(phone, unknownConnection,
+                        !unknownConnection.isIncoming() /* isOutgoing */);
+
         if (connection == null) {
             connection = Connection.createCanceledConnection();
             return Connection.createCanceledConnection();
