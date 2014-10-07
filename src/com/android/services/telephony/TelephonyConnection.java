@@ -387,7 +387,7 @@ abstract class TelephonyConnection extends Connection {
         setVideoProvider(mOriginalConnection.getVideoProvider());
         setAudioQuality(mOriginalConnection.getAudioQuality());
 
-        updateAddress();
+        updateState();
     }
 
     protected void hangup(int telephonyDisconnectCode) {
