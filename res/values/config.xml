@@ -127,8 +127,13 @@
     <!-- Class name for the default main Dialer activity [DO NOT TRANSLATE] -->
     <string name="dialer_default_class" translatable="false">com.android.dialer.DialtactsActivity</string>
 
-    <!-- CDMA activation goes through HFA [DO NOT TRANSLATE] -->
-    <bool name="config_use_hfa_for_provisioning" translatable="false">false</bool>
+    <!-- CDMA activation goes through HFA -->
+    <bool name="config_use_hfa_for_provisioning">false</bool>
+
+    <!-- CDMA activation goes through OTASP.
+        TODO: This should be combined with config_use_hfa_for_provisioning and implemented
+        as an enum (NONE, HFA, OTASP). -->
+    <bool name="config_use_otasp_for_provisioning">false</bool>
 
     <!-- Display carrier settings menu if true -->
     <bool name="config_carrier_settings_enable">false</bool>
