@@ -434,12 +434,10 @@ public class PhoneGlobals extends ContextWrapper {
             PhoneUtils.setAudioMode(mCM);
         }
 
-        if (TelephonyCapabilities.supportsOtasp(phone)) {
-            cdmaOtaProvisionData = new OtaUtils.CdmaOtaProvisionData();
-            cdmaOtaConfigData = new OtaUtils.CdmaOtaConfigData();
-            cdmaOtaScreenState = new OtaUtils.CdmaOtaScreenState();
-            cdmaOtaInCallScreenUiState = new OtaUtils.CdmaOtaInCallScreenUiState();
-        }
+        cdmaOtaProvisionData = new OtaUtils.CdmaOtaProvisionData();
+        cdmaOtaConfigData = new OtaUtils.CdmaOtaConfigData();
+        cdmaOtaScreenState = new OtaUtils.CdmaOtaScreenState();
+        cdmaOtaInCallScreenUiState = new OtaUtils.CdmaOtaInCallScreenUiState();
 
         // XXX pre-load the SimProvider so that it's ready
         resolver.getType(Uri.parse("content://icc/adn"));
@@ -759,21 +757,7 @@ public class PhoneGlobals extends ContextWrapper {
             cdmaPhoneCallState = new CdmaPhoneCallState();
             cdmaPhoneCallState.CdmaPhoneCallStateInit();
         }
-        if (TelephonyCapabilities.supportsOtasp(phone)) {
-            //create instances of CDMA OTA data classes
-            if (cdmaOtaProvisionData == null) {
-                cdmaOtaProvisionData = new OtaUtils.CdmaOtaProvisionData();
-            }
-            if (cdmaOtaConfigData == null) {
-                cdmaOtaConfigData = new OtaUtils.CdmaOtaConfigData();
-            }
-            if (cdmaOtaScreenState == null) {
-                cdmaOtaScreenState = new OtaUtils.CdmaOtaScreenState();
-            }
-            if (cdmaOtaInCallScreenUiState == null) {
-                cdmaOtaInCallScreenUiState = new OtaUtils.CdmaOtaInCallScreenUiState();
-            }
-        } else {
+        if (!TelephonyCapabilities.supportsOtasp(phone)) {
             //Clean up OTA data in GSM/UMTS. It is valid only for CDMA
             clearOtaState();
         }
