@@ -142,8 +142,6 @@ public class CallNotifier extends Handler {
 
         callStateMonitor.addListener(this);
 
-        createSignalInfoToneGenerator();
-
         BluetoothAdapter adapter = BluetoothAdapter.getDefaultAdapter();
         if (adapter != null) {
             adapter.getProfileProxy(mApplication.getApplicationContext(),
@@ -944,7 +942,7 @@ public class CallNotifier extends Handler {
         @Override
         public void run() {
             log("SignalInfoTonePlayer.run(toneId = " + mToneId + ")...");
-
+            createSignalInfoToneGenerator();
             if (mSignalInfoToneGenerator != null) {
                 //First stop any ongoing SignalInfo tone
                 mSignalInfoToneGenerator.stopTone();
