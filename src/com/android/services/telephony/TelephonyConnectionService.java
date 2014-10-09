@@ -84,6 +84,13 @@ public class TelephonyConnectionService extends ConnectionService {
             // TODO: We don't check for SecurityException here (requires
             // CALL_PRIVILEGED permission).
             final Phone phone = getPhoneForAccount(request.getAccountHandle(), false);
+            if (phone == null) {
+                Log.d(this, "onCreateOutgoingConnection, phone is null");
+                return Connection.createFailedConnection(
+                        DisconnectCauseUtil.toTelecomDisconnectCause(
+                                android.telephony.DisconnectCause.OUTGOING_FAILURE,
+                                "Phone is null"));
+            }
             number = phone.getVoiceMailNumber();
             if (TextUtils.isEmpty(number)) {
                 Log.d(this, "onCreateOutgoingConnection, no voicemail number set.");
