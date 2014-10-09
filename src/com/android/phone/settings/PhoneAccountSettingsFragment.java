@@ -105,8 +105,17 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
                     ? R.array.sip_call_options_wifi_only_entries
                     : R.array.sip_call_options_entries);
             mUseSipCalling.setOnPreferenceChangeListener(this);
-            mUseSipCalling.setValueIndex(
-                    mUseSipCalling.findIndexOfValue(mSipSharedPreferences.getSipCallOption()));
+
+            int optionsValueIndex =
+                    mUseSipCalling.findIndexOfValue(mSipSharedPreferences.getSipCallOption());
+            if (optionsValueIndex == -1) {
+                // If the option is invalid (eg. deprecated value), default to SIP_ADDRESS_ONLY.
+                mSipSharedPreferences.setSipCallOption(
+                        getResources().getString(R.string.sip_address_only));
+                optionsValueIndex =
+                        mUseSipCalling.findIndexOfValue(mSipSharedPreferences.getSipCallOption());
+            }
+            mUseSipCalling.setValueIndex(optionsValueIndex);
             mUseSipCalling.setSummary(mUseSipCalling.getEntry());
 
             mSipReceiveCallsPreference = (CheckBoxPreference)
