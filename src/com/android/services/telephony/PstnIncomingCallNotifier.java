@@ -197,6 +197,10 @@ final class PstnIncomingCallNotifier {
 
     private void handleNewUnknownConnection(AsyncResult asyncResult) {
         Log.i(this, "handleNewUnknownConnection");
+        if (!(asyncResult.result instanceof Connection)) {
+            Log.w(this, "handleNewUnknownConnection called with non-Connection object");
+            return;
+        }
         Connection connection = (Connection) asyncResult.result;
         if (connection != null) {
             Call call = connection.getCall();
