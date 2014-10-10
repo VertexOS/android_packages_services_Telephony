@@ -73,74 +73,81 @@ public class InCallScreenShowActivation extends Activity {
 
             boolean usesHfa = getResources().getBoolean(R.bool.config_use_hfa_for_provisioning);
             if (usesHfa) {
-                Log.d(LOG_TAG, "Starting Hfa from ACTION_PERFORM_CDMA_PROVISIONING");
+                Log.i(LOG_TAG, "Starting Hfa from ACTION_PERFORM_CDMA_PROVISIONING");
                 startHfa();
                 finish();
                 return;
             }
 
-            // On voice-capable devices, we perform CDMA provisioning in
-            // "interactive" mode by directly launching the InCallScreen.
-            // boolean interactiveMode = PhoneGlobals.sVoiceCapable;
-            // TODO: Renable interactive mode for device provisioning.
-            boolean interactiveMode = false;
-            Log.d(LOG_TAG, "ACTION_PERFORM_CDMA_PROVISIONING (interactiveMode = "
-                  + interactiveMode + ")...");
+            boolean usesOtasp = getResources().getBoolean(R.bool.config_use_otasp_for_provisioning);
+            if (usesOtasp) {
+                // On voice-capable devices, we perform CDMA provisioning in
+                // "interactive" mode by directly launching the InCallScreen.
+                // boolean interactiveMode = PhoneGlobals.sVoiceCapable;
+                // TODO: Renable interactive mode for device provisioning.
+                boolean interactiveMode = false;
+                Log.i(LOG_TAG, "ACTION_PERFORM_CDMA_PROVISIONING (interactiveMode = "
+                      + interactiveMode + ")...");
 
-            // Testing: this intent extra allows test apps manually
-            // enable/disable "interactive mode", regardless of whether
-            // the current device is voice-capable.  This is allowed only
-            // in userdebug or eng builds.
-            if (intent.hasExtra(OtaUtils.EXTRA_OVERRIDE_INTERACTIVE_MODE)
-                    && (SystemProperties.getInt("ro.debuggable", 0) == 1)) {
-                interactiveMode =
-                        intent.getBooleanExtra(OtaUtils.EXTRA_OVERRIDE_INTERACTIVE_MODE, false);
-                Log.d(LOG_TAG, "===> MANUALLY OVERRIDING interactiveMode to " + interactiveMode);
-            }
-
-            // We allow the caller to pass a PendingIntent (as the
-            // EXTRA_NONINTERACTIVE_OTASP_RESULT_PENDING_INTENT extra)
-            // which we'll later use to notify them when the OTASP call
-            // fails or succeeds.
-            //
-            // Stash that away here, and we'll fire it off later in
-            // OtaUtils.sendOtaspResult().
-            app.cdmaOtaScreenState.otaspResultCodePendingIntent =
-                        (PendingIntent) intent.getParcelableExtra(
-                                OtaUtils.EXTRA_OTASP_RESULT_CODE_PENDING_INTENT);
-
-            if (interactiveMode) {
-                // On voice-capable devices, launch an OTASP call and arrange
-                // for the in-call UI to come up.  (The InCallScreen will
-                // notice that an OTASP call is active, and display the
-                // special OTASP UI instead of the usual in-call controls.)
-
-                if (DBG) Log.d(LOG_TAG, "==> Starting interactive CDMA provisioning...");
-                OtaUtils.startInteractiveOtasp(this);
-
-                // The result we set here is actually irrelevant, since the
-                // InCallScreen's "interactive" OTASP sequence never actually
-                // finish()es; it ends by directly launching the Home
-                // activity.  So our caller won't actually ever get an
-                // onActivityResult() call in this case.
-                setResult(OtaUtils.RESULT_INTERACTIVE_OTASP_STARTED);
-            } else {
-                // On data-only devices, manually launch the OTASP call
-                // *without* displaying any UI.  (Our caller, presumably
-                // SetupWizardActivity, is responsible for displaying some
-                // sort of progress UI.)
-
-                if (DBG) Log.d(LOG_TAG, "==> Starting non-interactive CDMA provisioning...");
-                int callStatus = OtaUtils.startNonInteractiveOtasp(this);
-
-                if (callStatus == PhoneUtils.CALL_STATUS_DIALED) {
-                    if (DBG) Log.d(LOG_TAG, "  ==> successful result from startNonInteractiveOtasp(): "
-                          + callStatus);
-                    setResult(OtaUtils.RESULT_NONINTERACTIVE_OTASP_STARTED);
-                } else {
-                    Log.w(LOG_TAG, "Failure code from startNonInteractiveOtasp(): " + callStatus);
-                    setResult(OtaUtils.RESULT_NONINTERACTIVE_OTASP_FAILED);
+                // Testing: this intent extra allows test apps manually
+                // enable/disable "interactive mode", regardless of whether
+                // the current device is voice-capable.  This is allowed only
+                // in userdebug or eng builds.
+                if (intent.hasExtra(OtaUtils.EXTRA_OVERRIDE_INTERACTIVE_MODE)
+                        && (SystemProperties.getInt("ro.debuggable", 0) == 1)) {
+                    interactiveMode =
+                            intent.getBooleanExtra(OtaUtils.EXTRA_OVERRIDE_INTERACTIVE_MODE, false);
+                    Log.d(LOG_TAG, "==> MANUALLY OVERRIDING interactiveMode to " + interactiveMode);
                 }
+
+                // We allow the caller to pass a PendingIntent (as the
+                // EXTRA_NONINTERACTIVE_OTASP_RESULT_PENDING_INTENT extra)
+                // which we'll later use to notify them when the OTASP call
+                // fails or succeeds.
+                //
+                // Stash that away here, and we'll fire it off later in
+                // OtaUtils.sendOtaspResult().
+                app.cdmaOtaScreenState.otaspResultCodePendingIntent =
+                            (PendingIntent) intent.getParcelableExtra(
+                                    OtaUtils.EXTRA_OTASP_RESULT_CODE_PENDING_INTENT);
+
+                if (interactiveMode) {
+                    // On voice-capable devices, launch an OTASP call and arrange
+                    // for the in-call UI to come up.  (The InCallScreen will
+                    // notice that an OTASP call is active, and display the
+                    // special OTASP UI instead of the usual in-call controls.)
+
+                    if (DBG) Log.d(LOG_TAG, "==> Starting interactive CDMA provisioning...");
+                    OtaUtils.startInteractiveOtasp(this);
+
+                    // The result we set here is actually irrelevant, since the
+                    // InCallScreen's "interactive" OTASP sequence never actually
+                    // finish()es; it ends by directly launching the Home
+                    // activity.  So our caller won't actually ever get an
+                    // onActivityResult() call in this case.
+                    setResult(OtaUtils.RESULT_INTERACTIVE_OTASP_STARTED);
+                } else {
+                    // On data-only devices, manually launch the OTASP call
+                    // *without* displaying any UI.  (Our caller, presumably
+                    // SetupWizardActivity, is responsible for displaying some
+                    // sort of progress UI.)
+
+                    if (DBG) Log.d(LOG_TAG, "==> Starting non-interactive CDMA provisioning...");
+                    int callStatus = OtaUtils.startNonInteractiveOtasp(this);
+
+                    if (callStatus == PhoneUtils.CALL_STATUS_DIALED) {
+                        if (DBG) Log.d(LOG_TAG,
+                                "  ==> successful result from startNonInteractiveOtasp(): " +
+                                callStatus);
+                        setResult(OtaUtils.RESULT_NONINTERACTIVE_OTASP_STARTED);
+                    } else {
+                        Log.w(LOG_TAG, "Failure code from startNonInteractiveOtasp(): " +
+                                callStatus);
+                        setResult(OtaUtils.RESULT_NONINTERACTIVE_OTASP_FAILED);
+                    }
+                }
+            } else {
+                Log.i(LOG_TAG, "Skipping activation.");
             }
         } else {
             Log.e(LOG_TAG, "Unexpected intent action: " + intent);
