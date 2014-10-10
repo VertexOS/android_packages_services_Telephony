@@ -101,7 +101,7 @@ public class TimeConsumingPreferenceActivity extends PreferenceActivity
                 default:
                     msgId = R.string.exception_error;
                     // The error is not recoverable on dialog exit.
-                    builder.setPositiveButton(R.string.close_dialog, mDismissAndFinish);
+                    builder.setPositiveButton(R.string.close_dialog, mDismiss);
                     break;
             }
 
