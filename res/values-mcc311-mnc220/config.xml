@@ -19,4 +19,6 @@
 <resources>
     <!-- Flag indicating if dtmf tone type is enabled -->
     <bool name="dtmf_type_enabled">true</bool>
+    <!-- CDMA activation goes through OTASP. -->
+    <bool name="config_use_otasp_for_provisioning">true</bool>
 </resources>
