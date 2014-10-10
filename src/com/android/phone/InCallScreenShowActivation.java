@@ -180,28 +180,34 @@ public class InCallScreenShowActivation extends Activity {
      * Starts the HFA provisioning process by bringing up the HFA Activity.
      */
     private void startHfa() {
-        final Intent intent = new Intent();
+        boolean isWizardRunning = isWizardRunning(this);
+        // We always run our HFA logic if we're in setup wizard, but if we're outside of setup
+        // wizard then we have to check a config to see if we should still run HFA.
+        if (isWizardRunning ||
+                getResources().getBoolean(R.bool.config_allow_hfa_outside_of_setup_wizard)) {
 
-        final PendingIntent otaResponseIntent = getIntent().getParcelableExtra(
-                OtaUtils.EXTRA_OTASP_RESULT_CODE_PENDING_INTENT);
+            final Intent intent = new Intent();
 
-        final boolean showUi = !isWizardRunning(this);
+            final PendingIntent otaResponseIntent = getIntent().getParcelableExtra(
+                    OtaUtils.EXTRA_OTASP_RESULT_CODE_PENDING_INTENT);
 
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            final boolean showUi = !isWizardRunning;
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
-        if (otaResponseIntent != null) {
-            intent.putExtra(OtaUtils.EXTRA_OTASP_RESULT_CODE_PENDING_INTENT, otaResponseIntent);
+            if (otaResponseIntent != null) {
+                intent.putExtra(OtaUtils.EXTRA_OTASP_RESULT_CODE_PENDING_INTENT, otaResponseIntent);
+            }
+
+            Log.v(LOG_TAG, "Starting hfa activation activity");
+            if (showUi) {
+                intent.setClassName(this, HfaActivity.class.getName());
+                startActivity(intent);
+            } else {
+                intent.setClassName(this, HfaService.class.getName());
+                startService(intent);
+            }
+
         }
-
-        Log.v(LOG_TAG, "Starting hfa activation activity");
-        if (showUi) {
-            intent.setClassName(this, HfaActivity.class.getName());
-            startActivity(intent);
-        } else {
-            intent.setClassName(this, HfaService.class.getName());
-            startService(intent);
-        }
-
         setResult(RESULT_OK);
     }
 }
