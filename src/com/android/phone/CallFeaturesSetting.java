@@ -485,7 +485,10 @@ public class CallFeaturesSetting extends PreferenceActivity
             mAudioManager.setParameter(HAC_KEY, hac != 0 ? HAC_VAL_ON : HAC_VAL_OFF);
             return true;
         } else if (preference == mVoicemailSettings) {
-            mVoicemailSettings.getDialog().getActionBar().setDisplayHomeAsUpEnabled(false);
+            final Dialog dialog = mVoicemailSettings.getDialog();
+            if (dialog != null) {
+                dialog.getActionBar().setDisplayHomeAsUpEnabled(false);
+            }
             if (DBG) log("onPreferenceTreeClick: Voicemail Settings Preference is clicked.");
             if (preference.getIntent() != null) {
                 if (DBG) {
@@ -511,7 +514,10 @@ public class CallFeaturesSetting extends PreferenceActivity
                 return false;
             }
         } else if (preference == mVoicemailSettingsScreen) {
-            mVoicemailSettingsScreen.getDialog().getActionBar().setDisplayHomeAsUpEnabled(false);
+            final Dialog dialog = mVoicemailSettingsScreen.getDialog();
+            if (dialog != null) {
+                dialog.getActionBar().setDisplayHomeAsUpEnabled(false);
+            }
             return false;
         }
         return false;
