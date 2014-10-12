@@ -35,7 +35,6 @@ import android.text.TextUtils;
 import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneFactory;
 import com.android.internal.telephony.PhoneProxy;
-import com.android.internal.telephony.SubscriptionController;
 import com.android.internal.telephony.TelephonyIntents;
 import com.android.phone.R;
 
@@ -93,7 +92,6 @@ final class TelecomAccountRegistry {
 
             // Populate the phone account data.
             long subId = mPhone.getSubId();
-            int color = 0;
             int slotId = SubscriptionManager.INVALID_SLOT_ID;
             String line1Number = mTelephonyManager.getLine1NumberForSubscriber(subId);
             if (line1Number == null) {
@@ -123,8 +121,6 @@ final class TelecomAccountRegistry {
                 if (record != null) {
                     subDisplayName = record.displayName;
                     slotId = record.slotId;
-                    // Assign a "fake" color while the underlying Telephony stuff is refactored
-                    color = makeFakeColor(subId);
                 }
 
                 String slotIdString;
@@ -159,7 +155,6 @@ final class TelecomAccountRegistry {
                             Uri.fromParts(PhoneAccount.SCHEME_TEL, subNumber, null))
                     .setCapabilities(capabilities)
                     .setIconResId(getPhoneAccountIcon(slotId))
-                    .setColor(color)
                     .setShortDescription(description)
                     .setSupportedUriSchemes(Arrays.asList(
                             PhoneAccount.SCHEME_TEL, PhoneAccount.SCHEME_VOICEMAIL))
@@ -173,15 +168,6 @@ final class TelecomAccountRegistry {
         public PhoneAccountHandle getPhoneAccountHandle() {
             return mAccount != null ? mAccount.getAccountHandle() : null;
         }
-    }
-
-    private int makeFakeColor(long subId) {
-        int[] colors = new int[] {
-                0xff0000,
-                0x00ff00,
-                0x0000ff,
-        };
-        return colors[((int) subId) % colors.length];
     }
 
     private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
