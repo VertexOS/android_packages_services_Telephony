@@ -144,26 +144,40 @@ public class EmergencyCallbackModeService extends Service {
         showNotification(ecmTimeout);
 
         // Start countdown timer for the notification updates
-        mTimer = new CountDownTimer(ecmTimeout, 1000) {
+        if (mTimer != null) {
+            mTimer.cancel();
+        } else {
+            mTimer = new CountDownTimer(ecmTimeout, 1000) {
 
-            @Override
-            public void onTick(long millisUntilFinished) {
-                mTimeLeft = millisUntilFinished;
-                EmergencyCallbackModeService.this.showNotification(millisUntilFinished);
-            }
+                @Override
+                public void onTick(long millisUntilFinished) {
+                    mTimeLeft = millisUntilFinished;
+                    EmergencyCallbackModeService.this.showNotification(millisUntilFinished);
+                }
 
-            @Override
-            public void onFinish() {
-                //Do nothing
-            }
+                @Override
+                public void onFinish() {
+                    //Do nothing
+                }
 
-        }.start();
+            };
+        }
+        mTimer.start();
     }
 
     /**
      * Shows notification for Emergency Callback Mode
      */
     private void showNotification(long millisUntilFinished) {
+        final boolean isInEcm = Boolean.parseBoolean(
+                SystemProperties.get(TelephonyProperties.PROPERTY_INECM_MODE));
+        if (!isInEcm) {
+            Log.i(LOG_TAG, "Asked to show notification but not in ECM mode");
+            if (mTimer != null) {
+                mTimer.cancel();
+            }
+            return;
+        }
         final Notification.Builder builder = new Notification.Builder(getApplicationContext());
         builder.setOngoing(true);
         builder.setPriority(Notification.PRIORITY_HIGH);
