@@ -50,6 +50,8 @@ import com.android.internal.telephony.TelephonyProperties;
  */
 public class EmergencyCallbackModeExitDialog extends Activity implements OnDismissListener {
 
+    private static final String TAG = "EmergencyCallbackMode";
+
     /** Intent to trigger the Emergency Callback Mode exit dialog */
     static final String ACTION_SHOW_ECM_EXIT_DIALOG =
             "com.android.phone.action.ACTION_SHOW_ECM_EXIT_DIALOG";
@@ -77,9 +79,12 @@ public class EmergencyCallbackModeExitDialog extends Activity implements OnDismi
         super.onCreate(savedInstanceState);
 
         // Check if phone is in Emergency Callback Mode. If not, exit.
-        if (!Boolean.parseBoolean(
-                    SystemProperties.get(TelephonyProperties.PROPERTY_INECM_MODE))) {
+        final boolean isInEcm = Boolean.parseBoolean(
+                SystemProperties.get(TelephonyProperties.PROPERTY_INECM_MODE));
+        Log.i(TAG, "ECMModeExitDialog launched - isInEcm: " + isInEcm);
+        if (!isInEcm) {
             finish();
+            return;
         }
 
         mHandler = new Handler();
@@ -103,9 +108,15 @@ public class EmergencyCallbackModeExitDialog extends Activity implements OnDismi
     @Override
     public void onDestroy() {
         super.onDestroy();
-        unregisterReceiver(mEcmExitReceiver);
+        try {
+            unregisterReceiver(mEcmExitReceiver);
+        } catch (IllegalArgumentException e) {
+            // Receiver was never registered - silently ignore.
+        }
         // Unregister ECM timer reset notification
-        mPhone.unregisterForEcmTimerReset(mHandler);
+        if (mPhone != null) {
+            mPhone.unregisterForEcmTimerReset(mHandler);
+        }
     }
 
     @Override
@@ -148,10 +159,15 @@ public class EmergencyCallbackModeExitDialog extends Activity implements OnDismi
             if (mService != null) {
                 mEcmTimeout = mService.getEmergencyCallbackModeTimeout();
                 mInEmergencyCall = mService.getEmergencyCallbackModeCallState();
+                try {
+                    // Unbind from remote service
+                    unbindService(mConnection);
+                } catch (IllegalArgumentException e) {
+                    // Failed to unbind from service. Don't crash as this brings down the entire
+                    // radio.
+                    Log.w(TAG, "Failed to unbind from EmergencyCallbackModeService");
+                }
             }
-
-            // Unbind from remote service
-            unbindService(mConnection);
 
             // Show dialog
             mHandler.post(new Runnable() {
@@ -166,7 +182,10 @@ public class EmergencyCallbackModeExitDialog extends Activity implements OnDismi
      * Shows Emergency Callback Mode dialog and starts countdown timer
      */
     private void showEmergencyCallbackModeExitDialog() {
-
+        if (!this.isResumed()) {
+            Log.w(TAG, "Tried to show dialog, but activity was already finished");
+            return;
+        }
         if(mInEmergencyCall) {
             mDialogType = EXIT_ECM_IN_EMERGENCY_CALL_DIALOG;
             showDialog(EXIT_ECM_IN_EMERGENCY_CALL_DIALOG);
@@ -283,6 +302,7 @@ public class EmergencyCallbackModeExitDialog extends Activity implements OnDismi
     /**
      * Closes activity when dialog is dismissed
      */
+    @Override
     public void onDismiss(DialogInterface dialog) {
         EmergencyCallbackModeExitDialog.this.setResult(RESULT_OK, (new Intent())
                 .putExtra(EXTRA_EXIT_ECM_RESULT, false));
