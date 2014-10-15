@@ -73,12 +73,13 @@ public class EmergencyCallbackModeService extends Service {
 
     @Override
     public void onCreate() {
+         Phone phoneInEcm = PhoneGlobals.getInstance().getPhoneInEcm();
         // Check if it is CDMA phone
-        if ((PhoneFactory.getDefaultPhone().getPhoneType() != PhoneConstants.PHONE_TYPE_CDMA)
-                && (PhoneFactory.getDefaultPhone().getImsPhone() == null)) {
-            Log.e(LOG_TAG, "Error! Emergency Callback Mode not supported for " +
-                    PhoneFactory.getDefaultPhone().getPhoneName() + " phones");
+        if (phoneInEcm == null || ((phoneInEcm.getPhoneType() != PhoneConstants.PHONE_TYPE_CDMA)
+                && (phoneInEcm.getImsPhone() == null))) {
+            Log.e(LOG_TAG, "Error! Emergency Callback Mode not supported for " + phoneInEcm);
             stopSelf();
+            return;
         }
 
         // Register receiver for intents
@@ -90,7 +91,7 @@ public class EmergencyCallbackModeService extends Service {
         mNotificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 
         // Register ECM timer reset notfication
-        mPhone = PhoneFactory.getDefaultPhone();
+        mPhone = phoneInEcm;
         mPhone.registerForEcmTimerReset(mHandler, ECM_TIMER_RESET, null);
 
         startTimerNotification();

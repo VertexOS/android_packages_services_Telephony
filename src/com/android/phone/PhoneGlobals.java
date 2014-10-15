@@ -130,6 +130,7 @@ public class PhoneGlobals extends ContextWrapper {
     CarrierConfigLoader configLoader;
 
     private CallGatewayManager callGatewayManager;
+    private Phone phoneInEcm;
 
     static boolean sVoiceCapable = true;
 
@@ -699,19 +700,28 @@ public class PhoneGlobals extends ContextWrapper {
             } else if (action.equals(TelephonyIntents.ACTION_SERVICE_STATE_CHANGED)) {
                 handleServiceStateChanged(intent);
             } else if (action.equals(TelephonyIntents.ACTION_EMERGENCY_CALLBACK_MODE_CHANGED)) {
-                if (TelephonyCapabilities.supportsEcm(mCM.getFgPhone())) {
-                    Log.d(LOG_TAG, "Emergency Callback Mode arrived in PhoneApp.");
-                    // Start Emergency Callback Mode service
-                    if (intent.getBooleanExtra("phoneinECMState", false)) {
-                        context.startService(new Intent(context,
-                                EmergencyCallbackModeService.class));
+                int phoneId = intent.getIntExtra(PhoneConstants.PHONE_KEY, 0);
+                phoneInEcm = getPhone(phoneId);
+                Log.d(LOG_TAG, "Emergency Callback Mode. phoneId:" + phoneId);
+                if (phoneInEcm != null) {
+                    if (TelephonyCapabilities.supportsEcm(phoneInEcm)) {
+                        Log.d(LOG_TAG, "Emergency Callback Mode arrived in PhoneApp.");
+                        // Start Emergency Callback Mode service
+                        if (intent.getBooleanExtra("phoneinECMState", false)) {
+                            context.startService(new Intent(context,
+                                    EmergencyCallbackModeService.class));
+                        } else {
+                            phoneInEcm = null;
+                        }
+                    } else {
+                        // It doesn't make sense to get ACTION_EMERGENCY_CALLBACK_MODE_CHANGED
+                        // on a device that doesn't support ECM in the first place.
+                        Log.e(LOG_TAG, "Got ACTION_EMERGENCY_CALLBACK_MODE_CHANGED, but "
+                                + "ECM isn't supported for phone: " + phoneInEcm.getPhoneName());
+                        phoneInEcm = null;
                     }
                 } else {
-                    // It doesn't make sense to get ACTION_EMERGENCY_CALLBACK_MODE_CHANGED
-                    // on a device that doesn't support ECM in the first place.
-                    Log.e(LOG_TAG, "Got ACTION_EMERGENCY_CALLBACK_MODE_CHANGED, "
-                            + "but ECM isn't supported for phone: "
-                            + mCM.getFgPhone().getPhoneName());
+                    Log.w(LOG_TAG, "phoneInEcm is null.");
                 }
             }
         }
@@ -752,6 +762,10 @@ public class PhoneGlobals extends ContextWrapper {
             otaUtils.dismissAllOtaDialogs();
             if (DBG) Log.d(LOG_TAG, "  - dismissOtaDialogs clears OTA dialogs");
         }
+    }
+
+    public Phone getPhoneInEcm() {
+        return phoneInEcm;
     }
 
     /**
