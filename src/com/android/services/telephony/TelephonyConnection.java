@@ -324,7 +324,20 @@ abstract class TelephonyConnection extends Connection {
 
     public void performConference(TelephonyConnection otherConnection) {}
 
-    protected abstract int buildCallCapabilities();
+    /**
+     * Builds call capabilities common to all TelephonyConnections. Namely, apply IMS-based
+     * capabilities.
+     */
+    protected int buildCallCapabilities() {
+        int callCapabilities = 0;
+        if (isImsConnection()) {
+            callCapabilities |= PhoneCapabilities.SUPPORT_HOLD;
+            if (getState() == STATE_ACTIVE || getState() == STATE_HOLDING) {
+                callCapabilities |= PhoneCapabilities.HOLD;
+            }
+        }
+        return callCapabilities;
+    }
 
     protected final void updateCallCapabilities() {
         int newCallCapabilities = buildCallCapabilities();
@@ -593,8 +606,7 @@ abstract class TelephonyConnection extends Connection {
         int currentCapabilities = callCapabilities;
 
         // An IMS call cannot be individually disconnected or separated from its parent conference
-        boolean isImsCall = getOriginalConnection() instanceof ImsPhoneConnection;
-        if (!isImsCall) {
+        if (!isImsConnection()) {
             currentCapabilities |=
                     PhoneCapabilities.DISCONNECT_FROM_CONFERENCE
                     | PhoneCapabilities.SEPARATE_FROM_CONFERENCE;
@@ -675,6 +687,15 @@ abstract class TelephonyConnection extends Connection {
             return true;
         }
         return false;
+    }
+
+    /**
+     * Whether the original connection is an IMS connection.
+     * @return {@code True} if the original connection is an IMS connection, {@code false}
+     *     otherwise.
+     */
+    protected boolean isImsConnection() {
+        return getOriginalConnection() instanceof ImsPhoneConnection;
     }
 
     private static Uri getAddressFromNumber(String number) {
