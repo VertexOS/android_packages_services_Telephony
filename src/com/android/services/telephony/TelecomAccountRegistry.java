@@ -256,7 +256,9 @@ final class TelecomAccountRegistry {
                 new ComponentName(phone.getContext(), TelephonyConnectionService.class);
         // TODO: Should use some sort of special hidden flag to decorate this account as
         // an emergency-only account
-        String id = isEmergency ? "E" : prefix + String.valueOf(phone.getSubId());
+        TelecomManager telecomManager = TelecomManager.from(phone.getContext());
+        String id = isEmergency ?
+            "E" : prefix + telecomManager.getPhoneAccountIdForSubscriptionId(phone.getSubId());
         return new PhoneAccountHandle(pstnConnectionServiceName, id);
     }
 
