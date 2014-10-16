@@ -21,6 +21,7 @@ import android.os.AsyncResult;
 import android.os.Handler;
 import android.os.Message;
 import android.telecom.AudioState;
+import android.telecom.Conference;
 import android.telecom.Connection;
 import android.telecom.PhoneAccount;
 import android.telecom.PhoneCapabilities;
@@ -144,6 +145,8 @@ abstract class TelephonyConnection extends Connection {
     private com.android.internal.telephony.Connection mOriginalConnection;
     private Call.State mOriginalConnectionState = Call.State.IDLE;
 
+    private boolean mWasImsConnection;
+
     /**
      * Determines if the {@link TelephonyConnection} has local video capabilities.
      * This is used when {@link TelephonyConnection#updateCallCapabilities()}} is called,
@@ -253,6 +256,20 @@ abstract class TelephonyConnection extends Connection {
                 mOriginalConnection.proceedAfterWaitChar();
             } else {
                 mOriginalConnection.cancelPostDial();
+            }
+        }
+    }
+
+    @Override
+    public void onConferenceChanged() {
+        Conference conference = getConference();
+        // If the conference was an IMS connection but is no longer, disable conference management.
+        if (conference != null && mWasImsConnection && !isImsConnection()) {
+            int oldCapabilities = conference.getCapabilities();
+            if(PhoneCapabilities.can(oldCapabilities, PhoneCapabilities.MANAGE_CONFERENCE)) {
+                int newCapabilities = PhoneCapabilities.remove(
+                        oldCapabilities, PhoneCapabilities.MANAGE_CONFERENCE);
+                conference.setCapabilities(newCapabilities);
             }
         }
     }
@@ -399,6 +416,10 @@ abstract class TelephonyConnection extends Connection {
         setRemoteVideoCapable(mOriginalConnection.isRemoteVideoCapable());
         setVideoProvider(mOriginalConnection.getVideoProvider());
         setAudioQuality(mOriginalConnection.getAudioQuality());
+
+        if (isImsConnection()) {
+            mWasImsConnection = true;
+        }
 
         updateAddress();
     }
@@ -605,11 +626,11 @@ abstract class TelephonyConnection extends Connection {
     private int applyConferenceTerminationCapabilities(int callCapabilities) {
         int currentCapabilities = callCapabilities;
 
-        // An IMS call cannot be individually disconnected or separated from its parent conference
-        if (!isImsConnection()) {
-            currentCapabilities |=
-                    PhoneCapabilities.DISCONNECT_FROM_CONFERENCE
-                    | PhoneCapabilities.SEPARATE_FROM_CONFERENCE;
+        // An IMS call cannot be individually disconnected or separated from its parent conference.
+        // If the call was IMS, even if it hands over to GMS, these capabilities are not supported.
+        if (!mWasImsConnection) {
+            currentCapabilities |= PhoneCapabilities.DISCONNECT_FROM_CONFERENCE;
+            currentCapabilities |= PhoneCapabilities.SEPARATE_FROM_CONFERENCE;
         }
 
         return currentCapabilities;
