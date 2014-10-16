@@ -117,6 +117,13 @@ public class PhoneUtils {
     /** Noise suppression status as selected by user */
     private static boolean sIsNoiseSuppressionEnabled = true;
 
+    /**
+     * Theme to use for dialogs displayed by utility methods in this class. This is needed
+     * because these dialogs are displayed using the application context, which does not resolve
+     * the dialog theme correctly.
+     */
+    private static final int THEME = AlertDialog.THEME_DEVICE_DEFAULT_LIGHT;
+
     private static class FgRingCalls {
         private Call fgCall;
         private Call ringing;
@@ -955,7 +962,7 @@ public class PhoneUtils {
                 // places the message at the forefront of the UI.
 
                 if (sUssdDialog == null) {
-                    sUssdDialog = new AlertDialog.Builder(context)
+                    sUssdDialog = new AlertDialog.Builder(context, THEME)
                             .setPositiveButton(R.string.ok, null)
                             .setCancelable(true)
                             .setOnDismissListener(new DialogInterface.OnDismissListener() {
@@ -1045,7 +1052,7 @@ public class PhoneUtils {
                     };
 
                 // build the dialog
-                final AlertDialog newDialog = new AlertDialog.Builder(context)
+                final AlertDialog newDialog = new AlertDialog.Builder(context, THEME)
                         .setMessage(text)
                         .setView(dialogView)
                         .setPositiveButton(R.string.send_button, mUSSDDialogListener)
