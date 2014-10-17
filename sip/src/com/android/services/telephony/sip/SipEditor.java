@@ -221,6 +221,10 @@ public class SipEditor extends PreferenceActivity
                 setRemovedProfileAndFinish();
                 return true;
             }
+            case android.R.id.home: {
+                finish();
+                return true;
+            }
         }
         return super.onOptionsItemSelected(item);
     }
