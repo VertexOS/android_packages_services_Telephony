@@ -1547,12 +1547,10 @@ public class CallFeaturesSetting extends PreferenceActivity
 
         // get buttons
         PreferenceScreen prefSet = getPreferenceScreen();
-        mSubMenuVoicemailSettings = (EditPhoneNumberPreference)findPreference(BUTTON_VOICEMAIL_KEY);
-        if (mSubMenuVoicemailSettings != null) {
-            mSubMenuVoicemailSettings.setParentActivity(this, VOICEMAIL_PREF_ID, this);
-            mSubMenuVoicemailSettings.setDialogOnClosedListener(this);
-            mSubMenuVoicemailSettings.setDialogTitle(R.string.voicemail_settings_number_label);
-        }
+        mSubMenuVoicemailSettings = (EditPhoneNumberPreference) findPreference(BUTTON_VOICEMAIL_KEY);
+        mSubMenuVoicemailSettings.setParentActivity(this, VOICEMAIL_PREF_ID, this);
+        mSubMenuVoicemailSettings.setDialogOnClosedListener(this);
+        mSubMenuVoicemailSettings.setDialogTitle(R.string.voicemail_settings_number_label);
 
         mButtonDTMF = (ListPreference) findPreference(BUTTON_DTMF_KEY);
         mButtonAutoRetry = (CheckBoxPreference) findPreference(BUTTON_RETRY_KEY);
@@ -1573,42 +1571,46 @@ public class CallFeaturesSetting extends PreferenceActivity
         }
 
 
-        if (mButtonDTMF != null) {
-            if (getResources().getBoolean(R.bool.dtmf_type_enabled)) {
-                mButtonDTMF.setOnPreferenceChangeListener(this);
-            } else {
-                prefSet.removePreference(mButtonDTMF);
-                mButtonDTMF = null;
-            }
+        if (getResources().getBoolean(R.bool.dtmf_type_enabled)) {
+            mButtonDTMF.setOnPreferenceChangeListener(this);
+            int dtmf = Settings.System.getInt(getContentResolver(),
+                    Settings.System.DTMF_TONE_TYPE_WHEN_DIALING, Constants.DTMF_TONE_TYPE_NORMAL);
+            mButtonDTMF.setValueIndex(dtmf);
+        } else {
+            prefSet.removePreference(mButtonDTMF);
+            mButtonDTMF = null;
         }
 
-        if (mButtonAutoRetry != null) {
-            if (getResources().getBoolean(R.bool.auto_retry_enabled)) {
-                mButtonAutoRetry.setOnPreferenceChangeListener(this);
-            } else {
-                prefSet.removePreference(mButtonAutoRetry);
-                mButtonAutoRetry = null;
-            }
+        if (getResources().getBoolean(R.bool.auto_retry_enabled)) {
+            mButtonAutoRetry.setOnPreferenceChangeListener(this);
+            int autoretry = Settings.Global.getInt(
+                    getContentResolver(), Settings.Global.CALL_AUTO_RETRY, 0);
+            mButtonAutoRetry.setChecked(autoretry != 0);
+        } else {
+            prefSet.removePreference(mButtonAutoRetry);
+            mButtonAutoRetry = null;
         }
 
-        if (mButtonHAC != null) {
-            if (getResources().getBoolean(R.bool.hac_enabled)) {
-
-                mButtonHAC.setOnPreferenceChangeListener(this);
-            } else {
-                prefSet.removePreference(mButtonHAC);
-                mButtonHAC = null;
-            }
+        if (getResources().getBoolean(R.bool.hac_enabled)) {
+            mButtonHAC.setOnPreferenceChangeListener(this);
+            int hac = Settings.System.getInt(getContentResolver(), Settings.System.HEARING_AID, 0);
+            mButtonHAC.setChecked(hac != 0);
+        } else {
+            prefSet.removePreference(mButtonHAC);
+            mButtonHAC = null;
         }
 
-        if (mButtonTTY != null) {
-            TelecomManager telecomManager = TelecomManager.from(this);
-            if (telecomManager != null && telecomManager.isTtySupported()) {
-                mButtonTTY.setOnPreferenceChangeListener(this);
-            } else {
-                prefSet.removePreference(mButtonTTY);
-                mButtonTTY = null;
-            }
+        TelecomManager telecomManager = TelecomManager.from(this);
+        if (telecomManager != null && telecomManager.isTtySupported()) {
+            mButtonTTY.setOnPreferenceChangeListener(this);
+            int settingsTtyMode = Settings.Secure.getInt(getContentResolver(),
+                    Settings.Secure.PREFERRED_TTY_MODE,
+                    TelecomManager.TTY_MODE_OFF);
+            mButtonTTY.setValue(Integer.toString(settingsTtyMode));
+            updatePreferredTtyModeSummary(settingsTtyMode);
+        } else {
+            prefSet.removePreference(mButtonTTY);
+            mButtonTTY = null;
         }
 
         if (!getResources().getBoolean(R.bool.world_phone)) {
@@ -1660,31 +1662,6 @@ public class CallFeaturesSetting extends PreferenceActivity
 
         updateVoiceNumberField();
         mVMProviderSettingsForced = false;
-
-        if (mButtonDTMF != null) {
-            int dtmf = Settings.System.getInt(getContentResolver(),
-                    Settings.System.DTMF_TONE_TYPE_WHEN_DIALING, Constants.DTMF_TONE_TYPE_NORMAL);
-            mButtonDTMF.setValueIndex(dtmf);
-        }
-
-        if (mButtonAutoRetry != null) {
-            int autoretry = Settings.Global.getInt(getContentResolver(),
-                    Settings.Global.CALL_AUTO_RETRY, 0);
-            mButtonAutoRetry.setChecked(autoretry != 0);
-        }
-
-        if (mButtonHAC != null) {
-            int hac = Settings.System.getInt(getContentResolver(), Settings.System.HEARING_AID, 0);
-            mButtonHAC.setChecked(hac != 0);
-        }
-
-        if (mButtonTTY != null) {
-            int settingsTtyMode = Settings.Secure.getInt(getContentResolver(),
-                    Settings.Secure.PREFERRED_TTY_MODE,
-                    TelecomManager.TTY_MODE_OFF);
-            mButtonTTY.setValue(Integer.toString(settingsTtyMode));
-            updatePreferredTtyModeSummary(settingsTtyMode);
-        }
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(
                 mPhone.getContext());
