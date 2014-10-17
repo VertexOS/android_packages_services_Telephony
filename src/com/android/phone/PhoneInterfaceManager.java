@@ -136,11 +136,12 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     AppOpsManager mAppOps;
     MainThreadHandler mMainThreadHandler;
 
-    SharedPreferences carrierPrivilegeConfigs;
+    SharedPreferences mTelephonySharedPreferences;
     private static final String PREF_CARRIERS_ALPHATAG_PREFIX = "carrier_alphtag_";
     private static final String PREF_CARRIERS_NUMBER_PREFIX = "carrier_number_";
     private static final String PREF_CARRIERS_SIMPLIFIED_NETWORK_SETTINGS_PREFIX =
             "carrier_simplified_network_settings_";
+    private static final String PREF_ENABLE_VIDEO_CALLING = "enable_video_calling";
 
     /**
      * A request object to use for transmitting data to an ICC.
@@ -703,7 +704,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         mCM = PhoneGlobals.getInstance().mCM;
         mAppOps = (AppOpsManager)app.getSystemService(Context.APP_OPS_SERVICE);
         mMainThreadHandler = new MainThreadHandler();
-        carrierPrivilegeConfigs =
+        mTelephonySharedPreferences =
                 PreferenceManager.getDefaultSharedPreferences(mPhone.getContext());
         publish();
     }
@@ -1947,7 +1948,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         String iccId = getIccId(subId);
         if (iccId != null) {
             String snsPrefKey = PREF_CARRIERS_SIMPLIFIED_NETWORK_SETTINGS_PREFIX + iccId;
-            SharedPreferences.Editor editor = carrierPrivilegeConfigs.edit();
+            SharedPreferences.Editor editor = mTelephonySharedPreferences.edit();
             if (enable) {
                 editor.putBoolean(snsPrefKey, true);
             } else {
@@ -1963,7 +1964,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         String iccId = getIccId(subId);
         if (iccId != null) {
             String snsPrefKey = PREF_CARRIERS_SIMPLIFIED_NETWORK_SETTINGS_PREFIX + iccId;
-            return carrierPrivilegeConfigs.getBoolean(snsPrefKey, false);
+            return mTelephonySharedPreferences.getBoolean(snsPrefKey, false);
         }
         return false;
     }
@@ -1975,7 +1976,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         String iccId = getIccId(subId);
         if (iccId != null) {
             String alphaTagPrefKey = PREF_CARRIERS_ALPHATAG_PREFIX + iccId;
-            SharedPreferences.Editor editor = carrierPrivilegeConfigs.edit();
+            SharedPreferences.Editor editor = mTelephonySharedPreferences.edit();
             if (alphaTag == null) {
                 editor.remove(alphaTagPrefKey);
             } else {
@@ -1999,7 +2000,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         String iccId = getIccId(subId);
         if (iccId != null) {
             String numberPrefKey = PREF_CARRIERS_NUMBER_PREFIX + iccId;
-            return carrierPrivilegeConfigs.getString(numberPrefKey, null);
+            return mTelephonySharedPreferences.getString(numberPrefKey, null);
         }
         return null;
     }
@@ -2011,7 +2012,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         String iccId = getIccId(subId);
         if (iccId != null) {
             String alphaTagPrefKey = PREF_CARRIERS_ALPHATAG_PREFIX + iccId;
-            return carrierPrivilegeConfigs.getString(alphaTagPrefKey, null);
+            return mTelephonySharedPreferences.getString(alphaTagPrefKey, null);
         }
         return null;
     }
@@ -2066,5 +2067,19 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     @Override
     public int getRadioAccessFamily(int phoneId) {
         return ProxyController.getInstance().getRadioAccessFamily(phoneId);
+    }
+
+    @Override
+    public void enableVideoCalling(boolean enable) {
+        enforceModifyPermission();
+        SharedPreferences.Editor editor = mTelephonySharedPreferences.edit();
+        editor.putBoolean(PREF_ENABLE_VIDEO_CALLING, enable);
+        editor.commit();
+    }
+
+    @Override
+    public boolean isVideoCallingEnabled() {
+        enforceReadPermission();
+        return mTelephonySharedPreferences.getBoolean(PREF_ENABLE_VIDEO_CALLING, true);
     }
 }
