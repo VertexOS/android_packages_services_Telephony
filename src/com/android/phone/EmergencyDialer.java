@@ -524,14 +524,12 @@ public class EmergencyDialer extends Activity implements View.OnClickListener,
             intent.setData(Uri.fromParts(PhoneAccount.SCHEME_TEL, mLastNumber, null));
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
-            finish();
         } else {
             if (DBG) Log.d(LOG_TAG, "rejecting bad requested number " + mLastNumber);
 
-            // erase the number and throw up an alert dialog.
-            mDigits.getText().delete(0, mDigits.getText().length());
             showDialog(BAD_EMERGENCY_NUMBER_DIALOG);
         }
+        mDigits.getText().delete(0, mDigits.getText().length());
     }
 
     /**
