@@ -65,6 +65,7 @@ final class GsmConnection extends TelephonyConnection {
     @Override
     protected int buildCallCapabilities() {
         int capabilities = super.buildCallCapabilities();
+        capabilities |= PhoneCapabilities.ADD_CALL;
         capabilities |= PhoneCapabilities.MUTE;
         capabilities |= PhoneCapabilities.SUPPORT_HOLD;
         if (getState() == STATE_ACTIVE || getState() == STATE_HOLDING) {
