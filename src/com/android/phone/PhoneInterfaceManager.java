@@ -44,6 +44,7 @@ import android.provider.Settings;
 import android.telephony.CellInfo;
 import android.telephony.IccOpenLogicalChannelResponse;
 import android.telephony.NeighboringCellInfo;
+import android.telephony.RadioAccessFamily;
 import android.telephony.ServiceState;
 import android.telephony.SubscriptionManager;
 import android.telephony.SubInfoRecord;
@@ -60,6 +61,8 @@ import com.android.internal.telephony.ITelephony;
 import com.android.internal.telephony.IccCard;
 import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneFactory;
+import com.android.internal.telephony.PhoneProxy;
+import com.android.internal.telephony.ProxyController;
 import com.android.internal.telephony.CallManager;
 import com.android.internal.telephony.CommandException;
 import com.android.internal.telephony.PhoneConstants;
@@ -2049,5 +2052,19 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         }
 
         return returnValue;
+    }
+
+    @Override
+    public void setRadioCapability(RadioAccessFamily[] rafs) {
+        try {
+            ProxyController.getInstance().setRadioCapability(rafs);
+        } catch (RuntimeException e) {
+            Log.w(LOG_TAG, "setRadioCapability: Runtime Exception");
+        }
+    }
+
+    @Override
+    public int getRadioAccessFamily(int phoneId) {
+        return ProxyController.getInstance().getRadioAccessFamily(phoneId);
     }
 }
