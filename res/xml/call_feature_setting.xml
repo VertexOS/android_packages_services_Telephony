@@ -90,6 +90,12 @@
     </PreferenceScreen>
 
     <CheckBoxPreference
+        android:key="button_enable_video_calling"
+        android:title="@string/enable_video_calling_title"
+        android:persistent="true"
+        android:defaultValue="true" />
+
+    <CheckBoxPreference
         android:key="button_auto_retry_key"
         android:title="@string/auto_retry_mode_title"
         android:persistent="false"
