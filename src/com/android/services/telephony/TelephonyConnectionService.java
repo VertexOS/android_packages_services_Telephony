@@ -48,8 +48,8 @@ import java.util.Objects;
  * Service for making GSM and CDMA connections.
  */
 public class TelephonyConnectionService extends ConnectionService {
-    private final GsmConferenceController mGsmConferenceController =
-            new GsmConferenceController(this);
+    private final TelephonyConferenceController mTelephonyConferenceController =
+            new TelephonyConferenceController(this);
     private final CdmaConferenceController mCdmaConferenceController =
             new CdmaConferenceController(this);
     private ComponentName mExpectedComponentName = null;
@@ -348,13 +348,17 @@ public class TelephonyConnectionService extends ConnectionService {
         int phoneType = phone.getPhoneType();
         if (phoneType == TelephonyManager.PHONE_TYPE_GSM) {
             GsmConnection connection = new GsmConnection(originalConnection);
-            mGsmConferenceController.add(connection);
+            mTelephonyConferenceController.add(connection);
             return connection;
         } else if (phoneType == TelephonyManager.PHONE_TYPE_CDMA) {
             boolean allowMute = allowMute(phone);
             CdmaConnection connection = new CdmaConnection(
                     originalConnection, mEmergencyTonePlayer, allowMute, isOutgoing);
-            mCdmaConferenceController.add(connection);
+            if (connection.isImsConnection()) {
+                mTelephonyConferenceController.add(connection);
+            } else {
+                mCdmaConferenceController.add(connection);
+            }
             return connection;
         } else {
             return null;
