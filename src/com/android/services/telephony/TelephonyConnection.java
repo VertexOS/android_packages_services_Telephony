@@ -498,7 +498,7 @@ abstract class TelephonyConnection extends Connection {
                 case IDLE:
                     break;
                 case ACTIVE:
-                    setActive();
+                    setActiveInternal();
                     break;
                 case HOLDING:
                     setOnHold();
@@ -522,6 +522,31 @@ abstract class TelephonyConnection extends Connection {
         }
         updateCallCapabilities();
         updateAddress();
+    }
+
+    private void setActiveInternal() {
+        if (getState() == STATE_ACTIVE) {
+            Log.w(this, "Should not be called if this is already ACTIVE");
+            return;
+        }
+
+        // When we set a call to active, we need to make sure that there are no other active
+        // calls. However, the ordering of state updates to connections can be non-deterministic
+        // since all connections register for state changes on the phone independently.
+        // To "optimize", we check here to see if there already exists any active calls.  If so,
+        // we issue an update for those calls first to make sure we only have one top-level
+        // active call.
+        if (getConnectionService() != null) {
+            for (Connection current : getConnectionService().getAllConnections()) {
+                if (current != this && current instanceof TelephonyConnection) {
+                    TelephonyConnection other = (TelephonyConnection) current;
+                    if (other.getState() == STATE_ACTIVE) {
+                        other.updateState();
+                    }
+                }
+            }
+        }
+        setActive();
     }
 
     private void close() {
