@@ -98,6 +98,8 @@ public class CallFeaturesSetting extends PreferenceActivity
                 EditPhoneNumberPreference.GetDefaultNumberListener {
     private static final String LOG_TAG = "CallFeaturesSetting";
     private static final boolean DBG = (PhoneGlobals.DBG_LEVEL >= 2);
+    // STOPSHIP if true. Flag to override behavior default behavior to hide VT setting.
+    private static final boolean ENABLE_VT_FLAG = false;
 
     /**
      * Intent action to bring up Voicemail Provider settings.
@@ -1677,10 +1679,13 @@ public class CallFeaturesSetting extends PreferenceActivity
                     BUTTON_VOICEMAIL_NOTIFICATION_VIBRATE_KEY, false));
         }
 
-        mEnableVideoCalling.setChecked(PhoneGlobals.getInstance().phoneMgr.isVideoCallingEnabled());
-        mEnableVideoCalling.setOnPreferenceChangeListener(this);
-        // TODO: Perform checks to determine whether we should remove the preference.
-        prefSet.removePreference(mEnableVideoCalling);
+        if (ImsUtil.isImsEnabled(mPhone.getContext()) && ENABLE_VT_FLAG) {
+            mEnableVideoCalling.setChecked(
+                    PhoneGlobals.getInstance().phoneMgr.isVideoCallingEnabled());
+            mEnableVideoCalling.setOnPreferenceChangeListener(this);
+        } else {
+            prefSet.removePreference(mEnableVideoCalling);
+        }
 
         // Look up the voicemail ringtone name asynchronously and update its preference.
         new Thread(mVoicemailRingtoneLookupRunnable).start();
