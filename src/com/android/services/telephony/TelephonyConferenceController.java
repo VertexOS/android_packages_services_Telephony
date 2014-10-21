@@ -139,7 +139,8 @@ final class TelephonyConferenceController {
 
         // Set the conference as conferenceable with all the connections
         if (mTelephonyConference != null && !isFullConference(mTelephonyConference)) {
-            List<TelephonyConnection> nonConferencedConnections = new ArrayList<>(mTelephonyConnections.size());
+            List<Connection> nonConferencedConnections =
+                    new ArrayList<>(mTelephonyConnections.size());
             for (TelephonyConnection c : mTelephonyConnections) {
                 if (c.getConference() == null) {
                     nonConferencedConnections.add(c);
