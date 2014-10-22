@@ -47,8 +47,6 @@ public class TelephonyDebugService extends Service {
 
     @Override
     protected void dump(FileDescriptor fd, PrintWriter pw, String[] args) {
-        enforceCallingOrSelfPermission(android.Manifest.permission.DUMP,
-                                       "Requires DUMP");
         mDebugService.dump(fd, pw, args);
     }
 }
