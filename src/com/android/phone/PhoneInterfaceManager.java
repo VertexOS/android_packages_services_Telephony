@@ -2080,6 +2080,11 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     @Override
     public boolean isVideoCallingEnabled() {
         enforceReadPermission();
-        return mTelephonySharedPreferences.getBoolean(PREF_ENABLE_VIDEO_CALLING, true);
+        // Check the user preference and the  system-level IMS setting. Even if the user has
+        // enabled video calling, if IMS is disabled we aren't able to support video calling.
+        // In the long run, we may instead need to check if there exists a connection service
+        // which can support video calling.
+        return mTelephonySharedPreferences.getBoolean(PREF_ENABLE_VIDEO_CALLING, true)
+                && ImsUtil.isImsEnabled(mPhone.getContext());
     }
 }
