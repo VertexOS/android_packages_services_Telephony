@@ -28,11 +28,12 @@ import com.android.internal.telephony.Phone;
 import java.util.List;
 
 /**
- * GSM-based conference call.
+ * TelephonyConnection-based conference call for GSM conferences and IMS conferences (which may
+ * be either GSM-based or CDMA-based).
  */
-public class GsmConference extends Conference {
+public class TelephonyConference extends Conference {
 
-    public GsmConference(PhoneAccountHandle phoneAccount) {
+    public TelephonyConference(PhoneAccountHandle phoneAccount) {
         super(phoneAccount);
         setCapabilities(
                 PhoneCapabilities.SUPPORT_HOLD |
@@ -94,7 +95,7 @@ public class GsmConference extends Conference {
      */
     @Override
     public void onHold() {
-        final GsmConnection connection = getFirstConnection();
+        final TelephonyConnection connection = getFirstConnection();
         if (connection != null) {
             connection.performHold();
         }
@@ -105,7 +106,7 @@ public class GsmConference extends Conference {
      */
     @Override
     public void onUnhold() {
-        final GsmConnection connection = getFirstConnection();
+        final TelephonyConnection connection = getFirstConnection();
         if (connection != null) {
             connection.performUnhold();
         }
@@ -113,7 +114,7 @@ public class GsmConference extends Conference {
 
     @Override
     public void onPlayDtmfTone(char c) {
-        final GsmConnection connection = getFirstConnection();
+        final TelephonyConnection connection = getFirstConnection();
         if (connection != null) {
             connection.onPlayDtmfTone(c);
         }
@@ -121,7 +122,7 @@ public class GsmConference extends Conference {
 
     @Override
     public void onStopDtmfTone() {
-        final GsmConnection connection = getFirstConnection();
+        final TelephonyConnection connection = getFirstConnection();
         if (connection != null) {
             connection.onStopDtmfTone();
         }
@@ -142,19 +143,19 @@ public class GsmConference extends Conference {
     private com.android.internal.telephony.Connection getOriginalConnection(
             Connection connection, String tag) {
 
-        if (connection instanceof GsmConnection) {
-            return ((GsmConnection) connection).getOriginalConnection();
+        if (connection instanceof TelephonyConnection) {
+            return ((TelephonyConnection) connection).getOriginalConnection();
         } else {
-            Log.e(this, null, "Non GSM connection found in a Gsm conference (%s)", tag);
+            Log.e(this, null, "Non TelephonyConnection found in a TelephonyConference (%s)", tag);
             return null;
         }
     }
 
-    private GsmConnection getFirstConnection() {
+    private TelephonyConnection getFirstConnection() {
         final List<Connection> connections = getConnections();
         if (connections.isEmpty()) {
             return null;
         }
-        return (GsmConnection) connections.get(0);
+        return (TelephonyConnection) connections.get(0);
     }
 }
