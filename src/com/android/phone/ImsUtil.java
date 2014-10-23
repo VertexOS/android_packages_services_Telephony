@@ -56,7 +56,7 @@ public class ImsUtil {
         try {
             value = android.provider.Settings.Global.getInt(
                     context.getContentResolver(),
-                    android.provider.Settings.Global.VOLTE_VT_ENABLED);
+                    android.provider.Settings.Global.ENHANCED_4G_MODE_ENABLED);
         } catch (SettingNotFoundException e) {
             return false;
         }
@@ -67,7 +67,7 @@ public class ImsUtil {
             case 1:
                 return true;
             default:
-                Log.wtf(TAG,"Unexpected value for VOLTE_VT_ENABLED: " + value);
+                Log.wtf(TAG,"Unexpected value for ENHANCED_4G_MODE_ENABLED: " + value);
                 return false;
         }
     }
