@@ -32,7 +32,7 @@ public class PhoneAccountSettingsActivity extends PreferenceActivity {
     protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
 
-        getActionBar().setTitle(R.string.phone_account_settings);
+        getActionBar().setTitle(R.string.phone_accounts);
         getFragmentManager().beginTransaction().replace(
                 android.R.id.content, new PhoneAccountSettingsFragment()).commit();
     }

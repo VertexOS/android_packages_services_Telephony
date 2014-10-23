@@ -16,7 +16,7 @@
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:phone="http://schemas.android.com/apk/res/com.android.phone"
-    android:title="@string/phone_account_settings">
+    android:title="@string/phone_accounts">
 
     <com.android.phone.settings.AccountSelectionPreference
         android:key="default_outgoing_account"

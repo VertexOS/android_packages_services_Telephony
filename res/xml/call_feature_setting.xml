@@ -19,7 +19,7 @@
 
     <PreferenceScreen
         android:key="phone_account_settings_preference_screen"
-        android:title="@string/phone_account_settings">
+        android:title="@string/phone_accounts">
 
         <intent
             android:targetPackage="com.android.phone"
