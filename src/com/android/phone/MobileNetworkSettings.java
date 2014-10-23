@@ -199,7 +199,7 @@ public class MobileNetworkSettings extends PreferenceActivity
         int value = (turnOn) ? 1:0;
         android.provider.Settings.Global.putInt(
                   mPhone.getContext().getContentResolver(),
-                  android.provider.Settings.Global.VOLTE_VT_ENABLED, value);
+                  android.provider.Settings.Global.ENHANCED_4G_MODE_ENABLED, value);
     }
 
     @Override
