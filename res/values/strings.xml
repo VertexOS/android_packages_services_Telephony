@@ -178,8 +178,6 @@
     <string name="networks">Network operators</string>
     <!-- Cell Broadcast settings title.  [CHAR LIMIT=50] -->
     <string name="cell_broadcast_settings">Emergency broadcasts</string>
-    <!-- Phone account settings screen title -->
-    <string name="phone_account_settings">Phone account settings</string>
     <!-- Call settings screen title -->
     <string name="call_settings">Call Settings</string>
     <!-- GSM Call settings screen, setting option name -->
