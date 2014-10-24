@@ -57,6 +57,7 @@ import android.view.MenuItem;
 import android.view.WindowManager;
 import android.widget.ListAdapter;
 
+import com.android.ims.ImsManager;
 import com.android.internal.telephony.CallForwardInfo;
 import com.android.internal.telephony.CommandsInterface;
 import com.android.internal.telephony.Phone;
@@ -499,7 +500,27 @@ public class CallFeaturesSetting extends PreferenceActivity
                 saveVoiceMailAndForwardingNumber(newProviderKey, newProviderSettings);
             }
         } else if (preference == mEnableVideoCalling) {
-            PhoneGlobals.getInstance().phoneMgr.enableVideoCalling((boolean) objValue);
+            if (ImsManager.isEnhanced4gLteModeSettingEnabledByUser(mPhone.getContext())) {
+                PhoneGlobals.getInstance().phoneMgr.enableVideoCalling((boolean) objValue);
+            } else {
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                DialogInterface.OnClickListener networkSettingsClickListener =
+                        new Dialog.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                startActivity(new Intent(mPhone.getContext(),
+                                        com.android.phone.MobileNetworkSettings.class));
+                            }
+                        };
+                builder.setMessage(getResources().getString(
+                                R.string.enable_video_calling_dialog_msg))
+                        .setNeutralButton(getResources().getString(
+                                R.string.enable_video_calling_dialog_settings),
+                                networkSettingsClickListener)
+                        .setPositiveButton(android.R.string.ok, null)
+                        .show();
+                return false;
+            }
         }
         // always let the preference setting proceed.
         return true;
@@ -1482,8 +1503,7 @@ public class CallFeaturesSetting extends PreferenceActivity
         mButtonHAC = (CheckBoxPreference) findPreference(BUTTON_HAC_KEY);
         mButtonTTY = (ListPreference) findPreference(BUTTON_TTY_KEY);
         mVoicemailProviders = (ListPreference) findPreference(BUTTON_VOICEMAIL_PROVIDER_KEY);
-        CheckBoxPreference mEnableVideoCalling =
-                (CheckBoxPreference) findPreference(ENABLE_VIDEO_CALLING_KEY);
+        mEnableVideoCalling = (CheckBoxPreference) findPreference(ENABLE_VIDEO_CALLING_KEY);
 
         if (mVoicemailProviders != null) {
             mVoicemailProviders.setOnPreferenceChangeListener(this);
@@ -1597,9 +1617,11 @@ public class CallFeaturesSetting extends PreferenceActivity
                     BUTTON_VOICEMAIL_NOTIFICATION_VIBRATE_KEY, false));
         }
 
-        if (ImsUtil.isImsEnabled(mPhone.getContext()) && ENABLE_VT_FLAG) {
-            mEnableVideoCalling.setChecked(
-                    PhoneGlobals.getInstance().phoneMgr.isVideoCallingEnabled());
+        if (ImsManager.isVtEnabledByPlatform(mPhone.getContext()) && ENABLE_VT_FLAG) {
+            boolean currentValue =
+                    ImsManager.isEnhanced4gLteModeSettingEnabledByUser(mPhone.getContext())
+                    ? PhoneGlobals.getInstance().phoneMgr.isVideoCallingEnabled() : false;
+            mEnableVideoCalling.setChecked(currentValue);
             mEnableVideoCalling.setOnPreferenceChangeListener(this);
         } else {
             prefSet.removePreference(mEnableVideoCalling);
