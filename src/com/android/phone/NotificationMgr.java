@@ -344,9 +344,11 @@ public class NotificationMgr {
             final Notification notification = builder.build();
             List<UserInfo> users = mUserManager.getUsers(true);
             for (int i = 0; i < users.size(); i++) {
-                UserHandle userHandle = users.get(i).getUserHandle();
+                final UserInfo user = users.get(i);
+                final UserHandle userHandle = user.getUserHandle();
                 if (!mUserManager.hasUserRestriction(
-                        UserManager.DISALLOW_OUTGOING_CALLS, userHandle)) {
+                        UserManager.DISALLOW_OUTGOING_CALLS, userHandle)
+                            && !user.isManagedProfile()) {
                     mNotificationManager.notifyAsUser(
                             null /* tag */, VOICEMAIL_NOTIFICATION, notification, userHandle);
                 }
