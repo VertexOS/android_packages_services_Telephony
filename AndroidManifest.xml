@@ -430,7 +430,6 @@
                 <action android:name="android.intent.action.VIEW" />
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.telecom.action.SHOW_CALL_SETTINGS" />
-                <action android:name="android.telecom.action.CHANGE_PHONE_ACCOUNTS" />
                 <action android:name="com.android.phone.CallFeaturesSetting.ADD_VOICEMAIL" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
@@ -537,6 +536,10 @@
         <activity android:name="com.android.phone.settings.PhoneAccountSettingsActivity"
             android:label="@string/phone_accounts"
             android:theme="@style/DialerSettingsLight">
+            <intent-filter>
+                <action android:name="android.telecom.action.CHANGE_PHONE_ACCOUNTS" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
         </activity>
 
         <!-- BroadcastReceiver for receiving Intents from Notification mechanism. -->
