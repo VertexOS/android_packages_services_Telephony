@@ -107,10 +107,10 @@ final class CdmaConferenceController {
                 @Override
                 public void run() {
                     connection.forceAsDialing(false);
+                    addInternal(connection);
                     for (CdmaConnection current : connectionsToReset) {
                         current.resetStateForConference();
                     }
-                    addInternal(connection);
                 }
             }, ADD_OUTGOING_CONNECTION_DELAY_MILLIS);
         } else {
