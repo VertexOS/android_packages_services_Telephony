@@ -1,6 +1,7 @@
 package com.android.phone.settings;
 
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.Intent;
 import android.net.sip.SipManager;
 import android.os.Bundle;
@@ -45,6 +46,7 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
     private String LOG_TAG = PhoneAccountSettingsFragment.class.getSimpleName();
 
     private TelecomManager mTelecomManager;
+    private Context mApplicationContext;
 
     private AccountSelectionPreference mDefaultOutgoingAccount;
     private AccountSelectionPreference mSelectCallAssistant;
@@ -59,6 +61,7 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
         super.onCreate(icicle);
 
         mTelecomManager = TelecomManager.from(getActivity());
+        mApplicationContext = getActivity().getApplicationContext();
     }
 
     @Override
@@ -216,11 +219,11 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
     private synchronized void handleSipReceiveCallsOption(boolean isEnabled) {
         mSipSharedPreferences.setReceivingCallsEnabled(isEnabled);
 
-        SipUtil.useSipToReceiveIncomingCalls(getActivity(), isEnabled);
+        SipUtil.useSipToReceiveIncomingCalls(mApplicationContext, isEnabled);
 
         // Restart all Sip services to ensure we reflect whether we are receiving calls.
         SipAccountRegistry sipAccountRegistry = SipAccountRegistry.getInstance();
-        sipAccountRegistry.restartSipService(getActivity());
+        sipAccountRegistry.restartSipService(mApplicationContext);
     }
 
     /**
