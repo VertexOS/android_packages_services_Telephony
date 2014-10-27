@@ -50,6 +50,7 @@ import android.provider.Settings;
 import android.telecom.PhoneAccountHandle;
 import android.telecom.TelecomManager;
 import android.telephony.PhoneNumberUtils;
+import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
@@ -1526,10 +1527,11 @@ public class CallFeaturesSetting extends PreferenceActivity
         mPhoneAccountSettingsPreference = findPreference(PHONE_ACCOUNT_SETTINGS_KEY);
 
         TelecomManager telecomManager = TelecomManager.from(this);
+        TelephonyManager telephonyManager =
+                (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
 
-        if (telecomManager.getAllPhoneAccountsCount() <= 1
-                && telecomManager.getSimCallManagers().isEmpty()
-                && !SipUtil.isVoipSupported(this)) {
+        if ((telecomManager.getSimCallManagers().isEmpty() && !SipUtil.isVoipSupported(this))
+                || telephonyManager.getPhoneCount() > 1) {
             getPreferenceScreen().removePreference(mPhoneAccountSettingsPreference);
         }
     }
