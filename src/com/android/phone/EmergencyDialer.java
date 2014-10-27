@@ -442,13 +442,10 @@ public class EmergencyDialer extends Activity implements View.OnClickListener,
         switch (id) {
             case R.id.deleteButton: {
                 mDigits.getText().clear();
-                // TODO: The framework forgets to clear the pressed
-                // status of disabled button. Until this is fixed,
-                // clear manually the pressed status. b/2133127
-                mDelete.setPressed(false);
                 return true;
             }
             case R.id.zero: {
+                removePreviousDigitIfPossible();
                 keyPressed(KeyEvent.KEYCODE_PLUS);
                 return true;
             }
@@ -622,5 +619,17 @@ public class EmergencyDialer extends Activity implements View.OnClickListener,
         final boolean notEmpty = mDigits.length() != 0;
 
         mDelete.setEnabled(notEmpty);
+    }
+
+    /**
+     * Remove the digit just before the current position. Used by various long pressed callbacks
+     * to remove the digit that was populated as a result of the short click.
+     */
+    private void removePreviousDigitIfPossible() {
+        final int currentPosition = mDigits.getSelectionStart();
+        if (currentPosition > 0) {
+            mDigits.setSelection(currentPosition);
+            mDigits.getText().delete(currentPosition - 1, currentPosition);
+        }
     }
 }
