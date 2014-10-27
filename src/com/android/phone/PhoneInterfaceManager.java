@@ -245,13 +245,13 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
 
                 case CMD_ANSWER_RINGING_CALL:
                     request = (MainThreadRequest) msg.obj;
-                    long answer_subId = ((Long)request.argument).longValue();
+                    int answer_subId = ((Integer)request.argument).intValue();
                     answerRingingCallInternal(answer_subId);
                     break;
 
                 case CMD_END_CALL:
                     request = (MainThreadRequest) msg.obj;
-                    long end_subId = ((Long)request.argument).longValue();
+                    int end_subId = ((Integer)request.argument).intValue();
                     final boolean hungUp;
                     int phoneType = getPhone(end_subId).getPhoneType();
                     if (phoneType == PhoneConstants.PHONE_TYPE_CDMA) {
@@ -716,7 +716,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     }
 
     // returns phone associated with the subId.
-    private Phone getPhone(long subId) {
+    private Phone getPhone(int subId) {
         return PhoneFactory.getPhone(SubscriptionManager.getPhoneId(subId));
     }
     //
@@ -727,7 +727,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         dialForSubscriber(getPreferredVoiceSubscription(), number);
     }
 
-    public void dialForSubscriber(long subId, String number) {
+    public void dialForSubscriber(int subId, String number) {
         if (DBG) log("dial: " + number);
         // No permission check needed here: This is just a wrapper around the
         // ACTION_DIAL intent, which is available to any app since it puts up
@@ -751,7 +751,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         callForSubscriber(getPreferredVoiceSubscription(), callingPackage, number);
     }
 
-    public void callForSubscriber(long subId, String callingPackage, String number) {
+    public void callForSubscriber(int subId, String callingPackage, String number) {
         if (DBG) log("call: " + number);
 
         // This is just a wrapper around the ACTION_CALL intent, but we still
@@ -799,7 +799,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
      * End a call based on the call state of the subId
      * @return true is a call was ended
      */
-    public boolean endCallForSubscriber(long subId) {
+    public boolean endCallForSubscriber(int subId) {
         enforceCallPermission();
         return (Boolean) sendRequest(CMD_END_CALL, new Long(subId), null);
     }
@@ -808,7 +808,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         answerRingingCallForSubscriber(getDefaultSubscription());
     }
 
-    public void answerRingingCallForSubscriber(long subId) {
+    public void answerRingingCallForSubscriber(int subId) {
         if (DBG) log("answerRingingCall...");
         // TODO: there should eventually be a separate "ANSWER_PHONE" permission,
         // but that can probably wait till the big TelephonyManager API overhaul.
@@ -830,7 +830,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
      * than sendRequestAsync(), and right now we don't actually *need* that
      * return value, so let's just return void for now.
      */
-    private void answerRingingCallInternal(long subId) {
+    private void answerRingingCallInternal(int subId) {
         final boolean hasRingingCall = !getPhone(subId).getRingingCall().isIdle();
         if (hasRingingCall) {
             final boolean hasActiveCall = !getPhone(subId).getForegroundCall().isIdle();
@@ -866,7 +866,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         return isOffhookForSubscriber(getDefaultSubscription());
     }
 
-    public boolean isOffhookForSubscriber(long subId) {
+    public boolean isOffhookForSubscriber(int subId) {
         return (getPhone(subId).getState() == PhoneConstants.State.OFFHOOK);
     }
 
@@ -874,7 +874,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         return (isRingingForSubscriber(getDefaultSubscription()));
     }
 
-    public boolean isRingingForSubscriber(long subId) {
+    public boolean isRingingForSubscriber(int subId) {
         return (getPhone(subId).getState() == PhoneConstants.State.RINGING);
     }
 
@@ -882,7 +882,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         return isIdleForSubscriber(getDefaultSubscription());
     }
 
-    public boolean isIdleForSubscriber(long subId) {
+    public boolean isIdleForSubscriber(int subId) {
         return (getPhone(subId).getState() == PhoneConstants.State.IDLE);
     }
 
@@ -895,7 +895,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         return supplyPinForSubscriber(getDefaultSubscription(), pin);
     }
 
-    public boolean supplyPinForSubscriber(long subId, String pin) {
+    public boolean supplyPinForSubscriber(int subId, String pin) {
         int [] resultArray = supplyPinReportResultForSubscriber(subId, pin);
         return (resultArray[0] == PhoneConstants.PIN_RESULT_SUCCESS) ? true : false;
     }
@@ -904,7 +904,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         return supplyPukForSubscriber(getDefaultSubscription(), puk, pin);
     }
 
-    public boolean supplyPukForSubscriber(long subId, String puk, String pin) {
+    public boolean supplyPukForSubscriber(int subId, String puk, String pin) {
         int [] resultArray = supplyPukReportResultForSubscriber(subId, puk, pin);
         return (resultArray[0] == PhoneConstants.PIN_RESULT_SUCCESS) ? true : false;
     }
@@ -914,7 +914,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         return supplyPinReportResultForSubscriber(getDefaultSubscription(), pin);
     }
 
-    public int[] supplyPinReportResultForSubscriber(long subId, String pin) {
+    public int[] supplyPinReportResultForSubscriber(int subId, String pin) {
         enforceModifyPermission();
         final UnlockSim checkSimPin = new UnlockSim(getPhone(subId).getIccCard());
         checkSimPin.start();
@@ -926,7 +926,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         return supplyPukReportResultForSubscriber(getDefaultSubscription(), puk, pin);
     }
 
-    public int[] supplyPukReportResultForSubscriber(long subId, String puk, String pin) {
+    public int[] supplyPukReportResultForSubscriber(int subId, String puk, String pin) {
         enforceModifyPermission();
         final UnlockSim checkSimPuk = new UnlockSim(getPhone(subId).getIccCard());
         checkSimPuk.start();
@@ -1037,7 +1037,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
 
     }
 
-    public void updateServiceLocationForSubscriber(long subId) {
+    public void updateServiceLocationForSubscriber(int subId) {
         // No permission check needed here: this call is harmless, and it's
         // needed for the ServiceState.requestStateUpdate() call (which is
         // already intentionally exposed to 3rd parties.)
@@ -1048,7 +1048,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         return isRadioOnForSubscriber(getDefaultSubscription());
     }
 
-    public boolean isRadioOnForSubscriber(long subId) {
+    public boolean isRadioOnForSubscriber(int subId) {
         return getPhone(subId).getServiceState().getState() != ServiceState.STATE_POWER_OFF;
     }
 
@@ -1057,7 +1057,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
 
     }
 
-    public void toggleRadioOnOffForSubscriber(long subId) {
+    public void toggleRadioOnOffForSubscriber(int subId) {
         enforceModifyPermission();
         getPhone(subId).setRadioPower(!isRadioOnForSubscriber(subId));
     }
@@ -1066,7 +1066,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         return setRadioForSubscriber(getDefaultSubscription(), turnOn);
     }
 
-    public boolean setRadioForSubscriber(long subId, boolean turnOn) {
+    public boolean setRadioForSubscriber(int subId, boolean turnOn) {
         enforceModifyPermission();
         if ((getPhone(subId).getServiceState().getState() !=
                 ServiceState.STATE_POWER_OFF) != turnOn) {
@@ -1107,7 +1107,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         return setRadioPowerForSubscriber(getDefaultSubscription(), turnOn);
     }
 
-    public boolean setRadioPowerForSubscriber(long subId, boolean turnOn) {
+    public boolean setRadioPowerForSubscriber(int subId, boolean turnOn) {
         enforceModifyPermission();
         getPhone(subId).setRadioPower(turnOn);
         return true;
@@ -1116,7 +1116,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     // FIXME: subId version needed
     public boolean enableDataConnectivity() {
         enforceModifyPermission();
-        long subId = SubscriptionManager.getDefaultDataSubId();
+        int subId = SubscriptionManager.getDefaultDataSubId();
         getPhone(subId).setDataEnabled(true);
         return true;
     }
@@ -1124,14 +1124,14 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     // FIXME: subId version needed
     public boolean disableDataConnectivity() {
         enforceModifyPermission();
-        long subId = SubscriptionManager.getDefaultDataSubId();
+        int subId = SubscriptionManager.getDefaultDataSubId();
         getPhone(subId).setDataEnabled(false);
         return true;
     }
 
     // FIXME: subId version needed
     public boolean isDataConnectivityPossible() {
-        long subId = SubscriptionManager.getDefaultDataSubId();
+        int subId = SubscriptionManager.getDefaultDataSubId();
         return getPhone(subId).isDataConnectivityPossible();
     }
 
@@ -1139,7 +1139,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         return handlePinMmiForSubscriber(getDefaultSubscription(), dialString);
     }
 
-    public boolean handlePinMmiForSubscriber(long subId, String dialString) {
+    public boolean handlePinMmiForSubscriber(int subId, String dialString) {
         enforceModifyPermission();
         return (Boolean) sendRequest(CMD_HANDLE_PIN_MMI, dialString, subId);
     }
@@ -1148,7 +1148,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         return getCallStateForSubscriber(getDefaultSubscription());
     }
 
-    public int getCallStateForSubscriber(long subId) {
+    public int getCallStateForSubscriber(int subId) {
         return DefaultPhoneNotifier.convertCallState(getPhone(subId).getState());
     }
 
@@ -1191,7 +1191,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         enableLocationUpdatesForSubscriber(getDefaultSubscription());
     }
 
-    public void enableLocationUpdatesForSubscriber(long subId) {
+    public void enableLocationUpdatesForSubscriber(int subId) {
         mApp.enforceCallingOrSelfPermission(
                 android.Manifest.permission.CONTROL_LOCATION_UPDATES, null);
         getPhone(subId).enableLocationUpdates();
@@ -1202,7 +1202,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         disableLocationUpdatesForSubscriber(getDefaultSubscription());
     }
 
-    public void disableLocationUpdatesForSubscriber(long subId) {
+    public void disableLocationUpdatesForSubscriber(int subId) {
         mApp.enforceCallingOrSelfPermission(
                 android.Manifest.permission.CONTROL_LOCATION_UPDATES, null);
         getPhone(subId).disableLocationUpdates();
@@ -1401,7 +1401,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         return getActivePhoneTypeForSubscriber(getDefaultSubscription());
     }
 
-    public int getActivePhoneTypeForSubscriber(long subId) {
+    public int getActivePhoneTypeForSubscriber(int subId) {
         return getPhone(subId).getPhoneType();
     }
 
@@ -1413,7 +1413,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
 
     }
 
-    public int getCdmaEriIconIndexForSubscriber(long subId) {
+    public int getCdmaEriIconIndexForSubscriber(int subId) {
         return getPhone(subId).getCdmaEriIconIndex();
     }
 
@@ -1426,7 +1426,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         return getCdmaEriIconModeForSubscriber(getDefaultSubscription());
     }
 
-    public int getCdmaEriIconModeForSubscriber(long subId) {
+    public int getCdmaEriIconModeForSubscriber(int subId) {
         return getPhone(subId).getCdmaEriIconMode();
     }
 
@@ -1437,14 +1437,14 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         return getCdmaEriTextForSubscriber(getDefaultSubscription());
     }
 
-    public String getCdmaEriTextForSubscriber(long subId) {
+    public String getCdmaEriTextForSubscriber(int subId) {
         return getPhone(subId).getCdmaEriText();
     }
 
     /**
      * Returns the CDMA MDN.
      */
-    public String getCdmaMdn(long subId) {
+    public String getCdmaMdn(int subId) {
         enforceModifyPermissionOrCarrierPrivilege();
         if (mPhone.getPhoneType() == PhoneConstants.PHONE_TYPE_CDMA) {
             return getPhone(subId).getLine1Number();
@@ -1456,7 +1456,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     /**
      * Returns the CDMA MIN.
      */
-    public String getCdmaMin(long subId) {
+    public String getCdmaMin(int subId) {
         enforceModifyPermissionOrCarrierPrivilege();
         if (mPhone.getPhoneType() == PhoneConstants.PHONE_TYPE_CDMA) {
             return getPhone(subId).getCdmaMin();
@@ -1482,7 +1482,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     /**
      * Returns the unread count of voicemails for a subId
      */
-    public int getVoiceMessageCountForSubscriber( long subId) {
+    public int getVoiceMessageCountForSubscriber( int subId) {
         return getPhone(subId).getVoiceMessageCount();
     }
 
@@ -1500,7 +1500,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
      * Returns the network type for a subId
      */
     @Override
-    public int getNetworkTypeForSubscriber(long subId) {
+    public int getNetworkTypeForSubscriber(int subId) {
         return getPhone(subId).getServiceState().getDataNetworkType();
     }
 
@@ -1516,7 +1516,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
      * Returns the data network type for a subId
      */
     @Override
-    public int getDataNetworkTypeForSubscriber(long subId) {
+    public int getDataNetworkTypeForSubscriber(int subId) {
         return getPhone(subId).getServiceState().getDataNetworkType();
     }
 
@@ -1532,7 +1532,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
      * Returns the Voice network type for a subId
      */
     @Override
-    public int getVoiceNetworkTypeForSubscriber(long subId) {
+    public int getVoiceNetworkTypeForSubscriber(int subId) {
         return getPhone(subId).getServiceState().getVoiceNetworkType();
     }
 
@@ -1547,7 +1547,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     /**
      * @return true if a ICC card is present for a slotId
      */
-    public boolean hasIccCardUsingSlotId(long slotId) {
+    public boolean hasIccCardUsingSlotId(int slotId) {
         return getPhone(slotId).getIccCard().hasIccCard();
     }
 
@@ -1563,7 +1563,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         return getLteOnCdmaModeForSubscriber(getDefaultSubscription());
     }
 
-    public int getLteOnCdmaModeForSubscriber(long subId) {
+    public int getLteOnCdmaModeForSubscriber(int subId) {
         return getPhone(subId).getLteOnCdmaMode();
     }
 
@@ -1575,11 +1575,11 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
      * {@hide}
      * Returns Default subId, 0 in the case of single standby.
      */
-    private long getDefaultSubscription() {
+    private int getDefaultSubscription() {
         return SubscriptionManager.getDefaultSubId();
     }
 
-    private long getPreferredVoiceSubscription() {
+    private int getPreferredVoiceSubscription() {
         return SubscriptionManager.getDefaultVoiceSubId();
     }
 
@@ -1927,7 +1927,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
             mPhone.getContext().getPackageManager(), intent);
     }
 
-    private String getIccId(long subId) {
+    private String getIccId(int subId) {
         UiccCard card = getPhone(subId).getUiccCard();
         if (card == null) {
             loge("getIccId: No UICC");
@@ -1942,7 +1942,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     }
 
     @Override
-    public void enableSimplifiedNetworkSettingsForSubscriber(long subId, boolean enable) {
+    public void enableSimplifiedNetworkSettingsForSubscriber(int subId, boolean enable) {
         enforceModifyPermissionOrCarrierPrivilege();
 
         String iccId = getIccId(subId);
@@ -1959,7 +1959,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     }
 
     @Override
-    public boolean getSimplifiedNetworkSettingsEnabledForSubscriber(long subId) {
+    public boolean getSimplifiedNetworkSettingsEnabledForSubscriber(int subId) {
         enforceReadPermission();
         String iccId = getIccId(subId);
         if (iccId != null) {
@@ -1970,7 +1970,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     }
 
     @Override
-    public void setLine1NumberForDisplayForSubscriber(long subId, String alphaTag, String number) {
+    public void setLine1NumberForDisplayForSubscriber(int subId, String alphaTag, String number) {
         enforceModifyPermissionOrCarrierPrivilege();
 
         String iccId = getIccId(subId);
@@ -1994,7 +1994,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     }
 
     @Override
-    public String getLine1NumberForDisplay(long subId) {
+    public String getLine1NumberForDisplay(int subId) {
         enforceReadPermission();
 
         String iccId = getIccId(subId);
@@ -2006,7 +2006,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     }
 
     @Override
-    public String getLine1AlphaTagForDisplay(long subId) {
+    public String getLine1AlphaTagForDisplay(int subId) {
         enforceReadPermission();
 
         String iccId = getIccId(subId);
