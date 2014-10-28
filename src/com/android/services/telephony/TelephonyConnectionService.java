@@ -387,7 +387,7 @@ public class TelephonyConnectionService extends ConnectionService {
             if (accountHandle.getId() != null) {
                 try {
                     int phoneId = SubscriptionController.getInstance().getPhoneId(
-                            Long.parseLong(accountHandle.getId()));
+                            Integer.parseInt(accountHandle.getId()));
                     return PhoneFactory.getPhone(phoneId);
                 } catch (NumberFormatException e) {
                     Log.w(this, "Could not get subId from account: " + accountHandle.getId());
