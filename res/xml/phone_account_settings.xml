@@ -18,6 +18,10 @@
     xmlns:phone="http://schemas.android.com/apk/res/com.android.phone"
     android:title="@string/phone_accounts">
 
+    <PreferenceCategory
+        android:key="phone_accounts_accounts_list_category_key"
+        android:title="@string/phone_accounts_settings_header" />
+
     <com.android.phone.settings.AccountSelectionPreference
         android:key="default_outgoing_account"
         android:title="@string/phone_accounts_make_calls_with"

@@ -8,12 +8,17 @@ import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
+import android.preference.PreferenceCategory;
 import android.preference.PreferenceFragment;
 import android.telecom.PhoneAccountHandle;
 import android.telecom.TelecomManager;
+import android.telephony.SubInfoRecord;
+import android.telephony.SubscriptionManager;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 
 import com.android.phone.R;
+import com.android.phone.CallFeaturesSetting;
 import com.android.services.telephony.sip.SipAccountRegistry;
 import com.android.services.telephony.sip.SipSharedPreferences;
 import com.android.services.telephony.sip.SipUtil;
@@ -28,6 +33,9 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
     private static final Intent CONNECTION_SERVICE_CONFIGURE_INTENT =
             new Intent(TelecomManager.ACTION_CONNECTION_SERVICE_CONFIGURE)
                     .addCategory(Intent.CATEGORY_DEFAULT);
+
+    private static final String ACCOUNTS_LIST_CATEGORY_KEY =
+            "phone_accounts_accounts_list_category_key";
 
     private static final String DEFAULT_OUTGOING_ACCOUNT_KEY = "default_outgoing_account";
 
@@ -47,6 +55,8 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
 
     private TelecomManager mTelecomManager;
     private Context mApplicationContext;
+
+    private PreferenceCategory mAccountList;
 
     private AccountSelectionPreference mDefaultOutgoingAccount;
     private AccountSelectionPreference mSelectCallAssistant;
@@ -73,6 +83,16 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
         }
 
         addPreferencesFromResource(com.android.phone.R.xml.phone_account_settings);
+
+        TelephonyManager telephonyManager =
+                (TelephonyManager) getActivity().getSystemService(Context.TELEPHONY_SERVICE);
+        mAccountList = (PreferenceCategory) getPreferenceScreen().findPreference(
+                ACCOUNTS_LIST_CATEGORY_KEY);
+        if (telephonyManager.getPhoneCount() > 1) {
+            initAccountList();
+        } else {
+            getPreferenceScreen().removePreference(mAccountList);
+        }
 
         mDefaultOutgoingAccount = (AccountSelectionPreference)
                 getPreferenceScreen().findPreference(DEFAULT_OUTGOING_ACCOUNT_KEY);
@@ -267,6 +287,21 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
         } else {
             mConfigureCallAssistant.setSummary(null);
             mConfigureCallAssistant.setEnabled(true);
+        }
+    }
+
+    private void initAccountList() {
+        List<SubInfoRecord> subscriptions = SubscriptionManager.getActiveSubInfoList();
+        for (int i = 0; i < subscriptions.size(); i++) {
+            String label = subscriptions.get(i).getLabel();
+            Intent intent = new Intent(TelecomManager.ACTION_SHOW_CALL_SETTINGS);
+            intent.putExtra(CallFeaturesSetting.SUB_ID_EXTRA, subscriptions.get(i).subId);
+            intent.putExtra(CallFeaturesSetting.SUB_LABEL_EXTRA, label);
+
+            Preference accountPreference = new Preference(mApplicationContext);
+            accountPreference.setTitle(label);
+            accountPreference.setIntent(intent);
+            mAccountList.addPreference(accountPreference);
         }
     }
 }

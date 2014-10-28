@@ -134,8 +134,9 @@
     <!-- Entry in dialog to "ask first" for accounts when making a call -->
     <string name="phone_accounts_ask_every_time">Ask first</string>
 
-    <!-- Label for heading of the accounts section in the phone accounts settings screen. -->
-    <string name="phone_accounts_accounts_header">Accounts</string>
+    <!-- Label for heading of the per-account settings section in the phone accounts settings
+         screen. -->
+    <string name="phone_accounts_settings_header">Settings</string>
     <!-- Label for invoking phone account selection screen -->
     <string name="phone_accounts_choose_accounts">Choose accounts</string>
     <!-- Label for heading in the phone account selection screen -->
