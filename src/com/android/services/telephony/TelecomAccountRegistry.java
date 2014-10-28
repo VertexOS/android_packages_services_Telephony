@@ -92,7 +92,7 @@ final class TelecomAccountRegistry {
                     makePstnPhoneAccountHandleWithPrefix(mPhone, dummyPrefix, isEmergency);
 
             // Populate the phone account data.
-            long subId = mPhone.getSubId();
+            int subId = mPhone.getSubId();
             int color = 0;
             int slotId = SubscriptionManager.INVALID_SLOT_ID;
             String line1Number = mTelephonyManager.getLine1NumberForSubscriber(subId);
