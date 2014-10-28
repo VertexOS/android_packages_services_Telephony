@@ -21,6 +21,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.telecom.PhoneAccount;
 import android.telecom.PhoneAccountHandle;
@@ -35,7 +36,6 @@ import android.text.TextUtils;
 import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneFactory;
 import com.android.internal.telephony.PhoneProxy;
-import com.android.internal.telephony.SubscriptionController;
 import com.android.internal.telephony.TelephonyIntents;
 import com.android.phone.R;
 
@@ -160,7 +160,9 @@ final class TelecomAccountRegistry {
                     .setSubscriptionAddress(
                             Uri.fromParts(PhoneAccount.SCHEME_TEL, subNumber, null))
                     .setCapabilities(capabilities)
-                    .setIconResId(getPhoneAccountIcon(slotId))
+                    .setIconBitmap(BitmapFactory.decodeResource(
+                            mContext.getResources(),
+                            getPhoneAccountIcon(slotId)))
                     .setColor(color)
                     .setShortDescription(description)
                     .setSupportedUriSchemes(Arrays.asList(
