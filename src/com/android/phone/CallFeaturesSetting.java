@@ -62,6 +62,7 @@ import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneConstants;
 import com.android.phone.common.util.SettingsUtil;
 import com.android.phone.settings.AccountSelectionPreference;
+import com.android.phone.settings.VoicemailProviderSettings;
 import com.android.services.telephony.sip.SipUtil;
 
 import java.lang.String;
@@ -126,8 +127,6 @@ public class CallFeaturesSetting extends PreferenceActivity
     private static final String UP_ACTIVITY_CLASS =
             "com.android.dialer.DialtactsActivity";
 
-    // Used to tell the saving logic to leave forwarding number as is
-    public static final CallForwardInfo[] FWD_SETTINGS_DONT_TOUCH = null;
     // Suffix appended to provider key for storing vm number
     public static final String VM_NUMBER_TAG = "#VMNumber";
     // Suffix appended to provider key for storing forwarding settings
@@ -270,90 +269,6 @@ public class CallFeaturesSetting extends PreferenceActivity
         }
         public String name;
         public Intent intent;
-    }
-
-    /**
-     * Forwarding settings we are going to save.
-     */
-    private static final int [] FORWARDING_SETTINGS_REASONS = new int[] {
-        CommandsInterface.CF_REASON_UNCONDITIONAL,
-        CommandsInterface.CF_REASON_BUSY,
-        CommandsInterface.CF_REASON_NO_REPLY,
-        CommandsInterface.CF_REASON_NOT_REACHABLE
-    };
-
-    private class VoiceMailProviderSettings {
-        /**
-         * Constructs settings object, setting all conditional forwarding to the specified number
-         */
-        public VoiceMailProviderSettings(String voicemailNumber, String forwardingNumber,
-                int timeSeconds) {
-            this.voicemailNumber = voicemailNumber;
-            if (forwardingNumber == null || forwardingNumber.length() == 0) {
-                this.forwardingSettings = FWD_SETTINGS_DONT_TOUCH;
-            } else {
-                this.forwardingSettings = new CallForwardInfo[FORWARDING_SETTINGS_REASONS.length];
-                for (int i = 0; i < this.forwardingSettings.length; i++) {
-                    CallForwardInfo fi = new CallForwardInfo();
-                    this.forwardingSettings[i] = fi;
-                    fi.reason = FORWARDING_SETTINGS_REASONS[i];
-                    fi.status = (fi.reason == CommandsInterface.CF_REASON_UNCONDITIONAL) ? 0 : 1;
-                    fi.serviceClass = CommandsInterface.SERVICE_CLASS_VOICE;
-                    fi.toa = PhoneNumberUtils.TOA_International;
-                    fi.number = forwardingNumber;
-                    fi.timeSeconds = timeSeconds;
-                }
-            }
-        }
-
-        public VoiceMailProviderSettings(String voicemailNumber, CallForwardInfo[] infos) {
-            this.voicemailNumber = voicemailNumber;
-            this.forwardingSettings = infos;
-        }
-
-        @Override
-        public boolean equals(Object o) {
-            if (o == null) return false;
-            if (!(o instanceof VoiceMailProviderSettings)) return false;
-            final VoiceMailProviderSettings v = (VoiceMailProviderSettings)o;
-
-            return ((this.voicemailNumber == null &&
-                        v.voicemailNumber == null) ||
-                    this.voicemailNumber != null &&
-                        this.voicemailNumber.equals(v.voicemailNumber))
-                    &&
-                    forwardingSettingsEqual(this.forwardingSettings,
-                            v.forwardingSettings);
-        }
-
-        private boolean forwardingSettingsEqual(CallForwardInfo[] infos1,
-                CallForwardInfo[] infos2) {
-            if (infos1 == infos2) return true;
-            if (infos1 == null || infos2 == null) return false;
-            if (infos1.length != infos2.length) return false;
-            for (int i = 0; i < infos1.length; i++) {
-                CallForwardInfo i1 = infos1[i];
-                CallForwardInfo i2 = infos2[i];
-                if (i1.status != i2.status ||
-                    i1.reason != i2.reason ||
-                    i1.serviceClass != i2.serviceClass ||
-                    i1.toa != i2.toa ||
-                    i1.number != i2.number ||
-                    i1.timeSeconds != i2.timeSeconds) {
-                    return false;
-                }
-            }
-            return true;
-        }
-
-        @Override
-        public String toString() {
-            return voicemailNumber + ((forwardingSettings != null ) ? (", " +
-                    forwardingSettings.toString()) : "");
-        }
-
-        public String voicemailNumber;
-        public CallForwardInfo[] forwardingSettings;
     }
 
     private SharedPreferences mPerProviderSavedVMNumbers;
@@ -562,7 +477,7 @@ public class CallFeaturesSetting extends PreferenceActivity
             }
             updateVMPreferenceWidgets(newProviderKey);
 
-            final VoiceMailProviderSettings newProviderSettings =
+            final VoicemailProviderSettings newProviderSettings =
                     loadSettingsForVoiceMailProvider(newProviderKey);
 
             // If the user switches to a voice mail provider and we have a
@@ -655,11 +570,11 @@ public class CallFeaturesSetting extends PreferenceActivity
                 }
 
                 showDialogIfForeground(VOICEMAIL_REVERTING_DIALOG);
-                final VoiceMailProviderSettings prevSettings =
+                final VoicemailProviderSettings prevSettings =
                         loadSettingsForVoiceMailProvider(mPreviousVMProviderKey);
                 if (prevSettings == null) {
                     // prevSettings never becomes null since it should be already loaded!
-                    Log.e(LOG_TAG, "VoiceMailProviderSettings for the key \""
+                    Log.e(LOG_TAG, "VoicemailProviderSettings for the key \""
                             + mPreviousVMProviderKey + "\" becomes null, which is unexpected.");
                     if (DBG) {
                         Log.e(LOG_TAG,
@@ -668,7 +583,7 @@ public class CallFeaturesSetting extends PreferenceActivity
                     }
                 }
                 if (mVMChangeCompletedSuccessfully) {
-                    mNewVMNumber = prevSettings.voicemailNumber;
+                    mNewVMNumber = prevSettings.getVoicemailNumber();
                     Log.i(LOG_TAG, "VM change is already completed successfully."
                             + "Have to revert VM back to " + mNewVMNumber + " again.");
                     mPhone.setVoiceMailNumber(
@@ -678,8 +593,7 @@ public class CallFeaturesSetting extends PreferenceActivity
                 }
                 if (mFwdChangesRequireRollback) {
                     Log.i(LOG_TAG, "Requested to rollback Fwd changes.");
-                    final CallForwardInfo[] prevFwdSettings =
-                        prevSettings.forwardingSettings;
+                    final CallForwardInfo[] prevFwdSettings = prevSettings.getForwardingSettings();
                     if (prevFwdSettings != null) {
                         Map<Integer, AsyncResult> results =
                             mForwardingChangeResults;
@@ -790,7 +704,7 @@ public class CallFeaturesSetting extends PreferenceActivity
             if (DBG) log("onActivityResult: vm provider cfg result " +
                     (fwdNum != null ? "has" : " does not have") + " forwarding number");
             saveVoiceMailAndForwardingNumber(getCurrentVoicemailProviderKey(),
-                    new VoiceMailProviderSettings(vmNum, fwdNum, fwdNumTime));
+                    new VoicemailProviderSettings(vmNum, fwdNum, fwdNumTime));
             return;
         }
 
@@ -829,8 +743,8 @@ public class CallFeaturesSetting extends PreferenceActivity
 
         saveVoiceMailAndForwardingNumber(
                 getCurrentVoicemailProviderKey(),
-                new VoiceMailProviderSettings(mSubMenuVoicemailSettings.getPhoneNumber(),
-                        FWD_SETTINGS_DONT_TOUCH)
+                new VoicemailProviderSettings(mSubMenuVoicemailSettings.getPhoneNumber(),
+                        VoicemailProviderSettings.NO_FORWARDING)
         );
     }
 
@@ -875,28 +789,29 @@ public class CallFeaturesSetting extends PreferenceActivity
         }
     }
 
-    private void saveVoiceMailAndForwardingNumber(String key,
-            VoiceMailProviderSettings newSettings) {
+    private void saveVoiceMailAndForwardingNumber(
+            String key, VoicemailProviderSettings newSettings) {
         if (DBG) log("saveVoiceMailAndForwardingNumber: " + newSettings.toString());
-        mNewVMNumber = newSettings.voicemailNumber;
+        mNewVMNumber = newSettings.getVoicemailNumber();
         // empty vm number == clearing the vm number ?
         if (mNewVMNumber == null) {
             mNewVMNumber = "";
         }
 
-        mNewFwdSettings = newSettings.forwardingSettings;
-        if (DBG) log("newFwdNumber " +
-                String.valueOf((mNewFwdSettings != null ? mNewFwdSettings.length : 0))
+        mNewFwdSettings = newSettings.getForwardingSettings();
+        if (DBG) log("newFwdNumber "
+                + String.valueOf((mNewFwdSettings != null ? mNewFwdSettings.length : 0))
                 + " settings");
 
         // No fwd settings on CDMA
         if (mPhone.getPhoneType() == PhoneConstants.PHONE_TYPE_CDMA) {
             if (DBG) log("ignoring forwarding setting since this is CDMA phone");
-            mNewFwdSettings = FWD_SETTINGS_DONT_TOUCH;
+            mNewFwdSettings = VoicemailProviderSettings.NO_FORWARDING;
         }
 
-        //throw a warning if the vm is the same and we do not touch forwarding.
-        if (mNewVMNumber.equals(mOldVmNumber) && mNewFwdSettings == FWD_SETTINGS_DONT_TOUCH) {
+        //Throw a warning if the voicemail is the same and we did not change forwarding.
+        if (mNewVMNumber.equals(mOldVmNumber)
+                && mNewFwdSettings == VoicemailProviderSettings.NO_FORWARDING) {
             showVMDialog(MSG_VM_NOCHANGE);
             return;
         }
@@ -909,10 +824,11 @@ public class CallFeaturesSetting extends PreferenceActivity
             mReadingSettingsForDefaultProvider =
                     mPreviousVMProviderKey.equals(DEFAULT_VM_PROVIDER_KEY);
             if (DBG) log("Reading current forwarding settings");
-            mForwardingReadResults = new CallForwardInfo[FORWARDING_SETTINGS_REASONS.length];
-            for (int i = 0; i < FORWARDING_SETTINGS_REASONS.length; i++) {
-                mForwardingReadResults[i] = null;
-                mPhone.getCallForwardingOption(FORWARDING_SETTINGS_REASONS[i],
+            int numSettingsReasons = VoicemailProviderSettings.FORWARDING_SETTINGS_REASONS.length;
+            mForwardingReadResults = new CallForwardInfo[numSettingsReasons];
+            for (int i = 0; i < mForwardingReadResults.length; i++) {
+                mPhone.getCallForwardingOption(
+                        VoicemailProviderSettings.FORWARDING_SETTINGS_REASONS[i],
                         mGetOptionComplete.obtainMessage(EVENT_FORWARDING_GET_COMPLETED, i, 0));
             }
             showDialogIfForeground(VOICEMAIL_FWD_READING_DIALOG);
@@ -978,7 +894,7 @@ public class CallFeaturesSetting extends PreferenceActivity
             if (DBG) Log.d(LOG_TAG, "Creating default info for " + idx);
             fi = new CallForwardInfo();
             fi.status = 0;
-            fi.reason = FORWARDING_SETTINGS_REASONS[idx];
+            fi.reason = VoicemailProviderSettings.FORWARDING_SETTINGS_REASONS[idx];
             fi.serviceClass = CommandsInterface.SERVICE_CLASS_VOICE;
         } else {
             // if there is not a forwarding number, ensure the entry is set to "not active."
@@ -1003,7 +919,7 @@ public class CallFeaturesSetting extends PreferenceActivity
             dismissDialogSafely(VOICEMAIL_FWD_READING_DIALOG);
             if (mReadingSettingsForDefaultProvider) {
                 maybeSaveSettingsForVoicemailProvider(DEFAULT_VM_PROVIDER_KEY,
-                        new VoiceMailProviderSettings(this.mOldVmNumber,
+                        new VoicemailProviderSettings(this.mOldVmNumber,
                                 mForwardingReadResults));
                 mReadingSettingsForDefaultProvider = false;
             }
@@ -1049,7 +965,7 @@ public class CallFeaturesSetting extends PreferenceActivity
     private void saveVoiceMailAndForwardingNumberStage2() {
         mForwardingChangeResults = null;
         mVoicemailChangeResult = null;
-        if (mNewFwdSettings != FWD_SETTINGS_DONT_TOUCH) {
+        if (mNewFwdSettings != VoicemailProviderSettings.NO_FORWARDING) {
             resetForwardingChangeState();
             for (int i = 0; i < mNewFwdSettings.length; i++) {
                 CallForwardInfo fi = mNewFwdSettings[i];
@@ -1929,11 +1845,11 @@ public class CallFeaturesSetting extends PreferenceActivity
      * Later on these will be used when the user switches a provider.
      */
     private void maybeSaveSettingsForVoicemailProvider(String key,
-            VoiceMailProviderSettings newSettings) {
+            VoicemailProviderSettings newSettings) {
         if (mVoicemailProviders == null) {
             return;
         }
-        final VoiceMailProviderSettings curSettings = loadSettingsForVoiceMailProvider(key);
+        final VoicemailProviderSettings curSettings = loadSettingsForVoiceMailProvider(key);
         if (newSettings.equals(curSettings)) {
             if (DBG) {
                 log("maybeSaveSettingsForVoicemailProvider:"
@@ -1943,10 +1859,10 @@ public class CallFeaturesSetting extends PreferenceActivity
         }
         if (DBG) log("Saving settings for " + key + ": " + newSettings.toString());
         Editor editor = mPerProviderSavedVMNumbers.edit();
-        editor.putString(key + VM_NUMBER_TAG, newSettings.voicemailNumber);
+        editor.putString(key + VM_NUMBER_TAG, newSettings.getVoicemailNumber());
         String fwdKey = key + FWD_SETTINGS_TAG;
-        CallForwardInfo[] s = newSettings.forwardingSettings;
-        if (s != FWD_SETTINGS_DONT_TOUCH) {
+        CallForwardInfo[] s = newSettings.getForwardingSettings();
+        if (s != VoicemailProviderSettings.NO_FORWARDING) {
             editor.putInt(fwdKey + FWD_SETTINGS_LENGTH_TAG, s.length);
             for (int i = 0; i < s.length; i++) {
                 final String settingKey = fwdKey + FWD_SETTING_TAG + String.valueOf(i);
@@ -1970,7 +1886,7 @@ public class CallFeaturesSetting extends PreferenceActivity
      * and forwarding number to the stored one. Otherwise we will bring up provider's configuration
      * UI.
      */
-    private VoiceMailProviderSettings loadSettingsForVoiceMailProvider(String key) {
+    private VoicemailProviderSettings loadSettingsForVoiceMailProvider(String key) {
         final String vmNumberSetting = mPerProviderSavedVMNumbers.getString(key + VM_NUMBER_TAG,
                 null);
         if (vmNumberSetting == null) {
@@ -1979,7 +1895,7 @@ public class CallFeaturesSetting extends PreferenceActivity
             return null;
         }
 
-        CallForwardInfo[] cfi = FWD_SETTINGS_DONT_TOUCH;
+        CallForwardInfo[] cfi = VoicemailProviderSettings.NO_FORWARDING;
         String fwdKey = key + FWD_SETTINGS_TAG;
         final int fwdLen = mPerProviderSavedVMNumbers.getInt(fwdKey + FWD_SETTINGS_LENGTH_TAG, 0);
         if (fwdLen > 0) {
@@ -2001,7 +1917,7 @@ public class CallFeaturesSetting extends PreferenceActivity
             }
         }
 
-        VoiceMailProviderSettings settings =  new VoiceMailProviderSettings(vmNumberSetting, cfi);
+        VoicemailProviderSettings settings =  new VoicemailProviderSettings(vmNumberSetting, cfi);
         if (DBG) log("Loaded settings for " + key + ": " + settings.toString());
         return settings;
     }
