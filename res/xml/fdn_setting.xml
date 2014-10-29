@@ -30,17 +30,12 @@
         android:summary="@string/sum_fdn_change_pin"
         android:persistent="false"/>
 
+    <!-- The intent to launch the FDN List is set on this PreferenceScreen in FdnSetting, so that
+         its extras can be dynamically changed to include subscription information. -->
     <PreferenceScreen
-        android:key="button_fdn_list_key"
+        android:key="fdn_list_pref_screen_key"
         android:title="@string/manage_fdn_list"
         android:summary="@string/sum_fdn_manage_list"
-        android:persistent="false">
-
-        <!-- Intent to lauch the FDN list. -->
-        <intent android:action="android.intent.action.MAIN"
-            android:targetPackage="com.android.phone"
-            android:targetClass="com.android.phone.settings.fdn.FdnList" />
-
-    </PreferenceScreen>
+        android:persistent="false"/>
 
 </PreferenceScreen>

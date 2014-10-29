@@ -49,6 +49,7 @@ import android.widget.Toast;
 
 import com.android.phone.PhoneGlobals;
 import com.android.phone.R;
+import com.android.phone.SubscriptionInfoHelper;
 import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneFactory;
 
@@ -67,6 +68,8 @@ public class EditFdnContactScreen extends Activity {
     private static final String INTENT_EXTRA_NUMBER = "number";
 
     private static final int PIN2_REQUEST_CODE = 100;
+
+    private SubscriptionInfoHelper mSubscriptionInfoHelper;
 
     private String mName;
     private String mNumber;
@@ -107,8 +110,7 @@ public class EditFdnContactScreen extends Activity {
         getWindow().requestFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         setContentView(R.layout.edit_fdn_contact_screen);
         setupView();
-        setTitle(mAddContact ?
-                R.string.add_fdn_contact : R.string.edit_fdn_contact);
+        setTitle(mAddContact ? R.string.add_fdn_contact : R.string.edit_fdn_contact);
 
         displayProgress(false);
     }
@@ -214,6 +216,8 @@ public class EditFdnContactScreen extends Activity {
     private void resolveIntent() {
         Intent intent = getIntent();
 
+        mSubscriptionInfoHelper = new SubscriptionInfoHelper(intent);
+
         mName =  intent.getStringExtra(INTENT_EXTRA_NAME);
         mNumber =  intent.getStringExtra(INTENT_EXTRA_NUMBER);
 
@@ -266,10 +270,6 @@ public class EditFdnContactScreen extends Activity {
         return mNumberField.getText().toString();
     }
 
-    private Uri getContentURI() {
-        return Uri.parse("content://icc/fdn");
-    }
-
     /**
       * @param number is voice mail number
       * @return true if number length is less than 20-digit limit
@@ -291,7 +291,7 @@ public class EditFdnContactScreen extends Activity {
             return;
         }
 
-        Uri uri = getContentURI();
+        Uri uri = FdnList.getContentUri(mSubscriptionInfoHelper);
 
         ContentValues bundle = new ContentValues(3);
         bundle.put("tag", getNameFromTextField());
@@ -314,7 +314,7 @@ public class EditFdnContactScreen extends Activity {
             handleResult(false, true);
             return;
         }
-        Uri uri = getContentURI();
+        Uri uri = FdnList.getContentUri(mSubscriptionInfoHelper);
 
         ContentValues bundle = new ContentValues();
         bundle.put("tag", mName);
@@ -335,8 +335,7 @@ public class EditFdnContactScreen extends Activity {
     private void deleteSelected() {
         // delete ONLY if this is NOT a new contact.
         if (!mAddContact) {
-            Intent intent = new Intent();
-            intent.setClass(this, DeleteFdnContactScreen.class);
+            Intent intent = mSubscriptionInfoHelper.getIntent(this, DeleteFdnContactScreen.class);
             intent.putExtra(INTENT_EXTRA_NAME, mName);
             intent.putExtra(INTENT_EXTRA_NUMBER, mNumber);
             startActivity(intent);
@@ -347,6 +346,7 @@ public class EditFdnContactScreen extends Activity {
     private void authenticatePin2() {
         Intent intent = new Intent();
         intent.setClass(this, GetPin2Screen.class);
+        intent.setData(FdnList.getContentUri(mSubscriptionInfoHelper));
         startActivityForResult(intent, PIN2_REQUEST_CODE);
     }
 

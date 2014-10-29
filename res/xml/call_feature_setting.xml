@@ -15,7 +15,7 @@
 -->
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:phone="http://schemas.android.com/apk/res/com.android.phone"
-    android:title="@string/updating_title">
+    android:title="@string/call_settings">
 
     <PreferenceScreen
         android:key="phone_account_settings_preference_screen"
@@ -81,13 +81,7 @@
     <PreferenceScreen
         android:key="button_fdn_key"
         android:title="@string/fdn"
-        android:persistent="false">
-
-        <intent android:action="android.intent.action.MAIN"
-            android:targetPackage="com.android.phone"
-            android:targetClass="com.android.phone.settings.fdn.FdnSetting" />
-
-    </PreferenceScreen>
+        android:persistent="false" />
 
     <CheckBoxPreference
         android:key="button_enable_video_calling"
