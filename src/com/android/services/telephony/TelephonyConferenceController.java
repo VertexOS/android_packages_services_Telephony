@@ -18,11 +18,14 @@ package com.android.services.telephony;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import android.net.Uri;
 import android.telecom.Conference;
+import android.telecom.ConferenceParticipant;
 import android.telecom.Connection;
 import android.telecom.DisconnectCause;
 
@@ -53,10 +56,30 @@ final class TelephonyConferenceController {
         public void onDestroyed(Connection connection) {
             remove((TelephonyConnection) connection);
         }
+
+        /**
+         * Handles notifications from an connection that a participant in a conference has changed
+         * state.
+         *
+         * @param c The connection.
+         * @param participant The participant information.
+         */
+        @Override
+        public void onConferenceParticipantChanged(Connection c, ConferenceParticipant participant)
+        {
+            Log.v(this, "onConferenceParticipantChanged: %s", participant);
+            handleConferenceParticipantUpdate(c, participant);
+        }
     };
 
     /** The known connections. */
     private final List<TelephonyConnection> mTelephonyConnections = new ArrayList<>();
+
+    /**
+     * The known conference participant connections.  The HashMap is keyed by endpoint Uri.
+     */
+    private final HashMap<Uri, ConferenceParticipantConnection> mConferenceParticipantConnections =
+            new HashMap<>();
 
     private final TelephonyConnectionService mConnectionService;
 
@@ -217,5 +240,45 @@ final class TelephonyConferenceController {
                     break;
             }
         }
+    }
+
+    /**
+     * Handles state changes for a conference participant.
+     *
+     * @param parent The connection which was notified of the conference participant.
+     * @param participant The conference participant.
+     */
+    private void handleConferenceParticipantUpdate(
+            Connection parent, ConferenceParticipant participant) {
+
+        Uri endpoint = participant.getEndpoint();
+        if (!mConferenceParticipantConnections.containsKey(endpoint)) {
+            createConferenceParticipantConnection(parent, participant);
+        } else {
+            ConferenceParticipantConnection connection =
+                    mConferenceParticipantConnections.get(endpoint);
+            connection.updateState(participant.getState());
+        }
+    }
+
+    /**
+     * Creates a new {@link ConferenceParticipantConnection} to represent a
+     * {@link ConferenceParticipant}.
+     * <p>
+     * The new connection is added to the conference controller and connection service.
+     *
+     * @param parent The connection which was notified of the participant change (e.g. the
+     *                         parent connection).
+     * @param participant The conference participant information.
+     */
+    private void createConferenceParticipantConnection(
+            Connection parent, ConferenceParticipant participant) {
+
+        ConferenceParticipantConnection connection = new ConferenceParticipantConnection(
+                parent, participant);
+        connection.addConnectionListener(mConnectionListener);
+        mConferenceParticipantConnections.put(participant.getEndpoint(), connection);
+
+        // TODO: Inform telecom of the new participant.
     }
 }
