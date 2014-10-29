@@ -232,6 +232,11 @@ public class CallFeaturesSetting extends PreferenceActivity
     private static final int MSG_VM_OK = 600;
     private static final int MSG_VM_NOCHANGE = 700;
 
+    /**
+     * @see CallForwardInfo#status
+     */
+    private static final int CALL_FORWARD_INFO_INACTIVE_STATUS = 0;
+
     // voicemail notification vibration string constants
     private static final String VOICEMAIL_VIBRATION_ALWAYS = "always";
     private static final String VOICEMAIL_VIBRATION_NEVER = "never";
@@ -521,7 +526,10 @@ public class CallFeaturesSetting extends PreferenceActivity
         }
 
         if (preference == mSubMenuVoicemailSettings) {
-            handleVMBtnClickRequest();
+            VoicemailProviderSettings newSettings = new VoicemailProviderSettings(
+                    mSubMenuVoicemailSettings.getPhoneNumber(),
+                    VoicemailProviderSettings.NO_FORWARDING);
+            saveVoiceMailAndForwardingNumber(getCurrentVoicemailProviderKey(), newSettings);
         }
     }
 
@@ -550,20 +558,6 @@ public class CallFeaturesSetting extends PreferenceActivity
         // Return the voicemail number prepended with "VM: "
         if (DBG) log("updating default for call forwarding dialogs");
         return getString(R.string.voicemail_abbreviated) + " " + vmDisplay;
-    }
-
-
-    // override the startsubactivity call to make changes in state consistent.
-    @Override
-    public void startActivityForResult(Intent intent, int requestCode) {
-        if (requestCode == -1) {
-            // this is an intent requested from the preference framework.
-            super.startActivityForResult(intent, requestCode);
-            return;
-        }
-
-        if (DBG) log("startSubActivity: starting requested subactivity");
-        super.startActivityForResult(intent, requestCode);
     }
 
     private void switchToPreviousVoicemailProvider() {
@@ -741,21 +735,6 @@ public class CallFeaturesSetting extends PreferenceActivity
 
         super.onActivityResult(requestCode, resultCode, data);
     }
-
-    // Voicemail button logic
-    private void handleVMBtnClickRequest() {
-        // normally called on the dialog close.
-
-        // Since we're stripping the formatting out on the getPhoneNumber()
-        // call now, we won't need to do so here anymore.
-
-        saveVoiceMailAndForwardingNumber(
-                getCurrentVoicemailProviderKey(),
-                new VoicemailProviderSettings(mSubMenuVoicemailSettings.getPhoneNumber(),
-                        VoicemailProviderSettings.NO_FORWARDING)
-        );
-    }
-
 
     /**
      * Wrapper around showDialog() that will silently do nothing if we're
@@ -950,17 +929,18 @@ public class CallFeaturesSetting extends PreferenceActivity
         return result;
     }
 
-    private boolean isUpdateRequired(CallForwardInfo oldInfo,
-            CallForwardInfo newInfo) {
-        boolean result = true;
-        if (0 == newInfo.status) {
-            // If we're disabling a type of forwarding, and it's already
-            // disabled for the account, don't make any change
-            if (oldInfo != null && oldInfo.status == 0) {
-                result = false;
-            }
+    private boolean isUpdateRequired(CallForwardInfo oldInfo, CallForwardInfo newInfo) {
+        if (oldInfo == null) {
+            return true;
         }
-        return result;
+
+        // If we're disabling a type of forwarding, don't make any change if it's already disabled.
+        if (newInfo.status == CALL_FORWARD_INFO_INACTIVE_STATUS
+                && oldInfo.status == CALL_FORWARD_INFO_INACTIVE_STATUS) {
+            return false;
+        }
+
+        return true;
     }
 
     private void resetForwardingChangeState() {
@@ -1022,9 +1002,7 @@ public class CallFeaturesSetting extends PreferenceActivity
             switch (msg.what) {
                 case EVENT_VOICEMAIL_CHANGED:
                     mVoicemailChangeResult = result;
-                    mVMChangeCompletedSuccessfully = checkVMChangeSuccess() == null;
-                    if (DBG) log("VM change complete msg, VM change done = " +
-                            String.valueOf(mVMChangeCompletedSuccessfully));
+                    mVMChangeCompletedSuccessfully = isVmChangeSuccess();
                     done = true;
                     break;
                 case EVENT_FORWARDING_CHANGED:
@@ -1035,9 +1013,8 @@ public class CallFeaturesSetting extends PreferenceActivity
                     } else {
                         if (DBG) log("Success in setting fwd# " + msg.arg1);
                     }
-                    final boolean completed = checkForwardingCompleted();
-                    if (completed) {
-                        if (checkFwdChangeSuccess() == null) {
+                    if (isForwardingCompleted()) {
+                        if (isFwdChangeSuccess()) {
                             if (DBG) log("Overall fwd changes completed ok, starting vm change");
                             setVMNumberWithCarrier();
                         } else {
@@ -1070,7 +1047,7 @@ public class CallFeaturesSetting extends PreferenceActivity
                 if (mForwardingChangeResults != null) {
                     dismissDialogSafely(VOICEMAIL_FWD_SAVING_DIALOG);
                 }
-                handleSetVMOrFwdMessage();
+                handleSetVmOrFwdMessage();
             }
         }
     };
@@ -1102,7 +1079,7 @@ public class CallFeaturesSetting extends PreferenceActivity
             }
             final boolean done =
                 (!mVMChangeCompletedSuccessfully || mVoicemailChangeResult != null) &&
-                (!mFwdChangesRequireRollback || checkForwardingCompleted());
+                (!mFwdChangesRequireRollback || isForwardingCompleted());
             if (done) {
                 if (DBG) log("All VM reverts done");
                 dismissDialogSafely(VOICEMAIL_REVERTING_DIALOG);
@@ -1112,91 +1089,61 @@ public class CallFeaturesSetting extends PreferenceActivity
     };
 
     /**
-     * @return true if forwarding change has completed
+     * Return true if there is a change result for every reason for which we expect a result.
      */
-    private boolean checkForwardingCompleted() {
-        boolean result;
+    private boolean isForwardingCompleted() {
         if (mForwardingChangeResults == null) {
-            result = true;
-        } else {
-            // return true iff there is a change result for every reason for
-            // which we expected a result
-            result = true;
-            for (Integer reason : mExpectedChangeResultReasons) {
-                if (mForwardingChangeResults.get(reason) == null) {
-                    result = false;
-                    break;
-                }
+            return true;
+        }
+
+        for (Integer reason : mExpectedChangeResultReasons) {
+            if (mForwardingChangeResults.get(reason) == null) {
+                return false;
             }
         }
-        return result;
+
+        return true;
     }
-    /**
-     * @return error string or null if successful
-     */
-    private String checkFwdChangeSuccess() {
-        String result = null;
-        Iterator<Map.Entry<Integer,AsyncResult>> it =
-            mForwardingChangeResults.entrySet().iterator();
-        while (it.hasNext()) {
-            Map.Entry<Integer,AsyncResult> entry = it.next();
-            Throwable exception = entry.getValue().exception;
+
+    private boolean isFwdChangeSuccess() {
+        if (mForwardingChangeResults == null) {
+            return true;
+        }
+
+        for (AsyncResult result : mForwardingChangeResults.values()) {
+            Throwable exception = result.exception;
             if (exception != null) {
-                result = exception.getMessage();
-                if (result == null) {
-                    result = "";
-                }
-                break;
+                String msg = exception.getMessage();
+                msg = (msg != null) ? msg : "";
+                Log.w(LOG_TAG, "Failed to change forwarding setting. Reason: " + msg);
+                return false;
             }
         }
-        return result;
+        return true;
     }
 
-    /**
-     * @return error string or null if successful
-     */
-    private String checkVMChangeSuccess() {
+    private boolean isVmChangeSuccess() {
         if (mVoicemailChangeResult.exception != null) {
-            final String msg = mVoicemailChangeResult.exception.getMessage();
-            if (msg == null) {
-                return "";
-            }
-            return msg;
+            String msg = mVoicemailChangeResult.exception.getMessage();
+            msg = (msg != null) ? msg : "";
+            Log.w(LOG_TAG, "Failed to change voicemail. Reason: " + msg);
+            return false;
         }
-        return null;
+
+        if (DBG) log("VM change completed successfully.");
+        return true;
     }
 
-    private void handleSetVMOrFwdMessage() {
-        if (DBG) {
-            log("handleSetVMMessage: set VM request complete");
-        }
-        boolean success = true;
-        boolean fwdFailure = false;
-        String exceptionMessage = "";
-        if (mForwardingChangeResults != null) {
-            exceptionMessage = checkFwdChangeSuccess();
-            if (exceptionMessage != null) {
-                success = false;
-                fwdFailure = true;
-            }
-        }
-        if (success) {
-            exceptionMessage = checkVMChangeSuccess();
-            if (exceptionMessage != null) {
-                success = false;
-            }
-        }
-        if (success) {
-            if (DBG) log("change VM success!");
-            handleVMAndFwdSetSuccess(MSG_VM_OK);
+    private void handleSetVmOrFwdMessage() {
+        if (DBG) log("handleSetVMMessage: set VM request complete");
+
+        if (!isFwdChangeSuccess()) {
+            handleVmOrFwdSetError(MSG_FW_SET_EXCEPTION);
+        } else if (!isVmChangeSuccess()) {
+            handleVmOrFwdSetError(MSG_VM_EXCEPTION);
         } else {
-            if (fwdFailure) {
-                Log.w(LOG_TAG, "Failed to change fowarding setting. Reason: " + exceptionMessage);
-                handleVMOrFwdSetError(MSG_FW_SET_EXCEPTION);
-            } else {
-                Log.w(LOG_TAG, "Failed to change voicemail. Reason: " + exceptionMessage);
-                handleVMOrFwdSetError(MSG_VM_EXCEPTION);
-            }
+            if (DBG) log("change VM success!");
+            handleVmAndFwdSetSuccess(MSG_VM_OK);
         }
     }
 
@@ -1207,7 +1154,7 @@ public class CallFeaturesSetting extends PreferenceActivity
      * @param msgId Message ID used for the specific error case. {@link #MSG_FW_SET_EXCEPTION} or
      * {@link #MSG_VM_EXCEPTION}
      */
-    private void handleVMOrFwdSetError(int msgId) {
+    private void handleVmOrFwdSetError(int msgId) {
         if (mChangingVMorFwdDueToProviderChange) {
             mVMOrFwdSetError = msgId;
             mChangingVMorFwdDueToProviderChange = false;
@@ -1223,9 +1170,9 @@ public class CallFeaturesSetting extends PreferenceActivity
      * Called when Voicemail Provider and its forwarding settings were successfully finished.
      * This updates a bunch of variables and show "success" dialog.
      */
-    private void handleVMAndFwdSetSuccess(int msg) {
+    private void handleVmAndFwdSetSuccess(int msg) {
         if (DBG) {
-            log("handleVMAndFwdSetSuccess(). current voicemail provider key: "
+            log("handleVmAndFwdSetSuccess(). current voicemail provider key: "
                     + getCurrentVoicemailProviderKey());
         }
         mPreviousVMProviderKey = getCurrentVoicemailProviderKey();
