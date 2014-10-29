@@ -64,7 +64,7 @@
 
         </PreferenceScreen>
 
-        <RingtonePreference
+        <com.android.phone.settings.VoicemailRingtonePreference
             android:key="button_voicemail_notification_ringtone_key"
             android:title="@string/voicemail_notification_ringtone_title"
             android:persistent="true"

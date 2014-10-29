@@ -33,7 +33,6 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.database.Cursor;
 import android.media.AudioManager;
-import android.media.RingtoneManager;
 import android.os.AsyncResult;
 import android.os.Bundle;
 import android.os.Handler;
@@ -240,18 +239,6 @@ public class CallFeaturesSetting extends PreferenceActivity
 
     private EditPhoneNumberPreference mSubMenuVoicemailSettings;
 
-    private Runnable mVoicemailRingtoneLookupRunnable;
-    private final Handler mVoicemailRingtoneLookupComplete = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            switch (msg.what) {
-                case MSG_UPDATE_VOICEMAIL_RINGTONE_SUMMARY:
-                    mVoicemailNotificationRingtone.setSummary((CharSequence) msg.obj);
-                    break;
-            }
-        }
-    };
-
     /** Whether dialpad plays DTMF tone or not. */
     private CheckBoxPreference mButtonAutoRetry;
     private CheckBoxPreference mButtonHAC;
@@ -261,7 +248,6 @@ public class CallFeaturesSetting extends PreferenceActivity
     private ListPreference mVoicemailProviders;
     private PreferenceScreen mVoicemailSettingsScreen;
     private PreferenceScreen mVoicemailSettings;
-    private Preference mVoicemailNotificationRingtone;
     private CheckBoxPreference mVoicemailNotificationVibrate;
     private AccountSelectionPreference mDefaultOutgoingAccount;
     private CheckBoxPreference mEnableVideoCalling;
@@ -1422,20 +1408,6 @@ public class CallFeaturesSetting extends PreferenceActivity
         mContactListIntent = new Intent(Intent.ACTION_GET_CONTENT);
         mContactListIntent.setType(android.provider.Contacts.Phones.CONTENT_ITEM_TYPE);
 
-        mVoicemailRingtoneLookupRunnable = new Runnable() {
-            @Override
-            public void run() {
-                if (mVoicemailNotificationRingtone != null) {
-                    SettingsUtil.updateRingtoneName(
-                            mPhone.getContext(),
-                            mVoicemailRingtoneLookupComplete,
-                            RingtoneManager.TYPE_NOTIFICATION,
-                            mVoicemailNotificationRingtone,
-                            MSG_UPDATE_VOICEMAIL_RINGTONE_SUMMARY);
-                }
-            }
-        };
-
         // Show the voicemail preference in onResume if the calling intent specifies the
         // ACTION_ADD_VOICEMAIL action.
         mShowVoicemailPreference = (icicle == null) &&
@@ -1493,8 +1465,6 @@ public class CallFeaturesSetting extends PreferenceActivity
             mVoicemailSettingsScreen =
                     (PreferenceScreen) findPreference(VOICEMAIL_SETTING_SCREEN_PREF_KEY);
             mVoicemailSettings = (PreferenceScreen)findPreference(BUTTON_VOICEMAIL_SETTING_KEY);
-            mVoicemailNotificationRingtone =
-                    findPreference(BUTTON_VOICEMAIL_NOTIFICATION_RINGTONE_KEY);
             mVoicemailNotificationVibrate =
                     (CheckBoxPreference) findPreference(BUTTON_VOICEMAIL_NOTIFICATION_VIBRATE_KEY);
             initVoiceMailProviders();
@@ -1607,9 +1577,6 @@ public class CallFeaturesSetting extends PreferenceActivity
         } else {
             prefSet.removePreference(mEnableVideoCalling);
         }
-
-        // Look up the voicemail ringtone name asynchronously and update its preference.
-        new Thread(mVoicemailRingtoneLookupRunnable).start();
     }
 
     // Migrate settings from BUTTON_VOICEMAIL_NOTIFICATION_VIBRATE_WHEN_KEY to
