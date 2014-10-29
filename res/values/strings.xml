@@ -1229,9 +1229,9 @@
     <string name="enable_video_calling_title">Turn on video calling</string>
 
     <!-- Message for dialog shown when the user tries to turn on video calling but enhanced 4G LTE
-         is disabled. -->
+         is disabled. They have to turn on Enhanced 4G LTE capability in network settings first. -->
     <string name="enable_video_calling_dialog_msg">
-        To turn on video calling, you need to enable Enhanced 4G LTE Mode in system settings.
+        To turn on video calling, you need to enable Enhanced 4G LTE Mode in network settings.
     </string>
 
     <!-- Label for action button in dialog which opens mobile network settings, for video calling
