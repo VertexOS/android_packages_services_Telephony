@@ -16,18 +16,10 @@
 
 package com.android.phone;
 
-import android.app.PendingIntent;
-import android.content.Context;
-import android.content.Intent;
-import android.provider.Settings.SettingNotFoundException;
-import android.util.Log;
-
-import com.android.internal.telephony.Phone;
 import com.android.phone.PhoneGlobals;
 
 public class ImsUtil {
 
-    private static final String TAG = ImsUtil.class.getSimpleName();
     private static boolean sImsPhoneSupported = false;
 
     private ImsUtil() {
@@ -44,31 +36,5 @@ public class ImsUtil {
     static boolean isImsPhoneSupported() {
         return sImsPhoneSupported;
 
-    }
-
-    /**
-     * @see MobileNetworkSettings#setIMS
-     * @param context The context to get the content resolver from.
-     * @return Whether IMS is turned on by the user system setting.
-     */
-    static boolean isImsEnabled(Context context) {
-        int value = 0;
-        try {
-            value = android.provider.Settings.Global.getInt(
-                    context.getContentResolver(),
-                    android.provider.Settings.Global.ENHANCED_4G_MODE_ENABLED);
-        } catch (SettingNotFoundException e) {
-            return false;
-        }
-
-        switch (value) {
-            case 0:
-                return false;
-            case 1:
-                return true;
-            default:
-                Log.wtf(TAG,"Unexpected value for ENHANCED_4G_MODE_ENABLED: " + value);
-                return false;
-        }
     }
 }
