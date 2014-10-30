@@ -82,7 +82,7 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
             getPreferenceScreen().removeAll();
         }
 
-        addPreferencesFromResource(com.android.phone.R.xml.phone_account_settings);
+        addPreferencesFromResource(R.xml.phone_account_settings);
 
         TelephonyManager telephonyManager =
                 (TelephonyManager) getActivity().getSystemService(Context.TELEPHONY_SERVICE);
