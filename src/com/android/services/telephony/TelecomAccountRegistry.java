@@ -60,6 +60,16 @@ final class TelecomAccountRegistry {
             R.drawable.ic_multi_sim4
     };
 
+    private final static int[] colors = {
+        0xff00796b,
+        0xff3367d6,
+        0xff303f9f,
+        0xff7b1fa2,
+        0xffc2185b,
+        0xffc53929
+    };
+
+
     // This icon is the one that is used when the Slot ID that we have for a particular SIM
     // is not supported, i.e. SubscriptionManager.INVALID_SLOT_ID or the 5th SIM in a phone.
     private final static int defaultPhoneAccountIcon =  R.drawable.ic_multi_sim;
@@ -124,9 +134,8 @@ final class TelecomAccountRegistry {
                     subDisplayName = record.displayName;
                     slotId = record.slotId;
 
-                    // Assign a "fake" color while the underlying Telephony stuff is refactored
-                    // Assign PhoneAccount.NO_COLOR to first slot so single-SIM phones are unchanged
-                    color = slotId == 0? PhoneAccount.NO_COLOR : makeFakeColor(subId);
+                    // Assign a "fake" color while the underlying Telephony stuff is refactored.
+                    color = makeFakeColor(subId);
                 }
 
                 String slotIdString;
@@ -180,11 +189,6 @@ final class TelecomAccountRegistry {
     }
 
     private int makeFakeColor(long subId) {
-        int[] colors = new int[] {
-                0xff0000,
-                0x00ff00,
-                0x0000ff,
-        };
         return colors[((int) subId) % colors.length];
     }
 
