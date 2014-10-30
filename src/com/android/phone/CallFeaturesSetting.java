@@ -114,6 +114,13 @@ public class CallFeaturesSetting extends PreferenceActivity
     // to trigger its configuration UI
     public static final String ACTION_CONFIGURE_VOICEMAIL =
             "com.android.phone.CallFeaturesSetting.CONFIGURE_VOICEMAIL";
+    // Extra on intent to Call Settings containing the id of the subscription to modify.
+    public static final String SUB_ID_EXTRA =
+            "com.android.phone.CallFeaturesSetting.SubscriptionId";
+    // Extra on intent to Call Settings containing the label of the subscription to modify.
+    public static final String SUB_LABEL_EXTRA =
+            "com.android.phone.CallFeaturesSetting.SubscriptionLabel";
+
     // Extra put in the return from VM provider config containing voicemail number to set
     public static final String VM_NUMBER_EXTRA = "com.android.phone.VoicemailNumber";
     // Extra put in the return from VM provider config containing call forwarding number to set
@@ -123,10 +130,6 @@ public class CallFeaturesSetting extends PreferenceActivity
     // If the VM provider returns non null value in this extra we will force the user to
     // choose another VM provider
     public static final String SIGNOUT_EXTRA = "com.android.phone.Signout";
-    //Information about logical "up" Activity
-    private static final String UP_ACTIVITY_PACKAGE = "com.android.dialer";
-    private static final String UP_ACTIVITY_CLASS =
-            "com.android.dialer.DialtactsActivity";
 
     // Suffix appended to provider key for storing vm number
     public static final String VM_NUMBER_TAG = "#VMNumber";
@@ -810,7 +813,7 @@ public class CallFeaturesSetting extends PreferenceActivity
             mNewFwdSettings = VoicemailProviderSettings.NO_FORWARDING;
         }
 
-        //Throw a warning if the voicemail is the same and we did not change forwarding.
+        // Throw a warning if the voicemail is the same and we did not change forwarding.
         if (mNewVMNumber.equals(mOldVmNumber)
                 && mNewFwdSettings == VoicemailProviderSettings.NO_FORWARDING) {
             showVMDialog(MSG_VM_NOCHANGE);
