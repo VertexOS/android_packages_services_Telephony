@@ -191,8 +191,6 @@ public class CallFeaturesSetting extends PreferenceActivity
 
     private static final String ENABLE_VIDEO_CALLING_KEY = "button_enable_video_calling";
 
-    private Intent mContactListIntent;
-
     /** Event for Async voicemail change call */
     private static final int EVENT_VOICEMAIL_CHANGED        = 500;
     private static final int EVENT_FORWARDING_CHANGED       = 501;
@@ -250,7 +248,6 @@ public class CallFeaturesSetting extends PreferenceActivity
     private PreferenceScreen mVoicemailSettingsScreen;
     private PreferenceScreen mVoicemailSettings;
     private CheckBoxPreference mVoicemailNotificationVibrate;
-    private AccountSelectionPreference mDefaultOutgoingAccount;
     private CheckBoxPreference mEnableVideoCalling;
 
     private class VoiceMailProvider {
@@ -1425,10 +1422,6 @@ public class CallFeaturesSetting extends PreferenceActivity
         mPhone = PhoneGlobals.getPhone();
         mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 
-        // create intent to bring up contact list
-        mContactListIntent = new Intent(Intent.ACTION_GET_CONTENT);
-        mContactListIntent.setType(android.provider.Contacts.Phones.CONTENT_ITEM_TYPE);
-
         // Show the voicemail preference in onResume if the calling intent specifies the
         // ACTION_ADD_VOICEMAIL action.
         mShowVoicemailPreference = (icicle == null) &&
@@ -1466,7 +1459,6 @@ public class CallFeaturesSetting extends PreferenceActivity
         addPreferencesFromResource(R.xml.call_feature_setting);
         initPhoneAccountPreferences();
 
-        // get buttons
         PreferenceScreen prefSet = getPreferenceScreen();
         mSubMenuVoicemailSettings = (EditPhoneNumberPreference) findPreference(BUTTON_VOICEMAIL_KEY);
         mSubMenuVoicemailSettings.setParentActivity(this, VOICEMAIL_PREF_ID, this);
@@ -1480,15 +1472,13 @@ public class CallFeaturesSetting extends PreferenceActivity
         mVoicemailProviders = (ListPreference) findPreference(BUTTON_VOICEMAIL_PROVIDER_KEY);
         mEnableVideoCalling = (CheckBoxPreference) findPreference(ENABLE_VIDEO_CALLING_KEY);
 
-        if (mVoicemailProviders != null) {
-            mVoicemailProviders.setOnPreferenceChangeListener(this);
-            mVoicemailSettingsScreen =
-                    (PreferenceScreen) findPreference(VOICEMAIL_SETTING_SCREEN_PREF_KEY);
-            mVoicemailSettings = (PreferenceScreen)findPreference(BUTTON_VOICEMAIL_SETTING_KEY);
-            mVoicemailNotificationVibrate =
-                    (CheckBoxPreference) findPreference(BUTTON_VOICEMAIL_NOTIFICATION_VIBRATE_KEY);
-            initVoiceMailProviders();
-        }
+        mVoicemailProviders.setOnPreferenceChangeListener(this);
+        mVoicemailSettingsScreen =
+                (PreferenceScreen) findPreference(VOICEMAIL_SETTING_SCREEN_PREF_KEY);
+        mVoicemailSettings = (PreferenceScreen)findPreference(BUTTON_VOICEMAIL_SETTING_KEY);
+        mVoicemailNotificationVibrate =
+                (CheckBoxPreference) findPreference(BUTTON_VOICEMAIL_NOTIFICATION_VIBRATE_KEY);
+        initVoiceMailProviders();
 
 
         if (getResources().getBoolean(R.bool.dtmf_type_enabled)) {
@@ -1566,7 +1556,7 @@ public class CallFeaturesSetting extends PreferenceActivity
         // If we have at least one non default VM provider registered then bring up
         // the selection for the VM provider, otherwise bring up a VM number dialog.
         // We only bring up the dialog the first time we are called (not after orientation change)
-        if (mShowVoicemailPreference && mVoicemailProviders != null) {
+        if (mShowVoicemailPreference) {
             if (DBG) {
                 log("ACTION_ADD_VOICEMAIL Intent is thrown. current VM data size: "
                         + mVMProvidersData.size());
@@ -1618,11 +1608,6 @@ public class CallFeaturesSetting extends PreferenceActivity
             return true;
         }
         return false;
-    }
-
-    private boolean isAirplaneModeOn() {
-        return Settings.System.getInt(getContentResolver(),
-                Settings.System.AIRPLANE_MODE_ON, 0) != 0;
     }
 
     private void handleTTYChange(Preference preference, Object objValue) {
@@ -1840,9 +1825,6 @@ public class CallFeaturesSetting extends PreferenceActivity
      */
     private void maybeSaveSettingsForVoicemailProvider(String key,
             VoicemailProviderSettings newSettings) {
-        if (mVoicemailProviders == null) {
-            return;
-        }
         final VoicemailProviderSettings curSettings = loadSettingsForVoiceMailProvider(key);
         if (newSettings.equals(curSettings)) {
             if (DBG) {
@@ -1921,9 +1903,6 @@ public class CallFeaturesSetting extends PreferenceActivity
      */
     private void deleteSettingsForVoicemailProvider(String key) {
         if (DBG) log("Deleting settings for" + key);
-        if (mVoicemailProviders == null) {
-            return;
-        }
         mPerProviderSavedVMNumbers.edit()
             .putString(key + VM_NUMBER_TAG, null)
             .putInt(key + FWD_SETTINGS_TAG + FWD_SETTINGS_LENGTH_TAG, 0)
