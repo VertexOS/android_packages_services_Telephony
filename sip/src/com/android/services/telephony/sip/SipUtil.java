@@ -22,6 +22,7 @@ import android.app.PendingIntent;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.net.sip.SipManager;
 import android.net.sip.SipProfile;
@@ -118,7 +119,9 @@ public class SipUtil {
                 .setCapabilities(PhoneAccount.CAPABILITY_CALL_PROVIDER)
                 .setAddress(Uri.parse(profile.getUriString()))
                 .setShortDescription(profile.getDisplayName())
-                .setIconResId(R.drawable.ic_dialer_sip_black_24dp)
+                .setIconBitmap(BitmapFactory.decodeResource(
+                        context.getResources(),
+                        R.drawable.ic_dialer_sip_black_24dp))
                 .setSupportedUriSchemes(supportedUriSchemes);
 
         return builder.build();
