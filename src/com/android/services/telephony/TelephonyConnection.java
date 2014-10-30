@@ -22,6 +22,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.telecom.AudioState;
 import android.telecom.Conference;
+import android.telecom.ConferenceParticipant;
 import android.telecom.Connection;
 import android.telecom.PhoneAccount;
 import android.telecom.PhoneCapabilities;
@@ -139,6 +140,17 @@ abstract class TelephonyConnection extends Connection {
         @Override
         public void onAudioQualityChanged(int audioQuality) {
             setAudioQuality(audioQuality);
+        }
+
+        /**
+         * Handles a change in the state of a conference participant, as reported by the
+         * {@link com.android.internal.telephony.Connection}.
+         *
+         * @param participant The participant which changed.
+         */
+        @Override
+        public void onConferenceParticipantChanged(ConferenceParticipant participant) {
+            updateConferenceParticipant(participant);
         }
     };
 
