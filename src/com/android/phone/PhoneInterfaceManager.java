@@ -53,6 +53,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.util.Pair;
 
+import com.android.ims.ImsManager;
 import com.android.internal.telephony.CallManager;
 import com.android.internal.telephony.CommandException;
 import com.android.internal.telephony.Connection;
@@ -2084,7 +2085,8 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         // enabled video calling, if IMS is disabled we aren't able to support video calling.
         // In the long run, we may instead need to check if there exists a connection service
         // which can support video calling.
-        return mTelephonySharedPreferences.getBoolean(PREF_ENABLE_VIDEO_CALLING, true)
-                && ImsUtil.isImsEnabled(mPhone.getContext());
+        return ImsManager.isVtEnabledByPlatform(mPhone.getContext())
+                && ImsManager.isEnhanced4gLteModeSettingEnabledByUser(mPhone.getContext())
+                && mTelephonySharedPreferences.getBoolean(PREF_ENABLE_VIDEO_CALLING, true);
     }
 }
