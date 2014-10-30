@@ -123,8 +123,10 @@ final class TelecomAccountRegistry {
                 if (record != null) {
                     subDisplayName = record.displayName;
                     slotId = record.slotId;
+
                     // Assign a "fake" color while the underlying Telephony stuff is refactored
-                    color = makeFakeColor(subId);
+                    // Assign PhoneAccount.NO_COLOR to first slot so single-SIM phones are unchanged
+                    color = slotId == 0? PhoneAccount.NO_COLOR : makeFakeColor(subId);
                 }
 
                 String slotIdString;
