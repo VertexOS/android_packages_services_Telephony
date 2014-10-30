@@ -773,7 +773,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         boolean isValid = false;
         List<SubInfoRecord> slist = SubscriptionManager.getActiveSubInfoList();
         for (SubInfoRecord subInfoRecord : slist) {
-            if (subInfoRecord.subId == subId) {
+            if (subInfoRecord.getSubscriptionId() == subId) {
                 isValid = true;
                 break;
             }
