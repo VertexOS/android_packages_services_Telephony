@@ -382,7 +382,10 @@
     <string name="preferred_network_mode_global_summary">Preferred network mode: Global</string>
     <!-- Mobile network settings, summary for preferred network mode LTE / WCDMA[CHAR LIMIT=100] -->
     <string name="preferred_network_mode_lte_wcdma_summary">Preferred network mode: LTE / WCDMA</string>
-
+     <!-- Mobile network settings, summary for preferred network mode LTE / GSM / UMTS [CHAR LIMIT=100] -->
+     <string name="preferred_network_mode_lte_gsm_umts_summary">Preferred network mode: LTE / GSM / UMTS</string>
+     <!-- Mobile network settings, summary for preferred network mode LTE / CDMA [CHAR LIMIT=100] -->
+     <string name="preferred_network_mode_lte_cdma_summary">Preferred network mode: LTE / CDMA</string>
 
     <string-array name="preferred_network_mode_choices">
         <item>LTE / WCDMA</item>
@@ -1245,4 +1248,6 @@
     <string name="sim_label_emergency_calls">Emergency calls</string>
     <string name="sim_description_emergency_calls">Emergency calling only</string>
     <string name="sim_description_default">SIM card, slot: <xliff:g id="slot_id">%s</xliff:g></string>
+    <!-- Configuration setting for world mode Format is <true;GID if any to be checked>-->
+    <string translatable="false" name="config_world_mode"/>
 </resources>
