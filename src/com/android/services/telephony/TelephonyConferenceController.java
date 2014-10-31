@@ -28,6 +28,7 @@ import android.telecom.Conference;
 import android.telecom.ConferenceParticipant;
 import android.telecom.Connection;
 import android.telecom.DisconnectCause;
+import android.telecom.PhoneAccountHandle;
 
 import com.android.internal.telephony.Call;
 
@@ -65,10 +66,16 @@ final class TelephonyConferenceController {
          * @param participant The participant information.
          */
         @Override
-        public void onConferenceParticipantChanged(Connection c, ConferenceParticipant participant)
-        {
+        public void onConferenceParticipantChanged(Connection c,
+                ConferenceParticipant participant) {
+
+            if (c == null) {
+                return;
+            }
+            TelephonyConnection telephonyConnection = (TelephonyConnection) c;
+
             Log.v(this, "onConferenceParticipantChanged: %s", participant);
-            handleConferenceParticipantUpdate(c, participant);
+            handleConferenceParticipantUpdate(telephonyConnection, participant);
         }
     };
 
@@ -176,7 +183,7 @@ final class TelephonyConferenceController {
     }
 
     private void recalculateConference() {
-        Set<TelephonyConnection> conferencedConnections = new HashSet<>();
+        Set<Connection> conferencedConnections = new HashSet<>();
 
         for (TelephonyConnection connection : mTelephonyConnections) {
             com.android.internal.telephony.Connection radioConnection =
@@ -190,6 +197,12 @@ final class TelephonyConferenceController {
                     conferencedConnections.add(connection);
                 }
             }
+        }
+
+        // Include conference participants in the list of conferenced connections.
+        for (ConferenceParticipantConnection participant :
+                mConferenceParticipantConnections.values()) {
+            conferencedConnections.add(participant);
         }
 
         Log.d(this, "Recalculate conference calls %s %s.",
@@ -230,7 +243,7 @@ final class TelephonyConferenceController {
             }
 
             // Set the conference state to the same state as its child connections.
-            Connection conferencedConnection = mTelephonyConference.getConnections().get(0);
+            Connection conferencedConnection = mTelephonyConference.getPrimaryConnection();
             switch (conferencedConnection.getState()) {
                 case Connection.STATE_ACTIVE:
                     mTelephonyConference.setActive();
@@ -249,7 +262,7 @@ final class TelephonyConferenceController {
      * @param participant The conference participant.
      */
     private void handleConferenceParticipantUpdate(
-            Connection parent, ConferenceParticipant participant) {
+            TelephonyConnection parent, ConferenceParticipant participant) {
 
         Uri endpoint = participant.getEndpoint();
         if (!mConferenceParticipantConnections.containsKey(endpoint)) {
@@ -272,13 +285,20 @@ final class TelephonyConferenceController {
      * @param participant The conference participant information.
      */
     private void createConferenceParticipantConnection(
-            Connection parent, ConferenceParticipant participant) {
+            TelephonyConnection parent, ConferenceParticipant participant) {
 
+        // Create and add the new connection in holding state so that it does not become the
+        // active call.
         ConferenceParticipantConnection connection = new ConferenceParticipantConnection(
                 parent, participant);
         connection.addConnectionListener(mConnectionListener);
+        connection.updateState(Connection.STATE_HOLDING);
         mConferenceParticipantConnections.put(participant.getEndpoint(), connection);
+        PhoneAccountHandle phoneAccountHandle =
+                TelecomAccountRegistry.makePstnPhoneAccountHandle(parent.getPhone());
+        mConnectionService.addExistingConnection(phoneAccountHandle, connection);
 
-        // TODO: Inform telecom of the new participant.
+        // Recalculate to add to the conference and set its state appropriately.
+        recalculateConference();
     }
 }
