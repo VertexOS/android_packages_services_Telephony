@@ -17,28 +17,16 @@
 package com.android.phone.settings;
 
 import android.os.Bundle;
-import android.preference.PreferenceActivity;
-import android.view.MenuItem;
+import android.preference.PreferenceFragment;
 
 import com.android.phone.R;
 
-public class PhoneAccountSettingsActivity extends PreferenceActivity {
+public class VoicemailSettingsFragment extends PreferenceFragment {
 
     @Override
-    protected void onCreate(Bundle icicle) {
+    public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
 
-        getActionBar().setTitle(R.string.phone_accounts);
-        getFragmentManager().beginTransaction().replace(
-                android.R.id.content, new PhoneAccountSettingsFragment()).commit();
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            onBackPressed();
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
+        addPreferencesFromResource(R.xml.voicemail_settings);
     }
 }
