@@ -50,7 +50,7 @@ public class ConferenceParticipantConnection extends Connection {
         mParentConnection = parentConnection;
         setAddress(participant.getHandle(), PhoneConstants.PRESENTATION_ALLOWED);
         setCallerDisplayName(participant.getDisplayName(), PhoneConstants.PRESENTATION_ALLOWED);
-        updateState(participant.getState());
+
         mEndpoint = participant.getEndpoint();
         setCapabilities();
     }

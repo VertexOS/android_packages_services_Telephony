@@ -71,7 +71,7 @@ public class TelephonyConference extends Conference {
     @Override
     public void onSeparate(Connection connection) {
         com.android.internal.telephony.Connection radioConnection =
-                getOriginalConnection(connection, "onSeparate");
+                getOriginalConnection(connection);
         try {
             radioConnection.separate();
         } catch (CallStateException e) {
@@ -129,9 +129,28 @@ public class TelephonyConference extends Conference {
         }
     }
 
+    @Override
+    public Connection getPrimaryConnection() {
+        // Default to the first connection.
+        Connection primaryConnection = getConnections().get(0);
+
+        // Otherwise look for a connection where the radio connection states it is multiparty.
+        for (Connection connection : getConnections()) {
+            com.android.internal.telephony.Connection radioConnection =
+                    getOriginalConnection(connection);
+
+            if (radioConnection != null && radioConnection.isMultiparty()) {
+                primaryConnection = connection;
+                break;
+            }
+        }
+
+        return primaryConnection;
+    }
+
     private Call getMultipartyCallForConnection(Connection connection, String tag) {
         com.android.internal.telephony.Connection radioConnection =
-                getOriginalConnection(connection, tag);
+                getOriginalConnection(connection);
         if (radioConnection != null) {
             Call call = radioConnection.getCall();
             if (call != null && call.isMultiparty()) {
@@ -142,12 +161,11 @@ public class TelephonyConference extends Conference {
     }
 
     private com.android.internal.telephony.Connection getOriginalConnection(
-            Connection connection, String tag) {
+            Connection connection) {
 
         if (connection instanceof TelephonyConnection) {
             return ((TelephonyConnection) connection).getOriginalConnection();
         } else {
-            Log.e(this, null, "Non TelephonyConnection found in a TelephonyConference (%s)", tag);
             return null;
         }
     }
