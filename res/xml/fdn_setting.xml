@@ -16,31 +16,31 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!-- Rearranged to use EditPinPreference -->
-    <com.android.phone.EditPinPreference 
-        android:key="button_fdn_enable_key" 
+    <com.android.phone.settings.fdn.EditPinPreference
+        android:key="button_fdn_enable_key"
         android:persistent="false"
         android:dialogMessage="@string/enter_pin2_text"
         android:title="@string/fdn_activation"/>
-        
+
     <!-- Rearranged to use EditPinPreference -->
-    <com.android.phone.EditPinPreference 
-        android:key="button_change_pin2_key" 
+    <com.android.phone.settings.fdn.EditPinPreference
+        android:key="button_change_pin2_key"
         android:title="@string/change_pin2"
         android:dialogTitle="@string/change_pin2"
         android:summary="@string/sum_fdn_change_pin"
         android:persistent="false"/>
-        
-    <PreferenceScreen 
-        android:key="button_fdn_list_key" 
+
+    <PreferenceScreen
+        android:key="button_fdn_list_key"
         android:title="@string/manage_fdn_list"
         android:summary="@string/sum_fdn_manage_list"
         android:persistent="false">
-        
+
         <!-- Intent to lauch the FDN list. -->
         <intent android:action="android.intent.action.MAIN"
             android:targetPackage="com.android.phone"
-            android:targetClass="com.android.phone.FdnList" />
-            
+            android:targetClass="com.android.phone.settings.fdn.FdnList" />
+
     </PreferenceScreen>
-    
+
 </PreferenceScreen>

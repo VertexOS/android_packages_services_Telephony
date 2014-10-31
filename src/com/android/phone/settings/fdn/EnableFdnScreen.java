@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.phone;
+package com.android.phone.settings.fdn;
 
 import android.app.Activity;
 import android.os.AsyncResult;
@@ -31,6 +31,8 @@ import android.widget.TextView;
 
 import com.android.internal.telephony.CommandException;
 import com.android.internal.telephony.Phone;
+import com.android.phone.PhoneGlobals;
+import com.android.phone.R;
 
 /**
  * UI to enable/disable FDN.
