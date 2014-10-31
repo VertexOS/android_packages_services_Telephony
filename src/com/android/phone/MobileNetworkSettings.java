@@ -312,6 +312,12 @@ public class MobileNetworkSettings extends PreferenceActivity
             } else {
                 throw new IllegalStateException("Unexpected phone type: " + phoneType);
             }
+            if (isWorldMode()) {
+                mButtonEnabledNetworks.setEntries(
+                        R.array.preferred_network_mode_choices_world_mode);
+                mButtonEnabledNetworks.setEntryValues(
+                        R.array.preferred_network_mode_values_world_mode);
+            }
             mButtonEnabledNetworks.setOnPreferenceChangeListener(this);
             int settingsNetworkMode = android.provider.Settings.Global.getInt(
                     mPhone.getContext().getContentResolver(),
@@ -731,6 +737,11 @@ public class MobileNetworkSettings extends PreferenceActivity
                 }
                 break;
             case Phone.NT_MODE_LTE_GSM_WCDMA:
+                if(isWorldMode()) {
+                    mButtonEnabledNetworks.setSummary(
+                            R.string.preferred_network_mode_lte_gsm_umts_summary);
+                    break;
+                }
             case Phone.NT_MODE_LTE_ONLY:
             case Phone.NT_MODE_LTE_WCDMA:
                 if (!mIsGlobalCdma) {
@@ -745,9 +756,14 @@ public class MobileNetworkSettings extends PreferenceActivity
                 }
                 break;
             case Phone.NT_MODE_LTE_CDMA_AND_EVDO:
-                mButtonEnabledNetworks.setValue(
-                        Integer.toString(Phone.NT_MODE_LTE_CDMA_AND_EVDO));
-                mButtonEnabledNetworks.setSummary(R.string.network_lte);
+                if(isWorldMode()) {
+                    mButtonEnabledNetworks.setSummary(
+                            R.string.preferred_network_mode_lte_cdma_summary);
+                } else {
+                    mButtonEnabledNetworks.setValue(
+                            Integer.toString(Phone.NT_MODE_LTE_CDMA_AND_EVDO));
+                    mButtonEnabledNetworks.setSummary(R.string.network_lte);
+                }
                 break;
             case Phone.NT_MODE_CDMA:
             case Phone.NT_MODE_EVDO_NO_CDMA:
@@ -819,5 +835,29 @@ public class MobileNetworkSettings extends PreferenceActivity
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private boolean isWorldMode() {
+        boolean worldModeOn = false;
+        final TelephonyManager tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+        final String configString = getResources().getString(R.string.config_world_mode);
+
+        if (!TextUtils.isEmpty(configString)) {
+            String[] configArray = configString.split(";");
+            // Check if we have World mode configuration set to True only or config is set to True
+            // and SIM GID value is also set and matches to the current SIM GID.
+            if (configArray != null &&
+                   ((configArray.length == 1 && configArray[0].equalsIgnoreCase("true")) ||
+                       (configArray.length == 2 && !TextUtils.isEmpty(configArray[1]) &&
+                           tm != null && configArray[1].equalsIgnoreCase(tm.getGroupIdLevel1())))) {
+                               worldModeOn = true;
+            }
+        }
+
+        if (DBG) {
+            log("World mode is set to" + worldModeOn);
+        }
+
+        return worldModeOn;
     }
 }
