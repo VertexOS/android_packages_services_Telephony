@@ -48,7 +48,6 @@ import android.provider.ContactsContract.CommonDataKinds;
 import android.provider.Settings;
 import android.telecom.PhoneAccountHandle;
 import android.telecom.TelecomManager;
-import android.telephony.PhoneNumberUtils;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
@@ -64,6 +63,7 @@ import com.android.internal.telephony.PhoneConstants;
 import com.android.phone.common.util.SettingsUtil;
 import com.android.phone.settings.AccountSelectionPreference;
 import com.android.phone.settings.VoicemailProviderSettings;
+import com.android.phone.settings.VoicemailProviderSettingsUtil;
 import com.android.services.telephony.sip.SipUtil;
 
 import java.lang.String;
@@ -131,20 +131,6 @@ public class CallFeaturesSetting extends PreferenceActivity
     // choose another VM provider
     public static final String SIGNOUT_EXTRA = "com.android.phone.Signout";
 
-    // Suffix appended to provider key for storing vm number
-    public static final String VM_NUMBER_TAG = "#VMNumber";
-    // Suffix appended to provider key for storing forwarding settings
-    public static final String FWD_SETTINGS_TAG = "#FWDSettings";
-    // Suffix appended to forward settings key for storing length of settings array
-    public static final String FWD_SETTINGS_LENGTH_TAG = "#Length";
-    // Suffix appended to forward settings key for storing an individual setting
-    public static final String FWD_SETTING_TAG = "#Setting";
-    // Suffixes appended to forward setting key for storing an individual setting properties
-    public static final String FWD_SETTING_STATUS = "#Status";
-    public static final String FWD_SETTING_REASON = "#Reason";
-    public static final String FWD_SETTING_NUMBER = "#Number";
-    public static final String FWD_SETTING_TIME = "#Time";
-
     // Key identifying the default vocie mail provider
     public static final String DEFAULT_VM_PROVIDER_KEY = "";
 
@@ -183,8 +169,6 @@ public class CallFeaturesSetting extends PreferenceActivity
     private static final String BUTTON_GSM_UMTS_OPTIONS = "button_gsm_more_expand_key";
     private static final String BUTTON_CDMA_OPTIONS = "button_cdma_more_expand_key";
 
-    private static final String VM_NUMBERS_SHARED_PREFERENCES_NAME = "vm_numbers";
-
     private static final String DEFAULT_OUTGOING_ACCOUNT_KEY = "default_outgoing_account";
     private static final String PHONE_ACCOUNT_SETTINGS_KEY =
             "phone_account_settings_preference_screen";
@@ -207,8 +191,8 @@ public class CallFeaturesSetting extends PreferenceActivity
     private static final int VOICEMAIL_PROVIDER_CFG_ID = 2;
 
     private Phone mPhone;
-
     private AudioManager mAudioManager;
+    private VoicemailProviderSettingsUtil mVmProviderSettingsUtil;
 
     private static final int VM_NOCHANGE_ERROR = 400;
     private static final int VM_RESPONSE_ERROR = 500;
@@ -258,8 +242,6 @@ public class CallFeaturesSetting extends PreferenceActivity
         public String name;
         public Intent intent;
     }
-
-    private SharedPreferences mPerProviderSavedVMNumbers;
 
     /**
      * Results of reading forwarding settings
@@ -466,14 +448,11 @@ public class CallFeaturesSetting extends PreferenceActivity
             updateVMPreferenceWidgets(newProviderKey);
 
             final VoicemailProviderSettings newProviderSettings =
-                    loadSettingsForVoiceMailProvider(newProviderKey);
+                    mVmProviderSettingsUtil.load(newProviderKey);
 
-            // If the user switches to a voice mail provider and we have a
-            // numbers stored for it we will automatically change the
-            // phone's
-            // voice mail and forwarding number to the stored ones.
-            // Otherwise we will bring up provider's configuration UI.
-
+            // If the user switches to a voice mail provider and we have numbers stored for it we
+            // will automatically change the phone's voice mail and forwarding number to the stored
+            // ones. Otherwise we will bring up provider's configuration UI.
             if (newProviderSettings == null) {
                 // Force the user into a configuration of the chosen provider
                 Log.w(LOG_TAG, "Saved preferences not found - invoking config");
@@ -579,7 +558,7 @@ public class CallFeaturesSetting extends PreferenceActivity
 
                 showDialogIfForeground(VOICEMAIL_REVERTING_DIALOG);
                 final VoicemailProviderSettings prevSettings =
-                        loadSettingsForVoiceMailProvider(mPreviousVMProviderKey);
+                        mVmProviderSettingsUtil.load(mPreviousVMProviderKey);
                 if (prevSettings == null) {
                     // prevSettings never becomes null since it should be already loaded!
                     Log.e(LOG_TAG, "VoicemailProviderSettings for the key \""
@@ -824,7 +803,7 @@ public class CallFeaturesSetting extends PreferenceActivity
             return;
         }
 
-        maybeSaveSettingsForVoicemailProvider(key, newSettings);
+        mVmProviderSettingsUtil.save(key, newSettings);
         mVMChangeCompletedSuccessfully = false;
         mFwdChangesRequireRollback = false;
         mVMOrFwdSetError = 0;
@@ -926,9 +905,8 @@ public class CallFeaturesSetting extends PreferenceActivity
             if (DBG) Log.d(LOG_TAG, "Done receiving fwd info");
             dismissDialogSafely(VOICEMAIL_FWD_READING_DIALOG);
             if (mReadingSettingsForDefaultProvider) {
-                maybeSaveSettingsForVoicemailProvider(DEFAULT_VM_PROVIDER_KEY,
-                        new VoicemailProviderSettings(this.mOldVmNumber,
-                                mForwardingReadResults));
+                mVmProviderSettingsUtil.save(DEFAULT_VM_PROVIDER_KEY,
+                        new VoicemailProviderSettings(this.mOldVmNumber, mForwardingReadResults));
                 mReadingSettingsForDefaultProvider = false;
             }
             saveVoiceMailAndForwardingNumberStage2();
@@ -1421,6 +1399,7 @@ public class CallFeaturesSetting extends PreferenceActivity
         if (DBG) log("onCreate(). Intent: " + getIntent());
         mPhone = PhoneGlobals.getPhone();
         mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+        mVmProviderSettingsUtil = new VoicemailProviderSettingsUtil(getApplicationContext());
 
         // Show the voicemail preference in onResume if the calling intent specifies the
         // ACTION_ADD_VOICEMAIL action.
@@ -1707,9 +1686,6 @@ public class CallFeaturesSetting extends PreferenceActivity
      */
     private void initVoiceMailProviders() {
         if (DBG) log("initVoiceMailProviders()");
-        mPerProviderSavedVMNumbers =
-                this.getApplicationContext().getSharedPreferences(
-                        VM_NUMBERS_SHARED_PREFERENCES_NAME, MODE_PRIVATE);
 
         String providerToIgnore = null;
         if (getIntent().getAction().equals(ACTION_ADD_VOICEMAIL)) {
@@ -1719,7 +1695,7 @@ public class CallFeaturesSetting extends PreferenceActivity
             if (DBG) log("Found ACTION_ADD_VOICEMAIL. providerToIgnore=" + providerToIgnore);
             if (providerToIgnore != null) {
                 // IGNORE_PROVIDER_EXTRA implies we want to remove the choice from the list.
-                deleteSettingsForVoicemailProvider(providerToIgnore);
+                mVmProviderSettingsUtil.delete(providerToIgnore);
             }
         }
 
@@ -1815,98 +1791,6 @@ public class CallFeaturesSetting extends PreferenceActivity
                 break;
             }
         }
-    }
-
-    /**
-     * Saves new VM provider settings associating them with the currently selected
-     * provider if settings are different than the ones already stored for this
-     * provider.
-     * Later on these will be used when the user switches a provider.
-     */
-    private void maybeSaveSettingsForVoicemailProvider(String key,
-            VoicemailProviderSettings newSettings) {
-        final VoicemailProviderSettings curSettings = loadSettingsForVoiceMailProvider(key);
-        if (newSettings.equals(curSettings)) {
-            if (DBG) {
-                log("maybeSaveSettingsForVoicemailProvider:"
-                        + " Not saving setting for " + key + " since they have not changed");
-            }
-            return;
-        }
-        if (DBG) log("Saving settings for " + key + ": " + newSettings.toString());
-        Editor editor = mPerProviderSavedVMNumbers.edit();
-        editor.putString(key + VM_NUMBER_TAG, newSettings.getVoicemailNumber());
-        String fwdKey = key + FWD_SETTINGS_TAG;
-        CallForwardInfo[] s = newSettings.getForwardingSettings();
-        if (s != VoicemailProviderSettings.NO_FORWARDING) {
-            editor.putInt(fwdKey + FWD_SETTINGS_LENGTH_TAG, s.length);
-            for (int i = 0; i < s.length; i++) {
-                final String settingKey = fwdKey + FWD_SETTING_TAG + String.valueOf(i);
-                final CallForwardInfo fi = s[i];
-                editor.putInt(settingKey + FWD_SETTING_STATUS, fi.status);
-                editor.putInt(settingKey + FWD_SETTING_REASON, fi.reason);
-                editor.putString(settingKey + FWD_SETTING_NUMBER, fi.number);
-                editor.putInt(settingKey + FWD_SETTING_TIME, fi.timeSeconds);
-            }
-        } else {
-            editor.putInt(fwdKey + FWD_SETTINGS_LENGTH_TAG, 0);
-        }
-        editor.apply();
-    }
-
-    /**
-     * Returns settings previously stored for the currently selected
-     * voice mail provider. If none is stored returns null.
-     * If the user switches to a voice mail provider and we have settings
-     * stored for it we will automatically change the phone's voice mail number
-     * and forwarding number to the stored one. Otherwise we will bring up provider's configuration
-     * UI.
-     */
-    private VoicemailProviderSettings loadSettingsForVoiceMailProvider(String key) {
-        final String vmNumberSetting = mPerProviderSavedVMNumbers.getString(key + VM_NUMBER_TAG,
-                null);
-        if (vmNumberSetting == null) {
-            Log.w(LOG_TAG, "VoiceMailProvider settings for the key \"" + key + "\""
-                    + " was not found. Returning null.");
-            return null;
-        }
-
-        CallForwardInfo[] cfi = VoicemailProviderSettings.NO_FORWARDING;
-        String fwdKey = key + FWD_SETTINGS_TAG;
-        final int fwdLen = mPerProviderSavedVMNumbers.getInt(fwdKey + FWD_SETTINGS_LENGTH_TAG, 0);
-        if (fwdLen > 0) {
-            cfi = new CallForwardInfo[fwdLen];
-            for (int i = 0; i < cfi.length; i++) {
-                final String settingKey = fwdKey + FWD_SETTING_TAG + String.valueOf(i);
-                cfi[i] = new CallForwardInfo();
-                cfi[i].status = mPerProviderSavedVMNumbers.getInt(
-                        settingKey + FWD_SETTING_STATUS, 0);
-                cfi[i].reason = mPerProviderSavedVMNumbers.getInt(
-                        settingKey + FWD_SETTING_REASON,
-                        CommandsInterface.CF_REASON_ALL_CONDITIONAL);
-                cfi[i].serviceClass = CommandsInterface.SERVICE_CLASS_VOICE;
-                cfi[i].toa = PhoneNumberUtils.TOA_International;
-                cfi[i].number = mPerProviderSavedVMNumbers.getString(
-                        settingKey + FWD_SETTING_NUMBER, "");
-                cfi[i].timeSeconds = mPerProviderSavedVMNumbers.getInt(
-                        settingKey + FWD_SETTING_TIME, 20);
-            }
-        }
-
-        VoicemailProviderSettings settings =  new VoicemailProviderSettings(vmNumberSetting, cfi);
-        if (DBG) log("Loaded settings for " + key + ": " + settings.toString());
-        return settings;
-    }
-
-    /**
-     * Deletes settings for the specified provider.
-     */
-    private void deleteSettingsForVoicemailProvider(String key) {
-        if (DBG) log("Deleting settings for" + key);
-        mPerProviderSavedVMNumbers.edit()
-            .putString(key + VM_NUMBER_TAG, null)
-            .putInt(key + FWD_SETTINGS_TAG + FWD_SETTINGS_LENGTH_TAG, 0)
-            .commit();
     }
 
     private String getCurrentVoicemailProviderKey() {
