@@ -16,6 +16,8 @@
 
 package com.android.services.telephony;
 
+import android.content.Context;
+import android.content.res.Resources;
 import android.telecom.Conference;
 import android.telecom.Connection;
 import android.telecom.PhoneAccountHandle;
@@ -23,6 +25,8 @@ import android.telecom.PhoneCapabilities;
 
 import com.android.internal.telephony.Call;
 import com.android.internal.telephony.CallStateException;
+import com.android.phone.PhoneGlobals;
+import com.android.phone.common.R;
 
 import java.util.List;
 
@@ -82,7 +86,9 @@ public class CdmaConference extends Conference {
         // Can only merge once
         mCapabilities &= ~PhoneCapabilities.MERGE_CONFERENCE;
         // Once merged, swap is enabled.
-        mCapabilities |= PhoneCapabilities.SWAP_CONFERENCE;
+        if (isSwapSupportedAfterMerge()){
+            mCapabilities |= PhoneCapabilities.SWAP_CONFERENCE;
+        }
         updateCapabilities();
         sendFlash();
     }
@@ -147,6 +153,27 @@ public class CdmaConference extends Conference {
             }
         }
         return null;
+    }
+
+    /**
+     * Return whether network support swap after merge conference call.
+     *
+     * @return true to support, false not support.
+     */
+    private final boolean isSwapSupportedAfterMerge()
+    {
+        boolean supportSwapAfterMerge = true;
+        Context context = PhoneGlobals.getInstance();
+
+        if (context != null) {
+            Resources r = context.getResources();
+            if (r != null) {
+                supportSwapAfterMerge = r.getBoolean(R.bool.support_swap_after_merge);
+                Log.d(this, "Current network support swap after call merged capability is "
+                        + supportSwapAfterMerge);
+            }
+        }
+        return supportSwapAfterMerge;
     }
 
     private com.android.internal.telephony.Connection getOriginalConnection(Connection connection) {
