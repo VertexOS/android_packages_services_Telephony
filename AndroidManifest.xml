@@ -542,6 +542,11 @@
             </intent-filter>
         </activity>
 
+        <activity android:name="com.android.phone.settings.VoicemailSettingsActivity"
+            android:label="@string/voicemail"
+            android:theme="@style/DialerSettingsLight">
+        </activity>
+
         <!-- BroadcastReceiver for receiving Intents from Notification mechanism. -->
         <receiver android:name="PhoneGlobals$NotificationBroadcastReceiver" android:exported="false">
             <intent-filter>

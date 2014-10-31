@@ -22,15 +22,15 @@ import android.view.MenuItem;
 
 import com.android.phone.R;
 
-public class PhoneAccountSettingsActivity extends PreferenceActivity {
+public class VoicemailSettingsActivity extends PreferenceActivity {
 
     @Override
     protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
 
-        getActionBar().setTitle(R.string.phone_accounts);
+        getActionBar().setTitle(R.string.voicemail);
         getFragmentManager().beginTransaction().replace(
-                android.R.id.content, new PhoneAccountSettingsFragment()).commit();
+                android.R.id.content, new VoicemailSettingsFragment()).commit();
     }
 
     @Override
