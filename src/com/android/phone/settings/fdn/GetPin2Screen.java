@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.phone;
+package com.android.phone.settings.fdn;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -30,6 +30,9 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.android.phone.PhoneGlobals;
+import com.android.phone.R;
 
 /**
  * Pin2 entry screen.

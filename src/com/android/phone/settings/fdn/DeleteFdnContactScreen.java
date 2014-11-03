@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.phone;
+package com.android.phone.settings.fdn;
 
 import android.app.Activity;
 import android.content.AsyncQueryHandler;
@@ -28,6 +28,9 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.Window;
 import android.widget.Toast;
+
+import com.android.phone.PhoneGlobals;
+import com.android.phone.R;
 
 import static android.view.Window.PROGRESS_VISIBILITY_OFF;
 import static android.view.Window.PROGRESS_VISIBILITY_ON;

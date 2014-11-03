@@ -68,7 +68,7 @@ import com.android.server.sip.SipService;
  * phone process.
  */
 public class PhoneGlobals extends ContextWrapper {
-    /* package */ static final String LOG_TAG = "PhoneApp";
+    public static final String LOG_TAG = "PhoneApp";
 
     /**
      * Phone app-wide debug level:
@@ -481,7 +481,7 @@ public class PhoneGlobals extends ContextWrapper {
     /**
      * Returns the Phone associated with this instance
      */
-    static Phone getPhone() {
+    public static Phone getPhone() {
         return getInstance().phone;
     }
 

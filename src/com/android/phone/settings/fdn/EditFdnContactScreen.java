@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.phone;
+package com.android.phone.settings.fdn;
 
 import static android.view.Window.PROGRESS_VISIBILITY_OFF;
 import static android.view.Window.PROGRESS_VISIBILITY_ON;
@@ -47,6 +47,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.phone.PhoneGlobals;
+import com.android.phone.R;
 import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneFactory;
 
