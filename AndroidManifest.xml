@@ -366,11 +366,6 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.android.phone.settings.fdn.EnableFdnScreen"
-                android:label=""
-                android:theme="@style/DialerSettingsLight">
-        </activity>
-
         <!-- SIM PIN setting -->
         <activity android:name="EnableIccPinScreen"
                 android:label="@string/enable_pin"
