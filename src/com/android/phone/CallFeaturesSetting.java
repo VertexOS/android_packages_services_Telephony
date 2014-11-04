@@ -1664,7 +1664,7 @@ public class CallFeaturesSetting extends PreferenceActivity
         for (int i = 0; i < resolveInfos.size(); i++) {
             final ResolveInfo ri= resolveInfos.get(i);
             final ActivityInfo currentActivityInfo = ri.activityInfo;
-            final String key = makeKeyForActivity(currentActivityInfo);
+            final String key = currentActivityInfo.name;
             if (key.equals(providerToIgnore)) {
                 if (DBG) log("Ignoring key: " + key);
                 len--;
@@ -1694,7 +1694,7 @@ public class CallFeaturesSetting extends PreferenceActivity
         values[0] = DEFAULT_VM_PROVIDER_KEY;
         int entryIdx = 1;
         for (int i = 0; i < resolveInfos.size(); i++) {
-            final String key = makeKeyForActivity(resolveInfos.get(i).activityInfo);
+            final String key = resolveInfos.get(i).activityInfo.name;
             if (!mVMProvidersData.containsKey(key)) {
                 continue;
             }
@@ -1715,10 +1715,6 @@ public class CallFeaturesSetting extends PreferenceActivity
 
         // Finally update the preference texts.
         updateVMPreferenceWidgets(mPreviousVMProviderKey);
-    }
-
-    private String makeKeyForActivity(ActivityInfo ai) {
-        return ai.name;
     }
 
     /**
