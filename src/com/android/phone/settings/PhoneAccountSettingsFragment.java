@@ -291,11 +291,10 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
     }
 
     private void initAccountList() {
-        List<SubInfoRecord> subscriptions = SubscriptionManager.getActiveSubInfoList();
-        for (int i = 0; i < subscriptions.size(); i++) {
-            String label = subscriptions.get(i).getLabel();
+        for (SubInfoRecord subscription : SubscriptionManager.getActiveSubInfoList()) {
+            String label = subscription.getDisplayName().toString();
             Intent intent = new Intent(TelecomManager.ACTION_SHOW_CALL_SETTINGS);
-            intent.putExtra(CallFeaturesSetting.SUB_ID_EXTRA, subscriptions.get(i).subId);
+            intent.putExtra(CallFeaturesSetting.SUB_ID_EXTRA, subscription.getSubscriptionId());
             intent.putExtra(CallFeaturesSetting.SUB_LABEL_EXTRA, label);
 
             Preference accountPreference = new Preference(mApplicationContext);
