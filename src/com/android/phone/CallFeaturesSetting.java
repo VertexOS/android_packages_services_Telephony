@@ -67,6 +67,7 @@ import com.android.phone.settings.VoicemailProviderSettingsUtil;
 import com.android.services.telephony.sip.SipUtil;
 
 import java.lang.String;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -230,12 +231,17 @@ public class CallFeaturesSetting extends PreferenceActivity
     private CheckBoxPreference mEnableVideoCalling;
 
     private class VoiceMailProvider {
+        public String name;
+        public Intent intent;
+
         public VoiceMailProvider(String name, Intent intent) {
             this.name = name;
             this.intent = intent;
         }
-        public String name;
-        public Intent intent;
+
+        public String toString() {
+            return "[ Name: " + name + ", Intent: " + intent + " ]";
+        }
     }
 
     /**
@@ -1602,81 +1608,59 @@ public class CallFeaturesSetting extends PreferenceActivity
         if (DBG) log("initVoiceMailProviders()");
 
         String providerToIgnore = null;
-        if (getIntent().getAction().equals(ACTION_ADD_VOICEMAIL)) {
-            if (getIntent().hasExtra(IGNORE_PROVIDER_EXTRA)) {
-                providerToIgnore = getIntent().getStringExtra(IGNORE_PROVIDER_EXTRA);
-            }
-            if (DBG) log("Found ACTION_ADD_VOICEMAIL. providerToIgnore=" + providerToIgnore);
-            if (providerToIgnore != null) {
-                // IGNORE_PROVIDER_EXTRA implies we want to remove the choice from the list.
+        if (getIntent().getAction().equals(ACTION_ADD_VOICEMAIL)
+                && getIntent().hasExtra(IGNORE_PROVIDER_EXTRA)) {
+            providerToIgnore = getIntent().getStringExtra(IGNORE_PROVIDER_EXTRA);
+            // Remove this provider from the list.
+            if (!TextUtils.isEmpty(providerToIgnore)) {
+                if (DBG) log("Found ACTION_ADD_VOICEMAIL. providerToIgnore= " + providerToIgnore);
                 mVmProviderSettingsUtil.delete(providerToIgnore);
             }
         }
 
         mVMProvidersData.clear();
 
-        // Stick the default element which is always there
+        List<String> entries = new ArrayList<String>();
+        List<String> values = new ArrayList<String>();
+
+        // Add default voicemail provider.
         final String myCarrier = getString(R.string.voicemail_default);
         mVMProvidersData.put(DEFAULT_VM_PROVIDER_KEY, new VoiceMailProvider(myCarrier, null));
+        entries.add(myCarrier);
+        values.add(DEFAULT_VM_PROVIDER_KEY);
 
-        // Enumerate providers
+        // Add other voicemail providers.
         PackageManager pm = getPackageManager();
-        Intent intent = new Intent();
-        intent.setAction(ACTION_CONFIGURE_VOICEMAIL);
+        Intent intent = new Intent(ACTION_CONFIGURE_VOICEMAIL);
         List<ResolveInfo> resolveInfos = pm.queryIntentActivities(intent, 0);
-        int len = resolveInfos.size() + 1; // +1 for the default choice we will insert.
-
-        // Go through the list of discovered providers populating the data map
-        // skip the provider we were instructed to ignore if there was one
         for (int i = 0; i < resolveInfos.size(); i++) {
             final ResolveInfo ri= resolveInfos.get(i);
             final ActivityInfo currentActivityInfo = ri.activityInfo;
             final String key = currentActivityInfo.name;
+
             if (key.equals(providerToIgnore)) {
-                if (DBG) log("Ignoring key: " + key);
-                len--;
                 continue;
             }
+
             if (DBG) log("Loading key: " + key);
             final String nameForDisplay = ri.loadLabel(pm).toString();
             Intent providerIntent = new Intent();
             providerIntent.setAction(ACTION_CONFIGURE_VOICEMAIL);
-            providerIntent.setClassName(currentActivityInfo.packageName,
-                    currentActivityInfo.name);
-            if (DBG) {
-                log("Store loaded VoiceMailProvider. key: " + key
-                        + " -> name: " + nameForDisplay + ", intent: " + providerIntent);
-            }
-            mVMProvidersData.put(
-                    key,
-                    new VoiceMailProvider(nameForDisplay, providerIntent));
+            providerIntent.setClassName(currentActivityInfo.packageName, currentActivityInfo.name);
+            VoiceMailProvider vmProvider = new VoiceMailProvider(nameForDisplay, providerIntent);
 
+            if (DBG) log("Store VoiceMailProvider. Key: " + key + " -> " + vmProvider.toString());
+            mVMProvidersData.put(key, vmProvider);
+            entries.add(vmProvider.name);
+            values.add(key);
         }
 
-        // Now we know which providers to display - create entries and values array for
-        // the list preference
-        String [] entries = new String [len];
-        String [] values = new String [len];
-        entries[0] = myCarrier;
-        values[0] = DEFAULT_VM_PROVIDER_KEY;
-        int entryIdx = 1;
-        for (int i = 0; i < resolveInfos.size(); i++) {
-            final String key = resolveInfos.get(i).activityInfo.name;
-            if (!mVMProvidersData.containsKey(key)) {
-                continue;
-            }
-            entries[entryIdx] = mVMProvidersData.get(key).name;
-            values[entryIdx] = key;
-            entryIdx++;
-        }
+        mVoicemailProviders.setEntries(entries.toArray(new String[0]));
+        mVoicemailProviders.setEntryValues(values.toArray(new String[0]));
 
-        // ListPreference is now updated.
-        mVoicemailProviders.setEntries(entries);
-        mVoicemailProviders.setEntryValues(values);
-
-        // Remember the current Voicemail Provider key as a "previous" key. This will be used
-        // when we fail to update Voicemail Provider, which requires rollback.
-        // We will update this when the VM Provider setting is successfully updated.
+        // Remember the current Voicemail Provider key as a "previous" key. This will be used when
+        // we fail to update Voicemail Provider, which requires rollback. We will update this when
+        // the VM Provider setting is successfully updated.
         mPreviousVMProviderKey = getCurrentVoicemailProviderKey();
         if (DBG) log("Set up the first mPreviousVMProviderKey: " + mPreviousVMProviderKey);
 
