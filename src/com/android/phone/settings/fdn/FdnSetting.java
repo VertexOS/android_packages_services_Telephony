@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.phone;
+package com.android.phone.settings.fdn;
 
 import android.app.ActionBar;
 import android.app.AlertDialog;
@@ -32,6 +32,9 @@ import android.widget.Toast;
 
 import com.android.internal.telephony.CommandException;
 import com.android.internal.telephony.Phone;
+import com.android.phone.CallFeaturesSetting;
+import com.android.phone.PhoneGlobals;
+import com.android.phone.R;
 
 /**
  * FDN settings UI for the Phone app.

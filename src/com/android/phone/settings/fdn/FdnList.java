@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.phone;
+package com.android.phone.settings.fdn;
 
 import android.app.ActionBar;
 import android.content.Intent;
@@ -25,6 +25,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
+
+import com.android.phone.R;
+import com.android.phone.ADNList;
 
 /**
  * Fixed Dialing Number (FDN) List UI for the Phone app. FDN is a feature of the service provider
