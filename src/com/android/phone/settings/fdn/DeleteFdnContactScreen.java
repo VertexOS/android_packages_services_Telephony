@@ -31,6 +31,7 @@ import android.widget.Toast;
 
 import com.android.phone.PhoneGlobals;
 import com.android.phone.R;
+import com.android.phone.SubscriptionInfoHelper;
 
 import static android.view.Window.PROGRESS_VISIBILITY_OFF;
 import static android.view.Window.PROGRESS_VISIBILITY_ON;
@@ -46,6 +47,8 @@ public class DeleteFdnContactScreen extends Activity {
     private static final String INTENT_EXTRA_NUMBER = "number";
 
     private static final int PIN2_REQUEST_CODE = 100;
+
+    private SubscriptionInfoHelper mSubscriptionInfoHelper;
 
     private String mName;
     private String mNumber;
@@ -92,6 +95,8 @@ public class DeleteFdnContactScreen extends Activity {
     private void resolveIntent() {
         Intent intent = getIntent();
 
+        mSubscriptionInfoHelper = new SubscriptionInfoHelper(intent);
+
         mName =  intent.getStringExtra(INTENT_EXTRA_NAME);
         mNumber =  intent.getStringExtra(INTENT_EXTRA_NUMBER);
 
@@ -114,7 +119,7 @@ public class DeleteFdnContactScreen extends Activity {
         buf.append(mPin2);
         buf.append("'");
 
-        Uri uri = Uri.parse("content://icc/fdn");
+        Uri uri = FdnList.getContentUri(mSubscriptionInfoHelper);
 
         mQueryHandler = new QueryHandler(getContentResolver());
         mQueryHandler.startDelete(0, null, uri, buf.toString(), null);
@@ -124,6 +129,7 @@ public class DeleteFdnContactScreen extends Activity {
     private void authenticatePin2() {
         Intent intent = new Intent();
         intent.setClass(this, GetPin2Screen.class);
+        intent.setData(FdnList.getContentUri(mSubscriptionInfoHelper));
         startActivityForResult(intent, PIN2_REQUEST_CODE);
     }
 

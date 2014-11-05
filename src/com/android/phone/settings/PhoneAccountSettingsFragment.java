@@ -19,6 +19,7 @@ import android.util.Log;
 
 import com.android.phone.R;
 import com.android.phone.CallFeaturesSetting;
+import com.android.phone.SubscriptionInfoHelper;
 import com.android.services.telephony.sip.SipAccountRegistry;
 import com.android.services.telephony.sip.SipSharedPreferences;
 import com.android.services.telephony.sip.SipUtil;
@@ -294,8 +295,8 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
         for (SubInfoRecord subscription : SubscriptionManager.getActiveSubInfoList()) {
             CharSequence label = subscription.getDisplayName();
             Intent intent = new Intent(TelecomManager.ACTION_SHOW_CALL_SETTINGS);
-            intent.putExtra(CallFeaturesSetting.SUB_ID_EXTRA, subscription.getSubscriptionId());
-            intent.putExtra(CallFeaturesSetting.SUB_LABEL_EXTRA, label);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            SubscriptionInfoHelper.addExtrasToIntent(intent, subscription);
 
             Preference accountPreference = new Preference(mApplicationContext);
             accountPreference.setTitle(label);

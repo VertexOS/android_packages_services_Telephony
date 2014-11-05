@@ -64,6 +64,7 @@ import com.android.phone.common.util.SettingsUtil;
 import com.android.phone.settings.AccountSelectionPreference;
 import com.android.phone.settings.VoicemailProviderSettings;
 import com.android.phone.settings.VoicemailProviderSettingsUtil;
+import com.android.phone.settings.fdn.FdnSetting;
 import com.android.services.telephony.sip.SipUtil;
 
 import java.lang.String;
@@ -114,13 +115,6 @@ public class CallFeaturesSetting extends PreferenceActivity
     // to trigger its configuration UI
     public static final String ACTION_CONFIGURE_VOICEMAIL =
             "com.android.phone.CallFeaturesSetting.CONFIGURE_VOICEMAIL";
-    // Extra on intent to Call Settings containing the id of the subscription to modify.
-    public static final String SUB_ID_EXTRA =
-            "com.android.phone.CallFeaturesSetting.SubscriptionId";
-    // Extra on intent to Call Settings containing the label of the subscription to modify.
-    public static final String SUB_LABEL_EXTRA =
-            "com.android.phone.CallFeaturesSetting.SubscriptionLabel";
-
     // Extra put in the return from VM provider config containing voicemail number to set
     public static final String VM_NUMBER_EXTRA = "com.android.phone.VoicemailNumber";
     // Extra put in the return from VM provider config containing call forwarding number to set
@@ -214,6 +208,8 @@ public class CallFeaturesSetting extends PreferenceActivity
     // voicemail notification vibration string constants
     private static final String VOICEMAIL_VIBRATION_ALWAYS = "always";
     private static final String VOICEMAIL_VIBRATION_NEVER = "never";
+
+    private SubscriptionInfoHelper mSubscriptionInfoHelper;
 
     private EditPhoneNumberPreference mSubMenuVoicemailSettings;
 
@@ -1250,7 +1246,7 @@ public class CallFeaturesSetting extends PreferenceActivity
         } else if (id == VOICEMAIL_FWD_SAVING_DIALOG || id == VOICEMAIL_FWD_READING_DIALOG ||
                 id == VOICEMAIL_REVERTING_DIALOG) {
             ProgressDialog dialog = new ProgressDialog(this);
-            dialog.setTitle(getText(R.string.updating_title));
+            dialog.setTitle(getText(R.string.call_settings));
             dialog.setIndeterminate(true);
             dialog.setCancelable(false);
             dialog.setMessage(getText(
@@ -1319,7 +1315,11 @@ public class CallFeaturesSetting extends PreferenceActivity
         // ACTION_ADD_VOICEMAIL action.
         mShowVoicemailPreference = (icicle == null) &&
                 getIntent().getAction().equals(ACTION_ADD_VOICEMAIL);
-    }
+
+        mSubscriptionInfoHelper = new SubscriptionInfoHelper(getIntent());
+        mSubscriptionInfoHelper.setActionBarTitle(
+                getActionBar(), getResources(), R.string.call_settings_with_label);
+   }
 
     private void initPhoneAccountPreferences() {
         mPhoneAccountSettingsPreference = findPreference(PHONE_ACCOUNT_SETTINGS_KEY);
@@ -1350,6 +1350,7 @@ public class CallFeaturesSetting extends PreferenceActivity
         }
 
         addPreferencesFromResource(R.xml.call_feature_setting);
+
         initPhoneAccountPreferences();
 
         PreferenceScreen prefSet = getPreferenceScreen();
@@ -1427,15 +1428,16 @@ public class CallFeaturesSetting extends PreferenceActivity
             }
 
             int phoneType = mPhone.getPhoneType();
+            Preference fdnButton = prefSet.findPreference(BUTTON_FDN_KEY);
             if (phoneType == PhoneConstants.PHONE_TYPE_CDMA) {
-                Preference fdnButton = prefSet.findPreference(BUTTON_FDN_KEY);
-                if (fdnButton != null) {
-                    prefSet.removePreference(fdnButton);
-                }
+                prefSet.removePreference(fdnButton);
+
                 if (!getResources().getBoolean(R.bool.config_voice_privacy_disable)) {
                     addPreferencesFromResource(R.xml.cdma_call_privacy);
                 }
             } else if (phoneType == PhoneConstants.PHONE_TYPE_GSM) {
+                fdnButton.setIntent(mSubscriptionInfoHelper.getIntent(this, FdnSetting.class));
+
                 if (getResources().getBoolean(R.bool.config_additional_call_setting)) {
                     addPreferencesFromResource(R.xml.gsm_umts_call_options);
                 }
