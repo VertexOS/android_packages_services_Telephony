@@ -61,6 +61,10 @@ public class ConferenceParticipantConnection extends Connection {
      * @param newState The new state.
      */
     public void updateState(int newState) {
+        if (newState == getState()) {
+            return;
+        }
+
         switch (newState) {
             case STATE_INITIALIZING:
                 setInitializing();
@@ -78,11 +82,27 @@ public class ConferenceParticipantConnection extends Connection {
                 setActive();
                 break;
             case STATE_DISCONNECTED:
-                setDisconnected(new DisconnectCause(DisconnectCause.REMOTE));
+                setDisconnected(new DisconnectCause(DisconnectCause.CANCELED));
+                destroy();
                 break;
             default:
                 setActive();
         }
+    }
+
+    /**
+     * Disconnects the current {@code ConferenceParticipantConnection} from the conference.
+     * <p>
+     * Sends a participant disconnect signal to the associated parent connection.  The participant
+     * connection is not disconnected and cleaned up here.  On successful disconnection of the
+     * participant, the conference server will send an update to the conference controller
+     * indicating the disconnection was successful.
+     */
+    @Override
+    public void onDisconnect() {
+        Log.v(this, "onDisconnect");
+
+        mParentConnection.onDisconnectConferenceParticipant(mEndpoint);
     }
 
     /**

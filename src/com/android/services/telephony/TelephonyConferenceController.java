@@ -31,6 +31,8 @@ import android.telecom.DisconnectCause;
 import android.telecom.PhoneAccountHandle;
 
 import com.android.internal.telephony.Call;
+import com.android.internal.telephony.gsm.GsmConnection;
+import com.android.internal.telephony.imsphone.ImsPhoneConnection;
 
 /**
  * Maintains a list of all the known TelephonyConnections connections and controls GSM and
@@ -55,7 +57,7 @@ final class TelephonyConferenceController {
 
         @Override
         public void onDestroyed(Connection connection) {
-            remove((TelephonyConnection) connection);
+            remove(connection);
         }
 
         /**
@@ -103,9 +105,15 @@ final class TelephonyConferenceController {
         recalculate();
     }
 
-    void remove(TelephonyConnection connection) {
+    void remove(Connection connection) {
         connection.removeConnectionListener(mConnectionListener);
-        mTelephonyConnections.remove(connection);
+
+        if (connection instanceof ConferenceParticipantConnection) {
+            mConferenceParticipantConnections.remove(connection);
+        } else {
+            mTelephonyConnections.remove(connection);
+        }
+
         recalculate();
     }
 
@@ -185,6 +193,9 @@ final class TelephonyConferenceController {
     private void recalculateConference() {
         Set<Connection> conferencedConnections = new HashSet<>();
 
+        int numGsmConnections = 0;
+        int numImsConnections = 0;
+
         for (TelephonyConnection connection : mTelephonyConnections) {
             com.android.internal.telephony.Connection radioConnection =
                 connection.getOriginalConnection();
@@ -194,22 +205,30 @@ final class TelephonyConferenceController {
                 Call call = radioConnection.getCall();
                 if ((state == Call.State.ACTIVE || state == Call.State.HOLDING) &&
                         (call != null && call.isMultiparty())) {
+
+                    if (radioConnection instanceof GsmConnection) {
+                        numGsmConnections++;
+                    } else if (radioConnection instanceof ImsPhoneConnection) {
+                        numImsConnections++;
+                    }
                     conferencedConnections.add(connection);
                 }
             }
         }
 
-        // Include conference participants in the list of conferenced connections.
-        for (ConferenceParticipantConnection participant :
-                mConferenceParticipantConnections.values()) {
-            conferencedConnections.add(participant);
-        }
-
         Log.d(this, "Recalculate conference calls %s %s.",
                 mTelephonyConference, conferencedConnections);
 
-        if (conferencedConnections.size() < 2) {
-            Log.d(this, "less than two conference calls!");
+        // If the number of telephony connections drops below the limit, the conference can be
+        // considered terminated.
+        // We must have less than 2 GSM connections and less than 1 IMS connection.
+        if (numGsmConnections < 2 && numImsConnections < 1) {
+            Log.d(this, "not enough connections to be a conference!");
+
+            // The underlying telephony connections have been disconnected -- disconnect the
+            // conference participants now.
+            disconnectConferenceParticipants();
+
             // No more connections are conferenced, destroy any existing conference.
             if (mTelephonyConference != null) {
                 Log.d(this, "with a conference to destroy!");
@@ -232,6 +251,17 @@ final class TelephonyConferenceController {
                         mTelephonyConference.addConnection(connection);
                     }
                 }
+
+                // Add new conference participants
+                for (Connection conferenceParticipant :
+                        mConferenceParticipantConnections.values()) {
+
+                    if (conferenceParticipant.getState() == Connection.STATE_ACTIVE) {
+                        if (!existingConnections.contains(conferenceParticipant)) {
+                            mTelephonyConference.addConnection(conferenceParticipant);
+                        }
+                    }
+                }
             } else {
                 mTelephonyConference = new TelephonyConference(null);
                 for (Connection connection : conferencedConnections) {
@@ -239,6 +269,13 @@ final class TelephonyConferenceController {
                             mTelephonyConference, connection);
                     mTelephonyConference.addConnection(connection);
                 }
+
+                // Add the conference participants
+                for (Connection conferenceParticipant :
+                        mConferenceParticipantConnections.values()) {
+                    mTelephonyConference.addConnection(conferenceParticipant);
+                }
+
                 mConnectionService.addConference(mTelephonyConference);
             }
 
@@ -252,6 +289,23 @@ final class TelephonyConferenceController {
                     mTelephonyConference.setOnHold();
                     break;
             }
+        }
+    }
+
+    /**
+     * Disconnects all conference participants from the conference.
+     */
+    private void disconnectConferenceParticipants() {
+        for (Connection connection : mConferenceParticipantConnections.values()) {
+            // Disconnect listener so that the connection doesn't fire events on the conference
+            // controller, causing a recursive call.
+            connection.removeConnectionListener(mConnectionListener);
+            mConferenceParticipantConnections.remove(connection);
+
+            // Mark disconnect cause as cancelled to ensure that the call is not logged in the
+            // call log.
+            connection.setDisconnected(new DisconnectCause(DisconnectCause.CANCELED));
+            connection.destroy();
         }
     }
 
@@ -297,8 +351,8 @@ final class TelephonyConferenceController {
         PhoneAccountHandle phoneAccountHandle =
                 TelecomAccountRegistry.makePstnPhoneAccountHandle(parent.getPhone());
         mConnectionService.addExistingConnection(phoneAccountHandle, connection);
-
         // Recalculate to add to the conference and set its state appropriately.
         recalculateConference();
+        connection.updateState(participant.getState());
     }
 }
