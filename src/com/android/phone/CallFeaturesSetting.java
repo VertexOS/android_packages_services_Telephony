@@ -206,16 +206,6 @@ public class CallFeaturesSetting extends PreferenceActivity
     private static final int VOICEMAIL_FWD_READING_DIALOG = 602;
     private static final int VOICEMAIL_REVERTING_DIALOG = 603;
 
-    // status message sent back from handlers
-    private static final int MSG_OK = 100;
-
-    // special statuses for voicemail controls.
-    private static final int MSG_VM_EXCEPTION = 400;
-    private static final int MSG_FW_SET_EXCEPTION = 401;
-    private static final int MSG_FW_GET_EXCEPTION = 402;
-    private static final int MSG_VM_OK = 600;
-    private static final int MSG_VM_NOCHANGE = 700;
-
     /**
      * @see CallForwardInfo#status
      */
@@ -613,7 +603,7 @@ public class CallFeaturesSetting extends PreferenceActivity
         updateVMPreferenceWidgets(mPreviousVMProviderKey);
         updateVoiceNumberField();
         if (mVMOrFwdSetError != 0) {
-            showVMDialog(mVMOrFwdSetError);
+            showDialogIfForeground(mVMOrFwdSetError);
             mVMOrFwdSetError = 0;
         }
     }
@@ -739,6 +729,9 @@ public class CallFeaturesSetting extends PreferenceActivity
     // actual work to handle these events whether or not we're in the
     // foreground (see the Handler code in mSetOptionComplete for
     // example.)
+    //
+    // TODO: It's a bit worrisome that we don't do anything in error cases when we're not in the
+    // foreground. Consider displaying a toast instead.
     private void showDialogIfForeground(int id) {
         if (mForeground) {
             showDialog(id);
@@ -778,7 +771,7 @@ public class CallFeaturesSetting extends PreferenceActivity
         // Throw a warning if the voicemail is the same and we did not change forwarding.
         if (mNewVMNumber.equals(mOldVmNumber)
                 && mNewFwdSettings == VoicemailProviderSettings.NO_FORWARDING) {
-            showVMDialog(MSG_VM_NOCHANGE);
+            showDialogIfForeground(VM_NOCHANGE_ERROR);
             return;
         }
 
@@ -840,7 +833,7 @@ public class CallFeaturesSetting extends PreferenceActivity
             if (DBG) Log.d(LOG_TAG, "Error discovered for fwd read : " + idx);
             mForwardingReadResults = null;
             dismissDialogSafely(VOICEMAIL_FWD_READING_DIALOG);
-            showVMDialog(MSG_FW_GET_EXCEPTION);
+            showDialogIfForeground(FW_GET_RESPONSE_ERROR);
             return;
         }
 
@@ -1116,12 +1109,12 @@ public class CallFeaturesSetting extends PreferenceActivity
         if (DBG) log("handleSetVMMessage: set VM request complete");
 
         if (!isFwdChangeSuccess()) {
-            handleVmOrFwdSetError(MSG_FW_SET_EXCEPTION);
+            handleVmOrFwdSetError(FW_SET_RESPONSE_ERROR);
         } else if (!isVmChangeSuccess()) {
-            handleVmOrFwdSetError(MSG_VM_EXCEPTION);
+            handleVmOrFwdSetError(VM_RESPONSE_ERROR);
         } else {
             if (DBG) log("change VM success!");
-            handleVmAndFwdSetSuccess(MSG_VM_OK);
+            handleVmAndFwdSetSuccess(VOICEMAIL_DIALOG_CONFIRM);
         }
     }
 
@@ -1129,18 +1122,18 @@ public class CallFeaturesSetting extends PreferenceActivity
      * Called when Voicemail Provider or its forwarding settings failed. Rolls back partly made
      * changes to those settings and show "failure" dialog.
      *
-     * @param msgId Message ID used for the specific error case. {@link #MSG_FW_SET_EXCEPTION} or
-     * {@link #MSG_VM_EXCEPTION}
+     * @param dialogId ID of the dialog to show for the specific error case. Either
+     *     {@link #FW_SET_RESPONSE_ERROR} or {@link #VM_RESPONSE_ERROR}
      */
-    private void handleVmOrFwdSetError(int msgId) {
+    private void handleVmOrFwdSetError(int dialogId) {
         if (mChangingVMorFwdDueToProviderChange) {
-            mVMOrFwdSetError = msgId;
+            mVMOrFwdSetError = dialogId;
             mChangingVMorFwdDueToProviderChange = false;
             switchToPreviousVoicemailProvider();
             return;
         }
         mChangingVMorFwdDueToProviderChange = false;
-        showVMDialog(msgId);
+        showDialogIfForeground(dialogId);
         updateVoiceNumberField();
     }
 
@@ -1148,14 +1141,14 @@ public class CallFeaturesSetting extends PreferenceActivity
      * Called when Voicemail Provider and its forwarding settings were successfully finished.
      * This updates a bunch of variables and show "success" dialog.
      */
-    private void handleVmAndFwdSetSuccess(int msg) {
+    private void handleVmAndFwdSetSuccess(int dialogId) {
         if (DBG) {
             log("handleVmAndFwdSetSuccess(). current voicemail provider key: "
                     + getCurrentVoicemailProviderKey());
         }
         mPreviousVMProviderKey = getCurrentVoicemailProviderKey();
         mChangingVMorFwdDueToProviderChange = false;
-        showVMDialog(msg);
+        showDialogIfForeground(dialogId);
         updateVoiceNumberField();
     }
 
@@ -1307,32 +1300,6 @@ public class CallFeaturesSetting extends PreferenceActivity
         // we finish the settings activity here to come back to whatever the user was doing.
         if (getIntent().getAction().equals(ACTION_ADD_VOICEMAIL)) {
             finish();
-        }
-    }
-
-    // set the app state with optional status.
-    private void showVMDialog(int msgStatus) {
-        switch (msgStatus) {
-            // It's a bit worrisome to punt in the error cases here when we're
-            // not in the foreground; maybe toast instead?
-            case MSG_VM_EXCEPTION:
-                showDialogIfForeground(VM_RESPONSE_ERROR);
-                break;
-            case MSG_FW_SET_EXCEPTION:
-                showDialogIfForeground(FW_SET_RESPONSE_ERROR);
-                break;
-            case MSG_FW_GET_EXCEPTION:
-                showDialogIfForeground(FW_GET_RESPONSE_ERROR);
-                break;
-            case MSG_VM_NOCHANGE:
-                showDialogIfForeground(VM_NOCHANGE_ERROR);
-                break;
-            case MSG_VM_OK:
-                showDialogIfForeground(VOICEMAIL_DIALOG_CONFIRM);
-                break;
-            case MSG_OK:
-            default:
-                // This should never happen.
         }
     }
 
