@@ -1088,21 +1088,16 @@ public class CallFeaturesSetting extends PreferenceActivity
      * Update the voicemail number from what we've recorded on the sim.
      */
     private void updateVoiceNumberField() {
-        if (DBG) {
-            log("updateVoiceNumberField(). mSubMenuVoicemailSettings=" + mSubMenuVoicemailSettings);
-        }
-        if (mSubMenuVoicemailSettings == null) {
-            return;
-        }
+        if (DBG) log("updateVoiceNumberField()");
 
         mOldVmNumber = mPhone.getVoiceMailNumber();
-        if (mOldVmNumber == null) {
-            mOldVmNumber = "";
+        if (TextUtils.isEmpty(mOldVmNumber)) {
+            mSubMenuVoicemailSettings.setPhoneNumber("");
+            mSubMenuVoicemailSettings.setSummary(getString(R.string.voicemail_number_not_set));
+        } else {
+            mSubMenuVoicemailSettings.setPhoneNumber(mOldVmNumber);
+            mSubMenuVoicemailSettings.setSummary(mOldVmNumber);
         }
-        mSubMenuVoicemailSettings.setPhoneNumber(mOldVmNumber);
-        final String summary = (mOldVmNumber.length() > 0) ? mOldVmNumber :
-                getString(R.string.voicemail_number_not_set);
-        mSubMenuVoicemailSettings.setSummary(summary);
     }
 
     /*
