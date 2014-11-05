@@ -126,12 +126,12 @@ final class TelecomAccountRegistry {
                 // the network is.
                 description = label = mTelephonyManager.getNetworkOperatorName();
             } else {
-                String subDisplayName = null;
+                CharSequence subDisplayName = null;
                 // We can only get the real slotId from the SubInfoRecord, we can't calculate the
                 // slotId from the subId or the phoneId in all instances.
                 SubInfoRecord record = SubscriptionManager.getSubInfoForSubscriber(subId);
                 if (record != null) {
-                    subDisplayName = record.getDisplayName().toString();
+                    subDisplayName = record.getDisplayName();
                     slotId = record.getSubscriptionId();
 
                     // Assign a "fake" color while the underlying Telephony stuff is refactored.
