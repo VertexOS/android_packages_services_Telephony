@@ -26,8 +26,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 
-import com.android.phone.R;
 import com.android.phone.ADNList;
+import com.android.phone.R;
+import com.android.phone.SubscriptionInfoHelper;
 
 /**
  * Fixed Dialing Number (FDN) List UI for the Phone app. FDN is a feature of the service provider
@@ -41,6 +42,11 @@ public class FdnList extends ADNList {
     private static final String INTENT_EXTRA_NAME = "name";
     private static final String INTENT_EXTRA_NUMBER = "number";
 
+    private static final Uri FDN_CONTENT_URI = Uri.parse("content://icc/fdn");
+    private static final String FDN_CONTENT_PATH_WITH_SUB_ID = "content://icc/fdn/subId/";
+
+    private SubscriptionInfoHelper mSubscriptionInfoHelper;
+
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
@@ -50,12 +56,16 @@ public class FdnList extends ADNList {
             // android.R.id.home will be triggered in onOptionsItemSelected()
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
+
+        mSubscriptionInfoHelper = new SubscriptionInfoHelper(getIntent());
+        mSubscriptionInfoHelper.setActionBarTitle(
+                getActionBar(), getResources(), R.string.fdn_list_with_label);
     }
 
     @Override
     protected Uri resolveIntent() {
         Intent intent = getIntent();
-        intent.setData(Uri.parse("content://icc/fdn"));
+        intent.setData(getContentUri(mSubscriptionInfoHelper));
         return intent.getData();
     }
 
@@ -91,7 +101,7 @@ public class FdnList extends ADNList {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:  // See ActionBar#setDisplayHomeAsUpEnabled()
-                Intent intent = new Intent(this, FdnSetting.class);
+                Intent intent = mSubscriptionInfoHelper.getIntent(this, FdnSetting.class);
                 intent.setAction(Intent.ACTION_MAIN);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
@@ -121,10 +131,8 @@ public class FdnList extends ADNList {
     }
 
     private void addContact() {
-        // if we don't put extras "name" when starting this activity, then
-        // EditFdnContactScreen treats it like add contact.
-        Intent intent = new Intent();
-        intent.setClass(this, EditFdnContactScreen.class);
+        //If there is no INTENT_EXTRA_NAME provided, EditFdnContactScreen treats it as an "add".
+        Intent intent = mSubscriptionInfoHelper.getIntent(this, EditFdnContactScreen.class);
         startActivity(intent);
     }
 
@@ -146,8 +154,7 @@ public class FdnList extends ADNList {
             String name = mCursor.getString(NAME_COLUMN);
             String number = mCursor.getString(NUMBER_COLUMN);
 
-            Intent intent = new Intent();
-            intent.setClass(this, EditFdnContactScreen.class);
+            Intent intent = mSubscriptionInfoHelper.getIntent(this, EditFdnContactScreen.class);
             intent.putExtra(INTENT_EXTRA_NAME, name);
             intent.putExtra(INTENT_EXTRA_NUMBER, number);
             startActivity(intent);
@@ -159,11 +166,20 @@ public class FdnList extends ADNList {
             String name = mCursor.getString(NAME_COLUMN);
             String number = mCursor.getString(NUMBER_COLUMN);
 
-            Intent intent = new Intent();
-            intent.setClass(this, DeleteFdnContactScreen.class);
+            Intent intent = mSubscriptionInfoHelper.getIntent(this, DeleteFdnContactScreen.class);
             intent.putExtra(INTENT_EXTRA_NAME, name);
             intent.putExtra(INTENT_EXTRA_NUMBER, number);
             startActivity(intent);
         }
     }
+
+    /**
+     * Returns the uri for updating the ICC FDN entry, taking into account the subscription id.
+     */
+    public static Uri getContentUri(SubscriptionInfoHelper subscriptionInfoHelper) {
+        return subscriptionInfoHelper.hasSubId()
+                ? Uri.parse(FDN_CONTENT_PATH_WITH_SUB_ID + subscriptionInfoHelper.getSubId())
+                : FDN_CONTENT_URI;
+    }
+
 }

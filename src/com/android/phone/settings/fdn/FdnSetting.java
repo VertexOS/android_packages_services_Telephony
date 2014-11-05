@@ -35,6 +35,7 @@ import com.android.internal.telephony.Phone;
 import com.android.phone.CallFeaturesSetting;
 import com.android.phone.PhoneGlobals;
 import com.android.phone.R;
+import com.android.phone.SubscriptionInfoHelper;
 
 /**
  * FDN settings UI for the Phone app.
@@ -46,6 +47,7 @@ public class FdnSetting extends PreferenceActivity
     private static final String LOG_TAG = PhoneGlobals.LOG_TAG;
     private static final boolean DBG = false;
 
+    private SubscriptionInfoHelper mSubscriptionInfoHelper;
     private Phone mPhone;
 
     /**
@@ -56,10 +58,9 @@ public class FdnSetting extends PreferenceActivity
     private static final int EVENT_PIN2_CHANGE_COMPLETE = 200;
 
     // String keys for preference lookup
-    // We only care about the pin preferences here, the manage FDN contacts
-    // Preference is handled solely in xml.
     private static final String BUTTON_FDN_ENABLE_KEY = "button_fdn_enable_key";
     private static final String BUTTON_CHANGE_PIN2_KEY = "button_change_pin2_key";
+    private static final String FDN_LIST_PREF_SCREEN_KEY = "fdn_list_pref_screen_key";
 
     private EditPinPreference mButtonEnableFDN;
     private EditPinPreference mButtonChangePin2;
@@ -454,9 +455,10 @@ public class FdnSetting extends PreferenceActivity
     protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
 
-        addPreferencesFromResource(R.xml.fdn_setting);
+        mSubscriptionInfoHelper = new SubscriptionInfoHelper(getIntent());
+        mPhone = mSubscriptionInfoHelper.getPhone();
 
-        mPhone = PhoneGlobals.getPhone();
+        addPreferencesFromResource(R.xml.fdn_setting);
 
         //get UI object references
         PreferenceScreen prefSet = getPreferenceScreen();
@@ -468,6 +470,10 @@ public class FdnSetting extends PreferenceActivity
         updateEnableFDN();
 
         mButtonChangePin2.setOnPinEnteredListener(this);
+
+        PreferenceScreen fdnListPref =
+                (PreferenceScreen) prefSet.findPreference(FDN_LIST_PREF_SCREEN_KEY);
+        fdnListPref.setIntent(mSubscriptionInfoHelper.getIntent(this, FdnList.class));
 
         // Only reset the pin change dialog if we're not in the middle of changing it.
         if (icicle == null) {
@@ -485,13 +491,15 @@ public class FdnSetting extends PreferenceActivity
         if (actionBar != null) {
             // android.R.id.home will be triggered in onOptionsItemSelected()
             actionBar.setDisplayHomeAsUpEnabled(true);
+            mSubscriptionInfoHelper.setActionBarTitle(
+                    actionBar, getResources(), R.string.fdn_with_label);
         }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        mPhone = PhoneGlobals.getPhone();
+        mPhone = mSubscriptionInfoHelper.getPhone();
         updateEnableFDN();
     }
 
