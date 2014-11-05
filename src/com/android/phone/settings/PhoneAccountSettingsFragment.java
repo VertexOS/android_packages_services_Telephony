@@ -292,7 +292,7 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
 
     private void initAccountList() {
         for (SubInfoRecord subscription : SubscriptionManager.getActiveSubInfoList()) {
-            String label = subscription.getDisplayName().toString();
+            CharSequence label = subscription.getDisplayName();
             Intent intent = new Intent(TelecomManager.ACTION_SHOW_CALL_SETTINGS);
             intent.putExtra(CallFeaturesSetting.SUB_ID_EXTRA, subscription.getSubscriptionId());
             intent.putExtra(CallFeaturesSetting.SUB_LABEL_EXTRA, label);
