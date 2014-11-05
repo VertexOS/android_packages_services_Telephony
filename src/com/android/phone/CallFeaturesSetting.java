@@ -57,11 +57,11 @@ import android.widget.ListAdapter;
 
 import com.android.ims.ImsManager;
 import com.android.internal.telephony.CallForwardInfo;
-import com.android.internal.telephony.CommandsInterface;
 import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneConstants;
 import com.android.phone.common.util.SettingsUtil;
 import com.android.phone.settings.AccountSelectionPreference;
+import com.android.phone.settings.CallForwardInfoUtil;
 import com.android.phone.settings.VoicemailProviderSettings;
 import com.android.phone.settings.VoicemailProviderSettingsUtil;
 import com.android.phone.settings.fdn.FdnSetting;
@@ -200,11 +200,6 @@ public class CallFeaturesSetting extends PreferenceActivity
     private static final int VOICEMAIL_FWD_SAVING_DIALOG = 601;
     private static final int VOICEMAIL_FWD_READING_DIALOG = 602;
     private static final int VOICEMAIL_REVERTING_DIALOG = 603;
-
-    /**
-     * @see CallForwardInfo#status
-     */
-    private static final int CALL_FORWARD_INFO_INACTIVE_STATUS = 0;
 
     // voicemail notification vibration string constants
     private static final String VOICEMAIL_VIBRATION_ALWAYS = "always";
@@ -568,24 +563,16 @@ public class CallFeaturesSetting extends PreferenceActivity
                     Log.i(LOG_TAG, "Requested to rollback Fwd changes.");
                     final CallForwardInfo[] prevFwdSettings = prevSettings.getForwardingSettings();
                     if (prevFwdSettings != null) {
-                        Map<Integer, AsyncResult> results =
-                            mForwardingChangeResults;
+                        Map<Integer, AsyncResult> results = mForwardingChangeResults;
                         resetForwardingChangeState();
                         for (int i = 0; i < prevFwdSettings.length; i++) {
                             CallForwardInfo fi = prevFwdSettings[i];
                             if (DBG) log("Reverting fwd #: " + i + ": " + fi.toString());
-                            // Only revert the settings for which the update
-                            // succeeded
+                            // Only revert the settings for which the update succeeded.
                             AsyncResult result = results.get(fi.reason);
                             if (result != null && result.exception == null) {
                                 mExpectedChangeResultReasons.add(fi.reason);
-                                mPhone.setCallForwardingOption(
-                                        (fi.status == 1 ?
-                                                CommandsInterface.CF_ACTION_REGISTRATION :
-                                                CommandsInterface.CF_ACTION_DISABLE),
-                                        fi.reason,
-                                        fi.number,
-                                        fi.timeSeconds,
+                                CallForwardInfoUtil.setCallForwardingOption(mPhone, fi,
                                         mRevertOptionComplete.obtainMessage(
                                                 EVENT_FORWARDING_CHANGED, i, 0));
                             }
@@ -814,14 +801,12 @@ public class CallFeaturesSetting extends PreferenceActivity
         if (DBG) Log.d(LOG_TAG, "handleForwardingSettingsReadResult: " + idx);
         Throwable error = null;
         if (ar.exception != null) {
-            if (DBG) Log.d(LOG_TAG, "FwdRead: ar.exception=" +
-                    ar.exception.getMessage());
             error = ar.exception;
+            if (DBG) Log.d(LOG_TAG, "FwdRead: ar.exception=" + error.getMessage());
         }
         if (ar.userObj instanceof Throwable) {
-            if (DBG) Log.d(LOG_TAG, "FwdRead: userObj=" +
-                    ((Throwable)ar.userObj).getMessage());
-            error = (Throwable)ar.userObj;
+            error = (Throwable) ar.userObj;
+            if (DBG) Log.d(LOG_TAG, "FwdRead: userObj=" + error.getMessage());
         }
 
         // We may have already gotten an error and decided to ignore the other results.
@@ -839,33 +824,10 @@ public class CallFeaturesSetting extends PreferenceActivity
             return;
         }
 
-        // Get the forwarding info
-        final CallForwardInfo cfInfoArray[] = (CallForwardInfo[]) ar.result;
-        CallForwardInfo fi = null;
-        for (int i = 0 ; i < cfInfoArray.length; i++) {
-            if ((cfInfoArray[i].serviceClass & CommandsInterface.SERVICE_CLASS_VOICE) != 0) {
-                fi = cfInfoArray[i];
-                break;
-            }
-        }
-        if (fi == null) {
-
-            // In case we go nothing it means we need this reason disabled
-            // so create a CallForwardInfo for capturing this
-            if (DBG) Log.d(LOG_TAG, "Creating default info for " + idx);
-            fi = new CallForwardInfo();
-            fi.status = 0;
-            fi.reason = VoicemailProviderSettings.FORWARDING_SETTINGS_REASONS[idx];
-            fi.serviceClass = CommandsInterface.SERVICE_CLASS_VOICE;
-        } else {
-            // if there is not a forwarding number, ensure the entry is set to "not active."
-            if (fi.number == null || fi.number.length() == 0) {
-                fi.status = 0;
-            }
-
-            if (DBG) Log.d(LOG_TAG, "Got  " + fi.toString() + " for " + idx);
-        }
-        mForwardingReadResults[idx] = fi;
+        // Get the forwarding info.
+        mForwardingReadResults[idx] = CallForwardInfoUtil.getCallForwardInfo(
+                (CallForwardInfo[]) ar.result,
+                VoicemailProviderSettings.FORWARDING_SETTINGS_REASONS[idx]);
 
         // Check if we got all the results already
         boolean done = true;
@@ -875,9 +837,11 @@ public class CallFeaturesSetting extends PreferenceActivity
                 break;
             }
         }
+
         if (done) {
             if (DBG) Log.d(LOG_TAG, "Done receiving fwd info");
             dismissDialogSafely(VOICEMAIL_FWD_READING_DIALOG);
+
             if (mReadingSettingsForDefaultProvider) {
                 mVmProviderSettingsUtil.save(DEFAULT_VM_PROVIDER_KEY,
                         new VoicemailProviderSettings(this.mOldVmNumber, mForwardingReadResults));
@@ -888,34 +852,6 @@ public class CallFeaturesSetting extends PreferenceActivity
             if (DBG) Log.d(LOG_TAG, "Not done receiving fwd info");
         }
     }
-
-    private CallForwardInfo infoForReason(CallForwardInfo[] infos, int reason) {
-        CallForwardInfo result = null;
-        if (null != infos) {
-            for (CallForwardInfo info : infos) {
-                if (info.reason == reason) {
-                    result = info;
-                    break;
-                }
-            }
-        }
-        return result;
-    }
-
-    private boolean isUpdateRequired(CallForwardInfo oldInfo, CallForwardInfo newInfo) {
-        if (oldInfo == null) {
-            return true;
-        }
-
-        // If we're disabling a type of forwarding, don't make any change if it's already disabled.
-        if (newInfo.status == CALL_FORWARD_INFO_INACTIVE_STATUS
-                && oldInfo.status == CALL_FORWARD_INFO_INACTIVE_STATUS) {
-            return false;
-        }
-
-        return true;
-    }
-
     private void resetForwardingChangeState() {
         mForwardingChangeResults = new HashMap<Integer, AsyncResult>();
         mExpectedChangeResultReasons = new HashSet<Integer>();
@@ -930,21 +866,15 @@ public class CallFeaturesSetting extends PreferenceActivity
             resetForwardingChangeState();
             for (int i = 0; i < mNewFwdSettings.length; i++) {
                 CallForwardInfo fi = mNewFwdSettings[i];
-
-                final boolean doUpdate = isUpdateRequired(infoForReason(
-                            mForwardingReadResults, fi.reason), fi);
+                CallForwardInfo fiForReason =
+                        CallForwardInfoUtil.infoForReason(mForwardingReadResults, fi.reason);
+                final boolean doUpdate = CallForwardInfoUtil.isUpdateRequired(fiForReason, fi);
 
                 if (doUpdate) {
                     if (DBG) log("Setting fwd #: " + i + ": " + fi.toString());
                     mExpectedChangeResultReasons.add(i);
 
-                    mPhone.setCallForwardingOption(
-                            fi.status == 1 ?
-                                    CommandsInterface.CF_ACTION_REGISTRATION :
-                                    CommandsInterface.CF_ACTION_DISABLE,
-                            fi.reason,
-                            fi.number,
-                            fi.timeSeconds,
+                    CallForwardInfoUtil.setCallForwardingOption(mPhone, fi,
                             mSetOptionComplete.obtainMessage(
                                     EVENT_FORWARDING_CHANGED, fi.reason, 0));
                 }
