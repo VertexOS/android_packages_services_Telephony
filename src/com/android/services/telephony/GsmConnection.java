@@ -46,23 +46,6 @@ final class GsmConnection extends TelephonyConnection {
     }
 
     @Override
-    public void performConference(TelephonyConnection otherConnection) {
-        Log.d(this, "performConference - %s", this);
-        if (getPhone() != null) {
-            try {
-                // We dont use the "other" connection because there is no concept of that in the
-                // implementation of calls inside telephony. Basically, you can "conference" and it
-                // will conference with the background call.  We know that otherConnection is the
-                // background call because it would never have called setConferenceableConnections()
-                // otherwise.
-                getPhone().conference();
-            } catch (CallStateException e) {
-                Log.e(this, e, "Failed to conference call.");
-            }
-        }
-    }
-
-    @Override
     protected int buildCallCapabilities() {
         int capabilities = super.buildCallCapabilities();
         capabilities |= PhoneCapabilities.ADD_CALL;

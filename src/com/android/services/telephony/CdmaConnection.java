@@ -166,6 +166,15 @@ final class CdmaConnection extends TelephonyConnection {
         return capabilities;
     }
 
+    @Override
+    public void performConference(TelephonyConnection otherConnection) {
+        if (isImsConnection()) {
+            super.performConference(otherConnection);
+        } else {
+            Log.w(this, "Non-IMS CDMA Connection attempted to call performConference.");
+        }
+    }
+
     void forceAsDialing(boolean isDialing) {
         if (isDialing) {
             setDialing();
