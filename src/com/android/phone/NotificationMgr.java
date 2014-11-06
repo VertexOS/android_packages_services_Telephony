@@ -392,7 +392,11 @@ public class NotificationMgr {
 
             List<UserInfo> users = mUserManager.getUsers(true);
             for (int i = 0; i < users.size(); i++) {
-                UserHandle userHandle = users.get(i).getUserHandle();
+                final UserInfo user = users.get(i);
+                if (user.isManagedProfile()) {
+                    continue;
+                }
+                UserHandle userHandle = user.getUserHandle();
                 builder.setContentIntent(userHandle.isOwner() ? contentIntent : null);
                     mNotificationManager.notifyAsUser(
                             null /* tag */, CALL_FORWARD_NOTIFICATION, builder.build(), userHandle);
@@ -425,7 +429,11 @@ public class NotificationMgr {
 
         List<UserInfo> users = mUserManager.getUsers(true);
         for (int i = 0; i < users.size(); i++) {
-            UserHandle userHandle = users.get(i).getUserHandle();
+            final UserInfo user = users.get(i);
+            if (user.isManagedProfile()) {
+                continue;
+            }
+            UserHandle userHandle = user.getUserHandle();
             builder.setContentIntent(userHandle.isOwner() ? contentIntent : null);
             final Notification notif =
                     new Notification.BigTextStyle(builder).bigText(contentText).build();
@@ -468,7 +476,11 @@ public class NotificationMgr {
 
         List<UserInfo> users = mUserManager.getUsers(true);
         for (int i = 0; i < users.size(); i++) {
-            UserHandle userHandle = users.get(i).getUserHandle();
+            final UserInfo user = users.get(i);
+            if (user.isManagedProfile()) {
+                continue;
+            }
+            UserHandle userHandle = user.getUserHandle();
             builder.setContentIntent(userHandle.isOwner() ? contentIntent : null);
             mNotificationManager.notifyAsUser(
                     null /* tag */,
