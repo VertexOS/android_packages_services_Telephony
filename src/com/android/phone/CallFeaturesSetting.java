@@ -367,32 +367,25 @@ public class CallFeaturesSetting extends PreferenceActivity
             mAudioManager.setParameter(HAC_KEY, hac != 0 ? HAC_VAL_ON : HAC_VAL_OFF);
             return true;
         } else if (preference == mVoicemailSettings) {
+            if (DBG) log("onPreferenceTreeClick: Voicemail Settings Preference is clicked.");
+
             final Dialog dialog = mVoicemailSettings.getDialog();
             if (dialog != null) {
                 dialog.getActionBar().setDisplayHomeAsUpEnabled(false);
             }
-            if (DBG) log("onPreferenceTreeClick: Voicemail Settings Preference is clicked.");
+
             if (preference.getIntent() != null) {
-                if (DBG) {
-                    log("onPreferenceTreeClick: Invoking cfg intent "
-                            + preference.getIntent().getPackage());
-                }
+                if (DBG) log("Invoking cfg intent " + preference.getIntent().getPackage());
 
                 // onActivityResult() will be responsible for resetting some of variables.
                 this.startActivityForResult(preference.getIntent(), VOICEMAIL_PROVIDER_CFG_ID);
                 return true;
             } else {
-                if (DBG) {
-                    log("onPreferenceTreeClick:"
-                            + " No Intent is available. Use default behavior defined in xml.");
-                }
+                if (DBG) log("onPreferenceTreeClick(). No intent; use default behavior in xml.");
 
-                // There's no onActivityResult(), so we need to take care of some of variables
-                // which should be reset here.
+                // onActivityResult() will not be called, so reset variables here.
                 mPreviousVMProviderKey = DEFAULT_VM_PROVIDER_KEY;
                 mVMProviderSettingsForced = false;
-
-                // This should let the preference use default behavior in the xml.
                 return false;
             }
         } else if (preference == mVoicemailSettingsScreen) {
@@ -415,10 +408,7 @@ public class CallFeaturesSetting extends PreferenceActivity
      */
     @Override
     public boolean onPreferenceChange(Preference preference, Object objValue) {
-        if (DBG) {
-            log("onPreferenceChange(). preference: \"" + preference + "\""
-                    + ", value: \"" + objValue + "\"");
-        }
+        if (DBG) log("onPreferenceChange: \"" + preference + "\" changed to \"" + objValue + "\"");
 
         if (preference == mButtonDTMF) {
             int index = mButtonDTMF.findIndexOfValue((String) objValue);
@@ -428,13 +418,10 @@ public class CallFeaturesSetting extends PreferenceActivity
             handleTTYChange(preference, objValue);
         } else if (preference == mVoicemailProviders) {
             final String newProviderKey = (String) objValue;
-            if (DBG) {
-                log("Voicemail Provider changes from \"" + mPreviousVMProviderKey
-                    + "\" to \"" + newProviderKey + "\".");
-            }
+
             // If previous provider key and the new one is same, we don't need to handle it.
             if (mPreviousVMProviderKey.equals(newProviderKey)) {
-                if (DBG) log("No change is made toward VM provider setting.");
+                if (DBG) log("No change is made to the VM provider setting.");
                 return true;
             }
             updateVMPreferenceWidgets(newProviderKey);
@@ -479,14 +466,15 @@ public class CallFeaturesSetting extends PreferenceActivity
                 return false;
             }
         }
-        // always let the preference setting proceed.
+
+        // Always let the preference setting proceed.
         return true;
     }
 
     @Override
     public void onDialogClosed(EditPhoneNumberPreference preference, int buttonClicked) {
-        if (DBG) log("onPreferenceClick: request preference click on dialog close: " +
-                buttonClicked);
+        if (DBG) log("onDialogClosed: Button clicked is " + buttonClicked);
+
         if (buttonClicked == DialogInterface.BUTTON_NEGATIVE) {
             return;
         }
@@ -528,67 +516,60 @@ public class CallFeaturesSetting extends PreferenceActivity
 
     private void switchToPreviousVoicemailProvider() {
         if (DBG) log("switchToPreviousVoicemailProvider " + mPreviousVMProviderKey);
-        if (mPreviousVMProviderKey != null) {
-            if (mVMChangeCompletedSuccessfully || mFwdChangesRequireRollback) {
-                // we have to revert with carrier
-                if (DBG) {
-                    log("Needs to rollback."
-                            + " mVMChangeCompletedSuccessfully=" + mVMChangeCompletedSuccessfully
-                            + ", mFwdChangesRequireRollback=" + mFwdChangesRequireRollback);
-                }
 
-                showDialogIfForeground(VOICEMAIL_REVERTING_DIALOG);
-                final VoicemailProviderSettings prevSettings =
-                        mVmProviderSettingsUtil.load(mPreviousVMProviderKey);
-                if (prevSettings == null) {
-                    // prevSettings never becomes null since it should be already loaded!
-                    Log.e(LOG_TAG, "VoicemailProviderSettings for the key \""
-                            + mPreviousVMProviderKey + "\" becomes null, which is unexpected.");
-                    if (DBG) {
-                        Log.e(LOG_TAG,
-                                "mVMChangeCompletedSuccessfully: " + mVMChangeCompletedSuccessfully
-                                + ", mFwdChangesRequireRollback: " + mFwdChangesRequireRollback);
-                    }
-                }
-                if (mVMChangeCompletedSuccessfully) {
-                    mNewVMNumber = prevSettings.getVoicemailNumber();
-                    Log.i(LOG_TAG, "VM change is already completed successfully."
-                            + "Have to revert VM back to " + mNewVMNumber + " again.");
-                    mPhone.setVoiceMailNumber(
-                            mPhone.getVoiceMailAlphaTag().toString(),
-                            mNewVMNumber,
-                            Message.obtain(mRevertOptionComplete, EVENT_VOICEMAIL_CHANGED));
-                }
-                if (mFwdChangesRequireRollback) {
-                    Log.i(LOG_TAG, "Requested to rollback Fwd changes.");
-                    final CallForwardInfo[] prevFwdSettings = prevSettings.getForwardingSettings();
-                    if (prevFwdSettings != null) {
-                        Map<Integer, AsyncResult> results = mForwardingChangeResults;
-                        resetForwardingChangeState();
-                        for (int i = 0; i < prevFwdSettings.length; i++) {
-                            CallForwardInfo fi = prevFwdSettings[i];
-                            if (DBG) log("Reverting fwd #: " + i + ": " + fi.toString());
-                            // Only revert the settings for which the update succeeded.
-                            AsyncResult result = results.get(fi.reason);
-                            if (result != null && result.exception == null) {
-                                mExpectedChangeResultReasons.add(fi.reason);
-                                CallForwardInfoUtil.setCallForwardingOption(mPhone, fi,
-                                        mRevertOptionComplete.obtainMessage(
-                                                EVENT_FORWARDING_CHANGED, i, 0));
-                            }
+        if (mPreviousVMProviderKey == null) {
+            return;
+        }
+
+        if (mVMChangeCompletedSuccessfully || mFwdChangesRequireRollback) {
+            showDialogIfForeground(VOICEMAIL_REVERTING_DIALOG);
+            final VoicemailProviderSettings prevSettings =
+                    mVmProviderSettingsUtil.load(mPreviousVMProviderKey);
+            if (prevSettings == null) {
+                Log.e(LOG_TAG, "VoicemailProviderSettings for the key \""
+                        + mPreviousVMProviderKey + "\" is null but should be loaded.");
+            }
+
+            if (mVMChangeCompletedSuccessfully) {
+                mNewVMNumber = prevSettings.getVoicemailNumber();
+                Log.i(LOG_TAG, "VM change is already completed successfully."
+                        + "Have to revert VM back to " + mNewVMNumber + " again.");
+                mPhone.setVoiceMailNumber(
+                        mPhone.getVoiceMailAlphaTag().toString(),
+                        mNewVMNumber,
+                        Message.obtain(mRevertOptionComplete, EVENT_VOICEMAIL_CHANGED));
+            }
+
+            if (mFwdChangesRequireRollback) {
+                Log.i(LOG_TAG, "Requested to rollback forwarding changes.");
+
+                final CallForwardInfo[] prevFwdSettings = prevSettings.getForwardingSettings();
+                if (prevFwdSettings != null) {
+                    Map<Integer, AsyncResult> results = mForwardingChangeResults;
+                    resetForwardingChangeState();
+                    for (int i = 0; i < prevFwdSettings.length; i++) {
+                        CallForwardInfo fi = prevFwdSettings[i];
+                        if (DBG) log("Reverting fwd #: " + i + ": " + fi.toString());
+                        // Only revert the settings for which the update succeeded.
+                        AsyncResult result = results.get(fi.reason);
+                        if (result != null && result.exception == null) {
+                            mExpectedChangeResultReasons.add(fi.reason);
+                            CallForwardInfoUtil.setCallForwardingOption(mPhone, fi,
+                                    mRevertOptionComplete.obtainMessage(
+                                            EVENT_FORWARDING_CHANGED, i, 0));
                         }
                     }
                 }
-            } else {
-                if (DBG) log("No need to revert");
-                onRevertDone();
             }
+        } else {
+            if (DBG) log("No need to revert");
+            onRevertDone();
         }
     }
 
     private void onRevertDone() {
-        if (DBG) log("Flipping provider key back to " + mPreviousVMProviderKey);
-        mVoicemailProviders.setValue(mPreviousVMProviderKey);
+        if (DBG) log("onRevertDone: Changing provider key back to " + mPreviousVMProviderKey);
+
         updateVMPreferenceWidgets(mPreviousVMProviderKey);
         updateVoiceNumberField();
         if (mVMOrFwdSetError != 0) {
@@ -604,6 +585,7 @@ public class CallFeaturesSetting extends PreferenceActivity
                     + ", resultCode: " + resultCode
                     + ", data: " + data);
         }
+
         // there are cases where the contact picker may end up sending us more than one
         // request.  We want to ignore the request if we're not in the correct state.
         if (requestCode == VOICEMAIL_PROVIDER_CFG_ID) {
@@ -646,12 +628,11 @@ public class CallFeaturesSetting extends PreferenceActivity
                 }
             }
             if (failure) {
-                if (DBG) log("Failure in return from voicemail provider");
+                if (DBG) log("Failure in return from voicemail provider.");
                 if (isVMProviderSettingsForced) {
                     switchToPreviousVoicemailProvider();
-                } else {
-                    if (DBG) log("Not switching back the provider since this is not forced config");
                 }
+
                 return;
             }
             mChangingVMorFwdDueToProviderChange = isVMProviderSettingsForced;
@@ -661,8 +642,7 @@ public class CallFeaturesSetting extends PreferenceActivity
             // send it to the provider when it's config is invoked so it can use this as default
             final int fwdNumTime = data.getIntExtra(FWD_NUMBER_TIME_EXTRA, 20);
 
-            if (DBG) log("onActivityResult: vm provider cfg result " +
-                    (fwdNum != null ? "has" : " does not have") + " forwarding number");
+            if (DBG) log("onActivityResult: cfg result has forwarding number " + fwdNum);
             saveVoiceMailAndForwardingNumber(getCurrentVoicemailProviderKey(),
                     new VoicemailProviderSettings(vmNum, fwdNum, fwdNumTime));
             return;
@@ -741,15 +721,8 @@ public class CallFeaturesSetting extends PreferenceActivity
             String key, VoicemailProviderSettings newSettings) {
         if (DBG) log("saveVoiceMailAndForwardingNumber: " + newSettings.toString());
         mNewVMNumber = newSettings.getVoicemailNumber();
-        // empty vm number == clearing the vm number ?
-        if (mNewVMNumber == null) {
-            mNewVMNumber = "";
-        }
-
+        mNewVMNumber = (mNewVMNumber == null) ? "" : mNewVMNumber;
         mNewFwdSettings = newSettings.getForwardingSettings();
-        if (DBG) log("newFwdNumber "
-                + String.valueOf((mNewFwdSettings != null ? mNewFwdSettings.length : 0))
-                + " settings");
 
         // No fwd settings on CDMA
         if (mPhone.getPhoneType() == PhoneConstants.PHONE_TYPE_CDMA) {
@@ -799,6 +772,7 @@ public class CallFeaturesSetting extends PreferenceActivity
 
     private void handleForwardingSettingsReadResult(AsyncResult ar, int idx) {
         if (DBG) Log.d(LOG_TAG, "handleForwardingSettingsReadResult: " + idx);
+
         Throwable error = null;
         if (ar.exception != null) {
             error = ar.exception;
@@ -811,7 +785,7 @@ public class CallFeaturesSetting extends PreferenceActivity
 
         // We may have already gotten an error and decided to ignore the other results.
         if (mForwardingReadResults == null) {
-            if (DBG) Log.d(LOG_TAG, "ignoring fwd reading result: " + idx);
+            if (DBG) Log.d(LOG_TAG, "Ignoring fwd reading result: " + idx);
             return;
         }
 
@@ -848,10 +822,9 @@ public class CallFeaturesSetting extends PreferenceActivity
                 mReadingSettingsForDefaultProvider = false;
             }
             saveVoiceMailAndForwardingNumberStage2();
-        } else {
-            if (DBG) Log.d(LOG_TAG, "Not done receiving fwd info");
         }
     }
+
     private void resetForwardingChangeState() {
         mForwardingChangeResults = new HashMap<Integer, AsyncResult>();
         mExpectedChangeResultReasons = new HashSet<Integer>();
@@ -888,6 +861,7 @@ public class CallFeaturesSetting extends PreferenceActivity
 
     private void setVMNumberWithCarrier() {
         if (DBG) log("save voicemail #: " + mNewVMNumber);
+
         mPhone.setVoiceMailNumber(
                 mPhone.getVoiceMailAlphaTag().toString(),
                 mNewVMNumber,
@@ -913,8 +887,6 @@ public class CallFeaturesSetting extends PreferenceActivity
                     if (result.exception != null) {
                         Log.w(LOG_TAG, "Error in setting fwd# " + msg.arg1 + ": " +
                                 result.exception.getMessage());
-                    } else {
-                        if (DBG) log("Success in setting fwd# " + msg.arg1);
                     }
                     if (isForwardingCompleted()) {
                         if (isFwdChangeSuccess()) {
@@ -945,6 +917,7 @@ public class CallFeaturesSetting extends PreferenceActivity
                 default:
                     // TODO: should never reach this, may want to throw exception
             }
+
             if (done) {
                 if (DBG) log("All VM provider related changes done");
                 if (mForwardingChangeResults != null) {
@@ -964,25 +937,25 @@ public class CallFeaturesSetting extends PreferenceActivity
             AsyncResult result = (AsyncResult) msg.obj;
             switch (msg.what) {
                 case EVENT_VOICEMAIL_CHANGED:
-                    mVoicemailChangeResult = result;
                     if (DBG) log("VM revert complete msg");
+                    mVoicemailChangeResult = result;
                     break;
+
                 case EVENT_FORWARDING_CHANGED:
+                    if (DBG) log("FWD revert complete msg ");
                     mForwardingChangeResults.put(msg.arg1, result);
                     if (result.exception != null) {
                         if (DBG) log("Error in reverting fwd# " + msg.arg1 + ": " +
                                 result.exception.getMessage());
-                    } else {
-                        if (DBG) log("Success in reverting fwd# " + msg.arg1);
                     }
-                    if (DBG) log("FWD revert complete msg ");
                     break;
+
                 default:
                     // TODO: should never reach this, may want to throw exception
             }
-            final boolean done =
-                (!mVMChangeCompletedSuccessfully || mVoicemailChangeResult != null) &&
-                (!mFwdChangesRequireRollback || isForwardingCompleted());
+
+            final boolean done = (!mVMChangeCompletedSuccessfully || mVoicemailChangeResult != null)
+                    && (!mFwdChangesRequireRollback || isForwardingCompleted());
             if (done) {
                 if (DBG) log("All VM reverts done");
                 dismissDialogSafely(VOICEMAIL_REVERTING_DIALOG);
@@ -1032,8 +1005,6 @@ public class CallFeaturesSetting extends PreferenceActivity
             Log.w(LOG_TAG, "Failed to change voicemail. Reason: " + msg);
             return false;
         }
-
-        if (DBG) log("VM change completed successfully.");
         return true;
     }
 
@@ -1045,7 +1016,6 @@ public class CallFeaturesSetting extends PreferenceActivity
         } else if (!isVmChangeSuccess()) {
             handleVmOrFwdSetError(VM_RESPONSE_ERROR);
         } else {
-            if (DBG) log("change VM success!");
             handleVmAndFwdSetSuccess(VOICEMAIL_DIALOG_CONFIRM);
         }
     }
@@ -1074,10 +1044,8 @@ public class CallFeaturesSetting extends PreferenceActivity
      * This updates a bunch of variables and show "success" dialog.
      */
     private void handleVmAndFwdSetSuccess(int dialogId) {
-        if (DBG) {
-            log("handleVmAndFwdSetSuccess(). current voicemail provider key: "
-                    + getCurrentVoicemailProviderKey());
-        }
+        if (DBG) log("handleVmAndFwdSetSuccess: key is " + getCurrentVoicemailProviderKey());
+
         mPreviousVMProviderKey = getCurrentVoicemailProviderKey();
         mChangingVMorFwdDueToProviderChange = false;
         showDialogIfForeground(dialogId);
@@ -1196,13 +1164,11 @@ public class CallFeaturesSetting extends PreferenceActivity
     // Close button is mapped to BUTTON_POSITIVE for the errors that close the activity,
     // while those that are mapped to BUTTON_NEUTRAL only move the preference focus.
     public void onClick(DialogInterface dialog, int which) {
+        if (DBG) log("onClick: button clicked is " + which);
+
         dialog.dismiss();
         switch (which){
-            case DialogInterface.BUTTON_NEUTRAL:
-                if (DBG) log("Neutral button");
-                break;
             case DialogInterface.BUTTON_NEGATIVE:
-                if (DBG) log("Negative button");
                 if (mCurrentDialogId == FW_GET_RESPONSE_ERROR) {
                     // We failed to get current forwarding settings and the user
                     // does not wish to continue.
@@ -1210,7 +1176,6 @@ public class CallFeaturesSetting extends PreferenceActivity
                 }
                 break;
             case DialogInterface.BUTTON_POSITIVE:
-                if (DBG) log("Positive button");
                 if (mCurrentDialogId == FW_GET_RESPONSE_ERROR) {
                     // We failed to get current forwarding settings but the user
                     // wishes to continue changing settings to the new vm provider
@@ -1222,6 +1187,7 @@ public class CallFeaturesSetting extends PreferenceActivity
             default:
                 // just let the dialog close and go back to the input
         }
+
         // In all dialogs, all buttons except BUTTON_POSITIVE lead to the end of user interaction
         // with settings UI. If we were called to explicitly configure voice mail then
         // we finish the settings activity here to come back to whatever the user was doing.
@@ -1237,7 +1203,8 @@ public class CallFeaturesSetting extends PreferenceActivity
     @Override
     protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
-        if (DBG) log("onCreate(). Intent: " + getIntent());
+        if (DBG) log("onCreate: Intent is " + getIntent());
+
         mPhone = PhoneGlobals.getPhone();
         mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
         mVmProviderSettingsUtil = new VoicemailProviderSettingsUtil(getApplicationContext());
@@ -1501,25 +1468,19 @@ public class CallFeaturesSetting extends PreferenceActivity
          In this case we want to show the UI asking the user to select a voicemail provider as
          opposed to silently falling back to default one. */
         if (provider == null) {
-            if (DBG) {
-                log("updateVMPreferenceWidget: provider for the key \"" + key + "\" is null.");
-            }
+            if (DBG) log("updateVMPreferenceWidget: key: " + key + " -> null.");
+
             mVoicemailProviders.setSummary(getString(R.string.sum_voicemail_choose_provider));
             mVoicemailSettings.setEnabled(false);
             mVoicemailSettings.setIntent(null);
-
             mVoicemailNotificationVibrate.setEnabled(false);
         } else {
-            if (DBG) {
-                log("updateVMPreferenceWidget: provider for the key \"" + key + "\".."
-                        + "name: " + provider.name
-                        + ", intent: " + provider.intent);
-            }
+            if (DBG) log("updateVMPreferenceWidget: key: " + key + " -> " + provider.toString());
+
             final String providerName = provider.name;
             mVoicemailProviders.setSummary(providerName);
             mVoicemailSettings.setEnabled(true);
             mVoicemailSettings.setIntent(provider.intent);
-
             mVoicemailNotificationVibrate.setEnabled(true);
         }
     }
