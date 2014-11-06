@@ -21,4 +21,5 @@
         android:summaryOn="@string/sum_cw_enabled"
         android:summaryOff="@string/sum_cw_disabled"
         android:enabled="false"/>
+
 </PreferenceScreen>

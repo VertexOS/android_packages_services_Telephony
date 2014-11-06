@@ -183,6 +183,8 @@
     <string name="call_settings">Call settings</string>
     <!-- GSM Call settings screen, setting option name -->
     <string name="additional_gsm_call_settings">Additional settings</string>
+    <!-- GSM Call settings screen, setting option name, with label identifying the SIM the settings are for. -->
+    <string name="additional_gsm_call_settings_with_label">Additional settings (<xliff:g id="subscriptionlabel" example="Verizon">%s</xliff:g>)</string>
     <!-- GSM-only Call settings screen, setting option name-->
     <string name="sum_gsm_call_settings">Additional GSM only call settings</string>
     <!-- CDMA Call settings screen, setting option name -->
@@ -209,6 +211,8 @@
     <string name="sum_cw_disabled">During a call, notify me of incoming calls</string>
     <!-- Call forwarding settings screen, section heading -->
     <string name="call_forwarding_settings">Call forwarding settings</string>
+    <!-- Call forwarding settings screen, section heading, with a label identifying the SIM the settings are for. -->
+    <string name="call_forwarding_settings_with_label">Call forwarding settings (<xliff:g id="subscriptionlabel" example="Verizon">%s</xliff:g>)</string>
     <!-- Call settings screen, setting option name -->
     <string name="labelCF">Call forwarding</string>
 
