@@ -36,14 +36,13 @@ public class CallForwardEditPreference extends EditPhoneNumberPreference {
     private int mServiceClass;
     private MyHandler mHandler = new MyHandler();
     int reason;
-    Phone phone;
+    private Phone mPhone;
     CallForwardInfo callForwardInfo;
-    TimeConsumingPreferenceListener tcpListener;
+    private TimeConsumingPreferenceListener mTcpListener;
 
     public CallForwardEditPreference(Context context, AttributeSet attrs) {
         super(context, attrs);
 
-        phone = PhoneGlobals.getPhone();
         mSummaryOnTemplate = this.getSummaryOn();
 
         TypedArray a = context.obtainStyledAttributes(attrs,
@@ -61,16 +60,18 @@ public class CallForwardEditPreference extends EditPhoneNumberPreference {
         this(context, null);
     }
 
-    void init(TimeConsumingPreferenceListener listener, boolean skipReading) {
-        tcpListener = listener;
+    void init(TimeConsumingPreferenceListener listener, boolean skipReading, Phone phone) {
+        mPhone = phone;
+        mTcpListener = listener;
+
         if (!skipReading) {
-            phone.getCallForwardingOption(reason,
+            mPhone.getCallForwardingOption(reason,
                     mHandler.obtainMessage(MyHandler.MESSAGE_GET_CF,
                             // unused in this case
                             CommandsInterface.CF_ACTION_DISABLE,
                             MyHandler.MESSAGE_GET_CF, null));
-            if (tcpListener != null) {
-                tcpListener.onStarted(this, true);
+            if (mTcpListener != null) {
+                mTcpListener.onStarted(this, true);
             }
         }
     }
@@ -122,7 +123,7 @@ public class CallForwardEditPreference extends EditPhoneNumberPreference {
 
                 // the interface of Phone.setCallForwardingOption has error:
                 // should be action, reason...
-                phone.setCallForwardingOption(action,
+                mPhone.setCallForwardingOption(action,
                         reason,
                         number,
                         time,
@@ -130,8 +131,8 @@ public class CallForwardEditPreference extends EditPhoneNumberPreference {
                                 action,
                                 MyHandler.MESSAGE_SET_CF));
 
-                if (tcpListener != null) {
-                    tcpListener.onStarted(this, false);
+                if (mTcpListener != null) {
+                    mTcpListener.onStarted(this, false);
                 }
             }
         }
@@ -183,28 +184,24 @@ public class CallForwardEditPreference extends EditPhoneNumberPreference {
         private void handleGetCFResponse(Message msg) {
             if (DBG) Log.d(LOG_TAG, "handleGetCFResponse: done");
 
-            if (msg.arg2 == MESSAGE_SET_CF) {
-                tcpListener.onFinished(CallForwardEditPreference.this, false);
-            } else {
-                tcpListener.onFinished(CallForwardEditPreference.this, true);
-            }
+            mTcpListener.onFinished(CallForwardEditPreference.this, msg.arg2 != MESSAGE_SET_CF);
 
             AsyncResult ar = (AsyncResult) msg.obj;
 
             callForwardInfo = null;
             if (ar.exception != null) {
                 if (DBG) Log.d(LOG_TAG, "handleGetCFResponse: ar.exception=" + ar.exception);
-                tcpListener.onException(CallForwardEditPreference.this,
+                mTcpListener.onException(CallForwardEditPreference.this,
                         (CommandException) ar.exception);
             } else {
                 if (ar.userObj instanceof Throwable) {
-                    tcpListener.onError(CallForwardEditPreference.this, RESPONSE_ERROR);
+                    mTcpListener.onError(CallForwardEditPreference.this, RESPONSE_ERROR);
                 }
                 CallForwardInfo cfInfoArray[] = (CallForwardInfo[]) ar.result;
                 if (cfInfoArray.length == 0) {
                     if (DBG) Log.d(LOG_TAG, "handleGetCFResponse: cfInfoArray.length==0");
                     setEnabled(false);
-                    tcpListener.onError(CallForwardEditPreference.this, RESPONSE_ERROR);
+                    mTcpListener.onError(CallForwardEditPreference.this, RESPONSE_ERROR);
                 } else {
                     for (int i = 0, length = cfInfoArray.length; i < length; i++) {
                         if (DBG) Log.d(LOG_TAG, "handleGetCFResponse, cfInfoArray[" + i + "]="
@@ -258,7 +255,7 @@ public class CallForwardEditPreference extends EditPhoneNumberPreference {
                 // setEnabled(false);
             }
             if (DBG) Log.d(LOG_TAG, "handleSetCFResponse: re get");
-            phone.getCallForwardingOption(reason,
+            mPhone.getCallForwardingOption(reason,
                     obtainMessage(MESSAGE_GET_CF, msg.arg1, MESSAGE_SET_CF, ar.exception));
         }
     }
