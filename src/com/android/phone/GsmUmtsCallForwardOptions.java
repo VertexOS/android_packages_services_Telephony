@@ -2,6 +2,7 @@ package com.android.phone;
 
 import com.android.internal.telephony.CallForwardInfo;
 import com.android.internal.telephony.CommandsInterface;
+import com.android.internal.telephony.Phone;
 
 import android.app.ActionBar;
 import android.content.Intent;
@@ -9,7 +10,6 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceScreen;
-import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.util.Log;
 import android.view.MenuItem;
 
@@ -20,7 +20,9 @@ public class GsmUmtsCallForwardOptions extends TimeConsumingPreferenceActivity {
     private static final String LOG_TAG = "GsmUmtsCallForwardOptions";
     private final boolean DBG = (PhoneGlobals.DBG_LEVEL >= 2);
 
-    private static final String NUM_PROJECTION[] = {Phone.NUMBER};
+    private static final String NUM_PROJECTION[] = {
+        android.provider.ContactsContract.CommonDataKinds.Phone.NUMBER
+    };
 
     private static final String BUTTON_CFU_KEY   = "button_cfu_key";
     private static final String BUTTON_CFB_KEY   = "button_cfb_key";
@@ -42,6 +44,7 @@ public class GsmUmtsCallForwardOptions extends TimeConsumingPreferenceActivity {
 
     private boolean mFirstResume;
     private Bundle mIcicle;
+    private Phone mPhone;
 
     @Override
     protected void onCreate(Bundle icicle) {
@@ -49,9 +52,14 @@ public class GsmUmtsCallForwardOptions extends TimeConsumingPreferenceActivity {
 
         addPreferencesFromResource(R.xml.callforward_options);
 
+        SubscriptionInfoHelper subscriptionInfoHelper = new SubscriptionInfoHelper(getIntent());
+        subscriptionInfoHelper.setActionBarTitle(
+                getActionBar(), getResources(), R.string.call_forwarding_settings_with_label);
+        mPhone = subscriptionInfoHelper.getPhone();
+
         PreferenceScreen prefSet = getPreferenceScreen();
-        mButtonCFU   = (CallForwardEditPreference) prefSet.findPreference(BUTTON_CFU_KEY);
-        mButtonCFB   = (CallForwardEditPreference) prefSet.findPreference(BUTTON_CFB_KEY);
+        mButtonCFU = (CallForwardEditPreference) prefSet.findPreference(BUTTON_CFU_KEY);
+        mButtonCFB = (CallForwardEditPreference) prefSet.findPreference(BUTTON_CFB_KEY);
         mButtonCFNRy = (CallForwardEditPreference) prefSet.findPreference(BUTTON_CFNRY_KEY);
         mButtonCFNRc = (CallForwardEditPreference) prefSet.findPreference(BUTTON_CFNRC_KEY);
 
@@ -86,7 +94,7 @@ public class GsmUmtsCallForwardOptions extends TimeConsumingPreferenceActivity {
         if (mFirstResume) {
             if (mIcicle == null) {
                 if (DBG) Log.d(LOG_TAG, "start to init ");
-                mPreferences.get(mInitIndex).init(this, false);
+                mPreferences.get(mInitIndex).init(this, false, mPhone);
             } else {
                 mInitIndex = mPreferences.size();
 
@@ -97,11 +105,11 @@ public class GsmUmtsCallForwardOptions extends TimeConsumingPreferenceActivity {
                     cf.number = bundle.getString(KEY_NUMBER);
                     cf.status = bundle.getInt(KEY_STATUS);
                     pref.handleCallForwardResult(cf);
-                    pref.init(this, true);
+                    pref.init(this, true, mPhone);
                 }
             }
             mFirstResume = false;
-            mIcicle=null;
+            mIcicle = null;
         }
     }
 
@@ -124,7 +132,7 @@ public class GsmUmtsCallForwardOptions extends TimeConsumingPreferenceActivity {
     public void onFinished(Preference preference, boolean reading) {
         if (mInitIndex < mPreferences.size()-1 && !isFinishing()) {
             mInitIndex++;
-            mPreferences.get(mInitIndex).init(this, false);
+            mPreferences.get(mInitIndex).init(this, false, mPhone);
         }
 
         super.onFinished(preference, reading);
