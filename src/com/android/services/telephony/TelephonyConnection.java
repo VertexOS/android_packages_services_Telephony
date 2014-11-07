@@ -35,6 +35,7 @@ import com.android.internal.telephony.imsphone.ImsPhoneConnection;
 
 import java.lang.Override;
 import java.util.Collections;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
@@ -155,14 +156,14 @@ abstract class TelephonyConnection extends Connection {
         }
 
         /**
-         * Handles a change in the state of a conference participant, as reported by the
+         * Handles a change in the state of conference participant(s), as reported by the
          * {@link com.android.internal.telephony.Connection}.
          *
-         * @param participant The participant which changed.
+         * @param participants The participant(s) which changed.
          */
         @Override
-        public void onConferenceParticipantChanged(ConferenceParticipant participant) {
-            updateConferenceParticipant(participant);
+        public void onConferenceParticipantsChanged(List<ConferenceParticipant> participants) {
+            updateConferenceParticipants(participants);
         }
     };
 
