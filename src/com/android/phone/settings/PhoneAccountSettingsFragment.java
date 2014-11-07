@@ -18,7 +18,6 @@ import android.telephony.TelephonyManager;
 import android.util.Log;
 
 import com.android.phone.R;
-import com.android.phone.CallFeaturesSetting;
 import com.android.phone.SubscriptionInfoHelper;
 import com.android.services.telephony.sip.SipAccountRegistry;
 import com.android.services.telephony.sip.SipSharedPreferences;
