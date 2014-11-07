@@ -693,7 +693,7 @@ public class MobileNetworkSettings extends PreferenceActivity
                         R.string.preferred_network_mode_lte_cdma_evdo_summary);
                 break;
             case Phone.NT_MODE_LTE_CDMA_EVDO_GSM_WCDMA:
-                if (mIsGlobalCdma) {
+                if (mPhone.getPhoneType() == PhoneConstants.PHONE_TYPE_CDMA) {
                     mButtonPreferredNetworkMode.setSummary(
                             R.string.preferred_network_mode_global_summary);
                 } else {
@@ -785,7 +785,7 @@ public class MobileNetworkSettings extends PreferenceActivity
             case Phone.NT_MODE_LTE_CDMA_EVDO_GSM_WCDMA:
                 mButtonEnabledNetworks.setValue(
                         Integer.toString(Phone.NT_MODE_LTE_CDMA_EVDO_GSM_WCDMA));
-                if (mIsGlobalCdma) {
+                if (mPhone.getPhoneType() == PhoneConstants.PHONE_TYPE_CDMA) {
                     mButtonEnabledNetworks.setSummary(R.string.network_global);
                 } else {
                     mButtonEnabledNetworks.setSummary((mShow4GForLTE == true)
