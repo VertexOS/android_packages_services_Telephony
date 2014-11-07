@@ -33,6 +33,12 @@ import java.util.List;
  */
 public class TelephonyConference extends Conference {
 
+    /**
+     * When {@code true}, indicates that conference participant information from an IMS conference
+     * event package has been received.
+     */
+    private boolean mParticipantsReceived = false;
+
     public TelephonyConference(PhoneAccountHandle phoneAccount) {
         super(phoneAccount);
         setCapabilities(
@@ -133,7 +139,10 @@ public class TelephonyConference extends Conference {
     public void onConnectionAdded(Connection connection) {
         // If the conference was an IMS connection currently or before, disable MANAGE_CONFERENCE
         // as the default behavior. If there is a conference event package, this may be overridden.
-        if (((TelephonyConnection) connection).wasImsConnection()) {
+        // If a conference event package was received, do not attempt to remove manage conference.
+        if (connection instanceof TelephonyConnection &&
+                ((TelephonyConnection) connection).wasImsConnection() &&
+                !mParticipantsReceived) {
             int capabilities = getCapabilities();
             if (PhoneCapabilities.can(capabilities, PhoneCapabilities.MANAGE_CONFERENCE)) {
                 int newCapabilities =
@@ -190,5 +199,18 @@ public class TelephonyConference extends Conference {
             return null;
         }
         return (TelephonyConnection) connections.get(0);
+    }
+
+    /**
+     * Flags the conference to indicate that a conference event package has been received and there
+     * is now participant data present which would permit conference management.
+     */
+    public void setParticipantsReceived() {
+        if (!mParticipantsReceived) {
+            int capabilities = getCapabilities();
+            capabilities |= PhoneCapabilities.MANAGE_CONFERENCE;
+            setCapabilities(capabilities);
+        }
+        mParticipantsReceived = true;
     }
 }
