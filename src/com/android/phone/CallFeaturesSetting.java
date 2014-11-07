@@ -166,7 +166,6 @@ public class CallFeaturesSetting extends PreferenceActivity
     private static final String CALL_FORWARDING_KEY = "call_forwarding_key";
     private static final String ADDITIONAL_GSM_SETTINGS_KEY = "additional_gsm_call_settings_key";
 
-    private static final String DEFAULT_OUTGOING_ACCOUNT_KEY = "default_outgoing_account";
     private static final String PHONE_ACCOUNT_SETTINGS_KEY =
             "phone_account_settings_preference_screen";
 
@@ -1232,11 +1231,6 @@ public class CallFeaturesSetting extends PreferenceActivity
                 || telephonyManager.getPhoneCount() > 1) {
             getPreferenceScreen().removePreference(mPhoneAccountSettingsPreference);
         }
-    }
-
-    private boolean canLaunchIntent(Intent intent) {
-        PackageManager pm = getPackageManager();
-        return pm.resolveActivity(intent, PackageManager.GET_ACTIVITIES) != null;
     }
 
     @Override
