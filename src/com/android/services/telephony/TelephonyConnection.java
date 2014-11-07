@@ -851,6 +851,11 @@ abstract class TelephonyConnection extends Connection {
      */
     public final TelephonyConnection addTelephonyConnectionListener(TelephonyConnectionListener l) {
         mTelephonyListeners.add(l);
+        // If we already have an original connection, let's call back immediately.
+        // This would be the case for incoming calls.
+        if (mOriginalConnection != null) {
+            fireOnOriginalConnectionConfigured();
+        }
         return this;
     }
 
