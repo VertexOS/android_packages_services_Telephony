@@ -130,6 +130,20 @@ public class TelephonyConference extends Conference {
     }
 
     @Override
+    public void onConnectionAdded(Connection connection) {
+        // If the conference was an IMS connection currently or before, disable MANAGE_CONFERENCE
+        // as the default behavior. If there is a conference event package, this may be overridden.
+        if (((TelephonyConnection) connection).wasImsConnection()) {
+            int capabilities = getCapabilities();
+            if (PhoneCapabilities.can(capabilities, PhoneCapabilities.MANAGE_CONFERENCE)) {
+                int newCapabilities =
+                        PhoneCapabilities.remove(capabilities, PhoneCapabilities.MANAGE_CONFERENCE);
+                setCapabilities(newCapabilities);
+            }
+        }
+    }
+
+    @Override
     public Connection getPrimaryConnection() {
         // Default to the first connection.
         Connection primaryConnection = getConnections().get(0);
