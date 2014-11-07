@@ -21,7 +21,6 @@ import android.app.Activity;
 import android.app.ActivityOptions;
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -52,7 +51,6 @@ import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.WindowManager;
 import android.widget.ListAdapter;
 
 import com.android.ims.ImsManager;
@@ -62,6 +60,7 @@ import com.android.internal.telephony.PhoneConstants;
 import com.android.phone.common.util.SettingsUtil;
 import com.android.phone.settings.AccountSelectionPreference;
 import com.android.phone.settings.CallForwardInfoUtil;
+import com.android.phone.settings.VoicemailDialogUtil;
 import com.android.phone.settings.VoicemailProviderSettings;
 import com.android.phone.settings.VoicemailProviderSettingsUtil;
 import com.android.phone.settings.fdn.FdnSetting;
@@ -190,18 +189,6 @@ public class CallFeaturesSetting extends PreferenceActivity
     private Phone mPhone;
     private AudioManager mAudioManager;
     private VoicemailProviderSettingsUtil mVmProviderSettingsUtil;
-
-    private static final int VM_NOCHANGE_ERROR = 400;
-    private static final int VM_RESPONSE_ERROR = 500;
-    private static final int FW_SET_RESPONSE_ERROR = 501;
-    private static final int FW_GET_RESPONSE_ERROR = 502;
-
-
-    // dialog identifiers for voicemail
-    private static final int VOICEMAIL_DIALOG_CONFIRM = 600;
-    private static final int VOICEMAIL_FWD_SAVING_DIALOG = 601;
-    private static final int VOICEMAIL_FWD_READING_DIALOG = 602;
-    private static final int VOICEMAIL_REVERTING_DIALOG = 603;
 
     // voicemail notification vibration string constants
     private static final String VOICEMAIL_VIBRATION_ALWAYS = "always";
@@ -524,7 +511,7 @@ public class CallFeaturesSetting extends PreferenceActivity
         }
 
         if (mVMChangeCompletedSuccessfully || mFwdChangesRequireRollback) {
-            showDialogIfForeground(VOICEMAIL_REVERTING_DIALOG);
+            showDialogIfForeground(VoicemailDialogUtil.VM_REVERTING_DIALOG);
             final VoicemailProviderSettings prevSettings =
                     mVmProviderSettingsUtil.load(mPreviousVMProviderKey);
             if (prevSettings == null) {
@@ -735,7 +722,7 @@ public class CallFeaturesSetting extends PreferenceActivity
         // Throw a warning if the voicemail is the same and we did not change forwarding.
         if (mNewVMNumber.equals(mOldVmNumber)
                 && mNewFwdSettings == VoicemailProviderSettings.NO_FORWARDING) {
-            showDialogIfForeground(VM_NOCHANGE_ERROR);
+            showDialogIfForeground(VoicemailDialogUtil.VM_NOCHANGE_ERROR_DIALOG);
             return;
         }
 
@@ -754,7 +741,7 @@ public class CallFeaturesSetting extends PreferenceActivity
                         VoicemailProviderSettings.FORWARDING_SETTINGS_REASONS[i],
                         mGetOptionComplete.obtainMessage(EVENT_FORWARDING_GET_COMPLETED, i, 0));
             }
-            showDialogIfForeground(VOICEMAIL_FWD_READING_DIALOG);
+            showDialogIfForeground(VoicemailDialogUtil.VM_FWD_READING_DIALOG);
         } else {
             saveVoiceMailAndForwardingNumberStage2();
         }
@@ -795,8 +782,8 @@ public class CallFeaturesSetting extends PreferenceActivity
         if (error != null) {
             if (DBG) Log.d(LOG_TAG, "Error discovered for fwd read : " + idx);
             mForwardingReadResults = null;
-            dismissDialogSafely(VOICEMAIL_FWD_READING_DIALOG);
-            showDialogIfForeground(FW_GET_RESPONSE_ERROR);
+            dismissDialogSafely(VoicemailDialogUtil.VM_FWD_READING_DIALOG);
+            showDialogIfForeground(VoicemailDialogUtil.FWD_GET_RESPONSE_ERROR_DIALOG);
             return;
         }
 
@@ -816,7 +803,7 @@ public class CallFeaturesSetting extends PreferenceActivity
 
         if (done) {
             if (DBG) Log.d(LOG_TAG, "Done receiving fwd info");
-            dismissDialogSafely(VOICEMAIL_FWD_READING_DIALOG);
+            dismissDialogSafely(VoicemailDialogUtil.VM_FWD_READING_DIALOG);
 
             if (mReadingSettingsForDefaultProvider) {
                 mVmProviderSettingsUtil.save(DEFAULT_VM_PROVIDER_KEY,
@@ -854,7 +841,7 @@ public class CallFeaturesSetting extends PreferenceActivity
                                     EVENT_FORWARDING_CHANGED, fi.reason, 0));
                 }
             }
-            showDialogIfForeground(VOICEMAIL_FWD_SAVING_DIALOG);
+            showDialogIfForeground(VoicemailDialogUtil.VM_FWD_SAVING_DIALOG);
         } else {
             if (DBG) log("Not touching fwd #");
             setVMNumberWithCarrier();
@@ -923,7 +910,7 @@ public class CallFeaturesSetting extends PreferenceActivity
             if (done) {
                 if (DBG) log("All VM provider related changes done");
                 if (mForwardingChangeResults != null) {
-                    dismissDialogSafely(VOICEMAIL_FWD_SAVING_DIALOG);
+                    dismissDialogSafely(VoicemailDialogUtil.VM_FWD_SAVING_DIALOG);
                 }
                 handleSetVmOrFwdMessage();
             }
@@ -960,7 +947,7 @@ public class CallFeaturesSetting extends PreferenceActivity
                     && (!mFwdChangesRequireRollback || isForwardingCompleted());
             if (done) {
                 if (DBG) log("All VM reverts done");
-                dismissDialogSafely(VOICEMAIL_REVERTING_DIALOG);
+                dismissDialogSafely(VoicemailDialogUtil.VM_REVERTING_DIALOG);
                 onRevertDone();
             }
         }
@@ -1014,11 +1001,11 @@ public class CallFeaturesSetting extends PreferenceActivity
         if (DBG) log("handleSetVMMessage: set VM request complete");
 
         if (!isFwdChangeSuccess()) {
-            handleVmOrFwdSetError(FW_SET_RESPONSE_ERROR);
+            handleVmOrFwdSetError(VoicemailDialogUtil.FWD_SET_RESPONSE_ERROR_DIALOG);
         } else if (!isVmChangeSuccess()) {
-            handleVmOrFwdSetError(VM_RESPONSE_ERROR);
+            handleVmOrFwdSetError(VoicemailDialogUtil.VM_RESPONSE_ERROR_DIALOG);
         } else {
-            handleVmAndFwdSetSuccess(VOICEMAIL_DIALOG_CONFIRM);
+            handleVmAndFwdSetSuccess(VoicemailDialogUtil.VM_CONFIRM_DIALOG);
         }
     }
 
@@ -1027,7 +1014,7 @@ public class CallFeaturesSetting extends PreferenceActivity
      * changes to those settings and show "failure" dialog.
      *
      * @param dialogId ID of the dialog to show for the specific error case. Either
-     *     {@link #FW_SET_RESPONSE_ERROR} or {@link #VM_RESPONSE_ERROR}
+     *     {@link #FWD_SET_RESPONSE_ERROR_DIALOG} or {@link #VM_RESPONSE_ERROR_DIALOG}
      */
     private void handleVmOrFwdSetError(int dialogId) {
         if (mChangingVMorFwdDueToProviderChange) {
@@ -1087,78 +1074,8 @@ public class CallFeaturesSetting extends PreferenceActivity
 
     // dialog creation method, called by showDialog()
     @Override
-    protected Dialog onCreateDialog(int id) {
-        if ((id == VM_RESPONSE_ERROR) || (id == VM_NOCHANGE_ERROR) ||
-            (id == FW_SET_RESPONSE_ERROR) || (id == FW_GET_RESPONSE_ERROR) ||
-                (id == VOICEMAIL_DIALOG_CONFIRM)) {
-
-            AlertDialog.Builder b = new AlertDialog.Builder(this);
-
-            int msgId;
-            int titleId = R.string.error_updating_title;
-            switch (id) {
-                case VOICEMAIL_DIALOG_CONFIRM:
-                    msgId = R.string.vm_changed;
-                    titleId = R.string.voicemail;
-                    // Set Button 2
-                    b.setNegativeButton(R.string.close_dialog, this);
-                    break;
-                case VM_NOCHANGE_ERROR:
-                    // even though this is technically an error,
-                    // keep the title friendly.
-                    msgId = R.string.no_change;
-                    titleId = R.string.voicemail;
-                    // Set Button 2
-                    b.setNegativeButton(R.string.close_dialog, this);
-                    break;
-                case VM_RESPONSE_ERROR:
-                    msgId = R.string.vm_change_failed;
-                    // Set Button 1
-                    b.setPositiveButton(R.string.close_dialog, this);
-                    break;
-                case FW_SET_RESPONSE_ERROR:
-                    msgId = R.string.fw_change_failed;
-                    // Set Button 1
-                    b.setPositiveButton(R.string.close_dialog, this);
-                    break;
-                case FW_GET_RESPONSE_ERROR:
-                    msgId = R.string.fw_get_in_vm_failed;
-                    b.setPositiveButton(R.string.alert_dialog_yes, this);
-                    b.setNegativeButton(R.string.alert_dialog_no, this);
-                    break;
-                default:
-                    msgId = R.string.exception_error;
-                    // Set Button 3, tells the activity that the error is
-                    // not recoverable on dialog exit.
-                    b.setNeutralButton(R.string.close_dialog, this);
-                    break;
-            }
-
-            b.setTitle(getText(titleId));
-            String message = getText(msgId).toString();
-            b.setMessage(message);
-            b.setCancelable(false);
-            AlertDialog dialog = b.create();
-
-            // make the dialog more obvious by bluring the background.
-            dialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_BLUR_BEHIND);
-
-            return dialog;
-        } else if (id == VOICEMAIL_FWD_SAVING_DIALOG || id == VOICEMAIL_FWD_READING_DIALOG ||
-                id == VOICEMAIL_REVERTING_DIALOG) {
-            ProgressDialog dialog = new ProgressDialog(this);
-            dialog.setTitle(getText(R.string.call_settings));
-            dialog.setIndeterminate(true);
-            dialog.setCancelable(false);
-            dialog.setMessage(getText(
-                    id == VOICEMAIL_FWD_SAVING_DIALOG ? R.string.updating_settings :
-                    (id == VOICEMAIL_REVERTING_DIALOG ? R.string.reverting_settings :
-                    R.string.reading_settings)));
-            return dialog;
-        }
-
-
-        return null;
+    protected Dialog onCreateDialog(int dialogId) {
+        return VoicemailDialogUtil.getDialog(this, dialogId);
     }
 
     // This is a method implemented for DialogInterface.OnClickListener.
@@ -1171,14 +1088,14 @@ public class CallFeaturesSetting extends PreferenceActivity
         dialog.dismiss();
         switch (which){
             case DialogInterface.BUTTON_NEGATIVE:
-                if (mCurrentDialogId == FW_GET_RESPONSE_ERROR) {
+                if (mCurrentDialogId == VoicemailDialogUtil.FWD_GET_RESPONSE_ERROR_DIALOG) {
                     // We failed to get current forwarding settings and the user
                     // does not wish to continue.
                     switchToPreviousVoicemailProvider();
                 }
                 break;
             case DialogInterface.BUTTON_POSITIVE:
-                if (mCurrentDialogId == FW_GET_RESPONSE_ERROR) {
+                if (mCurrentDialogId == VoicemailDialogUtil.FWD_GET_RESPONSE_ERROR_DIALOG) {
                     // We failed to get current forwarding settings but the user
                     // wishes to continue changing settings to the new vm provider
                     saveVoiceMailAndForwardingNumberStage2();
