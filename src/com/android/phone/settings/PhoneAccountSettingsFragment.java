@@ -31,10 +31,6 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
                 Preference.OnPreferenceClickListener,
                 AccountSelectionPreference.AccountSelectionListener {
 
-    private static final Intent CONNECTION_SERVICE_CONFIGURE_INTENT =
-            new Intent(TelecomManager.ACTION_CONNECTION_SERVICE_CONFIGURE)
-                    .addCategory(Intent.CATEGORY_DEFAULT);
-
     private static final String ACCOUNTS_LIST_CATEGORY_KEY =
             "phone_accounts_accounts_list_category_key";
 
@@ -184,10 +180,20 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
     @Override
     public boolean onPreferenceClick(Preference pref) {
         if (pref == mConfigureCallAssistant) {
-            try {
-                startActivity(CONNECTION_SERVICE_CONFIGURE_INTENT);
-            } catch (ActivityNotFoundException e) {
-                Log.d(LOG_TAG, "Could not resolve telecom connection service configure intent.");
+            String packageName = null;
+            PhoneAccountHandle handle = mTelecomManager.getSimCallManager();
+            if (handle != null) {
+                packageName = handle.getComponentName().getPackageName();
+            }
+            if (packageName != null) {
+                Intent intent = new Intent(TelecomManager.ACTION_CONNECTION_SERVICE_CONFIGURE)
+                        .addCategory(Intent.CATEGORY_DEFAULT)
+                        .setPackage(packageName);
+                try {
+                    startActivity(intent);
+                } catch (ActivityNotFoundException e) {
+                    Log.d(LOG_TAG, "Could not resolve call assistant configure intent: " + intent);
+                }
             }
             return true;
         }
