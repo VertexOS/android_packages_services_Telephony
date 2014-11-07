@@ -34,7 +34,10 @@ import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.imsphone.ImsPhoneConnection;
 
 import java.lang.Override;
+import java.util.Collections;
 import java.util.Objects;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Base class for CDMA and GSM connections.
@@ -77,6 +80,15 @@ abstract class TelephonyConnection extends Connection {
             }
         }
     };
+
+    /**
+     * A listener/callback mechanism that is specific communication from TelephonyConnections
+     * to TelephonyConnectionService (for now). It is more specific that Connection.Listener
+     * because it is only exposed in Telephony.
+     */
+    public abstract static class TelephonyConnectionListener {
+        public void onOriginalConnectionConfigured(TelephonyConnection c) {}
+    }
 
     private final PostDialListener mPostDialListener = new PostDialListener() {
         @Override
@@ -185,6 +197,12 @@ abstract class TelephonyConnection extends Connection {
      * whether a call has the {@link android.telecom.CallCapabilities#VoLTE} capability.
      */
     private int mAudioQuality;
+
+    /**
+     * Listeners to our TelephonyConnection specific callbacks
+     */
+    private final Set<TelephonyConnectionListener> mTelephonyListeners = Collections.newSetFromMap(
+            new ConcurrentHashMap<TelephonyConnectionListener, Boolean>(8, 0.9f, 1));
 
     protected TelephonyConnection(com.android.internal.telephony.Connection originalConnection) {
         if (originalConnection != null) {
@@ -470,6 +488,7 @@ abstract class TelephonyConnection extends Connection {
             mWasImsConnection = true;
         }
 
+        fireOnOriginalConnectionConfigured();
         updateAddress();
     }
 
@@ -823,5 +842,38 @@ abstract class TelephonyConnection extends Connection {
     private int removeCapability(int capabilities, int capability) {
         int newCapabilities = capabilities & ~capability;
         return newCapabilities;
+    }
+
+    /**
+     * Register a listener for {@link TelephonyConnection} specific triggers.
+     * @param l The instance of the listener to add
+     * @return The connection being listened to
+     */
+    public final TelephonyConnection addTelephonyConnectionListener(TelephonyConnectionListener l) {
+        mTelephonyListeners.add(l);
+        return this;
+    }
+
+    /**
+     * Remove a listener for {@link TelephonyConnection} specific triggers.
+     * @param l The instance of the listener to remove
+     * @return The connection being listened to
+     */
+    public final TelephonyConnection removeTelephonyConnectionListener(
+            TelephonyConnectionListener l) {
+        if (l != null) {
+            mTelephonyListeners.remove(l);
+        }
+        return this;
+    }
+
+    /**
+     * Fire a callback to the various listeners for when the original connection is
+     * set in this {@link TelephonyConnection}
+     */
+    private final void fireOnOriginalConnectionConfigured() {
+        for (TelephonyConnectionListener l : mTelephonyListeners) {
+            l.onOriginalConnectionConfigured(this);
+        }
     }
 }
