@@ -693,8 +693,13 @@ public class MobileNetworkSettings extends PreferenceActivity
                         R.string.preferred_network_mode_lte_cdma_evdo_summary);
                 break;
             case Phone.NT_MODE_LTE_CDMA_EVDO_GSM_WCDMA:
-                mButtonPreferredNetworkMode.setSummary(
-                        R.string.preferred_network_mode_global_summary);
+                if (mIsGlobalCdma) {
+                    mButtonPreferredNetworkMode.setSummary(
+                            R.string.preferred_network_mode_global_summary);
+                } else {
+                    mButtonPreferredNetworkMode.setSummary(
+                            R.string.preferred_network_mode_lte_summary);
+                }
                 break;
             case Phone.NT_MODE_GLOBAL:
                 mButtonPreferredNetworkMode.setSummary(
@@ -780,7 +785,12 @@ public class MobileNetworkSettings extends PreferenceActivity
             case Phone.NT_MODE_LTE_CDMA_EVDO_GSM_WCDMA:
                 mButtonEnabledNetworks.setValue(
                         Integer.toString(Phone.NT_MODE_LTE_CDMA_EVDO_GSM_WCDMA));
-                mButtonEnabledNetworks.setSummary(R.string.network_global);
+                if (mIsGlobalCdma) {
+                    mButtonEnabledNetworks.setSummary(R.string.network_global);
+                } else {
+                    mButtonEnabledNetworks.setSummary((mShow4GForLTE == true)
+                            ? R.string.network_4G : R.string.network_lte);
+                }
                 break;
             default:
                 String errMsg = "Invalid Network Mode (" + NetworkMode + "). Ignore.";
