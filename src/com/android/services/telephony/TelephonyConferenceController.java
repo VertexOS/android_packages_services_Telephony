@@ -61,23 +61,22 @@ final class TelephonyConferenceController {
         }
 
         /**
-         * Handles notifications from an connection that a participant in a conference has changed
+         * Handles notifications from an connection that participant(s) in a conference have changed
          * state.
          *
          * @param c The connection.
-         * @param participant The participant information.
+         * @param participants The participant information.
          */
         @Override
-        public void onConferenceParticipantChanged(Connection c,
-                ConferenceParticipant participant) {
+        public void onConferenceParticipantsChanged(Connection c,
+                List<ConferenceParticipant> participants) {
 
             if (c == null) {
                 return;
             }
+            Log.v(this, "onConferenceParticipantsChanged: %d participants", participants.size());
             TelephonyConnection telephonyConnection = (TelephonyConnection) c;
-
-            Log.v(this, "onConferenceParticipantChanged: %s", participant);
-            handleConferenceParticipantUpdate(telephonyConnection, participant);
+            handleConferenceParticipantsUpdate(telephonyConnection, participants);
         }
     };
 
@@ -219,6 +218,8 @@ final class TelephonyConferenceController {
         Log.d(this, "Recalculate conference calls %s %s.",
                 mTelephonyConference, conferencedConnections);
 
+        boolean wasParticipantsAdded = false;
+
         // If the number of telephony connections drops below the limit, the conference can be
         // considered terminated.
         // We must have less than 2 GSM connections and less than 1 IMS connection.
@@ -240,7 +241,8 @@ final class TelephonyConferenceController {
                 List<Connection> existingConnections = mTelephonyConference.getConnections();
                 // Remove any that no longer exist
                 for (Connection connection : existingConnections) {
-                    if (!conferencedConnections.contains(connection)) {
+                    if (connection instanceof TelephonyConnection &&
+                            !conferencedConnections.contains(connection)) {
                         mTelephonyConference.removeConnection(connection);
                     }
                 }
@@ -256,8 +258,9 @@ final class TelephonyConferenceController {
                 for (Connection conferenceParticipant :
                         mConferenceParticipantConnections.values()) {
 
-                    if (conferenceParticipant.getState() == Connection.STATE_ACTIVE) {
+                    if (conferenceParticipant.getState() == Connection.STATE_NEW) {
                         if (!existingConnections.contains(conferenceParticipant)) {
+                            wasParticipantsAdded = true;
                             mTelephonyConference.addConnection(conferenceParticipant);
                         }
                     }
@@ -273,10 +276,17 @@ final class TelephonyConferenceController {
                 // Add the conference participants
                 for (Connection conferenceParticipant :
                         mConferenceParticipantConnections.values()) {
+                    wasParticipantsAdded = true;
                     mTelephonyConference.addConnection(conferenceParticipant);
                 }
 
                 mConnectionService.addConference(mTelephonyConference);
+            }
+
+            // If we added conference participants (e.g. via an IMS conference event package),
+            // notify the conference so that the MANAGE_CONFERENCE capability can be added.
+            if (wasParticipantsAdded) {
+                mTelephonyConference.setParticipantsReceived();
             }
 
             // Set the conference state to the same state as its child connections.
@@ -310,21 +320,40 @@ final class TelephonyConferenceController {
     }
 
     /**
-     * Handles state changes for a conference participant.
+     * Handles state changes for conference participant(s).
      *
      * @param parent The connection which was notified of the conference participant.
-     * @param participant The conference participant.
+     * @param participants The conference participant information.
      */
-    private void handleConferenceParticipantUpdate(
-            TelephonyConnection parent, ConferenceParticipant participant) {
+    private void handleConferenceParticipantsUpdate(
+            TelephonyConnection parent, List<ConferenceParticipant> participants) {
 
-        Uri endpoint = participant.getEndpoint();
-        if (!mConferenceParticipantConnections.containsKey(endpoint)) {
-            createConferenceParticipantConnection(parent, participant);
-        } else {
-            ConferenceParticipantConnection connection =
-                    mConferenceParticipantConnections.get(endpoint);
-            connection.updateState(participant.getState());
+        boolean recalculateConference = false;
+        ArrayList<ConferenceParticipant> newParticipants = new ArrayList<>(participants.size());
+
+        for (ConferenceParticipant participant : participants) {
+            Uri endpoint = participant.getEndpoint();
+            if (!mConferenceParticipantConnections.containsKey(endpoint)) {
+                createConferenceParticipantConnection(parent, participant);
+                newParticipants.add(participant);
+                recalculateConference = true;
+            } else {
+                ConferenceParticipantConnection connection =
+                        mConferenceParticipantConnections.get(endpoint);
+                connection.updateState(participant.getState());
+            }
+        }
+
+        if (recalculateConference) {
+            // Recalculate to add new connections to the conference.
+            recalculateConference();
+
+            // Now that conference is established, set the state for all participants.
+            for (ConferenceParticipant newParticipant : newParticipants) {
+                ConferenceParticipantConnection connection =
+                        mConferenceParticipantConnections.get(newParticipant.getEndpoint());
+                connection.updateState(newParticipant.getState());
+            }
         }
     }
 
@@ -346,13 +375,9 @@ final class TelephonyConferenceController {
         ConferenceParticipantConnection connection = new ConferenceParticipantConnection(
                 parent, participant);
         connection.addConnectionListener(mConnectionListener);
-        connection.updateState(Connection.STATE_HOLDING);
         mConferenceParticipantConnections.put(participant.getEndpoint(), connection);
         PhoneAccountHandle phoneAccountHandle =
-                TelecomAccountRegistry.makePstnPhoneAccountHandle(parent.getPhone());
+                 TelecomAccountRegistry.makePstnPhoneAccountHandle(parent.getPhone());
         mConnectionService.addExistingConnection(phoneAccountHandle, connection);
-        // Recalculate to add to the conference and set its state appropriately.
-        recalculateConference();
-        connection.updateState(participant.getState());
     }
 }

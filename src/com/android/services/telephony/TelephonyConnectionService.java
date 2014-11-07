@@ -429,8 +429,10 @@ public class TelephonyConnectionService extends ConnectionService {
     @Override
     public void removeConnection(Connection connection) {
         super.removeConnection(connection);
-        TelephonyConnection telephonyConnection = (TelephonyConnection)connection;
-        telephonyConnection.removeTelephonyConnectionListener(mTelephonyConnectionListener);
+        if (connection instanceof TelephonyConnection) {
+            TelephonyConnection telephonyConnection = (TelephonyConnection) connection;
+            telephonyConnection.removeTelephonyConnectionListener(mTelephonyConnectionListener);
+        }
     }
 
     /**
