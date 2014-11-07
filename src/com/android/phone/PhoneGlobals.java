@@ -162,6 +162,7 @@ public class PhoneGlobals extends ContextWrapper {
 
     // True if we are beginning a call, but the phone state has not changed yet
     private boolean mBeginningCall;
+    private boolean mDataDisconnectedDueToRoaming = false;
 
     // Last phone state seen by updatePhoneState()
     private PhoneConstants.State mLastPhoneState = PhoneConstants.State.IDLE;
@@ -800,9 +801,11 @@ public class PhoneGlobals extends ContextWrapper {
                         && "DISCONNECTED".equals(intent.getStringExtra(PhoneConstants.STATE_KEY))
                         && Phone.REASON_ROAMING_ON.equals(
                             intent.getStringExtra(PhoneConstants.STATE_CHANGE_REASON_KEY));
-                mHandler.sendEmptyMessage(disconnectedDueToRoaming
-                                          ? EVENT_DATA_ROAMING_DISCONNECTED
-                                          : EVENT_DATA_ROAMING_OK);
+                if (mDataDisconnectedDueToRoaming != disconnectedDueToRoaming) {
+                    mDataDisconnectedDueToRoaming = disconnectedDueToRoaming;
+                    mHandler.sendEmptyMessage(disconnectedDueToRoaming
+                            ? EVENT_DATA_ROAMING_DISCONNECTED : EVENT_DATA_ROAMING_OK);
+                }
             } else if ((action.equals(TelephonyIntents.ACTION_SIM_STATE_CHANGED)) &&
                     (mPUKEntryActivity != null)) {
                 // if an attempt to un-PUK-lock the device was made, while we're
