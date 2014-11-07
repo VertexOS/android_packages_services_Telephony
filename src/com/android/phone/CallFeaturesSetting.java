@@ -1207,7 +1207,6 @@ public class CallFeaturesSetting extends PreferenceActivity
         super.onCreate(icicle);
         if (DBG) log("onCreate: Intent is " + getIntent());
 
-        mPhone = PhoneGlobals.getPhone();
         mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
         mVmProviderSettingsUtil = new VoicemailProviderSettingsUtil(getApplicationContext());
 
@@ -1219,6 +1218,7 @@ public class CallFeaturesSetting extends PreferenceActivity
         mSubscriptionInfoHelper = new SubscriptionInfoHelper(getIntent());
         mSubscriptionInfoHelper.setActionBarTitle(
                 getActionBar(), getResources(), R.string.call_settings_with_label);
+        mPhone = mSubscriptionInfoHelper.getPhone();
    }
 
     private void initPhoneAccountPreferences() {
@@ -1273,7 +1273,6 @@ public class CallFeaturesSetting extends PreferenceActivity
         mVoicemailNotificationVibrate =
                 (CheckBoxPreference) findPreference(BUTTON_VOICEMAIL_NOTIFICATION_VIBRATE_KEY);
         initVoiceMailProviders();
-
 
         if (getResources().getBoolean(R.bool.dtmf_type_enabled)) {
             mButtonDTMF.setOnPreferenceChangeListener(this);
