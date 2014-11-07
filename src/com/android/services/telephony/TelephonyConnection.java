@@ -307,25 +307,6 @@ abstract class TelephonyConnection extends Connection {
         }
     }
 
-    @Override
-    public void onConferenceChanged() {
-        Conference conference = getConference();
-        if (conference == null) {
-            return;
-        }
-
-        // If the conference was an IMS connection currently or before, disable MANAGE_CONFERENCE
-        // as the default behavior. If there is a conference event package, this may be overridden.
-        if (mWasImsConnection) {
-            int capabilities = conference.getCapabilities();
-            if (PhoneCapabilities.can(capabilities, PhoneCapabilities.MANAGE_CONFERENCE)) {
-                int newCapabilities =
-                        PhoneCapabilities.remove(capabilities, PhoneCapabilities.MANAGE_CONFERENCE);
-                conference.setCapabilities(newCapabilities);
-            }
-        }
-    }
-
     public void performHold() {
         Log.v(this, "performHold");
         // TODO: Can dialing calls be put on hold as well since they take up the
@@ -810,6 +791,15 @@ abstract class TelephonyConnection extends Connection {
      */
     protected boolean isImsConnection() {
         return getOriginalConnection() instanceof ImsPhoneConnection;
+    }
+
+    /**
+     * Whether the original connection was ever an IMS connection, either before or now.
+     * @return {@code True} if the original connection was ever an IMS connection, {@code false}
+     *     otherwise.
+     */
+    public boolean wasImsConnection() {
+        return mWasImsConnection;
     }
 
     private static Uri getAddressFromNumber(String number) {
