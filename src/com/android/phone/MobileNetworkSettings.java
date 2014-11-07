@@ -76,6 +76,10 @@ public class MobileNetworkSettings extends PreferenceActivity
     private static final String BUTTON_ENABLED_NETWORKS_KEY = "enabled_networks_key";
     private static final String BUTTON_4G_LTE_KEY = "enhanced_4g_lte";
     private static final String BUTTON_CELL_BROADCAST_SETTINGS = "cell_broadcast_settings";
+    private static final String BUTTON_APN_EXPAND_KEY = "button_apn_key";
+    private static final String BUTTON_OPERATOR_SELECTION_EXPAND_KEY = "button_carrier_sel_key";
+    private static final String BUTTON_CARRIER_SETTINGS_KEY = "carrier_settings_key";
+    private static final String BUTTON_CDMA_SYSTEM_SELECT_KEY = "cdma_system_select_key";
 
     static final int preferredNetworkMode = Phone.PREFERRED_NT_MODE;
 
@@ -742,9 +746,11 @@ public class MobileNetworkSettings extends PreferenceActivity
                 }
                 break;
             case Phone.NT_MODE_LTE_GSM_WCDMA:
-                if(isWorldMode()) {
+                if (isWorldMode()) {
                     mButtonEnabledNetworks.setSummary(
                             R.string.preferred_network_mode_lte_gsm_umts_summary);
+                    controlCdmaOptions(false);
+                    controlGsmOptions(true);
                     break;
                 }
             case Phone.NT_MODE_LTE_ONLY:
@@ -761,9 +767,11 @@ public class MobileNetworkSettings extends PreferenceActivity
                 }
                 break;
             case Phone.NT_MODE_LTE_CDMA_AND_EVDO:
-                if(isWorldMode()) {
+                if (isWorldMode()) {
                     mButtonEnabledNetworks.setSummary(
                             R.string.preferred_network_mode_lte_cdma_summary);
+                    controlCdmaOptions(true);
+                    controlGsmOptions(false);
                 } else {
                     mButtonEnabledNetworks.setValue(
                             Integer.toString(Phone.NT_MODE_LTE_CDMA_AND_EVDO));
@@ -783,6 +791,10 @@ public class MobileNetworkSettings extends PreferenceActivity
                 mButtonEnabledNetworks.setSummary(R.string.network_1x);
                 break;
             case Phone.NT_MODE_LTE_CDMA_EVDO_GSM_WCDMA:
+                if (isWorldMode()) {
+                    controlCdmaOptions(true);
+                    controlGsmOptions(false);
+                }
                 mButtonEnabledNetworks.setValue(
                         Integer.toString(Phone.NT_MODE_LTE_CDMA_EVDO_GSM_WCDMA));
                 if (mPhone.getPhoneType() == PhoneConstants.PHONE_TYPE_CDMA) {
@@ -869,5 +881,47 @@ public class MobileNetworkSettings extends PreferenceActivity
         }
 
         return worldModeOn;
+    }
+
+    private void controlGsmOptions(boolean enable) {
+        PreferenceScreen prefSet = getPreferenceScreen();
+        if (prefSet == null) {
+            return;
+        }
+
+        if (enable && mGsmUmtsOptions == null) {
+            mGsmUmtsOptions = new GsmUmtsOptions(this, prefSet);
+        }
+        PreferenceScreen apnExpand =
+                (PreferenceScreen) prefSet.findPreference(BUTTON_APN_EXPAND_KEY);
+        PreferenceScreen operatorSelectionExpand =
+                (PreferenceScreen) prefSet.findPreference(BUTTON_OPERATOR_SELECTION_EXPAND_KEY);
+        PreferenceScreen carrierSettings =
+                (PreferenceScreen) prefSet.findPreference(BUTTON_CARRIER_SETTINGS_KEY);
+        if (apnExpand != null) {
+            apnExpand.setEnabled(enable);
+        }
+        if (operatorSelectionExpand != null) {
+            operatorSelectionExpand.setEnabled(enable);
+        }
+        if (carrierSettings != null) {
+            prefSet.removePreference(carrierSettings);
+        }
+    }
+
+    private void controlCdmaOptions(boolean enable) {
+        PreferenceScreen prefSet = getPreferenceScreen();
+        if (prefSet == null) {
+            return;
+        }
+        if (enable && mCdmaOptions == null) {
+            mCdmaOptions = new CdmaOptions(this, prefSet, mPhone);
+        }
+        CdmaSystemSelectListPreference systemSelect =
+                (CdmaSystemSelectListPreference)prefSet.findPreference
+                        (BUTTON_CDMA_SYSTEM_SELECT_KEY);
+        if (systemSelect != null) {
+            systemSelect.setEnabled(enable);
+        }
     }
 }
