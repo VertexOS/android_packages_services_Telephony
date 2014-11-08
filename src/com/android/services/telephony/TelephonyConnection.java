@@ -382,7 +382,6 @@ abstract class TelephonyConnection extends Connection {
     protected int buildCallCapabilities() {
         int callCapabilities = 0;
         if (isImsConnection()) {
-            callCapabilities |= PhoneCapabilities.ADD_CALL;
             callCapabilities |= PhoneCapabilities.SUPPORT_HOLD;
             if (getState() == STATE_ACTIVE || getState() == STATE_HOLDING) {
                 callCapabilities |= PhoneCapabilities.HOLD;

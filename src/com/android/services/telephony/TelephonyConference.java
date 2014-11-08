@@ -36,7 +36,6 @@ public class TelephonyConference extends Conference {
     public TelephonyConference(PhoneAccountHandle phoneAccount) {
         super(phoneAccount);
         setCapabilities(
-                PhoneCapabilities.ADD_CALL |
                 PhoneCapabilities.SUPPORT_HOLD |
                 PhoneCapabilities.HOLD |
                 PhoneCapabilities.MUTE |
