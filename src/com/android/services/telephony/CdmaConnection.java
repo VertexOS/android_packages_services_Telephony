@@ -160,9 +160,6 @@ final class CdmaConnection extends TelephonyConnection {
         if (mAllowMute) {
             capabilities |= PhoneCapabilities.MUTE;
         }
-        if (getConference() == null) {
-            capabilities |= PhoneCapabilities.ADD_CALL;
-        }
         return capabilities;
     }
 
