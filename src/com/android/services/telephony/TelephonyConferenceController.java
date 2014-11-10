@@ -117,8 +117,8 @@ final class TelephonyConferenceController {
     }
 
     private void recalculate() {
-        recalculateConferenceable();
         recalculateConference();
+        recalculateConferenceable();
     }
 
     private boolean isFullConference(Conference conference) {
@@ -183,6 +183,7 @@ final class TelephonyConferenceController {
                     nonConferencedConnections.add(c);
                 }
             }
+            Log.v(this, "conference conferenceable: %s", nonConferencedConnections);
             mTelephonyConference.setConferenceableConnections(nonConferencedConnections);
         }
 
