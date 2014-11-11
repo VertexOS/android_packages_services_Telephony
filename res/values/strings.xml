@@ -126,7 +126,7 @@
     <string name="settings_label">Network settings</string>
 
     <!-- Label for settings screen for phone accounts. -->
-    <string name="phone_accounts">Phone account settings</string>
+    <string name="phone_accounts">Calling accounts</string>
     <!-- Label for list item which opens a dialog to select the default outgoing account -->
     <string name="phone_accounts_make_calls_with">Make calls with</string>
     <!-- Label for list item which opens a dialog to select the default outgoing account for SIP calls. -->
