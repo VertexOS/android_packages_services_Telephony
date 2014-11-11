@@ -20,7 +20,7 @@
          and other settings UIs.  This is the version of the label for
          tablet devices, where the phone app handles mobile data but not
          actual phone calls. -->
-    <string name="phoneAppLabel" product="tablet">Mobile Data</string>
+    <string name="phoneAppLabel" product="tablet">Cellular Data</string>
 
     <!-- Official label of the phone app, as seen in "Manage Applications"
          and other settings UIs. -->
@@ -39,7 +39,7 @@
     <!-- Incoming call screen, string when number hidden -->
     <string name="private_num">Private number</string>
     <!-- Incoming call screen, string when called from a pay phone -->
-    <string name="payphone">Pay phone</string>
+    <string name="payphone">Payphone</string>
     <!-- In-call screen: status label for a call that's on hold -->
     <string name="onHold">On hold</string>
     <!-- Possible error messages with outgoing calls --><skip/>
@@ -286,9 +286,9 @@
     <!-- Button label used to dismiss the "Call settings error" dialog -->
     <string name="close_dialog">OK</string>
     <!-- Button label used in several settings-related dialogs -->
-    <string name="enable">Enable</string>
+    <string name="enable">Turn on</string>
     <!-- Button label used in several settings-related dialogs -->
-    <string name="disable">Disable</string>
+    <string name="disable">Turn off</string>
     <!-- Button label which indicates the user wants to update a stored
          phone number; used in several settings-related dialogs -->
     <string name="change_num">Update</string>
@@ -442,7 +442,7 @@
          "data roaming" feature turned off. -->
     <string name="roaming_reenable_message">You\'ve lost data connectivity because you left your home network with data roaming turned off.</string>
     <!-- Mobile network settings screen, dialog message when user selects the Data roaming check box -->
-    <string name="roaming_warning">Allow data roaming? You may incur significant roaming charges!</string>
+    <string name="roaming_warning">Allow data usage when roaming? Significant charges may apply.</string>
 
     <!-- USSD aggregation dialog box: separator strings between messages (new-lines will be added before and after) -->
     <string name="ussd_dialog_sep" translatable="false">----------</string>
@@ -813,21 +813,21 @@
     <!-- SIM PIN screen: error message when PIN is too short or too long -->
     <string name="invalidPin">Type a PIN that is 4 to 8 numbers.</string>
     <!-- Title of "Disable SIM PIN" screen -->
-    <string name="disable_sim_pin">Disable SIM PIN</string>
+    <string name="disable_sim_pin">Clear SIM PIN</string>
     <!-- Title of "Enable SIM PIN" screen -->
-    <string name="enable_sim_pin">Enable SIM PIN</string>
+    <string name="enable_sim_pin">Set SIM PIN</string>
     <!-- SIM PIN screen: progress message displayed while enabling -->
-    <string name="enable_in_progress">Please wait\u2026</string>
+    <string name="enable_in_progress">Setting PIN\u2026</string>
     <!-- SIM PIN screen: status message displayed in a popup (toast) -->
-    <string name="enable_pin_ok">SIM PIN enabled.</string>
+    <string name="enable_pin_ok">PIN set</string>
     <!-- SIM PIN screen: status message displayed in a popup (toast) -->
-    <string name="disable_pin_ok">SIM PIN disabled.</string>
+    <string name="disable_pin_ok">PIN cleared</string>
     <!-- SIM PIN screen: error message displayed in a popup (toast) -->
-    <string name="pin_failed">The PIN you typed was incorrect.</string>
+    <string name="pin_failed">PIN incorrect</string>
     <!-- SIM PIN screen: status message displayed in a popup (toast) -->
-    <string name="pin_changed">SIM PIN changed successfully.</string>
+    <string name="pin_changed">PIN updated</string>
     <!-- SIM PIN screen: error message displayed in a dialog -->
-    <string name="puk_requested">Password incorrect, PIN Blocked! PUK requested.</string>
+    <string name="puk_requested">Password incorrect. PIN now blocked. PUK requested.</string>
 
     <!-- SIM PIN2 strings -->
     <!-- SIM PIN2 screen: label for PIN entry widget -->
@@ -839,29 +839,29 @@
     <!-- SIM PIN2 screen: label for PIN entry widget -->
     <string name="confirmPin2Label">Confirm new PIN2</string>
     <!-- SIM PIN2 screen: error message -->
-    <string name="badPuk2">The PUK2 you typed isn\'t correct. Try again. </string>
+    <string name="badPuk2">PUK2 incorrect. Try again.</string>
     <!-- SIM PIN2 screen: error message -->
-    <string name="badPin2">The old PIN2 you typed isn\'t correct. Try again.</string>
+    <string name="badPin2">Old PIN2 incorrect. Try again.</string>
     <!-- SIM PIN2 screen: error message -->
-    <string name="mismatchPin2">The PIN2s you typed don\'t match. Try again.</string>
+    <string name="mismatchPin2">PIN2s don\'t match. Try again.</string>
     <!-- SIM PIN2 screen: error message -->
-    <string name="invalidPin2">Type a PIN2 that is 4 to 8 numbers.</string>
+    <string name="invalidPin2">Enter a PIN2 that is 4 to 8 numbers.</string>
     <!-- SIM PIN2 screen: error message -->
-    <string name="invalidPuk2">Type a PUK2 that is 8 numbers.</string>
+    <string name="invalidPuk2">Enter a PUK2 that is 8 numbers.</string>
     <!-- SIM PIN2 screen: status message displayed in a popup (toast) -->
-    <string name="pin2_changed">PIN2 changed successfully.</string>
+    <string name="pin2_changed">PIN2 updated</string>
     <!-- SIM PIN2 screen: label for PUK2 entry widget -->
-    <string name="label_puk2_code">Type PUK2 code</string>
+    <string name="label_puk2_code">Enter PUK2 code</string>
     <!-- SIM PIN2 screen: error message displayed in a dialog -->
-    <string name="fdn_enable_puk2_requested">Password incorrect, PIN2 Blocked. Please change PIN2 and retry!</string>
+    <string name="fdn_enable_puk2_requested">Password incorrect. PIN2 now Blocked. To try again, change PIN 2.</string>
     <!-- SIM PIN2 screen: error message displayed in a dialog -->
-    <string name="puk2_requested">Password incorrect, SIM is locked. PUK2 requested.</string>
+    <string name="puk2_requested">Password incorrect. SIM now locked. Enter PUK2.</string>
     <!-- SIM PIN2 screen: error message -->
     <string name="puk2_blocked">PUK2 is permanently blocked.</string>
     <!-- SIM PIN2 screen: error message -->
-    <string name="pin2_attempts">\nThere are <xliff:g id="number">%d</xliff:g> remaining attempts.</string>
+    <string name="pin2_attempts">\nYou have <xliff:g id="number">%d</xliff:g> remaining attempts.</string>
     <!-- SIM PIN screen: status message displayed in a popup (toast) -->
-    <string name="pin2_unblocked">PIN2 Unblocked!</string>
+    <string name="pin2_unblocked">PIN2 no longer blocked</string>
 
     <!-- SIM PIN screen: button label -->
     <string name="doneButton">Done</string>
@@ -880,7 +880,7 @@
     <!-- In-call screen: status label for a call in the "dialing" state -->
     <string name="card_title_dialing">Dialing</string>
     <!-- In-call screen: status label for a re-dialing call -->
-    <string name="card_title_redialing">Retrying</string>
+    <string name="card_title_redialing">Redialing</string>
     <!-- In-call screen: status label for a conference call -->
     <string name="card_title_conf_call">Conference call</string>
     <!-- In-call screen: status label for an incoming call -->
@@ -952,38 +952,38 @@
     <!-- In-call screen: call failure message displayed in an error dialog -->
     <string name="incall_error_out_of_service">Cellular network not available.</string>
     <!-- In-call screen: call failure message displayed in an error dialog -->
-    <string name="incall_error_no_phone_number_supplied">Call not sent, no valid number entered.</string>
+    <string name="incall_error_no_phone_number_supplied">To place a call, enter a valid number.</string>
     <!-- In-call screen: call failure message displayed in an error dialog -->
-    <string name="incall_error_call_failed">Call not sent.</string>
+    <string name="incall_error_call_failed">Can\'t call.</string>
     <!-- In-call screen: status message displayed in a dialog when starting an MMI -->
     <string name="incall_status_dialed_mmi">Starting MMI sequence\u2026</string>
     <!-- In-call screen: message displayed in an error dialog -->
-    <string name="incall_error_supp_service_unknown">Unsupported service.</string>
+    <string name="incall_error_supp_service_unknown">Service not supported</string>
     <!-- In-call screen: message displayed in an error dialog -->
-    <string name="incall_error_supp_service_switch">Unable to switch calls.</string>
+    <string name="incall_error_supp_service_switch">Can\'t switch calls.</string>
     <!-- In-call screen: message displayed in an error dialog -->
-    <string name="incall_error_supp_service_separate">Unable to separate call.</string>
+    <string name="incall_error_supp_service_separate">Can\'t separate call.</string>
     <!-- In-call screen: message displayed in an error dialog -->
-    <string name="incall_error_supp_service_transfer">Unable to transfer call.</string>
+    <string name="incall_error_supp_service_transfer">Can\'t transfer.</string>
     <!-- In-call screen: message displayed in an error dialog -->
-    <string name="incall_error_supp_service_conference">Unable to conference calls.</string>
+    <string name="incall_error_supp_service_conference">Can\'t conference.</string>
     <!-- In-call screen: message displayed in an error dialog -->
-    <string name="incall_error_supp_service_reject">Unable to reject call.</string>
+    <string name="incall_error_supp_service_reject">Can\'t reject call.</string>
     <!-- In-call screen: message displayed in an error dialog -->
-    <string name="incall_error_supp_service_hangup">Unable to release call(s).</string>
+    <string name="incall_error_supp_service_hangup">Can\'t release call(s).</string>
 
     <!-- Dialog title for the "radio enable" UI for emergency calls -->
     <string name="emergency_enable_radio_dialog_title">Emergency call</string>
     <!-- Status message for the "radio enable" UI for emergency calls -->
     <string name="emergency_enable_radio_dialog_message">Turning on radio\u2026</string>
     <!-- Status message for the "radio enable" UI for emergency calls -->
-    <string name="emergency_enable_radio_dialog_retry">Out of service area, retrying\u2026</string>
+    <string name="emergency_enable_radio_dialog_retry">No service. Trying again\u2026</string>
 
     <!-- Dialer text on Emergency Dialer -->
     <!-- Emergency dialer: message displayed in an error dialog -->
-    <string name="dial_emergency_error">Call not sent. <xliff:g id="non_emergency_number">%s</xliff:g> is not an emergency number!</string>
+    <string name="dial_emergency_error">Can\'t call. <xliff:g id="non_emergency_number">%s</xliff:g> is not an emergency number.</string>
     <!-- Emergency dialer: message displayed in an error dialog -->
-    <string name="dial_emergency_empty_error">Call not sent. Dial an emergency number!</string>
+    <string name="dial_emergency_empty_error">Can\'t call. Dial an emergency number.</string>
 
     <!-- Displayed in the text entry box in the dialer when in landscape mode to guide the user
          to dial using the physical keyboard -->
@@ -1098,9 +1098,9 @@
     <string name="ota_speaker">Speaker</string>
     <!-- String to be displayed on OTA listen screen once user has selected the
          correct option to begin provisioning -->
-    <string name="ota_progress">Wait while your phone is being programmed.</string>
+    <string name="ota_progress">Programming your phone\u2026</string>
     <!-- String to display within the OTA Fail Notice dialog -->
-    <string name="ota_failure">Programming unsuccessful</string>
+    <string name="ota_failure">Couldn\'t program your phone</string>
     <!-- String to be displayed on the OTA Fail/Success screen upon successful provisioning -->
     <string name="ota_successful">Your phone is now activated.  It may take up to 15 minutes for service to start.</string>
     <!-- String to be displayed on the OTA Fail/Success screen upon unsuccessful provisioning -->
@@ -1220,7 +1220,7 @@
 
     <!--  Setting option name to enable or disable dialpad autocomplete functionality
          [CHAR LIMIT=30] -->
-    <string name="dial_pad_autocomplete">Dial pad autocomplete</string>
+    <string name="dial_pad_autocomplete">Dialpad autocomplete</string>
 
     <!-- Title for the category "ringtone", which is shown above ringtone and vibration
          related settings.
