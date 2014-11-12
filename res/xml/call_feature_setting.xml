@@ -25,7 +25,7 @@
             android:targetPackage="com.android.phone"
             android:targetClass="com.android.phone.settings.PhoneAccountSettingsActivity"/>
 
-    </PreferenceScreen>>
+    </PreferenceScreen>
 
     <PreferenceScreen
         android:key="button_voicemail_category_key"
