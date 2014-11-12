@@ -1851,12 +1851,13 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     @Override
     public boolean setPreferredNetworkType(int networkType) {
         enforceModifyPermissionOrCarrierPrivilege();
+        final int phoneSubId = mPhone.getSubId();
         if (DBG) log("setPreferredNetworkType: type " + networkType);
         Boolean success = (Boolean) sendRequest(CMD_SET_PREFERRED_NETWORK_TYPE, networkType);
         if (DBG) log("setPreferredNetworkType: " + (success ? "ok" : "fail"));
         if (success) {
             Settings.Global.putInt(mPhone.getContext().getContentResolver(),
-                    Settings.Global.PREFERRED_NETWORK_MODE, networkType);
+                    Settings.Global.PREFERRED_NETWORK_MODE + phoneSubId, networkType);
         }
         return success;
     }
