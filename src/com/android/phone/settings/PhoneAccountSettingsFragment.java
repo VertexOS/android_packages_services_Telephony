@@ -12,7 +12,7 @@ import android.preference.PreferenceCategory;
 import android.preference.PreferenceFragment;
 import android.telecom.PhoneAccountHandle;
 import android.telecom.TelecomManager;
-import android.telephony.SubInfoRecord;
+import android.telephony.SubscriptionInfo;
 import android.telephony.SubscriptionManager;
 import android.telephony.TelephonyManager;
 import android.util.Log;
@@ -297,7 +297,7 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
     }
 
     private void initAccountList() {
-        for (SubInfoRecord subscription : SubscriptionManager.getActiveSubInfoList()) {
+        for (SubscriptionInfo subscription : SubscriptionManager.getActiveSubscriptionInfoList()) {
             CharSequence label = subscription.getDisplayName();
             Intent intent = new Intent(TelecomManager.ACTION_SHOW_CALL_SETTINGS);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
