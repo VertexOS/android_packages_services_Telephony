@@ -37,15 +37,15 @@ public class CdmaConference extends Conference {
 
     private int mCapabilities = PhoneCapabilities.MUTE;
 
-    public CdmaConference(PhoneAccountHandle phoneAccount, int capabilities) {
+    public CdmaConference(PhoneAccountHandle phoneAccount) {
         super(phoneAccount);
-        setCapabilities(mCapabilities | capabilities);
         setActive();
     }
 
     private void updateCapabilities() {
         setCapabilities(mCapabilities);
     }
+
     /**
      * Invoked when the Conference and all it's {@link Connection}s should be disconnected.
      */
