@@ -20,7 +20,7 @@ import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
-import android.telephony.SubInfoRecord;
+import android.telephony.SubscriptionInfo;
 import android.telephony.SubscriptionManager;
 import android.text.TextUtils;
 
@@ -75,7 +75,7 @@ public class SubscriptionInfoHelper {
         return intent;
     }
 
-    public static void addExtrasToIntent(Intent intent, SubInfoRecord subscription) {
+    public static void addExtrasToIntent(Intent intent, SubscriptionInfo subscription) {
         intent.putExtra(SubscriptionInfoHelper.SUB_ID_EXTRA, subscription.getSubscriptionId());
         intent.putExtra(
                 SubscriptionInfoHelper.SUB_LABEL_EXTRA, subscription.getDisplayName().toString());

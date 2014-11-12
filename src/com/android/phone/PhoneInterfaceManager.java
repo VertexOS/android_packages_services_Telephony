@@ -47,7 +47,7 @@ import android.telephony.NeighboringCellInfo;
 import android.telephony.RadioAccessFamily;
 import android.telephony.ServiceState;
 import android.telephony.SubscriptionManager;
-import android.telephony.SubInfoRecord;
+import android.telephony.SubscriptionInfo;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
@@ -769,8 +769,8 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         }
 
         boolean isValid = false;
-        List<SubInfoRecord> slist = SubscriptionManager.getActiveSubInfoList();
-        for (SubInfoRecord subInfoRecord : slist) {
+        List<SubscriptionInfo> slist = SubscriptionManager.getActiveSubscriptionInfoList();
+        for (SubscriptionInfo subInfoRecord : slist) {
             if (subInfoRecord.getSubscriptionId() == subId) {
                 isValid = true;
                 break;
