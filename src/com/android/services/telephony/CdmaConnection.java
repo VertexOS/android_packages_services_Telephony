@@ -20,7 +20,6 @@ import android.os.Handler;
 import android.os.Message;
 
 import android.provider.Settings;
-import android.telecom.PhoneCapabilities;
 import android.telephony.DisconnectCause;
 import android.telephony.PhoneNumberUtils;
 
@@ -155,10 +154,10 @@ final class CdmaConnection extends TelephonyConnection {
     }
 
     @Override
-    protected int buildCallCapabilities() {
-        int capabilities = super.buildCallCapabilities();
+    protected int buildConnectionCapabilities() {
+        int capabilities = super.buildConnectionCapabilities();
         if (mAllowMute) {
-            capabilities |= PhoneCapabilities.MUTE;
+            capabilities |= CAPABILITY_MUTE;
         }
         return capabilities;
     }

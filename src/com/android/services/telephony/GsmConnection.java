@@ -16,9 +16,6 @@
 
 package com.android.services.telephony;
 
-import android.telecom.PhoneCapabilities;
-
-import com.android.internal.telephony.CallStateException;
 import com.android.internal.telephony.Connection;
 
 /**
@@ -46,12 +43,12 @@ final class GsmConnection extends TelephonyConnection {
     }
 
     @Override
-    protected int buildCallCapabilities() {
-        int capabilities = super.buildCallCapabilities();
-        capabilities |= PhoneCapabilities.MUTE;
-        capabilities |= PhoneCapabilities.SUPPORT_HOLD;
+    protected int buildConnectionCapabilities() {
+        int capabilities = super.buildConnectionCapabilities();
+        capabilities |= CAPABILITY_MUTE;
+        capabilities |= CAPABILITY_SUPPORT_HOLD;
         if (getState() == STATE_ACTIVE || getState() == STATE_HOLDING) {
-            capabilities |= PhoneCapabilities.HOLD;
+            capabilities |= CAPABILITY_HOLD;
         }
         return capabilities;
     }
