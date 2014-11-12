@@ -1237,29 +1237,38 @@ public class CallFeaturesSetting extends PreferenceActivity
 
             int phoneType = mPhone.getPhoneType();
             Preference fdnButton = prefSet.findPreference(BUTTON_FDN_KEY);
-            if (phoneType == PhoneConstants.PHONE_TYPE_CDMA) {
+            boolean shouldHideCarrierSettings = Settings.Global.getInt(
+                    getContentResolver(), Settings.Global.HIDE_CARRIER_NETWORK_SETTINGS, 0) == 1;
+            if (shouldHideCarrierSettings) {
                 prefSet.removePreference(fdnButton);
-
-                if (!getResources().getBoolean(R.bool.config_voice_privacy_disable)) {
-                    addPreferencesFromResource(R.xml.cdma_call_privacy);
-                }
-            } else if (phoneType == PhoneConstants.PHONE_TYPE_GSM) {
-                fdnButton.setIntent(mSubscriptionInfoHelper.getIntent(this, FdnSetting.class));
-
-                if (getResources().getBoolean(R.bool.config_additional_call_setting)) {
-                    addPreferencesFromResource(R.xml.gsm_umts_call_options);
-
-                    Preference callForwardingPref = prefSet.findPreference(CALL_FORWARDING_KEY);
-                    callForwardingPref.setIntent(mSubscriptionInfoHelper.getIntent(
-                            this, GsmUmtsCallForwardOptions.class));
-
-                    Preference additionalGsmSettingsPref =
-                            prefSet.findPreference(ADDITIONAL_GSM_SETTINGS_KEY);
-                    additionalGsmSettingsPref.setIntent(mSubscriptionInfoHelper.getIntent(
-                            this, GsmUmtsAdditionalCallOptions.class));
+                if (mButtonDTMF != null) {
+                    prefSet.removePreference(mButtonDTMF);
                 }
             } else {
-                throw new IllegalStateException("Unexpected phone type: " + phoneType);
+                if (phoneType == PhoneConstants.PHONE_TYPE_CDMA) {
+                    prefSet.removePreference(fdnButton);
+
+                    if (!getResources().getBoolean(R.bool.config_voice_privacy_disable)) {
+                        addPreferencesFromResource(R.xml.cdma_call_privacy);
+                    }
+                } else if (phoneType == PhoneConstants.PHONE_TYPE_GSM) {
+                    fdnButton.setIntent(mSubscriptionInfoHelper.getIntent(this, FdnSetting.class));
+
+                    if (getResources().getBoolean(R.bool.config_additional_call_setting)) {
+                        addPreferencesFromResource(R.xml.gsm_umts_call_options);
+
+                        Preference callForwardingPref = prefSet.findPreference(CALL_FORWARDING_KEY);
+                        callForwardingPref.setIntent(mSubscriptionInfoHelper.getIntent(
+                                this, GsmUmtsCallForwardOptions.class));
+
+                        Preference additionalGsmSettingsPref =
+                                prefSet.findPreference(ADDITIONAL_GSM_SETTINGS_KEY);
+                        additionalGsmSettingsPref.setIntent(mSubscriptionInfoHelper.getIntent(
+                                this, GsmUmtsAdditionalCallOptions.class));
+                    }
+                } else {
+                    throw new IllegalStateException("Unexpected phone type: " + phoneType);
+                }
             }
         }
 
