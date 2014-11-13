@@ -145,7 +145,12 @@ public class TelephonyConnectionService extends ConnectionService {
                             android.telephony.DisconnectCause.OUT_OF_SERVICE, "Phone is null"));
         }
 
+        // Check both voice & data RAT to enable normal CS call,
+        // when voice RAT is OOS but Data RAT is present.
         int state = phone.getServiceState().getState();
+        if (state == ServiceState.STATE_OUT_OF_SERVICE) {
+            state = phone.getServiceState().getDataRegState();
+        }
         boolean useEmergencyCallHelper = false;
 
         if (isEmergencyNumber) {
