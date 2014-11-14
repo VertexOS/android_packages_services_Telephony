@@ -48,6 +48,7 @@ import android.preference.PreferenceActivity;
 import android.preference.PreferenceGroup;
 import android.preference.PreferenceScreen;
 import android.preference.SwitchPreference;
+import android.telephony.PhoneStateListener;
 import android.telephony.SubscriptionInfo;
 import android.telephony.SubscriptionManager;
 import android.telephony.TelephonyManager;
@@ -128,6 +129,22 @@ public class MobileNetworkSettings extends PreferenceActivity
     private boolean mShow4GForLTE;
     private boolean mIsGlobalCdma;
     private boolean mUnavailable;
+
+    private final PhoneStateListener mPhoneStateListener = new PhoneStateListener() {
+        /*
+         * Enable/disable the 'Enhanced 4G LTE Mode' when in/out of a call.
+         * @see android.telephony.PhoneStateListener#onCallStateChanged(int,
+         * java.lang.String)
+         */
+        @Override
+        public void onCallStateChanged(int state, String incomingNumber) {
+            if (DBG) log("PhoneStateListener.onCallStateChanged: state=" + state);
+            Preference pref = getPreferenceScreen().findPreference(BUTTON_4G_LTE_KEY);
+            if (pref != null) {
+                pref.setEnabled(state == TelephonyManager.CALL_STATE_IDLE);
+            }
+        }
+    };
 
     //This is a method implemented for DialogInterface.OnClickListener.
     //  Used to dismiss the dialogs when they come up.
@@ -353,6 +370,11 @@ public class MobileNetworkSettings extends PreferenceActivity
             mPhone.getPreferredNetworkType(mHandler.obtainMessage(
                     MyHandler.MESSAGE_GET_PREFERRED_NETWORK_TYPE));
         }
+
+        if (ImsManager.isVolteEnabledByPlatform(this)) {
+            TelephonyManager tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+            tm.listen(mPhoneStateListener, PhoneStateListener.LISTEN_CALL_STATE);
+        }
     }
 
     private void updateBody() {
@@ -495,6 +517,11 @@ public class MobileNetworkSettings extends PreferenceActivity
     @Override
     protected void onPause() {
         super.onPause();
+
+        if (ImsManager.isVolteEnabledByPlatform(this)) {
+            TelephonyManager tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+            tm.listen(mPhoneStateListener, PhoneStateListener.LISTEN_NONE);
+        }
     }
 
     /**
