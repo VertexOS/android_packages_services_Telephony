@@ -368,6 +368,7 @@ public class MobileNetworkSettings extends PreferenceActivity
             prefSet.addPreference(mButtonDataRoam);
             prefSet.addPreference(mButtonPreferredNetworkMode);
             prefSet.addPreference(mButtonEnabledNetworks);
+            prefSet.addPreference(mButton4glte);
         }
 
         int settingsNetworkMode = android.provider.Settings.Global.getInt(
