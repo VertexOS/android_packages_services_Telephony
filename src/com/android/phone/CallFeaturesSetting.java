@@ -52,6 +52,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.ListAdapter;
+import android.widget.Toast;
 
 import com.android.ims.ImsManager;
 import com.android.internal.telephony.CallForwardInfo;
@@ -1122,6 +1123,14 @@ public class CallFeaturesSetting extends PreferenceActivity
     protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
         if (DBG) log("onCreate: Intent is " + getIntent());
+
+        // Make sure we are running as the primary user.
+        if (UserHandle.myUserId() != UserHandle.USER_OWNER) {
+            Toast.makeText(this, R.string.call_settings_primary_user_only,
+                    Toast.LENGTH_SHORT).show();
+            finish();
+            return;
+        }
 
         mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
         mVmProviderSettingsUtil = new VoicemailProviderSettingsUtil(getApplicationContext());
