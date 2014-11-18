@@ -127,6 +127,8 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     private static final int EVENT_TRANSMIT_APDU_BASIC_CHANNEL_DONE = 30;
     private static final int CMD_EXCHANGE_SIM_IO = 31;
     private static final int EVENT_EXCHANGE_SIM_IO_DONE = 32;
+    private static final int CMD_SET_VOICEMAIL_NUMBER = 33;
+    private static final int EVENT_SET_VOICEMAIL_NUMBER_DONE = 34;
 
     /** The singleton instance. */
     private static PhoneInterfaceManager sInstance;
@@ -170,9 +172,16 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         public Object argument;
         /** The result of the request that is run on the main thread */
         public Object result;
+        /** The subscriber id that this request applies to. Null if default. */
+        public Integer subId;
 
         public MainThreadRequest(Object argument) {
             this.argument = argument;
+        }
+
+        public MainThreadRequest(Object argument, Integer subId) {
+            this.argument = argument;
+            this.subId = subId;
         }
     }
 
@@ -600,6 +609,18 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
                     }
                     break;
 
+                case CMD_SET_VOICEMAIL_NUMBER:
+                    request = (MainThreadRequest) msg.obj;
+                    onCompleted = obtainMessage(EVENT_SET_VOICEMAIL_NUMBER_DONE, request);
+                    Pair<String, String> tagNum = (Pair<String, String>) request.argument;
+                    Phone phone = (request.subId == null) ? mPhone : getPhone(request.subId);
+                    phone.setVoiceMailNumber(tagNum.first, tagNum.second, onCompleted);
+                    break;
+
+                case EVENT_SET_VOICEMAIL_NUMBER_DONE:
+                    handleNullReturnEvent(msg, "setVoicemailNumber");
+                    break;
+
                 default:
                     Log.w(LOG_TAG, "MainThreadHandler: unexpected message code: " + msg.what);
                     break;
@@ -639,12 +660,12 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
      * waits for the request to complete, and returns the result.
      * @see #sendRequestAsync
      */
-    private Object sendRequest(int command, Object argument, Object argument2) {
+    private Object sendRequest(int command, Object argument, Integer subId) {
         if (Looper.myLooper() == mMainThreadHandler.getLooper()) {
             throw new RuntimeException("This method will deadlock if called from the main thread.");
         }
 
-        MainThreadRequest request = new MainThreadRequest(argument);
+        MainThreadRequest request = new MainThreadRequest(argument, subId);
         Message msg = mMainThreadHandler.obtainMessage(command, request);
         msg.sendToTarget();
 
@@ -1469,6 +1490,17 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
      */
     public boolean needsOtaServiceProvisioning() {
         return mPhone.needsOtaServiceProvisioning();
+    }
+
+    /**
+     * Sets the voice mail number of a given subId.
+     */
+    @Override
+    public boolean setVoiceMailNumber(int subId, String alphaTag, String number) {
+        enforceModifyPermissionOrCarrierPrivilege();
+        Boolean success = (Boolean) sendRequest(CMD_SET_VOICEMAIL_NUMBER,
+                new Pair<String, String>(alphaTag, number), new Integer(subId));
+        return success;
     }
 
     /**
