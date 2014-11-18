@@ -23,64 +23,80 @@ import android.util.Log;
 import android.view.WindowManager;
 
 /**
- * Helper class for displaying the DisplayInfo sent by CDMA network.
+ * Helper class for displaying the a string triggered by a lower level Phone request
  */
-public class CdmaDisplayInfo {
-    private static final String LOG_TAG = "CdmaDisplayInfo";
+public class PhoneDisplayMessage {
+    private static final String LOG_TAG = "PhoneDisplayMessage";
     private static final boolean DBG = (SystemProperties.getInt("ro.debuggable", 0) == 1);
 
-    /** CDMA DisplayInfo dialog */
-    private static AlertDialog sDisplayInfoDialog = null;
+    /** Display message dialog */
+    private static AlertDialog sDisplayMessageDialog = null;
 
     /**
-     * Handle the DisplayInfo record and display the alert dialog with
-     * the network message.
+     * Display the alert dialog with the network message.
      *
      * @param context context to get strings.
      * @param infoMsg Text message from Network.
      */
-    public static void displayInfoRecord(Context context, String infoMsg) {
-
+    public static void displayNetworkMessage(Context context, String infoMsg) {
         if (DBG) log("displayInfoRecord: infoMsg=" + infoMsg);
 
-        if (sDisplayInfoDialog != null) {
-            sDisplayInfoDialog.dismiss();
+        String title = (String)context.getText(R.string.network_info_message);
+        displayMessage(context, title, infoMsg);
+    }
+
+    /**
+     * Display the alert dialog with the error message.
+     *
+     * @param context context to get strings.
+     * @param errorMsg Error message describing the network triggered error
+     */
+    public static void displayErrorMessage(Context context, String errorMsg) {
+        if (DBG) log("displayErrorMessage: errorMsg=" + errorMsg);
+
+        String title = (String)context.getText(R.string.network_error_message);
+        displayMessage(context, title, errorMsg);
+    }
+
+    public static void displayMessage(Context context, String title, String msg) {
+        if (DBG) log("displayMessage: msg=" + msg);
+
+        if (sDisplayMessageDialog != null) {
+            sDisplayMessageDialog.dismiss();
         }
 
         // displaying system alert dialog on the screen instead of
         // using another activity to display the message.  This
         // places the message at the forefront of the UI.
-        sDisplayInfoDialog = new AlertDialog.Builder(context)
+        sDisplayMessageDialog = new AlertDialog.Builder(context)
                 .setIcon(android.R.drawable.ic_dialog_info)
-                .setTitle(context.getText(R.string.network_message))
-                .setMessage(infoMsg)
+                .setTitle(title)
+                .setMessage(msg)
                 .setCancelable(true)
                 .create();
 
-        sDisplayInfoDialog.getWindow().setType(
+        sDisplayMessageDialog.getWindow().setType(
                 WindowManager.LayoutParams.TYPE_SYSTEM_DIALOG);
-        sDisplayInfoDialog.getWindow().addFlags(
+        sDisplayMessageDialog.getWindow().addFlags(
                 WindowManager.LayoutParams.FLAG_DIM_BEHIND);
 
-        sDisplayInfoDialog.show();
+        sDisplayMessageDialog.show();
         PhoneGlobals.getInstance().wakeUpScreen();
-
     }
 
     /**
      * Dismiss the DisplayInfo record
      */
-    public static void dismissDisplayInfoRecord() {
-
+    public static void dismissMessage() {
         if (DBG) log("Dissmissing Display Info Record...");
 
-        if (sDisplayInfoDialog != null) {
-            sDisplayInfoDialog.dismiss();
-            sDisplayInfoDialog = null;
+        if (sDisplayMessageDialog != null) {
+            sDisplayMessageDialog.dismiss();
+            sDisplayMessageDialog = null;
         }
     }
 
     private static void log(String msg) {
-        Log.d(LOG_TAG, "[CdmaDisplayInfo] " + msg);
+        Log.d(LOG_TAG, "[PhoneDisplayMessage] " + msg);
     }
 }

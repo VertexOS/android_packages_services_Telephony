@@ -56,6 +56,13 @@ class CallStateMonitor extends Handler {
     public static final int PHONE_RINGBACK_TONE = 11;
     public static final int PHONE_RESEND_MUTE = 12;
     public static final int PHONE_ON_DIAL_CHARS = 13;
+    public static final int PHONE_SUPP_SERVICE_FAILED = 14;
+    // Events generated internally.
+    // We should store all the possible event type values in one place to make sure that
+    // they don't step on each others' toes.
+    public static final int INTERNAL_PHONE_MWI_CHANGED = 21;
+    public static final int INTERNAL_SHOW_MESSAGE_NOTIFICATION_DONE = 22;
+    public static final int INTERNAL_UPDATE_IN_CALL_NOTIFICATION = 23;
 
     // Other events from call manager
     public static final int EVENT_OTA_PROVISION_CHANGE = 20;
@@ -89,6 +96,7 @@ class CallStateMonitor extends Handler {
         callManager.registerForSignalInfo(this, PHONE_STATE_SIGNALINFO, null);
         callManager.registerForInCallVoicePrivacyOn(this, PHONE_ENHANCED_VP_ON, null);
         callManager.registerForInCallVoicePrivacyOff(this, PHONE_ENHANCED_VP_OFF, null);
+        callManager.registerForSuppServiceFailed(this, PHONE_SUPP_SERVICE_FAILED, null);
         //callManager.registerForRingbackTone(this, PHONE_RINGBACK_TONE, null);
         //callManager.registerForResendIncallMute(this, PHONE_RESEND_MUTE, null);
         //callManager.registerForPostDialCharacter(this, PHONE_ON_DIAL_CHARS, null);
@@ -136,6 +144,7 @@ class CallStateMonitor extends Handler {
         callManager.unregisterForInCallVoicePrivacyOn(this);
         callManager.unregisterForInCallVoicePrivacyOff(this);
         //callManager.unregisterForPostDialCharacter(this);
+        callManager.unregisterForSuppServiceFailed(this);
 
         registerForNotifications();
     }
