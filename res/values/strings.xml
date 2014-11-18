@@ -968,7 +968,7 @@
     <!-- In-call screen: message displayed in an error dialog -->
     <string name="incall_error_supp_service_transfer">Can\'t transfer.</string>
     <!-- In-call screen: message displayed in an error dialog -->
-    <string name="incall_error_supp_service_conference">Can\'t conference.</string>
+    <string name="incall_error_supp_service_conference">Unable to conference calls.</string>
     <!-- In-call screen: message displayed in an error dialog -->
     <string name="incall_error_supp_service_reject">Can\'t reject call.</string>
     <!-- In-call screen: message displayed in an error dialog -->
@@ -1066,7 +1066,9 @@
     </string-array>
 
     <!-- Title for the dialog used to display CDMA DisplayInfo -->
-    <string name="network_message">Network message</string>
+    <string name="network_info_message">Network message</string>
+    <!-- Title for the dialog used to display a network error message to the user -->
+    <string name="network_error_message">Error message</string>
 
     <!-- OTA-specific strings -->
     <!-- Title shown on OTA screen -->
