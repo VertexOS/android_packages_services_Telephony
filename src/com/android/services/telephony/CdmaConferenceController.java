@@ -156,11 +156,11 @@ final class CdmaConferenceController {
             CdmaConnection newConnection = mCdmaConnections.get(mCdmaConnections.size() - 1);
             if (newConnection.isOutgoing()) {
                 // Only an outgoing call can be merged with an ongoing call.
-                mConference.setCapabilities(PhoneCapabilities.MERGE_CONFERENCE);
+                mConference.updateCapabilities(PhoneCapabilities.MERGE_CONFERENCE);
             } else {
                 // If the most recently added connection was an incoming call, enable
                 // swap instead of merge.
-                mConference.setCapabilities(PhoneCapabilities.SWAP_CONFERENCE);
+                mConference.updateCapabilities(PhoneCapabilities.SWAP_CONFERENCE);
             }
 
             // 2) Add any new connections to the conference
