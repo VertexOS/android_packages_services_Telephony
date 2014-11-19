@@ -651,6 +651,24 @@
         <item>"10"</item>
     </string-array>
 
+    <string-array name="enabled_networks_cdma_no_lte_choices" translatable="false">
+        <item>@string/network_3G</item>
+        <item>@string/network_1x</item>
+    </string-array>
+    <string-array name="enabled_networks_cdma_no_lte_values" translatable="false">
+        <item>"4"</item>
+        <item>"5"</item>
+    </string-array>
+
+    <string-array name="enabled_networks_cdma_only_lte_choices" translatable="false">
+        <item>@string/network_lte</item>
+        <item>@string/network_global</item>
+    </string-array>
+    <string-array name="enabled_networks_cdma_only_lte_values" translatable="false">
+        <item>"8"</item>
+        <item>"10"</item>
+    </string-array>
+
     <!-- CDMA System select strings -->
     <!-- Mobile network settings screen, setting option name -->
     <string name="cdma_system_select_title">System select</string>
