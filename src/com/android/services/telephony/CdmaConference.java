@@ -34,16 +34,16 @@ import java.util.List;
  * CDMA-based conference call.
  */
 public class CdmaConference extends Conference {
-
-    private int mCapabilities = PhoneCapabilities.MUTE;
+    private int mCapabilities;
 
     public CdmaConference(PhoneAccountHandle phoneAccount) {
         super(phoneAccount);
         setActive();
     }
 
-    private void updateCapabilities() {
-        setCapabilities(mCapabilities);
+    public void updateCapabilities(int capabilities) {
+        capabilities |=  PhoneCapabilities.MUTE | PhoneCapabilities.GENERIC_CONFERENCE;
+        setCapabilities(capabilities);
     }
 
     /**
@@ -89,7 +89,7 @@ public class CdmaConference extends Conference {
         if (isSwapSupportedAfterMerge()){
             mCapabilities |= PhoneCapabilities.SWAP_CONFERENCE;
         }
-        updateCapabilities();
+        updateCapabilities(mCapabilities);
         sendFlash();
     }
 
