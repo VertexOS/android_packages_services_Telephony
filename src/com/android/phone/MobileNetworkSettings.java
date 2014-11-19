@@ -379,8 +379,6 @@ public class MobileNetworkSettings extends PreferenceActivity
 
     private void updateBody() {
         final Context context = getApplicationContext();
-        final TelephonyManager tm =
-                (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         PreferenceScreen prefSet = getPreferenceScreen();
         boolean isLteOnCdma = mPhone.getLteOnCdmaMode() == PhoneConstants.LTE_ON_CDMA_TRUE;
         final int phoneSubId = mPhone.getSubId();
@@ -416,13 +414,46 @@ public class MobileNetworkSettings extends PreferenceActivity
             mGsmUmtsOptions = new GsmUmtsOptions(this, prefSet);
         } else {
             prefSet.removePreference(mButtonPreferredNetworkMode);
-            int phoneType = mPhone.getPhoneType();
+            final int phoneType = mPhone.getPhoneType();
             if (phoneType == PhoneConstants.PHONE_TYPE_CDMA) {
+                int lteForced = android.provider.Settings.Global.getInt(
+                        mPhone.getContext().getContentResolver(),
+                        android.provider.Settings.Global.LTE_SERVICE_FORCED + mPhone.getSubId(),
+                        0);
+
                 if (isLteOnCdma) {
-                    mButtonEnabledNetworks.setEntries(
-                            R.array.enabled_networks_cdma_choices);
-                    mButtonEnabledNetworks.setEntryValues(
-                            R.array.enabled_networks_cdma_values);
+                    if (lteForced == 0) {
+                        mButtonEnabledNetworks.setEntries(
+                                R.array.enabled_networks_cdma_choices);
+                        mButtonEnabledNetworks.setEntryValues(
+                                R.array.enabled_networks_cdma_values);
+                    } else {
+                        switch (settingsNetworkMode) {
+                            case Phone.NT_MODE_CDMA:
+                            case Phone.NT_MODE_CDMA_NO_EVDO:
+                            case Phone.NT_MODE_EVDO_NO_CDMA:
+                                mButtonEnabledNetworks.setEntries(
+                                        R.array.enabled_networks_cdma_no_lte_choices);
+                                mButtonEnabledNetworks.setEntryValues(
+                                        R.array.enabled_networks_cdma_no_lte_values);
+                                break;
+                            case Phone.NT_MODE_GLOBAL:
+                            case Phone.NT_MODE_LTE_CDMA_AND_EVDO:
+                            case Phone.NT_MODE_LTE_CDMA_EVDO_GSM_WCDMA:
+                            case Phone.NT_MODE_LTE_ONLY:
+                                mButtonEnabledNetworks.setEntries(
+                                        R.array.enabled_networks_cdma_only_lte_choices);
+                                mButtonEnabledNetworks.setEntryValues(
+                                        R.array.enabled_networks_cdma_only_lte_values);
+                                break;
+                            default:
+                                mButtonEnabledNetworks.setEntries(
+                                        R.array.enabled_networks_cdma_choices);
+                                mButtonEnabledNetworks.setEntryValues(
+                                        R.array.enabled_networks_cdma_values);
+                                break;
+                        }
+                    }
                 }
                 mCdmaOptions = new CdmaOptions(this, prefSet, mPhone);
             } else if (phoneType == PhoneConstants.PHONE_TYPE_GSM) {
