@@ -29,6 +29,19 @@ final class GsmConnection extends TelephonyConnection {
         super(connection);
     }
 
+    /**
+     * Clones the current {@link GsmConnection}.
+     * <p>
+     * Listeners are not copied to the new instance.
+     *
+     * @return The cloned connection.
+     */
+    @Override
+    public TelephonyConnection cloneConnection() {
+        GsmConnection gsmConnection = new GsmConnection(getOriginalConnection());
+        return gsmConnection;
+    }
+
     /** {@inheritDoc} */
     @Override
     public void onPlayDtmfTone(char digit) {

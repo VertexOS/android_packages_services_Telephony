@@ -251,14 +251,17 @@ public class ImsConferenceController {
      * @param connection The connection to the Ims server.
      */
     private void startConference(TelephonyConnection connection) {
-        com.android.internal.telephony.Connection originalConnection =
-                connection.getOriginalConnection();
         if (Log.VERBOSE) {
             Log.v(this, "Start new ImsConference - connection: %s", connection);
         }
 
+        // Make a clone of the connection which will become the Ims conference host connection.
+        // This is necessary since the Connection Service does not support removing a connection
+        // from Telecom.  Instead we create a new instance and remove the old one from telecom.
+        TelephonyConnection conferenceHostConnection = connection.cloneConnection();
+
         // Create conference and add to telecom
-        ImsConference conference = new ImsConference(mConnectionService, originalConnection);
+        ImsConference conference = new ImsConference(mConnectionService, conferenceHostConnection);
         conference.setState(connection.getState());
         mConnectionService.addConference(conference);
         conference.addListener(mConferenceListener);
