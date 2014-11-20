@@ -33,12 +33,6 @@ import java.util.List;
  */
 public class TelephonyConference extends Conference {
 
-    /**
-     * When {@code true}, indicates that conference participant information from an IMS conference
-     * event package has been received.
-     */
-    private boolean mParticipantsReceived = false;
-
     public TelephonyConference(PhoneAccountHandle phoneAccount) {
         super(phoneAccount);
         setCapabilities(
@@ -55,17 +49,30 @@ public class TelephonyConference extends Conference {
     @Override
     public void onDisconnect() {
         for (Connection connection : getConnections()) {
-            Call call = getMultipartyCallForConnection(connection, "onDisconnect");
-            if (call != null) {
-                Log.d(this, "Found multiparty call to hangup for conference.");
-                try {
-                    call.hangup();
-                    break;
-                } catch (CallStateException e) {
-                    Log.e(this, e, "Exception thrown trying to hangup conference");
-                }
+            if (disconnectCall(connection)) {
+                break;
             }
         }
+    }
+
+    /**
+     * Disconnect the underlying Telephony Call for a connection.
+     *
+     * @param connection The connection.
+     * @return {@code True} if the call was disconnected.
+     */
+    private boolean disconnectCall(Connection connection) {
+        Call call = getMultipartyCallForConnection(connection, "onDisconnect");
+        if (call != null) {
+            Log.d(this, "Found multiparty call to hangup for conference.");
+            try {
+                call.hangup();
+                return true;
+            } catch (CallStateException e) {
+                Log.e(this, e, "Exception thrown trying to hangup conference");
+            }
+        }
+        return false;
     }
 
     /**
@@ -140,8 +147,7 @@ public class TelephonyConference extends Conference {
         // as the default behavior. If there is a conference event package, this may be overridden.
         // If a conference event package was received, do not attempt to remove manage conference.
         if (connection instanceof TelephonyConnection &&
-                ((TelephonyConnection) connection).wasImsConnection() &&
-                !mParticipantsReceived) {
+                ((TelephonyConnection) connection).wasImsConnection()) {
             int capabilities = getCapabilities();
             if (PhoneCapabilities.can(capabilities, PhoneCapabilities.MANAGE_CONFERENCE)) {
                 int newCapabilities =
@@ -153,11 +159,17 @@ public class TelephonyConference extends Conference {
 
     @Override
     public Connection getPrimaryConnection() {
+
+        List<Connection> connections = getConnections();
+        if (connections == null || connections.isEmpty()) {
+            return null;
+        }
+
         // Default to the first connection.
-        Connection primaryConnection = getConnections().get(0);
+        Connection primaryConnection = connections.get(0);
 
         // Otherwise look for a connection where the radio connection states it is multiparty.
-        for (Connection connection : getConnections()) {
+        for (Connection connection : connections) {
             com.android.internal.telephony.Connection radioConnection =
                     getOriginalConnection(connection);
 
@@ -182,7 +194,7 @@ public class TelephonyConference extends Conference {
         return null;
     }
 
-    private com.android.internal.telephony.Connection getOriginalConnection(
+    protected com.android.internal.telephony.Connection getOriginalConnection(
             Connection connection) {
 
         if (connection instanceof TelephonyConnection) {
@@ -198,18 +210,5 @@ public class TelephonyConference extends Conference {
             return null;
         }
         return (TelephonyConnection) connections.get(0);
-    }
-
-    /**
-     * Flags the conference to indicate that a conference event package has been received and there
-     * is now participant data present which would permit conference management.
-     */
-    public void setParticipantsReceived() {
-        if (!mParticipantsReceived) {
-            int capabilities = getCapabilities();
-            capabilities |= PhoneCapabilities.MANAGE_CONFERENCE;
-            setCapabilities(capabilities);
-        }
-        mParticipantsReceived = true;
     }
 }
