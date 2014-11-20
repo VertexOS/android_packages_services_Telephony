@@ -24,6 +24,7 @@ import android.telecom.AudioState;
 import android.telecom.Conference;
 import android.telecom.ConferenceParticipant;
 import android.telecom.Connection;
+import android.telecom.DisconnectCause;
 import android.telecom.PhoneAccount;
 import android.telecom.PhoneCapabilities;
 
@@ -31,6 +32,9 @@ import com.android.internal.telephony.Call;
 import com.android.internal.telephony.CallStateException;
 import com.android.internal.telephony.Connection.PostDialListener;
 import com.android.internal.telephony.Phone;
+import com.android.internal.telephony.cdma.CdmaCall;
+import com.android.internal.telephony.gsm.*;
+import com.android.internal.telephony.gsm.GsmConnection;
 import com.android.internal.telephony.imsphone.ImsPhoneConnection;
 
 import java.lang.Override;
@@ -442,12 +446,8 @@ abstract class TelephonyConnection extends Connection {
 
     void setOriginalConnection(com.android.internal.telephony.Connection originalConnection) {
         Log.v(this, "new TelephonyConnection, originalConnection: " + originalConnection);
-        if (mOriginalConnection != null) {
-            getPhone().unregisterForPreciseCallStateChanged(mHandler);
-            getPhone().unregisterForRingbackTone(mHandler);
-            getPhone().unregisterForHandoverStateChanged(mHandler);
-            getPhone().unregisterForDisconnect(mHandler);
-        }
+        clearOriginalConnection();
+
         mOriginalConnection = originalConnection;
         getPhone().registerForPreciseCallStateChanged(
                 mHandler, MSG_PRECISE_CALL_STATE_CHANGED, null);
@@ -471,6 +471,19 @@ abstract class TelephonyConnection extends Connection {
 
         fireOnOriginalConnectionConfigured();
         updateAddress();
+    }
+
+    /**
+     * Un-sets the underlying radio connection.
+     */
+    void clearOriginalConnection() {
+        if (mOriginalConnection != null) {
+            getPhone().unregisterForPreciseCallStateChanged(mHandler);
+            getPhone().unregisterForRingbackTone(mHandler);
+            getPhone().unregisterForHandoverStateChanged(mHandler);
+            getPhone().unregisterForDisconnect(mHandler);
+            mOriginalConnection = null;
+        }
     }
 
     protected void hangup(int telephonyDisconnectCode) {
@@ -870,5 +883,42 @@ abstract class TelephonyConnection extends Connection {
         for (TelephonyConnectionListener l : mTelephonyListeners) {
             l.onOriginalConnectionConfigured(this);
         }
+    }
+
+    /**
+     * Creates a string representation of this {@link TelephonyConnection}.  Primarily intended for
+     * use in log statements.
+     *
+     * @return String representation of the connection.
+     */
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("[TelephonyConnection objId:");
+        sb.append(System.identityHashCode(this));
+        sb.append(" type:");
+        if (isImsConnection()) {
+            sb.append("ims");
+        } else if (this instanceof com.android.services.telephony.GsmConnection) {
+            sb.append("gsm");
+        } else if (this instanceof CdmaConnection) {
+            sb.append("cdma");
+        }
+        sb.append(" state:");
+        sb.append(Connection.stateToString(getState()));
+        sb.append(" capabilities:");
+        sb.append(PhoneCapabilities.toString(getCallCapabilities()));
+        sb.append(" address:");
+        sb.append(Log.pii(getAddress()));
+        sb.append(" originalConnection:");
+        sb.append(mOriginalConnection);
+        sb.append(" partOfConf:");
+        if (getConference() == null) {
+            sb.append("N");
+        } else {
+            sb.append("Y");
+        }
+        sb.append("]");
+        return sb.toString();
     }
 }

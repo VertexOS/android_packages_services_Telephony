@@ -52,6 +52,8 @@ public class TelephonyConnectionService extends ConnectionService {
             new TelephonyConferenceController(this);
     private final CdmaConferenceController mCdmaConferenceController =
             new CdmaConferenceController(this);
+    private final ImsConferenceController mImsConferenceController =
+            new ImsConferenceController(this);
     private ComponentName mExpectedComponentName = null;
     private EmergencyCallHelper mEmergencyCallHelper;
     private EmergencyTonePlayer mEmergencyTonePlayer;
@@ -448,7 +450,7 @@ public class TelephonyConnectionService extends ConnectionService {
         // conference controllers first before re-adding it.
         if (connection.isImsConnection()) {
             Log.d(this, "Adding IMS connection to conference controller: " + connection);
-            mTelephonyConferenceController.add(connection);
+            mImsConferenceController.add(connection);
         } else {
             int phoneType = connection.getCall().getPhone().getPhoneType();
             if (phoneType == TelephonyManager.PHONE_TYPE_GSM) {
