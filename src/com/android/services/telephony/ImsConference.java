@@ -32,6 +32,7 @@ import android.telecom.VideoProfile;
 import com.android.internal.telephony.Call;
 import com.android.internal.telephony.CallStateException;
 import com.android.internal.telephony.Phone;
+import com.android.internal.telephony.PhoneConstants;
 import com.android.internal.telephony.imsphone.ImsPhoneConnection;
 import com.android.phone.PhoneUtils;
 import com.android.phone.R;
@@ -594,6 +595,7 @@ public class ImsConference extends Conference {
 
         participant.removeConnectionListener(mParticipantListener);
         mConferenceParticipantConnections.remove(participant.getUserEntity());
+        mTelephonyConnectionService.removeConnection(participant);
     }
 
     /**
@@ -641,7 +643,12 @@ public class ImsConference extends Conference {
 
             PhoneAccountHandle phoneAccountHandle =
                     PhoneUtils.makePstnPhoneAccountHandle(mConferenceHost.getPhone());
-            mTelephonyConnectionService.addExistingConnection(phoneAccountHandle, mConferenceHost);
+            if (mConferenceHost.getPhone().getPhoneType() == PhoneConstants.PHONE_TYPE_GSM) {
+                GsmConnection c = new GsmConnection(originalConnection);
+                c.updateState();
+                mTelephonyConnectionService.addExistingConnection(phoneAccountHandle, c);
+                mTelephonyConnectionService.addConnectionToConferenceController(c);
+            } // CDMA case not applicable for SRVCC
             mConferenceHost.removeConnectionListener(mConferenceHostListener);
             mConferenceHost.removeTelephonyConnectionListener(mTelephonyConnectionListener);
             mConferenceHost = null;
