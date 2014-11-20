@@ -133,14 +133,13 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     /** The singleton instance. */
     private static PhoneInterfaceManager sInstance;
 
-    private PhoneGlobals mApp;
-    private Phone mPhone;
-    private CallManager mCM;
-    private AppOpsManager mAppOps;
-    private MainThreadHandler mMainThreadHandler;
-    private SubscriptionManager mSubscriptionManager;
-    private SharedPreferences mTelephonySharedPreferences;
+    PhoneGlobals mApp;
+    Phone mPhone;
+    CallManager mCM;
+    AppOpsManager mAppOps;
+    MainThreadHandler mMainThreadHandler;
 
+    SharedPreferences mTelephonySharedPreferences;
     private static final String PREF_CARRIERS_ALPHATAG_PREFIX = "carrier_alphtag_";
     private static final String PREF_CARRIERS_NUMBER_PREFIX = "carrier_number_";
     private static final String PREF_ENABLE_VIDEO_CALLING = "enable_video_calling";
@@ -727,8 +726,6 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         mMainThreadHandler = new MainThreadHandler();
         mTelephonySharedPreferences =
                 PreferenceManager.getDefaultSharedPreferences(mPhone.getContext());
-        mSubscriptionManager = SubscriptionManager.from(app);
-
         publish();
     }
 
@@ -793,13 +790,11 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         }
 
         boolean isValid = false;
-        List<SubscriptionInfo> slist = mSubscriptionManager.getActiveSubscriptionInfoList();
-        if (slist != null) {
-            for (SubscriptionInfo subInfoRecord : slist) {
-                if (subInfoRecord.getSubscriptionId() == subId) {
-                    isValid = true;
-                    break;
-                }
+        List<SubscriptionInfo> slist = SubscriptionManager.getActiveSubscriptionInfoList();
+        for (SubscriptionInfo subInfoRecord : slist) {
+            if (subInfoRecord.getSubscriptionId() == subId) {
+                isValid = true;
+                break;
             }
         }
         if (isValid == false) {
