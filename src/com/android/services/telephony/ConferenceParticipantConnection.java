@@ -19,8 +19,8 @@ package com.android.services.telephony;
 import com.android.internal.telephony.PhoneConstants;
 
 import android.net.Uri;
-import android.telecom.ConferenceParticipant;
 import android.telecom.Connection;
+import android.telecom.ConferenceParticipant;
 import android.telecom.DisconnectCause;
 import android.telecom.PhoneCapabilities;
 
@@ -37,7 +37,7 @@ public class ConferenceParticipantConnection extends Connection {
     /**
      * The connection which owns this participant.
      */
-    private final Connection mParentConnection;
+    private final com.android.internal.telephony.Connection mParentConnection;
 
     /**
      * Creates a new instance.
@@ -45,7 +45,8 @@ public class ConferenceParticipantConnection extends Connection {
      * @param participant The conference participant to create the instance for.
      */
     public ConferenceParticipantConnection(
-            Connection parentConnection, ConferenceParticipant participant) {
+            com.android.internal.telephony.Connection parentConnection,
+            ConferenceParticipant participant) {
 
         mParentConnection = parentConnection;
         setAddress(participant.getHandle(), PhoneConstants.PRESENTATION_ALLOWED);
@@ -61,6 +62,8 @@ public class ConferenceParticipantConnection extends Connection {
      * @param newState The new state.
      */
     public void updateState(int newState) {
+        Log.v(this, "updateState endPoint: %s state: %s", Log.pii(mEndpoint),
+                Connection.stateToString(newState));
         if (newState == getState()) {
             return;
         }
@@ -100,9 +103,16 @@ public class ConferenceParticipantConnection extends Connection {
      */
     @Override
     public void onDisconnect() {
-        Log.v(this, "onDisconnect");
-
         mParentConnection.onDisconnectConferenceParticipant(mEndpoint);
+    }
+
+    /**
+     * Retrieves the endpoint for this connection.
+     *
+     * @return The endpoint.
+     */
+    public Uri getEndpoint() {
+        return mEndpoint;
     }
 
     /**
@@ -113,5 +123,26 @@ public class ConferenceParticipantConnection extends Connection {
     private void setCapabilities() {
         int capabilities = PhoneCapabilities.DISCONNECT_FROM_CONFERENCE;
         setCallCapabilities(capabilities);
+    }
+
+    /**
+     * Builds a string representation of this conference participant connection.
+     *
+     * @return String representation of connection.
+     */
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("[ConferenceParticipantConnection objId:");
+        sb.append(System.identityHashCode(this));
+        sb.append(" endPoint:");
+        sb.append(Log.pii(mEndpoint));
+        sb.append(" parentConnection:");
+        sb.append(Log.pii(mParentConnection.getAddress()));
+        sb.append(" state:");
+        sb.append(Connection.stateToString(getState()));
+        sb.append("]");
+
+        return sb.toString();
     }
 }
