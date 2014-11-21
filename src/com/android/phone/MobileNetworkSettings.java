@@ -102,8 +102,6 @@ public class MobileNetworkSettings extends PreferenceActivity
     private static final String UP_ACTIVITY_CLASS =
             "com.android.settings.Settings$WirelessSettingsActivity";
 
-    private SubscriptionManager mSubscriptionManager;
-
     //UI objects
     private ListPreference mButtonPreferredNetworkMode;
     private ListPreference mButtonEnabledNetworks;
@@ -112,7 +110,7 @@ public class MobileNetworkSettings extends PreferenceActivity
     private Preference mLteDataServicePref;
 
     private static final String iface = "rmnet0"; //TODO: this will go away
-    private List<SubscriptionInfo> mSelectableSubInfos = new ArrayList<SubscriptionInfo>();
+    private List<SubscriptionInfo> mSelectableSubInfos = null;
 
     private UserManager mUm;
     private Phone mPhone;
@@ -276,12 +274,9 @@ public class MobileNetworkSettings extends PreferenceActivity
         super.onCreate(icicle);
         final Context context = getApplicationContext();
 
-        mPhone = PhoneGlobals.getPhone();
-        mHandler = new MyHandler();
-        mUm = (UserManager) getSystemService(Context.USER_SERVICE);
+        mSelectableSubInfos = new ArrayList<SubscriptionInfo>();
         final TelephonyManager tm =
                 (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-        mSubscriptionManager = SubscriptionManager.from(this);
 
         for (int i = 0; i < tm.getSimCount(); i++) {
             SubscriptionInfo sir = findRecordBySlotId(i);
@@ -289,6 +284,10 @@ public class MobileNetworkSettings extends PreferenceActivity
                 mSelectableSubInfos.add(sir);
             }
         }
+
+        mPhone = PhoneGlobals.getPhone();
+        mHandler = new MyHandler();
+        mUm = (UserManager) getSystemService(Context.USER_SERVICE);
 
         if (mUm.hasUserRestriction(UserManager.DISALLOW_CONFIG_MOBILE_NETWORKS)) {
             mUnavailable = true;
@@ -1090,18 +1089,16 @@ public class MobileNetworkSettings extends PreferenceActivity
      * finds a record with slotId.
      * Since the number of SIMs are few, an array is fine.
      */
-    public SubscriptionInfo findRecordBySlotId(final int slotId) {
+    public static SubscriptionInfo findRecordBySlotId(final int slotId) {
         final List<SubscriptionInfo> subInfoList =
-            mSubscriptionManager.getActiveSubscriptionInfoList();
-        if (subInfoList != null) {
-            final int subInfoLength = subInfoList.size();
+            SubscriptionManager.getActiveSubscriptionInfoList();
+        final int subInfoLength = subInfoList.size();
 
-            for (int i = 0; i < subInfoLength; ++i) {
-                final SubscriptionInfo sir = subInfoList.get(i);
-                if (sir.getSimSlotIndex() == slotId) {
-                    //Right now we take the first subscription on a SIM.
-                    return sir;
-                }
+        for (int i = 0; i < subInfoLength; ++i) {
+            final SubscriptionInfo sir = subInfoList.get(i);
+            if (sir.getSimSlotIndex() == slotId) {
+                //Right now we take the first subscription on a SIM.
+                return sir;
             }
         }
 
