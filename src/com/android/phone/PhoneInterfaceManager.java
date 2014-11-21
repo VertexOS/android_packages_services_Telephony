@@ -22,22 +22,16 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.content.pm.Signature;
-import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.AsyncResult;
 import android.os.Binder;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.IBinder;
 import android.os.Looper;
 import android.os.Message;
 import android.os.Process;
-import android.os.RemoteException;
 import android.os.ServiceManager;
-import android.os.SystemProperties;
 import android.os.UserHandle;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
@@ -46,7 +40,6 @@ import android.telephony.IccOpenLogicalChannelResponse;
 import android.telephony.NeighboringCellInfo;
 import android.telephony.RadioAccessFamily;
 import android.telephony.ServiceState;
-import android.telephony.SubscriptionManager;
 import android.telephony.SubscriptionInfo;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
@@ -56,36 +49,24 @@ import android.util.Pair;
 import com.android.ims.ImsManager;
 import com.android.internal.telephony.CallManager;
 import com.android.internal.telephony.CommandException;
-import com.android.internal.telephony.Connection;
 import com.android.internal.telephony.DefaultPhoneNotifier;
 import com.android.internal.telephony.ITelephony;
 import com.android.internal.telephony.IccCard;
 import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneFactory;
-import com.android.internal.telephony.PhoneProxy;
 import com.android.internal.telephony.ProxyController;
-import com.android.internal.telephony.CallManager;
-import com.android.internal.telephony.CommandException;
 import com.android.internal.telephony.PhoneConstants;
-import com.android.internal.telephony.TelephonyIntents;
-import com.android.internal.telephony.dataconnection.DctController;
-import com.android.internal.telephony.uicc.AdnRecord;
+import com.android.internal.telephony.SubscriptionController;
 import com.android.internal.telephony.uicc.IccIoResult;
 import com.android.internal.telephony.uicc.IccUtils;
 import com.android.internal.telephony.uicc.UiccCard;
-import com.android.internal.telephony.uicc.UiccCarrierPrivilegeRules;
 import com.android.internal.telephony.uicc.UiccController;
 import com.android.internal.util.HexDump;
 
 import static com.android.internal.telephony.PhoneConstants.SUBSCRIPTION_KEY;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 /**
  * Implementation of the ITelephony interface.
@@ -138,7 +119,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     private CallManager mCM;
     private AppOpsManager mAppOps;
     private MainThreadHandler mMainThreadHandler;
-    private SubscriptionManager mSubscriptionManager;
+    private SubscriptionController mSubscriptionController;
     private SharedPreferences mTelephonySharedPreferences;
 
     private static final String PREF_CARRIERS_ALPHATAG_PREFIX = "carrier_alphtag_";
@@ -727,7 +708,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         mMainThreadHandler = new MainThreadHandler();
         mTelephonySharedPreferences =
                 PreferenceManager.getDefaultSharedPreferences(mPhone.getContext());
-        mSubscriptionManager = SubscriptionManager.from(app);
+        mSubscriptionController = SubscriptionController.getInstance();
 
         publish();
     }
@@ -740,7 +721,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
 
     // returns phone associated with the subId.
     private Phone getPhone(int subId) {
-        return PhoneFactory.getPhone(SubscriptionManager.getPhoneId(subId));
+        return PhoneFactory.getPhone(mSubscriptionController.getPhoneId(subId));
     }
     //
     // Implementation of the ITelephony interface.
@@ -793,7 +774,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         }
 
         boolean isValid = false;
-        List<SubscriptionInfo> slist = mSubscriptionManager.getActiveSubscriptionInfoList();
+        List<SubscriptionInfo> slist = mSubscriptionController.getActiveSubscriptionInfoList();
         if (slist != null) {
             for (SubscriptionInfo subInfoRecord : slist) {
                 if (subInfoRecord.getSubscriptionId() == subId) {
@@ -1141,7 +1122,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     // FIXME: subId version needed
     public boolean enableDataConnectivity() {
         enforceModifyPermission();
-        int subId = SubscriptionManager.getDefaultDataSubId();
+        int subId = mSubscriptionController.getDefaultDataSubId();
         getPhone(subId).setDataEnabled(true);
         return true;
     }
@@ -1149,14 +1130,14 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     // FIXME: subId version needed
     public boolean disableDataConnectivity() {
         enforceModifyPermission();
-        int subId = SubscriptionManager.getDefaultDataSubId();
+        int subId = mSubscriptionController.getDefaultDataSubId();
         getPhone(subId).setDataEnabled(false);
         return true;
     }
 
     // FIXME: subId version needed
     public boolean isDataConnectivityPossible() {
-        int subId = SubscriptionManager.getDefaultDataSubId();
+        int subId = mSubscriptionController.getDefaultDataSubId();
         return getPhone(subId).isDataConnectivityPossible();
     }
 
@@ -1178,12 +1159,12 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     }
 
     public int getDataState() {
-        Phone phone = getPhone(SubscriptionManager.getDefaultDataSubId());
+        Phone phone = getPhone(mSubscriptionController.getDefaultDataSubId());
         return DefaultPhoneNotifier.convertDataState(phone.getDataConnectionState());
     }
 
     public int getDataActivity() {
-        Phone phone = getPhone(SubscriptionManager.getDefaultDataSubId());
+        Phone phone = getPhone(mSubscriptionController.getDefaultDataSubId());
         return DefaultPhoneNotifier.convertDataActivityState(phone.getDataActivityState());
     }
 
@@ -1612,11 +1593,11 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
      * Returns Default subId, 0 in the case of single standby.
      */
     private int getDefaultSubscription() {
-        return SubscriptionManager.getDefaultSubId();
+        return mSubscriptionController.getDefaultSubId();
     }
 
     private int getPreferredVoiceSubscription() {
-        return SubscriptionManager.getDefaultVoiceSubId();
+        return mSubscriptionController.getDefaultVoiceSubId();
     }
 
     /**
