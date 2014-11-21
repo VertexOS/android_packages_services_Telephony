@@ -50,7 +50,6 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
     private String LOG_TAG = PhoneAccountSettingsFragment.class.getSimpleName();
 
     private TelecomManager mTelecomManager;
-    private Context mApplicationContext;
 
     private PreferenceCategory mAccountList;
 
@@ -67,7 +66,6 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
         super.onCreate(icicle);
 
         mTelecomManager = TelecomManager.from(getActivity());
-        mApplicationContext = getActivity().getApplicationContext();
     }
 
     @Override
@@ -243,13 +241,19 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
     }
 
     private synchronized void handleSipReceiveCallsOption(boolean isEnabled) {
+        Context context = getActivity();
+        if (context == null) {
+            // Return if the fragment is detached from parent activity before executed by thread.
+            return;
+        }
+
         mSipSharedPreferences.setReceivingCallsEnabled(isEnabled);
 
-        SipUtil.useSipToReceiveIncomingCalls(mApplicationContext, isEnabled);
+        SipUtil.useSipToReceiveIncomingCalls(context, isEnabled);
 
         // Restart all Sip services to ensure we reflect whether we are receiving calls.
         SipAccountRegistry sipAccountRegistry = SipAccountRegistry.getInstance();
-        sipAccountRegistry.restartSipService(mApplicationContext);
+        sipAccountRegistry.restartSipService(context);
     }
 
     /**
@@ -303,7 +307,7 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             SubscriptionInfoHelper.addExtrasToIntent(intent, subscription);
 
-            Preference accountPreference = new Preference(mApplicationContext);
+            Preference accountPreference = new Preference(getActivity());
             accountPreference.setTitle(label);
             accountPreference.setIntent(intent);
             mAccountList.addPreference(accountPreference);
