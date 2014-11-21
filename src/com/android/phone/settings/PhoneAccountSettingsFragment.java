@@ -50,6 +50,8 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
     private String LOG_TAG = PhoneAccountSettingsFragment.class.getSimpleName();
 
     private TelecomManager mTelecomManager;
+    private SubscriptionManager mSubscriptionManager;
+
     private Context mApplicationContext;
 
     private PreferenceCategory mAccountList;
@@ -68,6 +70,7 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
 
         mTelecomManager = TelecomManager.from(getActivity());
         mApplicationContext = getActivity().getApplicationContext();
+        mSubscriptionManager = SubscriptionManager.from(mApplicationContext);
     }
 
     @Override
@@ -297,7 +300,11 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
     }
 
     private void initAccountList() {
-        for (SubscriptionInfo subscription : SubscriptionManager.getActiveSubscriptionInfoList()) {
+        List<SubscriptionInfo> sil = mSubscriptionManager.getActiveSubscriptionInfoList();
+        if (sil == null) {
+            return;
+        }
+        for (SubscriptionInfo subscription : sil) {
             CharSequence label = subscription.getDisplayName();
             Intent intent = new Intent(TelecomManager.ACTION_SHOW_CALL_SETTINGS);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
