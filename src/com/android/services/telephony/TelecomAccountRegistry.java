@@ -27,8 +27,8 @@ import android.telecom.TelecomManager;
 import android.telephony.PhoneStateListener;
 import android.telephony.ServiceState;
 import android.telephony.SubscriptionInfo;
+import android.telephony.SubscriptionListener;
 import android.telephony.SubscriptionManager;
-import android.telephony.SubscriptionManager.OnSubscriptionsChangedListener;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 
@@ -82,7 +82,7 @@ final class TelecomAccountRegistry {
             // Populate the phone account data.
             int subId = mPhone.getSubId();
             int color = PhoneAccount.NO_COLOR;
-            int slotId = SubscriptionManager.INVALID_SIM_SLOT_INDEX;
+            int slotId = SubscriptionManager.INVALID_SLOT_ID;
             String line1Number = mTelephonyManager.getLine1NumberForSubscriber(subId);
             if (line1Number == null) {
                 line1Number = "";
@@ -108,8 +108,7 @@ final class TelecomAccountRegistry {
                 CharSequence subDisplayName = null;
                 // We can only get the real slotId from the SubInfoRecord, we can't calculate the
                 // slotId from the subId or the phoneId in all instances.
-                SubscriptionInfo record =
-                        mSubscriptionManager.getActiveSubscriptionInfo(subId);
+                SubscriptionInfo record = SubscriptionManager.getSubscriptionInfoForSubscriber(subId);
                 if (record != null) {
                     subDisplayName = record.getDisplayName();
                     slotId = record.getSimSlotIndex();
@@ -171,10 +170,9 @@ final class TelecomAccountRegistry {
         }
     }
 
-    private OnSubscriptionsChangedListener mOnSubscriptionsChangedListener =
-            new OnSubscriptionsChangedListener() {
+    private final SubscriptionListener mSubscriptionListener = new SubscriptionListener() {
         @Override
-        public void onSubscriptionsChanged() {
+        public void onSubscriptionInfoChanged() {
             // Any time the SubscriptionInfo changes...rerun the setup
             tearDownAccounts();
             setupAccounts();
@@ -197,7 +195,6 @@ final class TelecomAccountRegistry {
     private final Context mContext;
     private final TelecomManager mTelecomManager;
     private final TelephonyManager mTelephonyManager;
-    private final SubscriptionManager mSubscriptionManager;
     private List<AccountEntry> mAccounts = new LinkedList<AccountEntry>();
     private int mServiceState = ServiceState.STATE_POWER_OFF;
 
@@ -205,7 +202,6 @@ final class TelecomAccountRegistry {
         mContext = context;
         mTelecomManager = TelecomManager.from(context);
         mTelephonyManager = TelephonyManager.from(context);
-        mSubscriptionManager = SubscriptionManager.from(context);
     }
 
     static synchronized final TelecomAccountRegistry getInstance(Context context) {
@@ -220,14 +216,13 @@ final class TelecomAccountRegistry {
      */
     void setupOnBoot() {
         // TODO: When this object "finishes" we should unregister by invoking
-        // SubscriptionManager.getInstance(mContext).unregister(mOnSubscriptionsChangedListener);
+        // SubscriptionManager.unregister(mContext, mSubscriptionListener);
         // This is not strictly necessary because it will be unregistered if the
         // notification fails but it is good form.
 
-        // Register for SubscriptionInfo list changes which is guaranteed
-        // to invoke onSubscriptionsChanged the first time.
-        SubscriptionManager.from(mContext).registerOnSubscriptionsChangedListener(
-                mOnSubscriptionsChangedListener);
+        // Register for SubscriptionInfo list changes
+        SubscriptionManager.register(mContext, mSubscriptionListener,
+                SubscriptionListener.LISTEN_SUBSCRIPTION_INFO_LIST_CHANGED);
 
         // We also need to listen for changes to the service state (e.g. emergency -> in service)
         // because this could signal a removal or addition of a SIM in a single SIM phone.
