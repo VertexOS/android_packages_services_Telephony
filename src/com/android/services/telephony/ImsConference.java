@@ -19,6 +19,7 @@ package com.android.services.telephony;
 import com.android.internal.telephony.Call;
 import com.android.internal.telephony.CallStateException;
 import com.android.internal.telephony.Phone;
+import com.android.internal.telephony.imsphone.ImsPhoneConnection;
 
 import android.net.Uri;
 import android.telecom.Connection;
@@ -81,6 +82,21 @@ public class ImsConference extends Conference {
             updateManageConference();
         }
 
+    };
+
+    /**
+     * Listener used to respond to changes to the underlying radio connection for the conference
+     * host connection.  Used to respond to SRVCC changes.
+     */
+    private final TelephonyConnection.TelephonyConnectionListener mTelephonyConnectionListener =
+            new TelephonyConnection.TelephonyConnectionListener() {
+
+        @Override
+        public void onOriginalConnectionConfigured(TelephonyConnection c) {
+            if (c == mConferenceHost) {
+               handleOriginalConnectionChange();
+            }
+        }
     };
 
     /**
@@ -202,6 +218,9 @@ public class ImsConference extends Conference {
     @Override
     public void onDisconnect() {
         Log.v(this, "onDisconnect: hanging up conference host.");
+        if (mConferenceHost == null) {
+            return;
+        }
 
         Call call = mConferenceHost.getCall();
         if (call != null) {
@@ -249,6 +268,9 @@ public class ImsConference extends Conference {
      */
     @Override
     public void onHold() {
+        if (mConferenceHost == null) {
+            return;
+        }
         mConferenceHost.performHold();
     }
 
@@ -257,6 +279,9 @@ public class ImsConference extends Conference {
      */
     @Override
     public void onUnhold() {
+        if (mConferenceHost == null) {
+            return;
+        }
         mConferenceHost.performUnhold();
     }
 
@@ -267,7 +292,10 @@ public class ImsConference extends Conference {
      */
     @Override
     public void onPlayDtmfTone(char c) {
-         mConferenceHost.onPlayDtmfTone(c);
+        if (mConferenceHost == null) {
+            return;
+        }
+        mConferenceHost.onPlayDtmfTone(c);
     }
 
     /**
@@ -275,6 +303,9 @@ public class ImsConference extends Conference {
      */
     @Override
     public void onStopDtmfTone() {
+        if (mConferenceHost == null) {
+            return;
+        }
         mConferenceHost.onStopDtmfTone();
     }
 
@@ -326,6 +357,7 @@ public class ImsConference extends Conference {
 
         mConferenceHost = new ConferenceHostConnection(conferenceHost);
         mConferenceHost.addConnectionListener(mConferenceHostListener);
+        mConferenceHost.addTelephonyConnectionListener(mTelephonyConnectionListener);
     }
 
     /**
@@ -455,6 +487,41 @@ public class ImsConference extends Conference {
     }
 
     /**
+     * Handles a change in the original connection backing the conference host connection.  This can
+     * happen if an SRVCC event occurs on the original IMS connection, requiring a fallback to
+     * GSM or CDMA.
+     * <p>
+     * If this happens, we will add the conference host connection to telecom and tear down the
+     * conference.
+     */
+    private void handleOriginalConnectionChange() {
+        if (mConferenceHost == null) {
+            Log.w(this, "handleOriginalConnectionChange; conference host missing.");
+            return;
+        }
+
+        com.android.internal.telephony.Connection originalConnection =
+                mConferenceHost.getOriginalConnection();
+
+        if (!(originalConnection instanceof ImsPhoneConnection)) {
+            if (Log.VERBOSE) {
+                Log.v(this,
+                        "Original connection for conference host is no longer an IMS connection; " +
+                                "new connection: %s", originalConnection);
+            }
+
+            PhoneAccountHandle phoneAccountHandle =
+                    TelecomAccountRegistry.makePstnPhoneAccountHandle(mConferenceHost.getPhone());
+            mTelephonyConnectionService.addExistingConnection(phoneAccountHandle, mConferenceHost);
+            mConferenceHost.removeConnectionListener(mConferenceHostListener);
+            mConferenceHost.removeTelephonyConnectionListener(mTelephonyConnectionListener);
+            mConferenceHost = null;
+            setDisconnected(new DisconnectCause(DisconnectCause.OTHER));
+            destroy();
+        }
+    }
+
+    /**
      * Changes the state of the Ims conference.
      *
      * @param state the new state.
@@ -470,8 +537,14 @@ public class ImsConference extends Conference {
                 // No-op -- not applicable.
                 break;
             case Connection.STATE_DISCONNECTED:
-                setDisconnected(DisconnectCauseUtil.toTelecomDisconnectCause(
-                        mConferenceHost.getOriginalConnection().getDisconnectCause()));
+                DisconnectCause disconnectCause;
+                if (mConferenceHost == null) {
+                    disconnectCause = new DisconnectCause(DisconnectCause.CANCELED);
+                } else {
+                    disconnectCause = DisconnectCauseUtil.toTelecomDisconnectCause(
+                            mConferenceHost.getOriginalConnection().getDisconnectCause());
+                }
+                setDisconnected(disconnectCause);
                 destroy();
                 break;
             case Connection.STATE_ACTIVE:

@@ -264,10 +264,11 @@ public class ImsConferenceController {
         conference.addListener(mConferenceListener);
 
         // Cleanup TelephonyConnection which backed the original connection and remove from telecom.
-        // Use the "Canceled" disconnect cause to ensure the call is not logged.
+        // Use the "Other" disconnect cause to ensure the call is logged to the call log but the
+        // disconnect tone is not played.
         connection.removeConnectionListener(mConnectionListener);
         connection.clearOriginalConnection();
-        connection.setDisconnected(new DisconnectCause(DisconnectCause.CANCELED));
+        connection.setDisconnected(new DisconnectCause(DisconnectCause.OTHER));
         connection.destroy();
         mImsConferences.add(conference);
     }
