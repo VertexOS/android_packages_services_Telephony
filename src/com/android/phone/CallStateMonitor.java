@@ -60,7 +60,6 @@ class CallStateMonitor extends Handler {
     // Events generated internally.
     // We should store all the possible event type values in one place to make sure that
     // they don't step on each others' toes.
-    public static final int INTERNAL_PHONE_MWI_CHANGED = 21;
     public static final int INTERNAL_SHOW_MESSAGE_NOTIFICATION_DONE = 22;
     public static final int INTERNAL_UPDATE_IN_CALL_NOTIFICATION = 23;
 
