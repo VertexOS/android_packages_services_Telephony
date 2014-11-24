@@ -45,7 +45,7 @@ public class VoicemailRingtonePreference extends RingtonePreference {
                         preference.getContext(),
                         mVoicemailRingtoneLookupComplete,
                         RingtoneManager.TYPE_NOTIFICATION,
-                        preference,
+                        VoicemailNotificationSettingsUtil.getRingtoneSharedPreferencesKey(),
                         MSG_UPDATE_VOICEMAIL_RINGTONE_SUMMARY);
             }
         };
@@ -54,8 +54,16 @@ public class VoicemailRingtonePreference extends RingtonePreference {
     }
 
     @Override
+    protected Uri onRestoreRingtone() {
+        return VoicemailNotificationSettingsUtil.getRingtoneUri(getContext());
+    }
+
+    @Override
     protected void onSaveRingtone(Uri ringtoneUri) {
-        super.onSaveRingtone(ringtoneUri);
+        // Don't call superclass method because it uses the pref key as the SharedPreferences key.
+        // Delegate to the voicemail notification utility to save the ringtone instead.
+        VoicemailNotificationSettingsUtil.setRingtoneUri(getContext(), ringtoneUri);
+
         updateRingtoneName();
     }
 

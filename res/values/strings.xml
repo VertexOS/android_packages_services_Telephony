@@ -1278,4 +1278,7 @@
     <string name="sim_description_default">SIM card, slot: <xliff:g id="slot_id">%s</xliff:g></string>
     <!-- Configuration setting for world mode Format is <true;GID if any to be checked>-->
     <string translatable="false" name="config_world_mode"/>
+
+    <!-- DO NOT TRANSLATE. Internal key for a voicemail notification preference. -->
+    <string name="voicemail_notification_vibrate_key">voicemail_notification_vibrate_key</string>
 </resources>
