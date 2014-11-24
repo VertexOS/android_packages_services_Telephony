@@ -16,14 +16,16 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="phoneAppLabel" product="tablet" msgid="8576272342240415145">"Farsímagögn"</string>
+    <!-- no translation found for phoneAppLabel (1107073389495104784) -->
+    <skip />
     <string name="phoneAppLabel" product="default" msgid="906161039445636857">"Sími"</string>
     <string name="emergencyDialerIconLabel" msgid="7812140032168171053">"Neyðarnúmeraval"</string>
     <string name="phoneIconLabel" msgid="2331230813161304895">"Sími"</string>
     <string name="fdnListLabel" msgid="8630418672279521003">"Listi yfir fast númeraval"</string>
     <string name="unknown" msgid="6878797917991465859">"Óþekkt"</string>
     <string name="private_num" msgid="6713286113000232309">"Leyninúmer"</string>
-    <string name="payphone" msgid="1931775086311769314">"Almenningssími"</string>
+    <!-- no translation found for payphone (4793877574636445118) -->
+    <skip />
     <string name="onHold" msgid="9035493194749959955">"Í bið"</string>
     <string name="mmiStarted" msgid="6347869857061147003">"MMI-kóðaskipun ræst"</string>
     <string name="ussdRunning" msgid="485588686340541690">"USSD-kóðaskipun í gangi…"</string>
@@ -57,13 +59,56 @@
     <string name="labelCDMAMore" msgid="1630676740428229339">"CDMA-símtalsstillingar"</string>
     <string name="apn_settings" msgid="9043423184895642077">"Heiti aðgangsstaða"</string>
     <string name="settings_label" msgid="3876743539816984008">"Stillingar símkerfis"</string>
-    <string name="phone_accounts" msgid="8810358208981265351">"Reikningsstillingar síma"</string>
+    <!-- no translation found for phone_accounts (6376603393888116364) -->
+    <skip />
+    <!-- no translation found for phone_accounts_make_calls_with (1969188078933152231) -->
+    <skip />
+    <!-- no translation found for phone_accounts_make_sip_calls_with (4677789312053828493) -->
+    <skip />
+    <!-- no translation found for phone_accounts_ask_every_time (4346499067149985702) -->
+    <skip />
+    <!-- no translation found for phone_accounts_settings_header (4141710640883261094) -->
+    <skip />
+    <!-- no translation found for phone_accounts_choose_accounts (5232948804226424002) -->
+    <skip />
+    <!-- no translation found for phone_accounts_selection_header (1365215726106915865) -->
+    <skip />
+    <!-- no translation found for phone_accounts_add_sip_account (2023821743341923271) -->
+    <skip />
+    <!-- no translation found for phone_accounts_configure_account_settings (1361715069911607109) -->
+    <skip />
+    <!-- no translation found for phone_account_wifi_calling (1840272538233414629) -->
+    <skip />
+    <!-- no translation found for wifi_calling_do_not_use (7491443219113013323) -->
+    <skip />
+    <!-- no translation found for wifi_calling_do_not_use_call_assistant (5420257095556091770) -->
+    <skip />
+    <!-- no translation found for wifi_calling_call_assistant_none (6283702349285593683) -->
+    <skip />
+    <!-- no translation found for wifi_calling_call_assistant (229102032881680320) -->
+    <skip />
+    <!-- no translation found for wifi_calling_use_call_assistant (8460024827012666199) -->
+    <skip />
+    <!-- no translation found for wifi_calling_select_call_assistant (9296558058772293) -->
+    <skip />
+    <!-- no translation found for wifi_calling_select_call_assistant_summary (9106482864108127281) -->
+    <skip />
+    <!-- no translation found for wifi_calling_use_call_assistant_summary (6599987137133339698) -->
+    <skip />
+    <!-- no translation found for wifi_calling_call_assistant_configure (1092639708949670031) -->
+    <skip />
+    <!-- no translation found for wifi_calling_call_assistant_configure_no_selection (2354042288883607981) -->
+    <skip />
     <string name="connection_service_default_label" msgid="1498481943805913754">"Innbyggð tengingarþjónusta"</string>
     <string name="voicemail" msgid="8693759337917898954">"Talhólf"</string>
     <string name="voicemail_abbreviated" msgid="2215592488517217448">"Talhólf:"</string>
     <string name="networks" msgid="8873030692174541976">"Símafyrirtæki"</string>
-    <string name="call_settings" msgid="1630474923393095156">"Símtalastillingar"</string>
+    <!-- no translation found for cell_broadcast_settings (8740238216690502563) -->
+    <skip />
+    <string name="call_settings" msgid="6112441768261754562">"Símtalsstillingar"</string>
     <string name="additional_gsm_call_settings" msgid="1391795981938800617">"Viðbótarstillingar"</string>
+    <!-- no translation found for additional_gsm_call_settings_with_label (1385241520708457376) -->
+    <skip />
     <string name="sum_gsm_call_settings" msgid="4076647190996778012">"Viðbótarstillingar fyrir GSM-símtöl eingöngu"</string>
     <string name="additional_cdma_call_settings" msgid="8628958775721886909">"Viðbótarstillingar CDMA-símtala"</string>
     <string name="sum_cdma_call_settings" msgid="284753265979035549">"Viðbótarstillingar CDMA-símtala eingöngu"</string>
@@ -77,29 +122,41 @@
     <string name="sum_cw_enabled" msgid="8083061901633671397">"Láta mig vita af símtölum sem berast meðan símtal er í gangi"</string>
     <string name="sum_cw_disabled" msgid="3648693907300104575">"Láta mig vita af símtölum sem berast meðan símtal er í gangi"</string>
     <string name="call_forwarding_settings" msgid="3378927671091537173">"Stillingar símtalsflutnings"</string>
+    <!-- no translation found for call_forwarding_settings_with_label (8569489414006897127) -->
+    <skip />
     <string name="labelCF" msgid="2574386948026924737">"Símtalsflutningur"</string>
     <string name="labelCFU" msgid="8147177368148660600">"Áframsenda alltaf"</string>
     <string name="messageCFU" msgid="3560082430662923687">"Nota alltaf þetta númer"</string>
     <string name="sum_cfu_enabled_indicator" msgid="4014187342724130197">"Áframsendir öll símtöl"</string>
     <string name="sum_cfu_enabled" msgid="2450052502198827927">"Áframsendir öll símtöl í <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfu_enabled_no_number" msgid="6591985777096823616">"Ekki næst í númerið"</string>
-    <string name="sum_cfu_disabled" msgid="3698472522160364904">"Slökkt"</string>
-    <string name="labelCFB" msgid="218938523102207587">"Áframsenda þegar síminn er á tali"</string>
+    <!-- no translation found for sum_cfu_disabled (8384177689501334080) -->
+    <skip />
+    <!-- no translation found for labelCFB (6139853033106283172) -->
+    <skip />
     <string name="messageCFB" msgid="3711089705936187129">"Númeraval þegar síminn er á tali"</string>
     <string name="sum_cfb_enabled" msgid="5984198104833116690">"Áframsendir í <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
-    <string name="sum_cfb_disabled" msgid="227440009979537651">"Slökkt"</string>
+    <!-- no translation found for sum_cfb_disabled (4913145177320506827) -->
+    <skip />
     <string name="disable_cfb_forbidden" msgid="3506984333877998061">"Símafyrirtækið leyfir ekki að slökkt sé á símtalsflutningi þegar síminn er á tali."</string>
-    <string name="labelCFNRy" msgid="3646316323834351390">"Áframsenda þegar ekki er svarað í símann"</string>
+    <!-- no translation found for labelCFNRy (1736067178393744351) -->
+    <skip />
     <string name="messageCFNRy" msgid="672317899884380374">"Númeraval þegar ekki er svarað í símann"</string>
     <string name="sum_cfnry_enabled" msgid="6955775691317662910">"Áframsendir í <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
-    <string name="sum_cfnry_disabled" msgid="8422350929957344729">"Slökkt"</string>
+    <!-- no translation found for sum_cfnry_disabled (3884684060443538097) -->
+    <skip />
     <string name="disable_cfnry_forbidden" msgid="4308233959150658058">"Símafyrirtækið leyfir ekki að slökkt sé á símtalsflutningi þegar ekki er svarað í símann."</string>
-    <string name="labelCFNRc" msgid="47183615370850000">"Áframsenda þegar ekki næst í símann"</string>
+    <!-- no translation found for labelCFNRc (2614827454402079766) -->
+    <skip />
     <string name="messageCFNRc" msgid="6380695421020295119">"Númeraval þegar ekki næst í símann"</string>
     <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"Áframsendir í <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfnrc_disabled" msgid="7222141261321276464">"Slökkt"</string>
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"Símafyrirtækið leyfir ekki að slökkt sé á símtalsflutningi þegar ekki næst í símann."</string>
     <string name="updating_title" msgid="6146755386174019046">"Símtalsstillingar"</string>
+    <!-- no translation found for call_settings_primary_user_only (5679923943740900965) -->
+    <skip />
+    <!-- no translation found for call_settings_with_label (89359812614544532) -->
+    <skip />
     <string name="error_updating_title" msgid="7970259216988931777">"Villa í símtalsstillingum"</string>
     <string name="reading_settings" msgid="1920291699287055284">"Les stillingar…"</string>
     <string name="updating_settings" msgid="8171225533884883252">"Uppfærir stillingar…"</string>
@@ -109,8 +166,10 @@
     <string name="fdn_check_failure" msgid="18200614306525434">"Kveikt er á föstu númeravali í símaforritinu. Þetta veldur því að sumir símtalseiginleikar virka ekki."</string>
     <string name="radio_off_error" msgid="2304459933248513376">"Kveiktu á loftnetinu áður en þú skoðar þessar stillingar."</string>
     <string name="close_dialog" msgid="2365884406356986917">"Í lagi"</string>
-    <string name="enable" msgid="1059008390636773574">"Kveikja"</string>
-    <string name="disable" msgid="7274240979164762320">"Slökkva"</string>
+    <!-- no translation found for enable (7248657275000173526) -->
+    <skip />
+    <!-- no translation found for disable (4678348128118573672) -->
+    <skip />
     <string name="change_num" msgid="239476305819844391">"Uppfæra"</string>
   <string-array name="clir_display_values">
     <item msgid="5560134294467334594">"Sjálfgildi símkerfis"</item>
@@ -123,7 +182,8 @@
     <string name="fw_get_in_vm_failed" msgid="8862896836093833973">"Ekki tókst að sækja og vista núverandi stillingar fasts númeravals.\nViltu samt skipta yfir í nýja símafyrirtækið?"</string>
     <string name="no_change" msgid="3186040086622435212">"Engu var breytt."</string>
     <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"Velja talhólfsþjónustu"</string>
-    <string name="voicemail_default" msgid="5902099213882352338">"Símafyrirtækið mitt"</string>
+    <!-- no translation found for voicemail_default (2001233554889016880) -->
+    <skip />
     <string name="mobile_networks" msgid="2843854043339307375">"Farsímakerfisstillingar"</string>
     <string name="label_available" msgid="1181658289009300430">"Símkerfi í boði"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"Leitar…"</string>
@@ -156,6 +216,9 @@
     <string name="preferred_network_mode_lte_cdma_evdo_summary" msgid="228702246343742853">"Valin símkerfisstilling: CDMA+LTE/EVDO"</string>
     <string name="preferred_network_mode_global_summary" msgid="1633134285545730364">"Valin símkerfisstilling: Alþjóðleg"</string>
     <string name="preferred_network_mode_lte_wcdma_summary" msgid="9180775701594742750">"Valin símkerfisstilling: LTE/WCDMA"</string>
+    <!-- no translation found for preferred_network_mode_lte_gsm_umts_summary (633315028976225026) -->
+    <skip />
+    <string name="preferred_network_mode_lte_cdma_summary" msgid="3722647806454528426">"Valin símkerfisstilling: LTE/CDMA"</string>
   <string-array name="preferred_network_mode_choices">
     <item msgid="7886739962255042385">"LTE/WCDMA"</item>
     <item msgid="577652050447385699">"LTE"</item>
@@ -171,13 +234,18 @@
     <item msgid="1524224863879435516">"GSM eingöngu"</item>
     <item msgid="3817924849415716259">"GSM/WCDMA fyrsta val"</item>
   </string-array>
+    <!-- no translation found for enhanced_4g_lte_mode_title (522191650223239171) -->
+    <skip />
+    <!-- no translation found for enhanced_4g_lte_mode_summary (2332175070522125850) -->
+    <skip />
     <string name="data_enabled" msgid="5972538663568715366">"Kveikt á gagnaaðgangi"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"Leyfa gagnanotkun"</string>
     <string name="roaming" msgid="8871412572928323707">"Gagnareiki"</string>
     <string name="roaming_enable" msgid="7331106985174381987">"Tengjast gagnaþjónustu í reiki"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"Tengjast gagnaþjónustu í reiki"</string>
     <string name="roaming_reenable_message" msgid="8913735676127858115">"Gagnatengingin rofnaði vegna þess að þú ert utan heimakerfis með slökkt á gagnareiki."</string>
-    <string name="roaming_warning" msgid="7820963598559553967">"Leyfa gagnareiki? Þetta getur leitt til umtalsverðs kostnaðar!"</string>
+    <!-- no translation found for roaming_warning (7126227198294007907) -->
+    <skip />
     <string name="gsm_umts_options" msgid="6538311689850981686">"Valkostir GSM/UMTS"</string>
     <string name="cdma_options" msgid="4016822858172249884">"CDMA-valkostir"</string>
     <string name="throttle_data_usage" msgid="3715677828160555808">"Gagnanotkun"</string>
@@ -303,7 +371,11 @@
     <string name="cdma_lte_data_service" msgid="4255018217292548962">"Setja upp gagnaþjónustu"</string>
     <string name="carrier_settings_title" msgid="9028166176523012300">"Stillingar símafyrirtækis"</string>
     <string name="fdn" msgid="7878832555095183202">"Fast númeraval"</string>
+    <!-- no translation found for fdn_with_label (187084204115493366) -->
+    <skip />
     <string name="manage_fdn_list" msgid="8777755791892122369">"Listi yfir fast númeraval"</string>
+    <!-- no translation found for fdn_list_with_label (7437232552210469217) -->
+    <skip />
     <string name="fdn_activation" msgid="2156479741307463576">"Virkjun fasts númeravals"</string>
     <string name="fdn_enabled" msgid="5238109009915521240">"Kveikt er á föstu númeravali"</string>
     <string name="fdn_disabled" msgid="4700049736675368279">"Slökkt er á föstu númeravali"</string>
@@ -354,42 +426,60 @@
     <string name="badPin" msgid="8955102849303984935">"Gamla PIN-númerið sem þú slóst inn er ekki rétt. Reyndu aftur."</string>
     <string name="mismatchPin" msgid="5923253370683071889">"PIN-númerin sem þú slóst inn eru ekki eins. Reyndu aftur."</string>
     <string name="invalidPin" msgid="5981171102258684792">"Sláðu in PIN-númer sem er 4 til 8 tölustafir."</string>
-    <string name="disable_sim_pin" msgid="3992926931620188855">"Gera PIN-númer SIM-korts óvirkt"</string>
-    <string name="enable_sim_pin" msgid="5803702443844458831">"Gera PIN-númer SIM-korts virkt"</string>
-    <string name="enable_in_progress" msgid="3695303775100109650">"Augnablik…"</string>
-    <string name="enable_pin_ok" msgid="9166061915030865848">"PIN-númer SIM-korts virkt."</string>
-    <string name="disable_pin_ok" msgid="5596999379593924850">"PIN-númer SIM-korts óvirkt."</string>
-    <string name="pin_failed" msgid="2298841192582192277">"Þú slóst inn rangt PIN-númer."</string>
-    <string name="pin_changed" msgid="4365538014588501049">"PIN-númeri SIM-korts breytt."</string>
-    <string name="puk_requested" msgid="1796577128488773946">"Rangt aðgangsorð; PIN-númerið er læst. Beðið um PUK-númer."</string>
+    <!-- no translation found for disable_sim_pin (3419351358300716472) -->
+    <skip />
+    <!-- no translation found for enable_sim_pin (4845145659651484248) -->
+    <skip />
+    <!-- no translation found for enable_in_progress (3417917024688497010) -->
+    <skip />
+    <!-- no translation found for enable_pin_ok (2918545971413270063) -->
+    <skip />
+    <!-- no translation found for disable_pin_ok (2109571368635883688) -->
+    <skip />
+    <!-- no translation found for pin_failed (5644377896213584760) -->
+    <skip />
+    <!-- no translation found for pin_changed (4455736268023261662) -->
+    <skip />
+    <!-- no translation found for puk_requested (5921393215789090200) -->
+    <skip />
     <string name="enter_pin2_text" msgid="8339444124477720345">"PIN2-númer"</string>
     <string name="oldPin2Label" msgid="8559146795026261502">"Gamla PIN2-númerið"</string>
     <string name="newPin2Label" msgid="4573956902204349054">"Nýtt PIN2-númer"</string>
     <string name="confirmPin2Label" msgid="8100319484454787708">"Staðfestu nýja PIN2-númerið"</string>
-    <string name="badPuk2" msgid="4851734468010000418">"PUK2-númerið sem þú slóst inn er ekki rétt. Reyndu aftur."</string>
-    <string name="badPin2" msgid="1041576234483629991">"Gamla PIN2-númerið sem þú slóst inn er ekki rétt. Reyndu aftur."</string>
-    <string name="mismatchPin2" msgid="523029155918113440">"PIN2-númerin sem þú slóst inn eru ekki eins. Reyndu aftur."</string>
-    <string name="invalidPin2" msgid="8237110107480395938">"Sláðu in PIN2-númer sem er 4 til 8 tölustafir."</string>
-    <string name="invalidPuk2" msgid="1290977391033057871">"Sláðu in PUK2-númer sem er 8 tölustafir."</string>
-    <string name="pin2_changed" msgid="1639666438836544393">"PIN2-númeri breytt."</string>
-    <string name="label_puk2_code" msgid="302845876240219560">"Sláðu inn PUK2-númer"</string>
-    <string name="fdn_enable_puk2_requested" msgid="3674058967950559397">"Rangt aðgangsorð; búið er að læsa PIN2-númerinu. Breyttu PIN2-númerinu og reyndu aftur!"</string>
-    <string name="puk2_requested" msgid="8909278021238716877">"Rangt aðgangsorð; SIM-kortið er læst. Beðið um PUK2-númer."</string>
+    <!-- no translation found for badPuk2 (7910064009531541708) -->
+    <skip />
+    <!-- no translation found for badPin2 (6646896629970023109) -->
+    <skip />
+    <!-- no translation found for mismatchPin2 (4177967478551851117) -->
+    <skip />
+    <!-- no translation found for invalidPin2 (1757045131429105595) -->
+    <skip />
+    <!-- no translation found for invalidPuk2 (7059081153334815973) -->
+    <skip />
+    <!-- no translation found for pin2_changed (3724522579945610956) -->
+    <skip />
+    <!-- no translation found for label_puk2_code (4688069961795341948) -->
+    <skip />
+    <!-- no translation found for fdn_enable_puk2_requested (4991074891459554705) -->
+    <skip />
+    <!-- no translation found for puk2_requested (5831015200030161434) -->
+    <skip />
     <string name="puk2_blocked" msgid="3150263853077280049">"PUK2 er læst fyrir fullt og allt."</string>
-    <string name="pin2_attempts" msgid="7937503107162525324">\n"<xliff:g id="NUMBER">%d</xliff:g> tilraunir eru eftir."</string>
-    <string name="pin2_unblocked" msgid="2903147240919055381">"Opnað fyrir PIN2-númer!"</string>
+    <!-- no translation found for pin2_attempts (720736232885011507) -->
+    <skip />
+    <!-- no translation found for pin2_unblocked (7791600368153469078) -->
+    <skip />
     <string name="doneButton" msgid="2859593360997984240">"Lokið"</string>
-    <string name="caller_manage_header" msgid="3231519674734638786">"Símafundur <xliff:g id="CONF_CALL_TIME">%s</xliff:g>"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"Talhólfsnúmer"</string>
     <string name="card_title_dialing" msgid="5769417478498348054">"Hringir"</string>
-    <string name="card_title_redialing" msgid="4831412164303596395">"Reynir aftur"</string>
+    <!-- no translation found for card_title_redialing (8253487008234167266) -->
+    <skip />
     <string name="card_title_conf_call" msgid="1162980346189744501">"Símafundur"</string>
     <string name="card_title_incoming_call" msgid="7364539451234646909">"Símtal berst"</string>
     <string name="card_title_call_ended" msgid="5544730338889702298">"Lagt á"</string>
     <string name="card_title_on_hold" msgid="821463117892339942">"Í bið"</string>
     <string name="card_title_hanging_up" msgid="3999101620995182450">"Leggur á"</string>
     <string name="card_title_in_call" msgid="6346543933068225205">"Í símtali"</string>
-    <string name="card_title_my_phone_number" msgid="112428362494434191">"Númerið mitt er <xliff:g id="MY_PHONE_NUMBER">%s</xliff:g>"</string>
     <string name="notification_dialing" msgid="2107666444937350731">"Hringir"</string>
     <string name="notification_missedCallTitle" msgid="7554385905572364535">"Ósvarað símtal"</string>
     <string name="notification_missedCallsTitle" msgid="1361677948941502522">"Ósvöruð símtöl"</string>
@@ -410,21 +500,32 @@
     <string name="incall_error_power_off" msgid="6550191216405193368">"Til að hringja símtal þarftu fyrst að slökkva á flugstillingu."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"Ekki skráð á símkerfi."</string>
     <string name="incall_error_out_of_service" msgid="4100065333878929223">"Farsímakerfi ekki til staðar."</string>
-    <string name="incall_error_no_phone_number_supplied" msgid="4197432103471807739">"Símtalið var ekki sent, gilt símanúmer var ekki slegið inn."</string>
-    <string name="incall_error_call_failed" msgid="4313552620858880999">"Símtalið var ekki sent."</string>
+    <!-- no translation found for incall_error_no_phone_number_supplied (1150414018684246528) -->
+    <skip />
+    <!-- no translation found for incall_error_call_failed (6302746943230078197) -->
+    <skip />
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"Ræsir MMI-runu…"</string>
-    <string name="incall_error_supp_service_unknown" msgid="2991054870745666038">"Óstudd þjónusta."</string>
-    <string name="incall_error_supp_service_switch" msgid="3503552565745872241">"Ekki hægt að skipta milli símtala."</string>
-    <string name="incall_error_supp_service_separate" msgid="914362338192301746">"Ekki hægt að aðskilja símtal."</string>
-    <string name="incall_error_supp_service_transfer" msgid="2509871374644921632">"Ekki hægt að flytja símtal."</string>
+    <!-- no translation found for incall_error_supp_service_unknown (655570339115407698) -->
+    <skip />
+    <!-- no translation found for incall_error_supp_service_switch (5237002176899962862) -->
+    <skip />
+    <!-- no translation found for incall_error_supp_service_separate (7224393405134545246) -->
+    <skip />
+    <!-- no translation found for incall_error_supp_service_transfer (7235952238189391438) -->
+    <skip />
     <string name="incall_error_supp_service_conference" msgid="2505727299596357312">"Ekki hægt að halda símafund."</string>
-    <string name="incall_error_supp_service_reject" msgid="7055164130563826216">"Ekki hægt að hafna símtali."</string>
-    <string name="incall_error_supp_service_hangup" msgid="7417583238334762737">"Ekki hægt að hringja."</string>
+    <!-- no translation found for incall_error_supp_service_reject (8998568661508655638) -->
+    <skip />
+    <!-- no translation found for incall_error_supp_service_hangup (7434513517153834426) -->
+    <skip />
     <string name="emergency_enable_radio_dialog_title" msgid="4627849966634578257">"Neyðarsímtal"</string>
     <string name="emergency_enable_radio_dialog_message" msgid="207613549344420291">"Kveikir á loftneti…"</string>
-    <string name="emergency_enable_radio_dialog_retry" msgid="3724423402363063736">"Utan þjónustusvæðis. Reynir aftur…"</string>
-    <string name="dial_emergency_error" msgid="7969515493359619960">"Símtalið var ekki sent. <xliff:g id="NON_EMERGENCY_NUMBER">%s</xliff:g> er ekki neyðarnúmer."</string>
-    <string name="dial_emergency_empty_error" msgid="5556166819619323893">"Símtalið var ekki sent. Sláðu inn neyðarnúmer."</string>
+    <!-- no translation found for emergency_enable_radio_dialog_retry (5960061579996526883) -->
+    <skip />
+    <!-- no translation found for dial_emergency_error (1509085166367420355) -->
+    <skip />
+    <!-- no translation found for dial_emergency_empty_error (9130194953830414638) -->
+    <skip />
     <string name="dialerKeyboardHintText" msgid="9192914825413747792">"Notaðu lyklaborðið til að hringja"</string>
     <string name="onscreenHoldText" msgid="2285258239691145872">"Setja í bið"</string>
     <string name="onscreenEndCallText" msgid="4403855834875398585">"Ljúka"</string>
@@ -455,7 +556,10 @@
     <item msgid="899650777817315681">"Venjulegir"</item>
     <item msgid="2883365539347850535">"Langir"</item>
   </string-array>
-    <string name="network_message" msgid="4483886461245213802">"Símkerfisskilaboð"</string>
+    <!-- no translation found for network_info_message (7738596060242881930) -->
+    <skip />
+    <!-- no translation found for network_error_message (3394780436230411413) -->
+    <skip />
     <string name="ota_title_activate" msgid="8616918561356194398">"Virkjaðu símann"</string>
     <string name="ota_touch_activate" msgid="6553212803262586244">"Hringja þarf sérstakt símtal til að virkja símaþjónustuna. \n\nÞeagr þú hefur ýtt á „Virkja“ skaltu hlusta á leiðbeiningarnar til að virkja símann."</string>
     <string name="ota_hfa_activation_title" msgid="2234246934160473981">"Virkjar..."</string>
@@ -468,8 +572,10 @@
     <string name="ota_title_problem_with_activation" msgid="7095824491970084367">"Vandamál við virkjun"</string>
     <string name="ota_listen" msgid="162923839877584937">"Fylgdu lesnu leiðbeiningunum þar til þú heyrir tilkynnt að virkjun sé lokið."</string>
     <string name="ota_speaker" msgid="6904589278542719647">"Hátalari"</string>
-    <string name="ota_progress" msgid="3420314892609254729">"Bíddu á meðan verið er að uppfæra símann."</string>
-    <string name="ota_failure" msgid="4311299546379674378">"Ekki tókst að uppfæra"</string>
+    <!-- no translation found for ota_progress (460876637828044519) -->
+    <skip />
+    <!-- no translation found for ota_failure (7713756181204620397) -->
+    <skip />
     <string name="ota_successful" msgid="1880780692887077407">"Síminn hefur verið virkjaður. Allt að fimmtán mínútur kunna að líða þar til samband næst."</string>
     <string name="ota_unsuccessful" msgid="8072141612635635357">"Ekki tókst að virkja símann. \nÞú gætir þurft að færa þig á stað þar sem er betra samband (við glugga eða utandyra). \n\nReyndu aftur eða hringdu í þjónustuver til að frekari upplýsingar."</string>
     <string name="ota_spc_failure" msgid="3909983542575030796">"SPC-VILLUR YFIR MÖRKUM"</string>
@@ -506,21 +612,23 @@
     <string name="goPrivate" msgid="865837794424530980">"tala í einrúmi"</string>
     <string name="selectContact" msgid="781975788478987237">"velja tengilið"</string>
     <string name="not_voice_capable" msgid="2739898841461577811">"Símtöl eru ekki studd"</string>
-    <string name="respond_via_sms_setting_title" msgid="3754000371039709383">"Snarsvör"</string>
-    <string name="respond_via_sms_setting_summary" msgid="9150281183930613065"></string>
     <string name="description_dial_button" msgid="7459705245418435351">"hringja"</string>
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"Titringur"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"Titringur"</string>
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"Hljóð"</string>
-    <string name="default_notification_description" msgid="78174796906240970">"Sjálfgefið hljóð (<xliff:g id="DEFAULT_SOUND_TITLE">%1$s</xliff:g>)"</string>
-    <string name="ringtone_title" msgid="6374978286202084684">"Hringitónn síma"</string>
-    <string name="vibrate_on_ring_title" msgid="9197564612065258960">"Titra við hringingu"</string>
-    <string name="dtmf_tone_enable_title" msgid="827601042915852989">"Snertitónar takkaborðs"</string>
-    <string name="dial_pad_autocomplete" msgid="494525952035761075">"Sjálfvirk útfylling á takkaborði"</string>
+    <!-- no translation found for dial_pad_autocomplete (7683489952557536398) -->
+    <skip />
     <string name="preference_category_ringtone" msgid="5197960752529332721">"Hringitónn og titringur"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"Innbyggð SIM-kort"</string>
     <string name="enable_video_calling_title" msgid="7237253660669000899">"Kveikja á myndsímtölum"</string>
-    <string name="enable_video_calling_dialog_msg" msgid="6547569773866546434">"Til að kveikja á myndsímtölum þarftu að gera endurbætt 4G LTE virkt í stillingum kerfisins."</string>
+    <!-- no translation found for enable_video_calling_dialog_msg (8948186136957417948) -->
+    <skip />
     <string name="enable_video_calling_dialog_settings" msgid="576528473599603249">"Símkerfisstillingar"</string>
     <string name="enable_video_calling_dialog_close" msgid="7411471282167927991">"Loka"</string>
+    <!-- no translation found for sim_label_emergency_calls (4847699229529306397) -->
+    <skip />
+    <!-- no translation found for sim_description_emergency_calls (7535215397212301562) -->
+    <skip />
+    <!-- no translation found for sim_description_default (4778679519938775515) -->
+    <skip />
 </resources>
