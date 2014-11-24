@@ -16,26 +16,22 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="sip_settings" msgid="7083411056842490982">"Internet bidezko deien ezarpenak"</string>
-    <string name="sip_accounts" msgid="5575635218475814144">"Internet bidez deitzeko (SIP) kontuak"</string>
+    <!-- no translation found for sip_settings (3768482698061677257) -->
+    <skip />
+    <!-- no translation found for sip_accounts (85559497282185405) -->
+    <skip />
     <string name="sip_accounts_title" msgid="2082527045326874519">"Kontuak"</string>
     <string name="sip_receive_calls" msgid="426678617137462173">"Jaso sarrerako deiak"</string>
-    <string name="sip_receive_calls_summary" msgid="7390078407518633658">"Bateriaren iraupena murrizten du"</string>
-    <string name="sip_call_options_title" msgid="1140346343222696780">"Erabili Internet bidezko deiak"</string>
-    <string name="sip_call_options_wifi_only_title" msgid="6659725576735517138">"Erabili Internet bidezko deiak (Wi-Fi soilik)"</string>
+    <!-- no translation found for sip_receive_calls_summary (946161517528227523) -->
+    <skip />
+    <!-- no translation found for sip_call_options_title (8421210494703869806) -->
+    <skip />
+    <!-- no translation found for sip_call_options_wifi_only_title (5112579243580893890) -->
+    <skip />
     <string name="sip_call_options_entry_1" msgid="7217659161237099900">"Dei guztietan datu-sarea erabilgarri dagoenean"</string>
-    <string name="sip_call_options_entry_2" msgid="3432624809972300467">"Internet bidezko deietan soilik"</string>
-    <string name="sip_call_options_entry_3" msgid="1493464396638124047">"Galdetu deitzen den bakoitzean"</string>
+    <!-- no translation found for sip_call_options_entry_2 (1815335903940609729) -->
+    <skip />
     <string name="sip_call_options_wifi_only_entry_1" msgid="1358513095551847314">"Dei guztietan"</string>
-    <string name="pick_outgoing_call_phone_type" msgid="7140865415705473564">"Egin deia"</string>
-    <string name="pick_outgoing_sip_phone" msgid="635431914692273175">"Erabili Internet bidez deitzeko kontua:"</string>
-    <string name="remember_my_choice" msgid="6204557816977242680">"Erabili beti Internet bidezko deiak egiteko"</string>
-    <string name="reset_my_choice_hint" msgid="5681276499400166714">"Internet bidezko deiak egiteko kontu lehenetsia alda dezakezu Telefonoa &gt; Ezarpenak &gt; Internet bidezko deien ezarpenak &gt; Kontuak atalean."</string>
-    <string name="pstn_phone" msgid="9596332924895028">"Telefono mugikorra"</string>
-    <string name="internet_phone" msgid="4444458244774004247">"Internet bidezko deia"</string>
-    <string name="no_sip_account_found_title" msgid="1930267380483259657">"Ez dago Internet bidez deitzeko konturik"</string>
-    <string name="no_sip_account_found" msgid="2584609532663311723">"Ez dago Internet bidez deitzeko konturik telefono honetan. Kontu bat gehitu nahi duzu?"</string>
-    <string name="sip_menu_add" msgid="220996859802365311">"Gehitu"</string>
     <string name="add_sip_account" msgid="800843669753980091">"Gehitu kontua"</string>
     <string name="remove_sip_account" msgid="1367664438506503690">"Kendu kontua"</string>
     <string name="sip_account_list" msgid="5610858485304821480">"SIP kontuak"</string>
@@ -46,7 +42,6 @@
     <string name="alert_dialog_close" msgid="1326011828713435134">"Itxi profila"</string>
     <string name="alert_dialog_ok" msgid="4752048404605388940">"Ados"</string>
     <string name="close_profile" msgid="3122414058856309881">"Itxi"</string>
-    <string name="primary_account_summary_with" msgid="3590771303761149724">"Kontu nagusia. <xliff:g id="REGISTRATION_STATUS">%s</xliff:g>"</string>
     <string name="registration_status_checking_status" msgid="6136793741862200337">"Egoera egiaztatzen…"</string>
     <string name="registration_status_registering" msgid="2677183977796278749">"Erregistratzen…"</string>
     <string name="registration_status_still_trying" msgid="7648151061205513458">"Oraindik saiatzen…"</string>
@@ -69,8 +64,6 @@
     <string name="port_title" msgid="6693965912656593862">"Ataka-zenbakia"</string>
     <string name="transport_title" msgid="889155457465372527">"Garraio mota"</string>
     <string name="send_keepalive_title" msgid="599627072150501159">"Bidali konexioa mantentzeko mezua"</string>
-    <string name="set_primary_title" msgid="4418523822344363725">"Ezarri kontu nagusi gisa"</string>
-    <string name="set_primary_summary" msgid="8917913711425551278">"Irteerako deiak egiteko erabiltzen da"</string>
     <string name="advanced_settings" msgid="6622996380747040711">"Aukerako ezarpenak"</string>
     <string name="auth_username_title" msgid="8262491689004708265">"Autentifikatzeko erabiltzaile-izena"</string>
     <string name="auth_username_summary" msgid="941160241371436473">"Autentifikatzeko erabili den erabiltzaile-izena"</string>
@@ -81,12 +74,14 @@
     <string name="advanced_settings_hide" msgid="3480554978705290228">"▽ Guztiak ezkutatzeko, ukitu"</string>
     <string name="empty_alert" msgid="6659484914371384024">"<xliff:g id="INPUT_FIELD_NAME">%s</xliff:g> beharrezkoa da eta ezin da hutsik utzi."</string>
     <string name="not_a_valid_port" msgid="7931422555587011830">"Ataka-zenbakiak 1000 eta 65534 artean egon behar luke."</string>
-    <string name="no_internet_available_title" msgid="5967612364991972539">"Ez duzu Interneteko konexiorik"</string>
-    <string name="no_wifi_available_title" msgid="3560623175076099410">"Ez dago Wi-Fi konexiorik"</string>
-    <string name="no_internet_available" msgid="3166751740849243568">"Internet bidezko deiak egin aurretik, Interneteko konexioa egiaztatu behar duzu."</string>
-    <string name="no_wifi_available" msgid="8786934834522321080">"Internet bidezko deiak egiteko, Wi-Fi sare batera konektatuta egon behar duzu (erabili Hari gabekoak eta sarea ataleko ezarpenak)."</string>
-    <string name="no_voip" msgid="1600568347241920141">"Ez dira Internet bidezko deiak onartzen"</string>
+    <!-- no translation found for no_internet_available (5523747991760017298) -->
+    <skip />
+    <!-- no translation found for no_wifi_available (1955023904229673488) -->
+    <skip />
+    <!-- no translation found for no_voip (3038021971231952704) -->
+    <skip />
     <string name="sip_system_decide" msgid="5577696249416700671">"Automatikoa"</string>
     <string name="sip_always_send_keepalive" msgid="4773022409239823318">"Bidali beti"</string>
-    <string name="sip_connection_service_label" msgid="9214942431972794760">"Internet bidezko dei bateratuak"</string>
+    <!-- no translation found for sip_connection_service_label (6935325004265884453) -->
+    <skip />
 </resources>

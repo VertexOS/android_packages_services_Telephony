@@ -16,26 +16,22 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="sip_settings" msgid="7083411056842490982">"Поставки за повици на интернет"</string>
-    <string name="sip_accounts" msgid="5575635218475814144">"Сметки за повикување на интернет (SIP)"</string>
+    <!-- no translation found for sip_settings (3768482698061677257) -->
+    <skip />
+    <!-- no translation found for sip_accounts (85559497282185405) -->
+    <skip />
     <string name="sip_accounts_title" msgid="2082527045326874519">"Сметки"</string>
     <string name="sip_receive_calls" msgid="426678617137462173">"Примај дојдовни повици"</string>
-    <string name="sip_receive_calls_summary" msgid="7390078407518633658">"Го намалува животниот век на батеријата"</string>
-    <string name="sip_call_options_title" msgid="1140346343222696780">"Користи повикување на интернет"</string>
-    <string name="sip_call_options_wifi_only_title" msgid="6659725576735517138">"Користи повикување на интернет (само Wi-Fi)"</string>
+    <!-- no translation found for sip_receive_calls_summary (946161517528227523) -->
+    <skip />
+    <!-- no translation found for sip_call_options_title (8421210494703869806) -->
+    <skip />
+    <!-- no translation found for sip_call_options_wifi_only_title (5112579243580893890) -->
+    <skip />
     <string name="sip_call_options_entry_1" msgid="7217659161237099900">"За сите повици кога е достапна мрежа на податоци"</string>
-    <string name="sip_call_options_entry_2" msgid="3432624809972300467">"Само за повици на интернет"</string>
-    <string name="sip_call_options_entry_3" msgid="1493464396638124047">"Прашај за секој повик"</string>
+    <!-- no translation found for sip_call_options_entry_2 (1815335903940609729) -->
+    <skip />
     <string name="sip_call_options_wifi_only_entry_1" msgid="1358513095551847314">"За сите повици"</string>
-    <string name="pick_outgoing_call_phone_type" msgid="7140865415705473564">"Воспостави повик"</string>
-    <string name="pick_outgoing_sip_phone" msgid="635431914692273175">"Користи сметка за повикување на интернет:"</string>
-    <string name="remember_my_choice" msgid="6204557816977242680">"Секогаш користи за воспоставување повици на интернет"</string>
-    <string name="reset_my_choice_hint" msgid="5681276499400166714">"Може да промените која сметка за повикување на интернет од телефонот ќе ја користите стандардно преку &gt; Поставки &gt; Поставки за повици од интернет &gt; Екран со сметки."</string>
-    <string name="pstn_phone" msgid="9596332924895028">"Повик од мобилен телефон"</string>
-    <string name="internet_phone" msgid="4444458244774004247">"Повик на интернет"</string>
-    <string name="no_sip_account_found_title" msgid="1930267380483259657">"Нема сметка за повикување на интернет"</string>
-    <string name="no_sip_account_found" msgid="2584609532663311723">"Нема сметки за повикување на интернет на овој телефон. Дали сакате да додадете една сега?"</string>
-    <string name="sip_menu_add" msgid="220996859802365311">"Додај"</string>
     <string name="add_sip_account" msgid="800843669753980091">"Додај сметка"</string>
     <string name="remove_sip_account" msgid="1367664438506503690">"Отстрани сметка"</string>
     <string name="sip_account_list" msgid="5610858485304821480">"Сметки за SIP"</string>
@@ -46,7 +42,6 @@
     <string name="alert_dialog_close" msgid="1326011828713435134">"Затвори го профилот"</string>
     <string name="alert_dialog_ok" msgid="4752048404605388940">"Во ред"</string>
     <string name="close_profile" msgid="3122414058856309881">"Затвори"</string>
-    <string name="primary_account_summary_with" msgid="3590771303761149724">"Примарна сметка. <xliff:g id="REGISTRATION_STATUS">%s</xliff:g>"</string>
     <string name="registration_status_checking_status" msgid="6136793741862200337">"Проверување статус..."</string>
     <string name="registration_status_registering" msgid="2677183977796278749">"Регистрирање..."</string>
     <string name="registration_status_still_trying" msgid="7648151061205513458">"Уште се обидува..."</string>
@@ -69,8 +64,6 @@
     <string name="port_title" msgid="6693965912656593862">"Број на порта"</string>
     <string name="transport_title" msgid="889155457465372527">"Тип превоз"</string>
     <string name="send_keepalive_title" msgid="599627072150501159">"Испрати „одржувај врска“"</string>
-    <string name="set_primary_title" msgid="4418523822344363725">"Постави како примарна сметка"</string>
-    <string name="set_primary_summary" msgid="8917913711425551278">"Се користи за излезни повици"</string>
     <string name="advanced_settings" msgid="6622996380747040711">"Изборни поставки"</string>
     <string name="auth_username_title" msgid="8262491689004708265">"Корисничко име за автентикација"</string>
     <string name="auth_username_summary" msgid="941160241371436473">"Корисничко име што се користи за автентикација"</string>
@@ -81,12 +74,14 @@
     <string name="advanced_settings_hide" msgid="3480554978705290228">"▽ Допрете за да се сокријат сите"</string>
     <string name="empty_alert" msgid="6659484914371384024">"Потребно е <xliff:g id="INPUT_FIELD_NAME">%s</xliff:g> и не може да се остави празно."</string>
     <string name="not_a_valid_port" msgid="7931422555587011830">"Бројот на портата треба да биде меѓу 1000 и 65534."</string>
-    <string name="no_internet_available_title" msgid="5967612364991972539">"Нема интернет конекција"</string>
-    <string name="no_wifi_available_title" msgid="3560623175076099410">"Нема Wi-Fi конекција"</string>
-    <string name="no_internet_available" msgid="3166751740849243568">"За да воспоставите повик на интернет, прво проверете ја вашата интернет конекција."</string>
-    <string name="no_wifi_available" msgid="8786934834522321080">"Треба да сте поврзани со Wi-Fi мрежа за повици на интернет (користете ги безжичните и мрежните поставки)."</string>
-    <string name="no_voip" msgid="1600568347241920141">"Повикувањето на интернет не е поддржано"</string>
+    <!-- no translation found for no_internet_available (5523747991760017298) -->
+    <skip />
+    <!-- no translation found for no_wifi_available (1955023904229673488) -->
+    <skip />
+    <!-- no translation found for no_voip (3038021971231952704) -->
+    <skip />
     <string name="sip_system_decide" msgid="5577696249416700671">"Автоматски"</string>
     <string name="sip_always_send_keepalive" msgid="4773022409239823318">"Испраќај секогаш"</string>
-    <string name="sip_connection_service_label" msgid="9214942431972794760">"Вградено повикување преку интернет"</string>
+    <!-- no translation found for sip_connection_service_label (6935325004265884453) -->
+    <skip />
 </resources>

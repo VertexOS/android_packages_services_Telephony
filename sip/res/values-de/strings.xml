@@ -16,26 +16,22 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="sip_settings" msgid="7083411056842490982">"Einstellungen für Internetanrufe"</string>
-    <string name="sip_accounts" msgid="5575635218475814144">"Konten für Internetanrufe (SIP)"</string>
+    <!-- no translation found for sip_settings (3768482698061677257) -->
+    <skip />
+    <!-- no translation found for sip_accounts (85559497282185405) -->
+    <skip />
     <string name="sip_accounts_title" msgid="2082527045326874519">"Konten"</string>
     <string name="sip_receive_calls" msgid="426678617137462173">"Eingehende Anrufe annehmen"</string>
-    <string name="sip_receive_calls_summary" msgid="7390078407518633658">"Verkürzt Akkulaufzeit"</string>
-    <string name="sip_call_options_title" msgid="1140346343222696780">"Internetanrufe verwenden"</string>
-    <string name="sip_call_options_wifi_only_title" msgid="6659725576735517138">"Internetanruf verwenden (nur WLAN)"</string>
+    <!-- no translation found for sip_receive_calls_summary (946161517528227523) -->
+    <skip />
+    <!-- no translation found for sip_call_options_title (8421210494703869806) -->
+    <skip />
+    <!-- no translation found for sip_call_options_wifi_only_title (5112579243580893890) -->
+    <skip />
     <string name="sip_call_options_entry_1" msgid="7217659161237099900">"Für alle Anrufe mit verfügbarem Datennetzwerk"</string>
-    <string name="sip_call_options_entry_2" msgid="3432624809972300467">"Nur für Internetanrufe"</string>
-    <string name="sip_call_options_entry_3" msgid="1493464396638124047">"Bei jedem Anruf fragen"</string>
+    <!-- no translation found for sip_call_options_entry_2 (1815335903940609729) -->
+    <skip />
     <string name="sip_call_options_wifi_only_entry_1" msgid="1358513095551847314">"Für alle Anrufe"</string>
-    <string name="pick_outgoing_call_phone_type" msgid="7140865415705473564">"Telefonieren"</string>
-    <string name="pick_outgoing_sip_phone" msgid="635431914692273175">"Konto für Internetanrufe verwenden:"</string>
-    <string name="remember_my_choice" msgid="6204557816977242680">"Immer für Internetanrufe verwenden"</string>
-    <string name="reset_my_choice_hint" msgid="5681276499400166714">"Sie können auf Ihrem Telefon unter \"Einstellungen\" &gt; \"Einstellungen für Internetanrufe\" &gt; \"Konten\" festlegen, welches Konto standardmäßig für Internetanrufe verwendet werden soll."</string>
-    <string name="pstn_phone" msgid="9596332924895028">"Mobiltelefon"</string>
-    <string name="internet_phone" msgid="4444458244774004247">"Internetanruf"</string>
-    <string name="no_sip_account_found_title" msgid="1930267380483259657">"Kein Konto für Internetanrufe"</string>
-    <string name="no_sip_account_found" msgid="2584609532663311723">"Auf diesem Telefon befinden sich keine Konten für Internetanrufe. Möchten Sie jetzt ein Konto hinzufügen?"</string>
-    <string name="sip_menu_add" msgid="220996859802365311">"Hinzufügen"</string>
     <string name="add_sip_account" msgid="800843669753980091">"Konto hinzufügen"</string>
     <string name="remove_sip_account" msgid="1367664438506503690">"Konto entfernen"</string>
     <string name="sip_account_list" msgid="5610858485304821480">"SIP-Konten"</string>
@@ -46,7 +42,6 @@
     <string name="alert_dialog_close" msgid="1326011828713435134">"Profil schließen"</string>
     <string name="alert_dialog_ok" msgid="4752048404605388940">"OK"</string>
     <string name="close_profile" msgid="3122414058856309881">"Schließen"</string>
-    <string name="primary_account_summary_with" msgid="3590771303761149724">"Primäres Konto. <xliff:g id="REGISTRATION_STATUS">%s</xliff:g>"</string>
     <string name="registration_status_checking_status" msgid="6136793741862200337">"Status wird überprüft…"</string>
     <string name="registration_status_registering" msgid="2677183977796278749">"Registrierung läuft…"</string>
     <string name="registration_status_still_trying" msgid="7648151061205513458">"Wird weiter versucht…"</string>
@@ -69,8 +64,6 @@
     <string name="port_title" msgid="6693965912656593862">"Portnummer"</string>
     <string name="transport_title" msgid="889155457465372527">"Transportart"</string>
     <string name="send_keepalive_title" msgid="599627072150501159">"Keep-Alive senden"</string>
-    <string name="set_primary_title" msgid="4418523822344363725">"Als primäres Konto festlegen"</string>
-    <string name="set_primary_summary" msgid="8917913711425551278">"Für ausgehende Anrufe verwendet"</string>
     <string name="advanced_settings" msgid="6622996380747040711">"Optionale Einstellungen"</string>
     <string name="auth_username_title" msgid="8262491689004708265">"Nutzername für die Authentifizierung"</string>
     <string name="auth_username_summary" msgid="941160241371436473">"Für die Authentifizierung verwendeter Nutzername"</string>
@@ -81,12 +74,14 @@
     <string name="advanced_settings_hide" msgid="3480554978705290228">"▽ Tippen, um alle auszublenden"</string>
     <string name="empty_alert" msgid="6659484914371384024">"<xliff:g id="INPUT_FIELD_NAME">%s</xliff:g> ist ein Pflichtfeld. Es darf nicht leer bleiben."</string>
     <string name="not_a_valid_port" msgid="7931422555587011830">"Portnummer muss zwischen 1000 und 65534 liegen."</string>
-    <string name="no_internet_available_title" msgid="5967612364991972539">"Keine Internetverbindung"</string>
-    <string name="no_wifi_available_title" msgid="3560623175076099410">"Keine WLAN-Verbindung"</string>
-    <string name="no_internet_available" msgid="3166751740849243568">"Überprüfen Sie zunächst Ihre Internetverbindung, bevor Sie einen Internetanruf tätigen."</string>
-    <string name="no_wifi_available" msgid="8786934834522321080">"Für Internetanrufe ist eine aktive WLAN-Verbindung notwendig. Wählen Sie die entsprechenden Einstellungen unter \"Drahtlos &amp; Netzwerke\"."</string>
-    <string name="no_voip" msgid="1600568347241920141">"Internetanrufe werden nicht unterstützt"</string>
+    <!-- no translation found for no_internet_available (5523747991760017298) -->
+    <skip />
+    <!-- no translation found for no_wifi_available (1955023904229673488) -->
+    <skip />
+    <!-- no translation found for no_voip (3038021971231952704) -->
+    <skip />
     <string name="sip_system_decide" msgid="5577696249416700671">"Automatisch"</string>
     <string name="sip_always_send_keepalive" msgid="4773022409239823318">"Immer senden"</string>
-    <string name="sip_connection_service_label" msgid="9214942431972794760">"Integrierte Internettelefonie"</string>
+    <!-- no translation found for sip_connection_service_label (6935325004265884453) -->
+    <skip />
 </resources>

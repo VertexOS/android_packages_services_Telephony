@@ -16,26 +16,22 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="sip_settings" msgid="7083411056842490982">"இணைய அழைப்பு அமைப்புகள்"</string>
-    <string name="sip_accounts" msgid="5575635218475814144">"இணைய அழைப்பிற்கான (SIP) கணக்குகள்"</string>
+    <!-- no translation found for sip_settings (3768482698061677257) -->
+    <skip />
+    <!-- no translation found for sip_accounts (85559497282185405) -->
+    <skip />
     <string name="sip_accounts_title" msgid="2082527045326874519">"கணக்குகள்"</string>
     <string name="sip_receive_calls" msgid="426678617137462173">"உள்வரும் அழைப்புகளைப் பெறு"</string>
-    <string name="sip_receive_calls_summary" msgid="7390078407518633658">"பேட்டரி அளவைக் குறைக்கிறது"</string>
-    <string name="sip_call_options_title" msgid="1140346343222696780">"இணைய அழைப்பைப் பயன்படுத்து"</string>
-    <string name="sip_call_options_wifi_only_title" msgid="6659725576735517138">"இணைய அழைப்பிற்குப் பயன்படுத்து (Wi-Fi மட்டும்)"</string>
+    <!-- no translation found for sip_receive_calls_summary (946161517528227523) -->
+    <skip />
+    <!-- no translation found for sip_call_options_title (8421210494703869806) -->
+    <skip />
+    <!-- no translation found for sip_call_options_wifi_only_title (5112579243580893890) -->
+    <skip />
     <string name="sip_call_options_entry_1" msgid="7217659161237099900">"தரவு நெட்வொர்க் கிடைக்கும்போது எல்லா அழைப்புகளுக்கும்"</string>
-    <string name="sip_call_options_entry_2" msgid="3432624809972300467">"இணைய அழைப்புகளுக்கு மட்டும்"</string>
-    <string name="sip_call_options_entry_3" msgid="1493464396638124047">"ஒவ்வொரு அழைப்பிற்கும் கேள்"</string>
+    <!-- no translation found for sip_call_options_entry_2 (1815335903940609729) -->
+    <skip />
     <string name="sip_call_options_wifi_only_entry_1" msgid="1358513095551847314">"எல்லா அழைப்புகளுக்கும்"</string>
-    <string name="pick_outgoing_call_phone_type" msgid="7140865415705473564">"அழை"</string>
-    <string name="pick_outgoing_sip_phone" msgid="635431914692273175">"இணைய அழைப்பிற்கான கணக்கைப் பயன்படுத்துக:"</string>
-    <string name="remember_my_choice" msgid="6204557816977242680">"இணைய அழைப்புகளை மேற்கொள்ள எப்போதும் பயன்படுத்து"</string>
-    <string name="reset_my_choice_hint" msgid="5681276499400166714">"மொபைல் &gt; அமைப்புகள் &gt; இணைய அழைப்பு அமைப்புகள் &gt; கணக்குகள் திரையிலிருந்து இயல்புநிலையாகப் பயன்படுத்துவதற்கான இணைய அழைப்பிற்கான கணக்கை நீங்கள் மாற்றலாம்."</string>
-    <string name="pstn_phone" msgid="9596332924895028">"செல்ஃபோன் அழைப்பு"</string>
-    <string name="internet_phone" msgid="4444458244774004247">"இணைய அழைப்பு"</string>
-    <string name="no_sip_account_found_title" msgid="1930267380483259657">"இணைய அழைப்பிற்கான கணக்கு எதுவுமில்லை"</string>
-    <string name="no_sip_account_found" msgid="2584609532663311723">"மொபைலில், இணைய அழைப்பிற்கான கணக்குகள் எதுவுமில்லை. இப்போது புதிதாக ஒன்றைச் சேர்க்க விருப்பமா?"</string>
-    <string name="sip_menu_add" msgid="220996859802365311">"சேர்"</string>
     <string name="add_sip_account" msgid="800843669753980091">"கணக்கைச் சேர்"</string>
     <string name="remove_sip_account" msgid="1367664438506503690">"கணக்கை அகற்று"</string>
     <string name="sip_account_list" msgid="5610858485304821480">"SIP கணக்குகள்"</string>
@@ -46,7 +42,6 @@
     <string name="alert_dialog_close" msgid="1326011828713435134">"சுயவிவரத்தை மூடு"</string>
     <string name="alert_dialog_ok" msgid="4752048404605388940">"சரி"</string>
     <string name="close_profile" msgid="3122414058856309881">"மூடு"</string>
-    <string name="primary_account_summary_with" msgid="3590771303761149724">"முதன்மை கணக்கு. <xliff:g id="REGISTRATION_STATUS">%s</xliff:g>"</string>
     <string name="registration_status_checking_status" msgid="6136793741862200337">"நிலையைச் சரிபார்க்கிறது..."</string>
     <string name="registration_status_registering" msgid="2677183977796278749">"பதிவுசெய்கிறது…"</string>
     <string name="registration_status_still_trying" msgid="7648151061205513458">"இன்னும் முயற்சிக்கிறது…"</string>
@@ -69,9 +64,7 @@
     <string name="port_title" msgid="6693965912656593862">"போர்ட் எண்"</string>
     <string name="transport_title" msgid="889155457465372527">"பரிமாற்ற வகை"</string>
     <string name="send_keepalive_title" msgid="599627072150501159">"எப்போதும் விழிப்புடன் அனுப்பு"</string>
-    <string name="set_primary_title" msgid="4418523822344363725">"முதன்மை கணக்காக அமை"</string>
-    <string name="set_primary_summary" msgid="8917913711425551278">"வெளிச்செல்லும் அழைப்புகளுக்குப் பயன்படுத்தப்பட்டது"</string>
-    <string name="advanced_settings" msgid="6622996380747040711">"விருப்ப அமைப்புகள்"</string>
+    <string name="advanced_settings" msgid="6622996380747040711">"விருப்ப அமைப்பு"</string>
     <string name="auth_username_title" msgid="8262491689004708265">"அங்கீகாரப் பயனர்பெயர்"</string>
     <string name="auth_username_summary" msgid="941160241371436473">"அங்கீகரிப்பிற்குப் பயனர்பெயர் பயன்படுத்தப்பட்டது"</string>
     <string name="default_preference_summary" msgid="1979249643719483249">"&lt;அமைக்கப்படவில்லை&gt;"</string>
@@ -81,12 +74,14 @@
     <string name="advanced_settings_hide" msgid="3480554978705290228">"▽ எல்லாவற்றையும் மறைக்கத் தொடவும்"</string>
     <string name="empty_alert" msgid="6659484914371384024">"<xliff:g id="INPUT_FIELD_NAME">%s</xliff:g> அவசியமானது மற்றும் வெறுமையாக விடக்கூடாது."</string>
     <string name="not_a_valid_port" msgid="7931422555587011830">"போர்ட் எண் 1000 இலிருந்து 65534 க்குள் இருக்க வேண்டும்."</string>
-    <string name="no_internet_available_title" msgid="5967612364991972539">"இணைய இணைப்பு இல்லை"</string>
-    <string name="no_wifi_available_title" msgid="3560623175076099410">"Wi-Fi இணைப்பு இல்லை"</string>
-    <string name="no_internet_available" msgid="3166751740849243568">"இணைய அழைப்பிற்கு, முதலில் இணைய இணைப்பைச் சரிபார்க்கவும்."</string>
-    <string name="no_wifi_available" msgid="8786934834522321080">"இணைய அழைப்புகளுக்கு Wi-Fi நெட்வொர்க்குடன் இணைக்கப்பட வேண்டும் (வயர்லெஸ் &amp; நெட்வொர்க் அமைப்புகளைப் பயன்படுத்தவும்)."</string>
-    <string name="no_voip" msgid="1600568347241920141">"இணைய அழைப்பு ஆதரிக்கப்படவில்லை"</string>
+    <!-- no translation found for no_internet_available (5523747991760017298) -->
+    <skip />
+    <!-- no translation found for no_wifi_available (1955023904229673488) -->
+    <skip />
+    <!-- no translation found for no_voip (3038021971231952704) -->
+    <skip />
     <string name="sip_system_decide" msgid="5577696249416700671">"தானியங்கு"</string>
     <string name="sip_always_send_keepalive" msgid="4773022409239823318">"எப்போதும் அனுப்பு"</string>
-    <string name="sip_connection_service_label" msgid="9214942431972794760">"உள்ளிணைந்த இணைய அழைப்பு"</string>
+    <!-- no translation found for sip_connection_service_label (6935325004265884453) -->
+    <skip />
 </resources>

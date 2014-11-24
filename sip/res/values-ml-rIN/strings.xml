@@ -16,26 +16,22 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="sip_settings" msgid="7083411056842490982">"ഇന്റർനെറ്റ് കോൾ ക്രമീകരണങ്ങൾ"</string>
-    <string name="sip_accounts" msgid="5575635218475814144">"ഇന്റർനെറ്റ് കോൾ ചെയ്യൽ (SIP) അക്കൗണ്ടുകൾ"</string>
+    <!-- no translation found for sip_settings (3768482698061677257) -->
+    <skip />
+    <!-- no translation found for sip_accounts (85559497282185405) -->
+    <skip />
     <string name="sip_accounts_title" msgid="2082527045326874519">"അക്കൗണ്ടുകൾ"</string>
     <string name="sip_receive_calls" msgid="426678617137462173">"ഇൻകമിംഗ് കോളുകൾ സ്വീകരിക്കുക"</string>
-    <string name="sip_receive_calls_summary" msgid="7390078407518633658">"ബാറ്ററി ആയുസ്സ് കുറയ്‌ക്കുന്നു"</string>
-    <string name="sip_call_options_title" msgid="1140346343222696780">"ഇന്റർനെറ്റ് കോൾ ചെയ്യൽ ഉപയോഗിക്കുക"</string>
-    <string name="sip_call_options_wifi_only_title" msgid="6659725576735517138">"ഇന്റർനെറ്റ് കോൾ ചെയ്യൽ ഉപയോഗിക്കുക (Wi-Fi യിൽ മാത്രം)"</string>
+    <!-- no translation found for sip_receive_calls_summary (946161517528227523) -->
+    <skip />
+    <!-- no translation found for sip_call_options_title (8421210494703869806) -->
+    <skip />
+    <!-- no translation found for sip_call_options_wifi_only_title (5112579243580893890) -->
+    <skip />
     <string name="sip_call_options_entry_1" msgid="7217659161237099900">"ഡാറ്റ നെറ്റ്‌വർക്ക് ലഭ്യമാകുമ്പോൾ എല്ലാ കോളുകൾക്കായും"</string>
-    <string name="sip_call_options_entry_2" msgid="3432624809972300467">"ഇന്റർനെറ്റ് കോളുകൾക്ക് മാത്രം"</string>
-    <string name="sip_call_options_entry_3" msgid="1493464396638124047">"ഓരോ കോളിനും ആവശ്യപ്പെടുക"</string>
+    <!-- no translation found for sip_call_options_entry_2 (1815335903940609729) -->
+    <skip />
     <string name="sip_call_options_wifi_only_entry_1" msgid="1358513095551847314">"എല്ലാ കോളുകൾക്കും"</string>
-    <string name="pick_outgoing_call_phone_type" msgid="7140865415705473564">"കോൾ ചെയ്യുക"</string>
-    <string name="pick_outgoing_sip_phone" msgid="635431914692273175">"ഇന്റർനെറ്റ് കോൾ ചെയ്യാനുള്ള അക്കൗണ്ട് ഉപയോഗിക്കുക:"</string>
-    <string name="remember_my_choice" msgid="6204557816977242680">"എല്ലായ്പ്പോഴും ഇന്റർനെറ്റ് കോളുകൾ വിളിക്കാൻ ഉപയോഗിക്കുക"</string>
-    <string name="reset_my_choice_hint" msgid="5681276499400166714">"ഫോൺ &gt; ക്രമീകരണങ്ങൾ &gt; ഇന്റർനെറ്റ് കോൾ ക്രമീകരണങ്ങൾ &gt; അക്കൗണ്ട്‌സ് സ്‌ക്രീൻ എന്നതിൽ നിന്നും നിങ്ങൾക്ക് ഏത് ഇന്റർനെറ്റ് കോൾ അക്കൗണ്ട് സ്ഥിരമായി ഉപയോഗിക്കണമെന്ന് മാറ്റാം."</string>
-    <string name="pstn_phone" msgid="9596332924895028">"സെൽ ഫോൺ കോൾ"</string>
-    <string name="internet_phone" msgid="4444458244774004247">"ഇന്റർനെറ്റ് കോൾ"</string>
-    <string name="no_sip_account_found_title" msgid="1930267380483259657">"ഇന്റർനെറ്റ് കോൾ ചെയ്യാനുള്ള അക്കൗണ്ട്"</string>
-    <string name="no_sip_account_found" msgid="2584609532663311723">"ഈ ഫോണിൽ ഇന്റർനെറ്റ് കോൾ ചെയ്യാനുള്ള അക്കൗണ്ടുകളൊന്നുമില്ല. പുതിയതൊന്ന് ചേർക്കണോ?"</string>
-    <string name="sip_menu_add" msgid="220996859802365311">"ചേർക്കുക"</string>
     <string name="add_sip_account" msgid="800843669753980091">"അക്കൗണ്ട് ചേർക്കുക"</string>
     <string name="remove_sip_account" msgid="1367664438506503690">"അക്കൗണ്ട് നീക്കംചെയ്യുക"</string>
     <string name="sip_account_list" msgid="5610858485304821480">"SIP അക്കൗണ്ടുകൾ"</string>
@@ -46,7 +42,6 @@
     <string name="alert_dialog_close" msgid="1326011828713435134">"പ്രൊഫൈൽ അടയ്‌ക്കുക"</string>
     <string name="alert_dialog_ok" msgid="4752048404605388940">"ശരി"</string>
     <string name="close_profile" msgid="3122414058856309881">"അടയ്‌ക്കുക"</string>
-    <string name="primary_account_summary_with" msgid="3590771303761149724">"പ്രാഥമിക അക്കൗണ്ട്. <xliff:g id="REGISTRATION_STATUS">%s</xliff:g>"</string>
     <string name="registration_status_checking_status" msgid="6136793741862200337">"നില പരിശോധിക്കുന്നു..."</string>
     <string name="registration_status_registering" msgid="2677183977796278749">"രജിസ്റ്റർ ചെയ്യുന്നു…"</string>
     <string name="registration_status_still_trying" msgid="7648151061205513458">"ഇപ്പോഴും ശ്രമിക്കുന്നു…"</string>
@@ -69,8 +64,6 @@
     <string name="port_title" msgid="6693965912656593862">"പോർട്ട് നമ്പർ"</string>
     <string name="transport_title" msgid="889155457465372527">"ട്രാൻസ്‌പോർട്ട് തരം"</string>
     <string name="send_keepalive_title" msgid="599627072150501159">"സജീവമായി തുടരുക എന്നത് അയയ്‌ക്കുക"</string>
-    <string name="set_primary_title" msgid="4418523822344363725">"പ്രാഥമിക അക്കൗണ്ടായി സജ്ജമാക്കുക"</string>
-    <string name="set_primary_summary" msgid="8917913711425551278">"ഔട്ട്‌ബൗണ്ട് കോളുകൾക്കായി ഉപയോഗിച്ചു"</string>
     <string name="advanced_settings" msgid="6622996380747040711">"ഓപ്‌ഷണൽ ക്രമീകരണങ്ങൾ"</string>
     <string name="auth_username_title" msgid="8262491689004708265">"പ്രാമാണീകരണ ഉപയോക്തൃനാമം"</string>
     <string name="auth_username_summary" msgid="941160241371436473">"പ്രാമാണീകരണത്തിന് ഉപയോഗിച്ച ഉപയോക്തൃനാമം"</string>
@@ -81,12 +74,14 @@
     <string name="advanced_settings_hide" msgid="3480554978705290228">"▽ എല്ലാം മറയ്‌ക്കാൻ സ്‌പർശിക്കുക"</string>
     <string name="empty_alert" msgid="6659484914371384024">"<xliff:g id="INPUT_FIELD_NAME">%s</xliff:g> ആവശ്യമായതിനാൽ ശൂന്യമായിടാനാകില്ല."</string>
     <string name="not_a_valid_port" msgid="7931422555587011830">"പോർട്ട് നമ്പർ 1000, 65534 എന്നിവയ്‌ക്കിടയിലായിരിക്കണം."</string>
-    <string name="no_internet_available_title" msgid="5967612364991972539">"ഇന്റർനെറ്റ് കണക്ഷൻ ഇല്ല"</string>
-    <string name="no_wifi_available_title" msgid="3560623175076099410">"Wi-Fi കണക്ഷനൊന്നുമില്ല"</string>
-    <string name="no_internet_available" msgid="3166751740849243568">"ഒരു ഇന്റർനെറ്റ് കോൾ വിളിക്കുന്നതിന്, ആദ്യം നിങ്ങളുടെ ഇന്റർനെറ്റ് കണക്ഷൻ പരിശോധിക്കുക."</string>
-    <string name="no_wifi_available" msgid="8786934834522321080">"ഇന്റർനെറ്റ് കോളുകൾക്കായി നിങ്ങൾ Wi-Fi നെറ്റ്‌വർക്കിൽ കണക്‌റ്റുചെയ്യേണ്ടതുണ്ട് (വയർലെസ്, നെറ്റ്‌വർക്ക് ക്രമീകരണങ്ങൾ ഉപയോഗിക്കുക)."</string>
-    <string name="no_voip" msgid="1600568347241920141">"ഇന്റർനെറ്റ് കോൾ ചെയ്യുന്നതിനെ പിന്തുണയ്‌ക്കുന്നില്ല"</string>
+    <!-- no translation found for no_internet_available (5523747991760017298) -->
+    <skip />
+    <!-- no translation found for no_wifi_available (1955023904229673488) -->
+    <skip />
+    <!-- no translation found for no_voip (3038021971231952704) -->
+    <skip />
     <string name="sip_system_decide" msgid="5577696249416700671">"യാന്ത്രികമായി"</string>
     <string name="sip_always_send_keepalive" msgid="4773022409239823318">"എല്ലായ്പ്പോഴും അയയ്‌ക്കുക"</string>
-    <string name="sip_connection_service_label" msgid="9214942431972794760">"അന്തർനിർമ്മിത ഇന്റർനെറ്റ് കോൾ ചെയ്യൽ"</string>
+    <!-- no translation found for sip_connection_service_label (6935325004265884453) -->
+    <skip />
 </resources>

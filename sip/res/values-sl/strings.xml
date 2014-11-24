@@ -16,26 +16,22 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="sip_settings" msgid="7083411056842490982">"Nastavitve internetnega klicanja"</string>
-    <string name="sip_accounts" msgid="5575635218475814144">"Računi za internetno klicanje (SIP)"</string>
+    <!-- no translation found for sip_settings (3768482698061677257) -->
+    <skip />
+    <!-- no translation found for sip_accounts (85559497282185405) -->
+    <skip />
     <string name="sip_accounts_title" msgid="2082527045326874519">"Računi"</string>
     <string name="sip_receive_calls" msgid="426678617137462173">"Sprejmi dohodne klice"</string>
-    <string name="sip_receive_calls_summary" msgid="7390078407518633658">"Skrajša čas delovanja akumulatorja"</string>
-    <string name="sip_call_options_title" msgid="1140346343222696780">"Uporaba internetnega klicanja"</string>
-    <string name="sip_call_options_wifi_only_title" msgid="6659725576735517138">"Uporaba internetnega klicanja (samo Wi-Fi)"</string>
+    <!-- no translation found for sip_receive_calls_summary (946161517528227523) -->
+    <skip />
+    <!-- no translation found for sip_call_options_title (8421210494703869806) -->
+    <skip />
+    <!-- no translation found for sip_call_options_wifi_only_title (5112579243580893890) -->
+    <skip />
     <string name="sip_call_options_entry_1" msgid="7217659161237099900">"Za vse klice, ko podatkovno omrežje ni na voljo"</string>
-    <string name="sip_call_options_entry_2" msgid="3432624809972300467">"Samo za internetne klice"</string>
-    <string name="sip_call_options_entry_3" msgid="1493464396638124047">"Vprašaj za vsak klic"</string>
+    <!-- no translation found for sip_call_options_entry_2 (1815335903940609729) -->
+    <skip />
     <string name="sip_call_options_wifi_only_entry_1" msgid="1358513095551847314">"Za vse klice"</string>
-    <string name="pick_outgoing_call_phone_type" msgid="7140865415705473564">"Klicanje"</string>
-    <string name="pick_outgoing_sip_phone" msgid="635431914692273175">"Uporaba računa za internetno klicanje"</string>
-    <string name="remember_my_choice" msgid="6204557816977242680">"Vedno uporabi za internetno klicanje"</string>
-    <string name="reset_my_choice_hint" msgid="5681276499400166714">"Na zaslonu Telefon &gt; Nastavitve &gt; Nastavitve internetnega klicanja &gt; Računi lahko spremenite privzeti račun za internetno klicanje."</string>
-    <string name="pstn_phone" msgid="9596332924895028">"Klic z mobilnim telefonom"</string>
-    <string name="internet_phone" msgid="4444458244774004247">"Internetni klic"</string>
-    <string name="no_sip_account_found_title" msgid="1930267380483259657">"Ni računa za internetno klicanje"</string>
-    <string name="no_sip_account_found" msgid="2584609532663311723">"V tem telefonu ni računov za internetno klicanje. Ali želite dodati račun zdaj?"</string>
-    <string name="sip_menu_add" msgid="220996859802365311">"Dodaj"</string>
     <string name="add_sip_account" msgid="800843669753980091">"Dodajanje računa"</string>
     <string name="remove_sip_account" msgid="1367664438506503690">"Odstrani račun"</string>
     <string name="sip_account_list" msgid="5610858485304821480">"Računi SIP"</string>
@@ -46,7 +42,6 @@
     <string name="alert_dialog_close" msgid="1326011828713435134">"Zapiranje profila"</string>
     <string name="alert_dialog_ok" msgid="4752048404605388940">"V redu"</string>
     <string name="close_profile" msgid="3122414058856309881">"Zapri"</string>
-    <string name="primary_account_summary_with" msgid="3590771303761149724">"Primarni račun. <xliff:g id="REGISTRATION_STATUS">%s</xliff:g>"</string>
     <string name="registration_status_checking_status" msgid="6136793741862200337">"Preverjanje stanja ..."</string>
     <string name="registration_status_registering" msgid="2677183977796278749">"Registriranje ..."</string>
     <string name="registration_status_still_trying" msgid="7648151061205513458">"Še vedno poskušamo ..."</string>
@@ -69,8 +64,6 @@
     <string name="port_title" msgid="6693965912656593862">"Številka vrat"</string>
     <string name="transport_title" msgid="889155457465372527">"Vrsta prevoza"</string>
     <string name="send_keepalive_title" msgid="599627072150501159">"Pošlji ohranjanje povezave"</string>
-    <string name="set_primary_title" msgid="4418523822344363725">"Nastavi kot primarni račun"</string>
-    <string name="set_primary_summary" msgid="8917913711425551278">"Za odhodne klice"</string>
     <string name="advanced_settings" msgid="6622996380747040711">"Izbirne nastavitve"</string>
     <string name="auth_username_title" msgid="8262491689004708265">"Uporabniško ime za preverjanje pristnosti"</string>
     <string name="auth_username_summary" msgid="941160241371436473">"Uporabniško ime za preverjanje pristnosti"</string>
@@ -81,12 +74,14 @@
     <string name="advanced_settings_hide" msgid="3480554978705290228">"▽ Dotaknite se, če želite skriti vse"</string>
     <string name="empty_alert" msgid="6659484914371384024">"Polje <xliff:g id="INPUT_FIELD_NAME">%s</xliff:g> je obvezno in ne sme biti prazno."</string>
     <string name="not_a_valid_port" msgid="7931422555587011830">"Številka vrat mora biti med 1000 in 65534."</string>
-    <string name="no_internet_available_title" msgid="5967612364991972539">"Brez internetne povezave"</string>
-    <string name="no_wifi_available_title" msgid="3560623175076099410">"Ni povezave Wi-Fi"</string>
-    <string name="no_internet_available" msgid="3166751740849243568">"Če želite opraviti internetni klic, najprej preverite internetno povezavo."</string>
-    <string name="no_wifi_available" msgid="8786934834522321080">"Če želite opravljati internetne klice, morate imeti vzpostavljeno povezavo Wi-Fi (nastavite v razdelku »Brezžično in omrežja«)."</string>
-    <string name="no_voip" msgid="1600568347241920141">"Internetno klicanje ni podprto"</string>
+    <!-- no translation found for no_internet_available (5523747991760017298) -->
+    <skip />
+    <!-- no translation found for no_wifi_available (1955023904229673488) -->
+    <skip />
+    <!-- no translation found for no_voip (3038021971231952704) -->
+    <skip />
     <string name="sip_system_decide" msgid="5577696249416700671">"Samodejno"</string>
     <string name="sip_always_send_keepalive" msgid="4773022409239823318">"Vedno pošlji"</string>
-    <string name="sip_connection_service_label" msgid="9214942431972794760">"Vgrajeno internetno klicanje"</string>
+    <!-- no translation found for sip_connection_service_label (6935325004265884453) -->
+    <skip />
 </resources>

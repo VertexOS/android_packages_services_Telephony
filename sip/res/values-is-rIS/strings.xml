@@ -16,26 +16,22 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="sip_settings" msgid="7083411056842490982">"Stillingar netsímtala"</string>
-    <string name="sip_accounts" msgid="5575635218475814144">"Netsímtalareikningar (SIP)"</string>
+    <!-- no translation found for sip_settings (3768482698061677257) -->
+    <skip />
+    <!-- no translation found for sip_accounts (85559497282185405) -->
+    <skip />
     <string name="sip_accounts_title" msgid="2082527045326874519">"Reikningar"</string>
     <string name="sip_receive_calls" msgid="426678617137462173">"Svara símtölum"</string>
-    <string name="sip_receive_calls_summary" msgid="7390078407518633658">"Dregur úr endingartíma rafhlöðu"</string>
-    <string name="sip_call_options_title" msgid="1140346343222696780">"Nota netsímtal"</string>
-    <string name="sip_call_options_wifi_only_title" msgid="6659725576735517138">"Nota netsímtal (Wi-Fi eingöngu)"</string>
+    <!-- no translation found for sip_receive_calls_summary (946161517528227523) -->
+    <skip />
+    <!-- no translation found for sip_call_options_title (8421210494703869806) -->
+    <skip />
+    <!-- no translation found for sip_call_options_wifi_only_title (5112579243580893890) -->
+    <skip />
     <string name="sip_call_options_entry_1" msgid="7217659161237099900">"Fyrir öll símtöl þegar gagnanet er tiltækt"</string>
-    <string name="sip_call_options_entry_2" msgid="3432624809972300467">"Aðeins fyrir netsímtöl"</string>
-    <string name="sip_call_options_entry_3" msgid="1493464396638124047">"Spyrja við hvert símtal"</string>
+    <!-- no translation found for sip_call_options_entry_2 (1815335903940609729) -->
+    <skip />
     <string name="sip_call_options_wifi_only_entry_1" msgid="1358513095551847314">"Fyrir öll símtöl"</string>
-    <string name="pick_outgoing_call_phone_type" msgid="7140865415705473564">"Hringja símtal"</string>
-    <string name="pick_outgoing_sip_phone" msgid="635431914692273175">"Nota netsímareikning:"</string>
-    <string name="remember_my_choice" msgid="6204557816977242680">"Nota alltaf fyrir netsímtöl"</string>
-    <string name="reset_my_choice_hint" msgid="5681276499400166714">"Þú getur breytt því hvaða netsímareikningur er notaður sjálfgefið á skjámyndinni Sími &gt; Stillingar &gt; Netsímastillingar &gt; Reikningar."</string>
-    <string name="pstn_phone" msgid="9596332924895028">"Símtal í farsíma"</string>
-    <string name="internet_phone" msgid="4444458244774004247">"Netsímtal"</string>
-    <string name="no_sip_account_found_title" msgid="1930267380483259657">"Enginn netsímareikningur"</string>
-    <string name="no_sip_account_found" msgid="2584609532663311723">"Engir netsímareikningar í þessum síma. Viltu bæta reikningi við núna?"</string>
-    <string name="sip_menu_add" msgid="220996859802365311">"Bæta við"</string>
     <string name="add_sip_account" msgid="800843669753980091">"Bæta reikningi við"</string>
     <string name="remove_sip_account" msgid="1367664438506503690">"Fjarlægja reikning"</string>
     <string name="sip_account_list" msgid="5610858485304821480">"SIP-reikningar"</string>
@@ -46,7 +42,6 @@
     <string name="alert_dialog_close" msgid="1326011828713435134">"Loka sniðinu"</string>
     <string name="alert_dialog_ok" msgid="4752048404605388940">"Í lagi"</string>
     <string name="close_profile" msgid="3122414058856309881">"Loka"</string>
-    <string name="primary_account_summary_with" msgid="3590771303761149724">"Aðalreikningur. <xliff:g id="REGISTRATION_STATUS">%s</xliff:g>"</string>
     <string name="registration_status_checking_status" msgid="6136793741862200337">"Athugar stöðu..."</string>
     <string name="registration_status_registering" msgid="2677183977796278749">"Skráir…"</string>
     <string name="registration_status_still_trying" msgid="7648151061205513458">"Enn að reyna…"</string>
@@ -69,8 +64,6 @@
     <string name="port_title" msgid="6693965912656593862">"Númer gáttar"</string>
     <string name="transport_title" msgid="889155457465372527">"Flutningsgerð"</string>
     <string name="send_keepalive_title" msgid="599627072150501159">"Halda tengingu opinni"</string>
-    <string name="set_primary_title" msgid="4418523822344363725">"Nota sem aðalreikning"</string>
-    <string name="set_primary_summary" msgid="8917913711425551278">"Notað fyrir hringd símtöl"</string>
     <string name="advanced_settings" msgid="6622996380747040711">"Valfrjálsar stillingar"</string>
     <string name="auth_username_title" msgid="8262491689004708265">"Notandanafn til auðkenningar"</string>
     <string name="auth_username_summary" msgid="941160241371436473">"Notandanafn notað til auðkenningar"</string>
@@ -81,12 +74,14 @@
     <string name="advanced_settings_hide" msgid="3480554978705290228">"▽ Snertu til að fela allt"</string>
     <string name="empty_alert" msgid="6659484914371384024">"<xliff:g id="INPUT_FIELD_NAME">%s</xliff:g> er áskilið og má ekki vera autt."</string>
     <string name="not_a_valid_port" msgid="7931422555587011830">"Númer gáttar á að vera milli 1000 og 65534."</string>
-    <string name="no_internet_available_title" msgid="5967612364991972539">"Engin nettenging"</string>
-    <string name="no_wifi_available_title" msgid="3560623175076099410">"Engin Wi-Fi tenging"</string>
-    <string name="no_internet_available" msgid="3166751740849243568">"Til að hringja netsímtal skaltu fyrst athuga nettenginguna."</string>
-    <string name="no_wifi_available" msgid="8786934834522321080">"Nettenging þarf að vera til staðar til að hægt sé að hringja netsímtöl (notaðu stillingarnar undir Þráðlaus net og símkerfi)."</string>
-    <string name="no_voip" msgid="1600568347241920141">"Netsímtöl eru ekki studd"</string>
+    <!-- no translation found for no_internet_available (5523747991760017298) -->
+    <skip />
+    <!-- no translation found for no_wifi_available (1955023904229673488) -->
+    <skip />
+    <!-- no translation found for no_voip (3038021971231952704) -->
+    <skip />
     <string name="sip_system_decide" msgid="5577696249416700671">"Sjálfvirkt"</string>
     <string name="sip_always_send_keepalive" msgid="4773022409239823318">"Senda alltaf"</string>
-    <string name="sip_connection_service_label" msgid="9214942431972794760">"Innbyggð netsímtöl"</string>
+    <!-- no translation found for sip_connection_service_label (6935325004265884453) -->
+    <skip />
 </resources>
