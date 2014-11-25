@@ -244,8 +244,11 @@ public class SimContacts extends ADNList {
     @Override
     protected Uri resolveIntent() {
         final Intent intent = getIntent();
+        int subId = -1;
         if (intent.hasExtra("subscription_id")) {
-            final int subId = intent.getIntExtra("subscription_id", -1);
+            subId = intent.getIntExtra("subscription_id", -1);
+        }
+        if (subId != -1) {
             intent.setData(Uri.parse("content://icc/adn/subId/" + subId));
         } else {
             intent.setData(Uri.parse("content://icc/adn"));
