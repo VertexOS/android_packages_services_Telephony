@@ -324,7 +324,7 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
      */
     private void updateConfigureCallAssistant() {
         Intent intent = getConfigureCallAssistantIntent();
-        boolean shouldShow = intent != null && !mApplicationContext.getPackageManager()
+        boolean shouldShow = intent != null && !getActivity().getPackageManager()
             .queryIntentActivities(intent, 0).isEmpty();
 
         PreferenceCategory callAssistantCategory = (PreferenceCategory)
