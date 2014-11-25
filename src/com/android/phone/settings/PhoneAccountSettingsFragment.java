@@ -10,6 +10,7 @@ import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceCategory;
 import android.preference.PreferenceFragment;
+import android.preference.SwitchPreference;
 import android.telecom.PhoneAccountHandle;
 import android.telecom.TelecomManager;
 import android.telephony.SubscriptionInfo;
@@ -41,6 +42,8 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
             "phone_accounts_call_assistant_settings_category_key";
     private static final String SELECT_CALL_ASSISTANT_PREF_KEY =
             "wifi_calling_call_assistant_preference";
+    private static final String SELECT_CALL_ASSISTANT_SWITCH_KEY =
+            "wifi_calling_call_assistant_switch";
 
     private static final String SIP_SETTINGS_CATEGORY_PREF_KEY =
             "phone_accounts_sip_settings_category_key";
@@ -56,6 +59,7 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
 
     private AccountSelectionPreference mDefaultOutgoingAccount;
     private AccountSelectionPreference mSelectCallAssistant;
+    private SwitchPreference mCallAssistantSwitch;
     private Preference mConfigureCallAssistant;
 
     private ListPreference mUseSipCalling;
@@ -99,20 +103,44 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
             getPreferenceScreen().removePreference(mDefaultOutgoingAccount);
         }
 
-        if (!mTelecomManager.getSimCallManagers().isEmpty()) {
-            mSelectCallAssistant = (AccountSelectionPreference)
-                    getPreferenceScreen().findPreference(SELECT_CALL_ASSISTANT_PREF_KEY);
-            mSelectCallAssistant.setListener(this);
-            mSelectCallAssistant.setDialogTitle(
-                    R.string.wifi_calling_select_call_assistant_summary);
+        List<PhoneAccountHandle> simCallManagers = mTelecomManager.getSimCallManagers();
+        PreferenceCategory callAssistantCategory = (PreferenceCategory)
+                getPreferenceScreen().findPreference(CALL_ASSISTANT_CATEGORY_PREF_KEY);
+        if (simCallManagers.isEmpty()) {
+            getPreferenceScreen().removePreference(callAssistantCategory);
+        } else {
+            if (simCallManagers.size() == 1) {
+                // If there's only a single call assistant then display an ON/OFF switch. Turning
+                // the switch on enables the call assistant and turning it off disables it.
+                callAssistantCategory.removePreference(
+                        getPreferenceScreen().findPreference(SELECT_CALL_ASSISTANT_PREF_KEY));
+                CharSequence title =
+                    mTelecomManager.getPhoneAccount(simCallManagers.get(0)).getLabel();
+                callAssistantCategory.setTitle(title);
+                mCallAssistantSwitch = (SwitchPreference)
+                        getPreferenceScreen().findPreference(SELECT_CALL_ASSISTANT_SWITCH_KEY);
+                mCallAssistantSwitch.setTitle(title);
+                mCallAssistantSwitch.setChecked(simCallManagers.get(0).equals(
+                        mTelecomManager.getSimCallManager()));
+                mCallAssistantSwitch.setOnPreferenceChangeListener(this);
+                mCallAssistantSwitch.setEnabled(true);
+            } else {
+                // If there's more than one call assistant then display a list. Choosing an item
+                // from the list enables the corresponding call assistant.
+                callAssistantCategory.removePreference(
+                        getPreferenceScreen().findPreference(SELECT_CALL_ASSISTANT_SWITCH_KEY));
+                mSelectCallAssistant = (AccountSelectionPreference)
+                        getPreferenceScreen().findPreference(SELECT_CALL_ASSISTANT_PREF_KEY);
+                mSelectCallAssistant.setListener(this);
+                mSelectCallAssistant.setDialogTitle(
+                        R.string.wifi_calling_select_call_assistant_summary);
+                updateCallAssistantModel();
+            }
 
             mConfigureCallAssistant =
                     getPreferenceScreen().findPreference(CONFIGURE_CALL_ASSISTANT_PREF_KEY);
             mConfigureCallAssistant.setOnPreferenceClickListener(this);
-            updateCallAssistantModel();
-        } else {
-            getPreferenceScreen().removePreference(
-                    getPreferenceScreen().findPreference(CALL_ASSISTANT_CATEGORY_PREF_KEY));
+            updateConfigureCallAssistantSummary();
         }
 
         if (SipUtil.isVoipSupported(getActivity())) {
@@ -172,6 +200,20 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
                 }
             }).start();
             return true;
+        } else if (pref == mCallAssistantSwitch) {
+            List<PhoneAccountHandle> simCallManagers = mTelecomManager.getSimCallManagers();
+            if (simCallManagers.size() == 1) {
+                if (Boolean.TRUE.equals(objValue)) {
+                    mTelecomManager.setSimCallManager(simCallManagers.get(0));
+                } else {
+                    mTelecomManager.setSimCallManager(null);
+                }
+                updateConfigureCallAssistantSummary();
+            } else {
+                Log.w(LOG_TAG, "Single call assistant expected but " + simCallManagers.size()
+                    + " found. Ignoring preference change.");
+            }
+            return true;
         }
         return false;
     }
@@ -229,6 +271,7 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
             updateDefaultOutgoingAccountsModel();
         } else if (pref == mSelectCallAssistant) {
             updateCallAssistantModel();
+            updateConfigureCallAssistantSummary();
         }
     }
 
@@ -281,18 +324,13 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
                 simCallManagers,
                 mTelecomManager.getSimCallManager(),
                 getString(R.string.wifi_calling_call_assistant_none));
-
-        updateConfigureCallAssistantSummary();
     }
 
     /**
-     * Updates the summary on the "configure call assistant" preference. If it is the last entry,
-     * show the summary for when no call assistant is selected. Otherwise, display the currently
-     * selected call assistant.
+     * Updates the summary on the "configure call assistant" preference.
      */
     private void updateConfigureCallAssistantSummary() {
-        if (mSelectCallAssistant.getEntries().length - 1
-                == mSelectCallAssistant.findIndexOfValue(mSelectCallAssistant.getValue())) {
+        if (mTelecomManager.getSimCallManager() == null) {
             mConfigureCallAssistant.setSummary(
                     R.string.wifi_calling_call_assistant_configure_no_selection);
             mConfigureCallAssistant.setEnabled(false);
