@@ -18,7 +18,6 @@ package com.android.phone.settings;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import android.telephony.PhoneNumberUtils;
 import android.util.Log;
 
@@ -47,19 +46,14 @@ public class VoicemailProviderSettingsUtil {
     private static final String FWD_SETTING_NUMBER = "#Number";
     private static final String FWD_SETTING_TIME = "#Time";
 
-    private SharedPreferences mVmProviderPrefs;
-
-    public VoicemailProviderSettingsUtil(Context context) {
-        mVmProviderPrefs = context.getSharedPreferences(
-                VM_NUMBERS_SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE);
-    }
-
     /**
      * Returns settings previously stored for the currently selected voice mail provider. If no
      * setting is stored for the voice mail provider, return null.
      */
-    public VoicemailProviderSettings load(String key) {
-        String vmNumberSetting = mVmProviderPrefs.getString(key + VM_NUMBER_TAG, null);
+    public static VoicemailProviderSettings load(Context context, String key) {
+        SharedPreferences prefs = getPrefs(context);
+
+        String vmNumberSetting = prefs.getString(key + VM_NUMBER_TAG, null);
         if (vmNumberSetting == null) {
             Log.w(LOG_TAG, "VoiceMailProvider settings for the key \"" + key + "\""
                     + " were not found. Returning null.");
@@ -68,20 +62,20 @@ public class VoicemailProviderSettingsUtil {
 
         CallForwardInfo[] cfi = VoicemailProviderSettings.NO_FORWARDING;
         String fwdKey = key + FWD_SETTINGS_TAG;
-        int fwdLen = mVmProviderPrefs.getInt(fwdKey + FWD_SETTINGS_LENGTH_TAG, 0);
+        int fwdLen = prefs.getInt(fwdKey + FWD_SETTINGS_LENGTH_TAG, 0);
         if (fwdLen > 0) {
             cfi = new CallForwardInfo[fwdLen];
             for (int i = 0; i < cfi.length; i++) {
                 String settingKey = fwdKey + FWD_SETTING_TAG + String.valueOf(i);
                 cfi[i] = new CallForwardInfo();
-                cfi[i].status = mVmProviderPrefs.getInt(settingKey + FWD_SETTING_STATUS, 0);
-                cfi[i].reason = mVmProviderPrefs.getInt(
+                cfi[i].status = prefs.getInt(settingKey + FWD_SETTING_STATUS, 0);
+                cfi[i].reason = prefs.getInt(
                         settingKey + FWD_SETTING_REASON,
                         CommandsInterface.CF_REASON_ALL_CONDITIONAL);
                 cfi[i].serviceClass = CommandsInterface.SERVICE_CLASS_VOICE;
                 cfi[i].toa = PhoneNumberUtils.TOA_International;
-                cfi[i].number = mVmProviderPrefs.getString(settingKey + FWD_SETTING_NUMBER, "");
-                cfi[i].timeSeconds = mVmProviderPrefs.getInt(settingKey + FWD_SETTING_TIME, 20);
+                cfi[i].number = prefs.getString(settingKey + FWD_SETTING_NUMBER, "");
+                cfi[i].timeSeconds = prefs.getInt(settingKey + FWD_SETTING_TIME, 20);
             }
         }
 
@@ -96,8 +90,8 @@ public class VoicemailProviderSettingsUtil {
      *
      * These will be used later when the user switches a provider.
      */
-    public void save(String key, VoicemailProviderSettings newSettings) {
-        VoicemailProviderSettings curSettings = load(key);
+    public static void save(Context context, String key, VoicemailProviderSettings newSettings) {
+        VoicemailProviderSettings curSettings = load(context, key);
         if (newSettings.equals(curSettings)) {
             if (DBG) log("save: Not saving setting for " + key + " since they have not changed");
             return;
@@ -105,7 +99,8 @@ public class VoicemailProviderSettingsUtil {
 
         if (DBG) log("Saving settings for " + key + ": " + newSettings.toString());
 
-        Editor editor = mVmProviderPrefs.edit();
+        SharedPreferences prefs = getPrefs(context);
+        SharedPreferences.Editor editor = prefs.edit();
         editor.putString(key + VM_NUMBER_TAG, newSettings.getVoicemailNumber());
         String fwdKey = key + FWD_SETTINGS_TAG;
 
@@ -130,16 +125,22 @@ public class VoicemailProviderSettingsUtil {
     /**
      * Deletes settings for the provider identified by this key.
      */
-    public void delete(String key) {
+    public static void delete(Context context, String key) {
         if (DBG) log("Deleting settings for" + key);
 
-        mVmProviderPrefs.edit()
+        SharedPreferences prefs = getPrefs(context);
+        prefs.edit()
                 .putString(key + VM_NUMBER_TAG, null)
                 .putInt(key + FWD_SETTINGS_TAG + FWD_SETTINGS_LENGTH_TAG, 0)
                 .commit();
     }
 
-    private void log(String msg) {
+    private static SharedPreferences getPrefs(Context context) {
+        return context.getSharedPreferences(
+                VM_NUMBERS_SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE);
+    }
+
+    private static void log(String msg) {
         Log.d(LOG_TAG, msg);
     }
 }
