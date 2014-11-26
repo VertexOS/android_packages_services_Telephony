@@ -16,8 +16,7 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- no translation found for phoneAppLabel (1107073389495104784) -->
-    <skip />
+    <string name="phoneAppLabel" product="tablet" msgid="1107073389495104784">"Dữ liệu di động"</string>
     <string name="phoneAppLabel" product="default" msgid="906161039445636857">"Điện thoại"</string>
     <string name="emergencyDialerIconLabel" msgid="7812140032168171053">"Trình quay số Khẩn cấp"</string>
     <string name="phoneIconLabel" msgid="2331230813161304895">"Điện thoại"</string>
@@ -58,56 +57,33 @@
     <string name="labelCDMAMore" msgid="1630676740428229339">"Cài đặt cuộc gọi CDMA"</string>
     <string name="apn_settings" msgid="9043423184895642077">"Tên Điểm Truy cập"</string>
     <string name="settings_label" msgid="3876743539816984008">"Cài đặt mạng"</string>
-    <!-- no translation found for phone_accounts (6376603393888116364) -->
-    <skip />
-    <!-- no translation found for phone_accounts_make_calls_with (1969188078933152231) -->
-    <skip />
-    <!-- no translation found for phone_accounts_make_sip_calls_with (4677789312053828493) -->
-    <skip />
-    <!-- no translation found for phone_accounts_ask_every_time (4346499067149985702) -->
-    <skip />
-    <!-- no translation found for phone_accounts_settings_header (4141710640883261094) -->
-    <skip />
-    <!-- no translation found for phone_accounts_choose_accounts (5232948804226424002) -->
-    <skip />
-    <!-- no translation found for phone_accounts_selection_header (1365215726106915865) -->
-    <skip />
-    <!-- no translation found for phone_accounts_add_sip_account (2023821743341923271) -->
-    <skip />
-    <!-- no translation found for phone_accounts_configure_account_settings (1361715069911607109) -->
-    <skip />
-    <!-- no translation found for phone_account_wifi_calling (1840272538233414629) -->
-    <skip />
-    <!-- no translation found for wifi_calling_do_not_use (7491443219113013323) -->
-    <skip />
-    <!-- no translation found for wifi_calling_do_not_use_call_assistant (5420257095556091770) -->
-    <skip />
-    <!-- no translation found for wifi_calling_call_assistant_none (6283702349285593683) -->
-    <skip />
-    <!-- no translation found for wifi_calling_call_assistant (229102032881680320) -->
-    <skip />
-    <!-- no translation found for wifi_calling_use_call_assistant (8460024827012666199) -->
-    <skip />
-    <!-- no translation found for wifi_calling_select_call_assistant (9296558058772293) -->
-    <skip />
-    <!-- no translation found for wifi_calling_select_call_assistant_summary (9106482864108127281) -->
-    <skip />
-    <!-- no translation found for wifi_calling_use_call_assistant_summary (6599987137133339698) -->
-    <skip />
-    <!-- no translation found for wifi_calling_call_assistant_configure (1092639708949670031) -->
-    <skip />
-    <!-- no translation found for wifi_calling_call_assistant_configure_no_selection (2354042288883607981) -->
-    <skip />
+    <string name="phone_accounts" msgid="6376603393888116364">"Tài khoản gọi"</string>
+    <string name="phone_accounts_make_calls_with" msgid="1969188078933152231">"Thực hiện cuộc gọi bằng"</string>
+    <string name="phone_accounts_make_sip_calls_with" msgid="4677789312053828493">"Thực hiện cuộc gọi SIP bằng"</string>
+    <string name="phone_accounts_ask_every_time" msgid="4346499067149985702">"Hỏi trước"</string>
+    <string name="phone_accounts_settings_header" msgid="4141710640883261094">"Cài đặt"</string>
+    <string name="phone_accounts_choose_accounts" msgid="5232948804226424002">"Chọn tài khoản"</string>
+    <string name="phone_accounts_selection_header" msgid="1365215726106915865">"Tài khoản điện thoại"</string>
+    <string name="phone_accounts_add_sip_account" msgid="2023821743341923271">"Thêm tài khoản SIP"</string>
+    <string name="phone_accounts_configure_account_settings" msgid="1361715069911607109">"Định cấu hình cài đặt tài khoản"</string>
+    <string name="phone_account_wifi_calling" msgid="1840272538233414629">"Gọi qua Wi-Fi"</string>
+    <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"Không sử dụng tính năng gọi qua Wi-Fi"</string>
+    <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"Không sử dụng trợ lý cuộc gọi"</string>
+    <string name="wifi_calling_call_assistant_none" msgid="6283702349285593683">"Không có"</string>
+    <string name="wifi_calling_call_assistant" msgid="229102032881680320">"Trợ lý cuộc gọi"</string>
+    <string name="wifi_calling_use_call_assistant" msgid="8460024827012666199">"Sử dụng trợ lý cuộc gọi"</string>
+    <string name="wifi_calling_select_call_assistant" msgid="9296558058772293">"Chọn trợ lý cuộc gọi"</string>
+    <string name="wifi_calling_select_call_assistant_summary" msgid="9106482864108127281">"Chọn ứng dụng hoặc dịch vụ để quản lý mạng dùng cho cuộc gọi"</string>
+    <string name="wifi_calling_use_call_assistant_summary" msgid="6599987137133339698">"Cho phép các ứng dụng hoặc dịch vụ quản lý mạng dùng cho cuộc gọi"</string>
+    <string name="wifi_calling_call_assistant_configure" msgid="1092639708949670031">"Định cấu hình"</string>
     <string name="connection_service_default_label" msgid="1498481943805913754">"Dịch vụ kết nối được tích hợp"</string>
     <string name="voicemail" msgid="8693759337917898954">"Thư thoại"</string>
     <string name="voicemail_abbreviated" msgid="2215592488517217448">"Thư thoại:"</string>
     <string name="networks" msgid="8873030692174541976">"Nhà cung cấp dịch vụ mạng"</string>
-    <!-- no translation found for cell_broadcast_settings (8740238216690502563) -->
-    <skip />
+    <string name="cell_broadcast_settings" msgid="8740238216690502563">"Phát sóng trong tình huống khẩn cấp"</string>
     <string name="call_settings" msgid="6112441768261754562">"Cài đặt cuộc gọi"</string>
     <string name="additional_gsm_call_settings" msgid="1391795981938800617">"Cài đặt bổ sung"</string>
-    <!-- no translation found for additional_gsm_call_settings_with_label (1385241520708457376) -->
-    <skip />
+    <string name="additional_gsm_call_settings_with_label" msgid="1385241520708457376">"Cài đặt bổ sung (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="sum_gsm_call_settings" msgid="4076647190996778012">"Cài đặt cuộc gọi chỉ GSM bổ sung"</string>
     <string name="additional_cdma_call_settings" msgid="8628958775721886909">"Cài đặt cuộc gọi CDMA bổ sung"</string>
     <string name="sum_cdma_call_settings" msgid="284753265979035549">"Cài đặt cuộc gọi chỉ CDMA bổ sung"</string>
@@ -121,41 +97,32 @@
     <string name="sum_cw_enabled" msgid="8083061901633671397">"Trong suốt cuộc gọi, thông báo cho tôi về cuộc gọi đến"</string>
     <string name="sum_cw_disabled" msgid="3648693907300104575">"Trong suốt cuộc gọi, thông báo cho tôi về cuộc gọi đến"</string>
     <string name="call_forwarding_settings" msgid="3378927671091537173">"Cài đặt chuyển tiếp cuộc gọi"</string>
-    <!-- no translation found for call_forwarding_settings_with_label (8569489414006897127) -->
-    <skip />
+    <string name="call_forwarding_settings_with_label" msgid="8569489414006897127">"Cài đặt chuyển tiếp cuộc gọi (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="labelCF" msgid="2574386948026924737">"Chuyển tiếp cuộc gọi"</string>
     <string name="labelCFU" msgid="8147177368148660600">"Luôn chuyển tiếp"</string>
     <string name="messageCFU" msgid="3560082430662923687">"Luôn sử dụng số này"</string>
     <string name="sum_cfu_enabled_indicator" msgid="4014187342724130197">"Chuyển tiếp tất cả cuộc gọi"</string>
     <string name="sum_cfu_enabled" msgid="2450052502198827927">"Chuyển tiếp tất cả cuộc gọi tới <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfu_enabled_no_number" msgid="6591985777096823616">"Số không có"</string>
-    <!-- no translation found for sum_cfu_disabled (8384177689501334080) -->
-    <skip />
-    <!-- no translation found for labelCFB (6139853033106283172) -->
-    <skip />
+    <string name="sum_cfu_disabled" msgid="8384177689501334080">"Tắt"</string>
+    <string name="labelCFB" msgid="6139853033106283172">"Khi bận"</string>
     <string name="messageCFB" msgid="3711089705936187129">"Số khi bận"</string>
     <string name="sum_cfb_enabled" msgid="5984198104833116690">"Chuyển tiếp tới <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
-    <!-- no translation found for sum_cfb_disabled (4913145177320506827) -->
-    <skip />
+    <string name="sum_cfb_disabled" msgid="4913145177320506827">"Tắt"</string>
     <string name="disable_cfb_forbidden" msgid="3506984333877998061">"Nhà cung cấp dịch vụ của bạn không hỗ trợ vô hiệu hóa chuyển tiếp cuộc gọi khi điện thoại của bạn bận."</string>
-    <!-- no translation found for labelCFNRy (1736067178393744351) -->
-    <skip />
+    <string name="labelCFNRy" msgid="1736067178393744351">"Khi không được trả lời"</string>
     <string name="messageCFNRy" msgid="672317899884380374">"Số khi không được trả lời"</string>
     <string name="sum_cfnry_enabled" msgid="6955775691317662910">"Chuyển tiếp tới <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
-    <!-- no translation found for sum_cfnry_disabled (3884684060443538097) -->
-    <skip />
+    <string name="sum_cfnry_disabled" msgid="3884684060443538097">"Tắt"</string>
     <string name="disable_cfnry_forbidden" msgid="4308233959150658058">"Nhà cung cấp dịch vụ của bạn không hỗ trợ vô hiệu hóa chuyển tiếp cuộc gọi khi điện thoại của bạn không trả lời."</string>
-    <!-- no translation found for labelCFNRc (2614827454402079766) -->
-    <skip />
+    <string name="labelCFNRc" msgid="2614827454402079766">"Khi không liên lạc được"</string>
     <string name="messageCFNRc" msgid="6380695421020295119">"Số khi không thể truy cập được"</string>
     <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"Chuyển tiếp tới <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfnrc_disabled" msgid="7222141261321276464">"Đã tắt"</string>
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"Nhà cung cấp dịch vụ của bạn không hỗ trợ vô hiệu hóa chuyển tiếp cuộc gọi khi điện thoại của bạn không thể truy cập được."</string>
     <string name="updating_title" msgid="6146755386174019046">"Cài đặt cuộc gọi"</string>
-    <!-- no translation found for call_settings_primary_user_only (5679923943740900965) -->
-    <skip />
-    <!-- no translation found for call_settings_with_label (89359812614544532) -->
-    <skip />
+    <string name="call_settings_primary_user_only" msgid="5679923943740900965">"Chỉ người dùng chính mới có thể thay đổi cài đặt cuộc gọi."</string>
+    <string name="call_settings_with_label" msgid="89359812614544532">"Cài đặt cuộc gọi (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="error_updating_title" msgid="7970259216988931777">"Lỗi cài đặt cuộc gọi"</string>
     <string name="reading_settings" msgid="1920291699287055284">"Đang đọc cài đặt…"</string>
     <string name="updating_settings" msgid="8171225533884883252">"Đang cập nhật cài đặt..."</string>
@@ -165,10 +132,8 @@
     <string name="fdn_check_failure" msgid="18200614306525434">"Cài đặt Số quay định sẵn trên ứng dụng điện thoại được bật. Do đó, một số tính năng có liên quan đến cuộc gọi không hoạt động."</string>
     <string name="radio_off_error" msgid="2304459933248513376">"Hãy bật radio trước khi xem những cài đặt này."</string>
     <string name="close_dialog" msgid="2365884406356986917">"OK"</string>
-    <!-- no translation found for enable (7248657275000173526) -->
-    <skip />
-    <!-- no translation found for disable (4678348128118573672) -->
-    <skip />
+    <string name="enable" msgid="7248657275000173526">"Bật"</string>
+    <string name="disable" msgid="4678348128118573672">"Tắt"</string>
     <string name="change_num" msgid="239476305819844391">"Cập nhật"</string>
   <string-array name="clir_display_values">
     <item msgid="5560134294467334594">"Mặc định mạng"</item>
@@ -181,8 +146,7 @@
     <string name="fw_get_in_vm_failed" msgid="8862896836093833973">"Không thể truy xuất và lưu cài đặt số chuyển tiếp hiện tại.\nBạn vẫn muốn chuyển sang nhà cung cấp mới?"</string>
     <string name="no_change" msgid="3186040086622435212">"Không thay đổi nào được thực hiện."</string>
     <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"Chọn dịch vụ thư thoại"</string>
-    <!-- no translation found for voicemail_default (2001233554889016880) -->
-    <skip />
+    <string name="voicemail_default" msgid="2001233554889016880">"Nhà cung cấp dịch vụ của bạn"</string>
     <string name="mobile_networks" msgid="2843854043339307375">"Cài đặt mạng di động"</string>
     <string name="label_available" msgid="1181658289009300430">"Mạng khả dụng"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"Đang tìm kiếm…"</string>
@@ -215,8 +179,7 @@
     <string name="preferred_network_mode_lte_cdma_evdo_summary" msgid="228702246343742853">"Chế độ mạng được ưa thích: CDMA+LTE/EVDO"</string>
     <string name="preferred_network_mode_global_summary" msgid="1633134285545730364">"Chế độ mạng được ưa thích: Toàn cầu"</string>
     <string name="preferred_network_mode_lte_wcdma_summary" msgid="9180775701594742750">"Chế độ mạng được ưa thích: LTE / WCDMA"</string>
-    <!-- no translation found for preferred_network_mode_lte_gsm_umts_summary (633315028976225026) -->
-    <skip />
+    <string name="preferred_network_mode_lte_gsm_umts_summary" msgid="633315028976225026">"Chế độ mạng ưu tiên: LTE / GSM / UMTS"</string>
     <string name="preferred_network_mode_lte_cdma_summary" msgid="3722647806454528426">"Chế độ mạng được ưa thích: LTE / CDMA"</string>
   <string-array name="preferred_network_mode_choices">
     <item msgid="7886739962255042385">"LTE / WCDMA"</item>
@@ -233,18 +196,15 @@
     <item msgid="1524224863879435516">"Chỉ GSM"</item>
     <item msgid="3817924849415716259">"GSM/WCDMA được ưa thích"</item>
   </string-array>
-    <!-- no translation found for enhanced_4g_lte_mode_title (522191650223239171) -->
-    <skip />
-    <!-- no translation found for enhanced_4g_lte_mode_summary (2332175070522125850) -->
-    <skip />
+    <string name="enhanced_4g_lte_mode_title" msgid="522191650223239171">"Chế độ 4G LTE tăng cường"</string>
+    <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"Sử dụng dịch vụ LTE để cải tiến tính năng thoại và các phương thức giao tiếp khác (khuyến nghị)"</string>
     <string name="data_enabled" msgid="5972538663568715366">"Đã bật dữ liệu"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"Cho phép sử dụng dữ liệu"</string>
     <string name="roaming" msgid="8871412572928323707">"Chuyển vùng dữ liệu"</string>
     <string name="roaming_enable" msgid="7331106985174381987">"Kết nối với dịch vụ dữ liệu khi chuyển vùng"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"Kết nối với dịch vụ dữ liệu khi chuyển vùng"</string>
     <string name="roaming_reenable_message" msgid="8913735676127858115">"Bạn đã mất kết nối dữ liệu vì bạn đã tắt chuyển vùng dữ liệu của mạng gia đình của mình."</string>
-    <!-- no translation found for roaming_warning (7126227198294007907) -->
-    <skip />
+    <string name="roaming_warning" msgid="7126227198294007907">"Cho phép sử dụng dữ liệu khi chuyển vùng? Mức phí đáng kể có thể được áp dụng."</string>
     <string name="gsm_umts_options" msgid="6538311689850981686">"Tùy chọn GSM/UMTS"</string>
     <string name="cdma_options" msgid="4016822858172249884">"Tùy chọn CDMA"</string>
     <string name="throttle_data_usage" msgid="3715677828160555808">"Sử dụng dữ liệu"</string>
@@ -370,11 +330,9 @@
     <string name="cdma_lte_data_service" msgid="4255018217292548962">"Thiết lập dịch vụ dữ liệu"</string>
     <string name="carrier_settings_title" msgid="9028166176523012300">"Cài đặt nhà cung cấp dịch vụ"</string>
     <string name="fdn" msgid="7878832555095183202">"Số Quay Định sẵn"</string>
-    <!-- no translation found for fdn_with_label (187084204115493366) -->
-    <skip />
+    <string name="fdn_with_label" msgid="187084204115493366">"Số gọi cố định (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="manage_fdn_list" msgid="8777755791892122369">"Danh sách FDN"</string>
-    <!-- no translation found for fdn_list_with_label (7437232552210469217) -->
-    <skip />
+    <string name="fdn_list_with_label" msgid="7437232552210469217">"Danh sách FDN (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="fdn_activation" msgid="2156479741307463576">"Kích hoạt FDN"</string>
     <string name="fdn_enabled" msgid="5238109009915521240">"Số Quay số Định sẵn đã được bật"</string>
     <string name="fdn_disabled" msgid="4700049736675368279">"Số Quay Định sẵn bị vô hiệu hóa"</string>
@@ -425,49 +383,30 @@
     <string name="badPin" msgid="8955102849303984935">"Mã PIN cũ bạn đã nhập không chính xác. Hãy thử lại."</string>
     <string name="mismatchPin" msgid="5923253370683071889">"PIN bạn đã nhập không khớp. Hãy thử lại."</string>
     <string name="invalidPin" msgid="5981171102258684792">"Nhập mã PIN có từ 4 đến 8 số."</string>
-    <!-- no translation found for disable_sim_pin (3419351358300716472) -->
-    <skip />
-    <!-- no translation found for enable_sim_pin (4845145659651484248) -->
-    <skip />
-    <!-- no translation found for enable_in_progress (3417917024688497010) -->
-    <skip />
-    <!-- no translation found for enable_pin_ok (2918545971413270063) -->
-    <skip />
-    <!-- no translation found for disable_pin_ok (2109571368635883688) -->
-    <skip />
-    <!-- no translation found for pin_failed (5644377896213584760) -->
-    <skip />
-    <!-- no translation found for pin_changed (4455736268023261662) -->
-    <skip />
-    <!-- no translation found for puk_requested (5921393215789090200) -->
-    <skip />
+    <string name="disable_sim_pin" msgid="3419351358300716472">"Xóa mã PIN trên SIM"</string>
+    <string name="enable_sim_pin" msgid="4845145659651484248">"Đặt mã PIN trên SIM"</string>
+    <string name="enable_in_progress" msgid="3417917024688497010">"Đang đặt mã PIN…"</string>
+    <string name="enable_pin_ok" msgid="2918545971413270063">"Đã đặt mã PIN"</string>
+    <string name="disable_pin_ok" msgid="2109571368635883688">"Đã xóa mã PIN"</string>
+    <string name="pin_failed" msgid="5644377896213584760">"Mã PIN không đúng"</string>
+    <string name="pin_changed" msgid="4455736268023261662">"Đã cập nhật mã PIN"</string>
+    <string name="puk_requested" msgid="5921393215789090200">"Mật khẩu không đúng. Mã PIN hiện đã bị chặn. Yêu cầu PUK."</string>
     <string name="enter_pin2_text" msgid="8339444124477720345">"Mã PIN2"</string>
     <string name="oldPin2Label" msgid="8559146795026261502">"Mã PIN2 cũ"</string>
     <string name="newPin2Label" msgid="4573956902204349054">"Mã PIN2 Mới"</string>
     <string name="confirmPin2Label" msgid="8100319484454787708">"Xác nhận mã PIN2 mới"</string>
-    <!-- no translation found for badPuk2 (7910064009531541708) -->
-    <skip />
-    <!-- no translation found for badPin2 (6646896629970023109) -->
-    <skip />
-    <!-- no translation found for mismatchPin2 (4177967478551851117) -->
-    <skip />
-    <!-- no translation found for invalidPin2 (1757045131429105595) -->
-    <skip />
-    <!-- no translation found for invalidPuk2 (7059081153334815973) -->
-    <skip />
-    <!-- no translation found for pin2_changed (3724522579945610956) -->
-    <skip />
-    <!-- no translation found for label_puk2_code (4688069961795341948) -->
-    <skip />
-    <!-- no translation found for fdn_enable_puk2_requested (4991074891459554705) -->
-    <skip />
-    <!-- no translation found for puk2_requested (5831015200030161434) -->
-    <skip />
+    <string name="badPuk2" msgid="7910064009531541708">"PUK2 không đúng. Hãy thử lại."</string>
+    <string name="badPin2" msgid="6646896629970023109">"PIN2 cũ không đúng. Hãy thử lại."</string>
+    <string name="mismatchPin2" msgid="4177967478551851117">"Các PIN2 không khớp với nhau. Hãy thử lại."</string>
+    <string name="invalidPin2" msgid="1757045131429105595">"Nhập PIN2 dài  từ 4 tới 8 chữ số."</string>
+    <string name="invalidPuk2" msgid="7059081153334815973">"Nhập PUK2 dài 8 chữ số."</string>
+    <string name="pin2_changed" msgid="3724522579945610956">"Đã cập nhật PIN2"</string>
+    <string name="label_puk2_code" msgid="4688069961795341948">"Nhập mã PUK2"</string>
+    <string name="fdn_enable_puk2_requested" msgid="4991074891459554705">"Mật khẩu không đúng. PIN2 hiện đã bị chặn. Để thử lại, hãy thay đổi  PIN 2."</string>
+    <string name="puk2_requested" msgid="5831015200030161434">"Mật khẩu không đúng. SIM hiện đã bị chặn. Hãy nhập PUK2."</string>
     <string name="puk2_blocked" msgid="3150263853077280049">"PUK2 bị chặn vĩnh viễn."</string>
-    <!-- no translation found for pin2_attempts (720736232885011507) -->
-    <skip />
-    <!-- no translation found for pin2_unblocked (7791600368153469078) -->
-    <skip />
+    <string name="pin2_attempts" msgid="720736232885011507">\n"Bạn còn <xliff:g id="NUMBER">%d</xliff:g> lần thử."</string>
+    <string name="pin2_unblocked" msgid="7791600368153469078">"PIN2 không còn bị chặn"</string>
     <string name="doneButton" msgid="2859593360997984240">"Xong"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"Số thư thoại"</string>
     <string name="card_title_dialing" msgid="5769417478498348054">"Đang quay số"</string>
@@ -501,8 +440,7 @@
     <string name="incall_error_no_phone_number_supplied" msgid="1150414018684246528">"Để thực hiện cuộc gọi, hãy nhập một số hợp lệ."</string>
     <string name="incall_error_call_failed" msgid="6302746943230078197">"Không thực hiện được cuộc gọi."</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"Khởi động chuỗi MMI…"</string>
-    <!-- no translation found for incall_error_supp_service_unknown (655570339115407698) -->
-    <skip />
+    <string name="incall_error_supp_service_unknown" msgid="655570339115407698">"Dịch vụ không được hỗ trợ"</string>
     <string name="incall_error_supp_service_switch" msgid="5237002176899962862">"Không chuyển đổi được cuộc gọi."</string>
     <string name="incall_error_supp_service_separate" msgid="7224393405134545246">"Không tách được cuộc gọi."</string>
     <string name="incall_error_supp_service_transfer" msgid="7235952238189391438">"Không chuyển được cuộc gọi."</string>
@@ -544,10 +482,8 @@
     <item msgid="899650777817315681">"Thường"</item>
     <item msgid="2883365539347850535">"Dài"</item>
   </string-array>
-    <!-- no translation found for network_info_message (7738596060242881930) -->
-    <skip />
-    <!-- no translation found for network_error_message (3394780436230411413) -->
-    <skip />
+    <string name="network_info_message" msgid="7738596060242881930">"Thông báo của mạng"</string>
+    <string name="network_error_message" msgid="3394780436230411413">"Thông báo lỗi"</string>
     <string name="ota_title_activate" msgid="8616918561356194398">"Kích hoạt điện thoại của bạn"</string>
     <string name="ota_touch_activate" msgid="6553212803262586244">"Bạn cần phải thực hiện cuộc gọi đặc biệt để kích hoạt dịch vụ điện thoại của mình. \n\nSau khi nhấn “Kích hoạt”, nghe hướng dẫn được cung cấp để kích hoạt điện thoại của bạn."</string>
     <string name="ota_hfa_activation_title" msgid="2234246934160473981">"Đang kích hoạt..."</string>
@@ -560,10 +496,8 @@
     <string name="ota_title_problem_with_activation" msgid="7095824491970084367">"Sự cố với kích hoạt"</string>
     <string name="ota_listen" msgid="162923839877584937">"Làm theo hướng dẫn bằng lời cho tới khi bạn nghe thấy kích hoạt đã hoàn tất."</string>
     <string name="ota_speaker" msgid="6904589278542719647">"Loa"</string>
-    <!-- no translation found for ota_progress (460876637828044519) -->
-    <skip />
-    <!-- no translation found for ota_failure (7713756181204620397) -->
-    <skip />
+    <string name="ota_progress" msgid="460876637828044519">"Đang lập trình điện thoại của bạn…"</string>
+    <string name="ota_failure" msgid="7713756181204620397">"Không thể lập trình điện thoại của bạn"</string>
     <string name="ota_successful" msgid="1880780692887077407">"Điện thoại của bạn giờ đây đã được kích hoạt. Có thể mất tối đa 15 phút để dịch vụ bắt đầu."</string>
     <string name="ota_unsuccessful" msgid="8072141612635635357">"Điện thoại của bạn chưa được kích hoạt. \nBạn có thể phải tìm một khu vực có phạm vi phủ sóng tốt hơn (gần cửa sổ hoặc bên ngoài). \n\nHãy thử lại hoặc gọi cho dịch vụ khách hàng để có tùy chọn khác."</string>
     <string name="ota_spc_failure" msgid="3909983542575030796">"LỖI SPC QUÁ MỨC"</string>
@@ -608,14 +542,10 @@
     <string name="preference_category_ringtone" msgid="5197960752529332721">"Nhạc chuông và rung"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"Thẻ SIM tích hợp sẵn"</string>
     <string name="enable_video_calling_title" msgid="7237253660669000899">"Bật gọi điện video"</string>
-    <!-- no translation found for enable_video_calling_dialog_msg (8948186136957417948) -->
-    <skip />
+    <string name="enable_video_calling_dialog_msg" msgid="8948186136957417948">"Để bật tính năng gọi điện video, bạn cần bật chế độ 4G LTE tăng cường trong cài đặt mạng."</string>
     <string name="enable_video_calling_dialog_settings" msgid="576528473599603249">"Cài đặt mạng"</string>
     <string name="enable_video_calling_dialog_close" msgid="7411471282167927991">"Đóng"</string>
-    <!-- no translation found for sim_label_emergency_calls (4847699229529306397) -->
-    <skip />
-    <!-- no translation found for sim_description_emergency_calls (7535215397212301562) -->
-    <skip />
-    <!-- no translation found for sim_description_default (4778679519938775515) -->
-    <skip />
+    <string name="sim_label_emergency_calls" msgid="4847699229529306397">"Cuộc gọi khẩn cấp"</string>
+    <string name="sim_description_emergency_calls" msgid="7535215397212301562">"Chỉ gọi điện khẩn cấp"</string>
+    <string name="sim_description_default" msgid="4778679519938775515">"Thẻ SIM, rãnh: <xliff:g id="SLOT_ID">%s</xliff:g>"</string>
 </resources>

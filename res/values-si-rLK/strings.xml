@@ -16,8 +16,7 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- no translation found for phoneAppLabel (1107073389495104784) -->
-    <skip />
+    <string name="phoneAppLabel" product="tablet" msgid="1107073389495104784">"සෙල්‍යුලර් දත්ත"</string>
     <string name="phoneAppLabel" product="default" msgid="906161039445636857">"දුරකථනය"</string>
     <string name="emergencyDialerIconLabel" msgid="7812140032168171053">"හදිසි අමතනය"</string>
     <string name="phoneIconLabel" msgid="2331230813161304895">"දුරකථනය"</string>
@@ -58,56 +57,33 @@
     <string name="labelCDMAMore" msgid="1630676740428229339">"CDMA ඇමතුම් සැකසුම්"</string>
     <string name="apn_settings" msgid="9043423184895642077">"ප්‍රවේශ ලක්ෂ්‍ය නම්"</string>
     <string name="settings_label" msgid="3876743539816984008">"ජාල සැකසුම්"</string>
-    <!-- no translation found for phone_accounts (6376603393888116364) -->
-    <skip />
-    <!-- no translation found for phone_accounts_make_calls_with (1969188078933152231) -->
-    <skip />
-    <!-- no translation found for phone_accounts_make_sip_calls_with (4677789312053828493) -->
-    <skip />
-    <!-- no translation found for phone_accounts_ask_every_time (4346499067149985702) -->
-    <skip />
-    <!-- no translation found for phone_accounts_settings_header (4141710640883261094) -->
-    <skip />
-    <!-- no translation found for phone_accounts_choose_accounts (5232948804226424002) -->
-    <skip />
-    <!-- no translation found for phone_accounts_selection_header (1365215726106915865) -->
-    <skip />
-    <!-- no translation found for phone_accounts_add_sip_account (2023821743341923271) -->
-    <skip />
-    <!-- no translation found for phone_accounts_configure_account_settings (1361715069911607109) -->
-    <skip />
-    <!-- no translation found for phone_account_wifi_calling (1840272538233414629) -->
-    <skip />
-    <!-- no translation found for wifi_calling_do_not_use (7491443219113013323) -->
-    <skip />
-    <!-- no translation found for wifi_calling_do_not_use_call_assistant (5420257095556091770) -->
-    <skip />
-    <!-- no translation found for wifi_calling_call_assistant_none (6283702349285593683) -->
-    <skip />
-    <!-- no translation found for wifi_calling_call_assistant (229102032881680320) -->
-    <skip />
-    <!-- no translation found for wifi_calling_use_call_assistant (8460024827012666199) -->
-    <skip />
-    <!-- no translation found for wifi_calling_select_call_assistant (9296558058772293) -->
-    <skip />
-    <!-- no translation found for wifi_calling_select_call_assistant_summary (9106482864108127281) -->
-    <skip />
-    <!-- no translation found for wifi_calling_use_call_assistant_summary (6599987137133339698) -->
-    <skip />
-    <!-- no translation found for wifi_calling_call_assistant_configure (1092639708949670031) -->
-    <skip />
-    <!-- no translation found for wifi_calling_call_assistant_configure_no_selection (2354042288883607981) -->
-    <skip />
+    <string name="phone_accounts" msgid="6376603393888116364">"ගිණුම් ඇමතීම"</string>
+    <string name="phone_accounts_make_calls_with" msgid="1969188078933152231">"සමඟ ඇමතුම් ගන්න"</string>
+    <string name="phone_accounts_make_sip_calls_with" msgid="4677789312053828493">"සමඟ SIP ඇමතුම් ගන්න"</string>
+    <string name="phone_accounts_ask_every_time" msgid="4346499067149985702">"මුළින් අසන්න"</string>
+    <string name="phone_accounts_settings_header" msgid="4141710640883261094">"සැකසීම්"</string>
+    <string name="phone_accounts_choose_accounts" msgid="5232948804226424002">"ගිණුම් තෝරන්න"</string>
+    <string name="phone_accounts_selection_header" msgid="1365215726106915865">"දුරකථන ගිණුම්"</string>
+    <string name="phone_accounts_add_sip_account" msgid="2023821743341923271">"SIP ගිණුම් එකතු කරන්න"</string>
+    <string name="phone_accounts_configure_account_settings" msgid="1361715069911607109">"ගිණුමේ සැකසීම් වින්‍යාස කරන්න"</string>
+    <string name="phone_account_wifi_calling" msgid="1840272538233414629">"Wi-Fi ඇමතීම"</string>
+    <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"Wi-Fi ඇමතුම භාවිතා කරන්න එපා"</string>
+    <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"ඇමතුම් සහායක භාවිතා කරන්න එපා"</string>
+    <string name="wifi_calling_call_assistant_none" msgid="6283702349285593683">"කිසිවක් නැත"</string>
+    <string name="wifi_calling_call_assistant" msgid="229102032881680320">"ඇමතුම් සහායක"</string>
+    <string name="wifi_calling_use_call_assistant" msgid="8460024827012666199">"ඇමතුම් සහායක භාවිතා කරන්න"</string>
+    <string name="wifi_calling_select_call_assistant" msgid="9296558058772293">"ඇමතුම් සහායක තෝරන්න"</string>
+    <string name="wifi_calling_select_call_assistant_summary" msgid="9106482864108127281">"ඇමතුම් සඳහා භාවිතා කළ ජාල කළමනාකරණය කිරීමට යෙදුමක් හෝ සේවාවක් තෝරන්න"</string>
+    <string name="wifi_calling_use_call_assistant_summary" msgid="6599987137133339698">"ඇමතුම් සඳහා භාවිතා කළ ජාල කළමනාකරණය කිරීමට යෙදුමකට හෝ සේවාවකට ඉඩ දෙන්න"</string>
+    <string name="wifi_calling_call_assistant_configure" msgid="1092639708949670031">"වින්‍යාස කිරීම"</string>
     <string name="connection_service_default_label" msgid="1498481943805913754">"තිළැලි සම්බන්ධතා සේවාව"</string>
     <string name="voicemail" msgid="8693759337917898954">"හඬ තැපෑල"</string>
     <string name="voicemail_abbreviated" msgid="2215592488517217448">"VM:"</string>
     <string name="networks" msgid="8873030692174541976">"ජාල ක්‍රියාකරුවන්"</string>
-    <!-- no translation found for cell_broadcast_settings (8740238216690502563) -->
-    <skip />
+    <string name="cell_broadcast_settings" msgid="8740238216690502563">"හදිසි විකාශන"</string>
     <string name="call_settings" msgid="6112441768261754562">"ඇමතුම් සැකසුම්"</string>
     <string name="additional_gsm_call_settings" msgid="1391795981938800617">"අමතර සැකසීම්"</string>
-    <!-- no translation found for additional_gsm_call_settings_with_label (1385241520708457376) -->
-    <skip />
+    <string name="additional_gsm_call_settings_with_label" msgid="1385241520708457376">"අමතර සැකසීම් (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="sum_gsm_call_settings" msgid="4076647190996778012">"අමතර GSM පමණක් ඇමතුම් සැකසුම්"</string>
     <string name="additional_cdma_call_settings" msgid="8628958775721886909">"අමතර CDMA ඇමතුම් සැකසුම්"</string>
     <string name="sum_cdma_call_settings" msgid="284753265979035549">"අමතර CDMA පමණක් ඇමතුම් සැකසුම්"</string>
@@ -121,41 +97,32 @@
     <string name="sum_cw_enabled" msgid="8083061901633671397">"ඇමතුමක් අතරතුර, පැමිණෙන ඇමතුම් පිලිබඳ දැනුම්දීමක් කරන්න"</string>
     <string name="sum_cw_disabled" msgid="3648693907300104575">"ඇමතුමක් අතරතුර, පැමිණෙන ඇමතුම් පිලිබඳ දැනුම්දීමක් කරන්න"</string>
     <string name="call_forwarding_settings" msgid="3378927671091537173">"ඇමතුම ඉදිරියට ගෙන යාමේ සැකසුම්"</string>
-    <!-- no translation found for call_forwarding_settings_with_label (8569489414006897127) -->
-    <skip />
+    <string name="call_forwarding_settings_with_label" msgid="8569489414006897127">"ඇමතුම් ඉදිරියට යැවීමේ සැකසීම් (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="labelCF" msgid="2574386948026924737">"ඇමතුම ඉදිරියට යැවීම"</string>
     <string name="labelCFU" msgid="8147177368148660600">"සැමවිටම ඉදිරියට ගෙන යන්න"</string>
     <string name="messageCFU" msgid="3560082430662923687">"සෑමවිටම මෙම අංකය භාවිතා කරන්න"</string>
     <string name="sum_cfu_enabled_indicator" msgid="4014187342724130197">"සියලුම ඇමතුම් ඉදිරියට යවමින්"</string>
     <string name="sum_cfu_enabled" msgid="2450052502198827927">"සියලුම ඇමතුම් <xliff:g id="PHONENUMBER">{0}</xliff:g> වෙත ඉදිරියට ගෙන යන්න"</string>
     <string name="sum_cfu_enabled_no_number" msgid="6591985777096823616">"අංකය නොමැත"</string>
-    <!-- no translation found for sum_cfu_disabled (8384177689501334080) -->
-    <skip />
-    <!-- no translation found for labelCFB (6139853033106283172) -->
-    <skip />
+    <string name="sum_cfu_disabled" msgid="8384177689501334080">"අක්‍රියයි"</string>
+    <string name="labelCFB" msgid="6139853033106283172">"කාර්යබහුල විට"</string>
     <string name="messageCFB" msgid="3711089705936187129">"කාර්යබහුල විට අංකය"</string>
     <string name="sum_cfb_enabled" msgid="5984198104833116690">"<xliff:g id="PHONENUMBER">{0}</xliff:g> වෙත ඉදිරියට යවමින්"</string>
-    <!-- no translation found for sum_cfb_disabled (4913145177320506827) -->
-    <skip />
+    <string name="sum_cfb_disabled" msgid="4913145177320506827">"අක්‍රියයි"</string>
     <string name="disable_cfb_forbidden" msgid="3506984333877998061">"ඔබගේ ක්‍රියාකරු ඔබගේ දුරකථනය කාර්ය බහුල විට ඇමතුම් ඉදිරියට ගෙනයාම අබල කිරීමට සහාය නොදක්වයි."</string>
-    <!-- no translation found for labelCFNRy (1736067178393744351) -->
-    <skip />
+    <string name="labelCFNRy" msgid="1736067178393744351">"පිළිතුරු නොදෙන විට"</string>
     <string name="messageCFNRy" msgid="672317899884380374">"පිළිතුරු නොදෙන විට අංකය"</string>
     <string name="sum_cfnry_enabled" msgid="6955775691317662910">"<xliff:g id="PHONENUMBER">{0}</xliff:g> වෙත ඉදිරියට යවමින්"</string>
-    <!-- no translation found for sum_cfnry_disabled (3884684060443538097) -->
-    <skip />
+    <string name="sum_cfnry_disabled" msgid="3884684060443538097">"අක්‍රියයි"</string>
     <string name="disable_cfnry_forbidden" msgid="4308233959150658058">"ඔබගේ ක්‍රියාකරු ඔබගේ දුරකථනය පිළිතුරු නොදෙන විට ඇමතුම් ඉදිරියට ගෙනයාම අබල කිරීමට සහාය නොදක්වයි."</string>
-    <!-- no translation found for labelCFNRc (2614827454402079766) -->
-    <skip />
+    <string name="labelCFNRc" msgid="2614827454402079766">"ළඟා වීමට නොහැකි විට"</string>
     <string name="messageCFNRc" msgid="6380695421020295119">"ළඟා විය නොහැකි විට අංකය"</string>
     <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"<xliff:g id="PHONENUMBER">{0}</xliff:g> වෙත ඉදිරියට යවමින්"</string>
     <string name="sum_cfnrc_disabled" msgid="7222141261321276464">"අබලයි"</string>
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"ඔබගේ වාහකය ඔබගේ දුරකථනය ළඟා විය නොහැකි විට ඇමතුම් ඉදිරියට ගෙනයාම අබල කිරීමට සහාය නොදක්වයි."</string>
     <string name="updating_title" msgid="6146755386174019046">"ඇමතුම් සැකසීම්"</string>
-    <!-- no translation found for call_settings_primary_user_only (5679923943740900965) -->
-    <skip />
-    <!-- no translation found for call_settings_with_label (89359812614544532) -->
-    <skip />
+    <string name="call_settings_primary_user_only" msgid="5679923943740900965">"ඇමතුම් සැකසීම් වෙනස් කළ හැක්කේ ප්‍රධාන පරිශීලකයකු විසින් පමණි."</string>
+    <string name="call_settings_with_label" msgid="89359812614544532">"ඇමතුම් සැකසීම් (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="error_updating_title" msgid="7970259216988931777">"ඇමතුම් සැකසුම් දෝෂය"</string>
     <string name="reading_settings" msgid="1920291699287055284">"සැකසුම් කියවමින්…"</string>
     <string name="updating_settings" msgid="8171225533884883252">"සැකසුම් යාවත් කාලින කරමින්…"</string>
@@ -165,10 +132,8 @@
     <string name="fdn_check_failure" msgid="18200614306525434">"ඔබගේ දුරකතනයේ යෙදුමෙහි ස්ථිර ඇමතුම් අංක සක්‍රීයයි. ප්‍රතිඑලයක් ලෙස, සමහර ඇමතුම් හා සම්බන්ධ විශේෂාංග ක්‍රියා නොකරයි."</string>
     <string name="radio_off_error" msgid="2304459933248513376">"මෙම සැකසුම් බැලීමට පෙර රේඩියෝව ක්‍රියා කරන්න."</string>
     <string name="close_dialog" msgid="2365884406356986917">"හරි"</string>
-    <!-- no translation found for enable (7248657275000173526) -->
-    <skip />
-    <!-- no translation found for disable (4678348128118573672) -->
-    <skip />
+    <string name="enable" msgid="7248657275000173526">"ක්‍රියාත්මක කරන්න"</string>
+    <string name="disable" msgid="4678348128118573672">"ක්‍රියා විරහිත කරන්න"</string>
     <string name="change_num" msgid="239476305819844391">"යාවත්කාලීන කරන්න"</string>
   <string-array name="clir_display_values">
     <item msgid="5560134294467334594">"ජාල සුපුරුදු"</item>
@@ -181,8 +146,7 @@
     <string name="fw_get_in_vm_failed" msgid="8862896836093833973">"වත්මන් ඉදිරියට ගෙන යාමේ අංක සැකසුම් ලබාගැනීමට හෝ සුරැකීමට නොහැකි විය.\nකෙසේ නමුත් නව සැපයුම්කරු වෙත මාරුවන්නද?"</string>
     <string name="no_change" msgid="3186040086622435212">"කිසිඳු වෙනස්කමක් සිදු නොකෙරුණි."</string>
     <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"හඬ තැපැල් සේවාව තෝරන්න"</string>
-    <!-- no translation found for voicemail_default (2001233554889016880) -->
-    <skip />
+    <string name="voicemail_default" msgid="2001233554889016880">"ඔබගේ වාහකයා"</string>
     <string name="mobile_networks" msgid="2843854043339307375">"සෙලියුලර් ජාල සැකසීම්"</string>
     <string name="label_available" msgid="1181658289009300430">"තිබෙන ජාල"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"සොයමින්..."</string>
@@ -215,8 +179,7 @@
     <string name="preferred_network_mode_lte_cdma_evdo_summary" msgid="228702246343742853">"ප්‍රිය ජාල ආකාරය: CDMA+LTE/EVDO"</string>
     <string name="preferred_network_mode_global_summary" msgid="1633134285545730364">"ප්‍රිය ජාල ආකාරය: ගෝලීය"</string>
     <string name="preferred_network_mode_lte_wcdma_summary" msgid="9180775701594742750">"ප්‍රිය ජාල ආකාරය: LTE / WCDMA"</string>
-    <!-- no translation found for preferred_network_mode_lte_gsm_umts_summary (633315028976225026) -->
-    <skip />
+    <string name="preferred_network_mode_lte_gsm_umts_summary" msgid="633315028976225026">"කැමති ජාල ආකාරය: LTE / GSM / UMTS"</string>
     <string name="preferred_network_mode_lte_cdma_summary" msgid="3722647806454528426">"ප්‍රිය ජාල ආකාරය: LTE / CDMA"</string>
   <string-array name="preferred_network_mode_choices">
     <item msgid="7886739962255042385">"LTE / WCDMA"</item>
@@ -233,18 +196,15 @@
     <item msgid="1524224863879435516">"GSM පමණි"</item>
     <item msgid="3817924849415716259">"GSM/WCDMA කැමතියි"</item>
   </string-array>
-    <!-- no translation found for enhanced_4g_lte_mode_title (522191650223239171) -->
-    <skip />
-    <!-- no translation found for enhanced_4g_lte_mode_summary (2332175070522125850) -->
-    <skip />
+    <string name="enhanced_4g_lte_mode_title" msgid="522191650223239171">"දියුණු කරන ලද 4G LTE මෝඩය"</string>
+    <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"හඬ සහ වෙනත් සන්නිවේදනයන් දියුණු කිරීමට LTE සේවාව භාවිතා කරන්න (නිර්දේශ කළ)"</string>
     <string name="data_enabled" msgid="5972538663568715366">"දත්ත සබලයි"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"දත්ත භාවිතයට ඉඩ දෙන්න"</string>
     <string name="roaming" msgid="8871412572928323707">"දත්ත රෝමින්"</string>
     <string name="roaming_enable" msgid="7331106985174381987">"රෝමින් අතරතුර දත්ත සේවා වෙත සම්බන්ධ වන්න"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"රෝමින් අතරතුර දත්ත සේවා වෙත සම්බන්ධ වන්න"</string>
     <string name="roaming_reenable_message" msgid="8913735676127858115">"ඔබගේ නිවාස ජාලය ඔබ හැර ගිය විට දත්ත රෝමින් අක්‍රිය වන බැවින් දත්ත සම්බන්ධතාවය ඔබට නැති වෙයි"</string>
-    <!-- no translation found for roaming_warning (7126227198294007907) -->
-    <skip />
+    <string name="roaming_warning" msgid="7126227198294007907">"රෝමින් විට දත්ත භාවිතය ඉඩ දෙන්නද? සැලකිය යුතු වෙනස් කිරීම් ඇතැම් විට යෙදේ."</string>
     <string name="gsm_umts_options" msgid="6538311689850981686">"GSM/UMTS විකල්ප"</string>
     <string name="cdma_options" msgid="4016822858172249884">"CDMA විකල්ප"</string>
     <string name="throttle_data_usage" msgid="3715677828160555808">"දත්ත භාවිතය"</string>
@@ -370,11 +330,9 @@
     <string name="cdma_lte_data_service" msgid="4255018217292548962">"දත්ත සේවාව සකසන්න"</string>
     <string name="carrier_settings_title" msgid="9028166176523012300">"වාහකයේ සැකසීම්"</string>
     <string name="fdn" msgid="7878832555095183202">"ස්ථිර ඇමතුම් අංක"</string>
-    <!-- no translation found for fdn_with_label (187084204115493366) -->
-    <skip />
+    <string name="fdn_with_label" msgid="187084204115493366">"ස්ථාපිත ඇමතීමේ අංක (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="manage_fdn_list" msgid="8777755791892122369">"FDN ලැයිස්තුව"</string>
-    <!-- no translation found for fdn_list_with_label (7437232552210469217) -->
-    <skip />
+    <string name="fdn_list_with_label" msgid="7437232552210469217">"FDN ලැයිස්තුව (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="fdn_activation" msgid="2156479741307463576">"FDN සක්‍රිය කිරීම"</string>
     <string name="fdn_enabled" msgid="5238109009915521240">"ස්ථාවර ඇමතුම් අංක සබලයි"</string>
     <string name="fdn_disabled" msgid="4700049736675368279">"ස්ථාවර ඇමතුම් අංක අබලයි"</string>
@@ -425,49 +383,30 @@
     <string name="badPin" msgid="8955102849303984935">"ඔබ ටයිප් කරන ලද පරණ PIN එක වැරදිය. යළි උත්සාහ කරන්න."</string>
     <string name="mismatchPin" msgid="5923253370683071889">"ඔබ ටයිප් කළ PIN නොගැලපේ. යළි උත්සාහ කරන්න."</string>
     <string name="invalidPin" msgid="5981171102258684792">"අංක 4 සිට 8 අතර වන PIN එකක් ටයිප් කරන්න."</string>
-    <!-- no translation found for disable_sim_pin (3419351358300716472) -->
-    <skip />
-    <!-- no translation found for enable_sim_pin (4845145659651484248) -->
-    <skip />
-    <!-- no translation found for enable_in_progress (3417917024688497010) -->
-    <skip />
-    <!-- no translation found for enable_pin_ok (2918545971413270063) -->
-    <skip />
-    <!-- no translation found for disable_pin_ok (2109571368635883688) -->
-    <skip />
-    <!-- no translation found for pin_failed (5644377896213584760) -->
-    <skip />
-    <!-- no translation found for pin_changed (4455736268023261662) -->
-    <skip />
-    <!-- no translation found for puk_requested (5921393215789090200) -->
-    <skip />
+    <string name="disable_sim_pin" msgid="3419351358300716472">"SIM PIN හිස් කරන්න"</string>
+    <string name="enable_sim_pin" msgid="4845145659651484248">"SIM PIN එකතුව"</string>
+    <string name="enable_in_progress" msgid="3417917024688497010">"PIN සැකසීම…"</string>
+    <string name="enable_pin_ok" msgid="2918545971413270063">"PIN එකතුව"</string>
+    <string name="disable_pin_ok" msgid="2109571368635883688">"PIN හිස් කරන ලදි"</string>
+    <string name="pin_failed" msgid="5644377896213584760">"PIN වැරදි"</string>
+    <string name="pin_changed" msgid="4455736268023261662">"PIN යාවත්කාලීන කරන ලදි"</string>
+    <string name="puk_requested" msgid="5921393215789090200">"මුරපදය වැරදිය. PIN දැන් අවහිර කර තිබේ. PUK ඉල්ලන ලදි."</string>
     <string name="enter_pin2_text" msgid="8339444124477720345">"PIN2"</string>
     <string name="oldPin2Label" msgid="8559146795026261502">"පැරණි PIN2"</string>
     <string name="newPin2Label" msgid="4573956902204349054">"නව PIN2"</string>
     <string name="confirmPin2Label" msgid="8100319484454787708">"නව PIN2 තහවුරු කරන්න"</string>
-    <!-- no translation found for badPuk2 (7910064009531541708) -->
-    <skip />
-    <!-- no translation found for badPin2 (6646896629970023109) -->
-    <skip />
-    <!-- no translation found for mismatchPin2 (4177967478551851117) -->
-    <skip />
-    <!-- no translation found for invalidPin2 (1757045131429105595) -->
-    <skip />
-    <!-- no translation found for invalidPuk2 (7059081153334815973) -->
-    <skip />
-    <!-- no translation found for pin2_changed (3724522579945610956) -->
-    <skip />
-    <!-- no translation found for label_puk2_code (4688069961795341948) -->
-    <skip />
-    <!-- no translation found for fdn_enable_puk2_requested (4991074891459554705) -->
-    <skip />
-    <!-- no translation found for puk2_requested (5831015200030161434) -->
-    <skip />
+    <string name="badPuk2" msgid="7910064009531541708">"PUK2 වැරදියි. නැවත උත්සාහ කරන්න."</string>
+    <string name="badPin2" msgid="6646896629970023109">"පරණ PIN2 වැරදියි. නැවත උත්සාහ කරන්න."</string>
+    <string name="mismatchPin2" msgid="4177967478551851117">"PIN2 යන් ගැළපෙන්නේ නැත. නැවත උත්සාහ කරන්න."</string>
+    <string name="invalidPin2" msgid="1757045131429105595">"PIN2 ඇතුළු කරන්න, එය අංක 4 සිට 8 දක්වා වූ සංඛ්‍යාවකි."</string>
+    <string name="invalidPuk2" msgid="7059081153334815973">"PUK2 ඇතුළු කරන්න, එය අංක 8 වූ සංඛ්‍යාවකි."</string>
+    <string name="pin2_changed" msgid="3724522579945610956">"PIN2 යාවත්කාලින කරන ලදි"</string>
+    <string name="label_puk2_code" msgid="4688069961795341948">"PUK2 කේතය ඇතුළු කරන්න"</string>
+    <string name="fdn_enable_puk2_requested" msgid="4991074891459554705">"මුරපදය වැරදිය. PIN2 දැන් අවහිර කර තිබේ. නැවත උත්සාහ කිරීමට, PIN 2 වෙනස් කරන්න."</string>
+    <string name="puk2_requested" msgid="5831015200030161434">"මුරපදය වැරදිය. SIM දැන් අගුළු දමා තිබේ. PUK2 ඇතුළු කරන්න."</string>
     <string name="puk2_blocked" msgid="3150263853077280049">"PUK2 සදාකාලිකවම අවහිරයි."</string>
-    <!-- no translation found for pin2_attempts (720736232885011507) -->
-    <skip />
-    <!-- no translation found for pin2_unblocked (7791600368153469078) -->
-    <skip />
+    <string name="pin2_attempts" msgid="720736232885011507">\n"ඔබට නැවත උත්සාහ කිරීම් <xliff:g id="NUMBER">%d</xliff:g> ක් තිබේ."</string>
+    <string name="pin2_unblocked" msgid="7791600368153469078">"තව දුරටත් PIN2 අවහිර කර නොතිබේ"</string>
     <string name="doneButton" msgid="2859593360997984240">"හරි"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"හඬ තැපැල් අංකය"</string>
     <string name="card_title_dialing" msgid="5769417478498348054">"අමතමින්"</string>
@@ -501,8 +440,7 @@
     <string name="incall_error_no_phone_number_supplied" msgid="1150414018684246528">"ඇමතුමක් ලබාගැනීමට, වලංගු අංකයක් ලබාගන්න."</string>
     <string name="incall_error_call_failed" msgid="6302746943230078197">"ඇමතුම් ගැනීමට නොහැක."</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"MMI අනුපිළිවෙල ආරම්භ කරමින්…"</string>
-    <!-- no translation found for incall_error_supp_service_unknown (655570339115407698) -->
-    <skip />
+    <string name="incall_error_supp_service_unknown" msgid="655570339115407698">"සේවාවට සහාය දක්වන්නේ නැත"</string>
     <string name="incall_error_supp_service_switch" msgid="5237002176899962862">"ඇමතුම් මාරු කිරීම කළ නොහැක."</string>
     <string name="incall_error_supp_service_separate" msgid="7224393405134545246">"ඇමතුම වෙන් කිරීම කළ නොහැක."</string>
     <string name="incall_error_supp_service_transfer" msgid="7235952238189391438">"මාරු කිරීමට නොහැක."</string>
@@ -544,10 +482,8 @@
     <item msgid="899650777817315681">"සාමාන්‍ය"</item>
     <item msgid="2883365539347850535">"දීර්ඝ"</item>
   </string-array>
-    <!-- no translation found for network_info_message (7738596060242881930) -->
-    <skip />
-    <!-- no translation found for network_error_message (3394780436230411413) -->
-    <skip />
+    <string name="network_info_message" msgid="7738596060242881930">"ජාල පණිවිඩය"</string>
+    <string name="network_error_message" msgid="3394780436230411413">"දෝෂ පණිවිඩය"</string>
     <string name="ota_title_activate" msgid="8616918561356194398">"ඔබගේ දුරකථනය සක්‍රිය කරන්න"</string>
     <string name="ota_touch_activate" msgid="6553212803262586244">"ඔබගේ දුරකථන සේවාව සක්‍රිය කිරීමට විශේෂ ඇමතුමක් ලබා ගත යුතුවේ. \n\n“සක්‍රිය කරන්න” එබීමෙන් පසු, ඔබගේ දුරකථනය සක්‍රිය කිරීමට ලබා දෙන උපදෙස් පිළිපදින්න."</string>
     <string name="ota_hfa_activation_title" msgid="2234246934160473981">"සක්‍රිය කෙරේ..."</string>
@@ -560,10 +496,8 @@
     <string name="ota_title_problem_with_activation" msgid="7095824491970084367">"සක්‍රිය කිරීමේ ගැටලුවක්"</string>
     <string name="ota_listen" msgid="162923839877584937">"සක්‍රිය කිරීම අවසන් බව ඇසෙන තෙක් කථානාද උපදෙස් අනුගමනය කරන්න."</string>
     <string name="ota_speaker" msgid="6904589278542719647">"නාදකය"</string>
-    <!-- no translation found for ota_progress (460876637828044519) -->
-    <skip />
-    <!-- no translation found for ota_failure (7713756181204620397) -->
-    <skip />
+    <string name="ota_progress" msgid="460876637828044519">"ඔබගේ දුරකථනය ක්‍රමලේඛන ගත කිරීම…"</string>
+    <string name="ota_failure" msgid="7713756181204620397">"ඔබගේ දුරකථනය ක්‍රමලේඛන ගත කළ නොහැක"</string>
     <string name="ota_successful" msgid="1880780692887077407">"ඔබගේ දුරකථනය දැන් සක්‍රිය කර ඇත. සේවාව ආරම්භ වීමට මිනිත්තු 15 පමණ ගතවනු ඇත."</string>
     <string name="ota_unsuccessful" msgid="8072141612635635357">"ඔබගේ දුරකතය සක්‍රිය නොවුණි. \nඔබට මිට වඩා හොඳ ආවරණයක් සහිත ප්‍රදේශයක් සොයාගත යුතු වේ (කවුළුවක් අසල, හෝ පිටත). \n\nයළි උත්සාහ කරන්න නැති නම් තවත් විකල්ප සඳහා පාරිභෝගික සේවා අමතන්න."</string>
     <string name="ota_spc_failure" msgid="3909983542575030796">"අතිරික්ත SPC බිඳවැටීම්"</string>
@@ -608,14 +542,10 @@
     <string name="preference_category_ringtone" msgid="5197960752529332721">"රිගින් ටෝන් සහ කම්පනය කරන්න"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"තිළැලි SIM කාඩ් පත්"</string>
     <string name="enable_video_calling_title" msgid="7237253660669000899">"වීඩියෝ ඇමතීම සක්‍රිය කරමින්"</string>
-    <!-- no translation found for enable_video_calling_dialog_msg (8948186136957417948) -->
-    <skip />
+    <string name="enable_video_calling_dialog_msg" msgid="8948186136957417948">"වීඩියෝ ඇමතීම ක්‍රියාත්මක කිරීමට, ජාල සැකසීම තුළ  දියුණු කළ 4G LTE ආකාරය සබල කිරීමට ඔබට අවශ්‍යය."</string>
     <string name="enable_video_calling_dialog_settings" msgid="576528473599603249">"ජාල සැකසුම්"</string>
     <string name="enable_video_calling_dialog_close" msgid="7411471282167927991">"වසන්න"</string>
-    <!-- no translation found for sim_label_emergency_calls (4847699229529306397) -->
-    <skip />
-    <!-- no translation found for sim_description_emergency_calls (7535215397212301562) -->
-    <skip />
-    <!-- no translation found for sim_description_default (4778679519938775515) -->
-    <skip />
+    <string name="sim_label_emergency_calls" msgid="4847699229529306397">"හදිස්සි ඇමතූම්"</string>
+    <string name="sim_description_emergency_calls" msgid="7535215397212301562">"හදිස්සි ඇමතූම් පමණි"</string>
+    <string name="sim_description_default" msgid="4778679519938775515">"SIM කාඩ්පත්, තව්ව: <xliff:g id="SLOT_ID">%s</xliff:g>"</string>
 </resources>

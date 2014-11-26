@@ -76,7 +76,6 @@
     <string name="wifi_calling_select_call_assistant_summary" msgid="9106482864108127281">"Khetha uhlelo lokusebenza noma isevisi ukuze uphathe amanethiwekhi asetshenziselwa amakholi"</string>
     <string name="wifi_calling_use_call_assistant_summary" msgid="6599987137133339698">"Vumela izinhlelo zokusebenza noma amasevisi aphathe amanethiwekhi asetshenziselwa amakholi"</string>
     <string name="wifi_calling_call_assistant_configure" msgid="1092639708949670031">"Lungiselela"</string>
-    <string name="wifi_calling_call_assistant_configure_no_selection" msgid="2354042288883607981">"Umsizi wekholi uvaliwe"</string>
     <string name="connection_service_default_label" msgid="1498481943805913754">"Isevisi yokuxhumeka eyakhelwe ngaphakathi"</string>
     <string name="voicemail" msgid="8693759337917898954">"Ivoyisimeyili"</string>
     <string name="voicemail_abbreviated" msgid="2215592488517217448">"VM:"</string>

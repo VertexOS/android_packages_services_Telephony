@@ -16,16 +16,14 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- no translation found for phoneAppLabel (1107073389495104784) -->
-    <skip />
+    <string name="phoneAppLabel" product="tablet" msgid="1107073389495104784">"Mobildata"</string>
     <string name="phoneAppLabel" product="default" msgid="906161039445636857">"Telefon"</string>
     <string name="emergencyDialerIconLabel" msgid="7812140032168171053">"Nødopkald"</string>
     <string name="phoneIconLabel" msgid="2331230813161304895">"Telefon"</string>
     <string name="fdnListLabel" msgid="8630418672279521003">"Liste over numre til begrænset opkald"</string>
     <string name="unknown" msgid="6878797917991465859">"Ukendt"</string>
     <string name="private_num" msgid="6713286113000232309">"Privat nummer"</string>
-    <!-- no translation found for payphone (4793877574636445118) -->
-    <skip />
+    <string name="payphone" msgid="4793877574636445118">"Mønttelefon"</string>
     <string name="onHold" msgid="9035493194749959955">"Ventende"</string>
     <string name="mmiStarted" msgid="6347869857061147003">"MMI-nummer er startet"</string>
     <string name="ussdRunning" msgid="485588686340541690">"USSD-kode kører ..."</string>
@@ -59,56 +57,33 @@
     <string name="labelCDMAMore" msgid="1630676740428229339">"Indstillinger for CDMA-opkald"</string>
     <string name="apn_settings" msgid="9043423184895642077">"Adgangspunkter"</string>
     <string name="settings_label" msgid="3876743539816984008">"Indstillinger for netværk"</string>
-    <!-- no translation found for phone_accounts (6376603393888116364) -->
-    <skip />
-    <!-- no translation found for phone_accounts_make_calls_with (1969188078933152231) -->
-    <skip />
-    <!-- no translation found for phone_accounts_make_sip_calls_with (4677789312053828493) -->
-    <skip />
-    <!-- no translation found for phone_accounts_ask_every_time (4346499067149985702) -->
-    <skip />
-    <!-- no translation found for phone_accounts_settings_header (4141710640883261094) -->
-    <skip />
-    <!-- no translation found for phone_accounts_choose_accounts (5232948804226424002) -->
-    <skip />
-    <!-- no translation found for phone_accounts_selection_header (1365215726106915865) -->
-    <skip />
-    <!-- no translation found for phone_accounts_add_sip_account (2023821743341923271) -->
-    <skip />
-    <!-- no translation found for phone_accounts_configure_account_settings (1361715069911607109) -->
-    <skip />
-    <!-- no translation found for phone_account_wifi_calling (1840272538233414629) -->
-    <skip />
-    <!-- no translation found for wifi_calling_do_not_use (7491443219113013323) -->
-    <skip />
-    <!-- no translation found for wifi_calling_do_not_use_call_assistant (5420257095556091770) -->
-    <skip />
-    <!-- no translation found for wifi_calling_call_assistant_none (6283702349285593683) -->
-    <skip />
-    <!-- no translation found for wifi_calling_call_assistant (229102032881680320) -->
-    <skip />
-    <!-- no translation found for wifi_calling_use_call_assistant (8460024827012666199) -->
-    <skip />
-    <!-- no translation found for wifi_calling_select_call_assistant (9296558058772293) -->
-    <skip />
-    <!-- no translation found for wifi_calling_select_call_assistant_summary (9106482864108127281) -->
-    <skip />
-    <!-- no translation found for wifi_calling_use_call_assistant_summary (6599987137133339698) -->
-    <skip />
-    <!-- no translation found for wifi_calling_call_assistant_configure (1092639708949670031) -->
-    <skip />
-    <!-- no translation found for wifi_calling_call_assistant_configure_no_selection (2354042288883607981) -->
-    <skip />
+    <string name="phone_accounts" msgid="6376603393888116364">"Opkaldskonti"</string>
+    <string name="phone_accounts_make_calls_with" msgid="1969188078933152231">"Foretag opkald med"</string>
+    <string name="phone_accounts_make_sip_calls_with" msgid="4677789312053828493">"Foretag SIP-opkald med"</string>
+    <string name="phone_accounts_ask_every_time" msgid="4346499067149985702">"Spørg først"</string>
+    <string name="phone_accounts_settings_header" msgid="4141710640883261094">"Indstillinger"</string>
+    <string name="phone_accounts_choose_accounts" msgid="5232948804226424002">"Vælg konti"</string>
+    <string name="phone_accounts_selection_header" msgid="1365215726106915865">"Telefonkonti"</string>
+    <string name="phone_accounts_add_sip_account" msgid="2023821743341923271">"Tilføj en SIP-konto"</string>
+    <string name="phone_accounts_configure_account_settings" msgid="1361715069911607109">"Konfigurer kontoindstillinger"</string>
+    <string name="phone_account_wifi_calling" msgid="1840272538233414629">"Wi-Fi-opkald"</string>
+    <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"Undlad at bruge Wi-Fi-opkald"</string>
+    <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"Undlad at bruge opkaldsassistent"</string>
+    <string name="wifi_calling_call_assistant_none" msgid="6283702349285593683">"Ingen"</string>
+    <string name="wifi_calling_call_assistant" msgid="229102032881680320">"Opkaldsassistent"</string>
+    <string name="wifi_calling_use_call_assistant" msgid="8460024827012666199">"Brug opkaldsassistent"</string>
+    <string name="wifi_calling_select_call_assistant" msgid="9296558058772293">"Vælg opkaldsassistent"</string>
+    <string name="wifi_calling_select_call_assistant_summary" msgid="9106482864108127281">"Vælg en app eller en tjeneste til administration af de netværk, der bruges til opkald"</string>
+    <string name="wifi_calling_use_call_assistant_summary" msgid="6599987137133339698">"Lad apps eller tjenester administrere netværk, der bruges til opkald"</string>
+    <string name="wifi_calling_call_assistant_configure" msgid="1092639708949670031">"Konfigurer"</string>
     <string name="connection_service_default_label" msgid="1498481943805913754">"Indbygget forbindelsestjeneste"</string>
     <string name="voicemail" msgid="8693759337917898954">"Telefonsvarer"</string>
     <string name="voicemail_abbreviated" msgid="2215592488517217448">"VM:"</string>
     <string name="networks" msgid="8873030692174541976">"Netværksudbydere"</string>
-    <!-- no translation found for cell_broadcast_settings (8740238216690502563) -->
-    <skip />
+    <string name="cell_broadcast_settings" msgid="8740238216690502563">"Nødudsendelser"</string>
     <string name="call_settings" msgid="6112441768261754562">"Indstillinger for opkald"</string>
     <string name="additional_gsm_call_settings" msgid="1391795981938800617">"Yderligere indstillinger"</string>
-    <!-- no translation found for additional_gsm_call_settings_with_label (1385241520708457376) -->
-    <skip />
+    <string name="additional_gsm_call_settings_with_label" msgid="1385241520708457376">"Yderligere indstillinger (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="sum_gsm_call_settings" msgid="4076647190996778012">"Yderligere indstillinger for opkald er for kun GSM"</string>
     <string name="additional_cdma_call_settings" msgid="8628958775721886909">"Yderligere CDMA-opkaldsindstillinger"</string>
     <string name="sum_cdma_call_settings" msgid="284753265979035549">"Yderligere indstillinger for opkald er for kun CDMA"</string>
@@ -122,41 +97,32 @@
     <string name="sum_cw_enabled" msgid="8083061901633671397">"Fortæl mig om indgående opkald under et opkald"</string>
     <string name="sum_cw_disabled" msgid="3648693907300104575">"Fortæl mig om indgående opkald under et opkald"</string>
     <string name="call_forwarding_settings" msgid="3378927671091537173">"Indstillinger for viderestilling af opkald"</string>
-    <!-- no translation found for call_forwarding_settings_with_label (8569489414006897127) -->
-    <skip />
+    <string name="call_forwarding_settings_with_label" msgid="8569489414006897127">"Indstillinger for viderestilling af opkald (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="labelCF" msgid="2574386948026924737">"Viderestilling af opkald"</string>
     <string name="labelCFU" msgid="8147177368148660600">"Viderestil altid"</string>
     <string name="messageCFU" msgid="3560082430662923687">"Brug altid dette nummer"</string>
     <string name="sum_cfu_enabled_indicator" msgid="4014187342724130197">"Viderestiller alle opkald"</string>
     <string name="sum_cfu_enabled" msgid="2450052502198827927">"Viderestiller alle opkald til <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfu_enabled_no_number" msgid="6591985777096823616">"Nummeret er ikke tilgængeligt"</string>
-    <!-- no translation found for sum_cfu_disabled (8384177689501334080) -->
-    <skip />
-    <!-- no translation found for labelCFB (6139853033106283172) -->
-    <skip />
+    <string name="sum_cfu_disabled" msgid="8384177689501334080">"Fra"</string>
+    <string name="labelCFB" msgid="6139853033106283172">"Ved optaget"</string>
     <string name="messageCFB" msgid="3711089705936187129">"Nummer ved optaget"</string>
     <string name="sum_cfb_enabled" msgid="5984198104833116690">"Viderestiller til <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
-    <!-- no translation found for sum_cfb_disabled (4913145177320506827) -->
-    <skip />
+    <string name="sum_cfb_disabled" msgid="4913145177320506827">"Fra"</string>
     <string name="disable_cfb_forbidden" msgid="3506984333877998061">"Din udbyder understøtter ikke deaktivering af viderestilling af opkald, når telefonen er optaget."</string>
-    <!-- no translation found for labelCFNRy (1736067178393744351) -->
-    <skip />
+    <string name="labelCFNRy" msgid="1736067178393744351">"Ved ubesvaret"</string>
     <string name="messageCFNRy" msgid="672317899884380374">"Nummer ved ubesvaret"</string>
     <string name="sum_cfnry_enabled" msgid="6955775691317662910">"Viderestiller til <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
-    <!-- no translation found for sum_cfnry_disabled (3884684060443538097) -->
-    <skip />
+    <string name="sum_cfnry_disabled" msgid="3884684060443538097">"Fra"</string>
     <string name="disable_cfnry_forbidden" msgid="4308233959150658058">"Dit mobilselskab understøtter ikke deaktivering af viderestilling af opkald, når telefonen ikke bliver taget."</string>
-    <!-- no translation found for labelCFNRc (2614827454402079766) -->
-    <skip />
+    <string name="labelCFNRc" msgid="2614827454402079766">"Ved utilgængelig"</string>
     <string name="messageCFNRc" msgid="6380695421020295119">"Nummer ved utilgængelig"</string>
     <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"Viderestiller til <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfnrc_disabled" msgid="7222141261321276464">"Deaktiveret"</string>
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"Dit mobilselskab understøtter ikke deaktivering af viderestilling af opkald, når telefonen ikke er tilgængelig."</string>
     <string name="updating_title" msgid="6146755386174019046">"Indstillinger for opkald"</string>
-    <!-- no translation found for call_settings_primary_user_only (5679923943740900965) -->
-    <skip />
-    <!-- no translation found for call_settings_with_label (89359812614544532) -->
-    <skip />
+    <string name="call_settings_primary_user_only" msgid="5679923943740900965">"Opkaldsindstillinger kan kun ændres af den primære bruger."</string>
+    <string name="call_settings_with_label" msgid="89359812614544532">"Opkaldsindstillinger (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="error_updating_title" msgid="7970259216988931777">"Fejl i indstillinger for opkald"</string>
     <string name="reading_settings" msgid="1920291699287055284">"Læser indstillinger ..."</string>
     <string name="updating_settings" msgid="8171225533884883252">"Opdaterer indstillinger ..."</string>
@@ -166,10 +132,8 @@
     <string name="fdn_check_failure" msgid="18200614306525434">"Din telefons appindstilling Faste opkaldsnumre er slået til. Som et resultat heraf fungerer nogle opkaldsrelaterede funktioner ikke."</string>
     <string name="radio_off_error" msgid="2304459933248513376">"Tænd radioen, inden du får vist disse indstillinger."</string>
     <string name="close_dialog" msgid="2365884406356986917">"OK"</string>
-    <!-- no translation found for enable (7248657275000173526) -->
-    <skip />
-    <!-- no translation found for disable (4678348128118573672) -->
-    <skip />
+    <string name="enable" msgid="7248657275000173526">"Aktivér"</string>
+    <string name="disable" msgid="4678348128118573672">"Deaktiver"</string>
     <string name="change_num" msgid="239476305819844391">"Opdater"</string>
   <string-array name="clir_display_values">
     <item msgid="5560134294467334594">"Netværksstandard"</item>
@@ -182,8 +146,7 @@
     <string name="fw_get_in_vm_failed" msgid="8862896836093833973">"De aktuelle indstillinger til viderestillingsnummer kunne ikke hentes og gemmes.\nVil du skifte til den nye udbyder alligevel?"</string>
     <string name="no_change" msgid="3186040086622435212">"Der blev ikke foretaget nogen ændringer."</string>
     <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"Vælg telefonsvarertjeneste"</string>
-    <!-- no translation found for voicemail_default (2001233554889016880) -->
-    <skip />
+    <string name="voicemail_default" msgid="2001233554889016880">"Dit mobilselskab"</string>
     <string name="mobile_networks" msgid="2843854043339307375">"Mobilnetværksindstillinger"</string>
     <string name="label_available" msgid="1181658289009300430">"Tilgængelige netværk"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"Søger..."</string>
@@ -216,8 +179,7 @@
     <string name="preferred_network_mode_lte_cdma_evdo_summary" msgid="228702246343742853">"Foretrukken netværkstilstand: CDMA+LTE/EVDO"</string>
     <string name="preferred_network_mode_global_summary" msgid="1633134285545730364">"Foretrukken netværkstilstand: Global"</string>
     <string name="preferred_network_mode_lte_wcdma_summary" msgid="9180775701594742750">"Foretrukken netværkstilstand: LTE/WCDMA"</string>
-    <!-- no translation found for preferred_network_mode_lte_gsm_umts_summary (633315028976225026) -->
-    <skip />
+    <string name="preferred_network_mode_lte_gsm_umts_summary" msgid="633315028976225026">"Foretrukket netværkstilstand: LTE/GSM/UMTS"</string>
     <string name="preferred_network_mode_lte_cdma_summary" msgid="3722647806454528426">"Foretrukken netværkstilstand: LTE/CDMA"</string>
   <string-array name="preferred_network_mode_choices">
     <item msgid="7886739962255042385">"LTE/WCDMA"</item>
@@ -234,18 +196,15 @@
     <item msgid="1524224863879435516">"Kun GSM"</item>
     <item msgid="3817924849415716259">"GSM/WCDMA foretrækkes"</item>
   </string-array>
-    <!-- no translation found for enhanced_4g_lte_mode_title (522191650223239171) -->
-    <skip />
-    <!-- no translation found for enhanced_4g_lte_mode_summary (2332175070522125850) -->
-    <skip />
+    <string name="enhanced_4g_lte_mode_title" msgid="522191650223239171">"Forbedret 4G LTE-tilstand"</string>
+    <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"Anvend LTE-tjenester til at forbedre tale og anden kommunikation (anbefalet)"</string>
     <string name="data_enabled" msgid="5972538663568715366">"Data aktiveret"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"Tillad dataforbrug"</string>
     <string name="roaming" msgid="8871412572928323707">"Dataroaming"</string>
     <string name="roaming_enable" msgid="7331106985174381987">"Opret forbindelse til datatjenester under roaming"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"Opret forbindelse til datatjenester under roaming"</string>
     <string name="roaming_reenable_message" msgid="8913735676127858115">"Du har mistet dataforbindelsen, fordi du har forladt dit hjemmenetværk, og dataroaming er slået fra."</string>
-    <!-- no translation found for roaming_warning (7126227198294007907) -->
-    <skip />
+    <string name="roaming_warning" msgid="7126227198294007907">"Vil du tillade dataforbrug under roaming? Dette kan afføde væsentlige gebyrer."</string>
     <string name="gsm_umts_options" msgid="6538311689850981686">"Indstillinger for GSM/UMTS"</string>
     <string name="cdma_options" msgid="4016822858172249884">"Indstillinger for CDMA"</string>
     <string name="throttle_data_usage" msgid="3715677828160555808">"Databrug"</string>
@@ -377,11 +336,9 @@
     <string name="cdma_lte_data_service" msgid="4255018217292548962">"Opsætning af datatjeneste"</string>
     <string name="carrier_settings_title" msgid="9028166176523012300">"Indst. for mobilselskab"</string>
     <string name="fdn" msgid="7878832555095183202">"Faste opkaldsnumre"</string>
-    <!-- no translation found for fdn_with_label (187084204115493366) -->
-    <skip />
+    <string name="fdn_with_label" msgid="187084204115493366">"Angivne opkaldsnumre (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="manage_fdn_list" msgid="8777755791892122369">"Liste over numre til begrænset opkald"</string>
-    <!-- no translation found for fdn_list_with_label (7437232552210469217) -->
-    <skip />
+    <string name="fdn_list_with_label" msgid="7437232552210469217">"Liste over angivne opkaldsnumre (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="fdn_activation" msgid="2156479741307463576">"Aktivering af begrænset opkald"</string>
     <string name="fdn_enabled" msgid="5238109009915521240">"Faste opkaldsnumre er aktiveret"</string>
     <string name="fdn_disabled" msgid="4700049736675368279">"Faste opkaldsnumre er deaktiveret"</string>
@@ -432,54 +389,34 @@
     <string name="badPin" msgid="8955102849303984935">"Den gamle pinkode, du har indtastet, er forkert. Prøv igen."</string>
     <string name="mismatchPin" msgid="5923253370683071889">"PIN-koderne, som du har indtastet, stemmer ikke overens. Prøv igen."</string>
     <string name="invalidPin" msgid="5981171102258684792">"Indtast en pinkode på mellem 4 og 8 tal."</string>
-    <!-- no translation found for disable_sim_pin (3419351358300716472) -->
-    <skip />
-    <!-- no translation found for enable_sim_pin (4845145659651484248) -->
-    <skip />
-    <!-- no translation found for enable_in_progress (3417917024688497010) -->
-    <skip />
-    <!-- no translation found for enable_pin_ok (2918545971413270063) -->
-    <skip />
-    <!-- no translation found for disable_pin_ok (2109571368635883688) -->
-    <skip />
-    <!-- no translation found for pin_failed (5644377896213584760) -->
-    <skip />
-    <!-- no translation found for pin_changed (4455736268023261662) -->
-    <skip />
-    <!-- no translation found for puk_requested (5921393215789090200) -->
-    <skip />
+    <string name="disable_sim_pin" msgid="3419351358300716472">"Ryd SIM-kortets pinkode"</string>
+    <string name="enable_sim_pin" msgid="4845145659651484248">"Indstil SIM-kortets pinkode"</string>
+    <string name="enable_in_progress" msgid="3417917024688497010">"Pinkoden indstilles…"</string>
+    <string name="enable_pin_ok" msgid="2918545971413270063">"Pinkoden er indstillet"</string>
+    <string name="disable_pin_ok" msgid="2109571368635883688">"Pinkoden er ryddet"</string>
+    <string name="pin_failed" msgid="5644377896213584760">"Pinkoden er forkert"</string>
+    <string name="pin_changed" msgid="4455736268023261662">"Pinkoden er opdateret"</string>
+    <string name="puk_requested" msgid="5921393215789090200">"Forkert adgangskode. Pinkoden er nu blokeret. Der anmodes om PUK-kode."</string>
     <string name="enter_pin2_text" msgid="8339444124477720345">"PIN2-kode"</string>
     <string name="oldPin2Label" msgid="8559146795026261502">"Nuværende PIN2-kode"</string>
     <string name="newPin2Label" msgid="4573956902204349054">"Ny PIN2-kode"</string>
     <string name="confirmPin2Label" msgid="8100319484454787708">"Bekræft ny PIN2-kode"</string>
-    <!-- no translation found for badPuk2 (7910064009531541708) -->
-    <skip />
-    <!-- no translation found for badPin2 (6646896629970023109) -->
-    <skip />
-    <!-- no translation found for mismatchPin2 (4177967478551851117) -->
-    <skip />
-    <!-- no translation found for invalidPin2 (1757045131429105595) -->
-    <skip />
-    <!-- no translation found for invalidPuk2 (7059081153334815973) -->
-    <skip />
-    <!-- no translation found for pin2_changed (3724522579945610956) -->
-    <skip />
-    <!-- no translation found for label_puk2_code (4688069961795341948) -->
-    <skip />
-    <!-- no translation found for fdn_enable_puk2_requested (4991074891459554705) -->
-    <skip />
-    <!-- no translation found for puk2_requested (5831015200030161434) -->
-    <skip />
+    <string name="badPuk2" msgid="7910064009531541708">"PUK-kode 2 er forkert. Prøv igen."</string>
+    <string name="badPin2" msgid="6646896629970023109">"Gammel pinkode 2 er forkert. Prøv igen."</string>
+    <string name="mismatchPin2" msgid="4177967478551851117">"De to pinkode 2 stemmer ikke overens. Prøv igen."</string>
+    <string name="invalidPin2" msgid="1757045131429105595">"Indtast en pinkode 2, som indeholder 4 til 8 cifre."</string>
+    <string name="invalidPuk2" msgid="7059081153334815973">"Indtast en PUK-kode 2, som indeholder 8 cifre."</string>
+    <string name="pin2_changed" msgid="3724522579945610956">"Pinkode 2 er opdateret"</string>
+    <string name="label_puk2_code" msgid="4688069961795341948">"Indtast PUK-kode 2"</string>
+    <string name="fdn_enable_puk2_requested" msgid="4991074891459554705">"Forkert adgangskode. Pinkode 2 er nu blokeret. For at prøve igen skal du ændre pinkode 2."</string>
+    <string name="puk2_requested" msgid="5831015200030161434">"Forkert adgangskode. SIM-kortet er nu låst. Indtast PUK-kode 2."</string>
     <string name="puk2_blocked" msgid="3150263853077280049">"PUK2 er permanent blokeret."</string>
-    <!-- no translation found for pin2_attempts (720736232885011507) -->
-    <skip />
-    <!-- no translation found for pin2_unblocked (7791600368153469078) -->
-    <skip />
+    <string name="pin2_attempts" msgid="720736232885011507">\n"Du har <xliff:g id="NUMBER">%d</xliff:g> forsøg tilbage."</string>
+    <string name="pin2_unblocked" msgid="7791600368153469078">"Pinkode 2 er ikke længere blokeret"</string>
     <string name="doneButton" msgid="2859593360997984240">"Afslut"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"Telefonsvarernummer"</string>
     <string name="card_title_dialing" msgid="5769417478498348054">"Ringer op"</string>
-    <!-- no translation found for card_title_redialing (8253487008234167266) -->
-    <skip />
+    <string name="card_title_redialing" msgid="8253487008234167266">"Ringer op igen"</string>
     <string name="card_title_conf_call" msgid="1162980346189744501">"Telefonmøde"</string>
     <string name="card_title_incoming_call" msgid="7364539451234646909">"Indgående opkald"</string>
     <string name="card_title_call_ended" msgid="5544730338889702298">"Opkaldet er afsluttet"</string>
@@ -506,32 +443,21 @@
     <string name="incall_error_power_off" msgid="6550191216405193368">"Slå Flytilstand fra først for at foretage et opkald."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"Ikke registreret på netværk."</string>
     <string name="incall_error_out_of_service" msgid="4100065333878929223">"Mobilnetværket er ikke tilgængeligt."</string>
-    <!-- no translation found for incall_error_no_phone_number_supplied (1150414018684246528) -->
-    <skip />
-    <!-- no translation found for incall_error_call_failed (6302746943230078197) -->
-    <skip />
+    <string name="incall_error_no_phone_number_supplied" msgid="1150414018684246528">"Indtast et gyldigt nummer for at foretage et opkald."</string>
+    <string name="incall_error_call_failed" msgid="6302746943230078197">"Kan ikke ringe op."</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"Starter MMI-sekvens ..."</string>
-    <!-- no translation found for incall_error_supp_service_unknown (655570339115407698) -->
-    <skip />
-    <!-- no translation found for incall_error_supp_service_switch (5237002176899962862) -->
-    <skip />
-    <!-- no translation found for incall_error_supp_service_separate (7224393405134545246) -->
-    <skip />
-    <!-- no translation found for incall_error_supp_service_transfer (7235952238189391438) -->
-    <skip />
+    <string name="incall_error_supp_service_unknown" msgid="655570339115407698">"Tjenesten er ikke understøttet"</string>
+    <string name="incall_error_supp_service_switch" msgid="5237002176899962862">"Kan ikke skifte opkald."</string>
+    <string name="incall_error_supp_service_separate" msgid="7224393405134545246">"Kan ikke adskille opkald."</string>
+    <string name="incall_error_supp_service_transfer" msgid="7235952238189391438">"Kan ikke overføre."</string>
     <string name="incall_error_supp_service_conference" msgid="2505727299596357312">"Der kunne ikke oprettes mødeopkald."</string>
-    <!-- no translation found for incall_error_supp_service_reject (8998568661508655638) -->
-    <skip />
-    <!-- no translation found for incall_error_supp_service_hangup (7434513517153834426) -->
-    <skip />
+    <string name="incall_error_supp_service_reject" msgid="8998568661508655638">"Kan ikke afvise opkaldet."</string>
+    <string name="incall_error_supp_service_hangup" msgid="7434513517153834426">"Kan ikke frigive et eller flere opkald."</string>
     <string name="emergency_enable_radio_dialog_title" msgid="4627849966634578257">"Nødopkald"</string>
     <string name="emergency_enable_radio_dialog_message" msgid="207613549344420291">"Tænder for radio ..."</string>
-    <!-- no translation found for emergency_enable_radio_dialog_retry (5960061579996526883) -->
-    <skip />
-    <!-- no translation found for dial_emergency_error (1509085166367420355) -->
-    <skip />
-    <!-- no translation found for dial_emergency_empty_error (9130194953830414638) -->
-    <skip />
+    <string name="emergency_enable_radio_dialog_retry" msgid="5960061579996526883">"Ingen tjeneste. Prøver igen..."</string>
+    <string name="dial_emergency_error" msgid="1509085166367420355">"Kan ikke ringe op. <xliff:g id="NON_EMERGENCY_NUMBER">%s</xliff:g> er ikke et alarmnummer."</string>
+    <string name="dial_emergency_empty_error" msgid="9130194953830414638">"Kan ikke ringe op. Ring til et alarmnummer."</string>
     <string name="dialerKeyboardHintText" msgid="9192914825413747792">"Brug tastatur til at ringe op"</string>
     <string name="onscreenHoldText" msgid="2285258239691145872">"Hold"</string>
     <string name="onscreenEndCallText" msgid="4403855834875398585">"Afslut"</string>
@@ -562,10 +488,8 @@
     <item msgid="899650777817315681">"Normal"</item>
     <item msgid="2883365539347850535">"Lang"</item>
   </string-array>
-    <!-- no translation found for network_info_message (7738596060242881930) -->
-    <skip />
-    <!-- no translation found for network_error_message (3394780436230411413) -->
-    <skip />
+    <string name="network_info_message" msgid="7738596060242881930">"Netværksbesked"</string>
+    <string name="network_error_message" msgid="3394780436230411413">"Fejlmeddelelse"</string>
     <string name="ota_title_activate" msgid="8616918561356194398">"Aktivér din telefon"</string>
     <string name="ota_touch_activate" msgid="6553212803262586244">"Der skal foretages et særligt opkald for at aktivere din telefontjeneste. \n\n Lyt til instruktionerne, når du har trykket på “Aktivér” for at aktivere din telefon."</string>
     <string name="ota_hfa_activation_title" msgid="2234246934160473981">"Aktiverer..."</string>
@@ -578,10 +502,8 @@
     <string name="ota_title_problem_with_activation" msgid="7095824491970084367">"Der opstod et problem med aktiveringen"</string>
     <string name="ota_listen" msgid="162923839877584937">"Følg talevejledningen, indtil du hører, at aktiveringen er gennemført."</string>
     <string name="ota_speaker" msgid="6904589278542719647">"Højttaler"</string>
-    <!-- no translation found for ota_progress (460876637828044519) -->
-    <skip />
-    <!-- no translation found for ota_failure (7713756181204620397) -->
-    <skip />
+    <string name="ota_progress" msgid="460876637828044519">"Telefonen programmeres…"</string>
+    <string name="ota_failure" msgid="7713756181204620397">"Telefonen kunne ikke programmeres"</string>
     <string name="ota_successful" msgid="1880780692887077407">"Din telefon er nu aktiveret. Det kan tage op til 15 minutter, før tjenesten begynder."</string>
     <string name="ota_unsuccessful" msgid="8072141612635635357">"Din telefon blev ikke aktiveret. \nDu skal muligvis finde et område med bedre dækning (ved et vindue eller udenfor). \n\nPrøv igen, eller ring til kundeservice for at få flere oplysninger om andre muligheder."</string>
     <string name="ota_spc_failure" msgid="3909983542575030796">"FOR MANGE SPC-FEJL"</string>
@@ -622,19 +544,14 @@
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"Vibration"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"Vibration"</string>
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"Lyd"</string>
-    <!-- no translation found for dial_pad_autocomplete (7683489952557536398) -->
-    <skip />
+    <string name="dial_pad_autocomplete" msgid="7683489952557536398">"Autofuldfør numerisk tastatur"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"Ringetone og vibration"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"Indbyggede SIM-kort"</string>
     <string name="enable_video_calling_title" msgid="7237253660669000899">"Slå videoopkald til"</string>
-    <!-- no translation found for enable_video_calling_dialog_msg (8948186136957417948) -->
-    <skip />
+    <string name="enable_video_calling_dialog_msg" msgid="8948186136957417948">"Før du kan slå videoopkald til, skal du aktivere tilstanden Forbedret 4G LTE i netværksindstillinger."</string>
     <string name="enable_video_calling_dialog_settings" msgid="576528473599603249">"Netværksindstillinger"</string>
     <string name="enable_video_calling_dialog_close" msgid="7411471282167927991">"Luk"</string>
-    <!-- no translation found for sim_label_emergency_calls (4847699229529306397) -->
-    <skip />
-    <!-- no translation found for sim_description_emergency_calls (7535215397212301562) -->
-    <skip />
-    <!-- no translation found for sim_description_default (4778679519938775515) -->
-    <skip />
+    <string name="sim_label_emergency_calls" msgid="4847699229529306397">"Nødopkald"</string>
+    <string name="sim_description_emergency_calls" msgid="7535215397212301562">"Kun nødopkald"</string>
+    <string name="sim_description_default" msgid="4778679519938775515">"SIM-kortholder: <xliff:g id="SLOT_ID">%s</xliff:g>"</string>
 </resources>
