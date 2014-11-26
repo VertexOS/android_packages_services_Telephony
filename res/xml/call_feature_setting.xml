@@ -32,7 +32,7 @@
         android:title="@string/voicemail"
         android:persistent="false">
 
-        <ListPreference
+        <com.android.phone.settings.VoicemailProviderListPreference
             android:key="button_voicemail_provider_key"
             android:title="@string/voicemail_provider"
             android:summary="@string/sum_voicemail_choose_provider"
