@@ -76,7 +76,6 @@
     <string name="wifi_calling_select_call_assistant_summary" msgid="9106482864108127281">"استخدام أحد التطبيقات أو الخدمات لإدارة الشبكات المستخدمة لإجراء المكالمات"</string>
     <string name="wifi_calling_use_call_assistant_summary" msgid="6599987137133339698">"السماح للتطبيقات أو الخدمات بإدارة الشبكات المستخدمة لإجراء المكالمات"</string>
     <string name="wifi_calling_call_assistant_configure" msgid="1092639708949670031">"تهيئة"</string>
-    <string name="wifi_calling_call_assistant_configure_no_selection" msgid="2354042288883607981">"إيقاف مساعد الاتصال"</string>
     <string name="connection_service_default_label" msgid="1498481943805913754">"خدمة اتصال مدمجة"</string>
     <string name="voicemail" msgid="8693759337917898954">"البريد الصوتي"</string>
     <string name="voicemail_abbreviated" msgid="2215592488517217448">"VM:"</string>

@@ -16,16 +16,14 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- no translation found for phoneAppLabel (1107073389495104784) -->
-    <skip />
+    <string name="phoneAppLabel" product="tablet" msgid="1107073389495104784">"Mobiilne andmeside"</string>
     <string name="phoneAppLabel" product="default" msgid="906161039445636857">"Telefon"</string>
     <string name="emergencyDialerIconLabel" msgid="7812140032168171053">"Hädaabikõne valija"</string>
     <string name="phoneIconLabel" msgid="2331230813161304895">"Telefon"</string>
     <string name="fdnListLabel" msgid="8630418672279521003">"FDN-i loend"</string>
     <string name="unknown" msgid="6878797917991465859">"Tundmatu"</string>
     <string name="private_num" msgid="6713286113000232309">"Varjatud number"</string>
-    <!-- no translation found for payphone (4793877574636445118) -->
-    <skip />
+    <string name="payphone" msgid="4793877574636445118">"Telefoniautomaat"</string>
     <string name="onHold" msgid="9035493194749959955">"Ootel"</string>
     <string name="mmiStarted" msgid="6347869857061147003">"MMI-kood käivitus"</string>
     <string name="ussdRunning" msgid="485588686340541690">"USSD-kood töötab ..."</string>
@@ -59,56 +57,33 @@
     <string name="labelCDMAMore" msgid="1630676740428229339">"CDMA-kõneseaded"</string>
     <string name="apn_settings" msgid="9043423184895642077">"Pääsupunktide nimed"</string>
     <string name="settings_label" msgid="3876743539816984008">"Võrguseaded"</string>
-    <!-- no translation found for phone_accounts (6376603393888116364) -->
-    <skip />
-    <!-- no translation found for phone_accounts_make_calls_with (1969188078933152231) -->
-    <skip />
-    <!-- no translation found for phone_accounts_make_sip_calls_with (4677789312053828493) -->
-    <skip />
-    <!-- no translation found for phone_accounts_ask_every_time (4346499067149985702) -->
-    <skip />
-    <!-- no translation found for phone_accounts_settings_header (4141710640883261094) -->
-    <skip />
-    <!-- no translation found for phone_accounts_choose_accounts (5232948804226424002) -->
-    <skip />
-    <!-- no translation found for phone_accounts_selection_header (1365215726106915865) -->
-    <skip />
-    <!-- no translation found for phone_accounts_add_sip_account (2023821743341923271) -->
-    <skip />
-    <!-- no translation found for phone_accounts_configure_account_settings (1361715069911607109) -->
-    <skip />
-    <!-- no translation found for phone_account_wifi_calling (1840272538233414629) -->
-    <skip />
-    <!-- no translation found for wifi_calling_do_not_use (7491443219113013323) -->
-    <skip />
-    <!-- no translation found for wifi_calling_do_not_use_call_assistant (5420257095556091770) -->
-    <skip />
-    <!-- no translation found for wifi_calling_call_assistant_none (6283702349285593683) -->
-    <skip />
-    <!-- no translation found for wifi_calling_call_assistant (229102032881680320) -->
-    <skip />
-    <!-- no translation found for wifi_calling_use_call_assistant (8460024827012666199) -->
-    <skip />
-    <!-- no translation found for wifi_calling_select_call_assistant (9296558058772293) -->
-    <skip />
-    <!-- no translation found for wifi_calling_select_call_assistant_summary (9106482864108127281) -->
-    <skip />
-    <!-- no translation found for wifi_calling_use_call_assistant_summary (6599987137133339698) -->
-    <skip />
-    <!-- no translation found for wifi_calling_call_assistant_configure (1092639708949670031) -->
-    <skip />
-    <!-- no translation found for wifi_calling_call_assistant_configure_no_selection (2354042288883607981) -->
-    <skip />
+    <string name="phone_accounts" msgid="6376603393888116364">"Kõnekontod"</string>
+    <string name="phone_accounts_make_calls_with" msgid="1969188078933152231">"Kõnede tegemine kontoga"</string>
+    <string name="phone_accounts_make_sip_calls_with" msgid="4677789312053828493">"SIP-kõnede tegemine kontoga"</string>
+    <string name="phone_accounts_ask_every_time" msgid="4346499067149985702">"Küsi esmalt"</string>
+    <string name="phone_accounts_settings_header" msgid="4141710640883261094">"Seaded"</string>
+    <string name="phone_accounts_choose_accounts" msgid="5232948804226424002">"Valige kontod"</string>
+    <string name="phone_accounts_selection_header" msgid="1365215726106915865">"Telefoni kontod"</string>
+    <string name="phone_accounts_add_sip_account" msgid="2023821743341923271">"SIP-konto lisamine"</string>
+    <string name="phone_accounts_configure_account_settings" msgid="1361715069911607109">"Konto seadete seadistamine"</string>
+    <string name="phone_account_wifi_calling" msgid="1840272538233414629">"WiFi-kõned"</string>
+    <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"Ärge kasutage WiFi-kõnesid"</string>
+    <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"Ärge kasutage kõneabi"</string>
+    <string name="wifi_calling_call_assistant_none" msgid="6283702349285593683">"Puudub"</string>
+    <string name="wifi_calling_call_assistant" msgid="229102032881680320">"Kõneabi"</string>
+    <string name="wifi_calling_use_call_assistant" msgid="8460024827012666199">"Kasutage kõneabi"</string>
+    <string name="wifi_calling_select_call_assistant" msgid="9296558058772293">"Valige kõneabi"</string>
+    <string name="wifi_calling_select_call_assistant_summary" msgid="9106482864108127281">"Valige rakendus või teenus kõnede tegemiseks kasutatavate võrkude haldamiseks"</string>
+    <string name="wifi_calling_use_call_assistant_summary" msgid="6599987137133339698">"Laske rakendustel või teenustel kõnede tegemiseks kasutatavaid võrke hallata"</string>
+    <string name="wifi_calling_call_assistant_configure" msgid="1092639708949670031">"Seadistamine"</string>
     <string name="connection_service_default_label" msgid="1498481943805913754">"Sisseehitatud ühendusteenus"</string>
     <string name="voicemail" msgid="8693759337917898954">"Kõnepost"</string>
     <string name="voicemail_abbreviated" msgid="2215592488517217448">"KP:"</string>
     <string name="networks" msgid="8873030692174541976">"Võrguoperaatorid"</string>
-    <!-- no translation found for cell_broadcast_settings (8740238216690502563) -->
-    <skip />
+    <string name="cell_broadcast_settings" msgid="8740238216690502563">"Hädaolukorra ülekanded"</string>
     <string name="call_settings" msgid="6112441768261754562">"Kõneseaded"</string>
     <string name="additional_gsm_call_settings" msgid="1391795981938800617">"Lisaseaded"</string>
-    <!-- no translation found for additional_gsm_call_settings_with_label (1385241520708457376) -->
-    <skip />
+    <string name="additional_gsm_call_settings_with_label" msgid="1385241520708457376">"Lisaseaded (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="sum_gsm_call_settings" msgid="4076647190996778012">"Täiendavad „ainult GSM” kõneseaded"</string>
     <string name="additional_cdma_call_settings" msgid="8628958775721886909">"Täiendavad CDMA kõneseaded"</string>
     <string name="sum_cdma_call_settings" msgid="284753265979035549">"Täiendavad „ainult CDMA” kõneseaded"</string>
@@ -122,41 +97,32 @@
     <string name="sum_cw_enabled" msgid="8083061901633671397">"Teavita mind kõne ajal sissetulevatest kõnedest"</string>
     <string name="sum_cw_disabled" msgid="3648693907300104575">"Teavita mind kõne ajal sissetulevatest kõnedest"</string>
     <string name="call_forwarding_settings" msgid="3378927671091537173">"Kõnesuunamise seaded"</string>
-    <!-- no translation found for call_forwarding_settings_with_label (8569489414006897127) -->
-    <skip />
+    <string name="call_forwarding_settings_with_label" msgid="8569489414006897127">"Kõne suunamise seaded (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="labelCF" msgid="2574386948026924737">"Kõnede suunamine"</string>
     <string name="labelCFU" msgid="8147177368148660600">"Suuna alati"</string>
     <string name="messageCFU" msgid="3560082430662923687">"Kasuta alati seda numbrit"</string>
     <string name="sum_cfu_enabled_indicator" msgid="4014187342724130197">"Kõigi kõnede suunamine"</string>
     <string name="sum_cfu_enabled" msgid="2450052502198827927">"Kõigi kõnede edastamine numbrile <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfu_enabled_no_number" msgid="6591985777096823616">"Number ei ole kättesaadav"</string>
-    <!-- no translation found for sum_cfu_disabled (8384177689501334080) -->
-    <skip />
-    <!-- no translation found for labelCFB (6139853033106283172) -->
-    <skip />
+    <string name="sum_cfu_disabled" msgid="8384177689501334080">"Väljas"</string>
+    <string name="labelCFB" msgid="6139853033106283172">"Kui olen hõivatud"</string>
     <string name="messageCFB" msgid="3711089705936187129">"Number, kui on hõivatud"</string>
     <string name="sum_cfb_enabled" msgid="5984198104833116690">"Edastamine numbrile <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
-    <!-- no translation found for sum_cfb_disabled (4913145177320506827) -->
-    <skip />
+    <string name="sum_cfb_disabled" msgid="4913145177320506827">"Väljas"</string>
     <string name="disable_cfb_forbidden" msgid="3506984333877998061">"Teie operaator ei toeta kõneedastuse keelamist, kui teie telefon on hõivatud."</string>
-    <!-- no translation found for labelCFNRy (1736067178393744351) -->
-    <skip />
+    <string name="labelCFNRy" msgid="1736067178393744351">"Kui kõnele ei vastata"</string>
     <string name="messageCFNRy" msgid="672317899884380374">"Number, kui ei vastata"</string>
     <string name="sum_cfnry_enabled" msgid="6955775691317662910">"Edastamine numbrile <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
-    <!-- no translation found for sum_cfnry_disabled (3884684060443538097) -->
-    <skip />
+    <string name="sum_cfnry_disabled" msgid="3884684060443538097">"Väljas"</string>
     <string name="disable_cfnry_forbidden" msgid="4308233959150658058">"Teie operaator ei toeta kõneedastuse keelamist, kui teie telefon ei vasta."</string>
-    <!-- no translation found for labelCFNRc (2614827454402079766) -->
-    <skip />
+    <string name="labelCFNRc" msgid="2614827454402079766">"Kui mind ei saa kätte"</string>
     <string name="messageCFNRc" msgid="6380695421020295119">"Number, kui pole kättesaadav"</string>
     <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"Edastamine numbrile <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfnrc_disabled" msgid="7222141261321276464">"Keelatud"</string>
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"Teie operaator ei toeta kõneedastuse keelamist, kui teie telefon on levist väljas."</string>
     <string name="updating_title" msgid="6146755386174019046">"Kõneseaded"</string>
-    <!-- no translation found for call_settings_primary_user_only (5679923943740900965) -->
-    <skip />
-    <!-- no translation found for call_settings_with_label (89359812614544532) -->
-    <skip />
+    <string name="call_settings_primary_user_only" msgid="5679923943740900965">"Kõne seadeid saab muuta ainult peamine kasutaja."</string>
+    <string name="call_settings_with_label" msgid="89359812614544532">"Kõne seaded (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="error_updating_title" msgid="7970259216988931777">"Kõneseadete viga"</string>
     <string name="reading_settings" msgid="1920291699287055284">"Seadete lugemine ..."</string>
     <string name="updating_settings" msgid="8171225533884883252">"Seadete värskendamine ..."</string>
@@ -166,10 +132,8 @@
     <string name="fdn_check_failure" msgid="18200614306525434">"Telefoni rakenduse Fikseeritud numbrite valimine seaded on sisse lülitatud. Selle tulemusena ei tööta kõik kõnega seotud funktsioonid."</string>
     <string name="radio_off_error" msgid="2304459933248513376">"Enne nende seadete vaatamist lülitage raadio sisse."</string>
     <string name="close_dialog" msgid="2365884406356986917">"OK"</string>
-    <!-- no translation found for enable (7248657275000173526) -->
-    <skip />
-    <!-- no translation found for disable (4678348128118573672) -->
-    <skip />
+    <string name="enable" msgid="7248657275000173526">"Lülita sisse"</string>
+    <string name="disable" msgid="4678348128118573672">"Lülita välja"</string>
     <string name="change_num" msgid="239476305819844391">"Värskenda"</string>
   <string-array name="clir_display_values">
     <item msgid="5560134294467334594">"Vaikevõrk"</item>
@@ -182,8 +146,7 @@
     <string name="fw_get_in_vm_failed" msgid="8862896836093833973">"Praeguste edastusnumbri seadete toomine ja salvestamine ebaõnnestus.\nKas soovite siiski uuele teenusepakkujale ümber lülituda?"</string>
     <string name="no_change" msgid="3186040086622435212">"Muudatusi ei tehtud."</string>
     <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"Valige kõnepostiteenus"</string>
-    <!-- no translation found for voicemail_default (2001233554889016880) -->
-    <skip />
+    <string name="voicemail_default" msgid="2001233554889016880">"Teie operaator"</string>
     <string name="mobile_networks" msgid="2843854043339307375">"Mobiilsidevõrgu seaded"</string>
     <string name="label_available" msgid="1181658289009300430">"Saadaolevad võrgud"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"Otsimine ..."</string>
@@ -216,8 +179,7 @@
     <string name="preferred_network_mode_lte_cdma_evdo_summary" msgid="228702246343742853">"Eelistatud võrgurežiim: CDMA+LTE/EVDO"</string>
     <string name="preferred_network_mode_global_summary" msgid="1633134285545730364">"Eelistatud võrgurežiim: globaalne"</string>
     <string name="preferred_network_mode_lte_wcdma_summary" msgid="9180775701594742750">"Eelistatud võrgurežiim: LTE / WCDMA"</string>
-    <!-- no translation found for preferred_network_mode_lte_gsm_umts_summary (633315028976225026) -->
-    <skip />
+    <string name="preferred_network_mode_lte_gsm_umts_summary" msgid="633315028976225026">"Eelistatud võrgurežiim: LTE/GSM/UMTS"</string>
     <string name="preferred_network_mode_lte_cdma_summary" msgid="3722647806454528426">"Eelistatud võrgurežiim: LTE/CDMA"</string>
   <string-array name="preferred_network_mode_choices">
     <item msgid="7886739962255042385">"LTE/WCDMA"</item>
@@ -234,18 +196,15 @@
     <item msgid="1524224863879435516">"Ainult GSM"</item>
     <item msgid="3817924849415716259">"Eelistatud GSM/WCDMA"</item>
   </string-array>
-    <!-- no translation found for enhanced_4g_lte_mode_title (522191650223239171) -->
-    <skip />
-    <!-- no translation found for enhanced_4g_lte_mode_summary (2332175070522125850) -->
-    <skip />
+    <string name="enhanced_4g_lte_mode_title" msgid="522191650223239171">"Tõhustatud 4G LTE režiim"</string>
+    <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"Kasutage hääl- ja muu suhtluse täiustamiseks LTE-teenuseid (soovitatav)"</string>
     <string name="data_enabled" msgid="5972538663568715366">"Andmeside lubatud"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"Luba andmekasutus"</string>
     <string name="roaming" msgid="8871412572928323707">"Andmesiderändlus"</string>
     <string name="roaming_enable" msgid="7331106985174381987">"Ühenda rändluse ajal andmesideteenustega"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"Ühenda rändluse ajal andmesideteenustega"</string>
     <string name="roaming_reenable_message" msgid="8913735676127858115">"Andmesideühendus katkes, kuna lahkusite koduvõrgust ja andmesiderändlus oli välja lülitatud."</string>
-    <!-- no translation found for roaming_warning (7126227198294007907) -->
-    <skip />
+    <string name="roaming_warning" msgid="7126227198294007907">"Kas lubada rändluse ajal andmete kasutamine? Rakenduda võivad märkimisväärsed tasud."</string>
     <string name="gsm_umts_options" msgid="6538311689850981686">"GSM-i/UMTS-i valikud"</string>
     <string name="cdma_options" msgid="4016822858172249884">"CDMA valikud"</string>
     <string name="throttle_data_usage" msgid="3715677828160555808">"Andmete kasutus"</string>
@@ -371,11 +330,9 @@
     <string name="cdma_lte_data_service" msgid="4255018217292548962">"Andmesideteenuse häälestamine"</string>
     <string name="carrier_settings_title" msgid="9028166176523012300">"Operaatori seaded"</string>
     <string name="fdn" msgid="7878832555095183202">"Fikseeritud valimisnumbrid"</string>
-    <!-- no translation found for fdn_with_label (187084204115493366) -->
-    <skip />
+    <string name="fdn_with_label" msgid="187084204115493366">"Fikseeritud valimisnumbrid (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="manage_fdn_list" msgid="8777755791892122369">"FDN-i loend"</string>
-    <!-- no translation found for fdn_list_with_label (7437232552210469217) -->
-    <skip />
+    <string name="fdn_list_with_label" msgid="7437232552210469217">"FDN-i loend (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="fdn_activation" msgid="2156479741307463576">"FDN-i aktiveerimine"</string>
     <string name="fdn_enabled" msgid="5238109009915521240">"Fikseeritud valimisnumbrid on lubatud"</string>
     <string name="fdn_disabled" msgid="4700049736675368279">"Fikseeritud valimisnumbrid on keelatud"</string>
@@ -426,54 +383,34 @@
     <string name="badPin" msgid="8955102849303984935">"Sisestatud vana PIN-kood ei ole õige. Proovige uuesti."</string>
     <string name="mismatchPin" msgid="5923253370683071889">"Sisestatud PIN-koodid ei sobi. Proovige uuesti."</string>
     <string name="invalidPin" msgid="5981171102258684792">"Sisestage 4–8-numbriline PIN-kood."</string>
-    <!-- no translation found for disable_sim_pin (3419351358300716472) -->
-    <skip />
-    <!-- no translation found for enable_sim_pin (4845145659651484248) -->
-    <skip />
-    <!-- no translation found for enable_in_progress (3417917024688497010) -->
-    <skip />
-    <!-- no translation found for enable_pin_ok (2918545971413270063) -->
-    <skip />
-    <!-- no translation found for disable_pin_ok (2109571368635883688) -->
-    <skip />
-    <!-- no translation found for pin_failed (5644377896213584760) -->
-    <skip />
-    <!-- no translation found for pin_changed (4455736268023261662) -->
-    <skip />
-    <!-- no translation found for puk_requested (5921393215789090200) -->
-    <skip />
+    <string name="disable_sim_pin" msgid="3419351358300716472">"SIM-i PIN-koodi kustutamine"</string>
+    <string name="enable_sim_pin" msgid="4845145659651484248">"SIM-i PIN-koodi seadistamine"</string>
+    <string name="enable_in_progress" msgid="3417917024688497010">"PIN-koodi seadistamine …"</string>
+    <string name="enable_pin_ok" msgid="2918545971413270063">"PIN-kood on seadistatud"</string>
+    <string name="disable_pin_ok" msgid="2109571368635883688">"PIN-kood on kustutatud"</string>
+    <string name="pin_failed" msgid="5644377896213584760">"PIN-kood on vale"</string>
+    <string name="pin_changed" msgid="4455736268023261662">"PIN-kood on värskendatud"</string>
+    <string name="puk_requested" msgid="5921393215789090200">"Parool on vale. PIN-kood on nüüd blokeeritud. Vaja on PUK-koodi."</string>
     <string name="enter_pin2_text" msgid="8339444124477720345">"PIN2"</string>
     <string name="oldPin2Label" msgid="8559146795026261502">"Vana PIN2-kood"</string>
     <string name="newPin2Label" msgid="4573956902204349054">"Uus PIN2-kood"</string>
     <string name="confirmPin2Label" msgid="8100319484454787708">"Kinnitage uus PIN2-kood"</string>
-    <!-- no translation found for badPuk2 (7910064009531541708) -->
-    <skip />
-    <!-- no translation found for badPin2 (6646896629970023109) -->
-    <skip />
-    <!-- no translation found for mismatchPin2 (4177967478551851117) -->
-    <skip />
-    <!-- no translation found for invalidPin2 (1757045131429105595) -->
-    <skip />
-    <!-- no translation found for invalidPuk2 (7059081153334815973) -->
-    <skip />
-    <!-- no translation found for pin2_changed (3724522579945610956) -->
-    <skip />
-    <!-- no translation found for label_puk2_code (4688069961795341948) -->
-    <skip />
-    <!-- no translation found for fdn_enable_puk2_requested (4991074891459554705) -->
-    <skip />
-    <!-- no translation found for puk2_requested (5831015200030161434) -->
-    <skip />
+    <string name="badPuk2" msgid="7910064009531541708">"PUK-kood 2 on vale. Proovige uuesti."</string>
+    <string name="badPin2" msgid="6646896629970023109">"Vana PIN-kood 2 on vale. Proovige uuesti."</string>
+    <string name="mismatchPin2" msgid="4177967478551851117">"PIN-kood 2 ei sobi. Proovige uuesti."</string>
+    <string name="invalidPin2" msgid="1757045131429105595">"Sisestage PIN-kood 2, milles on 4 kuni 8 numbrit."</string>
+    <string name="invalidPuk2" msgid="7059081153334815973">"Sisestage PUK-kood 2, milles on 8 numbrit."</string>
+    <string name="pin2_changed" msgid="3724522579945610956">"PIN-kood 2 on värskendatud"</string>
+    <string name="label_puk2_code" msgid="4688069961795341948">"Sisestage PUK-kood 2 kood"</string>
+    <string name="fdn_enable_puk2_requested" msgid="4991074891459554705">"Parool on vale. PIN-kood 2 on nüüd blokeeritud. Uuesti proovimiseks muutke PIN-kood 2."</string>
+    <string name="puk2_requested" msgid="5831015200030161434">"Parool on vale. SIM on nüüd lukus. Sisestage PUK-kood 2."</string>
     <string name="puk2_blocked" msgid="3150263853077280049">"PUK2 on püsivalt blokeeritud."</string>
-    <!-- no translation found for pin2_attempts (720736232885011507) -->
-    <skip />
-    <!-- no translation found for pin2_unblocked (7791600368153469078) -->
-    <skip />
+    <string name="pin2_attempts" msgid="720736232885011507">\n"Teil on veel <xliff:g id="NUMBER">%d</xliff:g> katset."</string>
+    <string name="pin2_unblocked" msgid="7791600368153469078">"PIN-kood 2 ei ole enam blokeeritud"</string>
     <string name="doneButton" msgid="2859593360997984240">"Valmis"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"Kõnepostinumber"</string>
     <string name="card_title_dialing" msgid="5769417478498348054">"Valimine"</string>
-    <!-- no translation found for card_title_redialing (8253487008234167266) -->
-    <skip />
+    <string name="card_title_redialing" msgid="8253487008234167266">"Uuestivalimine"</string>
     <string name="card_title_conf_call" msgid="1162980346189744501">"Konverentskõne"</string>
     <string name="card_title_incoming_call" msgid="7364539451234646909">"Sissetulev kõne"</string>
     <string name="card_title_call_ended" msgid="5544730338889702298">"Kõne lõppes"</string>
@@ -500,32 +437,21 @@
     <string name="incall_error_power_off" msgid="6550191216405193368">"Helistamiseks lülitage lennurežiim välja."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"Ei ole võrku registreeritud."</string>
     <string name="incall_error_out_of_service" msgid="4100065333878929223">"Mobiilsidevõrk pole saadaval."</string>
-    <!-- no translation found for incall_error_no_phone_number_supplied (1150414018684246528) -->
-    <skip />
-    <!-- no translation found for incall_error_call_failed (6302746943230078197) -->
-    <skip />
+    <string name="incall_error_no_phone_number_supplied" msgid="1150414018684246528">"Helistamiseks sisestage kehtiv number."</string>
+    <string name="incall_error_call_failed" msgid="6302746943230078197">"Ei saa helistada."</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"MMI-jada alustamine ..."</string>
-    <!-- no translation found for incall_error_supp_service_unknown (655570339115407698) -->
-    <skip />
-    <!-- no translation found for incall_error_supp_service_switch (5237002176899962862) -->
-    <skip />
-    <!-- no translation found for incall_error_supp_service_separate (7224393405134545246) -->
-    <skip />
-    <!-- no translation found for incall_error_supp_service_transfer (7235952238189391438) -->
-    <skip />
+    <string name="incall_error_supp_service_unknown" msgid="655570339115407698">"Teenust ei toetata"</string>
+    <string name="incall_error_supp_service_switch" msgid="5237002176899962862">"Kõnesid ei saa vahetada."</string>
+    <string name="incall_error_supp_service_separate" msgid="7224393405134545246">"Kõnet ei saa eraldada."</string>
+    <string name="incall_error_supp_service_transfer" msgid="7235952238189391438">"Ei saa üle kanda."</string>
     <string name="incall_error_supp_service_conference" msgid="2505727299596357312">"Konverentskõnesid ei saa teha."</string>
-    <!-- no translation found for incall_error_supp_service_reject (8998568661508655638) -->
-    <skip />
-    <!-- no translation found for incall_error_supp_service_hangup (7434513517153834426) -->
-    <skip />
+    <string name="incall_error_supp_service_reject" msgid="8998568661508655638">"Kõnet ei saa tagasi lükata."</string>
+    <string name="incall_error_supp_service_hangup" msgid="7434513517153834426">"Kõnet (kõnesid) ei saa vabastada."</string>
     <string name="emergency_enable_radio_dialog_title" msgid="4627849966634578257">"Hädaabikõne"</string>
     <string name="emergency_enable_radio_dialog_message" msgid="207613549344420291">"Raadioside sisselülitamine ..."</string>
-    <!-- no translation found for emergency_enable_radio_dialog_retry (5960061579996526883) -->
-    <skip />
-    <!-- no translation found for dial_emergency_error (1509085166367420355) -->
-    <skip />
-    <!-- no translation found for dial_emergency_empty_error (9130194953830414638) -->
-    <skip />
+    <string name="emergency_enable_radio_dialog_retry" msgid="5960061579996526883">"Teenus puudub. Uuesti proovimine ..."</string>
+    <string name="dial_emergency_error" msgid="1509085166367420355">"Ei saa helistada. <xliff:g id="NON_EMERGENCY_NUMBER">%s</xliff:g> ei ole hädaabikõne number."</string>
+    <string name="dial_emergency_empty_error" msgid="9130194953830414638">"Ei saa helistada. Valige hädaabinumber."</string>
     <string name="dialerKeyboardHintText" msgid="9192914825413747792">"Kasutage valimiseks klaviatuuri"</string>
     <string name="onscreenHoldText" msgid="2285258239691145872">"Pane ootele"</string>
     <string name="onscreenEndCallText" msgid="4403855834875398585">"Lõpeta"</string>
@@ -556,10 +482,8 @@
     <item msgid="899650777817315681">"Tavaline"</item>
     <item msgid="2883365539347850535">"Pikk"</item>
   </string-array>
-    <!-- no translation found for network_info_message (7738596060242881930) -->
-    <skip />
-    <!-- no translation found for network_error_message (3394780436230411413) -->
-    <skip />
+    <string name="network_info_message" msgid="7738596060242881930">"Võrgusõnum"</string>
+    <string name="network_error_message" msgid="3394780436230411413">"Veateade"</string>
     <string name="ota_title_activate" msgid="8616918561356194398">"Telefoni aktiveerimine"</string>
     <string name="ota_touch_activate" msgid="6553212803262586244">"Telefoniteenuse aktiveerimiseks peate valima konkreetse kõne. \n\nPärast käsu “Aktiveeri“ puudutamist kuulake telefoni aktiveerimise juhiseid."</string>
     <string name="ota_hfa_activation_title" msgid="2234246934160473981">"Aktiveerimine ..."</string>
@@ -572,10 +496,8 @@
     <string name="ota_title_problem_with_activation" msgid="7095824491970084367">"Probleem aktiveerimisega"</string>
     <string name="ota_listen" msgid="162923839877584937">"Järgige hääljuhiseid, kuni kuulete, et aktiveerimine on lõpetatud."</string>
     <string name="ota_speaker" msgid="6904589278542719647">"Kõlar"</string>
-    <!-- no translation found for ota_progress (460876637828044519) -->
-    <skip />
-    <!-- no translation found for ota_failure (7713756181204620397) -->
-    <skip />
+    <string name="ota_progress" msgid="460876637828044519">"Telefoni programmeerimine …"</string>
+    <string name="ota_failure" msgid="7713756181204620397">"Telefoni programmeerimine ei õnnestunud"</string>
     <string name="ota_successful" msgid="1880780692887077407">"Teie telefon on nüüd aktiveeritud. Teenuse käivitumiseks võib kuluda kuni 15 minutit."</string>
     <string name="ota_unsuccessful" msgid="8072141612635635357">"Teie telefoni ei aktiveeritud. \nLeidke parema leviga piirkond (akna lähedal või õues). \n\nProovige uuesti või helistage klienditeenindusse."</string>
     <string name="ota_spc_failure" msgid="3909983542575030796">"LIIGSED SPC NURJUMISED"</string>
@@ -616,19 +538,14 @@
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"Vibreerimine"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"Vibreerimine"</string>
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"Heli"</string>
-    <!-- no translation found for dial_pad_autocomplete (7683489952557536398) -->
-    <skip />
+    <string name="dial_pad_autocomplete" msgid="7683489952557536398">"Valimisklahv. autom. täitmine"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"Helin ja vibratsioon"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"Sisseehitatud SIM-kaardid"</string>
     <string name="enable_video_calling_title" msgid="7237253660669000899">"Videokõnede sisselülitamine"</string>
-    <!-- no translation found for enable_video_calling_dialog_msg (8948186136957417948) -->
-    <skip />
+    <string name="enable_video_calling_dialog_msg" msgid="8948186136957417948">"Videokõne sisselülitamiseks peate lubama võrgustikuseadetes tõhustatud 4G LTE režiimi."</string>
     <string name="enable_video_calling_dialog_settings" msgid="576528473599603249">"Võrguseaded"</string>
     <string name="enable_video_calling_dialog_close" msgid="7411471282167927991">"Sule"</string>
-    <!-- no translation found for sim_label_emergency_calls (4847699229529306397) -->
-    <skip />
-    <!-- no translation found for sim_description_emergency_calls (7535215397212301562) -->
-    <skip />
-    <!-- no translation found for sim_description_default (4778679519938775515) -->
-    <skip />
+    <string name="sim_label_emergency_calls" msgid="4847699229529306397">"Hädaabikõned"</string>
+    <string name="sim_description_emergency_calls" msgid="7535215397212301562">"Ainult hädaabikõned"</string>
+    <string name="sim_description_default" msgid="4778679519938775515">"SIM-kaart, pilu: <xliff:g id="SLOT_ID">%s</xliff:g>"</string>
 </resources>

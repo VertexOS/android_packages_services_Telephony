@@ -23,8 +23,7 @@
     <string name="fdnListLabel" msgid="8630418672279521003">"FDN-lys"</string>
     <string name="unknown" msgid="6878797917991465859">"Onbekend"</string>
     <string name="private_num" msgid="6713286113000232309">"Privaat nommer"</string>
-    <!-- no translation found for payphone (4793877574636445118) -->
-    <skip />
+    <string name="payphone" msgid="4793877574636445118">"Betaalfoon"</string>
     <string name="onHold" msgid="9035493194749959955">"Hou aan"</string>
     <string name="mmiStarted" msgid="6347869857061147003">"MMI-kode begin"</string>
     <string name="ussdRunning" msgid="485588686340541690">"USSD-kode loop tans…"</string>
@@ -77,7 +76,6 @@
     <string name="wifi_calling_select_call_assistant_summary" msgid="9106482864108127281">"Kies \'n program of diens om die netwerke wat vir oproepe gebruik word, te bestuur."</string>
     <string name="wifi_calling_use_call_assistant_summary" msgid="6599987137133339698">"Laat programme of dienste netwerke wat vir oproepe gebruik word, bestuur"</string>
     <string name="wifi_calling_call_assistant_configure" msgid="1092639708949670031">"Stel op"</string>
-    <string name="wifi_calling_call_assistant_configure_no_selection" msgid="2354042288883607981">"Belassistent is af"</string>
     <string name="connection_service_default_label" msgid="1498481943805913754">"Ingeboude verbindingsdiens"</string>
     <string name="voicemail" msgid="8693759337917898954">"Stemboodskap"</string>
     <string name="voicemail_abbreviated" msgid="2215592488517217448">"VM:"</string>
@@ -416,8 +414,7 @@
     <string name="doneButton" msgid="2859593360997984240">"Klaar"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"Stemboodskapnommer"</string>
     <string name="card_title_dialing" msgid="5769417478498348054">"Bel"</string>
-    <!-- no translation found for card_title_redialing (8253487008234167266) -->
-    <skip />
+    <string name="card_title_redialing" msgid="8253487008234167266">"Herbel tans"</string>
     <string name="card_title_conf_call" msgid="1162980346189744501">"Konferensie-oproep"</string>
     <string name="card_title_incoming_call" msgid="7364539451234646909">"Inkomende oproep"</string>
     <string name="card_title_call_ended" msgid="5544730338889702298">"Oproep beëindig"</string>
@@ -444,31 +441,21 @@
     <string name="incall_error_power_off" msgid="6550191216405193368">"Om \'n oproep te maak, skakel eers vliegtuigmodus af."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"Nie geregistreer op netwerk nie."</string>
     <string name="incall_error_out_of_service" msgid="4100065333878929223">"Sellulêre netwerk nie beskikbaar nie."</string>
-    <!-- no translation found for incall_error_no_phone_number_supplied (1150414018684246528) -->
-    <skip />
-    <!-- no translation found for incall_error_call_failed (6302746943230078197) -->
-    <skip />
+    <string name="incall_error_no_phone_number_supplied" msgid="1150414018684246528">"Voer \'n geldige nommer in om \'n oproep te maak."</string>
+    <string name="incall_error_call_failed" msgid="6302746943230078197">"Kan nie bel nie."</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"Begin MMI-volgorde…"</string>
     <string name="incall_error_supp_service_unknown" msgid="655570339115407698">"Diens word nie gesteun nie"</string>
-    <!-- no translation found for incall_error_supp_service_switch (5237002176899962862) -->
-    <skip />
-    <!-- no translation found for incall_error_supp_service_separate (7224393405134545246) -->
-    <skip />
-    <!-- no translation found for incall_error_supp_service_transfer (7235952238189391438) -->
-    <skip />
+    <string name="incall_error_supp_service_switch" msgid="5237002176899962862">"Kan nie oproepe wissel nie."</string>
+    <string name="incall_error_supp_service_separate" msgid="7224393405134545246">"Kan nie oproep skei nie."</string>
+    <string name="incall_error_supp_service_transfer" msgid="7235952238189391438">"Kan nie deurskakel nie."</string>
     <string name="incall_error_supp_service_conference" msgid="2505727299596357312">"Kan nie konferensie-oproepe doen nie."</string>
-    <!-- no translation found for incall_error_supp_service_reject (8998568661508655638) -->
-    <skip />
-    <!-- no translation found for incall_error_supp_service_hangup (7434513517153834426) -->
-    <skip />
+    <string name="incall_error_supp_service_reject" msgid="8998568661508655638">"Kan nie oproep verwerp nie."</string>
+    <string name="incall_error_supp_service_hangup" msgid="7434513517153834426">"Kan nie oproep(e) laat los nie."</string>
     <string name="emergency_enable_radio_dialog_title" msgid="4627849966634578257">"Noodoproep"</string>
     <string name="emergency_enable_radio_dialog_message" msgid="207613549344420291">"Skakel tans radio aan…"</string>
-    <!-- no translation found for emergency_enable_radio_dialog_retry (5960061579996526883) -->
-    <skip />
-    <!-- no translation found for dial_emergency_error (1509085166367420355) -->
-    <skip />
-    <!-- no translation found for dial_emergency_empty_error (9130194953830414638) -->
-    <skip />
+    <string name="emergency_enable_radio_dialog_retry" msgid="5960061579996526883">"Geen diens nie. Probeer tans weer …"</string>
+    <string name="dial_emergency_error" msgid="1509085166367420355">"Kan nie bel nie. <xliff:g id="NON_EMERGENCY_NUMBER">%s</xliff:g> is nie \'n noodnommer nie."</string>
+    <string name="dial_emergency_empty_error" msgid="9130194953830414638">"Kan nie bel nie. Skakel \'n noodnommer."</string>
     <string name="dialerKeyboardHintText" msgid="9192914825413747792">"Gebruik sleutelbord om te bel"</string>
     <string name="onscreenHoldText" msgid="2285258239691145872">"Hou aan"</string>
     <string name="onscreenEndCallText" msgid="4403855834875398585">"Einde"</string>
@@ -555,8 +542,7 @@
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"Vibreer"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"Vibreer"</string>
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"Klank"</string>
-    <!-- no translation found for dial_pad_autocomplete (7683489952557536398) -->
-    <skip />
+    <string name="dial_pad_autocomplete" msgid="7683489952557536398">"Belblad-outovoltooi"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"Luitoon en vibreer"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"Ingeboude SIM-kaarte"</string>
     <string name="enable_video_calling_title" msgid="7237253660669000899">"Skakel video-oproepe aan"</string>

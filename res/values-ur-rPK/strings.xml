@@ -16,16 +16,14 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- no translation found for phoneAppLabel (1107073389495104784) -->
-    <skip />
+    <string name="phoneAppLabel" product="tablet" msgid="1107073389495104784">"سیلولر ڈیٹا"</string>
     <string name="phoneAppLabel" product="default" msgid="906161039445636857">"فون"</string>
     <string name="emergencyDialerIconLabel" msgid="7812140032168171053">"ہنگامی ڈائلر"</string>
     <string name="phoneIconLabel" msgid="2331230813161304895">"فون"</string>
     <string name="fdnListLabel" msgid="8630418672279521003">"‏FDN کی فہرست"</string>
     <string name="unknown" msgid="6878797917991465859">"نامعلوم"</string>
     <string name="private_num" msgid="6713286113000232309">"نجی نمبر"</string>
-    <!-- no translation found for payphone (4793877574636445118) -->
-    <skip />
+    <string name="payphone" msgid="4793877574636445118">"پے فون"</string>
     <string name="onHold" msgid="9035493194749959955">"ہولڈ پر"</string>
     <string name="mmiStarted" msgid="6347869857061147003">"‏MMI کوڈ شروع ہوگیا"</string>
     <string name="ussdRunning" msgid="485588686340541690">"‏USSD کوڈ چل رہا ہے…"</string>
@@ -59,56 +57,33 @@
     <string name="labelCDMAMore" msgid="1630676740428229339">"‏CDMA کال کی ترتیبات"</string>
     <string name="apn_settings" msgid="9043423184895642077">"رسائی پوائنٹ کے نام"</string>
     <string name="settings_label" msgid="3876743539816984008">"نیٹ ورک کی ترتیبات"</string>
-    <!-- no translation found for phone_accounts (6376603393888116364) -->
-    <skip />
-    <!-- no translation found for phone_accounts_make_calls_with (1969188078933152231) -->
-    <skip />
-    <!-- no translation found for phone_accounts_make_sip_calls_with (4677789312053828493) -->
-    <skip />
-    <!-- no translation found for phone_accounts_ask_every_time (4346499067149985702) -->
-    <skip />
-    <!-- no translation found for phone_accounts_settings_header (4141710640883261094) -->
-    <skip />
-    <!-- no translation found for phone_accounts_choose_accounts (5232948804226424002) -->
-    <skip />
-    <!-- no translation found for phone_accounts_selection_header (1365215726106915865) -->
-    <skip />
-    <!-- no translation found for phone_accounts_add_sip_account (2023821743341923271) -->
-    <skip />
-    <!-- no translation found for phone_accounts_configure_account_settings (1361715069911607109) -->
-    <skip />
-    <!-- no translation found for phone_account_wifi_calling (1840272538233414629) -->
-    <skip />
-    <!-- no translation found for wifi_calling_do_not_use (7491443219113013323) -->
-    <skip />
-    <!-- no translation found for wifi_calling_do_not_use_call_assistant (5420257095556091770) -->
-    <skip />
-    <!-- no translation found for wifi_calling_call_assistant_none (6283702349285593683) -->
-    <skip />
-    <!-- no translation found for wifi_calling_call_assistant (229102032881680320) -->
-    <skip />
-    <!-- no translation found for wifi_calling_use_call_assistant (8460024827012666199) -->
-    <skip />
-    <!-- no translation found for wifi_calling_select_call_assistant (9296558058772293) -->
-    <skip />
-    <!-- no translation found for wifi_calling_select_call_assistant_summary (9106482864108127281) -->
-    <skip />
-    <!-- no translation found for wifi_calling_use_call_assistant_summary (6599987137133339698) -->
-    <skip />
-    <!-- no translation found for wifi_calling_call_assistant_configure (1092639708949670031) -->
-    <skip />
-    <!-- no translation found for wifi_calling_call_assistant_configure_no_selection (2354042288883607981) -->
-    <skip />
+    <string name="phone_accounts" msgid="6376603393888116364">"کالنگ اکاؤنٹس"</string>
+    <string name="phone_accounts_make_calls_with" msgid="1969188078933152231">"کالز کریں مع"</string>
+    <string name="phone_accounts_make_sip_calls_with" msgid="4677789312053828493">"‏SIP کالز کریں مع"</string>
+    <string name="phone_accounts_ask_every_time" msgid="4346499067149985702">"پہلے پوچھیں"</string>
+    <string name="phone_accounts_settings_header" msgid="4141710640883261094">"ترتیبات"</string>
+    <string name="phone_accounts_choose_accounts" msgid="5232948804226424002">"اکاؤنٹس منتخب کریں"</string>
+    <string name="phone_accounts_selection_header" msgid="1365215726106915865">"فون اکاؤنٹس"</string>
+    <string name="phone_accounts_add_sip_account" msgid="2023821743341923271">"‏SIP اکاؤنٹ شامل کریں"</string>
+    <string name="phone_accounts_configure_account_settings" msgid="1361715069911607109">"اکاؤنٹ کی ترتیبات کنفیگر کریں"</string>
+    <string name="phone_account_wifi_calling" msgid="1840272538233414629">"‏Wi-Fi کالنگ"</string>
+    <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"‏Wi-Fi کالنگ کا استعمال نہ کریں"</string>
+    <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"کال اسسٹنٹ کا استعمال نہ کریں"</string>
+    <string name="wifi_calling_call_assistant_none" msgid="6283702349285593683">"کوئی نہیں"</string>
+    <string name="wifi_calling_call_assistant" msgid="229102032881680320">"کال اسسٹنٹ"</string>
+    <string name="wifi_calling_use_call_assistant" msgid="8460024827012666199">"کال اسسٹنٹ استعمال کریں"</string>
+    <string name="wifi_calling_select_call_assistant" msgid="9296558058772293">"کال اسسٹنٹ کو منتخب کریں"</string>
+    <string name="wifi_calling_select_call_assistant_summary" msgid="9106482864108127281">"کالز کیلئے استعمال کردہ نیٹ ورکس کا نظم کرنے کیلئے ایک ایپ یا سروس منتخب کریں"</string>
+    <string name="wifi_calling_use_call_assistant_summary" msgid="6599987137133339698">"ایپس یا سروسز کو کالز کیلئے استعمال کردہ نیٹ ورکس کا نظم کرنے دیں"</string>
+    <string name="wifi_calling_call_assistant_configure" msgid="1092639708949670031">"کنفیگر کریں"</string>
     <string name="connection_service_default_label" msgid="1498481943805913754">"پہلے سے شامل کنکشن سروس"</string>
     <string name="voicemail" msgid="8693759337917898954">"صوتی میل"</string>
     <string name="voicemail_abbreviated" msgid="2215592488517217448">"VM:"</string>
     <string name="networks" msgid="8873030692174541976">"نیٹ ورک آپریٹرز"</string>
-    <!-- no translation found for cell_broadcast_settings (8740238216690502563) -->
-    <skip />
+    <string name="cell_broadcast_settings" msgid="8740238216690502563">"ہنگامی براڈکاسٹس"</string>
     <string name="call_settings" msgid="6112441768261754562">"کال کی ترتیبات"</string>
     <string name="additional_gsm_call_settings" msgid="1391795981938800617">"اضافی ترتیبات"</string>
-    <!-- no translation found for additional_gsm_call_settings_with_label (1385241520708457376) -->
-    <skip />
+    <string name="additional_gsm_call_settings_with_label" msgid="1385241520708457376">"اضافی ترتیبات (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="sum_gsm_call_settings" msgid="4076647190996778012">"‏صرف GSM کی اضافی کال کی ترتیبات"</string>
     <string name="additional_cdma_call_settings" msgid="8628958775721886909">"‏اضافی CDMA کال کی ترتیبات"</string>
     <string name="sum_cdma_call_settings" msgid="284753265979035549">"‏صرف CDMA کی اضافی کال کی ترتیبات"</string>
@@ -122,41 +97,32 @@
     <string name="sum_cw_enabled" msgid="8083061901633671397">"کال کے دوران، مجھے آنے والی کالوں سے مطلع کریں"</string>
     <string name="sum_cw_disabled" msgid="3648693907300104575">"کال کے دوران، مجھے آنے والی کالوں سے مطلع کریں"</string>
     <string name="call_forwarding_settings" msgid="3378927671091537173">"کال آگے منتقل کرنے کی ترتیبات"</string>
-    <!-- no translation found for call_forwarding_settings_with_label (8569489414006897127) -->
-    <skip />
+    <string name="call_forwarding_settings_with_label" msgid="8569489414006897127">"کال فارورڈنگ ترتیبات (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="labelCF" msgid="2574386948026924737">"کال آگے منتقل کرنا"</string>
     <string name="labelCFU" msgid="8147177368148660600">"ہمیشہ آگے منتقل کریں"</string>
     <string name="messageCFU" msgid="3560082430662923687">"ہمیشہ یہ نمبر استعمال کریں"</string>
     <string name="sum_cfu_enabled_indicator" msgid="4014187342724130197">"سبھی کالیں آگے منتقل کر رہا ہے"</string>
     <string name="sum_cfu_enabled" msgid="2450052502198827927">"سبھی کالیں <xliff:g id="PHONENUMBER">{0}</xliff:g> کو آگے منتقل کر رہا ہے"</string>
     <string name="sum_cfu_enabled_no_number" msgid="6591985777096823616">"نمبر دستیاب نہیں ہے"</string>
-    <!-- no translation found for sum_cfu_disabled (8384177689501334080) -->
-    <skip />
-    <!-- no translation found for labelCFB (6139853033106283172) -->
-    <skip />
+    <string name="sum_cfu_disabled" msgid="8384177689501334080">"آف"</string>
+    <string name="labelCFB" msgid="6139853033106283172">"مصروف ہونے پر"</string>
     <string name="messageCFB" msgid="3711089705936187129">"مصروف ہونے پر نمبر"</string>
     <string name="sum_cfb_enabled" msgid="5984198104833116690">"<xliff:g id="PHONENUMBER">{0}</xliff:g> کو آگے منتقل کر رہا ہے"</string>
-    <!-- no translation found for sum_cfb_disabled (4913145177320506827) -->
-    <skip />
+    <string name="sum_cfb_disabled" msgid="4913145177320506827">"آف"</string>
     <string name="disable_cfb_forbidden" msgid="3506984333877998061">"آپ کا آپریٹر آپ کا فون مصروف ہونے پر کال آگے منتقل کرنے کو غیر فعال کرنے کا تعاون نہیں کرتا ہے۔"</string>
-    <!-- no translation found for labelCFNRy (1736067178393744351) -->
-    <skip />
+    <string name="labelCFNRy" msgid="1736067178393744351">"جواب نہ دیے جانے پر"</string>
     <string name="messageCFNRy" msgid="672317899884380374">"جواب نہ ملنے پر نمبر"</string>
     <string name="sum_cfnry_enabled" msgid="6955775691317662910">"<xliff:g id="PHONENUMBER">{0}</xliff:g> کو آگے منتقل کر رہا ہے"</string>
-    <!-- no translation found for sum_cfnry_disabled (3884684060443538097) -->
-    <skip />
+    <string name="sum_cfnry_disabled" msgid="3884684060443538097">"آف"</string>
     <string name="disable_cfnry_forbidden" msgid="4308233959150658058">"آپ کا آپریٹر آپ کے فون سے جواب نہ ملنے پر کال آگے منتقل کرنے کو غیر فعال کرنے کا تعاون نہیں کرتا ہے۔"</string>
-    <!-- no translation found for labelCFNRc (2614827454402079766) -->
-    <skip />
+    <string name="labelCFNRc" msgid="2614827454402079766">"ناقابل رسائی ہونے پر"</string>
     <string name="messageCFNRc" msgid="6380695421020295119">"ناقابل رسائی ہونے پر نمبر"</string>
     <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"<xliff:g id="PHONENUMBER">{0}</xliff:g> کو آگے بھیج رہا ہے"</string>
     <string name="sum_cfnrc_disabled" msgid="7222141261321276464">"غیر فعال"</string>
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"آپ کا کیریئر آپ کا فون ناقابل رسائی ہونے پر کال آگے منتقل کرنے کو غیر فعال کرنے کا تعاون نہیں کرتا ہے۔"</string>
     <string name="updating_title" msgid="6146755386174019046">"کال کی ترتیبات"</string>
-    <!-- no translation found for call_settings_primary_user_only (5679923943740900965) -->
-    <skip />
-    <!-- no translation found for call_settings_with_label (89359812614544532) -->
-    <skip />
+    <string name="call_settings_primary_user_only" msgid="5679923943740900965">"صرف بنیادی صارف ہی کال کی ترتیبات تبدیل کر سکتا ہے۔"</string>
+    <string name="call_settings_with_label" msgid="89359812614544532">"کال کی ترتیبات (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="error_updating_title" msgid="7970259216988931777">"کال کی ترتیبات کی خرابی"</string>
     <string name="reading_settings" msgid="1920291699287055284">"ترتیبات کو پڑھ رہا ہے…"</string>
     <string name="updating_settings" msgid="8171225533884883252">"ترتیبات کو اپ ڈیٹ کر رہا ہے…"</string>
@@ -166,10 +132,8 @@
     <string name="fdn_check_failure" msgid="18200614306525434">"آپ کے فون کی ایپ کے فکسڈ ڈائلنگ نمبرز کی ترتیب آن ہے۔ نتیجتاًً، کال سے متعلقہ کچھ خصوصیات کام نہیں کر رہی ہیں۔"</string>
     <string name="radio_off_error" msgid="2304459933248513376">"یہ ترتیبات دیکھنے سے پہلے ریڈیو آن کریں۔"</string>
     <string name="close_dialog" msgid="2365884406356986917">"ٹھیک ہے"</string>
-    <!-- no translation found for enable (7248657275000173526) -->
-    <skip />
-    <!-- no translation found for disable (4678348128118573672) -->
-    <skip />
+    <string name="enable" msgid="7248657275000173526">"آن کریں"</string>
+    <string name="disable" msgid="4678348128118573672">"آف کریں"</string>
     <string name="change_num" msgid="239476305819844391">"اپ ڈیٹ کریں"</string>
   <string-array name="clir_display_values">
     <item msgid="5560134294467334594">"نیٹ ورک ڈیفالٹ"</item>
@@ -182,8 +146,7 @@
     <string name="fw_get_in_vm_failed" msgid="8862896836093833973">"حالیہ آگے منتقل کرنے کے نمبر کی ترتیبات کو بازیافت اور محفوظ نہیں کرسکا۔\nبہرصورت نئے فراہم کنندہ میں سوئچ کریں؟"</string>
     <string name="no_change" msgid="3186040086622435212">"کوئی تبدیلیاں نہیں ہوئی تھیں۔"</string>
     <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"صوتی میل سروس کا انتخاب کریں"</string>
-    <!-- no translation found for voicemail_default (2001233554889016880) -->
-    <skip />
+    <string name="voicemail_default" msgid="2001233554889016880">"آپ کا کیریئر"</string>
     <string name="mobile_networks" msgid="2843854043339307375">"سیلولر نیٹ ورک کی ترتیبات"</string>
     <string name="label_available" msgid="1181658289009300430">"دستیاب نیٹ ورکس"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"تلاش کر رہا ہے…"</string>
@@ -216,8 +179,7 @@
     <string name="preferred_network_mode_lte_cdma_evdo_summary" msgid="228702246343742853">"‏ترجیحی نیٹ ورک طرز: CDMA+LTE/EVDO"</string>
     <string name="preferred_network_mode_global_summary" msgid="1633134285545730364">"ترجیحی نیٹ ورک طرز: عالمی"</string>
     <string name="preferred_network_mode_lte_wcdma_summary" msgid="9180775701594742750">"‏ترجیحی نیٹ ورک طرز: LTE / WCDMA"</string>
-    <!-- no translation found for preferred_network_mode_lte_gsm_umts_summary (633315028976225026) -->
-    <skip />
+    <string name="preferred_network_mode_lte_gsm_umts_summary" msgid="633315028976225026">"‏ترجیحی نیٹ ورک وضع: LTE / GSM / UMTS"</string>
     <string name="preferred_network_mode_lte_cdma_summary" msgid="3722647806454528426">"‏ترجیحی نیٹ ورک وضع: LTE / CDMA"</string>
   <string-array name="preferred_network_mode_choices">
     <item msgid="7886739962255042385">"LTE / WCDMA"</item>
@@ -234,18 +196,15 @@
     <item msgid="1524224863879435516">"‏صرف GSM"</item>
     <item msgid="3817924849415716259">"‏GSM/WCDMA ترجیحی"</item>
   </string-array>
-    <!-- no translation found for enhanced_4g_lte_mode_title (522191650223239171) -->
-    <skip />
-    <!-- no translation found for enhanced_4g_lte_mode_summary (2332175070522125850) -->
-    <skip />
+    <string name="enhanced_4g_lte_mode_title" msgid="522191650223239171">"‏Enhanced 4G LTE وضع"</string>
+    <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"‏صوتی اور دیگر مواصلات کو بہتر بنانے کیلئے LTE سروسز استعمال کریں (تجویز کردہ)"</string>
     <string name="data_enabled" msgid="5972538663568715366">"ڈیٹا فعال ہوگیا"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"ڈیٹا کے استعمال کی اجازت دیں"</string>
     <string name="roaming" msgid="8871412572928323707">"ڈیٹا رومنگ"</string>
     <string name="roaming_enable" msgid="7331106985174381987">"رومنگ کے وقت ڈیٹا سروسز سے مربوط ہوں"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"رومنگ کے وقت ڈیٹا سروسز سے مربوط ہوں"</string>
     <string name="roaming_reenable_message" msgid="8913735676127858115">"آپ ڈیٹا کی حالت رسائی سے محروم ہوگئے کیونکہ آپ نے ڈیٹا رومنگ آف ہونے کے ساتھ اپنا ہوم نیٹ ورک چھوڑ دیا۔"</string>
-    <!-- no translation found for roaming_warning (7126227198294007907) -->
-    <skip />
+    <string name="roaming_warning" msgid="7126227198294007907">"رومنگ میں ڈیٹا کے استعمال کی اجازت دیں؟ مخصوص چارجز لاگو ہو سکتے ہیں۔"</string>
     <string name="gsm_umts_options" msgid="6538311689850981686">"‏GSM/UMTS کے اختیارات"</string>
     <string name="cdma_options" msgid="4016822858172249884">"‏CDMA کے اختیارات"</string>
     <string name="throttle_data_usage" msgid="3715677828160555808">"ڈیٹا کا استعمال"</string>
@@ -371,11 +330,9 @@
     <string name="cdma_lte_data_service" msgid="4255018217292548962">"ڈیٹا سروس تشکیل دیں"</string>
     <string name="carrier_settings_title" msgid="9028166176523012300">"کیریئر کی ترتیبات"</string>
     <string name="fdn" msgid="7878832555095183202">"فکسڈ ڈائلنگ نمبرز"</string>
-    <!-- no translation found for fdn_with_label (187084204115493366) -->
-    <skip />
+    <string name="fdn_with_label" msgid="187084204115493366">"فکسڈ ڈائلنگ نمبرز (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="manage_fdn_list" msgid="8777755791892122369">"‏FDN کی فہرست"</string>
-    <!-- no translation found for fdn_list_with_label (7437232552210469217) -->
-    <skip />
+    <string name="fdn_list_with_label" msgid="7437232552210469217">"‏FDN فہرست (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="fdn_activation" msgid="2156479741307463576">"‏FDN کو فعال کرنا"</string>
     <string name="fdn_enabled" msgid="5238109009915521240">"فکسڈ ڈائلنگ نمبرز فعال ہیں"</string>
     <string name="fdn_disabled" msgid="4700049736675368279">"فکسڈ ڈائلنگ نمبرز غیر فعال ہوگئے ہیں"</string>
@@ -426,54 +383,34 @@
     <string name="badPin" msgid="8955102849303984935">"‏آپ کا ٹائپ کردہ پرانا PIN درست نہیں ہے۔ دوبارہ کوشش کریں۔"</string>
     <string name="mismatchPin" msgid="5923253370683071889">"‏آپ کے ٹائپ کردہ PINs مماثل نہیں ہیں۔ دوبارہ کوشش کریں۔"</string>
     <string name="invalidPin" msgid="5981171102258684792">"‏ایسا PIN ٹائپ کریں جو 4 تا 8 نمبروں کا ہو۔"</string>
-    <!-- no translation found for disable_sim_pin (3419351358300716472) -->
-    <skip />
-    <!-- no translation found for enable_sim_pin (4845145659651484248) -->
-    <skip />
-    <!-- no translation found for enable_in_progress (3417917024688497010) -->
-    <skip />
-    <!-- no translation found for enable_pin_ok (2918545971413270063) -->
-    <skip />
-    <!-- no translation found for disable_pin_ok (2109571368635883688) -->
-    <skip />
-    <!-- no translation found for pin_failed (5644377896213584760) -->
-    <skip />
-    <!-- no translation found for pin_changed (4455736268023261662) -->
-    <skip />
-    <!-- no translation found for puk_requested (5921393215789090200) -->
-    <skip />
+    <string name="disable_sim_pin" msgid="3419351358300716472">"‏SIM PIN صاف کریں"</string>
+    <string name="enable_sim_pin" msgid="4845145659651484248">"‏SIM PIN سیٹ کریں"</string>
+    <string name="enable_in_progress" msgid="3417917024688497010">"‏PIN سیٹ کی جا رہی ہے…"</string>
+    <string name="enable_pin_ok" msgid="2918545971413270063">"‏PIN سیٹ ہوگئی"</string>
+    <string name="disable_pin_ok" msgid="2109571368635883688">"‏PIN صاف کر دی گئی"</string>
+    <string name="pin_failed" msgid="5644377896213584760">"‏PIN غلط ہے"</string>
+    <string name="pin_changed" msgid="4455736268023261662">"‏PIN کو اپ ڈیٹ کر دیا گیا"</string>
+    <string name="puk_requested" msgid="5921393215789090200">"‏پاس ورڈ غلط ہے۔ PIN اب مسدود ہے۔ PUK کی درخواست کی گئی۔"</string>
     <string name="enter_pin2_text" msgid="8339444124477720345">"PIN2"</string>
     <string name="oldPin2Label" msgid="8559146795026261502">"‏پرانا PIN2"</string>
     <string name="newPin2Label" msgid="4573956902204349054">"‏نیا PIN2"</string>
     <string name="confirmPin2Label" msgid="8100319484454787708">"‏نئے PIN2 کی توثیق کریں"</string>
-    <!-- no translation found for badPuk2 (7910064009531541708) -->
-    <skip />
-    <!-- no translation found for badPin2 (6646896629970023109) -->
-    <skip />
-    <!-- no translation found for mismatchPin2 (4177967478551851117) -->
-    <skip />
-    <!-- no translation found for invalidPin2 (1757045131429105595) -->
-    <skip />
-    <!-- no translation found for invalidPuk2 (7059081153334815973) -->
-    <skip />
-    <!-- no translation found for pin2_changed (3724522579945610956) -->
-    <skip />
-    <!-- no translation found for label_puk2_code (4688069961795341948) -->
-    <skip />
-    <!-- no translation found for fdn_enable_puk2_requested (4991074891459554705) -->
-    <skip />
-    <!-- no translation found for puk2_requested (5831015200030161434) -->
-    <skip />
+    <string name="badPuk2" msgid="7910064009531541708">"‏PUK2 غلط ہے۔ دوبارہ کوشش کریں۔"</string>
+    <string name="badPin2" msgid="6646896629970023109">"‏پرانا PIN2 غلط ہے۔ دوبارہ کوشش کریں۔"</string>
+    <string name="mismatchPin2" msgid="4177967478551851117">"‏PIN2 مماثل نہیں ہیں۔ دربارہ کوشش کریں۔"</string>
+    <string name="invalidPin2" msgid="1757045131429105595">"‏ایک PIN2 درج کریں جو 4 سے 8 نمبرز تک کی ہو۔"</string>
+    <string name="invalidPuk2" msgid="7059081153334815973">"‏ایک PUK2 درج کریں جو 8 نمبرز کا ہو۔"</string>
+    <string name="pin2_changed" msgid="3724522579945610956">"‏PIN2 کو اپ ڈیٹ کر دیا گیا"</string>
+    <string name="label_puk2_code" msgid="4688069961795341948">"‏PUK2 کوڈ درج کریں"</string>
+    <string name="fdn_enable_puk2_requested" msgid="4991074891459554705">"‏پاس ورڈ غلط ہے۔ PIN2 اب مسدود ہوگئی۔ دوبارہ کوشش کرنے کیلئے، PIN 2 تبدیل کریں۔"</string>
+    <string name="puk2_requested" msgid="5831015200030161434">"‏پاس ورڈ غلط ہے۔ SIM اب مقفل ہے۔ PUK2 درج کریں۔"</string>
     <string name="puk2_blocked" msgid="3150263853077280049">"‏PUK2 مستقل طور پر مسدود ہے۔"</string>
-    <!-- no translation found for pin2_attempts (720736232885011507) -->
-    <skip />
-    <!-- no translation found for pin2_unblocked (7791600368153469078) -->
-    <skip />
+    <string name="pin2_attempts" msgid="720736232885011507">\n"آپ کے پاس <xliff:g id="NUMBER">%d</xliff:g> کوششیں بچی ہیں۔"</string>
+    <string name="pin2_unblocked" msgid="7791600368153469078">"‏PIN2 اب مسدود نہیں ہے"</string>
     <string name="doneButton" msgid="2859593360997984240">"ہوگیا"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"صوتی میل نمبر"</string>
     <string name="card_title_dialing" msgid="5769417478498348054">"ڈائل ہو رہا ہے"</string>
-    <!-- no translation found for card_title_redialing (8253487008234167266) -->
-    <skip />
+    <string name="card_title_redialing" msgid="8253487008234167266">"دوبارہ ڈائل ہو رہا ہے"</string>
     <string name="card_title_conf_call" msgid="1162980346189744501">"کانفرنس کال"</string>
     <string name="card_title_incoming_call" msgid="7364539451234646909">"آنے والی کال"</string>
     <string name="card_title_call_ended" msgid="5544730338889702298">"کال ختم ہوگئی"</string>
@@ -500,32 +437,21 @@
     <string name="incall_error_power_off" msgid="6550191216405193368">"کال کرنے کیلئے، پہلے ہوائی جہاز طرز کو آف کریں۔"</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"نیٹ ورک پر رجسٹرڈ نہیں ہے۔"</string>
     <string name="incall_error_out_of_service" msgid="4100065333878929223">"سیلولر نیٹ ورک دستیاب نہیں ہے۔"</string>
-    <!-- no translation found for incall_error_no_phone_number_supplied (1150414018684246528) -->
-    <skip />
-    <!-- no translation found for incall_error_call_failed (6302746943230078197) -->
-    <skip />
+    <string name="incall_error_no_phone_number_supplied" msgid="1150414018684246528">"کال کرنے کیلئے، ایک درست نمبر درج کریں۔"</string>
+    <string name="incall_error_call_failed" msgid="6302746943230078197">"کال نہیں کر سکتے۔"</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"‏MMI ترتیب شروع ہو رہی ہے…"</string>
-    <!-- no translation found for incall_error_supp_service_unknown (655570339115407698) -->
-    <skip />
-    <!-- no translation found for incall_error_supp_service_switch (5237002176899962862) -->
-    <skip />
-    <!-- no translation found for incall_error_supp_service_separate (7224393405134545246) -->
-    <skip />
-    <!-- no translation found for incall_error_supp_service_transfer (7235952238189391438) -->
-    <skip />
+    <string name="incall_error_supp_service_unknown" msgid="655570339115407698">"سروس تعاون یافتہ نہیں ہے"</string>
+    <string name="incall_error_supp_service_switch" msgid="5237002176899962862">"کالز سوئچ نہیں کر سکتے۔"</string>
+    <string name="incall_error_supp_service_separate" msgid="7224393405134545246">"کال کو الگ نہیں کر سکتے۔"</string>
+    <string name="incall_error_supp_service_transfer" msgid="7235952238189391438">"منتقل نہیں کر سکتے۔"</string>
     <string name="incall_error_supp_service_conference" msgid="2505727299596357312">"کانفرنس کالیں کرنے سے قاصر ہے۔"</string>
-    <!-- no translation found for incall_error_supp_service_reject (8998568661508655638) -->
-    <skip />
-    <!-- no translation found for incall_error_supp_service_hangup (7434513517153834426) -->
-    <skip />
+    <string name="incall_error_supp_service_reject" msgid="8998568661508655638">"کال مسترد نہیں کی جا سکتی۔"</string>
+    <string name="incall_error_supp_service_hangup" msgid="7434513517153834426">"کال(ز) ریلیز نہیں کر سکتے۔"</string>
     <string name="emergency_enable_radio_dialog_title" msgid="4627849966634578257">"ہنگامی کال"</string>
     <string name="emergency_enable_radio_dialog_message" msgid="207613549344420291">"ریڈیو آن کر رہا ہے…"</string>
-    <!-- no translation found for emergency_enable_radio_dialog_retry (5960061579996526883) -->
-    <skip />
-    <!-- no translation found for dial_emergency_error (1509085166367420355) -->
-    <skip />
-    <!-- no translation found for dial_emergency_empty_error (9130194953830414638) -->
-    <skip />
+    <string name="emergency_enable_radio_dialog_retry" msgid="5960061579996526883">"کوئی سروس نہیں ہے۔ دوبارہ کوشش کی جا رہی ہے…"</string>
+    <string name="dial_emergency_error" msgid="1509085166367420355">"کال نہیں کی جا سکتی۔ <xliff:g id="NON_EMERGENCY_NUMBER">%s</xliff:g> ایک ہنگامی نمبر نہیں ہے۔"</string>
+    <string name="dial_emergency_empty_error" msgid="9130194953830414638">"کال نہیں کی جا سکتی۔ ایک ہنگامی نمبر ڈائل کریں۔"</string>
     <string name="dialerKeyboardHintText" msgid="9192914825413747792">"ڈائل کرنے کیلئے کی بورڈ استعمال کریں"</string>
     <string name="onscreenHoldText" msgid="2285258239691145872">"ہولڈ کریں"</string>
     <string name="onscreenEndCallText" msgid="4403855834875398585">"ختم کریں"</string>
@@ -556,10 +482,8 @@
     <item msgid="899650777817315681">"حسب معمول"</item>
     <item msgid="2883365539347850535">"طویل"</item>
   </string-array>
-    <!-- no translation found for network_info_message (7738596060242881930) -->
-    <skip />
-    <!-- no translation found for network_error_message (3394780436230411413) -->
-    <skip />
+    <string name="network_info_message" msgid="7738596060242881930">"نیٹ ورک کا پیغام"</string>
+    <string name="network_error_message" msgid="3394780436230411413">"خرابی کا پیغام"</string>
     <string name="ota_title_activate" msgid="8616918561356194398">"اپنا فون فعال کریں"</string>
     <string name="ota_touch_activate" msgid="6553212803262586244">"آپ کی فون سروس فعال ہونے کیلئے ایک خصوصی کال کرنے کی ضرورت ہے۔ \n\n\"فعال کریں\" کو دبانے کے بعد اپنا فون فعال کرنے کیلئے فراہم کردہ ہدایات سنیں۔"</string>
     <string name="ota_hfa_activation_title" msgid="2234246934160473981">"فعال ہو رہا ہے…"</string>
@@ -572,10 +496,8 @@
     <string name="ota_title_problem_with_activation" msgid="7095824491970084367">"فعالیت کے ساتھ مسئلہ ہے"</string>
     <string name="ota_listen" msgid="162923839877584937">"فعالیت مکمل ہونے کی بات سنائی دینے تک بولی جانے والی ہدایات کی پیروی کریں۔"</string>
     <string name="ota_speaker" msgid="6904589278542719647">"اسپیکر"</string>
-    <!-- no translation found for ota_progress (460876637828044519) -->
-    <skip />
-    <!-- no translation found for ota_failure (7713756181204620397) -->
-    <skip />
+    <string name="ota_progress" msgid="460876637828044519">"آپ کے فون کی پروگرامنگ کی جا رہی ہے…"</string>
+    <string name="ota_failure" msgid="7713756181204620397">"آپ کے فون کی پروگرامنگ نہیں ہوسکی"</string>
     <string name="ota_successful" msgid="1880780692887077407">"آپ کا فون اب فعال ہوگیا ہے۔ سروس شروع ہونے میں 15 منٹ تک لگ سکتے ہیں۔"</string>
     <string name="ota_unsuccessful" msgid="8072141612635635357">"آپ کا فون فعال نہیں ہوا۔ \nآپ کو بہتر کوریج والی ایک جگہ (کھڑکی کے قریب یا باہر) تلاش کرنی پڑسکتی ہے۔ \n\nدوبارہ کوشش کریں یا مزید اختیارات کیلئے کسٹمر سروس کو کال کریں۔"</string>
     <string name="ota_spc_failure" msgid="3909983542575030796">"‏زائد SPC کی ناکامیاں"</string>
@@ -616,19 +538,14 @@
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"وائبریٹ"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"وائبریٹ"</string>
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"آواز"</string>
-    <!-- no translation found for dial_pad_autocomplete (7683489952557536398) -->
-    <skip />
+    <string name="dial_pad_autocomplete" msgid="7683489952557536398">"ڈائل پیڈ کی خودکار تکمیل"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"رنگ ٹون اور وائبریٹ"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"‏پہلے سے شامل SIM کارڈز"</string>
     <string name="enable_video_calling_title" msgid="7237253660669000899">"ویڈیو کالنگ کو آن کریں"</string>
-    <!-- no translation found for enable_video_calling_dialog_msg (8948186136957417948) -->
-    <skip />
+    <string name="enable_video_calling_dialog_msg" msgid="8948186136957417948">"‏ویڈیو کالنگ کو آن کرنے کیلئے، آپ کیلئے نیٹ ورک ترتیبات میں Enhanced 4G LTE وضع فعال کرنا ضروری ہے۔"</string>
     <string name="enable_video_calling_dialog_settings" msgid="576528473599603249">"نیٹ ورک کی ترتیبات"</string>
     <string name="enable_video_calling_dialog_close" msgid="7411471282167927991">"بند کریں"</string>
-    <!-- no translation found for sim_label_emergency_calls (4847699229529306397) -->
-    <skip />
-    <!-- no translation found for sim_description_emergency_calls (7535215397212301562) -->
-    <skip />
-    <!-- no translation found for sim_description_default (4778679519938775515) -->
-    <skip />
+    <string name="sim_label_emergency_calls" msgid="4847699229529306397">"ہنگامی کالز"</string>
+    <string name="sim_description_emergency_calls" msgid="7535215397212301562">"صرف ہنگامی کالنگ"</string>
+    <string name="sim_description_default" msgid="4778679519938775515">"‏SIM کارڈ، سلاٹ: <xliff:g id="SLOT_ID">%s</xliff:g>"</string>
 </resources>
