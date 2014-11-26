@@ -16,21 +16,15 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- no translation found for sip_settings (3768482698061677257) -->
-    <skip />
-    <!-- no translation found for sip_accounts (85559497282185405) -->
-    <skip />
+    <string name="sip_settings" msgid="3768482698061677257">"Nastavitve SIP"</string>
+    <string name="sip_accounts" msgid="85559497282185405">"Računi SIP"</string>
     <string name="sip_accounts_title" msgid="2082527045326874519">"Računi"</string>
     <string name="sip_receive_calls" msgid="426678617137462173">"Sprejmi dohodne klice"</string>
-    <!-- no translation found for sip_receive_calls_summary (946161517528227523) -->
-    <skip />
-    <!-- no translation found for sip_call_options_title (8421210494703869806) -->
-    <skip />
-    <!-- no translation found for sip_call_options_wifi_only_title (5112579243580893890) -->
-    <skip />
+    <string name="sip_receive_calls_summary" msgid="946161517528227523">"Poraba akumulatorja je večja"</string>
+    <string name="sip_call_options_title" msgid="8421210494703869806">"Uporaba klicanja SIP"</string>
+    <string name="sip_call_options_wifi_only_title" msgid="5112579243580893890">"Uporaba klicanja SIP (samo v omrežju Wi-Fi)"</string>
     <string name="sip_call_options_entry_1" msgid="7217659161237099900">"Za vse klice, ko podatkovno omrežje ni na voljo"</string>
-    <!-- no translation found for sip_call_options_entry_2 (1815335903940609729) -->
-    <skip />
+    <string name="sip_call_options_entry_2" msgid="1815335903940609729">"Samo za klice SIP"</string>
     <string name="sip_call_options_wifi_only_entry_1" msgid="1358513095551847314">"Za vse klice"</string>
     <string name="add_sip_account" msgid="800843669753980091">"Dodajanje računa"</string>
     <string name="remove_sip_account" msgid="1367664438506503690">"Odstrani račun"</string>
@@ -74,14 +68,10 @@
     <string name="advanced_settings_hide" msgid="3480554978705290228">"▽ Dotaknite se, če želite skriti vse"</string>
     <string name="empty_alert" msgid="6659484914371384024">"Polje <xliff:g id="INPUT_FIELD_NAME">%s</xliff:g> je obvezno in ne sme biti prazno."</string>
     <string name="not_a_valid_port" msgid="7931422555587011830">"Številka vrat mora biti med 1000 in 65534."</string>
-    <!-- no translation found for no_internet_available (5523747991760017298) -->
-    <skip />
-    <!-- no translation found for no_wifi_available (1955023904229673488) -->
-    <skip />
-    <!-- no translation found for no_voip (3038021971231952704) -->
-    <skip />
+    <string name="no_internet_available" msgid="5523747991760017298">"Če želite opraviti klic SIP, najprej preverite internetno povezavo."</string>
+    <string name="no_wifi_available" msgid="1955023904229673488">"Za klice SIP morate biti povezani v omrežje Wi-Fi (uporabite nastavitve »Brezžično in omrežja«)."</string>
+    <string name="no_voip" msgid="3038021971231952704">"Klicanje SIP ni podprto"</string>
     <string name="sip_system_decide" msgid="5577696249416700671">"Samodejno"</string>
     <string name="sip_always_send_keepalive" msgid="4773022409239823318">"Vedno pošlji"</string>
-    <!-- no translation found for sip_connection_service_label (6935325004265884453) -->
-    <skip />
+    <string name="sip_connection_service_label" msgid="6935325004265884453">"Vgrajeno klicanje SIP"</string>
 </resources>

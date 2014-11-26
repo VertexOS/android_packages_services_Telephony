@@ -16,21 +16,15 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- no translation found for sip_settings (3768482698061677257) -->
-    <skip />
-    <!-- no translation found for sip_accounts (85559497282185405) -->
-    <skip />
+    <string name="sip_settings" msgid="3768482698061677257">"Configurações SIP"</string>
+    <string name="sip_accounts" msgid="85559497282185405">"Contas SIP"</string>
     <string name="sip_accounts_title" msgid="2082527045326874519">"Contas"</string>
     <string name="sip_receive_calls" msgid="426678617137462173">"Receber chamadas"</string>
-    <!-- no translation found for sip_receive_calls_summary (946161517528227523) -->
-    <skip />
-    <!-- no translation found for sip_call_options_title (8421210494703869806) -->
-    <skip />
-    <!-- no translation found for sip_call_options_wifi_only_title (5112579243580893890) -->
-    <skip />
+    <string name="sip_receive_calls_summary" msgid="946161517528227523">"Usa mais bateria"</string>
+    <string name="sip_call_options_title" msgid="8421210494703869806">"Usar chamadas SIP"</string>
+    <string name="sip_call_options_wifi_only_title" msgid="5112579243580893890">"Usar chamadas SIP (apenas Wi-Fi)"</string>
     <string name="sip_call_options_entry_1" msgid="7217659161237099900">"Para todas as chamadas, quando a rede de dados estiver disponível"</string>
-    <!-- no translation found for sip_call_options_entry_2 (1815335903940609729) -->
-    <skip />
+    <string name="sip_call_options_entry_2" msgid="1815335903940609729">"Apenas para chamadas SIP"</string>
     <string name="sip_call_options_wifi_only_entry_1" msgid="1358513095551847314">"Para todas as chamadas"</string>
     <string name="add_sip_account" msgid="800843669753980091">"Adicionar conta"</string>
     <string name="remove_sip_account" msgid="1367664438506503690">"Remover conta"</string>
@@ -74,14 +68,10 @@
     <string name="advanced_settings_hide" msgid="3480554978705290228">"▽ Toque para ocultar todos"</string>
     <string name="empty_alert" msgid="6659484914371384024">"<xliff:g id="INPUT_FIELD_NAME">%s</xliff:g> é um campo obrigatório e não pode ser deixado em branco."</string>
     <string name="not_a_valid_port" msgid="7931422555587011830">"O número da porta deve estar entre 1000 e 65534."</string>
-    <!-- no translation found for no_internet_available (5523747991760017298) -->
-    <skip />
-    <!-- no translation found for no_wifi_available (1955023904229673488) -->
-    <skip />
-    <!-- no translation found for no_voip (3038021971231952704) -->
-    <skip />
+    <string name="no_internet_available" msgid="5523747991760017298">"Para fazer uma chamada SIP, verifique sua conexão com a Internet primeiro."</string>
+    <string name="no_wifi_available" msgid="1955023904229673488">"Você precisa estar conectado a uma rede Wi-Fi para chamadas SIP (use as configurações sem fio e de rede)."</string>
+    <string name="no_voip" msgid="3038021971231952704">"Chamada SIP não suportada"</string>
     <string name="sip_system_decide" msgid="5577696249416700671">"Automático"</string>
     <string name="sip_always_send_keepalive" msgid="4773022409239823318">"Sempre enviar"</string>
-    <!-- no translation found for sip_connection_service_label (6935325004265884453) -->
-    <skip />
+    <string name="sip_connection_service_label" msgid="6935325004265884453">"Chamadas SIP incorporadas"</string>
 </resources>

@@ -16,21 +16,15 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- no translation found for sip_settings (3768482698061677257) -->
-    <skip />
-    <!-- no translation found for sip_accounts (85559497282185405) -->
-    <skip />
+    <string name="sip_settings" msgid="3768482698061677257">"SIP সেটিংস"</string>
+    <string name="sip_accounts" msgid="85559497282185405">"SIP অ্যাকাউন্টগুলি"</string>
     <string name="sip_accounts_title" msgid="2082527045326874519">"অ্যাকাউন্টগুলি"</string>
     <string name="sip_receive_calls" msgid="426678617137462173">"আগত কলগুলি গ্রহণ করুন"</string>
-    <!-- no translation found for sip_receive_calls_summary (946161517528227523) -->
-    <skip />
-    <!-- no translation found for sip_call_options_title (8421210494703869806) -->
-    <skip />
-    <!-- no translation found for sip_call_options_wifi_only_title (5112579243580893890) -->
-    <skip />
+    <string name="sip_receive_calls_summary" msgid="946161517528227523">"আরো বেশি ব্যাটারি লাইফ ব্যবহার করে"</string>
+    <string name="sip_call_options_title" msgid="8421210494703869806">"SIP কলিং ব্যবহার করুন"</string>
+    <string name="sip_call_options_wifi_only_title" msgid="5112579243580893890">"SIP কলিং ব্যবহার করুন (শুধুমাত্র Wi-Fi)"</string>
     <string name="sip_call_options_entry_1" msgid="7217659161237099900">"যখন ডেটা নেটওয়ার্ক উপলব্ধ তখন সব কলের জন্য"</string>
-    <!-- no translation found for sip_call_options_entry_2 (1815335903940609729) -->
-    <skip />
+    <string name="sip_call_options_entry_2" msgid="1815335903940609729">"শুধুমাত্র SIP কলগুলির জন্য"</string>
     <string name="sip_call_options_wifi_only_entry_1" msgid="1358513095551847314">"সব কলের জন্য"</string>
     <string name="add_sip_account" msgid="800843669753980091">"অ্যাকাউন্ট যোগ করুন"</string>
     <string name="remove_sip_account" msgid="1367664438506503690">"অ্যাকাউন্ট সরান"</string>
@@ -74,14 +68,10 @@
     <string name="advanced_settings_hide" msgid="3480554978705290228">"▽ সবকিছু লুকানোর জন্য স্পর্শ করুন"</string>
     <string name="empty_alert" msgid="6659484914371384024">"<xliff:g id="INPUT_FIELD_NAME">%s</xliff:g> প্রয়োজনীয় এবং এটিকে ফাঁকা রাখা যাবে না৷"</string>
     <string name="not_a_valid_port" msgid="7931422555587011830">"পোর্ট নম্বরটিকে ১০০০ ও ৬৫৫৩৪ এর মধ্যে হতে হবে৷"</string>
-    <!-- no translation found for no_internet_available (5523747991760017298) -->
-    <skip />
-    <!-- no translation found for no_wifi_available (1955023904229673488) -->
-    <skip />
-    <!-- no translation found for no_voip (3038021971231952704) -->
-    <skip />
+    <string name="no_internet_available" msgid="5523747991760017298">"একটি SIP কল করতে প্রথমে আপনার ইন্টারনেট সংযোগ পরীক্ষা করুন৷"</string>
+    <string name="no_wifi_available" msgid="1955023904229673488">"SIP কলগুলি করার জন্য আপনাকে একটি Wi-Fi নেটওয়ার্কের সাথে সংযুক্ত হতে হবে (ওয়ারলেস নেটওয়ার্ক সেটিংস ব্যবহার করুন)৷"</string>
+    <string name="no_voip" msgid="3038021971231952704">"SIP কলিং সমর্থিত নয়"</string>
     <string name="sip_system_decide" msgid="5577696249416700671">"স্বয়ংক্রিয়"</string>
     <string name="sip_always_send_keepalive" msgid="4773022409239823318">"সবসময় পাঠান"</string>
-    <!-- no translation found for sip_connection_service_label (6935325004265884453) -->
-    <skip />
+    <string name="sip_connection_service_label" msgid="6935325004265884453">"অন্তর্নির্মিত SIP কলিং"</string>
 </resources>

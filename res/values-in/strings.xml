@@ -16,8 +16,7 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- no translation found for phoneAppLabel (1107073389495104784) -->
-    <skip />
+    <string name="phoneAppLabel" product="tablet" msgid="1107073389495104784">"Data Seluler"</string>
     <string name="phoneAppLabel" product="default" msgid="906161039445636857">"Ponsel"</string>
     <string name="emergencyDialerIconLabel" msgid="7812140032168171053">"Aplikasi Telepon Darurat"</string>
     <string name="phoneIconLabel" msgid="2331230813161304895">"Telepon"</string>
@@ -58,56 +57,33 @@
     <string name="labelCDMAMore" msgid="1630676740428229339">"Setelan panggilan CDMA"</string>
     <string name="apn_settings" msgid="9043423184895642077">"Nama Titik Akses"</string>
     <string name="settings_label" msgid="3876743539816984008">"Setelan jaringan"</string>
-    <!-- no translation found for phone_accounts (6376603393888116364) -->
-    <skip />
-    <!-- no translation found for phone_accounts_make_calls_with (1969188078933152231) -->
-    <skip />
-    <!-- no translation found for phone_accounts_make_sip_calls_with (4677789312053828493) -->
-    <skip />
-    <!-- no translation found for phone_accounts_ask_every_time (4346499067149985702) -->
-    <skip />
-    <!-- no translation found for phone_accounts_settings_header (4141710640883261094) -->
-    <skip />
-    <!-- no translation found for phone_accounts_choose_accounts (5232948804226424002) -->
-    <skip />
-    <!-- no translation found for phone_accounts_selection_header (1365215726106915865) -->
-    <skip />
-    <!-- no translation found for phone_accounts_add_sip_account (2023821743341923271) -->
-    <skip />
-    <!-- no translation found for phone_accounts_configure_account_settings (1361715069911607109) -->
-    <skip />
-    <!-- no translation found for phone_account_wifi_calling (1840272538233414629) -->
-    <skip />
-    <!-- no translation found for wifi_calling_do_not_use (7491443219113013323) -->
-    <skip />
-    <!-- no translation found for wifi_calling_do_not_use_call_assistant (5420257095556091770) -->
-    <skip />
-    <!-- no translation found for wifi_calling_call_assistant_none (6283702349285593683) -->
-    <skip />
-    <!-- no translation found for wifi_calling_call_assistant (229102032881680320) -->
-    <skip />
-    <!-- no translation found for wifi_calling_use_call_assistant (8460024827012666199) -->
-    <skip />
-    <!-- no translation found for wifi_calling_select_call_assistant (9296558058772293) -->
-    <skip />
-    <!-- no translation found for wifi_calling_select_call_assistant_summary (9106482864108127281) -->
-    <skip />
-    <!-- no translation found for wifi_calling_use_call_assistant_summary (6599987137133339698) -->
-    <skip />
-    <!-- no translation found for wifi_calling_call_assistant_configure (1092639708949670031) -->
-    <skip />
-    <!-- no translation found for wifi_calling_call_assistant_configure_no_selection (2354042288883607981) -->
-    <skip />
+    <string name="phone_accounts" msgid="6376603393888116364">"Akun yang menelepon"</string>
+    <string name="phone_accounts_make_calls_with" msgid="1969188078933152231">"Lakukan panggilan dengan"</string>
+    <string name="phone_accounts_make_sip_calls_with" msgid="4677789312053828493">"Lakukan panggilan SIP dengan"</string>
+    <string name="phone_accounts_ask_every_time" msgid="4346499067149985702">"Tanyakan terlebih dahulu"</string>
+    <string name="phone_accounts_settings_header" msgid="4141710640883261094">"Setelan"</string>
+    <string name="phone_accounts_choose_accounts" msgid="5232948804226424002">"Pilih akun"</string>
+    <string name="phone_accounts_selection_header" msgid="1365215726106915865">"Akun ponsel"</string>
+    <string name="phone_accounts_add_sip_account" msgid="2023821743341923271">"Tambahkan akun SIP"</string>
+    <string name="phone_accounts_configure_account_settings" msgid="1361715069911607109">"Mengonfigurasi setelan akun"</string>
+    <string name="phone_account_wifi_calling" msgid="1840272538233414629">"Panggilan Wi-Fi"</string>
+    <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"Jangan gunakan panggilan Wi-Fi"</string>
+    <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"Jangan gunakan asisten panggilan telepon"</string>
+    <string name="wifi_calling_call_assistant_none" msgid="6283702349285593683">"Tidak ada"</string>
+    <string name="wifi_calling_call_assistant" msgid="229102032881680320">"Asisten panggilan telepon"</string>
+    <string name="wifi_calling_use_call_assistant" msgid="8460024827012666199">"Gunakan asisten panggilan telepon"</string>
+    <string name="wifi_calling_select_call_assistant" msgid="9296558058772293">"Pilih asisten panggilan telepon"</string>
+    <string name="wifi_calling_select_call_assistant_summary" msgid="9106482864108127281">"Pilih aplikasi atau layanan untuk mengelola jaringan yang digunakan untuk panggilan telepon"</string>
+    <string name="wifi_calling_use_call_assistant_summary" msgid="6599987137133339698">"Izinkan aplikasi atau layanan mengelola jaringan yang digunakan untuk panggilan telepon"</string>
+    <string name="wifi_calling_call_assistant_configure" msgid="1092639708949670031">"Konfigurasi"</string>
     <string name="connection_service_default_label" msgid="1498481943805913754">"Layanan sambungan di dalamnya"</string>
     <string name="voicemail" msgid="8693759337917898954">"Kotak Pesan"</string>
     <string name="voicemail_abbreviated" msgid="2215592488517217448">"VM:"</string>
     <string name="networks" msgid="8873030692174541976">"Operator jaringan"</string>
-    <!-- no translation found for cell_broadcast_settings (8740238216690502563) -->
-    <skip />
+    <string name="cell_broadcast_settings" msgid="8740238216690502563">"Siaran darurat"</string>
     <string name="call_settings" msgid="6112441768261754562">"Setelan panggilan"</string>
     <string name="additional_gsm_call_settings" msgid="1391795981938800617">"Setelan tambahan"</string>
-    <!-- no translation found for additional_gsm_call_settings_with_label (1385241520708457376) -->
-    <skip />
+    <string name="additional_gsm_call_settings_with_label" msgid="1385241520708457376">"Setelan tambahan (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="sum_gsm_call_settings" msgid="4076647190996778012">"Setelan panggilan khusus GSM tambahan"</string>
     <string name="additional_cdma_call_settings" msgid="8628958775721886909">"Setelan panggilan CDMA tambahan"</string>
     <string name="sum_cdma_call_settings" msgid="284753265979035549">"Setelan panggilan khusus CDMA tambahan"</string>
@@ -121,41 +97,32 @@
     <string name="sum_cw_enabled" msgid="8083061901633671397">"Selama panggilan, beritahukan panggilan masuk kepada saya"</string>
     <string name="sum_cw_disabled" msgid="3648693907300104575">"Selama panggilan, beritahukan panggilan masuk kepada saya"</string>
     <string name="call_forwarding_settings" msgid="3378927671091537173">"Setelan penerusan panggilan"</string>
-    <!-- no translation found for call_forwarding_settings_with_label (8569489414006897127) -->
-    <skip />
+    <string name="call_forwarding_settings_with_label" msgid="8569489414006897127">"Setelan penerusan panggilan (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="labelCF" msgid="2574386948026924737">"Penerusan panggilan"</string>
     <string name="labelCFU" msgid="8147177368148660600">"Selalu teruskan"</string>
     <string name="messageCFU" msgid="3560082430662923687">"Selalu gunakan nomor ini"</string>
     <string name="sum_cfu_enabled_indicator" msgid="4014187342724130197">"Meneruskan semua panggilan"</string>
     <string name="sum_cfu_enabled" msgid="2450052502198827927">"Meneruskan semua panggilan ke <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfu_enabled_no_number" msgid="6591985777096823616">"Nomor tidak tersedia"</string>
-    <!-- no translation found for sum_cfu_disabled (8384177689501334080) -->
-    <skip />
-    <!-- no translation found for labelCFB (6139853033106283172) -->
-    <skip />
+    <string name="sum_cfu_disabled" msgid="8384177689501334080">"Nonaktif"</string>
+    <string name="labelCFB" msgid="6139853033106283172">"Saat sibuk"</string>
     <string name="messageCFB" msgid="3711089705936187129">"Nomor ketika sibuk"</string>
     <string name="sum_cfb_enabled" msgid="5984198104833116690">"Meneruskan ke <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
-    <!-- no translation found for sum_cfb_disabled (4913145177320506827) -->
-    <skip />
+    <string name="sum_cfb_disabled" msgid="4913145177320506827">"Nonaktif"</string>
     <string name="disable_cfb_forbidden" msgid="3506984333877998061">"Operator Anda tidak mendukung penonaktifan penerusan panggilan ketika ponsel sibuk."</string>
-    <!-- no translation found for labelCFNRy (1736067178393744351) -->
-    <skip />
+    <string name="labelCFNRy" msgid="1736067178393744351">"Jika tidak dijawab"</string>
     <string name="messageCFNRy" msgid="672317899884380374">"Nomor ketika tidak dapat dihubungi"</string>
     <string name="sum_cfnry_enabled" msgid="6955775691317662910">"Meneruskan ke <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
-    <!-- no translation found for sum_cfnry_disabled (3884684060443538097) -->
-    <skip />
+    <string name="sum_cfnry_disabled" msgid="3884684060443538097">"Nonaktif"</string>
     <string name="disable_cfnry_forbidden" msgid="4308233959150658058">"Operator Anda tidak mendukung penonaktifan penerusan panggilan ketika ponsel tidak menjawab panggilan."</string>
-    <!-- no translation found for labelCFNRc (2614827454402079766) -->
-    <skip />
+    <string name="labelCFNRc" msgid="2614827454402079766">"Saat tidak dapat dijangkau"</string>
     <string name="messageCFNRc" msgid="6380695421020295119">"Nomor ketika tidak dapat dihubungi"</string>
     <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"Meneruskan ke <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfnrc_disabled" msgid="7222141261321276464">"Dinonaktifkan"</string>
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"Operator Anda tidak mendukung penonaktifan penerusan panggilan ketika ponsel tidak dapat dijangkau."</string>
     <string name="updating_title" msgid="6146755386174019046">"Setelan panggilan"</string>
-    <!-- no translation found for call_settings_primary_user_only (5679923943740900965) -->
-    <skip />
-    <!-- no translation found for call_settings_with_label (89359812614544532) -->
-    <skip />
+    <string name="call_settings_primary_user_only" msgid="5679923943740900965">"Setelan panggilan telepon hanya dapat diubah oleh pengguna utama."</string>
+    <string name="call_settings_with_label" msgid="89359812614544532">"Setelan panggilan telepon (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="error_updating_title" msgid="7970259216988931777">"Kesalahan setelan panggilan"</string>
     <string name="reading_settings" msgid="1920291699287055284">"Membaca setelan…"</string>
     <string name="updating_settings" msgid="8171225533884883252">"Memperbarui setelan…"</string>
@@ -165,10 +132,8 @@
     <string name="fdn_check_failure" msgid="18200614306525434">"Setelan Nomor Panggilan Tetap aplikasi Ponsel Anda diaktifkan. Akibatnya, beberapa fitur yang terkait dengan panggilan tidak bekerja."</string>
     <string name="radio_off_error" msgid="2304459933248513376">"Keluar dari mode pesawat sebelum melihat setelan ini."</string>
     <string name="close_dialog" msgid="2365884406356986917">"Oke"</string>
-    <!-- no translation found for enable (7248657275000173526) -->
-    <skip />
-    <!-- no translation found for disable (4678348128118573672) -->
-    <skip />
+    <string name="enable" msgid="7248657275000173526">"Aktifkan"</string>
+    <string name="disable" msgid="4678348128118573672">"Nonaktifkan"</string>
     <string name="change_num" msgid="239476305819844391">"Perbarui"</string>
   <string-array name="clir_display_values">
     <item msgid="5560134294467334594">"Setelan default jaringan"</item>
@@ -181,8 +146,7 @@
     <string name="fw_get_in_vm_failed" msgid="8862896836093833973">"Tidak dapat mengambil dan menyimpan setelan nomor telepon penerusan saat ini.\nTetap beralih ke operator baru?"</string>
     <string name="no_change" msgid="3186040086622435212">"Tidak ada perubahan yang dilakukan."</string>
     <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"Pilih layanan kotak pesan"</string>
-    <!-- no translation found for voicemail_default (2001233554889016880) -->
-    <skip />
+    <string name="voicemail_default" msgid="2001233554889016880">"Operator Anda"</string>
     <string name="mobile_networks" msgid="2843854043339307375">"Setelan jaringan seluler"</string>
     <string name="label_available" msgid="1181658289009300430">"Jaringan yang tersedia"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"Menelusuri…"</string>
@@ -215,8 +179,7 @@
     <string name="preferred_network_mode_lte_cdma_evdo_summary" msgid="228702246343742853">"Mode jaringan yang disukai: CDMA+LTE/EVDO"</string>
     <string name="preferred_network_mode_global_summary" msgid="1633134285545730364">"Mode jaringan yang disukai: Global"</string>
     <string name="preferred_network_mode_lte_wcdma_summary" msgid="9180775701594742750">"Mode jaringan yang disukai: LTE / WCDMA"</string>
-    <!-- no translation found for preferred_network_mode_lte_gsm_umts_summary (633315028976225026) -->
-    <skip />
+    <string name="preferred_network_mode_lte_gsm_umts_summary" msgid="633315028976225026">"Mode jaringan pilihan: LTE / GSM / UMTS"</string>
     <string name="preferred_network_mode_lte_cdma_summary" msgid="3722647806454528426">"Mode jaringan pilihan: LTE / CDMA"</string>
   <string-array name="preferred_network_mode_choices">
     <item msgid="7886739962255042385">"LTE / WCDMA"</item>
@@ -233,18 +196,15 @@
     <item msgid="1524224863879435516">"GSM saja"</item>
     <item msgid="3817924849415716259">"GSM/WCDMA lebih disukai"</item>
   </string-array>
-    <!-- no translation found for enhanced_4g_lte_mode_title (522191650223239171) -->
-    <skip />
-    <!-- no translation found for enhanced_4g_lte_mode_summary (2332175070522125850) -->
-    <skip />
+    <string name="enhanced_4g_lte_mode_title" msgid="522191650223239171">"Mode LTE 4G yang Ditingkatkan"</string>
+    <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"Gunakan layanan LTE untuk menyempurnakan suara dan komunikasi lainnya (disarankan)"</string>
     <string name="data_enabled" msgid="5972538663568715366">"Data diaktifkan"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"Izinkan penggunaan data"</string>
     <string name="roaming" msgid="8871412572928323707">"Roaming data"</string>
     <string name="roaming_enable" msgid="7331106985174381987">"Sambungkan ke layanan data ketika roaming"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"Sambungkan ke layanan data ketika roaming"</string>
     <string name="roaming_reenable_message" msgid="8913735676127858115">"Anda telah kehilangan konektivitas data karena meninggalkan jaringan asal dalam keadaan roaming data dimatikan."</string>
-    <!-- no translation found for roaming_warning (7126227198294007907) -->
-    <skip />
+    <string name="roaming_warning" msgid="7126227198294007907">"Izinkan penggunaan data saat roaming? Tagihan signifikan mungkin berlaku."</string>
     <string name="gsm_umts_options" msgid="6538311689850981686">"Opsi GSM//UMTS"</string>
     <string name="cdma_options" msgid="4016822858172249884">"Opsi CDMA"</string>
     <string name="throttle_data_usage" msgid="3715677828160555808">"Penggunaan data"</string>
@@ -370,11 +330,9 @@
     <string name="cdma_lte_data_service" msgid="4255018217292548962">"Siapkan layanan data"</string>
     <string name="carrier_settings_title" msgid="9028166176523012300">"Setelan operator"</string>
     <string name="fdn" msgid="7878832555095183202">"Nomor Panggilan Tetap"</string>
-    <!-- no translation found for fdn_with_label (187084204115493366) -->
-    <skip />
+    <string name="fdn_with_label" msgid="187084204115493366">"Nomor Panggilan Tetap (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="manage_fdn_list" msgid="8777755791892122369">"Daftar FDN"</string>
-    <!-- no translation found for fdn_list_with_label (7437232552210469217) -->
-    <skip />
+    <string name="fdn_list_with_label" msgid="7437232552210469217">"Daftar NPT (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="fdn_activation" msgid="2156479741307463576">"Aktivasi FDN"</string>
     <string name="fdn_enabled" msgid="5238109009915521240">"Nomor Panggilan Tetap diaktifkan"</string>
     <string name="fdn_disabled" msgid="4700049736675368279">"Nomor Panggilan Tetap dinonaktifkan"</string>
@@ -425,49 +383,30 @@
     <string name="badPin" msgid="8955102849303984935">"PIN lama yang Anda masukkan salah. Coba lagi."</string>
     <string name="mismatchPin" msgid="5923253370683071889">"PIN yang Anda masukkan tidak cocok. Coba lagi."</string>
     <string name="invalidPin" msgid="5981171102258684792">"Ketikkan PIN berupa 4 sampai 8 angka."</string>
-    <!-- no translation found for disable_sim_pin (3419351358300716472) -->
-    <skip />
-    <!-- no translation found for enable_sim_pin (4845145659651484248) -->
-    <skip />
-    <!-- no translation found for enable_in_progress (3417917024688497010) -->
-    <skip />
-    <!-- no translation found for enable_pin_ok (2918545971413270063) -->
-    <skip />
-    <!-- no translation found for disable_pin_ok (2109571368635883688) -->
-    <skip />
-    <!-- no translation found for pin_failed (5644377896213584760) -->
-    <skip />
-    <!-- no translation found for pin_changed (4455736268023261662) -->
-    <skip />
-    <!-- no translation found for puk_requested (5921393215789090200) -->
-    <skip />
+    <string name="disable_sim_pin" msgid="3419351358300716472">"Hapus PIN SIM"</string>
+    <string name="enable_sim_pin" msgid="4845145659651484248">"Setel PIN SIM"</string>
+    <string name="enable_in_progress" msgid="3417917024688497010">"Menyetel PIN…"</string>
+    <string name="enable_pin_ok" msgid="2918545971413270063">"PIN disetel"</string>
+    <string name="disable_pin_ok" msgid="2109571368635883688">"PIN dihapus"</string>
+    <string name="pin_failed" msgid="5644377896213584760">"PIN salah"</string>
+    <string name="pin_changed" msgid="4455736268023261662">"PIN diperbarui"</string>
+    <string name="puk_requested" msgid="5921393215789090200">"Sandi salah. PIN kini diblokir. PUK diperlukan."</string>
     <string name="enter_pin2_text" msgid="8339444124477720345">"PIN2"</string>
     <string name="oldPin2Label" msgid="8559146795026261502">"PIN2 yang lama"</string>
     <string name="newPin2Label" msgid="4573956902204349054">"PIN2 Baru"</string>
     <string name="confirmPin2Label" msgid="8100319484454787708">"Konfirmasi PIN2 baru"</string>
-    <!-- no translation found for badPuk2 (7910064009531541708) -->
-    <skip />
-    <!-- no translation found for badPin2 (6646896629970023109) -->
-    <skip />
-    <!-- no translation found for mismatchPin2 (4177967478551851117) -->
-    <skip />
-    <!-- no translation found for invalidPin2 (1757045131429105595) -->
-    <skip />
-    <!-- no translation found for invalidPuk2 (7059081153334815973) -->
-    <skip />
-    <!-- no translation found for pin2_changed (3724522579945610956) -->
-    <skip />
-    <!-- no translation found for label_puk2_code (4688069961795341948) -->
-    <skip />
-    <!-- no translation found for fdn_enable_puk2_requested (4991074891459554705) -->
-    <skip />
-    <!-- no translation found for puk2_requested (5831015200030161434) -->
-    <skip />
+    <string name="badPuk2" msgid="7910064009531541708">"PUK2 salah. Coba lagi."</string>
+    <string name="badPin2" msgid="6646896629970023109">"PIN2 lama salah. Coba lagi."</string>
+    <string name="mismatchPin2" msgid="4177967478551851117">"PIN2 tidak cocok. Coba lagi."</string>
+    <string name="invalidPin2" msgid="1757045131429105595">"Masukkan PIN2 berisi 4 hingga 8 angka."</string>
+    <string name="invalidPuk2" msgid="7059081153334815973">"Masukkan PUK2 berisi 8 angka."</string>
+    <string name="pin2_changed" msgid="3724522579945610956">"PIN2 diperbarui"</string>
+    <string name="label_puk2_code" msgid="4688069961795341948">"Masukkan kode PUK2"</string>
+    <string name="fdn_enable_puk2_requested" msgid="4991074891459554705">"Sandi salah. PIN2 kini Diblokir. Untuk mencoba lagi, ubah PIN 2."</string>
+    <string name="puk2_requested" msgid="5831015200030161434">"Sandi salah. SIM kini dikunci. Masukkan PUK2."</string>
     <string name="puk2_blocked" msgid="3150263853077280049">"PUK2 diblokir selamanya."</string>
-    <!-- no translation found for pin2_attempts (720736232885011507) -->
-    <skip />
-    <!-- no translation found for pin2_unblocked (7791600368153469078) -->
-    <skip />
+    <string name="pin2_attempts" msgid="720736232885011507">\n"Tersisa <xliff:g id="NUMBER">%d</xliff:g> upaya lagi."</string>
+    <string name="pin2_unblocked" msgid="7791600368153469078">"PIN2 tidak lagi diblokir"</string>
     <string name="doneButton" msgid="2859593360997984240">"Selesai"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"Nomor kotak pesan"</string>
     <string name="card_title_dialing" msgid="5769417478498348054">"Memanggil"</string>
@@ -501,8 +440,7 @@
     <string name="incall_error_no_phone_number_supplied" msgid="1150414018684246528">"Untuk melakukan panggilan telepon, masukkan nomor yang valid."</string>
     <string name="incall_error_call_failed" msgid="6302746943230078197">"Tidak dapat menelepon."</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"Memulai urutan MMI..."</string>
-    <!-- no translation found for incall_error_supp_service_unknown (655570339115407698) -->
-    <skip />
+    <string name="incall_error_supp_service_unknown" msgid="655570339115407698">"Layanan tidak didukung"</string>
     <string name="incall_error_supp_service_switch" msgid="5237002176899962862">"Tidak dapat berganti panggilan telepon."</string>
     <string name="incall_error_supp_service_separate" msgid="7224393405134545246">"Tidak dapat memisahkan panggilan telepon."</string>
     <string name="incall_error_supp_service_transfer" msgid="7235952238189391438">"Tidak dapat mentransfer."</string>
@@ -544,10 +482,8 @@
     <item msgid="899650777817315681">"Normal"</item>
     <item msgid="2883365539347850535">"Jauh"</item>
   </string-array>
-    <!-- no translation found for network_info_message (7738596060242881930) -->
-    <skip />
-    <!-- no translation found for network_error_message (3394780436230411413) -->
-    <skip />
+    <string name="network_info_message" msgid="7738596060242881930">"Pesan jaringan"</string>
+    <string name="network_error_message" msgid="3394780436230411413">"Pesan kesalahan"</string>
     <string name="ota_title_activate" msgid="8616918561356194398">"Aktifkan ponsel Anda"</string>
     <string name="ota_touch_activate" msgid="6553212803262586244">"Perlu dilakukan panggilan khusus untuk mengaktifkan layanan ponsel Anda. \n\nSetelah menekan “Aktifkan”, dengarkan instruksi yang diberikan untuk mengaktifkan ponsel."</string>
     <string name="ota_hfa_activation_title" msgid="2234246934160473981">"Mengaktifkan..."</string>
@@ -560,10 +496,8 @@
     <string name="ota_title_problem_with_activation" msgid="7095824491970084367">"Masalah dengan aktivasi"</string>
     <string name="ota_listen" msgid="162923839877584937">"Ikuti instruksi lisan sampai Anda mendengar aktivasi telah selesai."</string>
     <string name="ota_speaker" msgid="6904589278542719647">"Pengeras Suara"</string>
-    <!-- no translation found for ota_progress (460876637828044519) -->
-    <skip />
-    <!-- no translation found for ota_failure (7713756181204620397) -->
-    <skip />
+    <string name="ota_progress" msgid="460876637828044519">"Memprogram ponsel…"</string>
+    <string name="ota_failure" msgid="7713756181204620397">"Tidak dapat memprogram ponsel"</string>
     <string name="ota_successful" msgid="1880780692887077407">"Ponsel Anda sekarang diaktifkan. Mungkin dibutuhkan waktu hingga 15 menit sampai layanan dimulai."</string>
     <string name="ota_unsuccessful" msgid="8072141612635635357">"Ponsel Anda tidak aktif. \nAnda mungkin perlu menemukan area dengan cakupan yang lebih baik (di dekat jendela atau di luar). \n\nCoba lagi atau hubungi layanan pelanggan untuk opsi lainnya."</string>
     <string name="ota_spc_failure" msgid="3909983542575030796">"KEGAGALAN SPC BERLEBIH"</string>
@@ -608,14 +542,10 @@
     <string name="preference_category_ringtone" msgid="5197960752529332721">"Nada dering &amp; Getar"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"Kartu SIM internal"</string>
     <string name="enable_video_calling_title" msgid="7237253660669000899">"Aktifkan video call"</string>
-    <!-- no translation found for enable_video_calling_dialog_msg (8948186136957417948) -->
-    <skip />
+    <string name="enable_video_calling_dialog_msg" msgid="8948186136957417948">"Untuk mengaktifkan video call, Anda perlu mengaktifkan Mode LTE 4G yang Ditingkatkan di setelan jaringan."</string>
     <string name="enable_video_calling_dialog_settings" msgid="576528473599603249">"Setelan jaringan"</string>
     <string name="enable_video_calling_dialog_close" msgid="7411471282167927991">"Tutup"</string>
-    <!-- no translation found for sim_label_emergency_calls (4847699229529306397) -->
-    <skip />
-    <!-- no translation found for sim_description_emergency_calls (7535215397212301562) -->
-    <skip />
-    <!-- no translation found for sim_description_default (4778679519938775515) -->
-    <skip />
+    <string name="sim_label_emergency_calls" msgid="4847699229529306397">"Panggilan darurat"</string>
+    <string name="sim_description_emergency_calls" msgid="7535215397212301562">"Hanya untuk panggilan darurat"</string>
+    <string name="sim_description_default" msgid="4778679519938775515">"Kartu SIM, slot: <xliff:g id="SLOT_ID">%s</xliff:g>"</string>
 </resources>

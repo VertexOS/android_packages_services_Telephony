@@ -16,16 +16,14 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- no translation found for phoneAppLabel (1107073389495104784) -->
-    <skip />
+    <string name="phoneAppLabel" product="tablet" msgid="1107073389495104784">"流動數據"</string>
     <string name="phoneAppLabel" product="default" msgid="906161039445636857">"手機"</string>
     <string name="emergencyDialerIconLabel" msgid="7812140032168171053">"緊急撥號"</string>
     <string name="phoneIconLabel" msgid="2331230813161304895">"電話"</string>
     <string name="fdnListLabel" msgid="8630418672279521003">"FDN 清單"</string>
     <string name="unknown" msgid="6878797917991465859">"未知"</string>
     <string name="private_num" msgid="6713286113000232309">"私人號碼"</string>
-    <!-- no translation found for payphone (4793877574636445118) -->
-    <skip />
+    <string name="payphone" msgid="4793877574636445118">"公共電話"</string>
     <string name="onHold" msgid="9035493194749959955">"保留通話"</string>
     <string name="mmiStarted" msgid="6347869857061147003">"MMI 碼開始執行"</string>
     <string name="ussdRunning" msgid="485588686340541690">"正在執行 USSD 碼..."</string>
@@ -59,56 +57,33 @@
     <string name="labelCDMAMore" msgid="1630676740428229339">"CDMA 通話設定"</string>
     <string name="apn_settings" msgid="9043423184895642077">"接入點名稱"</string>
     <string name="settings_label" msgid="3876743539816984008">"網絡設定"</string>
-    <!-- no translation found for phone_accounts (6376603393888116364) -->
-    <skip />
-    <!-- no translation found for phone_accounts_make_calls_with (1969188078933152231) -->
-    <skip />
-    <!-- no translation found for phone_accounts_make_sip_calls_with (4677789312053828493) -->
-    <skip />
-    <!-- no translation found for phone_accounts_ask_every_time (4346499067149985702) -->
-    <skip />
-    <!-- no translation found for phone_accounts_settings_header (4141710640883261094) -->
-    <skip />
-    <!-- no translation found for phone_accounts_choose_accounts (5232948804226424002) -->
-    <skip />
-    <!-- no translation found for phone_accounts_selection_header (1365215726106915865) -->
-    <skip />
-    <!-- no translation found for phone_accounts_add_sip_account (2023821743341923271) -->
-    <skip />
-    <!-- no translation found for phone_accounts_configure_account_settings (1361715069911607109) -->
-    <skip />
-    <!-- no translation found for phone_account_wifi_calling (1840272538233414629) -->
-    <skip />
-    <!-- no translation found for wifi_calling_do_not_use (7491443219113013323) -->
-    <skip />
-    <!-- no translation found for wifi_calling_do_not_use_call_assistant (5420257095556091770) -->
-    <skip />
-    <!-- no translation found for wifi_calling_call_assistant_none (6283702349285593683) -->
-    <skip />
-    <!-- no translation found for wifi_calling_call_assistant (229102032881680320) -->
-    <skip />
-    <!-- no translation found for wifi_calling_use_call_assistant (8460024827012666199) -->
-    <skip />
-    <!-- no translation found for wifi_calling_select_call_assistant (9296558058772293) -->
-    <skip />
-    <!-- no translation found for wifi_calling_select_call_assistant_summary (9106482864108127281) -->
-    <skip />
-    <!-- no translation found for wifi_calling_use_call_assistant_summary (6599987137133339698) -->
-    <skip />
-    <!-- no translation found for wifi_calling_call_assistant_configure (1092639708949670031) -->
-    <skip />
-    <!-- no translation found for wifi_calling_call_assistant_configure_no_selection (2354042288883607981) -->
-    <skip />
+    <string name="phone_accounts" msgid="6376603393888116364">"通話帳戶"</string>
+    <string name="phone_accounts_make_calls_with" msgid="1969188078933152231">"通話帳戶"</string>
+    <string name="phone_accounts_make_sip_calls_with" msgid="4677789312053828493">"SIP 通話帳戶"</string>
+    <string name="phone_accounts_ask_every_time" msgid="4346499067149985702">"先詢問我"</string>
+    <string name="phone_accounts_settings_header" msgid="4141710640883261094">"設定"</string>
+    <string name="phone_accounts_choose_accounts" msgid="5232948804226424002">"選擇賬戶"</string>
+    <string name="phone_accounts_selection_header" msgid="1365215726106915865">"手機帳戶"</string>
+    <string name="phone_accounts_add_sip_account" msgid="2023821743341923271">"加入 SIP 帳戶"</string>
+    <string name="phone_accounts_configure_account_settings" msgid="1361715069911607109">"設定帳戶設定"</string>
+    <string name="phone_account_wifi_calling" msgid="1840272538233414629">"Wi-Fi 通話"</string>
+    <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"不要使用 Wi-Fi 通話功能"</string>
+    <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"不要使用通話小幫手"</string>
+    <string name="wifi_calling_call_assistant_none" msgid="6283702349285593683">"無"</string>
+    <string name="wifi_calling_call_assistant" msgid="229102032881680320">"通話小幫手"</string>
+    <string name="wifi_calling_use_call_assistant" msgid="8460024827012666199">"使用通話小幫手"</string>
+    <string name="wifi_calling_select_call_assistant" msgid="9296558058772293">"選擇通話小幫手"</string>
+    <string name="wifi_calling_select_call_assistant_summary" msgid="9106482864108127281">"選擇應用程式或服務來管理用於通話的網絡"</string>
+    <string name="wifi_calling_use_call_assistant_summary" msgid="6599987137133339698">"讓應用程式或服務管理用於通話的網絡"</string>
+    <string name="wifi_calling_call_assistant_configure" msgid="1092639708949670031">"設定"</string>
     <string name="connection_service_default_label" msgid="1498481943805913754">"內置連線服務"</string>
     <string name="voicemail" msgid="8693759337917898954">"留言信箱"</string>
     <string name="voicemail_abbreviated" msgid="2215592488517217448">"留言信箱："</string>
     <string name="networks" msgid="8873030692174541976">"網絡供應商"</string>
-    <!-- no translation found for cell_broadcast_settings (8740238216690502563) -->
-    <skip />
+    <string name="cell_broadcast_settings" msgid="8740238216690502563">"緊急廣播"</string>
     <string name="call_settings" msgid="6112441768261754562">"通話設定"</string>
     <string name="additional_gsm_call_settings" msgid="1391795981938800617">"其他設定"</string>
-    <!-- no translation found for additional_gsm_call_settings_with_label (1385241520708457376) -->
-    <skip />
+    <string name="additional_gsm_call_settings_with_label" msgid="1385241520708457376">"其他設定 (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="sum_gsm_call_settings" msgid="4076647190996778012">"其他僅限 GSM 通話設定"</string>
     <string name="additional_cdma_call_settings" msgid="8628958775721886909">"其他 CDMA 通話設定"</string>
     <string name="sum_cdma_call_settings" msgid="284753265979035549">"其他僅限 CDMA 的通話設定"</string>
@@ -122,41 +97,32 @@
     <string name="sum_cw_enabled" msgid="8083061901633671397">"通話時如有來電請通知我"</string>
     <string name="sum_cw_disabled" msgid="3648693907300104575">"通話時如有來電請通知我"</string>
     <string name="call_forwarding_settings" msgid="3378927671091537173">"來電轉接設定"</string>
-    <!-- no translation found for call_forwarding_settings_with_label (8569489414006897127) -->
-    <skip />
+    <string name="call_forwarding_settings_with_label" msgid="8569489414006897127">"來電轉駁設定 (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="labelCF" msgid="2574386948026924737">"來電轉接"</string>
     <string name="labelCFU" msgid="8147177368148660600">"一律轉接"</string>
     <string name="messageCFU" msgid="3560082430662923687">"永遠使用這個號碼"</string>
     <string name="sum_cfu_enabled_indicator" msgid="4014187342724130197">"轉接所有通話"</string>
     <string name="sum_cfu_enabled" msgid="2450052502198827927">"將所有來電轉接至 <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfu_enabled_no_number" msgid="6591985777096823616">"號碼無法使用"</string>
-    <!-- no translation found for sum_cfu_disabled (8384177689501334080) -->
-    <skip />
-    <!-- no translation found for labelCFB (6139853033106283172) -->
-    <skip />
+    <string name="sum_cfu_disabled" msgid="8384177689501334080">"關閉"</string>
+    <string name="labelCFB" msgid="6139853033106283172">"忙碌時"</string>
     <string name="messageCFB" msgid="3711089705936187129">"忙線號碼"</string>
     <string name="sum_cfb_enabled" msgid="5984198104833116690">"轉接至 <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
-    <!-- no translation found for sum_cfb_disabled (4913145177320506827) -->
-    <skip />
+    <string name="sum_cfb_disabled" msgid="4913145177320506827">"關閉"</string>
     <string name="disable_cfb_forbidden" msgid="3506984333877998061">"您的流動網絡供應商不支援在手機通話時停用轉接功能。"</string>
-    <!-- no translation found for labelCFNRy (1736067178393744351) -->
-    <skip />
+    <string name="labelCFNRy" msgid="1736067178393744351">"無人接聽時"</string>
     <string name="messageCFNRy" msgid="672317899884380374">"未接聽時撥號"</string>
     <string name="sum_cfnry_enabled" msgid="6955775691317662910">"轉接至 <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
-    <!-- no translation found for sum_cfnry_disabled (3884684060443538097) -->
-    <skip />
+    <string name="sum_cfnry_disabled" msgid="3884684060443538097">"關閉"</string>
     <string name="disable_cfnry_forbidden" msgid="4308233959150658058">"您的流動網絡供應商不支援在手機未接聽時停用轉接功能。"</string>
-    <!-- no translation found for labelCFNRc (2614827454402079766) -->
-    <skip />
+    <string name="labelCFNRc" msgid="2614827454402079766">"無法接通時"</string>
     <string name="messageCFNRc" msgid="6380695421020295119">"無法接通時的轉接號碼"</string>
     <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"轉接至 <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfnrc_disabled" msgid="7222141261321276464">"已停用"</string>
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"您的流動網絡供應商不支援在手機無法接通時停用轉接功能。"</string>
     <string name="updating_title" msgid="6146755386174019046">"通話設定"</string>
-    <!-- no translation found for call_settings_primary_user_only (5679923943740900965) -->
-    <skip />
-    <!-- no translation found for call_settings_with_label (89359812614544532) -->
-    <skip />
+    <string name="call_settings_primary_user_only" msgid="5679923943740900965">"只有主要使用者可以變更通話設定。"</string>
+    <string name="call_settings_with_label" msgid="89359812614544532">"通話設定 (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="error_updating_title" msgid="7970259216988931777">"通話設定錯誤"</string>
     <string name="reading_settings" msgid="1920291699287055284">"正在讀取設定..."</string>
     <string name="updating_settings" msgid="8171225533884883252">"正在更新設定..."</string>
@@ -166,10 +132,8 @@
     <string name="fdn_check_failure" msgid="18200614306525434">"您的「手機」應用程式已開啟固定撥號設定，因此部分撥號相關功能無法正常運作。"</string>
     <string name="radio_off_error" msgid="2304459933248513376">"查看這些設定前，請先開啟無線電。"</string>
     <string name="close_dialog" msgid="2365884406356986917">"確定"</string>
-    <!-- no translation found for enable (7248657275000173526) -->
-    <skip />
-    <!-- no translation found for disable (4678348128118573672) -->
-    <skip />
+    <string name="enable" msgid="7248657275000173526">"開啟"</string>
+    <string name="disable" msgid="4678348128118573672">"關閉"</string>
     <string name="change_num" msgid="239476305819844391">"更新"</string>
   <string-array name="clir_display_values">
     <item msgid="5560134294467334594">"網絡預設值"</item>
@@ -182,8 +146,7 @@
     <string name="fw_get_in_vm_failed" msgid="8862896836093833973">"無法擷取和儲存目前的轉接號碼設定。\n您仍要轉到新的供應商嗎？"</string>
     <string name="no_change" msgid="3186040086622435212">"沒有更改。"</string>
     <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"選擇語音信箱服務"</string>
-    <!-- no translation found for voicemail_default (2001233554889016880) -->
-    <skip />
+    <string name="voicemail_default" msgid="2001233554889016880">"您的流動網絡供應商"</string>
     <string name="mobile_networks" msgid="2843854043339307375">"流動網絡設定"</string>
     <string name="label_available" msgid="1181658289009300430">"可用的網絡"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"正在搜尋..."</string>
@@ -216,8 +179,7 @@
     <string name="preferred_network_mode_lte_cdma_evdo_summary" msgid="228702246343742853">"首選網絡模式：CDMA+LTE/EVDO"</string>
     <string name="preferred_network_mode_global_summary" msgid="1633134285545730364">"首選網絡模式：全球"</string>
     <string name="preferred_network_mode_lte_wcdma_summary" msgid="9180775701594742750">"首選網絡模式：LTE/WCDMA"</string>
-    <!-- no translation found for preferred_network_mode_lte_gsm_umts_summary (633315028976225026) -->
-    <skip />
+    <string name="preferred_network_mode_lte_gsm_umts_summary" msgid="633315028976225026">"首選網絡模式：LTE / GSM / UMTS"</string>
     <string name="preferred_network_mode_lte_cdma_summary" msgid="3722647806454528426">"慣用網絡模式：LTE / CDMA"</string>
   <string-array name="preferred_network_mode_choices">
     <item msgid="7886739962255042385">"LTE/WCDMA"</item>
@@ -234,18 +196,15 @@
     <item msgid="1524224863879435516">"只限 GSM"</item>
     <item msgid="3817924849415716259">"首選 GSM/WCDMA"</item>
   </string-array>
-    <!-- no translation found for enhanced_4g_lte_mode_title (522191650223239171) -->
-    <skip />
-    <!-- no translation found for enhanced_4g_lte_mode_summary (2332175070522125850) -->
-    <skip />
+    <string name="enhanced_4g_lte_mode_title" msgid="522191650223239171">"強化 4G LTE 模式"</string>
+    <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"使用 LTE 服務改善語音及其他通訊 (建議)"</string>
     <string name="data_enabled" msgid="5972538663568715366">"啟用流動數據"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"允許使用數據"</string>
     <string name="roaming" msgid="8871412572928323707">"數據漫遊服務"</string>
     <string name="roaming_enable" msgid="7331106985174381987">"漫遊時連線到數據傳輸服務"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"漫遊時連線到數據傳輸服務"</string>
     <string name="roaming_reenable_message" msgid="8913735676127858115">"您已離開主網絡覆蓋範圍，且已關閉數據漫遊服務，因此數據連線已中斷。"</string>
-    <!-- no translation found for roaming_warning (7126227198294007907) -->
-    <skip />
+    <string name="roaming_warning" msgid="7126227198294007907">"允許漫遊時使用數據嗎？可能會產生大量費用。"</string>
     <string name="gsm_umts_options" msgid="6538311689850981686">"GSM/UMTS 選項"</string>
     <string name="cdma_options" msgid="4016822858172249884">"CDMA 選項"</string>
     <string name="throttle_data_usage" msgid="3715677828160555808">"數據用量"</string>
@@ -377,11 +336,9 @@
     <string name="cdma_lte_data_service" msgid="4255018217292548962">"設定數據傳輸服務"</string>
     <string name="carrier_settings_title" msgid="9028166176523012300">"流動網絡供應商設定"</string>
     <string name="fdn" msgid="7878832555095183202">"固定撥號號碼"</string>
-    <!-- no translation found for fdn_with_label (187084204115493366) -->
-    <skip />
+    <string name="fdn_with_label" msgid="187084204115493366">"固定撥號 (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="manage_fdn_list" msgid="8777755791892122369">"FDN 清單"</string>
-    <!-- no translation found for fdn_list_with_label (7437232552210469217) -->
-    <skip />
+    <string name="fdn_list_with_label" msgid="7437232552210469217">"FDN 清單 (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="fdn_activation" msgid="2156479741307463576">"FDN 啟用"</string>
     <string name="fdn_enabled" msgid="5238109009915521240">"已啟用固定撥號"</string>
     <string name="fdn_disabled" msgid="4700049736675368279">"已停用固定撥號"</string>
@@ -432,54 +389,34 @@
     <string name="badPin" msgid="8955102849303984935">"您所輸入的舊 PIN 碼不正確，請再試一次。"</string>
     <string name="mismatchPin" msgid="5923253370683071889">"您所輸入的 PIN 碼不符，請再試一次。"</string>
     <string name="invalidPin" msgid="5981171102258684792">"請輸入一個 4 至 8 位數的 PIN。"</string>
-    <!-- no translation found for disable_sim_pin (3419351358300716472) -->
-    <skip />
-    <!-- no translation found for enable_sim_pin (4845145659651484248) -->
-    <skip />
-    <!-- no translation found for enable_in_progress (3417917024688497010) -->
-    <skip />
-    <!-- no translation found for enable_pin_ok (2918545971413270063) -->
-    <skip />
-    <!-- no translation found for disable_pin_ok (2109571368635883688) -->
-    <skip />
-    <!-- no translation found for pin_failed (5644377896213584760) -->
-    <skip />
-    <!-- no translation found for pin_changed (4455736268023261662) -->
-    <skip />
-    <!-- no translation found for puk_requested (5921393215789090200) -->
-    <skip />
+    <string name="disable_sim_pin" msgid="3419351358300716472">"清除 SIM PIN"</string>
+    <string name="enable_sim_pin" msgid="4845145659651484248">"設定 SIM PIN"</string>
+    <string name="enable_in_progress" msgid="3417917024688497010">"正在設定 PIN…"</string>
+    <string name="enable_pin_ok" msgid="2918545971413270063">"PIN 已設定"</string>
+    <string name="disable_pin_ok" msgid="2109571368635883688">"PIN 已清除"</string>
+    <string name="pin_failed" msgid="5644377896213584760">"PIN 不正確"</string>
+    <string name="pin_changed" msgid="4455736268023261662">"PIN 已更新"</string>
+    <string name="puk_requested" msgid="5921393215789090200">"密碼不正確。PIN 現在已被封鎖，需要 PUK。"</string>
     <string name="enter_pin2_text" msgid="8339444124477720345">"PIN2"</string>
     <string name="oldPin2Label" msgid="8559146795026261502">"舊 PIN2"</string>
     <string name="newPin2Label" msgid="4573956902204349054">"新增 PIN2"</string>
     <string name="confirmPin2Label" msgid="8100319484454787708">"確認新 PIN2"</string>
-    <!-- no translation found for badPuk2 (7910064009531541708) -->
-    <skip />
-    <!-- no translation found for badPin2 (6646896629970023109) -->
-    <skip />
-    <!-- no translation found for mismatchPin2 (4177967478551851117) -->
-    <skip />
-    <!-- no translation found for invalidPin2 (1757045131429105595) -->
-    <skip />
-    <!-- no translation found for invalidPuk2 (7059081153334815973) -->
-    <skip />
-    <!-- no translation found for pin2_changed (3724522579945610956) -->
-    <skip />
-    <!-- no translation found for label_puk2_code (4688069961795341948) -->
-    <skip />
-    <!-- no translation found for fdn_enable_puk2_requested (4991074891459554705) -->
-    <skip />
-    <!-- no translation found for puk2_requested (5831015200030161434) -->
-    <skip />
+    <string name="badPuk2" msgid="7910064009531541708">"PUK2 不正確，請再試一次。"</string>
+    <string name="badPin2" msgid="6646896629970023109">"舊的 PIN2 不正確，請再試一次。"</string>
+    <string name="mismatchPin2" msgid="4177967478551851117">"PIN2s 不符，請再試一次。"</string>
+    <string name="invalidPin2" msgid="1757045131429105595">"輸入 4 至 8 位數的 PIN2。"</string>
+    <string name="invalidPuk2" msgid="7059081153334815973">"輸入 8 位數的 PUK2。"</string>
+    <string name="pin2_changed" msgid="3724522579945610956">"PIN2 已更新"</string>
+    <string name="label_puk2_code" msgid="4688069961795341948">"輸入 PUK2 碼"</string>
+    <string name="fdn_enable_puk2_requested" msgid="4991074891459554705">"密碼不正確。PIN2 現在已被封鎖。如要再試一次，請變更 PIN 2。"</string>
+    <string name="puk2_requested" msgid="5831015200030161434">"密碼不正確。SIM 現在已被封鎖，請輸入 PUK2。"</string>
     <string name="puk2_blocked" msgid="3150263853077280049">"PUK2 碼已被永久封鎖。"</string>
-    <!-- no translation found for pin2_attempts (720736232885011507) -->
-    <skip />
-    <!-- no translation found for pin2_unblocked (7791600368153469078) -->
-    <skip />
+    <string name="pin2_attempts" msgid="720736232885011507">\n"您還有 <xliff:g id="NUMBER">%d</xliff:g> 次嘗試機會。"</string>
+    <string name="pin2_unblocked" msgid="7791600368153469078">"PIN2 不再被封鎖"</string>
     <string name="doneButton" msgid="2859593360997984240">"完成"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"留言信箱號碼"</string>
     <string name="card_title_dialing" msgid="5769417478498348054">"撥號中"</string>
-    <!-- no translation found for card_title_redialing (8253487008234167266) -->
-    <skip />
+    <string name="card_title_redialing" msgid="8253487008234167266">"重撥"</string>
     <string name="card_title_conf_call" msgid="1162980346189744501">"視訊會議"</string>
     <string name="card_title_incoming_call" msgid="7364539451234646909">"來電"</string>
     <string name="card_title_call_ended" msgid="5544730338889702298">"通話已結束"</string>
@@ -506,32 +443,21 @@
     <string name="incall_error_power_off" msgid="6550191216405193368">"請先關閉飛行模式後再撥打電話。"</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"未在網絡上完成註冊。"</string>
     <string name="incall_error_out_of_service" msgid="4100065333878929223">"無法連線至流動網絡。"</string>
-    <!-- no translation found for incall_error_no_phone_number_supplied (1150414018684246528) -->
-    <skip />
-    <!-- no translation found for incall_error_call_failed (6302746943230078197) -->
-    <skip />
+    <string name="incall_error_no_phone_number_supplied" msgid="1150414018684246528">"要撥打電話，請輸入有效的號碼。"</string>
+    <string name="incall_error_call_failed" msgid="6302746943230078197">"無法通話。"</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"開始 MMI 序列..."</string>
-    <!-- no translation found for incall_error_supp_service_unknown (655570339115407698) -->
-    <skip />
-    <!-- no translation found for incall_error_supp_service_switch (5237002176899962862) -->
-    <skip />
-    <!-- no translation found for incall_error_supp_service_separate (7224393405134545246) -->
-    <skip />
-    <!-- no translation found for incall_error_supp_service_transfer (7235952238189391438) -->
-    <skip />
+    <string name="incall_error_supp_service_unknown" msgid="655570339115407698">"不支援的服務"</string>
+    <string name="incall_error_supp_service_switch" msgid="5237002176899962862">"無法切換通話。"</string>
+    <string name="incall_error_supp_service_separate" msgid="7224393405134545246">"無法分開通話。"</string>
+    <string name="incall_error_supp_service_transfer" msgid="7235952238189391438">"無法轉移。"</string>
     <string name="incall_error_supp_service_conference" msgid="2505727299596357312">"無法進行會議通話"</string>
-    <!-- no translation found for incall_error_supp_service_reject (8998568661508655638) -->
-    <skip />
-    <!-- no translation found for incall_error_supp_service_hangup (7434513517153834426) -->
-    <skip />
+    <string name="incall_error_supp_service_reject" msgid="8998568661508655638">"無法拒絕來電。"</string>
+    <string name="incall_error_supp_service_hangup" msgid="7434513517153834426">"無法釋放通話。"</string>
     <string name="emergency_enable_radio_dialog_title" msgid="4627849966634578257">"緊急電話"</string>
     <string name="emergency_enable_radio_dialog_message" msgid="207613549344420291">"正在開啟無線電..."</string>
-    <!-- no translation found for emergency_enable_radio_dialog_retry (5960061579996526883) -->
-    <skip />
-    <!-- no translation found for dial_emergency_error (1509085166367420355) -->
-    <skip />
-    <!-- no translation found for dial_emergency_empty_error (9130194953830414638) -->
-    <skip />
+    <string name="emergency_enable_radio_dialog_retry" msgid="5960061579996526883">"沒有服務。請再試一次…"</string>
+    <string name="dial_emergency_error" msgid="1509085166367420355">"無法通話。<xliff:g id="NON_EMERGENCY_NUMBER">%s</xliff:g> 不是緊急號碼。"</string>
+    <string name="dial_emergency_empty_error" msgid="9130194953830414638">"無法通話。撥打緊急號碼。"</string>
     <string name="dialerKeyboardHintText" msgid="9192914825413747792">"使用鍵盤撥號"</string>
     <string name="onscreenHoldText" msgid="2285258239691145872">"按住"</string>
     <string name="onscreenEndCallText" msgid="4403855834875398585">"結束"</string>
@@ -562,10 +488,8 @@
     <item msgid="899650777817315681">"標準"</item>
     <item msgid="2883365539347850535">"長"</item>
   </string-array>
-    <!-- no translation found for network_info_message (7738596060242881930) -->
-    <skip />
-    <!-- no translation found for network_error_message (3394780436230411413) -->
-    <skip />
+    <string name="network_info_message" msgid="7738596060242881930">"網絡訊息"</string>
+    <string name="network_error_message" msgid="3394780436230411413">"錯誤訊息"</string>
     <string name="ota_title_activate" msgid="8616918561356194398">"啟用您的手機"</string>
     <string name="ota_touch_activate" msgid="6553212803262586244">"如要啟用手機服務，您必須撥打一個特別電話。\n\n按「啟用」 後，請聽取手機啟用說明。"</string>
     <string name="ota_hfa_activation_title" msgid="2234246934160473981">"正在啟用…"</string>
@@ -578,10 +502,8 @@
     <string name="ota_title_problem_with_activation" msgid="7095824491970084367">"啟用時發生問題"</string>
     <string name="ota_listen" msgid="162923839877584937">"依照語音指示進行，直到您聽到啟用完成為止。"</string>
     <string name="ota_speaker" msgid="6904589278542719647">"揚聲器"</string>
-    <!-- no translation found for ota_progress (460876637828044519) -->
-    <skip />
-    <!-- no translation found for ota_failure (7713756181204620397) -->
-    <skip />
+    <string name="ota_progress" msgid="460876637828044519">"正在為您的手機編程…"</string>
+    <string name="ota_failure" msgid="7713756181204620397">"無法為您的手機編程"</string>
     <string name="ota_successful" msgid="1880780692887077407">"您的手機已啟用，大概需要 15 分鐘才能開始提供服務。"</string>
     <string name="ota_unsuccessful" msgid="8072141612635635357">"您的手機未啟用。\n建議您移到接收較佳的地方 (例如窗邊或戶外)。\n\n請再試一次，或致電客戶服務中心查詢其他啟用方式。"</string>
     <string name="ota_spc_failure" msgid="3909983542575030796">"SPC 錯誤過多"</string>
@@ -622,19 +544,14 @@
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"震動"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"震動"</string>
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"音效"</string>
-    <!-- no translation found for dial_pad_autocomplete (7683489952557536398) -->
-    <skip />
+    <string name="dial_pad_autocomplete" msgid="7683489952557536398">"撥號盤自動完成功能"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"鈴聲與震動"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"內置 SIM 卡"</string>
     <string name="enable_video_calling_title" msgid="7237253660669000899">"開啟視像通話"</string>
-    <!-- no translation found for enable_video_calling_dialog_msg (8948186136957417948) -->
-    <skip />
+    <string name="enable_video_calling_dialog_msg" msgid="8948186136957417948">"如要開啟視像通話，您需要在網絡設定中啟用強化 4G LTE 模式。"</string>
     <string name="enable_video_calling_dialog_settings" msgid="576528473599603249">"網絡設定"</string>
     <string name="enable_video_calling_dialog_close" msgid="7411471282167927991">"關閉"</string>
-    <!-- no translation found for sim_label_emergency_calls (4847699229529306397) -->
-    <skip />
-    <!-- no translation found for sim_description_emergency_calls (7535215397212301562) -->
-    <skip />
-    <!-- no translation found for sim_description_default (4778679519938775515) -->
-    <skip />
+    <string name="sim_label_emergency_calls" msgid="4847699229529306397">"緊急通話"</string>
+    <string name="sim_description_emergency_calls" msgid="7535215397212301562">"只限緊急通話"</string>
+    <string name="sim_description_default" msgid="4778679519938775515">"SIM 卡，插槽：<xliff:g id="SLOT_ID">%s</xliff:g>"</string>
 </resources>

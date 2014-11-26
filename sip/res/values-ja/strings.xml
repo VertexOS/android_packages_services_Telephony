@@ -16,21 +16,15 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- no translation found for sip_settings (3768482698061677257) -->
-    <skip />
-    <!-- no translation found for sip_accounts (85559497282185405) -->
-    <skip />
+    <string name="sip_settings" msgid="3768482698061677257">"SIPの設定"</string>
+    <string name="sip_accounts" msgid="85559497282185405">"SIPアカウント"</string>
     <string name="sip_accounts_title" msgid="2082527045326874519">"アカウント"</string>
     <string name="sip_receive_calls" msgid="426678617137462173">"着信を受ける"</string>
-    <!-- no translation found for sip_receive_calls_summary (946161517528227523) -->
-    <skip />
-    <!-- no translation found for sip_call_options_title (8421210494703869806) -->
-    <skip />
-    <!-- no translation found for sip_call_options_wifi_only_title (5112579243580893890) -->
-    <skip />
+    <string name="sip_receive_calls_summary" msgid="946161517528227523">"電池の使用量が増えます"</string>
+    <string name="sip_call_options_title" msgid="8421210494703869806">"SIP通話の使用"</string>
+    <string name="sip_call_options_wifi_only_title" msgid="5112579243580893890">"SIP通話の使用（Wi-Fiのみ）"</string>
     <string name="sip_call_options_entry_1" msgid="7217659161237099900">"データネットワーク接続時はすべての通話"</string>
-    <!-- no translation found for sip_call_options_entry_2 (1815335903940609729) -->
-    <skip />
+    <string name="sip_call_options_entry_2" msgid="1815335903940609729">"SIP通話のみ"</string>
     <string name="sip_call_options_wifi_only_entry_1" msgid="1358513095551847314">"すべての通話"</string>
     <string name="add_sip_account" msgid="800843669753980091">"アカウントを追加"</string>
     <string name="remove_sip_account" msgid="1367664438506503690">"アカウントの削除"</string>
@@ -74,14 +68,10 @@
     <string name="advanced_settings_hide" msgid="3480554978705290228">"▽すべて非表示"</string>
     <string name="empty_alert" msgid="6659484914371384024">"「<xliff:g id="INPUT_FIELD_NAME">%s</xliff:g>」は必須です。空欄にはできません。"</string>
     <string name="not_a_valid_port" msgid="7931422555587011830">"ポート番号は1000～65534で指定してください。"</string>
-    <!-- no translation found for no_internet_available (5523747991760017298) -->
-    <skip />
-    <!-- no translation found for no_wifi_available (1955023904229673488) -->
-    <skip />
-    <!-- no translation found for no_voip (3038021971231952704) -->
-    <skip />
+    <string name="no_internet_available" msgid="5523747991760017298">"SIP通話を発信する前に、インターネット接続を確認してください。"</string>
+    <string name="no_wifi_available" msgid="1955023904229673488">"SIP通話をするにはWi-Fネットワークに接続する必要があります（[無線とネットワーク]で設定）。"</string>
+    <string name="no_voip" msgid="3038021971231952704">"SIP通話はサポートされていません"</string>
     <string name="sip_system_decide" msgid="5577696249416700671">"自動"</string>
     <string name="sip_always_send_keepalive" msgid="4773022409239823318">"常に送信"</string>
-    <!-- no translation found for sip_connection_service_label (6935325004265884453) -->
-    <skip />
+    <string name="sip_connection_service_label" msgid="6935325004265884453">"内蔵SIP通話機能"</string>
 </resources>
