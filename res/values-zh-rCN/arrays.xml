@@ -19,8 +19,8 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <string-array name="preferred_network_mode_choices_world_mode">
     <item msgid="3391522821603584785">"通用"</item>
-    <item msgid="6753774959494729275">"LTE/CDMA"</item>
-    <item msgid="8658695584186942227">"LTE/GSM/UMTS"</item>
+    <item msgid="6753774959494729275">"LTE / CDMA"</item>
+    <item msgid="8658695584186942227">"LTE / GSM / UMTS"</item>
   </string-array>
   <string-array name="preferred_network_mode_values_world_mode">
     <item msgid="8390941159766263625">"10"</item>

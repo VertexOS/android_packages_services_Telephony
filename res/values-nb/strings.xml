@@ -57,9 +57,9 @@
     <string name="labelCDMAMore" msgid="1630676740428229339">"Innstillinger for CDMA-samtaler"</string>
     <string name="apn_settings" msgid="9043423184895642077">"Navn på tilgangspunkt"</string>
     <string name="settings_label" msgid="3876743539816984008">"Nettverksinnstillinger"</string>
-    <string name="phone_accounts" msgid="6376603393888116364">"Anropskontoer"</string>
-    <string name="phone_accounts_make_calls_with" msgid="1969188078933152231">"Foreta anrop med"</string>
-    <string name="phone_accounts_make_sip_calls_with" msgid="4677789312053828493">"Foreta SIP-anrop med"</string>
+    <string name="phone_accounts" msgid="6376603393888116364">"Ringekontoer"</string>
+    <string name="phone_accounts_make_calls_with" msgid="1969188078933152231">"Ring med"</string>
+    <string name="phone_accounts_make_sip_calls_with" msgid="4677789312053828493">"Foreta SIP-oppringing med"</string>
     <string name="phone_accounts_ask_every_time" msgid="4346499067149985702">"Spør først"</string>
     <string name="phone_accounts_settings_header" msgid="4141710640883261094">"Innstillinger"</string>
     <string name="phone_accounts_choose_accounts" msgid="5232948804226424002">"Velg kontoer"</string>
@@ -67,14 +67,14 @@
     <string name="phone_accounts_add_sip_account" msgid="2023821743341923271">"Legg til SIP-konto"</string>
     <string name="phone_accounts_configure_account_settings" msgid="1361715069911607109">"Konfigurer kontoinnstillingene"</string>
     <string name="phone_account_wifi_calling" msgid="1840272538233414629">"Wi-Fi-anrop"</string>
-    <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"Ikke bruk Wi-Fi-anrop"</string>
-    <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"Ikke bruk anropsassistenten"</string>
+    <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"Ikke bruk Wi-Fi for å ringe"</string>
+    <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"Ikke bruk ringeassistenten"</string>
     <string name="wifi_calling_call_assistant_none" msgid="6283702349285593683">"Ingen"</string>
-    <string name="wifi_calling_call_assistant" msgid="229102032881680320">"Anropsassistent"</string>
-    <string name="wifi_calling_use_call_assistant" msgid="8460024827012666199">"Bruk anropsassistenten"</string>
-    <string name="wifi_calling_select_call_assistant" msgid="9296558058772293">"Velg anropsassistent"</string>
-    <string name="wifi_calling_select_call_assistant_summary" msgid="9106482864108127281">"Velg en app eller tjeneste for å administrere nettverkene som brukes til anrop"</string>
-    <string name="wifi_calling_use_call_assistant_summary" msgid="6599987137133339698">"Tillater apper eller tjenester å administrere nettverk som brukes til anrop"</string>
+    <string name="wifi_calling_call_assistant" msgid="229102032881680320">"Ringeassistent"</string>
+    <string name="wifi_calling_use_call_assistant" msgid="8460024827012666199">"Bruk ringeassistenten"</string>
+    <string name="wifi_calling_select_call_assistant" msgid="9296558058772293">"Velg ringeassistent"</string>
+    <string name="wifi_calling_select_call_assistant_summary" msgid="9106482864108127281">"Velg en app eller tjeneste for å administrere nettverkene som brukes for å ringe"</string>
+    <string name="wifi_calling_use_call_assistant_summary" msgid="6599987137133339698">"Tillater apper eller tjenester å administrere nettverk som brukes for å ringe"</string>
     <string name="wifi_calling_call_assistant_configure" msgid="1092639708949670031">"Konfigurer"</string>
     <string name="connection_service_default_label" msgid="1498481943805913754">"Innebygd tilkoblingstjeneste"</string>
     <string name="voicemail" msgid="8693759337917898954">"Telefonsvarer"</string>
@@ -411,7 +411,7 @@
     <string name="fdn_enable_puk2_requested" msgid="4991074891459554705">"Passordet er feil. PIN2-koden er nå blokkert. Du må endre PIN 2-koden for å prøve på nytt."</string>
     <string name="puk2_requested" msgid="5831015200030161434">"Passordet er feil. PIN-koden er nå blokkert. Skriv inn en PUK2-kode."</string>
     <string name="puk2_blocked" msgid="3150263853077280049">"PUK2 er permanent sperret."</string>
-    <string name="pin2_attempts" msgid="720736232885011507">\n"Du har <xliff:g id="NUMBER">%d</xliff:g> resterende forsøk."</string>
+    <string name="pin2_attempts" msgid="720736232885011507">\n"Du har <xliff:g id="NUMBER">%d</xliff:g> forsøk igjen."</string>
     <string name="pin2_unblocked" msgid="7791600368153469078">"PIN2-koden er ikke lenger blokkert"</string>
     <string name="doneButton" msgid="2859593360997984240">"Ferdig"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"Nummer til telefonsvarer"</string>

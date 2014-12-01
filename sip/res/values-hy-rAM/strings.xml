@@ -21,10 +21,10 @@
     <string name="sip_accounts_title" msgid="2082527045326874519">"Հաշիվներ"</string>
     <string name="sip_receive_calls" msgid="426678617137462173">"Ընդունել մուտքային զանգեր"</string>
     <string name="sip_receive_calls_summary" msgid="946161517528227523">"Ավելի արագ է սպառում մարտկոցի լիցքը"</string>
-    <string name="sip_call_options_title" msgid="8421210494703869806">"Օգտագործել SIP զանգերը"</string>
-    <string name="sip_call_options_wifi_only_title" msgid="5112579243580893890">"Օգտագործել SIP զանգերը (միայն Wi-Fi)"</string>
+    <string name="sip_call_options_title" msgid="8421210494703869806">"Զանգ SIP-ի միջոցով"</string>
+    <string name="sip_call_options_wifi_only_title" msgid="5112579243580893890">"Զանգ SIP-ի միջոցով (միայն Wi-Fi)"</string>
     <string name="sip_call_options_entry_1" msgid="7217659161237099900">"Բոլոր զանգերի համար, երբ տվյալների ցանցը հասանելի է"</string>
-    <string name="sip_call_options_entry_2" msgid="1815335903940609729">"Միայն SIP զանգերի համար"</string>
+    <string name="sip_call_options_entry_2" msgid="1815335903940609729">"Միայն SIP-ի միջոցով զանգերի համար"</string>
     <string name="sip_call_options_wifi_only_entry_1" msgid="1358513095551847314">"Բոլոր զանգերի համար"</string>
     <string name="add_sip_account" msgid="800843669753980091">"Ավելացնել հաշիվ"</string>
     <string name="remove_sip_account" msgid="1367664438506503690">"Հեռացնել հաշիվը"</string>
@@ -68,10 +68,10 @@
     <string name="advanced_settings_hide" msgid="3480554978705290228">"▽ Հպեք՝ թաքցնելու ամենը"</string>
     <string name="empty_alert" msgid="6659484914371384024">"<xliff:g id="INPUT_FIELD_NAME">%s</xliff:g>-ը պարտադիր է և չի կարող լինել դատարկ:"</string>
     <string name="not_a_valid_port" msgid="7931422555587011830">"Միացքի համարը պետք է լինի 1000-ի և 65534-ի սահմաններում:"</string>
-    <string name="no_internet_available" msgid="5523747991760017298">"SIP զանգ կատարելու համար նախ ստուգեք ձեր համացանցի կապակցումը:"</string>
-    <string name="no_wifi_available" msgid="1955023904229673488">"SIP զանգեր կատարելու համար ձեզ անհրաժեշտ է կապակցվել Wi-Fi ցանցին (օգտագործեք Անլար կապի և Ցանցի կարգավորումները):"</string>
-    <string name="no_voip" msgid="3038021971231952704">"SIP զանգերը չեն աջակցվում"</string>
+    <string name="no_internet_available" msgid="5523747991760017298">"SIP-ի միջոցով զանգ կատարելու համար նախ ստուգեք ձեր համացանցի կապակցումը:"</string>
+    <string name="no_wifi_available" msgid="1955023904229673488">"SIP-ի միջոցով զանգեր կատարելու համար ձեզ անհրաժեշտ է կապակցվել Wi-Fi ցանցին (օգտագործեք Անլար կապի և Ցանցի կարգավորումները):"</string>
+    <string name="no_voip" msgid="3038021971231952704">"SIP-ի միջոցով զանգերը չեն աջակցվում"</string>
     <string name="sip_system_decide" msgid="5577696249416700671">"Ավտոմատ"</string>
     <string name="sip_always_send_keepalive" msgid="4773022409239823318">"Միշտ ուղարկել"</string>
-    <string name="sip_connection_service_label" msgid="6935325004265884453">"Ներկառուցված SIP զանգերի գործառույթ"</string>
+    <string name="sip_connection_service_label" msgid="6935325004265884453">"SIP-ի միջոցով զանգերի ներկառուցված ծառայություն"</string>
 </resources>

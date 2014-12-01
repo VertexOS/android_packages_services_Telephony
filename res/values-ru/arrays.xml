@@ -18,7 +18,7 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <string-array name="preferred_network_mode_choices_world_mode">
-    <item msgid="3391522821603584785">"Глобальные"</item>
+    <item msgid="3391522821603584785">"Global"</item>
     <item msgid="6753774959494729275">"LTE/CDMA"</item>
     <item msgid="8658695584186942227">"LTE/GSM/UMTS"</item>
   </string-array>

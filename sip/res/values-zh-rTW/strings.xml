@@ -20,7 +20,7 @@
     <string name="sip_accounts" msgid="85559497282185405">"SIP 帳戶"</string>
     <string name="sip_accounts_title" msgid="2082527045326874519">"帳戶"</string>
     <string name="sip_receive_calls" msgid="426678617137462173">"接聽來電"</string>
-    <string name="sip_receive_calls_summary" msgid="946161517528227523">"耗用電量會因此增加"</string>
+    <string name="sip_receive_calls_summary" msgid="946161517528227523">"耗電量會因此增加"</string>
     <string name="sip_call_options_title" msgid="8421210494703869806">"使用 SIP 通話功能"</string>
     <string name="sip_call_options_wifi_only_title" msgid="5112579243580893890">"使用 SIP 通話功能 (僅限 Wi-Fi)"</string>
     <string name="sip_call_options_entry_1" msgid="7217659161237099900">"數據網路可用時，適用於所有通話"</string>
