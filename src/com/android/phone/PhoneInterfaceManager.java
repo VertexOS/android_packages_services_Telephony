@@ -1979,27 +1979,30 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     }
 
     @Override
-    public void setLine1NumberForDisplayForSubscriber(int subId, String alphaTag, String number) {
+    public boolean setLine1NumberForDisplayForSubscriber(int subId, String alphaTag, String number) {
         enforceCarrierPrivilege();
 
         String iccId = getIccId(subId);
-        if (iccId != null) {
-            String alphaTagPrefKey = PREF_CARRIERS_ALPHATAG_PREFIX + iccId;
-            SharedPreferences.Editor editor = mTelephonySharedPreferences.edit();
-            if (alphaTag == null) {
-                editor.remove(alphaTagPrefKey);
-            } else {
-                editor.putString(alphaTagPrefKey, alphaTag);
-            }
-
-            String numberPrefKey = PREF_CARRIERS_NUMBER_PREFIX + iccId;
-            if (number == null) {
-                editor.remove(numberPrefKey);
-            } else {
-                editor.putString(numberPrefKey, number);
-            }
-            editor.commit();
+        if (TextUtils.isEmpty(iccId)) {
+            return false;
         }
+
+        String alphaTagPrefKey = PREF_CARRIERS_ALPHATAG_PREFIX + iccId;
+        SharedPreferences.Editor editor = mTelephonySharedPreferences.edit();
+        if (alphaTag == null) {
+            editor.remove(alphaTagPrefKey);
+        } else {
+            editor.putString(alphaTagPrefKey, alphaTag);
+        }
+
+        String numberPrefKey = PREF_CARRIERS_NUMBER_PREFIX + iccId;
+        if (number == null) {
+            editor.remove(numberPrefKey);
+        } else {
+            editor.putString(numberPrefKey, number);
+        }
+        editor.commit();
+        return true;
     }
 
     @Override
