@@ -179,7 +179,7 @@
     <string name="preferred_network_mode_lte_cdma_evdo_summary" msgid="228702246343742853">"Sare modu hobetsia: CDMA + LTE / EVDO"</string>
     <string name="preferred_network_mode_global_summary" msgid="1633134285545730364">"Sare modu hobetsia: orokorra"</string>
     <string name="preferred_network_mode_lte_wcdma_summary" msgid="9180775701594742750">"Sare modu hobetsia: LTE/WCDMA"</string>
-    <string name="preferred_network_mode_lte_gsm_umts_summary" msgid="633315028976225026">"Sare modu hobetsia: LTE/GSM/UMTS"</string>
+    <string name="preferred_network_mode_lte_gsm_umts_summary" msgid="633315028976225026">"Sareko modu hobetsia: LTE/GSM/UMTS"</string>
     <string name="preferred_network_mode_lte_cdma_summary" msgid="3722647806454528426">"Sare modu hobetsia: LTE/CDMA"</string>
   <string-array name="preferred_network_mode_choices">
     <item msgid="7886739962255042385">"LTE/WCDMA"</item>

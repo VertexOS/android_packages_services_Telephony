@@ -57,17 +57,17 @@
     <string name="labelCDMAMore" msgid="1630676740428229339">"CDMA զանգերի կարգավորումներ"</string>
     <string name="apn_settings" msgid="9043423184895642077">"Մատչման կետերի անունները"</string>
     <string name="settings_label" msgid="3876743539816984008">"Ցանցային կարգավորումներ"</string>
-    <string name="phone_accounts" msgid="6376603393888116364">"Հեռախոսային հաշիվներ"</string>
-    <string name="phone_accounts_make_calls_with" msgid="1969188078933152231">"Զանգերը կատարել այս հաշվի օգնությամբ"</string>
-    <string name="phone_accounts_make_sip_calls_with" msgid="4677789312053828493">"SIP զանգերը կատարել այս հաշվի օգնությամբ"</string>
+    <string name="phone_accounts" msgid="6376603393888116364">"Հաշիվներ զանգերի համար"</string>
+    <string name="phone_accounts_make_calls_with" msgid="1969188078933152231">"Ընտրել հաշիվ զանգերի համար"</string>
+    <string name="phone_accounts_make_sip_calls_with" msgid="4677789312053828493">"Ընտրել հաշիվ SIP-ի միջոցով զանգերի համար"</string>
     <string name="phone_accounts_ask_every_time" msgid="4346499067149985702">"Նախ հարցնել"</string>
     <string name="phone_accounts_settings_header" msgid="4141710640883261094">"Կարգավորումներ"</string>
     <string name="phone_accounts_choose_accounts" msgid="5232948804226424002">"Ընտրել հաշիվներ"</string>
-    <string name="phone_accounts_selection_header" msgid="1365215726106915865">"Հեռախոսի հաշիվներ"</string>
-    <string name="phone_accounts_add_sip_account" msgid="2023821743341923271">"Հավելել SIP հաշիվ"</string>
+    <string name="phone_accounts_selection_header" msgid="1365215726106915865">"Հաշիվներ զանգերի համար"</string>
+    <string name="phone_accounts_add_sip_account" msgid="2023821743341923271">"Ավելացնել SIP հաշիվ"</string>
     <string name="phone_accounts_configure_account_settings" msgid="1361715069911607109">"Կազմաձևել հաշվի կարգավորումները"</string>
-    <string name="phone_account_wifi_calling" msgid="1840272538233414629">"Wi-Fi զանգ"</string>
-    <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"Չօգտագործել Wi-Fi զանգերը"</string>
+    <string name="phone_account_wifi_calling" msgid="1840272538233414629">"Զանգ Wi-Fi-ի միջոցով"</string>
+    <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"Չօգտագործել Wi-Fi-ը զանգերի համար"</string>
     <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"Չօգտագործել զանգերի օգնականը"</string>
     <string name="wifi_calling_call_assistant_none" msgid="6283702349285593683">"Ոչ մեկը"</string>
     <string name="wifi_calling_call_assistant" msgid="229102032881680320">"Զանգերի օգնական"</string>
@@ -80,7 +80,7 @@
     <string name="voicemail" msgid="8693759337917898954">"Ձայնային փոստ"</string>
     <string name="voicemail_abbreviated" msgid="2215592488517217448">"ՁՓ՝"</string>
     <string name="networks" msgid="8873030692174541976">"Կապի օպերատորներ"</string>
-    <string name="cell_broadcast_settings" msgid="8740238216690502563">"Արտակարգ իրավիճակների ժամանակ հեռարձակում"</string>
+    <string name="cell_broadcast_settings" msgid="8740238216690502563">"Ծանուցումներ արտակարգ իրավիճակների մասին"</string>
     <string name="call_settings" msgid="6112441768261754562">"Զանգի կարգավորումներ"</string>
     <string name="additional_gsm_call_settings" msgid="1391795981938800617">"Լրացուցիչ կարգավորումներ"</string>
     <string name="additional_gsm_call_settings_with_label" msgid="1385241520708457376">"Լրացուցիչ կարգավորումներ (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
@@ -121,7 +121,7 @@
     <string name="sum_cfnrc_disabled" msgid="7222141261321276464">"Անջատված է"</string>
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"Ձեր սպասարկողը չի աջակցում զանգի վերահասցեավորման կասեցում, երբ ձեր հեռախոսն անհասանելի է:"</string>
     <string name="updating_title" msgid="6146755386174019046">"Զանգի կարգավորումներ"</string>
-    <string name="call_settings_primary_user_only" msgid="5679923943740900965">"Զանգի կարգավորումները կարող է փոխել միայն հիմնական օգտվողը:"</string>
+    <string name="call_settings_primary_user_only" msgid="5679923943740900965">"Զանգի կարգավորումները կարող է փոխել միայն հիմնական օգտագործողը:"</string>
     <string name="call_settings_with_label" msgid="89359812614544532">"Զանգի կարգավորումներ (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="error_updating_title" msgid="7970259216988931777">"Զանգի կարգավորումների սխալ"</string>
     <string name="reading_settings" msgid="1920291699287055284">"Ընթերցման կարգավորումներ..."</string>
@@ -197,7 +197,7 @@
     <item msgid="3817924849415716259">"GSM/WCDMA նախընտրելի"</item>
   </string-array>
     <string name="enhanced_4g_lte_mode_title" msgid="522191650223239171">"Ընդլայնված 4G LTE ռեժիմ"</string>
-    <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"Օգտագործել LTE ծռյթյննրը ձայնային և այլ հղրդկցթյննրը բրլվլու հմր (խրհրդ է տրվմ)"</string>
+    <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"Ձայնի և կապի որակը բարելավելու համար օգտվեք LTE ծառայություններից (հանձնարարելի)"</string>
     <string name="data_enabled" msgid="5972538663568715366">"Տվյալները միացված են"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"Թույլատրել տվյալների օգտագործումը"</string>
     <string name="roaming" msgid="8871412572928323707">"Տվյալների ռոումինգ"</string>
@@ -336,7 +336,7 @@
     <string name="cdma_lte_data_service" msgid="4255018217292548962">"Կարգավորել տվյալների ծառայությունը"</string>
     <string name="carrier_settings_title" msgid="9028166176523012300">"Օպերատորի կարգավորումներ"</string>
     <string name="fdn" msgid="7878832555095183202">"Ամրակայված հեռախոսահամարներ"</string>
-    <string name="fdn_with_label" msgid="187084204115493366">"Փակ բաժանորդային խումբ (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="fdn_with_label" msgid="187084204115493366">"Ֆիքսված համարներ (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="manage_fdn_list" msgid="8777755791892122369">"FDN ցուցակ"</string>
     <string name="fdn_list_with_label" msgid="7437232552210469217">"FDN ցանկ (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="fdn_activation" msgid="2156479741307463576">"FDN ակտիվացում"</string>
@@ -389,11 +389,11 @@
     <string name="badPin" msgid="8955102849303984935">"Ձեր մուտքագրած հին PIN-ը ճիշտ չէ: Կրկին փորձեք:"</string>
     <string name="mismatchPin" msgid="5923253370683071889">"Ձեր մուտքագրած PIN-երը չեն համընկնում: Կրկին փորձեք:"</string>
     <string name="invalidPin" msgid="5981171102258684792">"Մուտքագրեք PIN-ը, որը 4-ից 8 թիվ ունի:"</string>
-    <string name="disable_sim_pin" msgid="3419351358300716472">"Ջնջել SIM-ի PIN կոդը"</string>
-    <string name="enable_sim_pin" msgid="4845145659651484248">"Կայել SIM-ի PIN կոդը"</string>
-    <string name="enable_in_progress" msgid="3417917024688497010">"PIN կոդը կայվում է…"</string>
-    <string name="enable_pin_ok" msgid="2918545971413270063">"PIN կոդը կայվեց"</string>
-    <string name="disable_pin_ok" msgid="2109571368635883688">"PIN-ը ջնջվեց"</string>
+    <string name="disable_sim_pin" msgid="3419351358300716472">"Ջնջել SIM քարտի PIN կոդը"</string>
+    <string name="enable_sim_pin" msgid="4845145659651484248">"SIM քարտի PIN կոդի կարգավորում"</string>
+    <string name="enable_in_progress" msgid="3417917024688497010">"PIN կոդի կարգավորում…"</string>
+    <string name="enable_pin_ok" msgid="2918545971413270063">"PIN կոդը կարգավորվեց"</string>
+    <string name="disable_pin_ok" msgid="2109571368635883688">"PIN կոդը ջնջվեց"</string>
     <string name="pin_failed" msgid="5644377896213584760">"PIN կոդը սխալ է"</string>
     <string name="pin_changed" msgid="4455736268023261662">"PIN կոդը թարմացվեց"</string>
     <string name="puk_requested" msgid="5921393215789090200">"Գաղտնաբառը սխալ է: PIN կոդն այժմ կողպված է: Պահանջվում է PUK կոդը:"</string>
@@ -457,7 +457,7 @@
     <string name="emergency_enable_radio_dialog_message" msgid="207613549344420291">"Ռադիոն միացվում է..."</string>
     <string name="emergency_enable_radio_dialog_retry" msgid="5960061579996526883">"Ծառայությունը մատչելի չէ: Նորից փորձեք…"</string>
     <string name="dial_emergency_error" msgid="1509085166367420355">"Հնարավոր չէ զանգել: <xliff:g id="NON_EMERGENCY_NUMBER">%s</xliff:g> համարը արտակարգ իրավիճակի համար չէ:"</string>
-    <string name="dial_emergency_empty_error" msgid="9130194953830414638">"Հնարավոր չէ զանգել: Հավաքեք արտակարգ իրավիճակի համարը:"</string>
+    <string name="dial_emergency_empty_error" msgid="9130194953830414638">"Հնարավոր չէ զանգել: Հավաքեք արտակարգ իրավիճակի որևէ համար:"</string>
     <string name="dialerKeyboardHintText" msgid="9192914825413747792">"Օգտագործեք ստեղնաշարը՝ համարհավաքման համար"</string>
     <string name="onscreenHoldText" msgid="2285258239691145872">"Պահել"</string>
     <string name="onscreenEndCallText" msgid="4403855834875398585">"Ավարտել"</string>
@@ -488,7 +488,7 @@
     <item msgid="899650777817315681">"Սովորական"</item>
     <item msgid="2883365539347850535">"Երկար"</item>
   </string-array>
-    <string name="network_info_message" msgid="7738596060242881930">"Ցանցային հաղորդագրություն"</string>
+    <string name="network_info_message" msgid="7738596060242881930">"Ցանցի հաղորդագրություն"</string>
     <string name="network_error_message" msgid="3394780436230411413">"Սխալի հաղորդագրություն"</string>
     <string name="ota_title_activate" msgid="8616918561356194398">"Ակտիվացրեք ձեր հեռախոսը"</string>
     <string name="ota_touch_activate" msgid="6553212803262586244">"Հատուկ զանգ է հարկավոր կատարել՝ ձեր հեռախոսի ծառայությունն ակտիվացնելու համար: \n\n«Ակտիվացնել» կոճակը սեղմելուց հետո լսեք հրահանգները, որոնք տրվում են ձեր հեռախոսն ակտիվացնելու համար:"</string>
