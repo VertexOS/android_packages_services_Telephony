@@ -16,7 +16,6 @@
 
 package com.android.services.telephony;
 
-import android.telecom.PhoneCapabilities;
 import android.telecom.Conference;
 import android.telecom.Connection;
 import android.telecom.PhoneAccountHandle;
@@ -35,11 +34,11 @@ public class TelephonyConference extends Conference {
 
     public TelephonyConference(PhoneAccountHandle phoneAccount) {
         super(phoneAccount);
-        setCapabilities(
-                PhoneCapabilities.SUPPORT_HOLD |
-                PhoneCapabilities.HOLD |
-                PhoneCapabilities.MUTE |
-                PhoneCapabilities.MANAGE_CONFERENCE);
+        setConnectionCapabilities(
+                Connection.CAPABILITY_SUPPORT_HOLD |
+                Connection.CAPABILITY_HOLD |
+                Connection.CAPABILITY_MUTE |
+                Connection.CAPABILITY_MANAGE_CONFERENCE);
         setActive();
     }
 
@@ -148,12 +147,7 @@ public class TelephonyConference extends Conference {
         // If a conference event package was received, do not attempt to remove manage conference.
         if (connection instanceof TelephonyConnection &&
                 ((TelephonyConnection) connection).wasImsConnection()) {
-            int capabilities = getCapabilities();
-            if (PhoneCapabilities.can(capabilities, PhoneCapabilities.MANAGE_CONFERENCE)) {
-                int newCapabilities =
-                        PhoneCapabilities.remove(capabilities, PhoneCapabilities.MANAGE_CONFERENCE);
-                setCapabilities(newCapabilities);
-            }
+            removeCapability(Connection.CAPABILITY_MANAGE_CONFERENCE);
         }
     }
 

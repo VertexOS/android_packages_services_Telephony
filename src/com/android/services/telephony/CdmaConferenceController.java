@@ -19,7 +19,6 @@ package com.android.services.telephony;
 import android.os.Handler;
 import android.telecom.Connection;
 import android.telecom.DisconnectCause;
-import android.telecom.PhoneCapabilities;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -156,11 +155,11 @@ final class CdmaConferenceController {
             CdmaConnection newConnection = mCdmaConnections.get(mCdmaConnections.size() - 1);
             if (newConnection.isOutgoing()) {
                 // Only an outgoing call can be merged with an ongoing call.
-                mConference.updateCapabilities(PhoneCapabilities.MERGE_CONFERENCE);
+                mConference.updateCapabilities(Connection.CAPABILITY_MERGE_CONFERENCE);
             } else {
                 // If the most recently added connection was an incoming call, enable
                 // swap instead of merge.
-                mConference.updateCapabilities(PhoneCapabilities.SWAP_CONFERENCE);
+                mConference.updateCapabilities(Connection.CAPABILITY_SWAP_CONFERENCE);
             }
 
             // 2) Add any new connections to the conference

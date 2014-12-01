@@ -27,10 +27,8 @@ import android.telecom.Conference;
 import android.telecom.ConferenceParticipant;
 import android.telecom.DisconnectCause;
 import android.telecom.PhoneAccountHandle;
-import android.telecom.PhoneCapabilities;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -190,10 +188,10 @@ public class ImsConference extends Conference {
         super(null);
         mTelephonyConnectionService = telephonyConnectionService;
         setConferenceHost(conferenceHost);
-        setCapabilities(
-                PhoneCapabilities.SUPPORT_HOLD |
-                        PhoneCapabilities.HOLD |
-                        PhoneCapabilities.MUTE
+        setConnectionCapabilities(
+                Connection.CAPABILITY_SUPPORT_HOLD |
+                Connection.CAPABILITY_HOLD |
+                Connection.CAPABILITY_MUTE
         );
     }
 
@@ -326,22 +324,19 @@ public class ImsConference extends Conference {
      * are no conference event package participants, conference management is not permitted.
      */
     private void updateManageConference() {
-        boolean couldManageConference = PhoneCapabilities.can(getCapabilities(),
-                PhoneCapabilities.MANAGE_CONFERENCE);
+        boolean couldManageConference = can(Connection.CAPABILITY_MANAGE_CONFERENCE);
         boolean canManageConference = !mConferenceParticipantConnections.isEmpty();
         Log.v(this, "updateManageConference was:%s is:%s", couldManageConference ? "Y" : "N",
                 canManageConference ? "Y" : "N");
 
         if (couldManageConference != canManageConference) {
-            int newCapabilities = getCapabilities();
+            int newCapabilities = getConnectionCapabilities();
 
             if (canManageConference) {
-                newCapabilities |= PhoneCapabilities.MANAGE_CONFERENCE;
+                addCapability(Connection.CAPABILITY_MANAGE_CONFERENCE);
             } else {
-                newCapabilities = PhoneCapabilities.remove(newCapabilities,
-                        PhoneCapabilities.MANAGE_CONFERENCE);
+                removeCapability(Connection.CAPABILITY_MANAGE_CONFERENCE);
             }
-            setCapabilities(newCapabilities);
         }
     }
 
