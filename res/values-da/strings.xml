@@ -204,7 +204,7 @@
     <string name="roaming_enable" msgid="7331106985174381987">"Opret forbindelse til datatjenester under roaming"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"Opret forbindelse til datatjenester under roaming"</string>
     <string name="roaming_reenable_message" msgid="8913735676127858115">"Du har mistet dataforbindelsen, fordi du har forladt dit hjemmenetværk, og dataroaming er slået fra."</string>
-    <string name="roaming_warning" msgid="7126227198294007907">"Vil du tillade dataforbrug under roaming? Dette kan afføde væsentlige gebyrer."</string>
+    <string name="roaming_warning" msgid="7126227198294007907">"Vil du tillade dataforbrug under roaming? Dette kan medføre væsentlige gebyrer."</string>
     <string name="gsm_umts_options" msgid="6538311689850981686">"Indstillinger for GSM/UMTS"</string>
     <string name="cdma_options" msgid="4016822858172249884">"Indstillinger for CDMA"</string>
     <string name="throttle_data_usage" msgid="3715677828160555808">"Databrug"</string>
@@ -336,9 +336,9 @@
     <string name="cdma_lte_data_service" msgid="4255018217292548962">"Opsætning af datatjeneste"</string>
     <string name="carrier_settings_title" msgid="9028166176523012300">"Indst. for mobilselskab"</string>
     <string name="fdn" msgid="7878832555095183202">"Faste opkaldsnumre"</string>
-    <string name="fdn_with_label" msgid="187084204115493366">"Angivne opkaldsnumre (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="fdn_with_label" msgid="187084204115493366">"Faste opkald (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="manage_fdn_list" msgid="8777755791892122369">"Liste over numre til begrænset opkald"</string>
-    <string name="fdn_list_with_label" msgid="7437232552210469217">"Liste over angivne opkaldsnumre (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="fdn_list_with_label" msgid="7437232552210469217">"Liste over faste opkald (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="fdn_activation" msgid="2156479741307463576">"Aktivering af begrænset opkald"</string>
     <string name="fdn_enabled" msgid="5238109009915521240">"Faste opkaldsnumre er aktiveret"</string>
     <string name="fdn_disabled" msgid="4700049736675368279">"Faste opkaldsnumre er deaktiveret"</string>
@@ -548,7 +548,7 @@
     <string name="preference_category_ringtone" msgid="5197960752529332721">"Ringetone og vibration"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"Indbyggede SIM-kort"</string>
     <string name="enable_video_calling_title" msgid="7237253660669000899">"Slå videoopkald til"</string>
-    <string name="enable_video_calling_dialog_msg" msgid="8948186136957417948">"Før du kan slå videoopkald til, skal du aktivere tilstanden Forbedret 4G LTE i netværksindstillinger."</string>
+    <string name="enable_video_calling_dialog_msg" msgid="8948186136957417948">"Før du kan slå videoopkald til, skal du aktivere Forbedret 4G LTE-tilstand i netværksindstillinger."</string>
     <string name="enable_video_calling_dialog_settings" msgid="576528473599603249">"Netværksindstillinger"</string>
     <string name="enable_video_calling_dialog_close" msgid="7411471282167927991">"Luk"</string>
     <string name="sim_label_emergency_calls" msgid="4847699229529306397">"Nødopkald"</string>

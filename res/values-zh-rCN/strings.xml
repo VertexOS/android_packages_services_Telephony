@@ -105,7 +105,7 @@
     <string name="sum_cfu_enabled" msgid="2450052502198827927">"将所有来电转接到 <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfu_enabled_no_number" msgid="6591985777096823616">"未提供电话号码"</string>
     <string name="sum_cfu_disabled" msgid="8384177689501334080">"关闭"</string>
-    <string name="labelCFB" msgid="6139853033106283172">"正在通话时"</string>
+    <string name="labelCFB" msgid="6139853033106283172">"占线时"</string>
     <string name="messageCFB" msgid="3711089705936187129">"占线时的转接号码"</string>
     <string name="sum_cfb_enabled" msgid="5984198104833116690">"转接到 <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfb_disabled" msgid="4913145177320506827">"关闭"</string>
@@ -179,7 +179,7 @@
     <string name="preferred_network_mode_lte_cdma_evdo_summary" msgid="228702246343742853">"首选网络模式：CDMA+LTE/EVDO"</string>
     <string name="preferred_network_mode_global_summary" msgid="1633134285545730364">"首选网络模式：通用"</string>
     <string name="preferred_network_mode_lte_wcdma_summary" msgid="9180775701594742750">"首选网络模式：LTE/WCDMA"</string>
-    <string name="preferred_network_mode_lte_gsm_umts_summary" msgid="633315028976225026">"首选网络模式：LTE/GSM/UMTS"</string>
+    <string name="preferred_network_mode_lte_gsm_umts_summary" msgid="633315028976225026">"首选网络模式：LTE / GSM / UMTS"</string>
     <string name="preferred_network_mode_lte_cdma_summary" msgid="3722647806454528426">"首选网络模式：LTE/CDMA"</string>
   <string-array name="preferred_network_mode_choices">
     <item msgid="7886739962255042385">"LTE/WCDMA"</item>
@@ -204,7 +204,7 @@
     <string name="roaming_enable" msgid="7331106985174381987">"漫游时连接到移动数据网络服务"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"漫游时连接到移动数据网络服务"</string>
     <string name="roaming_reenable_message" msgid="8913735676127858115">"移动数据网络连接已断开，因为您已离开本地网络并关闭了移动数据网络漫游功能。"</string>
-    <string name="roaming_warning" msgid="7126227198294007907">"要允许在漫游时使用数据流量吗？这可能会产生比较多的费用。"</string>
+    <string name="roaming_warning" msgid="7126227198294007907">"要允许在漫游时使用数据流量吗？这可能会产生较多费用。"</string>
     <string name="gsm_umts_options" msgid="6538311689850981686">"GSM/UMTS 选项"</string>
     <string name="cdma_options" msgid="4016822858172249884">"CDMA 选项"</string>
     <string name="throttle_data_usage" msgid="3715677828160555808">"流量使用"</string>
@@ -402,7 +402,7 @@
     <string name="invalidPuk2" msgid="7059081153334815973">"请输入 8 位数字的 PUK2 码。"</string>
     <string name="pin2_changed" msgid="3724522579945610956">"PIN2 码已更新"</string>
     <string name="label_puk2_code" msgid="4688069961795341948">"输入 PUK2 码"</string>
-    <string name="fdn_enable_puk2_requested" msgid="4991074891459554705">"密码不正确。PIN2 码已被锁定。请更改 PIN 2，然后重试。"</string>
+    <string name="fdn_enable_puk2_requested" msgid="4991074891459554705">"密码不正确。PIN2 码已被锁定。请更改 PIN2 码，然后重试。"</string>
     <string name="puk2_requested" msgid="5831015200030161434">"密码不正确。SIM 卡已锁定。请输入 PUK2 码。"</string>
     <string name="puk2_blocked" msgid="3150263853077280049">"PUK2码已被永远锁定。"</string>
     <string name="pin2_attempts" msgid="720736232885011507">\n"您还可以尝试输入 <xliff:g id="NUMBER">%d</xliff:g> 次。"</string>
@@ -471,7 +471,7 @@
     <string name="hac_mode_title" msgid="8740268574688743289">"助听器"</string>
     <string name="hac_mode_summary" msgid="6833851160514929341">"启用助听器兼容模式"</string>
   <string-array name="tty_mode_entries">
-    <item msgid="512950011423868021">"未启用 TTY"</item>
+    <item msgid="512950011423868021">"TTY 关闭"</item>
     <item msgid="3971695875449640648">"TTY 完整"</item>
     <item msgid="1937509904407445684">"TTY HCO"</item>
     <item msgid="5644925873488772224">"TTY VCO"</item>
@@ -546,6 +546,6 @@
     <string name="enable_video_calling_dialog_settings" msgid="576528473599603249">"网络设置"</string>
     <string name="enable_video_calling_dialog_close" msgid="7411471282167927991">"关闭"</string>
     <string name="sim_label_emergency_calls" msgid="4847699229529306397">"紧急呼救"</string>
-    <string name="sim_description_emergency_calls" msgid="7535215397212301562">"仅限紧急呼救通话"</string>
+    <string name="sim_description_emergency_calls" msgid="7535215397212301562">"只能拨打紧急呼救电话"</string>
     <string name="sim_description_default" msgid="4778679519938775515">"SIM 卡，插槽：<xliff:g id="SLOT_ID">%s</xliff:g>"</string>
 </resources>

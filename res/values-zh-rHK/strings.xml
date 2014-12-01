@@ -105,7 +105,7 @@
     <string name="sum_cfu_enabled" msgid="2450052502198827927">"將所有來電轉接至 <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfu_enabled_no_number" msgid="6591985777096823616">"號碼無法使用"</string>
     <string name="sum_cfu_disabled" msgid="8384177689501334080">"關閉"</string>
-    <string name="labelCFB" msgid="6139853033106283172">"忙碌時"</string>
+    <string name="labelCFB" msgid="6139853033106283172">"忙線時"</string>
     <string name="messageCFB" msgid="3711089705936187129">"忙線號碼"</string>
     <string name="sum_cfb_enabled" msgid="5984198104833116690">"轉接至 <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfb_disabled" msgid="4913145177320506827">"關閉"</string>
@@ -204,7 +204,7 @@
     <string name="roaming_enable" msgid="7331106985174381987">"漫遊時連線到數據傳輸服務"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"漫遊時連線到數據傳輸服務"</string>
     <string name="roaming_reenable_message" msgid="8913735676127858115">"您已離開主網絡覆蓋範圍，且已關閉數據漫遊服務，因此數據連線已中斷。"</string>
-    <string name="roaming_warning" msgid="7126227198294007907">"允許漫遊時使用數據嗎？可能會產生大量費用。"</string>
+    <string name="roaming_warning" msgid="7126227198294007907">"允許漫遊時使用數據嗎？您可能需要支付龐大的費用。"</string>
     <string name="gsm_umts_options" msgid="6538311689850981686">"GSM/UMTS 選項"</string>
     <string name="cdma_options" msgid="4016822858172249884">"CDMA 選項"</string>
     <string name="throttle_data_usage" msgid="3715677828160555808">"數據用量"</string>
@@ -412,7 +412,7 @@
     <string name="puk2_requested" msgid="5831015200030161434">"密碼不正確。SIM 現在已被封鎖，請輸入 PUK2。"</string>
     <string name="puk2_blocked" msgid="3150263853077280049">"PUK2 碼已被永久封鎖。"</string>
     <string name="pin2_attempts" msgid="720736232885011507">\n"您還有 <xliff:g id="NUMBER">%d</xliff:g> 次嘗試機會。"</string>
-    <string name="pin2_unblocked" msgid="7791600368153469078">"PIN2 不再被封鎖"</string>
+    <string name="pin2_unblocked" msgid="7791600368153469078">"PIN2 目前沒有封鎖"</string>
     <string name="doneButton" msgid="2859593360997984240">"完成"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"留言信箱號碼"</string>
     <string name="card_title_dialing" msgid="5769417478498348054">"撥號中"</string>
