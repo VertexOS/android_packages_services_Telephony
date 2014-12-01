@@ -81,7 +81,7 @@ final class TelecomAccountRegistry {
 
             // Populate the phone account data.
             int subId = mPhone.getSubId();
-            int color = PhoneAccount.NO_COLOR;
+            int color = PhoneAccount.NO_HIGHLIGHT_COLOR;
             int slotId = SubscriptionManager.INVALID_SIM_SLOT_INDEX;
             String line1Number = mTelephonyManager.getLine1NumberForSubscriber(subId);
             if (line1Number == null) {

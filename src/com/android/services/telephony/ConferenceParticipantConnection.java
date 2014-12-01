@@ -22,7 +22,6 @@ import android.net.Uri;
 import android.telecom.Connection;
 import android.telecom.ConferenceParticipant;
 import android.telecom.DisconnectCause;
-import android.telecom.PhoneCapabilities;
 
 /**
  * Represents a participant in a conference call.
@@ -116,13 +115,13 @@ public class ConferenceParticipantConnection extends Connection {
     }
 
     /**
-     * Configures the {@link android.telecom.PhoneCapabilities} applicable to this connection.  A
+     * Configures the capabilities applicable to this connection.  A
      * conference participant can only be disconnected from a conference since there is not
      * actual connection to the participant which could be split from the conference.
      */
     private void setCapabilities() {
-        int capabilities = PhoneCapabilities.DISCONNECT_FROM_CONFERENCE;
-        setCallCapabilities(capabilities);
+        int capabilities = CAPABILITY_DISCONNECT_FROM_CONFERENCE;
+        setConnectionCapabilities(capabilities);
     }
 
     /**

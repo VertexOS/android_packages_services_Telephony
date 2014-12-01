@@ -21,9 +21,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.telecom.AudioState;
 import android.telecom.Connection;
-import android.telecom.DisconnectCause;
 import android.telecom.PhoneAccount;
-import android.telecom.PhoneCapabilities;
 import android.util.Log;
 
 import com.android.internal.telephony.Call;
@@ -246,17 +244,17 @@ final class SipConnection extends Connection {
     }
 
     private int buildCallCapabilities() {
-        int capabilities = PhoneCapabilities.MUTE | PhoneCapabilities.SUPPORT_HOLD;
+        int capabilities = CAPABILITY_MUTE | CAPABILITY_SUPPORT_HOLD;
         if (getState() == STATE_ACTIVE || getState() == STATE_HOLDING) {
-            capabilities |= PhoneCapabilities.HOLD;
+            capabilities |= CAPABILITY_HOLD;
         }
         return capabilities;
     }
 
     void updateCallCapabilities(boolean force) {
         int newCallCapabilities = buildCallCapabilities();
-        if (force || getCallCapabilities() != newCallCapabilities) {
-            setCallCapabilities(newCallCapabilities);
+        if (force || getConnectionCapabilities() != newCallCapabilities) {
+            setConnectionCapabilities(newCallCapabilities);
         }
     }
 

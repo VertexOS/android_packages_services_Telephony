@@ -21,7 +21,6 @@ import android.content.res.Resources;
 import android.telecom.Conference;
 import android.telecom.Connection;
 import android.telecom.PhoneAccountHandle;
-import android.telecom.PhoneCapabilities;
 
 import com.android.internal.telephony.Call;
 import com.android.internal.telephony.CallStateException;
@@ -42,7 +41,7 @@ public class CdmaConference extends Conference {
     }
 
     public void updateCapabilities(int capabilities) {
-        capabilities |=  PhoneCapabilities.MUTE | PhoneCapabilities.GENERIC_CONFERENCE;
+        capabilities |= Connection.CAPABILITY_MUTE | Connection.CAPABILITY_GENERIC_CONFERENCE;
         setCapabilities(capabilities);
     }
 
@@ -84,10 +83,10 @@ public class CdmaConference extends Conference {
     public void onMerge() {
         Log.i(this, "Merging CDMA conference call.");
         // Can only merge once
-        mCapabilities &= ~PhoneCapabilities.MERGE_CONFERENCE;
+        mCapabilities &= ~Connection.CAPABILITY_MERGE_CONFERENCE;
         // Once merged, swap is enabled.
         if (isSwapSupportedAfterMerge()){
-            mCapabilities |= PhoneCapabilities.SWAP_CONFERENCE;
+            mCapabilities |= Connection.CAPABILITY_SWAP_CONFERENCE;
         }
         updateCapabilities(mCapabilities);
         sendFlash();
