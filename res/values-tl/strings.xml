@@ -197,7 +197,7 @@
     <item msgid="3817924849415716259">"Ninanais ang GSM/WCDMA"</item>
   </string-array>
     <string name="enhanced_4g_lte_mode_title" msgid="522191650223239171">"Enhanced 4G LTE Mode"</string>
-    <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"Gamitin LTE service pahusayin voice at ibang pakikipag-ugnayan (inirerekomenda)"</string>
+    <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"Gamitin ang LTE upang pahusayin ang voice at ibang komunikasyon (inirerekomenda)"</string>
     <string name="data_enabled" msgid="5972538663568715366">"Pinagana ang data"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"Payagan ang paggamit ng data"</string>
     <string name="roaming" msgid="8871412572928323707">"Roaming ng data"</string>

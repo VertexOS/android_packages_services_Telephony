@@ -73,8 +73,8 @@
     <string name="wifi_calling_call_assistant" msgid="229102032881680320">"通話小幫手"</string>
     <string name="wifi_calling_use_call_assistant" msgid="8460024827012666199">"使用通話小幫手"</string>
     <string name="wifi_calling_select_call_assistant" msgid="9296558058772293">"選擇通話小幫手"</string>
-    <string name="wifi_calling_select_call_assistant_summary" msgid="9106482864108127281">"選擇管理通話時所用網路的應用程式或服務"</string>
-    <string name="wifi_calling_use_call_assistant_summary" msgid="6599987137133339698">"允許應用程式或服務管理通話時所用的網路"</string>
+    <string name="wifi_calling_select_call_assistant_summary" msgid="9106482864108127281">"選擇管理通話網路的應用程式或服務"</string>
+    <string name="wifi_calling_use_call_assistant_summary" msgid="6599987137133339698">"允許應用程式或服務管理通話網路"</string>
     <string name="wifi_calling_call_assistant_configure" msgid="1092639708949670031">"設定"</string>
     <string name="connection_service_default_label" msgid="1498481943805913754">"內建連線服務"</string>
     <string name="voicemail" msgid="8693759337917898954">"語音信箱"</string>
@@ -411,7 +411,7 @@
     <string name="fdn_enable_puk2_requested" msgid="4991074891459554705">"密碼不正確，PIN2 現已遭到封鎖。如要再試一次，請變更 PIN 2。"</string>
     <string name="puk2_requested" msgid="5831015200030161434">"密碼不正確，SIM 卡現已遭到封鎖。請輸入 PUK2。"</string>
     <string name="puk2_blocked" msgid="3150263853077280049">"PUK2 遭到永久封鎖。"</string>
-    <string name="pin2_attempts" msgid="720736232885011507">\n"您還有 <xliff:g id="NUMBER">%d</xliff:g> 次嘗試機會。"</string>
+    <string name="pin2_attempts" msgid="720736232885011507">\n"您還可以嘗試 <xliff:g id="NUMBER">%d</xliff:g> 次。"</string>
     <string name="pin2_unblocked" msgid="7791600368153469078">"PIN2 已解除封鎖"</string>
     <string name="doneButton" msgid="2859593360997984240">"完成"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"語音信箱號碼"</string>
@@ -448,14 +448,14 @@
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"開始 MMI 序列…"</string>
     <string name="incall_error_supp_service_unknown" msgid="655570339115407698">"不支援的服務"</string>
     <string name="incall_error_supp_service_switch" msgid="5237002176899962862">"無法切換通話。"</string>
-    <string name="incall_error_supp_service_separate" msgid="7224393405134545246">"無法區分通話。"</string>
+    <string name="incall_error_supp_service_separate" msgid="7224393405134545246">"無法分割通話。"</string>
     <string name="incall_error_supp_service_transfer" msgid="7235952238189391438">"無法轉接。"</string>
     <string name="incall_error_supp_service_conference" msgid="2505727299596357312">"無法進行多方通話。"</string>
     <string name="incall_error_supp_service_reject" msgid="8998568661508655638">"無法拒接來電。"</string>
     <string name="incall_error_supp_service_hangup" msgid="7434513517153834426">"無法掛斷電話。"</string>
     <string name="emergency_enable_radio_dialog_title" msgid="4627849966634578257">"緊急電話"</string>
     <string name="emergency_enable_radio_dialog_message" msgid="207613549344420291">"開啟無線通訊中…"</string>
-    <string name="emergency_enable_radio_dialog_retry" msgid="5960061579996526883">"沒有服務，正在重試…"</string>
+    <string name="emergency_enable_radio_dialog_retry" msgid="5960061579996526883">"找不到服務訊號，正在重試…"</string>
     <string name="dial_emergency_error" msgid="1509085166367420355">"無法通話。<xliff:g id="NON_EMERGENCY_NUMBER">%s</xliff:g> 不是緊急號碼。"</string>
     <string name="dial_emergency_empty_error" msgid="9130194953830414638">"無法通話。只能撥打緊急號碼。"</string>
     <string name="dialerKeyboardHintText" msgid="9192914825413747792">"使用鍵盤撥號"</string>
@@ -502,8 +502,8 @@
     <string name="ota_title_problem_with_activation" msgid="7095824491970084367">"啟用失敗"</string>
     <string name="ota_listen" msgid="162923839877584937">"依照語音指示進行，直到您聽到啟用完成為止。"</string>
     <string name="ota_speaker" msgid="6904589278542719647">"擴音"</string>
-    <string name="ota_progress" msgid="460876637828044519">"正在為您的手機設定程式…"</string>
-    <string name="ota_failure" msgid="7713756181204620397">"無法為您的手機設定程式"</string>
+    <string name="ota_progress" msgid="460876637828044519">"正在透過程式設定您的手機…"</string>
+    <string name="ota_failure" msgid="7713756181204620397">"無法透過程式設定您的手機"</string>
     <string name="ota_successful" msgid="1880780692887077407">"您的手機已啟用；系統最多可能需要 15 分鐘，才會開始提供服務。"</string>
     <string name="ota_unsuccessful" msgid="8072141612635635357">"您的手機未啟用。\n建議您移往收訊較佳處 (例如窗邊或戶外)。\n\n請再試一次，或向客戶服務中心洽詢其他啟用方式。"</string>
     <string name="ota_spc_failure" msgid="3909983542575030796">"過度調整 SPC 錯誤"</string>

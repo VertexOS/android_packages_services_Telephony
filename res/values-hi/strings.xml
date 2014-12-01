@@ -97,7 +97,7 @@
     <string name="sum_cw_enabled" msgid="8083061901633671397">"कॉल के दौरान, मुझे इनकमिंग कॉल की नोटिफिकेशन दें"</string>
     <string name="sum_cw_disabled" msgid="3648693907300104575">"कॉल के दौरान, मुझे इनकमिंग कॉल की नोटिफिकेशन दें"</string>
     <string name="call_forwarding_settings" msgid="3378927671091537173">"कॉल अग्रेषण सेटिंग"</string>
-    <string name="call_forwarding_settings_with_label" msgid="8569489414006897127">"कॉल अग्रेषण की सेटिंग (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="call_forwarding_settings_with_label" msgid="8569489414006897127">"कॉल आगे भेजने की सेटिंग (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="labelCF" msgid="2574386948026924737">"कॉल अग्रेषण"</string>
     <string name="labelCFU" msgid="8147177368148660600">"हमेशा आगे भेजें"</string>
     <string name="messageCFU" msgid="3560082430662923687">"हमेशा इस नंबर का उपयोग करें"</string>
