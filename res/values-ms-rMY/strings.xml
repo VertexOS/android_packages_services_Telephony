@@ -204,7 +204,7 @@
     <string name="roaming_enable" msgid="7331106985174381987">"Sambung ke perkhidmatan data apabila melakukan perayauan"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"Bersambung ke perkhidmatan data semasa melakukan perayauan"</string>
     <string name="roaming_reenable_message" msgid="8913735676127858115">"Anda telah kehilangan kesambungan data kerana anda meninggalkan rangkaian rumah anda dengan data perayauan dimatikan."</string>
-    <string name="roaming_warning" msgid="7126227198294007907">"Benarkan penggunaan data semasa perayauan? Caj yang ketara mungkin dikenakan."</string>
+    <string name="roaming_warning" msgid="7126227198294007907">"Benarkan penggunaan data semasa perayauan? Caj yang tinggi mungkin dikenakan."</string>
     <string name="gsm_umts_options" msgid="6538311689850981686">"Pilihan GSM/UMTS"</string>
     <string name="cdma_options" msgid="4016822858172249884">"Pilihan CDMA"</string>
     <string name="throttle_data_usage" msgid="3715677828160555808">"Penggunaan data"</string>
@@ -405,7 +405,7 @@
     <string name="fdn_enable_puk2_requested" msgid="4991074891459554705">"Kata laluan tidak betul. PIN2 kini Disekat. Untuk mencuba lagi, tukar PIN 2."</string>
     <string name="puk2_requested" msgid="5831015200030161434">"Kata laluan tidak betul. SIM kini dikunci. Masukkan PUK2."</string>
     <string name="puk2_blocked" msgid="3150263853077280049">"PUK2 disekat secara kekal."</string>
-    <string name="pin2_attempts" msgid="720736232885011507">\n"Anda mempunyai <xliff:g id="NUMBER">%d</xliff:g> percubaan yang tinggal."</string>
+    <string name="pin2_attempts" msgid="720736232885011507">\n"Anda mempunyai <xliff:g id="NUMBER">%d</xliff:g> percubaan lagi."</string>
     <string name="pin2_unblocked" msgid="7791600368153469078">"PIN2 tidak disekat lagi"</string>
     <string name="doneButton" msgid="2859593360997984240">"Selesai"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"Nombor mel suara"</string>
@@ -443,7 +443,7 @@
     <string name="incall_error_supp_service_unknown" msgid="655570339115407698">"Perkhidmatan tidak disokong"</string>
     <string name="incall_error_supp_service_switch" msgid="5237002176899962862">"Tidak dapat menukar panggilan."</string>
     <string name="incall_error_supp_service_separate" msgid="7224393405134545246">"Tidak dapat mengasingkan panggilan."</string>
-    <string name="incall_error_supp_service_transfer" msgid="7235952238189391438">"Tidak dapat memindahkan."</string>
+    <string name="incall_error_supp_service_transfer" msgid="7235952238189391438">"Tidak dapat memindahkan panggilan."</string>
     <string name="incall_error_supp_service_conference" msgid="2505727299596357312">"Tidak boleh membuat panggilan sidang."</string>
     <string name="incall_error_supp_service_reject" msgid="8998568661508655638">"Tidak dapat menolak panggilan."</string>
     <string name="incall_error_supp_service_hangup" msgid="7434513517153834426">"Tidak dapat melepaskan panggilan."</string>

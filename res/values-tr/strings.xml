@@ -197,7 +197,7 @@
     <item msgid="3817924849415716259">"GSM/WCDMA tercih edilen"</item>
   </string-array>
     <string name="enhanced_4g_lte_mode_title" msgid="522191650223239171">"Geliştirilmiş 4G LTE Modu"</string>
-    <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"Sesi ve diğer iletişimleri iyileştirmek için LTE hizmetlerini kullanın (önerilir)."</string>
+    <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"Sesi ve diğer iletişimleri iyileştirmek için LTE hizmetlerini kullanın (önerilir)"</string>
     <string name="data_enabled" msgid="5972538663568715366">"Veri etkin"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"Veri kullanımına izin ver"</string>
     <string name="roaming" msgid="8871412572928323707">"Veri dolaşımı"</string>
@@ -398,8 +398,8 @@
     <string name="badPuk2" msgid="7910064009531541708">"PUK2 hatalı. Tekrar deneyin."</string>
     <string name="badPin2" msgid="6646896629970023109">"Eski PIN2 hatalı. Tekrar deneyin."</string>
     <string name="mismatchPin2" msgid="4177967478551851117">"PIN2\'ler eşleşmiyor. Tekrar deneyin."</string>
-    <string name="invalidPin2" msgid="1757045131429105595">"4-8 arası sayı içeren bir PIN2 girin."</string>
-    <string name="invalidPuk2" msgid="7059081153334815973">"8 sayı içeren bir PUK2 girin."</string>
+    <string name="invalidPin2" msgid="1757045131429105595">"4-8 arası rakam içeren bir PIN2 girin."</string>
+    <string name="invalidPuk2" msgid="7059081153334815973">"8 rakam içeren bir PUK2 girin."</string>
     <string name="pin2_changed" msgid="3724522579945610956">"PIN2 güncellendi"</string>
     <string name="label_puk2_code" msgid="4688069961795341948">"PUK2 kodunu girin"</string>
     <string name="fdn_enable_puk2_requested" msgid="4991074891459554705">"Şifre hatalı. PIN2 Engellendi. Tekrar denemek için PIN2\'yi değiştirin."</string>
