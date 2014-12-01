@@ -208,6 +208,13 @@ abstract class TelephonyConnection extends Connection {
         }
     }
 
+    /**
+     * Creates a clone of the current {@link TelephonyConnection}.
+     *
+     * @return The clone.
+     */
+    public abstract TelephonyConnection cloneConnection();
+
     @Override
     public void onAudioStateChanged(AudioState audioState) {
         // TODO: update TTY mode.
