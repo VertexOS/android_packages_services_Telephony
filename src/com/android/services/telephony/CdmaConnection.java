@@ -135,6 +135,20 @@ final class CdmaConnection extends TelephonyConnection {
         super.onAnswer();
     }
 
+    /**
+     * Clones the current {@link CdmaConnection}.
+     * <p>
+     * Listeners are not copied to the new instance.
+     *
+     * @return The cloned connection.
+     */
+    @Override
+    public TelephonyConnection cloneConnection() {
+        CdmaConnection cdmaConnection = new CdmaConnection(getOriginalConnection(),
+                mEmergencyTonePlayer, mAllowMute, mIsOutgoing);
+        return cdmaConnection;
+    }
+
     @Override
     public void onStateChanged(int state) {
         Connection originalConnection = getOriginalConnection();
