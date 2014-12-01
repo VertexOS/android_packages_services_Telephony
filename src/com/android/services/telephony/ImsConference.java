@@ -53,16 +53,6 @@ import java.util.concurrent.ConcurrentHashMap;
 public class ImsConference extends Conference {
 
     /**
-     * TelephonyConnection class used to represent the connection to the conference server.
-     */
-    private class ConferenceHostConnection extends TelephonyConnection {
-        protected ConferenceHostConnection(
-                com.android.internal.telephony.Connection originalConnection) {
-            super(originalConnection);
-        }
-    }
-
-    /**
      * Listener used to respond to changes to conference participants.  At the conference level we
      * are most concerned with handling destruction of a conference participant.
      */
@@ -180,10 +170,10 @@ public class ImsConference extends Conference {
      *
      * @param telephonyConnectionService The connection service responsible for adding new
      *                                   conferene participants.
-     * @param conferenceHost The IMS radio connection hosting the conference.
+     * @param conferenceHost The telephony connection hosting the conference.
      */
     public ImsConference(TelephonyConnectionService telephonyConnectionService,
-            com.android.internal.telephony.Connection conferenceHost) {
+            TelephonyConnection conferenceHost) {
 
         super(null);
         mTelephonyConnectionService = telephonyConnectionService;
@@ -345,12 +335,12 @@ public class ImsConference extends Conference {
      *
      * @param conferenceHost The connection hosting the conference.
      */
-    private void setConferenceHost(com.android.internal.telephony.Connection conferenceHost) {
+    private void setConferenceHost(TelephonyConnection conferenceHost) {
         if (Log.VERBOSE) {
             Log.v(this, "setConferenceHost " + conferenceHost);
         }
 
-        mConferenceHost = new ConferenceHostConnection(conferenceHost);
+        mConferenceHost = conferenceHost;
         mConferenceHost.addConnectionListener(mConferenceHostListener);
         mConferenceHost.addTelephonyConnectionListener(mTelephonyConnectionListener);
     }
