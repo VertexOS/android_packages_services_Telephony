@@ -192,7 +192,7 @@ abstract class TelephonyConnection extends Connection {
     /**
      * Determines the current audio quality for the {@link TelephonyConnection}.
      * This is used when {@link TelephonyConnection#updateConnectionCapabilities}} is called to
-     * indicate whether a call has the {@link Connection#CAPABILITY_VoLTE} capability.
+     * indicate whether a call has the {@link Connection#CAPABILITY_HIGH_DEF_AUDIO} capability.
      */
     private int mAudioQuality;
 
@@ -684,8 +684,7 @@ abstract class TelephonyConnection extends Connection {
 
     /**
      * Applies the audio capabilities to the {@code CallCapabilities} bit-mask.  A call with high
-     * definition audio is considered to have the {@code VoLTE} call capability as VoLTE uses high
-     * definition audio.
+     * definition audio is considered to have the {@code HIGH_DEF_AUDIO} call capability.
      *
      * @param capabilities The {@code CallCapabilities} bit-mask.
      * @return The capabilities with the audio capabilities applied.
@@ -695,9 +694,9 @@ abstract class TelephonyConnection extends Connection {
 
         if (mAudioQuality ==
                 com.android.internal.telephony.Connection.AUDIO_QUALITY_HIGH_DEFINITION) {
-            currentCapabilities = applyCapability(currentCapabilities, CAPABILITY_VoLTE);
+            currentCapabilities = applyCapability(currentCapabilities, CAPABILITY_HIGH_DEF_AUDIO);
         } else {
-            currentCapabilities = removeCapability(currentCapabilities, CAPABILITY_VoLTE);
+            currentCapabilities = removeCapability(currentCapabilities, CAPABILITY_HIGH_DEF_AUDIO);
         }
 
         return currentCapabilities;
@@ -765,7 +764,7 @@ abstract class TelephonyConnection extends Connection {
 
     /**
      * Sets the current call audio quality.  Used during rebuild of the capabilities
-     * to set or unset the {@link Connection#CAPABILITY_VoLTE} capability.
+     * to set or unset the {@link Connection#CAPABILITY_HIGH_DEF_AUDIO} capability.
      *
      * @param audioQuality The audio quality.
      */
