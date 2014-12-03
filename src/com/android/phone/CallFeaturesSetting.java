@@ -179,7 +179,6 @@ public class CallFeaturesSetting extends PreferenceActivity
 
     private Phone mPhone;
     private AudioManager mAudioManager;
-    private VoicemailProviderSettingsUtil mVmProviderSettingsUtil;
 
     private SubscriptionInfoHelper mSubscriptionInfoHelper;
 
@@ -403,7 +402,7 @@ public class CallFeaturesSetting extends PreferenceActivity
             updateVMPreferenceWidgets(newProviderKey);
 
             final VoicemailProviderSettings newProviderSettings =
-                    mVmProviderSettingsUtil.load(newProviderKey);
+                    VoicemailProviderSettingsUtil.load(this, newProviderKey);
 
             // If the user switches to a voice mail provider and we have numbers stored for it we
             // will automatically change the phone's voice mail and forwarding number to the stored
@@ -503,7 +502,7 @@ public class CallFeaturesSetting extends PreferenceActivity
         if (mVMChangeCompletedSuccessfully || mFwdChangesRequireRollback) {
             showDialogIfForeground(VoicemailDialogUtil.VM_REVERTING_DIALOG);
             final VoicemailProviderSettings prevSettings =
-                    mVmProviderSettingsUtil.load(mPreviousVMProviderKey);
+                    VoicemailProviderSettingsUtil.load(this, mPreviousVMProviderKey);
             if (prevSettings == null) {
                 Log.e(LOG_TAG, "VoicemailProviderSettings for the key \""
                         + mPreviousVMProviderKey + "\" is null but should be loaded.");
@@ -716,7 +715,7 @@ public class CallFeaturesSetting extends PreferenceActivity
             return;
         }
 
-        mVmProviderSettingsUtil.save(key, newSettings);
+        VoicemailProviderSettingsUtil.save(this, key, newSettings);
         mVMChangeCompletedSuccessfully = false;
         mFwdChangesRequireRollback = false;
         mVMOrFwdSetError = 0;
@@ -796,7 +795,7 @@ public class CallFeaturesSetting extends PreferenceActivity
             dismissDialogSafely(VoicemailDialogUtil.VM_FWD_READING_DIALOG);
 
             if (mReadingSettingsForDefaultProvider) {
-                mVmProviderSettingsUtil.save(DEFAULT_VM_PROVIDER_KEY,
+                VoicemailProviderSettingsUtil.save(this, DEFAULT_VM_PROVIDER_KEY,
                         new VoicemailProviderSettings(this.mOldVmNumber, mForwardingReadResults));
                 mReadingSettingsForDefaultProvider = false;
             }
@@ -1123,7 +1122,6 @@ public class CallFeaturesSetting extends PreferenceActivity
         }
 
         mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-        mVmProviderSettingsUtil = new VoicemailProviderSettingsUtil(getApplicationContext());
 
         // Show the voicemail preference in onResume if the calling intent specifies the
         // ACTION_ADD_VOICEMAIL action.
@@ -1410,7 +1408,7 @@ public class CallFeaturesSetting extends PreferenceActivity
             // Remove this provider from the list.
             if (!TextUtils.isEmpty(providerToIgnore)) {
                 if (DBG) log("Found ACTION_ADD_VOICEMAIL. providerToIgnore= " + providerToIgnore);
-                mVmProviderSettingsUtil.delete(providerToIgnore);
+                VoicemailProviderSettingsUtil.delete(this, providerToIgnore);
             }
         }
 
