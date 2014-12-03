@@ -1050,7 +1050,7 @@ public class MobileNetworkSettings extends PreferenceActivity
             return;
         }
 
-        if (enable && mGsmUmtsOptions == null) {
+        if (mGsmUmtsOptions == null) {
             mGsmUmtsOptions = new GsmUmtsOptions(this, prefSet);
         }
         PreferenceScreen apnExpand =
@@ -1060,7 +1060,7 @@ public class MobileNetworkSettings extends PreferenceActivity
         PreferenceScreen carrierSettings =
                 (PreferenceScreen) prefSet.findPreference(BUTTON_CARRIER_SETTINGS_KEY);
         if (apnExpand != null) {
-            apnExpand.setEnabled(enable);
+            apnExpand.setEnabled(isWorldMode() || enable);
         }
         if (operatorSelectionExpand != null) {
             operatorSelectionExpand.setEnabled(enable);
