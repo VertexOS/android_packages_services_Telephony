@@ -59,9 +59,10 @@ import com.android.phone.common.util.SettingsUtil;
 import com.android.phone.settings.AccountSelectionPreference;
 import com.android.phone.settings.CallForwardInfoUtil;
 import com.android.phone.settings.VoicemailDialogUtil;
+import com.android.phone.settings.VoicemailNotificationSettingsUtil;
 import com.android.phone.settings.VoicemailProviderSettings;
 import com.android.phone.settings.VoicemailProviderSettingsUtil;
-import com.android.phone.settings.VoicemailNotificationSettingsUtil;
+import com.android.phone.settings.VoicemailRingtonePreference;
 import com.android.phone.settings.fdn.FdnSetting;
 import com.android.services.telephony.sip.SipUtil;
 
@@ -193,6 +194,7 @@ public class CallFeaturesSetting extends PreferenceActivity
     private ListPreference mVoicemailProviders;
     private PreferenceScreen mVoicemailSettingsScreen;
     private PreferenceScreen mVoicemailSettings;
+    private VoicemailRingtonePreference mVoicemailNotificationRingtone;
     private CheckBoxPreference mVoicemailNotificationVibrate;
     private CheckBoxPreference mEnableVideoCalling;
 
@@ -420,7 +422,7 @@ public class CallFeaturesSetting extends PreferenceActivity
             }
         } else if (preference.getKey().equals(mVoicemailNotificationVibrate.getKey())) {
             VoicemailNotificationSettingsUtil.setVibrationEnabled(
-                    mPhone.getContext(), Boolean.TRUE.equals(objValue));
+                    mPhone, Boolean.TRUE.equals(objValue));
         } else if (preference == mEnableVideoCalling) {
             if (ImsManager.isEnhanced4gLteModeSettingEnabledByUser(mPhone.getContext())) {
                 PhoneGlobals.getInstance().phoneMgr.enableVideoCalling((boolean) objValue);
@@ -1180,6 +1182,10 @@ public class CallFeaturesSetting extends PreferenceActivity
                 (PreferenceScreen) findPreference(VOICEMAIL_SETTING_SCREEN_PREF_KEY);
         mVoicemailSettings = (PreferenceScreen)findPreference(BUTTON_VOICEMAIL_SETTING_KEY);
 
+        mVoicemailNotificationRingtone = (VoicemailRingtonePreference) findPreference(
+                getResources().getString(R.string.voicemail_notification_ringtone_key));
+        mVoicemailNotificationRingtone.init(mPhone);
+
         mVoicemailNotificationVibrate = (CheckBoxPreference) findPreference(
                 getResources().getString(R.string.voicemail_notification_vibrate_key));
         mVoicemailNotificationVibrate.setOnPreferenceChangeListener(this);
@@ -1296,7 +1302,7 @@ public class CallFeaturesSetting extends PreferenceActivity
         mVMProviderSettingsForced = false;
 
         mVoicemailNotificationVibrate.setChecked(
-                VoicemailNotificationSettingsUtil.isVibrationEnabled(mPhone.getContext()));
+                VoicemailNotificationSettingsUtil.isVibrationEnabled(mPhone));
 
         if (ImsManager.isVtEnabledByPlatform(mPhone.getContext()) && ENABLE_VT_FLAG) {
             boolean currentValue =

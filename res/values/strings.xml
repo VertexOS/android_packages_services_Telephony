@@ -1278,5 +1278,6 @@
     <string translatable="false" name="config_world_mode"/>
 
     <!-- DO NOT TRANSLATE. Internal key for a voicemail notification preference. -->
+    <string name="voicemail_notification_ringtone_key">voicemail_notification_ringtone_key</string>
     <string name="voicemail_notification_vibrate_key">voicemail_notification_vibrate_key</string>
 </resources>
