@@ -25,8 +25,6 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
@@ -41,7 +39,6 @@ import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
-import android.preference.PreferenceManager;
 import android.preference.PreferenceScreen;
 import android.provider.ContactsContract.CommonDataKinds;
 import android.provider.Settings;
@@ -64,6 +61,7 @@ import com.android.phone.settings.CallForwardInfoUtil;
 import com.android.phone.settings.VoicemailDialogUtil;
 import com.android.phone.settings.VoicemailProviderSettings;
 import com.android.phone.settings.VoicemailProviderSettingsUtil;
+import com.android.phone.settings.VoicemailNotificationSettingsUtil;
 import com.android.phone.settings.fdn.FdnSetting;
 import com.android.services.telephony.sip.SipUtil;
 
@@ -141,19 +139,14 @@ public class CallFeaturesSetting extends PreferenceActivity
 
     // String keys for preference lookup
     // TODO: Naming these "BUTTON_*" is confusing since they're not actually buttons(!)
+    // TODO: Consider moving these strings to strings.xml, so that they are not duplicated here and
+    // in the layout files. These strings need to be treated carefully; if the setting is
+    // persistent, they are used as the key to store shared preferences and the name should not be
+    // changed unless the settings are also migrated.
     private static final String VOICEMAIL_SETTING_SCREEN_PREF_KEY = "button_voicemail_category_key";
     private static final String BUTTON_VOICEMAIL_KEY = "button_voicemail_key";
     private static final String BUTTON_VOICEMAIL_PROVIDER_KEY = "button_voicemail_provider_key";
     private static final String BUTTON_VOICEMAIL_SETTING_KEY = "button_voicemail_setting_key";
-    // New preference key for voicemail notification vibration
-    /* package */ static final String BUTTON_VOICEMAIL_NOTIFICATION_VIBRATE_KEY =
-            "button_voicemail_notification_vibrate_key";
-    // Old preference key for voicemail notification vibration. Used for migration to the new
-    // preference key only.
-    /* package */ static final String BUTTON_VOICEMAIL_NOTIFICATION_VIBRATE_WHEN_KEY =
-            "button_voicemail_notification_vibrate_when_key";
-    /* package */ static final String BUTTON_VOICEMAIL_NOTIFICATION_RINGTONE_KEY =
-            "button_voicemail_notification_ringtone_key";
     private static final String BUTTON_FDN_KEY   = "button_fdn_key";
 
     private static final String BUTTON_DTMF_KEY        = "button_dtmf_settings";
@@ -176,8 +169,6 @@ public class CallFeaturesSetting extends PreferenceActivity
     private static final int EVENT_FORWARDING_CHANGED       = 501;
     private static final int EVENT_FORWARDING_GET_COMPLETED = 502;
 
-    private static final int MSG_UPDATE_VOICEMAIL_RINGTONE_SUMMARY = 1;
-
     public static final String HAC_KEY = "HACSetting";
     public static final String HAC_VAL_ON = "ON";
     public static final String HAC_VAL_OFF = "OFF";
@@ -189,10 +180,6 @@ public class CallFeaturesSetting extends PreferenceActivity
     private Phone mPhone;
     private AudioManager mAudioManager;
     private VoicemailProviderSettingsUtil mVmProviderSettingsUtil;
-
-    // voicemail notification vibration string constants
-    private static final String VOICEMAIL_VIBRATION_ALWAYS = "always";
-    private static final String VOICEMAIL_VIBRATION_NEVER = "never";
 
     private SubscriptionInfoHelper mSubscriptionInfoHelper;
 
@@ -432,6 +419,9 @@ public class CallFeaturesSetting extends PreferenceActivity
                 mChangingVMorFwdDueToProviderChange = true;
                 saveVoiceMailAndForwardingNumber(newProviderKey, newProviderSettings);
             }
+        } else if (preference.getKey().equals(mVoicemailNotificationVibrate.getKey())) {
+            VoicemailNotificationSettingsUtil.setVibrationEnabled(
+                    mPhone.getContext(), Boolean.TRUE.equals(objValue));
         } else if (preference == mEnableVideoCalling) {
             if (ImsManager.isEnhanced4gLteModeSettingEnabledByUser(mPhone.getContext())) {
                 PhoneGlobals.getInstance().phoneMgr.enableVideoCalling((boolean) objValue);
@@ -1183,15 +1173,19 @@ public class CallFeaturesSetting extends PreferenceActivity
         mButtonAutoRetry = (CheckBoxPreference) findPreference(BUTTON_RETRY_KEY);
         mButtonHAC = (CheckBoxPreference) findPreference(BUTTON_HAC_KEY);
         mButtonTTY = (ListPreference) findPreference(BUTTON_TTY_KEY);
-        mVoicemailProviders = (ListPreference) findPreference(BUTTON_VOICEMAIL_PROVIDER_KEY);
         mEnableVideoCalling = (CheckBoxPreference) findPreference(ENABLE_VIDEO_CALLING_KEY);
 
+        mVoicemailProviders = (ListPreference) findPreference(BUTTON_VOICEMAIL_PROVIDER_KEY);
         mVoicemailProviders.setOnPreferenceChangeListener(this);
+
         mVoicemailSettingsScreen =
                 (PreferenceScreen) findPreference(VOICEMAIL_SETTING_SCREEN_PREF_KEY);
         mVoicemailSettings = (PreferenceScreen)findPreference(BUTTON_VOICEMAIL_SETTING_KEY);
-        mVoicemailNotificationVibrate =
-                (CheckBoxPreference) findPreference(BUTTON_VOICEMAIL_NOTIFICATION_VIBRATE_KEY);
+
+        mVoicemailNotificationVibrate = (CheckBoxPreference) findPreference(
+                getResources().getString(R.string.voicemail_notification_vibrate_key));
+        mVoicemailNotificationVibrate.setOnPreferenceChangeListener(this);
+
         initVoiceMailProviders();
 
         if (getResources().getBoolean(R.bool.dtmf_type_enabled)) {
@@ -1303,12 +1297,8 @@ public class CallFeaturesSetting extends PreferenceActivity
         updateVoiceNumberField();
         mVMProviderSettingsForced = false;
 
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(
-                mPhone.getContext());
-        if (migrateVoicemailVibrationSettingsIfNeeded(prefs)) {
-            mVoicemailNotificationVibrate.setChecked(prefs.getBoolean(
-                    BUTTON_VOICEMAIL_NOTIFICATION_VIBRATE_KEY, false));
-        }
+        mVoicemailNotificationVibrate.setChecked(
+                VoicemailNotificationSettingsUtil.isVibrationEnabled(mPhone.getContext()));
 
         if (ImsManager.isVtEnabledByPlatform(mPhone.getContext()) && ENABLE_VT_FLAG) {
             boolean currentValue =
@@ -1319,25 +1309,6 @@ public class CallFeaturesSetting extends PreferenceActivity
         } else {
             prefSet.removePreference(mEnableVideoCalling);
         }
-    }
-
-    // Migrate settings from BUTTON_VOICEMAIL_NOTIFICATION_VIBRATE_WHEN_KEY to
-    // BUTTON_VOICEMAIL_NOTIFICATION_VIBRATE_KEY, if the latter does not exist.
-    // Returns true if migration was performed.
-    public static boolean migrateVoicemailVibrationSettingsIfNeeded(SharedPreferences prefs) {
-        if (!prefs.contains(BUTTON_VOICEMAIL_NOTIFICATION_VIBRATE_KEY)) {
-            String vibrateWhen = prefs.getString(
-                    BUTTON_VOICEMAIL_NOTIFICATION_VIBRATE_WHEN_KEY, VOICEMAIL_VIBRATION_NEVER);
-            // If vibrateWhen is always, then voicemailVibrate should be True.
-            // otherwise if vibrateWhen is "only in silent mode", or "never", then
-            // voicemailVibrate = False.
-            boolean voicemailVibrate = vibrateWhen.equals(VOICEMAIL_VIBRATION_ALWAYS);
-            final SharedPreferences.Editor editor = prefs.edit();
-            editor.putBoolean(BUTTON_VOICEMAIL_NOTIFICATION_VIBRATE_KEY, voicemailVibrate);
-            editor.commit();
-            return true;
-        }
-        return false;
     }
 
     private void handleTTYChange(Preference preference, Object objValue) {
@@ -1526,6 +1497,7 @@ public class CallFeaturesSetting extends PreferenceActivity
         }
         return super.onOptionsItemSelected(item);
     }
+
     /**
      * Finish current Activity and go up to the top level Settings ({@link CallFeaturesSetting}).
      * This is useful for implementing "HomeAsUp" capability for second-level Settings.

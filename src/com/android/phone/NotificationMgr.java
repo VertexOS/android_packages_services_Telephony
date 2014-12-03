@@ -42,6 +42,7 @@ import android.widget.Toast;
 import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneBase;
 import com.android.internal.telephony.TelephonyCapabilities;
+import com.android.phone.settings.VoicemailNotificationSettingsUtil;
 
 import java.util.List;
 
@@ -313,16 +314,7 @@ public class NotificationMgr {
             Intent intent = new Intent(Intent.ACTION_CALL,
                     Uri.fromParts(PhoneAccount.SCHEME_VOICEMAIL, "", null));
             PendingIntent pendingIntent = PendingIntent.getActivity(mContext, 0, intent, 0);
-
-            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
-            Uri ringtoneUri;
-            String uriString = prefs.getString(
-                    CallFeaturesSetting.BUTTON_VOICEMAIL_NOTIFICATION_RINGTONE_KEY, null);
-            if (!TextUtils.isEmpty(uriString)) {
-                ringtoneUri = Uri.parse(uriString);
-            } else {
-                ringtoneUri = Settings.System.DEFAULT_NOTIFICATION_URI;
-            }
+            Uri ringtoneUri = VoicemailNotificationSettingsUtil.getRingtoneUri(mContext);
 
             Notification.Builder builder = new Notification.Builder(mContext);
             builder.setSmallIcon(resId)
@@ -334,10 +326,7 @@ public class NotificationMgr {
                     .setColor(mContext.getResources().getColor(R.color.dialer_theme_color))
                     .setOngoing(true);
 
-            CallFeaturesSetting.migrateVoicemailVibrationSettingsIfNeeded(prefs);
-            final boolean vibrate = prefs.getBoolean(
-                    CallFeaturesSetting.BUTTON_VOICEMAIL_NOTIFICATION_VIBRATE_KEY, false);
-            if (vibrate) {
+            if (VoicemailNotificationSettingsUtil.isVibrationEnabled(mContext)) {
                 builder.setDefaults(Notification.DEFAULT_VIBRATE);
             }
 
