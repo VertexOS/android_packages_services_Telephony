@@ -35,6 +35,8 @@ import android.provider.Settings;
 import android.telecom.PhoneAccount;
 import android.telephony.PhoneNumberUtils;
 import android.telephony.ServiceState;
+import android.telephony.SubscriptionManager;
+import android.telephony.SubscriptionManager.OnSubscriptionsChangedListener;
 import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
@@ -56,7 +58,7 @@ import java.util.List;
  * @see PhoneGlobals.notificationMgr
  */
 public class NotificationMgr {
-    private static final String LOG_TAG = "NotificationMgr";
+    private static final String LOG_TAG = NotificationMgr.class.getSimpleName();
     private static final boolean DBG =
             (PhoneGlobals.DBG_LEVEL >= 1) && (SystemProperties.getInt("ro.debuggable", 0) == 1);
     // Do not check in with VDBG = true, since that may write PII to the system log.
@@ -87,11 +89,6 @@ public class NotificationMgr {
     // used to track the notification of selected network unavailable
     private boolean mSelectedUnavailableNotify = false;
 
-    // Retry params for the getVoiceMailNumber() call; see updateMwi().
-    private static final int MAX_VM_NUMBER_RETRIES = 5;
-    private static final int VM_NUMBER_RETRY_DELAY_MILLIS = 10000;
-    private int mVmNumberRetriesRemaining = MAX_VM_NUMBER_RETRIES;
-
     /**
      * Private constructor (this is a singleton).
      * @see #init(PhoneGlobals)
@@ -106,6 +103,15 @@ public class NotificationMgr {
         mUserManager = (UserManager) app.getSystemService(Context.USER_SERVICE);
         mPhone = app.phone;  // TODO: better style to use mCM.getDefaultPhone() everywhere instead
         statusBarHelper = new StatusBarHelper();
+
+        SubscriptionManager.from(mContext).registerOnSubscriptionsChangedListener(
+                new OnSubscriptionsChangedListener() {
+                    @Override
+                    public void onSubscriptionsChanged() {
+                        // Update the message waiting indicator if the SIM is changed.
+                        updateMwi(mPhone.getMessageWaitingIndicator());
+                    }
+                });
     }
 
     /**
@@ -237,6 +243,13 @@ public class NotificationMgr {
     /* package */ void updateMwi(boolean visible) {
         if (DBG) log("updateMwi(): " + visible);
 
+        if (!PhoneGlobals.sVoiceCapable) {
+            // Do not show the message waiting indicator on devices which are not voice capable.
+            // These events *should* be blocked at the telephony layer for such devices.
+            Log.w(LOG_TAG, "Called updateMwi() on non-voice-capable device! Ignoring...");
+            return;
+        }
+
         if (visible) {
             int resId = android.R.drawable.stat_notify_voicemail;
 
@@ -254,45 +267,16 @@ public class NotificationMgr {
             String vmNumber = mPhone.getVoiceMailNumber();
             if (DBG) log("- got vm number: '" + vmNumber + "'");
 
-            // Watch out: vmNumber may be null, for two possible reasons:
-            //
-            //   (1) This phone really has no voicemail number
-            //
-            //   (2) This phone *does* have a voicemail number, but
-            //       the SIM isn't ready yet.
-            //
-            // Case (2) *does* happen in practice if you have voicemail
-            // messages when the device first boots: we get an MWI
-            // notification as soon as we register on the network, but the
-            // SIM hasn't finished loading yet.
-            //
-            // So handle case (2) by retrying the lookup after a short
-            // delay.
-
+            // The voicemail number may be null because:
+            //   (1) This phone has no voicemail number.
+            //   (2) This phone has a voicemail number, but the SIM isn't ready yet. This may
+            //       happen when the device first boots if we get a MWI notification when we
+            //       register on the network before the SIM has loaded. In this case, the
+            //       SubscriptionListener this class registers on the SubscriptionManager will
+            //       call this method again once the SIM is loaded.
             if ((vmNumber == null) && !mPhone.getIccRecordsLoaded()) {
                 if (DBG) log("- Null vm number: SIM records not loaded (yet)...");
-
-                // TODO: rather than retrying after an arbitrary delay, it
-                // would be cleaner to instead just wait for a
-                // SIM_RECORDS_LOADED notification.
-                // (Unfortunately right now there's no convenient way to
-                // get that notification in phone app code.  We'd first
-                // want to add a call like registerForSimRecordsLoaded()
-                // to Phone.java and GSMPhone.java, and *then* we could
-                // listen for that in the CallNotifier class.)
-
-                // Limit the number of retries (in case the SIM is broken
-                // or missing and can *never* load successfully.)
-                if (mVmNumberRetriesRemaining-- > 0) {
-                    if (DBG) log("  - Retrying in " + VM_NUMBER_RETRY_DELAY_MILLIS + " msec...");
-                    mApp.notifier.sendMwiChangedDelayed(VM_NUMBER_RETRY_DELAY_MILLIS);
-                    return;
-                } else {
-                    Log.w(LOG_TAG, "NotificationMgr.updateMwi: getVoiceMailNumber() failed after "
-                          + MAX_VM_NUMBER_RETRIES + " retries; giving up.");
-                    // ...and continue with vmNumber==null, just as if the
-                    // phone had no VM number set up in the first place.
-                }
+                return;
             }
 
             if (TelephonyCapabilities.supportsVoiceMessageCount(mPhone)) {
