@@ -101,7 +101,7 @@ public class TelephonyConnectionService extends ConnectionService {
                 Log.d(this, "onCreateOutgoingConnection, phone is null");
                 return Connection.createFailedConnection(
                         DisconnectCauseUtil.toTelecomDisconnectCause(
-                                android.telephony.DisconnectCause.OUTGOING_FAILURE,
+                                android.telephony.DisconnectCause.OUT_OF_SERVICE,
                                 "Phone is null"));
             }
             number = phone.getVoiceMailNumber();
@@ -142,7 +142,7 @@ public class TelephonyConnectionService extends ConnectionService {
             Log.d(this, "onCreateOutgoingConnection, phone is null");
             return Connection.createFailedConnection(
                     DisconnectCauseUtil.toTelecomDisconnectCause(
-                            android.telephony.DisconnectCause.OUTGOING_FAILURE, "Phone is null"));
+                            android.telephony.DisconnectCause.OUT_OF_SERVICE, "Phone is null"));
         }
 
         int state = phone.getServiceState().getState();
