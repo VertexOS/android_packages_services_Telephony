@@ -19,4 +19,7 @@
 <resources>
     <!-- Flag indicating if dtmf tone type is enabled -->
     <bool name="dtmf_type_enabled">true</bool>
+    <!-- Determine whether the voicemail notification is persistent in the notification bar.
+         If true, the voicemail notifications cannot be dismissed from the notification bar. -->
+    <bool name="voicemail_notification_persistent">true</bool>
 </resources>
