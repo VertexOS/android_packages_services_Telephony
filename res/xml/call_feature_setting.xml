@@ -65,14 +65,13 @@
         </PreferenceScreen>
 
         <com.android.phone.settings.VoicemailRingtonePreference
-            android:key="button_voicemail_notification_ringtone_key"
+            android:key="voicemail_notification_ringtone_key"
             android:title="@string/voicemail_notification_ringtone_title"
-            android:persistent="true"
-            android:ringtoneType="notification"
-            android:defaultValue="content://settings/system/notification_sound" />
+            android:persistent="false"
+            android:ringtoneType="notification" />
 
         <CheckBoxPreference
-            android:key="button_voicemail_notification_vibrate_key"
+            android:key="@string/voicemail_notification_vibrate_key"
             android:title="@string/voicemail_notification_vibrate_when_title"
             android:persistent="true" />
 
