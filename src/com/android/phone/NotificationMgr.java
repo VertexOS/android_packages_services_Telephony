@@ -298,7 +298,7 @@ public class NotificationMgr {
             Intent intent = new Intent(Intent.ACTION_CALL,
                     Uri.fromParts(PhoneAccount.SCHEME_VOICEMAIL, "", null));
             PendingIntent pendingIntent = PendingIntent.getActivity(mContext, 0, intent, 0);
-            Uri ringtoneUri = VoicemailNotificationSettingsUtil.getRingtoneUri(mContext);
+            Uri ringtoneUri = VoicemailNotificationSettingsUtil.getRingtoneUri(mPhone);
 
             Notification.Builder builder = new Notification.Builder(mContext);
             builder.setSmallIcon(resId)
@@ -310,7 +310,7 @@ public class NotificationMgr {
                     .setColor(mContext.getResources().getColor(R.color.dialer_theme_color))
                     .setOngoing(true);
 
-            if (VoicemailNotificationSettingsUtil.isVibrationEnabled(mContext)) {
+            if (VoicemailNotificationSettingsUtil.isVibrationEnabled(mPhone)) {
                 builder.setDefaults(Notification.DEFAULT_VIBRATE);
             }
 
