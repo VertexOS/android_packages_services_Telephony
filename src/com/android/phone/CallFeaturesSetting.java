@@ -341,10 +341,13 @@ public class CallFeaturesSetting extends PreferenceActivity
             // Update HAC Value in AudioManager
             mAudioManager.setParameter(HAC_KEY, hac != 0 ? HAC_VAL_ON : HAC_VAL_OFF);
             return true;
-        } else if (preference == mVoicemailSettings) {
+        } else if (preference.getKey().equals(mVoicemailSettings.getKey())) {
+            // Check key instead of comparing reference because closing the voicemail notification
+            // ringtone dialog invokes onResume(), but leaves the old preference screen up,
+            // TODO: Revert to checking reference after migrating voicemail to its own activity.
             if (DBG) log("onPreferenceTreeClick: Voicemail Settings Preference is clicked.");
 
-            final Dialog dialog = mVoicemailSettings.getDialog();
+            final Dialog dialog = ((PreferenceScreen) preference).getDialog();
             if (dialog != null) {
                 dialog.getActionBar().setDisplayHomeAsUpEnabled(false);
             }
@@ -419,6 +422,9 @@ public class CallFeaturesSetting extends PreferenceActivity
                 saveVoiceMailAndForwardingNumber(newProviderKey, newProviderSettings);
             }
         } else if (preference.getKey().equals(mVoicemailNotificationVibrate.getKey())) {
+            // Check key instead of comparing reference because closing the voicemail notification
+            // ringtone dialog invokes onResume(), but leaves the old preference screen up,
+            // TODO: Revert to checking reference after migrating voicemail to its own activity.
             VoicemailNotificationSettingsUtil.setVibrationEnabled(
                     mPhone.getContext(), Boolean.TRUE.equals(objValue));
         } else if (preference == mEnableVideoCalling) {
