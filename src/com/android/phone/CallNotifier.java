@@ -143,7 +143,7 @@ public class CallNotifier extends Handler {
                                     BluetoothProfile.HEADSET);
         }
 
-        TelephonyManager telephonyManager = (TelephonyManager)app.getSystemService(
+        TelephonyManager telephonyManager = (TelephonyManager) app.getSystemService(
                 Context.TELEPHONY_SERVICE);
         telephonyManager.listen(mPhoneStateListener,
                 PhoneStateListener.LISTEN_MESSAGE_WAITING_INDICATOR
@@ -189,10 +189,6 @@ public class CallNotifier extends Handler {
 
             case CallStateMonitor.PHONE_UNKNOWN_CONNECTION_APPEARED:
                 onUnknownConnectionAppeared((AsyncResult) msg.obj);
-                break;
-
-            case CallStateMonitor.INTERNAL_PHONE_MWI_CHANGED:
-                onMwiChanged(mApplication.phone.getMessageWaitingIndicator());
                 break;
 
             case CallStateMonitor.PHONE_STATE_DISPLAYINFO:
@@ -245,13 +241,15 @@ public class CallNotifier extends Handler {
 
     PhoneStateListener mPhoneStateListener = new PhoneStateListener() {
         @Override
-        public void onMessageWaitingIndicatorChanged(boolean mwi) {
-            onMwiChanged(mwi);
+        public void onMessageWaitingIndicatorChanged(boolean visible) {
+            if (VDBG) log("onMessageWaitingIndicatorChanged(): " + visible);
+            mApplication.notificationMgr.updateMwi(visible);
         }
 
         @Override
-        public void onCallForwardingIndicatorChanged(boolean cfi) {
-            onCfiChanged(cfi);
+        public void onCallForwardingIndicatorChanged(boolean visible) {
+            if (VDBG) log("onCallForwardingIndicatorChanged(): " + visible);
+            mApplication.notificationMgr.updateCfi(visible);
         }
     };
 
@@ -608,38 +606,6 @@ public class CallNotifier extends Handler {
         PhoneUtils.turnOnSpeaker(mApplication, false, true);
 
         PhoneUtils.setAudioMode(mCM);
-    }
-
-    private void onMwiChanged(boolean visible) {
-        if (VDBG) log("onMwiChanged(): " + visible);
-
-        // "Voicemail" is meaningless on non-voice-capable devices,
-        // so ignore MWI events.
-        if (!PhoneGlobals.sVoiceCapable) {
-            // ...but still log a warning, since we shouldn't have gotten this
-            // event in the first place!
-            // (PhoneStateListener.LISTEN_MESSAGE_WAITING_INDICATOR events
-            // *should* be blocked at the telephony layer on non-voice-capable
-            // capable devices.)
-            Log.w(LOG_TAG, "Got onMwiChanged() on non-voice-capable device! Ignoring...");
-            return;
-        }
-
-        mApplication.notificationMgr.updateMwi(visible);
-    }
-
-    /**
-     * Posts a delayed PHONE_MWI_CHANGED event, to schedule a "retry" for a
-     * failed NotificationMgr.updateMwi() call.
-     */
-    /* package */ void sendMwiChangedDelayed(long delayMillis) {
-        Message message = Message.obtain(this, CallStateMonitor.INTERNAL_PHONE_MWI_CHANGED);
-        sendMessageDelayed(message, delayMillis);
-    }
-
-    private void onCfiChanged(boolean visible) {
-        if (VDBG) log("onCfiChanged(): " + visible);
-        mApplication.notificationMgr.updateCfi(visible);
     }
 
     /**
