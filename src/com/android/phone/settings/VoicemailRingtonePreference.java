@@ -10,6 +10,7 @@ import android.preference.Preference;
 import android.preference.RingtonePreference;
 import android.util.AttributeSet;
 
+import com.android.internal.telephony.Phone;
 import com.android.phone.PhoneGlobals;
 import com.android.phone.common.util.SettingsUtil;
 
@@ -22,6 +23,8 @@ public class VoicemailRingtonePreference extends RingtonePreference {
 
     private Runnable mVoicemailRingtoneLookupRunnable;
     private Handler mVoicemailRingtoneLookupComplete;
+
+    private Phone mPhone;
 
     public VoicemailRingtonePreference(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -38,6 +41,8 @@ public class VoicemailRingtonePreference extends RingtonePreference {
         };
 
         final Preference preference = this;
+        final String preferenceKey =
+                VoicemailNotificationSettingsUtil.getVoicemailRingtoneSharedPrefsKey(mPhone);
         mVoicemailRingtoneLookupRunnable = new Runnable() {
             @Override
             public void run() {
@@ -45,7 +50,7 @@ public class VoicemailRingtonePreference extends RingtonePreference {
                         preference.getContext(),
                         mVoicemailRingtoneLookupComplete,
                         RingtoneManager.TYPE_NOTIFICATION,
-                        VoicemailNotificationSettingsUtil.getRingtoneSharedPreferencesKey(),
+                        preferenceKey,
                         MSG_UPDATE_VOICEMAIL_RINGTONE_SUMMARY);
             }
         };
@@ -53,16 +58,20 @@ public class VoicemailRingtonePreference extends RingtonePreference {
         updateRingtoneName();
     }
 
+    public void init(Phone phone) {
+        mPhone = phone;
+    }
+
     @Override
     protected Uri onRestoreRingtone() {
-        return VoicemailNotificationSettingsUtil.getRingtoneUri(getContext());
+        return VoicemailNotificationSettingsUtil.getRingtoneUri(mPhone);
     }
 
     @Override
     protected void onSaveRingtone(Uri ringtoneUri) {
         // Don't call superclass method because it uses the pref key as the SharedPreferences key.
         // Delegate to the voicemail notification utility to save the ringtone instead.
-        VoicemailNotificationSettingsUtil.setRingtoneUri(getContext(), ringtoneUri);
+        VoicemailNotificationSettingsUtil.setRingtoneUri(mPhone, ringtoneUri);
 
         updateRingtoneName();
     }
