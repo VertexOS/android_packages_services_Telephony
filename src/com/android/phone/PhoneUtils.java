@@ -33,6 +33,7 @@ import android.os.Message;
 import android.os.RemoteException;
 import android.os.SystemProperties;
 import android.telecom.PhoneAccount;
+import android.telecom.PhoneAccountHandle;
 import android.telecom.VideoProfile;
 import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
@@ -57,6 +58,7 @@ import com.android.internal.telephony.TelephonyCapabilities;
 import com.android.internal.telephony.TelephonyProperties;
 import com.android.internal.telephony.sip.SipPhone;
 import com.android.phone.CallGatewayManager.RawGatewayInfo;
+import com.android.services.telephony.TelephonyConnectionService;
 
 import java.util.Arrays;
 import java.util.List;
@@ -2433,5 +2435,19 @@ public class PhoneUtils {
     public static boolean isLandscape(Context context) {
         return context.getResources().getConfiguration().orientation
                 == Configuration.ORIENTATION_LANDSCAPE;
+    }
+
+    public static PhoneAccountHandle makePstnPhoneAccountHandle(Phone phone) {
+        return makePstnPhoneAccountHandleWithPrefix(phone, "", false);
+    }
+
+    public static PhoneAccountHandle makePstnPhoneAccountHandleWithPrefix(
+            Phone phone, String prefix, boolean isEmergency) {
+        ComponentName pstnConnectionServiceName =
+                new ComponentName(phone.getContext(), TelephonyConnectionService.class);
+        // TODO: Should use some sort of special hidden flag to decorate this account as
+        // an emergency-only account
+        String id = isEmergency ? "E" : prefix + String.valueOf(phone.getSubId());
+        return new PhoneAccountHandle(pstnConnectionServiceName, id);
     }
 }
