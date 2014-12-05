@@ -1412,8 +1412,9 @@ public class CallFeaturesSetting extends PreferenceActivity
      * Finish current Activity and go up to the top level Settings ({@link CallFeaturesSetting}).
      * This is useful for implementing "HomeAsUp" capability for second-level Settings.
      */
-    public static void goUpToTopLevelSetting(Activity activity) {
-        Intent intent = new Intent(activity, CallFeaturesSetting.class);
+    public static void goUpToTopLevelSetting(
+                Activity activity, SubscriptionInfoHelper subscriptionInfoHelper) {
+        Intent intent = subscriptionInfoHelper.getIntent(activity, CallFeaturesSetting.class);
         intent.setAction(Intent.ACTION_MAIN);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         activity.startActivity(intent);
