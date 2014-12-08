@@ -25,6 +25,7 @@ public class GsmUmtsAdditionalCallOptions extends TimeConsumingPreferenceActivit
     private final ArrayList<Preference> mPreferences = new ArrayList<Preference>();
     private int mInitIndex = 0;
     private Phone mPhone;
+    private SubscriptionInfoHelper mSubscriptionInfoHelper;
 
     @Override
     protected void onCreate(Bundle icicle) {
@@ -32,10 +33,10 @@ public class GsmUmtsAdditionalCallOptions extends TimeConsumingPreferenceActivit
 
         addPreferencesFromResource(R.xml.gsm_umts_additional_options);
 
-        SubscriptionInfoHelper subscriptionInfoHelper = new SubscriptionInfoHelper(getIntent());
-        subscriptionInfoHelper.setActionBarTitle(
+        mSubscriptionInfoHelper = new SubscriptionInfoHelper(getIntent());
+        mSubscriptionInfoHelper.setActionBarTitle(
                 getActionBar(), getResources(), R.string.additional_gsm_call_settings_with_label);
-        mPhone = subscriptionInfoHelper.getPhone();
+        mPhone = mSubscriptionInfoHelper.getPhone();
 
         PreferenceScreen prefSet = getPreferenceScreen();
         mCLIRButton = (CLIRListPreference) prefSet.findPreference(BUTTON_CLIR_KEY);
@@ -94,7 +95,7 @@ public class GsmUmtsAdditionalCallOptions extends TimeConsumingPreferenceActivit
     public boolean onOptionsItemSelected(MenuItem item) {
         final int itemId = item.getItemId();
         if (itemId == android.R.id.home) {  // See ActionBar#setDisplayHomeAsUpEnabled()
-            CallFeaturesSetting.goUpToTopLevelSetting(this);
+            CallFeaturesSetting.goUpToTopLevelSetting(this, mSubscriptionInfoHelper);
             return true;
         }
         return super.onOptionsItemSelected(item);

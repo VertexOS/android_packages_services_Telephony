@@ -45,6 +45,7 @@ public class GsmUmtsCallForwardOptions extends TimeConsumingPreferenceActivity {
     private boolean mFirstResume;
     private Bundle mIcicle;
     private Phone mPhone;
+    private SubscriptionInfoHelper mSubscriptionInfoHelper;
 
     @Override
     protected void onCreate(Bundle icicle) {
@@ -52,10 +53,10 @@ public class GsmUmtsCallForwardOptions extends TimeConsumingPreferenceActivity {
 
         addPreferencesFromResource(R.xml.callforward_options);
 
-        SubscriptionInfoHelper subscriptionInfoHelper = new SubscriptionInfoHelper(getIntent());
-        subscriptionInfoHelper.setActionBarTitle(
+        mSubscriptionInfoHelper = new SubscriptionInfoHelper(getIntent());
+        mSubscriptionInfoHelper.setActionBarTitle(
                 getActionBar(), getResources(), R.string.call_forwarding_settings_with_label);
-        mPhone = subscriptionInfoHelper.getPhone();
+        mPhone = mSubscriptionInfoHelper.getPhone();
 
         PreferenceScreen prefSet = getPreferenceScreen();
         mButtonCFU = (CallForwardEditPreference) prefSet.findPreference(BUTTON_CFU_KEY);
@@ -181,7 +182,7 @@ public class GsmUmtsCallForwardOptions extends TimeConsumingPreferenceActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         final int itemId = item.getItemId();
         if (itemId == android.R.id.home) {  // See ActionBar#setDisplayHomeAsUpEnabled()
-            CallFeaturesSetting.goUpToTopLevelSetting(this);
+            CallFeaturesSetting.goUpToTopLevelSetting(this, mSubscriptionInfoHelper);
             return true;
         }
         return super.onOptionsItemSelected(item);
