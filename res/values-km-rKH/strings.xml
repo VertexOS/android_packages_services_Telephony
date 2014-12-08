@@ -73,7 +73,8 @@
     <string name="wifi_calling_call_assistant" msgid="229102032881680320">"ជំនួយការហៅ"</string>
     <string name="wifi_calling_use_call_assistant" msgid="8460024827012666199">"ប្រើជំនួយការហៅ"</string>
     <string name="wifi_calling_select_call_assistant" msgid="9296558058772293">"ជ្រើសរើសជំនួយការហៅ"</string>
-    <string name="wifi_calling_select_call_assistant_summary" msgid="9106482864108127281">"ជ្រើសរើសកម្មវិធី ឬសេវាកម្មដើម្បីគ្រប់គ្រងបណ្តាញដែលត្រូវបានប្រើសម្រាប់ហៅ"</string>
+    <!-- no translation found for wifi_calling_select_call_assistant_summary (164985727137156474) -->
+    <skip />
     <string name="wifi_calling_use_call_assistant_summary" msgid="6599987137133339698">"អនុញ្ញាតឲ្យកម្មវិធី ឬសេវាកម្មគ្រប់គ្រងបណ្តាញដែលត្រូវបានប្រើសម្រាប់ហៅ"</string>
     <string name="wifi_calling_call_assistant_configure" msgid="1092639708949670031">"កំណត់"</string>
     <string name="connection_service_default_label" msgid="1498481943805913754">"សេវាកម្ម​ភ្ជាប់​ដែល​ជាប់​ជា​មួយ"</string>
@@ -548,4 +549,6 @@
     <string name="sim_label_emergency_calls" msgid="4847699229529306397">"ការហៅពេលអាសន្ន"</string>
     <string name="sim_description_emergency_calls" msgid="7535215397212301562">"សម្រាប់ការហៅពេលអាសន្នប៉ុណ្ណោះ"</string>
     <string name="sim_description_default" msgid="4778679519938775515">"ស៊ីមកាត រន្ធ៖ <xliff:g id="SLOT_ID">%s</xliff:g>"</string>
+    <!-- no translation found for voicemail_notification_vibrate_key (4268230305042185439) -->
+    <skip />
 </resources>

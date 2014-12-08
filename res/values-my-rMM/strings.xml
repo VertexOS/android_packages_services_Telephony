@@ -73,7 +73,8 @@
     <string name="wifi_calling_call_assistant" msgid="229102032881680320">"ခေါ်ဆိုမှု အကူ"</string>
     <string name="wifi_calling_use_call_assistant" msgid="8460024827012666199">"ခေါ်ဆိုမှု အကူအသုံးပြုမည်"</string>
     <string name="wifi_calling_select_call_assistant" msgid="9296558058772293">"ခေါ်ဆိုမှုအကူ ရွေးချယ်မည်"</string>
-    <string name="wifi_calling_select_call_assistant_summary" msgid="9106482864108127281">"ခေါ်ဆိုမှုများအတွက် အသုံးပြုသည့် ကွန်ရက်များကို စီမံရန် app သို့မဟုတ် ဝန်ဆောင်မှုရွေးချယ်မည်"</string>
+    <!-- no translation found for wifi_calling_select_call_assistant_summary (164985727137156474) -->
+    <skip />
     <string name="wifi_calling_use_call_assistant_summary" msgid="6599987137133339698">"ခေါ်ဆိုမှုအတွက် အသုံးပြုမည့် ကွန်ရကန်များအား app များသို့မဟုတ် ဝန်ဆောင်မှုများကို စီမံစေမည်"</string>
     <string name="wifi_calling_call_assistant_configure" msgid="1092639708949670031">"ပုံပေါ်စေသည်"</string>
     <string name="connection_service_default_label" msgid="1498481943805913754">"တပ်ဆင်ပြီး ချိတ်ဆက်ရေး ဝန်ဆောင်မှု"</string>
@@ -548,4 +549,6 @@
     <string name="sim_label_emergency_calls" msgid="4847699229529306397">"အရေးပေါ် ခေါ်ဆိုမှုများ"</string>
     <string name="sim_description_emergency_calls" msgid="7535215397212301562">"အရေးပေါ် ခေါ်ဆိုမှုသာလျှင်"</string>
     <string name="sim_description_default" msgid="4778679519938775515">"SIM ကဒ်၊ အပေါက်: <xliff:g id="SLOT_ID">%s</xliff:g>"</string>
+    <!-- no translation found for voicemail_notification_vibrate_key (4268230305042185439) -->
+    <skip />
 </resources>

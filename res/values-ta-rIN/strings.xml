@@ -73,7 +73,8 @@
     <string name="wifi_calling_call_assistant" msgid="229102032881680320">"அழைப்பு உதவி"</string>
     <string name="wifi_calling_use_call_assistant" msgid="8460024827012666199">"அழைப்பு உதவியைப் பயன்படுத்து"</string>
     <string name="wifi_calling_select_call_assistant" msgid="9296558058772293">"அழைப்பு உதவியைத் தேர்வுசெய்க"</string>
-    <string name="wifi_calling_select_call_assistant_summary" msgid="9106482864108127281">"அழைப்புகளுக்குப் பயன்படுத்தப்படும் நெட்வொர்க்குகளை நிர்வகிக்க, பயன்பாட்டை அல்லது சேவையைத் தேர்வுசெய்க"</string>
+    <!-- no translation found for wifi_calling_select_call_assistant_summary (164985727137156474) -->
+    <skip />
     <string name="wifi_calling_use_call_assistant_summary" msgid="6599987137133339698">"அழைப்புகளுக்குப் பயன்படுத்தப்படும் நெட்வொர்க்குகளை நிர்வகிக்க, பயன்பாடுகள் அல்லது சேவைகளை அனுமதிக்கும்"</string>
     <string name="wifi_calling_call_assistant_configure" msgid="1092639708949670031">"உள்ளமை"</string>
     <string name="connection_service_default_label" msgid="1498481943805913754">"உள்ளமைக்கப்பட்ட இணைப்பு சேவை"</string>
@@ -548,4 +549,6 @@
     <string name="sim_label_emergency_calls" msgid="4847699229529306397">"அவசர அழைப்புகள்"</string>
     <string name="sim_description_emergency_calls" msgid="7535215397212301562">"அவசர அழைப்பு மட்டுமே"</string>
     <string name="sim_description_default" msgid="4778679519938775515">"சிம் கார்டு, ஸ்லாட்: <xliff:g id="SLOT_ID">%s</xliff:g>"</string>
+    <!-- no translation found for voicemail_notification_vibrate_key (4268230305042185439) -->
+    <skip />
 </resources>
