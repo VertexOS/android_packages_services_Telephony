@@ -39,6 +39,10 @@ public class VoicemailRingtonePreference extends RingtonePreference {
                 }
             }
         };
+    }
+
+    public void init(Phone phone) {
+        mPhone = phone;
 
         final Preference preference = this;
         final String preferenceKey =
@@ -56,10 +60,6 @@ public class VoicemailRingtonePreference extends RingtonePreference {
         };
 
         updateRingtoneName();
-    }
-
-    public void init(Phone phone) {
-        mPhone = phone;
     }
 
     @Override
