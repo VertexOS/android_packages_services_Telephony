@@ -18,6 +18,7 @@ import android.util.Log;
 import android.view.View;
 
 import static com.android.phone.TimeConsumingPreferenceActivity.RESPONSE_ERROR;
+import static com.android.phone.TimeConsumingPreferenceActivity.EXCEPTION_ERROR;
 
 public class CallForwardEditPreference extends EditPhoneNumberPreference {
     private static final String LOG_TAG = "CallForwardEditPreference";
@@ -191,8 +192,16 @@ public class CallForwardEditPreference extends EditPhoneNumberPreference {
             callForwardInfo = null;
             if (ar.exception != null) {
                 if (DBG) Log.d(LOG_TAG, "handleGetCFResponse: ar.exception=" + ar.exception);
-                mTcpListener.onException(CallForwardEditPreference.this,
-                        (CommandException) ar.exception);
+                if (ar.exception instanceof CommandException) {
+                    mTcpListener.onException(CallForwardEditPreference.this,
+                            (CommandException) ar.exception);
+                } else {
+                    // Most likely an ImsException and we can't handle it the same way as
+                    // a CommandException. The best we can do is to handle the exception
+                    // the same way as mTcpListener.onException() does when it is not of type
+                    // FDN_CHECK_FAILURE.
+                    mTcpListener.onError(CallForwardEditPreference.this, EXCEPTION_ERROR);
+                }
             } else {
                 if (ar.userObj instanceof Throwable) {
                     mTcpListener.onError(CallForwardEditPreference.this, RESPONSE_ERROR);
