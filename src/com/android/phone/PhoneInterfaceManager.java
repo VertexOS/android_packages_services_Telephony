@@ -41,10 +41,14 @@ import android.telephony.NeighboringCellInfo;
 import android.telephony.RadioAccessFamily;
 import android.telephony.ServiceState;
 import android.telephony.SubscriptionInfo;
+import android.telephony.SubscriptionManager;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
+import android.util.ArrayMap;
+import android.util.ArraySet;
 import android.util.Log;
 import android.util.Pair;
+import android.util.Slog;
 
 import com.android.ims.ImsManager;
 import com.android.internal.telephony.CallManager;
@@ -66,7 +70,10 @@ import com.android.internal.util.HexDump;
 import static com.android.internal.telephony.PhoneConstants.SUBSCRIPTION_KEY;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 /**
  * Implementation of the ITelephony interface.
@@ -75,6 +82,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     private static final String LOG_TAG = "PhoneInterfaceManager";
     private static final boolean DBG = (PhoneGlobals.DBG_LEVEL >= 2);
     private static final boolean DBG_LOC = false;
+    private static final boolean DBG_MERGE = false;
 
     // Message codes used with mMainThreadHandler
     private static final int CMD_HANDLE_PIN_MMI = 1;
@@ -124,6 +132,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
 
     private static final String PREF_CARRIERS_ALPHATAG_PREFIX = "carrier_alphtag_";
     private static final String PREF_CARRIERS_NUMBER_PREFIX = "carrier_number_";
+    private static final String PREF_CARRIERS_SUBSCRIBER_PREFIX = "carrier_subscriber_";
     private static final String PREF_ENABLE_VIDEO_CALLING = "enable_video_calling";
 
     /**
@@ -1981,28 +1990,43 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     }
 
     @Override
-    public boolean setLine1NumberForDisplayForSubscriber(int subId, String alphaTag, String number) {
+    public boolean setLine1NumberForDisplayForSubscriber(int subId, String alphaTag,
+            String number) {
         enforceCarrierPrivilege();
 
-        String iccId = getIccId(subId);
+        final String iccId = getIccId(subId);
+        final String subscriberId = getPhone(subId).getSubscriberId();
+
+        if (DBG_MERGE) {
+            Slog.d(LOG_TAG, "Setting line number for ICC=" + iccId + ", subscriberId="
+                    + subscriberId + " to " + number);
+        }
+
         if (TextUtils.isEmpty(iccId)) {
             return false;
         }
 
-        String alphaTagPrefKey = PREF_CARRIERS_ALPHATAG_PREFIX + iccId;
-        SharedPreferences.Editor editor = mTelephonySharedPreferences.edit();
+        final SharedPreferences.Editor editor = mTelephonySharedPreferences.edit();
+
+        final String alphaTagPrefKey = PREF_CARRIERS_ALPHATAG_PREFIX + iccId;
         if (alphaTag == null) {
             editor.remove(alphaTagPrefKey);
         } else {
             editor.putString(alphaTagPrefKey, alphaTag);
         }
 
-        String numberPrefKey = PREF_CARRIERS_NUMBER_PREFIX + iccId;
+        // Record both the line number and IMSI for this ICCID, since we need to
+        // track all merged IMSIs based on line number
+        final String numberPrefKey = PREF_CARRIERS_NUMBER_PREFIX + iccId;
+        final String subscriberPrefKey = PREF_CARRIERS_SUBSCRIBER_PREFIX + iccId;
         if (number == null) {
             editor.remove(numberPrefKey);
+            editor.remove(subscriberPrefKey);
         } else {
             editor.putString(numberPrefKey, number);
+            editor.putString(subscriberPrefKey, subscriberId);
         }
+
         editor.commit();
         return true;
     }
@@ -2029,6 +2053,69 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
             return mTelephonySharedPreferences.getString(alphaTagPrefKey, null);
         }
         return null;
+    }
+
+    @Override
+    public String[] getMergedSubscriberIds() {
+        final Context context = mPhone.getContext();
+        final TelephonyManager tele = TelephonyManager.from(context);
+        final SubscriptionManager sub = SubscriptionManager.from(context);
+
+        // Figure out what subscribers are currently active
+        final ArraySet<String> activeSubscriberIds = new ArraySet<>();
+        final int[] subIds = sub.getActiveSubscriptionIdList();
+        for (int subId : subIds) {
+            activeSubscriberIds.add(tele.getSubscriberId(subId));
+        }
+
+        // First pass, find a number override for an active subscriber
+        String mergeNumber = null;
+        final Map<String, ?> prefs = mTelephonySharedPreferences.getAll();
+        for (String key : prefs.keySet()) {
+            if (key.startsWith(PREF_CARRIERS_SUBSCRIBER_PREFIX)) {
+                final String subscriberId = (String) prefs.get(key);
+                if (activeSubscriberIds.contains(subscriberId)) {
+                    final String iccId = key.substring(PREF_CARRIERS_SUBSCRIBER_PREFIX.length());
+                    final String numberKey = PREF_CARRIERS_NUMBER_PREFIX + iccId;
+                    mergeNumber = (String) prefs.get(numberKey);
+                    if (DBG_MERGE) {
+                        Slog.d(LOG_TAG, "Found line number " + mergeNumber
+                                + " for active subscriber " + subscriberId);
+                    }
+                    if (!TextUtils.isEmpty(mergeNumber)) {
+                        break;
+                    }
+                }
+            }
+        }
+
+        // Shortcut when no active merged subscribers
+        if (TextUtils.isEmpty(mergeNumber)) {
+            return null;
+        }
+
+        // Second pass, find all subscribers under that line override
+        final ArraySet<String> result = new ArraySet<>();
+        for (String key : prefs.keySet()) {
+            if (key.startsWith(PREF_CARRIERS_NUMBER_PREFIX)) {
+                final String number = (String) prefs.get(key);
+                if (mergeNumber.equals(number)) {
+                    final String iccId = key.substring(PREF_CARRIERS_NUMBER_PREFIX.length());
+                    final String subscriberKey = PREF_CARRIERS_SUBSCRIBER_PREFIX + iccId;
+                    final String subscriberId = (String) prefs.get(subscriberKey);
+                    if (!TextUtils.isEmpty(subscriberId)) {
+                        result.add(subscriberId);
+                    }
+                }
+            }
+        }
+
+        final String[] resultArray = result.toArray(new String[result.size()]);
+        Arrays.sort(resultArray);
+        if (DBG_MERGE) {
+            Slog.d(LOG_TAG, "Found subscribers " + Arrays.toString(resultArray) + " after merge");
+        }
+        return resultArray;
     }
 
     @Override
