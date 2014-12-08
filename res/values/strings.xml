@@ -161,7 +161,7 @@
     <!-- Label for selectecting a Wi-Fi call manager -->
     <string name="wifi_calling_select_call_assistant">Choose call assistant</string>
     <!-- Summary for the label of a setting to select the SIM call managers to use.-->
-    <string name="wifi_calling_select_call_assistant_summary">Choose an app or service to manage the networks used for calls</string>
+    <string name="wifi_calling_select_call_assistant_summary">Manage the networks used for calls with</string>
     <!-- Summary for the label of a switch setting to enable/disable the use of SIM call managers. -->
     <string name="wifi_calling_use_call_assistant_summary">Let apps or services manage networks used for calls</string>
     <!-- Label for setting to configure the selected call assistant. -->
