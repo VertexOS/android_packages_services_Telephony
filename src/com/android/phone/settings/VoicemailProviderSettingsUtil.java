@@ -19,6 +19,7 @@ package com.android.phone.settings;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.telephony.PhoneNumberUtils;
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.android.internal.telephony.CallForwardInfo;
@@ -127,6 +128,10 @@ public class VoicemailProviderSettingsUtil {
      */
     public static void delete(Context context, String key) {
         if (DBG) log("Deleting settings for" + key);
+
+        if (TextUtils.isEmpty(key)) {
+            return;
+        }
 
         SharedPreferences prefs = getPrefs(context);
         prefs.edit()
