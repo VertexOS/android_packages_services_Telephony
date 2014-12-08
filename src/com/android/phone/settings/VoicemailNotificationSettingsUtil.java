@@ -21,17 +21,23 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
+import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 
+import com.android.internal.telephony.Phone;
 import com.android.phone.R;
 
 public class VoicemailNotificationSettingsUtil {
-    private static final String VOICEMAIL_NOTIFICATION_RINGTONE_SHARED_PREFS_KEY =
-            "button_voicemail_notification_ringtone_key";
-    private static final String VOICEMAIL_NOTIFICATION_VIBRATION_SHARED_PREFS_KEY =
-            "button_voicemail_notification_vibrate_key";
+    private static final String VOICEMAIL_NOTIFICATION_RINGTONE_SHARED_PREFS_KEY_PREFIX =
+            "voicemail_notification_ringtone_";
+    private static final String VOICEMAIL_NOTIFICATION_VIBRATION_SHARED_PREFS_KEY_PREFIX =
+            "voicemail_notification_vibrate_";
 
     // Old voicemail notification vibration string constants used for migration.
+    private static final String OLD_VOICEMAIL_NOTIFICATION_RINGTONE_SHARED_PREFS_KEY =
+            "button_voicemail_notification_ringtone_key";
+    private static final String OLD_VOICEMAIL_NOTIFICATION_VIBRATION_SHARED_PREFS_KEY =
+            "button_voicemail_notification_vibrate_key";
     private static final String OLD_VOICEMAIL_VIBRATE_WHEN_SHARED_PREFS_KEY =
             "button_voicemail_notification_vibrate_when_key";
     private static final String OLD_VOICEMAIL_RINGTONE_SHARED_PREFS_KEY =
@@ -39,26 +45,63 @@ public class VoicemailNotificationSettingsUtil {
     private static final String OLD_VOICEMAIL_VIBRATION_ALWAYS = "always";
     private static final String OLD_VOICEMAIL_VIBRATION_NEVER = "never";
 
-    public static void setVibrationEnabled(Context context, boolean isEnabled) {
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+    public static void setVibrationEnabled(Phone phone, boolean isEnabled) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(phone.getContext());
         SharedPreferences.Editor editor = prefs.edit();
-        editor.putBoolean(VOICEMAIL_NOTIFICATION_VIBRATION_SHARED_PREFS_KEY, isEnabled);
+        editor.putBoolean(getVoicemailVibrationSharedPrefsKey(phone), isEnabled);
         editor.commit();
     }
 
-    public static boolean isVibrationEnabled(Context context) {
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        migrateVoicemailVibrationSettingsIfNeeded(prefs);
-        return prefs.getBoolean(
-                VOICEMAIL_NOTIFICATION_VIBRATION_SHARED_PREFS_KEY, false /* defValue */);
+    public static boolean isVibrationEnabled(Phone phone) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(phone.getContext());
+        migrateVoicemailVibrationSettingsIfNeeded(phone, prefs);
+        return prefs.getBoolean(getVoicemailVibrationSharedPrefsKey(phone), false /* defValue */);
+    }
+
+   public static void setRingtoneUri(Phone phone, Uri ringtoneUri) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(phone.getContext());
+        String ringtoneUriStr = ringtoneUri != null ? ringtoneUri.toString() : "";
+
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString(getVoicemailRingtoneSharedPrefsKey(phone), ringtoneUriStr);
+        editor.commit();
+    }
+
+    public static Uri getRingtoneUri(Phone phone) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(phone.getContext());
+        migrateVoicemailRingtoneSettingsIfNeeded(phone, prefs);
+        String uriString = prefs.getString(
+                getVoicemailRingtoneSharedPrefsKey(phone), Settings.System.NOTIFICATION_SOUND);
+        return !TextUtils.isEmpty(uriString) ? Uri.parse(uriString) : null;
     }
 
     /**
-     * Migrate settings from OLD_VIBRATE_WHEN_KEY to VOICEMAIL_NOTIFICATION_VIBRATE_KEY if the
-     * latter does not exist.
+     * Migrate voicemail settings from {@link #OLD_VIBRATE_WHEN_KEY} or
+     * {@link #OLD_VOICEMAIL_NOTIFICATION_VIBRATE_KEY}.
+     *
+     * TODO: Add helper which migrates settings from old version to new version.
      */
-    private static void migrateVoicemailVibrationSettingsIfNeeded(SharedPreferences prefs) {
-        if (!prefs.contains(VOICEMAIL_NOTIFICATION_VIBRATION_SHARED_PREFS_KEY)) {
+    private static void migrateVoicemailVibrationSettingsIfNeeded(
+            Phone phone, SharedPreferences prefs) {
+        String key = getVoicemailVibrationSharedPrefsKey(phone);
+        TelephonyManager telephonyManager = TelephonyManager.from(phone.getContext());
+
+        // Skip if a preference exists, or if phone is MSIM.
+        if (prefs.contains(key) || telephonyManager.getPhoneCount() != 1) {
+            return;
+        }
+
+        if (prefs.contains(OLD_VOICEMAIL_NOTIFICATION_VIBRATION_SHARED_PREFS_KEY)) {
+            boolean voicemailVibrate = prefs.getBoolean(
+                    OLD_VOICEMAIL_NOTIFICATION_VIBRATION_SHARED_PREFS_KEY, false /* defValue */);
+
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putBoolean(key, voicemailVibrate)
+                    .remove(OLD_VOICEMAIL_VIBRATE_WHEN_SHARED_PREFS_KEY)
+                    .commit();
+        }
+
+        if (prefs.contains(OLD_VOICEMAIL_VIBRATE_WHEN_SHARED_PREFS_KEY)) {
             // If vibrateWhen is always, then voicemailVibrate should be true.
             // If it is "only in silent mode", or "never", then voicemailVibrate should be false.
             String vibrateWhen = prefs.getString(
@@ -66,32 +109,43 @@ public class VoicemailNotificationSettingsUtil {
             boolean voicemailVibrate = vibrateWhen.equals(OLD_VOICEMAIL_VIBRATION_ALWAYS);
 
             SharedPreferences.Editor editor = prefs.edit();
-            editor.putBoolean(VOICEMAIL_NOTIFICATION_VIBRATION_SHARED_PREFS_KEY, voicemailVibrate)
-                    .remove(OLD_VOICEMAIL_VIBRATE_WHEN_SHARED_PREFS_KEY)
+            editor.putBoolean(key, voicemailVibrate)
+                    .remove(OLD_VOICEMAIL_NOTIFICATION_VIBRATION_SHARED_PREFS_KEY)
                     .commit();
         }
     }
 
-    public static void setRingtoneUri(Context context, Uri ringtoneUri) {
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        String ringtoneUriStr = ringtoneUri != null ? ringtoneUri.toString() : "";
+    /**
+     * Migrate voicemail settings from OLD_VOICEMAIL_NOTIFICATION_RINGTONE_SHARED_PREFS_KEY.
+     *
+     * TODO: Add helper which migrates settings from old version to new version.
+     */
+    private static void migrateVoicemailRingtoneSettingsIfNeeded(
+            Phone phone, SharedPreferences prefs) {
+        String key = getVoicemailRingtoneSharedPrefsKey(phone);
+        TelephonyManager telephonyManager = TelephonyManager.from(phone.getContext());
 
-        SharedPreferences.Editor editor = prefs.edit();
-        editor.putString(VOICEMAIL_NOTIFICATION_RINGTONE_SHARED_PREFS_KEY, ringtoneUriStr);
-        editor.commit();
-    }
-
-    public static Uri getRingtoneUri(Context context) {
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        if (!prefs.contains(VOICEMAIL_NOTIFICATION_RINGTONE_SHARED_PREFS_KEY)) {
-            return Settings.System.DEFAULT_NOTIFICATION_URI;
+        // Skip if a preference exists, or if phone is MSIM.
+        if (prefs.contains(key) || telephonyManager.getPhoneCount() != 1) {
+            return;
         }
-        String uriString = prefs.getString(
-                VOICEMAIL_NOTIFICATION_RINGTONE_SHARED_PREFS_KEY, null /* defValue */);
-        return !TextUtils.isEmpty(uriString) ? Uri.parse(uriString) : null;
+
+        if (prefs.contains(OLD_VOICEMAIL_NOTIFICATION_RINGTONE_SHARED_PREFS_KEY)) {
+            String uriString = prefs.getString(
+                    OLD_VOICEMAIL_NOTIFICATION_RINGTONE_SHARED_PREFS_KEY, null /* defValue */);
+
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putString(key, uriString)
+                    .remove(OLD_VOICEMAIL_NOTIFICATION_RINGTONE_SHARED_PREFS_KEY)
+                    .commit();
+        }
     }
 
-    public static String getRingtoneSharedPreferencesKey() {
-        return VOICEMAIL_NOTIFICATION_RINGTONE_SHARED_PREFS_KEY;
+    private static String getVoicemailVibrationSharedPrefsKey(Phone phone) {
+        return VOICEMAIL_NOTIFICATION_VIBRATION_SHARED_PREFS_KEY_PREFIX + phone.getSubId();
+    }
+
+    public static String getVoicemailRingtoneSharedPrefsKey(Phone phone) {
+        return VOICEMAIL_NOTIFICATION_RINGTONE_SHARED_PREFS_KEY_PREFIX + phone.getSubId();
     }
 }
