@@ -39,11 +39,6 @@
             android:summary="@string/wifi_calling_call_assistant_none"
             android:persistent="false" />
 
-        <SwitchPreference
-            android:key="wifi_calling_call_assistant_switch"
-            android:title="@string/wifi_calling_call_assistant"
-            android:persistent="false" />
-
         <Preference
             android:key="wifi_calling_configure_call_assistant_preference"
             android:title="@string/wifi_calling_call_assistant_configure"
