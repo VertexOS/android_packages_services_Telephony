@@ -35,6 +35,7 @@ import android.text.TextUtils;
 import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneFactory;
 import com.android.internal.telephony.PhoneProxy;
+import com.android.phone.PhoneUtils;
 import com.android.phone.R;
 
 import java.util.Arrays;
@@ -77,7 +78,8 @@ final class TelecomAccountRegistry {
 
             // Build the Phone account handle.
             PhoneAccountHandle phoneAccountHandle =
-                    makePstnPhoneAccountHandleWithPrefix(mPhone, dummyPrefix, isEmergency);
+                    PhoneUtils.makePstnPhoneAccountHandleWithPrefix(
+                            mPhone, dummyPrefix, isEmergency);
 
             // Populate the phone account data.
             int subId = mPhone.getSubId();
@@ -234,21 +236,6 @@ final class TelecomAccountRegistry {
         // because this could signal a removal or addition of a SIM in a single SIM phone.
         mTelephonyManager.listen(mPhoneStateListener, PhoneStateListener.LISTEN_SERVICE_STATE);
     }
-
-    static PhoneAccountHandle makePstnPhoneAccountHandle(Phone phone) {
-        return makePstnPhoneAccountHandleWithPrefix(phone, "", false);
-    }
-
-    private static PhoneAccountHandle makePstnPhoneAccountHandleWithPrefix(
-            Phone phone, String prefix, boolean isEmergency) {
-        ComponentName pstnConnectionServiceName =
-                new ComponentName(phone.getContext(), TelephonyConnectionService.class);
-        // TODO: Should use some sort of special hidden flag to decorate this account as
-        // an emergency-only account
-        String id = isEmergency ? "E" : prefix + String.valueOf(phone.getSubId());
-        return new PhoneAccountHandle(pstnConnectionServiceName, id);
-    }
-
     /**
      * Determines if the list of {@link AccountEntry}(s) contains an {@link AccountEntry} with a
      * specified {@link PhoneAccountHandle}.
