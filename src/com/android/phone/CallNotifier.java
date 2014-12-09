@@ -49,9 +49,17 @@ import android.provider.Settings;
 import android.telephony.DisconnectCause;
 import android.telephony.PhoneNumberUtils;
 import android.telephony.PhoneStateListener;
+import android.telephony.SubscriptionInfo;
+import android.telephony.SubscriptionManager;
+import android.telephony.SubscriptionManager.OnSubscriptionsChangedListener;
 import android.telephony.TelephonyManager;
+import android.util.ArrayMap;
 import android.util.EventLog;
 import android.util.Log;
+
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Phone app module that listens for phone state changes and various other
@@ -85,6 +93,8 @@ public class CallNotifier extends Handler {
 
     // object used to synchronize access to mCallerInfoQueryState
     private Object mCallerInfoQueryStateGuard = new Object();
+    private Map<Integer, CallNotifierPhoneStateListener> mPhoneStateListeners =
+            new ArrayMap<Integer, CallNotifierPhoneStateListener>();
 
     private PhoneGlobals mApplication;
     private CallManager mCM;
@@ -103,20 +113,22 @@ public class CallNotifier extends Handler {
 
     // Cached AudioManager
     private AudioManager mAudioManager;
-
     private final BluetoothManager mBluetoothManager;
+    private SubscriptionManager mSubscriptionManager;
+    private TelephonyManager mTelephonyManager;
 
     /**
      * Initialize the singleton CallNotifier instance.
      * This is only done once, at startup, from PhoneApp.onCreate().
      */
-    /* package */ static CallNotifier init(PhoneGlobals app, Phone phone,
-            CallLogger callLogger, CallStateMonitor callStateMonitor,
+    /* package */ static CallNotifier init(
+            PhoneGlobals app,
+            CallLogger callLogger,
+            CallStateMonitor callStateMonitor,
             BluetoothManager bluetoothManager) {
         synchronized (CallNotifier.class) {
             if (sInstance == null) {
-                sInstance = new CallNotifier(app, phone, callLogger, callStateMonitor,
-                        bluetoothManager);
+                sInstance = new CallNotifier(app, callLogger, callStateMonitor, bluetoothManager);
             } else {
                 Log.wtf(LOG_TAG, "init() called multiple times!  sInstance = " + sInstance);
             }
@@ -125,29 +137,38 @@ public class CallNotifier extends Handler {
     }
 
     /** Private constructor; @see init() */
-    private CallNotifier(PhoneGlobals app, Phone phone, CallLogger callLogger,
-            CallStateMonitor callStateMonitor, BluetoothManager bluetoothManager) {
+    private CallNotifier(
+            PhoneGlobals app,
+            CallLogger callLogger,
+            CallStateMonitor callStateMonitor,
+            BluetoothManager bluetoothManager) {
         mApplication = app;
         mCM = app.mCM;
         mCallLogger = callLogger;
         mBluetoothManager = bluetoothManager;
 
         mAudioManager = (AudioManager) mApplication.getSystemService(Context.AUDIO_SERVICE);
+        mTelephonyManager =
+                (TelephonyManager) mApplication.getSystemService(Context.TELEPHONY_SERVICE);
+        mSubscriptionManager = (SubscriptionManager) mApplication.getSystemService(
+                Context.TELEPHONY_SUBSCRIPTION_SERVICE);
 
         callStateMonitor.addListener(this);
 
         BluetoothAdapter adapter = BluetoothAdapter.getDefaultAdapter();
         if (adapter != null) {
             adapter.getProfileProxy(mApplication.getApplicationContext(),
-                                    mBluetoothProfileServiceListener,
-                                    BluetoothProfile.HEADSET);
+                    mBluetoothProfileServiceListener,
+                    BluetoothProfile.HEADSET);
         }
 
-        TelephonyManager telephonyManager = (TelephonyManager) app.getSystemService(
-                Context.TELEPHONY_SERVICE);
-        telephonyManager.listen(mPhoneStateListener,
-                PhoneStateListener.LISTEN_MESSAGE_WAITING_INDICATOR
-                | PhoneStateListener.LISTEN_CALL_FORWARDING_INDICATOR);
+        mSubscriptionManager.registerOnSubscriptionsChangedListener(
+                new OnSubscriptionsChangedListener() {
+                    @Override
+                    public void onSubscriptionsChanged() {
+                        updatePhoneStateListeners();
+                    }
+                });
     }
 
     private void createSignalInfoToneGenerator() {
@@ -238,20 +259,6 @@ public class CallNotifier extends Handler {
                 // super.handleMessage(msg);
         }
     }
-
-    PhoneStateListener mPhoneStateListener = new PhoneStateListener() {
-        @Override
-        public void onMessageWaitingIndicatorChanged(boolean visible) {
-            if (VDBG) log("onMessageWaitingIndicatorChanged(): " + visible);
-            mApplication.notificationMgr.updateMwi(visible);
-        }
-
-        @Override
-        public void onCallForwardingIndicatorChanged(boolean visible) {
-            if (VDBG) log("onCallForwardingIndicatorChanged(): " + visible);
-            mApplication.notificationMgr.updateCfi(visible);
-        }
-    };
 
     /**
      * Handles a "new ringing connection" event from the telephony layer.
@@ -913,6 +920,58 @@ public class CallNotifier extends Handler {
                 SHOW_MESSAGE_NOTIFICATION_TIME);
     }
 
+    public void updatePhoneStateListeners() {
+        List<SubscriptionInfo> subInfos = mSubscriptionManager.getActiveSubscriptionInfoList();
+
+        // Unregister phone listeners for inactive subscriptions.
+        Iterator<Integer> itr = mPhoneStateListeners.keySet().iterator();
+        while (itr.hasNext()) {
+            int subId = itr.next();
+            if (subInfos == null || !containsSubId(subInfos, subId)) {
+                // Hide the outstanding notifications.
+                mApplication.notificationMgr.updateMwi(subId, false);
+                mApplication.notificationMgr.updateCfi(subId, false);
+
+                // Listening to LISTEN_NONE removes the listener.
+                mTelephonyManager.listen(
+                        mPhoneStateListeners.get(subId), PhoneStateListener.LISTEN_NONE);
+                itr.remove();
+            }
+        }
+
+        if (subInfos == null) {
+            return;
+        }
+
+        // Register new phone listeners for active subscriptions.
+        for (int i = 0; i < subInfos.size(); i++) {
+            int subId = subInfos.get(i).getSubscriptionId();
+            if (!mPhoneStateListeners.containsKey(subId)) {
+                CallNotifierPhoneStateListener listener = new CallNotifierPhoneStateListener(subId);
+                mTelephonyManager.listen(listener,
+                        PhoneStateListener.LISTEN_MESSAGE_WAITING_INDICATOR
+                        | PhoneStateListener.LISTEN_CALL_FORWARDING_INDICATOR);
+                mPhoneStateListeners.put(subId, listener);
+            }
+        }
+    }
+
+    /**
+     * @return {@code true} if the list contains SubscriptionInfo with the given subscription id.
+     */
+    private boolean containsSubId(List<SubscriptionInfo> subInfos, int subId) {
+        if (subInfos == null) {
+            return false;
+        }
+
+        for (int i = 0; i < subInfos.size(); i++) {
+            if (subInfos.get(i).getSubscriptionId() == subId) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     /**
      * Helper class to play SignalInfo tones using the ToneGenerator.
      *
@@ -1014,14 +1073,32 @@ public class CallNotifier extends Handler {
     }
 
     private BluetoothProfile.ServiceListener mBluetoothProfileServiceListener =
-        new BluetoothProfile.ServiceListener() {
-        public void onServiceConnected(int profile, BluetoothProfile proxy) {
-            mBluetoothHeadset = (BluetoothHeadset) proxy;
-            if (VDBG) log("- Got BluetoothHeadset: " + mBluetoothHeadset);
+           new BluetoothProfile.ServiceListener() {
+                public void onServiceConnected(int profile, BluetoothProfile proxy) {
+                    mBluetoothHeadset = (BluetoothHeadset) proxy;
+                    if (VDBG) log("- Got BluetoothHeadset: " + mBluetoothHeadset);
+                }
+
+                public void onServiceDisconnected(int profile) {
+                    mBluetoothHeadset = null;
+                }
+            };
+
+    private class CallNotifierPhoneStateListener extends PhoneStateListener {
+        public CallNotifierPhoneStateListener(int subId) {
+            super(subId);
         }
 
-        public void onServiceDisconnected(int profile) {
-            mBluetoothHeadset = null;
+        @Override
+        public void onMessageWaitingIndicatorChanged(boolean visible) {
+            if (VDBG) log("onMessageWaitingIndicatorChanged(): " + this.mSubId + " " + visible);
+            mApplication.notificationMgr.updateMwi(this.mSubId, visible);
+        }
+
+        @Override
+        public void onCallForwardingIndicatorChanged(boolean visible) {
+            if (VDBG) log("onCallForwardingIndicatorChanged(): " + this.mSubId + " " + visible);
+            mApplication.notificationMgr.updateCfi(this.mSubId, visible);
         }
     };
 

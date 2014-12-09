@@ -76,6 +76,10 @@ public class SubscriptionInfoHelper {
     }
 
     public static void addExtrasToIntent(Intent intent, SubscriptionInfo subscription) {
+        if (subscription == null) {
+            return;
+        }
+
         intent.putExtra(SubscriptionInfoHelper.SUB_ID_EXTRA, subscription.getSubscriptionId());
         intent.putExtra(
                 SubscriptionInfoHelper.SUB_LABEL_EXTRA, subscription.getDisplayName().toString());
