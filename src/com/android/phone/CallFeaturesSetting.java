@@ -131,6 +131,12 @@ public class CallFeaturesSetting extends PreferenceActivity
      */
     public static final String IGNORE_PROVIDER_EXTRA = "com.android.phone.ProviderToIgnore";
 
+    /**
+     * String Extra put into ACTION_ADD_VOICEMAIL to indicate that the voicemail setup screen should
+     * be opened.
+     */
+    public static final String SETUP_VOICEMAIL_EXTRA = "com.android.phone.SetupVoicemail";
+
     // string constants
     private static final String NUM_PROJECTION[] = {CommonDataKinds.Phone.NUMBER};
 
@@ -286,6 +292,11 @@ public class CallFeaturesSetting extends PreferenceActivity
      * Used to indicate that the voicemail preference should be shown.
      */
     private boolean mShowVoicemailPreference = false;
+
+    /**
+     * Used to indicate that the voicemail setup screen should be shown.
+     */
+    private boolean mSetupVoicemail = false;
 
     /*
      * Click Listeners, handle click based on objects attached to UI.
@@ -713,6 +724,9 @@ public class CallFeaturesSetting extends PreferenceActivity
         } else {
             saveVoiceMailAndForwardingNumberStage2();
         }
+
+        // Refresh the MWI indicator if it is already showing.
+        PhoneGlobals.getInstance().refreshMwiIndicator(mSubscriptionInfoHelper.getSubId());
     }
 
     private final Handler mGetOptionComplete = new Handler() {
@@ -1107,6 +1121,8 @@ public class CallFeaturesSetting extends PreferenceActivity
         // ACTION_ADD_VOICEMAIL action.
         mShowVoicemailPreference = (icicle == null) &&
                 TextUtils.equals(getIntent().getAction(), ACTION_ADD_VOICEMAIL);
+        mSetupVoicemail = mShowVoicemailPreference &&
+                getIntent().getBooleanExtra(SETUP_VOICEMAIL_EXTRA, false);
 
         mSubscriptionInfoHelper = new SubscriptionInfoHelper(getIntent());
         mSubscriptionInfoHelper.setActionBarTitle(
@@ -1268,7 +1284,10 @@ public class CallFeaturesSetting extends PreferenceActivity
         // We only bring up the dialog the first time we are called (not after orientation change)
         if (mShowVoicemailPreference) {
             if (DBG) log("ACTION_ADD_VOICEMAIL Intent is thrown");
-            if (mVoicemailProviders.hasMoreThanOneVoicemailProvider()) {
+            if (mSetupVoicemail) {
+                simulatePreferenceClick(mVoicemailSettingsScreen);
+                mSetupVoicemail = false;
+            } else if (mVoicemailProviders.hasMoreThanOneVoicemailProvider()) {
                 if (DBG) log("Voicemail data has more than one provider.");
                 simulatePreferenceClick(mVoicemailProviders);
             } else {

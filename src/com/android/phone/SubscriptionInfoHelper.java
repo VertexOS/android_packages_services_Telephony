@@ -36,10 +36,10 @@ import com.android.internal.telephony.PhoneFactory;
  * helping extract this info and perform common operations using this info.
  */
 public class SubscriptionInfoHelper {
-    private static final int NO_SUB_ID = -1;
+    public static final int NO_SUB_ID = -1;
 
     // Extra on intent containing the id of a subscription.
-    private static final String SUB_ID_EXTRA =
+    public static final String SUB_ID_EXTRA =
             "com.android.phone.settings.SubscriptionInfoHelper.SubscriptionId";
     // Extra on intent containing the label of a subscription.
     private static final String SUB_LABEL_EXTRA =
