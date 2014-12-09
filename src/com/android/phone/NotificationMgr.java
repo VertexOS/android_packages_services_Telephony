@@ -35,8 +35,8 @@ import android.provider.Settings;
 import android.telecom.PhoneAccount;
 import android.telephony.PhoneNumberUtils;
 import android.telephony.ServiceState;
+import android.telephony.SubscriptionInfo;
 import android.telephony.SubscriptionManager;
-import android.telephony.SubscriptionManager.OnSubscriptionsChangedListener;
 import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
@@ -83,6 +83,7 @@ public class NotificationMgr {
     private StatusBarManager mStatusBarManager;
     private UserManager mUserManager;
     private Toast mToast;
+    private SubscriptionManager mSubscriptionManager;
 
     public StatusBarHelper statusBarHelper;
 
@@ -103,15 +104,7 @@ public class NotificationMgr {
         mUserManager = (UserManager) app.getSystemService(Context.USER_SERVICE);
         mPhone = app.phone;  // TODO: better style to use mCM.getDefaultPhone() everywhere instead
         statusBarHelper = new StatusBarHelper();
-
-        SubscriptionManager.from(mContext).registerOnSubscriptionsChangedListener(
-                new OnSubscriptionsChangedListener() {
-                    @Override
-                    public void onSubscriptionsChanged() {
-                        // Update the message waiting indicator if the SIM is changed.
-                        updateMwi(mPhone.getMessageWaitingIndicator());
-                    }
-                });
+        mSubscriptionManager = SubscriptionManager.from(mContext);
     }
 
     /**
@@ -240,8 +233,8 @@ public class NotificationMgr {
      *
      * @param visible true if there are messages waiting
      */
-    /* package */ void updateMwi(boolean visible) {
-        if (DBG) log("updateMwi(): " + visible);
+    /* package */ void updateMwi(int subId, boolean visible) {
+        if (DBG) log("updateMwi(): subId " + subId + " update to " + visible);
 
         if (!PhoneGlobals.sVoiceCapable) {
             // Do not show the message waiting indicator on devices which are not voice capable.
@@ -251,6 +244,12 @@ public class NotificationMgr {
         }
 
         if (visible) {
+            Phone phone = PhoneGlobals.getPhone(subId);
+            if (phone == null) {
+                Log.w(LOG_TAG, "Null phone returned for " + subId);
+                return;
+            }
+
             int resId = android.R.drawable.stat_notify_voicemail;
 
             // This Notification can get a lot fancier once we have more
@@ -264,7 +263,7 @@ public class NotificationMgr {
             // notification.
 
             String notificationTitle = mContext.getString(R.string.notification_voicemail_title);
-            String vmNumber = mPhone.getVoiceMailNumber();
+            String vmNumber = phone.getVoiceMailNumber();
             if (DBG) log("- got vm number: '" + vmNumber + "'");
 
             // The voicemail number may be null because:
@@ -272,15 +271,14 @@ public class NotificationMgr {
             //   (2) This phone has a voicemail number, but the SIM isn't ready yet. This may
             //       happen when the device first boots if we get a MWI notification when we
             //       register on the network before the SIM has loaded. In this case, the
-            //       SubscriptionListener this class registers on the SubscriptionManager will
-            //       call this method again once the SIM is loaded.
-            if ((vmNumber == null) && !mPhone.getIccRecordsLoaded()) {
+            //       SubscriptionListener in CallNotifier will update this once the SIM is loaded.
+            if ((vmNumber == null) && !phone.getIccRecordsLoaded()) {
                 if (DBG) log("- Null vm number: SIM records not loaded (yet)...");
                 return;
             }
 
-            if (TelephonyCapabilities.supportsVoiceMessageCount(mPhone)) {
-                int vmCount = mPhone.getVoiceMessageCount();
+            if (TelephonyCapabilities.supportsVoiceMessageCount(phone)) {
+                int vmCount = phone.getVoiceMessageCount();
                 String titleFormat = mContext.getString(R.string.notification_voicemail_title_count);
                 notificationTitle = String.format(titleFormat, vmCount);
             }
@@ -297,8 +295,9 @@ public class NotificationMgr {
 
             Intent intent = new Intent(Intent.ACTION_CALL,
                     Uri.fromParts(PhoneAccount.SCHEME_VOICEMAIL, "", null));
-            PendingIntent pendingIntent = PendingIntent.getActivity(mContext, 0, intent, 0);
-            Uri ringtoneUri = VoicemailNotificationSettingsUtil.getRingtoneUri(mPhone);
+            PendingIntent pendingIntent =
+                    PendingIntent.getActivity(mContext, subId /* requestCode */, intent, 0);
+            Uri ringtoneUri = VoicemailNotificationSettingsUtil.getRingtoneUri(phone);
 
             Notification.Builder builder = new Notification.Builder(mContext);
             builder.setSmallIcon(resId)
@@ -310,7 +309,7 @@ public class NotificationMgr {
                     .setColor(mContext.getResources().getColor(R.color.dialer_theme_color))
                     .setOngoing(true);
 
-            if (VoicemailNotificationSettingsUtil.isVibrationEnabled(mPhone)) {
+            if (VoicemailNotificationSettingsUtil.isVibrationEnabled(phone)) {
                 builder.setDefaults(Notification.DEFAULT_VIBRATE);
             }
 
@@ -323,12 +322,17 @@ public class NotificationMgr {
                         UserManager.DISALLOW_OUTGOING_CALLS, userHandle)
                             && !user.isManagedProfile()) {
                     mNotificationManager.notifyAsUser(
-                            null /* tag */, VOICEMAIL_NOTIFICATION, notification, userHandle);
+                            Integer.toString(subId) /* tag */,
+                            VOICEMAIL_NOTIFICATION,
+                            notification,
+                            userHandle);
                 }
             }
         } else {
             mNotificationManager.cancelAsUser(
-                    null /* tag */, VOICEMAIL_NOTIFICATION, UserHandle.ALL);
+                    Integer.toString(subId) /* tag */,
+                    VOICEMAIL_NOTIFICATION,
+                    UserHandle.ALL);
         }
     }
 
@@ -337,7 +341,7 @@ public class NotificationMgr {
      *
      * @param visible true if there are messages waiting
      */
-    /* package */ void updateCfi(boolean visible) {
+    /* package */ void updateCfi(int subId, boolean visible) {
         if (DBG) log("updateCfi(): " + visible);
         if (visible) {
             // If Unconditional Call Forwarding (forward all calls) for VOICE
@@ -359,9 +363,12 @@ public class NotificationMgr {
                     .setOngoing(true);
 
             Intent intent = new Intent(Intent.ACTION_MAIN);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
             intent.setClassName("com.android.phone", "com.android.phone.CallFeaturesSetting");
-            PendingIntent contentIntent = PendingIntent.getActivity(mContext, 0, intent, 0);
+            SubscriptionInfoHelper.addExtrasToIntent(
+                    intent, mSubscriptionManager.getActiveSubscriptionInfo(subId));
+            PendingIntent contentIntent =
+                    PendingIntent.getActivity(mContext, subId /* requestCode */, intent, 0);
 
             List<UserInfo> users = mUserManager.getUsers(true);
             for (int i = 0; i < users.size(); i++) {
@@ -371,12 +378,17 @@ public class NotificationMgr {
                 }
                 UserHandle userHandle = user.getUserHandle();
                 builder.setContentIntent(userHandle.isOwner() ? contentIntent : null);
-                    mNotificationManager.notifyAsUser(
-                            null /* tag */, CALL_FORWARD_NOTIFICATION, builder.build(), userHandle);
+                mNotificationManager.notifyAsUser(
+                        Integer.toString(subId) /* tag */,
+                        CALL_FORWARD_NOTIFICATION,
+                        builder.build(),
+                        userHandle);
             }
         } else {
             mNotificationManager.cancelAsUser(
-                    null /* tag */, CALL_FORWARD_NOTIFICATION, UserHandle.ALL);
+                    Integer.toString(subId) /* tag */,
+                    CALL_FORWARD_NOTIFICATION,
+                    UserHandle.ALL);
         }
     }
 
