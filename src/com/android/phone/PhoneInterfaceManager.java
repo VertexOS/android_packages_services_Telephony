@@ -1917,9 +1917,17 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
      * @param enable {@code true} turn turn data on, else {@code false}
      */
     @Override
-    public void setDataEnabled(boolean enable) {
+    public void setDataEnabled(int subId, boolean enable) {
         enforceModifyPermission();
-        mPhone.setDataEnabled(enable);
+        int phoneId = mSubscriptionController.getPhoneId(subId);
+        log("getDataEnabled: subId=" + subId + " phoneId=" + phoneId);
+        Phone phone = PhoneFactory.getPhone(phoneId);
+        if (phone != null) {
+            log("setDataEnabled: subId=" + subId + " enable=" + enable);
+            phone.setDataEnabled(enable);
+        } else {
+            loge("setDataEnabled: no phone for subId=" + subId);
+        }
     }
 
     /**
@@ -1932,7 +1940,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
      * @return {@code true} if data is enabled else {@code false}
      */
     @Override
-    public boolean getDataEnabled() {
+    public boolean getDataEnabled(int subId) {
         try {
             mApp.enforceCallingOrSelfPermission(android.Manifest.permission.ACCESS_NETWORK_STATE,
                     null);
@@ -1940,7 +1948,17 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
             mApp.enforceCallingOrSelfPermission(android.Manifest.permission.MODIFY_PHONE_STATE,
                     null);
         }
-        return mPhone.getDataEnabled();
+        int phoneId = mSubscriptionController.getPhoneId(subId);
+        log("getDataEnabled: subId=" + subId + " phoneId=" + phoneId);
+        Phone phone = PhoneFactory.getPhone(phoneId);
+        if (phone != null) {
+            boolean retVal = phone.getDataEnabled();
+            log("getDataEnabled: subId=" + subId + " retVal=" + retVal);
+            return retVal;
+        } else {
+            loge("getDataEnabled: no phone subId=" + subId + " retVal=false");
+            return false;
+        }
     }
 
     @Override
