@@ -48,6 +48,7 @@ import android.os.UserHandle;
 import android.preference.PreferenceManager;
 import android.provider.Settings.System;
 import android.telephony.ServiceState;
+import android.telephony.SubscriptionInfo;
 import android.telephony.SubscriptionManager;
 import android.util.Log;
 
@@ -402,8 +403,7 @@ public class PhoneGlobals extends ContextWrapper {
             // asynchronous events from the telephony layer (like
             // launching the incoming-call UI when an incoming call comes
             // in.)
-            notifier = CallNotifier.init(this, phone, callLogger, callStateMonitor,
-                    bluetoothManager);
+            notifier = CallNotifier.init(this, callLogger, callStateMonitor, bluetoothManager);
 
             // register for ICC status
             IccCard sim = phone.getIccCard();
@@ -492,17 +492,8 @@ public class PhoneGlobals extends ContextWrapper {
         return getInstance().phone;
     }
 
-    /**
-     * Returns a list of the currently active phones for the Telephony package.
-     */
-    public static List<Phone> getPhones() {
-        int[] subIds = SubscriptionController.getInstance().getActiveSubIdList();
-        List<Phone> phones = new ArrayList<Phone>(subIds.length);
-
-        for (int i = 0; i < subIds.length; i++) {
-            phones.add(PhoneFactory.getPhone(SubscriptionManager.getPhoneId(subIds[i])));
-        }
-        return phones;
+    public static Phone getPhone(int subId) {
+        return PhoneFactory.getPhone(SubscriptionManager.getPhoneId(subId));
     }
 
     /* package */ BluetoothManager getBluetoothManager() {
