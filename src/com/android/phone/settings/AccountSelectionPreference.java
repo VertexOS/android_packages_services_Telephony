@@ -22,6 +22,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.UserHandle;
 import android.preference.ListPreference;
 import android.preference.Preference;
@@ -76,10 +77,15 @@ public class AccountSelectionPreference extends ListPreference implements
         mEntryValues = new String[mAccounts.length + 1];
         mEntries = new CharSequence[mAccounts.length + 1];
 
+        PackageManager pm = mContext.getPackageManager();
+
         int selectedIndex = mAccounts.length;  // Points to nullSelectionString by default
         int i = 0;
         for ( ; i < mAccounts.length; i++) {
             CharSequence label = telecomManager.getPhoneAccount(mAccounts[i]).getLabel();
+            if (label != null) {
+                label = pm.getUserBadgedLabel(label, mAccounts[i].getUserHandle());
+            }
             mEntries[i] = label == null ? null : label.toString();
             mEntryValues[i] = Integer.toString(i);
             if (Objects.equals(currentSelection, mAccounts[i])) {

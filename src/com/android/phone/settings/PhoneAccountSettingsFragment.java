@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.sip.SipManager;
 import android.os.Bundle;
+import android.os.UserHandle;
 import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
@@ -223,8 +224,14 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
         if (pref == mConfigureCallAssistant) {
             Intent intent = getConfigureCallAssistantIntent();
             if (intent != null) {
+                PhoneAccountHandle handle = mTelecomManager.getSimCallManager();
+                UserHandle userHandle = handle.getUserHandle();
                 try {
-                    startActivity(intent);
+                    if (userHandle != null) {
+                        getActivity().startActivityAsUser(intent, userHandle);
+                    } else {
+                        startActivity(intent);
+                    }
                 } catch (ActivityNotFoundException e) {
                     Log.d(LOG_TAG, "Could not resolve call assistant configure intent: " + intent);
                 }
@@ -311,10 +318,9 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
      * call assistants, and the currently selected call assistant.
      */
     public void updateCallAssistantModel() {
-        List<PhoneAccountHandle> simCallManagers = mTelecomManager.getSimCallManagers();
         mSelectCallAssistant.setModel(
                 mTelecomManager,
-                simCallManagers,
+                mTelecomManager.getSimCallManagers(),
                 mTelecomManager.getSimCallManager(),
                 getString(R.string.wifi_calling_call_assistant_none));
     }
