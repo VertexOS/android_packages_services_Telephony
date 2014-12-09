@@ -901,18 +901,24 @@ public class CallNotifier extends Handler {
     /**
      * Displays a notification when the phone receives a notice that a supplemental
      * service has failed.
-     * TODO: This is a NOOP if it isn't for conferences right now.
+     * TODO: This is a NOOP if it isn't for conferences or resuming call failures right now.
      */
     private void onSuppServiceFailed(AsyncResult r) {
-        if (r.result != Phone.SuppService.CONFERENCE) {
-            if (DBG) log("onSuppServiceFailed: not a merge failure event");
+        if (r.result != Phone.SuppService.CONFERENCE && r.result != Phone.SuppService.RESUME) {
+            if (DBG) log("onSuppServiceFailed: not a merge or resume failure event");
             return;
         }
 
-        if (DBG) log("onSuppServiceFailed: displaying merge failure message");
-
-        String mergeFailedString = mApplication.getResources().getString(
-                R.string.incall_error_supp_service_conference);
+        String mergeFailedString = "";
+        if (r.result == Phone.SuppService.CONFERENCE) {
+            if (DBG) log("onSuppServiceFailed: displaying merge failure message");
+            mergeFailedString = mApplication.getResources().getString(
+                    R.string.incall_error_supp_service_conference);
+        } else if (r.result == Phone.SuppService.RESUME) {
+            if (DBG) log("onSuppServiceFailed: displaying merge failure message");
+            mergeFailedString = mApplication.getResources().getString(
+                    R.string.incall_error_supp_service_switch);
+        }
         PhoneDisplayMessage.displayErrorMessage(mApplication, mergeFailedString);
 
         // start a timer that kills the dialog
