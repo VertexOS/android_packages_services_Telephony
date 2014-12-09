@@ -39,6 +39,7 @@ import com.android.internal.telephony.PhoneConstants;
 import com.android.internal.telephony.PhoneProxy;
 import com.android.internal.telephony.TelephonyIntents;
 import com.android.internal.telephony.cdma.CdmaCallWaitingNotification;
+import com.android.phone.PhoneUtils;
 
 import com.google.common.base.Preconditions;
 
@@ -219,7 +220,7 @@ final class PstnIncomingCallNotifier {
             extras.putParcelable(TelecomManager.EXTRA_UNKNOWN_CALL_HANDLE, uri);
         }
         TelecomManager.from(mPhoneProxy.getContext()).addNewUnknownCall(
-                TelecomAccountRegistry.makePstnPhoneAccountHandle(mPhoneProxy), extras);
+                PhoneUtils.makePstnPhoneAccountHandle(mPhoneProxy), extras);
     }
 
     /**
@@ -234,6 +235,6 @@ final class PstnIncomingCallNotifier {
             extras.putParcelable(TelephonyManager.EXTRA_INCOMING_NUMBER, uri);
         }
         TelecomManager.from(mPhoneProxy.getContext()).addNewIncomingCall(
-                TelecomAccountRegistry.makePstnPhoneAccountHandle(mPhoneProxy), extras);
+                PhoneUtils.makePstnPhoneAccountHandle(mPhoneProxy), extras);
     }
 }

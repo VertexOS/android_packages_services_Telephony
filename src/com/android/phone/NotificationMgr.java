@@ -33,10 +33,13 @@ import android.preference.PreferenceManager;
 import android.provider.ContactsContract.PhoneLookup;
 import android.provider.Settings;
 import android.telecom.PhoneAccount;
+import android.telecom.PhoneAccountHandle;
+import android.telecom.TelecomManager;
 import android.telephony.PhoneNumberUtils;
 import android.telephony.ServiceState;
 import android.telephony.SubscriptionInfo;
 import android.telephony.SubscriptionManager;
+import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
@@ -84,6 +87,8 @@ public class NotificationMgr {
     private UserManager mUserManager;
     private Toast mToast;
     private SubscriptionManager mSubscriptionManager;
+    private TelecomManager mTelecomManager;
+    private TelephonyManager mTelephonyManager;
 
     public StatusBarHelper statusBarHelper;
 
@@ -105,6 +110,8 @@ public class NotificationMgr {
         mPhone = app.phone;  // TODO: better style to use mCM.getDefaultPhone() everywhere instead
         statusBarHelper = new StatusBarHelper();
         mSubscriptionManager = SubscriptionManager.from(mContext);
+        mTelecomManager = TelecomManager.from(mContext);
+        mTelephonyManager = (TelephonyManager) app.getSystemService(Context.TELEPHONY_SERVICE);
     }
 
     /**
@@ -151,7 +158,7 @@ public class NotificationMgr {
         private boolean mIsExpandedViewEnabled = true;
         private boolean mIsSystemBarNavigationEnabled = true;
 
-        private StatusBarHelper () {
+        private StatusBarHelper() {
         }
 
         /**
@@ -246,7 +253,13 @@ public class NotificationMgr {
         if (visible) {
             Phone phone = PhoneGlobals.getPhone(subId);
             if (phone == null) {
-                Log.w(LOG_TAG, "Null phone returned for " + subId);
+                Log.w(LOG_TAG, "Found null phone for: " + subId);
+                return;
+            }
+
+            SubscriptionInfo subInfo = mSubscriptionManager.getActiveSubscriptionInfo(subId);
+            if (subInfo == null) {
+                Log.w(LOG_TAG, "Found null subscription info for: " + subId);
                 return;
             }
 
@@ -284,17 +297,24 @@ public class NotificationMgr {
             }
 
             String notificationText;
-            if (TextUtils.isEmpty(vmNumber)) {
-                notificationText = mContext.getString(
-                        R.string.notification_voicemail_no_vm_number);
+            if (mTelephonyManager.getPhoneCount() > 1) {
+                notificationText = subInfo.getDisplayName().toString();
             } else {
-                notificationText = String.format(
-                        mContext.getString(R.string.notification_voicemail_text_format),
-                        PhoneNumberUtils.formatNumber(vmNumber));
+                if (TextUtils.isEmpty(vmNumber)) {
+                    notificationText = mContext.getString(
+                            R.string.notification_voicemail_no_vm_number);
+                } else {
+                    notificationText = String.format(
+                            mContext.getString(R.string.notification_voicemail_text_format),
+                            PhoneNumberUtils.formatNumber(vmNumber));
+                }
             }
 
-            Intent intent = new Intent(Intent.ACTION_CALL,
-                    Uri.fromParts(PhoneAccount.SCHEME_VOICEMAIL, "", null));
+            // This pathway only applies to PSTN accounts; only SIMS have subscription ids.
+            PhoneAccountHandle phoneAccountHandle = PhoneUtils.makePstnPhoneAccountHandle(phone);
+            Intent intent = new Intent(
+                    Intent.ACTION_CALL, Uri.fromParts(PhoneAccount.SCHEME_VOICEMAIL, "", null));
+            intent.putExtra(TelecomManager.EXTRA_PHONE_ACCOUNT_HANDLE, phoneAccountHandle);
             PendingIntent pendingIntent =
                     PendingIntent.getActivity(mContext, subId /* requestCode */, intent, 0);
             Uri ringtoneUri = VoicemailNotificationSettingsUtil.getRingtoneUri(phone);
@@ -302,6 +322,7 @@ public class NotificationMgr {
             Notification.Builder builder = new Notification.Builder(mContext);
             builder.setSmallIcon(resId)
                     .setWhen(System.currentTimeMillis())
+                    .setColor(subInfo.getIconTint())
                     .setContentTitle(notificationTitle)
                     .setContentText(notificationText)
                     .setContentIntent(pendingIntent)
@@ -355,9 +376,23 @@ public class NotificationMgr {
             // effort though, since there are multiple layers of messages that
             // will need to propagate that information.
 
+            SubscriptionInfo subInfo = mSubscriptionManager.getActiveSubscriptionInfo(subId);
+            if (subInfo == null) {
+                Log.w(LOG_TAG, "Found null subscription info for: " + subId);
+                return;
+            }
+
+            String notificationTitle;
+            if (mTelephonyManager.getPhoneCount() > 1) {
+                notificationTitle = subInfo.getDisplayName().toString();
+            } else {
+                notificationTitle = mContext.getString(R.string.labelCF);
+            }
+
             Notification.Builder builder = new Notification.Builder(mContext)
                     .setSmallIcon(R.drawable.stat_sys_phone_call_forward)
-                    .setContentTitle(mContext.getString(R.string.labelCF))
+                    .setColor(subInfo.getIconTint())
+                    .setContentTitle(notificationTitle)
                     .setContentText(mContext.getString(R.string.sum_cfu_enabled_indicator))
                     .setShowWhen(false)
                     .setOngoing(true);

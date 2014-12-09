@@ -16,17 +16,18 @@
 
 package com.android.services.telephony;
 
+import android.net.Uri;
+import android.telecom.Conference;
+import android.telecom.ConferenceParticipant;
+import android.telecom.Connection;
+import android.telecom.DisconnectCause;
+import android.telecom.PhoneAccountHandle;
+
 import com.android.internal.telephony.Call;
 import com.android.internal.telephony.CallStateException;
 import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.imsphone.ImsPhoneConnection;
-
-import android.net.Uri;
-import android.telecom.Connection;
-import android.telecom.Conference;
-import android.telecom.ConferenceParticipant;
-import android.telecom.DisconnectCause;
-import android.telecom.PhoneAccountHandle;
+import com.android.phone.PhoneUtils;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -37,7 +38,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Represents an IMS conference call.
- * <P>
+ * <p>
  * An IMS conference call consists of a conference host connection and potentially a list of
  * conference participants.  The conference host connection represents the radio connection to the
  * IMS conference server.  Since it is not a connection to any one individual, it is not represented
@@ -432,7 +433,7 @@ public class ImsConference extends Conference {
 
         mConferenceParticipantConnections.put(participant.getEndpoint(), connection);
         PhoneAccountHandle phoneAccountHandle =
-                TelecomAccountRegistry.makePstnPhoneAccountHandle(parent.getPhone());
+                PhoneUtils.makePstnPhoneAccountHandle(parent.getPhone());
         mTelephonyConnectionService.addExistingConnection(phoneAccountHandle, connection);
         addConnection(connection);
     }
@@ -496,7 +497,7 @@ public class ImsConference extends Conference {
             }
 
             PhoneAccountHandle phoneAccountHandle =
-                    TelecomAccountRegistry.makePstnPhoneAccountHandle(mConferenceHost.getPhone());
+                    PhoneUtils.makePstnPhoneAccountHandle(mConferenceHost.getPhone());
             mTelephonyConnectionService.addExistingConnection(phoneAccountHandle, mConferenceHost);
             mConferenceHost.removeConnectionListener(mConferenceHostListener);
             mConferenceHost.removeTelephonyConnectionListener(mTelephonyConnectionListener);
