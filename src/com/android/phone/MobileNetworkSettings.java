@@ -601,14 +601,14 @@ public class MobileNetworkSettings extends PreferenceActivity
                         return true;
                 }
 
-                UpdatePreferredNetworkModeSummary(buttonNetworkMode);
-
                 android.provider.Settings.Global.putInt(mPhone.getContext().getContentResolver(),
                         android.provider.Settings.Global.PREFERRED_NETWORK_MODE + phoneSubId,
                         buttonNetworkMode );
                 //Set the modem network mode
                 mPhone.setPreferredNetworkType(modemNetworkMode, mHandler
                         .obtainMessage(MyHandler.MESSAGE_SET_PREFERRED_NETWORK_TYPE));
+
+                updateBody();
             }
         } else if (preference == mButtonEnabledNetworks) {
             mButtonEnabledNetworks.setValue((String) objValue);
