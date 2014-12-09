@@ -41,6 +41,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 
+import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneConstants;
 import com.android.internal.telephony.TelephonyCapabilities;
 
@@ -189,13 +190,14 @@ public class OutgoingCallBroadcaster extends Activity
             if (VDBG) Log.v(TAG, "- got number from resultData: '" + number + "'");
 
             final PhoneGlobals app = PhoneGlobals.getInstance();
+            final Phone phone = PhoneGlobals.getPhone();
 
             // OTASP-specific checks.
             // TODO: This should probably all happen in
             // OutgoingCallBroadcaster.onCreate(), since there's no reason to
             // even bother with the NEW_OUTGOING_CALL broadcast if we're going
             // to disallow the outgoing call anyway...
-            if (TelephonyCapabilities.supportsOtasp(app.phone)) {
+            if (TelephonyCapabilities.supportsOtasp(phone)) {
                 boolean activateState = (app.cdmaOtaScreenState.otaScreenState
                         == OtaUtils.CdmaOtaScreenState.OtaScreenState.OTA_STATUS_ACTIVATION);
                 boolean dialogState = (app.cdmaOtaScreenState.otaScreenState
@@ -234,9 +236,9 @@ public class OutgoingCallBroadcaster extends Activity
             if (number == null) {
                 if (DBG) Log.v(TAG, "CALL cancelled (null number), returning...");
                 return false;
-            } else if (TelephonyCapabilities.supportsOtasp(app.phone)
-                    && (app.phone.getState() != PhoneConstants.State.IDLE)
-                    && (app.phone.isOtaSpNumber(number))) {
+            } else if (TelephonyCapabilities.supportsOtasp(phone)
+                    && (phone.getState() != PhoneConstants.State.IDLE)
+                    && (phone.isOtaSpNumber(number))) {
                 if (DBG) Log.v(TAG, "Call is active, a 2nd OTA call cancelled -- returning.");
                 return false;
             } else if (PhoneNumberUtils.isPotentialLocalEmergencyNumber(context, number)) {
