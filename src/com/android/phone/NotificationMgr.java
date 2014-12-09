@@ -41,6 +41,7 @@ import android.telephony.SubscriptionInfo;
 import android.telephony.SubscriptionManager;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
+import android.util.ArrayMap;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -48,8 +49,12 @@ import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneBase;
 import com.android.internal.telephony.TelephonyCapabilities;
 import com.android.phone.settings.VoicemailNotificationSettingsUtil;
+import com.android.phone.settings.VoicemailProviderSettingsUtil;
 
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * NotificationManager-related utility code for the Phone app.
@@ -94,6 +99,9 @@ public class NotificationMgr {
 
     // used to track the notification of selected network unavailable
     private boolean mSelectedUnavailableNotify = false;
+
+    // used to track whether the message waiting indicator is visible, per subscription id.
+    private ArrayMap<Integer, Boolean> mMwiVisible = new ArrayMap<Integer, Boolean>();
 
     /**
      * Private constructor (this is a singleton).
@@ -236,12 +244,52 @@ public class NotificationMgr {
     };
 
     /**
+     * Re-creates the message waiting indicator (voicemail) notification if it is showing.  Used to
+     * refresh the voicemail intent on the indicator when the user changes it via the voicemail
+     * settings screen.  The voicemail notification sound is suppressed.
+     *
+     * @param subId The subscription Id.
+     */
+    /* package */ void refreshMwi(int subId) {
+        // In a single-sim device, subId can be -1 which means "no sub id".  In this case we will
+        // reference the single subid stored in the mMwiVisible map.
+        if (subId == SubscriptionInfoHelper.NO_SUB_ID) {
+            if (mMwiVisible.keySet().size() == 1) {
+                Set<Integer> keySet = mMwiVisible.keySet();
+                Iterator<Integer> keyIt = keySet.iterator();
+                if (!keyIt.hasNext()) {
+                    return;
+                }
+                subId = keyIt.next();
+            }
+        }
+        if (mMwiVisible.containsKey(subId)) {
+            boolean mwiVisible = mMwiVisible.get(subId);
+            if (mwiVisible) {
+                updateMwi(subId, mwiVisible, false /* enableNotificationSound */);
+            }
+        }
+    }
+
+    /**
      * Updates the message waiting indicator (voicemail) notification.
      *
      * @param visible true if there are messages waiting
      */
     /* package */ void updateMwi(int subId, boolean visible) {
+        updateMwi(subId, visible, true /* enableNotificationSound */);
+    }
+
+    /**
+     * Updates the message waiting indicator (voicemail) notification.
+     *
+     * @param subId the subId to update.
+     * @param visible true if there are messages waiting
+     * @param enableNotificationSound {@code true} if the notification sound should be played.
+     */
+    void updateMwi(int subId, boolean visible, boolean enableNotificationSound) {
         if (DBG) log("updateMwi(): subId " + subId + " update to " + visible);
+        mMwiVisible.put(subId, visible);
 
         if (!PhoneGlobals.sVoiceCapable) {
             // Do not show the message waiting indicator on devices which are not voice capable.
@@ -296,28 +344,44 @@ public class NotificationMgr {
                 notificationTitle = String.format(titleFormat, vmCount);
             }
 
+            // This pathway only applies to PSTN accounts; only SIMS have subscription ids.
+            PhoneAccountHandle phoneAccountHandle = PhoneUtils.makePstnPhoneAccountHandle(phone);
+
+            Intent intent;
             String notificationText;
-            if (mTelephonyManager.getPhoneCount() > 1) {
-                notificationText = subInfo.getDisplayName().toString();
+            if (TextUtils.isEmpty(vmNumber)) {
+                notificationText = mContext.getString(
+                        R.string.notification_voicemail_no_vm_number);
+
+                // If the voicemail number if unknown, instead of calling voicemail, take the user
+                // to the voicemail settings.
+                notificationText = mContext.getString(
+                        R.string.notification_voicemail_no_vm_number);
+                intent = new Intent(CallFeaturesSetting.ACTION_ADD_VOICEMAIL);
+                intent.putExtra(CallFeaturesSetting.SETUP_VOICEMAIL_EXTRA, true);
+                intent.putExtra(SubscriptionInfoHelper.SUB_ID_EXTRA, subId);
+                intent.setClass(mContext, CallFeaturesSetting.class);
             } else {
-                if (TextUtils.isEmpty(vmNumber)) {
-                    notificationText = mContext.getString(
-                            R.string.notification_voicemail_no_vm_number);
+                if (mTelephonyManager.getPhoneCount() > 1) {
+                    notificationText = subInfo.getDisplayName().toString();
                 } else {
                     notificationText = String.format(
                             mContext.getString(R.string.notification_voicemail_text_format),
                             PhoneNumberUtils.formatNumber(vmNumber));
                 }
+                intent = new Intent(
+                        Intent.ACTION_CALL, Uri.fromParts(PhoneAccount.SCHEME_VOICEMAIL, "",
+                        null));
+                intent.putExtra(TelecomManager.EXTRA_PHONE_ACCOUNT_HANDLE, phoneAccountHandle);
             }
 
-            // This pathway only applies to PSTN accounts; only SIMS have subscription ids.
-            PhoneAccountHandle phoneAccountHandle = PhoneUtils.makePstnPhoneAccountHandle(phone);
-            Intent intent = new Intent(
-                    Intent.ACTION_CALL, Uri.fromParts(PhoneAccount.SCHEME_VOICEMAIL, "", null));
-            intent.putExtra(TelecomManager.EXTRA_PHONE_ACCOUNT_HANDLE, phoneAccountHandle);
             PendingIntent pendingIntent =
                     PendingIntent.getActivity(mContext, subId /* requestCode */, intent, 0);
-            Uri ringtoneUri = VoicemailNotificationSettingsUtil.getRingtoneUri(phone);
+            Uri ringtoneUri = null;
+
+            if (enableNotificationSound) {
+                ringtoneUri = VoicemailNotificationSettingsUtil.getRingtoneUri(mPhone);
+            }
 
             Notification.Builder builder = new Notification.Builder(mContext);
             builder.setSmallIcon(resId)
