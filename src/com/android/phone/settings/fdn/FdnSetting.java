@@ -455,7 +455,7 @@ public class FdnSetting extends PreferenceActivity
     protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
 
-        mSubscriptionInfoHelper = new SubscriptionInfoHelper(getIntent());
+        mSubscriptionInfoHelper = new SubscriptionInfoHelper(this, getIntent());
         mPhone = mSubscriptionInfoHelper.getPhone();
 
         addPreferencesFromResource(R.xml.fdn_setting);
@@ -473,7 +473,7 @@ public class FdnSetting extends PreferenceActivity
 
         PreferenceScreen fdnListPref =
                 (PreferenceScreen) prefSet.findPreference(FDN_LIST_PREF_SCREEN_KEY);
-        fdnListPref.setIntent(mSubscriptionInfoHelper.getIntent(this, FdnList.class));
+        fdnListPref.setIntent(mSubscriptionInfoHelper.getIntent(FdnList.class));
 
         // Only reset the pin change dialog if we're not in the middle of changing it.
         if (icicle == null) {
