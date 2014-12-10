@@ -73,8 +73,7 @@
     <string name="wifi_calling_call_assistant" msgid="229102032881680320">"Ringeassistent"</string>
     <string name="wifi_calling_use_call_assistant" msgid="8460024827012666199">"Bruk ringeassistenten"</string>
     <string name="wifi_calling_select_call_assistant" msgid="9296558058772293">"Velg ringeassistent"</string>
-    <!-- no translation found for wifi_calling_select_call_assistant_summary (164985727137156474) -->
-    <skip />
+    <string name="wifi_calling_select_call_assistant_summary" msgid="164985727137156474">"Administrer nettverk som brukes for anrop med"</string>
     <string name="wifi_calling_use_call_assistant_summary" msgid="6599987137133339698">"Tillater apper eller tjenester å administrere nettverk som brukes for å ringe"</string>
     <string name="wifi_calling_call_assistant_configure" msgid="1092639708949670031">"Konfigurer"</string>
     <string name="connection_service_default_label" msgid="1498481943805913754">"Innebygd tilkoblingstjeneste"</string>

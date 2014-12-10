@@ -73,8 +73,7 @@
     <string name="wifi_calling_call_assistant" msgid="229102032881680320">"ಸಹಾಯಕಕ್ಕೆ ಕರೆ ಮಾಡಿ"</string>
     <string name="wifi_calling_use_call_assistant" msgid="8460024827012666199">"ಕರೆ ಸಹಾಯಕ ಬಳಸಿ"</string>
     <string name="wifi_calling_select_call_assistant" msgid="9296558058772293">"ಕರೆ ಸಹಾಯಕವನ್ನು ಆಯ್ಕೆಮಾಡಿ"</string>
-    <!-- no translation found for wifi_calling_select_call_assistant_summary (164985727137156474) -->
-    <skip />
+    <string name="wifi_calling_select_call_assistant_summary" msgid="164985727137156474">"ಇದರ ಜೊತೆಗೆ ಕರೆಗಳನ್ನು ಮಾಡಲು ಬಳಸಲಾದ ನೆಟ್‌ವರ್ಕ್‌ಗಳನ್ನು ನಿರ್ವಹಿಸಿ"</string>
     <string name="wifi_calling_use_call_assistant_summary" msgid="6599987137133339698">"ಕರೆಗಳಿಗಾಗಿ ಬಳಸಲಾಗುವ ನೆಟ್‌ವರ್ಕ್‌ಗಳನ್ನು ನಿರ್ವಹಿಸಲು ಅಪ್ಲಿಕೇಶನ್‌ಗಳು ಅಥವಾ ಸೇವೆಗಳನ್ನು ಅನುಮತಿಸಿ"</string>
     <string name="wifi_calling_call_assistant_configure" msgid="1092639708949670031">"ಕಾನ್ಫಿಗರ್ ಮಾಡು"</string>
     <string name="connection_service_default_label" msgid="1498481943805913754">"ಅಂತರ್ನಿರ್ಮಿತ ಸಂಪರ್ಕ ಸೇವೆ"</string>

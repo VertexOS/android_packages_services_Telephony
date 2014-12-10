@@ -73,8 +73,7 @@
     <string name="wifi_calling_call_assistant" msgid="229102032881680320">"Assistent de trucades"</string>
     <string name="wifi_calling_use_call_assistant" msgid="8460024827012666199">"Fes servir l\'assistent de trucades"</string>
     <string name="wifi_calling_select_call_assistant" msgid="9296558058772293">"Tria l\'assistent de trucades"</string>
-    <!-- no translation found for wifi_calling_select_call_assistant_summary (164985727137156474) -->
-    <skip />
+    <string name="wifi_calling_select_call_assistant_summary" msgid="164985727137156474">"Gestiona les xarxes que s\'utilitzen per a les trucades amb"</string>
     <string name="wifi_calling_use_call_assistant_summary" msgid="6599987137133339698">"Permet que les aplicacions o els serveis gestionin les xarxes que es fan servir per a les trucades"</string>
     <string name="wifi_calling_call_assistant_configure" msgid="1092639708949670031">"Configura"</string>
     <string name="connection_service_default_label" msgid="1498481943805913754">"Servei de connexió incorporat"</string>
