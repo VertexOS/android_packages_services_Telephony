@@ -87,7 +87,6 @@ public class EmergencyDialer extends Activity implements View.OnClickListener,
     private static final String LOG_TAG = "EmergencyDialer";
 
     private StatusBarManager mStatusBarManager;
-    private AccessibilityManager mAccessibilityManager;
 
     /** The length of DTMF tones in milliseconds */
     private static final int TONE_LENGTH_MS = 150;
@@ -161,7 +160,6 @@ public class EmergencyDialer extends Activity implements View.OnClickListener,
         super.onCreate(icicle);
 
         mStatusBarManager = (StatusBarManager) getSystemService(Context.STATUS_BAR_SERVICE);
-        mAccessibilityManager = (AccessibilityManager) getSystemService(ACCESSIBILITY_SERVICE);
 
         // Allow this activity to be displayed in front of the keyguard / lockscreen.
         WindowManager.LayoutParams lp = getWindow().getAttributes();
@@ -180,10 +178,6 @@ public class EmergencyDialer extends Activity implements View.OnClickListener,
         mDigits.setOnClickListener(this);
         mDigits.setOnKeyListener(this);
         mDigits.setLongClickable(false);
-        if (mAccessibilityManager.isEnabled()) {
-            // The text view must be selected to send accessibility events.
-            mDigits.setSelected(true);
-        }
         maybeAddNumberFormatting();
 
         // Check for the presence of the keypad
