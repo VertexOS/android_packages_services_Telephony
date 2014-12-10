@@ -73,8 +73,7 @@
     <string name="wifi_calling_call_assistant" msgid="229102032881680320">"కాల్ సహాయకం"</string>
     <string name="wifi_calling_use_call_assistant" msgid="8460024827012666199">"కాల్ సహాయకాన్ని ఉపయోగించు"</string>
     <string name="wifi_calling_select_call_assistant" msgid="9296558058772293">"కాల్ సహాయకాన్ని ఎంచుకోండి"</string>
-    <!-- no translation found for wifi_calling_select_call_assistant_summary (164985727137156474) -->
-    <skip />
+    <string name="wifi_calling_select_call_assistant_summary" msgid="164985727137156474">"కాల్‌ల కోసం ఉపయోగించే నెట్‌వర్క్‌లను నిర్వహించండి"</string>
     <string name="wifi_calling_use_call_assistant_summary" msgid="6599987137133339698">"కాల్‌ల కోసం ఉపయోగించే నెట్‌వర్క్‌లను నిర్వహించడానికి అనువర్తనాలు లేదా సేవలను అనుమతించండి"</string>
     <string name="wifi_calling_call_assistant_configure" msgid="1092639708949670031">"కాన్ఫిగర్ చేయి"</string>
     <string name="connection_service_default_label" msgid="1498481943805913754">"అంతర్నిర్మిత కనెక్షన్ సేవ"</string>
@@ -549,6 +548,5 @@
     <string name="sim_label_emergency_calls" msgid="4847699229529306397">"అత్యవసర కాల్‌లు"</string>
     <string name="sim_description_emergency_calls" msgid="7535215397212301562">"అత్యవసర కాలింగ్ మాత్రమే"</string>
     <string name="sim_description_default" msgid="4778679519938775515">"SIM కార్డ్, స్లాట్: <xliff:g id="SLOT_ID">%s</xliff:g>"</string>
-    <!-- no translation found for voicemail_notification_vibrate_key (4268230305042185439) -->
-    <skip />
+    <string name="voicemail_notification_vibrate_key" msgid="4268230305042185439">"వాయిస్ మెయిల్_నోటిఫికేషన్_వైబ్రేట్_కీ"</string>
 </resources>

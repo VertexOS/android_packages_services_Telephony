@@ -73,8 +73,7 @@
     <string name="wifi_calling_call_assistant" msgid="229102032881680320">"دستیار تماس"</string>
     <string name="wifi_calling_use_call_assistant" msgid="8460024827012666199">"استفاده از دستیار تماس"</string>
     <string name="wifi_calling_select_call_assistant" msgid="9296558058772293">"انتخاب دستیار تماس"</string>
-    <!-- no translation found for wifi_calling_select_call_assistant_summary (164985727137156474) -->
-    <skip />
+    <string name="wifi_calling_select_call_assistant_summary" msgid="164985727137156474">"مدیریت شبکه‌های مورد استفاده برای تماس‌ با"</string>
     <string name="wifi_calling_use_call_assistant_summary" msgid="6599987137133339698">"به برنامه‌ها یا سرویس‌ها اجازه داده شود شبکه‌های مورد استفاده برای تماس‌ها را مدیریت کنند"</string>
     <string name="wifi_calling_call_assistant_configure" msgid="1092639708949670031">"پیکربندی"</string>
     <string name="connection_service_default_label" msgid="1498481943805913754">"سرویس اتصال داخلی"</string>

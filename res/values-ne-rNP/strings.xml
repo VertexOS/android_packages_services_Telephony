@@ -73,8 +73,7 @@
     <string name="wifi_calling_call_assistant" msgid="229102032881680320">"कल सहायक"</string>
     <string name="wifi_calling_use_call_assistant" msgid="8460024827012666199">"कल सहायक प्रयोग गर्नुहोस्"</string>
     <string name="wifi_calling_select_call_assistant" msgid="9296558058772293">"कल सहायक छान्नुहोस्"</string>
-    <!-- no translation found for wifi_calling_select_call_assistant_summary (164985727137156474) -->
-    <skip />
+    <string name="wifi_calling_select_call_assistant_summary" msgid="164985727137156474">"सँग कलहरू गर्नको लागि प्रयोग हुने संजालहरूको व्यवस्थापन गर्नुहोस्"</string>
     <string name="wifi_calling_use_call_assistant_summary" msgid="6599987137133339698">"कलका लागि प्रयोग हुने सञ्जालहरू व्यवस्थापन गर्न  अनुप्रयोग वा सेवालाई अनुमति दिन्छ ।"</string>
     <string name="wifi_calling_call_assistant_configure" msgid="1092639708949670031">"कन्फिगर गर्नुहोस्"</string>
     <string name="connection_service_default_label" msgid="1498481943805913754">"निर्मित जडान सेवा"</string>
