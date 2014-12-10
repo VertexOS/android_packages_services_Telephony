@@ -73,7 +73,7 @@
     <string name="wifi_calling_call_assistant" msgid="229102032881680320">"Assistant sa pagtawag"</string>
     <string name="wifi_calling_use_call_assistant" msgid="8460024827012666199">"Gumamit ng assistant sa pagtawag"</string>
     <string name="wifi_calling_select_call_assistant" msgid="9296558058772293">"Pumili ng assistant sa pagtawag"</string>
-    <string name="wifi_calling_select_call_assistant_summary" msgid="9106482864108127281">"Pumili ng app o serbisyo upang pamahalaan ang mga network na ginamit para sa mga tawag"</string>
+    <string name="wifi_calling_select_call_assistant_summary" msgid="164985727137156474">"Pamahalaan ang mga network na ginagamit para sa mga tawag sa"</string>
     <string name="wifi_calling_use_call_assistant_summary" msgid="6599987137133339698">"Hayaan ang mga app o serbisyo na pamahalaan ang mga network na ginamit para sa mga tawag"</string>
     <string name="wifi_calling_call_assistant_configure" msgid="1092639708949670031">"I-configure"</string>
     <string name="connection_service_default_label" msgid="1498481943805913754">"Built-in na serbisyo ng koneksyon"</string>
@@ -548,4 +548,5 @@
     <string name="sim_label_emergency_calls" msgid="4847699229529306397">"Mga emergency na tawag"</string>
     <string name="sim_description_emergency_calls" msgid="7535215397212301562">"Emergency na pagtawag lang"</string>
     <string name="sim_description_default" msgid="4778679519938775515">"SIM card, slot: <xliff:g id="SLOT_ID">%s</xliff:g>"</string>
+    <string name="voicemail_notification_vibrate_key" msgid="4268230305042185439">"voicemail_notification_vibrate_key"</string>
 </resources>
