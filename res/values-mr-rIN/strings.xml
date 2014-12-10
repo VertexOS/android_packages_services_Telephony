@@ -73,7 +73,7 @@
     <string name="wifi_calling_call_assistant" msgid="229102032881680320">"कॉल सहाय्यक"</string>
     <string name="wifi_calling_use_call_assistant" msgid="8460024827012666199">"कॉल सहाय्यक निवडा"</string>
     <string name="wifi_calling_select_call_assistant" msgid="9296558058772293">"कॉल सहाय्य्क निवडा"</string>
-    <string name="wifi_calling_select_call_assistant_summary" msgid="9106482864108127281">"कॉलसाठी वापरलेले नेटवर्क व्‍यवस्‍थापित करण्‍यासाठी एक अ‍ॅप किंवा सेवा निवडा"</string>
+    <string name="wifi_calling_select_call_assistant_summary" msgid="164985727137156474">"यासह कॉल करण्यासाठी वापरलेले नेटवर्क व्यवस्थापित करा"</string>
     <string name="wifi_calling_use_call_assistant_summary" msgid="6599987137133339698">"अ‍ॅप्स किंवा सेवांना कॉलसाठी वापरलेले नेटवर्क व्यवस्‍थापित करू द्या"</string>
     <string name="wifi_calling_call_assistant_configure" msgid="1092639708949670031">"कॉन्फिगर करा"</string>
     <string name="connection_service_default_label" msgid="1498481943805913754">"अंगभूत कनेक्शन सेवा"</string>
@@ -548,4 +548,5 @@
     <string name="sim_label_emergency_calls" msgid="4847699229529306397">"आणीबाणी कॉल"</string>
     <string name="sim_description_emergency_calls" msgid="7535215397212301562">"केवळ आणीबाणी कॉल करणे"</string>
     <string name="sim_description_default" msgid="4778679519938775515">"सिम कार्ड, स्लॉट: <xliff:g id="SLOT_ID">%s</xliff:g>"</string>
+    <string name="voicemail_notification_vibrate_key" msgid="4268230305042185439">"voicemail_notification_vibrate_key"</string>
 </resources>
