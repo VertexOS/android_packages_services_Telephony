@@ -55,6 +55,7 @@ import com.android.internal.telephony.PhoneConstants;
 import com.android.phone.common.util.SettingsUtil;
 import com.android.phone.settings.AccountSelectionPreference;
 import com.android.phone.settings.CallForwardInfoUtil;
+import com.android.phone.settings.TtyModeListPreference;
 import com.android.phone.settings.VoicemailDialogUtil;
 import com.android.phone.settings.VoicemailNotificationSettingsUtil;
 import com.android.phone.settings.VoicemailProviderListPreference;
@@ -191,8 +192,7 @@ public class CallFeaturesSetting extends PreferenceActivity
     private CheckBoxPreference mButtonAutoRetry;
     private CheckBoxPreference mButtonHAC;
     private ListPreference mButtonDTMF;
-    private ListPreference mButtonTTY;
-    private Preference mPhoneAccountSettingsPreference;
+    private TtyModeListPreference mButtonTTY;
     private VoicemailProviderListPreference mVoicemailProviders;
     private PreferenceScreen mVoicemailSettingsScreen;
     private PreferenceScreen mVoicemailSettings;
@@ -376,8 +376,6 @@ public class CallFeaturesSetting extends PreferenceActivity
             int index = mButtonDTMF.findIndexOfValue((String) objValue);
             Settings.System.putInt(mPhone.getContext().getContentResolver(),
                     Settings.System.DTMF_TONE_TYPE_WHEN_DIALING, index);
-        } else if (preference == mButtonTTY) {
-            handleTTYChange(preference, objValue);
         } else if (preference == mVoicemailProviders) {
             final String newProviderKey = (String) objValue;
 
@@ -1128,19 +1126,6 @@ public class CallFeaturesSetting extends PreferenceActivity
         mSubscriptionInfoHelper.setActionBarTitle(
                 getActionBar(), getResources(), R.string.call_settings_with_label);
         mPhone = mSubscriptionInfoHelper.getPhone();
-   }
-
-    private void initPhoneAccountPreferences() {
-        mPhoneAccountSettingsPreference = findPreference(PHONE_ACCOUNT_SETTINGS_KEY);
-
-        TelecomManager telecomManager = TelecomManager.from(this);
-        TelephonyManager telephonyManager =
-                (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
-
-        if ((telecomManager.getSimCallManagers().isEmpty() && !SipUtil.isVoipSupported(this))
-                || telephonyManager.getPhoneCount() > 1) {
-            getPreferenceScreen().removePreference(mPhoneAccountSettingsPreference);
-        }
     }
 
     @Override
@@ -1155,7 +1140,15 @@ public class CallFeaturesSetting extends PreferenceActivity
 
         addPreferencesFromResource(R.xml.call_feature_setting);
 
-        initPhoneAccountPreferences();
+        TelecomManager telecomManager = TelecomManager.from(this);
+        TelephonyManager telephonyManager =
+                (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+
+        Preference phoneAccountSettingsPreference = findPreference(PHONE_ACCOUNT_SETTINGS_KEY);
+        if (telephonyManager.isMultiSimEnabled() || (telecomManager.getSimCallManagers().isEmpty()
+                    && !SipUtil.isVoipSupported(mPhone.getContext()))) {
+            getPreferenceScreen().removePreference(phoneAccountSettingsPreference);
+        }
 
         PreferenceScreen prefSet = getPreferenceScreen();
         mSubMenuVoicemailSettings = (EditPhoneNumberPreference) findPreference(BUTTON_VOICEMAIL_KEY);
@@ -1166,7 +1159,8 @@ public class CallFeaturesSetting extends PreferenceActivity
         mButtonDTMF = (ListPreference) findPreference(BUTTON_DTMF_KEY);
         mButtonAutoRetry = (CheckBoxPreference) findPreference(BUTTON_RETRY_KEY);
         mButtonHAC = (CheckBoxPreference) findPreference(BUTTON_HAC_KEY);
-        mButtonTTY = (ListPreference) findPreference(BUTTON_TTY_KEY);
+        mButtonTTY = (TtyModeListPreference) findPreference(
+                getResources().getString(R.string.tty_mode_key));
 
         mVoicemailProviders = (VoicemailProviderListPreference) findPreference(
                 BUTTON_VOICEMAIL_PROVIDER_KEY);
@@ -1219,14 +1213,8 @@ public class CallFeaturesSetting extends PreferenceActivity
             mButtonHAC = null;
         }
 
-        TelecomManager telecomManager = TelecomManager.from(this);
-        if (telecomManager != null && telecomManager.isTtySupported()) {
-            mButtonTTY.setOnPreferenceChangeListener(this);
-            int settingsTtyMode = Settings.Secure.getInt(getContentResolver(),
-                    Settings.Secure.PREFERRED_TTY_MODE,
-                    TelecomManager.TTY_MODE_OFF);
-            mButtonTTY.setValue(Integer.toString(settingsTtyMode));
-            updatePreferredTtyModeSummary(settingsTtyMode);
+        if (!telephonyManager.isMultiSimEnabled() && telecomManager.isTtySupported()) {
+            mButtonTTY.init();
         } else {
             prefSet.removePreference(mButtonTTY);
             mButtonTTY = null;
@@ -1311,53 +1299,6 @@ public class CallFeaturesSetting extends PreferenceActivity
             mEnableVideoCalling.setOnPreferenceChangeListener(this);
         } else {
             prefSet.removePreference(mEnableVideoCalling);
-        }
-    }
-
-    private void handleTTYChange(Preference preference, Object objValue) {
-        int buttonTtyMode;
-        buttonTtyMode = Integer.valueOf((String) objValue).intValue();
-        int settingsTtyMode = android.provider.Settings.Secure.getInt(
-                getContentResolver(),
-                android.provider.Settings.Secure.PREFERRED_TTY_MODE,
-                TelecomManager.TTY_MODE_OFF);
-        if (DBG) log("handleTTYChange: requesting set TTY mode enable (TTY) to" +
-                Integer.toString(buttonTtyMode));
-
-        if (buttonTtyMode != settingsTtyMode) {
-            switch(buttonTtyMode) {
-            case TelecomManager.TTY_MODE_OFF:
-            case TelecomManager.TTY_MODE_FULL:
-            case TelecomManager.TTY_MODE_HCO:
-            case TelecomManager.TTY_MODE_VCO:
-                android.provider.Settings.Secure.putInt(getContentResolver(),
-                        android.provider.Settings.Secure.PREFERRED_TTY_MODE, buttonTtyMode);
-                break;
-            default:
-                buttonTtyMode = TelecomManager.TTY_MODE_OFF;
-            }
-
-            mButtonTTY.setValue(Integer.toString(buttonTtyMode));
-            updatePreferredTtyModeSummary(buttonTtyMode);
-            Intent ttyModeChanged = new Intent(TelecomManager.ACTION_TTY_PREFERRED_MODE_CHANGED);
-            ttyModeChanged.putExtra(TelecomManager.EXTRA_TTY_PREFERRED_MODE, buttonTtyMode);
-            sendBroadcastAsUser(ttyModeChanged, UserHandle.ALL);
-        }
-    }
-
-    private void updatePreferredTtyModeSummary(int TtyMode) {
-        String [] txts = getResources().getStringArray(R.array.tty_mode_entries);
-        switch(TtyMode) {
-            case TelecomManager.TTY_MODE_OFF:
-            case TelecomManager.TTY_MODE_HCO:
-            case TelecomManager.TTY_MODE_VCO:
-            case TelecomManager.TTY_MODE_FULL:
-                mButtonTTY.setSummary(txts[TtyMode]);
-                break;
-            default:
-                mButtonTTY.setEnabled(false);
-                mButtonTTY.setSummary(txts[TelecomManager.TTY_MODE_OFF]);
-                break;
         }
     }
 
