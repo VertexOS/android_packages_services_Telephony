@@ -51,9 +51,11 @@ import com.android.internal.telephony.CallStateException;
 import com.android.internal.telephony.CallerInfo;
 import com.android.internal.telephony.CallerInfoAsyncQuery;
 import com.android.internal.telephony.Connection;
+import com.android.internal.telephony.IccCard;
 import com.android.internal.telephony.MmiCode;
 import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneConstants;
+import com.android.internal.telephony.PhoneFactory;
 import com.android.internal.telephony.TelephonyCapabilities;
 import com.android.internal.telephony.TelephonyProperties;
 import com.android.internal.telephony.sip.SipPhone;
@@ -2449,5 +2451,29 @@ public class PhoneUtils {
         // an emergency-only account
         String id = isEmergency ? "E" : prefix + String.valueOf(phone.getSubId());
         return new PhoneAccountHandle(pstnConnectionServiceName, id);
+    }
+
+    /**
+     * Register ICC status for all phones.
+     */
+    static final void registerIccStatus(Handler handler, int event) {
+        for (Phone phone : PhoneFactory.getPhones()) {
+            IccCard sim = phone.getIccCard();
+            if (sim != null) {
+                if (VDBG) Log.v(LOG_TAG, "register for ICC status, phone " + phone.getPhoneId());
+                sim.registerForNetworkLocked(handler, event, phone);
+            }
+        }
+    }
+
+    /**
+     * Set the radio power on/off state for all phones.
+     *
+     * @param enabled true means on, false means off.
+     */
+    static final void setRadioPower(boolean enabled) {
+        for (Phone phone : PhoneFactory.getPhones()) {
+            phone.setRadioPower(enabled);
+        }
     }
 }

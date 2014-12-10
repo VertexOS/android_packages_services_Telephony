@@ -143,7 +143,6 @@ public class PhoneGlobals extends ContextWrapper {
     CallNotifier notifier;
     CallerInfoCache callerInfoCache;
     NotificationMgr notificationMgr;
-    Phone phone;
     PhoneInterfaceManager phoneMgr;
 
     private BluetoothManager bluetoothManager;
@@ -262,7 +261,7 @@ public class PhoneGlobals extends ContextWrapper {
                     break;
 
                 case MMI_CANCEL:
-                    PhoneUtils.cancelMmiCode(phone);
+                    PhoneUtils.cancelMmiCode(mCM.getFgPhone());
                     break;
 
                 case EVENT_SIM_STATE_CHANGED:
@@ -328,19 +327,22 @@ public class PhoneGlobals extends ContextWrapper {
         // sVoiceCapable =
         //   getPackageManager().hasSystemFeature(PackageManager.FEATURE_TELEPHONY_VOICE_CALLS);
 
-        if (phone == null) {
+        if (mCM == null) {
             // Initialize the telephony framework
             PhoneFactory.makeDefaultPhones(this);
-
-            // Get the default phone
-            phone = PhoneFactory.getDefaultPhone();
 
             // Start TelephonyDebugService After the default phone is created.
             Intent intent = new Intent(this, TelephonyDebugService.class);
             startService(intent);
 
             mCM = CallManager.getInstance();
-            mCM.registerPhone(phone);
+            boolean hasCdmaPhoneType = false;
+            for (Phone phone : PhoneFactory.getPhones()) {
+                mCM.registerPhone(phone);
+                if (phone.getPhoneType() == PhoneConstants.PHONE_TYPE_CDMA) {
+                    hasCdmaPhoneType = true;
+                }
+            }
 
             // Create the NotificationMgr singleton, which is used to display
             // status bar icons and control other status bar behavior.
@@ -348,9 +350,7 @@ public class PhoneGlobals extends ContextWrapper {
 
             mHandler.sendEmptyMessage(EVENT_START_SIP_SERVICE);
 
-            int phoneType = phone.getPhoneType();
-
-            if (phoneType == PhoneConstants.PHONE_TYPE_CDMA) {
+            if (hasCdmaPhoneType) {
                 // Create an instance of CdmaPhoneCallState and initialize it to IDLE
                 cdmaPhoneCallState = new CdmaPhoneCallState();
                 cdmaPhoneCallState.CdmaPhoneCallStateInit();
@@ -397,7 +397,7 @@ public class PhoneGlobals extends ContextWrapper {
             // Bluetooth manager
             bluetoothManager = new BluetoothManager();
 
-            phoneMgr = PhoneInterfaceManager.init(this, phone);
+            phoneMgr = PhoneInterfaceManager.init(this, PhoneFactory.getDefaultPhone());
 
             // Create the CallNotifer singleton, which handles
             // asynchronous events from the telephony layer (like
@@ -405,12 +405,7 @@ public class PhoneGlobals extends ContextWrapper {
             // in.)
             notifier = CallNotifier.init(this, callLogger, callStateMonitor, bluetoothManager);
 
-            // register for ICC status
-            IccCard sim = phone.getIccCard();
-            if (sim != null) {
-                if (VDBG) Log.v(LOG_TAG, "register for ICC status");
-                sim.registerForNetworkLocked(mHandler, EVENT_SIM_NETWORK_LOCKED, null);
-            }
+            PhoneUtils.registerIccStatus(mHandler, EVENT_SIM_NETWORK_LOCKED);
 
             // register for MMI/USSD
             mCM.registerForMmiComplete(mHandler, MMI_COMPLETE, null);
@@ -456,9 +451,10 @@ public class PhoneGlobals extends ContextWrapper {
 
         // Read HAC settings and configure audio hardware
         if (getResources().getBoolean(R.bool.hac_enabled)) {
-            int hac = android.provider.Settings.System.getInt(phone.getContext().getContentResolver(),
-                                                              android.provider.Settings.System.HEARING_AID,
-                                                              0);
+            int hac = android.provider.Settings.System.getInt(
+                    getContentResolver(),
+                    android.provider.Settings.System.HEARING_AID,
+                    0);
             AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
             audioManager.setParameter(CallFeaturesSetting.HAC_KEY, hac != 0 ?
                                       CallFeaturesSetting.HAC_VAL_ON :
@@ -485,11 +481,12 @@ public class PhoneGlobals extends ContextWrapper {
     }
 
     /**
-     * Returns the Phone associated with this instance.
+     * Returns the default phone.
+     *
      * WARNING: This method should be used carefully, now that there may be multiple phones.
      */
     public static Phone getPhone() {
-        return getInstance().phone;
+        return PhoneFactory.getDefaultPhone();
     }
 
     public static Phone getPhone(int subId) {
@@ -699,7 +696,7 @@ public class PhoneGlobals extends ContextWrapper {
         // the screen to be on.
         //
         boolean isRinging = (state == PhoneConstants.State.RINGING);
-        boolean isDialing = (phone.getForegroundCall().getState() == Call.State.DIALING);
+        boolean isDialing = (mCM.getFgPhone().getForegroundCall().getState() == Call.State.DIALING);
         boolean keepScreenOn = isRinging || isDialing;
         // keepScreenOn == true means we'll hold a full wake lock:
         requestWakeState(keepScreenOn ? WakeState.FULL : WakeState.SLEEP);
@@ -757,13 +754,15 @@ public class PhoneGlobals extends ContextWrapper {
     private void onMMIComplete(AsyncResult r) {
         if (VDBG) Log.d(LOG_TAG, "onMMIComplete()...");
         MmiCode mmiCode = (MmiCode) r.result;
-        PhoneUtils.displayMMIComplete(phone, getInstance(), mmiCode, null, null);
+        PhoneUtils.displayMMIComplete(mmiCode.getPhone(), getInstance(), mmiCode, null, null);
     }
 
-    private void initForNewRadioTechnology() {
+    private void initForNewRadioTechnology(int phoneId) {
         if (DBG) Log.d(LOG_TAG, "initForNewRadioTechnology...");
 
-         if (phone.getPhoneType() == PhoneConstants.PHONE_TYPE_CDMA) {
+        final Phone phone = PhoneFactory.getPhone(phoneId);
+
+        if (phone.getPhoneType() == PhoneConstants.PHONE_TYPE_CDMA) {
             // Create an instance of CdmaPhoneCallState and initialize it to IDLE
             cdmaPhoneCallState = new CdmaPhoneCallState();
             cdmaPhoneCallState.CdmaPhoneCallStateInit();
@@ -796,19 +795,28 @@ public class PhoneGlobals extends ContextWrapper {
             if (action.equals(Intent.ACTION_AIRPLANE_MODE_CHANGED)) {
                 boolean enabled = System.getInt(getContentResolver(),
                         System.AIRPLANE_MODE_ON, 0) == 0;
-                phone.setRadioPower(enabled);
+                PhoneUtils.setRadioPower(enabled);
             } else if (action.equals(TelephonyIntents.ACTION_ANY_DATA_CONNECTION_STATE_CHANGED)) {
-                if (VDBG) Log.d(LOG_TAG, "mReceiver: ACTION_ANY_DATA_CONNECTION_STATE_CHANGED");
-                if (VDBG) Log.d(LOG_TAG, "- state: " + intent.getStringExtra(PhoneConstants.STATE_KEY));
-                if (VDBG) Log.d(LOG_TAG, "- reason: "
-                                + intent.getStringExtra(PhoneConstants.STATE_CHANGE_REASON_KEY));
-
+                int subId = intent.getIntExtra(PhoneConstants.SUBSCRIPTION_KEY,
+                        SubscriptionManager.INVALID_SUBSCRIPTION_ID);
+                int phoneId = SubscriptionManager.getPhoneId(subId);
+                String state = intent.getStringExtra(PhoneConstants.STATE_KEY);
+                if (VDBG) {
+                    Log.d(LOG_TAG, "mReceiver: ACTION_ANY_DATA_CONNECTION_STATE_CHANGED");
+                    Log.d(LOG_TAG, "- state: " + state);
+                    Log.d(LOG_TAG, "- reason: "
+                    + intent.getStringExtra(PhoneConstants.STATE_CHANGE_REASON_KEY));
+                    Log.d(LOG_TAG, "- subId: " + subId);
+                    Log.d(LOG_TAG, "- phoneId: " + phoneId);
+                }
+                Phone phone = SubscriptionManager.isValidPhoneId(phoneId) ?
+                        PhoneFactory.getPhone(phoneId) : PhoneFactory.getDefaultPhone();
                 // The "data disconnected due to roaming" notification is shown
                 // if (a) you have the "data roaming" feature turned off, and
                 // (b) you just lost data connectivity because you're roaming.
                 boolean disconnectedDueToRoaming =
                         !phone.getDataRoamingEnabled()
-                        && "DISCONNECTED".equals(intent.getStringExtra(PhoneConstants.STATE_KEY))
+                        && PhoneConstants.DataState.DISCONNECTED.equals(state)
                         && Phone.REASON_ROAMING_ON.equals(
                             intent.getStringExtra(PhoneConstants.STATE_CHANGE_REASON_KEY));
                 if (mDataDisconnectedDueToRoaming != disconnectedDueToRoaming) {
@@ -826,12 +834,15 @@ public class PhoneGlobals extends ContextWrapper {
                         intent.getStringExtra(IccCardConstants.INTENT_KEY_ICC_STATE)));
             } else if (action.equals(TelephonyIntents.ACTION_RADIO_TECHNOLOGY_CHANGED)) {
                 String newPhone = intent.getStringExtra(PhoneConstants.PHONE_NAME_KEY);
-                Log.d(LOG_TAG, "Radio technology switched. Now " + newPhone + " is active.");
-                initForNewRadioTechnology();
+                int phoneId = intent.getIntExtra(PhoneConstants.PHONE_KEY,
+                        SubscriptionManager.INVALID_PHONE_INDEX);
+                Log.d(LOG_TAG, "Radio technology switched. Now " + newPhone + " (" + phoneId
+                        + ") is active.");
+                initForNewRadioTechnology(phoneId);
             } else if (action.equals(TelephonyIntents.ACTION_SERVICE_STATE_CHANGED)) {
                 handleServiceStateChanged(intent);
             } else if (action.equals(TelephonyIntents.ACTION_EMERGENCY_CALLBACK_MODE_CHANGED)) {
-                if (TelephonyCapabilities.supportsEcm(phone)) {
+                if (TelephonyCapabilities.supportsEcm(mCM.getFgPhone())) {
                     Log.d(LOG_TAG, "Emergency Callback Mode arrived in PhoneApp.");
                     // Start Emergency Callback Mode service
                     if (intent.getBooleanExtra("phoneinECMState", false)) {
@@ -842,7 +853,8 @@ public class PhoneGlobals extends ContextWrapper {
                     // It doesn't make sense to get ACTION_EMERGENCY_CALLBACK_MODE_CHANGED
                     // on a device that doesn't support ECM in the first place.
                     Log.e(LOG_TAG, "Got ACTION_EMERGENCY_CALLBACK_MODE_CHANGED, "
-                          + "but ECM isn't supported for phone: " + phone.getPhoneName());
+                            + "but ECM isn't supported for phone: "
+                            + mCM.getFgPhone().getPhoneName());
                 }
             } else if (action.equals(Intent.ACTION_DOCK_EVENT)) {
                 mDockState = intent.getIntExtra(Intent.EXTRA_DOCK_STATE,
