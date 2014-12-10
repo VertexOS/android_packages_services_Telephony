@@ -73,7 +73,7 @@
     <string name="wifi_calling_call_assistant" msgid="229102032881680320">"Oproepassistent"</string>
     <string name="wifi_calling_use_call_assistant" msgid="8460024827012666199">"Oproepassistent gebruiken"</string>
     <string name="wifi_calling_select_call_assistant" msgid="9296558058772293">"Oproepassistent kiezen"</string>
-    <string name="wifi_calling_select_call_assistant_summary" msgid="9106482864108127281">"Een app of service kiezen om de netwerken te beheren die voor oproepen worden gebruikt"</string>
+    <string name="wifi_calling_select_call_assistant_summary" msgid="164985727137156474">"De netwerken beheren die worden gebruikt voor oproepen met"</string>
     <string name="wifi_calling_use_call_assistant_summary" msgid="6599987137133339698">"Apps of services de netwerken laten beheren die voor oproepen worden gebruikt"</string>
     <string name="wifi_calling_call_assistant_configure" msgid="1092639708949670031">"Configureren"</string>
     <string name="connection_service_default_label" msgid="1498481943805913754">"Ingebouwde verbindingsservice"</string>
@@ -548,4 +548,5 @@
     <string name="sim_label_emergency_calls" msgid="4847699229529306397">"Noodoproepen"</string>
     <string name="sim_description_emergency_calls" msgid="7535215397212301562">"Alleen noodoproepen"</string>
     <string name="sim_description_default" msgid="4778679519938775515">"Simkaart, sleuf: <xliff:g id="SLOT_ID">%s</xliff:g>"</string>
+    <string name="voicemail_notification_vibrate_key" msgid="4268230305042185439">"voicemail_notification_vibrate_key"</string>
 </resources>

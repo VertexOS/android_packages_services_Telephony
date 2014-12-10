@@ -68,12 +68,12 @@
     <string name="phone_accounts_configure_account_settings" msgid="1361715069911607109">"Konfiguratu kontuaren ezarpenak"</string>
     <string name="phone_account_wifi_calling" msgid="1840272538233414629">"Wi-Fi bidezko deiak"</string>
     <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"Ez erabili Wi-Fi bidezko deiak"</string>
-    <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"Ez erabili deien laguntzailea"</string>
+    <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"Ez erabili deiak egiteko laguntzailea"</string>
     <string name="wifi_calling_call_assistant_none" msgid="6283702349285593683">"Bat ere ez"</string>
-    <string name="wifi_calling_call_assistant" msgid="229102032881680320">"Deien laguntzailea"</string>
-    <string name="wifi_calling_use_call_assistant" msgid="8460024827012666199">"Erabili deien laguntzailea"</string>
-    <string name="wifi_calling_select_call_assistant" msgid="9296558058772293">"Aukeratu deien laguntzailea"</string>
-    <string name="wifi_calling_select_call_assistant_summary" msgid="9106482864108127281">"Aukeratu deiak egiteko erabiltzen diren sareak kudeatzeko aplikazioa edo zerbitzua."</string>
+    <string name="wifi_calling_call_assistant" msgid="229102032881680320">"Deiak egiteko laguntzailea"</string>
+    <string name="wifi_calling_use_call_assistant" msgid="8460024827012666199">"Erabili deiak egiteko laguntzailea"</string>
+    <string name="wifi_calling_select_call_assistant" msgid="9296558058772293">"Aukeratu deiak egiteko laguntzailea"</string>
+    <string name="wifi_calling_select_call_assistant_summary" msgid="164985727137156474">"Kudeatu txartel honekin egindako deietarako erabili beharreko sareak:"</string>
     <string name="wifi_calling_use_call_assistant_summary" msgid="6599987137133339698">"Utzi aplikazioei edo zerbitzuei deiak egiteko erabili beharreko sareak kudeatzen"</string>
     <string name="wifi_calling_call_assistant_configure" msgid="1092639708949670031">"Konfiguratu"</string>
     <string name="connection_service_default_label" msgid="1498481943805913754">"Konektatzeko zerbitzu bateratua"</string>
@@ -554,4 +554,5 @@
     <string name="sim_label_emergency_calls" msgid="4847699229529306397">"Larrialdi-deiak"</string>
     <string name="sim_description_emergency_calls" msgid="7535215397212301562">"Larrialdi-deiak soilik"</string>
     <string name="sim_description_default" msgid="4778679519938775515">"SIM txartela, <xliff:g id="SLOT_ID">%s</xliff:g> erretena"</string>
+    <string name="voicemail_notification_vibrate_key" msgid="4268230305042185439">"ahots-mezuak_jakinarazteko_dardara"</string>
 </resources>

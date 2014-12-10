@@ -73,7 +73,7 @@
     <string name="wifi_calling_call_assistant" msgid="229102032881680320">"אסיסטנט שיחות"</string>
     <string name="wifi_calling_use_call_assistant" msgid="8460024827012666199">"השתמש באסיסטנט שיחות"</string>
     <string name="wifi_calling_select_call_assistant" msgid="9296558058772293">"בחר אסיסטנט שיחות"</string>
-    <string name="wifi_calling_select_call_assistant_summary" msgid="9106482864108127281">"בחר אפליקציה או שירות לניהול הרשתות המשמשות לשיחות"</string>
+    <string name="wifi_calling_select_call_assistant_summary" msgid="164985727137156474">"נהל את הרשתות שבהן נעשה שימוש לשיחות עם"</string>
     <string name="wifi_calling_use_call_assistant_summary" msgid="6599987137133339698">"אפשר לאפליקציות או לשירותים לנהל רשתות המשמשות לשיחות"</string>
     <string name="wifi_calling_call_assistant_configure" msgid="1092639708949670031">"הגדר"</string>
     <string name="connection_service_default_label" msgid="1498481943805913754">"שירות חיבור מובנה"</string>
@@ -548,4 +548,5 @@
     <string name="sim_label_emergency_calls" msgid="4847699229529306397">"שיחות חירום"</string>
     <string name="sim_description_emergency_calls" msgid="7535215397212301562">"שיחות חירום בלבד"</string>
     <string name="sim_description_default" msgid="4778679519938775515">"‏כרטיס SIM, חריץ: <xliff:g id="SLOT_ID">%s</xliff:g>"</string>
+    <string name="voicemail_notification_vibrate_key" msgid="4268230305042185439">"voicemail_notification_vibrate_key"</string>
 </resources>

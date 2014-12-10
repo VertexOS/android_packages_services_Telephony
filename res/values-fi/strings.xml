@@ -73,7 +73,7 @@
     <string name="wifi_calling_call_assistant" msgid="229102032881680320">"Puheluapuri"</string>
     <string name="wifi_calling_use_call_assistant" msgid="8460024827012666199">"Käytä puheluapuria"</string>
     <string name="wifi_calling_select_call_assistant" msgid="9296558058772293">"Valitse puheluapuri"</string>
-    <string name="wifi_calling_select_call_assistant_summary" msgid="9106482864108127281">"Valitse sovellus tai palvelu, jolla haluat hallinnoida puheluihin käytettyjä verkkoja"</string>
+    <string name="wifi_calling_select_call_assistant_summary" msgid="164985727137156474">"Käytä puheluverkkojen hallinnointiin:"</string>
     <string name="wifi_calling_use_call_assistant_summary" msgid="6599987137133339698">"Salli sovellusten tai palveluiden hallinnoida puheluihin käytettyjä verkkoja"</string>
     <string name="wifi_calling_call_assistant_configure" msgid="1092639708949670031">"Asetukset"</string>
     <string name="connection_service_default_label" msgid="1498481943805913754">"Oletusyhteyspalvelu"</string>
@@ -207,7 +207,7 @@
     <string name="roaming_warning" msgid="7126227198294007907">"Sallitaanko mobiilidatan käyttö roaming-tilassa? Tästä saattaa aiheutua merkittäviä maksuja."</string>
     <string name="gsm_umts_options" msgid="6538311689850981686">"GSM/UMTS-asetukset"</string>
     <string name="cdma_options" msgid="4016822858172249884">"CDMA-asetukset"</string>
-    <string name="throttle_data_usage" msgid="3715677828160555808">"Tietojen käyttö"</string>
+    <string name="throttle_data_usage" msgid="3715677828160555808">"Datan käyttö"</string>
     <string name="throttle_current_usage" msgid="8762280193043815361">"Nykyisellä jaksolla käytetyt tiedot"</string>
     <string name="throttle_time_frame" msgid="1915198770363734685">"Tietojen käyttöjakso"</string>
     <string name="throttle_rate" msgid="4710388992676803508">"Tiedonsiirtonopeuskäytäntö"</string>
@@ -493,7 +493,7 @@
     <string name="ota_hfa_activation_title" msgid="2234246934160473981">"Aktivoidaan…"</string>
     <string name="ota_hfa_activation_dialog_message" msgid="8092479227918463415">"Puhelimen mobiilitiedonsiirtopalvelua aktivoidaan.\n\nAktivointi voi kestää viisi minuuttia."</string>
     <string name="ota_skip_activation_dialog_title" msgid="2943366608272261306">"Ohitetaanko aktivointi?"</string>
-    <string name="ota_skip_activation_dialog_message" msgid="2440770373498870550">"Jos ohitat aktivoinnin, et voi soittaa puheluita etkä muodostaa verkkoyhteyttä (voit tosin muodostaa yhteyden wifi-verkkoihin). Sinua pyydetään aktivoimaan puhelimesi aina kun käynnistät sen siihen saakka, että aktivoit sen."</string>
+    <string name="ota_skip_activation_dialog_message" msgid="2440770373498870550">"Jos ohitat aktivoinnin, et voi soittaa puheluita etkä muodostaa verkkoyhteyttä (voit tosin muodostaa yhteyden Wi-Fi-verkkoihin). Sinua pyydetään aktivoimaan puhelimesi aina kun käynnistät sen siihen saakka, että aktivoit sen."</string>
     <string name="ota_skip_activation_dialog_skip_label" msgid="3458532775091563208">"Ohita"</string>
     <string name="ota_activate" msgid="1368528132525626264">"Aktivoi"</string>
     <string name="ota_title_activate_success" msgid="6570240212263372046">"Puhelin aktivoitu."</string>
@@ -552,4 +552,5 @@
     <string name="sim_label_emergency_calls" msgid="4847699229529306397">"Hätäpuhelut"</string>
     <string name="sim_description_emergency_calls" msgid="7535215397212301562">"Vain hätäpuhelut"</string>
     <string name="sim_description_default" msgid="4778679519938775515">"SIM-kortti, paikka: <xliff:g id="SLOT_ID">%s</xliff:g>"</string>
+    <string name="voicemail_notification_vibrate_key" msgid="4268230305042185439">"voicemail_notification_vibrate_key"</string>
 </resources>

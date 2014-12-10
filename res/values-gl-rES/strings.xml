@@ -73,7 +73,7 @@
     <string name="wifi_calling_call_assistant" msgid="229102032881680320">"Asistente de chamadas"</string>
     <string name="wifi_calling_use_call_assistant" msgid="8460024827012666199">"Utilizar o asistente de chamadas"</string>
     <string name="wifi_calling_select_call_assistant" msgid="9296558058772293">"Seleccionar asistente de chamadas"</string>
-    <string name="wifi_calling_select_call_assistant_summary" msgid="9106482864108127281">"Seleccionar unha aplicación ou servizo para xestionar as redes que utilizas para chamadas"</string>
+    <string name="wifi_calling_select_call_assistant_summary" msgid="164985727137156474">"Xestionar as redes utilizadas para chamadas con"</string>
     <string name="wifi_calling_use_call_assistant_summary" msgid="6599987137133339698">"Permitir que as aplicacións ou os servizos xestionen as redes que se utilizan para chamar"</string>
     <string name="wifi_calling_call_assistant_configure" msgid="1092639708949670031">"Configurar"</string>
     <string name="connection_service_default_label" msgid="1498481943805913754">"Servizo de conexión integrado"</string>
@@ -218,11 +218,11 @@
     <string name="throttle_time_frame_subtext" msgid="7732763021560399960">"<xliff:g id="USED_0">%1$d</xliff:g>٪ do ciclo transcorrido\nO seguinte período comeza dentro de <xliff:g id="USED_1">%2$d</xliff:g> días (<xliff:g id="USED_2">%3$s</xliff:g>)"</string>
     <string name="throttle_rate_subtext" msgid="2149102656120726855">"A velocidade de datos redúcese a <xliff:g id="USED">%1$d</xliff:g> Kb/s se se supera o límite de uso de datos"</string>
     <string name="throttle_help_subtext" msgid="3633091498168446044">"Máis información sobre a política de uso de datos da rede móbil do teu operador"</string>
-    <string name="cell_broadcast_sms" msgid="5584192824053625842">"SMS de difusión de cela"</string>
-    <string name="enable_disable_cell_bc_sms" msgid="4851147873691392255">"SMS de difusión de cela"</string>
-    <string name="cell_bc_sms_enable" msgid="6441688565738921084">"SMS de difusión de cela activado"</string>
-    <string name="cell_bc_sms_disable" msgid="3398365088309408749">"SMS de difusión de cela desactivado"</string>
-    <string name="cb_sms_settings" msgid="651715019785107312">"Configuración de SMS da difusión de cela"</string>
+    <string name="cell_broadcast_sms" msgid="5584192824053625842">"SMS de difusión móbil"</string>
+    <string name="enable_disable_cell_bc_sms" msgid="4851147873691392255">"SMS de difusión móbil"</string>
+    <string name="cell_bc_sms_enable" msgid="6441688565738921084">"SMS de difusión móbil activado"</string>
+    <string name="cell_bc_sms_disable" msgid="3398365088309408749">"SMS de difusión móbil desactivado"</string>
+    <string name="cb_sms_settings" msgid="651715019785107312">"Configuración de SMS da difusión móbil"</string>
     <string name="enable_disable_emergency_broadcast" msgid="2157014609041245335">"Difusión de emerxencia"</string>
     <string name="emergency_broadcast_enable" msgid="2645980025414010211">"Difusión de emerxencia activada"</string>
     <string name="emergency_broadcast_disable" msgid="3665199821267569426">"Difusión de emerxencia desactivada"</string>
@@ -548,4 +548,5 @@
     <string name="sim_label_emergency_calls" msgid="4847699229529306397">"Chamadas de emerxencia"</string>
     <string name="sim_description_emergency_calls" msgid="7535215397212301562">"Só chamadas de emerxencia"</string>
     <string name="sim_description_default" msgid="4778679519938775515">"Tarxeta SIM, rañura: <xliff:g id="SLOT_ID">%s</xliff:g>"</string>
+    <string name="voicemail_notification_vibrate_key" msgid="4268230305042185439">"voicemail_notification_vibrate_key"</string>
 </resources>
