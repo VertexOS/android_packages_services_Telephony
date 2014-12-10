@@ -36,6 +36,7 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.text.method.DialerKeyListener;
+import android.text.style.TtsSpan;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MenuItem;
@@ -153,6 +154,7 @@ public class EmergencyDialer extends Activity implements View.OnClickListener,
         }
 
         updateDialAndDeleteButtonStateEnabledAttr();
+        updateTtsSpans();
     }
 
     @Override
@@ -625,5 +627,15 @@ public class EmergencyDialer extends Activity implements View.OnClickListener,
             mDigits.setSelection(currentPosition);
             mDigits.getText().delete(currentPosition - 1, currentPosition);
         }
+    }
+
+    /**
+     * Update the text-to-speech annotations in the edit field.
+     */
+    private void updateTtsSpans() {
+        for (Object o : mDigits.getText().getSpans(0, mDigits.getText().length(), TtsSpan.class)) {
+            mDigits.getText().removeSpan(o);
+        }
+        PhoneNumberUtils.ttsSpanAsPhoneNumber(mDigits.getText(), 0, mDigits.getText().length());
     }
 }
