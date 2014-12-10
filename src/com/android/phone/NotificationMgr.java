@@ -115,7 +115,7 @@ public class NotificationMgr {
         mStatusBarManager =
                 (StatusBarManager) app.getSystemService(Context.STATUS_BAR_SERVICE);
         mUserManager = (UserManager) app.getSystemService(Context.USER_SERVICE);
-        mPhone = app.phone;  // TODO: better style to use mCM.getDefaultPhone() everywhere instead
+        mPhone = app.mCM.getDefaultPhone();
         statusBarHelper = new StatusBarHelper();
         mSubscriptionManager = SubscriptionManager.from(mContext);
         mTelecomManager = TelecomManager.from(mContext);
