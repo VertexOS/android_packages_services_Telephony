@@ -3,7 +3,6 @@ package com.android.phone.settings;
 import android.content.Context;
 import android.media.RingtoneManager;
 import android.net.Uri;
-import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.preference.Preference;
@@ -11,7 +10,6 @@ import android.preference.RingtonePreference;
 import android.util.AttributeSet;
 
 import com.android.internal.telephony.Phone;
-import com.android.phone.PhoneGlobals;
 import com.android.phone.common.util.SettingsUtil;
 
 /**
@@ -43,6 +41,9 @@ public class VoicemailRingtonePreference extends RingtonePreference {
 
     public void init(Phone phone) {
         mPhone = phone;
+
+        // Requesting the ringtone will trigger migration if necessary.
+        VoicemailNotificationSettingsUtil.getRingtoneUri(phone);
 
         final Preference preference = this;
         final String preferenceKey =
