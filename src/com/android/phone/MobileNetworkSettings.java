@@ -29,9 +29,11 @@ import java.util.List;
 
 import android.app.ActionBar;
 import android.app.AlertDialog;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.net.Uri;
@@ -147,6 +149,18 @@ public class MobileNetworkSettings extends PreferenceActivity
             }
         }
     };
+
+    private final BroadcastReceiver mPhoneChangeReceiver = new PhoneChangeReceiver();
+
+    private class PhoneChangeReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            // When the radio changes (ex: CDMA->GSM), refresh all options.
+            mGsmUmtsOptions = null;
+            mCdmaOptions = null;
+            updateBody();
+        }
+    }
 
     //This is a method implemented for DialogInterface.OnClickListener.
     //  Used to dismiss the dialogs when they come up.
@@ -343,6 +357,10 @@ public class MobileNetworkSettings extends PreferenceActivity
         }
 
         updateBody();
+
+        IntentFilter intentFilter = new IntentFilter(
+                TelephonyIntents.ACTION_RADIO_TECHNOLOGY_CHANGED);
+        registerReceiver(mPhoneChangeReceiver, intentFilter);
     }
 
     @Override
@@ -457,6 +475,11 @@ public class MobileNetworkSettings extends PreferenceActivity
                     }
                 }
                 mCdmaOptions = new CdmaOptions(this, prefSet, mPhone);
+
+                // In World mode force a refresh of GSM Options.
+                if (isWorldMode()) {
+                    mGsmUmtsOptions = null;
+                }
             } else if (phoneType == PhoneConstants.PHONE_TYPE_GSM) {
                 if (!getResources().getBoolean(R.bool.config_prefer_2g)
                         && !getResources().getBoolean(R.bool.config_enabled_lte)) {
