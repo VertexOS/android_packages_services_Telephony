@@ -1124,7 +1124,7 @@ public class CallFeaturesSetting extends PreferenceActivity
         mSetupVoicemail = mShowVoicemailPreference &&
                 getIntent().getBooleanExtra(SETUP_VOICEMAIL_EXTRA, false);
 
-        mSubscriptionInfoHelper = new SubscriptionInfoHelper(getIntent());
+        mSubscriptionInfoHelper = new SubscriptionInfoHelper(this, getIntent());
         mSubscriptionInfoHelper.setActionBarTitle(
                 getActionBar(), getResources(), R.string.call_settings_with_label);
         mPhone = mSubscriptionInfoHelper.getPhone();
@@ -1257,19 +1257,19 @@ public class CallFeaturesSetting extends PreferenceActivity
                         addPreferencesFromResource(R.xml.cdma_call_privacy);
                     }
                 } else if (phoneType == PhoneConstants.PHONE_TYPE_GSM) {
-                    fdnButton.setIntent(mSubscriptionInfoHelper.getIntent(this, FdnSetting.class));
+                    fdnButton.setIntent(mSubscriptionInfoHelper.getIntent(FdnSetting.class));
 
                     if (getResources().getBoolean(R.bool.config_additional_call_setting)) {
                         addPreferencesFromResource(R.xml.gsm_umts_call_options);
 
                         Preference callForwardingPref = prefSet.findPreference(CALL_FORWARDING_KEY);
                         callForwardingPref.setIntent(mSubscriptionInfoHelper.getIntent(
-                                this, GsmUmtsCallForwardOptions.class));
+                                GsmUmtsCallForwardOptions.class));
 
                         Preference additionalGsmSettingsPref =
                                 prefSet.findPreference(ADDITIONAL_GSM_SETTINGS_KEY);
                         additionalGsmSettingsPref.setIntent(mSubscriptionInfoHelper.getIntent(
-                                this, GsmUmtsAdditionalCallOptions.class));
+                                GsmUmtsAdditionalCallOptions.class));
                     }
                 } else {
                     throw new IllegalStateException("Unexpected phone type: " + phoneType);
@@ -1432,8 +1432,8 @@ public class CallFeaturesSetting extends PreferenceActivity
      * This is useful for implementing "HomeAsUp" capability for second-level Settings.
      */
     public static void goUpToTopLevelSetting(
-                Activity activity, SubscriptionInfoHelper subscriptionInfoHelper) {
-        Intent intent = subscriptionInfoHelper.getIntent(activity, CallFeaturesSetting.class);
+            Activity activity, SubscriptionInfoHelper subscriptionInfoHelper) {
+        Intent intent = subscriptionInfoHelper.getIntent(CallFeaturesSetting.class);
         intent.setAction(Intent.ACTION_MAIN);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         activity.startActivity(intent);

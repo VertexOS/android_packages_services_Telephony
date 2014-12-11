@@ -95,7 +95,7 @@ public class DeleteFdnContactScreen extends Activity {
     private void resolveIntent() {
         Intent intent = getIntent();
 
-        mSubscriptionInfoHelper = new SubscriptionInfoHelper(intent);
+        mSubscriptionInfoHelper = new SubscriptionInfoHelper(this, intent);
 
         mName =  intent.getStringExtra(INTENT_EXTRA_NAME);
         mNumber =  intent.getStringExtra(INTENT_EXTRA_NUMBER);

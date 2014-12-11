@@ -33,7 +33,7 @@ public class GsmUmtsAdditionalCallOptions extends TimeConsumingPreferenceActivit
 
         addPreferencesFromResource(R.xml.gsm_umts_additional_options);
 
-        mSubscriptionInfoHelper = new SubscriptionInfoHelper(getIntent());
+        mSubscriptionInfoHelper = new SubscriptionInfoHelper(this, getIntent());
         mSubscriptionInfoHelper.setActionBarTitle(
                 getActionBar(), getResources(), R.string.additional_gsm_call_settings_with_label);
         mPhone = mSubscriptionInfoHelper.getPhone();
