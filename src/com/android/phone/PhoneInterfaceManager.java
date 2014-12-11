@@ -71,6 +71,8 @@ import static com.android.internal.telephony.PhoneConstants.SUBSCRIPTION_KEY;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -2140,6 +2142,15 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     public boolean setOperatorBrandOverride(String brand) {
         enforceCarrierPrivilege();
         return mPhone.setOperatorBrandOverride(brand);
+    }
+
+    @Override
+    public boolean setRoamingOverride(List<String> gsmRoamingList,
+            List<String> gsmNonRoamingList, List<String> cdmaRoamingList,
+            List<String> cdmaNonRoamingList) {
+        enforceCarrierPrivilege();
+        return mPhone.setRoamingOverride(gsmRoamingList, gsmNonRoamingList, cdmaRoamingList,
+                cdmaNonRoamingList);
     }
 
     @Override
