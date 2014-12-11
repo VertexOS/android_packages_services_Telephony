@@ -607,8 +607,6 @@ public class MobileNetworkSettings extends PreferenceActivity
                 //Set the modem network mode
                 mPhone.setPreferredNetworkType(modemNetworkMode, mHandler
                         .obtainMessage(MyHandler.MESSAGE_SET_PREFERRED_NETWORK_TYPE));
-
-                updateBody();
             }
         } else if (preference == mButtonEnabledNetworks) {
             mButtonEnabledNetworks.setValue((String) objValue);
@@ -683,6 +681,7 @@ public class MobileNetworkSettings extends PreferenceActivity
             return true;
         }
 
+        updateBody();
         // always let the preference setting proceed.
         return true;
     }
