@@ -216,7 +216,7 @@ public class EditFdnContactScreen extends Activity {
     private void resolveIntent() {
         Intent intent = getIntent();
 
-        mSubscriptionInfoHelper = new SubscriptionInfoHelper(intent);
+        mSubscriptionInfoHelper = new SubscriptionInfoHelper(this, intent);
 
         mName =  intent.getStringExtra(INTENT_EXTRA_NAME);
         mNumber =  intent.getStringExtra(INTENT_EXTRA_NUMBER);
@@ -335,7 +335,7 @@ public class EditFdnContactScreen extends Activity {
     private void deleteSelected() {
         // delete ONLY if this is NOT a new contact.
         if (!mAddContact) {
-            Intent intent = mSubscriptionInfoHelper.getIntent(this, DeleteFdnContactScreen.class);
+            Intent intent = mSubscriptionInfoHelper.getIntent(DeleteFdnContactScreen.class);
             intent.putExtra(INTENT_EXTRA_NAME, mName);
             intent.putExtra(INTENT_EXTRA_NUMBER, mNumber);
             startActivity(intent);
