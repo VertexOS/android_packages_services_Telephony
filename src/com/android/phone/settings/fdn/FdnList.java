@@ -57,7 +57,7 @@ public class FdnList extends ADNList {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
-        mSubscriptionInfoHelper = new SubscriptionInfoHelper(getIntent());
+        mSubscriptionInfoHelper = new SubscriptionInfoHelper(this, getIntent());
         mSubscriptionInfoHelper.setActionBarTitle(
                 getActionBar(), getResources(), R.string.fdn_list_with_label);
     }
@@ -101,7 +101,7 @@ public class FdnList extends ADNList {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:  // See ActionBar#setDisplayHomeAsUpEnabled()
-                Intent intent = mSubscriptionInfoHelper.getIntent(this, FdnSetting.class);
+                Intent intent = mSubscriptionInfoHelper.getIntent(FdnSetting.class);
                 intent.setAction(Intent.ACTION_MAIN);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
@@ -132,7 +132,7 @@ public class FdnList extends ADNList {
 
     private void addContact() {
         //If there is no INTENT_EXTRA_NAME provided, EditFdnContactScreen treats it as an "add".
-        Intent intent = mSubscriptionInfoHelper.getIntent(this, EditFdnContactScreen.class);
+        Intent intent = mSubscriptionInfoHelper.getIntent(EditFdnContactScreen.class);
         startActivity(intent);
     }
 
@@ -154,7 +154,7 @@ public class FdnList extends ADNList {
             String name = mCursor.getString(NAME_COLUMN);
             String number = mCursor.getString(NUMBER_COLUMN);
 
-            Intent intent = mSubscriptionInfoHelper.getIntent(this, EditFdnContactScreen.class);
+            Intent intent = mSubscriptionInfoHelper.getIntent(EditFdnContactScreen.class);
             intent.putExtra(INTENT_EXTRA_NAME, name);
             intent.putExtra(INTENT_EXTRA_NUMBER, number);
             startActivity(intent);
@@ -166,7 +166,7 @@ public class FdnList extends ADNList {
             String name = mCursor.getString(NAME_COLUMN);
             String number = mCursor.getString(NUMBER_COLUMN);
 
-            Intent intent = mSubscriptionInfoHelper.getIntent(this, DeleteFdnContactScreen.class);
+            Intent intent = mSubscriptionInfoHelper.getIntent(DeleteFdnContactScreen.class);
             intent.putExtra(INTENT_EXTRA_NAME, name);
             intent.putExtra(INTENT_EXTRA_NUMBER, number);
             startActivity(intent);
