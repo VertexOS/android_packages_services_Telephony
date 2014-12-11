@@ -22,6 +22,7 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.telephony.SubscriptionInfo;
 import android.telephony.SubscriptionManager;
+import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 
 import com.android.phone.PhoneGlobals;
@@ -45,24 +46,26 @@ public class SubscriptionInfoHelper {
     private static final String SUB_LABEL_EXTRA =
             "com.android.phone.settings.SubscriptionInfoHelper.SubscriptionLabel";
 
+    private static Context mContext;
+
     private static int mSubId = NO_SUB_ID;
     private static String mSubLabel;
 
     /**
      * Instantiates the helper, by extracting the subscription id and label from the intent.
      */
-    public SubscriptionInfoHelper(Intent intent) {
+    public SubscriptionInfoHelper(Context context, Intent intent) {
+        mContext = context;
         mSubId = intent.getIntExtra(SUB_ID_EXTRA, NO_SUB_ID);
         mSubLabel = intent.getStringExtra(SUB_LABEL_EXTRA);
     }
 
     /**
-     * @param context The context.
      * @param newActivityClass The class of the activity for the intent to start.
      * @return Intent containing extras for the subscription id and label if they exist.
      */
-    public Intent getIntent(Context context, Class newActivityClass) {
-        Intent intent = new Intent(context, newActivityClass);
+    public Intent getIntent(Class newActivityClass) {
+        Intent intent = new Intent(mContext, newActivityClass);
 
         if (hasSubId()) {
             intent.putExtra(SUB_ID_EXTRA, mSubId);
@@ -103,6 +106,10 @@ public class SubscriptionInfoHelper {
      */
     public void setActionBarTitle(ActionBar actionBar, Resources res, int resId) {
         if (actionBar == null || TextUtils.isEmpty(mSubLabel)) {
+            return;
+        }
+
+        if (!TelephonyManager.from(mContext).isMultiSimEnabled()) {
             return;
         }
 

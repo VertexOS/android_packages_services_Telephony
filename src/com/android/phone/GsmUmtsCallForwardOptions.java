@@ -53,7 +53,7 @@ public class GsmUmtsCallForwardOptions extends TimeConsumingPreferenceActivity {
 
         addPreferencesFromResource(R.xml.callforward_options);
 
-        mSubscriptionInfoHelper = new SubscriptionInfoHelper(getIntent());
+        mSubscriptionInfoHelper = new SubscriptionInfoHelper(this, getIntent());
         mSubscriptionInfoHelper.setActionBarTitle(
                 getActionBar(), getResources(), R.string.call_forwarding_settings_with_label);
         mPhone = mSubscriptionInfoHelper.getPhone();
