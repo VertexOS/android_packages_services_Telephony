@@ -1279,5 +1279,8 @@
 
     <!-- DO NOT TRANSLATE. Internal key for a voicemail notification preference. -->
     <string name="voicemail_notification_ringtone_key">voicemail_notification_ringtone_key</string>
+    <!-- DO NOT TRANSLATE. Internal key for a voicemail notification preference. -->
     <string name="voicemail_notification_vibrate_key">voicemail_notification_vibrate_key</string>
+    <!-- DO NOT TRANSLATE. Internal key for tty mode preference. -->
+    <string name="tty_mode_key">button_tty_mode_key</string>
 </resources>

@@ -94,8 +94,8 @@
         android:persistent="false"
         android:summary="@string/auto_retry_mode_summary"/>
 
-    <ListPreference
-        android:key="button_tty_mode_key"
+    <com.android.phone.settings.TtyModeListPreference
+        android:key="@string/tty_mode_key"
         android:title="@string/tty_mode_option_title"
         android:summary="@string/tty_mode_option_summary"
         android:persistent="false"
