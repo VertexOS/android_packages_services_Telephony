@@ -85,15 +85,20 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
                 (TelephonyManager) getActivity().getSystemService(Context.TELEPHONY_SERVICE);
         mAccountList = (PreferenceCategory) getPreferenceScreen().findPreference(
                 ACCOUNTS_LIST_CATEGORY_KEY);
-        if (telephonyManager.getPhoneCount() > 1) {
+        TtyModeListPreference ttyModeListPreference =
+                (TtyModeListPreference) getPreferenceScreen().findPreference(
+                        getResources().getString(R.string.tty_mode_key));
+        if (telephonyManager.isMultiSimEnabled()) {
             initAccountList();
+            ttyModeListPreference.init();
         } else {
             getPreferenceScreen().removePreference(mAccountList);
+            getPreferenceScreen().removePreference(ttyModeListPreference);
         }
 
         mDefaultOutgoingAccount = (AccountSelectionPreference)
                 getPreferenceScreen().findPreference(DEFAULT_OUTGOING_ACCOUNT_KEY);
-        if (mTelecomManager.getCallCapablePhoneAccounts().size() > 1) {
+        if (mTelecomManager.hasMultipleCallCapableAccounts()) {
             mDefaultOutgoingAccount.setListener(this);
             updateDefaultOutgoingAccountsModel();
         } else {
