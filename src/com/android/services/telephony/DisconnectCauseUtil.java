@@ -132,7 +132,10 @@ public class DisconnectCauseUtil {
                 return DisconnectCause.UNKNOWN;
 
             default:
-                throw new IllegalStateException("Unrecognized Telephony DisconnectCause");
+                Log.w("DisconnectCauseUtil.toTelecomDisconnectCauseCode",
+                        "Unrecognized Telephony DisconnectCause "
+                        + telephonyDisconnectCause);
+                return DisconnectCause.UNKNOWN;
         }
     }
 
