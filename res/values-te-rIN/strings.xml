@@ -548,5 +548,4 @@
     <string name="sim_label_emergency_calls" msgid="4847699229529306397">"అత్యవసర కాల్‌లు"</string>
     <string name="sim_description_emergency_calls" msgid="7535215397212301562">"అత్యవసర కాలింగ్ మాత్రమే"</string>
     <string name="sim_description_default" msgid="4778679519938775515">"SIM కార్డ్, స్లాట్: <xliff:g id="SLOT_ID">%s</xliff:g>"</string>
-    <string name="voicemail_notification_vibrate_key" msgid="4268230305042185439">"వాయిస్ మెయిల్_నోటిఫికేషన్_వైబ్రేట్_కీ"</string>
 </resources>

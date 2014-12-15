@@ -548,5 +548,4 @@
     <string name="sim_label_emergency_calls" msgid="4847699229529306397">"Κλήσεις έκτακτης ανάγκης"</string>
     <string name="sim_description_emergency_calls" msgid="7535215397212301562">"Μόνο κλήσεις έκτακτης ανάγκης"</string>
     <string name="sim_description_default" msgid="4778679519938775515">"Κάρτα SIM, υποδοχή: <xliff:g id="SLOT_ID">%s</xliff:g>"</string>
-    <string name="voicemail_notification_vibrate_key" msgid="4268230305042185439">"voicemail_notification_vibrate_key"</string>
 </resources>

@@ -548,5 +548,4 @@
     <string name="sim_label_emergency_calls" msgid="4847699229529306397">"Яаралтай дуудлага"</string>
     <string name="sim_description_emergency_calls" msgid="7535215397212301562">"Зөвхөн яаралтай дуудлага"</string>
     <string name="sim_description_default" msgid="4778679519938775515">"SIM карт, оролт: <xliff:g id="SLOT_ID">%s</xliff:g>"</string>
-    <string name="voicemail_notification_vibrate_key" msgid="4268230305042185439">"дуут и-мэйл_мэдэгдэл_чичиргээ_түлхүүр"</string>
 </resources>
