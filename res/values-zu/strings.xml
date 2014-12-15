@@ -552,5 +552,4 @@
     <string name="sim_label_emergency_calls" msgid="4847699229529306397">"Amakholi aphuthumayo"</string>
     <string name="sim_description_emergency_calls" msgid="7535215397212301562">"Ikholi ephuthumayo kuphela"</string>
     <string name="sim_description_default" msgid="4778679519938775515">"Ikhadi le-SIM, isilothi: <xliff:g id="SLOT_ID">%s</xliff:g>"</string>
-    <string name="voicemail_notification_vibrate_key" msgid="4268230305042185439">"ukhiye_wokudlidliza_wesaziso_se-voyisimeyili"</string>
 </resources>
