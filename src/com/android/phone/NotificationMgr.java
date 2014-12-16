@@ -295,7 +295,7 @@ public class NotificationMgr {
             return;
         }
 
-        Log.i("updateMwi(): subId " + subId + " update to " + visible);
+        Log.i(LOG_TAG, "updateMwi(): subId " + subId + " update to " + visible);
         mMwiVisible.put(subId, visible);
 
         if (visible) {
