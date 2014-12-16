@@ -288,15 +288,15 @@ public class NotificationMgr {
      * @param enableNotificationSound {@code true} if the notification sound should be played.
      */
     void updateMwi(int subId, boolean visible, boolean enableNotificationSound) {
-        if (DBG) log("updateMwi(): subId " + subId + " update to " + visible);
-        mMwiVisible.put(subId, visible);
-
         if (!PhoneGlobals.sVoiceCapable) {
             // Do not show the message waiting indicator on devices which are not voice capable.
             // These events *should* be blocked at the telephony layer for such devices.
             Log.w(LOG_TAG, "Called updateMwi() on non-voice-capable device! Ignoring...");
             return;
         }
+
+        Log.i("updateMwi(): subId " + subId + " update to " + visible);
+        mMwiVisible.put(subId, visible);
 
         if (visible) {
             Phone phone = PhoneGlobals.getPhone(subId);
