@@ -50,6 +50,8 @@
     <color name="setting_primary_color">#333333</color>
     <!-- Color for the setting description text. -->
     <color name="setting_secondary_color">#737373</color>
+    <color name="setting_disabled_color">#aaaaaa</color>
+
     <color name="dialer_dialpad_touch_tint">#330288d1</color>
     <color name="floating_action_button_touch_tint">#80ffffff</color>
 
