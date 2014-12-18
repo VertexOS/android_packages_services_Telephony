@@ -266,6 +266,7 @@ public class MobileNetworkSettings extends PreferenceActivity
             final int slotId = Integer.parseInt(tabId);
             final SubscriptionInfo sir = findRecordBySlotId(slotId);
             mPhone = PhoneFactory.getPhone(SubscriptionManager.getPhoneId(sir.getSubscriptionId()));
+            if (DBG) log("onTabChanged: slotId=" + slotId + " sir=" + sir);
 
             // The User has changed tab; update the body.
             updateBody();
@@ -290,12 +291,15 @@ public class MobileNetworkSettings extends PreferenceActivity
         super.onCreate(icicle);
         final Context context = getApplicationContext();
 
-        mPhone = PhoneGlobals.getPhone();
         mHandler = new MyHandler();
         mUm = (UserManager) getSystemService(Context.USER_SERVICE);
         final TelephonyManager tm =
                 (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         mSubscriptionManager = SubscriptionManager.from(this);
+
+        // Initialize Phone to the phone associated with slotId 0
+        final SubscriptionInfo si = findRecordBySlotId(0);
+        mPhone = PhoneFactory.getPhone(SubscriptionManager.getPhoneId(si.getSubscriptionId()));
 
         for (int i = 0; i < tm.getSimCount(); i++) {
             SubscriptionInfo sir = findRecordBySlotId(i);
@@ -401,6 +405,10 @@ public class MobileNetworkSettings extends PreferenceActivity
         PreferenceScreen prefSet = getPreferenceScreen();
         boolean isLteOnCdma = mPhone.getLteOnCdmaMode() == PhoneConstants.LTE_ON_CDMA_TRUE;
         final int phoneSubId = mPhone.getSubId();
+
+        if (DBG) {
+            log("updateBody: isLteOnCdma=" + isLteOnCdma + " phoneSubId=" + phoneSubId);
+        }
 
         if (prefSet != null) {
             prefSet.removeAll();
