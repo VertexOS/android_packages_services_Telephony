@@ -170,9 +170,9 @@
         <item name="android:windowActionBarOverlay">false</item>
         <item name="android:colorPrimaryDark">@color/actionbar_background_color_dark</item>
         <!-- Setting text. -->
-        <item name="android:textColorPrimary">@color/setting_primary_color</item>
+        <item name="android:textColorPrimary">@color/settings_text_color_primary</item>
         <!-- Setting description. -->
-        <item name="android:textColorSecondary">@color/setting_secondary_color</item>
+        <item name="android:textColorSecondary">@color/settings_text_color_secondary</item>
     </style>
 
     <style name="DialerSettingsLight" parent="SettingsLight">
