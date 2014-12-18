@@ -179,6 +179,13 @@ public class ImsConference extends Conference {
         super(null);
         mTelephonyConnectionService = telephonyConnectionService;
         setConferenceHost(conferenceHost);
+        if (conferenceHost != null && conferenceHost.getCall() != null
+                && conferenceHost.getCall().getPhone() != null) {
+            mPhoneAccount = PhoneUtils.makePstnPhoneAccountHandle(
+                    conferenceHost.getCall().getPhone());
+            Log.v(this, "set phacc to " + mPhoneAccount);
+        }
+
         setConnectionCapabilities(
                 Connection.CAPABILITY_SUPPORT_HOLD |
                 Connection.CAPABILITY_HOLD |
