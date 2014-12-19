@@ -318,7 +318,7 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
         for (SubscriptionInfo subscription : sil) {
             CharSequence label = subscription.getDisplayName();
             Intent intent = new Intent(TelecomManager.ACTION_SHOW_CALL_SETTINGS);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             SubscriptionInfoHelper.addExtrasToIntent(intent, subscription);
 
             Preference accountPreference = new Preference(getActivity());

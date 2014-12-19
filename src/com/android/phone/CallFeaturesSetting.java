@@ -1302,6 +1302,16 @@ public class CallFeaturesSetting extends PreferenceActivity
         }
     }
 
+    @Override
+    protected void onNewIntent(Intent newIntent) {
+        setIntent(newIntent);
+
+        mSubscriptionInfoHelper = new SubscriptionInfoHelper(this, getIntent());
+        mSubscriptionInfoHelper.setActionBarTitle(
+                getActionBar(), getResources(), R.string.call_settings_with_label);
+        mPhone = mSubscriptionInfoHelper.getPhone();
+    }
+
     private static void log(String msg) {
         Log.d(LOG_TAG, msg);
     }
