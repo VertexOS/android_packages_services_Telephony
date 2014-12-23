@@ -2223,4 +2223,12 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
                 && ImsManager.isEnhanced4gLteModeSettingEnabledByUser(mPhone.getContext())
                 && mTelephonySharedPreferences.getBoolean(PREF_ENABLE_VIDEO_CALLING, true);
     }
+
+    /*
+     * {@hide}
+     * Returns the IMS Registration Status
+     */
+    public boolean isImsRegistered() {
+        return mPhone.isImsRegistered();
+    }
 }
