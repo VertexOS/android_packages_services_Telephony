@@ -25,6 +25,7 @@ import com.android.internal.telephony.TelephonyIntents;
 import com.android.internal.telephony.TelephonyProperties;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import android.app.ActionBar;
@@ -50,7 +51,6 @@ import android.preference.PreferenceActivity;
 import android.preference.PreferenceGroup;
 import android.preference.PreferenceScreen;
 import android.preference.SwitchPreference;
-import android.telecom.TelecomManager;
 import android.telephony.PhoneStateListener;
 import android.telephony.SubscriptionInfo;
 import android.telephony.SubscriptionManager;
@@ -86,6 +86,9 @@ public class MobileNetworkSettings extends PreferenceActivity
     private static final boolean DBG = true;
     public static final int REQUEST_CODE_EXIT_ECM = 17;
 
+    // Number of active Subscriptions to show tabs
+    private static final int TAB_THRESHOLD = 2;
+
     //String keys for preference lookup
     private static final String BUTTON_PREFERED_NETWORK_MODE = "preferred_network_mode_key";
     private static final String BUTTON_ROAMING_KEY = "button_roaming_key";
@@ -115,7 +118,7 @@ public class MobileNetworkSettings extends PreferenceActivity
     private Preference mLteDataServicePref;
 
     private static final String iface = "rmnet0"; //TODO: this will go away
-    private List<SubscriptionInfo> mSelectableSubInfos = new ArrayList<SubscriptionInfo>();
+    private List<SubscriptionInfo> mActiveSubInfos;
 
     private UserManager mUm;
     private Phone mPhone;
@@ -123,8 +126,6 @@ public class MobileNetworkSettings extends PreferenceActivity
     private boolean mOkClicked;
 
     private TabHost mTabHost;
-    private TabWidget mTabWidget;
-    private ListView mListView;
 
     //GsmUmts options and Cdma options
     GsmUmtsOptions mGsmUmtsOptions;
@@ -158,6 +159,7 @@ public class MobileNetworkSettings extends PreferenceActivity
     private class PhoneChangeReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
+            if (DBG) log("onReceive:");
             // When the radio changes (ex: CDMA->GSM), refresh all options.
             mGsmUmtsOptions = null;
             mCdmaOptions = null;
@@ -256,18 +258,147 @@ public class MobileNetworkSettings extends PreferenceActivity
         }
     }
 
+    private final SubscriptionManager.OnSubscriptionsChangedListener mOnSubscriptionsChangeListener
+            = new SubscriptionManager.OnSubscriptionsChangedListener() {
+        @Override
+        public void onSubscriptionsChanged() {
+            if (DBG) log("onSubscriptionsChanged:");
+            initializeSubscriptions();
+        }
+    };
+
+    private void initializeSubscriptions() {
+        int currentTab = 0;
+        if (DBG) log("initializeSubscriptions:+");
+
+        // Before updating the the active subscription list check
+        // if tab updating is needed as the list is changing.
+        List<SubscriptionInfo> sil = mSubscriptionManager.getActiveSubscriptionInfoList();
+        TabState state = isUpdateTabsNeeded(sil);
+
+        // Update to the active subscription list
+        mActiveSubInfos.clear();
+        if (sil != null) {
+            mActiveSubInfos.addAll(sil);
+        }
+
+
+        switch (state) {
+            case UPDATE: {
+                if (DBG) log("initializeSubscriptions: UPDATE");
+                currentTab = mTabHost != null ? mTabHost.getCurrentTab() : 0;
+
+                setContentView(R.layout.network_settings);
+
+                mTabHost = (TabHost) findViewById(android.R.id.tabhost);
+                mTabHost.setup();
+
+                // Update the tabName. Since the mActiveSubInfos are in slot order
+                // we can iterate though the tabs and subscription info in one loop. But
+                // we need to handle the case where a slot may be empty.
+
+                Iterator<SubscriptionInfo> siIterator = mActiveSubInfos.listIterator();
+                SubscriptionInfo si = siIterator.hasNext() ? siIterator.next() : null;
+                for (int simSlotIndex = 0; simSlotIndex  < mActiveSubInfos.size(); simSlotIndex++) {
+                    String tabName;
+                    if (si != null && si.getSimSlotIndex() == simSlotIndex) {
+                        // Slot is not empty and we match
+                        tabName = String.valueOf(si.getDisplayName());
+                        si = siIterator.hasNext() ? siIterator.next() : null;
+                    } else {
+                        // Slot is empty, set name to unknown
+                        tabName = getResources().getString(R.string.unknown);
+                    }
+                    if (DBG) {
+                        log("initializeSubscriptions: tab=" + simSlotIndex + " name=" + tabName);
+                    }
+
+                    mTabHost.addTab(buildTabSpec(String.valueOf(simSlotIndex), tabName));
+                }
+
+                mTabHost.setOnTabChangedListener(mTabListener);
+                mTabHost.setCurrentTab(currentTab);
+                break;
+            }
+            case NO_TABS: {
+                if (DBG) log("initializeSubscriptions: NO_TABS");
+                currentTab = 0;
+
+                if (mTabHost != null) {
+                    mTabHost.clearAllTabs();
+                    mTabHost = null;
+                }
+                setContentView(R.layout.network_settings);
+                break;
+            }
+            case DO_NOTHING: {
+                if (DBG) log("initializeSubscriptions: DO_NOTHING");
+                currentTab = 0;
+                break;
+            }
+        }
+        updatePhone(currentTab);
+        updateBody();
+        if (DBG) log("initializeSubscriptions:-");
+    }
+
+    private enum TabState {
+        NO_TABS, UPDATE, DO_NOTHING
+    }
+    private TabState isUpdateTabsNeeded(List<SubscriptionInfo> newSil) {
+        TabState state = TabState.DO_NOTHING;
+        if (newSil == null) {
+            if (mActiveSubInfos.size() >= TAB_THRESHOLD) {
+                if (DBG) log("isUpdateTabsNeeded: NO_TABS, size unknown and was tabbed");
+                state = TabState.NO_TABS;
+            }
+        } else if (newSil.size() < TAB_THRESHOLD && mActiveSubInfos.size() >= TAB_THRESHOLD) {
+            if (DBG) log("isUpdateTabsNeeded: NO_TABS, size went to small");
+            state = TabState.NO_TABS;
+        } else if (newSil.size() >= TAB_THRESHOLD && mActiveSubInfos.size() < TAB_THRESHOLD) {
+            if (DBG) log("isUpdateTabsNeeded: UPDATE, size changed");
+            state = TabState.UPDATE;
+        } else if (newSil.size() >= TAB_THRESHOLD) {
+            Iterator<SubscriptionInfo> siIterator = mActiveSubInfos.iterator();
+            for(SubscriptionInfo newSi : newSil) {
+                SubscriptionInfo curSi = siIterator.next();
+                if (!newSi.getDisplayName().equals(curSi.getDisplayName())) {
+                    if (DBG) log("isUpdateTabsNeeded: UPDATE, new name=" + newSi.getDisplayName());
+                    state = TabState.UPDATE;
+                    break;
+                }
+            }
+        }
+        if (DBG) {
+            log("isUpdateTabsNeeded:- " + state
+                + " newSil.size()=" + ((newSil != null) ? newSil.size() : 0)
+                + " mActiveSubInfos.size()=" + mActiveSubInfos.size());
+        }
+        return state;
+    }
+
     private OnTabChangeListener mTabListener = new OnTabChangeListener() {
         @Override
         public void onTabChanged(String tabId) {
-            final int slotId = Integer.parseInt(tabId);
-            final SubscriptionInfo sir = findRecordBySlotId(slotId);
-            mPhone = PhoneFactory.getPhone(SubscriptionManager.getPhoneId(sir.getSubscriptionId()));
-            if (DBG) log("onTabChanged: slotId=" + slotId + " sir=" + sir);
-
+            if (DBG) log("onTabChanged:");
             // The User has changed tab; update the body.
+            updatePhone(Integer.parseInt(tabId));
             updateBody();
         }
     };
+
+    private void updatePhone(int slotId) {
+        final SubscriptionInfo sir = findRecordBySlotId(slotId);
+        if (sir != null) {
+            mPhone = PhoneFactory.getPhone(
+                    SubscriptionManager.getPhoneId(sir.getSubscriptionId()));
+        }
+        if (mPhone == null) {
+            // Do the best we can
+            mPhone = PhoneGlobals.getPhone();
+        }
+        if (DBG) log("updatePhone:- slotId=" + slotId + " sir=" + sir);
+    }
 
     private TabContentFactory mEmptyTabContent = new TabContentFactory() {
         @Override
@@ -283,26 +414,13 @@ public class MobileNetworkSettings extends PreferenceActivity
 
     @Override
     protected void onCreate(Bundle icicle) {
+        if (DBG) log("onCreate:+");
         setTheme(R.style.Theme_Material_Settings);
         super.onCreate(icicle);
-        final Context context = getApplicationContext();
 
         mHandler = new MyHandler();
         mUm = (UserManager) getSystemService(Context.USER_SERVICE);
-        final TelephonyManager tm =
-                (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         mSubscriptionManager = SubscriptionManager.from(this);
-
-        // Initialize Phone to the phone associated with slotId 0
-        final SubscriptionInfo si = findRecordBySlotId(0);
-        mPhone = PhoneFactory.getPhone(SubscriptionManager.getPhoneId(si.getSubscriptionId()));
-
-        for (int i = 0; i < tm.getSimCount(); i++) {
-            SubscriptionInfo sir = findRecordBySlotId(i);
-            if (sir != null) {
-                mSelectableSubInfos.add(sir);
-            }
-        }
 
         if (mUm.hasUserRestriction(UserManager.DISALLOW_CONFIG_MOBILE_NETWORKS)) {
             mUnavailable = true;
@@ -338,35 +456,25 @@ public class MobileNetworkSettings extends PreferenceActivity
 
         mLteDataServicePref = prefSet.findPreference(BUTTON_CDMA_LTE_DATA_SERVICE_KEY);
 
-        if (mSelectableSubInfos.size() > 1) {
-            setContentView(R.layout.network_settings);
+        // Initialize mActiveSubInfo
+        int max = mSubscriptionManager.getActiveSubscriptionInfoCountMax();
+        mActiveSubInfos = new ArrayList<SubscriptionInfo>(max);
 
-            mTabHost = (TabHost) findViewById(android.R.id.tabhost);
-            mTabWidget = (TabWidget) findViewById(android.R.id.tabs);
-            mListView = (ListView) findViewById(android.R.id.list);
-
-            mTabHost.setup();
-            mTabHost.setOnTabChangedListener(mTabListener);
-            mTabHost.clearAllTabs();
-
-            for (int i = 0; i < mSelectableSubInfos.size(); i++) {
-                mTabHost.addTab(buildTabSpec(String.valueOf(i),
-                        String.valueOf(mSelectableSubInfos.get(i).getDisplayName())));
-            }
-        }
-
-        updateBody();
+        initializeSubscriptions();
 
         IntentFilter intentFilter = new IntentFilter(
                 TelephonyIntents.ACTION_RADIO_TECHNOLOGY_CHANGED);
         registerReceiver(mPhoneChangeReceiver, intentFilter);
+        if (DBG) log("onCreate:-");
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        if (DBG) log("onResume:+");
 
         if (mUnavailable) {
+            if (DBG) log("onResume:- ignore mUnavailable == false");
             return;
         }
 
@@ -397,6 +505,11 @@ public class MobileNetworkSettings extends PreferenceActivity
         mButton4glte.setChecked(ImsManager.isEnhanced4gLteModeSettingEnabledByUser(this)
                 && ImsManager.isNonTtyOrTtyOnVolteEnabled(this));
         // NOTE: The button will be enabled/disabled in mPhoneStateListener
+
+        mSubscriptionManager.registerOnSubscriptionsChangedListener(mOnSubscriptionsChangeListener);
+
+        if (DBG) log("onResume:-");
+
     }
 
     private void updateBody() {
@@ -568,22 +681,65 @@ public class MobileNetworkSettings extends PreferenceActivity
             }
         }
 
-        //Get the networkMode from Settings.System and displays it
+        // Get the networkMode from Settings.System and displays it
         mButtonDataRoam.setChecked(mPhone.getDataRoamingEnabled());
         mButtonEnabledNetworks.setValue(Integer.toString(settingsNetworkMode));
         mButtonPreferredNetworkMode.setValue(Integer.toString(settingsNetworkMode));
         UpdatePreferredNetworkModeSummary(settingsNetworkMode);
         UpdateEnabledNetworksValueAndSummary(settingsNetworkMode);
+
+        /**
+         * Enable/disable depending upon if there are any active subscriptions.
+         *
+         * I've decided to put this enable/disable code at the bottom as the
+         * code above works even when there are no active subscriptions, thus
+         * putting it afterwards is a smaller change. This can be refined later,
+         * but you do need to remember that this all needs to work when subscriptions
+         * change dynamically such as when hot swapping sims.
+         */
+        boolean hasActiveSubscriptions = mActiveSubInfos.size() > 0;
+        mButtonDataRoam.setEnabled(hasActiveSubscriptions);
+        mButtonPreferredNetworkMode.setEnabled(hasActiveSubscriptions);
+        mButtonEnabledNetworks.setEnabled(hasActiveSubscriptions);
+        mButton4glte.setEnabled(hasActiveSubscriptions);
+        mLteDataServicePref.setEnabled(hasActiveSubscriptions);
+        Preference ps;
+        PreferenceScreen root = getPreferenceScreen();
+        ps = findPreference(BUTTON_CELL_BROADCAST_SETTINGS);
+        if (ps != null) {
+            ps.setEnabled(hasActiveSubscriptions);
+        }
+        ps = findPreference(BUTTON_APN_EXPAND_KEY);
+        if (ps != null) {
+            ps.setEnabled(hasActiveSubscriptions);
+        }
+        ps = findPreference(BUTTON_OPERATOR_SELECTION_EXPAND_KEY);
+        if (ps != null) {
+            ps.setEnabled(hasActiveSubscriptions);
+        }
+        ps = findPreference(BUTTON_CARRIER_SETTINGS_KEY);
+        if (ps != null) {
+            ps.setEnabled(hasActiveSubscriptions);
+        }
+        ps = findPreference(BUTTON_CDMA_SYSTEM_SELECT_KEY);
+        if (ps != null) {
+            ps.setEnabled(hasActiveSubscriptions);
+        }
     }
 
     @Override
     protected void onPause() {
         super.onPause();
+        if (DBG) log("onPause:+");
 
         if (ImsManager.isVolteEnabledByPlatform(this)) {
             TelephonyManager tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
             tm.listen(mPhoneStateListener, PhoneStateListener.LISTEN_NONE);
         }
+
+        mSubscriptionManager
+            .unregisterOnSubscriptionsChangedListener(mOnSubscriptionsChangeListener);
+        if (DBG) log("onPause:-");
     }
 
     /**
@@ -1056,7 +1212,7 @@ public class MobileNetworkSettings extends PreferenceActivity
         }
 
         if (DBG) {
-            log("World mode is set to" + worldModeOn);
+            log("isWorldMode=" + worldModeOn);
         }
 
         return worldModeOn;
@@ -1109,13 +1265,11 @@ public class MobileNetworkSettings extends PreferenceActivity
      * Since the number of SIMs are few, an array is fine.
      */
     public SubscriptionInfo findRecordBySlotId(final int slotId) {
-        final List<SubscriptionInfo> subInfoList =
-            mSubscriptionManager.getActiveSubscriptionInfoList();
-        if (subInfoList != null) {
-            final int subInfoLength = subInfoList.size();
+        if (mActiveSubInfos != null) {
+            final int subInfoLength = mActiveSubInfos.size();
 
             for (int i = 0; i < subInfoLength; ++i) {
-                final SubscriptionInfo sir = subInfoList.get(i);
+                final SubscriptionInfo sir = mActiveSubInfos.get(i);
                 if (sir.getSimSlotIndex() == slotId) {
                     //Right now we take the first subscription on a SIM.
                     return sir;
