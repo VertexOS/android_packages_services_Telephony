@@ -50,6 +50,7 @@ import android.preference.PreferenceActivity;
 import android.preference.PreferenceGroup;
 import android.preference.PreferenceScreen;
 import android.preference.SwitchPreference;
+import android.telecom.TelecomManager;
 import android.telephony.PhoneStateListener;
 import android.telephony.SubscriptionInfo;
 import android.telephony.SubscriptionManager;
@@ -136,7 +137,8 @@ public class MobileNetworkSettings extends PreferenceActivity
 
     private final PhoneStateListener mPhoneStateListener = new PhoneStateListener() {
         /*
-         * Enable/disable the 'Enhanced 4G LTE Mode' when in/out of a call.
+         * Enable/disable the 'Enhanced 4G LTE Mode' when in/out of a call
+         * and depending on TTY mode and TTY support over VoLTE.
          * @see android.telephony.PhoneStateListener#onCallStateChanged(int,
          * java.lang.String)
          */
@@ -145,7 +147,8 @@ public class MobileNetworkSettings extends PreferenceActivity
             if (DBG) log("PhoneStateListener.onCallStateChanged: state=" + state);
             Preference pref = getPreferenceScreen().findPreference(BUTTON_4G_LTE_KEY);
             if (pref != null) {
-                pref.setEnabled(state == TelephonyManager.CALL_STATE_IDLE);
+                pref.setEnabled((state == TelephonyManager.CALL_STATE_IDLE) &&
+                        ImsManager.isNonTtyOrTtyOnVolteEnabled(getApplicationContext()));
             }
         }
     };
@@ -253,13 +256,6 @@ public class MobileNetworkSettings extends PreferenceActivity
         }
     }
 
-    private void setIMS(boolean turnOn) {
-        int value = (turnOn) ? 1:0;
-        android.provider.Settings.Global.putInt(
-                  mPhone.getContext().getContentResolver(),
-                  android.provider.Settings.Global.ENHANCED_4G_MODE_ENABLED, value);
-    }
-
     private OnTabChangeListener mTabListener = new OnTabChangeListener() {
         @Override
         public void onTabChanged(String tabId) {
@@ -319,7 +315,6 @@ public class MobileNetworkSettings extends PreferenceActivity
         mButton4glte = (SwitchPreference)findPreference(BUTTON_4G_LTE_KEY);
 
         mButton4glte.setOnPreferenceChangeListener(this);
-        mButton4glte.setChecked(ImsManager.isEnhanced4gLteModeSettingEnabledByUser(this));
 
         try {
             Context con = createPackageContext("com.android.systemui", 0);
@@ -398,6 +393,10 @@ public class MobileNetworkSettings extends PreferenceActivity
             TelephonyManager tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
             tm.listen(mPhoneStateListener, PhoneStateListener.LISTEN_CALL_STATE);
         }
+
+        mButton4glte.setChecked(ImsManager.isEnhanced4gLteModeSettingEnabledByUser(this)
+                && ImsManager.isNonTtyOrTtyOnVolteEnabled(this));
+        // NOTE: The button will be enabled/disabled in mPhoneStateListener
     }
 
     private void updateBody() {
@@ -679,18 +678,7 @@ public class MobileNetworkSettings extends PreferenceActivity
         } else if (preference == mButton4glte) {
             SwitchPreference ltePref = (SwitchPreference)preference;
             ltePref.setChecked(!ltePref.isChecked());
-            setIMS(ltePref.isChecked());
-
-            ImsManager imsMan = ImsManager.getInstance(getBaseContext(),
-                    SubscriptionManager.getDefaultVoicePhoneId());
-            if (imsMan != null) {
-
-                try {
-                    imsMan.setAdvanced4GMode(ltePref.isChecked());
-                } catch (ImsException ie) {
-                    // do nothing
-                }
-            }
+            ImsManager.setEnhanced4gLteModeSetting(this, ltePref.isChecked());
         } else if (preference == mButtonDataRoam) {
             if (DBG) log("onPreferenceTreeClick: preference == mButtonDataRoam.");
 

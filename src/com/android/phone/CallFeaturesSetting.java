@@ -41,6 +41,7 @@ import android.provider.ContactsContract.CommonDataKinds;
 import android.provider.Settings;
 import android.telecom.PhoneAccountHandle;
 import android.telecom.TelecomManager;
+import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
@@ -278,6 +279,13 @@ public class CallFeaturesSetting extends PreferenceActivity
     public void onPause() {
         super.onPause();
         mForeground = false;
+
+        if (ImsManager.isVolteEnabledByPlatform(this) &&
+                !mPhone.getContext().getResources().getBoolean(
+                        com.android.internal.R.bool.config_carrier_volte_tty_supported)) {
+            TelephonyManager tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+            tm.listen(mPhoneStateListener, PhoneStateListener.LISTEN_NONE);
+        }
     }
 
     /**
@@ -297,6 +305,23 @@ public class CallFeaturesSetting extends PreferenceActivity
      * Used to indicate that the voicemail setup screen should be shown.
      */
     private boolean mSetupVoicemail = false;
+
+    private final PhoneStateListener mPhoneStateListener = new PhoneStateListener() {
+        /**
+         * Enable/disable the TTY setting when in/out of a call (and if carrier doesn't
+         * support VoLTE with TTY).
+         * @see android.telephony.PhoneStateListener#onCallStateChanged(int,
+         * java.lang.String)
+         */
+        @Override
+        public void onCallStateChanged(int state, String incomingNumber) {
+            if (DBG) log("PhoneStateListener.onCallStateChanged: state=" + state);
+            Preference pref = getPreferenceScreen().findPreference(BUTTON_TTY_KEY);
+            if (pref != null) {
+                pref.setEnabled(state == TelephonyManager.CALL_STATE_IDLE);
+            }
+        }
+    };
 
     /*
      * Click Listeners, handle click based on objects attached to UI.
@@ -1299,6 +1324,13 @@ public class CallFeaturesSetting extends PreferenceActivity
             mEnableVideoCalling.setOnPreferenceChangeListener(this);
         } else {
             prefSet.removePreference(mEnableVideoCalling);
+        }
+
+        if (ImsManager.isVolteEnabledByPlatform(this) &&
+                !mPhone.getContext().getResources().getBoolean(
+                        com.android.internal.R.bool.config_carrier_volte_tty_supported)) {
+            TelephonyManager tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+            tm.listen(mPhoneStateListener, PhoneStateListener.LISTEN_CALL_STATE);
         }
     }
 
