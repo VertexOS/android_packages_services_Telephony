@@ -210,7 +210,7 @@
     <string name="throttle_data_usage" msgid="3715677828160555808">"የውሂብ አጠቃቀም"</string>
     <string name="throttle_current_usage" msgid="8762280193043815361">"የውሂብ በአሁኑ ክፍለ ጊዜ ተጠቅሟል"</string>
     <string name="throttle_time_frame" msgid="1915198770363734685">"የውሂብ አጠቃቀም ክፍለ ጊዜ"</string>
-    <string name="throttle_rate" msgid="4710388992676803508">"የውሂብ ደረጃ መምሪያ"</string>
+    <string name="throttle_rate" msgid="4710388992676803508">"የውሂብ ደረጃ መመሪያ"</string>
     <string name="throttle_help" msgid="243651091785169900">"በተጨማሪ ለመረዳት"</string>
     <string name="throttle_status_subtext" msgid="1657318943142085170">"የ<xliff:g id="USED_0">%1$s</xliff:g> (<xliff:g id="USED_1">%2$d</xliff:g>٪)  <xliff:g id="USED_2">%3$s</xliff:g>  ከፍተኛ ክፈለ ጊዜ \nቀጣይ ክፍለ ጊዜ በ<xliff:g id="USED_3">%4$d</xliff:g> ቀናቶች (<xliff:g id="USED_4">%5$s</xliff:g>) ይጀምራል።"</string>
     <string name="throttle_data_usage_subtext" msgid="6029276011123694701">"የ<xliff:g id="USED_0">%1$s</xliff:g> (<xliff:g id="USED_1">%2$d</xliff:g>٪) <xliff:g id="USED_2">%3$s</xliff:g> ከፍተኛ ክፈለ ጊዜ"</string>
