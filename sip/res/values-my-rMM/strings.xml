@@ -26,13 +26,13 @@
     <string name="sip_call_options_entry_1" msgid="7217659161237099900">"ဒေတာ ကွန်ရက် ရှိနေစဉ် ခေါ်ဆိုမှုများ အားလုံး အတွက်"</string>
     <string name="sip_call_options_entry_2" msgid="1815335903940609729">"SIP ခေါ်ဆိုမှုများအတွက်သာ"</string>
     <string name="sip_call_options_wifi_only_entry_1" msgid="1358513095551847314">"ခေါ်ဆိုမှုများ အားလုံး အတွက်"</string>
-    <string name="add_sip_account" msgid="800843669753980091">"အကောင့် ထည့်ရန်"</string>
+    <string name="add_sip_account" msgid="800843669753980091">"အကောင့် ထည့်ရန်"</string>
     <string name="remove_sip_account" msgid="1367664438506503690">"အကောင့်ကို ဖယ်ရှားရန်"</string>
     <string name="sip_account_list" msgid="5610858485304821480">"SIP အကောင့်များ"</string>
     <string name="saving_account" msgid="5336529880235177448">"အကောင့်ကို သိမ်းဆည်းနေ…"</string>
     <string name="removing_account" msgid="5537351356808985756">"အကောင့်ကို ဖယ်ရှားနေ…"</string>
     <string name="sip_menu_save" msgid="7882219814563869225">"သိမ်းပါ"</string>
-    <string name="sip_menu_discard" msgid="2350421645423888438">"စွန့်ပစ်ရန်"</string>
+    <string name="sip_menu_discard" msgid="2350421645423888438">"စွန့်ပစ်ရန်"</string>
     <string name="alert_dialog_close" msgid="1326011828713435134">"ပရိုဖိုင်ကို ပိတ်ရန်"</string>
     <string name="alert_dialog_ok" msgid="4752048404605388940">"အိုကေ"</string>
     <string name="close_profile" msgid="3122414058856309881">"ပိတ်ရန်"</string>
