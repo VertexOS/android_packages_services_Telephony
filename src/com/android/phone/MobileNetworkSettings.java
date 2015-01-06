@@ -125,6 +125,7 @@ public class MobileNetworkSettings extends PreferenceActivity
     private MyHandler mHandler;
     private boolean mOkClicked;
 
+    // We assume the the value returned by mTabHost.getCurrentTab() == slotId
     private TabHost mTabHost;
 
     //GsmUmts options and Cdma options
@@ -333,7 +334,7 @@ public class MobileNetworkSettings extends PreferenceActivity
             }
             case DO_NOTHING: {
                 if (DBG) log("initializeSubscriptions: DO_NOTHING");
-                currentTab = 0;
+                currentTab = mTabHost != null ? mTabHost.getCurrentTab() : 0;
                 break;
             }
         }
