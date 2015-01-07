@@ -34,7 +34,7 @@
         android:dialogTitle="@string/cdma_subscription_dialogtitle" />
 
     <PreferenceScreen
-        android:key="button_apn_key"
+        android:key="button_apn_key_cdma"
         android:title="@string/apn_settings"
         android:persistent="false">
 
