@@ -1574,14 +1574,19 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
      */
     public boolean hasIccCard() {
         // FIXME Make changes to pass defaultSimId of type int
-        return hasIccCardUsingSlotId(getDefaultSubscription());
+        return hasIccCardUsingSlotId(mSubscriptionController.getSlotId(getDefaultSubscription()));
     }
 
     /**
      * @return true if a ICC card is present for a slotId
      */
     public boolean hasIccCardUsingSlotId(int slotId) {
-        return getPhone(slotId).getIccCard().hasIccCard();
+        int subId[] = mSubscriptionController.getSubIdUsingSlotId(slotId);
+        if (subId != null) {
+            return getPhone(subId[0]).getIccCard().hasIccCard();
+        } else {
+            return false;
+        }
     }
 
     /**
