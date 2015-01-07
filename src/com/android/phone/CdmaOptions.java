@@ -46,7 +46,7 @@ public class CdmaOptions {
     private static final String BUTTON_CDMA_SUBSCRIPTION_KEY = "cdma_subscription_key";
     private static final String BUTTON_CDMA_ACTIVATE_DEVICE_KEY = "cdma_activate_device_key";
     private static final String BUTTON_CARRIER_SETTINGS_KEY = "carrier_settings_key";
-    private static final String BUTTON_APN_EXPAND_KEY = "button_apn_key";
+    private static final String BUTTON_APN_EXPAND_KEY = "button_apn_key_cdma";
 
     private PreferenceActivity mPrefActivity;
     private PreferenceScreen mPrefScreen;
