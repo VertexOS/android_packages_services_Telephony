@@ -208,6 +208,10 @@ public class EditFdnContactScreen extends Activity {
             case MENU_DELETE:
                 deleteSelected();
                 return true;
+
+            case android.R.id.home:
+                onBackPressed();
+                return true;
         }
 
         return super.onOptionsItemSelected(item);
