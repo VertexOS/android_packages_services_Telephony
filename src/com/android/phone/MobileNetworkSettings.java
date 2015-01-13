@@ -508,7 +508,7 @@ public class MobileNetworkSettings extends PreferenceActivity
                 && ImsManager.isNonTtyOrTtyOnVolteEnabled(this));
         // NOTE: The button will be enabled/disabled in mPhoneStateListener
 
-        mSubscriptionManager.registerOnSubscriptionsChangedListener(mOnSubscriptionsChangeListener);
+        mSubscriptionManager.addOnSubscriptionsChangedListener(mOnSubscriptionsChangeListener);
 
         if (DBG) log("onResume:-");
 
@@ -742,7 +742,7 @@ public class MobileNetworkSettings extends PreferenceActivity
         }
 
         mSubscriptionManager
-            .unregisterOnSubscriptionsChangedListener(mOnSubscriptionsChangeListener);
+            .removeOnSubscriptionsChangedListener(mOnSubscriptionsChangeListener);
         if (DBG) log("onPause:-");
     }
 
