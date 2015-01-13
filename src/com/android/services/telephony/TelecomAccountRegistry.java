@@ -229,7 +229,7 @@ final class TelecomAccountRegistry {
 
         // Register for SubscriptionInfo list changes which is guaranteed
         // to invoke onSubscriptionsChanged the first time.
-        SubscriptionManager.from(mContext).registerOnSubscriptionsChangedListener(
+        SubscriptionManager.from(mContext).addOnSubscriptionsChangedListener(
                 mOnSubscriptionsChangedListener);
 
         // We also need to listen for changes to the service state (e.g. emergency -> in service)
