@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2014-2015 The CyanogenMod Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string-array name="preferred_network_mode_choices_cm" translatable="false">
+        <item>@string/preferred_network_mode_td_scdma_lte_gsm_wcdma_cdma_evdo_choice </item>
+        <item>@string/preferred_network_mode_td_scdma_gsm_wcdma_cdma_evdo_choice</item>
+        <item>@string/preferred_network_mode_td_scdma_gsm_wcdma_lte_choice</item>
+        <item>@string/preferred_network_mode_td_scdma_wcdma_lte_choice</item>
+        <item>@string/preferred_network_mode_td_scdma_gsm_wcdma_choice</item>
+        <item>@string/preferred_network_mode_td_scdma_gsm_lte_choice</item>
+        <item>@string/preferred_network_mode_td_scdma_gsm_choice</item>
+        <item>@string/preferred_network_mode_td_scdma_lte_choice</item>
+        <item>@string/preferred_network_mode_td_scdma_wcdma_choice</item>
+        <item>@string/preferred_network_mode_td_scdma_only_choice</item>
+        <item>@string/preferred_network_mode_lte_wcdma_choice</item>
+        <item>@string/preferred_network_mode_lte_choice</item>
+        <item>@string/preferred_network_mode_global_choice</item>
+        <item>@string/preferred_network_mode_gsm_wcdma_lte_choice</item>
+        <item>@string/preferred_network_mode_cdma_lte_evdo_choice</item>
+        <item>@string/preferred_network_mode_cdma_evdo_gsm_wcdma_choice</item>
+        <item>@string/preferred_network_mode_evdo_only_choice</item>
+        <item>@string/preferred_network_mode_cdma_wo_evdo_choice</item>
+        <item>@string/preferred_network_mode_cdma_evdo_auto_choice</item>
+        <item>@string/preferred_network_mode_gsm_wcdma_auto_choice</item>
+        <item>@string/preferred_network_mode_wcdma_only_choice</item>
+        <item>@string/preferred_network_mode_gsm_only_choice</item>
+        <item>@string/preferred_network_mode_gsm_wcdma_preferred_choice</item>
+    </string-array>
+</resources>
