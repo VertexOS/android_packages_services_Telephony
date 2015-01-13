@@ -163,7 +163,7 @@ public class CallNotifier extends Handler {
                     BluetoothProfile.HEADSET);
         }
 
-        mSubscriptionManager.registerOnSubscriptionsChangedListener(
+        mSubscriptionManager.addOnSubscriptionsChangedListener(
                 new OnSubscriptionsChangedListener() {
                     @Override
                     public void onSubscriptionsChanged() {
