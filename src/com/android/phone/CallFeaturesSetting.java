@@ -708,6 +708,9 @@ public class CallFeaturesSetting extends PreferenceActivity
         }
     }
 
+    /**
+     * TODO: Refactor to make it easier to understand what's done in the different stages.
+     */
     private void saveVoiceMailAndForwardingNumber(
             String key, VoicemailProviderSettings newSettings) {
         if (DBG) log("saveVoiceMailAndForwardingNumber: " + newSettings.toString());
@@ -715,8 +718,9 @@ public class CallFeaturesSetting extends PreferenceActivity
         mNewVMNumber = (mNewVMNumber == null) ? "" : mNewVMNumber;
         mNewFwdSettings = newSettings.getForwardingSettings();
 
-        // No fwd settings on CDMA
-        if (mPhone.getPhoneType() == PhoneConstants.PHONE_TYPE_CDMA) {
+        // No fwd settings on CDMA.
+        boolean isCdma = mPhone.getPhoneType() == PhoneConstants.PHONE_TYPE_CDMA;
+        if (isCdma) {
             if (DBG) log("ignoring forwarding setting since this is CDMA phone");
             mNewFwdSettings = VoicemailProviderSettings.NO_FORWARDING;
         }
@@ -732,7 +736,9 @@ public class CallFeaturesSetting extends PreferenceActivity
         mVMChangeCompletedSuccessfully = false;
         mFwdChangesRequireRollback = false;
         mVMOrFwdSetError = 0;
-        if (!key.equals(mPreviousVMProviderKey)) {
+
+        // Don't read call forwarding settings if CDMA. Call forwarding is not supported by CDMA.
+        if (!key.equals(mPreviousVMProviderKey) && !isCdma) {
             mReadingSettingsForDefaultProvider =
                     mPreviousVMProviderKey.equals(VoicemailProviderListPreference.DEFAULT_KEY);
             if (DBG) log("Reading current forwarding settings");
@@ -813,7 +819,7 @@ public class CallFeaturesSetting extends PreferenceActivity
             if (mReadingSettingsForDefaultProvider) {
                 VoicemailProviderSettingsUtil.save(mPhone.getContext(),
                         VoicemailProviderListPreference.DEFAULT_KEY,
-                        new VoicemailProviderSettings(this.mOldVmNumber, mForwardingReadResults));
+                        new VoicemailProviderSettings(mOldVmNumber, mForwardingReadResults));
                 mReadingSettingsForDefaultProvider = false;
             }
             saveVoiceMailAndForwardingNumberStage2();
@@ -825,8 +831,7 @@ public class CallFeaturesSetting extends PreferenceActivity
         mExpectedChangeResultReasons = new HashSet<Integer>();
     }
 
-    // Called after we are done saving the previous forwarding settings if
-    // we needed.
+    // Called after we are done saving the previous forwarding settings if we needed.
     private void saveVoiceMailAndForwardingNumberStage2() {
         mForwardingChangeResults = null;
         mVoicemailChangeResult = null;
