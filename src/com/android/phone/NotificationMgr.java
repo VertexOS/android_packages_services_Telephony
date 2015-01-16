@@ -590,32 +590,38 @@ public class NotificationMgr {
      */
     void updateNetworkSelection(int serviceState) {
         if (TelephonyCapabilities.supportsNetworkSelection(mPhone)) {
-            // get the shared preference of network_selection.
-            // empty is auto mode, otherwise it is the operator alpha name
-            // in case there is no operator name, check the operator numeric
-            SharedPreferences sp =
-                    PreferenceManager.getDefaultSharedPreferences(mContext);
-            String networkSelection =
-                    sp.getString(PhoneBase.NETWORK_SELECTION_NAME_KEY, "");
-            if (TextUtils.isEmpty(networkSelection)) {
-                networkSelection =
-                        sp.getString(PhoneBase.NETWORK_SELECTION_KEY, "");
-            }
+            int subId = mPhone.getSubId();
+            if (SubscriptionManager.isValidSubscriptionId(subId)) {
+                // get the shared preference of network_selection.
+                // empty is auto mode, otherwise it is the operator alpha name
+                // in case there is no operator name, check the operator numeric
+                SharedPreferences sp =
+                        PreferenceManager.getDefaultSharedPreferences(mContext);
+                String networkSelection =
+                        sp.getString(PhoneBase.NETWORK_SELECTION_NAME_KEY + subId, "");
+                if (TextUtils.isEmpty(networkSelection)) {
+                    networkSelection =
+                            sp.getString(PhoneBase.NETWORK_SELECTION_KEY + subId, "");
+                }
 
-            if (DBG) log("updateNetworkSelection()..." + "state = " +
-                    serviceState + " new network " + networkSelection);
+                if (DBG) log("updateNetworkSelection()..." + "state = " +
+                        serviceState + " new network " + networkSelection);
 
-            if (serviceState == ServiceState.STATE_OUT_OF_SERVICE
-                    && !TextUtils.isEmpty(networkSelection)) {
-                if (!mSelectedUnavailableNotify) {
-                    showNetworkSelection(networkSelection);
-                    mSelectedUnavailableNotify = true;
+                if (serviceState == ServiceState.STATE_OUT_OF_SERVICE
+                        && !TextUtils.isEmpty(networkSelection)) {
+                    if (!mSelectedUnavailableNotify) {
+                        showNetworkSelection(networkSelection);
+                        mSelectedUnavailableNotify = true;
+                    }
+                } else {
+                    if (mSelectedUnavailableNotify) {
+                        cancelNetworkSelection();
+                        mSelectedUnavailableNotify = false;
+                    }
                 }
             } else {
-                if (mSelectedUnavailableNotify) {
-                    cancelNetworkSelection();
-                    mSelectedUnavailableNotify = false;
-                }
+                if (DBG) log("updateNetworkSelection()..." + "state = " +
+                        serviceState + " not updating network due to invalid subId " + subId);
             }
         }
     }
