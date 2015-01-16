@@ -281,8 +281,11 @@ public class MobileNetworkSettings extends PreferenceActivity
         mActiveSubInfos.clear();
         if (sil != null) {
             mActiveSubInfos.addAll(sil);
+            // If there is only 1 sim then currenTab should represent slot no. of the sim.
+            if (sil.size() == 1) {
+                currentTab = sil.get(0).getSimSlotIndex();
+            }
         }
-
 
         switch (state) {
             case UPDATE: {
@@ -323,7 +326,6 @@ public class MobileNetworkSettings extends PreferenceActivity
             }
             case NO_TABS: {
                 if (DBG) log("initializeSubscriptions: NO_TABS");
-                currentTab = 0;
 
                 if (mTabHost != null) {
                     mTabHost.clearAllTabs();
@@ -334,7 +336,9 @@ public class MobileNetworkSettings extends PreferenceActivity
             }
             case DO_NOTHING: {
                 if (DBG) log("initializeSubscriptions: DO_NOTHING");
-                currentTab = mTabHost != null ? mTabHost.getCurrentTab() : 0;
+                if (mTabHost != null) {
+                    currentTab = mTabHost.getCurrentTab();
+                }
                 break;
             }
         }
