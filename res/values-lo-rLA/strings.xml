@@ -132,7 +132,7 @@
     <string name="fdn_check_failure" msgid="18200614306525434">"ການຕັ້ງຄ່າແອັບຯໝາຍເລກຈຳກັດການໂທອອກ ຂອງໂທລະສັບທ່ານຖືກເປີດໃຊ້ຢູ່ ເຊິ່ງຈະເຮັດໃຫ້ຄຸນສົມບັດທີ່ກ່ຽວກັບການໂທບາງຢ່າງ ບໍ່ສາມາດໃຊ້ໄດ້."</string>
     <string name="radio_off_error" msgid="2304459933248513376">"ເປີດໃຊ້ວິທະຍຸກ່ອນການເບິ່ງການຕັ້ງຄ່າເຫຼົ່ານີ້."</string>
     <string name="close_dialog" msgid="2365884406356986917">"ຕົກລົງ"</string>
-    <string name="enable" msgid="7248657275000173526">"ເປີດ"</string>
+    <string name="enable" msgid="7248657275000173526">"ເປີດ​"</string>
     <string name="disable" msgid="4678348128118573672">"ປິດ"</string>
     <string name="change_num" msgid="239476305819844391">"ອັບເດດ"</string>
   <string-array name="clir_display_values">
