@@ -146,6 +146,10 @@ final class TelecomAccountRegistry {
                     PhoneAccount.CAPABILITY_PLACE_EMERGENCY_CALLS |
                     PhoneAccount.CAPABILITY_MULTI_USER;
 
+            if (mPhone.isVideoEnabled()) {
+                capabilities |= PhoneAccount.CAPABILITY_VIDEO_CALLING;
+            }
+
             if (iconBitmap == null) {
                 iconBitmap = BitmapFactory.decodeResource(
                         mContext.getResources(),
