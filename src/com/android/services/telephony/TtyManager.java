@@ -122,13 +122,12 @@ final class TtyManager {
 
     private static int telecomModeToPhoneMode(int telecomMode) {
         switch (telecomMode) {
+            // AT command only has 0 and 1, so mapping VCO
+            // and HCO to FULL
             case TelecomManager.TTY_MODE_FULL:
-                return Phone.TTY_MODE_FULL;
             case TelecomManager.TTY_MODE_VCO:
-                return Phone.TTY_MODE_VCO;
             case TelecomManager.TTY_MODE_HCO:
-                return Phone.TTY_MODE_HCO;
-            case TelecomManager.TTY_MODE_OFF:
+                return Phone.TTY_MODE_FULL;
             default:
                 return Phone.TTY_MODE_OFF;
         }
