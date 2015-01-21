@@ -21,6 +21,9 @@ import android.content.Context;
 import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneFactory;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Singleton entry point for the telephony-services app. Initializes ongoing systems relating to
  * PSTN calls. This is started when the device starts and will be restarted automatically
@@ -36,7 +39,8 @@ public class TelephonyGlobals {
     /** The application context. */
     private final Context mContext;
 
-    private TtyManager mTtyManager;
+    // For supporting MSIM phone, change Phone and TtyManager as 1 to 1
+    private List<TtyManager> mTtyManagers = new ArrayList<>();
 
     /**
      * Persists the specified parameters.
@@ -55,10 +59,10 @@ public class TelephonyGlobals {
     }
 
     public void onCreate() {
-        // TODO: Make this work with Multi-SIM devices
-        Phone phone = PhoneFactory.getDefaultPhone();
-        if (phone != null) {
-            mTtyManager = new TtyManager(mContext, phone);
+        // Make this work with Multi-SIM devices
+        Phone[] phones = PhoneFactory.getPhones();
+        for (Phone phone : phones) {
+            mTtyManagers.add(new TtyManager(mContext, phone));
         }
 
         TelecomAccountRegistry.getInstance(mContext).setupOnBoot();
