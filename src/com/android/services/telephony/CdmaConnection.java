@@ -26,6 +26,7 @@ import android.telephony.PhoneNumberUtils;
 import com.android.internal.telephony.Call;
 import com.android.internal.telephony.CallStateException;
 import com.android.internal.telephony.Connection;
+import com.android.internal.telephony.imsphone.ImsPhoneConnection;
 import com.android.internal.telephony.Phone;
 import com.android.phone.settings.SettingsConstants;
 
@@ -83,7 +84,9 @@ final class CdmaConnection extends TelephonyConnection {
         mAllowMute = allowMute;
         mIsOutgoing = isOutgoing;
         mIsCallWaiting = connection != null && connection.getState() == Call.State.WAITING;
-        if (mIsCallWaiting) {
+        boolean isImsCall = getOriginalConnection() instanceof ImsPhoneConnection;
+        // Start call waiting timer for CDMA waiting call.
+        if (mIsCallWaiting && !isImsCall) {
             startCallWaitingTimer();
         }
     }
