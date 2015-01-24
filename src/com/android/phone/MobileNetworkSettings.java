@@ -694,6 +694,9 @@ public class MobileNetworkSettings extends PreferenceActivity
         mButtonPreferredNetworkMode.setValue(Integer.toString(settingsNetworkMode));
         UpdatePreferredNetworkModeSummary(settingsNetworkMode);
         UpdateEnabledNetworksValueAndSummary(settingsNetworkMode);
+        // Display preferred network type based on what modem returns b/18676277
+        mPhone.setPreferredNetworkType(settingsNetworkMode, mHandler
+                .obtainMessage(MyHandler.MESSAGE_SET_PREFERRED_NETWORK_TYPE));
 
         /**
          * Enable/disable depending upon if there are any active subscriptions.
