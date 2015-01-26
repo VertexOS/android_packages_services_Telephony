@@ -17,6 +17,7 @@
 package com.android.phone;
 
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import com.android.internal.telephony.OperatorInfo;
 import android.os.AsyncResult;
@@ -26,6 +27,7 @@ import android.os.IBinder;
 import android.os.Message;
 import android.os.RemoteCallbackList;
 import android.os.RemoteException;
+import android.telephony.SubscriptionManager;
 import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneFactory;
 import android.util.Log;
@@ -163,8 +165,9 @@ public class NetworkQueryService extends Service {
 
     @Override
     public void onCreate() {
-        mState = QUERY_READY;
-        mPhone = PhoneFactory.getDefaultPhone();
+        mState = QUERY_READY;        
+        mPhone = PhoneFactory.getPhone(
+                SubscriptionManager.getPhoneId(SubscriptionManager.getDefaultSubId()));
     }
 
     /**
