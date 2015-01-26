@@ -71,7 +71,8 @@ public class VoicemailNotificationSettingsUtil {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(phone.getContext());
         migrateVoicemailRingtoneSettingsIfNeeded(phone, prefs);
         String uriString = prefs.getString(
-                getVoicemailRingtoneSharedPrefsKey(phone), Settings.System.NOTIFICATION_SOUND);
+                getVoicemailRingtoneSharedPrefsKey(phone),
+                Settings.System.DEFAULT_NOTIFICATION_URI.toString());
         return !TextUtils.isEmpty(uriString) ? Uri.parse(uriString) : null;
     }
 
