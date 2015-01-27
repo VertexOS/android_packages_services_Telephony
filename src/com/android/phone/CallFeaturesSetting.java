@@ -1337,6 +1337,12 @@ public class CallFeaturesSetting extends PreferenceActivity
             TelephonyManager tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
             tm.listen(mPhoneStateListener, PhoneStateListener.LISTEN_CALL_STATE);
         }
+
+        if (!ImsManager.isWfcEnabledByPlatform(mPhone.getContext())) {
+            Preference wifiCallingSettings = findPreference(
+                    getResources().getString(R.string.wifi_calling_settings_key));
+            prefSet.removePreference(wifiCallingSettings);
+        }
     }
 
     @Override

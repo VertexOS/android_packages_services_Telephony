@@ -147,7 +147,7 @@
     <string name="phone_accounts_configure_account_settings">Configure account settings</string>
 
     <!-- Title for setting to select Wi-Fi call manager account -->
-    <string name="phone_account_wifi_calling">Wi-Fi calling</string>
+    <string name="wifi_calling">Wi-Fi calling</string>
     <!-- Indication for option to not use a Wi-Fi call manager -->
     <string name="wifi_calling_do_not_use">Do not use Wi-Fi calling</string>
     <!-- Indication for option to not use a call assistant. -->
@@ -1313,4 +1313,6 @@
     <string name="voicemail_notification_vibrate_key">voicemail_notification_vibrate_key</string>
     <!-- DO NOT TRANSLATE. Internal key for tty mode preference. -->
     <string name="tty_mode_key">button_tty_mode_key</string>
+    <!-- DO NOT TRANSLATE. Internal key for a voicemail notification preference. -->
+    <string name="wifi_calling_settings_key">button_wifi_calling_settings_key</string>
 </resources>
