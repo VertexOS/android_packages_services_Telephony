@@ -839,9 +839,8 @@
     <string name="simContacts_empty">No contacts on your SIM card.</string>
     <!-- Call settings: title of the dialog that lets you select contacts from the SIM. -->
     <string name="simContacts_title">Select contacts to import</string>
-    <!-- Appears when user tries to import contacts in SIM during Airplane mode
-      [CHAR LIMIT=NONE] -->
-    <string name="simContacts_airplaneMode">To import contacts from the SIM card, first turn off Airplane mode.</string>
+    <!-- Appears when user tries to import contacts in SIM during airplane mode [CHAR LIMIT=NONE] -->
+    <string name="simContacts_airplaneMode">Turn off airplane mode to import contacts from the SIM card.</string>
 
     <!-- SIM PIN strings -->
     <!-- Title of "Enable/disable SIM PIN" screen -->
@@ -994,13 +993,17 @@
          [CHAR LIMIT=60] -->
     <string name="notification_missedCall_message">Message</string>
 
-    <!-- In-call screen: call failure message displayed in an error dialog -->
-    <string name="incall_error_power_off">To place a call, first turn off Airplane mode.</string>
+    <!-- In-call screen: call failure message displayed in an error dialog. [CHAR_LIMIT=NONE] -->
+    <string name="incall_error_power_off">Turn off airplane mode to make a call.</string>
+    <!-- In-call screen: call failure message displayed in an error dialog when in airplane mode, WFC is enabled, not wifi-only, and not connected to wireless networks. [CHAR_LIMIT=NONE] -->
+    <string name="incall_error_power_off_wfc">Turn off airplane mode or connect to a wireless network to make a call.</string>
     <!-- In-call screen: call failure message displayed in an error dialog.
          This string is currently unused (see comments in InCallScreen.java.) -->
     <string name="incall_error_emergency_only">Not registered on network.</string>
     <!-- In-call screen: call failure message displayed in an error dialog -->
     <string name="incall_error_out_of_service">Cellular network not available.</string>
+    <!-- In-call screen: call failure message displayed in an error dialog -->
+    <string name="incall_error_out_of_service_wfc">Cellular network is not available. Connect to a wireless network to make a call.</string>
     <!-- In-call screen: call failure message displayed in an error dialog -->
     <string name="incall_error_no_phone_number_supplied">To place a call, enter a valid number.</string>
     <!-- In-call screen: call failure message displayed in an error dialog -->
@@ -1021,6 +1024,8 @@
     <string name="incall_error_supp_service_reject">Can\'t reject call.</string>
     <!-- In-call screen: message displayed in an error dialog -->
     <string name="incall_error_supp_service_hangup">Can\'t release call(s).</string>
+    <!-- In-call screen: call failure message displayed in an error dialog when WFC is enabled, is wifi-only, and not connected to a wireless network. [CHAR_LIMIT=NONE] -->
+    <string name="incall_error_wfc_only_no_wireless_network">Connect to a wireless network to make a call.</string>
 
     <!-- Dialog title for the "radio enable" UI for emergency calls -->
     <string name="emergency_enable_radio_dialog_title">Emergency call</string>
