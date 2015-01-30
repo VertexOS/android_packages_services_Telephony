@@ -42,7 +42,7 @@ public class CdmaConference extends Conference {
 
     public void updateCapabilities(int capabilities) {
         capabilities |= Connection.CAPABILITY_MUTE | Connection.CAPABILITY_GENERIC_CONFERENCE;
-        setConnectionCapabilities(capabilities);
+        setCapabilities(capabilities);
     }
 
     /**
