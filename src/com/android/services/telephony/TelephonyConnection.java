@@ -186,6 +186,11 @@ abstract class TelephonyConnection extends Connection {
     private boolean mWasImsConnection;
 
     /**
+     * Tracks the multiparty state of the ImsCall so that changes in the bit state can be detected.
+     */
+    private boolean mIsMultiParty = false;
+
+    /**
      * Determines if the {@link TelephonyConnection} has local video capabilities.
      * This is used when {@link TelephonyConnection#updateConnectionCapabilities()}} is called,
      * ensuring the appropriate capabilities are set.  Since capabilities
@@ -483,6 +488,7 @@ abstract class TelephonyConnection extends Connection {
         if (isImsConnection()) {
             mWasImsConnection = true;
         }
+        mIsMultiParty = mOriginalConnection.isMultiparty();
 
         fireOnOriginalConnectionConfigured();
         updateAddress();
@@ -633,6 +639,24 @@ abstract class TelephonyConnection extends Connection {
         }
         updateConnectionCapabilities();
         updateAddress();
+        updateMultiparty();
+    }
+
+    /**
+     * Checks for changes to the multiparty bit.  If a conference has started, informs listeners.
+     */
+    private void updateMultiparty() {
+        if (mOriginalConnection == null) {
+            return;
+        }
+
+        if (mIsMultiParty != mOriginalConnection.isMultiparty()) {
+            mIsMultiParty = mOriginalConnection.isMultiparty();
+
+            if (mIsMultiParty) {
+                notifyConferenceStarted();
+            }
+        }
     }
 
     private void setActiveInternal() {
