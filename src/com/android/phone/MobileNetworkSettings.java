@@ -855,7 +855,7 @@ public class MobileNetworkSettings extends PreferenceActivity
                 mOkClicked = false;
                 new AlertDialog.Builder(this).setMessage(
                         getResources().getString(R.string.roaming_warning))
-                        .setTitle(android.R.string.dialog_alert_title)
+                        .setTitle(R.string.roaming_alert_title)
                         .setIconAttribute(android.R.attr.alertDialogIcon)
                         .setPositiveButton(android.R.string.yes, this)
                         .setNegativeButton(android.R.string.no, this)
