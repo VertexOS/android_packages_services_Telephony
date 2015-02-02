@@ -109,7 +109,7 @@ abstract class TelephonyConnection extends Connection {
         public void onPostDialChar(char c) {
             Log.v(TelephonyConnection.this, "onPostDialChar: %s", c);
             if (mOriginalConnection != null) {
-                setNextPostDialWaitChar(c);
+                setNextPostDialChar(c);
             }
         }
     };
