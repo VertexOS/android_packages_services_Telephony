@@ -82,8 +82,8 @@
     <string name="networks" msgid="8873030692174541976">"Operadoras de rede"</string>
     <string name="cell_broadcast_settings" msgid="8740238216690502563">"Transmissões de emergência"</string>
     <string name="call_settings" msgid="6112441768261754562">"Configurações de chamadas"</string>
-    <string name="additional_gsm_call_settings" msgid="1391795981938800617">"Configurações adicionais"</string>
-    <string name="additional_gsm_call_settings_with_label" msgid="1385241520708457376">"Configurações adicionais (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="additional_gsm_call_settings" msgid="1391795981938800617">"Config. adicionais"</string>
+    <string name="additional_gsm_call_settings_with_label" msgid="1385241520708457376">"Config. adicionais (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="sum_gsm_call_settings" msgid="4076647190996778012">"Configurações adicionais somente de chamada GSM"</string>
     <string name="additional_cdma_call_settings" msgid="8628958775721886909">"Configurações de chamada CDMA adicionais"</string>
     <string name="sum_cdma_call_settings" msgid="284753265979035549">"Configurações adicionais somente de chamada CDMA"</string>
@@ -96,8 +96,8 @@
     <string name="labelCW" msgid="6120513814915920200">"Chamada em espera"</string>
     <string name="sum_cw_enabled" msgid="8083061901633671397">"Durante uma chamada, me avise sobre chamadas recebidas"</string>
     <string name="sum_cw_disabled" msgid="3648693907300104575">"Durante uma chamada, me avise sobre chamadas recebidas"</string>
-    <string name="call_forwarding_settings" msgid="3378927671091537173">"Configurações de encaminhamento de chamada"</string>
-    <string name="call_forwarding_settings_with_label" msgid="8569489414006897127">"Configurações de encaminhamento de chamada (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="call_forwarding_settings" msgid="3378927671091537173">"Config. de encaminhamento de chamada"</string>
+    <string name="call_forwarding_settings_with_label" msgid="8569489414006897127">"Config. de encaminhamento de chamada (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="labelCF" msgid="2574386948026924737">"Encaminhamento"</string>
     <string name="labelCFU" msgid="8147177368148660600">"Sempre encaminhar"</string>
     <string name="messageCFU" msgid="3560082430662923687">"Sempre usar este número"</string>
@@ -116,7 +116,7 @@
     <string name="sum_cfnry_disabled" msgid="3884684060443538097">"Desativado"</string>
     <string name="disable_cfnry_forbidden" msgid="4308233959150658058">"Sua operadora não suporta a desativação do encaminhamento de chamada quando seu telefone não responde."</string>
     <string name="labelCFNRc" msgid="2614827454402079766">"Quando inacessível"</string>
-    <string name="messageCFNRc" msgid="6380695421020295119">"Número quando não acessível"</string>
+    <string name="messageCFNRc" msgid="6380695421020295119">"Número quando inacessível"</string>
     <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"Encaminhando para <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfnrc_disabled" msgid="7222141261321276464">"Desativado"</string>
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"Sua operadora não suporta a desativação do encaminhamento de chamada quando seu telefone não está acessível."</string>
@@ -346,8 +346,8 @@
     <string name="sum_fdn_manage_list" msgid="8431088265332628316">"Gerenciar lista de números telefônicos"</string>
     <string name="voice_privacy" msgid="3776841382844614716">"Privacidade de voz"</string>
     <string name="voice_privacy_summary" msgid="3159383389833516214">"Ativar modo de privacidade aprimorado"</string>
-    <string name="tty_mode_option_title" msgid="9033098925144434669">"Modo TTY"</string>
-    <string name="tty_mode_option_summary" msgid="1073835131534808732">"Definir modo TTY"</string>
+    <string name="tty_mode_option_title" msgid="9033098925144434669">"Modo TTD"</string>
+    <string name="tty_mode_option_summary" msgid="1073835131534808732">"Definir modo TTD"</string>
     <string name="auto_retry_mode_title" msgid="4073265511427813322">"Repetir automaticamente"</string>
     <string name="auto_retry_mode_summary" msgid="4973886004067532288">"Ativar modo Repetir automaticamente"</string>
     <string name="menu_add" msgid="1882023737425114762">"Adicionar contato"</string>

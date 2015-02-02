@@ -110,7 +110,7 @@
     <string name="sum_cfb_enabled" msgid="5984198104833116690">"Şuraya yönlendiriliyor: <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfb_disabled" msgid="4913145177320506827">"Kapalı"</string>
     <string name="disable_cfb_forbidden" msgid="3506984333877998061">"Operatörünüz, telefonunuz meşgul olduğunda çağrı yönlendirmenin devre dışı bırakılmasını desteklemiyor."</string>
-    <string name="labelCFNRy" msgid="1736067178393744351">"Yanıt verilmediğinde"</string>
+    <string name="labelCFNRy" msgid="1736067178393744351">"Yanıtlanmadığında"</string>
     <string name="messageCFNRy" msgid="672317899884380374">"Yanıtlanmadığında kullanılacak numara"</string>
     <string name="sum_cfnry_enabled" msgid="6955775691317662910">"Şuraya yönlendiriliyor: <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfnry_disabled" msgid="3884684060443538097">"Kapalı"</string>
@@ -201,10 +201,10 @@
     <string name="data_enabled" msgid="5972538663568715366">"Veri etkin"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"Veri kullanımına izin ver"</string>
     <string name="roaming" msgid="8871412572928323707">"Veri dolaşımı"</string>
-    <string name="roaming_enable" msgid="7331106985174381987">"Dolaşırken veri hizmetlerine bağlan"</string>
-    <string name="roaming_disable" msgid="1843417228755568110">"Dolaşırken veri hizmetlerine bağlan"</string>
+    <string name="roaming_enable" msgid="7331106985174381987">"Dolaşımdayken veri hizmetlerine bağlan"</string>
+    <string name="roaming_disable" msgid="1843417228755568110">"Dolaşımdayken veri hizmetlerine bağlan"</string>
     <string name="roaming_reenable_message" msgid="8913735676127858115">"Veri dolaşımı kapalıyken ev ağınızdan ayrıldığınız için veri bağlantısını kaybettiniz."</string>
-    <string name="roaming_warning" msgid="7126227198294007907">"Dolaşımda veri kullanımına izin verilsin mi? Kayda değer ücretler ödenmesi gerekebilir."</string>
+    <string name="roaming_warning" msgid="7126227198294007907">"Dolaşımdayken veri kullanımına izin verilsin mi? Kayda değer ücretler ödenmesi gerekebilir."</string>
     <string name="gsm_umts_options" msgid="6538311689850981686">"GSM/UMTS Seçenekleri"</string>
     <string name="cdma_options" msgid="4016822858172249884">"CDMA Seçenekleri"</string>
     <string name="throttle_data_usage" msgid="3715677828160555808">"Veri kullanımı"</string>

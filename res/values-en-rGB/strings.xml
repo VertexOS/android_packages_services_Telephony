@@ -129,7 +129,7 @@
     <string name="reverting_settings" msgid="4752151682666912828">"Reverting settings…"</string>
     <string name="response_error" msgid="6674110501330139405">"Unexpected response from network."</string>
     <string name="exception_error" msgid="7027667130619518211">"Network or SIM card error."</string>
-    <string name="fdn_check_failure" msgid="18200614306525434">"Your Phone app\'s Fixed Dialing Numbers setting is turned on. As a result, some call-related features aren\'t working."</string>
+    <string name="fdn_check_failure" msgid="18200614306525434">"Your Phone app\'s fixed dialling numbers setting is turned on. As a result, some call-related features aren\'t working."</string>
     <string name="radio_off_error" msgid="2304459933248513376">"Please turn on the radio before viewing these settings."</string>
     <string name="close_dialog" msgid="2365884406356986917">"OK"</string>
     <string name="enable" msgid="7248657275000173526">"Turn on"</string>
@@ -329,19 +329,19 @@
     <string name="cdma_activate_device" msgid="3793805892364814518">"Activate device"</string>
     <string name="cdma_lte_data_service" msgid="4255018217292548962">"Set up data service"</string>
     <string name="carrier_settings_title" msgid="9028166176523012300">"Provider settings"</string>
-    <string name="fdn" msgid="7878832555095183202">"Fixed Dialling Numbers"</string>
-    <string name="fdn_with_label" msgid="187084204115493366">"Fixed Dialing Numbers (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="fdn" msgid="7878832555095183202">"Fixed dialling numbers"</string>
+    <string name="fdn_with_label" msgid="187084204115493366">"Fixed dialling numbers (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="manage_fdn_list" msgid="8777755791892122369">"FDN list"</string>
     <string name="fdn_list_with_label" msgid="7437232552210469217">"FDN list (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="fdn_activation" msgid="2156479741307463576">"FDN activation"</string>
-    <string name="fdn_enabled" msgid="5238109009915521240">"Fixed Dialling Numbers are enabled"</string>
-    <string name="fdn_disabled" msgid="4700049736675368279">"Fixed Dialling Numbers are disabled"</string>
+    <string name="fdn_enabled" msgid="5238109009915521240">"Fixed dialling numbers are enabled"</string>
+    <string name="fdn_disabled" msgid="4700049736675368279">"Fixed dialling numbers are disabled"</string>
     <string name="enable_fdn" msgid="3740191529180493851">"Enable FDN"</string>
     <string name="disable_fdn" msgid="7944020890722540616">"Disable FDN"</string>
     <string name="change_pin2" msgid="2153563695382176676">"Change PIN2"</string>
     <string name="enable_fdn_ok" msgid="7215588870329688132">"Disable FDN"</string>
     <string name="disable_fdn_ok" msgid="5727046928930740173">"Enable FDN"</string>
-    <string name="sum_fdn" msgid="1959399454900272878">"Manage Fixed Dialling Numbers"</string>
+    <string name="sum_fdn" msgid="1959399454900272878">"Manage fixed dialling numbers"</string>
     <string name="sum_fdn_change_pin" msgid="6666549734792827932">"Change PIN for FDN access"</string>
     <string name="sum_fdn_manage_list" msgid="8431088265332628316">"Manage phone number list"</string>
     <string name="voice_privacy" msgid="3776841382844614716">"Voice privacy"</string>

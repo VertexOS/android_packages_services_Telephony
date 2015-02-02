@@ -332,18 +332,18 @@
     <string name="fdn" msgid="7878832555095183202">"固定拨号"</string>
     <string name="fdn_with_label" msgid="187084204115493366">"固定拨号 (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="manage_fdn_list" msgid="8777755791892122369">"固定拨号列表"</string>
-    <string name="fdn_list_with_label" msgid="7437232552210469217">"FDN 列表 (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="fdn_list_with_label" msgid="7437232552210469217">"固定拨号列表 (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="fdn_activation" msgid="2156479741307463576">"激活固定拨号"</string>
     <string name="fdn_enabled" msgid="5238109009915521240">"已启用固定拨号"</string>
     <string name="fdn_disabled" msgid="4700049736675368279">"未启用固定拨号"</string>
     <string name="enable_fdn" msgid="3740191529180493851">"启用固定拨号"</string>
     <string name="disable_fdn" msgid="7944020890722540616">"停用固定拨号"</string>
-    <string name="change_pin2" msgid="2153563695382176676">"更改 PIN2"</string>
+    <string name="change_pin2" msgid="2153563695382176676">"更改 PIN2 码"</string>
     <string name="enable_fdn_ok" msgid="7215588870329688132">"停用固定拨号"</string>
     <string name="disable_fdn_ok" msgid="5727046928930740173">"启用固定拨号"</string>
     <string name="sum_fdn" msgid="1959399454900272878">"管理固定拨号"</string>
     <string name="sum_fdn_change_pin" msgid="6666549734792827932">"更改使用固定拨号所需的 PIN 码"</string>
-    <string name="sum_fdn_manage_list" msgid="8431088265332628316">"管理手机号码列表"</string>
+    <string name="sum_fdn_manage_list" msgid="8431088265332628316">"管理号码列表"</string>
     <string name="voice_privacy" msgid="3776841382844614716">"语音隐私权"</string>
     <string name="voice_privacy_summary" msgid="3159383389833516214">"启用增强型隐秘模式"</string>
     <string name="tty_mode_option_title" msgid="9033098925144434669">"TTY 模式"</string>
@@ -353,7 +353,7 @@
     <string name="menu_add" msgid="1882023737425114762">"添加联系人"</string>
     <string name="menu_edit" msgid="7143003705504672374">"编辑联系人"</string>
     <string name="menu_delete" msgid="3977150783449642851">"删除联系人"</string>
-    <string name="get_pin2" msgid="8204677063922225311">"键入 PIN2"</string>
+    <string name="get_pin2" msgid="8204677063922225311">"输入 PIN2 码"</string>
     <string name="name" msgid="7329028332786872378">"名称"</string>
     <string name="number" msgid="7905950798349903858">"号码"</string>
     <string name="save" msgid="4094274636321939086">"保存"</string>
@@ -366,10 +366,10 @@
     <string name="delete_fdn_contact" msgid="6668958073074151717">"删除固定拨号联系人"</string>
     <string name="deleting_fdn_contact" msgid="5669163206349319969">"正在删除固定拨号联系人..."</string>
     <string name="fdn_contact_deleted" msgid="7154162327112259569">"已删除固定拨号联系人。"</string>
-    <string name="pin2_invalid" msgid="5470854099230755944">"系统未更新 FDN，因为键入的 PIN 码有误。"</string>
-    <string name="fdn_invalid_number" msgid="1494755047900009147">"系统未更新 FDN，因为号码不能超过 20 位。"</string>
-    <string name="pin2_or_fdn_invalid" msgid="6025144083384701197">"FDN 未更新。PIN2 有误，或电话号码遭拒。"</string>
-    <string name="fdn_failed" msgid="540018079008319747">"FDN 操作失败。"</string>
+    <string name="pin2_invalid" msgid="5470854099230755944">"固定拨号未更新，因为输入的 PIN 码有误。"</string>
+    <string name="fdn_invalid_number" msgid="1494755047900009147">"固定拨号未更新，因为号码不能超过 20 位。"</string>
+    <string name="pin2_or_fdn_invalid" msgid="6025144083384701197">"固定拨号未更新。PIN2 码有误，或电话号码遭拒。"</string>
+    <string name="fdn_failed" msgid="540018079008319747">"固定拨号操作失败。"</string>
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"正在从SIM卡读取..."</string>
     <string name="simContacts_empty" msgid="5270660846489561932">"SIM卡上无联系人。"</string>
     <string name="simContacts_title" msgid="1861472842524839921">"选择要导入的联系人"</string>
@@ -391,10 +391,10 @@
     <string name="pin_failed" msgid="5644377896213584760">"PIN 码不正确"</string>
     <string name="pin_changed" msgid="4455736268023261662">"PIN 码已更新"</string>
     <string name="puk_requested" msgid="5921393215789090200">"密码不正确。PIN 码已被锁定。已请求 PUK 码。"</string>
-    <string name="enter_pin2_text" msgid="8339444124477720345">"PIN2"</string>
-    <string name="oldPin2Label" msgid="8559146795026261502">"旧 PIN2"</string>
-    <string name="newPin2Label" msgid="4573956902204349054">"新 PIN2"</string>
-    <string name="confirmPin2Label" msgid="8100319484454787708">"确认新 PIN2"</string>
+    <string name="enter_pin2_text" msgid="8339444124477720345">"PIN2 码"</string>
+    <string name="oldPin2Label" msgid="8559146795026261502">"旧 PIN2 码"</string>
+    <string name="newPin2Label" msgid="4573956902204349054">"新 PIN2 码"</string>
+    <string name="confirmPin2Label" msgid="8100319484454787708">"确认新 PIN2 码"</string>
     <string name="badPuk2" msgid="7910064009531541708">"PUK2 码不正确，请重试。"</string>
     <string name="badPin2" msgid="6646896629970023109">"旧的 PIN2 码不正确，请重试。"</string>
     <string name="mismatchPin2" msgid="4177967478551851117">"PIN2 码不正确，请重试。"</string>

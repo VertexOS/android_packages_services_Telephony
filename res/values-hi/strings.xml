@@ -96,9 +96,9 @@
     <string name="labelCW" msgid="6120513814915920200">"कॉल प्रतीक्षा"</string>
     <string name="sum_cw_enabled" msgid="8083061901633671397">"कॉल के दौरान, मुझे इनकमिंग कॉल की नोटिफिकेशन दें"</string>
     <string name="sum_cw_disabled" msgid="3648693907300104575">"कॉल के दौरान, मुझे इनकमिंग कॉल की नोटिफिकेशन दें"</string>
-    <string name="call_forwarding_settings" msgid="3378927671091537173">"कॉल अग्रेषण सेटिंग"</string>
+    <string name="call_forwarding_settings" msgid="3378927671091537173">"कॉल आगे भेजने की सेटिंग"</string>
     <string name="call_forwarding_settings_with_label" msgid="8569489414006897127">"कॉल आगे भेजने की सेटिंग (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
-    <string name="labelCF" msgid="2574386948026924737">"कॉल अग्रेषण"</string>
+    <string name="labelCF" msgid="2574386948026924737">"कॉल आगे भेजना"</string>
     <string name="labelCFU" msgid="8147177368148660600">"हमेशा आगे भेजें"</string>
     <string name="messageCFU" msgid="3560082430662923687">"हमेशा इस नंबर का उपयोग करें"</string>
     <string name="sum_cfu_enabled_indicator" msgid="4014187342724130197">"सभी कॉल अग्रेषित कर रहा है"</string>
@@ -200,7 +200,7 @@
     <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"ध्‍वनि और अन्‍य संचारों को बेहतर बनाने हेतु LTE सेवाओं का उपयोग करें (अनुशंसित)"</string>
     <string name="data_enabled" msgid="5972538663568715366">"डेटा सक्षम किया गया"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"डेटा उपयोग करने दें"</string>
-    <string name="roaming" msgid="8871412572928323707">"डेटा रोमिंग"</string>
+    <string name="roaming" msgid="8871412572928323707">"रोमिंग डेटा"</string>
     <string name="roaming_enable" msgid="7331106985174381987">"रोमिंग के समय डेटा सेवाएं कनेक्ट करें"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"रोमिंग के समय डेटा सेवाएं कनेक्ट करें"</string>
     <string name="roaming_reenable_message" msgid="8913735676127858115">"आपकी डेटा कनेक्टिविटी खो गई है क्योंकि आप डेटा रोमिंग बंद करके अपने होम नेटवर्क से बाहर आ गए हैं."</string>

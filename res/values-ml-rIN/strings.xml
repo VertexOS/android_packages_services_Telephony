@@ -57,10 +57,10 @@
     <string name="labelCDMAMore" msgid="1630676740428229339">"CDMA കോൾ ക്രമീകരണങ്ങൾ"</string>
     <string name="apn_settings" msgid="9043423184895642077">"ആക്‌സസ്സ് പോയിന്റ് പേരുകൾ"</string>
     <string name="settings_label" msgid="3876743539816984008">"നെറ്റ്‌വർക്ക് ക്രമീകരണങ്ങൾ"</string>
-    <string name="phone_accounts" msgid="6376603393888116364">"കോൾ ചെയ്യാനുള്ള അക്കൗണ്ടുകൾ"</string>
-    <string name="phone_accounts_make_calls_with" msgid="1969188078933152231">"ഇനിപ്പറയുന്നത് ഉപയോഗിച്ച് കോളുകൾ ചെയ്യുക"</string>
-    <string name="phone_accounts_make_sip_calls_with" msgid="4677789312053828493">"ഇനിപ്പറയുന്നത് ഉപയോഗിച്ച് SIP കോളുകൾ ചെയ്യുക"</string>
-    <string name="phone_accounts_ask_every_time" msgid="4346499067149985702">"ആദ്യം ചോദിക്കുക"</string>
+    <string name="phone_accounts" msgid="6376603393888116364">"കോളുചെയ്യാനുള്ള അക്കൗണ്ട്"</string>
+    <string name="phone_accounts_make_calls_with" msgid="1969188078933152231">"ഇത് ഉപയോഗിച്ച് കോളുചെയ്യുക"</string>
+    <string name="phone_accounts_make_sip_calls_with" msgid="4677789312053828493">"ഇതുപയോഗിച്ച് SIP കോളുചെയ്യുക"</string>
+    <string name="phone_accounts_ask_every_time" msgid="4346499067149985702">"ആദ്യതവണ ചോദിക്കുക"</string>
     <string name="phone_accounts_settings_header" msgid="4141710640883261094">"ക്രമീകരണങ്ങൾ"</string>
     <string name="phone_accounts_choose_accounts" msgid="5232948804226424002">"അക്കൗണ്ടുകൾ തിരഞ്ഞെടുക്കുക"</string>
     <string name="phone_accounts_selection_header" msgid="1365215726106915865">"ഫോൺ അക്കൗണ്ടുകൾ"</string>
@@ -157,7 +157,7 @@
     <string name="not_allowed" msgid="5613353860205691579">"നിങ്ങളുടെ സിം കാർഡ് ഈ നെറ്റ്‌വർക്കിലേക്ക് ഒരു കണക്ഷൻ അനുവദിക്കുന്നില്ല."</string>
     <string name="connect_later" msgid="2308119155752343975">"ഈ നെറ്റ്‌വർക്കിൽ ഇപ്പോൾ കണക്റ്റുചെയ്യാനാകുന്നില്ല. പിന്നീട് വീണ്ടും ശ്രമിക്കുക."</string>
     <string name="registration_done" msgid="495135664535876612">"ഒരു നെറ്റ്‌വർക്കിൽ രജിസ്റ്റർ ചെയ്‌തു."</string>
-    <string name="sum_carrier_select" msgid="3494252551249882718">"ഒരു നെ‌റ്റ്‌വർക്ക് ഓപ്പറേറ്റർ തിരഞ്ഞെടുക്കുക"</string>
+    <string name="sum_carrier_select" msgid="3494252551249882718">"ഒരു നെ‌റ്റ്‌വർക്ക് ഓപ്പറേറ്ററെ തിരഞ്ഞെടുക്കുക"</string>
     <string name="sum_search_networks" msgid="2921092249873272715">"ലഭ്യമായ എല്ലാ നെറ്റ്‌വർക്കുകൾക്കായും തിരയുക"</string>
     <string name="select_automatically" msgid="5628402124471810174">"യാന്ത്രികമായി തിരഞ്ഞെടുക്കുക"</string>
     <string name="sum_select_automatically" msgid="5614890115123292400">"താൽപ്പര്യമുള്ള നെറ്റ്‌വർക്ക് യാന്ത്രികമായി തിരഞ്ഞെടുക്കുക"</string>
@@ -204,7 +204,7 @@
     <string name="roaming_enable" msgid="7331106985174381987">"റോമിംഗിലാകുമ്പോൾ ഡാറ്റ സേവനങ്ങളുമായി കണ‌ക്റ്റുചെയ്യുക"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"റോമിംഗിലാകുമ്പോൾ ഡാറ്റ സേവനങ്ങളുമായി കണ‌ക്റ്റുചെയ്യുക"</string>
     <string name="roaming_reenable_message" msgid="8913735676127858115">"നിങ്ങൾ ഡാറ്റ റോമിംഗ് ഓഫുചെയ്‌തതിനൊപ്പം നിങ്ങളുടെ ഹോം നെ‌റ്റ്‌വർക്കും വിട്ടതിനാൽ നിങ്ങൾക്ക് ഡാറ്റ കണക്റ്റിവിറ്റി നഷ്‌ടപ്പെട്ടു."</string>
-    <string name="roaming_warning" msgid="7126227198294007907">"റോമിംഗിലായിരിക്കുമ്പോൾ ഡാറ്റ ഉപയോഗം അനുവദിക്കുക? നിശ്ചിത നിരക്കുകൾ ബാധകമായേക്കാം."</string>
+    <string name="roaming_warning" msgid="7126227198294007907">"റോമിംഗിലായിരിക്കുമ്പോൾ ഡാറ്റ ഉപയോഗം അനുവദിക്കണോ? നിശ്ചിത നിരക്കുകൾ ബാധകമായേക്കാം."</string>
     <string name="gsm_umts_options" msgid="6538311689850981686">"GSM/UMTS ഓപ്‌ഷനുകൾ"</string>
     <string name="cdma_options" msgid="4016822858172249884">"CDMA ഓപ്‌ഷനുകൾ"</string>
     <string name="throttle_data_usage" msgid="3715677828160555808">"ഡാറ്റ ഉപയോഗം"</string>

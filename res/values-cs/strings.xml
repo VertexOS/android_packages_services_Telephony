@@ -329,18 +329,18 @@
     <string name="cdma_activate_device" msgid="3793805892364814518">"Aktivovat zařízení"</string>
     <string name="cdma_lte_data_service" msgid="4255018217292548962">"Nastavit datovou službu"</string>
     <string name="carrier_settings_title" msgid="9028166176523012300">"Nastavení operátora"</string>
-    <string name="fdn" msgid="7878832555095183202">"Povolená telefonní čísla"</string>
-    <string name="fdn_with_label" msgid="187084204115493366">"Povolená telefonní čísla (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="fdn" msgid="7878832555095183202">"Povolená tel. čísla"</string>
+    <string name="fdn_with_label" msgid="187084204115493366">"Povolená tel. čísla (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="manage_fdn_list" msgid="8777755791892122369">"Seznam povolených telefonních čísel"</string>
     <string name="fdn_list_with_label" msgid="7437232552210469217">"Seznam povolených telefonních čísel (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="fdn_activation" msgid="2156479741307463576">"Aktivace povolených telefonních čísel"</string>
-    <string name="fdn_enabled" msgid="5238109009915521240">"Funkce Povolená telefonní čísla je zapnuta"</string>
-    <string name="fdn_disabled" msgid="4700049736675368279">"Funkce Povolená telefonní čísla je vypnuta"</string>
-    <string name="enable_fdn" msgid="3740191529180493851">"Zapnout funkci Povolená telefonní čísla"</string>
-    <string name="disable_fdn" msgid="7944020890722540616">"Vypnout funkci Povolená telefonní čísla"</string>
+    <string name="fdn_enabled" msgid="5238109009915521240">"Funkce Povolená tel. čísla je zapnuta"</string>
+    <string name="fdn_disabled" msgid="4700049736675368279">"Funkce Povolená tel. čísla je vypnuta"</string>
+    <string name="enable_fdn" msgid="3740191529180493851">"Zapnout funkci Povolená tel. čísla"</string>
+    <string name="disable_fdn" msgid="7944020890722540616">"Vypnout funkci Povolená tel. čísla"</string>
     <string name="change_pin2" msgid="2153563695382176676">"Změna kódu PIN2"</string>
-    <string name="enable_fdn_ok" msgid="7215588870329688132">"Vypnout funkci Povolená telefonní čísla"</string>
-    <string name="disable_fdn_ok" msgid="5727046928930740173">"Zapnout funkci Povolená telefonní čísla"</string>
+    <string name="enable_fdn_ok" msgid="7215588870329688132">"Vypnout funkci Povolená tel. čísla"</string>
+    <string name="disable_fdn_ok" msgid="5727046928930740173">"Zapnout funkci Povolená tel. čísla"</string>
     <string name="sum_fdn" msgid="1959399454900272878">"Umožňuje spravovat povolená telefonní čísla"</string>
     <string name="sum_fdn_change_pin" msgid="6666549734792827932">"Umožňuje změnit kód PIN pro přístup k povoleným telefonním číslům"</string>
     <string name="sum_fdn_manage_list" msgid="8431088265332628316">"Správa telefonního seznamu"</string>
@@ -366,9 +366,9 @@
     <string name="delete_fdn_contact" msgid="6668958073074151717">"Smazat povolené telefonní číslo"</string>
     <string name="deleting_fdn_contact" msgid="5669163206349319969">"Mazání povoleného telefonního čísla..."</string>
     <string name="fdn_contact_deleted" msgid="7154162327112259569">"Povolené telefonní číslo bylo smazáno."</string>
-    <string name="pin2_invalid" msgid="5470854099230755944">"Funkce Povolená telefonní čísla nebyla aktualizována, protože jste zadali chybný kód PIN."</string>
-    <string name="fdn_invalid_number" msgid="1494755047900009147">"Funkce Povolená telefonní čísla nebyla aktualizována, protože číslo nesmí obsahovat více než 20 číslic."</string>
-    <string name="pin2_or_fdn_invalid" msgid="6025144083384701197">"Povolená telefonní čísla (FDN) nebyla aktualizována. Kód PIN2 byl nesprávný nebo bylo telefonní číslo odmítnuto."</string>
+    <string name="pin2_invalid" msgid="5470854099230755944">"Funkce Povolená tel. čísla nebyla aktualizována, protože jste zadali chybný kód PIN."</string>
+    <string name="fdn_invalid_number" msgid="1494755047900009147">"Funkce Povolená tel. čísla nebyla aktualizována, protože číslo nesmí obsahovat více než 20 číslic."</string>
+    <string name="pin2_or_fdn_invalid" msgid="6025144083384701197">"Povolená tel. čísla (FDN) nebyla aktualizována. Kód PIN2 byl nesprávný nebo bylo telefonní číslo odmítnuto."</string>
     <string name="fdn_failed" msgid="540018079008319747">"Operace s čísly FDN se nezdařila."</string>
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"Čtení ze SIM karty..."</string>
     <string name="simContacts_empty" msgid="5270660846489561932">"Na SIM kartě nejsou žádné kontakty."</string>

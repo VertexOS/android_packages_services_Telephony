@@ -111,7 +111,7 @@
     <string name="sum_cfb_disabled" msgid="4913145177320506827">"বন্ধ আছে"</string>
     <string name="disable_cfb_forbidden" msgid="3506984333877998061">"আপনার অপারেটর আপনার ফোন ব্যস্ত থাকাকালীন কল ফরওয়ার্ডিংকে অক্ষম করা সমর্থন করে না৷"</string>
     <string name="labelCFNRy" msgid="1736067178393744351">"যখন উত্তর দেয় না"</string>
-    <string name="messageCFNRy" msgid="672317899884380374">"যখন উত্তর করছে না তখনকার নম্বর"</string>
+    <string name="messageCFNRy" msgid="672317899884380374">"যখন নম্বর থেকে উত্তর আসছে না তখন"</string>
     <string name="sum_cfnry_enabled" msgid="6955775691317662910">"<xliff:g id="PHONENUMBER">{0}</xliff:g> এ ফরওয়ার্ড করা হচ্ছে"</string>
     <string name="sum_cfnry_disabled" msgid="3884684060443538097">"বন্ধ আছে"</string>
     <string name="disable_cfnry_forbidden" msgid="4308233959150658058">"আপনার অপারেটর আপনার ফোনে যখন উত্তর করা যাচ্ছে না তখন কল ফরওয়ার্ডিংকে অক্ষম করা সমর্থন করে না৷"</string>
@@ -200,7 +200,7 @@
     <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"ভয়েস এবং অন্যান্য যোগাযোগব্যবস্থা উন্নত করতে LTE পরিষেবা ব্যবহার করুন (প্রস্তাবিত)"</string>
     <string name="data_enabled" msgid="5972538663568715366">"ডেটা সক্ষম করা হয়েছে"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"ডেটা ব্যবহারের অনুমতি দিন"</string>
-    <string name="roaming" msgid="8871412572928323707">"ডেটা রোমিং"</string>
+    <string name="roaming" msgid="8871412572928323707">"রোমিং ডেটা"</string>
     <string name="roaming_enable" msgid="7331106985174381987">"রোমিংয়ে থাকাকালীন ডেটা পরিষেবাগুলির সাথে সংযোগ স্থাপন করুন"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"রোমিংয়ে থাকাকালীন ডেটা পরিষেবাগুলির সাথে সংযোগ স্থাপন করুন"</string>
     <string name="roaming_reenable_message" msgid="8913735676127858115">"আপনি ডেটা রোমিং বন্ধ করে আপনার হোম নেটওয়ার্কের বাইরে চলে আসায় আপনার ডেটা সংযোগ হারিয়ে ফেলেছেন৷"</string>

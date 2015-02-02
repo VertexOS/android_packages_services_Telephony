@@ -92,11 +92,11 @@
     <string name="sum_loading_settings" msgid="1826692909391168620">"Cargando ajustes…"</string>
     <string name="sum_hide_caller_id" msgid="1071407020290873782">"Número oculto en llamadas salientes"</string>
     <string name="sum_show_caller_id" msgid="6768534125447290401">"Número mostrado en llamadas salientes"</string>
-    <string name="sum_default_caller_id" msgid="1954518825510901365">"Utilizar la configuración de operador predeterminada para mostrar mi número en las llamadas salientes"</string>
+    <string name="sum_default_caller_id" msgid="1954518825510901365">"Utilizar la configuración predeterminada del operador para mostrar mi número en las llamadas salientes"</string>
     <string name="labelCW" msgid="6120513814915920200">"Llamada en espera"</string>
     <string name="sum_cw_enabled" msgid="8083061901633671397">"Notificarme de llamadas entrantes durante una llamada"</string>
-    <string name="sum_cw_disabled" msgid="3648693907300104575">"Notificarme de las llamadas entrantes durante las llamadas"</string>
-    <string name="call_forwarding_settings" msgid="3378927671091537173">"Ajustes de desvío de llamada"</string>
+    <string name="sum_cw_disabled" msgid="3648693907300104575">"Notificar si hay una llamada entrante durante una llamada"</string>
+    <string name="call_forwarding_settings" msgid="3378927671091537173">"Ajustes de desvío de llamadas"</string>
     <string name="call_forwarding_settings_with_label" msgid="8569489414006897127">"Ajustes de reenvío de llamadas (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="labelCF" msgid="2574386948026924737">"Desvío de llamada"</string>
     <string name="labelCFU" msgid="8147177368148660600">"Desviar siempre"</string>
@@ -111,18 +111,18 @@
     <string name="sum_cfb_disabled" msgid="4913145177320506827">"Desactivado"</string>
     <string name="disable_cfb_forbidden" msgid="3506984333877998061">"Tu operador no permite inhabilitar el desvío de llamadas si el teléfono está ocupado."</string>
     <string name="labelCFNRy" msgid="1736067178393744351">"Cuando no responda"</string>
-    <string name="messageCFNRy" msgid="672317899884380374">"Número cuando no se responde la llamada"</string>
+    <string name="messageCFNRy" msgid="672317899884380374">"Número cuando no se responda la llamada"</string>
     <string name="sum_cfnry_enabled" msgid="6955775691317662910">"Desviando a <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfnry_disabled" msgid="3884684060443538097">"Desactivado"</string>
     <string name="disable_cfnry_forbidden" msgid="4308233959150658058">"Tu operador no permite inhabilitar el desvío de llamadas si el teléfono no responde."</string>
     <string name="labelCFNRc" msgid="2614827454402079766">"Cuando no esté disponible"</string>
-    <string name="messageCFNRc" msgid="6380695421020295119">"Número cuando no se puede establecer la llamada"</string>
+    <string name="messageCFNRc" msgid="6380695421020295119">"Número cuando no se pueda establecer la llamada"</string>
     <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"Desviando a <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfnrc_disabled" msgid="7222141261321276464">"Inhabilitado"</string>
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"Tu operador no permite inhabilitar el desvío de llamadas si no se puede establecer la llamada."</string>
     <string name="updating_title" msgid="6146755386174019046">"Ajustes de llamadas"</string>
-    <string name="call_settings_primary_user_only" msgid="5679923943740900965">"El usuario principal es el único que puede cambiar los ajustes de llamada."</string>
-    <string name="call_settings_with_label" msgid="89359812614544532">"Ajustes de llamada (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="call_settings_primary_user_only" msgid="5679923943740900965">"El usuario principal es el único que puede cambiar los ajustes de llamadas."</string>
+    <string name="call_settings_with_label" msgid="89359812614544532">"Ajustes de llamadas (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="error_updating_title" msgid="7970259216988931777">"Error de configuración de llamada"</string>
     <string name="reading_settings" msgid="1920291699287055284">"Leyendo configuración..."</string>
     <string name="updating_settings" msgid="8171225533884883252">"Actualizando configuración..."</string>
@@ -157,14 +157,14 @@
     <string name="not_allowed" msgid="5613353860205691579">"La tarjeta SIM no permite establecer conexión con esta red."</string>
     <string name="connect_later" msgid="2308119155752343975">"No se puede conectar a la red en este momento. Inténtalo de nuevo más tarde."</string>
     <string name="registration_done" msgid="495135664535876612">"Conexión con la red establecida"</string>
-    <string name="sum_carrier_select" msgid="3494252551249882718">"Seleccionar un operador de red"</string>
+    <string name="sum_carrier_select" msgid="3494252551249882718">"Selecciona un operador de red"</string>
     <string name="sum_search_networks" msgid="2921092249873272715">"Buscar todas las redes disponibles"</string>
     <string name="select_automatically" msgid="5628402124471810174">"Seleccionar automáticamente"</string>
     <string name="sum_select_automatically" msgid="5614890115123292400">"Seleccionar red preferida automáticamente"</string>
     <string name="register_automatically" msgid="6017849844573519637">"Registro automático..."</string>
-    <string name="preferred_network_mode_title" msgid="2336624679902659306">"Tipo de red preferido"</string>
+    <string name="preferred_network_mode_title" msgid="2336624679902659306">"Tipo de red preferida"</string>
     <string name="preferred_network_mode_summary" msgid="1434820673166126609">"Cambiar el modo operativo de la red"</string>
-    <string name="preferred_network_mode_dialogtitle" msgid="4048082093347807230">"Tipo de red preferido"</string>
+    <string name="preferred_network_mode_dialogtitle" msgid="4048082093347807230">"Tipo de red preferida"</string>
     <string name="preferred_network_mode_wcdma_perf_summary" msgid="8521677230113533809">"Modo de red preferido: WCDMA preferido"</string>
     <string name="preferred_network_mode_gsm_only_summary" msgid="3352445413437453511">"Modo de red preferido: solo GSM"</string>
     <string name="preferred_network_mode_wcdma_only_summary" msgid="2836897236221063413">"Modo de red preferido: solo WCDMA"</string>
@@ -201,10 +201,10 @@
     <string name="data_enabled" msgid="5972538663568715366">"Habilitar datos"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"Permitir uso de datos"</string>
     <string name="roaming" msgid="8871412572928323707">"Itinerancia de datos"</string>
-    <string name="roaming_enable" msgid="7331106985174381987">"Establecer conexión con servicios de datos en itinerancia"</string>
-    <string name="roaming_disable" msgid="1843417228755568110">"Establecer conexión con servicios de datos en itinerancia"</string>
+    <string name="roaming_enable" msgid="7331106985174381987">"Conectarse a servicios de datos en itinerancia"</string>
+    <string name="roaming_disable" msgid="1843417228755568110">"Conectarse a servicios de datos en itinerancia"</string>
     <string name="roaming_reenable_message" msgid="8913735676127858115">"Has perdido la conectividad de datos porque has dejado desactivada la itinerancia de datos de tu red doméstica."</string>
-    <string name="roaming_warning" msgid="7126227198294007907">"¿Permitir el uso de datos en itinerancia? Se pueden aplicar cargos importantes."</string>
+    <string name="roaming_warning" msgid="7126227198294007907">"¿Quieres permitir el uso de datos en itinerancia? Se pueden aplicar cargos importantes."</string>
     <string name="gsm_umts_options" msgid="6538311689850981686">"Opciones GSM/UMTS"</string>
     <string name="cdma_options" msgid="4016822858172249884">"Opciones de CDMA"</string>
     <string name="throttle_data_usage" msgid="3715677828160555808">"Uso de datos"</string>
@@ -346,7 +346,7 @@
     <string name="enable_fdn_ok" msgid="7215588870329688132">"Inhabilitar FDN"</string>
     <string name="disable_fdn_ok" msgid="5727046928930740173">"Habilitar FDN"</string>
     <string name="sum_fdn" msgid="1959399454900272878">"Administrar números de marcación fija"</string>
-    <string name="sum_fdn_change_pin" msgid="6666549734792827932">"Cambiar PIN para acceso de FDN"</string>
+    <string name="sum_fdn_change_pin" msgid="6666549734792827932">"Cambiar PIN para el acceso de FDN"</string>
     <string name="sum_fdn_manage_list" msgid="8431088265332628316">"Administrar lista de números de teléfono"</string>
     <string name="voice_privacy" msgid="3776841382844614716">"Privacidad de voz"</string>
     <string name="voice_privacy_summary" msgid="3159383389833516214">"Habilitar modo de privacidad mejorado"</string>

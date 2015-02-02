@@ -92,11 +92,11 @@
     <string name="sum_loading_settings" msgid="1826692909391168620">"Загрузка настроек…"</string>
     <string name="sum_hide_caller_id" msgid="1071407020290873782">"Скрывать номер при исходящих вызовах"</string>
     <string name="sum_show_caller_id" msgid="6768534125447290401">"Номер, отображающийся при исходящих вызовах"</string>
-    <string name="sum_default_caller_id" msgid="1954518825510901365">"При исходящих вызовах использовать для отображения моего номера настройки, предоставляемые оператором"</string>
+    <string name="sum_default_caller_id" msgid="1954518825510901365">"Использовать стандартные настройки оператора для показа моего номера при исходящих вызовах"</string>
     <string name="labelCW" msgid="6120513814915920200">"Параллельный вызов"</string>
     <string name="sum_cw_enabled" msgid="8083061901633671397">"Извещать меня о входящих вызовах во время разговора"</string>
     <string name="sum_cw_disabled" msgid="3648693907300104575">"Извещать меня о входящих вызовах во время разговора"</string>
-    <string name="call_forwarding_settings" msgid="3378927671091537173">"Настройки переадресации вызова"</string>
+    <string name="call_forwarding_settings" msgid="3378927671091537173">"Переадресация"</string>
     <string name="call_forwarding_settings_with_label" msgid="8569489414006897127">"Настройки переадресации вызовов (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="labelCF" msgid="2574386948026924737">"Переадресация вызова"</string>
     <string name="labelCFU" msgid="8147177368148660600">"Переадресовывать всегда"</string>
@@ -106,23 +106,23 @@
     <string name="sum_cfu_enabled_no_number" msgid="6591985777096823616">"Номер не указан"</string>
     <string name="sum_cfu_disabled" msgid="8384177689501334080">"Выкл."</string>
     <string name="labelCFB" msgid="6139853033106283172">"Если номер занят"</string>
-    <string name="messageCFB" msgid="3711089705936187129">"Номер, использующийся, когда линия занята"</string>
+    <string name="messageCFB" msgid="3711089705936187129">"Переадресовывать на этот номер"</string>
     <string name="sum_cfb_enabled" msgid="5984198104833116690">"Переадресация на номер <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfb_disabled" msgid="4913145177320506827">"Выкл."</string>
     <string name="disable_cfb_forbidden" msgid="3506984333877998061">"Ваш оператор не позволяет отключать переадресацию вызовов, если телефон занят."</string>
     <string name="labelCFNRy" msgid="1736067178393744351">"Если нет ответа"</string>
-    <string name="messageCFNRy" msgid="672317899884380374">"Номер для переадресации при отсутствии ответа"</string>
+    <string name="messageCFNRy" msgid="672317899884380374">"Переадресовывать на этот номер"</string>
     <string name="sum_cfnry_enabled" msgid="6955775691317662910">"Переадресация на номер <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfnry_disabled" msgid="3884684060443538097">"Выкл."</string>
     <string name="disable_cfnry_forbidden" msgid="4308233959150658058">"Ваш оператор не позволяет отключать переадресацию вызовов, если нет ответа."</string>
     <string name="labelCFNRc" msgid="2614827454402079766">"Если номер недоступен"</string>
-    <string name="messageCFNRc" msgid="6380695421020295119">"Номер для переадресации, если абонент недоступен"</string>
+    <string name="messageCFNRc" msgid="6380695421020295119">"Переадресовывать на этот номер"</string>
     <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"Переадресация на номер <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfnrc_disabled" msgid="7222141261321276464">"Отключено"</string>
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"Ваш оператор не позволяет отключать переадресацию вызовов, если телефон находится вне зоны доступа."</string>
     <string name="updating_title" msgid="6146755386174019046">"Настройки вызовов"</string>
     <string name="call_settings_primary_user_only" msgid="5679923943740900965">"Настройки вызовов может изменить только основной пользователь."</string>
-    <string name="call_settings_with_label" msgid="89359812614544532">"Настройки вызовов (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="call_settings_with_label" msgid="89359812614544532">"Настройки (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="error_updating_title" msgid="7970259216988931777">"Ошибка настройки вызовов"</string>
     <string name="reading_settings" msgid="1920291699287055284">"Чтение настроек…"</string>
     <string name="updating_settings" msgid="8171225533884883252">"Обновление настроек…"</string>
@@ -338,11 +338,11 @@
     <string name="fdn_activation" msgid="2156479741307463576">"Активация разреш. номеров"</string>
     <string name="fdn_enabled" msgid="5238109009915521240">"Разрешенные номера включены"</string>
     <string name="fdn_disabled" msgid="4700049736675368279">"Разрешенные номера отключены"</string>
-    <string name="enable_fdn" msgid="3740191529180493851">"Вкл. разреш. номера"</string>
+    <string name="enable_fdn" msgid="3740191529180493851">"Вкл. разрешенные номера"</string>
     <string name="disable_fdn" msgid="7944020890722540616">"Откл. разреш. номера"</string>
     <string name="change_pin2" msgid="2153563695382176676">"Изменить PIN2"</string>
     <string name="enable_fdn_ok" msgid="7215588870329688132">"Откл. разреш. номера"</string>
-    <string name="disable_fdn_ok" msgid="5727046928930740173">"Вкл. разреш. номера"</string>
+    <string name="disable_fdn_ok" msgid="5727046928930740173">"Вкл. разрешенные номера"</string>
     <string name="sum_fdn" msgid="1959399454900272878">"Управление списком разрешенных номеров"</string>
     <string name="sum_fdn_change_pin" msgid="6666549734792827932">"Изменить PIN для доступа к списку разрешенных номеров"</string>
     <string name="sum_fdn_manage_list" msgid="8431088265332628316">"Управление списком разрешенных номеров"</string>

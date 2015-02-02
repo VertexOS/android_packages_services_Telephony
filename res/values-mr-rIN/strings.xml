@@ -57,7 +57,7 @@
     <string name="labelCDMAMore" msgid="1630676740428229339">"CDMA कॉल सेटिंग्ज"</string>
     <string name="apn_settings" msgid="9043423184895642077">"प्रवेश बिंदू नावे"</string>
     <string name="settings_label" msgid="3876743539816984008">"नेटवर्क सेटिंग्ज"</string>
-    <string name="phone_accounts" msgid="6376603393888116364">"कॉल करणे खाती"</string>
+    <string name="phone_accounts" msgid="6376603393888116364">"कॉल करण्याची खाती"</string>
     <string name="phone_accounts_make_calls_with" msgid="1969188078933152231">"यासह कॉल करा"</string>
     <string name="phone_accounts_make_sip_calls_with" msgid="4677789312053828493">"यासह SIP कॉल करा"</string>
     <string name="phone_accounts_ask_every_time" msgid="4346499067149985702">"प्रथम विचारा"</string>

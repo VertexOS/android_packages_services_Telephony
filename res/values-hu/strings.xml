@@ -20,7 +20,7 @@
     <string name="phoneAppLabel" product="default" msgid="906161039445636857">"Telefon"</string>
     <string name="emergencyDialerIconLabel" msgid="7812140032168171053">"Segélyhívó tárcsázó"</string>
     <string name="phoneIconLabel" msgid="2331230813161304895">"Telefon"</string>
-    <string name="fdnListLabel" msgid="8630418672279521003">"FDN lista"</string>
+    <string name="fdnListLabel" msgid="8630418672279521003">"Fix hívószámok listája"</string>
     <string name="unknown" msgid="6878797917991465859">"Ismeretlen"</string>
     <string name="private_num" msgid="6713286113000232309">"Magántelefonszám"</string>
     <string name="payphone" msgid="4793877574636445118">"Nyilvános telefon"</string>
@@ -100,7 +100,7 @@
     <string name="call_forwarding_settings_with_label" msgid="8569489414006897127">"Hívásátirányítási beállítások (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="labelCF" msgid="2574386948026924737">"Hívásátirányítás"</string>
     <string name="labelCFU" msgid="8147177368148660600">"Mindig legyen átirányítás"</string>
-    <string name="messageCFU" msgid="3560082430662923687">"Mindig a következő szám használata"</string>
+    <string name="messageCFU" msgid="3560082430662923687">"Mindig a következő számot használja"</string>
     <string name="sum_cfu_enabled_indicator" msgid="4014187342724130197">"Minden hívás átirányítása"</string>
     <string name="sum_cfu_enabled" msgid="2450052502198827927">"Minden hívás átirányítása ide: <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfu_enabled_no_number" msgid="6591985777096823616">"A szám nem érhető el"</string>
@@ -330,19 +330,19 @@
     <string name="cdma_lte_data_service" msgid="4255018217292548962">"Adatszolgáltatás beállítása"</string>
     <string name="carrier_settings_title" msgid="9028166176523012300">"Szolgáltatói beállítások"</string>
     <string name="fdn" msgid="7878832555095183202">"Fix hívószámok"</string>
-    <string name="fdn_with_label" msgid="187084204115493366">"Rögzített hívószámok (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
-    <string name="manage_fdn_list" msgid="8777755791892122369">"FDN lista"</string>
-    <string name="fdn_list_with_label" msgid="7437232552210469217">"FDN lista (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
-    <string name="fdn_activation" msgid="2156479741307463576">"FDN aktiválása"</string>
+    <string name="fdn_with_label" msgid="187084204115493366">"Fix hívószámok (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="manage_fdn_list" msgid="8777755791892122369">"Fix hívószámok listája"</string>
+    <string name="fdn_list_with_label" msgid="7437232552210469217">"Fix hívószámok listája (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="fdn_activation" msgid="2156479741307463576">"Fix hívószám aktiválása"</string>
     <string name="fdn_enabled" msgid="5238109009915521240">"A fix hívószámok engedélyezve"</string>
     <string name="fdn_disabled" msgid="4700049736675368279">"A fix hívószámok letiltva"</string>
-    <string name="enable_fdn" msgid="3740191529180493851">"FDN engedélyezése"</string>
-    <string name="disable_fdn" msgid="7944020890722540616">"FDN letiltása"</string>
-    <string name="change_pin2" msgid="2153563695382176676">"PIN2-kód módosítása"</string>
-    <string name="enable_fdn_ok" msgid="7215588870329688132">"FDN letiltása"</string>
-    <string name="disable_fdn_ok" msgid="5727046928930740173">"FDN engedélyezése"</string>
+    <string name="enable_fdn" msgid="3740191529180493851">"Fix hívószám engedélyezése"</string>
+    <string name="disable_fdn" msgid="7944020890722540616">"Fix hívószám letiltása"</string>
+    <string name="change_pin2" msgid="2153563695382176676">"PIN2 kód módosítása"</string>
+    <string name="enable_fdn_ok" msgid="7215588870329688132">"Fix hívószám letiltása"</string>
+    <string name="disable_fdn_ok" msgid="5727046928930740173">"Fix hívószám engedélyezése"</string>
     <string name="sum_fdn" msgid="1959399454900272878">"Fix hívószámok kezelése"</string>
-    <string name="sum_fdn_change_pin" msgid="6666549734792827932">"PIN-kód módosítása az FDN eléréséhez"</string>
+    <string name="sum_fdn_change_pin" msgid="6666549734792827932">"PIN kód módosítása a fix hívószámok eléréséhez"</string>
     <string name="sum_fdn_manage_list" msgid="8431088265332628316">"Telefonszámok listájának kezelése"</string>
     <string name="voice_privacy" msgid="3776841382844614716">"Adatvédelem"</string>
     <string name="voice_privacy_summary" msgid="3159383389833516214">"Fokozott adatvédelmi mód engedélyezése"</string>
@@ -366,10 +366,10 @@
     <string name="delete_fdn_contact" msgid="6668958073074151717">"Fix hívószám törlése"</string>
     <string name="deleting_fdn_contact" msgid="5669163206349319969">"Fix hívószám törlése..."</string>
     <string name="fdn_contact_deleted" msgid="7154162327112259569">"A fix hívószám törölve."</string>
-    <string name="pin2_invalid" msgid="5470854099230755944">"Az FDN nem volt frissítve, mert hibás PIN-kódot írt be."</string>
-    <string name="fdn_invalid_number" msgid="1494755047900009147">"Az FDN nem lett frissítve, mert a szám nem haladhatja meg a 20 számjegyet."</string>
-    <string name="pin2_or_fdn_invalid" msgid="6025144083384701197">"Az FDN nem lett frissítve. Hibás a PIN2 kód, vagy a telefonszámot elutasították."</string>
-    <string name="fdn_failed" msgid="540018079008319747">"Az FDN-művelet sikertelen."</string>
+    <string name="pin2_invalid" msgid="5470854099230755944">"A fix hívószám nincs frissítve, mert hibás PIN kódot írt be."</string>
+    <string name="fdn_invalid_number" msgid="1494755047900009147">"A fix hívószám nem lett frissítve, mert a szám nem haladhatja meg a 20 számjegyet."</string>
+    <string name="pin2_or_fdn_invalid" msgid="6025144083384701197">"A fix hívószám nem lett frissítve. Hibás a PIN2 kód, vagy a telefonszámot elutasították."</string>
+    <string name="fdn_failed" msgid="540018079008319747">"Sikertelen a fix hívószámmal végzett művelet."</string>
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"Beolvasás a SIM kártyáról..."</string>
     <string name="simContacts_empty" msgid="5270660846489561932">"Nincsenek névjegyek a SIM kártyán."</string>
     <string name="simContacts_title" msgid="1861472842524839921">"Válassza ki az importálni kívánt névjegyeket"</string>
@@ -392,8 +392,8 @@
     <string name="pin_changed" msgid="4455736268023261662">"PIN kód frissítve"</string>
     <string name="puk_requested" msgid="5921393215789090200">"A jelszó helytelen. PIN kód letiltva. Adja meg a PUK kódot."</string>
     <string name="enter_pin2_text" msgid="8339444124477720345">"PIN2"</string>
-    <string name="oldPin2Label" msgid="8559146795026261502">"Régi PIN2-kód"</string>
-    <string name="newPin2Label" msgid="4573956902204349054">"Új PIN2-kód"</string>
+    <string name="oldPin2Label" msgid="8559146795026261502">"Régi PIN2 kód"</string>
+    <string name="newPin2Label" msgid="4573956902204349054">"Új PIN2 kód"</string>
     <string name="confirmPin2Label" msgid="8100319484454787708">"Erősítse meg az új PIN2-kódot"</string>
     <string name="badPuk2" msgid="7910064009531541708">"A PUK2 kód helytelen. Próbálja újra."</string>
     <string name="badPin2" msgid="6646896629970023109">"A régi PIN2 kód helytelen. Próbálja újra."</string>

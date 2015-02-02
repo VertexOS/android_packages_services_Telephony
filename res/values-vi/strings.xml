@@ -116,7 +116,7 @@
     <string name="sum_cfnry_disabled" msgid="3884684060443538097">"Tắt"</string>
     <string name="disable_cfnry_forbidden" msgid="4308233959150658058">"Nhà cung cấp dịch vụ của bạn không hỗ trợ vô hiệu hóa chuyển tiếp cuộc gọi khi điện thoại của bạn không trả lời."</string>
     <string name="labelCFNRc" msgid="2614827454402079766">"Khi không liên lạc được"</string>
-    <string name="messageCFNRc" msgid="6380695421020295119">"Số khi không thể truy cập được"</string>
+    <string name="messageCFNRc" msgid="6380695421020295119">"Số khi không liên lạc được"</string>
     <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"Chuyển tiếp tới <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfnrc_disabled" msgid="7222141261321276464">"Đã tắt"</string>
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"Nhà cung cấp dịch vụ của bạn không hỗ trợ vô hiệu hóa chuyển tiếp cuộc gọi khi điện thoại của bạn không thể truy cập được."</string>
@@ -204,7 +204,7 @@
     <string name="roaming_enable" msgid="7331106985174381987">"Kết nối với dịch vụ dữ liệu khi chuyển vùng"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"Kết nối với dịch vụ dữ liệu khi chuyển vùng"</string>
     <string name="roaming_reenable_message" msgid="8913735676127858115">"Bạn đã mất kết nối dữ liệu vì bạn đã tắt chuyển vùng dữ liệu của mạng gia đình của mình."</string>
-    <string name="roaming_warning" msgid="7126227198294007907">"Cho phép sử dụng dữ liệu khi chuyển vùng? Mức phí đáng kể có thể được áp dụng."</string>
+    <string name="roaming_warning" msgid="7126227198294007907">"Cho phép sử dụng dữ liệu khi chuyển vùng? Mức phí có thể tăng đáng kể."</string>
     <string name="gsm_umts_options" msgid="6538311689850981686">"Tùy chọn GSM/UMTS"</string>
     <string name="cdma_options" msgid="4016822858172249884">"Tùy chọn CDMA"</string>
     <string name="throttle_data_usage" msgid="3715677828160555808">"Sử dụng dữ liệu"</string>
