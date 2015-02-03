@@ -35,6 +35,7 @@ import android.os.ServiceManager;
 import android.os.UserHandle;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
+import android.telecom.PhoneAccount;
 import android.telephony.CellInfo;
 import android.telephony.IccOpenLogicalChannelResponse;
 import android.telephony.NeighboringCellInfo;
@@ -2256,7 +2257,13 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
      * {@hide}
      * Returns the IMS Registration Status
      */
+    @Override
     public boolean isImsRegistered() {
         return mPhone.isImsRegistered();
+    }
+
+    @Override
+    public int getSubIdForPhoneAccount(PhoneAccount phoneAccount) {
+        return PhoneUtils.getSubIdForPhoneAccount(phoneAccount);
     }
 }
