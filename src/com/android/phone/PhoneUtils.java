@@ -36,6 +36,7 @@ import android.telecom.PhoneAccount;
 import android.telecom.PhoneAccountHandle;
 import android.telecom.VideoProfile;
 import android.telephony.PhoneNumberUtils;
+import android.telephony.SubscriptionManager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
@@ -2453,12 +2454,29 @@ public class PhoneUtils {
 
     public static PhoneAccountHandle makePstnPhoneAccountHandleWithPrefix(
             Phone phone, String prefix, boolean isEmergency) {
-        ComponentName pstnConnectionServiceName =
-                new ComponentName(phone.getContext(), TelephonyConnectionService.class);
+        ComponentName pstnConnectionServiceName = getPstnConnectionServiceName();
         // TODO: Should use some sort of special hidden flag to decorate this account as
         // an emergency-only account
         String id = isEmergency ? "E" : prefix + String.valueOf(phone.getSubId());
         return new PhoneAccountHandle(pstnConnectionServiceName, id);
+    }
+
+    public static int getSubIdForPhoneAccount(PhoneAccount phoneAccount) {
+        if (phoneAccount != null) {
+            PhoneAccountHandle handle = phoneAccount.getAccountHandle();
+            if (handle != null && handle.getComponentName().equals(getPstnConnectionServiceName()) &&
+                    phoneAccount.hasCapabilities(PhoneAccount.CAPABILITY_SIM_SUBSCRIPTION)) {
+                String id = handle.getId();
+                if (TextUtils.isDigitsOnly(id)) {
+                    return Integer.parseInt(id);
+                }
+            }
+        }
+        return SubscriptionManager.INVALID_SUBSCRIPTION_ID;
+    }
+
+    private static ComponentName getPstnConnectionServiceName() {
+        return new ComponentName(PhoneGlobals.getInstance(), TelephonyConnectionService.class);
     }
 
     /**
