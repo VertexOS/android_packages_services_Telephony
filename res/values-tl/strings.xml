@@ -204,7 +204,8 @@
     <string name="roaming_enable" msgid="7331106985174381987">"Kumonekta sa mga serbisyo ng data kapag nagro-roam"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"Kumonekta sa mga serbisyo ng data kapag nagro-roam"</string>
     <string name="roaming_reenable_message" msgid="8913735676127858115">"Nawalan ka ng pagkonekta sa data dahil iniwan mo ang iyong home network na naka-off ang roaming ng data."</string>
-    <string name="roaming_warning" msgid="7126227198294007907">"Payagan ang paggamit ng data kapag naka-roaming? Maaaring may naaangkop na mga makabuluhang singil."</string>
+    <string name="roaming_warning" msgid="1603164667540144353">"Maaari kang magkaroon ng malalaking singil."</string>
+    <string name="roaming_alert_title" msgid="3654815360303826008">"Payagan ang roaming ng data?"</string>
     <string name="gsm_umts_options" msgid="6538311689850981686">"Mga pagpipilian sa GSM/UMTS"</string>
     <string name="cdma_options" msgid="4016822858172249884">"Mga pagpipiliian sa CDMA"</string>
     <string name="throttle_data_usage" msgid="3715677828160555808">"Paggamit ng data"</string>

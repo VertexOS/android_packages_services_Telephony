@@ -204,7 +204,10 @@
     <string name="roaming_enable" msgid="7331106985174381987">"রোমিংয়ে থাকাকালীন ডেটা পরিষেবাগুলির সাথে সংযোগ স্থাপন করুন"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"রোমিংয়ে থাকাকালীন ডেটা পরিষেবাগুলির সাথে সংযোগ স্থাপন করুন"</string>
     <string name="roaming_reenable_message" msgid="8913735676127858115">"আপনি ডেটা রোমিং বন্ধ করে আপনার হোম নেটওয়ার্কের বাইরে চলে আসায় আপনার ডেটা সংযোগ হারিয়ে ফেলেছেন৷"</string>
-    <string name="roaming_warning" msgid="7126227198294007907">"রোমিং-এ থাকাকালীন ডেটা ব্যবহারের অনুমতি দিতে চান? উল্লেখযোগ্য চার্জ প্রযোজ্য হতে পারে৷"</string>
+    <!-- no translation found for roaming_warning (1603164667540144353) -->
+    <skip />
+    <!-- no translation found for roaming_alert_title (3654815360303826008) -->
+    <skip />
     <string name="gsm_umts_options" msgid="6538311689850981686">"GSM/UMTS বিকল্পগুলি"</string>
     <string name="cdma_options" msgid="4016822858172249884">"CDMA বিকল্পগুলি"</string>
     <string name="throttle_data_usage" msgid="3715677828160555808">"ডেটা ব্যবহার"</string>

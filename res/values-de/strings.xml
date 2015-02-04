@@ -204,7 +204,10 @@
     <string name="roaming_enable" msgid="7331106985174381987">"Bei Roaming mit Datendienst verbinden"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"Bei Roaming mit Datendienst verbinden"</string>
     <string name="roaming_reenable_message" msgid="8913735676127858115">"Die Datenverbindung wurde unterbrochen, weil Sie Ihr privates Netzwerk verlassen haben und Daten-Roaming nicht aktiviert ist."</string>
-    <string name="roaming_warning" msgid="7126227198294007907">"Datennutzung bei Roaming zulassen? Es können hohe Gebühren anfallen."</string>
+    <!-- no translation found for roaming_warning (1603164667540144353) -->
+    <skip />
+    <!-- no translation found for roaming_alert_title (3654815360303826008) -->
+    <skip />
     <string name="gsm_umts_options" msgid="6538311689850981686">"GSM-/UMTS-Optionen"</string>
     <string name="cdma_options" msgid="4016822858172249884">"CDMA-Optionen"</string>
     <string name="throttle_data_usage" msgid="3715677828160555808">"Datenverbrauch"</string>

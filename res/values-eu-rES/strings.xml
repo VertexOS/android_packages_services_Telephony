@@ -204,7 +204,10 @@
     <string name="roaming_enable" msgid="7331106985174381987">"Konektatu datu-zerbitzuetara ibiltaritzan"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"Konektatu datu-zerbitzuetara ibiltaritzan"</string>
     <string name="roaming_reenable_message" msgid="8913735676127858115">"Datu-konexioa galdu duzu ibiltaritza desaktibatuta izanda etxeko saretik irten zarelako."</string>
-    <string name="roaming_warning" msgid="7126227198294007907">"Ibiltaritzan zaudenean datuak erabiltzea baimendu nahi duzu? Agian gastu handiak izango dituzu."</string>
+    <!-- no translation found for roaming_warning (1603164667540144353) -->
+    <skip />
+    <!-- no translation found for roaming_alert_title (3654815360303826008) -->
+    <skip />
     <string name="gsm_umts_options" msgid="6538311689850981686">"GSM/UMTS aukerak"</string>
     <string name="cdma_options" msgid="4016822858172249884">"CDMA aukerak"</string>
     <string name="throttle_data_usage" msgid="3715677828160555808">"Datuen erabilera"</string>

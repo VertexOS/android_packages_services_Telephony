@@ -204,7 +204,10 @@
     <string name="roaming_enable" msgid="7331106985174381987">"रोमिंग असताना डेटा सेवांना कनेक्ट करा"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"रोमिंग असताना डेटा सेवांना कनेक्ट करा"</string>
     <string name="roaming_reenable_message" msgid="8913735676127858115">"आपण डेटा रोमिंग बंद करून आपले होम नेटवर्क सोडल्यामुळे आपण डेटा कनेक्टिव्हिटी गमावली आहे."</string>
-    <string name="roaming_warning" msgid="7126227198294007907">"रोमिंग असताना डेटा वापरास अनुमती द्यायची? लक्षणीय शुल्क लागू शकतात."</string>
+    <!-- no translation found for roaming_warning (1603164667540144353) -->
+    <skip />
+    <!-- no translation found for roaming_alert_title (3654815360303826008) -->
+    <skip />
     <string name="gsm_umts_options" msgid="6538311689850981686">"GSM/UMTS पर्याय"</string>
     <string name="cdma_options" msgid="4016822858172249884">"CDMA पर्याय"</string>
     <string name="throttle_data_usage" msgid="3715677828160555808">"डेटा वापर"</string>

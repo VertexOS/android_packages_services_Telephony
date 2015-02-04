@@ -204,7 +204,10 @@
     <string name="roaming_enable" msgid="7331106985174381987">"ရုန်းမင်းပြုလုပ်နေစဉ် ဒေတာဝန်ဆောင်မှုများကို ဆက်သွယ်ခြင်း"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"ရုန်းမင်းပြုလုပ်နေစဉ် ဒေတာဝန်ဆောင်မှုများကို ဆက်သွယ်ခြင်း"</string>
     <string name="roaming_reenable_message" msgid="8913735676127858115">"ဒေတာဆက်သွယ်မှုပြတ်တောက်သွားပါသည် အဘယ်ကြောင့်ဆိုသော် သင့်အိမ်၏ကွန်ယက်မှထွက်ကာ ဒေတာရုန်းမင်းကွန်ယက်ကိုလဲပိတ်ထားသောကြောင့်ဖြစ်သည်"</string>
-    <string name="roaming_warning" msgid="7126227198294007907">"ရွမ်မင်းသုံးချိန်တွင် ဒေတာအသုံးပြုမှု ခွင့်ပြုမလား? သိသာသည့် ကုန်ကျမှုများ ရှိမည်ဖြစ်ပါသည်။"</string>
+    <!-- no translation found for roaming_warning (1603164667540144353) -->
+    <skip />
+    <!-- no translation found for roaming_alert_title (3654815360303826008) -->
+    <skip />
     <string name="gsm_umts_options" msgid="6538311689850981686">"GSM/UMTS ရွေးချယ်မှုများ"</string>
     <string name="cdma_options" msgid="4016822858172249884">"CDMA ရွေးချယ်စရာများ"</string>
     <string name="throttle_data_usage" msgid="3715677828160555808">"ဒေတာအသုံးပြုမှု"</string>

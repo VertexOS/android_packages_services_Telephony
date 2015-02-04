@@ -97,7 +97,7 @@
     <string name="sum_cw_enabled" msgid="8083061901633671397">"Κατά τη διάρκεια μιας κλήσης, να ειδοποιούμαι για τις εισερχόμενες κλήσεις"</string>
     <string name="sum_cw_disabled" msgid="3648693907300104575">"Κατά τη διάρκεια μιας κλήσης, να ειδοποιούμαι για τις εισερχόμενες κλήσεις"</string>
     <string name="call_forwarding_settings" msgid="3378927671091537173">"Ρυθμίσεις προώθησης κλήσης"</string>
-    <string name="call_forwarding_settings_with_label" msgid="8569489414006897127">"Ρυθμίσεις προώθησης κλήσης (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="call_forwarding_settings_with_label" msgid="8569489414006897127">"Ρυθ. προώθ. κλήσης (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="labelCF" msgid="2574386948026924737">"Προώθηση κλήσης"</string>
     <string name="labelCFU" msgid="8147177368148660600">"Προώθηση πάντα"</string>
     <string name="messageCFU" msgid="3560082430662923687">"Να γίνεται πάντα χρήση αυτού του αριθμού"</string>
@@ -204,7 +204,10 @@
     <string name="roaming_enable" msgid="7331106985174381987">"Σύνδεση στις υπηρεσίες δεδομένων κατά την περιαγωγή"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"Σύνδεση στις υπηρεσίες δεδομένων κατά την περιαγωγή"</string>
     <string name="roaming_reenable_message" msgid="8913735676127858115">"Χάσατε τη σύνδεση δεδομένων επειδή φύγατε από το οικείο δίκτυο έχοντας την περιαγωγή δεδομένων απενεργοποιημένη."</string>
-    <string name="roaming_warning" msgid="7126227198294007907">"Να επιτρέπεται η χρήση δεδομένων κατά την περιαγωγή; Ενδέχεται να ισχύουν υψηλές χρεώσεις."</string>
+    <!-- no translation found for roaming_warning (1603164667540144353) -->
+    <skip />
+    <!-- no translation found for roaming_alert_title (3654815360303826008) -->
+    <skip />
     <string name="gsm_umts_options" msgid="6538311689850981686">"Επιλογές GSM/UMTS"</string>
     <string name="cdma_options" msgid="4016822858172249884">"Επιλογές CDMA"</string>
     <string name="throttle_data_usage" msgid="3715677828160555808">"Χρήση δεδομένων"</string>
@@ -330,7 +333,7 @@
     <string name="cdma_lte_data_service" msgid="4255018217292548962">"Ρύθμιση υπηρεσίας δεδομένων"</string>
     <string name="carrier_settings_title" msgid="9028166176523012300">"Ρυθμ. εταιρ. κιν. τηλεφ."</string>
     <string name="fdn" msgid="7878832555095183202">"Προκ/νοι αριθμοί κλήσης"</string>
-    <string name="fdn_with_label" msgid="187084204115493366">"Προκαθορισμένοι αριθμοί κλήσης (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="fdn_with_label" msgid="187084204115493366">"Προκ/νοι αριθμοί κλήσης (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="manage_fdn_list" msgid="8777755791892122369">"Λίστα FDN"</string>
     <string name="fdn_list_with_label" msgid="7437232552210469217">"Λίστα προκαθορισμένων αριθμών κλήσης (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="fdn_activation" msgid="2156479741307463576">"Ενεργοποίηση FDN"</string>

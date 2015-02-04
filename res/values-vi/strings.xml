@@ -204,7 +204,10 @@
     <string name="roaming_enable" msgid="7331106985174381987">"Kết nối với dịch vụ dữ liệu khi chuyển vùng"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"Kết nối với dịch vụ dữ liệu khi chuyển vùng"</string>
     <string name="roaming_reenable_message" msgid="8913735676127858115">"Bạn đã mất kết nối dữ liệu vì bạn đã tắt chuyển vùng dữ liệu của mạng gia đình của mình."</string>
-    <string name="roaming_warning" msgid="7126227198294007907">"Cho phép sử dụng dữ liệu khi chuyển vùng? Mức phí có thể tăng đáng kể."</string>
+    <!-- no translation found for roaming_warning (1603164667540144353) -->
+    <skip />
+    <!-- no translation found for roaming_alert_title (3654815360303826008) -->
+    <skip />
     <string name="gsm_umts_options" msgid="6538311689850981686">"Tùy chọn GSM/UMTS"</string>
     <string name="cdma_options" msgid="4016822858172249884">"Tùy chọn CDMA"</string>
     <string name="throttle_data_usage" msgid="3715677828160555808">"Sử dụng dữ liệu"</string>

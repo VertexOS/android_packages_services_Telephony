@@ -204,7 +204,10 @@
     <string name="roaming_enable" msgid="7331106985174381987">"اتصال به سرویس‌های داده هنگام رومینگ"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"اتصال به سرویس‌های داده هنگام رومینگ"</string>
     <string name="roaming_reenable_message" msgid="8913735676127858115">"اتصال داده خود را از دست داده‌اید، زیرا از شبکه اصلی خود خارج شدید و رومینگ داده خاموش است،"</string>
-    <string name="roaming_warning" msgid="7126227198294007907">"استفاده از داده هنگام رومینگ اجازه داده شود؟ ممکن است هزینه‌های قابل توجهی اعمال شوند."</string>
+    <!-- no translation found for roaming_warning (1603164667540144353) -->
+    <skip />
+    <!-- no translation found for roaming_alert_title (3654815360303826008) -->
+    <skip />
     <string name="gsm_umts_options" msgid="6538311689850981686">"‏گزینه‌های GSM/UMTS"</string>
     <string name="cdma_options" msgid="4016822858172249884">"‏گزینه‌های CDMA"</string>
     <string name="throttle_data_usage" msgid="3715677828160555808">"مصرف داده"</string>

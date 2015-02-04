@@ -55,9 +55,9 @@
     <string name="mobile_network_settings_not_available" msgid="3831911315358856062">"Ustawienia sieci komórkowej są niedostępne dla tego użytkownika"</string>
     <string name="labelGSMMore" msgid="5930842194056092106">"Ustawienia połączenia GSM"</string>
     <string name="labelCDMAMore" msgid="1630676740428229339">"Ustawienia połączenia CDMA"</string>
-    <string name="apn_settings" msgid="9043423184895642077">"Punkty dostępowe"</string>
+    <string name="apn_settings" msgid="9043423184895642077">"Punkty dostępu"</string>
     <string name="settings_label" msgid="3876743539816984008">"Ustawienia sieci"</string>
-    <string name="phone_accounts" msgid="6376603393888116364">"Połączenia z kontami"</string>
+    <string name="phone_accounts" msgid="6376603393888116364">"Konta telefoniczne"</string>
     <string name="phone_accounts_make_calls_with" msgid="1969188078933152231">"Nawiązuj połączenia z konta"</string>
     <string name="phone_accounts_make_sip_calls_with" msgid="4677789312053828493">"Nawiązuj połączenia SIP z konta"</string>
     <string name="phone_accounts_ask_every_time" msgid="4346499067149985702">"Najpierw zapytaj"</string>
@@ -88,7 +88,7 @@
     <string name="additional_cdma_call_settings" msgid="8628958775721886909">"Dodatkowe ustawienia połączenia CDMA"</string>
     <string name="sum_cdma_call_settings" msgid="284753265979035549">"Dodatkowe ustawienia tylko połączenia CDMA"</string>
     <string name="labelNwService" msgid="4699970172021870983">"Ustawienia usługi sieciowej"</string>
-    <string name="labelCallerId" msgid="3888899447379069198">"ID rozmówcy"</string>
+    <string name="labelCallerId" msgid="3888899447379069198">"Nazwa rozmówcy"</string>
     <string name="sum_loading_settings" msgid="1826692909391168620">"Wczytywanie ustawień…"</string>
     <string name="sum_hide_caller_id" msgid="1071407020290873782">"Ukrycie numeru podczas rozmów wychodzących"</string>
     <string name="sum_show_caller_id" msgid="6768534125447290401">"Numer wyświetlany w połączeniach wychodzących"</string>
@@ -106,17 +106,17 @@
     <string name="sum_cfu_enabled_no_number" msgid="6591985777096823616">"Numer jest niedostępny"</string>
     <string name="sum_cfu_disabled" msgid="8384177689501334080">"Wyłączone"</string>
     <string name="labelCFB" msgid="6139853033106283172">"Gdy zajęty"</string>
-    <string name="messageCFB" msgid="3711089705936187129">"Numer, gdy zajęty"</string>
+    <string name="messageCFB" msgid="3711089705936187129">"Przekieruj na numer"</string>
     <string name="sum_cfb_enabled" msgid="5984198104833116690">"Przekazywanie do <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfb_disabled" msgid="4913145177320506827">"Wyłączone"</string>
     <string name="disable_cfb_forbidden" msgid="3506984333877998061">"Twój operator nie umożliwia wyłączenia przekazywania połączeń, gdy numer jest zajęty."</string>
     <string name="labelCFNRy" msgid="1736067178393744351">"Gdy nie odbieram"</string>
-    <string name="messageCFNRy" msgid="672317899884380374">"Numer, gdy nieodebrane"</string>
+    <string name="messageCFNRy" msgid="672317899884380374">"Przekieruj na numer"</string>
     <string name="sum_cfnry_enabled" msgid="6955775691317662910">"Przekazywanie do <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfnry_disabled" msgid="3884684060443538097">"Wyłączone"</string>
     <string name="disable_cfnry_forbidden" msgid="4308233959150658058">"Twój operator nie umożliwia wyłączenia przekazywania połączeń, gdy numer nie odpowiada."</string>
     <string name="labelCFNRc" msgid="2614827454402079766">"Gdy niedostępny"</string>
-    <string name="messageCFNRc" msgid="6380695421020295119">"Numer, gdy nieosiągalny."</string>
+    <string name="messageCFNRc" msgid="6380695421020295119">"Przekieruj na numer"</string>
     <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"Przekazywanie do <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfnrc_disabled" msgid="7222141261321276464">"Wyłączone"</string>
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"Twój operator nie umożliwia wyłączenia przekazywania połączeń, gdy numer jest nieosiągalny."</string>
@@ -204,7 +204,10 @@
     <string name="roaming_enable" msgid="7331106985174381987">"Połącz z usługami przesyłu danych podczas roamingu"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"Połącz z usługami przesyłu danych podczas roamingu"</string>
     <string name="roaming_reenable_message" msgid="8913735676127858115">"Połączenie transmisji danych zostało utracone, ponieważ opuszczono sieć macierzystą przy wyłączonej opcji danych w roamingu."</string>
-    <string name="roaming_warning" msgid="7126227198294007907">"Zezwalać na przesyłanie danych w roamingu? Mogą obowiązywać wysokie opłaty."</string>
+    <!-- no translation found for roaming_warning (1603164667540144353) -->
+    <skip />
+    <!-- no translation found for roaming_alert_title (3654815360303826008) -->
+    <skip />
     <string name="gsm_umts_options" msgid="6538311689850981686">"Opcje GSM/UMTS"</string>
     <string name="cdma_options" msgid="4016822858172249884">"Opcje CDMA"</string>
     <string name="throttle_data_usage" msgid="3715677828160555808">"Użycie danych"</string>
@@ -343,7 +346,7 @@
     <string name="disable_fdn_ok" msgid="5727046928930740173">"Włącz ustalone numery"</string>
     <string name="sum_fdn" msgid="1959399454900272878">"Zarządzanie ustalonymi numerami"</string>
     <string name="sum_fdn_change_pin" msgid="6666549734792827932">"Zmień kod PIN pozwalający na zarządzanie ustalonymi numerami"</string>
-    <string name="sum_fdn_manage_list" msgid="8431088265332628316">"Zarządzanie listą numerów telefonów"</string>
+    <string name="sum_fdn_manage_list" msgid="8431088265332628316">"Zarządzaj listą numerów telefonów"</string>
     <string name="voice_privacy" msgid="3776841382844614716">"Prywatność połączeń głosowych"</string>
     <string name="voice_privacy_summary" msgid="3159383389833516214">"Włącz rozszerzony tryb prywatności"</string>
     <string name="tty_mode_option_title" msgid="9033098925144434669">"Tryb TTY"</string>

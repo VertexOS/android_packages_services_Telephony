@@ -204,7 +204,10 @@
     <string name="roaming_enable" msgid="7331106985174381987">"Csatlakozás adatszolgáltatásokhoz barangolás során"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"Csatlakozás adatszolgáltatásokhoz barangolás során"</string>
     <string name="roaming_reenable_message" msgid="8913735676127858115">"Megszakadt az adatkapcsolat, mert elhagyta az otthoni hálózatot, és az adatbarangolás nincs bekapcsolva."</string>
-    <string name="roaming_warning" msgid="7126227198294007907">"Engedélyezi az adatbarangolást? Ez jelentős költségekkel járhat."</string>
+    <!-- no translation found for roaming_warning (1603164667540144353) -->
+    <skip />
+    <!-- no translation found for roaming_alert_title (3654815360303826008) -->
+    <skip />
     <string name="gsm_umts_options" msgid="6538311689850981686">"GSM/UMTS beállítások"</string>
     <string name="cdma_options" msgid="4016822858172249884">"CDMA-beállítások"</string>
     <string name="throttle_data_usage" msgid="3715677828160555808">"Adathasználat"</string>

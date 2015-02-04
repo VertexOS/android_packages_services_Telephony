@@ -204,7 +204,10 @@
     <string name="roaming_enable" msgid="7331106985174381987">"റോമിംഗിലാകുമ്പോൾ ഡാറ്റ സേവനങ്ങളുമായി കണ‌ക്റ്റുചെയ്യുക"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"റോമിംഗിലാകുമ്പോൾ ഡാറ്റ സേവനങ്ങളുമായി കണ‌ക്റ്റുചെയ്യുക"</string>
     <string name="roaming_reenable_message" msgid="8913735676127858115">"നിങ്ങൾ ഡാറ്റ റോമിംഗ് ഓഫുചെയ്‌തതിനൊപ്പം നിങ്ങളുടെ ഹോം നെ‌റ്റ്‌വർക്കും വിട്ടതിനാൽ നിങ്ങൾക്ക് ഡാറ്റ കണക്റ്റിവിറ്റി നഷ്‌ടപ്പെട്ടു."</string>
-    <string name="roaming_warning" msgid="7126227198294007907">"റോമിംഗിലായിരിക്കുമ്പോൾ ഡാറ്റ ഉപയോഗം അനുവദിക്കണോ? നിശ്ചിത നിരക്കുകൾ ബാധകമായേക്കാം."</string>
+    <!-- no translation found for roaming_warning (1603164667540144353) -->
+    <skip />
+    <!-- no translation found for roaming_alert_title (3654815360303826008) -->
+    <skip />
     <string name="gsm_umts_options" msgid="6538311689850981686">"GSM/UMTS ഓപ്‌ഷനുകൾ"</string>
     <string name="cdma_options" msgid="4016822858172249884">"CDMA ഓപ്‌ഷനുകൾ"</string>
     <string name="throttle_data_usage" msgid="3715677828160555808">"ഡാറ്റ ഉപയോഗം"</string>

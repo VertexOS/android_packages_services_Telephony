@@ -299,7 +299,10 @@
     <!-- no translation found for roaming_disable (1843417228755568110) -->
     <skip />
     <string name="roaming_reenable_message" msgid="8913735676127858115">"Мобилдик берүү байланышын жоготтуңуз, анткени сиз мобилдик интернет роумингин иштетпестен, өзүңүздүн түйүнүңүздөн сырткары чыгып кеттиңиз."</string>
-    <string name="roaming_warning" msgid="7126227198294007907">"Роуминг учурунда дайындарды пайдаланууга уруксатпы? Бир далай төлөмдөр колдонулушу мүмкүн."</string>
+    <!-- no translation found for roaming_warning (1603164667540144353) -->
+    <skip />
+    <!-- no translation found for roaming_alert_title (3654815360303826008) -->
+    <skip />
     <!-- no translation found for gsm_umts_options (6538311689850981686) -->
     <skip />
     <!-- no translation found for cdma_options (4016822858172249884) -->

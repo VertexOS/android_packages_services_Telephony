@@ -204,7 +204,10 @@
     <string name="roaming_enable" msgid="7331106985174381987">"රෝමින් අතරතුර දත්ත සේවා වෙත සම්බන්ධ වන්න"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"රෝමින් අතරතුර දත්ත සේවා වෙත සම්බන්ධ වන්න"</string>
     <string name="roaming_reenable_message" msgid="8913735676127858115">"ඔබගේ නිවාස ජාලය ඔබ හැර ගිය විට දත්ත රෝමින් අක්‍රිය වන බැවින් දත්ත සම්බන්ධතාවය ඔබට නැති වෙයි"</string>
-    <string name="roaming_warning" msgid="7126227198294007907">"රෝමින් විට දත්ත භාවිතය ඉඩ දෙන්නද? සැලකිය යුතු වෙනස් කිරීම් ඇතැම් විට යෙදේ."</string>
+    <!-- no translation found for roaming_warning (1603164667540144353) -->
+    <skip />
+    <!-- no translation found for roaming_alert_title (3654815360303826008) -->
+    <skip />
     <string name="gsm_umts_options" msgid="6538311689850981686">"GSM/UMTS විකල්ප"</string>
     <string name="cdma_options" msgid="4016822858172249884">"CDMA විකල්ප"</string>
     <string name="throttle_data_usage" msgid="3715677828160555808">"දත්ත භාවිතය"</string>

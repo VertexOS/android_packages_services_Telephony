@@ -204,7 +204,10 @@
     <string name="roaming_enable" msgid="7331106985174381987">"በእንቅስቃሴ ላይ ሲሆን ወደ ውሂብ አገልግሎቶች ተያያዝ"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"በእንቅስቃሴ ላይ ሲሆን ወደ ውሂብ አገልግሎቶች ተያያዝ"</string>
     <string name="roaming_reenable_message" msgid="8913735676127858115">"የውሂብ ተያያዥነት የጠፋበት ምክንያት የቤትህን አውታረ መረብ እንቅስቃሴ ውሂብ በማጥፋትህ ነው።"</string>
-    <string name="roaming_warning" msgid="7126227198294007907">"ከአገልግሎት መስጫ ክልል ውጭ ሲኮን የውሂብ አጠቃቀም ክፍያ ይፈቀድ? ቀላል የማይባል የክፍያ ጥያቄ ሊያስከትል ይችላል።"</string>
+    <!-- no translation found for roaming_warning (1603164667540144353) -->
+    <skip />
+    <!-- no translation found for roaming_alert_title (3654815360303826008) -->
+    <skip />
     <string name="gsm_umts_options" msgid="6538311689850981686">"GSM/UMTS አማራጮች"</string>
     <string name="cdma_options" msgid="4016822858172249884">"CDMA አማራጮች"</string>
     <string name="throttle_data_usage" msgid="3715677828160555808">"የውሂብ አጠቃቀም"</string>

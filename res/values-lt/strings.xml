@@ -204,7 +204,10 @@
     <string name="roaming_enable" msgid="7331106985174381987">"Veikiant tarptinkliniam ryšiui, prisijungti prie duomenų paslaugų"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"Veikiant tarptinkliniam ryšiui, prisijungti prie duomenų paslaugų"</string>
     <string name="roaming_reenable_message" msgid="8913735676127858115">"Ryšys su duomenimis nutrūko, nes iš pagrindinio tinklo išėjote neįjungę tarptinklinio ryšio."</string>
-    <string name="roaming_warning" msgid="7126227198294007907">"Leisti naudoti duomenis, kai įjungtas tarptinklinis ryšys? Gali būti taikomi dideli mokesčiai."</string>
+    <!-- no translation found for roaming_warning (1603164667540144353) -->
+    <skip />
+    <!-- no translation found for roaming_alert_title (3654815360303826008) -->
+    <skip />
     <string name="gsm_umts_options" msgid="6538311689850981686">"GSM / UMTS parinktys"</string>
     <string name="cdma_options" msgid="4016822858172249884">"CDMA parinktys"</string>
     <string name="throttle_data_usage" msgid="3715677828160555808">"Duomenų naudojimas"</string>
