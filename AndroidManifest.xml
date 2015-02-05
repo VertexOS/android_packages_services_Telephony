@@ -388,7 +388,7 @@
 
         <activity android:name="com.android.phone.settings.fdn.GetPin2Screen"
                 android:label="@string/get_pin2"
-                android:theme="@style/SettingsLight"
+                android:theme="@style/DialerSettingsLight"
                 android:windowSoftInputMode="stateVisible">
         </activity>
 
