@@ -26,6 +26,7 @@ import android.telecom.PhoneAccount;
 import android.telecom.PhoneAccountHandle;
 import android.telephony.PhoneNumberUtils;
 import android.telephony.ServiceState;
+import android.telephony.SubscriptionManager;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 
@@ -38,6 +39,7 @@ import com.android.internal.telephony.PhoneProxy;
 import com.android.internal.telephony.SubscriptionController;
 import com.android.internal.telephony.cdma.CDMAPhone;
 import com.android.phone.MMIDialogActivity;
+import com.android.phone.PhoneUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -393,22 +395,14 @@ public class TelephonyConnectionService extends ConnectionService {
     }
 
     private Phone getPhoneForAccount(PhoneAccountHandle accountHandle, boolean isEmergency) {
-        if (Objects.equals(mExpectedComponentName, accountHandle.getComponentName())) {
-            if (accountHandle.getId() != null) {
-                try {
-                    int phoneId = SubscriptionController.getInstance().getPhoneId(
-                            Integer.parseInt(accountHandle.getId()));
-                    return PhoneFactory.getPhone(phoneId);
-                } catch (NumberFormatException e) {
-                    Log.w(this, "Could not get subId from account: " + accountHandle.getId());
-                }
-            }
+        if (isEmergency) {
+            return PhoneFactory.getDefaultPhone();
         }
 
-        if (isEmergency) {
-            // If this is an emergency number and we've been asked to dial it using a PhoneAccount
-            // which does not exist, then default to whatever subscription is available currently.
-            return getFirstPhoneForEmergencyCall();
+        int subId = PhoneUtils.getSubIdForPhoneAccountHandle(accountHandle);
+        if (subId != SubscriptionManager.INVALID_SUBSCRIPTION_ID) {
+            int phoneId = SubscriptionController.getInstance().getPhoneId(subId);
+            return PhoneFactory.getPhone(phoneId);
         }
 
         return null;

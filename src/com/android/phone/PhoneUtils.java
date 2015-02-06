@@ -2462,14 +2462,18 @@ public class PhoneUtils {
     }
 
     public static int getSubIdForPhoneAccount(PhoneAccount phoneAccount) {
-        if (phoneAccount != null) {
-            PhoneAccountHandle handle = phoneAccount.getAccountHandle();
-            if (handle != null && handle.getComponentName().equals(getPstnConnectionServiceName()) &&
-                    phoneAccount.hasCapabilities(PhoneAccount.CAPABILITY_SIM_SUBSCRIPTION)) {
-                String id = handle.getId();
-                if (TextUtils.isDigitsOnly(id)) {
-                    return Integer.parseInt(id);
-                }
+        if (phoneAccount != null
+                && phoneAccount.hasCapabilities(PhoneAccount.CAPABILITY_SIM_SUBSCRIPTION)) {
+            return getSubIdForPhoneAccountHandle(phoneAccount.getAccountHandle());
+        }
+        return SubscriptionManager.INVALID_SUBSCRIPTION_ID;
+    }
+
+    public static int getSubIdForPhoneAccountHandle(PhoneAccountHandle handle) {
+        if (handle != null && handle.getComponentName().equals(getPstnConnectionServiceName())) {
+            String id = handle.getId();
+            if (TextUtils.isDigitsOnly(id)) {
+                return Integer.parseInt(id);
             }
         }
         return SubscriptionManager.INVALID_SUBSCRIPTION_ID;
