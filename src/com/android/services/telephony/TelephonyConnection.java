@@ -442,6 +442,13 @@ abstract class TelephonyConnection extends Connection {
                 callCapabilities |= CAPABILITY_HOLD;
             }
         }
+
+        // If the phone is in ECM mode, mark the call to indicate that the callback number should be
+        // shown.
+        Phone phone = getPhone();
+        if (phone != null && phone.isInEcm()) {
+            callCapabilities |= CAPABILITY_SHOW_CALLBACK_NUMBER;
+        }
         return callCapabilities;
     }
 
