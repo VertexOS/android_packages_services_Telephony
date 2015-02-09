@@ -204,10 +204,8 @@
     <string name="roaming_enable" msgid="7331106985174381987">"ເຊື່ອມຕໍ່ບໍລິການຂໍ້ມູນເມື່ອໂຣມມິງ"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"ເຊື່ອມຕໍ່ບໍລິການຂໍ້ມູນເມື່ອໂຣມມິງ"</string>
     <string name="roaming_reenable_message" msgid="8913735676127858115">"ທ່ານໄດ້ຖືກຕັດການເຊື່ອມຕໍ່ຂໍ້ມູນ ເນື່ອງຈາກທ່ານອອກຈາກເຄືອຂ່າຍພາຍໃນ ໂດຍທີ່ປິດການໂຣມມິງໄວ້."</string>
-    <!-- no translation found for roaming_warning (1603164667540144353) -->
-    <skip />
-    <!-- no translation found for roaming_alert_title (3654815360303826008) -->
-    <skip />
+    <string name="roaming_warning" msgid="1603164667540144353">"ທ່ານ​ອາດ​ຈະ​ເສຍ​ຄ່າ​ໃຊ້​ຈ່າຍ​ຫຼາຍ."</string>
+    <string name="roaming_alert_title" msgid="3654815360303826008">"ອະນຸຍາດໃຫ້ໂຣມມິງຂໍ້ມູນບໍ?"</string>
     <string name="gsm_umts_options" msgid="6538311689850981686">"ໂຕເລືອກ GSM/UMTS"</string>
     <string name="cdma_options" msgid="4016822858172249884">"ໂຕເລືອກ CDMA"</string>
     <string name="throttle_data_usage" msgid="3715677828160555808">"ການນຳໃຊ້ຂໍ້ມູນ"</string>

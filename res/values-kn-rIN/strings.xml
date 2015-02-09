@@ -204,10 +204,8 @@
     <string name="roaming_enable" msgid="7331106985174381987">"ರೋಮಿಂಗ್‌ನಲ್ಲಿರುವಾಗ ಡೇಟಾ ಸೇವೆಗಳಿಗೆ ಸಂಪರ್ಕಿಸು"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"ರೋಮಿಂಗ್‌ನಲ್ಲಿರುವಾಗ ಡೇಟಾ ಸೇವೆಗಳಿಗೆ ಸಂಪರ್ಕಿಸು"</string>
     <string name="roaming_reenable_message" msgid="8913735676127858115">"ಡೇಟಾ ರೋಮಿಂಗ್ ಅನ್ನು ಆಫ್‌ ಮಾಡಿರುವ ಸ್ಥಿತಿಯಲ್ಲಿ ನಿಮ್ಮ ಹೋಮ್‌ ನೆಟ್‌ವರ್ಕ್‌ ಅನ್ನು ನೀವು ಇರಿಸಿರುವ ಕಾರಣ ನೀವು ಡೇಟಾ ಸಂಪರ್ಕವನ್ನು ಕಳೆದುಕೊಂಡಿರುವಿರಿ."</string>
-    <!-- no translation found for roaming_warning (1603164667540144353) -->
-    <skip />
-    <!-- no translation found for roaming_alert_title (3654815360303826008) -->
-    <skip />
+    <string name="roaming_warning" msgid="1603164667540144353">"ನೀವು ಗಣನೀಯವಾಗಿ ಶುಲ್ಕಗಳನ್ನು ತೆರಬೇಕಾಗಬಹುದು."</string>
+    <string name="roaming_alert_title" msgid="3654815360303826008">"ಡೇಟಾ ರೋಮಿಂಗ್ ಅನುಮತಿಸುವುದೇ?"</string>
     <string name="gsm_umts_options" msgid="6538311689850981686">"GSM/UMTS ಆಯ್ಕೆಗಳು"</string>
     <string name="cdma_options" msgid="4016822858172249884">"CDMA ಆಯ್ಕೆಗಳು"</string>
     <string name="throttle_data_usage" msgid="3715677828160555808">"ಡೇಟಾ ಬಳಕೆ"</string>

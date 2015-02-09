@@ -204,10 +204,8 @@
     <string name="roaming_enable" msgid="7331106985174381987">"漫游时连接到移动数据网络服务"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"漫游时连接到移动数据网络服务"</string>
     <string name="roaming_reenable_message" msgid="8913735676127858115">"移动数据网络连接已断开，因为您已离开本地网络并关闭了移动数据网络漫游功能。"</string>
-    <!-- no translation found for roaming_warning (1603164667540144353) -->
-    <skip />
-    <!-- no translation found for roaming_alert_title (3654815360303826008) -->
-    <skip />
+    <string name="roaming_warning" msgid="1603164667540144353">"这可能会产生高额费用。"</string>
+    <string name="roaming_alert_title" msgid="3654815360303826008">"要允许数据网络漫游吗？"</string>
     <string name="gsm_umts_options" msgid="6538311689850981686">"GSM/UMTS 选项"</string>
     <string name="cdma_options" msgid="4016822858172249884">"CDMA 选项"</string>
     <string name="throttle_data_usage" msgid="3715677828160555808">"流量使用"</string>

@@ -204,10 +204,8 @@
     <string name="roaming_enable" msgid="7331106985174381987">"漫遊時連線到數據傳輸服務"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"漫遊時連線到數據傳輸服務"</string>
     <string name="roaming_reenable_message" msgid="8913735676127858115">"您已離開國內網路涵蓋範圍，且已關閉數據傳輸漫遊服務，因此數據連線已中斷。"</string>
-    <!-- no translation found for roaming_warning (1603164667540144353) -->
-    <skip />
-    <!-- no translation found for roaming_alert_title (3654815360303826008) -->
-    <skip />
+    <string name="roaming_warning" msgid="1603164667540144353">"您可能需要支付可觀的費用。"</string>
+    <string name="roaming_alert_title" msgid="3654815360303826008">"允許漫遊服務？"</string>
     <string name="gsm_umts_options" msgid="6538311689850981686">"GSM/UMTS 選項"</string>
     <string name="cdma_options" msgid="4016822858172249884">"CDMA 選項"</string>
     <string name="throttle_data_usage" msgid="3715677828160555808">"數據用量"</string>

@@ -204,10 +204,8 @@
     <string name="roaming_enable" msgid="7331106985174381987">"Rouming holatda ma’lumot uzatish xizmatlariga ulanish"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"Rouming holatda ma’lumot uzatish xizmatlariga ulanish"</string>
     <string name="roaming_reenable_message" msgid="8913735676127858115">"Internetga ulanish uzildi, chunki uy tarmog‘ingizni rouming internetini o\'chirgan holatda tark etdingiz."</string>
-    <!-- no translation found for roaming_warning (1603164667540144353) -->
-    <skip />
-    <!-- no translation found for roaming_alert_title (3654815360303826008) -->
-    <skip />
+    <string name="roaming_warning" msgid="1603164667540144353">"Roumingdan foydalanish xarajati ancha yuqori bo‘lishi mumkin."</string>
+    <string name="roaming_alert_title" msgid="3654815360303826008">"Internet-roumingga ruxsat berilsinmi?"</string>
     <string name="gsm_umts_options" msgid="6538311689850981686">"GSM/UMTS sozlamalari"</string>
     <string name="cdma_options" msgid="4016822858172249884">"CDMA sozlamalari"</string>
     <string name="throttle_data_usage" msgid="3715677828160555808">"Trafik sarfi"</string>

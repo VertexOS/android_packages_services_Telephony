@@ -204,10 +204,8 @@
     <string name="roaming_enable" msgid="7331106985174381987">"ரோமிங்கின் போது தரவு சேவைகளுடன் இணை"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"ரோமிங்கின் போது தரவு சேவைகளுடன் இணை"</string>
     <string name="roaming_reenable_message" msgid="8913735676127858115">"உள்ளூர் நெட்வொர்க்கில் தரவு ரோமிங்கை முடக்கிய நிலையில் வெளியேறியுள்ளதால், தரவு இணைப்பை இழந்துவிட்டீர்கள்."</string>
-    <!-- no translation found for roaming_warning (1603164667540144353) -->
-    <skip />
-    <!-- no translation found for roaming_alert_title (3654815360303826008) -->
-    <skip />
+    <string name="roaming_warning" msgid="1603164667540144353">"குறிப்பிடத்தக்க கட்டணங்கள் இருக்கலாம்."</string>
+    <string name="roaming_alert_title" msgid="3654815360303826008">"தரவு ரோமிங்கை அனுமதிக்கவா?"</string>
     <string name="gsm_umts_options" msgid="6538311689850981686">"GSM/UMTS விருப்பங்கள்"</string>
     <string name="cdma_options" msgid="4016822858172249884">"CDMA விருப்பங்கள்"</string>
     <string name="throttle_data_usage" msgid="3715677828160555808">"தரவு பயன்பாடு"</string>

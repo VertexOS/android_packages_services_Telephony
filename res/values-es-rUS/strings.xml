@@ -204,10 +204,8 @@
     <string name="roaming_enable" msgid="7331106985174381987">"Conectar a servicios de datos en roaming"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"Conectar a servicios de datos en roaming"</string>
     <string name="roaming_reenable_message" msgid="8913735676127858115">"Perdiste la conectividad de datos porque se desactivó la itinerancia de datos de tu red doméstica."</string>
-    <!-- no translation found for roaming_warning (1603164667540144353) -->
-    <skip />
-    <!-- no translation found for roaming_alert_title (3654815360303826008) -->
-    <skip />
+    <string name="roaming_warning" msgid="1603164667540144353">"Puede ocasionar gastos importantes."</string>
+    <string name="roaming_alert_title" msgid="3654815360303826008">"¿Deseas permitir el roaming de datos?"</string>
     <string name="gsm_umts_options" msgid="6538311689850981686">"Opciones de GSM/UMTS"</string>
     <string name="cdma_options" msgid="4016822858172249884">"Opciones de CDMA"</string>
     <string name="throttle_data_usage" msgid="3715677828160555808">"Utilización de datos"</string>

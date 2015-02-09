@@ -204,10 +204,8 @@
     <string name="roaming_enable" msgid="7331106985174381987">"Conectaţi-vă la serviciile de date în roaming"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"Conectaţi-vă la serviciile de date în roaming"</string>
     <string name="roaming_reenable_message" msgid="8913735676127858115">"Aţi pierdut conectivitatea la date, deoarece aţi părăsit reţeaua de domiciliu neavând activat roamingul de date."</string>
-    <!-- no translation found for roaming_warning (1603164667540144353) -->
-    <skip />
-    <!-- no translation found for roaming_alert_title (3654815360303826008) -->
-    <skip />
+    <string name="roaming_warning" msgid="1603164667540144353">"Se pot acumula costuri mari."</string>
+    <string name="roaming_alert_title" msgid="3654815360303826008">"Permiteți roamingul de date?"</string>
     <string name="gsm_umts_options" msgid="6538311689850981686">"Opţiuni GSM/UMTS"</string>
     <string name="cdma_options" msgid="4016822858172249884">"Opţiuni CDMA"</string>
     <string name="throttle_data_usage" msgid="3715677828160555808">"Utilizarea datelor"</string>

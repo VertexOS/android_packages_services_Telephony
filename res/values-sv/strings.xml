@@ -204,10 +204,8 @@
     <string name="roaming_enable" msgid="7331106985174381987">"Anslut till datatjänster vid roaming"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"Anslut till datatjänster vid roaming"</string>
     <string name="roaming_reenable_message" msgid="8913735676127858115">"Du förlorade dataanslutningen eftersom du lämnade ditt hemnätverk utan att aktivera dataroaming."</string>
-    <!-- no translation found for roaming_warning (1603164667540144353) -->
-    <skip />
-    <!-- no translation found for roaming_alert_title (3654815360303826008) -->
-    <skip />
+    <string name="roaming_warning" msgid="1603164667540144353">"Detta kan leda till höga kostnader."</string>
+    <string name="roaming_alert_title" msgid="3654815360303826008">"Vill du tillåta dataroaming?"</string>
     <string name="gsm_umts_options" msgid="6538311689850981686">"Alternativ för GSM/UMTS"</string>
     <string name="cdma_options" msgid="4016822858172249884">"CDMA-alternativ"</string>
     <string name="throttle_data_usage" msgid="3715677828160555808">"Dataanvändning"</string>

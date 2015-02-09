@@ -204,10 +204,8 @@
     <string name="roaming_enable" msgid="7331106985174381987">"رومنگ کے وقت ڈیٹا سروسز سے مربوط ہوں"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"رومنگ کے وقت ڈیٹا سروسز سے مربوط ہوں"</string>
     <string name="roaming_reenable_message" msgid="8913735676127858115">"آپ ڈیٹا کی حالت رسائی سے محروم ہوگئے کیونکہ آپ نے ڈیٹا رومنگ آف ہونے کے ساتھ اپنا ہوم نیٹ ورک چھوڑ دیا۔"</string>
-    <!-- no translation found for roaming_warning (1603164667540144353) -->
-    <skip />
-    <!-- no translation found for roaming_alert_title (3654815360303826008) -->
-    <skip />
+    <string name="roaming_warning" msgid="1603164667540144353">"آپ پر خاطر خواہ چارجز لگ سکتے ہیں۔"</string>
+    <string name="roaming_alert_title" msgid="3654815360303826008">"ڈیٹا رومنگ کی اجازت دیں؟"</string>
     <string name="gsm_umts_options" msgid="6538311689850981686">"‏GSM/UMTS کے اختیارات"</string>
     <string name="cdma_options" msgid="4016822858172249884">"‏CDMA کے اختیارات"</string>
     <string name="throttle_data_usage" msgid="3715677828160555808">"ڈیٹا کا استعمال"</string>
