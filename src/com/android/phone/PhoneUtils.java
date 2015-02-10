@@ -61,6 +61,7 @@ import com.android.internal.telephony.PhoneFactory;
 import com.android.internal.telephony.TelephonyCapabilities;
 import com.android.internal.telephony.TelephonyProperties;
 import com.android.internal.telephony.sip.SipPhone;
+import com.android.internal.telephony.uicc.UiccCard;
 import com.android.phone.CallGatewayManager.RawGatewayInfo;
 import com.android.services.telephony.TelephonyConnectionService;
 
@@ -2457,7 +2458,7 @@ public class PhoneUtils {
         ComponentName pstnConnectionServiceName = getPstnConnectionServiceName();
         // TODO: Should use some sort of special hidden flag to decorate this account as
         // an emergency-only account
-        String id = isEmergency ? "E" : prefix + String.valueOf(phone.getSubId());
+        String id = isEmergency ? "E" : prefix + String.valueOf(phone.getIccSerialNumber());
         return new PhoneAccountHandle(pstnConnectionServiceName, id);
     }
 
@@ -2471,9 +2472,9 @@ public class PhoneUtils {
 
     public static int getSubIdForPhoneAccountHandle(PhoneAccountHandle handle) {
         if (handle != null && handle.getComponentName().equals(getPstnConnectionServiceName())) {
-            String id = handle.getId();
-            if (TextUtils.isDigitsOnly(id)) {
-                return Integer.parseInt(id);
+            Phone phone = getPhoneFromIccId(handle.getId());
+            if (phone != null) {
+                return phone.getSubId();
             }
         }
         return SubscriptionManager.INVALID_SUBSCRIPTION_ID;
@@ -2481,6 +2482,19 @@ public class PhoneUtils {
 
     private static ComponentName getPstnConnectionServiceName() {
         return new ComponentName(PhoneGlobals.getInstance(), TelephonyConnectionService.class);
+    }
+
+    private static Phone getPhoneFromIccId(String iccId) {
+        if (!TextUtils.isEmpty(iccId)) {
+            for (Phone phone : PhoneFactory.getPhones()) {
+                String phoneIccId = phone.getIccSerialNumber();
+                if (iccId.equals(phoneIccId)) {
+                    return phone;
+                }
+            }
+        }
+
+        return null;
     }
 
     /**
