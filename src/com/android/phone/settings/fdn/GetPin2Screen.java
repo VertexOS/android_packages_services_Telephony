@@ -25,6 +25,7 @@ import android.text.TextUtils;
 import android.text.method.DigitsKeyListener;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
@@ -58,6 +59,15 @@ public class GetPin2Screen extends Activity implements TextView.OnEditorActionLi
 
         mOkButton = (Button) findViewById(R.id.ok);
         mOkButton.setOnClickListener(mClicked);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private String getPin2() {
