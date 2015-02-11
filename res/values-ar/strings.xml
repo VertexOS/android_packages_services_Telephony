@@ -106,17 +106,17 @@
     <string name="sum_cfu_enabled_no_number" msgid="6591985777096823616">"الرقم غير متاح"</string>
     <string name="sum_cfu_disabled" msgid="8384177689501334080">"تم الإيقاف"</string>
     <string name="labelCFB" msgid="6139853033106283172">"عند الانشغال"</string>
-    <string name="messageCFB" msgid="3711089705936187129">"الرقم عندما يكون مشغولاً"</string>
+    <string name="messageCFB" msgid="3711089705936187129">"الرقم عند الانشغال"</string>
     <string name="sum_cfb_enabled" msgid="5984198104833116690">"إعادة التوجيه إلى <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfb_disabled" msgid="4913145177320506827">"تم الإيقاف"</string>
     <string name="disable_cfb_forbidden" msgid="3506984333877998061">"لا يتيح مشغل شبكة الجوال تعطيل اعادة توجيه المكالمة عندما يكون هاتفك مشغولاً."</string>
     <string name="labelCFNRy" msgid="1736067178393744351">"عند عدم الرد"</string>
-    <string name="messageCFNRy" msgid="672317899884380374">"الرقم عندما لا يتم الرد"</string>
+    <string name="messageCFNRy" msgid="672317899884380374">"الرقم عند عدم الرد"</string>
     <string name="sum_cfnry_enabled" msgid="6955775691317662910">"إعادة التوجيه إلى <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfnry_disabled" msgid="3884684060443538097">"تم الإيقاف"</string>
     <string name="disable_cfnry_forbidden" msgid="4308233959150658058">"لا يتيح مشغل شبكة الجوال تعطيل اعادة توجيه المكالمة عند عدم رد هاتفك."</string>
-    <string name="labelCFNRc" msgid="2614827454402079766">"عندما لا يمكن الوصول"</string>
-    <string name="messageCFNRc" msgid="6380695421020295119">"الرقم عندما لا يمكن الوصول"</string>
+    <string name="labelCFNRc" msgid="2614827454402079766">"عند عدم الوصول"</string>
+    <string name="messageCFNRc" msgid="6380695421020295119">"الرقم عند عدم الوصول"</string>
     <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"إعادة التوجيه إلى <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfnrc_disabled" msgid="7222141261321276464">"معطّل"</string>
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"لا يتيح مشغل شبكة الجوال تعطيل اعادة توجيه المكالمة عند عدم التمكن من الوصول إلى هاتفك."</string>
