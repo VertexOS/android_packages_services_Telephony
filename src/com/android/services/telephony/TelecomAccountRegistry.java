@@ -204,6 +204,10 @@ final class TelecomAccountRegistry {
     private List<AccountEntry> mAccounts = new LinkedList<AccountEntry>();
     private int mServiceState = ServiceState.STATE_POWER_OFF;
 
+    // TODO: Remove back-pointer from app singleton to Service, since this is not a preferred
+    // pattern; redesign. This was added to fix a late release bug.
+    private TelephonyConnectionService mTelephonyConnectionService;
+
     TelecomAccountRegistry(Context context) {
         mContext = context;
         mTelecomManager = TelecomManager.from(context);
@@ -212,10 +216,18 @@ final class TelecomAccountRegistry {
     }
 
     static synchronized final TelecomAccountRegistry getInstance(Context context) {
-        if (sInstance == null) {
+        if (sInstance == null && context != null) {
             sInstance = new TelecomAccountRegistry(context);
         }
         return sInstance;
+    }
+
+    void setTelephonyConnectionService(TelephonyConnectionService telephonyConnectionService) {
+        this.mTelephonyConnectionService = telephonyConnectionService;
+    }
+
+    TelephonyConnectionService getTelephonyConnectionService() {
+        return mTelephonyConnectionService;
     }
 
     /**
