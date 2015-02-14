@@ -25,8 +25,6 @@ import android.os.AsyncResult;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.os.UserHandle;
-import android.telecom.CallState;
 import android.telecom.PhoneAccount;
 import android.telecom.TelecomManager;
 import android.telephony.TelephonyManager;
@@ -212,15 +210,21 @@ final class PstnIncomingCallNotifier {
     }
 
     private void addNewUnknownCall(Connection connection) {
-        Bundle extras = null;
-        if (connection.getNumberPresentation() == TelecomManager.PRESENTATION_ALLOWED &&
-                !TextUtils.isEmpty(connection.getAddress())) {
-            extras = new Bundle();
-            Uri uri = Uri.fromParts(PhoneAccount.SCHEME_TEL, connection.getAddress(), null);
-            extras.putParcelable(TelecomManager.EXTRA_UNKNOWN_CALL_HANDLE, uri);
+        Log.i(this, "addNewUnknownCall, connection is: %s", connection);
+        if (!maybeSwapAnyWithUnknownConnection(connection)) {
+            Log.i(this, "determined new connection is: %s", connection);
+            Bundle extras = null;
+            if (connection.getNumberPresentation() == TelecomManager.PRESENTATION_ALLOWED &&
+                    !TextUtils.isEmpty(connection.getAddress())) {
+                extras = new Bundle();
+                Uri uri = Uri.fromParts(PhoneAccount.SCHEME_TEL, connection.getAddress(), null);
+                extras.putParcelable(TelecomManager.EXTRA_UNKNOWN_CALL_HANDLE, uri);
+            }
+            TelecomManager.from(mPhoneProxy.getContext()).addNewUnknownCall(
+                    PhoneUtils.makePstnPhoneAccountHandle(mPhoneProxy), extras);
+        } else {
+            Log.i(this, "swapped an old connection, new one is: %s", connection);
         }
-        TelecomManager.from(mPhoneProxy.getContext()).addNewUnknownCall(
-                PhoneUtils.makePstnPhoneAccountHandle(mPhoneProxy), extras);
     }
 
     /**
@@ -236,5 +240,46 @@ final class PstnIncomingCallNotifier {
         }
         TelecomManager.from(mPhoneProxy.getContext()).addNewIncomingCall(
                 PhoneUtils.makePstnPhoneAccountHandle(mPhoneProxy), extras);
+    }
+
+    /**
+     * Define cait.Connection := com.android.internal.telephony.Connection
+     *
+     * Given a previously unknown cait.Connection, check to see if it's likely a replacement for
+     * another cait.Connnection we already know about. If it is, then we silently swap it out
+     * underneath within the relevant {@link TelephonyConnection}, using
+     * {@link TelephonyConnection#setOriginalConnection(Connection)}, and return {@code true}.
+     * Otherwise, we return {@code false}.
+     */
+    private boolean maybeSwapAnyWithUnknownConnection(Connection unknown) {
+        if (!unknown.isIncoming()) {
+            TelecomAccountRegistry registry = TelecomAccountRegistry.getInstance(null);
+            if (registry != null) {
+                TelephonyConnectionService service = registry.getTelephonyConnectionService();
+                if (service != null) {
+                    for (android.telecom.Connection telephonyConnection : service
+                            .getAllConnections()) {
+                        if (maybeSwapWithUnknownConnection(
+                                (TelephonyConnection) telephonyConnection,
+                                unknown)) {
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    private boolean maybeSwapWithUnknownConnection(
+            TelephonyConnection telephonyConnection,
+            Connection unknown) {
+        Connection original = telephonyConnection.getOriginalConnection();
+        if (original != null && !original.isIncoming()
+                && Objects.equals(original.getAddress(), unknown.getAddress())) {
+            telephonyConnection.setOriginalConnection(unknown);
+            return true;
+        }
+        return false;
     }
 }
