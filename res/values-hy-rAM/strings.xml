@@ -515,18 +515,18 @@
     <string name="phone_entered_ecm_text" msgid="6266424252578731203">"Գտնվում է արտակարգ իրավիճակների հետզանգի ռեժիմում"</string>
     <string name="phone_in_ecm_notification_title" msgid="3226896828951687085">"Արտակարգ իրավիճակների հետզանգի ռեժիմ"</string>
     <string name="phone_in_ecm_call_notification_text" msgid="4611608947314729773">"Տվյալների կապն անջատված է"</string>
-  <plurals name="phone_in_ecm_notification_time">
-    <item quantity="one" msgid="4866221796252472622">"<xliff:g id="COUNT">%s</xliff:g> րոպե տվյալների կապ չկա"</item>
-    <item quantity="other" msgid="3122217344579273583">"Տվյալների կապ չի լինի <xliff:g id="COUNT">%s</xliff:g> րոպե"</item>
-  </plurals>
-  <plurals name="alert_dialog_exit_ecm">
-    <item quantity="one" msgid="8060210887681426682">"Հեռախոսը կլինի Արտակարգ հետզանգի ռեժիմում <xliff:g id="COUNT">%s</xliff:g> րոպե: Այս ռեիմի ժամանակ ոչ մի հավելված օգտագործման մեջ չէ, տվյալների կապը կարող է օգտագործվել: Ցանկանու՞մ եք դուրս գալ հիմա:"</item>
-    <item quantity="other" msgid="8617116564023933114">"Հեռախոսը կլինի Արտակարգ հետզանգի ռեժիմում <xliff:g id="COUNT">%s</xliff:g> րոպե: Այս ռեիմի ժամանակ ոչ մի հավելված օգտագործման մեջ չէ, տվյալների կապը կարող է օգտագործվել: Ցանկանու՞մ եք դուրս գալ հիմա:"</item>
-  </plurals>
-  <plurals name="alert_dialog_not_avaialble_in_ecm">
-    <item quantity="one" msgid="2585506997024726599">"Ընտրված գործողությունը մատչելի չէ արտակարգ հետզանգի ռեժիմում գտնվելիս: Հեռախոսն այս ռեժիմում կլինի <xliff:g id="COUNT">%s</xliff:g> րոպե: Ցանկանու՞մ եք դուրս գալ հիմա:"</item>
-    <item quantity="other" msgid="6115622137771382224">"Ընտրված գործողությունը մատչելի չէ արտակարգ հետզանգի ռեժիմում գտնվելիս: Հեռախոսն այս ռեժիմում կլինի <xliff:g id="COUNT">%s</xliff:g> րոպե: Ցանկանու՞մ եք դուրս գալ հիմա:"</item>
-  </plurals>
+    <plurals name="phone_in_ecm_notification_time" formatted="false" msgid="8308381858502470919">
+      <item quantity="one"><xliff:g id="COUNT_1">%s</xliff:g> րոպե տվյալների միացում չկա</item>
+      <item quantity="other"><xliff:g id="COUNT_1">%s</xliff:g> րոպե տվյալների միացում չկա</item>
+    </plurals>
+    <plurals name="alert_dialog_exit_ecm" formatted="false" msgid="7179911675595441201">
+      <item quantity="one">Հեռախոսը գտնվելու է Արտակարգ իրավիճակների հետզանգի ռեժիմում <xliff:g id="COUNT_1">%s</xliff:g> րոպե: Այդ ռեժիմում տվյալների միացում պահանջող հավելվածները չեն կարող օգտագործվել: Ցանկանո՞ւմ եք դուրս գալ հիմա:</item>
+      <item quantity="other">Հեռախոսը գտնվելու է Արտակարգ իրավիճակների հետզանգի ռեժիմում <xliff:g id="COUNT_1">%s</xliff:g> րոպե: Այդ ռեժիմում տվյալների միացում պահանջող հավելվածները չեն կարող օգտագործվել: Ցանկանո՞ւմ եք դուրս գալ հիմա:</item>
+    </plurals>
+    <plurals name="alert_dialog_not_avaialble_in_ecm" formatted="false" msgid="8042973425225093895">
+      <item quantity="one">Նշված գործողությունն Արտակարգ իրավիճակների հետզանգի ռեժիմում հասանելի չէ: Հեռախոսը գտնվելու է այս ռեժիմում <xliff:g id="COUNT_1">%s</xliff:g> րոպե: Ցանկանո՞ւմ եք դուրս գալ հիմա:</item>
+      <item quantity="other">Նշված գործողությունն Արտակարգ իրավիճակների հետզանգի ռեժիմում հասանելի չէ: Հեռախոսը գտնվելու է այս ռեժիմում <xliff:g id="COUNT_1">%s</xliff:g> րոպե: Ցանկանո՞ւմ եք դուրս գալ հիմա:</item>
+    </plurals>
     <string name="alert_dialog_in_ecm_call" msgid="1886723687211887104">"Ընտրված գործողությունը մատչելի չէ արտակարգ հետզանգի ռեժիմում գտնվելիս:"</string>
     <string name="progress_dialog_exiting_ecm" msgid="4835734101617817074">"Դուրս է գալիս արտակարգ իրավիճակների հետզանգի ռեժիմից"</string>
     <string name="alert_dialog_yes" msgid="6674268047820703974">"Այո"</string>

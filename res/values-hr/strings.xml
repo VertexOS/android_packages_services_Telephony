@@ -509,18 +509,21 @@
     <string name="phone_entered_ecm_text" msgid="6266424252578731203">"Unijet je način hitnog povratnog poziva"</string>
     <string name="phone_in_ecm_notification_title" msgid="3226896828951687085">"Način hitnog povratnog poziva"</string>
     <string name="phone_in_ecm_call_notification_text" msgid="4611608947314729773">"Onemogućena je podatkovna mreža"</string>
-  <plurals name="phone_in_ecm_notification_time">
-    <item quantity="one" msgid="4866221796252472622">"Nema podatkovne veze <xliff:g id="COUNT">%s</xliff:g> min"</item>
-    <item quantity="other" msgid="3122217344579273583">"Nema podatkovne veze <xliff:g id="COUNT">%s</xliff:g> min"</item>
-  </plurals>
-  <plurals name="alert_dialog_exit_ecm">
-    <item quantity="one" msgid="8060210887681426682">"Telefon će biti u načinu rada hitnog povratnog poziva <xliff:g id="COUNT">%s</xliff:g> min. Za to se vrijeme ne može upotrebljavati nijedna aplikacija kojoj je potrebna podatkovna veza. Želite li izaći sada?"</item>
-    <item quantity="other" msgid="8617116564023933114">"Telefon će biti u načinu rada hitnog povratnog poziva <xliff:g id="COUNT">%s</xliff:g> min. Za to se vrijeme ne može upotrebljavati nijedna aplikacija kojoj je potrebna podatkovna veza. Želite li izaći sada?"</item>
-  </plurals>
-  <plurals name="alert_dialog_not_avaialble_in_ecm">
-    <item quantity="one" msgid="2585506997024726599">"Odabrana radnja nije dostupna u načinu rada hitnog povratnog poziva. Telefon će biti u tom načinu rada <xliff:g id="COUNT">%s</xliff:g> min. Želite li izaći sada?"</item>
-    <item quantity="other" msgid="6115622137771382224">"Odabrana radnja nije dostupna u načinu rada hitnog povratnog poziva. Telefon će biti u tom načinu rada <xliff:g id="COUNT">%s</xliff:g> min. Želite li izaći sada?"</item>
-  </plurals>
+    <plurals name="phone_in_ecm_notification_time" formatted="false" msgid="8308381858502470919">
+      <item quantity="one">Podatkovne veze neće biti <xliff:g id="COUNT_1">%s</xliff:g> minutu</item>
+      <item quantity="few">Podatkovne veze neće biti <xliff:g id="COUNT_1">%s</xliff:g> minute</item>
+      <item quantity="other">Podatkovne veze neće biti <xliff:g id="COUNT_1">%s</xliff:g> minuta</item>
+    </plurals>
+    <plurals name="alert_dialog_exit_ecm" formatted="false" msgid="7179911675595441201">
+      <item quantity="one">Telefon će biti u načinu hitnog povratnog poziva <xliff:g id="COUNT_1">%s</xliff:g> minutu. U tom se načinu ne mogu upotrebljavati aplikacije koje upotrebljavaju podatkovnu vezu. Želite li odmah zatvoriti taj način?</item>
+      <item quantity="few">Telefon će biti u načinu hitnog povratnog poziva <xliff:g id="COUNT_1">%s</xliff:g> minute. U tom se načinu ne mogu upotrebljavati aplikacije koje upotrebljavaju podatkovnu vezu. Želite li odmah zatvoriti taj način?</item>
+      <item quantity="other">Telefon će biti u načinu hitnog povratnog poziva <xliff:g id="COUNT_1">%s</xliff:g> minuta. U tom se načinu ne mogu upotrebljavati aplikacije koje upotrebljavaju podatkovnu vezu. Želite li odmah zatvoriti taj način?</item>
+    </plurals>
+    <plurals name="alert_dialog_not_avaialble_in_ecm" formatted="false" msgid="8042973425225093895">
+      <item quantity="one">Odabrana radnja nije dostupna u načinu hitnog povratnog poziva. Telefon će u tom načinu biti <xliff:g id="COUNT_1">%s</xliff:g> minutu. Želite li odmah zatvoriti taj način?</item>
+      <item quantity="few">Odabrana radnja nije dostupna u načinu hitnog povratnog poziva. Telefon će u tom načinu biti <xliff:g id="COUNT_1">%s</xliff:g> minute. Želite li odmah zatvoriti taj način?</item>
+      <item quantity="other">Odabrana radnja nije dostupna u načinu hitnog povratnog poziva. Telefon će u tom načinu biti <xliff:g id="COUNT_1">%s</xliff:g> minuta. Želite li odmah zatvoriti taj način?</item>
+    </plurals>
     <string name="alert_dialog_in_ecm_call" msgid="1886723687211887104">"Odabrana radnja nije dostupna tijekom hitnog poziva."</string>
     <string name="progress_dialog_exiting_ecm" msgid="4835734101617817074">"Izlaz iz načina hitnog povratnog poziva"</string>
     <string name="alert_dialog_yes" msgid="6674268047820703974">"Da"</string>

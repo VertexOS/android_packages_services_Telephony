@@ -509,18 +509,18 @@
     <string name="phone_entered_ecm_text" msgid="6266424252578731203">"S\'ha entrat al mode de crida de retorn d\'emergència"</string>
     <string name="phone_in_ecm_notification_title" msgid="3226896828951687085">"Mode de crida de retorn d\'emergència"</string>
     <string name="phone_in_ecm_call_notification_text" msgid="4611608947314729773">"Connexió de dades desactivada"</string>
-  <plurals name="phone_in_ecm_notification_time">
-    <item quantity="one" msgid="4866221796252472622">"No hi ha hagut connexió de dades durant <xliff:g id="COUNT">%s</xliff:g> minut"</item>
-    <item quantity="other" msgid="3122217344579273583">"No hi ha hagut connexió de dades durant <xliff:g id="COUNT">%s</xliff:g> minuts"</item>
-  </plurals>
-  <plurals name="alert_dialog_exit_ecm">
-    <item quantity="one" msgid="8060210887681426682">"El telèfon estarà en mode de devolució de trucades d\'emergència durant <xliff:g id="COUNT">%s</xliff:g> minut. Mentre estigui en aquest mode, no es podran utilitzar aplicacions que utilitzin una connexió de dades. En vols sortir ara?"</item>
-    <item quantity="other" msgid="8617116564023933114">"El telèfon estarà en mode de devolució de trucades d\'emergència durant <xliff:g id="COUNT">%s</xliff:g> minuts. Mentre estigui en aquest mode, no es podran utilitzar aplicacions que utilitzin una connexió de dades. En vols sortir ara?"</item>
-  </plurals>
-  <plurals name="alert_dialog_not_avaialble_in_ecm">
-    <item quantity="one" msgid="2585506997024726599">"L\'acció seleccionada no està disponible mentre estiguis en mode de devolució de trucades d\'emergència. El telèfon estarà en aquest mode durant <xliff:g id="COUNT">%s</xliff:g> minuts. En vols sortir ara?"</item>
-    <item quantity="other" msgid="6115622137771382224">"L\'acció seleccionada no està disponible mentre estiguis en mode de devolució de trucades d\'emergència. El telèfon estarà en aquest mode durant <xliff:g id="COUNT">%s</xliff:g> minuts. En vols sortir ara?"</item>
-  </plurals>
+    <plurals name="phone_in_ecm_notification_time" formatted="false" msgid="8308381858502470919">
+      <item quantity="other">No hi ha hagut connexió de dades durant <xliff:g id="COUNT_1">%s</xliff:g> minuts</item>
+      <item quantity="one">No hi ha hagut connexió de dades durant <xliff:g id="COUNT_0">%s</xliff:g> minut</item>
+    </plurals>
+    <plurals name="alert_dialog_exit_ecm" formatted="false" msgid="7179911675595441201">
+      <item quantity="other">El telèfon estarà en mode de devolució de trucades d\'emergència durant <xliff:g id="COUNT_1">%s</xliff:g> minuts. Durant aquest temps, no es podrà utilitzar cap aplicació que faci servir una connexió de dades. Vols sortir ara?</item>
+      <item quantity="one">El telèfon estarà en mode de devolució de trucades d\'emergència durant <xliff:g id="COUNT_0">%s</xliff:g> minut. Durant aquest temps, no es podrà utilitzar cap aplicació que faci servir una connexió de dades. Vols sortir ara?</item>
+    </plurals>
+    <plurals name="alert_dialog_not_avaialble_in_ecm" formatted="false" msgid="8042973425225093895">
+      <item quantity="other">L\'acció seleccionada no està disponible amb el mode de devolució de trucades d\'emergència. El telèfon tindrà aquest mode activat durant <xliff:g id="COUNT_1">%s</xliff:g> minuts. Vols sortir ara?</item>
+      <item quantity="one">L\'acció seleccionada no està disponible amb el mode de devolució de trucades d\'emergència. El telèfon tindrà aquest mode activat durant <xliff:g id="COUNT_0">%s</xliff:g> minut. Vols sortir ara?</item>
+    </plurals>
     <string name="alert_dialog_in_ecm_call" msgid="1886723687211887104">"L\'acció seleccionada no està disponible en una trucada d\'emergència."</string>
     <string name="progress_dialog_exiting_ecm" msgid="4835734101617817074">"S\'està sortint del mode de devolució de trucades d\'emergència"</string>
     <string name="alert_dialog_yes" msgid="6674268047820703974">"Sí"</string>

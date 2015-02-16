@@ -509,18 +509,18 @@
     <string name="phone_entered_ecm_text" msgid="6266424252578731203">"Favqulodda teskari qo‘ng‘iroq rejimi kiritildi"</string>
     <string name="phone_in_ecm_notification_title" msgid="3226896828951687085">"Favqulodda teskari qo‘ng‘iroq rejimi"</string>
     <string name="phone_in_ecm_call_notification_text" msgid="4611608947314729773">"Internetga ulanish o‘chirildi"</string>
-  <plurals name="phone_in_ecm_notification_time">
-    <item quantity="one" msgid="4866221796252472622">"<xliff:g id="COUNT">%s</xliff:g> daqiqa internetga ulanib bo‘lmaydi"</item>
-    <item quantity="other" msgid="3122217344579273583">"<xliff:g id="COUNT">%s</xliff:g> daqiqa internetga ulanib bo‘lmaydi"</item>
-  </plurals>
-  <plurals name="alert_dialog_exit_ecm">
-    <item quantity="one" msgid="8060210887681426682">"Telefon favqulodda teskari qo‘ng‘iroq rejimida <xliff:g id="COUNT">%s</xliff:g> daqiqa qoladi. Ushbu rejim ishlab turganda birorta ham ilova internet ulanishlaridan foydalana olmaydi. Hozir chiqishni xohlaysizmi?"</item>
-    <item quantity="other" msgid="8617116564023933114">"Telefon favqulodda teskari qo‘ng‘iroq rejimida <xliff:g id="COUNT">%s</xliff:g> daqiqa qoladi. Ushbu rejim ishlab turganda birorta ham ilova internet ulanishlaridan foydalana olmaydi. Hozir chiqishni xohlaysizmi?"</item>
-  </plurals>
-  <plurals name="alert_dialog_not_avaialble_in_ecm">
-    <item quantity="one" msgid="2585506997024726599">"Favqulodda teskari qo‘ng‘iroq qilish rejimida tanlangan amallarni bajarib bo‘lmaydi. Telefon ushbu rejimda <xliff:g id="COUNT">%s</xliff:g> daqiqa qoladi. Hozir chiqishni xohlaysizmi?"</item>
-    <item quantity="other" msgid="6115622137771382224">"Favqulodda teskari qo‘ng‘iroq qilish rejimida tanlangan amallarni bajarib bo‘lmaydi. Telefon ushbu rejimda <xliff:g id="COUNT">%s</xliff:g> daqiqa qoladi. Hozir chiqishni xohlaysizmi?"</item>
-  </plurals>
+    <plurals name="phone_in_ecm_notification_time" formatted="false" msgid="8308381858502470919">
+      <item quantity="other"><xliff:g id="COUNT_1">%s</xliff:g> daqiqa davomida internetga ulanib bo‘lmaydi</item>
+      <item quantity="one"><xliff:g id="COUNT_0">%s</xliff:g> daqiqa davomida internetga ulanib bo‘lmaydi</item>
+    </plurals>
+    <plurals name="alert_dialog_exit_ecm" formatted="false" msgid="7179911675595441201">
+      <item quantity="other">Telefon <xliff:g id="COUNT_1">%s</xliff:g> daqiqa davomida Favqulodda teskari qo‘ng‘iroq rejimida bo‘ladi. Ushbu rejimda internet bilan ishlaydigan hech qanday ilovadan foydalanib bo‘lmaydi. Bu rejimdan chiqishni xohlaysizmi?</item>
+      <item quantity="one">Telefon <xliff:g id="COUNT_0">%s</xliff:g> daqiqa davomida Favqulodda teskari qo‘ng‘iroq rejimida bo‘ladi. Ushbu rejimda internet bilan ishlaydigan hech qanday ilovadan foydalanib bo‘lmaydi. Bu rejimdan chiqishni xohlaysizmi?</item>
+    </plurals>
+    <plurals name="alert_dialog_not_avaialble_in_ecm" formatted="false" msgid="8042973425225093895">
+      <item quantity="other">Tanlangan amaldan Favqulodda teskari qo‘ng‘iroq rejimida foydalanib bo‘lmaydi. Telefon <xliff:g id="COUNT_1">%s</xliff:g> daqiqa davomida shu rejimda bo‘ladi. Bu rejimdan chiqishni xohlaysizmi?</item>
+      <item quantity="one">Tanlangan amaldan Favqulodda teskari qo‘ng‘iroq rejimida foydalanib bo‘lmaydi. Telefon <xliff:g id="COUNT_0">%s</xliff:g> daqiqa davomida shu rejimda bo‘ladi. Bu rejimdan chiqishni xohlaysizmi?</item>
+    </plurals>
     <string name="alert_dialog_in_ecm_call" msgid="1886723687211887104">"Favqulodda qo‘ng‘rioq rejimida tanlangan amalni bajarib bo‘lmaydi."</string>
     <string name="progress_dialog_exiting_ecm" msgid="4835734101617817074">"Favqulodda teskari qo‘ng‘iroq rejimidan chiqilmoqda"</string>
     <string name="alert_dialog_yes" msgid="6674268047820703974">"Ha"</string>

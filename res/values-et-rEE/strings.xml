@@ -509,18 +509,18 @@
     <string name="phone_entered_ecm_text" msgid="6266424252578731203">"Sisenetud hädaolukorra tagasihelistusrežiimi"</string>
     <string name="phone_in_ecm_notification_title" msgid="3226896828951687085">"Hädaolukorra tagasihelistusrežiim"</string>
     <string name="phone_in_ecm_call_notification_text" msgid="4611608947314729773">"Andmeühendus keelatud"</string>
-  <plurals name="phone_in_ecm_notification_time">
-    <item quantity="one" msgid="4866221796252472622">"Andmeühendus puudub <xliff:g id="COUNT">%s</xliff:g> minutiks"</item>
-    <item quantity="other" msgid="3122217344579273583">"Andmeühendus puudub <xliff:g id="COUNT">%s</xliff:g> minutiks"</item>
-  </plurals>
-  <plurals name="alert_dialog_exit_ecm">
-    <item quantity="one" msgid="8060210887681426682">"Telefon on hädaolukorra tagasihelistusrežiimis <xliff:g id="COUNT">%s</xliff:g> minut. Selles režiimis ei saa kasutada ühtegi andmesideühendusel põhinevat rakendust. Kas soovite kohe väljuda?"</item>
-    <item quantity="other" msgid="8617116564023933114">"Telefon on hädaolukorra tagasihelistusrežiimis <xliff:g id="COUNT">%s</xliff:g> minutit. Selles režiimis ei saa kasutada ühtegi andmesideühendust kasutavat rakendust. Kas soovite kohe väljuda?"</item>
-  </plurals>
-  <plurals name="alert_dialog_not_avaialble_in_ecm">
-    <item quantity="one" msgid="2585506997024726599">"Valitud toiming ei ole hädaolukorra tagasihelistusrežiimis saadaval. Telefon on selles režiimis <xliff:g id="COUNT">%s</xliff:g> minut. Kas soovite kohe väljuda?"</item>
-    <item quantity="other" msgid="6115622137771382224">"Valitud toiming pole hädaolukorra tagasihelistusrežiimis kättesaadav. Telefon on selles režiimis <xliff:g id="COUNT">%s</xliff:g> minut. Kas soovite kohe väljuda?"</item>
-  </plurals>
+    <plurals name="phone_in_ecm_notification_time" formatted="false" msgid="8308381858502470919">
+      <item quantity="other">Andmesideühendus puudub <xliff:g id="COUNT_1">%s</xliff:g> minutit</item>
+      <item quantity="one">Andmesideühendus puudub <xliff:g id="COUNT_0">%s</xliff:g> minuti</item>
+    </plurals>
+    <plurals name="alert_dialog_exit_ecm" formatted="false" msgid="7179911675595441201">
+      <item quantity="other">Telefon on <xliff:g id="COUNT_1">%s</xliff:g> minutit hädaabikõne tagasihelistamise režiimis. Selles režiimis olles ei saa kasutada ühtegi rakendust, mis kasutab andmesideühendust. Kas soovite kohe väljuda?</item>
+      <item quantity="one">Telefon on <xliff:g id="COUNT_0">%s</xliff:g> minuti hädaabikõne tagasihelistamise režiimis. Selles režiimis olles ei saa kasutada ühtegi rakendust, mis kasutab andmesideühendust. Kas soovite kohe väljuda?</item>
+    </plurals>
+    <plurals name="alert_dialog_not_avaialble_in_ecm" formatted="false" msgid="8042973425225093895">
+      <item quantity="other">Valitud toiming pole hädaabikõne tagasihelistamise režiimis saadaval. Telefon on selles režiimis <xliff:g id="COUNT_1">%s</xliff:g> minutit. Kas soovite kohe väljuda?</item>
+      <item quantity="one">Valitud toiming pole hädaabikõne tagasihelistamise režiimis saadaval. Telefon on selles režiimis <xliff:g id="COUNT_0">%s</xliff:g> minuti. Kas soovite kohe väljuda?</item>
+    </plurals>
     <string name="alert_dialog_in_ecm_call" msgid="1886723687211887104">"Valitud toiming ei ole hädaabikõne ajal saadaval."</string>
     <string name="progress_dialog_exiting_ecm" msgid="4835734101617817074">"Väljumine hädaolukorra tagasihelistusrežiimist"</string>
     <string name="alert_dialog_yes" msgid="6674268047820703974">"Jah"</string>

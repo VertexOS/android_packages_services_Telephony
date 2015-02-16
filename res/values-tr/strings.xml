@@ -509,18 +509,18 @@
     <string name="phone_entered_ecm_text" msgid="6266424252578731203">"Acil Geri Arama Moduna Girildi"</string>
     <string name="phone_in_ecm_notification_title" msgid="3226896828951687085">"Acil Geri Arama Modu"</string>
     <string name="phone_in_ecm_call_notification_text" msgid="4611608947314729773">"Veri bağlantısı devre dışı bırakıldı"</string>
-  <plurals name="phone_in_ecm_notification_time">
-    <item quantity="one" msgid="4866221796252472622">"<xliff:g id="COUNT">%s</xliff:g> dakika boyunca veri bağlantısı yok"</item>
-    <item quantity="other" msgid="3122217344579273583">"<xliff:g id="COUNT">%s</xliff:g> dakika boyunca veri bağlantısı yok"</item>
-  </plurals>
-  <plurals name="alert_dialog_exit_ecm">
-    <item quantity="one" msgid="8060210887681426682">"Telefon <xliff:g id="COUNT">%s</xliff:g> dakika boyunca Acil Geri Arama modunda olacaktır. Bu moddayken, veri bağlantısı kullanan uygulamalar kullanılamaz. Şimdi çıkmak istiyor musunuz?"</item>
-    <item quantity="other" msgid="8617116564023933114">"Telefon <xliff:g id="COUNT">%s</xliff:g> dakika boyunca Acil Geri Arama modunda olacaktır. Bu moddayken, veri bağlantısı kullanan uygulamalar kullanılamaz. Şimdi çıkmak istiyor musunuz?"</item>
-  </plurals>
-  <plurals name="alert_dialog_not_avaialble_in_ecm">
-    <item quantity="one" msgid="2585506997024726599">"Seçilen işlem Acil Geri Arama modunda kullanılamaz. Telefon <xliff:g id="COUNT">%s</xliff:g> dakika boyunca bu modda kalacak. Şimdi çıkmak istiyor musunuz?"</item>
-    <item quantity="other" msgid="6115622137771382224">"Seçilen işlem Acil Geri Arama modunda kullanılamaz. Telefon <xliff:g id="COUNT">%s</xliff:g> dakika boyunca bu modda kalacak. Şimdi çıkmak istiyor musunuz?"</item>
-  </plurals>
+    <plurals name="phone_in_ecm_notification_time" formatted="false" msgid="8308381858502470919">
+      <item quantity="other"><xliff:g id="COUNT_1">%s</xliff:g> dakika boyunca veri bağlantısı yok</item>
+      <item quantity="one"><xliff:g id="COUNT_0">%s</xliff:g> dakika boyunca veri bağlantısı yok</item>
+    </plurals>
+    <plurals name="alert_dialog_exit_ecm" formatted="false" msgid="7179911675595441201">
+      <item quantity="other">Telefon <xliff:g id="COUNT_1">%s</xliff:g> dakika boyunca bu modda olacak. Bu moddayken veri bağlantısı kullanan hiçbir uygulama kullanılamaz. Şimdi çıkmak istiyor musunuz?</item>
+      <item quantity="one">Telefon <xliff:g id="COUNT_0">%s</xliff:g> dakika boyunca bu modda olacak. Bu moddayken veri bağlantısı kullanan hiçbir uygulama kullanılamaz. Şimdi çıkmak istiyor musunuz?</item>
+    </plurals>
+    <plurals name="alert_dialog_not_avaialble_in_ecm" formatted="false" msgid="8042973425225093895">
+      <item quantity="other">Seçilen işlem Acil Durum Çağrısı modunda kullanılamaz. Telefon <xliff:g id="COUNT_1">%s</xliff:g> dakika boyunca bu modda olacak. Şimdi çıkmak istiyor musunuz?</item>
+      <item quantity="one">Seçilen işlem Acil Durum Çağrısı modunda kullanılamaz. Telefon <xliff:g id="COUNT_0">%s</xliff:g> dakika boyunca bu modda olacak. Şimdi çıkmak istiyor musunuz?</item>
+    </plurals>
     <string name="alert_dialog_in_ecm_call" msgid="1886723687211887104">"Seçilen işlem, acil durum çağrısında kullanılamaz."</string>
     <string name="progress_dialog_exiting_ecm" msgid="4835734101617817074">"Acil Geri Arama Modundan çıkılıyor"</string>
     <string name="alert_dialog_yes" msgid="6674268047820703974">"Evet"</string>

@@ -509,18 +509,24 @@
     <string name="phone_entered_ecm_text" msgid="6266424252578731203">"Vnesen način za povratni klic v sili"</string>
     <string name="phone_in_ecm_notification_title" msgid="3226896828951687085">"Način povratnega klica v sili"</string>
     <string name="phone_in_ecm_call_notification_text" msgid="4611608947314729773">"Podatkovno povezovanje onemogočeno"</string>
-  <plurals name="phone_in_ecm_notification_time">
-    <item quantity="one" msgid="4866221796252472622">"Podatkovne povezave ni <xliff:g id="COUNT">%s</xliff:g> minut"</item>
-    <item quantity="other" msgid="3122217344579273583">"Podatkovne povezave ni <xliff:g id="COUNT">%s</xliff:g> minut"</item>
-  </plurals>
-  <plurals name="alert_dialog_exit_ecm">
-    <item quantity="one" msgid="8060210887681426682">"Telefon bo v načinu za povratni klic v sili <xliff:g id="COUNT">%s</xliff:g> minuto. V tem načinu ni mogoče uporabljati programov, ki uporabljajo podatkovno povezavo. Ali želite zapreti okno?"</item>
-    <item quantity="other" msgid="8617116564023933114">"Telefon bo v načinu za povratni klic v sili <xliff:g id="COUNT">%s</xliff:g> minut. V tem načinu ni mogoče uporabljati programov, ki uporabljajo podatkovno povezavo. Ali želite zapreti okno?"</item>
-  </plurals>
-  <plurals name="alert_dialog_not_avaialble_in_ecm">
-    <item quantity="one" msgid="2585506997024726599">"Izbrano dejanje ni na voljo, kadar je aktiven način za povratni klic v sili. Telefon bo v tem načinu <xliff:g id="COUNT">%s</xliff:g> minuto. Ali želite zapustiti program?"</item>
-    <item quantity="other" msgid="6115622137771382224">"Izbrano dejanje ni na voljo, kadar je aktiven način za povratni klic v sili. Telefon bo v tem načinu <xliff:g id="COUNT">%s</xliff:g> minut. Ali želite zapustiti program?"</item>
-  </plurals>
+    <plurals name="phone_in_ecm_notification_time" formatted="false" msgid="8308381858502470919">
+      <item quantity="one">Podatkovne povezave ni <xliff:g id="COUNT_1">%s</xliff:g> minuto</item>
+      <item quantity="two">Podatkovne povezave ni <xliff:g id="COUNT_1">%s</xliff:g> minuti</item>
+      <item quantity="few">Podatkovne povezave ni <xliff:g id="COUNT_1">%s</xliff:g> minute</item>
+      <item quantity="other">Podatkovne povezave ni <xliff:g id="COUNT_1">%s</xliff:g> minut</item>
+    </plurals>
+    <plurals name="alert_dialog_exit_ecm" formatted="false" msgid="7179911675595441201">
+      <item quantity="one">Telefon bo v načinu povratnega klica v sili <xliff:g id="COUNT_1">%s</xliff:g> minuto. V tem načinu ni mogoče uporabljati aplikacij, ki uporabljajo podatkovno povezavo. Ali želite zapreti?</item>
+      <item quantity="two">Telefon bo v načinu povratnega klica v sili <xliff:g id="COUNT_1">%s</xliff:g> minuti. V tem načinu ni mogoče uporabljati aplikacij, ki uporabljajo podatkovno povezavo. Ali želite zapreti?</item>
+      <item quantity="few">Telefon bo v načinu povratnega klica v sili <xliff:g id="COUNT_1">%s</xliff:g> minute. V tem načinu ni mogoče uporabljati aplikacij, ki uporabljajo podatkovno povezavo. Ali želite zapreti?</item>
+      <item quantity="other">Telefon bo v načinu povratnega klica v sili <xliff:g id="COUNT_1">%s</xliff:g> minut. V tem načinu ni mogoče uporabljati aplikacij, ki uporabljajo podatkovno povezavo. Ali želite zapreti?</item>
+    </plurals>
+    <plurals name="alert_dialog_not_avaialble_in_ecm" formatted="false" msgid="8042973425225093895">
+      <item quantity="one">Izbrano dejanje ni na voljo v načinu povratnega klica v sili. Telefon bo v tem načinu <xliff:g id="COUNT_1">%s</xliff:g> minuto. Ali želite zapreti?</item>
+      <item quantity="two">Izbrano dejanje ni na voljo v načinu povratnega klica v sili. Telefon bo v tem načinu <xliff:g id="COUNT_1">%s</xliff:g> minuti. Ali želite zapreti?</item>
+      <item quantity="few">Izbrano dejanje ni na voljo v načinu povratnega klica v sili. Telefon bo v tem načinu <xliff:g id="COUNT_1">%s</xliff:g> minute. Ali želite zapreti?</item>
+      <item quantity="other">Izbrano dejanje ni na voljo v načinu povratnega klica v sili. Telefon bo v tem načinu <xliff:g id="COUNT_1">%s</xliff:g> minut. Ali želite zapreti?</item>
+    </plurals>
     <string name="alert_dialog_in_ecm_call" msgid="1886723687211887104">"Izbrano dejanje ni na voljo med klicanjem v sili."</string>
     <string name="progress_dialog_exiting_ecm" msgid="4835734101617817074">"Izhod iz načina za povratni klic v sili"</string>
     <string name="alert_dialog_yes" msgid="6674268047820703974">"Da"</string>

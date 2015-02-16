@@ -509,18 +509,18 @@
     <string name="phone_entered_ecm_text" msgid="6266424252578731203">"បាន​បញ្ចូល​របៀប​ការ​ហៅ​ទៅ​វិញ​ពេល​មាន​អាសន្ន"</string>
     <string name="phone_in_ecm_notification_title" msgid="3226896828951687085">"របៀប​ហៅ​ទៅ​វិញ​ពេល​មាន​អាសន្ន"</string>
     <string name="phone_in_ecm_call_notification_text" msgid="4611608947314729773">"បាន​បិទ​ការ​តភ្ជាប់​ទិន្នន័យ"</string>
-  <plurals name="phone_in_ecm_notification_time">
-    <item quantity="one" msgid="4866221796252472622">"គ្មាន​ការ​តភ្ជាប់​ទិន្នន័យ​រយៈ​ពេល <xliff:g id="COUNT">%s</xliff:g> នាទី"</item>
-    <item quantity="other" msgid="3122217344579273583">"ការ​តភ្ជាប់​គ្មាន​ទិន្នន័យ​សម្រាប់ <xliff:g id="COUNT">%s</xliff:g> នាទី"</item>
-  </plurals>
-  <plurals name="alert_dialog_exit_ecm">
-    <item quantity="one" msgid="8060210887681426682">"ទូរស័ព្ទ​​នឹង​នៅ​ក្នុង​របៀប​ហៅ​ទៅ​វិញ​សម្រាប់​តម្រូវ​ការ​បន្ទាន់ <xliff:g id="COUNT">%s</xliff:g> នាទី។ ខណៈ​ពេល​ដែល​នៅ​ក្នុង​របៀប​នេះ​គ្មាន​កម្មវិធី​ដែល​ប្រើ​ការ​តភ្ជាប់​ទិន្នន័យ​ឡើយ។ តើ​អ្នក​ចង់​ចាកចេញ​ឥឡូវ​នេះ​ឬ?​"</item>
-    <item quantity="other" msgid="8617116564023933114">"ទូរស័ព្ទ​នឹង​នៅ​ក្នុង​របៀប​ហៅ​ទៅ​វិញ​សម្រាប់​ពេល​មាន​អាសន្ន <xliff:g id="COUNT">%s</xliff:g> នាទី។ ខណៈ​ពេល​ដែល​នៅ​ក្នុង​របៀប​នេះ​គ្មាន​កម្មវិធី​​ដែល​​បាន​ប្រើ​ការ​តភ្ជាប់​ទិន្នន័យ​ឡើយ។ តើ​អ្នក​ចង់​ចាកចេញ​ឥឡូវ​នេះ​ឬ?"</item>
-  </plurals>
-  <plurals name="alert_dialog_not_avaialble_in_ecm">
-    <item quantity="one" msgid="2585506997024726599">"សកម្មភាព​ដែល​បាន​ជ្រើស​គឺ​មិន​អាច​ធ្វើ​បាន​ខណៈ​ពេល​ដែល​នៅ​ក្នុង​របៀប​ហៅ​ទៅ​វិញ​សម្រាប់​ពេល​មាន​អាសន្ន។ ទូរស័ព្ទ​នឹង​នៅ​ក្នុង​របៀប <xliff:g id="COUNT">%s</xliff:g> នាទី។ តើ​អ្នក​ចង់​ចាកចេញ​ឥឡូវ​នេះ​ឬ?"</item>
-    <item quantity="other" msgid="6115622137771382224">"សកម្មភាព​ដែល​បាន​ជ្រើស​គឺ​មិន​អាច​ធ្វើ​បាន​ខណៈ​ពេល​ដែល​នៅ​ក្នុង​របៀប​ហៅ​ទៅ​វិញ​សម្រាប់​​ពេល​មាន​អាសន្ន។ ទូរស័ព្ទ​នឹង​នៅ​ក្នុង​របៀប​នេះ <xliff:g id="COUNT">%s</xliff:g> នាទី។ តើ​អ្នក​ចង់​ចាកចេញ​ឥឡូវ​នេះ​ឬ?"</item>
-  </plurals>
+    <plurals name="phone_in_ecm_notification_time" formatted="false" msgid="8308381858502470919">
+      <item quantity="other">គ្មានការភ្ជាប់ទិន្នន័យរយៈពេល <xliff:g id="COUNT_1">%s</xliff:g> នាទី</item>
+      <item quantity="one">គ្មានការភ្ជាប់ទិន្នន័យរយៈពេល <xliff:g id="COUNT_0">%s</xliff:g> នាទី</item>
+    </plurals>
+    <plurals name="alert_dialog_exit_ecm" formatted="false" msgid="7179911675595441201">
+      <item quantity="other">ទូរស័ព្ទនេះនឹងស្ថិតក្នុងរបៀប ហៅត្រលប់ពេលអាសន្ន រយៈពេល <xliff:g id="COUNT_1">%s</xliff:g> នាទី។ ខណៈពេលស្ថិតក្នុងរបៀបនេះ មិនមានកម្មវិធីដែលប្រើការភ្ជាប់ទិន្នន័យណា អាចប្រើបានបានឡើយ។ តើអ្នកចង់ចាកចេញឥឡូវនេះទេ?</item>
+      <item quantity="one">ទូរស័ព្ទនេះនឹងស្ថិតក្នុងរបៀប ហៅត្រលប់ពេលអាសន្ន រយៈពេល <xliff:g id="COUNT_0">%s</xliff:g> នាទី។ ខណៈពេលស្ថិតក្នុងរបៀបនេះ មិនមានកម្មវិធីដែលប្រើការភ្ជាប់ទិន្នន័យណា អាចប្រើបានបានឡើយ។ តើអ្នកចង់ចាកចេញឥឡូវនេះទេ?</item>
+    </plurals>
+    <plurals name="alert_dialog_not_avaialble_in_ecm" formatted="false" msgid="8042973425225093895">
+      <item quantity="other">សកម្មភាពដែលបានជ្រើសមិនមានទេ ខណៈពេលដែលស្ថិតក្នុងរបៀប ហៅត្រលប់ពេលអាសន្ន។ ទូរស័ព្ទនេះនឹងស្ថិតក្នុងរបៀបនេះរយៈពេល <xliff:g id="COUNT_1">%s</xliff:g> នាទី។ តើអ្នកចង់ចាកចេញឥឡូវនេះទេ?</item>
+      <item quantity="one">សកម្មភាពដែលបានជ្រើសមិនមានទេ ខណៈពេលដែលស្ថិតក្នុងរបៀប ហៅត្រលប់ពេលអាសន្ន។ ទូរស័ព្ទនេះនឹងស្ថិតក្នុងរបៀបនេះរយៈពេល <xliff:g id="COUNT_0">%s</xliff:g> នាទី។ តើអ្នកចង់ចាកចេញឥឡូវនេះទេ?</item>
+    </plurals>
     <string name="alert_dialog_in_ecm_call" msgid="1886723687211887104">"សកម្មភាព​ដែល​បាន​ជ្រើស​គឺ​មិន​អាច​រក​បាន​នៅ​ក្នុង​ខណៈ​ពេល​ដែល​ការ​ហៅ​អាសន្ន​មួយ​។"</string>
     <string name="progress_dialog_exiting_ecm" msgid="4835734101617817074">"ចេញ​ពី​របៀប​ហៅ​ទៅ​វិញ​​​ពេល​មាន​អាសន្ន"</string>
     <string name="alert_dialog_yes" msgid="6674268047820703974">"បាទ/ចាស"</string>

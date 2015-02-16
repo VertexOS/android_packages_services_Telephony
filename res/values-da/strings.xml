@@ -515,18 +515,18 @@
     <string name="phone_entered_ecm_text" msgid="6266424252578731203">"Gik i nødtilbagekaldstilstand"</string>
     <string name="phone_in_ecm_notification_title" msgid="3226896828951687085">"Nødtilbagekaldstilstand"</string>
     <string name="phone_in_ecm_call_notification_text" msgid="4611608947314729773">"Dataforbindelsen er deaktiveret"</string>
-  <plurals name="phone_in_ecm_notification_time">
-    <item quantity="one" msgid="4866221796252472622">"Ingen dataforbindelse i <xliff:g id="COUNT">%s</xliff:g> minut"</item>
-    <item quantity="other" msgid="3122217344579273583">"Ingen dataforbindelse i <xliff:g id="COUNT">%s</xliff:g> minutter"</item>
-  </plurals>
-  <plurals name="alert_dialog_exit_ecm">
-    <item quantity="one" msgid="8060210887681426682">"Telefonen vil være i nødtilbagekaldstilstand i <xliff:g id="COUNT">%s</xliff:g> minut. Mens du er i denne tilstand kan ingen apps, der bruger en dataforbindelse, anvendes. Vil du afslutte nu?"</item>
-    <item quantity="other" msgid="8617116564023933114">"Telefonen vil være i nødtilbagekaldstilstand i <xliff:g id="COUNT">%s</xliff:g> minutter. Mens du er i denne tilstand kan ingen applikationer, der bruger en dataforbindelse, anvendes. Vil du afslutte nu?"</item>
-  </plurals>
-  <plurals name="alert_dialog_not_avaialble_in_ecm">
-    <item quantity="one" msgid="2585506997024726599">"Den valgte handling er ikke tilgængelig i nødtilbagekaldstilstand. Telefonen vil være i denne tilstand i <xliff:g id="COUNT">%s</xliff:g> minut. Vil du afslutte nu?"</item>
-    <item quantity="other" msgid="6115622137771382224">"Den valgte handling er ikke tilgængelig i nødtilbagekaldstilstand. Telefonen vil være i denne tilstand i <xliff:g id="COUNT">%s</xliff:g> minutter. Vil du afslutte nu?"</item>
-  </plurals>
+    <plurals name="phone_in_ecm_notification_time" formatted="false" msgid="8308381858502470919">
+      <item quantity="one">Ingen dataforbindelse i <xliff:g id="COUNT_1">%s</xliff:g> minutter</item>
+      <item quantity="other">Ingen dataforbindelse i <xliff:g id="COUNT_1">%s</xliff:g> minutter</item>
+    </plurals>
+    <plurals name="alert_dialog_exit_ecm" formatted="false" msgid="7179911675595441201">
+      <item quantity="one">Telefonen vil være i tilstanden Nødopkald i <xliff:g id="COUNT_1">%s</xliff:g> minutter. Mens denne tilstand er aktiveret, kan du ikke bruge nogen applikationer, der kræver dataforbindelse. Vil du afslutte denne tilstand nu?</item>
+      <item quantity="other">Telefonen vil være i tilstanden Nødopkald i <xliff:g id="COUNT_1">%s</xliff:g> minutter. Mens denne tilstand er aktiveret, kan du ikke bruge nogen applikationer, der kræver dataforbindelse. Vil du afslutte denne tilstand nu?</item>
+    </plurals>
+    <plurals name="alert_dialog_not_avaialble_in_ecm" formatted="false" msgid="8042973425225093895">
+      <item quantity="one">Den valgte handling er ikke tilgængelig i tilstanden Nødopkald. Telefonen vil være i denne tilstand i <xliff:g id="COUNT_1">%s</xliff:g> minutter. Vil du afslutte denne tilstand nu?</item>
+      <item quantity="other">Den valgte handling er ikke tilgængelig i tilstanden Nødopkald. Telefonen vil være i denne tilstand i <xliff:g id="COUNT_1">%s</xliff:g> minutter. Vil du afslutte denne tilstand nu?</item>
+    </plurals>
     <string name="alert_dialog_in_ecm_call" msgid="1886723687211887104">"Den valgte handling er ikke tilgængelig ved nødopkald"</string>
     <string name="progress_dialog_exiting_ecm" msgid="4835734101617817074">"Eksisterende nødtilbagekaldstilstand"</string>
     <string name="alert_dialog_yes" msgid="6674268047820703974">"Ja"</string>

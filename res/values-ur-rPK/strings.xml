@@ -509,18 +509,18 @@
     <string name="phone_entered_ecm_text" msgid="6266424252578731203">"ہنگامی کال بیک طرز میں داخل ہو گیا"</string>
     <string name="phone_in_ecm_notification_title" msgid="3226896828951687085">"ہنگامی کال بیک طرز"</string>
     <string name="phone_in_ecm_call_notification_text" msgid="4611608947314729773">"ڈیٹا کنکشن غیر فعال ہوگیا"</string>
-  <plurals name="phone_in_ecm_notification_time">
-    <item quantity="one" msgid="4866221796252472622">"<xliff:g id="COUNT">%s</xliff:g> منٹ تک کوئی ڈیٹا کنکشن نہیں ہے"</item>
-    <item quantity="other" msgid="3122217344579273583">"<xliff:g id="COUNT">%s</xliff:g> منٹوں تک کوئی ڈیٹا کنکشن نہیں ہے"</item>
-  </plurals>
-  <plurals name="alert_dialog_exit_ecm">
-    <item quantity="one" msgid="8060210887681426682">"فون <xliff:g id="COUNT">%s</xliff:g> منٹ تک ہنگامی کال بیک وضع میں رہے گا۔ اس وضع میں رہتے ہوئے ڈیٹا کنکشن کا استعمال کرنے والی کوئی بھی ایپس استعمال نہیں ہوسکتی ہیں۔ کیا آپ ابھی خارج ہونا چاہتے ہیں؟"</item>
-    <item quantity="other" msgid="8617116564023933114">"فون <xliff:g id="COUNT">%s</xliff:g> منٹ تک ہنگامی کال بیک وضع میں رہے گا۔ اس وضع میں رہتے ہوئے ڈیٹا کنکشن کا استعمال کرنے والی کوئی بھی ایپلیکیشنز استعمال نہیں ہوسکتی ہیں۔ کیا آپ ابھی خارج ہونا چاہتے ہیں؟"</item>
-  </plurals>
-  <plurals name="alert_dialog_not_avaialble_in_ecm">
-    <item quantity="one" msgid="2585506997024726599">"منتخب کردہ کارروائی ہنگامی کال بیک طرز میں دستیاب نہیں ہے۔ فون <xliff:g id="COUNT">%s</xliff:g> منٹ تک اس طرز میں رہے گا۔ کیا آپ ابھی خارج ہونا چاہتے ہیں؟"</item>
-    <item quantity="other" msgid="6115622137771382224">"منتخب کردہ کارروائی ہنگامی کال بیک طرز میں دستیاب نہیں ہے۔ فون <xliff:g id="COUNT">%s</xliff:g> منٹوں تک اس طرز میں رہے گا۔ کیا آپ ابھی خارج ہونا چاہتے ہیں؟"</item>
-  </plurals>
+    <plurals name="phone_in_ecm_notification_time" formatted="false" msgid="8308381858502470919">
+      <item quantity="other"><xliff:g id="COUNT_1">%s</xliff:g> منٹ تک کوئی ڈیٹا کنکشن نہیں ہے</item>
+      <item quantity="one"><xliff:g id="COUNT_0">%s</xliff:g> منٹ تک کوئی ڈیٹا کنکشن نہیں ہے</item>
+    </plurals>
+    <plurals name="alert_dialog_exit_ecm" formatted="false" msgid="7179911675595441201">
+      <item quantity="other">فون <xliff:g id="COUNT_1">%s</xliff:g> منٹ تک ہنگامی کال بیک وضع میں رہے گا۔ اس وضع میں رہتے ہوئے ڈیٹا کنکشن کا استعمال کرنے والی کسی بھی ایپلیکیشنز کا استعمال نہیں کیا جا سکتا ہے۔ کیا آپ ابھی باہر نکلنا چاہتے ہیں؟</item>
+      <item quantity="one">فون <xliff:g id="COUNT_0">%s</xliff:g> منٹ تک ہنگامی کال بیک وضع میں رہے گا۔ اس وضع میں رہتے ہوئے ڈیٹا کنکشن کا استعمال کرنے والی کسی بھی ایپس کا استعمال نہیں کیا جا سکتا ہے۔ کیا آپ ابھی باہر نکلنا چاہتے ہیں؟</item>
+    </plurals>
+    <plurals name="alert_dialog_not_avaialble_in_ecm" formatted="false" msgid="8042973425225093895">
+      <item quantity="other">منتخب کردہ کارروائی ایک ہنگامی کال بیک وضع میں رہتے ہوئے دستیاب نہیں ہے۔ فون <xliff:g id="COUNT_1">%s</xliff:g> منٹ تک اس وضع میں رہے گا۔ کیا آپ ابھی باہر نکلنا چاہتے ہیں؟</item>
+      <item quantity="one">منتخب کردہ کارروائی ایک ہنگامی کال بیک وضع میں رہتے ہوئے دستیاب نہیں ہے۔ فون <xliff:g id="COUNT_0">%s</xliff:g> منٹ تک اس وضع میں رہے گا۔ کیا آپ ابھی باہر نکلنا چاہتے ہیں؟</item>
+    </plurals>
     <string name="alert_dialog_in_ecm_call" msgid="1886723687211887104">"منتخب کردہ کارروائی ایک ہنگامی کال میں رہتے ہوئے دستیاب نہیں ہے۔"</string>
     <string name="progress_dialog_exiting_ecm" msgid="4835734101617817074">"موجودہ ہنگامی کال بیک طرز"</string>
     <string name="alert_dialog_yes" msgid="6674268047820703974">"ہاں"</string>

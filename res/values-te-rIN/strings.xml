@@ -509,18 +509,18 @@
     <string name="phone_entered_ecm_text" msgid="6266424252578731203">"అత్యవసర కాల్‌బ్యాక్ మోడ్‌లోకి ప్రవేశించింది"</string>
     <string name="phone_in_ecm_notification_title" msgid="3226896828951687085">"అత్యవసర కాల్‌బ్యాక్ మోడ్"</string>
     <string name="phone_in_ecm_call_notification_text" msgid="4611608947314729773">"డేటా కనెక్షన్ నిలిపివేయబడింది"</string>
-  <plurals name="phone_in_ecm_notification_time">
-    <item quantity="one" msgid="4866221796252472622">"<xliff:g id="COUNT">%s</xliff:g> నిమిషం పాటు డేటా కనెక్షన్ ఉండదు"</item>
-    <item quantity="other" msgid="3122217344579273583">"<xliff:g id="COUNT">%s</xliff:g> నిమిషాల పాటు డేటా కనెక్షన్ ఉండదు"</item>
-  </plurals>
-  <plurals name="alert_dialog_exit_ecm">
-    <item quantity="one" msgid="8060210887681426682">"ఫోన్ <xliff:g id="COUNT">%s</xliff:g> నిమిషం పాటు అత్యవసర కాల్‌బ్యాక్ మోడ్‌లో ఉంటుంది. ఈ మోడ్‌లో ఉన్నప్పుడు డేటా కనెక్షన్‌ను ఉపయోగించే అనువర్తనాలు ఏవీ ఉపయోగించబడవు. మీరు ఇప్పుడు నిష్క్రమించాలనుకుంటున్నారా?"</item>
-    <item quantity="other" msgid="8617116564023933114">"ఫోన్ <xliff:g id="COUNT">%s</xliff:g> నిమిషాల పాటు అత్యవసర కాల్‌బ్యాక్ మోడ్‌లో ఉంటుంది. ఈ మోడ్‌లో ఉన్నప్పుడు డేటా కనెక్షన్‌ను ఉపయోగించే అనువర్తనాలు ఏవీ ఉపయోగించబడవు. మీరు ఇప్పుడు నిష్క్రమించాలనుకుంటున్నారా?"</item>
-  </plurals>
-  <plurals name="alert_dialog_not_avaialble_in_ecm">
-    <item quantity="one" msgid="2585506997024726599">"ఎంచుకున్న చర్య అత్యవసర కాల్‌బ్యాక్ మోడ్‌లో ఉన్నప్పుడు అందుబాటులో ఉండదు. ఫోన్ ఈ మోడ్‌లో <xliff:g id="COUNT">%s</xliff:g> నిమిషం పాటు ఉంటుంది. మీరు ఇప్పుడు నిష్క్రమించాలనుకుంటున్నారా?"</item>
-    <item quantity="other" msgid="6115622137771382224">"ఎంచుకున్న చర్య అత్యవసర కాల్‌బ్యాక్ మోడ్‌లో ఉన్నప్పుడు అందుబాటులో ఉండదు. ఫోన్ ఈ మోడ్‌లో <xliff:g id="COUNT">%s</xliff:g> నిమిషాల పాటు ఉంటుంది. మీరు ఇప్పుడు నిష్క్రమించాలనుకుంటున్నారా?"</item>
-  </plurals>
+    <plurals name="phone_in_ecm_notification_time" formatted="false" msgid="8308381858502470919">
+      <item quantity="other"><xliff:g id="COUNT_1">%s</xliff:g> నిమిషాల పాటు డేటా కనెక్షన్ ఉండదు</item>
+      <item quantity="one"><xliff:g id="COUNT_0">%s</xliff:g> నిమిషం పాటు డేటా కనెక్షన్ ఉండదు</item>
+    </plurals>
+    <plurals name="alert_dialog_exit_ecm" formatted="false" msgid="7179911675595441201">
+      <item quantity="other">ఫోన్ <xliff:g id="COUNT_1">%s</xliff:g> నిమిషాల పాటు అత్యవసర కాల్‌బ్యాక్ మోడ్‌లో ఉంటుంది. ఈ మోడ్‌లో ఉన్నప్పుడు, డేటా కనెక్షన్‌ను ఉపయోగించే అనువర్తనాలు ఏవీ ఉపయోగించబడవు. మీరు ఇప్పుడు నిష్క్రమించాలనుకుంటున్నారా?</item>
+      <item quantity="one">ఫోన్ <xliff:g id="COUNT_0">%s</xliff:g> నిమిషం పాటు అత్యవసర కాల్‌బ్యాక్ మోడ్‌లో ఉంటుంది. ఈ మోడ్‌లో ఉన్నప్పుడు, డేటా కనెక్షన్‌ను ఉపయోగించే అనువర్తనాలు ఏవీ ఉపయోగించబడవు. మీరు ఇప్పుడు నిష్క్రమించాలనుకుంటున్నారా?</item>
+    </plurals>
+    <plurals name="alert_dialog_not_avaialble_in_ecm" formatted="false" msgid="8042973425225093895">
+      <item quantity="other">అత్యవసర కాల్‌బ్యాక్ మోడ్‌లో ఉన్నప్పుడు, ఎంచుకున్న చర్య అందుబాటులో లేదు. ఫోన్ <xliff:g id="COUNT_1">%s</xliff:g> నిమిషాల పాటు ఈ మోడ్‌లో ఉంటుంది. మీరు ఇప్పుడు నిష్క్రమించాలనుకుంటున్నారా?</item>
+      <item quantity="one">అత్యవసర కాల్‌బ్యాక్ మోడ్‌లో ఉన్నప్పుడు, ఎంచుకున్న చర్య అందుబాటులో లేదు. ఫోన్ <xliff:g id="COUNT_0">%s</xliff:g> నిమిషం పాటు ఈ మోడ్‌లో ఉంటుంది. మీరు ఇప్పుడు నిష్క్రమించాలనుకుంటున్నారా?</item>
+    </plurals>
     <string name="alert_dialog_in_ecm_call" msgid="1886723687211887104">"ఎంచుకున్న చర్య అత్యవసర కాల్‌లో ఉన్నప్పుడు అందుబాటులో ఉండదు."</string>
     <string name="progress_dialog_exiting_ecm" msgid="4835734101617817074">"అత్యవసర కాల్‌బ్యాక్ మోడ్ నుండి నిష్క్రమిస్తోంది"</string>
     <string name="alert_dialog_yes" msgid="6674268047820703974">"అవును"</string>

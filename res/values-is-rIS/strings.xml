@@ -509,18 +509,18 @@
     <string name="phone_entered_ecm_text" msgid="6266424252578731203">"Stilling fyrir svarhringingu neyðarsímtala virk"</string>
     <string name="phone_in_ecm_notification_title" msgid="3226896828951687085">"Stilling fyrir svarhringingu neyðarsímtala"</string>
     <string name="phone_in_ecm_call_notification_text" msgid="4611608947314729773">"Slökkt á gagnatengingu"</string>
-  <plurals name="phone_in_ecm_notification_time">
-    <item quantity="one" msgid="4866221796252472622">"Engin gagnatenging í <xliff:g id="COUNT">%s</xliff:g> mínútu"</item>
-    <item quantity="other" msgid="3122217344579273583">"Engin gagnatenging í <xliff:g id="COUNT">%s</xliff:g> mínútur"</item>
-  </plurals>
-  <plurals name="alert_dialog_exit_ecm">
-    <item quantity="one" msgid="8060210887681426682">"Síminn verður í stillingu fyrir svarhringingu neyðarsímtala í <xliff:g id="COUNT">%s</xliff:g> mínútu. Á meðan stillingin er virk er ekki hægt að nota nein forrit sem þurfa gagnatengingu. Viltu hætta núna?"</item>
-    <item quantity="other" msgid="8617116564023933114">"Síminn verður í stillingu fyrir svarhringingu neyðarsímtala í <xliff:g id="COUNT">%s</xliff:g> mínútur. Á meðan stillingin er virk er ekki hægt að nota nein forrit sem þurfa gagnatengingu. Viltu hætta núna?"</item>
-  </plurals>
-  <plurals name="alert_dialog_not_avaialble_in_ecm">
-    <item quantity="one" msgid="2585506997024726599">"Þessi aðgerð er ekki í boði á meðan stilling fyrir svarhringingu neyðarsímtala er virk. Síminn verður í þessari stillingu í <xliff:g id="COUNT">%s</xliff:g> mínútu. Viltu hætta núna?"</item>
-    <item quantity="other" msgid="6115622137771382224">"Þessi aðgerð er ekki í boði á meðan stilling fyrir svarhringingu neyðarsímtala er virk. Síminn verður í þessari stillingu í <xliff:g id="COUNT">%s</xliff:g> mínútur. Viltu hætta núna?"</item>
-  </plurals>
+    <plurals name="phone_in_ecm_notification_time" formatted="false" msgid="8308381858502470919">
+      <item quantity="one">Engin gagnatenging í <xliff:g id="COUNT_1">%s</xliff:g> mínútu</item>
+      <item quantity="other">Engin gagnatenging í <xliff:g id="COUNT_1">%s</xliff:g> mínútur</item>
+    </plurals>
+    <plurals name="alert_dialog_exit_ecm" formatted="false" msgid="7179911675595441201">
+      <item quantity="one">Síminn verður í stillingu fyrir svarhringingu neyðarsímtala í <xliff:g id="COUNT_1">%s</xliff:g> mínútu. Þegar hann er í þessari stillingu er ekki hægt að nota nein forrit sem krefjast gagnatengingar. Viltu hætta núna?</item>
+      <item quantity="other">Síminn verður í stillingu fyrir svarhringingu neyðarsímtala í <xliff:g id="COUNT_1">%s</xliff:g> mínútur. Þegar hann er í þessari stillingu er ekki hægt að nota nein forrit sem krefjast gagnatengingar. Viltu hætta núna?</item>
+    </plurals>
+    <plurals name="alert_dialog_not_avaialble_in_ecm" formatted="false" msgid="8042973425225093895">
+      <item quantity="one">Þessi aðgerð er ekki í boði þegar síminn er í stillingu fyrir svarhringingu neyðarsímtala. Síminn verður í þessari stillingu í <xliff:g id="COUNT_1">%s</xliff:g> mínútu. Viltu hætta núna?</item>
+      <item quantity="other">Þessi aðgerð er ekki í boði þegar síminn er í stillingu fyrir svarhringingu neyðarsímtala. Síminn verður í þessari stillingu í <xliff:g id="COUNT_1">%s</xliff:g> mínútur. Viltu hætta núna?</item>
+    </plurals>
     <string name="alert_dialog_in_ecm_call" msgid="1886723687211887104">"Þessi aðgerð er ekki í boði í neyðarsímtali."</string>
     <string name="progress_dialog_exiting_ecm" msgid="4835734101617817074">"Fer úr stillingu fyrir svarhringingu neyðarsímtala"</string>
     <string name="alert_dialog_yes" msgid="6674268047820703974">"Já"</string>

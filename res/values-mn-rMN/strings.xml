@@ -509,18 +509,18 @@
     <string name="phone_entered_ecm_text" msgid="6266424252578731203">"Ослын Дуудлага хүлээн авах төлөвт орлоо"</string>
     <string name="phone_in_ecm_notification_title" msgid="3226896828951687085">"Ослын Дуудлага хүлээн авах Төлөв"</string>
     <string name="phone_in_ecm_call_notification_text" msgid="4611608947314729773">"Дата холболтыг идэвхгүйжүүлсэн"</string>
-  <plurals name="phone_in_ecm_notification_time">
-    <item quantity="one" msgid="4866221796252472622">"Дата холболт <xliff:g id="COUNT">%s</xliff:g> минутын турш байхгүй"</item>
-    <item quantity="other" msgid="3122217344579273583">"Өгөгдлийн сүлжээ <xliff:g id="COUNT">%s</xliff:g> минутын турш байхгүй"</item>
-  </plurals>
-  <plurals name="alert_dialog_exit_ecm">
-    <item quantity="one" msgid="8060210887681426682">"Утас Ослын Дуудлага хүлээн авах төлөвт <xliff:g id="COUNT">%s</xliff:g> минут байх болно. Энэ төлөвт өгөгдлийн сүлжээ ашигладаг ямар ч апп-г ашиглах боломжгүй. Энэ төлвөөс одоо гаргах уу?"</item>
-    <item quantity="other" msgid="8617116564023933114">"Утас Ослын Дуудлага хүлээн авах төлөвт <xliff:g id="COUNT">%s</xliff:g> минут байх болно. Энэ төлөвт өгөгдлийн сүлжээ ашигладаг ямар ч аппликешнийг ашиглах боломжгүй. Энэ төлвөөс одоо гаргах уу?"</item>
-  </plurals>
-  <plurals name="alert_dialog_not_avaialble_in_ecm">
-    <item quantity="one" msgid="2585506997024726599">"Сонгосон үйлдлийг Ослын Дуудлага хүлээн авах төлөвт гүйцэтгэх боломжгүй. Утас энэ төлөвт <xliff:g id="COUNT">%s</xliff:g> минут байх болно. Энэ төлвөөс одоо гаргах уу?"</item>
-    <item quantity="other" msgid="6115622137771382224">"Сонгосон үйлдлийг Ослын Дуудлага хүлээн авах төлөвт гүйцэтгэх боломжгүй. Утас энэ төлөвт <xliff:g id="COUNT">%s</xliff:g> минут байх болно. Энэ төлвөөс одоо гаргах уу?"</item>
-  </plurals>
+    <plurals name="phone_in_ecm_notification_time" formatted="false" msgid="8308381858502470919">
+      <item quantity="other">Интернет <xliff:g id="COUNT_1">%s</xliff:g> минут тасарсан байна</item>
+      <item quantity="one">Интернет <xliff:g id="COUNT_0">%s</xliff:g> минут тасарсан байна</item>
+    </plurals>
+    <plurals name="alert_dialog_exit_ecm" formatted="false" msgid="7179911675595441201">
+      <item quantity="other">Таны гар утас яаралтай түргэн тусламжийн дуудлагын хэлбэрт<xliff:g id="COUNT_1">%s</xliff:g> минут байна. Энэ горимд байгаа тохиолдолд интернет холболт ашигладаг ямар ч програмыг ашиглаж үл болно. Та гарахыг хүсэж байна уу?</item>
+      <item quantity="one">Таны гар утас яаралтай түргэн тусламжийн дуудлагын хэлбэрт <xliff:g id="COUNT_0">%s</xliff:g> минут байна. Энэ горимд байгаа тохиолдолд интернет холболт ашигладаг ямар ч програмыг ашиглаж үл болно. Та гарахыг хүсэж байна уу?</item>
+    </plurals>
+    <plurals name="alert_dialog_not_avaialble_in_ecm" formatted="false" msgid="8042973425225093895">
+      <item quantity="other">Сонгосон үйлдлийг яаралтай түргэн тусламжийн горимд байгаа үед ашиглах боломжгүй. Таны гар утас энэ горимд <xliff:g id="COUNT_1">%s</xliff:g> минут байх болно. Та гарахыг хүсэж байна уу?</item>
+      <item quantity="one">Сонгосон үйлдлийг яаралтай түргэн тусламжийн горимд байгаа үед ашиглах боломжгүй. Таны гар утас энэ горимд <xliff:g id="COUNT_0">%s</xliff:g> минут байх болно. Та гарахыг хүсэж байна уу?</item>
+    </plurals>
     <string name="alert_dialog_in_ecm_call" msgid="1886723687211887104">"Сонгосон үйлдлийг ослын дуудлагын үед гүйцэтгэх боломжгүй."</string>
     <string name="progress_dialog_exiting_ecm" msgid="4835734101617817074">"Ослын Дуудлага хүлээн авах төлвөөс гарч байна"</string>
     <string name="alert_dialog_yes" msgid="6674268047820703974">"Тийм"</string>

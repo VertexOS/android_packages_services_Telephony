@@ -782,16 +782,18 @@
     <skip />
     <!-- no translation found for phone_in_ecm_call_notification_text (4611608947314729773) -->
     <skip />
-    <!-- no translation found for phone_in_ecm_notification_time:one (4866221796252472622) -->
-    <!-- no translation found for phone_in_ecm_notification_time:other (3122217344579273583) -->
-  <plurals name="alert_dialog_exit_ecm">
-    <item quantity="one" msgid="8060210887681426682">"Телефон <xliff:g id="COUNT">%s</xliff:g> мүнөт Куткаруучулардын Кайра Чалуусу тартибинде иштейт. Бул тартипте колдонмолор мобилдик берүү туташуусун колдоно алышпайт. Азыр андан чыкканды каалайсызбы?"</item>
-    <item quantity="other" msgid="8617116564023933114">"Телефон <xliff:g id="COUNT">%s</xliff:g> мүнөт Куткаруучулардын Кайра Чалуусу тартибинде иштейт. Бул тартипте колдонмолор мобилдик берүү туташуусун колдоно алышпайт. Азыр андан чыкканды каалайсызбы?"</item>
-  </plurals>
-  <plurals name="alert_dialog_not_avaialble_in_ecm">
-    <item quantity="one" msgid="2585506997024726599">"Бул аракет Куткаруучулардын Кайра Чалуусу тартибинде иштебейт. Телефон бул тартипте <xliff:g id="COUNT">%s</xliff:g> мүнөт болот. Азыр андан чыкканды каалайсызбы?"</item>
-    <item quantity="other" msgid="6115622137771382224">"Бул аракет Куткаруучулардын Кайра Чалуусу тартибинде иштебейт. Телефон бул тартипте <xliff:g id="COUNT">%s</xliff:g> мүнөт болот. Азыр андан чыкканды каалайсызбы?"</item>
-  </plurals>
+    <plurals name="phone_in_ecm_notification_time" formatted="false" msgid="8308381858502470919">
+      <item quantity="other"><xliff:g id="COUNT_1">%s</xliff:g> мүнөт бою маалыматтык туташуу болбойт</item>
+      <item quantity="one"><xliff:g id="COUNT_0">%s</xliff:g> мүнөт бою маалыматтык туташуу болбойт</item>
+    </plurals>
+    <plurals name="alert_dialog_exit_ecm" formatted="false" msgid="7179911675595441201">
+      <item quantity="other">Телефон Шашылыш кайра чалуу режиминде <xliff:g id="COUNT_1">%s</xliff:g> мүнөт бою болот. Бул режим күйүп турганда маалыматтык туташууну пайдаланган эч бир колдонмо иштетилбейт. Азыр чыгып кеткиңиз келеби?</item>
+      <item quantity="one">Телефон Шашылыш кайра чалуу режиминде <xliff:g id="COUNT_0">%s</xliff:g> мүнөт бою болот. Бул режим күйүп турганда маалыматтык туташууну пайдаланган эч бир колдонмо иштетилбейт. Азыр чыгып кеткиңиз келеби?</item>
+    </plurals>
+    <plurals name="alert_dialog_not_avaialble_in_ecm" formatted="false" msgid="8042973425225093895">
+      <item quantity="other">Тандалган аракет Шашылыш кайра чалуу режиминде жеткиликтүү эмес. Телефон бул режимде <xliff:g id="COUNT_1">%s</xliff:g> мүнөт бою болот. Азыр чыгып кеткиңиз келеби?</item>
+      <item quantity="one">Тандалган аракет Шашылыш кайра чалуу режиминде жеткиликтүү эмес. Телефон бул режимде <xliff:g id="COUNT_0">%s</xliff:g> мүнөт бою болот. Азыр чыгып кеткиңиз келеби?</item>
+    </plurals>
     <string name="alert_dialog_in_ecm_call" msgid="1886723687211887104">"Куткаруучуларга чалуу учурунда, бул тандалган аракет аткарылбайт."</string>
     <string name="progress_dialog_exiting_ecm" msgid="4835734101617817074">"Куткаруучулардын Кайра Чалуусу тартибинен чыгуу"</string>
     <!-- no translation found for alert_dialog_yes (6674268047820703974) -->

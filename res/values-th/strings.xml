@@ -509,18 +509,18 @@
     <string name="phone_entered_ecm_text" msgid="6266424252578731203">"เข้าสู่โหมดติดต่อกลับฉุกเฉิน"</string>
     <string name="phone_in_ecm_notification_title" msgid="3226896828951687085">"โหมดติดต่อกลับฉุกเฉิน"</string>
     <string name="phone_in_ecm_call_notification_text" msgid="4611608947314729773">"ปิดใช้งานการเชื่อมต่อเครือข่าย"</string>
-  <plurals name="phone_in_ecm_notification_time">
-    <item quantity="one" msgid="4866221796252472622">"ไม่มีการเชื่อมต่อข้อมูลนาน <xliff:g id="COUNT">%s</xliff:g> นาที"</item>
-    <item quantity="other" msgid="3122217344579273583">"ไม่มีการเชื่อมต่อข้อมูลนาน <xliff:g id="COUNT">%s</xliff:g> นาที"</item>
-  </plurals>
-  <plurals name="alert_dialog_exit_ecm">
-    <item quantity="one" msgid="8060210887681426682">"โทรศัพท์จะอยู่ในโหมดติดต่อกลับฉุกเฉินเป็นเวลา <xliff:g id="COUNT">%s</xliff:g> นาที ในระหว่างที่อยู่ในโหมดนี้ จะไม่สามารถใช้แอปพลิเคชันที่ใช้การเชื่อมต่อข้อมูลได้ คุณต้องการจะออกเดี๋ยวนี้หรือไม่"</item>
-    <item quantity="other" msgid="8617116564023933114">"โทรศัพท์จะอยู่ในโหมดติดต่อกลับฉุกเฉินเป็นเวลา <xliff:g id="COUNT">%s</xliff:g> นาที ในระหว่างที่อยู่ในโหมดนี้ จะไม่สามารถใช้แอปพลิเคชันที่ใช้การเชื่อมต่อข้อมูลได้ คุณต้องการจะออกเดี๋ยวนี้หรือไม่"</item>
-  </plurals>
-  <plurals name="alert_dialog_not_avaialble_in_ecm">
-    <item quantity="one" msgid="2585506997024726599">"การทำงานที่เลือกจะไม่สามารถใช้ได้เมื่ออยู่ในโหมดติดต่อกลับฉุกเฉิน โทรศัพท์จะอยู่ในโหมดนี้เป็นเวลา <xliff:g id="COUNT">%s</xliff:g> นาที คุณต้องการจะออกเดี๋ยวนี้หรือไม่"</item>
-    <item quantity="other" msgid="6115622137771382224">"การทำงานที่เลือกจะไม่สามารถใช้ได้เมื่ออยู่ในโหมดติดต่อกลับฉุกเฉิน โทรศัพท์จะอยู่ในโหมดนี้เป็นเวลา <xliff:g id="COUNT">%s</xliff:g> นาที คุณต้องการจะออกเดี๋ยวนี้หรือไม่"</item>
-  </plurals>
+    <plurals name="phone_in_ecm_notification_time" formatted="false" msgid="8308381858502470919">
+      <item quantity="other">ไม่มีการเชื่อมต่อข้อมูลนาน <xliff:g id="COUNT_1">%s</xliff:g> นาที</item>
+      <item quantity="one">ไม่มีการเชื่อมต่อข้อมูลนาน <xliff:g id="COUNT_0">%s</xliff:g> นาที</item>
+    </plurals>
+    <plurals name="alert_dialog_exit_ecm" formatted="false" msgid="7179911675595441201">
+      <item quantity="other">โทรศัพท์จะเข้าโหมดติดต่อกลับฉุกเฉินเป็นเวลา <xliff:g id="COUNT_1">%s</xliff:g> นาที ขณะใช้โหมดนี้ จะไม่สามารถใช้แอปพลิเคชันที่ใช้การเชื่อมต่อข้อมูลได้ คุณต้องการออกตอนนี้ไหม</item>
+      <item quantity="one">โทรศัพท์จะเข้าโหมดติดต่อกลับฉุกเฉินเป็นเวลา <xliff:g id="COUNT_0">%s</xliff:g> นาที ขณะใช้โหมดนี้ จะไม่สามารถใช้แอปที่ใช้การเชื่อมต่อข้อมูลได้ คุณต้องการออกตอนนี้ไหม</item>
+    </plurals>
+    <plurals name="alert_dialog_not_avaialble_in_ecm" formatted="false" msgid="8042973425225093895">
+      <item quantity="other">ไม่สามารถทำงานที่เลือกนี้ได้ขณะอยู่ในโหมดติดต่อกลับฉุกเฉิน โทรศัพท์จะใช้โหมดนี้เป็นเวลา <xliff:g id="COUNT_1">%s</xliff:g> นาที คุณต้องการออกตอนนี้ไหม</item>
+      <item quantity="one">ไม่สามารถทำงานที่เลือกนี้ได้ขณะอยู่ในโหมดติดต่อกลับฉุกเฉิน โทรศัพท์จะใช้โหมดนี้เป็นเวลา <xliff:g id="COUNT_0">%s</xliff:g> นาที คุณต้องการออกตอนนี้ไหม</item>
+    </plurals>
     <string name="alert_dialog_in_ecm_call" msgid="1886723687211887104">"การทำงานที่เลือกใช้ไม่ได้ในระหว่างโทรฉุกเฉิน"</string>
     <string name="progress_dialog_exiting_ecm" msgid="4835734101617817074">"กำลังออกจากโหมดติดต่อกลับฉุกเฉิน"</string>
     <string name="alert_dialog_yes" msgid="6674268047820703974">"ใช่"</string>

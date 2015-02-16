@@ -513,18 +513,18 @@
     <string name="phone_entered_ecm_text" msgid="6266424252578731203">"Modalità di richiamata di emergenza attivata"</string>
     <string name="phone_in_ecm_notification_title" msgid="3226896828951687085">"Modalità di richiamata di emergenza"</string>
     <string name="phone_in_ecm_call_notification_text" msgid="4611608947314729773">"Connessione dati disabilitata"</string>
-  <plurals name="phone_in_ecm_notification_time">
-    <item quantity="one" msgid="4866221796252472622">"Nessuna connessione dati per <xliff:g id="COUNT">%s</xliff:g> minuto"</item>
-    <item quantity="other" msgid="3122217344579273583">"Nessuna connessione dati per <xliff:g id="COUNT">%s</xliff:g> minuti"</item>
-  </plurals>
-  <plurals name="alert_dialog_exit_ecm">
-    <item quantity="one" msgid="8060210887681426682">"Il telefono sarà in modalità di richiamata di emergenza per <xliff:g id="COUNT">%s</xliff:g> minuto. In questa modalità non è possibile utilizzare alcuna applicazione che faccia uso di una connessione dati. Uscire adesso?"</item>
-    <item quantity="other" msgid="8617116564023933114">"Il telefono sarà in modalità di richiamata di emergenza per <xliff:g id="COUNT">%s</xliff:g> minuti. In questa modalità non è possibile utilizzare alcuna applicazione che faccia uso di una connessione dati. Uscire adesso?"</item>
-  </plurals>
-  <plurals name="alert_dialog_not_avaialble_in_ecm">
-    <item quantity="one" msgid="2585506997024726599">"L\'azione selezionata non è disponibile in modalità di richiamata di emergenza. Il telefono sarà in questa modalità per <xliff:g id="COUNT">%s</xliff:g> minuto. Uscire adesso?"</item>
-    <item quantity="other" msgid="6115622137771382224">"L\'azione selezionata non è disponibile in modalità di richiamata di emergenza. Il telefono sarà in questa modalità per <xliff:g id="COUNT">%s</xliff:g> minuti. Uscire adesso?"</item>
-  </plurals>
+    <plurals name="phone_in_ecm_notification_time" formatted="false" msgid="8308381858502470919">
+      <item quantity="other">Nessuna connessione dati per <xliff:g id="COUNT_1">%s</xliff:g> minuti</item>
+      <item quantity="one">Nessuna connessione dati per <xliff:g id="COUNT_0">%s</xliff:g> minuto</item>
+    </plurals>
+    <plurals name="alert_dialog_exit_ecm" formatted="false" msgid="7179911675595441201">
+      <item quantity="other">Il telefono sarà in modalità Richiamata di emergenza per <xliff:g id="COUNT_1">%s</xliff:g> minuti. In questa modalità non è possibile utilizzare applicazioni che impiegano una connessione dati. Vuoi uscire ora?</item>
+      <item quantity="one">Il telefono sarà in modalità Richiamata di emergenza per <xliff:g id="COUNT_0">%s</xliff:g> minuto. In questa modalità non è possibile utilizzare app che impiegano una connessione dati. Vuoi uscire ora?</item>
+    </plurals>
+    <plurals name="alert_dialog_not_avaialble_in_ecm" formatted="false" msgid="8042973425225093895">
+      <item quantity="other">L\'azione selezionata non è disponibile in modalità Richiamata di emergenza. Il telefono sarà in questa modalità per <xliff:g id="COUNT_1">%s</xliff:g> minuti. Vuoi uscire ora?</item>
+      <item quantity="one">L\'azione selezionata non è disponibile in modalità Richiamata di emergenza. Il telefono sarà in questa modalità per <xliff:g id="COUNT_0">%s</xliff:g> minuto. Vuoi uscire ora?</item>
+    </plurals>
     <string name="alert_dialog_in_ecm_call" msgid="1886723687211887104">"L\'azione selezionata non è disponibile in modalità di chiamata di emergenza."</string>
     <string name="progress_dialog_exiting_ecm" msgid="4835734101617817074">"Uscita dalla modalità di richiamata di emergenza"</string>
     <string name="alert_dialog_yes" msgid="6674268047820703974">"Sì"</string>

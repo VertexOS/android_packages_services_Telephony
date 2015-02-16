@@ -515,18 +515,18 @@
     <string name="phone_entered_ecm_text" msgid="6266424252578731203">"Larrialdi-deiak soilik jasotzeko modua aktibatu da"</string>
     <string name="phone_in_ecm_notification_title" msgid="3226896828951687085">"Larrialdi-deiak soilik jasotzeko modua"</string>
     <string name="phone_in_ecm_call_notification_text" msgid="4611608947314729773">"Datu-konexioa desgaituta"</string>
-  <plurals name="phone_in_ecm_notification_time">
-    <item quantity="one" msgid="4866221796252472622">"Ez da datu-konexiorik egin <xliff:g id="COUNT">%s</xliff:g> minutuan"</item>
-    <item quantity="other" msgid="3122217344579273583">"Ez da datu-konexiorik egin <xliff:g id="COUNT">%s</xliff:g> minutuan"</item>
-  </plurals>
-  <plurals name="alert_dialog_exit_ecm">
-    <item quantity="one" msgid="8060210887681426682">"Telefonoa Larrialdi-deiak soilik jasotzeko moduan egongo da <xliff:g id="COUNT">%s</xliff:g> minutuz. Modu horretan dagoen bitartean, ezingo duzu datu-konexioa behar duen aplikaziorik erabili. Irten nahi duzu?"</item>
-    <item quantity="other" msgid="8617116564023933114">"Telefonoa Larrialdi-deiak soilik jasotzeko moduan egongo da <xliff:g id="COUNT">%s</xliff:g> minutuz. Modu horretan dagoen bitartean, ezingo duzu datu-konexioa behar duen aplikaziorik erabili. Irten nahi duzu?"</item>
-  </plurals>
-  <plurals name="alert_dialog_not_avaialble_in_ecm">
-    <item quantity="one" msgid="2585506997024726599">"Hautatutako ekintza ez dago Larrialdi-deiak soilik jasotzeko moduan erabilgarri. Telefonoa <xliff:g id="COUNT">%s</xliff:g> minutuz egongo da modu horretan. Irten nahi duzu?"</item>
-    <item quantity="other" msgid="6115622137771382224">"Hautatutako ekintza ez dago Larrialdi-deiak soilik jasotzeko moduan erabilgarri. Telefonoa <xliff:g id="COUNT">%s</xliff:g> minutuz egongo da modu horretan. Irten nahi duzu?"</item>
-  </plurals>
+    <plurals name="phone_in_ecm_notification_time" formatted="false" msgid="8308381858502470919">
+      <item quantity="other">Ez da datu-konexiorik egin <xliff:g id="COUNT_1">%s</xliff:g> minututan</item>
+      <item quantity="one">Ez da datu-konexiorik egin <xliff:g id="COUNT_0">%s</xliff:g> minutuan</item>
+    </plurals>
+    <plurals name="alert_dialog_exit_ecm" formatted="false" msgid="7179911675595441201">
+      <item quantity="other">Telefonoa larrialdi-deiak soilik jasotzeko moduan egongo da <xliff:g id="COUNT_1">%s</xliff:g> minutuz. Modu horretan dagoen bitartean, ezingo duzu datu-konexioa behar duen aplikaziorik erabili. Irten nahi duzu?</item>
+      <item quantity="one">Telefonoa larrialdi-deiak soilik jasotzeko moduan egongo da <xliff:g id="COUNT_0">%s</xliff:g> minutuz. Modu horretan dagoen bitartean, ezingo duzu datu-konexioa behar duen aplikaziorik erabili. Irten nahi duzu?</item>
+    </plurals>
+    <plurals name="alert_dialog_not_avaialble_in_ecm" formatted="false" msgid="8042973425225093895">
+      <item quantity="other">Hautatutako ekintza ez dago larrialdi-deiak soilik jasotzeko moduan erabilgarri. Telefonoa <xliff:g id="COUNT_1">%s</xliff:g> minutuz egongo da modu horretan. Irten nahi duzu?</item>
+      <item quantity="one">Hautatutako ekintza ez dago larrialdi-deiak soilik jasotzeko moduan erabilgarri. Telefonoa <xliff:g id="COUNT_0">%s</xliff:g> minutuz egongo da modu horretan. Irten nahi duzu?</item>
+    </plurals>
     <string name="alert_dialog_in_ecm_call" msgid="1886723687211887104">"Hautatutako ekintza ez dago erabilgarri larrialdi-deia egiten ari den bitartean."</string>
     <string name="progress_dialog_exiting_ecm" msgid="4835734101617817074">"Larrialdi-deiak soilik jasotzeko modutik irteten"</string>
     <string name="alert_dialog_yes" msgid="6674268047820703974">"Bai"</string>

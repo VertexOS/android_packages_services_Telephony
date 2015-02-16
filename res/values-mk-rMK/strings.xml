@@ -515,18 +515,18 @@
     <string name="phone_entered_ecm_text" msgid="6266424252578731203">"Влезе во режим на повратни повици во итни случаи"</string>
     <string name="phone_in_ecm_notification_title" msgid="3226896828951687085">"Режим на повратни повици во итни случаи"</string>
     <string name="phone_in_ecm_call_notification_text" msgid="4611608947314729773">"Врската со податоците е оневозможена"</string>
-  <plurals name="phone_in_ecm_notification_time">
-    <item quantity="one" msgid="4866221796252472622">"Нема врска на податоци <xliff:g id="COUNT">%s</xliff:g> минута"</item>
-    <item quantity="other" msgid="3122217344579273583">"Нема врска на податоци <xliff:g id="COUNT">%s</xliff:g> минути"</item>
-  </plurals>
-  <plurals name="alert_dialog_exit_ecm">
-    <item quantity="one" msgid="8060210887681426682">"Телефонот ќе биде во режим на итни повратни повикувања <xliff:g id="COUNT">%s</xliff:g> минута. Додека е во овој режим не може да се користат апликации кои употребуваат врска со податоци. Дали сакате да излезете сега?"</item>
-    <item quantity="other" msgid="8617116564023933114">"Телефонот ќе биде во режим на итни повратни повикувања <xliff:g id="COUNT">%s</xliff:g> минути. Додека е во овој режим не може да се користат апликации кои употребуваат врска со податоци. Дали сакате да излезете сега?"</item>
-  </plurals>
-  <plurals name="alert_dialog_not_avaialble_in_ecm">
-    <item quantity="one" msgid="2585506997024726599">"Избраното дејство не е достапно во режим за итни повратни повикувања. Телефонот ќе биде во овој режим <xliff:g id="COUNT">%s</xliff:g> минута. Дали сакате да излезете сега?"</item>
-    <item quantity="other" msgid="6115622137771382224">"Избраното дејство не е достапно во режим за итни повратни повикувања. Телефонот ќе биде во овој режим <xliff:g id="COUNT">%s</xliff:g> минути. Дали сакате да излезете сега?"</item>
-  </plurals>
+    <plurals name="phone_in_ecm_notification_time" formatted="false" msgid="8308381858502470919">
+      <item quantity="one">Нема врска на податоци <xliff:g id="COUNT_1">%s</xliff:g> минута</item>
+      <item quantity="other">Нема врска на податоци  <xliff:g id="COUNT_1">%s</xliff:g> минути</item>
+    </plurals>
+    <plurals name="alert_dialog_exit_ecm" formatted="false" msgid="7179911675595441201">
+      <item quantity="one">Телефонот ќе биде во режим на итен повик <xliff:g id="COUNT_1">%s</xliff:g> минута. Кога е во овој режим, не може да се користат апликации што користат врска со податоци. Дали сакате да излезете сега?</item>
+      <item quantity="other">Телефонот ќе биде во режим на итен повик <xliff:g id="COUNT_1">%s</xliff:g> минути. Кога е во овој режим, не може да се користат апликации што користат врска со податоци. Дали сакате да излезете сега?</item>
+    </plurals>
+    <plurals name="alert_dialog_not_avaialble_in_ecm" formatted="false" msgid="8042973425225093895">
+      <item quantity="one">Избраното дејство не е достапно во режим на итен повик. Телефонот ќе биде во режим на итен повик <xliff:g id="COUNT_1">%s</xliff:g> минута. Дали сакате да излезете сега?</item>
+      <item quantity="other">Избраното дејство не е достапно во режим на итен повик. Телефонот ќе биде во режим на итен повик <xliff:g id="COUNT_1">%s</xliff:g> минути. Дали сакате да излезете сега?</item>
+    </plurals>
     <string name="alert_dialog_in_ecm_call" msgid="1886723687211887104">"Избраното дејство не е достапно при повик во итен случај."</string>
     <string name="progress_dialog_exiting_ecm" msgid="4835734101617817074">"Излегување од режим на повратен повик во итни случаи"</string>
     <string name="alert_dialog_yes" msgid="6674268047820703974">"Да"</string>

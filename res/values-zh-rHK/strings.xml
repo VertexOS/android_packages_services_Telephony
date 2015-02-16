@@ -515,18 +515,18 @@
     <string name="phone_entered_ecm_text" msgid="6266424252578731203">"已進入緊急回撥模式"</string>
     <string name="phone_in_ecm_notification_title" msgid="3226896828951687085">"緊急回撥模式"</string>
     <string name="phone_in_ecm_call_notification_text" msgid="4611608947314729773">"數據連線已停用"</string>
-  <plurals name="phone_in_ecm_notification_time">
-    <item quantity="one" msgid="4866221796252472622">"接下來的 <xliff:g id="COUNT">%s</xliff:g> 分鐘內沒有數據連線"</item>
-    <item quantity="other" msgid="3122217344579273583">"接下來將出現 <xliff:g id="COUNT">%s</xliff:g> 分鐘的資料斷線狀態"</item>
-  </plurals>
-  <plurals name="alert_dialog_exit_ecm">
-    <item quantity="one" msgid="8060210887681426682">"手機在接下來的 <xliff:g id="COUNT">%s</xliff:g> 分鐘都將處於緊急回撥模式。在這個模式中，所有使用數據連線的應用程式皆無法使用。您要立即退出嗎？"</item>
-    <item quantity="other" msgid="8617116564023933114">"手機在接下來的 <xliff:g id="COUNT">%s</xliff:g> 分鐘都將處於緊急回撥模式。在這個模式中，所有使用數據連線的應用程式皆無法使用。您要立即退出嗎？"</item>
-  </plurals>
-  <plurals name="alert_dialog_not_avaialble_in_ecm">
-    <item quantity="one" msgid="2585506997024726599">"緊急回撥模式不支援您所選取的操作。手機在接下來的 <xliff:g id="COUNT">%s</xliff:g> 分鐘都將處於這個模式，您要立即退出嗎？"</item>
-    <item quantity="other" msgid="6115622137771382224">"緊急回撥模式不支援您所選取的操作。手機在接下來的 <xliff:g id="COUNT">%s</xliff:g> 分鐘都將處於這個模式，您要立即退出嗎？"</item>
-  </plurals>
+    <plurals name="phone_in_ecm_notification_time" formatted="false" msgid="8308381858502470919">
+      <item quantity="other">在接下來的 <xliff:g id="COUNT_1">%s</xliff:g> 分鐘內沒有數據連線</item>
+      <item quantity="one">接下來的 <xliff:g id="COUNT_0">%s</xliff:g> 分鐘內沒有數據連線</item>
+    </plurals>
+    <plurals name="alert_dialog_exit_ecm" formatted="false" msgid="7179911675595441201">
+      <item quantity="other">手機將進入緊急電話模式，時間為 <xliff:g id="COUNT_1">%s</xliff:g> 分鐘。在此模式中，無法使用需要數據連線的應用程式。您要退出嗎？</item>
+      <item quantity="one">手機將進入緊急電話模式，時間為 <xliff:g id="COUNT_0">%s</xliff:g> 分鐘。在此模式中，無法使用需要連接數據的應用程式。您要退出嗎？</item>
+    </plurals>
+    <plurals name="alert_dialog_not_avaialble_in_ecm" formatted="false" msgid="8042973425225093895">
+      <item quantity="other">在緊急電話模式中，無法進行已選取的操作。手機將在 <xliff:g id="COUNT_1">%s</xliff:g> 分鐘後進入此模式。您要退出嗎？</item>
+      <item quantity="one">在緊急電話模式中，無法進行已選取的操作。手機將在 <xliff:g id="COUNT_0">%s</xliff:g> 分鐘後進入此模式。您要退出嗎？</item>
+    </plurals>
     <string name="alert_dialog_in_ecm_call" msgid="1886723687211887104">"緊急電話模式不支援您所選取的操作。"</string>
     <string name="progress_dialog_exiting_ecm" msgid="4835734101617817074">"正在退出緊急回撥模式"</string>
     <string name="alert_dialog_yes" msgid="6674268047820703974">"是"</string>

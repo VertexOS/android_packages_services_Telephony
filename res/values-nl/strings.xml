@@ -509,18 +509,18 @@
     <string name="phone_entered_ecm_text" msgid="6266424252578731203">"Modus voor noodoproepen ingeschakeld"</string>
     <string name="phone_in_ecm_notification_title" msgid="3226896828951687085">"Modus voor noodoproepen"</string>
     <string name="phone_in_ecm_call_notification_text" msgid="4611608947314729773">"Gegevensverbinding uitgeschakeld"</string>
-  <plurals name="phone_in_ecm_notification_time">
-    <item quantity="one" msgid="4866221796252472622">"Er is al <xliff:g id="COUNT">%s</xliff:g> minuut geen dataverbinding"</item>
-    <item quantity="other" msgid="3122217344579273583">"Er is al <xliff:g id="COUNT">%s</xliff:g> minuten geen dataverbinding"</item>
-  </plurals>
-  <plurals name="alert_dialog_exit_ecm">
-    <item quantity="one" msgid="8060210887681426682">"De telefoon blijft <xliff:g id="COUNT">%s</xliff:g> minuut in de noodoproepmodus. In deze modus kunnen geen apps worden gebruikt waarvoor een gegevensverbinding nodig is. Wilt u nu sluiten?"</item>
-    <item quantity="other" msgid="8617116564023933114">"De telefoon blijft <xliff:g id="COUNT">%s</xliff:g> minuten in de noodoproepmodus. In deze modus kunnen geen apps worden gebruikt waarvoor een gegevensverbinding nodig is. Wilt u nu sluiten?"</item>
-  </plurals>
-  <plurals name="alert_dialog_not_avaialble_in_ecm">
-    <item quantity="one" msgid="2585506997024726599">"De geselecteerde actie is niet beschikbaar in de noodoproepmodus. De telefoon blijft <xliff:g id="COUNT">%s</xliff:g> minuut in deze modus. Wilt u nu sluiten?"</item>
-    <item quantity="other" msgid="6115622137771382224">"De geselecteerde actie is niet beschikbaar in de noodoproepmodus. De telefoon blijft <xliff:g id="COUNT">%s</xliff:g> minuten in deze modus. Wilt u nu sluiten?"</item>
-  </plurals>
+    <plurals name="phone_in_ecm_notification_time" formatted="false" msgid="8308381858502470919">
+      <item quantity="other">Er is al <xliff:g id="COUNT_1">%s</xliff:g> minuten geen gegevensverbinding</item>
+      <item quantity="one">Er is al <xliff:g id="COUNT_0">%s</xliff:g> minuut geen gegevensverbinding</item>
+    </plurals>
+    <plurals name="alert_dialog_exit_ecm" formatted="false" msgid="7179911675595441201">
+      <item quantity="other">De telefoon bevindt zich <xliff:g id="COUNT_1">%s</xliff:g> minuten in de modus voor noodoproepen. In deze modus kunnen geen apps worden gebruikt waarvoor een gegevensverbinding nodig is. Wilt u nu afsluiten?</item>
+      <item quantity="one">De telefoon bevindt zich <xliff:g id="COUNT_0">%s</xliff:g> minuut in de modus voor noodoproepen. In deze modus kunnen geen apps worden gebruikt waarvoor een gegevensverbinding nodig is. Wilt u nu afsluiten?</item>
+    </plurals>
+    <plurals name="alert_dialog_not_avaialble_in_ecm" formatted="false" msgid="8042973425225093895">
+      <item quantity="other">De geselecteerde actie is niet beschikbaar in de modus voor noodoproepen. De telefoon bevindt zich <xliff:g id="COUNT_1">%s</xliff:g> minuten in deze modus. Wilt u nu afsluiten?</item>
+      <item quantity="one">De geselecteerde actie is niet beschikbaar in de modus voor noodoproepen. De telefoon bevindt zich <xliff:g id="COUNT_0">%s</xliff:g> minuut in deze modus. Wilt u nu afsluiten?</item>
+    </plurals>
     <string name="alert_dialog_in_ecm_call" msgid="1886723687211887104">"De geselecteerde actie is niet beschikbaar tijdens noodoproepen."</string>
     <string name="progress_dialog_exiting_ecm" msgid="4835734101617817074">"Modus voor noodoproepen verlaten"</string>
     <string name="alert_dialog_yes" msgid="6674268047820703974">"Ja"</string>

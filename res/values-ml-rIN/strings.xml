@@ -509,18 +509,18 @@
     <string name="phone_entered_ecm_text" msgid="6266424252578731203">"അടിയന്തര കോൾബാക്ക് മോഡിൽ പ്രവേശിച്ചു"</string>
     <string name="phone_in_ecm_notification_title" msgid="3226896828951687085">"അടിയന്തര കോൾബാക്ക് മോഡ്"</string>
     <string name="phone_in_ecm_call_notification_text" msgid="4611608947314729773">"ഡാറ്റ കണക്ഷൻ പ്രവർത്തനരഹിതമാക്കി"</string>
-  <plurals name="phone_in_ecm_notification_time">
-    <item quantity="one" msgid="4866221796252472622">"<xliff:g id="COUNT">%s</xliff:g> മിനിറ്റ് നേരത്തേക്ക് ഡാറ്റ കണക്ഷൻ ലഭ്യമല്ല"</item>
-    <item quantity="other" msgid="3122217344579273583">"<xliff:g id="COUNT">%s</xliff:g> മിനിറ്റ് നേരത്തേക്ക് ഡാറ്റ കണക്ഷൻ ലഭ്യമല്ല"</item>
-  </plurals>
-  <plurals name="alert_dialog_exit_ecm">
-    <item quantity="one" msgid="8060210887681426682">"ഫോൺ <xliff:g id="COUNT">%s</xliff:g> മിനിറ്റ് നേരത്തേക്ക് അടിയന്തര കോൾബാക്ക് മോഡിലായിരിക്കും. ഈ മോഡിലായിരിക്കുമ്പോൾ, ഒരു ഡാറ്റ കണക്ഷൻ ഉപയോഗിക്കുന്ന അപ്ലിക്കേഷനുകളൊന്നും ഉപയോഗിക്കാനാകില്ല. ഇപ്പോൾ പുറത്തുകടക്കണോ?"</item>
-    <item quantity="other" msgid="8617116564023933114">"ഫോൺ <xliff:g id="COUNT">%s</xliff:g> മിനിറ്റ് നേരത്തേക്ക് അടിയന്തര കോൾബാക്ക് മോഡിലായിരിക്കും. ഈ മോഡിലായിരിക്കുമ്പോൾ, ഒരു ഡാറ്റ കണക്ഷൻ ഉപയോഗിക്കുന്ന അപ്ലിക്കേഷനുകളൊന്നും ഉപയോഗിക്കാനാകില്ല. ഇപ്പോൾ പുറത്തുകടക്കണോ?"</item>
-  </plurals>
-  <plurals name="alert_dialog_not_avaialble_in_ecm">
-    <item quantity="one" msgid="2585506997024726599">"അടിയന്തര കോൾബാക്ക് മോഡിലായിരിക്കുമ്പോൾ തിരഞ്ഞെടുത്ത പ്രവർത്തനം ലഭ്യമല്ല. ഫോൺ <xliff:g id="COUNT">%s</xliff:g> മിനിറ്റ് നേരത്തേക്ക് ഈ മോഡിലായിരിക്കും. ഇപ്പോൾ പുറത്തുകടക്കണോ?"</item>
-    <item quantity="other" msgid="6115622137771382224">"അടിയന്തര കോൾബാക്ക് മോഡിലായിരിക്കുമ്പോൾ തിരഞ്ഞെടുത്ത പ്രവർത്തനം ലഭ്യമല്ല. ഫോൺ <xliff:g id="COUNT">%s</xliff:g> മിനിറ്റ് നേരത്തേക്ക് ഈ മോഡിലായിരിക്കും. ഇപ്പോൾ പുറത്തുകടക്കണോ?"</item>
-  </plurals>
+    <plurals name="phone_in_ecm_notification_time" formatted="false" msgid="8308381858502470919">
+      <item quantity="other"><xliff:g id="COUNT_1">%s</xliff:g> മിനിറ്റ് നേരത്തേക്ക് ഡാറ്റ കണക്ഷൻ ലഭ്യമല്ല</item>
+      <item quantity="one"><xliff:g id="COUNT_0">%s</xliff:g> മിനിറ്റ് നേരത്തേക്ക് ഡാറ്റ കണക്ഷൻ ലഭ്യമല്ല</item>
+    </plurals>
+    <plurals name="alert_dialog_exit_ecm" formatted="false" msgid="7179911675595441201">
+      <item quantity="other"><xliff:g id="COUNT_1">%s</xliff:g> മിനിറ്റിനുള്ളിൽ ഫോൺ അടിയന്തര കോൾബാക്ക് മോഡിലാകും. ഈ മോഡിലാകുമ്പോൾ ഡാറ്റ കണക്ഷൻ ഉപയോഗിക്കുന്ന അപ്ലിക്കേഷനുകളൊന്നും ഉപയോഗിക്കാനാവില്ല. നിങ്ങൾക്കിപ്പോൾ പുറത്തുപോകണോ?</item>
+      <item quantity="one"><xliff:g id="COUNT_0">%s</xliff:g> മിനിറ്റിനുള്ളിൽ ഫോൺ അടിയന്തര കോൾബാക്ക് മോഡിലാകും. ഈ മോഡിലാകുമ്പോൾ ഡാറ്റ കണക്ഷൻ ഉപയോഗിക്കുന്ന അപ്ലിക്കേഷനുകളൊന്നും ഉപയോഗിക്കാനാവില്ല. നിങ്ങൾക്കിപ്പോൾ പുറത്തുപോകണോ?</item>
+    </plurals>
+    <plurals name="alert_dialog_not_avaialble_in_ecm" formatted="false" msgid="8042973425225093895">
+      <item quantity="other">അടിയന്തര കോൾബാക്ക് മോഡിലായിരിക്കുമ്പോൾ തിരഞ്ഞെടുത്ത പ്രവർത്തനമൊന്നും ലഭ്യമാകില്ല. <xliff:g id="COUNT_1">%s</xliff:g> മിനിറ്റിനുള്ളിൽ ഫോൺ ഈ മോഡിലാകും. നിങ്ങൾക്കിപ്പോൾ പുറത്തുപോകണോ?</item>
+      <item quantity="one">അടിയന്തര കോൾബാക്ക് മോഡിലായിരിക്കുമ്പോൾ തിരഞ്ഞെടുത്ത പ്രവർത്തനമൊന്നും ലഭ്യമാകില്ല. <xliff:g id="COUNT_0">%s</xliff:g> മിനിറ്റിനുള്ളിൽ ഫോൺ ഈ മോഡിലാകും. നിങ്ങൾക്കിപ്പോൾ പുറത്തുപോകണോ?</item>
+    </plurals>
     <string name="alert_dialog_in_ecm_call" msgid="1886723687211887104">"അടിയന്തര കോളിലായിരിക്കുമ്പോൾ തിരഞ്ഞെടുത്ത പ്രവർത്തനം ലഭ്യമാകില്ല."</string>
     <string name="progress_dialog_exiting_ecm" msgid="4835734101617817074">"നിലവിലെ അടിയന്തര കോൾബാക്ക് മോഡ്"</string>
     <string name="alert_dialog_yes" msgid="6674268047820703974">"വേണം"</string>

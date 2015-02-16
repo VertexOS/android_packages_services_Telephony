@@ -509,18 +509,24 @@
     <string name="phone_entered_ecm_text" msgid="6266424252578731203">"Byl aktivován režim tísňového zpětného volání"</string>
     <string name="phone_in_ecm_notification_title" msgid="3226896828951687085">"Režim tísňového zpětného volání"</string>
     <string name="phone_in_ecm_call_notification_text" msgid="4611608947314729773">"Datové spojení zakázáno"</string>
-  <plurals name="phone_in_ecm_notification_time">
-    <item quantity="one" msgid="4866221796252472622">"Žádné datové připojení po dobu <xliff:g id="COUNT">%s</xliff:g> min"</item>
-    <item quantity="other" msgid="3122217344579273583">"Žádné datové připojení po dobu <xliff:g id="COUNT">%s</xliff:g> min"</item>
-  </plurals>
-  <plurals name="alert_dialog_exit_ecm">
-    <item quantity="one" msgid="8060210887681426682">"Telefon bude v režimu tísňového zpětného volání po dobu <xliff:g id="COUNT">%s</xliff:g> minuty. Dokud je telefon v tomto režimu, nelze použít žádnou aplikaci, která využívá datové připojení. Chcete tento režim ukončit?"</item>
-    <item quantity="other" msgid="8617116564023933114">"Telefon bude v režimu tísňového zpětného volání po dobu <xliff:g id="COUNT">%s</xliff:g> minut. Dokud je telefon v tomto režimu, nelze použít žádnou aplikaci, která využívá datové připojení. Chcete tento režim ukončit?"</item>
-  </plurals>
-  <plurals name="alert_dialog_not_avaialble_in_ecm">
-    <item quantity="one" msgid="2585506997024726599">"Vybraná akce není v režimu tísňového zpětného volání dostupná. Telefon bude v tomto režimu po dobu <xliff:g id="COUNT">%s</xliff:g> minuty. Chcete aplikaci nyní ukončit?"</item>
-    <item quantity="other" msgid="6115622137771382224">"Vybraná akce není v režimu tísňového zpětného volání dostupná. Telefon bude v tomto režimu po dobu <xliff:g id="COUNT">%s</xliff:g> minut. Chcete tento režim nyní ukončit?"</item>
-  </plurals>
+    <plurals name="phone_in_ecm_notification_time" formatted="false" msgid="8308381858502470919">
+      <item quantity="few"><xliff:g id="COUNT_1">%s</xliff:g> minuty nebude k dispozici datové připojení</item>
+      <item quantity="many"><xliff:g id="COUNT_1">%s</xliff:g> minuty nebude k dispozici datové připojení</item>
+      <item quantity="other"><xliff:g id="COUNT_1">%s</xliff:g> minut nebude k dispozici datové připojení</item>
+      <item quantity="one"><xliff:g id="COUNT_0">%s</xliff:g> minutu nebude k dispozici datové připojení</item>
+    </plurals>
+    <plurals name="alert_dialog_exit_ecm" formatted="false" msgid="7179911675595441201">
+      <item quantity="few">]Telefon bude <xliff:g id="COUNT_1">%s</xliff:g> minuty v režimu zpětného tísňového volání. V tomto režimu nelze používat aplikace, které používají datové připojení. Chcete akci nyní ukončit?</item>
+      <item quantity="many">]Telefon bude <xliff:g id="COUNT_1">%s</xliff:g> minuty v režimu zpětného tísňového volání. V tomto režimu nelze používat aplikace, které používají datové připojení. Chcete akci nyní ukončit?</item>
+      <item quantity="other">]Telefon bude <xliff:g id="COUNT_1">%s</xliff:g> minut v režimu zpětného tísňového volání. V tomto režimu nelze používat aplikace, které používají datové připojení. Chcete akci nyní ukončit?</item>
+      <item quantity="one">Telefon bude <xliff:g id="COUNT_0">%s</xliff:g> minutu v režimu zpětného tísňového volání. V tomto režimu nelze používat aplikace, které používají datové připojení. Chcete akci nyní ukončit?</item>
+    </plurals>
+    <plurals name="alert_dialog_not_avaialble_in_ecm" formatted="false" msgid="8042973425225093895">
+      <item quantity="few">V režimu zpětného tísňového volání vybraná akce není k dispozici. Telefon v tomto režimu bude <xliff:g id="COUNT_1">%s</xliff:g> minuty. Chcete akci nyní ukončit?</item>
+      <item quantity="many">V režimu zpětného tísňového volání vybraná akce není k dispozici. Telefon v tomto režimu bude <xliff:g id="COUNT_1">%s</xliff:g> minuty. Chcete akci nyní ukončit?</item>
+      <item quantity="other">V režimu zpětného tísňového volání vybraná akce není k dispozici. Telefon v tomto režimu bude <xliff:g id="COUNT_1">%s</xliff:g> minut. Chcete akci nyní ukončit?</item>
+      <item quantity="one">V režimu zpětného tísňového volání vybraná akce není k dispozici. Telefon v tomto režimu bude <xliff:g id="COUNT_0">%s</xliff:g> minutu. Chcete akci nyní ukončit?</item>
+    </plurals>
     <string name="alert_dialog_in_ecm_call" msgid="1886723687211887104">"Během tísňového volání není vybraná akce k dispozici."</string>
     <string name="progress_dialog_exiting_ecm" msgid="4835734101617817074">"Ukončení režimu tísňového zpětného volání"</string>
     <string name="alert_dialog_yes" msgid="6674268047820703974">"Ano"</string>

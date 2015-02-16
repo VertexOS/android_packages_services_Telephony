@@ -509,18 +509,18 @@
     <string name="phone_entered_ecm_text" msgid="6266424252578731203">"Влизане в режим на обратно обаждане при спешност"</string>
     <string name="phone_in_ecm_notification_title" msgid="3226896828951687085">"Режим на обратно обаждане при спешност"</string>
     <string name="phone_in_ecm_call_notification_text" msgid="4611608947314729773">"Връзката с данни е деактивирана"</string>
-  <plurals name="phone_in_ecm_notification_time">
-    <item quantity="one" msgid="4866221796252472622">"Няма връзка за данни в продължение на <xliff:g id="COUNT">%s</xliff:g> минута"</item>
-    <item quantity="other" msgid="3122217344579273583">"Няма връзка за данни в продължение на <xliff:g id="COUNT">%s</xliff:g> минути"</item>
-  </plurals>
-  <plurals name="alert_dialog_exit_ecm">
-    <item quantity="one" msgid="8060210887681426682">"Телефонът ще бъде в режим на спешно обратно обаждане в продължение на <xliff:g id="COUNT">%s</xliff:g> минута. През това време не може да се използват приложения за връзка с данни. Искате ли да излезете сега?"</item>
-    <item quantity="other" msgid="8617116564023933114">"Телефонът ще бъде в режим на спешно обратно обаждане в продължение на <xliff:g id="COUNT">%s</xliff:g> минути. През това време не може да се използват приложения за връзка с данни. Искате ли да излезете сега?"</item>
-  </plurals>
-  <plurals name="alert_dialog_not_avaialble_in_ecm">
-    <item quantity="one" msgid="2585506997024726599">"Избраното действие не е налично в режим на обратно спешно обаждане. Телефонът ще бъде в този режим в продължение на <xliff:g id="COUNT">%s</xliff:g> минута. Искате ли да излезете сега?"</item>
-    <item quantity="other" msgid="6115622137771382224">"Избраното действие не е налично в режим на спешно обратно обаждане. Телефонът ще бъде в този режим в продължение на <xliff:g id="COUNT">%s</xliff:g> минути. Искате ли да излезете сега?"</item>
-  </plurals>
+    <plurals name="phone_in_ecm_notification_time" formatted="false" msgid="8308381858502470919">
+      <item quantity="other">Няма връзка за данни в продължение на <xliff:g id="COUNT_1">%s</xliff:g> минути</item>
+      <item quantity="one">Няма връзка за данни в продължение на <xliff:g id="COUNT_0">%s</xliff:g> минута</item>
+    </plurals>
+    <plurals name="alert_dialog_exit_ecm" formatted="false" msgid="7179911675595441201">
+      <item quantity="other">Телефонът ще бъде в режим за обратно обаждане при спешност в продължение на <xliff:g id="COUNT_1">%s</xliff:g> минути. В този режим не могат да се използват приложения, работещи с връзка за данни. Искате ли да излезете сега?</item>
+      <item quantity="one">Телефонът ще бъде в режим за обратно обаждане при спешност в продължение на <xliff:g id="COUNT_0">%s</xliff:g> минута. В този режим не могат да се използват приложения, работещи с връзка за данни. Искате ли да излезете сега?</item>
+    </plurals>
+    <plurals name="alert_dialog_not_avaialble_in_ecm" formatted="false" msgid="8042973425225093895">
+      <item quantity="other">Избраното действие не е налице в режима за обратно обаждане при спешност. Телефонът ще бъде в този режим в продължение на <xliff:g id="COUNT_1">%s</xliff:g> минути. Искате ли да излезете сега?</item>
+      <item quantity="one">Избраното действие не е налице в режима за обратно обаждане при спешност. Телефонът ще бъде в този режим в продължение на <xliff:g id="COUNT_0">%s</xliff:g> минута. Искате ли да излезете сега?</item>
+    </plurals>
     <string name="alert_dialog_in_ecm_call" msgid="1886723687211887104">"Избраното действие не е налично по време на спешно обаждане."</string>
     <string name="progress_dialog_exiting_ecm" msgid="4835734101617817074">"Излиза се от режим на спешно обратно обаждане"</string>
     <string name="alert_dialog_yes" msgid="6674268047820703974">"Да"</string>

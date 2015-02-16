@@ -509,18 +509,18 @@
     <string name="phone_entered_ecm_text" msgid="6266424252578731203">"හදිසි ආපසු ඇමතුම් ආකාරයට ඇතුලත් විණි"</string>
     <string name="phone_in_ecm_notification_title" msgid="3226896828951687085">"හදිසි ආපසු ඇමතුම් ආකාරය"</string>
     <string name="phone_in_ecm_call_notification_text" msgid="4611608947314729773">"දත්ත සම්බන්ධතාවය අබලයි"</string>
-  <plurals name="phone_in_ecm_notification_time">
-    <item quantity="one" msgid="4866221796252472622">"මිනිත්තු <xliff:g id="COUNT">%s</xliff:g> සඳහා කිසිඳු දත්ත සම්බන්ධතාවයක් නොමැත"</item>
-    <item quantity="other" msgid="3122217344579273583">"මිනිත්තු <xliff:g id="COUNT">%s</xliff:g> සඳහා කිසිඳු දත්ත සම්බන්ධතාවයක් නොමැත"</item>
-  </plurals>
-  <plurals name="alert_dialog_exit_ecm">
-    <item quantity="one" msgid="8060210887681426682">"දුරකථනය මිනිත්තු <xliff:g id="COUNT">%s</xliff:g> සඳහා හදිසි පසු ඇමතුම් ආකාරයට පත්වේ. මෙම ආකාරයේ තිබෙන විට දත්ත සම්බන්ධතා භාවිතා කෙරෙන යෙදුම් භාවිතා කළ හැක. ඔබට දැන් පිටත්ව යාමට අවශ්‍යද?"</item>
-    <item quantity="other" msgid="8617116564023933114">"දුරකථනය මිනිත්තු <xliff:g id="COUNT">%s</xliff:g> සඳහා හදිසි පසු ඇමතුම් ආකාරයට පත්වේ. මෙම ආකාරයේ තිබෙන විට දත්ත සම්බන්ධතා භාවිතා කෙරෙන යෙදුම් භාවිතා කළ හැක. ඔබට දැන් පිටත්ව යාමට අවශ්‍යද?"</item>
-  </plurals>
-  <plurals name="alert_dialog_not_avaialble_in_ecm">
-    <item quantity="one" msgid="2585506997024726599">"හදිසි පසු ඇමතුම් ආකාරයේ සිටින විට තෝරා ඇති ක්‍රියාව නොමැත. දුරකථනය මිනිත්තු <xliff:g id="COUNT">%s</xliff:g> කට මෙම ආකාරයට පත්වේ. ඔබ දැන් පිටවීමට අවශ්‍යද?"</item>
-    <item quantity="other" msgid="6115622137771382224">"හදිසි පසු ඇමතුම් ආකාරයේ සිටින විට තෝරා ඇති ක්‍රියාව නොමැත. දුරකථනය මිනිත්තු <xliff:g id="COUNT">%s</xliff:g> කට මෙම ආකාරයට පත්වේ. ඔබ දැන් පිටවීමට අවශ්‍යද?"</item>
-  </plurals>
+    <plurals name="phone_in_ecm_notification_time" formatted="false" msgid="8308381858502470919">
+      <item quantity="one">මිනිත්තු <xliff:g id="COUNT_1">%s</xliff:g> ක් දත්ත සම්බන්ධතාවයක් නැත</item>
+      <item quantity="other">මිනිත්තු <xliff:g id="COUNT_1">%s</xliff:g> ක් දත්ත සම්බන්ධතාවයක් නැත</item>
+    </plurals>
+    <plurals name="alert_dialog_exit_ecm" formatted="false" msgid="7179911675595441201">
+      <item quantity="one">දුරකථනය මිනිත්තු <xliff:g id="COUNT_1">%s</xliff:g> ක් හදිසි ආපසු ඇමතුම් ආකාරය තුළ වනු ඇත. මෙම ආකාරය තුළ සිටින අතරතුර දත්ත සම්බන්ධයක් භාවිත කරන යෙදුම් කිසිවක් භාවිත කළ නොහැකිය. ඔබට දැන් පිටවීමට අවශ්යද?</item>
+      <item quantity="other">දුරකථනය මිනිත්තු <xliff:g id="COUNT_1">%s</xliff:g> ක් හදිසි ආපසු ඇමතුම් ආකාරය තුළ වනු ඇත. මෙම ආකාරය තුළ සිටින අතරතුර දත්ත සම්බන්ධයක් භාවිත කරන යෙදුම් කිසිවක් භාවිත කළ නොහැකිය. ඔබට දැන් පිටවීමට අවශ්යද?</item>
+    </plurals>
+    <plurals name="alert_dialog_not_avaialble_in_ecm" formatted="false" msgid="8042973425225093895">
+      <item quantity="one"> හදිසි ආපසු ඇමතුම් ආකාරය තුළ සිටියදී තෝරන ලද ක්‍රියාව ලබාගත නොහැක. දුරකථනය මිනිත්තු <xliff:g id="COUNT_1">%s</xliff:g> ක් හදිසි ආපසු ඇමතුම් ආකාරය තුළ වනු ඇත. ඔබට දැන් පිටවීමට අවශ්යද?</item>
+      <item quantity="other"> හදිසි ආපසු ඇමතුම් ආකාරය තුළ සිටියදී තෝරන ලද ක්‍රියාව ලබාගත නොහැක. දුරකථනය මිනිත්තු <xliff:g id="COUNT_1">%s</xliff:g> ක් හදිසි ආපසු ඇමතුම් ආකාරය තුළ වනු ඇත. ඔබට දැන් පිටවීමට අවශ්යද?</item>
+    </plurals>
     <string name="alert_dialog_in_ecm_call" msgid="1886723687211887104">"හදිසි ඇමතුමක් අතර තුර තෝරන ලද ක්‍රියාව ලබාගත නොහැක."</string>
     <string name="progress_dialog_exiting_ecm" msgid="4835734101617817074">"හදිසි ආපසු ඇමතුම් ආකාරයෙන් පිට වෙමින්"</string>
     <string name="alert_dialog_yes" msgid="6674268047820703974">"ඔව්"</string>

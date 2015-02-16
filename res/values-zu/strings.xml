@@ -513,18 +513,18 @@
     <string name="phone_entered_ecm_text" msgid="6266424252578731203">"Ingene Kwimdoi Yokuphinda Ukushayela Okuphuthumayo"</string>
     <string name="phone_in_ecm_notification_title" msgid="3226896828951687085">"Imodi Yokuphinda Ukushayela Okuphuthumayo"</string>
     <string name="phone_in_ecm_call_notification_text" msgid="4611608947314729773">"Uxhumano lwedatha luvimbelwe"</string>
-  <plurals name="phone_in_ecm_notification_time">
-    <item quantity="one" msgid="4866221796252472622">"Alukho uxhumano lwedatha lwamaminithi angu-<xliff:g id="COUNT">%s</xliff:g>"</item>
-    <item quantity="other" msgid="3122217344579273583">"Alukho uxhumano lwamaminithi angu-<xliff:g id="COUNT">%s</xliff:g>"</item>
-  </plurals>
-  <plurals name="alert_dialog_exit_ecm">
-    <item quantity="one" msgid="8060210887681426682">"Ucingo luzoba semodini ye-Emergency Callback amaminithi angu-<xliff:g id="COUNT">%s</xliff:g>. Ngenkathi ikule modi awekho ama-apps asebenzisa ukuxhumana kwedatha angasetshenziswa. Ufuna ukuphuma manje?"</item>
-    <item quantity="other" msgid="8617116564023933114">"Ucingo luzoba semodini ye-Emergency Callback amaminithi angu-<xliff:g id="COUNT">%s</xliff:g>. Ngenkathi ikule modi azikho izinhlelo ezisebenzisa ukuxhumana kwedatha ezingasetshenziswa. Ufuna ukuphuma manje?"</item>
-  </plurals>
-  <plurals name="alert_dialog_not_avaialble_in_ecm">
-    <item quantity="one" msgid="2585506997024726599">"Isenzo esikhethiwe asitholakali uma usemodini ye-Emergency Callback. Ucingo luzoba kule modi amaminithi angu-<xliff:g id="COUNT">%s</xliff:g>. Ufuna ukuphuma manje?"</item>
-    <item quantity="other" msgid="6115622137771382224">"Isenzo esikhethiwe asitholakali ngenkathi ukumodi ye-Emergency Callback. Ucingo luzoba kule modi amaminithi angu-<xliff:g id="COUNT">%s</xliff:g>. Ufuna ukuphuma manje?"</item>
-  </plurals>
+    <plurals name="phone_in_ecm_notification_time" formatted="false" msgid="8308381858502470919">
+      <item quantity="one">Alukho uxhumo ledatha amaminthi angu-<xliff:g id="COUNT_1">%s</xliff:g></item>
+      <item quantity="other">Alukho uxhumo ledatha amaminthi angu-<xliff:g id="COUNT_1">%s</xliff:g></item>
+    </plurals>
+    <plurals name="alert_dialog_exit_ecm" formatted="false" msgid="7179911675595441201">
+      <item quantity="one">Ifoni izoba kumodi yokushayela emuva yesimo esiphuthumayo amaminithi angu-<xliff:g id="COUNT_1">%s</xliff:g>. Ngenkathi ikule modi azikho izinhlelo zokusebenza ezisebenzisa uxhumo ledatha ezingasetshenziswa. Ufuna ukuphuma manje?</item>
+      <item quantity="other">Ifoni izoba kumodi yokushayela emuva yesimo esiphuthumayo amaminithi angu-<xliff:g id="COUNT_1">%s</xliff:g>. Ngenkathi ikule modi azikho izinhlelo zokusebenza ezisebenzisa uxhumo ledatha ezingasetshenziswa. Ufuna ukuphuma manje?</item>
+    </plurals>
+    <plurals name="alert_dialog_not_avaialble_in_ecm" formatted="false" msgid="8042973425225093895">
+      <item quantity="one">Isenzo esikhethiwe asitholakali ngenkathi ikumodi yokushayela emuv ayesimo esiphuthumayo. Ifoni izoba kule modi amaminithi angu-<xliff:g id="COUNT_1">%s</xliff:g>. Ufuna ukuphuma manje?</item>
+      <item quantity="other">Isenzo esikhethiwe asitholakali ngenkathi ikumodi yokushayela emuv ayesimo esiphuthumayo. Ifoni izoba kule modi amaminithi angu-<xliff:g id="COUNT_1">%s</xliff:g>. Ufuna ukuphuma manje?</item>
+    </plurals>
     <string name="alert_dialog_in_ecm_call" msgid="1886723687211887104">"Isenzo esikhethiwe asitholakali ngenkathi usocingweni oluphuthumayo"</string>
     <string name="progress_dialog_exiting_ecm" msgid="4835734101617817074">"Ikhipha Imodi Yokuphinda Ukushaya Okuphuthumayo"</string>
     <string name="alert_dialog_yes" msgid="6674268047820703974">"Yebo"</string>

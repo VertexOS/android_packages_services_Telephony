@@ -509,18 +509,24 @@
     <string name="phone_entered_ecm_text" msgid="6266424252578731203">"Įvestas atgalinio skambinimo pagalbos numeriu režimas"</string>
     <string name="phone_in_ecm_notification_title" msgid="3226896828951687085">"Atgalinio skambinimo pagalbos numeriu režimas"</string>
     <string name="phone_in_ecm_call_notification_text" msgid="4611608947314729773">"Duomenų ryšys išjungtas"</string>
-  <plurals name="phone_in_ecm_notification_time">
-    <item quantity="one" msgid="4866221796252472622">"Jokio duomenų ryšio <xliff:g id="COUNT">%s</xliff:g> min."</item>
-    <item quantity="other" msgid="3122217344579273583">"Jokio duomenų ryšio <xliff:g id="COUNT">%s</xliff:g> min."</item>
-  </plurals>
-  <plurals name="alert_dialog_exit_ecm">
-    <item quantity="one" msgid="8060210887681426682">"<xliff:g id="COUNT">%s</xliff:g> min. telefonas veiks atgalinio skambinimo pagalbos numeriu režimu. Telefonui veikiant šiuo režimu, negalėsite naudoti jokių ryšio su duomenimis programų. Ar norite šį režimą išjungti dabar?"</item>
-    <item quantity="other" msgid="8617116564023933114">"<xliff:g id="COUNT">%s</xliff:g> min. telefonas veiks atgalinio skambinimo pagalbos numeriu režimu. Telefonui veikiant šiuo režimu, negalėsite naudoti jokių ryšio su duomenimis programų. Ar norite šį režimą išjungti dabar?"</item>
-  </plurals>
-  <plurals name="alert_dialog_not_avaialble_in_ecm">
-    <item quantity="one" msgid="2585506997024726599">"Skambinant pagalbos telefonu pasirinkto veiksmo atlikti nepavyks. Šiuo režimu telefonas veiks <xliff:g id="COUNT">%s</xliff:g> min. Ar norite šį režimą išjungti dabar?"</item>
-    <item quantity="other" msgid="6115622137771382224">"Skambinant atgalinio pagalbos numerio režimu pasirinkto veiksmo atlikti nepavyks. Šiuo režimu telefonas veiks <xliff:g id="COUNT">%s</xliff:g> min. Ar norite šį režimą išjungti dabar?"</item>
-  </plurals>
+    <plurals name="phone_in_ecm_notification_time" formatted="false" msgid="8308381858502470919">
+      <item quantity="one">Jokio duomenų ryšio <xliff:g id="COUNT_1">%s</xliff:g> minutę</item>
+      <item quantity="few">Jokio duomenų ryšio <xliff:g id="COUNT_1">%s</xliff:g> minutes</item>
+      <item quantity="many">Jokio duomenų ryšio <xliff:g id="COUNT_1">%s</xliff:g> minutės</item>
+      <item quantity="other">Jokio duomenų ryšio <xliff:g id="COUNT_1">%s</xliff:g> minučių</item>
+    </plurals>
+    <plurals name="alert_dialog_exit_ecm" formatted="false" msgid="7179911675595441201">
+      <item quantity="one">Telefonas veiks pagalbos tarnybos atskambinimo režimu <xliff:g id="COUNT_1">%s</xliff:g> minutę. Įgalinus šį režimą negalima naudoti jokių programų, kurioms reikalingas duomenų ryšys. Norite dabar išeiti iš šio režimo?</item>
+      <item quantity="few">Telefonas veiks pagalbos tarnybos atskambinimo režimu <xliff:g id="COUNT_1">%s</xliff:g> minutes. Įgalinus šį režimą negalima naudoti jokių programų, kurioms reikalingas duomenų ryšys. Norite dabar išeiti iš šio režimo?</item>
+      <item quantity="many">Telefonas veiks pagalbos tarnybos atskambinimo režimu <xliff:g id="COUNT_1">%s</xliff:g> minutės. Įgalinus šį režimą negalima naudoti jokių programų, kurioms reikalingas duomenų ryšys. Norite dabar išeiti iš šio režimo?</item>
+      <item quantity="other">Telefonas veiks pagalbos tarnybos atskambinimo režimu <xliff:g id="COUNT_1">%s</xliff:g> minučių. Įgalinus šį režimą negalima naudoti jokių programų, kurioms reikalingas duomenų ryšys. Norite dabar išeiti iš šio režimo?</item>
+    </plurals>
+    <plurals name="alert_dialog_not_avaialble_in_ecm" formatted="false" msgid="8042973425225093895">
+      <item quantity="one">Įgalinus pagalbos tarnybos atskambinimo režimą pasirinkto veiksmo atlikti negalima. Telefonas veiks pagalbos tarnybos atskambinimo režimu <xliff:g id="COUNT_1">%s</xliff:g> minutę. Norite dabar išeiti iš šio režimo?</item>
+      <item quantity="few">Įgalinus pagalbos tarnybos atskambinimo režimą pasirinkto veiksmo atlikti negalima. Telefonas veiks pagalbos tarnybos atskambinimo režimu <xliff:g id="COUNT_1">%s</xliff:g> minutes. Norite dabar išeiti iš šio režimo?</item>
+      <item quantity="many">Įgalinus pagalbos tarnybos atskambinimo režimą pasirinkto veiksmo atlikti negalima. Telefonas veiks pagalbos tarnybos atskambinimo režimu <xliff:g id="COUNT_1">%s</xliff:g> minutės. Norite dabar išeiti iš šio režimo?</item>
+      <item quantity="other">Įgalinus pagalbos tarnybos atskambinimo režimą pasirinkto veiksmo atlikti negalima. Telefonas veiks pagalbos tarnybos atskambinimo režimu <xliff:g id="COUNT_1">%s</xliff:g> minučių. Norite dabar išeiti iš šio režimo?</item>
+    </plurals>
     <string name="alert_dialog_in_ecm_call" msgid="1886723687211887104">"Skambinant pagalbos numeriu pasirinkto veiksmo atlikti nepavyks."</string>
     <string name="progress_dialog_exiting_ecm" msgid="4835734101617817074">"Išeinama iš atgalinio skambinimo pagalbos numeriu režimo"</string>
     <string name="alert_dialog_yes" msgid="6674268047820703974">"Taip"</string>

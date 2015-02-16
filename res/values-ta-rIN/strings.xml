@@ -509,18 +509,18 @@
     <string name="phone_entered_ecm_text" msgid="6266424252578731203">"அவசரகால திரும்ப அழைக்கும் பயன்முறை இயக்கப்பட்டது"</string>
     <string name="phone_in_ecm_notification_title" msgid="3226896828951687085">"அவசரகால திரும்ப அழைக்கும் பயன்முறை"</string>
     <string name="phone_in_ecm_call_notification_text" msgid="4611608947314729773">"தரவு இணைப்பு முடக்கப்பட்டது"</string>
-  <plurals name="phone_in_ecm_notification_time">
-    <item quantity="one" msgid="4866221796252472622">"<xliff:g id="COUNT">%s</xliff:g> நிமிடத்திற்கு தரவு இணைப்பு இருக்காது"</item>
-    <item quantity="other" msgid="3122217344579273583">"<xliff:g id="COUNT">%s</xliff:g> நிமிடங்களுக்குத் தரவு இணைப்பு இருக்காது"</item>
-  </plurals>
-  <plurals name="alert_dialog_exit_ecm">
-    <item quantity="one" msgid="8060210887681426682">"<xliff:g id="COUNT">%s</xliff:g> நிமிடத்தில் அவசரகால திரும்ப அழைக்கும் பயன்முறைக்கு மொபைல் மாறிவிடும். இந்தப் பயன்முறை செயலில் இருக்கும்போது, எந்தப் பயன்பாடுகளும் தரவு இணைப்பைப் பயன்படுத்தாது. இப்போது வெளியேற விருப்பமா?"</item>
-    <item quantity="other" msgid="8617116564023933114">"<xliff:g id="COUNT">%s</xliff:g> நிமிடத்தில் அவசரகால திரும்ப அழைக்கும் பயன்முறைக்கு மொபைல் மாறிவிடும். இந்தப் பயன்முறை செயலில் இருக்கும்போது, எந்தப் பயன்பாடுகளும் தரவு இணைப்பைப் பயன்படுத்தாது. இப்போது வெளியேற விருப்பமா?"</item>
-  </plurals>
-  <plurals name="alert_dialog_not_avaialble_in_ecm">
-    <item quantity="one" msgid="2585506997024726599">"அவசரகால திரும்ப அழைக்கும் பயன்முறை செயலில் இருக்கும்போது, தேர்ந்தெடுத்த செயல்பாடு கிடைக்காது. <xliff:g id="COUNT">%s</xliff:g> நிமிடத்தில் இந்தப் பயன்முறையில் மொபைல் மாறிவிடும். இப்போது வெளியேற விருப்பமா?"</item>
-    <item quantity="other" msgid="6115622137771382224">"அவசரநிலை திரும்ப அழைக்கும் பயன்முறை செயலில் இருக்கும்போது, தேர்ந்தெடுத்த செயல்பாடு கிடைக்காது. <xliff:g id="COUNT">%s</xliff:g> நிமிடத்தில் மொபைல் இந்தப் பயன்முறையில் மாறிவிடும். இப்போது வெளியேற விருப்பமா?"</item>
-  </plurals>
+    <plurals name="phone_in_ecm_notification_time" formatted="false" msgid="8308381858502470919">
+      <item quantity="other"><xliff:g id="COUNT_1">%s</xliff:g> நிமிடங்களுக்குத் தரவு இணைப்பு இருக்காது</item>
+      <item quantity="one"><xliff:g id="COUNT_0">%s</xliff:g> நிமிடத்திற்குத் தரவு இணைப்பு இருக்காது</item>
+    </plurals>
+    <plurals name="alert_dialog_exit_ecm" formatted="false" msgid="7179911675595441201">
+      <item quantity="other"><xliff:g id="COUNT_1">%s</xliff:g> நிமிடங்களுக்கு மொபைல் அவசரகால திரும்ப அழைக்கும் பயன்முறையில் இருக்கும். இந்தப் பயன்முறையில், தரவு இணைப்பைப் பயன்படுத்தாத பயன்பாடுகளைப் பயன்படுத்தலாம். இப்போது வெளியேற விரும்புகிறீர்களா?</item>
+      <item quantity="one"><xliff:g id="COUNT_0">%s</xliff:g> நிமிடத்திற்கு மொபைல் அவசரகால திரும்ப அழைக்கும் பயன்முறையில் இருக்கும். இந்தப் பயன்முறையில், தரவு இணைப்பைப் பயன்படுத்தாத பயன்பாடுகளைப் பயன்படுத்தலாம். இப்போது வெளியேற விரும்புகிறீர்களா?</item>
+    </plurals>
+    <plurals name="alert_dialog_not_avaialble_in_ecm" formatted="false" msgid="8042973425225093895">
+      <item quantity="other">அவசரகால திரும்ப அழைக்கும் பயன்முறை செயலில் இருக்கும்போது, தேர்ந்தெடுத்த செயல் கிடைக்காது. <xliff:g id="COUNT_1">%s</xliff:g> நிமிடங்களுக்கு மொபைல் இந்தப் பயன்முறையில் இருக்கும். இப்போது வெளியேற விரும்புகிறீர்களா?</item>
+      <item quantity="one">அவசரகால திரும்ப அழைக்கும் பயன்முறை செயலில் இருக்கும்போது, தேர்ந்தெடுத்த செயல் கிடைக்காது. <xliff:g id="COUNT_0">%s</xliff:g> நிமிடத்திற்கு மொபைல் இந்தப் பயன்முறையில் இருக்கும். இப்போது வெளியேற விரும்புகிறீர்களா?</item>
+    </plurals>
     <string name="alert_dialog_in_ecm_call" msgid="1886723687211887104">"அவசரகால அழைப்பு செயலில் இருக்கும்போது தேர்ந்தெடுத்த செயல் கிடைக்காது."</string>
     <string name="progress_dialog_exiting_ecm" msgid="4835734101617817074">"அவசரகால திரும்ப அழைக்கும் பயன்முறையிலிருந்து வெளியேறுகிறது"</string>
     <string name="alert_dialog_yes" msgid="6674268047820703974">"ஆம்"</string>
