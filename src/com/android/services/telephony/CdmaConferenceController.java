@@ -189,6 +189,7 @@ final class CdmaConferenceController {
             if (mConference != null) {
                 Log.i(this, "Destroying the CDMA conference connection.");
                 mConference.destroy();
+                mConference = null;
             }
         }
     }
