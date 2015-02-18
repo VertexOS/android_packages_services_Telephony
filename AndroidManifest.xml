@@ -583,5 +583,13 @@
                 <action android:name="android.content.action.SEARCH_INDEXABLES_PROVIDER" />
             </intent-filter>
         </provider>
+
+        <receiver android:name="com.android.phone.vvm.omtp.sms.OmtpMessageReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.DATA_SMS_RECEIVED" />
+                <data android:scheme="sms" />
+            </intent-filter>
+        </receiver>
     </application>
 </manifest>
