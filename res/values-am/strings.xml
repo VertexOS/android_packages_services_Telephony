@@ -48,7 +48,7 @@
     <string name="puk_unlocked" msgid="2284912838477558454">"የSIM ካርድዎ አልታገደም። ስልክዎ በመከፈት ላይነው..."</string>
     <string name="label_ndp" msgid="780479633159517250">"የSIM አውታረመረብ መክፈቻ ፒን"</string>
     <string name="sim_ndp_unlock_text" msgid="683628237760543009">"ክፈት"</string>
-    <string name="sim_ndp_dismiss_text" msgid="1604823375752456947">"አጥፋ"</string>
+    <string name="sim_ndp_dismiss_text" msgid="1604823375752456947">"አሰናብት"</string>
     <string name="requesting_unlock" msgid="6412629401033249351">"አውታረመረብ ለማስከፈት በመጠየቅ ላይ..."</string>
     <string name="unlock_failed" msgid="6490531697031504225">"የአውታረ መረብ ክፈትጥየቃአል ተሳካም።"</string>
     <string name="unlock_success" msgid="6770085622238180152">"የአውታረ መረብክፈት ተሳክቷል።"</string>
@@ -525,7 +525,7 @@
     <string name="progress_dialog_exiting_ecm" msgid="4835734101617817074">"የአደጋ ጊዜ ተዘዋዋሪ ጥሪ ሁኔታ ወጥቷል"</string>
     <string name="alert_dialog_yes" msgid="6674268047820703974">"አዎ"</string>
     <string name="alert_dialog_no" msgid="1476091437797628703">"አይ"</string>
-    <string name="alert_dialog_dismiss" msgid="2491494287075907171">"እንቢበል"</string>
+    <string name="alert_dialog_dismiss" msgid="2491494287075907171">"አሰናብት"</string>
     <string name="voicemail_provider" msgid="5135942703327136909">"አገልግሎት"</string>
     <string name="voicemail_settings" msgid="72448049107749316">"አዋቅር"</string>
     <string name="voicemail_number_not_set" msgid="6724904736891087856">"&lt;አልተዘጋጀም &gt;"</string>
