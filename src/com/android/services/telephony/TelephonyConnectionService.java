@@ -154,7 +154,7 @@ public class TelephonyConnectionService extends ConnectionService {
         boolean useEmergencyCallHelper = false;
 
         if (isEmergencyNumber) {
-            if (state == ServiceState.STATE_POWER_OFF) {
+            if (!phone.isRadioOn()) {
                 useEmergencyCallHelper = true;
             }
         } else {
