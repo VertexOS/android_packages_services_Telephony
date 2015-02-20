@@ -148,6 +148,8 @@
 
     <!-- Title for setting to select Wi-Fi call manager account -->
     <string name="wifi_calling">Wi-Fi calling</string>
+    <!-- Summary label for wi-fi calling when it is turned off. [CHAR LIMIT=NONE] -->
+    <string name="wifi_calling_off_summary">Off</string>
     <!-- Indication for option to not use a Wi-Fi call manager -->
     <string name="wifi_calling_do_not_use">Do not use Wi-Fi calling</string>
     <!-- Indication for option to not use a call assistant. -->
