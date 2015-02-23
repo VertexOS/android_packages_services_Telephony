@@ -16,9 +16,7 @@
 
 package com.android.phone;
 
-import com.android.ims.ImsConfig;
 import com.android.ims.ImsManager;
-import com.android.ims.ImsException;
 import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneConstants;
 import com.android.internal.telephony.PhoneFactory;
@@ -36,7 +34,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.net.Uri;
 import android.os.AsyncResult;
@@ -49,7 +46,6 @@ import android.os.UserManager;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
-import android.preference.PreferenceGroup;
 import android.preference.PreferenceScreen;
 import android.preference.SwitchPreference;
 import android.telephony.PhoneStateListener;
@@ -60,12 +56,10 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ListView;
 import android.widget.TabHost;
 import android.widget.TabHost.OnTabChangeListener;
 import android.widget.TabHost.TabContentFactory;
 import android.widget.TabHost.TabSpec;
-import android.widget.TabWidget;
 
 /**
  * "Mobile network settings" screen.  This preference screen lets you
@@ -96,9 +90,6 @@ public class MobileNetworkSettings extends PreferenceActivity
     private static final String BUTTON_CDMA_LTE_DATA_SERVICE_KEY = "cdma_lte_data_service_key";
     private static final String BUTTON_ENABLED_NETWORKS_KEY = "enabled_networks_key";
     private static final String BUTTON_4G_LTE_KEY = "enhanced_4g_lte";
-    private static final String BUTTON_WFC = "wfc_enable";
-    private static final String BUTTON_WFC_MODE = "wfc_mode";
-    private static final String BUTTON_WFC_ROAM = "wfc_roam";
     private static final String BUTTON_CELL_BROADCAST_SETTINGS = "cell_broadcast_settings";
     private static final String BUTTON_APN_EXPAND_KEY = "button_apn_key";
     private static final String BUTTON_OPERATOR_SELECTION_EXPAND_KEY = "button_carrier_sel_key";
@@ -119,9 +110,6 @@ public class MobileNetworkSettings extends PreferenceActivity
     private ListPreference mButtonEnabledNetworks;
     private SwitchPreference mButtonDataRoam;
     private SwitchPreference mButton4glte;
-    private SwitchPreference mButtonWfc;
-    private ListPreference mButtonWfcMode;
-    private SwitchPreference mButtonWfcRoam;
     private Preference mLteDataServicePref;
 
     private static final String iface = "rmnet0"; //TODO: this will go away
@@ -154,35 +142,10 @@ public class MobileNetworkSettings extends PreferenceActivity
         @Override
         public void onCallStateChanged(int state, String incomingNumber) {
             if (DBG) log("PhoneStateListener.onCallStateChanged: state=" + state);
+            boolean enabled = (state == TelephonyManager.CALL_STATE_IDLE) &&
+                    ImsManager.isNonTtyOrTtyOnVolteEnabled(getApplicationContext());
             Preference pref = getPreferenceScreen().findPreference(BUTTON_4G_LTE_KEY);
-            boolean isEnhanced4gModeEnabled = false;
-            if (pref != null) {
-                isEnhanced4gModeEnabled = ((SwitchPreference) pref).isChecked() &&
-                        ImsManager.isNonTtyOrTtyOnVolteEnabled(getApplicationContext());
-                pref.setEnabled((state == TelephonyManager.CALL_STATE_IDLE) &&
-                        ImsManager.isNonTtyOrTtyOnVolteEnabled(getApplicationContext()));
-            }
-            pref = getPreferenceScreen().findPreference(BUTTON_WFC);
-            boolean isWfcEnabled = false;
-            if (pref != null) {
-                isWfcEnabled = ((SwitchPreference) pref).isChecked();
-                pref.setEnabled(
-                        isEnhanced4gModeEnabled && (state == TelephonyManager.CALL_STATE_IDLE));
-            }
-            pref = getPreferenceScreen().findPreference(BUTTON_WFC_MODE);
-            int wfcMode = ImsConfig.WfcModeFeatureValueConstants.WIFI_ONLY;
-            if (pref != null) {
-                pref.setEnabled(isEnhanced4gModeEnabled && isWfcEnabled
-                        && (state == TelephonyManager.CALL_STATE_IDLE));
-                ListPreference prefWfcMode = (ListPreference)pref;
-                wfcMode = Integer.valueOf(prefWfcMode.getValue()).intValue();
-            }
-            pref = getPreferenceScreen().findPreference(BUTTON_WFC_ROAM);
-            if (pref != null) {
-                pref.setEnabled(isEnhanced4gModeEnabled && isWfcEnabled
-                        && (wfcMode != ImsConfig.WfcModeFeatureValueConstants.WIFI_ONLY)
-                        && (state == TelephonyManager.CALL_STATE_IDLE));
-            }
+            if (pref != null) pref.setEnabled(enabled && hasActiveSubscriptions());
         }
     };
 
@@ -226,8 +189,7 @@ public class MobileNetworkSettings extends PreferenceActivity
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
         /** TODO: Refactor and get rid of the if's using subclasses */
         final int phoneSubId = mPhone.getSubId();
-        if (preference.getKey().equals(BUTTON_4G_LTE_KEY) || preference.getKey().equals(BUTTON_WFC)
-                || preference.getKey().equals(BUTTON_WFC_ROAM)) {
+        if (preference.getKey().equals(BUTTON_4G_LTE_KEY)) {
             return true;
         } else if (mGsmUmtsOptions != null &&
                 mGsmUmtsOptions.preferenceTreeClick(preference) == true) {
@@ -253,8 +215,6 @@ public class MobileNetworkSettings extends PreferenceActivity
                     preferredNetworkMode);
             mButtonPreferredNetworkMode.setValue(Integer.toString(settingsNetworkMode));
             return true;
-        } else if (preference == mButtonWfcMode) {
-            return true;
         } else if (preference == mLteDataServicePref) {
             String tmpl = android.provider.Settings.Global.getString(getContentResolver(),
                         android.provider.Settings.Global.SETUP_PREPAID_DATA_SERVICE_URL);
@@ -275,7 +235,7 @@ public class MobileNetworkSettings extends PreferenceActivity
             return true;
         }  else if (preference == mButtonEnabledNetworks) {
             int settingsNetworkMode = android.provider.Settings.Global.getInt(mPhone.getContext().
-                    getContentResolver(),
+                            getContentResolver(),
                     android.provider.Settings.Global.PREFERRED_NETWORK_MODE + phoneSubId,
                     preferredNetworkMode);
             mButtonEnabledNetworks.setValue(Integer.toString(settingsNetworkMode));
@@ -472,15 +432,6 @@ public class MobileNetworkSettings extends PreferenceActivity
         mButton4glte = (SwitchPreference)findPreference(BUTTON_4G_LTE_KEY);
         mButton4glte.setOnPreferenceChangeListener(this);
 
-        mButtonWfc = (SwitchPreference) findPreference(BUTTON_WFC);
-        mButtonWfc.setOnPreferenceChangeListener(this);
-
-        mButtonWfcMode = (ListPreference) findPreference(BUTTON_WFC_MODE);
-        mButtonWfcMode.setOnPreferenceChangeListener(this);
-
-        mButtonWfcRoam = (SwitchPreference) findPreference(BUTTON_WFC_ROAM);
-        mButtonWfcRoam.setOnPreferenceChangeListener(this);
-
         try {
             Context con = createPackageContext("com.android.systemui", 0);
             int id = con.getResources().getIdentifier("config_show4GForLTE",
@@ -554,18 +505,15 @@ public class MobileNetworkSettings extends PreferenceActivity
         boolean enh4glteMode = ImsManager.isEnhanced4gLteModeSettingEnabledByUser(this)
                 && ImsManager.isNonTtyOrTtyOnVolteEnabled(this);
         mButton4glte.setChecked(enh4glteMode);
-        boolean wfcEnabled = ImsManager.isWfcEnabledByUser(this);
-        mButtonWfc.setChecked(enh4glteMode && wfcEnabled);
-        int wfcMode = ImsManager.getWfcMode(mPhone.getContext());
-        mButtonWfcMode.setValue(Integer.toString(wfcMode));
-        mButtonWfcRoam.setChecked(enh4glteMode && wfcEnabled &&
-                (wfcMode != ImsConfig.WfcModeFeatureValueConstants.WIFI_ONLY) &&
-                ImsManager.isWfcRoamingEnabledByUser(this));
 
         mSubscriptionManager.addOnSubscriptionsChangedListener(mOnSubscriptionsChangeListener);
 
         if (DBG) log("onResume:-");
 
+    }
+
+    private boolean hasActiveSubscriptions() {
+        return mActiveSubInfos.size() > 0;
     }
 
     private void updateBody() {
@@ -584,26 +532,6 @@ public class MobileNetworkSettings extends PreferenceActivity
             prefSet.addPreference(mButtonPreferredNetworkMode);
             prefSet.addPreference(mButtonEnabledNetworks);
             prefSet.addPreference(mButton4glte);
-            prefSet.addPreference(mButtonWfc);
-            prefSet.addPreference(mButtonWfcMode);
-            UpdateWfcModeSummary(ImsManager.getWfcMode(mPhone.getContext()));
-            prefSet.addPreference(mButtonWfcRoam);
-
-            if (!ImsManager.isEnhanced4gLteModeSettingEnabledByUser(mPhone.getContext())) {
-                mButtonWfc.setEnabled(false);
-                mButtonWfcMode.setEnabled(false);
-                mButtonWfcRoam.setEnabled(false);
-            }
-
-            if (!ImsManager.isWfcEnabledByUser(mPhone.getContext())) {
-                mButtonWfcMode.setEnabled(false);
-                mButtonWfcRoam.setEnabled(false);
-            }
-
-            if (ImsManager.getWfcMode(mPhone.getContext())
-                    == ImsConfig.WfcModeFeatureValueConstants.WIFI_ONLY) {
-                mButtonWfcRoam.setEnabled(false);
-            }
         }
 
         int settingsNetworkMode = android.provider.Settings.Global.getInt(
@@ -739,22 +667,6 @@ public class MobileNetworkSettings extends PreferenceActivity
             }
         }
 
-        // Enable WFC settings depending on whether exists on platform
-        if (!ImsManager.isWfcEnabledByPlatform(this)) {
-            Preference pref = prefSet.findPreference(BUTTON_WFC);
-            if (pref != null) {
-                prefSet.removePreference(pref);
-            }
-            pref = prefSet.findPreference(BUTTON_WFC_MODE);
-            if (pref != null) {
-                prefSet.removePreference(pref);
-            }
-            pref = prefSet.findPreference(BUTTON_WFC_ROAM);
-            if (pref != null) {
-                prefSet.removePreference(pref);
-            }
-        }
-
         ActionBar actionBar = getActionBar();
         if (actionBar != null) {
             // android.R.id.home will be triggered in onOptionsItemSelected()
@@ -793,11 +705,15 @@ public class MobileNetworkSettings extends PreferenceActivity
          * but you do need to remember that this all needs to work when subscriptions
          * change dynamically such as when hot swapping sims.
          */
-        boolean hasActiveSubscriptions = mActiveSubInfos.size() > 0;
+        boolean hasActiveSubscriptions = hasActiveSubscriptions();
+        TelephonyManager tm = (TelephonyManager) getSystemService(
+                Context.TELEPHONY_SERVICE);
+        boolean canChange4glte = (tm.getCallState() == TelephonyManager.CALL_STATE_IDLE) &&
+                ImsManager.isNonTtyOrTtyOnVolteEnabled(getApplicationContext());
         mButtonDataRoam.setEnabled(hasActiveSubscriptions);
         mButtonPreferredNetworkMode.setEnabled(hasActiveSubscriptions);
         mButtonEnabledNetworks.setEnabled(hasActiveSubscriptions);
-        mButton4glte.setEnabled(hasActiveSubscriptions);
+        mButton4glte.setEnabled(hasActiveSubscriptions && canChange4glte);
         mLteDataServicePref.setEnabled(hasActiveSubscriptions);
         Preference ps;
         PreferenceScreen root = getPreferenceScreen();
@@ -933,47 +849,6 @@ public class MobileNetworkSettings extends PreferenceActivity
             boolean enhanced4gMode = !enhanced4gModePref.isChecked();
             enhanced4gModePref.setChecked(enhanced4gMode);
             ImsManager.setEnhanced4gLteModeSetting(this, enhanced4gModePref.isChecked());
-
-            mButtonWfc.setEnabled(enhanced4gMode);
-            boolean wfcEnabled = ImsManager.isWfcEnabledByUser(this);
-            mButtonWfc.setChecked(enhanced4gMode && wfcEnabled);
-            mButtonWfcMode.setEnabled(enhanced4gMode && wfcEnabled);
-            boolean wfcHandoffEnabled = (ImsManager.getWfcMode(mPhone.getContext())
-                    != ImsConfig.WfcModeFeatureValueConstants.WIFI_ONLY);
-            mButtonWfcRoam.setEnabled(enhanced4gMode && wfcEnabled && wfcHandoffEnabled);
-            mButtonWfcRoam.setChecked(enhanced4gMode && wfcEnabled && wfcHandoffEnabled &&
-                    ImsManager.isWfcRoamingEnabledByUser(this));
-        } else if (preference == mButtonWfc) {
-            SwitchPreference wfcPref = (SwitchPreference) preference;
-            boolean wfcEnabled = !wfcPref.isChecked();
-            wfcPref.setChecked(wfcEnabled);
-            ImsManager.setWfcSetting(this, wfcPref.isChecked());
-
-            mButtonWfcMode.setEnabled(wfcEnabled);
-            boolean wfcHandoffEnabled = (ImsManager.getWfcMode(mPhone.getContext())
-                    != ImsConfig.WfcModeFeatureValueConstants.WIFI_ONLY);
-            mButtonWfcRoam.setEnabled(wfcEnabled && wfcHandoffEnabled);
-            mButtonWfcRoam.setChecked(wfcEnabled && wfcHandoffEnabled &&
-                    ImsManager.isWfcRoamingEnabledByUser(this));
-        } else if (preference == mButtonWfcMode) {
-            mButtonWfcMode.setValue((String) objValue);
-            int buttonMode = Integer.valueOf((String) objValue).intValue();
-            int currentMode = ImsManager.getWfcMode(mPhone.getContext());
-            if (DBG)
-                log("Setting WFC Mode: buttonMode=" + buttonMode + ", currentMode=" + currentMode);
-            if (buttonMode != currentMode) {
-                ImsManager.setWfcMode(mPhone.getContext(), buttonMode);
-                UpdateWfcModeSummary(buttonMode);
-            }
-            boolean wfcHandoffEnabled =
-                    (buttonMode != ImsConfig.WfcModeFeatureValueConstants.WIFI_ONLY);
-            mButtonWfcRoam.setEnabled(wfcHandoffEnabled);
-            mButtonWfcRoam.setChecked(wfcHandoffEnabled &&
-                    ImsManager.isWfcRoamingEnabledByUser(this));
-        } else if (preference == mButtonWfcRoam) {
-            SwitchPreference wfcRoamPref = (SwitchPreference) preference;
-            wfcRoamPref.setChecked(!wfcRoamPref.isChecked());
-            ImsManager.setWfcRoamingSetting(this, wfcRoamPref.isChecked());
         } else if (preference == mButtonDataRoam) {
             if (DBG) log("onPreferenceTreeClick: preference == mButtonDataRoam.");
 
@@ -1282,22 +1157,6 @@ public class MobileNetworkSettings extends PreferenceActivity
                 String errMsg = "Invalid Network Mode (" + NetworkMode + "). Ignore.";
                 loge(errMsg);
                 mButtonEnabledNetworks.setSummary(errMsg);
-        }
-    }
-
-    private void UpdateWfcModeSummary(int wfcMode) {
-        switch (wfcMode) {
-            case ImsConfig.WfcModeFeatureValueConstants.WIFI_ONLY:
-                mButtonWfcMode.setSummary(R.string.wfc_mode_wifi_only_summary);
-                break;
-            case ImsConfig.WfcModeFeatureValueConstants.CELLULAR_PREFERRED:
-                mButtonWfcMode.setSummary(R.string.wfc_mode_cellular_preferred_summary);
-                break;
-            case ImsConfig.WfcModeFeatureValueConstants.WIFI_PREFERRED:
-                mButtonWfcMode.setSummary(R.string.wfc_mode_wifi_preferred_summary);
-                break;
-            default:
-                // do nothing
         }
     }
 

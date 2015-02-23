@@ -430,34 +430,12 @@
     <!-- Cellular network 4G summary [CHAR LIMIT=80] -->
     <string name="enhanced_4g_lte_mode_summary">Use LTE services to improve voice and other communications (recommended)</string>
 
-    <!-- WFC enable/disable [CHAR LIMIT=30] -->
-    <string name="wfc_title">Wi-Fi calling</string>
-    <!-- WFC summary [CHAR LIMIT=80] -->
-    <string name="wfc_summary">Allow voice calls to use Wi-Fi (recommended)</string>
-    <!-- WFC mode [CHAR LIMIT=30] -->
-    <string name="wfc_mode_title">Wi-Fi calling mode</string>
-    <!-- WFC mode dialog [CHAR LIMIT=30] -->
-    <string name="wfc_mode_dialog_title">Wi-Fi calling mode</string>
-    <string-array name="wfc_mode_choices">
-        <item>Wi-Fi preferred</item>
-        <item>Cellular preferred</item>
-        <item>Wi-Fi only</item>
-    </string-array>
-    <string-array name="wfc_mode_values">
-        <item>"2"</item>
-        <item>"1"</item>
-        <item>"0"</item>
-    </string-array>
     <!-- WFC, summary for Wi-Fi Preferred [CHAR LIMIT=100] -->
     <string name="wfc_mode_wifi_preferred_summary">Wi-Fi preferred (Uses cell network only if Wi-Fi isn\'t available)</string>
     <!-- WFC, summary for Cellular Preferred [CHAR LIMIT=100] -->
     <string name="wfc_mode_cellular_preferred_summary">Cellular preferred (Uses Wi-Fi only if cell network isn\'t available)</string>
     <!-- WFC, summary for Wi-Fi Only [CHAR LIMIT=100] -->
     <string name="wfc_mode_wifi_only_summary">Wi-Fi only (Never uses cell network. Can\'t make or receive calls if Wi-Fi isn\'t available)</string>
-    <!-- WFC roam enable/disable [CHAR LIMIT=30] -->
-    <string name="wfc_roam_title">WFC handoff while roaming</string>
-    <!-- WFC roam summary [CHAR LIMIT=80] -->
-    <string name="wfc_roam_summary">Allow Wi-Fi voice calls handoff to cell network when roaming</string>
 
     <!-- Mobile network settings screen, data enabling checkbox name -->
     <string name="data_enabled">Data enabled</string>

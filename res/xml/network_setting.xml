@@ -14,7 +14,6 @@
      limitations under the License.
 -->
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:phone="http://schemas.android.com/apk/res/com.android.phone"
         android:title="@string/mobile_networks">
 
     <PreferenceScreen
@@ -50,23 +49,5 @@
         android:title="@string/enhanced_4g_lte_mode_title"
         android:persistent="false"
         android:summary="@string/enhanced_4g_lte_mode_summary"/>
-
-    <SwitchPreference
-        android:key="wfc_enable"
-        android:title="@string/wfc_title"
-        android:persistent="false"/>
-
-    <ListPreference
-        android:key="wfc_mode"
-        android:title="@string/wfc_mode_title"
-        android:summary="@string/wfc_mode_title"
-        android:entries="@array/wfc_mode_choices"
-        android:entryValues="@array/wfc_mode_values"
-        android:dialogTitle="@string/wfc_mode_dialog_title" />
-
-    <SwitchPreference
-        android:key="wfc_roam"
-        android:title="@string/wfc_roam_title"
-        android:persistent="false"/>
 
 </PreferenceScreen>
