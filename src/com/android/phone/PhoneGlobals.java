@@ -147,6 +147,7 @@ public class PhoneGlobals extends ContextWrapper {
     NotificationMgr notificationMgr;
     public PhoneInterfaceManager phoneMgr;
     public SimActivationManager simActivationManager;
+    CarrierConfigLoader configLoader;
 
     private BluetoothManager bluetoothManager;
     private CallGatewayManager callGatewayManager;
@@ -401,6 +402,8 @@ public class PhoneGlobals extends ContextWrapper {
             bluetoothManager = new BluetoothManager();
 
             phoneMgr = PhoneInterfaceManager.init(this, PhoneFactory.getDefaultPhone());
+
+            configLoader = CarrierConfigLoader.init(this);
 
             // Create the CallNotifer singleton, which handles
             // asynchronous events from the telephony layer (like
