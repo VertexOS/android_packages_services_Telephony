@@ -219,11 +219,11 @@
     <!-- String.format failed for translation -->
     <!-- no translation found for throttle_data_usage_subtext (6029276011123694701) -->
     <skip />
-    <string name="throttle_data_rate_reduced_subtext" msgid="7492763592720107737">"<xliff:g id="USED_0">%1$s</xliff:g> առավելագույնը գերազանցվել է\nՏվյալների արժեքը նվազել է մինչև <xliff:g id="USED_1">%2$d</xliff:g> Կբ/վ"</string>
+    <string name="throttle_data_rate_reduced_subtext" msgid="7492763592720107737">"<xliff:g id="USED_0">%1$s</xliff:g> առավելագույնը գերազանցվել է\nՏվյալների արժեքը նվազել է մինչև <xliff:g id="USED_1">%2$d</xliff:g> ԿԲ/վ"</string>
     <!-- String.format failed for translation -->
     <!-- no translation found for throttle_time_frame_subtext (7732763021560399960) -->
     <skip />
-    <string name="throttle_rate_subtext" msgid="2149102656120726855">"Տվյալների ծավալը կնվազի մինչև <xliff:g id="USED">%1$d</xliff:g> Կբ/վ, եթե տվյալների օգտագործման սահմանաչափը գերազանցվի"</string>
+    <string name="throttle_rate_subtext" msgid="2149102656120726855">"Տվյալների ծավալը կնվազի մինչև <xliff:g id="USED">%1$d</xliff:g> ԿԲ/վ, եթե տվյալների օգտագործման սահմանաչափը գերազանցվի"</string>
     <string name="throttle_help_subtext" msgid="3633091498168446044">"Լրացուցիչ տեղեկություններ ձեր օպերատորի բջջային ցանցի տվյալների օգտագործման քաղաքականության մասին"</string>
     <string name="cell_broadcast_sms" msgid="5584192824053625842">"Բջջային հեռարձակման SMS"</string>
     <string name="enable_disable_cell_bc_sms" msgid="4851147873691392255">"Բջջային հեռարձակման SMS"</string>
