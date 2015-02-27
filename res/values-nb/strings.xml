@@ -16,19 +16,19 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="phoneAppLabel" product="tablet" msgid="8576272342240415145">"Mobildata"</string>
+    <string name="phoneAppLabel" product="tablet" msgid="1107073389495104784">"Mobildata"</string>
     <string name="phoneAppLabel" product="default" msgid="906161039445636857">"Telefon"</string>
     <string name="emergencyDialerIconLabel" msgid="7812140032168171053">"Nødnummer"</string>
     <string name="phoneIconLabel" msgid="2331230813161304895">"Telefon"</string>
     <string name="fdnListLabel" msgid="8630418672279521003">"Faste nummer"</string>
     <string name="unknown" msgid="6878797917991465859">"Ukjent"</string>
     <string name="private_num" msgid="6713286113000232309">"Hemmelig nummer"</string>
-    <string name="payphone" msgid="1931775086311769314">"Telefonkiosk"</string>
+    <string name="payphone" msgid="4793877574636445118">"Telefonkiosk"</string>
     <string name="onHold" msgid="9035493194749959955">"Parkert"</string>
     <string name="mmiStarted" msgid="6347869857061147003">"MMI-kode påbegynt"</string>
     <string name="ussdRunning" msgid="485588686340541690">"USSD-kode kjører…"</string>
     <string name="mmiCancelled" msgid="2771923949751842276">"MMI-kode avbrutt"</string>
-    <string name="cancel" msgid="5044513931633602634">"Avbrutt"</string>
+    <string name="cancel" msgid="5044513931633602634">"Avbryt"</string>
     <string name="enter_input" msgid="1810529547726803893">"USSD-meldingen må ha <xliff:g id="MIN_LEN">%d</xliff:g> til <xliff:g id="MAX_LEN">%d</xliff:g> tegn. Prøv på nytt."</string>
     <string name="manageConferenceLabel" msgid="4691922394301969053">"Administrer konferansesamtale"</string>
     <string name="ok" msgid="3811371167865772377">"OK"</string>
@@ -52,18 +52,38 @@
     <string name="requesting_unlock" msgid="6412629401033249351">"Spør om fjerning av operatørlås…"</string>
     <string name="unlock_failed" msgid="6490531697031504225">"Fikk ikke fjerne operatørlås."</string>
     <string name="unlock_success" msgid="6770085622238180152">"Operatørlåsen er fjernet."</string>
-    <string name="mobile_network_settings_not_available" msgid="7355254462995117896">"Innstillinger for mobilnettverk er ikke tilgjengelig for denne brukeren"</string>
+    <string name="mobile_network_settings_not_available" msgid="3831911315358856062">"Innstillingene for mobilnettverk er ikke tilgjengelige for denne brukeren"</string>
     <string name="labelGSMMore" msgid="5930842194056092106">"Innstillinger for GSM-samtaler"</string>
     <string name="labelCDMAMore" msgid="1630676740428229339">"Innstillinger for CDMA-samtaler"</string>
-    <string name="apn_settings" msgid="9043423184895642077">"Navn på aksesspunkt"</string>
+    <string name="apn_settings" msgid="9043423184895642077">"Navn på tilgangspunkt"</string>
     <string name="settings_label" msgid="3876743539816984008">"Nettverksinnstillinger"</string>
-    <string name="connection_service" msgid="978745922583410219">"Tilkoblingstjenesten som skal brukes"</string>
+    <string name="phone_accounts" msgid="6376603393888116364">"Ringekontoer"</string>
+    <string name="phone_accounts_make_calls_with" msgid="1969188078933152231">"Ring med"</string>
+    <string name="phone_accounts_make_sip_calls_with" msgid="4677789312053828493">"Foreta SIP-oppringing med"</string>
+    <string name="phone_accounts_ask_every_time" msgid="4346499067149985702">"Spør først"</string>
+    <string name="phone_accounts_settings_header" msgid="4141710640883261094">"Innstillinger"</string>
+    <string name="phone_accounts_choose_accounts" msgid="5232948804226424002">"Velg kontoer"</string>
+    <string name="phone_accounts_selection_header" msgid="1365215726106915865">"Telefonkontoer"</string>
+    <string name="phone_accounts_add_sip_account" msgid="2023821743341923271">"Legg til SIP-konto"</string>
+    <string name="phone_accounts_configure_account_settings" msgid="1361715069911607109">"Konfigurer kontoinnstillingene"</string>
+    <string name="phone_account_wifi_calling" msgid="1840272538233414629">"Wi-Fi-anrop"</string>
+    <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"Ikke bruk Wi-Fi for å ringe"</string>
+    <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"Ikke bruk ringeassistenten"</string>
+    <string name="wifi_calling_call_assistant_none" msgid="6283702349285593683">"Ingen"</string>
+    <string name="wifi_calling_call_assistant" msgid="229102032881680320">"Ringeassistent"</string>
+    <string name="wifi_calling_use_call_assistant" msgid="8460024827012666199">"Bruk ringeassistenten"</string>
+    <string name="wifi_calling_select_call_assistant" msgid="9296558058772293">"Velg ringeassistent"</string>
+    <string name="wifi_calling_select_call_assistant_summary" msgid="164985727137156474">"Administrer nettverk som brukes for anrop med"</string>
+    <string name="wifi_calling_use_call_assistant_summary" msgid="6599987137133339698">"Tillater apper eller tjenester å administrere nettverk som brukes for å ringe"</string>
+    <string name="wifi_calling_call_assistant_configure" msgid="1092639708949670031">"Konfigurer"</string>
     <string name="connection_service_default_label" msgid="1498481943805913754">"Innebygd tilkoblingstjeneste"</string>
     <string name="voicemail" msgid="8693759337917898954">"Telefonsvarer"</string>
     <string name="voicemail_abbreviated" msgid="2215592488517217448">"Svarer:"</string>
     <string name="networks" msgid="8873030692174541976">"Nettoperatører"</string>
-    <string name="call_settings" msgid="1630474923393095156">"Anropsinnstillinger"</string>
+    <string name="cell_broadcast_settings" msgid="8740238216690502563">"Nødvarsler"</string>
+    <string name="call_settings" msgid="6112441768261754562">"Samtaleinnstillinger"</string>
     <string name="additional_gsm_call_settings" msgid="1391795981938800617">"Flere innstillinger"</string>
+    <string name="additional_gsm_call_settings_with_label" msgid="1385241520708457376">"Flere innstillinger (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="sum_gsm_call_settings" msgid="4076647190996778012">"Flere GSM-spesifikke innstillinger"</string>
     <string name="additional_cdma_call_settings" msgid="8628958775721886909">"Flere CDMA-innstillinger"</string>
     <string name="sum_cdma_call_settings" msgid="284753265979035549">"Flere CDMA-spesifikke innstillinger"</string>
@@ -77,29 +97,32 @@
     <string name="sum_cw_enabled" msgid="8083061901633671397">"Under samtaler, varsle om innkommende anrop"</string>
     <string name="sum_cw_disabled" msgid="3648693907300104575">"Under samtaler, ikke varsle om innkommende anrop"</string>
     <string name="call_forwarding_settings" msgid="3378927671091537173">"Innstillinger for viderekobling"</string>
+    <string name="call_forwarding_settings_with_label" msgid="8569489414006897127">"Innstillinger for videresending av anrop (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="labelCF" msgid="2574386948026924737">"Viderekobling"</string>
-    <string name="labelCFU" msgid="8147177368148660600">"Alltid viderekoble"</string>
+    <string name="labelCFU" msgid="8147177368148660600">"Viderekoble alltid"</string>
     <string name="messageCFU" msgid="3560082430662923687">"Alltid bruk dette nummeret"</string>
     <string name="sum_cfu_enabled_indicator" msgid="4014187342724130197">"Viderekoble alle anrop"</string>
     <string name="sum_cfu_enabled" msgid="2450052502198827927">"Viderekobler alle anrop til <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfu_enabled_no_number" msgid="6591985777096823616">"Nummeret er ikke tilgjengelig"</string>
-    <string name="sum_cfu_disabled" msgid="3698472522160364904">"Deaktivert"</string>
-    <string name="labelCFB" msgid="218938523102207587">"Viderekoble når opptatt"</string>
+    <string name="sum_cfu_disabled" msgid="8384177689501334080">"Av"</string>
+    <string name="labelCFB" msgid="6139853033106283172">"Når det er opptatt"</string>
     <string name="messageCFB" msgid="3711089705936187129">"Nummer ved opptattsignal"</string>
     <string name="sum_cfb_enabled" msgid="5984198104833116690">"Viderekobler til <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
-    <string name="sum_cfb_disabled" msgid="227440009979537651">"Deaktivert"</string>
+    <string name="sum_cfb_disabled" msgid="4913145177320506827">"Av"</string>
     <string name="disable_cfb_forbidden" msgid="3506984333877998061">"Operatøren støtter ikke deaktivering av viderekobling når telefonen er opptatt."</string>
-    <string name="labelCFNRy" msgid="3646316323834351390">"Viderekoble når det ikke svares"</string>
+    <string name="labelCFNRy" msgid="1736067178393744351">"Når ingen svarer"</string>
     <string name="messageCFNRy" msgid="672317899884380374">"Nummer for når det ikke svares"</string>
     <string name="sum_cfnry_enabled" msgid="6955775691317662910">"Viderekobler til <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
-    <string name="sum_cfnry_disabled" msgid="8422350929957344729">"Deaktivert"</string>
+    <string name="sum_cfnry_disabled" msgid="3884684060443538097">"Av"</string>
     <string name="disable_cfnry_forbidden" msgid="4308233959150658058">"Operatøren støtter ikke deaktivering av viderekobling når anropet ikke besvares."</string>
-    <string name="labelCFNRc" msgid="47183615370850000">"Viderekoble ved manglende dekning"</string>
+    <string name="labelCFNRc" msgid="2614827454402079766">"Når mottaker ikke kan nås"</string>
     <string name="messageCFNRc" msgid="6380695421020295119">"Nummer ved manglende dekning"</string>
     <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"Viderekobler til <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfnrc_disabled" msgid="7222141261321276464">"Deaktivert"</string>
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"Operatøren støtter ikke deaktivering av viderekobling når telefonen er utenfor dekning."</string>
     <string name="updating_title" msgid="6146755386174019046">"Samtaleinnstillinger"</string>
+    <string name="call_settings_primary_user_only" msgid="5679923943740900965">"Anropsinnstillinger kan bare endres av hovedbrukeren."</string>
+    <string name="call_settings_with_label" msgid="89359812614544532">"Anropsinnstillinger (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="error_updating_title" msgid="7970259216988931777">"Feil ved samtaleinnstillinger"</string>
     <string name="reading_settings" msgid="1920291699287055284">"Leser innstillinger…"</string>
     <string name="updating_settings" msgid="8171225533884883252">"Oppdaterer innstillinger…"</string>
@@ -109,8 +132,8 @@
     <string name="fdn_check_failure" msgid="18200614306525434">"Telefonappens innstilling for Faste numre er aktivert. Derfor fungerer ikke enkelte av ringefunksjonene."</string>
     <string name="radio_off_error" msgid="2304459933248513376">"Slå på radioen før du ser på disse innstillingene."</string>
     <string name="close_dialog" msgid="2365884406356986917">"OK"</string>
-    <string name="enable" msgid="1059008390636773574">"Aktiver"</string>
-    <string name="disable" msgid="7274240979164762320">"Deaktiver"</string>
+    <string name="enable" msgid="7248657275000173526">"Slå på"</string>
+    <string name="disable" msgid="4678348128118573672">"Slå av"</string>
     <string name="change_num" msgid="239476305819844391">"Oppdater"</string>
   <string-array name="clir_display_values">
     <item msgid="5560134294467334594">"Nettverksstandard"</item>
@@ -123,8 +146,8 @@
     <string name="fw_get_in_vm_failed" msgid="8862896836093833973">"Kunne ikke hente og lagre gjeldende innstillinger for viderekoblingsnummer.\nVil du likevel bytte til den nye leverandøren?"</string>
     <string name="no_change" msgid="3186040086622435212">"Ingen endringer ble utført."</string>
     <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"Velg talemeldingsleverandør"</string>
-    <string name="voicemail_default" msgid="5902099213882352338">"Min teleoperatør"</string>
-    <string name="mobile_networks" msgid="5540397602919106177">"Innstillinger for mobilnettverk"</string>
+    <string name="voicemail_default" msgid="2001233554889016880">"Operatøren din"</string>
+    <string name="mobile_networks" msgid="2843854043339307375">"Mobilnettverksinnstillinger"</string>
     <string name="label_available" msgid="1181658289009300430">"Tilgjengelige nettverk"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"Søker…"</string>
     <string name="empty_networks_list" msgid="4249426905018815316">"Fant ingen nettverk."</string>
@@ -156,6 +179,8 @@
     <string name="preferred_network_mode_lte_cdma_evdo_summary" msgid="228702246343742853">"Foretrukket nettverksmodus: CDMA + LTE/EVDO"</string>
     <string name="preferred_network_mode_global_summary" msgid="1633134285545730364">"Foretrukket nettverksmodus: Overordnet"</string>
     <string name="preferred_network_mode_lte_wcdma_summary" msgid="9180775701594742750">"Foretrukket nettverksmodus: LTE/WCDMA"</string>
+    <string name="preferred_network_mode_lte_gsm_umts_summary" msgid="633315028976225026">"Foretrukket nettverksmodus: LTE / GSM / UMTS"</string>
+    <string name="preferred_network_mode_lte_cdma_summary" msgid="3722647806454528426">"Foretrukket nettverksmodus: LTE/CDMA"</string>
   <string-array name="preferred_network_mode_choices">
     <item msgid="7886739962255042385">"LTE / WCDMA"</item>
     <item msgid="577652050447385699">"LTE"</item>
@@ -171,13 +196,15 @@
     <item msgid="1524224863879435516">"Bare GSM"</item>
     <item msgid="3817924849415716259">"GSM/WCDMA foretrukket"</item>
   </string-array>
+    <string name="enhanced_4g_lte_mode_title" msgid="522191650223239171">"Forbedret 4G LTE-modus"</string>
+    <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"Bruk LTE-tjenester for å forbedre stemme- og andre typer kommunikasjon (anbefalt)"</string>
     <string name="data_enabled" msgid="5972538663568715366">"Data aktivert"</string>
-    <string name="data_enable_summary" msgid="5022018967714633874">"Aktiver datatilgang i mobilnettverk"</string>
+    <string name="data_enable_summary" msgid="2382798156640007971">"Tillat databruk"</string>
     <string name="roaming" msgid="8871412572928323707">"Dataroaming"</string>
     <string name="roaming_enable" msgid="7331106985174381987">"Koble til datatjenester ved roaming"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"Koble til datatjenester ved roaming"</string>
     <string name="roaming_reenable_message" msgid="8913735676127858115">"Du har mistet datatilkoblingen fordi du forlot hjemmenettet med roaming avslått."</string>
-    <string name="roaming_warning" msgid="7820963598559553967">"Tillat dataroaming? Dette kan koste mye penger!"</string>
+    <string name="roaming_warning" msgid="7126227198294007907">"Vil du tillate databruk ved roaming? Dette kan medføre betydelige kostnader."</string>
     <string name="gsm_umts_options" msgid="6538311689850981686">"GSM/UMTS-innstillinger"</string>
     <string name="cdma_options" msgid="4016822858172249884">"CDMA-innstillinger"</string>
     <string name="throttle_data_usage" msgid="3715677828160555808">"Databruk"</string>
@@ -196,7 +223,7 @@
     <!-- no translation found for throttle_time_frame_subtext (7732763021560399960) -->
     <skip />
     <string name="throttle_rate_subtext" msgid="2149102656120726855">"Datahastigheten reduseres til <xliff:g id="USED">%1$d</xliff:g> Kb/s hvis databruken overskrider grenseverdien"</string>
-    <string name="throttle_help_subtext" msgid="5217706521499010816">"Les mer om mobiloperatørens retningslinjer for bruk av nettverksdata"</string>
+    <string name="throttle_help_subtext" msgid="3633091498168446044">"Mer informasjon om mobiloperatørens retningslinjer for bruk av nettverksdata"</string>
     <string name="cell_broadcast_sms" msgid="5584192824053625842">"Kringkastings-SMS"</string>
     <string name="enable_disable_cell_bc_sms" msgid="4851147873691392255">"Kringkastings-SMS"</string>
     <string name="cell_bc_sms_enable" msgid="6441688565738921084">"Kringkastings-SMS aktivert"</string>
@@ -309,7 +336,9 @@
     <string name="cdma_lte_data_service" msgid="4255018217292548962">"Konfigurer datatjeneste"</string>
     <string name="carrier_settings_title" msgid="9028166176523012300">"Operatørinnstillinger"</string>
     <string name="fdn" msgid="7878832555095183202">"Faste nummer"</string>
+    <string name="fdn_with_label" msgid="187084204115493366">"Faste numre (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="manage_fdn_list" msgid="8777755791892122369">"Liste over faste nummer"</string>
+    <string name="fdn_list_with_label" msgid="7437232552210469217">"FDN-liste (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="fdn_activation" msgid="2156479741307463576">"Aktivering av faste nummer"</string>
     <string name="fdn_enabled" msgid="5238109009915521240">"Kun faste nummer kan ringes"</string>
     <string name="fdn_disabled" msgid="4700049736675368279">"Faste nummer er deaktivert"</string>
@@ -332,7 +361,7 @@
     <string name="menu_delete" msgid="3977150783449642851">"Fjern kontakt"</string>
     <string name="get_pin2" msgid="8204677063922225311">"Skriv inn PIN2"</string>
     <string name="name" msgid="7329028332786872378">"Navn"</string>
-    <string name="number" msgid="7905950798349903858">"Num,er"</string>
+    <string name="number" msgid="7905950798349903858">"Nummer"</string>
     <string name="save" msgid="4094274636321939086">"Lagre"</string>
     <string name="add_fdn_contact" msgid="2481915899633353976">"Legg til programmert telefonnummer"</string>
     <string name="adding_fdn_contact" msgid="7627379633721940991">"Legger til programmert telefonnummer ..."</string>
@@ -360,42 +389,40 @@
     <string name="badPin" msgid="8955102849303984935">"Den gamle personlige koden du skrev inn, er feil. Prøv på nytt."</string>
     <string name="mismatchPin" msgid="5923253370683071889">"De personlige kodene du skrev inn, stemmer ikke overens. Prøv på nytt."</string>
     <string name="invalidPin" msgid="5981171102258684792">"Skriv inn en PIN-kode som er fra 4 til 8 siffer."</string>
-    <string name="disable_sim_pin" msgid="3992926931620188855">"Slå av PIN-kode for SIM-kort"</string>
-    <string name="enable_sim_pin" msgid="5803702443844458831">"Slå på PIN-kode for SIM-kort"</string>
-    <string name="enable_in_progress" msgid="3695303775100109650">"Vent litt…"</string>
-    <string name="enable_pin_ok" msgid="9166061915030865848">"Personlig kode for SIM-kort aktivert."</string>
-    <string name="disable_pin_ok" msgid="5596999379593924850">"Personlig kode for SIM-kort deaktivert."</string>
-    <string name="pin_failed" msgid="2298841192582192277">"Den personlige koden du skrev inn, er feil."</string>
-    <string name="pin_changed" msgid="4365538014588501049">"Personlig kode for SIM-kort er endret."</string>
-    <string name="puk_requested" msgid="1796577128488773946">"Feil passord – PIN-koden er sperret. PUK-kode forespurt."</string>
+    <string name="disable_sim_pin" msgid="3419351358300716472">"Slett PIN-koden for SIM"</string>
+    <string name="enable_sim_pin" msgid="4845145659651484248">"Konfigurer PIN-kode for SIM"</string>
+    <string name="enable_in_progress" msgid="3417917024688497010">"Konfigurerer PIN-kode …"</string>
+    <string name="enable_pin_ok" msgid="2918545971413270063">"PIN-koden er angitt"</string>
+    <string name="disable_pin_ok" msgid="2109571368635883688">"PIN-koden er slettet"</string>
+    <string name="pin_failed" msgid="5644377896213584760">"PIN-koden er feil"</string>
+    <string name="pin_changed" msgid="4455736268023261662">"PIN-koden er oppdatert"</string>
+    <string name="puk_requested" msgid="5921393215789090200">"Passordet er feil. PIN-koden er nå blokkert. PUK-kode er forespurt."</string>
     <string name="enter_pin2_text" msgid="8339444124477720345">"PIN2-kode"</string>
     <string name="oldPin2Label" msgid="8559146795026261502">"Gammel PIN2-kode"</string>
     <string name="newPin2Label" msgid="4573956902204349054">"Ny PIN2-kode"</string>
     <string name="confirmPin2Label" msgid="8100319484454787708">"Bekreft ny PIN2-kode"</string>
-    <string name="badPuk2" msgid="4851734468010000418">"PUK2-koden du skrev inn, er feil. Prøv på nytt."</string>
-    <string name="badPin2" msgid="1041576234483629991">"Den gamle personlige koden (PIN2) du skrev inn, er feil. Prøv på nytt."</string>
-    <string name="mismatchPin2" msgid="523029155918113440">"PIN2-kodene du skrev inn, stemmer ikke overens. Prøv på nytt."</string>
-    <string name="invalidPin2" msgid="8237110107480395938">"Skriv inn en PIN2-kode som er mellom 4 og 8 siffer."</string>
-    <string name="invalidPuk2" msgid="1290977391033057871">"Skriv inn en PUK2-kode som er 8 siffer."</string>
-    <string name="pin2_changed" msgid="1639666438836544393">"Personlig kode (PIN2) er endret"</string>
-    <string name="label_puk2_code" msgid="302845876240219560">"Skriv inn PUk2-kode"</string>
-    <string name="fdn_enable_puk2_requested" msgid="3674058967950559397">"Passordet er feil og PIN2 er sperret. Endre PIN2 og prøv på nytt."</string>
-    <string name="puk2_requested" msgid="8909278021238716877">"Feil passord – SIM-kortet er låst. Bruk PUK2 for å låse opp."</string>
+    <string name="badPuk2" msgid="7910064009531541708">"PUK2-koden er feil. Prøv på nytt."</string>
+    <string name="badPin2" msgid="6646896629970023109">"Den gamle PIN2-koden er feil. Prøv på nytt."</string>
+    <string name="mismatchPin2" msgid="4177967478551851117">"PIN2-kodene stemmer ikke overens. Prøv på nytt."</string>
+    <string name="invalidPin2" msgid="1757045131429105595">"Skriv inn en PIN2-konto på mellom fire og åtte sifre."</string>
+    <string name="invalidPuk2" msgid="7059081153334815973">"Skriv inn en PUK2-kode på åtte sifre."</string>
+    <string name="pin2_changed" msgid="3724522579945610956">"PIN2-koden er oppdatert"</string>
+    <string name="label_puk2_code" msgid="4688069961795341948">"Tast inn PUK2-kode"</string>
+    <string name="fdn_enable_puk2_requested" msgid="4991074891459554705">"Passordet er feil. PIN2-koden er nå blokkert. Du må endre PIN 2-koden for å prøve på nytt."</string>
+    <string name="puk2_requested" msgid="5831015200030161434">"Passordet er feil. PIN-koden er nå blokkert. Skriv inn en PUK2-kode."</string>
     <string name="puk2_blocked" msgid="3150263853077280049">"PUK2 er permanent sperret."</string>
-    <string name="pin2_attempts" msgid="7937503107162525324">\n"Det er <xliff:g id="NUMBER">%d</xliff:g> forsøk igjen."</string>
-    <string name="pin2_unblocked" msgid="2903147240919055381">"Sperring av PIN2 er opphevet"</string>
+    <string name="pin2_attempts" msgid="720736232885011507">\n"Du har <xliff:g id="NUMBER">%d</xliff:g> forsøk igjen."</string>
+    <string name="pin2_unblocked" msgid="7791600368153469078">"PIN2-koden er ikke lenger blokkert"</string>
     <string name="doneButton" msgid="2859593360997984240">"Ferdig"</string>
-    <string name="caller_manage_header" msgid="3231519674734638786">"Telefonmøte <xliff:g id="CONF_CALL_TIME">%s</xliff:g>"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"Nummer til telefonsvarer"</string>
     <string name="card_title_dialing" msgid="5769417478498348054">"Ringer"</string>
-    <string name="card_title_redialing" msgid="4831412164303596395">"Prøver på nytt"</string>
+    <string name="card_title_redialing" msgid="8253487008234167266">"Slår nummer på nytt"</string>
     <string name="card_title_conf_call" msgid="1162980346189744501">"Telefonmøte"</string>
     <string name="card_title_incoming_call" msgid="7364539451234646909">"Innkommende anrop"</string>
-    <string name="card_title_call_ended" msgid="5544730338889702298">"Samtale avsluttet"</string>
+    <string name="card_title_call_ended" msgid="5544730338889702298">"Samtalen er avsluttet"</string>
     <string name="card_title_on_hold" msgid="821463117892339942">"Parkert"</string>
     <string name="card_title_hanging_up" msgid="3999101620995182450">"Legger på"</string>
     <string name="card_title_in_call" msgid="6346543933068225205">"Samtale pågår"</string>
-    <string name="card_title_my_phone_number" msgid="112428362494434191">"Nummeret mitt er <xliff:g id="MY_PHONE_NUMBER">%s</xliff:g>"</string>
     <string name="notification_dialing" msgid="2107666444937350731">"Slår nummeret"</string>
     <string name="notification_missedCallTitle" msgid="7554385905572364535">"Tapt anrop"</string>
     <string name="notification_missedCallsTitle" msgid="1361677948941502522">"Tapte anrop"</string>
@@ -415,23 +442,22 @@
     <string name="notification_missedCall_message" msgid="3049928912736917988">"Melding"</string>
     <string name="incall_error_power_off" msgid="6550191216405193368">"For å ringe, slå av flymodus først."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"Ikke registrert på nettverket."</string>
-    <string name="incall_error_out_of_service" msgid="8587993036435080418">"Mobilnettverket er ikke tilgjengelig."</string>
-    <string name="incall_error_no_phone_number_supplied" msgid="4197432103471807739">"Samtalen ble ikke opprettet, mangler eller ugyldig nummer."</string>
-    <string name="incall_error_call_failed" msgid="4313552620858880999">"Samtalen ble ikke opprettet."</string>
+    <string name="incall_error_out_of_service" msgid="4100065333878929223">"Mobilnettverket er ikke tilgjengelig."</string>
+    <string name="incall_error_no_phone_number_supplied" msgid="1150414018684246528">"Skriv inn et gyldig nummer for å plassere en samtale."</string>
+    <string name="incall_error_call_failed" msgid="6302746943230078197">"Kan ikke ringe."</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"Begynner MMI-sekvens…"</string>
-    <string name="incall_error_supp_service_unknown" msgid="2991054870745666038">"Ustøttet tjeneste."</string>
-    <string name="incall_error_supp_service_switch" msgid="3503552565745872241">"Kan ikke bytte samtale."</string>
-    <string name="incall_error_supp_service_separate" msgid="914362338192301746">"Kan ikke skille samtale."</string>
-    <string name="incall_error_supp_service_transfer" msgid="2509871374644921632">"Kan ikke overføre samtale."</string>
+    <string name="incall_error_supp_service_unknown" msgid="655570339115407698">"Tjenesten støttes ikke"</string>
+    <string name="incall_error_supp_service_switch" msgid="5237002176899962862">"Kan ikke bytte samtaler."</string>
+    <string name="incall_error_supp_service_separate" msgid="7224393405134545246">"Kan ikke splitte opp samtale."</string>
+    <string name="incall_error_supp_service_transfer" msgid="7235952238189391438">"Kan ikke overføre."</string>
     <string name="incall_error_supp_service_conference" msgid="2505727299596357312">"Kan ikke opprette telefonmøte."</string>
-    <string name="incall_error_supp_service_reject" msgid="7055164130563826216">"Kan ikke avvise anrop."</string>
-    <string name="incall_error_supp_service_hangup" msgid="7417583238334762737">"Kan ikke legge på."</string>
-    <string name="incall_call_type_label_sip" msgid="2310958283037924371">"Internett-anrop"</string>
+    <string name="incall_error_supp_service_reject" msgid="8998568661508655638">"Kan ikke avvise anropet."</string>
+    <string name="incall_error_supp_service_hangup" msgid="7434513517153834426">"Kan ikke frigjøre samtale(r)."</string>
     <string name="emergency_enable_radio_dialog_title" msgid="4627849966634578257">"Nødanrop"</string>
     <string name="emergency_enable_radio_dialog_message" msgid="207613549344420291">"Slår på radio…"</string>
-    <string name="emergency_enable_radio_dialog_retry" msgid="3724423402363063736">"Utenfor dekningsområde, prøver igjen…"</string>
-    <string name="dial_emergency_error" msgid="7969515493359619960">"Anrop ikke utført. <xliff:g id="NON_EMERGENCY_NUMBER">%s</xliff:g> er ikke et nødnummer!"</string>
-    <string name="dial_emergency_empty_error" msgid="5556166819619323893">"Anrop ikke foretatt. Ring et nødnummer!"</string>
+    <string name="emergency_enable_radio_dialog_retry" msgid="5960061579996526883">"Ingen tjeneste. Prøver på nytt …"</string>
+    <string name="dial_emergency_error" msgid="1509085166367420355">"Kan ikke ringe. <xliff:g id="NON_EMERGENCY_NUMBER">%s</xliff:g> er ikke et nødnummer."</string>
+    <string name="dial_emergency_empty_error" msgid="9130194953830414638">"Kan ikke ringe. Ring et nødnummer."</string>
     <string name="dialerKeyboardHintText" msgid="9192914825413747792">"Bruk tastaturet for å ringe"</string>
     <string name="onscreenHoldText" msgid="2285258239691145872">"Hold"</string>
     <string name="onscreenEndCallText" msgid="4403855834875398585">"Avslutt"</string>
@@ -462,7 +488,8 @@
     <item msgid="899650777817315681">"Vanlig"</item>
     <item msgid="2883365539347850535">"Lang"</item>
   </string-array>
-    <string name="network_message" msgid="4483886461245213802">"Nettverksmelding"</string>
+    <string name="network_info_message" msgid="7738596060242881930">"Nettverksmelding"</string>
+    <string name="network_error_message" msgid="3394780436230411413">"Feilmelding"</string>
     <string name="ota_title_activate" msgid="8616918561356194398">"Aktiver telefonen din"</string>
     <string name="ota_touch_activate" msgid="6553212803262586244">"Det må foretas en spesifikk oppringning for at telefontjenesten skal aktiveres. \n\nTrykk «Aktiver», og lytt deretter til instruksjonene for å aktivere telefonen."</string>
     <string name="ota_hfa_activation_title" msgid="2234246934160473981">"Aktiverer …"</string>
@@ -475,8 +502,8 @@
     <string name="ota_title_problem_with_activation" msgid="7095824491970084367">"Problemer med aktivering"</string>
     <string name="ota_listen" msgid="162923839877584937">"Følg taleinstruksjonene inntil du får beskjed om at aktiveringen er fullført."</string>
     <string name="ota_speaker" msgid="6904589278542719647">"Høyttaler"</string>
-    <string name="ota_progress" msgid="3420314892609254729">"Vent mens telefonen programmeres."</string>
-    <string name="ota_failure" msgid="4311299546379674378">"Programmeringen mislyktes"</string>
+    <string name="ota_progress" msgid="460876637828044519">"Programmerer telefonen din …"</string>
+    <string name="ota_failure" msgid="7713756181204620397">"Kunne ikke programmere telefonen din"</string>
     <string name="ota_successful" msgid="1880780692887077407">"Telefonen din er aktivert. Det kan ta opptil 15 minutter før tjenestene er i gang."</string>
     <string name="ota_unsuccessful" msgid="8072141612635635357">"Telefonen ble ikke aktivert.\nPrøv å finne et område med bedre dekning (ved et vindu eller utendørs).\n\nPrøv på nytt, eller ring kundetjenesten for å få flere alternativer."</string>
     <string name="ota_spc_failure" msgid="3909983542575030796">"Omfattende SPC-feil"</string>
@@ -512,110 +539,19 @@
     <string name="contactPhoto" msgid="4713193418046639466">"kontaktbilde"</string>
     <string name="goPrivate" msgid="865837794424530980">"aktiver privat samtale"</string>
     <string name="selectContact" msgid="781975788478987237">"velg kontakt"</string>
-    <string name="sip_settings" msgid="6699045718560859691">"Innstillinger for Internett-anrop"</string>
-    <string name="sip_accounts" msgid="2097054001288457163">"SIP-kontoer (Internett-anrop)"</string>
-    <string name="sip_accounts_title" msgid="1212889069281054570">"Kontoer"</string>
-    <string name="sip_receive_calls" msgid="5635685570889971559">"Motta innkommende anrop"</string>
-    <string name="sip_receive_calls_summary" msgid="8403613238633679184">"Reduserer batterilevetiden"</string>
-    <string name="sip_call_options_title" msgid="27433718808839672">"Bruk Internett-anrop"</string>
-    <string name="sip_call_options_wifi_only_title" msgid="145572394529090811">"Bruk konto for Internett-anrop (kun Wi-Fi)"</string>
-    <string name="sip_call_options_entry_1" msgid="6556668894178520760">"For alle anrop hvor datanettverk er tilgjengelige"</string>
-    <string name="sip_call_options_entry_2" msgid="6789764029719494361">"Kun for Internett-anrop"</string>
-    <string name="sip_call_options_entry_3" msgid="7474809001402649185">"Spør ved alle anrop"</string>
-    <string name="sip_call_options_wifi_only_entry_1" msgid="7423523864471650069">"Bruk ved alle anrop"</string>
-    <string name="pick_outgoing_call_phone_type" msgid="5622916534828338675">"Foreta anrop"</string>
-    <string name="pick_outgoing_sip_phone" msgid="7012322118236208875">"Bruk konto for Internett-anrop:"</string>
-    <string name="remember_my_choice" msgid="7058059586169290705">"Standardvalg for Internett-anrop"</string>
-    <string name="reset_my_choice_hint" msgid="5523030209803567922">"Du kan endre hvilken konto for Internett-anrop som skal brukes som standard, under Telefon &gt; Innstillinger &gt; Innstillinger for Internett-anrop &gt; Kontoer."</string>
-    <string name="pstn_phone" msgid="8782554491484326429">"Mobiltelefonanrop"</string>
-    <string name="internet_phone" msgid="1147922660195095810">"Internett-anrop"</string>
-    <string name="no_sip_account_found_title" msgid="6266249392379373628">"Ingen konto for Internett-anrop"</string>
-    <string name="no_sip_account_found" msgid="724325811961769997">"Det er ingen konto for Internett-anrop på denne telefonen. Vil du legge til en nå?"</string>
-    <string name="sip_menu_add" msgid="8757508498518881500">"Legg til"</string>
-    <string name="add_sip_account" msgid="5904858426290097611">"Legg til konto"</string>
-    <string name="remove_sip_account" msgid="7645900420385682570">"Fjern konto"</string>
-    <string name="sip_account_list" msgid="5480058210652194306">"SIP-kontoer"</string>
-    <string name="saving_account" msgid="52903398217017954">"Lagrer konto …"</string>
-    <string name="removing_account" msgid="7183999896088628100">"Fjerner konto …"</string>
-    <string name="sip_menu_save" msgid="5842531129356014943">"Lagre"</string>
-    <string name="sip_menu_discard" msgid="524075892158789701">"Forkast"</string>
-    <string name="alert_dialog_close" msgid="7759635137627626235">"Lukk profilen"</string>
-    <string name="alert_dialog_ok" msgid="3580379406983564080">"OK"</string>
-    <string name="close_profile" msgid="6886968271423155284">"Lukk"</string>
-    <string name="primary_account_summary_with" msgid="1633960536212343187">"Primærkonto. <xliff:g id="REGISTRATION_STATUS">%s</xliff:g>"</string>
-    <string name="registration_status_checking_status" msgid="3381868307694056727">"Kontrollerer status ..."</string>
-    <string name="registration_status_registering" msgid="4288401139400232968">"Registrerer …"</string>
-    <string name="registration_status_still_trying" msgid="3185581992666091911">"Prøver fortsatt …"</string>
-    <string name="registration_status_not_receiving" msgid="4185572774980557758">"Mottar ikke anrop."</string>
-    <string name="registration_status_no_data" msgid="4901476962360656611">"Kontoregistreringen stoppet på grunn av manglende Internett-tilkobling."</string>
-    <string name="registration_status_no_wifi_data" msgid="4038976374713018067">"Kontoregistreringen stoppet på grunn av manglende Wi-Fi-tilkobling."</string>
-    <string name="registration_status_not_running" msgid="4824867184446232131">"Kontoregistrering mislyktes."</string>
-    <string name="registration_status_done" msgid="884630717456439280">"Mottar anrop."</string>
-    <string name="registration_status_failed_try_later" msgid="5214474354451220581">"Kontoregistrering mislyktes: (<xliff:g id="REGISTRATION_ERROR_MESSAGE">%s</xliff:g>); prøver på nytt senere"</string>
-    <string name="registration_status_invalid_credentials" msgid="4908446367559341757">"Kontoregistrering mislyktes: feil brukernavn eller passord."</string>
-    <string name="registration_status_server_unreachable" msgid="5733421582468991276">"Kontoregistrering mislyktes: Kontroller tjenernavnet."</string>
-    <string name="third_party_account_summary" msgid="2532526738862533028">"Denne kontoen er for øyeblikket i bruk av appen <xliff:g id="ACCOUNT_OWNER">%s</xliff:g>."</string>
-    <string name="sip_edit_title" msgid="489288416435014385">"Kontoinnstillinger for SIP"</string>
-    <string name="sip_edit_new_title" msgid="3659149255856520385">"Kontoinnstillinger for SIP"</string>
-    <string name="domain_address_title" msgid="9071787581316160480">"Tjener"</string>
-    <string name="username_title" msgid="2479375923477682328">"Brukernavn"</string>
-    <string name="password_title" msgid="3323555249068171531">"Passord"</string>
-    <string name="display_name_title" msgid="2459768196312249937">"Visningsnavn"</string>
-    <string name="proxy_address_title" msgid="4828301345351614273">"Adresse for utgående mellomtjener"</string>
-    <string name="port_title" msgid="5952939408078626657">"Portnummer"</string>
-    <string name="transport_title" msgid="8253139511847746640">"Transporttype"</string>
-    <string name="send_keepalive_title" msgid="7533342573918645113">"Send hold-aktiv-meldinger"</string>
-    <string name="set_primary_title" msgid="5351892327447571451">"Angi som hovedkonto"</string>
-    <string name="set_primary_summary" msgid="2219064654523258577">"Brukt til utgående anrop"</string>
-    <string name="advanced_settings" msgid="8350631795335495338">"Valgfrie innstillinger"</string>
-    <string name="auth_username_title" msgid="851473016307947120">"Brukernavn for autentisering"</string>
-    <string name="auth_username_summary" msgid="6782012405225938629">"Brukernavn brukes til autentisering"</string>
-    <string name="default_preference_summary" msgid="868766740121667450">"&lt;Ikke angitt&gt;"</string>
-    <string name="display_name_summary" msgid="8636377460518225523">"&lt;Samme som brukernavn&gt;"</string>
-    <string name="optional_summary" msgid="1464058793789832411">"&lt;Valgfritt&gt;"</string>
-    <string name="advanced_settings_show" msgid="4668880308290857597">"Trykk for å vise alle"</string>
-    <string name="advanced_settings_hide" msgid="217398292824758079">"Trykk for å skjule alle"</string>
-    <string name="empty_alert" msgid="6839103946505432390">"<xliff:g id="INPUT_FIELD_NAME">%s</xliff:g> er obligatorisk. Feltet kan ikke være tomt."</string>
-    <string name="not_a_valid_port" msgid="4796149266434630292">"Portnummeret må være mellom 1000 og 65534."</string>
-    <string name="no_internet_available_title" msgid="3327109242858406165">"Ingen Internett-tilkobling"</string>
-    <string name="no_wifi_available_title" msgid="747881033089378758">"Ingen Wi-Fi-tilkobling"</string>
-    <string name="no_internet_available" msgid="7877142631803238549">"Kontroller Internett-tilkoblingen før du foretar et Internett-anrop."</string>
-    <string name="no_wifi_available" msgid="1225073547318465713">"Du må være koblet til et Wi-Fi-nettverk for å foreta Internett-anrop (gå til innstillingene Trådløst og nettverk)."</string>
-    <string name="no_voip" msgid="8901474054537199865">"Internett-anrop håndteres ikke"</string>
-    <string name="sip_system_decide" msgid="368030746310423471">"Automatisk"</string>
-    <string name="sip_always_send_keepalive" msgid="8192080724632877132">"Send alltid"</string>
     <string name="not_voice_capable" msgid="2739898841461577811">"Taleanrop støttes ikke"</string>
-    <string name="respond_via_sms_setting_title" msgid="3754000371039709383">"Hurtigsvar"</string>
-    <string name="respond_via_sms_setting_summary" msgid="9150281183930613065"></string>
-    <string name="description_image_button_one" msgid="5502718871331943463">"en"</string>
-    <string name="description_image_button_two" msgid="4903738528222924522">"to"</string>
-    <string name="description_image_button_three" msgid="5570985408463782329">"tre"</string>
-    <string name="description_image_button_four" msgid="1697520001239289074">"fire"</string>
-    <string name="description_image_button_five" msgid="3450276493026943454">"fem"</string>
-    <string name="description_image_button_six" msgid="2070376172268675300">"seks"</string>
-    <string name="description_image_button_seven" msgid="1757351311199993371">"syv"</string>
-    <string name="description_image_button_eight" msgid="4734693919020613227">"åtte"</string>
-    <string name="description_image_button_nine" msgid="5568534122590597040">"ni"</string>
-    <string name="description_image_button_star" msgid="1976280813017254462">"stjerne"</string>
-    <string name="description_image_button_zero" msgid="4211255756866893605">"null"</string>
-    <string name="description_image_button_pound" msgid="1716041284529917866">"firkant"</string>
     <string name="description_dial_button" msgid="7459705245418435351">"ring"</string>
-    <string name="description_delete_button" msgid="4015842181592283903">"tilbaketast"</string>
-    <string name="description_target_answer" msgid="7205604197797472471">"Svar"</string>
-    <string name="description_target_send_sms" msgid="2098326025587950144">"Send tekstmelding"</string>
-    <string name="description_target_decline" msgid="4789834364389731957">"Avslå"</string>
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"Vibrering"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"Vibrering"</string>
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"Lyd"</string>
-    <string name="default_notification_description" msgid="78174796906240970">"Standardlyd (<xliff:g id="DEFAULT_SOUND_TITLE">%1$s</xliff:g>)"</string>
-    <string name="ringtone_title" msgid="6374978286202084684">"Telefonringetone"</string>
-    <string name="vibrate_on_ring_title" msgid="9197564612065258960">"Vibrering når det ringer"</string>
-    <string name="dtmf_tone_enable_title" msgid="827601042915852989">"Tastetoner for tastatur"</string>
-    <string name="dial_pad_autocomplete" msgid="494525952035761075">"Autofullf. for talltast."</string>
+    <string name="dial_pad_autocomplete" msgid="7683489952557536398">"Tastaturets autofullføring"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"Ringetone og vibrering"</string>
-    <string name="choose_wifi_for_call_msg" msgid="193549297122949976">"Vil du bruke Wi-Fi for å ringe?"</string>
-    <string name="choose_wifi_for_call_yes" msgid="5312994368472630983">"Ja"</string>
-    <string name="choose_wifi_for_call_no" msgid="7132239734287157307">"Nei"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"Innebygde SIM-kort"</string>
-    <string name="sip_connection_service_label" msgid="3547998349299125294">"Innebygd Internett-ringing"</string>
+    <string name="enable_video_calling_title" msgid="7237253660669000899">"Slå på videosamtaler"</string>
+    <string name="enable_video_calling_dialog_msg" msgid="8948186136957417948">"For å slå på videoanrop må du aktivere forbedret 4G LTE-modus i nettverksinnstillingene."</string>
+    <string name="enable_video_calling_dialog_settings" msgid="576528473599603249">"Nettverksinnstillinger"</string>
+    <string name="enable_video_calling_dialog_close" msgid="7411471282167927991">"Lukk"</string>
+    <string name="sim_label_emergency_calls" msgid="4847699229529306397">"Nødanrop"</string>
+    <string name="sim_description_emergency_calls" msgid="7535215397212301562">"Kun nødanrop"</string>
+    <string name="sim_description_default" msgid="4778679519938775515">"SIM-kort, spor: <xliff:g id="SLOT_ID">%s</xliff:g>"</string>
 </resources>
