@@ -26,7 +26,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
-import android.media.AudioManager;
 import android.os.AsyncResult;
 import android.os.Bundle;
 import android.os.Handler;
@@ -41,7 +40,6 @@ import android.provider.ContactsContract.CommonDataKinds;
 import android.provider.Settings;
 import android.telecom.PhoneAccountHandle;
 import android.telecom.TelecomManager;
-import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
@@ -56,7 +54,7 @@ import com.android.internal.telephony.PhoneConstants;
 import com.android.phone.common.util.SettingsUtil;
 import com.android.phone.settings.AccountSelectionPreference;
 import com.android.phone.settings.CallForwardInfoUtil;
-import com.android.phone.settings.TtyModeListPreference;
+import com.android.phone.settings.SettingsConstants;
 import com.android.phone.settings.VoicemailDialogUtil;
 import com.android.phone.settings.VoicemailNotificationSettingsUtil;
 import com.android.phone.settings.VoicemailProviderListPreference;
@@ -155,8 +153,6 @@ public class CallFeaturesSetting extends PreferenceActivity
     private static final String BUTTON_FDN_KEY   = "button_fdn_key";
 
     private static final String BUTTON_RETRY_KEY       = "button_auto_retry_key";
-    private static final String BUTTON_TTY_KEY         = "button_tty_mode_key";
-    private static final String BUTTON_HAC_KEY         = "button_hac_key";
 
     private static final String BUTTON_GSM_UMTS_OPTIONS = "button_gsm_more_expand_key";
     private static final String BUTTON_CDMA_OPTIONS = "button_cdma_more_expand_key";
@@ -173,24 +169,17 @@ public class CallFeaturesSetting extends PreferenceActivity
     private static final int EVENT_FORWARDING_CHANGED       = 501;
     private static final int EVENT_FORWARDING_GET_COMPLETED = 502;
 
-    public static final String HAC_KEY = "HACSetting";
-    public static final String HAC_VAL_ON = "ON";
-    public static final String HAC_VAL_OFF = "OFF";
-
     /** Handle to voicemail pref */
     private static final int VOICEMAIL_PREF_ID = 1;
     private static final int VOICEMAIL_PROVIDER_CFG_ID = 2;
 
     private Phone mPhone;
-    private AudioManager mAudioManager;
 
     private SubscriptionInfoHelper mSubscriptionInfoHelper;
 
     private EditPhoneNumberPreference mSubMenuVoicemailSettings;
 
     private CheckBoxPreference mButtonAutoRetry;
-    private CheckBoxPreference mButtonHAC;
-    private TtyModeListPreference mButtonTTY;
     private VoicemailProviderListPreference mVoicemailProviders;
     private PreferenceScreen mVoicemailSettingsScreen;
     private PreferenceScreen mVoicemailSettings;
@@ -276,13 +265,6 @@ public class CallFeaturesSetting extends PreferenceActivity
     public void onPause() {
         super.onPause();
         mForeground = false;
-
-        if (ImsManager.isVolteEnabledByPlatform(this) &&
-                !mPhone.getContext().getResources().getBoolean(
-                        com.android.internal.R.bool.config_carrier_volte_tty_supported)) {
-            TelephonyManager tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
-            tm.listen(mPhoneStateListener, PhoneStateListener.LISTEN_NONE);
-        }
     }
 
     /**
@@ -303,23 +285,6 @@ public class CallFeaturesSetting extends PreferenceActivity
      */
     private boolean mSetupVoicemail = false;
 
-    private final PhoneStateListener mPhoneStateListener = new PhoneStateListener() {
-        /**
-         * Enable/disable the TTY setting when in/out of a call (and if carrier doesn't
-         * support VoLTE with TTY).
-         * @see android.telephony.PhoneStateListener#onCallStateChanged(int,
-         * java.lang.String)
-         */
-        @Override
-        public void onCallStateChanged(int state, String incomingNumber) {
-            if (DBG) log("PhoneStateListener.onCallStateChanged: state=" + state);
-            Preference pref = getPreferenceScreen().findPreference(BUTTON_TTY_KEY);
-            if (pref != null) {
-                pref.setEnabled(state == TelephonyManager.CALL_STATE_IDLE);
-            }
-        }
-    };
-
     /*
      * Click Listeners, handle click based on objects attached to UI.
      */
@@ -329,21 +294,10 @@ public class CallFeaturesSetting extends PreferenceActivity
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
         if (preference == mSubMenuVoicemailSettings) {
             return true;
-        } else if (preference == mButtonTTY) {
-            return true;
         } else if (preference == mButtonAutoRetry) {
             android.provider.Settings.Global.putInt(mPhone.getContext().getContentResolver(),
                     android.provider.Settings.Global.CALL_AUTO_RETRY,
                     mButtonAutoRetry.isChecked() ? 1 : 0);
-            return true;
-        } else if (preference == mButtonHAC) {
-            int hac = mButtonHAC.isChecked() ? 1 : 0;
-            // Update HAC value in Settings database
-            Settings.System.putInt(mPhone.getContext().getContentResolver(),
-                    Settings.System.HEARING_AID, hac);
-
-            // Update HAC Value in AudioManager
-            mAudioManager.setParameter(HAC_KEY, hac != 0 ? HAC_VAL_ON : HAC_VAL_OFF);
             return true;
         } else if (preference.getKey().equals(mVoicemailSettings.getKey())) {
             // Check key instead of comparing reference because closing the voicemail notification
@@ -1134,8 +1088,6 @@ public class CallFeaturesSetting extends PreferenceActivity
             return;
         }
 
-        mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-
         // Show the voicemail preference in onResume if the calling intent specifies the
         // ACTION_ADD_VOICEMAIL action.
         mShowVoicemailPreference = (icicle == null) &&
@@ -1178,9 +1130,6 @@ public class CallFeaturesSetting extends PreferenceActivity
         mSubMenuVoicemailSettings.setDialogTitle(R.string.voicemail_settings_number_label);
 
         mButtonAutoRetry = (CheckBoxPreference) findPreference(BUTTON_RETRY_KEY);
-        mButtonHAC = (CheckBoxPreference) findPreference(BUTTON_HAC_KEY);
-        mButtonTTY = (TtyModeListPreference) findPreference(
-                getResources().getString(R.string.tty_mode_key));
 
         mVoicemailProviders = (VoicemailProviderListPreference) findPreference(
                 BUTTON_VOICEMAIL_PROVIDER_KEY);
@@ -1212,22 +1161,6 @@ public class CallFeaturesSetting extends PreferenceActivity
         } else {
             prefSet.removePreference(mButtonAutoRetry);
             mButtonAutoRetry = null;
-        }
-
-        if (getResources().getBoolean(R.bool.hac_enabled)) {
-            mButtonHAC.setOnPreferenceChangeListener(this);
-            int hac = Settings.System.getInt(getContentResolver(), Settings.System.HEARING_AID, 0);
-            mButtonHAC.setChecked(hac != 0);
-        } else {
-            prefSet.removePreference(mButtonHAC);
-            mButtonHAC = null;
-        }
-
-        if (!telephonyManager.isMultiSimEnabled() && telecomManager.isTtySupported()) {
-            mButtonTTY.init();
-        } else {
-            prefSet.removePreference(mButtonTTY);
-            mButtonTTY = null;
         }
 
         if (!getResources().getBoolean(R.bool.world_phone)) {
@@ -1306,13 +1239,6 @@ public class CallFeaturesSetting extends PreferenceActivity
             mEnableVideoCalling.setOnPreferenceChangeListener(this);
         } else {
             prefSet.removePreference(mEnableVideoCalling);
-        }
-
-        if (ImsManager.isVolteEnabledByPlatform(this) &&
-                !mPhone.getContext().getResources().getBoolean(
-                        com.android.internal.R.bool.config_carrier_volte_tty_supported)) {
-            TelephonyManager tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
-            tm.listen(mPhoneStateListener, PhoneStateListener.LISTEN_CALL_STATE);
         }
     }
 

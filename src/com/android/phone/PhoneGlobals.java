@@ -64,6 +64,7 @@ import com.android.internal.telephony.SubscriptionController;
 import com.android.internal.telephony.TelephonyCapabilities;
 import com.android.internal.telephony.TelephonyIntents;
 import com.android.phone.common.CallLogAsync;
+import com.android.phone.settings.SettingsConstants;
 import com.android.server.sip.SipService;
 
 import java.util.ArrayList;
@@ -456,9 +457,9 @@ public class PhoneGlobals extends ContextWrapper {
                     android.provider.Settings.System.HEARING_AID,
                     0);
             AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-            audioManager.setParameter(CallFeaturesSetting.HAC_KEY, hac != 0 ?
-                                      CallFeaturesSetting.HAC_VAL_ON :
-                                      CallFeaturesSetting.HAC_VAL_OFF);
+            audioManager.setParameter(SettingsConstants.HAC_KEY,
+                    hac == SettingsConstants.HAC_ENABLED
+                            ? SettingsConstants.HAC_VAL_ON : SettingsConstants.HAC_VAL_OFF);
         }
     }
 

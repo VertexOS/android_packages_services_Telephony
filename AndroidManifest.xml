@@ -440,6 +440,17 @@
             </intent-filter>
         </receiver>
 
+        <!-- "Accessibility" settings UI. Referenced by Dialer application. -->
+        <activity android:name="com.android.phone.settings.AccessibilitySettingsActivity"
+                android:label="@string/accessibility_settings_activity_title"
+                android:theme="@style/DialerSettingsLight">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.telecom.action.SHOW_CALL_ACCESSIBILITY_SETTINGS" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
         <!-- CDMA Emergency Callback Mode -->
         <service android:name="EmergencyCallbackModeService">
         </service>
