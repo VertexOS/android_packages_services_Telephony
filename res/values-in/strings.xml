@@ -118,7 +118,8 @@
     <string name="labelCFNRc" msgid="2614827454402079766">"Saat tidak dapat dijangkau"</string>
     <string name="messageCFNRc" msgid="6380695421020295119">"Nomor jika tidak dapat dihubungi"</string>
     <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"Meneruskan ke <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
-    <string name="sum_cfnrc_disabled" msgid="7222141261321276464">"Dinonaktifkan"</string>
+    <!-- no translation found for sum_cfnrc_disabled (2684474391807469832) -->
+    <skip />
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"Operator Anda tidak mendukung penonaktifan penerusan panggilan ketika ponsel tidak dapat dijangkau."</string>
     <string name="updating_title" msgid="6146755386174019046">"Setelan panggilan"</string>
     <string name="call_settings_primary_user_only" msgid="5679923943740900965">"Setelan panggilan hanya dapat diubah oleh pengguna utama."</string>

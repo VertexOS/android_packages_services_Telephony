@@ -118,7 +118,8 @@
     <string name="labelCFNRc" msgid="2614827454402079766">"የማልገኝ ሲሆን"</string>
     <string name="messageCFNRc" msgid="6380695421020295119">"ቁጥሩሳይገኝ"</string>
     <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"ወደ <xliff:g id="PHONENUMBER">{0}</xliff:g>በማስተላለፍ ላይ"</string>
-    <string name="sum_cfnrc_disabled" msgid="7222141261321276464">"ቦዝኗል"</string>
+    <!-- no translation found for sum_cfnrc_disabled (2684474391807469832) -->
+    <skip />
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"ስልክህ በማይደረስበት ጊዜ የድምጽ ተያያዥ ሞደምህ  የጥሪ-ማስተላለፍን አይደግፍም።"</string>
     <string name="updating_title" msgid="6146755386174019046">"የጥሪ ቅንብሮች"</string>
     <string name="call_settings_primary_user_only" msgid="5679923943740900965">"የጥሪ ቅንብሮች በተቀዳሚው ተጠቃሚ ብቻ ሊለወጡ ይችላሉ።"</string>

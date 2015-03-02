@@ -31,11 +31,11 @@
     <string name="cancel" msgid="5044513931633602634">"रद्द गर्नुहोस्"</string>
     <string name="enter_input" msgid="1810529547726803893">"USSD सन्देश  <xliff:g id="MIN_LEN">%d</xliff:g> र <xliff:g id="MAX_LEN">%d</xliff:g> अक्षरहरूका बिच हुनै पर्दछ। कृपया पुनःप्रयास गर्नुहोस्।"</string>
     <string name="manageConferenceLabel" msgid="4691922394301969053">"सम्मेलन कल प्रबन्ध गर्नुहोस्"</string>
-    <string name="ok" msgid="3811371167865772377">"ठिक छ"</string>
+    <string name="ok" msgid="3811371167865772377">"ठीक छ"</string>
     <string name="audio_mode_speaker" msgid="27649582100085266">"स्पिकर"</string>
     <string name="audio_mode_earpiece" msgid="4156527186373869107">"ह्यान्डसेट इयरपिस"</string>
     <string name="audio_mode_wired_headset" msgid="1465350758489175975">"तारसहितको हेडसेट"</string>
-    <string name="audio_mode_bluetooth" msgid="3047641300848211128">"ब्लुटुथ"</string>
+    <string name="audio_mode_bluetooth" msgid="3047641300848211128">"ब्लुटूथ"</string>
     <string name="wait_prompt_str" msgid="7601815427707856238">"निम्न टोनहरू पठाउने? \n"</string>
     <string name="pause_prompt_str" msgid="1789964702154314806">"टोनहरू \n पठाउँदै"</string>
     <string name="send_button" msgid="4106860097497818751">"पठाउनुहोस्"</string>
@@ -93,7 +93,7 @@
     <string name="sum_hide_caller_id" msgid="1071407020290873782">"बहिर्गमन कलहरूमा नम्बर लुकाइएको"</string>
     <string name="sum_show_caller_id" msgid="6768534125447290401">"बहिर्गमन कलहरूमा प्रदर्शित नम्बर"</string>
     <string name="sum_default_caller_id" msgid="1954518825510901365">"बहिर्गमन कलमा मेरो नम्बर देखाउन पूर्वनिर्धारित अपरेटर सेटिङहरू प्रयोग गर्नुहोस्"</string>
-    <string name="labelCW" msgid="6120513814915920200">"कल प्रतिक्षा गर्दै"</string>
+    <string name="labelCW" msgid="6120513814915920200">"कल प्रतीक्षा गर्दै"</string>
     <string name="sum_cw_enabled" msgid="8083061901633671397">"कल गरेको बखत मलाई आगमन कलको जानकारी गराउनुहोस्"</string>
     <string name="sum_cw_disabled" msgid="3648693907300104575">"कल गरेको बेलामा आगमन कलहरूको बारेमा मलाई जानकारी गराउनुहोस्"</string>
     <string name="call_forwarding_settings" msgid="3378927671091537173">"कल फर्वार्डिङ सेटिङहरू"</string>
@@ -118,7 +118,7 @@
     <string name="labelCFNRc" msgid="2614827454402079766">"जब पहुँचअयोग्य"</string>
     <string name="messageCFNRc" msgid="6380695421020295119">"पहुँचयोग्य हुँदाको नम्बर"</string>
     <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"<xliff:g id="PHONENUMBER">{0}</xliff:g> मा फर्वाड गर्दै"</string>
-    <string name="sum_cfnrc_disabled" msgid="7222141261321276464">"असक्षम पारियो"</string>
+    <string name="sum_cfnrc_disabled" msgid="2684474391807469832">"बन्द गर्नुहोस्"</string>
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"तपाईंको फोन पहुँचयोग्य नहुँदा तपाईंको केरियरले कल-फर्वार्डिङ असक्षम बनाउँदा समर्थन गर्दैन।"</string>
     <string name="updating_title" msgid="6146755386174019046">"कल सेटिङहरू"</string>
     <string name="call_settings_primary_user_only" msgid="5679923943740900965">"कल सेटिङहरू केवल प्राथमिक प्रयोगकर्ताद्वारा मात्र परिवर्तन गर्न सकिन्छ।"</string>
@@ -131,7 +131,7 @@
     <string name="exception_error" msgid="7027667130619518211">"नेटवर्क वा SIM कार्ड त्रुटि।"</string>
     <string name="fdn_check_failure" msgid="18200614306525434">"तपाईंको फोन अनुप्रयोग स्थिर डायल गर्ने नम्बर सेटिङहरू खोलिएको छ। केही कल-सम्बन्धित विशेषताहरूले कार्य गरिरहेका छैनन्।"</string>
     <string name="radio_off_error" msgid="2304459933248513376">"यी सेटिङहरू हेर्नु पहिले रेडियो खोल्नुहोस्।"</string>
-    <string name="close_dialog" msgid="2365884406356986917">"ठिक छ"</string>
+    <string name="close_dialog" msgid="2365884406356986917">"ठीक छ"</string>
     <string name="enable" msgid="7248657275000173526">"सकृय पार्नुहोस्"</string>
     <string name="disable" msgid="4678348128118573672">"निस्कृय पार्नुहोस्"</string>
     <string name="change_num" msgid="239476305819844391">"अपडेट गर्नुहोस्"</string>

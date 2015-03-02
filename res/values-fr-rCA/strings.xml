@@ -118,7 +118,8 @@
     <string name="labelCFNRc" msgid="2614827454402079766">"Si injoignable"</string>
     <string name="messageCFNRc" msgid="6380695421020295119">"Numéro de renvoi si injoignable"</string>
     <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"Transfert vers <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
-    <string name="sum_cfnrc_disabled" msgid="7222141261321276464">"Désactivé"</string>
+    <!-- no translation found for sum_cfnrc_disabled (2684474391807469832) -->
+    <skip />
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"Votre opérateur ne permet pas la désactivation du transfert d\'appel lorsque votre téléphone n\'est pas joignable."</string>
     <string name="updating_title" msgid="6146755386174019046">"Paramètres d\'appel"</string>
     <string name="call_settings_primary_user_only" msgid="5679923943740900965">"Seul l\'utilisateur principal peut modifier les paramètres d\'appel."</string>

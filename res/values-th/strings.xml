@@ -118,7 +118,7 @@
     <string name="labelCFNRc" msgid="2614827454402079766">"เมื่อติดต่อไม่ได้"</string>
     <string name="messageCFNRc" msgid="6380695421020295119">"หมายเลขเมื่อติดต่อไม่ได้"</string>
     <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"โอนสายไปที่ <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
-    <string name="sum_cfnrc_disabled" msgid="7222141261321276464">"ถูกปิดใช้งาน"</string>
+    <string name="sum_cfnrc_disabled" msgid="2684474391807469832">"ปิด"</string>
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"ผู้ให้บริการของคุณไม่สนับสนุนการปิดใช้งานการโอนสายเมื่อติดต่อไม่ได้"</string>
     <string name="updating_title" msgid="6146755386174019046">"การตั้งค่าการโทร"</string>
     <string name="call_settings_primary_user_only" msgid="5679923943740900965">"มีเพียงผู้ใช้หลักเท่านั้นที่สามารถเปลี่ยนการตั้งค่าการโทรได้"</string>

@@ -118,7 +118,8 @@
     <string name="labelCFNRc" msgid="2614827454402079766">"Хабарласу мүмкін болмағанда"</string>
     <string name="messageCFNRc" msgid="6380695421020295119">"Алынбағанда бағытталатын нөмір"</string>
     <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"<xliff:g id="PHONENUMBER">{0}</xliff:g> нөміріне бағытталуда"</string>
-    <string name="sum_cfnrc_disabled" msgid="7222141261321276464">"Өшірілген"</string>
+    <!-- no translation found for sum_cfnrc_disabled (2684474391807469832) -->
+    <skip />
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"Телефоныңыз қол жетімсіз болғанда жабдықтаушы қоңырауды басқа нөмірге бағыттауды өшіруді қолдамайды."</string>
     <string name="updating_title" msgid="6146755386174019046">"Қоңырау параметрлері"</string>
     <string name="call_settings_primary_user_only" msgid="5679923943740900965">"Қоңырау параметрлерін тек негізгі пайдаланушы өзгерте алады."</string>

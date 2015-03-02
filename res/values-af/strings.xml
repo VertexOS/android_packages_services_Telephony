@@ -118,7 +118,8 @@
     <string name="labelCFNRc" msgid="2614827454402079766">"Indien onbereikbaar"</string>
     <string name="messageCFNRc" msgid="6380695421020295119">"Nommer wanneer onbereikbaar"</string>
     <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"Stuur aan na <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
-    <string name="sum_cfnrc_disabled" msgid="7222141261321276464">"Gedeaktiveer"</string>
+    <!-- no translation found for sum_cfnrc_disabled (2684474391807469832) -->
+    <skip />
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"Jou diensverskaffer ondersteun nie die deaktivering van oproepaanstuur wanneer jou foon onbereikbaar is nie."</string>
     <string name="updating_title" msgid="6146755386174019046">"Belinstellings"</string>
     <string name="call_settings_primary_user_only" msgid="5679923943740900965">"Oproepinstellings kan net deur die primêre gebruiker verander word."</string>

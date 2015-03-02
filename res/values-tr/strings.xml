@@ -118,7 +118,8 @@
     <string name="labelCFNRc" msgid="2614827454402079766">"Ulaşılamadığında"</string>
     <string name="messageCFNRc" msgid="6380695421020295119">"Ulaşılamadığında kullanılacak numara"</string>
     <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"Şuraya yönlendiriliyor: <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
-    <string name="sum_cfnrc_disabled" msgid="7222141261321276464">"Devre dışı"</string>
+    <!-- no translation found for sum_cfnrc_disabled (2684474391807469832) -->
+    <skip />
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"Operatörünüz, telefonunuza ulaşılamadığında çağrı yönlendirmenin devre dışı bırakılmasını desteklemiyor."</string>
     <string name="updating_title" msgid="6146755386174019046">"Çağrı ayarları"</string>
     <string name="call_settings_primary_user_only" msgid="5679923943740900965">"Çağrı ayarları sadece birincil kullanıcı tarafından değiştirilebilir."</string>
@@ -358,7 +359,7 @@
     <string name="name" msgid="7329028332786872378">"Ad"</string>
     <string name="number" msgid="7905950798349903858">"Numara"</string>
     <string name="save" msgid="4094274636321939086">"Kaydet"</string>
-    <string name="add_fdn_contact" msgid="2481915899633353976">"Sabit arama numarası ekle"</string>
+    <string name="add_fdn_contact" msgid="2481915899633353976">"SAN ekle"</string>
     <string name="adding_fdn_contact" msgid="7627379633721940991">"Sabit arama numarası ekleniyor..."</string>
     <string name="fdn_contact_added" msgid="7458335758501736665">"Sabit arama numarası eklendi."</string>
     <string name="edit_fdn_contact" msgid="7976936035587081480">"Sabit arama numarasını düzenle"</string>
@@ -372,7 +373,7 @@
     <string name="pin2_or_fdn_invalid" msgid="6025144083384701197">"FDN güncellenmedi. PIN2 doğru değildi veya telefon numarası reddedildi."</string>
     <string name="fdn_failed" msgid="540018079008319747">"FDN işlemi başarısız oldu."</string>
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"SIM karttan okunuyor..."</string>
-    <string name="simContacts_empty" msgid="5270660846489561932">"SIM kartınızda hiçbir kişi yok."</string>
+    <string name="simContacts_empty" msgid="5270660846489561932">"SIM kartınızda kişi yok."</string>
     <string name="simContacts_title" msgid="1861472842524839921">"İçe aktarılacak kişileri seçin"</string>
     <string name="simContacts_airplaneMode" msgid="1846161429087789936">"Kişileri SIM karttan içe aktarmak için, önce Uçak modunu kapatın."</string>
     <string name="enable_pin" msgid="5422767284133234860">"SIM PIN Kodunu Etkinleştir/Devre Dışı Bırak"</string>

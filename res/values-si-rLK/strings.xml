@@ -118,7 +118,8 @@
     <string name="labelCFNRc" msgid="2614827454402079766">"ළඟා වීමට නොහැකි විට"</string>
     <string name="messageCFNRc" msgid="6380695421020295119">"ළඟා විය නොහැකි විට අංකය"</string>
     <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"<xliff:g id="PHONENUMBER">{0}</xliff:g> වෙත ඉදිරියට යවමින්"</string>
-    <string name="sum_cfnrc_disabled" msgid="7222141261321276464">"අබලයි"</string>
+    <!-- no translation found for sum_cfnrc_disabled (2684474391807469832) -->
+    <skip />
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"ඔබගේ වාහකය ඔබගේ දුරකථනය ළඟා විය නොහැකි විට ඇමතුම් ඉදිරියට ගෙනයාම අබල කිරීමට සහාය නොදක්වයි."</string>
     <string name="updating_title" msgid="6146755386174019046">"ඇමතුම් සැකසීම්"</string>
     <string name="call_settings_primary_user_only" msgid="5679923943740900965">"ඇමතුම් සැකසීම් වෙනස් කළ හැක්කේ ප්‍රධාන පරිශීලකයකු විසින් පමණි."</string>

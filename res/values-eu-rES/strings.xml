@@ -76,7 +76,7 @@
     <string name="wifi_calling_select_call_assistant_summary" msgid="164985727137156474">"Kudeatu txartel honekin egindako deietarako erabili beharreko sareak:"</string>
     <string name="wifi_calling_use_call_assistant_summary" msgid="6599987137133339698">"Utzi aplikazioei edo zerbitzuei deiak egiteko erabili beharreko sareak kudeatzen"</string>
     <string name="wifi_calling_call_assistant_configure" msgid="1092639708949670031">"Konfiguratu"</string>
-    <string name="connection_service_default_label" msgid="1498481943805913754">"Konektatzeko zerbitzu bateratua"</string>
+    <string name="connection_service_default_label" msgid="1498481943805913754">"Konektatzeko zerbitzu integratua"</string>
     <string name="voicemail" msgid="8693759337917898954">"Erantzungailua"</string>
     <string name="voicemail_abbreviated" msgid="2215592488517217448">"Erantzungailua:"</string>
     <string name="networks" msgid="8873030692174541976">"Sare-operadoreak"</string>
@@ -118,7 +118,8 @@
     <string name="labelCFNRc" msgid="2614827454402079766">"Konektatu gabe nagoenean"</string>
     <string name="messageCFNRc" msgid="6380695421020295119">"Eskuragarri ez dagoenerako zenbakia"</string>
     <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"<xliff:g id="PHONENUMBER">{0}</xliff:g> zenbakira desbideratzen"</string>
-    <string name="sum_cfnrc_disabled" msgid="7222141261321276464">"Desgaituta"</string>
+    <!-- no translation found for sum_cfnrc_disabled (2684474391807469832) -->
+    <skip />
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"Operadoreak ez du dei-desbideratzeak desgaitzea onartzen telefonoa eskuragarri ez dagoen bitartean."</string>
     <string name="updating_title" msgid="6146755386174019046">"Deien ezarpenak"</string>
     <string name="call_settings_primary_user_only" msgid="5679923943740900965">"Erabiltzaile nagusiak soilik alda ditzake deien ezarpenak."</string>
@@ -547,7 +548,7 @@
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"Soinua"</string>
     <string name="dial_pad_autocomplete" msgid="7683489952557536398">"Markagailua osatzea"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"Tonua eta dardara"</string>
-    <string name="pstn_connection_service_label" msgid="1743245930577325900">"SIM txartel barneratuak"</string>
+    <string name="pstn_connection_service_label" msgid="1743245930577325900">"SIM txartel integratuak"</string>
     <string name="enable_video_calling_title" msgid="7237253660669000899">"Aktibatu bideo-deiak"</string>
     <string name="enable_video_calling_dialog_msg" msgid="8948186136957417948">"Bideo-deiak aktibatzeko, 4G LTE modu hobetua aktibatu behar duzu \"Sarearen ezarpenak\" atalean."</string>
     <string name="enable_video_calling_dialog_settings" msgid="576528473599603249">"Sareko ezarpenak"</string>

@@ -118,7 +118,8 @@
     <string name="labelCFNRc" msgid="2614827454402079766">"Cuando está inaccesible"</string>
     <string name="messageCFNRc" msgid="6380695421020295119">"Número cuando no se puede alcanzar"</string>
     <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"Reenviar a <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
-    <string name="sum_cfnrc_disabled" msgid="7222141261321276464">"Desactivado"</string>
+    <!-- no translation found for sum_cfnrc_disabled (2684474391807469832) -->
+    <skip />
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"Tu proveedor no admite la inhabilitación del desvío de llamadas cuando no se puede acceder a tu teléfono."</string>
     <string name="updating_title" msgid="6146755386174019046">"Config. de llamada"</string>
     <string name="call_settings_primary_user_only" msgid="5679923943740900965">"Solo el usuario principal puede cambiar la configuración de llamadas."</string>

@@ -118,7 +118,8 @@
     <string name="labelCFNRc" msgid="2614827454402079766">"ເມື່ອ​ບໍ່​ສາ​ມາດ​ຕິດ​ຕໍ່ໄດ້"</string>
     <string name="messageCFNRc" msgid="6380695421020295119">"ເບີໂທເມື່ອຕິດຕໍ່ບໍ່ໄດ້"</string>
     <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"ໂອນສາຍໄປໃຫ້ <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
-    <string name="sum_cfnrc_disabled" msgid="7222141261321276464">"ປິດການນຳໃຊ້ແລ້ວ"</string>
+    <!-- no translation found for sum_cfnrc_disabled (2684474391807469832) -->
+    <skip />
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"ຜູ່ໃຫ້ບໍລິການຂອງທ່ານ ບໍ່ຮອງຮັບການປິດການໂອນສາຍ ເມື່ອໂທລະສັບຂອງທ່ານບໍ່ມີສັນຍານ."</string>
     <string name="updating_title" msgid="6146755386174019046">"ການຕັ້ງຄ່າການໂທ"</string>
     <string name="call_settings_primary_user_only" msgid="5679923943740900965">"ມີ​ແຕ່​ຜູ້​ໃຊ້​ຕົ້ນ​ຕໍ​ເທົ່າ​ນັ້ນ​ທີ່​ສາ​ມາດ​ປ່ຽນການ​ຕັ້ງ​ຄ່າ​ການ​ໂທ​ໄດ້."</string>

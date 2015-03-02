@@ -118,7 +118,8 @@
     <string name="labelCFNRc" msgid="2614827454402079766">"ലഭ്യമല്ലാതിരിക്കുമ്പോൾ"</string>
     <string name="messageCFNRc" msgid="6380695421020295119">"പരിധിയ്‌ക്ക് പുറത്തുള്ള നമ്പർ"</string>
     <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"<xliff:g id="PHONENUMBER">{0}</xliff:g> എന്നതിലേക്ക് കൈമാറുന്നു"</string>
-    <string name="sum_cfnrc_disabled" msgid="7222141261321276464">"പ്രവർത്തനരഹിതമാക്കി"</string>
+    <!-- no translation found for sum_cfnrc_disabled (2684474391807469832) -->
+    <skip />
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"നിങ്ങളുടെ ഫോൺ പരിധിയ്ക്ക് പുറത്തായിരിക്കുമ്പോൾ കോൾ കൈമാറൽ പ്രവർത്തനരഹിതമാക്കുന്നതിനെ നിങ്ങളുടെ ഓപ്പറേറ്റർ പിന്തുണയ്‌ക്കുന്നില്ല."</string>
     <string name="updating_title" msgid="6146755386174019046">"കോൾ ക്രമീകരണങ്ങൾ"</string>
     <string name="call_settings_primary_user_only" msgid="5679923943740900965">"കോൾ ക്രമീകരണങ്ങൾ, പ്രാഥമിക ഉപയോക്താവിന് മാത്രമെ മാറ്റാനാവൂ."</string>

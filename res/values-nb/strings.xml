@@ -118,7 +118,8 @@
     <string name="labelCFNRc" msgid="2614827454402079766">"Når mottaker ikke kan nås"</string>
     <string name="messageCFNRc" msgid="6380695421020295119">"Nummer ved manglende dekning"</string>
     <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"Viderekobler til <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
-    <string name="sum_cfnrc_disabled" msgid="7222141261321276464">"Deaktivert"</string>
+    <!-- no translation found for sum_cfnrc_disabled (2684474391807469832) -->
+    <skip />
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"Operatøren støtter ikke deaktivering av viderekobling når telefonen er utenfor dekning."</string>
     <string name="updating_title" msgid="6146755386174019046">"Samtaleinnstillinger"</string>
     <string name="call_settings_primary_user_only" msgid="5679923943740900965">"Anropsinnstillinger kan bare endres av hovedbrukeren."</string>

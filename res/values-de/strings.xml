@@ -118,7 +118,8 @@
     <string name="labelCFNRc" msgid="2614827454402079766">"Wenn nicht erreichbar"</string>
     <string name="messageCFNRc" msgid="6380695421020295119">"Nummer falls nicht erreichbar"</string>
     <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"Weiterleitung an <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
-    <string name="sum_cfnrc_disabled" msgid="7222141261321276464">"Deaktiviert"</string>
+    <!-- no translation found for sum_cfnrc_disabled (2684474391807469832) -->
+    <skip />
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"Ihr Mobilfunkanbieter unterstützt die Deaktivierung der Anrufweiterleitung bei Nichterreichbarkeit nicht."</string>
     <string name="updating_title" msgid="6146755386174019046">"Anrufeinstellungen"</string>
     <string name="call_settings_primary_user_only" msgid="5679923943740900965">"Anrufeinstellungen können nur vom primären Nutzer geändert werden."</string>

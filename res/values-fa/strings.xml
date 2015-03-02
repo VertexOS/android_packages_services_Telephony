@@ -118,7 +118,7 @@
     <string name="labelCFNRc" msgid="2614827454402079766">"هنگامی که در دسترس نیست"</string>
     <string name="messageCFNRc" msgid="6380695421020295119">"شماره در صورت عدم دسترسی"</string>
     <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"هدایت به <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
-    <string name="sum_cfnrc_disabled" msgid="7222141261321276464">"غیر فعال شد"</string>
+    <string name="sum_cfnrc_disabled" msgid="2684474391807469832">"خاموش"</string>
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"شرکت مخابراتی شما از غیرفعال کردن هدایت تماس هنگامی که تلفن شما در دسترس نیست پشتیبانی نمی‌کند."</string>
     <string name="updating_title" msgid="6146755386174019046">"تنظیمات تماس"</string>
     <string name="call_settings_primary_user_only" msgid="5679923943740900965">"فقط کاربر اصلی می‌تواند تنظیمات تماس را تغییر دهد."</string>

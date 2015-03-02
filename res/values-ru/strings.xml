@@ -97,8 +97,8 @@
     <string name="sum_cw_enabled" msgid="8083061901633671397">"Извещать меня о входящих вызовах во время разговора"</string>
     <string name="sum_cw_disabled" msgid="3648693907300104575">"Извещать меня о входящих вызовах во время разговора"</string>
     <string name="call_forwarding_settings" msgid="3378927671091537173">"Переадресация"</string>
-    <string name="call_forwarding_settings_with_label" msgid="8569489414006897127">"Настройки переадресации вызовов (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
-    <string name="labelCF" msgid="2574386948026924737">"Переадресация вызова"</string>
+    <string name="call_forwarding_settings_with_label" msgid="8569489414006897127">"Переадресация (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="labelCF" msgid="2574386948026924737">"Переадресация вызовов"</string>
     <string name="labelCFU" msgid="8147177368148660600">"Переадресовывать всегда"</string>
     <string name="messageCFU" msgid="3560082430662923687">"Всегда переадресовывать вызов на этот номер"</string>
     <string name="sum_cfu_enabled_indicator" msgid="4014187342724130197">"Переадресация всех вызовов"</string>
@@ -118,7 +118,8 @@
     <string name="labelCFNRc" msgid="2614827454402079766">"Если номер недоступен"</string>
     <string name="messageCFNRc" msgid="6380695421020295119">"Переадресовывать на этот номер"</string>
     <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"Переадресация на номер <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
-    <string name="sum_cfnrc_disabled" msgid="7222141261321276464">"Отключено"</string>
+    <!-- no translation found for sum_cfnrc_disabled (2684474391807469832) -->
+    <skip />
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"Ваш оператор не позволяет отключать переадресацию вызовов, если телефон находится вне зоны доступа."</string>
     <string name="updating_title" msgid="6146755386174019046">"Настройки вызовов"</string>
     <string name="call_settings_primary_user_only" msgid="5679923943740900965">"Настройки вызовов может изменить только основной пользователь."</string>
@@ -360,7 +361,7 @@
     <string name="name" msgid="7329028332786872378">"Имя"</string>
     <string name="number" msgid="7905950798349903858">"Номер"</string>
     <string name="save" msgid="4094274636321939086">"Сохранить"</string>
-    <string name="add_fdn_contact" msgid="2481915899633353976">"Добавить номер ограниченного набора"</string>
+    <string name="add_fdn_contact" msgid="2481915899633353976">"Добавить номер"</string>
     <string name="adding_fdn_contact" msgid="7627379633721940991">"Выполняется добавление номера ограниченного набора..."</string>
     <string name="fdn_contact_added" msgid="7458335758501736665">"Номер ограниченного набора добавлен."</string>
     <string name="edit_fdn_contact" msgid="7976936035587081480">"Изменить номер ограниченного набора"</string>

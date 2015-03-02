@@ -118,7 +118,8 @@
     <string name="labelCFNRc" msgid="2614827454402079766">"着信不能時"</string>
     <string name="messageCFNRc" msgid="6380695421020295119">"着信不能時の転送番号"</string>
     <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"<xliff:g id="PHONENUMBER">{0}</xliff:g>に転送する"</string>
-    <string name="sum_cfnrc_disabled" msgid="7222141261321276464">"無効"</string>
+    <!-- no translation found for sum_cfnrc_disabled (2684474391807469832) -->
+    <skip />
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"ご利用の携帯通信会社は着信不能時の転送の無効化をサポートしていません。"</string>
     <string name="updating_title" msgid="6146755386174019046">"通話設定"</string>
     <string name="call_settings_primary_user_only" msgid="5679923943740900965">"通話設定はメインユーザーのみが変更できます。"</string>

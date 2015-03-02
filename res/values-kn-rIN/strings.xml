@@ -118,7 +118,8 @@
     <string name="labelCFNRc" msgid="2614827454402079766">"ಅಲಭ್ಯವಿರುವಾಗ"</string>
     <string name="messageCFNRc" msgid="6380695421020295119">"ತಲುಪಲಾಗದಿದ್ದಾಗ ಸಂಖ್ಯೆ"</string>
     <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"<xliff:g id="PHONENUMBER">{0}</xliff:g> ಗೆ ಫಾರ್ವರ್ಡ್‌ ಮಾಡಲಾಗುತ್ತಿದೆ"</string>
-    <string name="sum_cfnrc_disabled" msgid="7222141261321276464">"ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ"</string>
+    <!-- no translation found for sum_cfnrc_disabled (2684474391807469832) -->
+    <skip />
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"ನಿಮ್ಮ ಫೋನ್‌ ಅನ್ನು ತಲುಪಲಾಗದಿದ್ದಾಗ ನಿಮ್ಮ ವಾಹಕ ಕರೆಯ ಫಾರ್ವರ್ಡ್‌ ಮಾಡುವಿಕೆ ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲು ಬೆಂಬಲಿಸುವುದಿಲ್ಲ."</string>
     <string name="updating_title" msgid="6146755386174019046">"ಕರೆ ಸೆಟ್ಟಿಂಗ್‌ಗಳು"</string>
     <string name="call_settings_primary_user_only" msgid="5679923943740900965">"ಕರೆ ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ಕೇವಲ ಪ್ರಾಥಮಿಕ ಬಳಕೆದಾರರು ಮಾತ್ರ ಬದಲಾಯಿಸಬಹುದು."</string>

@@ -115,10 +115,11 @@
     <string name="sum_cfnry_enabled" msgid="6955775691317662910">"Pinapasa sa <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfnry_disabled" msgid="3884684060443538097">"Naka-off"</string>
     <string name="disable_cfnry_forbidden" msgid="4308233959150658058">"Hindi sinusuportahan ng iyong operator ang hindi pagpapagana sa pagpasa ng tawag kapag hindi sumasagot ang iyong telepono."</string>
-    <string name="labelCFNRc" msgid="2614827454402079766">"Kapag hindi nakakaugnayan"</string>
+    <string name="labelCFNRc" msgid="2614827454402079766">"Kapag hindi makontak"</string>
     <string name="messageCFNRc" msgid="6380695421020295119">"Numero kapag hindi maabot"</string>
     <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"Pinapasa sa <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
-    <string name="sum_cfnrc_disabled" msgid="7222141261321276464">"Hindi pinagana"</string>
+    <!-- no translation found for sum_cfnrc_disabled (2684474391807469832) -->
+    <skip />
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"Hindi sinusuportahan ng iyong carrier ang hindi pagpapagana ng pagpasa ng tawag kapag hindi maabot ang iyong telepono."</string>
     <string name="updating_title" msgid="6146755386174019046">"Mga setting ng tawag"</string>
     <string name="call_settings_primary_user_only" msgid="5679923943740900965">"Ang pangunahing user lang ang makakapagbago ng mga setting ng tawag."</string>

@@ -48,12 +48,12 @@
     <string name="registration_status_invalid_credentials" msgid="8406872554323334182">"Hesap kaydı başarısız oldu: Yanlış kullanıcı adı veya şifre."</string>
     <string name="registration_status_server_unreachable" msgid="7710275557045148634">"Hesap kaydı başarısız oldu: Sunucu adını kontrol edin."</string>
     <string name="third_party_account_summary" msgid="9041060473615403041">"Bu hesap şu anda <xliff:g id="ACCOUNT_OWNER">%s</xliff:g> uygulaması tarafından kullanılıyor."</string>
-    <string name="sip_edit_title" msgid="1967247832635750410">"SIP hesabı ayrıntıları"</string>
-    <string name="sip_edit_new_title" msgid="266414118302574305">"SIP hesabı ayrıntıları"</string>
+    <string name="sip_edit_title" msgid="1967247832635750410">"SIP hesabı"</string>
+    <string name="sip_edit_new_title" msgid="266414118302574305">"SIP hesabı"</string>
     <string name="domain_address_title" msgid="1968479941328225423">"Sunucu"</string>
     <string name="username_title" msgid="6770064611005663470">"Kullanıcı adı"</string>
     <string name="password_title" msgid="5289013731515564295">"Şifre"</string>
-    <string name="display_name_title" msgid="579241787583079773">"Adı görüntüle"</string>
+    <string name="display_name_title" msgid="579241787583079773">"Görüntülenen ad"</string>
     <string name="proxy_address_title" msgid="6890163365640631841">"Giden proxy adresi"</string>
     <string name="port_title" msgid="6693965912656593862">"Bağlantı noktası numarası"</string>
     <string name="transport_title" msgid="889155457465372527">"Aktarım türü"</string>
@@ -64,7 +64,7 @@
     <string name="default_preference_summary" msgid="1979249643719483249">"&lt;Ayarlanmadı&gt;"</string>
     <string name="display_name_summary" msgid="7155076491675565407">"&lt;Kullanıcı adıyla aynı&gt;"</string>
     <string name="optional_summary" msgid="2363105560396317624">"&lt;İsteğe bağlı&gt;"</string>
-    <string name="advanced_settings_show" msgid="7838761602853998622">"▷ Tümünü göstermek için dokunun"</string>
+    <string name="advanced_settings_show" msgid="7838761602853998622">"▷ Tümünü görmek için dokunun"</string>
     <string name="advanced_settings_hide" msgid="3480554978705290228">"▽ Tümünü gizlemek için dokunun"</string>
     <string name="empty_alert" msgid="6659484914371384024">"<xliff:g id="INPUT_FIELD_NAME">%s</xliff:g> gerekli, bu alan boş bırakılamaz."</string>
     <string name="not_a_valid_port" msgid="7931422555587011830">"Bağlantı noktası numarası 1000 ile 65534 arasında olmalıdır."</string>

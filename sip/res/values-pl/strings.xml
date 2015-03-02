@@ -56,15 +56,15 @@
     <string name="display_name_title" msgid="579241787583079773">"Wyświetlana nazwa"</string>
     <string name="proxy_address_title" msgid="6890163365640631841">"Proxy połączeń wychodzących"</string>
     <string name="port_title" msgid="6693965912656593862">"Numer portu"</string>
-    <string name="transport_title" msgid="889155457465372527">"Typ transportu"</string>
+    <string name="transport_title" msgid="889155457465372527">"Protokół"</string>
     <string name="send_keepalive_title" msgid="599627072150501159">"Utrzymuj połączenie"</string>
     <string name="advanced_settings" msgid="6622996380747040711">"Ustawienia opcjonalne"</string>
     <string name="auth_username_title" msgid="8262491689004708265">"Nazwa do uwierzytelniania"</string>
     <string name="auth_username_summary" msgid="941160241371436473">"Nazwa użytkownika używana do uwierzytelniania"</string>
     <string name="default_preference_summary" msgid="1979249643719483249">"&lt;Nie ustawiono&gt;"</string>
-    <string name="display_name_summary" msgid="7155076491675565407">"&lt;Taka jak nazwa użytkownika&gt;"</string>
+    <string name="display_name_summary" msgid="7155076491675565407">"&lt;Taka sama jak nazwa użytkownika&gt;"</string>
     <string name="optional_summary" msgid="2363105560396317624">"&lt;Opcjonalny&gt;"</string>
-    <string name="advanced_settings_show" msgid="7838761602853998622">"▷ Dotknij, by pokazać wszystko"</string>
+    <string name="advanced_settings_show" msgid="7838761602853998622">"▷ Dotknij, by wyświetlić wszystkie ustawienia"</string>
     <string name="advanced_settings_hide" msgid="3480554978705290228">"▽ Dotknij, by ukryć wszystko"</string>
     <string name="empty_alert" msgid="6659484914371384024">"Pole <xliff:g id="INPUT_FIELD_NAME">%s</xliff:g> jest wymagane i nie może pozostać puste."</string>
     <string name="not_a_valid_port" msgid="7931422555587011830">"Numer portu powinien mieć wartość od 1000 do 65 534."</string>
