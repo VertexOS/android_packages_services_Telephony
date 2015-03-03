@@ -108,13 +108,6 @@
         android:persistent="true"
         android:summary="@string/hac_mode_summary"/>
 
-    <ListPreference
-        android:key="button_dtmf_settings"
-        android:title="@string/dtmf_tones_title"
-        android:summary="@string/dtmf_tones_summary"
-        android:entries="@array/dtmf_tone_entries"
-        android:entryValues="@array/dtmf_tone_values"/>
-
     <PreferenceScreen
         android:key="button_gsm_more_expand_key"
         android:title="@string/labelGSMMore"

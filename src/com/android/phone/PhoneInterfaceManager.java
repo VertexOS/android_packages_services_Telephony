@@ -2235,6 +2235,16 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
                 && mTelephonySharedPreferences.getBoolean(PREF_ENABLE_VIDEO_CALLING, true);
     }
 
+    @Override
+    public boolean canChangeDtmfToneLength() {
+        return mPhone.getContext().getResources().getBoolean(R.bool.dtmf_type_enabled);
+    }
+
+    @Override
+    public boolean isWorldPhone() {
+        return mPhone.getContext().getResources().getBoolean(R.bool.world_phone);
+    }
+
     /**
      * Returns the unique device ID of phone, for example, the IMEI for
      * GSM and the MEID for CDMA phones. Return null if device ID is not available.
