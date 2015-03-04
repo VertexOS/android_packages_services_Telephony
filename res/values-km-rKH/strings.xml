@@ -118,8 +118,7 @@
     <string name="labelCFNRc" msgid="2614827454402079766">"នៅពេលមិនអាចទាក់ទងបាន"</string>
     <string name="messageCFNRc" msgid="6380695421020295119">"លេខ​នៅ​ពេល​ដែល​មិន​អាច​ហៅ​ចូល"</string>
     <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"បញ្ជូន​បន្ត​ទៅ​ <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
-    <!-- no translation found for sum_cfnrc_disabled (2684474391807469832) -->
-    <skip />
+    <string name="sum_cfnrc_disabled" msgid="2684474391807469832">"បិទ"</string>
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"ក្រុមហ៊ុន​បញ្ជូន​របស់​អ្នក​​មិន​គាំទ្រ​ការ​បិទ​ការ​ហៅ​​បញ្ជូន​បន្ត នៅ​ពេល​ទូរស័ព្ទ​របស់​អ្នក​មិន​អាច​ហៅ​ចូល។"</string>
     <string name="updating_title" msgid="6146755386174019046">"កំណត់​ការ​ហៅ"</string>
     <string name="call_settings_primary_user_only" msgid="5679923943740900965">"ការកំណត់ការហៅអាចផ្លាស់ប្តូរបានដោយអ្នកប្រើបឋមតែប៉ុណ្ណោះ។"</string>

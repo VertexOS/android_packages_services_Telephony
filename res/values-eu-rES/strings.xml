@@ -118,8 +118,7 @@
     <string name="labelCFNRc" msgid="2614827454402079766">"Konektatu gabe nagoenean"</string>
     <string name="messageCFNRc" msgid="6380695421020295119">"Eskuragarri ez dagoenerako zenbakia"</string>
     <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"<xliff:g id="PHONENUMBER">{0}</xliff:g> zenbakira desbideratzen"</string>
-    <!-- no translation found for sum_cfnrc_disabled (2684474391807469832) -->
-    <skip />
+    <string name="sum_cfnrc_disabled" msgid="2684474391807469832">"Desaktibatuta"</string>
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"Operadoreak ez du dei-desbideratzeak desgaitzea onartzen telefonoa eskuragarri ez dagoen bitartean."</string>
     <string name="updating_title" msgid="6146755386174019046">"Deien ezarpenak"</string>
     <string name="call_settings_primary_user_only" msgid="5679923943740900965">"Erabiltzaile nagusiak soilik alda ditzake deien ezarpenak."</string>

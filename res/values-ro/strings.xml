@@ -118,8 +118,7 @@
     <string name="labelCFNRc" msgid="2614827454402079766">"Când nu este accesibil"</string>
     <string name="messageCFNRc" msgid="6380695421020295119">"Număr de redirecţionare dacă telefonul nu este accesibil"</string>
     <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"Se efectuează redirecţionarea la <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
-    <!-- no translation found for sum_cfnrc_disabled (2684474391807469832) -->
-    <skip />
+    <string name="sum_cfnrc_disabled" msgid="2684474391807469832">"Dezactivat"</string>
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"Operatorul dvs. nu acceptă ca redirecţionarea apelurilor să fie dezactivată atunci când telefonul nu este accesibil."</string>
     <string name="updating_title" msgid="6146755386174019046">"Setări apel"</string>
     <string name="call_settings_primary_user_only" msgid="5679923943740900965">"Numai utilizatorul principal poate să modifice setările pentru apeluri."</string>

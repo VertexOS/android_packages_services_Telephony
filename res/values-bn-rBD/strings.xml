@@ -118,8 +118,7 @@
     <string name="labelCFNRc" msgid="2614827454402079766">"যখন অনুপলব্ধ থাকে"</string>
     <string name="messageCFNRc" msgid="6380695421020295119">"যখন সংযোগ স্থাপন করা যাচ্ছে না তখনকার নম্বর"</string>
     <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"<xliff:g id="PHONENUMBER">{0}</xliff:g> এ ফরওয়ার্ড করা হচ্ছে"</string>
-    <!-- no translation found for sum_cfnrc_disabled (2684474391807469832) -->
-    <skip />
+    <string name="sum_cfnrc_disabled" msgid="2684474391807469832">"বন্ধ আছে"</string>
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"আপনার ক্যারিয়ার আপনার ফোনের সাথে যখন সংযোগ স্থাপন করা যাচ্ছে না সেই অবস্থায় কল ফরওয়ার্ডিংকে অক্ষম করা সমর্থন করে না৷"</string>
     <string name="updating_title" msgid="6146755386174019046">"কল সেটিংস"</string>
     <string name="call_settings_primary_user_only" msgid="5679923943740900965">"কেবলমাত্র প্রাথমিক ব্যবহারকারী কল সেটিংস পরিবর্তন করতে পারবেন৷"</string>

@@ -118,8 +118,7 @@
     <string name="labelCFNRc" msgid="2614827454402079766">"Коли недоступно"</string>
     <string name="messageCFNRc" msgid="6380695421020295119">"Переадресовувати на цей номер"</string>
     <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"Пересилання на <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
-    <!-- no translation found for sum_cfnrc_disabled (2684474391807469832) -->
-    <skip />
+    <string name="sum_cfnrc_disabled" msgid="2684474391807469832">"Вимкнено"</string>
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"Ваш оператор не підтримує вимкнення переадресації викликів, коли телефон недосяжний."</string>
     <string name="updating_title" msgid="6146755386174019046">"Налаштування викликів"</string>
     <string name="call_settings_primary_user_only" msgid="5679923943740900965">"Налаштування виклику може змінити лише основний користувач."</string>

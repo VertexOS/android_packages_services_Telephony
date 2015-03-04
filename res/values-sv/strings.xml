@@ -118,8 +118,7 @@
     <string name="labelCFNRc" msgid="2614827454402079766">"När jag inte kan nås"</string>
     <string name="messageCFNRc" msgid="6380695421020295119">"Nummer när du inte är tillgänglig"</string>
     <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"Vidarebefordrar till <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
-    <!-- no translation found for sum_cfnrc_disabled (2684474391807469832) -->
-    <skip />
+    <string name="sum_cfnrc_disabled" msgid="2684474391807469832">"Av"</string>
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"Operatören stöder inte inaktivering av vidarebefordran av samtal när det inte går att nå telefonen."</string>
     <string name="updating_title" msgid="6146755386174019046">"Samtalsinställningar"</string>
     <string name="call_settings_primary_user_only" msgid="5679923943740900965">"Det är bara den primära användaren som kan ändra samtalsinställningar."</string>

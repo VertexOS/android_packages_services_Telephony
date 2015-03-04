@@ -118,8 +118,7 @@
     <string name="labelCFNRc" msgid="2614827454402079766">"చేరుకోలేనప్పుడు"</string>
     <string name="messageCFNRc" msgid="6380695421020295119">"చేరుకోవడం సాధ్యపడనప్పుడు నంబర్"</string>
     <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"<xliff:g id="PHONENUMBER">{0}</xliff:g>కి ఫార్వార్డ్ చేస్తోంది"</string>
-    <!-- no translation found for sum_cfnrc_disabled (2684474391807469832) -->
-    <skip />
+    <string name="sum_cfnrc_disabled" msgid="2684474391807469832">"ఆఫ్‌లో ఉంది"</string>
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"మీ ఫోన్‌ను చేరుకోవడం సాధ్యపడనప్పుడు కాల్ ఫార్వర్డింగ్‌ను నిలిపివేయడానికి మీ క్యారియర్ మద్దతు ఇవ్వదు."</string>
     <string name="updating_title" msgid="6146755386174019046">"కాల్ సెట్టింగ్‌లు"</string>
     <string name="call_settings_primary_user_only" msgid="5679923943740900965">"కాల్ సెట్టింగ్‌లను ప్రాథమిక వినియోగదారు మాత్రమే మార్చగలరు."</string>

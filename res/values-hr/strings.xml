@@ -118,8 +118,7 @@
     <string name="labelCFNRc" msgid="2614827454402079766">"Kad je nedostupno"</string>
     <string name="messageCFNRc" msgid="6380695421020295119">"Broj u slučaju nedostupnosti"</string>
     <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"Preusmjeravanje na <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
-    <!-- no translation found for sum_cfnrc_disabled (2684474391807469832) -->
-    <skip />
+    <string name="sum_cfnrc_disabled" msgid="2684474391807469832">"Isključeno"</string>
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"Vaš mobilni operater ne podržava onemogućavanje preusmjeravanja poziva ako je vaš telefon nedostupan."</string>
     <string name="updating_title" msgid="6146755386174019046">"Postavke poziva"</string>
     <string name="call_settings_primary_user_only" msgid="5679923943740900965">"Postavke može mijenjati samo primarni korisnik."</string>

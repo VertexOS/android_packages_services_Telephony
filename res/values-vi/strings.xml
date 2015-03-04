@@ -118,8 +118,7 @@
     <string name="labelCFNRc" msgid="2614827454402079766">"Khi không liên lạc được"</string>
     <string name="messageCFNRc" msgid="6380695421020295119">"Số khi không liên lạc được"</string>
     <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"Chuyển tiếp tới <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
-    <!-- no translation found for sum_cfnrc_disabled (2684474391807469832) -->
-    <skip />
+    <string name="sum_cfnrc_disabled" msgid="2684474391807469832">"Tắt"</string>
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"Nhà cung cấp dịch vụ của bạn không hỗ trợ vô hiệu hóa chuyển tiếp cuộc gọi khi điện thoại của bạn không thể truy cập được."</string>
     <string name="updating_title" msgid="6146755386174019046">"Cài đặt cuộc gọi"</string>
     <string name="call_settings_primary_user_only" msgid="5679923943740900965">"Chỉ người dùng chính mới có thể thay đổi cài đặt cuộc gọi."</string>

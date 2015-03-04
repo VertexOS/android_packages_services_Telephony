@@ -118,8 +118,7 @@
     <string name="labelCFNRc" msgid="2614827454402079766">"தொடர்புகொள்ள முடியாமல் இருக்கும்போது"</string>
     <string name="messageCFNRc" msgid="6380695421020295119">"தொடர்பு கிடைக்காதபோது இதில்"</string>
     <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"<xliff:g id="PHONENUMBER">{0}</xliff:g> க்குப் பகிர்"</string>
-    <!-- no translation found for sum_cfnrc_disabled (2684474391807469832) -->
-    <skip />
+    <string name="sum_cfnrc_disabled" msgid="2684474391807469832">"முடக்கப்பட்டுள்ளது"</string>
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"மொபைல் தொடர்புகொள்ள முடியாத இடத்தில் இருக்கும்போது, அழைப்பு பகிர்தலை முடக்குவதை ஆபரேட்டர் ஆதரிக்கவில்லை."</string>
     <string name="updating_title" msgid="6146755386174019046">"அழைப்பு அமைப்பு"</string>
     <string name="call_settings_primary_user_only" msgid="5679923943740900965">"முதன்மை பயனர் மட்டுமே அழைப்பிற்கான அமைப்புகளை மாற்ற முடியும்."</string>

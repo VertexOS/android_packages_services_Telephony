@@ -118,8 +118,7 @@
     <string name="labelCFNRc" msgid="2614827454402079766">"पोहचण्‍यायोग्‍य नसताना"</string>
     <string name="messageCFNRc" msgid="6380695421020295119">"नंबर पोहचण्‍यायोग्‍य नसताना"</string>
     <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"<xliff:g id="PHONENUMBER">{0}</xliff:g> वर अग्रेषित करीत आहे"</string>
-    <!-- no translation found for sum_cfnrc_disabled (2684474391807469832) -->
-    <skip />
+    <string name="sum_cfnrc_disabled" msgid="2684474391807469832">"बंद"</string>
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"आपला फोन पोहचण्‍यायोग्‍य नसताना आपला वाहक कॉल अग्रेषण करणे अक्षम करण्‍यास समर्थन करीत नाही."</string>
     <string name="updating_title" msgid="6146755386174019046">"कॉल सेटिंग्ज"</string>
     <string name="call_settings_primary_user_only" msgid="5679923943740900965">"कॉल सेटिंग्ज केवळ प्राथमिक वापरकर्त्याद्वारे बदलल्‍या जाउ शकतात."</string>

@@ -118,8 +118,7 @@
     <string name="labelCFNRc" msgid="2614827454402079766">"Wanneer niet bereikbaar"</string>
     <string name="messageCFNRc" msgid="6380695421020295119">"Nummer indien onbereikbaar"</string>
     <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"Doorschakelen naar <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
-    <!-- no translation found for sum_cfnrc_disabled (2684474391807469832) -->
-    <skip />
+    <string name="sum_cfnrc_disabled" msgid="2684474391807469832">"Uit"</string>
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"Uw provider biedt geen ondersteuning voor het uitschakelen van oproepdoorschakelingen wanneer uw telefoon niet bereikbaar is."</string>
     <string name="updating_title" msgid="6146755386174019046">"Oproepinstellingen"</string>
     <string name="call_settings_primary_user_only" msgid="5679923943740900965">"Oproepinstellingen kunnen alleen worden gewijzigd door de primaire gebruiker."</string>

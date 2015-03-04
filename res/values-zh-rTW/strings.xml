@@ -118,8 +118,7 @@
     <string name="labelCFNRc" msgid="2614827454402079766">"無法接通時"</string>
     <string name="messageCFNRc" msgid="6380695421020295119">"無法接通時的轉接號碼"</string>
     <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"轉接至 <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
-    <!-- no translation found for sum_cfnrc_disabled (2684474391807469832) -->
-    <skip />
+    <string name="sum_cfnrc_disabled" msgid="2684474391807469832">"關閉"</string>
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"您的行動通訊業者不支援手機無收訊時停用轉接功能。"</string>
     <string name="updating_title" msgid="6146755386174019046">"通話設定"</string>
     <string name="call_settings_primary_user_only" msgid="5679923943740900965">"只有主要使用者可以變更通話設定。"</string>

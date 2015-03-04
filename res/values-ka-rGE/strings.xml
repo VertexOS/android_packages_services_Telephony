@@ -118,8 +118,7 @@
     <string name="labelCFNRc" msgid="2614827454402079766">"როდესაც მიუწვდომელია"</string>
     <string name="messageCFNRc" msgid="6380695421020295119">"ნომერი, როდესაც მიუწვდომელია"</string>
     <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"გადამისამართება <xliff:g id="PHONENUMBER">{0}</xliff:g>-ზე"</string>
-    <!-- no translation found for sum_cfnrc_disabled (2684474391807469832) -->
-    <skip />
+    <string name="sum_cfnrc_disabled" msgid="2684474391807469832">"გამორთული"</string>
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"თქვენს ოპერატორს ტელეფონის მიუწვდომელობის დროს ზარის გადამისამართების გაუქმების მხარდაჭერა არ გააჩნია."</string>
     <string name="updating_title" msgid="6146755386174019046">"ზარის პარამეტრები"</string>
     <string name="call_settings_primary_user_only" msgid="5679923943740900965">"ზარის პარამეტრების ცვლილება შესაძლებელია მხოლოდ პირველადი მომხმარებლის მიერ."</string>

@@ -118,8 +118,7 @@
     <string name="labelCFNRc" msgid="2614827454402079766">"ဆက်သွယ်၍ မရချိန်"</string>
     <string name="messageCFNRc" msgid="6380695421020295119">"ဖုန်းခေါ်မရလျှင် ပို့ရန် နံပါတ်"</string>
     <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"<xliff:g id="PHONENUMBER">{0}</xliff:g> သို့ခေါ်ဆိုမှုအား တဆင့်ထပ်ပို့နေသည်"</string>
-    <!-- no translation found for sum_cfnrc_disabled (2684474391807469832) -->
-    <skip />
+    <string name="sum_cfnrc_disabled" msgid="2684474391807469832">"ပိတ်ထားရသည်"</string>
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"သင့် ဖုန်း ဆက်သွယ်မှု လုပ်လို့မရစဉ် call forwarding ပြုလုပ်မှု ပယ်ဖျက်ရန် သင့် အော်ပရေတာမှ ခွင့်မပြုပါ"</string>
     <string name="updating_title" msgid="6146755386174019046">"ခေါ်ဆိုခြင်း အဆင်အပြင်များ"</string>
     <string name="call_settings_primary_user_only" msgid="5679923943740900965">"အဓိက အသုံးပြုသူသာလျှင် ခေါ်ဆိုမှု ချိန်ညှိချက်များကို ပြောင်းလဲနိုင်ပါသည်။"</string>
