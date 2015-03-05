@@ -21,6 +21,7 @@ import android.preference.CheckBoxPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceScreen;
+import android.view.MenuItem;
 
 import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneConstants;
@@ -29,15 +30,43 @@ public class GsmUmtsCallOptions extends PreferenceActivity {
     private static final String LOG_TAG = "GsmUmtsCallOptions";
     private final boolean DBG = (PhoneGlobals.DBG_LEVEL >= 2);
 
+    private static final String CALL_FORWARDING_KEY = "call_forwarding_key";
+    private static final String ADDITIONAL_GSM_SETTINGS_KEY = "additional_gsm_call_settings_key";
+
     @Override
     protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
 
         addPreferencesFromResource(R.xml.gsm_umts_call_options);
 
-        if (PhoneGlobals.getPhone().getPhoneType() != PhoneConstants.PHONE_TYPE_GSM) {
+        SubscriptionInfoHelper subInfoHelper = new SubscriptionInfoHelper(this, getIntent());
+        subInfoHelper.setActionBarTitle(
+                getActionBar(), getResources(), R.string.labelGsmMore_with_label);
+        init(getPreferenceScreen(), subInfoHelper);
+
+        if (subInfoHelper.getPhone().getPhoneType() != PhoneConstants.PHONE_TYPE_GSM) {
             //disable the entire screen
             getPreferenceScreen().setEnabled(false);
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        final int itemId = item.getItemId();
+        if (itemId == android.R.id.home) {
+            onBackPressed();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    public static void init(PreferenceScreen prefScreen, SubscriptionInfoHelper subInfoHelper) {
+        Preference callForwardingPref = prefScreen.findPreference(CALL_FORWARDING_KEY);
+        callForwardingPref.setIntent(subInfoHelper.getIntent(GsmUmtsCallForwardOptions.class));
+
+        Preference additionalGsmSettingsPref =
+                prefScreen.findPreference(ADDITIONAL_GSM_SETTINGS_KEY);
+        additionalGsmSettingsPref.setIntent(
+                subInfoHelper.getIntent(GsmUmtsAdditionalCallOptions.class));
     }
 }

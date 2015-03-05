@@ -29,6 +29,7 @@ import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceScreen;
 import android.util.Log;
+import android.view.MenuItem;
 
 public class CdmaCallOptions extends PreferenceActivity {
     private static final String LOG_TAG = "CdmaCallOptions";
@@ -43,12 +44,26 @@ public class CdmaCallOptions extends PreferenceActivity {
 
         addPreferencesFromResource(R.xml.cdma_call_privacy);
 
+        SubscriptionInfoHelper subInfoHelper = new SubscriptionInfoHelper(this, getIntent());
+        subInfoHelper.setActionBarTitle(
+                getActionBar(), getResources(), R.string.labelCdmaMore_with_label);
+
         mButtonVoicePrivacy = (CheckBoxPreference) findPreference(BUTTON_VP_KEY);
-        if (PhoneGlobals.getPhone().getPhoneType() != PhoneConstants.PHONE_TYPE_CDMA
+        if (subInfoHelper.getPhone().getPhoneType() != PhoneConstants.PHONE_TYPE_CDMA
                 || getResources().getBoolean(R.bool.config_voice_privacy_disable)) {
             //disable the entire screen
             getPreferenceScreen().setEnabled(false);
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        final int itemId = item.getItemId();
+        if (itemId == android.R.id.home) {
+            onBackPressed();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

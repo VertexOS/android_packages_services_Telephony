@@ -129,23 +129,12 @@
         android:key="button_gsm_more_expand_key"
         android:title="@string/labelGSMMore"
         android:summary="@string/sum_gsm_call_settings"
-        android:persistent="false">
-
-        <intent android:action="android.intent.action.MAIN"
-            android:targetPackage="com.android.phone"
-            android:targetClass="com.android.phone.GsmUmtsCallOptions"/>
-
-    </PreferenceScreen>
+        android:persistent="false" />
 
     <PreferenceScreen
         android:key="button_cdma_more_expand_key"
         android:title="@string/labelCDMAMore"
         android:summary="@string/sum_cdma_call_settings"
-        android:persistent="false">
+        android:persistent="false" />
 
-        <intent android:action="android.intent.action.MAIN"
-            android:targetPackage="com.android.phone"
-            android:targetClass="com.android.phone.CdmaCallOptions"/>
-
-    </PreferenceScreen>
 </PreferenceScreen>

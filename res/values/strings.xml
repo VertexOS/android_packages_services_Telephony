@@ -116,10 +116,16 @@
 
     <!-- Error message for users that aren't allowed to modify Mobile Network settings [CHAR LIMIT=none] -->
     <string name="mobile_network_settings_not_available">Cellular network settings are not available for this user</string>
-    <!-- GSM Call settings screen, setting option name -->
+    <!-- GSM Call settings screen, setting option name. [CHAR LIMIT=40] -->
     <string name="labelGSMMore">GSM call settings</string>
-    <!-- CDM Call settings screen, setting option name -->
+    <!-- GSM Call settings screen, setting option name with label indicating the SIM the settings
+         are applied to. [CHAR LIMIT=40] -->
+    <string name="labelGsmMore_with_label">GSM call settings (<xliff:g id="subscriptionlabel" example="T-Mobile">%s</xliff:g>)</string>
+    <!-- CDMA Call settings screen, setting option name -->
     <string name="labelCDMAMore">CDMA call settings</string>
+    <!-- CDMA Call settings screen, setting option name with label indicating the SIM the settings
+         are applied to. [CHAR LIMIT=40] -->
+    <string name="labelCdmaMore_with_label">CDMA call settings (<xliff:g id="subscriptionlabel" example="Verizon">%s</xliff:g>)</string>
     <!-- Mobile network settings screen, setting option name -->
     <string name="apn_settings">Access Point Names</string>
     <!-- Label for the "Network settings" screen in the Settings UI -->

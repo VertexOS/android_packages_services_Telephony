@@ -162,8 +162,6 @@ public class CallFeaturesSetting extends PreferenceActivity
 
     private static final String BUTTON_GSM_UMTS_OPTIONS = "button_gsm_more_expand_key";
     private static final String BUTTON_CDMA_OPTIONS = "button_cdma_more_expand_key";
-    private static final String CALL_FORWARDING_KEY = "call_forwarding_key";
-    private static final String ADDITIONAL_GSM_SETTINGS_KEY = "additional_gsm_call_settings_key";
 
     private static final String PHONE_ACCOUNT_SETTINGS_KEY =
             "phone_account_settings_preference_screen";
@@ -1255,12 +1253,13 @@ public class CallFeaturesSetting extends PreferenceActivity
             mButtonTTY = null;
         }
 
-        if (!getResources().getBoolean(R.bool.world_phone)) {
-            Preference cdmaOptions = prefSet.findPreference(BUTTON_CDMA_OPTIONS);
+        Preference cdmaOptions = prefSet.findPreference(BUTTON_CDMA_OPTIONS);
+        Preference gsmOptions = prefSet.findPreference(BUTTON_GSM_UMTS_OPTIONS);
+        if (getResources().getBoolean(R.bool.world_phone)) {
+            cdmaOptions.setIntent(mSubscriptionInfoHelper.getIntent(CdmaCallOptions.class));
+            gsmOptions.setIntent(mSubscriptionInfoHelper.getIntent(GsmUmtsCallOptions.class));
+        } else {
             prefSet.removePreference(cdmaOptions);
-
-            // TODO: Support MSIM for this preference option.
-            Preference gsmOptions = prefSet.findPreference(BUTTON_GSM_UMTS_OPTIONS);
             prefSet.removePreference(gsmOptions);
 
             int phoneType = mPhone.getPhoneType();
@@ -1284,15 +1283,7 @@ public class CallFeaturesSetting extends PreferenceActivity
 
                     if (getResources().getBoolean(R.bool.config_additional_call_setting)) {
                         addPreferencesFromResource(R.xml.gsm_umts_call_options);
-
-                        Preference callForwardingPref = prefSet.findPreference(CALL_FORWARDING_KEY);
-                        callForwardingPref.setIntent(mSubscriptionInfoHelper.getIntent(
-                                GsmUmtsCallForwardOptions.class));
-
-                        Preference additionalGsmSettingsPref =
-                                prefSet.findPreference(ADDITIONAL_GSM_SETTINGS_KEY);
-                        additionalGsmSettingsPref.setIntent(mSubscriptionInfoHelper.getIntent(
-                                GsmUmtsAdditionalCallOptions.class));
+                        GsmUmtsCallOptions.init(prefSet, mSubscriptionInfoHelper);
                     }
                 } else {
                     throw new IllegalStateException("Unexpected phone type: " + phoneType);
