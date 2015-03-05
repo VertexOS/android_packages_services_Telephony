@@ -2449,6 +2449,10 @@ public class PhoneUtils {
                 == Configuration.ORIENTATION_LANDSCAPE;
     }
 
+    public static PhoneAccountHandle makePstnPhoneAccountHandle(int phoneId) {
+        return makePstnPhoneAccountHandle(PhoneFactory.getPhone(phoneId));
+    }
+
     public static PhoneAccountHandle makePstnPhoneAccountHandle(Phone phone) {
         return makePstnPhoneAccountHandleWithPrefix(phone, "", false);
     }

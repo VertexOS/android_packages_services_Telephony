@@ -15,14 +15,22 @@
  */
 package com.android.phone.vvm.omtp.sms;
 
+import android.accounts.Account;
 import android.content.BroadcastReceiver;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.provider.Telephony;
+import android.provider.VoicemailContract;
+import android.telecom.PhoneAccountHandle;
 import android.telephony.SmsMessage;
 import android.util.Log;
 
+import com.android.internal.telephony.PhoneConstants;
+import com.android.phone.PhoneUtils;
 import com.android.phone.vvm.omtp.OmtpConstants;
+import com.android.phone.vvm.omtp.OmtpVvmSyncAccountManager;
 
 import java.io.UnsupportedEncodingException;
 
@@ -32,8 +40,15 @@ import java.io.UnsupportedEncodingException;
 public class OmtpMessageReceiver extends BroadcastReceiver {
     private static final String TAG = "OmtpMessageReceiver";
 
+    private Context mContext;
+    private PhoneAccountHandle mPhoneAccount;
+
     @Override
     public void onReceive(Context context, Intent intent) {
+        mContext = context;
+        mPhoneAccount = PhoneUtils.makePstnPhoneAccountHandle(
+                intent.getExtras().getInt(PhoneConstants.PHONE_KEY));
+
         SmsMessage[] messages = Telephony.Sms.Intents.getMessagesFromIntent(intent);
         StringBuilder userData = new StringBuilder();
         StringBuilder messageBody = new StringBuilder();
@@ -50,7 +65,7 @@ public class OmtpMessageReceiver extends BroadcastReceiver {
                 //TODO: handle message
             } else if (messageData.getPrefix() == OmtpConstants.STATUS_SMS_PREFIX) {
                 StatusMessage message = new StatusMessage(messageData);
-                //TODO: handle message
+                handleStatusMessage(message);
             } else {
                 Log.e(TAG, "This should never have happened");
             }
@@ -66,5 +81,25 @@ public class OmtpMessageReceiver extends BroadcastReceiver {
         } catch (UnsupportedEncodingException e) {
             throw new IllegalStateException("This should have never happened", e);
         }
+    }
+
+    private void handleStatusMessage(StatusMessage message) {
+        OmtpVvmSyncAccountManager vvmSyncManager = OmtpVvmSyncAccountManager.getInstance(mContext);
+        Account account = new Account(mPhoneAccount.getId(),
+                OmtpVvmSyncAccountManager.ACCOUNT_TYPE);
+
+        if (!vvmSyncManager.isAccountRegistered(account)) {
+            // If the account has not been previously registered, it means that this STATUS sms
+            // is a result of the ACTIVATE sms, so register the voicemail source.
+            vvmSyncManager.createSyncAccount(account);
+            VoicemailContract.Status.setStatus(mContext, mPhoneAccount,
+                    VoicemailContract.Status.CONFIGURATION_STATE_OK,
+                    VoicemailContract.Status.DATA_CHANNEL_STATE_OK,
+                    VoicemailContract.Status.NOTIFICATION_CHANNEL_STATE_OK);
+        }
+
+        //TODO: figure out how to pass IMAP credentials to sync adapter
+
+        ContentResolver.requestSync(account, VoicemailContract.AUTHORITY, new Bundle());
     }
 }
