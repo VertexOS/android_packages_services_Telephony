@@ -1068,22 +1068,6 @@
         <item>3</item>
     </string-array>
 
-    <!-- Dtmf tones settings -->
-    <!-- Title for the DTMF Tones options displayed in Call Settings -->
-    <string name="dtmf_tones_title">DTMF tones</string>
-    <!-- Summary for the DTMF Tones options displayed in Call Settings -->
-    <string name="dtmf_tones_summary">Set the length of DTMF tones</string>
-    <!-- Options displayed as part of DTMF Tones in Call Settings -->
-    <string-array name="dtmf_tone_entries">
-      <item>Normal</item>
-      <item>Long</item>
-    </string-array>
-    <!-- Do not translate. -->
-    <string-array name="dtmf_tone_values" translatable="false">
-       <item>0</item>
-       <item>1</item>
-    </string-array>
-
     <!-- Title for the dialog used to display CDMA DisplayInfo -->
     <string name="network_info_message">Network message</string>
     <!-- Title for the dialog used to display a network error message to the user -->

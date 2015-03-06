@@ -154,7 +154,6 @@ public class CallFeaturesSetting extends PreferenceActivity
     private static final String BUTTON_VOICEMAIL_SETTING_KEY = "button_voicemail_setting_key";
     private static final String BUTTON_FDN_KEY   = "button_fdn_key";
 
-    private static final String BUTTON_DTMF_KEY        = "button_dtmf_settings";
     private static final String BUTTON_RETRY_KEY       = "button_auto_retry_key";
     private static final String BUTTON_TTY_KEY         = "button_tty_mode_key";
     private static final String BUTTON_HAC_KEY         = "button_hac_key";
@@ -189,10 +188,8 @@ public class CallFeaturesSetting extends PreferenceActivity
 
     private EditPhoneNumberPreference mSubMenuVoicemailSettings;
 
-    /** Whether dialpad plays DTMF tone or not. */
     private CheckBoxPreference mButtonAutoRetry;
     private CheckBoxPreference mButtonHAC;
-    private ListPreference mButtonDTMF;
     private TtyModeListPreference mButtonTTY;
     private VoicemailProviderListPreference mVoicemailProviders;
     private PreferenceScreen mVoicemailSettingsScreen;
@@ -332,8 +329,6 @@ public class CallFeaturesSetting extends PreferenceActivity
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
         if (preference == mSubMenuVoicemailSettings) {
             return true;
-        } else if (preference == mButtonDTMF) {
-            return true;
         } else if (preference == mButtonTTY) {
             return true;
         } else if (preference == mButtonAutoRetry) {
@@ -397,11 +392,7 @@ public class CallFeaturesSetting extends PreferenceActivity
     public boolean onPreferenceChange(Preference preference, Object objValue) {
         if (DBG) log("onPreferenceChange: \"" + preference + "\" changed to \"" + objValue + "\"");
 
-        if (preference == mButtonDTMF) {
-            int index = mButtonDTMF.findIndexOfValue((String) objValue);
-            Settings.System.putInt(mPhone.getContext().getContentResolver(),
-                    Settings.System.DTMF_TONE_TYPE_WHEN_DIALING, index);
-        } else if (preference == mVoicemailProviders) {
+        if (preference == mVoicemailProviders) {
             final String newProviderKey = (String) objValue;
 
             // If previous provider key and the new one is same, we don't need to handle it.
@@ -1186,7 +1177,6 @@ public class CallFeaturesSetting extends PreferenceActivity
         mSubMenuVoicemailSettings.setDialogOnClosedListener(this);
         mSubMenuVoicemailSettings.setDialogTitle(R.string.voicemail_settings_number_label);
 
-        mButtonDTMF = (ListPreference) findPreference(BUTTON_DTMF_KEY);
         mButtonAutoRetry = (CheckBoxPreference) findPreference(BUTTON_RETRY_KEY);
         mButtonHAC = (CheckBoxPreference) findPreference(BUTTON_HAC_KEY);
         mButtonTTY = (TtyModeListPreference) findPreference(
@@ -1213,16 +1203,6 @@ public class CallFeaturesSetting extends PreferenceActivity
         updateVMPreferenceWidgets(mVoicemailProviders.getValue());
 
         mEnableVideoCalling = (CheckBoxPreference) findPreference(ENABLE_VIDEO_CALLING_KEY);
-
-        if (getResources().getBoolean(R.bool.dtmf_type_enabled)) {
-            mButtonDTMF.setOnPreferenceChangeListener(this);
-            int dtmf = Settings.System.getInt(getContentResolver(),
-                    Settings.System.DTMF_TONE_TYPE_WHEN_DIALING, Constants.DTMF_TONE_TYPE_NORMAL);
-            mButtonDTMF.setValueIndex(dtmf);
-        } else {
-            prefSet.removePreference(mButtonDTMF);
-            mButtonDTMF = null;
-        }
 
         if (getResources().getBoolean(R.bool.auto_retry_enabled)) {
             mButtonAutoRetry.setOnPreferenceChangeListener(this);
@@ -1264,9 +1244,6 @@ public class CallFeaturesSetting extends PreferenceActivity
                     getContentResolver(), Settings.Global.HIDE_CARRIER_NETWORK_SETTINGS, 0) == 1;
             if (shouldHideCarrierSettings) {
                 prefSet.removePreference(fdnButton);
-                if (mButtonDTMF != null) {
-                    prefSet.removePreference(mButtonDTMF);
-                }
             } else {
                 if (phoneType == PhoneConstants.PHONE_TYPE_CDMA) {
                     prefSet.removePreference(fdnButton);
