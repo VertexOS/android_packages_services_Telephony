@@ -1261,6 +1261,11 @@
     <string name="sim_label_emergency_calls">Emergency calls</string>
     <string name="sim_description_emergency_calls">Emergency calling only</string>
     <string name="sim_description_default">SIM card, slot: <xliff:g id="slot_id">%s</xliff:g></string>
+
+    <!-- Title for activity to control accessibility settings such as TTY mode and hearing aid
+         compatability. [CHAR LIMIT=40] -->
+    <string name="accessibility_settings_activity_title">Accessibility</string>
+
     <!-- Configuration setting for world mode Format is <true;GID if any to be checked>-->
     <string translatable="false" name="config_world_mode"/>
 
