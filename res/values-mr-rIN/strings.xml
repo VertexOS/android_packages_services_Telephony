@@ -477,12 +477,6 @@
     <item msgid="1937509904407445684">"TTY HCO"</item>
     <item msgid="5644925873488772224">"TTY VCO"</item>
   </string-array>
-    <string name="dtmf_tones_title" msgid="5163153771291340803">"DTMF टोन"</string>
-    <string name="dtmf_tones_summary" msgid="3351820372864020331">"DTMF टोनची लांबी सेट करा"</string>
-  <string-array name="dtmf_tone_entries">
-    <item msgid="899650777817315681">"सामान्य"</item>
-    <item msgid="2883365539347850535">"दीर्घ"</item>
-  </string-array>
     <string name="network_info_message" msgid="7738596060242881930">"नेटवर्क संदेश"</string>
     <string name="network_error_message" msgid="3394780436230411413">"त्रुटी संदेश"</string>
     <string name="ota_title_activate" msgid="8616918561356194398">"आपला फोन सक्रिय करा"</string>

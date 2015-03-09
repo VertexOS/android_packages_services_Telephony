@@ -118,8 +118,7 @@
     <string name="labelCFNRc" msgid="2614827454402079766">"Quando non raggiungibile"</string>
     <string name="messageCFNRc" msgid="6380695421020295119">"Numero se non raggiungibile"</string>
     <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"Deviazione al numero <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
-    <!-- no translation found for sum_cfnrc_disabled (2684474391807469832) -->
-    <skip />
+    <string name="sum_cfnrc_disabled" msgid="2684474391807469832">"Non attiva"</string>
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"Il tuo operatore non supporta la disattivazione dell\'inoltro chiamate quando il telefono non è raggiungibile."</string>
     <string name="updating_title" msgid="6146755386174019046">"Impostazioni chiamate"</string>
     <string name="call_settings_primary_user_only" msgid="5679923943740900965">"Le impostazioni delle chiamate possono essere modificate solo dall\'utente principale."</string>
@@ -481,12 +480,6 @@
     <item msgid="3971695875449640648">"TTY completa"</item>
     <item msgid="1937509904407445684">"TTY HCO"</item>
     <item msgid="5644925873488772224">"TTY VCO"</item>
-  </string-array>
-    <string name="dtmf_tones_title" msgid="5163153771291340803">"Toni DTMF"</string>
-    <string name="dtmf_tones_summary" msgid="3351820372864020331">"Imposta la lunghezza dei toni DTMF"</string>
-  <string-array name="dtmf_tone_entries">
-    <item msgid="899650777817315681">"Normali"</item>
-    <item msgid="2883365539347850535">"Lunghi"</item>
   </string-array>
     <string name="network_info_message" msgid="7738596060242881930">"Messaggio di rete"</string>
     <string name="network_error_message" msgid="3394780436230411413">"Messaggio di errore"</string>

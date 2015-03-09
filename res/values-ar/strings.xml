@@ -339,7 +339,7 @@
     <string name="fdn_disabled" msgid="4700049736675368279">"تم تعطيل أرقام الاتصال الثابتة"</string>
     <string name="enable_fdn" msgid="3740191529180493851">"‏تمكين FDN"</string>
     <string name="disable_fdn" msgid="7944020890722540616">"‏تعطيل FDN"</string>
-    <string name="change_pin2" msgid="2153563695382176676">"‏تغيير رمز PIN PIN2"</string>
+    <string name="change_pin2" msgid="2153563695382176676">"‏تغيير PIN2"</string>
     <string name="enable_fdn_ok" msgid="7215588870329688132">"‏تعطيل FDN"</string>
     <string name="disable_fdn_ok" msgid="5727046928930740173">"‏تمكين FDN"</string>
     <string name="sum_fdn" msgid="1959399454900272878">"إدارة أرقام الاتصال الثابتة"</string>
@@ -393,7 +393,7 @@
     <string name="pin_changed" msgid="4455736268023261662">"تم تحديث رقم التعريف الشخصي"</string>
     <string name="puk_requested" msgid="5921393215789090200">"‏كلمة المرور غير صحيحة. تم قفل رقم التعريف الشخصي الآن. رمز PUK مطلوب."</string>
     <string name="enter_pin2_text" msgid="8339444124477720345">"PIN2"</string>
-    <string name="oldPin2Label" msgid="8559146795026261502">"‏رمز PIN PIN2 القديم"</string>
+    <string name="oldPin2Label" msgid="8559146795026261502">"‏PIN2القديم"</string>
     <string name="newPin2Label" msgid="4573956902204349054">"‏رقم تعريف شخصي PIN2 جديد"</string>
     <string name="confirmPin2Label" msgid="8100319484454787708">"‏تأكيد رمز PIN PIN2 الجديد"</string>
     <string name="badPuk2" msgid="7910064009531541708">"‏رمز PUK2 غير صحيح. أعد المحاولة."</string>
@@ -476,12 +476,6 @@
     <item msgid="3971695875449640648">"‏TTY مكتمل"</item>
     <item msgid="1937509904407445684">"TTY HCO"</item>
     <item msgid="5644925873488772224">"TTY VCO"</item>
-  </string-array>
-    <string name="dtmf_tones_title" msgid="5163153771291340803">"‏نغمات DTMF"</string>
-    <string name="dtmf_tones_summary" msgid="3351820372864020331">"‏تعيين طول نغمات DTMF"</string>
-  <string-array name="dtmf_tone_entries">
-    <item msgid="899650777817315681">"عادي"</item>
-    <item msgid="2883365539347850535">"طويلة"</item>
   </string-array>
     <string name="network_info_message" msgid="7738596060242881930">"رسالة الشبكة"</string>
     <string name="network_error_message" msgid="3394780436230411413">"رسالة الخطأ"</string>

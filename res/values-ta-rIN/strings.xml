@@ -477,12 +477,6 @@
     <item msgid="1937509904407445684">"TTY HCO"</item>
     <item msgid="5644925873488772224">"TTY VCO"</item>
   </string-array>
-    <string name="dtmf_tones_title" msgid="5163153771291340803">"DTMF டோன்கள்"</string>
-    <string name="dtmf_tones_summary" msgid="3351820372864020331">"DTMF டோன்களுக்கான நீளத்தை அமைக்கவும்"</string>
-  <string-array name="dtmf_tone_entries">
-    <item msgid="899650777817315681">"இயல்பானது"</item>
-    <item msgid="2883365539347850535">"நீளமானது"</item>
-  </string-array>
     <string name="network_info_message" msgid="7738596060242881930">"நெட்வொர்க் செய்தி"</string>
     <string name="network_error_message" msgid="3394780436230411413">"பிழைச் செய்தி"</string>
     <string name="ota_title_activate" msgid="8616918561356194398">"மொபைலைச் செயல்படுத்தவும்"</string>

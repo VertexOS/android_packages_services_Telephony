@@ -118,8 +118,7 @@
     <string name="labelCFNRc" msgid="2614827454402079766">"Cuando no esté disponible"</string>
     <string name="messageCFNRc" msgid="6380695421020295119">"Número cuando no se pueda establecer la llamada"</string>
     <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"Desviando a <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
-    <!-- no translation found for sum_cfnrc_disabled (2684474391807469832) -->
-    <skip />
+    <string name="sum_cfnrc_disabled" msgid="2684474391807469832">"Desactivado"</string>
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"Tu operador no permite inhabilitar el desvío de llamadas si no se puede establecer la llamada."</string>
     <string name="updating_title" msgid="6146755386174019046">"Ajustes de llamadas"</string>
     <string name="call_settings_primary_user_only" msgid="5679923943740900965">"El usuario principal es el único que puede cambiar los ajustes de llamadas."</string>
@@ -481,12 +480,6 @@
     <item msgid="3971695875449640648">"Modo TTY completo"</item>
     <item msgid="1937509904407445684">"TTY HCO"</item>
     <item msgid="5644925873488772224">"TTY VCO"</item>
-  </string-array>
-    <string name="dtmf_tones_title" msgid="5163153771291340803">"Tonos DTMF"</string>
-    <string name="dtmf_tones_summary" msgid="3351820372864020331">"Establecer la longitud de los tonos DTMF"</string>
-  <string-array name="dtmf_tone_entries">
-    <item msgid="899650777817315681">"Normal"</item>
-    <item msgid="2883365539347850535">"Largo"</item>
   </string-array>
     <string name="network_info_message" msgid="7738596060242881930">"Mensaje de red"</string>
     <string name="network_error_message" msgid="3394780436230411413">"Mensaje de error"</string>

@@ -374,7 +374,7 @@
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"Lezen vanaf SIM-kaart..."</string>
     <string name="simContacts_empty" msgid="5270660846489561932">"Geen contacten op uw SIM-kaart."</string>
     <string name="simContacts_title" msgid="1861472842524839921">"Contacten selecteren om te importeren"</string>
-    <string name="simContacts_airplaneMode" msgid="1846161429087789936">"Voor het importeren van contacten vanaf de simkaart moet u eerst de vliegmodus uitschakelen."</string>
+    <string name="simContacts_airplaneMode" msgid="1846161429087789936">"Voor het importeren van contacten vanaf de simkaart moet u eerst de vliegtuigmodus uitschakelen."</string>
     <string name="enable_pin" msgid="5422767284133234860">"SIM PIN-code in-/uitschakelen"</string>
     <string name="change_pin" msgid="9174186126330785343">"SIM PIN-code wijzigen"</string>
     <string name="enter_pin_text" msgid="8532615714751931951">"SIM PIN-code:"</string>
@@ -435,7 +435,7 @@
     <string name="notification_action_end_call" msgid="6069460915123531620">"Ophangen"</string>
     <string name="notification_missedCall_call_back" msgid="2684890353590890187">"Terugbellen"</string>
     <string name="notification_missedCall_message" msgid="3049928912736917988">"Bericht"</string>
-    <string name="incall_error_power_off" msgid="6550191216405193368">"Als u wilt bellen, moet u eerst de Vliegmodus uitschakelen."</string>
+    <string name="incall_error_power_off" msgid="6550191216405193368">"Als u wilt bellen, moet u eerst de Vliegtuigmodus uitschakelen."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"Niet geregistreerd op netwerk."</string>
     <string name="incall_error_out_of_service" msgid="4100065333878929223">"Mobiel netwerk niet beschikbaar."</string>
     <string name="incall_error_no_phone_number_supplied" msgid="1150414018684246528">"Als u wilt bellen, moet u een geldig nummer invoeren."</string>
@@ -476,12 +476,6 @@
     <item msgid="3971695875449640648">"TTY vol"</item>
     <item msgid="1937509904407445684">"TTY HCO"</item>
     <item msgid="5644925873488772224">"TTY VCO"</item>
-  </string-array>
-    <string name="dtmf_tones_title" msgid="5163153771291340803">"DTMF-tonen"</string>
-    <string name="dtmf_tones_summary" msgid="3351820372864020331">"De lengte van DTMF-tonen instellen"</string>
-  <string-array name="dtmf_tone_entries">
-    <item msgid="899650777817315681">"Normaal"</item>
-    <item msgid="2883365539347850535">"Lang"</item>
   </string-array>
     <string name="network_info_message" msgid="7738596060242881930">"Netwerkbericht"</string>
     <string name="network_error_message" msgid="3394780436230411413">"Foutmelding"</string>

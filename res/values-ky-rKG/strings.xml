@@ -732,11 +732,6 @@
     <!-- no translation found for tty_mode_entries:1 (3971695875449640648) -->
     <!-- no translation found for tty_mode_entries:2 (1937509904407445684) -->
     <!-- no translation found for tty_mode_entries:3 (5644925873488772224) -->
-    <string name="dtmf_tones_title" msgid="5163153771291340803">"DTMF сигналдары"</string>
-    <!-- no translation found for dtmf_tones_summary (3351820372864020331) -->
-    <skip />
-    <!-- no translation found for dtmf_tone_entries:0 (899650777817315681) -->
-    <!-- no translation found for dtmf_tone_entries:1 (2883365539347850535) -->
     <string name="network_info_message" msgid="7738596060242881930">"Түйүн билдирүүсү"</string>
     <string name="network_error_message" msgid="3394780436230411413">"Ката жөнүндө билдирүү"</string>
     <!-- no translation found for ota_title_activate (8616918561356194398) -->

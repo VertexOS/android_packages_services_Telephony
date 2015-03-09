@@ -477,12 +477,6 @@
     <item msgid="1937509904407445684">"TTY HCO"</item>
     <item msgid="5644925873488772224">"TTY VCO"</item>
   </string-array>
-    <string name="dtmf_tones_title" msgid="5163153771291340803">"DTMF ടോണുകൾ"</string>
-    <string name="dtmf_tones_summary" msgid="3351820372864020331">"DTMF ടോണുകളുടെ ദൈർഘ്യം സജ്ജീകരിക്കുക"</string>
-  <string-array name="dtmf_tone_entries">
-    <item msgid="899650777817315681">"സാധാരണം"</item>
-    <item msgid="2883365539347850535">"ദൈർഘ്യമുള്ളത്"</item>
-  </string-array>
     <string name="network_info_message" msgid="7738596060242881930">"നെറ്റ്‌വർക്ക് സന്ദേശം"</string>
     <string name="network_error_message" msgid="3394780436230411413">"പിശക് സന്ദേശം"</string>
     <string name="ota_title_activate" msgid="8616918561356194398">"നിങ്ങളുടെ ഫോൺ സജീവമാക്കുക"</string>

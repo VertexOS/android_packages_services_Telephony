@@ -118,8 +118,7 @@
     <string name="labelCFNRc" msgid="2614827454402079766">"Si non joignable"</string>
     <string name="messageCFNRc" msgid="6380695421020295119">"Numéro de renvoi si injoignable"</string>
     <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"Transfert vers <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
-    <!-- no translation found for sum_cfnrc_disabled (2684474391807469832) -->
-    <skip />
+    <string name="sum_cfnrc_disabled" msgid="2684474391807469832">"Désactivé"</string>
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"Votre opérateur ne permet pas la désactivation du transfert d\'appel lorsque votre téléphone n\'est pas joignable."</string>
     <string name="updating_title" msgid="6146755386174019046">"Paramètres d\'appel"</string>
     <string name="call_settings_primary_user_only" msgid="5679923943740900965">"Seul l\'utilisateur principal peut modifier les paramètres d\'appel."</string>
@@ -477,12 +476,6 @@
     <item msgid="3971695875449640648">"TTY complet"</item>
     <item msgid="1937509904407445684">"TTY HCO"</item>
     <item msgid="5644925873488772224">"TTY VCO"</item>
-  </string-array>
-    <string name="dtmf_tones_title" msgid="5163153771291340803">"Tonalités DTMF"</string>
-    <string name="dtmf_tones_summary" msgid="3351820372864020331">"Définir la durée des tonalités DTMF"</string>
-  <string-array name="dtmf_tone_entries">
-    <item msgid="899650777817315681">"Normales"</item>
-    <item msgid="2883365539347850535">"Longues"</item>
   </string-array>
     <string name="network_info_message" msgid="7738596060242881930">"Message réseau"</string>
     <string name="network_error_message" msgid="3394780436230411413">"Message d\'erreur"</string>

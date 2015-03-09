@@ -118,8 +118,7 @@
     <string name="labelCFNRc" msgid="2614827454402079766">"无法接通时"</string>
     <string name="messageCFNRc" msgid="6380695421020295119">"无法接通时的转接号码"</string>
     <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"转接到 <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
-    <!-- no translation found for sum_cfnrc_disabled (2684474391807469832) -->
-    <skip />
+    <string name="sum_cfnrc_disabled" msgid="2684474391807469832">"关闭"</string>
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"您的运营商不支持在手机无法接通时停用来电转接功能。"</string>
     <string name="updating_title" msgid="6146755386174019046">"通话设置"</string>
     <string name="call_settings_primary_user_only" msgid="5679923943740900965">"只有主用户才能更改通话设置。"</string>
@@ -477,12 +476,6 @@
     <item msgid="3971695875449640648">"TTY 完整"</item>
     <item msgid="1937509904407445684">"TTY HCO"</item>
     <item msgid="5644925873488772224">"TTY VCO"</item>
-  </string-array>
-    <string name="dtmf_tones_title" msgid="5163153771291340803">"DTMF 音"</string>
-    <string name="dtmf_tones_summary" msgid="3351820372864020331">"设置 DTMF 音长度"</string>
-  <string-array name="dtmf_tone_entries">
-    <item msgid="899650777817315681">"正常"</item>
-    <item msgid="2883365539347850535">"长"</item>
   </string-array>
     <string name="network_info_message" msgid="7738596060242881930">"网络消息"</string>
     <string name="network_error_message" msgid="3394780436230411413">"错误消息"</string>

@@ -118,8 +118,7 @@
     <string name="labelCFNRc" msgid="2614827454402079766">"연락할 수 없는 경우"</string>
     <string name="messageCFNRc" msgid="6380695421020295119">"전화를 받을 수 없는 경우 착신전환할 번호"</string>
     <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"<xliff:g id="PHONENUMBER">{0}</xliff:g>(으)로 착신전환 중"</string>
-    <!-- no translation found for sum_cfnrc_disabled (2684474391807469832) -->
-    <skip />
+    <string name="sum_cfnrc_disabled" msgid="2684474391807469832">"사용 안함"</string>
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"이동통신사에서 전화를 받을 수 없을 때 착신전환 사용 중지를 지원하지 않습니다."</string>
     <string name="updating_title" msgid="6146755386174019046">"통화 설정"</string>
     <string name="call_settings_primary_user_only" msgid="5679923943740900965">"기본 사용자만 통화 설정을 변경할 수 있습니다."</string>
@@ -477,12 +476,6 @@
     <item msgid="3971695875449640648">"TTY 전체"</item>
     <item msgid="1937509904407445684">"TTY HCO"</item>
     <item msgid="5644925873488772224">"TTY VCO"</item>
-  </string-array>
-    <string name="dtmf_tones_title" msgid="5163153771291340803">"DTMF 신호음"</string>
-    <string name="dtmf_tones_summary" msgid="3351820372864020331">"DTMF 신호음 길이 설정"</string>
-  <string-array name="dtmf_tone_entries">
-    <item msgid="899650777817315681">"보통"</item>
-    <item msgid="2883365539347850535">"길게"</item>
   </string-array>
     <string name="network_info_message" msgid="7738596060242881930">"네트워크 메시지"</string>
     <string name="network_error_message" msgid="3394780436230411413">"오류 메시지"</string>

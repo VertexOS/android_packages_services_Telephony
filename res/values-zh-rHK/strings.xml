@@ -483,12 +483,6 @@
     <item msgid="1937509904407445684">"TTY HCO"</item>
     <item msgid="5644925873488772224">"TTY VCO"</item>
   </string-array>
-    <string name="dtmf_tones_title" msgid="5163153771291340803">"DTMF 訊號"</string>
-    <string name="dtmf_tones_summary" msgid="3351820372864020331">"設定 DTMF 音頻長度"</string>
-  <string-array name="dtmf_tone_entries">
-    <item msgid="899650777817315681">"標準"</item>
-    <item msgid="2883365539347850535">"長"</item>
-  </string-array>
     <string name="network_info_message" msgid="7738596060242881930">"網絡訊息"</string>
     <string name="network_error_message" msgid="3394780436230411413">"錯誤訊息"</string>
     <string name="ota_title_activate" msgid="8616918561356194398">"啟用您的手機"</string>
@@ -520,12 +514,12 @@
       <item quantity="one">接下來的 <xliff:g id="COUNT_0">%s</xliff:g> 分鐘內沒有數據連線</item>
     </plurals>
     <plurals name="alert_dialog_exit_ecm" formatted="false" msgid="7179911675595441201">
-      <item quantity="other">手機將進入緊急電話模式，時間為 <xliff:g id="COUNT_1">%s</xliff:g> 分鐘。在此模式中，無法使用需要數據連線的應用程式。您要退出嗎？</item>
-      <item quantity="one">手機將進入緊急電話模式，時間為 <xliff:g id="COUNT_0">%s</xliff:g> 分鐘。在此模式中，無法使用需要連接數據的應用程式。您要退出嗎？</item>
+      <item quantity="other">手機將在 <xliff:g id="COUNT_1">%s</xliff:g> 分鐘內處於緊急電話模式。在此模式中，無法使用需要數據連線的應用程式。您要退出嗎？</item>
+      <item quantity="one">手機將在 <xliff:g id="COUNT_0">%s</xliff:g> 分鐘內處於緊急電話模式。在此模式中，無法使用需要連接數據的應用程式。您要退出嗎？</item>
     </plurals>
     <plurals name="alert_dialog_not_avaialble_in_ecm" formatted="false" msgid="8042973425225093895">
-      <item quantity="other">在緊急電話模式中，無法進行已選取的操作。手機將在 <xliff:g id="COUNT_1">%s</xliff:g> 分鐘後進入此模式。您要退出嗎？</item>
-      <item quantity="one">在緊急電話模式中，無法進行已選取的操作。手機將在 <xliff:g id="COUNT_0">%s</xliff:g> 分鐘後進入此模式。您要退出嗎？</item>
+      <item quantity="other">在緊急電話模式中，無法進行已選取的操作。手機將在 <xliff:g id="COUNT_1">%s</xliff:g> 分鐘內處於此模式。您要退出嗎？</item>
+      <item quantity="one">在緊急電話模式中，無法進行已選取的操作。手機將在 <xliff:g id="COUNT_0">%s</xliff:g> 分鐘內處於此模式。您要退出嗎？</item>
     </plurals>
     <string name="alert_dialog_in_ecm_call" msgid="1886723687211887104">"緊急電話模式不支援您所選取的操作。"</string>
     <string name="progress_dialog_exiting_ecm" msgid="4835734101617817074">"正在退出緊急回撥模式"</string>

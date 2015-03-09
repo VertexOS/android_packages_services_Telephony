@@ -118,8 +118,7 @@
     <string name="labelCFNRc" msgid="2614827454402079766">"Если номер недоступен"</string>
     <string name="messageCFNRc" msgid="6380695421020295119">"Переадресовывать на этот номер"</string>
     <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"Переадресация на номер <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
-    <!-- no translation found for sum_cfnrc_disabled (2684474391807469832) -->
-    <skip />
+    <string name="sum_cfnrc_disabled" msgid="2684474391807469832">"Выкл."</string>
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"Ваш оператор не позволяет отключать переадресацию вызовов, если телефон находится вне зоны доступа."</string>
     <string name="updating_title" msgid="6146755386174019046">"Настройки вызовов"</string>
     <string name="call_settings_primary_user_only" msgid="5679923943740900965">"Настройки вызовов может изменить только основной пользователь."</string>
@@ -479,12 +478,6 @@
     <item msgid="3971695875449640648">"Полнофункциональный телетайп"</item>
     <item msgid="1937509904407445684">"Телетайп с возможностью слышать собеседника"</item>
     <item msgid="5644925873488772224">"Телетайп с возможностью передачи голоса"</item>
-  </string-array>
-    <string name="dtmf_tones_title" msgid="5163153771291340803">"DTMF-сигналы"</string>
-    <string name="dtmf_tones_summary" msgid="3351820372864020331">"Настроить длительность тональных сигналов DTMF"</string>
-  <string-array name="dtmf_tone_entries">
-    <item msgid="899650777817315681">"Обычные"</item>
-    <item msgid="2883365539347850535">"Длинные"</item>
   </string-array>
     <string name="network_info_message" msgid="7738596060242881930">"Сообщение сети"</string>
     <string name="network_error_message" msgid="3394780436230411413">"Ошибка"</string>

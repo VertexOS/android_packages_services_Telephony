@@ -477,12 +477,6 @@
     <item msgid="1937509904407445684">"TTY HCO"</item>
     <item msgid="5644925873488772224">"TTY VCO"</item>
   </string-array>
-    <string name="dtmf_tones_title" msgid="5163153771291340803">"សំឡេង DTMF"</string>
-    <string name="dtmf_tones_summary" msgid="3351820372864020331">"កំណត់​រយៈ​​ពេល​រោទ៍ DTMF"</string>
-  <string-array name="dtmf_tone_entries">
-    <item msgid="899650777817315681">"ធម្មតា"</item>
-    <item msgid="2883365539347850535">"វែង"</item>
-  </string-array>
     <string name="network_info_message" msgid="7738596060242881930">"សារ​បណ្ដាញ"</string>
     <string name="network_error_message" msgid="3394780436230411413">"សារកំហុស"</string>
     <string name="ota_title_activate" msgid="8616918561356194398">"បាន​ធ្វើ​ឲ្យ​ទូរស័ព្ទ​របស់​អ្នក​សកម្ម"</string>
