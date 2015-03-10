@@ -43,7 +43,7 @@ public class AccessibilitySettingsFragment extends PreferenceFragment {
 
     private final PhoneStateListener mPhoneStateListener = new PhoneStateListener() {
         /**
-         * Enable/disable the TTY setting when in/out of a call (and if carrier doesn't
+         * Disable the TTY setting when in/out of a call (and if carrier doesn't
          * support VoLTE with TTY).
          * @see android.telephony.PhoneStateListener#onCallStateChanged(int,
          * java.lang.String)
@@ -61,8 +61,8 @@ public class AccessibilitySettingsFragment extends PreferenceFragment {
     private Context mContext;
     private AudioManager mAudioManager;
 
-    private TtyModeListPreference mButtonTTY;
-    private CheckBoxPreference mButtonHAC;
+    private TtyModeListPreference mButtonTty;
+    private CheckBoxPreference mButtonHac;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -73,36 +73,33 @@ public class AccessibilitySettingsFragment extends PreferenceFragment {
 
         addPreferencesFromResource(R.xml.accessibility_settings);
 
-        mButtonTTY = (TtyModeListPreference) findPreference(
+        mButtonTty = (TtyModeListPreference) findPreference(
                 getResources().getString(R.string.tty_mode_key));
-        mButtonHAC = (CheckBoxPreference) findPreference(BUTTON_HAC_KEY);
+        mButtonHac = (CheckBoxPreference) findPreference(BUTTON_HAC_KEY);
 
-        TelecomManager telecomManager = TelecomManager.from(mContext);
-        TelephonyManager telephonyManager =
-                (TelephonyManager) mContext.getSystemService(Context.TELEPHONY_SERVICE);
-
-        if (!telephonyManager.isMultiSimEnabled() && telecomManager.isTtySupported()) {
-            mButtonTTY.init();
+        if (PhoneGlobals.getInstance().phoneMgr.isTtyModeSupported()) {
+            mButtonTty.init();
         } else {
-            getPreferenceScreen().removePreference(mButtonTTY);
-            mButtonTTY = null;
+            getPreferenceScreen().removePreference(mButtonTty);
+            mButtonTty = null;
         }
 
-        if (getResources().getBoolean(R.bool.hac_enabled)) {
+        if (PhoneGlobals.getInstance().phoneMgr.isHearingAidCompatibilitySupported()) {
             int hac = Settings.System.getInt(mContext.getContentResolver(),
                     Settings.System.HEARING_AID, SettingsConstants.HAC_DISABLED);
-            mButtonHAC.setChecked(hac == SettingsConstants.HAC_ENABLED);
+            mButtonHac.setChecked(hac == SettingsConstants.HAC_ENABLED);
         } else {
-            getPreferenceScreen().removePreference(mButtonHAC);
-            mButtonHAC = null;
+            getPreferenceScreen().removePreference(mButtonHac);
+            mButtonHac = null;
         }
     }
 
     @Override
     public void onResume() {
         super.onResume();
+
         if (ImsManager.isVolteEnabledByPlatform(mContext) &&
-                mContext.getResources().getBoolean(
+                !mContext.getResources().getBoolean(
                         com.android.internal.R.bool.config_carrier_volte_tty_supported)) {
             TelephonyManager tm =
                     (TelephonyManager) mContext.getSystemService(Context.TELEPHONY_SERVICE);
@@ -125,10 +122,10 @@ public class AccessibilitySettingsFragment extends PreferenceFragment {
 
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
-        if (preference == mButtonTTY) {
+        if (preference == mButtonTty) {
             return true;
-        } else if (preference == mButtonHAC) {
-            int hac = mButtonHAC.isChecked()
+        } else if (preference == mButtonHac) {
+            int hac = mButtonHac.isChecked()
                     ? SettingsConstants.HAC_ENABLED : SettingsConstants.HAC_DISABLED;
             // Update HAC value in Settings database.
             Settings.System.putInt(mContext.getContentResolver(), Settings.System.HEARING_AID, hac);
