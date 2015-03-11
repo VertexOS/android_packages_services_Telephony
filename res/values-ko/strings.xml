@@ -543,4 +543,6 @@
     <string name="sim_label_emergency_calls" msgid="4847699229529306397">"긴급 전화"</string>
     <string name="sim_description_emergency_calls" msgid="7535215397212301562">"긴급 전화 전용"</string>
     <string name="sim_description_default" msgid="4778679519938775515">"SIM 카드, 슬롯: <xliff:g id="SLOT_ID">%s</xliff:g>"</string>
+    <!-- no translation found for accessibility_settings_activity_title (8562004288733103868) -->
+    <skip />
 </resources>
