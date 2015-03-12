@@ -97,9 +97,6 @@ public class OmtpMessageReceiver extends BroadcastReceiver {
                     VoicemailContract.Status.DATA_CHANNEL_STATE_OK,
                     VoicemailContract.Status.NOTIFICATION_CHANNEL_STATE_OK);
         }
-
-        //TODO: figure out how to pass IMAP credentials to sync adapter
-
         ContentResolver.requestSync(account, VoicemailContract.AUTHORITY, new Bundle());
     }
 }

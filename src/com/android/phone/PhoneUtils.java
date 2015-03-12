@@ -36,6 +36,7 @@ import android.telecom.PhoneAccount;
 import android.telecom.PhoneAccountHandle;
 import android.telecom.VideoProfile;
 import android.telephony.PhoneNumberUtils;
+import android.telephony.SubscriptionInfo;
 import android.telephony.SubscriptionManager;
 import android.text.TextUtils;
 import android.util.Log;
@@ -2449,6 +2450,10 @@ public class PhoneUtils {
                 == Configuration.ORIENTATION_LANDSCAPE;
     }
 
+    public static PhoneAccountHandle makePstnPhoneAccountHandle(String id) {
+        return makePstnPhoneAccountHandleWithPrefix(id, "", false);
+    }
+
     public static PhoneAccountHandle makePstnPhoneAccountHandle(int phoneId) {
         return makePstnPhoneAccountHandle(PhoneFactory.getPhone(phoneId));
     }
@@ -2459,10 +2464,15 @@ public class PhoneUtils {
 
     public static PhoneAccountHandle makePstnPhoneAccountHandleWithPrefix(
             Phone phone, String prefix, boolean isEmergency) {
-        ComponentName pstnConnectionServiceName = getPstnConnectionServiceName();
         // TODO: Should use some sort of special hidden flag to decorate this account as
         // an emergency-only account
         String id = isEmergency ? "E" : prefix + String.valueOf(phone.getIccSerialNumber());
+        return makePstnPhoneAccountHandleWithPrefix(id, prefix, isEmergency);
+    }
+
+    public static PhoneAccountHandle makePstnPhoneAccountHandleWithPrefix(
+            String id, String prefix, boolean isEmergency) {
+        ComponentName pstnConnectionServiceName = getPstnConnectionServiceName();
         return new PhoneAccountHandle(pstnConnectionServiceName, id);
     }
 
@@ -2484,6 +2494,19 @@ public class PhoneUtils {
         return SubscriptionManager.INVALID_SUBSCRIPTION_ID;
     }
 
+    /**
+     * Determine if a given phone account corresponds to an active SIM
+     *
+     * @param sm An instance of the subscription manager so it is not recreated for each calling of
+     * this method.
+     * @param handle The handle for the phone account to check
+     * @return {@code true} If there is an active SIM for this phone account,
+     * {@code false} otherwise.
+     */
+    public static boolean isPhoneAccountActive(SubscriptionManager sm, PhoneAccountHandle handle) {
+        return sm.getActiveSubscriptionInfoForIccIndex(handle.getId()) != null;
+    }
+
     private static ComponentName getPstnConnectionServiceName() {
         return new ComponentName(PhoneGlobals.getInstance(), TelephonyConnectionService.class);
     }
@@ -2497,7 +2520,6 @@ public class PhoneUtils {
                 }
             }
         }
-
         return null;
     }
 
