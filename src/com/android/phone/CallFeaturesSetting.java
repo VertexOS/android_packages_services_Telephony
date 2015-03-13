@@ -683,7 +683,10 @@ public class CallFeaturesSetting extends PreferenceActivity
         mVMOrFwdSetError = 0;
 
         // Don't read call forwarding settings if CDMA. Call forwarding is not supported by CDMA.
-        if (!key.equals(mPreviousVMProviderKey) && !isCdma) {
+        if (isCdma || mNewFwdSettings == VoicemailProviderSettings.NO_FORWARDING) {
+            if (DBG) log("Not touching fwd #");
+            setVoicemailNumberWithCarrier();
+        } else {
             mReadingSettingsForDefaultProvider =
                     mPreviousVMProviderKey.equals(VoicemailProviderListPreference.DEFAULT_KEY);
             if (DBG) log("Reading current forwarding settings");
@@ -695,8 +698,6 @@ public class CallFeaturesSetting extends PreferenceActivity
                         mGetOptionComplete.obtainMessage(EVENT_FORWARDING_GET_COMPLETED, i, 0));
             }
             showDialogIfForeground(VoicemailDialogUtil.VM_FWD_READING_DIALOG);
-        } else {
-            saveVoiceMailAndForwardingNumberStage2();
         }
 
         // Refresh the MWI indicator if it is already showing.
@@ -780,33 +781,30 @@ public class CallFeaturesSetting extends PreferenceActivity
     private void saveVoiceMailAndForwardingNumberStage2() {
         mForwardingChangeResults = null;
         mVoicemailChangeResult = null;
-        if (mNewFwdSettings != VoicemailProviderSettings.NO_FORWARDING) {
-            resetForwardingChangeState();
-            for (int i = 0; i < mNewFwdSettings.length; i++) {
-                CallForwardInfo fi = mNewFwdSettings[i];
-                CallForwardInfo fiForReason =
-                        CallForwardInfoUtil.infoForReason(mForwardingReadResults, fi.reason);
-                final boolean doUpdate = CallForwardInfoUtil.isUpdateRequired(fiForReason, fi);
 
-                if (doUpdate) {
-                    if (DBG) log("Setting fwd #: " + i + ": " + fi.toString());
-                    mExpectedChangeResultReasons.add(i);
+        resetForwardingChangeState();
+        for (int i = 0; i < mNewFwdSettings.length; i++) {
+            CallForwardInfo fi = mNewFwdSettings[i];
+            CallForwardInfo fiForReason =
+                    CallForwardInfoUtil.infoForReason(mForwardingReadResults, fi.reason);
+            final boolean doUpdate = CallForwardInfoUtil.isUpdateRequired(fiForReason, fi);
 
-                    CallForwardInfoUtil.setCallForwardingOption(mPhone, fi,
-                            mSetOptionComplete.obtainMessage(
-                                    EVENT_FORWARDING_CHANGED, fi.reason, 0));
-                }
+            if (doUpdate) {
+                if (DBG) log("Setting fwd #: " + i + ": " + fi.toString());
+                mExpectedChangeResultReasons.add(i);
+
+                CallForwardInfoUtil.setCallForwardingOption(mPhone, fi,
+                        mSetOptionComplete.obtainMessage(
+                                EVENT_FORWARDING_CHANGED, fi.reason, 0));
             }
-            showDialogIfForeground(VoicemailDialogUtil.VM_FWD_SAVING_DIALOG);
-        } else {
-            if (DBG) log("Not touching fwd #");
-            setVMNumberWithCarrier();
         }
+        showDialogIfForeground(VoicemailDialogUtil.VM_FWD_SAVING_DIALOG);
     }
 
-    private void setVMNumberWithCarrier() {
+    private void setVoicemailNumberWithCarrier() {
         if (DBG) log("save voicemail #: " + mNewVMNumber);
 
+        mVoicemailChangeResult = null;
         mPhone.setVoiceMailNumber(
                 mPhone.getVoiceMailAlphaTag().toString(),
                 mNewVMNumber,
@@ -836,7 +834,7 @@ public class CallFeaturesSetting extends PreferenceActivity
                     if (isForwardingCompleted()) {
                         if (isFwdChangeSuccess()) {
                             if (DBG) log("Overall fwd changes completed ok, starting vm change");
-                            setVMNumberWithCarrier();
+                            setVoicemailNumberWithCarrier();
                         } else {
                             Log.w(LOG_TAG, "Overall fwd changes completed in failure. " +
                                     "Check if we need to try rollback for some settings.");
@@ -1054,7 +1052,7 @@ public class CallFeaturesSetting extends PreferenceActivity
                 if (mCurrentDialogId == VoicemailDialogUtil.FWD_GET_RESPONSE_ERROR_DIALOG) {
                     // We failed to get current forwarding settings but the user
                     // wishes to continue changing settings to the new vm provider
-                    saveVoiceMailAndForwardingNumberStage2();
+                    setVoicemailNumberWithCarrier();
                 } else {
                     finish();
                 }
