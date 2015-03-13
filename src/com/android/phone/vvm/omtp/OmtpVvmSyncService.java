@@ -25,11 +25,19 @@ import android.accounts.Account;
 import android.app.Service;
 import android.content.AbstractThreadedSyncAdapter;
 import android.content.ContentProviderClient;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SyncResult;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.telecom.Voicemail;
+
+import com.android.phone.vvm.omtp.sync.DirtyVoicemailQuery;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A service to run the VvmSyncAdapter.
@@ -39,6 +47,8 @@ public class OmtpVvmSyncService extends Service {
     private static OmtpVvmSyncAdapter sSyncAdapter = null;
     // Object to use as a thread-safe lock
     private static final Object sSyncAdapterLock = new Object();
+
+    private Context mContext;
 
     @Override
     public void onCreate() {
@@ -57,12 +67,40 @@ public class OmtpVvmSyncService extends Service {
     public class OmtpVvmSyncAdapter extends AbstractThreadedSyncAdapter {
         public OmtpVvmSyncAdapter(Context context, boolean autoInitialize) {
             super(context, autoInitialize);
+            mContext = context;
         }
 
         @Override
         public void onPerformSync(Account account, Bundle extras, String authority,
                 ContentProviderClient provider, SyncResult syncResult) {
-            // TODO: Write code necessary for syncing.
+            if (extras.getBoolean(ContentResolver.SYNC_EXTRAS_UPLOAD, false)) {
+                List<Voicemail> readVoicemails = new ArrayList<Voicemail>();
+                List<Voicemail> deletedVoicemails = new ArrayList<Voicemail>();
+
+                Cursor cursor = DirtyVoicemailQuery.getDirtyVoicemails(mContext);
+                if (cursor == null) {
+                    return;
+                }
+                try {
+                    while (cursor.moveToNext()) {
+                        final long id = cursor.getLong(DirtyVoicemailQuery._ID);
+                        final String sourceData = cursor.getString(DirtyVoicemailQuery.SOURCE_DATA);
+                        final boolean isRead = cursor.getInt(DirtyVoicemailQuery.IS_READ) == 1;
+                        final boolean deleted = cursor.getInt(DirtyVoicemailQuery.DELETED) == 1;
+                        Voicemail voicemail = Voicemail.createForUpdate(id, sourceData).build();
+                        if (deleted) {
+                            // Check deleted first because if the voicemail is deleted, there's no
+                            // need to mark as read.
+                            deletedVoicemails.add(voicemail);
+                        } else if (isRead) {
+                            readVoicemails.add(voicemail);
+                        }
+                    }
+                } finally {
+                    cursor.close();
+                }
+                //TODO: send to server via IMAP
+            }
         }
     }
 }

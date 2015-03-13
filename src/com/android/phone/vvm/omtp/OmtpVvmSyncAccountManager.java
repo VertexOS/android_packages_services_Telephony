@@ -25,6 +25,7 @@ import android.telephony.SubscriptionManager;
 import android.util.Log;
 
 import com.android.phone.PhoneUtils;
+import com.android.phone.vvm.omtp.sms.StatusMessage;
 
 /**
  * A singleton class designed to assist in OMTP visual voicemail sync behavior.
@@ -117,5 +118,21 @@ public class OmtpVvmSyncAccountManager {
             }
         }
         return false;
+    }
+
+    /**
+     * Set the IMAP credentials as extra fields in the account.
+     *
+     * @param account The account to add credentials to.
+     * @param message The status message to extract the fields from.
+     */
+    public void setAccountCredentialsFromStatusMessage(Account account, StatusMessage message) {
+        mAccountManager.setUserData(account, OmtpConstants.IMAP_PORT, message.getImapPort());
+        mAccountManager.setUserData(account, OmtpConstants.SERVER_ADDRESS,
+                message.getServerAddress());
+        mAccountManager.setUserData(account, OmtpConstants.IMAP_USER_NAME,
+                message.getImapUserName());
+        mAccountManager.setUserData(account, OmtpConstants.IMAP_PASSWORD,
+                message.getImapPassword());
     }
 }

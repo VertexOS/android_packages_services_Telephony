@@ -24,6 +24,7 @@ import android.os.Bundle;
 import android.provider.Telephony;
 import android.provider.VoicemailContract;
 import android.telecom.PhoneAccountHandle;
+import android.telecom.Voicemail;
 import android.telephony.SmsMessage;
 import android.util.Log;
 
@@ -62,10 +63,10 @@ public class OmtpMessageReceiver extends BroadcastReceiver {
         if (messageData != null) {
             if (messageData.getPrefix() == OmtpConstants.SYNC_SMS_PREFIX) {
                 SyncMessage message = new SyncMessage(messageData);
-                //TODO: handle message
+                processSync(message);
             } else if (messageData.getPrefix() == OmtpConstants.STATUS_SMS_PREFIX) {
                 StatusMessage message = new StatusMessage(messageData);
-                handleStatusMessage(message);
+                updateAccount(message);
             } else {
                 Log.e(TAG, "This should never have happened");
             }
@@ -83,20 +84,61 @@ public class OmtpMessageReceiver extends BroadcastReceiver {
         }
     }
 
-    private void handleStatusMessage(StatusMessage message) {
-        OmtpVvmSyncAccountManager vvmSyncManager = OmtpVvmSyncAccountManager.getInstance(mContext);
+    /**
+     * A sync message has two purposes: to signal a new voicemail message, and to indicate the
+     * voicemails on the server have changed remotely (usually through the TUI). Save the new
+     * message to the voicemail provider if it is the former case and perform a full sync in the
+     * latter case.
+     *
+     * @param message The sync message to extract data from.
+     */
+    private void processSync(SyncMessage message) {
+        switch (message.getSyncTriggerEvent()) {
+            case OmtpConstants.NEW_MESSAGE:
+                Voicemail voicemail = Voicemail.createForInsertion(
+                        message.getTimestampMillis(), message.getSender())
+                        .setSourceData(message.getId())
+                        .setDuration(message.getLength())
+                        .setSourcePackage(mContext.getPackageName())
+                        .build();
+
+                VoicemailContract.Voicemails.insert(mContext, voicemail);
+                break;
+            case OmtpConstants.MAILBOX_UPDATE:
+                // Needs a total resync
+                ContentResolver.requestSync(
+                        new Account(mPhoneAccount.getId(), OmtpVvmSyncAccountManager.ACCOUNT_TYPE),
+                        VoicemailContract.AUTHORITY, new Bundle());
+                break;
+            case OmtpConstants.GREETINGS_UPDATE:
+                // Not implemented in V1
+                break;
+           default:
+               Log.e(TAG, "Unrecognized sync trigger event: "+message.getSyncTriggerEvent());
+               break;
+        }
+    }
+
+    private void updateAccount(StatusMessage message) {
+        OmtpVvmSyncAccountManager vvmAccountSyncManager =
+                OmtpVvmSyncAccountManager.getInstance(mContext);
         Account account = new Account(mPhoneAccount.getId(),
                 OmtpVvmSyncAccountManager.ACCOUNT_TYPE);
 
-        if (!vvmSyncManager.isAccountRegistered(account)) {
+        if (!vvmAccountSyncManager.isAccountRegistered(account)) {
             // If the account has not been previously registered, it means that this STATUS sms
             // is a result of the ACTIVATE sms, so register the voicemail source.
-            vvmSyncManager.createSyncAccount(account);
+            vvmAccountSyncManager.createSyncAccount(account);
             VoicemailContract.Status.setStatus(mContext, mPhoneAccount,
                     VoicemailContract.Status.CONFIGURATION_STATE_OK,
                     VoicemailContract.Status.DATA_CHANNEL_STATE_OK,
                     VoicemailContract.Status.NOTIFICATION_CHANNEL_STATE_OK);
         }
+
+        // Save the IMAP credentials in the corresponding account object so they are
+        // persistent and can be retrieved.
+        vvmAccountSyncManager.setAccountCredentialsFromStatusMessage(account, message);
+
         ContentResolver.requestSync(account, VoicemailContract.AUTHORITY, new Bundle());
     }
 }
