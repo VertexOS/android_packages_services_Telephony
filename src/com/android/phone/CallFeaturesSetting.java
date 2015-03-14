@@ -268,14 +268,6 @@ public class CallFeaturesSetting extends PreferenceActivity
     }
 
     /**
-     * We have to pull current settings from the network for all kinds of
-     * voicemail providers so we can tell whether we have to update them,
-     * so use this bit to keep track of whether we're reading settings for the
-     * default provider and should therefore save them out when done.
-     */
-    private boolean mReadingSettingsForDefaultProvider = false;
-
-    /**
      * Used to indicate that the voicemail preference should be shown.
      */
     private boolean mShowVoicemailPreference = false;
@@ -663,10 +655,9 @@ public class CallFeaturesSetting extends PreferenceActivity
         mNewVMNumber = (mNewVMNumber == null) ? "" : mNewVMNumber;
         mNewFwdSettings = newSettings.getForwardingSettings();
 
-        // No fwd settings on CDMA.
-        boolean isCdma = mPhone.getPhoneType() == PhoneConstants.PHONE_TYPE_CDMA;
-        if (isCdma) {
-            if (DBG) log("ignoring forwarding setting since this is CDMA phone");
+        // Call forwarding is not suppported on CDMA.
+        if (mPhone.getPhoneType() == PhoneConstants.PHONE_TYPE_CDMA) {
+            if (DBG) log("Ignoring forwarding setting since this is CDMA phone");
             mNewFwdSettings = VoicemailProviderSettings.NO_FORWARDING;
         }
 
@@ -682,14 +673,12 @@ public class CallFeaturesSetting extends PreferenceActivity
         mFwdChangesRequireRollback = false;
         mVMOrFwdSetError = 0;
 
-        // Don't read call forwarding settings if CDMA. Call forwarding is not supported by CDMA.
-        if (isCdma || mNewFwdSettings == VoicemailProviderSettings.NO_FORWARDING) {
-            if (DBG) log("Not touching fwd #");
+        if (mNewFwdSettings == VoicemailProviderSettings.NO_FORWARDING
+                || key.equals(mPreviousVMProviderKey)) {
+            if (DBG) log("Set voicemail number. No changes to forwarding number.");
             setVoicemailNumberWithCarrier();
         } else {
-            mReadingSettingsForDefaultProvider =
-                    mPreviousVMProviderKey.equals(VoicemailProviderListPreference.DEFAULT_KEY);
-            if (DBG) log("Reading current forwarding settings");
+            if (DBG) log("Reading current forwarding settings.");
             int numSettingsReasons = VoicemailProviderSettings.FORWARDING_SETTINGS_REASONS.length;
             mForwardingReadResults = new CallForwardInfo[numSettingsReasons];
             for (int i = 0; i < mForwardingReadResults.length; i++) {
@@ -700,7 +689,6 @@ public class CallFeaturesSetting extends PreferenceActivity
             showDialogIfForeground(VoicemailDialogUtil.VM_FWD_READING_DIALOG);
         }
 
-        // Refresh the MWI indicator if it is already showing.
         PhoneGlobals.getInstance().refreshMwiIndicator(mSubscriptionInfoHelper.getSubId());
     }
 
@@ -762,11 +750,10 @@ public class CallFeaturesSetting extends PreferenceActivity
             if (DBG) Log.d(LOG_TAG, "Done receiving fwd info");
             dismissDialogSafely(VoicemailDialogUtil.VM_FWD_READING_DIALOG);
 
-            if (mReadingSettingsForDefaultProvider) {
+            if (mPreviousVMProviderKey.equals(VoicemailProviderListPreference.DEFAULT_KEY)) {
                 VoicemailProviderSettingsUtil.save(mPhone.getContext(),
                         VoicemailProviderListPreference.DEFAULT_KEY,
                         new VoicemailProviderSettings(mOldVmNumber, mForwardingReadResults));
-                mReadingSettingsForDefaultProvider = false;
             }
             saveVoiceMailAndForwardingNumberStage2();
         }
