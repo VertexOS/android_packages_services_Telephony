@@ -156,7 +156,7 @@ public class TelephonyConnectionService extends ConnectionService {
         boolean useEmergencyCallHelper = false;
 
         if (isEmergencyNumber) {
-            if (state == ServiceState.STATE_POWER_OFF) {
+            if (!phone.isRadioOn()) {
                 useEmergencyCallHelper = true;
             }
         } else {
@@ -395,16 +395,14 @@ public class TelephonyConnectionService extends ConnectionService {
     }
 
     private Phone getPhoneForAccount(PhoneAccountHandle accountHandle, boolean isEmergency) {
+        if (isEmergency) {
+            return PhoneFactory.getDefaultPhone();
+        }
+
         int subId = PhoneUtils.getSubIdForPhoneAccountHandle(accountHandle);
         if (subId != SubscriptionManager.INVALID_SUBSCRIPTION_ID) {
             int phoneId = SubscriptionController.getInstance().getPhoneId(subId);
             return PhoneFactory.getPhone(phoneId);
-        }
-
-        if (isEmergency) {
-            // If this is an emergency number and we've been asked to dial it using a PhoneAccount
-            // which does not exist, then default to whatever subscription is available currently.
-            return getFirstPhoneForEmergencyCall();
         }
 
         return null;

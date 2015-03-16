@@ -98,6 +98,10 @@
     <uses-permission android:name="android.permission.REGISTER_CALL_PROVIDER" />
     <uses-permission android:name="android.permission.REGISTER_SIM_SUBSCRIPTION" />
     <uses-permission android:name="android.permission.BIND_CARRIER_MESSAGING_SERVICE" />
+    <uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />
+    <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
+    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
 
     <!-- This tells the activity manager to not delay any of our activity
          start requests, even if they happen immediately after the user
@@ -594,5 +598,31 @@
                 <action android:name="android.content.action.SEARCH_INDEXABLES_PROVIDER" />
             </intent-filter>
         </provider>
+        <receiver android:name="com.android.phone.vvm.omtp.sms.OmtpMessageReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.DATA_SMS_RECEIVED" />
+                <data android:scheme="sms" />
+            </intent-filter>
+        </receiver>
+        <service
+                android:name="com.android.phone.vvm.omtp.OmtpVvmSyncService"
+                android:exported="true"
+                android:process=":sync">
+            <intent-filter>
+                <action android:name="android.content.SyncAdapter"/>
+            </intent-filter>
+            <meta-data android:name="android.content.SyncAdapter"
+                    android:resource="@xml/syncadapter" />
+        </service>
+        <service
+            android:name="android.telecom.AuthenticatorService">
+        <intent-filter>
+            <action android:name="android.accounts.AccountAuthenticator"/>
+        </intent-filter>
+        <meta-data
+            android:name="android.accounts.AccountAuthenticator"
+            android:resource="@xml/authenticator" />
+       </service>
     </application>
 </manifest>

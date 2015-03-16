@@ -17,7 +17,6 @@
 package com.android.phone;
 
 import com.android.ims.ImsManager;
-import com.android.ims.ImsException;
 import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneConstants;
 import com.android.internal.telephony.PhoneFactory;
@@ -35,7 +34,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.net.Uri;
 import android.os.AsyncResult;
@@ -48,7 +46,6 @@ import android.os.UserManager;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
-import android.preference.PreferenceGroup;
 import android.preference.PreferenceScreen;
 import android.preference.SwitchPreference;
 import android.telephony.PhoneStateListener;
@@ -59,12 +56,10 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ListView;
 import android.widget.TabHost;
 import android.widget.TabHost.OnTabChangeListener;
 import android.widget.TabHost.TabContentFactory;
 import android.widget.TabHost.TabSpec;
-import android.widget.TabWidget;
 
 /**
  * "Mobile network settings" screen.  This preference screen lets you
@@ -147,11 +142,10 @@ public class MobileNetworkSettings extends PreferenceActivity
         @Override
         public void onCallStateChanged(int state, String incomingNumber) {
             if (DBG) log("PhoneStateListener.onCallStateChanged: state=" + state);
+            boolean enabled = (state == TelephonyManager.CALL_STATE_IDLE) &&
+                    ImsManager.isNonTtyOrTtyOnVolteEnabled(getApplicationContext());
             Preference pref = getPreferenceScreen().findPreference(BUTTON_4G_LTE_KEY);
-            if (pref != null) {
-                pref.setEnabled((state == TelephonyManager.CALL_STATE_IDLE) &&
-                        ImsManager.isNonTtyOrTtyOnVolteEnabled(getApplicationContext()));
-            }
+            if (pref != null) pref.setEnabled(enabled && hasActiveSubscriptions());
         }
     };
 
@@ -241,7 +235,7 @@ public class MobileNetworkSettings extends PreferenceActivity
             return true;
         }  else if (preference == mButtonEnabledNetworks) {
             int settingsNetworkMode = android.provider.Settings.Global.getInt(mPhone.getContext().
-                    getContentResolver(),
+                            getContentResolver(),
                     android.provider.Settings.Global.PREFERRED_NETWORK_MODE + phoneSubId,
                     preferredNetworkMode);
             mButtonEnabledNetworks.setValue(Integer.toString(settingsNetworkMode));
@@ -436,7 +430,6 @@ public class MobileNetworkSettings extends PreferenceActivity
         addPreferencesFromResource(R.xml.network_setting);
 
         mButton4glte = (SwitchPreference)findPreference(BUTTON_4G_LTE_KEY);
-
         mButton4glte.setOnPreferenceChangeListener(this);
 
         try {
@@ -508,14 +501,19 @@ public class MobileNetworkSettings extends PreferenceActivity
             tm.listen(mPhoneStateListener, PhoneStateListener.LISTEN_CALL_STATE);
         }
 
-        mButton4glte.setChecked(ImsManager.isEnhanced4gLteModeSettingEnabledByUser(this)
-                && ImsManager.isNonTtyOrTtyOnVolteEnabled(this));
-        // NOTE: The button will be enabled/disabled in mPhoneStateListener
+        // NOTE: Buttons will be enabled/disabled in mPhoneStateListener
+        boolean enh4glteMode = ImsManager.isEnhanced4gLteModeSettingEnabledByUser(this)
+                && ImsManager.isNonTtyOrTtyOnVolteEnabled(this);
+        mButton4glte.setChecked(enh4glteMode);
 
         mSubscriptionManager.addOnSubscriptionsChangedListener(mOnSubscriptionsChangeListener);
 
         if (DBG) log("onResume:-");
 
+    }
+
+    private boolean hasActiveSubscriptions() {
+        return mActiveSubInfos.size() > 0;
     }
 
     private void updateBody() {
@@ -707,11 +705,15 @@ public class MobileNetworkSettings extends PreferenceActivity
          * but you do need to remember that this all needs to work when subscriptions
          * change dynamically such as when hot swapping sims.
          */
-        boolean hasActiveSubscriptions = mActiveSubInfos.size() > 0;
+        boolean hasActiveSubscriptions = hasActiveSubscriptions();
+        TelephonyManager tm = (TelephonyManager) getSystemService(
+                Context.TELEPHONY_SERVICE);
+        boolean canChange4glte = (tm.getCallState() == TelephonyManager.CALL_STATE_IDLE) &&
+                ImsManager.isNonTtyOrTtyOnVolteEnabled(getApplicationContext());
         mButtonDataRoam.setEnabled(hasActiveSubscriptions);
         mButtonPreferredNetworkMode.setEnabled(hasActiveSubscriptions);
         mButtonEnabledNetworks.setEnabled(hasActiveSubscriptions);
-        mButton4glte.setEnabled(hasActiveSubscriptions);
+        mButton4glte.setEnabled(hasActiveSubscriptions && canChange4glte);
         mLteDataServicePref.setEnabled(hasActiveSubscriptions);
         Preference ps;
         PreferenceScreen root = getPreferenceScreen();
@@ -843,9 +845,10 @@ public class MobileNetworkSettings extends PreferenceActivity
                         .obtainMessage(MyHandler.MESSAGE_SET_PREFERRED_NETWORK_TYPE));
             }
         } else if (preference == mButton4glte) {
-            SwitchPreference ltePref = (SwitchPreference)preference;
-            ltePref.setChecked(!ltePref.isChecked());
-            ImsManager.setEnhanced4gLteModeSetting(this, ltePref.isChecked());
+            SwitchPreference enhanced4gModePref = (SwitchPreference) preference;
+            boolean enhanced4gMode = !enhanced4gModePref.isChecked();
+            enhanced4gModePref.setChecked(enhanced4gMode);
+            ImsManager.setEnhanced4gLteModeSetting(this, enhanced4gModePref.isChecked());
         } else if (preference == mButtonDataRoam) {
             if (DBG) log("onPreferenceTreeClick: preference == mButtonDataRoam.");
 

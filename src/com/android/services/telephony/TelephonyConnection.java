@@ -158,6 +158,17 @@ abstract class TelephonyConnection extends Connection {
         }
 
         /**
+         * Used by {@link com.android.internal.telephony.Connection} to report a change in whether
+         * the call is being made over a wifi network.
+         *
+         * @param isWifi True if call is made over wifi.
+         */
+        @Override
+        public void onWifiChanged(boolean isWifi) {
+            setWifi(isWifi);
+        }
+
+        /**
          * Used by the {@link com.android.internal.telephony.Connection} to report a change in the
          * audio quality for the current call.
          *
@@ -167,7 +178,6 @@ abstract class TelephonyConnection extends Connection {
         public void onAudioQualityChanged(int audioQuality) {
             setAudioQuality(audioQuality);
         }
-
         /**
          * Handles a change in the state of conference participant(s), as reported by the
          * {@link com.android.internal.telephony.Connection}.
@@ -210,11 +220,18 @@ abstract class TelephonyConnection extends Connection {
     private boolean mRemoteVideoCapable;
 
     /**
-     * Determines the current audio quality for the {@link TelephonyConnection}.
+     * Determines if the {@link TelephonyConnection} is using wifi.
+     * This is used when {@link TelephonyConnection#updateConnectionCapabilities} is called to
+     * indicate wheter a call has the {@link Connection#CAPABILITY_WIFI} capability.
+     */
+    private boolean mIsWifi;
+
+    /**
+     * Determines the audio quality is high for the {@link TelephonyConnection}.
      * This is used when {@link TelephonyConnection#updateConnectionCapabilities}} is called to
      * indicate whether a call has the {@link Connection#CAPABILITY_HIGH_DEF_AUDIO} capability.
      */
-    private int mAudioQuality;
+    private boolean mHasHighDefAudio;
 
     /**
      * Listeners to our TelephonyConnection specific callbacks
@@ -425,13 +442,27 @@ abstract class TelephonyConnection extends Connection {
                 callCapabilities |= CAPABILITY_HOLD;
             }
         }
+
+        // If the phone is in ECM mode, mark the call to indicate that the callback number should be
+        // shown.
+        Phone phone = getPhone();
+        if (phone != null && phone.isInEcm()) {
+            callCapabilities |= CAPABILITY_SHOW_CALLBACK_NUMBER;
+        }
         return callCapabilities;
     }
 
     protected final void updateConnectionCapabilities() {
         int newCapabilities = buildConnectionCapabilities();
-        newCapabilities = applyVideoCapabilities(newCapabilities);
-        newCapabilities = applyAudioQualityCapabilities(newCapabilities);
+
+        newCapabilities = changeCapability(newCapabilities,
+                CAPABILITY_SUPPORTS_VT_REMOTE, mRemoteVideoCapable);
+        newCapabilities = changeCapability(newCapabilities,
+                CAPABILITY_SUPPORTS_VT_LOCAL, mLocalVideoCapable);
+        newCapabilities = changeCapability(newCapabilities,
+                CAPABILITY_HIGH_DEF_AUDIO, mHasHighDefAudio);
+        newCapabilities = changeCapability(newCapabilities, CAPABILITY_WIFI, mIsWifi);
+
         newCapabilities = applyConferenceTerminationCapabilities(newCapabilities);
 
         if (getConnectionCapabilities() != newCapabilities) {
@@ -482,6 +513,7 @@ abstract class TelephonyConnection extends Connection {
         setVideoState(mOriginalConnection.getVideoState());
         setLocalVideoCapable(mOriginalConnection.isLocalVideoCapable());
         setRemoteVideoCapable(mOriginalConnection.isRemoteVideoCapable());
+        setWifi(mOriginalConnection.isWifi());
         setVideoProvider(mOriginalConnection.getVideoProvider());
         setAudioQuality(mOriginalConnection.getAudioQuality());
 
@@ -696,52 +728,6 @@ abstract class TelephonyConnection extends Connection {
     }
 
     /**
-     * Applies the video capability states to the CallCapabilities bit-mask.
-     *
-     * @param capabilities The CallCapabilities bit-mask.
-     * @return The capabilities with video capabilities applied.
-     */
-    private int applyVideoCapabilities(int capabilities) {
-        int currentCapabilities = capabilities;
-        if (mRemoteVideoCapable) {
-            currentCapabilities = applyCapability(currentCapabilities,
-                    CAPABILITY_SUPPORTS_VT_REMOTE);
-        } else {
-            currentCapabilities = removeCapability(currentCapabilities,
-                    CAPABILITY_SUPPORTS_VT_REMOTE);
-        }
-
-        if (mLocalVideoCapable) {
-            currentCapabilities = applyCapability(currentCapabilities,
-                    CAPABILITY_SUPPORTS_VT_LOCAL);
-        } else {
-            currentCapabilities = removeCapability(currentCapabilities,
-                    CAPABILITY_SUPPORTS_VT_LOCAL);
-        }
-        return currentCapabilities;
-    }
-
-    /**
-     * Applies the audio capabilities to the {@code CallCapabilities} bit-mask.  A call with high
-     * definition audio is considered to have the {@code HIGH_DEF_AUDIO} call capability.
-     *
-     * @param capabilities The {@code CallCapabilities} bit-mask.
-     * @return The capabilities with the audio capabilities applied.
-     */
-    private int applyAudioQualityCapabilities(int capabilities) {
-        int currentCapabilities = capabilities;
-
-        if (mAudioQuality ==
-                com.android.internal.telephony.Connection.AUDIO_QUALITY_HIGH_DEFINITION) {
-            currentCapabilities = applyCapability(currentCapabilities, CAPABILITY_HIGH_DEF_AUDIO);
-        } else {
-            currentCapabilities = removeCapability(currentCapabilities, CAPABILITY_HIGH_DEF_AUDIO);
-        }
-
-        return currentCapabilities;
-    }
-
-    /**
      * Applies capabilities specific to conferences termination to the
      * {@code CallCapabilities} bit-mask.
      *
@@ -802,21 +788,24 @@ abstract class TelephonyConnection extends Connection {
     }
 
     /**
-     * Sets the current call audio quality.  Used during rebuild of the capabilities
+     * Sets whether the call is using wifi. Used when rebuilding the capabilities to set or unset
+     * the {@link Connection#CAPABILITY_WIFI} capability.
+     */
+    public void setWifi(boolean isWifi) {
+        mIsWifi = isWifi;
+        updateConnectionCapabilities();
+    }
+
+    /**
+     * Sets the current call audio quality. Used during rebuild of the capabilities
      * to set or unset the {@link Connection#CAPABILITY_HIGH_DEF_AUDIO} capability.
      *
      * @param audioQuality The audio quality.
      */
     public void setAudioQuality(int audioQuality) {
-        mAudioQuality = audioQuality;
+        mHasHighDefAudio = audioQuality ==
+                com.android.internal.telephony.Connection.AUDIO_QUALITY_HIGH_DEFINITION;
         updateConnectionCapabilities();
-    }
-
-    /**
-     * Obtains the current call audio quality.
-     */
-    public int getAudioQuality() {
-        return mAudioQuality;
     }
 
     void resetStateForConference() {
@@ -862,27 +851,19 @@ abstract class TelephonyConnection extends Connection {
     }
 
     /**
-     * Applies a capability to a capabilities bit-mask.
+     * Changes a capabilities bit-mask to add or remove a capability.
      *
      * @param capabilities The capabilities bit-mask.
-     * @param capability The capability to apply.
-     * @return The capabilities bit-mask with the capability applied.
+     * @param capability The capability to change.
+     * @param enabled Whether the capability should be set or removed.
+     * @return The capabilities bit-mask with the capability changed.
      */
-    private int applyCapability(int capabilities, int capability) {
-        int newCapabilities = capabilities | capability;
-        return newCapabilities;
-    }
-
-    /**
-     * Removes a capability from a capabilities bit-mask.
-     *
-     * @param capabilities The capabilities bit-mask.
-     * @param capability The capability to remove.
-     * @return The capabilities bit-mask with the capability removed.
-     */
-    private int removeCapability(int capabilities, int capability) {
-        int newCapabilities = capabilities & ~capability;
-        return newCapabilities;
+    private int changeCapability(int capabilities, int capability, boolean enabled) {
+        if (enabled) {
+            return capabilities | capability;
+        } else {
+            return capabilities & ~capability;
+        }
     }
 
     /**

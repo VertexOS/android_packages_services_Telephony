@@ -105,7 +105,15 @@ public class SipUtil {
      * @return The PhoneAccount.
      */
     static PhoneAccount createPhoneAccount(Context context, SipProfile profile) {
+        // Build a URI to represent the SIP account.  Does not use SipProfile#getUriString() since
+        // that prototype can include transport information which we do not want to see in the
+        // phone account.
+        String sipAddress = profile.getUserName() + "@" + profile.getSipDomain();
+        Uri sipUri = Uri.parse(PhoneAccount.SCHEME_SIP + ":" + sipAddress);
 
+        // SipProfile#getUriString() is used here for legacy reasons. Changing to use the sipAddress
+        // defined above would cause SIP profiles with a TCP transport to be duplicated in the
+        // PhoneAccountRegistry since the ID would change on re-registration.
         PhoneAccountHandle accountHandle =
                 SipUtil.createAccountHandle(context, profile.getUriString());
 
@@ -118,8 +126,8 @@ public class SipUtil {
         PhoneAccount.Builder builder = PhoneAccount.builder(accountHandle, profile.getDisplayName())
                 .setCapabilities(PhoneAccount.CAPABILITY_CALL_PROVIDER
                         | PhoneAccount.CAPABILITY_MULTI_USER)
-                .setAddress(Uri.parse(profile.getUriString()))
-                .setShortDescription(profile.getDisplayName())
+                .setAddress(sipUri)
+                .setShortDescription(sipAddress)
                 .setIcon(context, R.drawable.ic_dialer_sip_black_24dp)
                 .setSupportedUriSchemes(supportedUriSchemes);
 

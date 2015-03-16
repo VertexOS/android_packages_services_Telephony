@@ -22,6 +22,7 @@ import android.telecom.DisconnectCause;
 
 import com.android.phone.PhoneGlobals;
 import com.android.phone.common.R;
+import com.android.phone.ImsUtil;
 
 public class DisconnectCauseUtil {
 
@@ -254,15 +255,18 @@ public class DisconnectCauseUtil {
                 break;
 
             case android.telephony.DisconnectCause.POWER_OFF:
-                // Radio is explictly powered off, presumably because the
-                // device is in airplane mode.
-                //
-                // TODO: For now this UI is ultra-simple: we simply display
-                // a message telling the user to turn off airplane mode.
-                // But it might be nicer for the dialog to offer the option
-                // to turn the radio on right there (and automatically retry
-                // the call once network registration is complete.)
-                resourceId = R.string.incall_error_power_off;
+                // Radio is explictly powered off because the device is in airplane mode.
+
+                // TODO: Offer the option to turn the radio on, and automatically retry the call
+                // once network registration is complete.
+
+                if (ImsUtil.isWfcModeWifiOnly(context)) {
+                    resourceId = R.string.incall_error_wfc_only_no_wireless_network;
+                } else if (ImsUtil.isWfcEnabled(context)) {
+                    resourceId = R.string.incall_error_power_off_wfc;
+                } else {
+                    resourceId = R.string.incall_error_power_off;
+                }
                 break;
 
             case android.telephony.DisconnectCause.EMERGENCY_ONLY:
@@ -273,7 +277,13 @@ public class DisconnectCauseUtil {
 
             case android.telephony.DisconnectCause.OUT_OF_SERVICE:
                 // No network connection.
-                resourceId = R.string.incall_error_out_of_service;
+                if (ImsUtil.isWfcModeWifiOnly(context)) {
+                    resourceId = R.string.incall_error_wfc_only_no_wireless_network;
+                } else if (ImsUtil.isWfcEnabled(context)) {
+                    resourceId = R.string.incall_error_out_of_service_wfc;
+                } else {
+                    resourceId = R.string.incall_error_out_of_service;
+                }
                 break;
 
             case android.telephony.DisconnectCause.NO_PHONE_NUMBER_SUPPLIED:

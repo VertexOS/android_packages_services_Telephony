@@ -147,7 +147,9 @@
     <string name="phone_accounts_configure_account_settings">Configure account settings</string>
 
     <!-- Title for setting to select Wi-Fi call manager account -->
-    <string name="phone_account_wifi_calling">Wi-Fi calling</string>
+    <string name="wifi_calling">Wi-Fi calling</string>
+    <!-- Summary label for wi-fi calling when it is turned off. [CHAR LIMIT=NONE] -->
+    <string name="wifi_calling_off_summary">Off</string>
     <!-- Indication for option to not use a Wi-Fi call manager -->
     <string name="wifi_calling_do_not_use">Do not use Wi-Fi calling</string>
     <!-- Indication for option to not use a call assistant. -->
@@ -428,6 +430,14 @@
     <string name="enhanced_4g_lte_mode_title">Enhanced 4G LTE Mode</string>
     <!-- Cellular network 4G summary [CHAR LIMIT=80] -->
     <string name="enhanced_4g_lte_mode_summary">Use LTE services to improve voice and other communications (recommended)</string>
+
+    <!-- WFC, summary for Wi-Fi Preferred [CHAR LIMIT=100] -->
+    <string name="wfc_mode_wifi_preferred_summary">Wi-Fi preferred (Uses cell network only if Wi-Fi isn\'t available)</string>
+    <!-- WFC, summary for Cellular Preferred [CHAR LIMIT=100] -->
+    <string name="wfc_mode_cellular_preferred_summary">Cellular preferred (Uses Wi-Fi only if cell network isn\'t available)</string>
+    <!-- WFC, summary for Wi-Fi Only [CHAR LIMIT=100] -->
+    <string name="wfc_mode_wifi_only_summary">Wi-Fi only (Never uses cell network. Can\'t make or receive calls if Wi-Fi isn\'t available)</string>
+
     <!-- Mobile network settings screen, data enabling checkbox name -->
     <string name="data_enabled">Data enabled</string>
     <!-- Mobile network settings screen, setting summary text when check box is not selected (explains what selecting it would do) [CHAR LIMITS=40] -->
@@ -810,9 +820,8 @@
     <string name="simContacts_empty">No contacts on your SIM card.</string>
     <!-- Call settings: title of the dialog that lets you select contacts from the SIM. -->
     <string name="simContacts_title">Select contacts to import</string>
-    <!-- Appears when user tries to import contacts in SIM during Airplane mode
-      [CHAR LIMIT=NONE] -->
-    <string name="simContacts_airplaneMode">To import contacts from the SIM card, first turn off Airplane mode.</string>
+    <!-- Appears when user tries to import contacts in SIM during airplane mode [CHAR LIMIT=NONE] -->
+    <string name="simContacts_airplaneMode">Turn off airplane mode to import contacts from the SIM card.</string>
 
     <!-- SIM PIN strings -->
     <!-- Title of "Enable/disable SIM PIN" screen -->
@@ -965,13 +974,17 @@
          [CHAR LIMIT=60] -->
     <string name="notification_missedCall_message">Message</string>
 
-    <!-- In-call screen: call failure message displayed in an error dialog -->
-    <string name="incall_error_power_off">To place a call, first turn off Airplane mode.</string>
+    <!-- In-call screen: call failure message displayed in an error dialog. [CHAR_LIMIT=NONE] -->
+    <string name="incall_error_power_off">Turn off airplane mode to make a call.</string>
+    <!-- In-call screen: call failure message displayed in an error dialog when in airplane mode, WFC is enabled, not wifi-only, and not connected to wireless networks. [CHAR_LIMIT=NONE] -->
+    <string name="incall_error_power_off_wfc">Turn off airplane mode or connect to a wireless network to make a call.</string>
     <!-- In-call screen: call failure message displayed in an error dialog.
          This string is currently unused (see comments in InCallScreen.java.) -->
     <string name="incall_error_emergency_only">Not registered on network.</string>
     <!-- In-call screen: call failure message displayed in an error dialog -->
     <string name="incall_error_out_of_service">Cellular network not available.</string>
+    <!-- In-call screen: call failure message displayed in an error dialog -->
+    <string name="incall_error_out_of_service_wfc">Cellular network is not available. Connect to a wireless network to make a call.</string>
     <!-- In-call screen: call failure message displayed in an error dialog -->
     <string name="incall_error_no_phone_number_supplied">To place a call, enter a valid number.</string>
     <!-- In-call screen: call failure message displayed in an error dialog -->
@@ -992,6 +1005,8 @@
     <string name="incall_error_supp_service_reject">Can\'t reject call.</string>
     <!-- In-call screen: message displayed in an error dialog -->
     <string name="incall_error_supp_service_hangup">Can\'t release call(s).</string>
+    <!-- In-call screen: call failure message displayed in an error dialog when WFC is enabled, is wifi-only, and not connected to a wireless network. [CHAR_LIMIT=NONE] -->
+    <string name="incall_error_wfc_only_no_wireless_network">Connect to a wireless network to make a call.</string>
 
     <!-- Dialog title for the "radio enable" UI for emergency calls -->
     <string name="emergency_enable_radio_dialog_title">Emergency call</string>
@@ -1275,4 +1290,6 @@
     <string name="voicemail_notification_vibrate_key">voicemail_notification_vibrate_key</string>
     <!-- DO NOT TRANSLATE. Internal key for tty mode preference. -->
     <string name="tty_mode_key">button_tty_mode_key</string>
+    <!-- DO NOT TRANSLATE. Internal key for a voicemail notification preference. -->
+    <string name="wifi_calling_settings_key">button_wifi_calling_settings_key</string>
 </resources>

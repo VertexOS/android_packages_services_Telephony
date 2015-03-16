@@ -82,6 +82,16 @@
         android:title="@string/fdn"
         android:persistent="false" />
 
+    <PreferenceScreen
+        android:key="@string/wifi_calling_settings_key"
+        android:title="@string/wifi_calling">
+
+        <intent android:action="android.intent.action.MAIN"
+            android:targetPackage="com.android.settings"
+            android:targetClass="com.android.settings.Settings$WifiCallingSettingsActivity"/>
+
+    </PreferenceScreen>
+
     <CheckBoxPreference
         android:key="button_enable_video_calling"
         android:title="@string/enable_video_calling_title"
