@@ -66,7 +66,10 @@
     <string name="phone_accounts_selection_header" msgid="1365215726106915865">"Telefonkontoer"</string>
     <string name="phone_accounts_add_sip_account" msgid="2023821743341923271">"Legg til SIP-konto"</string>
     <string name="phone_accounts_configure_account_settings" msgid="1361715069911607109">"Konfigurer kontoinnstillingene"</string>
-    <string name="phone_account_wifi_calling" msgid="1840272538233414629">"Wi-Fi-anrop"</string>
+    <!-- no translation found for wifi_calling (739018212480165598) -->
+    <skip />
+    <!-- no translation found for wifi_calling_off_summary (2992184822432174168) -->
+    <skip />
     <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"Ikke bruk Wi-Fi for å ringe"</string>
     <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"Ikke bruk ringeassistenten"</string>
     <string name="wifi_calling_call_assistant_none" msgid="6283702349285593683">"Ingen"</string>
@@ -198,6 +201,12 @@
   </string-array>
     <string name="enhanced_4g_lte_mode_title" msgid="522191650223239171">"Forbedret 4G LTE-modus"</string>
     <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"Bruk LTE-tjenester for å forbedre stemme- og andre typer kommunikasjon (anbefalt)"</string>
+    <!-- no translation found for wfc_mode_wifi_preferred_summary (9143208157600896911) -->
+    <skip />
+    <!-- no translation found for wfc_mode_cellular_preferred_summary (2259869029990883080) -->
+    <skip />
+    <!-- no translation found for wfc_mode_wifi_only_summary (6176822199433274101) -->
+    <skip />
     <string name="data_enabled" msgid="5972538663568715366">"Data aktivert"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"Tillat databruk"</string>
     <string name="roaming" msgid="8871412572928323707">"Dataroaming"</string>
@@ -380,7 +389,8 @@
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"Leser fra SIM-kort…"</string>
     <string name="simContacts_empty" msgid="5270660846489561932">"Ingen kontakter på SIM-kortet."</string>
     <string name="simContacts_title" msgid="1861472842524839921">"Velg kontakter som skal importeres"</string>
-    <string name="simContacts_airplaneMode" msgid="1846161429087789936">"Du må slå av flymodus før du kan importere kontakter fra SIM-kortet."</string>
+    <!-- no translation found for simContacts_airplaneMode (5254946758982621072) -->
+    <skip />
     <string name="enable_pin" msgid="5422767284133234860">"Slå av/på PIN-kode for SIM-kort"</string>
     <string name="change_pin" msgid="9174186126330785343">"Endre PIN-kode for SIM-kort"</string>
     <string name="enter_pin_text" msgid="8532615714751931951">"SIM-kortets PIN-kode:"</string>
@@ -441,9 +451,14 @@
     <string name="notification_action_end_call" msgid="6069460915123531620">"Legg på"</string>
     <string name="notification_missedCall_call_back" msgid="2684890353590890187">"Ring tilbake"</string>
     <string name="notification_missedCall_message" msgid="3049928912736917988">"Melding"</string>
-    <string name="incall_error_power_off" msgid="6550191216405193368">"For å ringe, slå av flymodus først."</string>
+    <!-- no translation found for incall_error_power_off (2947938060513306698) -->
+    <skip />
+    <!-- no translation found for incall_error_power_off_wfc (8711428920632416575) -->
+    <skip />
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"Ikke registrert på nettverket."</string>
     <string name="incall_error_out_of_service" msgid="4100065333878929223">"Mobilnettverket er ikke tilgjengelig."</string>
+    <!-- no translation found for incall_error_out_of_service_wfc (323851839058697057) -->
+    <skip />
     <string name="incall_error_no_phone_number_supplied" msgid="1150414018684246528">"Skriv inn et gyldig nummer for å plassere en samtale."</string>
     <string name="incall_error_call_failed" msgid="6302746943230078197">"Kan ikke ringe."</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"Begynner MMI-sekvens…"</string>
@@ -454,6 +469,8 @@
     <string name="incall_error_supp_service_conference" msgid="2505727299596357312">"Kan ikke opprette telefonmøte."</string>
     <string name="incall_error_supp_service_reject" msgid="8998568661508655638">"Kan ikke avvise anropet."</string>
     <string name="incall_error_supp_service_hangup" msgid="7434513517153834426">"Kan ikke frigjøre samtale(r)."</string>
+    <!-- no translation found for incall_error_wfc_only_no_wireless_network (1782466780452640089) -->
+    <skip />
     <string name="emergency_enable_radio_dialog_title" msgid="4627849966634578257">"Nødanrop"</string>
     <string name="emergency_enable_radio_dialog_message" msgid="207613549344420291">"Slår på radio…"</string>
     <string name="emergency_enable_radio_dialog_retry" msgid="5960061579996526883">"Ingen tjeneste. Prøver på nytt …"</string>

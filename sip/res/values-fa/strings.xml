@@ -27,7 +27,7 @@
     <string name="sip_call_options_entry_2" msgid="1815335903940609729">"‏فقط برای تماس‌های SIP"</string>
     <string name="sip_call_options_wifi_only_entry_1" msgid="1358513095551847314">"برای همه تماس‌ها"</string>
     <string name="add_sip_account" msgid="800843669753980091">"افزودن حساب"</string>
-    <string name="remove_sip_account" msgid="1367664438506503690">"حذف حساب"</string>
+    <string name="remove_sip_account" msgid="1367664438506503690">"حذف کردن حساب"</string>
     <string name="sip_account_list" msgid="5610858485304821480">"‏حساب‌های SIP"</string>
     <string name="saving_account" msgid="5336529880235177448">"در حال ذخیره حساب..."</string>
     <string name="removing_account" msgid="5537351356808985756">"در حال حذف حساب..."</string>

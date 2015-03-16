@@ -66,7 +66,10 @@
     <string name="phone_accounts_selection_header" msgid="1365215726106915865">"Comptes téléphone"</string>
     <string name="phone_accounts_add_sip_account" msgid="2023821743341923271">"Ajouter un compte SIP"</string>
     <string name="phone_accounts_configure_account_settings" msgid="1361715069911607109">"Configurer les paramètres du compte"</string>
-    <string name="phone_account_wifi_calling" msgid="1840272538233414629">"Appels Wi-Fi"</string>
+    <!-- no translation found for wifi_calling (739018212480165598) -->
+    <skip />
+    <!-- no translation found for wifi_calling_off_summary (2992184822432174168) -->
+    <skip />
     <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"Ne pas utiliser les appels Wi-Fi"</string>
     <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"Ne pas utiliser l\'assistant d\'appel"</string>
     <string name="wifi_calling_call_assistant_none" msgid="6283702349285593683">"Aucun"</string>
@@ -198,6 +201,12 @@
   </string-array>
     <string name="enhanced_4g_lte_mode_title" msgid="522191650223239171">"Mode LTE 4G avancé"</string>
     <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"Utiliser services LTE pour améliorer communications vocales et autres (recommandé)"</string>
+    <!-- no translation found for wfc_mode_wifi_preferred_summary (9143208157600896911) -->
+    <skip />
+    <!-- no translation found for wfc_mode_cellular_preferred_summary (2259869029990883080) -->
+    <skip />
+    <!-- no translation found for wfc_mode_wifi_only_summary (6176822199433274101) -->
+    <skip />
     <string name="data_enabled" msgid="5972538663568715366">"Données activées"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"Autoriser la consommation des données"</string>
     <string name="roaming" msgid="8871412572928323707">"Itinérance des données"</string>
@@ -374,7 +383,8 @@
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"Lecture de la carte SIM…"</string>
     <string name="simContacts_empty" msgid="5270660846489561932">"Aucun contact n\'a été trouvé sur votre carte SIM."</string>
     <string name="simContacts_title" msgid="1861472842524839921">"Sélection des contacts à importer"</string>
-    <string name="simContacts_airplaneMode" msgid="1846161429087789936">"Pour importer des contacts depuis la carte SIM, désactivez tout d\'abord le mode Avion."</string>
+    <!-- no translation found for simContacts_airplaneMode (5254946758982621072) -->
+    <skip />
     <string name="enable_pin" msgid="5422767284133234860">"Activer/désactiver le code PIN de la carte SIM"</string>
     <string name="change_pin" msgid="9174186126330785343">"Modifier le code PIN de la carte SIM"</string>
     <string name="enter_pin_text" msgid="8532615714751931951">"Code PIN de la carte SIM :"</string>
@@ -435,9 +445,14 @@
     <string name="notification_action_end_call" msgid="6069460915123531620">"Raccrocher"</string>
     <string name="notification_missedCall_call_back" msgid="2684890353590890187">"Rappeler"</string>
     <string name="notification_missedCall_message" msgid="3049928912736917988">"Message"</string>
-    <string name="incall_error_power_off" msgid="6550191216405193368">"Veuillez d\'abord désactiver le mode Avion, afin d\'effectuer un appel."</string>
+    <!-- no translation found for incall_error_power_off (2947938060513306698) -->
+    <skip />
+    <!-- no translation found for incall_error_power_off_wfc (8711428920632416575) -->
+    <skip />
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"Non enregistré sur le réseau."</string>
     <string name="incall_error_out_of_service" msgid="4100065333878929223">"Réseau mobile non disponible."</string>
+    <!-- no translation found for incall_error_out_of_service_wfc (323851839058697057) -->
+    <skip />
     <string name="incall_error_no_phone_number_supplied" msgid="1150414018684246528">"Pour émettre un appel, veuillez saisir un numéro valide."</string>
     <string name="incall_error_call_failed" msgid="6302746943230078197">"Impossible d\'émettre l\'appel."</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"Lancement de la séquence IHM..."</string>
@@ -448,6 +463,8 @@
     <string name="incall_error_supp_service_conference" msgid="2505727299596357312">"Impossible d\'effectuer des conférences téléphoniques."</string>
     <string name="incall_error_supp_service_reject" msgid="8998568661508655638">"Impossible de refuser l\'appel."</string>
     <string name="incall_error_supp_service_hangup" msgid="7434513517153834426">"Impossible de lancer les appels."</string>
+    <!-- no translation found for incall_error_wfc_only_no_wireless_network (1782466780452640089) -->
+    <skip />
     <string name="emergency_enable_radio_dialog_title" msgid="4627849966634578257">"Appel d\'urgence"</string>
     <string name="emergency_enable_radio_dialog_message" msgid="207613549344420291">"Activation du signal radio..."</string>
     <string name="emergency_enable_radio_dialog_retry" msgid="5960061579996526883">"Aucun service disponible. Nouvelle tentative en cours…"</string>
@@ -543,6 +560,5 @@
     <string name="sim_label_emergency_calls" msgid="4847699229529306397">"Appels d\'urgence"</string>
     <string name="sim_description_emergency_calls" msgid="7535215397212301562">"Appels d\'urgence seulement"</string>
     <string name="sim_description_default" msgid="4778679519938775515">"Carte SIM, emplacement : <xliff:g id="SLOT_ID">%s</xliff:g>"</string>
-    <!-- no translation found for accessibility_settings_activity_title (8562004288733103868) -->
-    <skip />
+    <string name="accessibility_settings_activity_title" msgid="8562004288733103868">"Accessibilité"</string>
 </resources>

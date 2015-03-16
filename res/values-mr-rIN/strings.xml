@@ -66,7 +66,10 @@
     <string name="phone_accounts_selection_header" msgid="1365215726106915865">"फोन खाती"</string>
     <string name="phone_accounts_add_sip_account" msgid="2023821743341923271">"SIP खाते जोडा"</string>
     <string name="phone_accounts_configure_account_settings" msgid="1361715069911607109">"खाते सेटिंग्ज कॉन्‍फिगर करा"</string>
-    <string name="phone_account_wifi_calling" msgid="1840272538233414629">"वाय-फाय कॉल करणे"</string>
+    <!-- no translation found for wifi_calling (739018212480165598) -->
+    <skip />
+    <!-- no translation found for wifi_calling_off_summary (2992184822432174168) -->
+    <skip />
     <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"वाय-फाय कॉल करणे वापरू नका"</string>
     <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"कॉल सहाय्यक वापरू नका"</string>
     <string name="wifi_calling_call_assistant_none" msgid="6283702349285593683">"काहीही नाही"</string>
@@ -198,6 +201,12 @@
   </string-array>
     <string name="enhanced_4g_lte_mode_title" msgid="522191650223239171">"वर्धित 4G LTE मोड"</string>
     <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"व्‍हॉइस आणि इतर संप्रेषणे (शिफारस केलेली) सुधारित करण्‍यासाठी LTE सेवांचा वापर करा"</string>
+    <!-- no translation found for wfc_mode_wifi_preferred_summary (9143208157600896911) -->
+    <skip />
+    <!-- no translation found for wfc_mode_cellular_preferred_summary (2259869029990883080) -->
+    <skip />
+    <!-- no translation found for wfc_mode_wifi_only_summary (6176822199433274101) -->
+    <skip />
     <string name="data_enabled" msgid="5972538663568715366">"डेटा सक्षम केला"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"डेटा वापरास अनुमती द्या"</string>
     <string name="roaming" msgid="8871412572928323707">"डेटा रोमिंग"</string>
@@ -374,7 +383,8 @@
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"सिक कार्डमधून वाचत आहे..."</string>
     <string name="simContacts_empty" msgid="5270660846489561932">"आपल्‍या सिम कार्डवर कोणतेही संपर्क नाहीत."</string>
     <string name="simContacts_title" msgid="1861472842524839921">"आयात करण्यासाठी संपर्क निवडा"</string>
-    <string name="simContacts_airplaneMode" msgid="1846161429087789936">"सिम कार्ड वरून संपर्क आयात करण्‍यासाठी, प्रथम विमान मोड बंद करा."</string>
+    <!-- no translation found for simContacts_airplaneMode (5254946758982621072) -->
+    <skip />
     <string name="enable_pin" msgid="5422767284133234860">"सिम पिन सक्षम करा/अक्षम करा"</string>
     <string name="change_pin" msgid="9174186126330785343">"सिम पिन बदला"</string>
     <string name="enter_pin_text" msgid="8532615714751931951">"सिम पिन"</string>
@@ -435,9 +445,14 @@
     <string name="notification_action_end_call" msgid="6069460915123531620">"हँग अप"</string>
     <string name="notification_missedCall_call_back" msgid="2684890353590890187">"पुन्हा कॉल करा"</string>
     <string name="notification_missedCall_message" msgid="3049928912736917988">"संदेश"</string>
-    <string name="incall_error_power_off" msgid="6550191216405193368">"कॉल करण्यासाठी, प्रथम विमान मोड बंद करा."</string>
+    <!-- no translation found for incall_error_power_off (2947938060513306698) -->
+    <skip />
+    <!-- no translation found for incall_error_power_off_wfc (8711428920632416575) -->
+    <skip />
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"नेटवर्कवर नोंदणीकृत नाही."</string>
     <string name="incall_error_out_of_service" msgid="4100065333878929223">"सेल्युलर नेटवर्क उपलब्ध नाही."</string>
+    <!-- no translation found for incall_error_out_of_service_wfc (323851839058697057) -->
+    <skip />
     <string name="incall_error_no_phone_number_supplied" msgid="1150414018684246528">"कॉल करण्यासाठी, एक वैध नंबर प्रविष्ट करा."</string>
     <string name="incall_error_call_failed" msgid="6302746943230078197">"कॉल करू शकत नाही."</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"MMI क्रम प्रारंभ करीत आहे..."</string>
@@ -448,6 +463,8 @@
     <string name="incall_error_supp_service_conference" msgid="2505727299596357312">"परिषद कॉल करण्‍यात अक्षम."</string>
     <string name="incall_error_supp_service_reject" msgid="8998568661508655638">"कॉल नाकारू शकत नाही."</string>
     <string name="incall_error_supp_service_hangup" msgid="7434513517153834426">"कॉल रिलीझ करू शकत नाही."</string>
+    <!-- no translation found for incall_error_wfc_only_no_wireless_network (1782466780452640089) -->
+    <skip />
     <string name="emergency_enable_radio_dialog_title" msgid="4627849966634578257">"आणीबाणीचा कॉल"</string>
     <string name="emergency_enable_radio_dialog_message" msgid="207613549344420291">"रेडिओ चालू करीत आहे..."</string>
     <string name="emergency_enable_radio_dialog_retry" msgid="5960061579996526883">"सेवा नाही. पुन्हा प्रयत्न करत आहे…"</string>
@@ -543,6 +560,5 @@
     <string name="sim_label_emergency_calls" msgid="4847699229529306397">"आणीबाणी कॉल"</string>
     <string name="sim_description_emergency_calls" msgid="7535215397212301562">"केवळ आणीबाणी कॉल करणे"</string>
     <string name="sim_description_default" msgid="4778679519938775515">"सिम कार्ड, स्लॉट: <xliff:g id="SLOT_ID">%s</xliff:g>"</string>
-    <!-- no translation found for accessibility_settings_activity_title (8562004288733103868) -->
-    <skip />
+    <string name="accessibility_settings_activity_title" msgid="8562004288733103868">"प्रवेशयोग्यता"</string>
 </resources>

@@ -66,7 +66,10 @@
     <string name="phone_accounts_selection_header" msgid="1365215726106915865">"Account telefono"</string>
     <string name="phone_accounts_add_sip_account" msgid="2023821743341923271">"Aggiungi account SIP"</string>
     <string name="phone_accounts_configure_account_settings" msgid="1361715069911607109">"Configurazione delle impostazioni dell\'account"</string>
-    <string name="phone_account_wifi_calling" msgid="1840272538233414629">"Chiamate Wi-Fi"</string>
+    <!-- no translation found for wifi_calling (739018212480165598) -->
+    <skip />
+    <!-- no translation found for wifi_calling_off_summary (2992184822432174168) -->
+    <skip />
     <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"Non utilizzare chiamate Wi-Fi"</string>
     <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"Non utilizzare assistente chiamate"</string>
     <string name="wifi_calling_call_assistant_none" msgid="6283702349285593683">"Nessuno"</string>
@@ -198,6 +201,12 @@
   </string-array>
     <string name="enhanced_4g_lte_mode_title" msgid="522191650223239171">"Modalità 4G LTE avanzata"</string>
     <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"Usa i servizi LTE per migliorare la voce e le altre comunicazioni (consigliato)"</string>
+    <!-- no translation found for wfc_mode_wifi_preferred_summary (9143208157600896911) -->
+    <skip />
+    <!-- no translation found for wfc_mode_cellular_preferred_summary (2259869029990883080) -->
+    <skip />
+    <!-- no translation found for wfc_mode_wifi_only_summary (6176822199433274101) -->
+    <skip />
     <string name="data_enabled" msgid="5972538663568715366">"Dati attivati"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"Consenti l\'utilizzo dei dati"</string>
     <string name="roaming" msgid="8871412572928323707">"Roaming dati"</string>
@@ -378,7 +387,8 @@
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"Lettura da SIM..."</string>
     <string name="simContacts_empty" msgid="5270660846489561932">"Nessun contatto presente nella SIM."</string>
     <string name="simContacts_title" msgid="1861472842524839921">"Seleziona contatti da importare"</string>
-    <string name="simContacts_airplaneMode" msgid="1846161429087789936">"Per importare i contatti dalla scheda SIM, prima disattiva la modalità aereo."</string>
+    <!-- no translation found for simContacts_airplaneMode (5254946758982621072) -->
+    <skip />
     <string name="enable_pin" msgid="5422767284133234860">"Attiva/disattiva PIN di SIM"</string>
     <string name="change_pin" msgid="9174186126330785343">"Cambia PIN SIM"</string>
     <string name="enter_pin_text" msgid="8532615714751931951">"PIN della SIM:"</string>
@@ -439,9 +449,14 @@
     <string name="notification_action_end_call" msgid="6069460915123531620">"Riaggancia"</string>
     <string name="notification_missedCall_call_back" msgid="2684890353590890187">"Richiama"</string>
     <string name="notification_missedCall_message" msgid="3049928912736917988">"Messaggio"</string>
-    <string name="incall_error_power_off" msgid="6550191216405193368">"Per fare una telefonata, disattiva la modalità aereo."</string>
+    <!-- no translation found for incall_error_power_off (2947938060513306698) -->
+    <skip />
+    <!-- no translation found for incall_error_power_off_wfc (8711428920632416575) -->
+    <skip />
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"Non registrato sulla rete."</string>
     <string name="incall_error_out_of_service" msgid="4100065333878929223">"Rete cellulare non disponibile."</string>
+    <!-- no translation found for incall_error_out_of_service_wfc (323851839058697057) -->
+    <skip />
     <string name="incall_error_no_phone_number_supplied" msgid="1150414018684246528">"Per effettuare una chiamata, inserisci un numero valido."</string>
     <string name="incall_error_call_failed" msgid="6302746943230078197">"Impossibile chiamare."</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"Inizio sequenza MMI..."</string>
@@ -452,6 +467,8 @@
     <string name="incall_error_supp_service_conference" msgid="2505727299596357312">"Audioconferenze non disponibili"</string>
     <string name="incall_error_supp_service_reject" msgid="8998568661508655638">"Impossibile rifiutare la chiamata."</string>
     <string name="incall_error_supp_service_hangup" msgid="7434513517153834426">"Impossibile riagganciare."</string>
+    <!-- no translation found for incall_error_wfc_only_no_wireless_network (1782466780452640089) -->
+    <skip />
     <string name="emergency_enable_radio_dialog_title" msgid="4627849966634578257">"Chiamata di emergenza"</string>
     <string name="emergency_enable_radio_dialog_message" msgid="207613549344420291">"Attivazione segnale cellulare..."</string>
     <string name="emergency_enable_radio_dialog_retry" msgid="5960061579996526883">"Nessun servizio. Nuovo tentativo…"</string>
