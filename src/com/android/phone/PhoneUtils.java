@@ -979,7 +979,7 @@ public class PhoneUtils {
                             .create();
 
                     sUssdDialog.getWindow().setType(
-                            WindowManager.LayoutParams.TYPE_SYSTEM_DIALOG);
+                            WindowManager.LayoutParams.TYPE_KEYGUARD_DIALOG);
                     sUssdDialog.getWindow().addFlags(
                             WindowManager.LayoutParams.FLAG_DIM_BEHIND);
                 }
