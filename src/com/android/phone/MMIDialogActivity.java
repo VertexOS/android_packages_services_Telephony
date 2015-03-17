@@ -69,6 +69,20 @@ public class MMIDialogActivity extends Activity {
         showMMIDialog();
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        if (mMMIDialog != null) {
+            mMMIDialog.dismiss();
+            mMMIDialog = null;
+        }
+        if (mHandler != null) {
+            mCM.unregisterForMmiComplete(mHandler);
+            mHandler = null;
+        }
+    }
+
     private void showMMIDialog() {
         final List<? extends MmiCode> codes = mPhone.getPendingMmiCodes();
         if (codes.size() > 0) {
@@ -127,9 +141,11 @@ public class MMIDialogActivity extends Activity {
     private void dismissDialogsAndFinish() {
         if (mMMIDialog != null) {
             mMMIDialog.dismiss();
+            mMMIDialog = null;
         }
         if (mHandler != null) {
             mCM.unregisterForMmiComplete(mHandler);
+            mHandler = null;
         }
         finish();
     }
