@@ -1162,7 +1162,7 @@ public class CallFeaturesSetting extends PreferenceActivity
             mButtonAutoRetry = null;
         }
 
-        if (!getResources().getBoolean(R.bool.world_phone)) {
+        if (!PhoneGlobals.getInstance().phoneMgr.isWorldPhone()) {
             Preference cdmaOptions = prefSet.findPreference(BUTTON_CDMA_OPTIONS);
             prefSet.removePreference(cdmaOptions);
 

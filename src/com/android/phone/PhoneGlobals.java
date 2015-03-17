@@ -144,7 +144,7 @@ public class PhoneGlobals extends ContextWrapper {
     CallNotifier notifier;
     CallerInfoCache callerInfoCache;
     NotificationMgr notificationMgr;
-    PhoneInterfaceManager phoneMgr;
+    public PhoneInterfaceManager phoneMgr;
 
     private BluetoothManager bluetoothManager;
     private CallGatewayManager callGatewayManager;
