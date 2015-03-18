@@ -66,10 +66,8 @@
     <string name="phone_accounts_selection_header" msgid="1365215726106915865">"Contas de telefone"</string>
     <string name="phone_accounts_add_sip_account" msgid="2023821743341923271">"Adicionar conta SIP"</string>
     <string name="phone_accounts_configure_account_settings" msgid="1361715069911607109">"Configurar conta"</string>
-    <!-- no translation found for wifi_calling (739018212480165598) -->
-    <skip />
-    <!-- no translation found for wifi_calling_off_summary (2992184822432174168) -->
-    <skip />
+    <string name="wifi_calling" msgid="739018212480165598">"Chamadas por Wi-Fi"</string>
+    <string name="wifi_calling_off_summary" msgid="2992184822432174168">"Desativado"</string>
     <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"Não usar chamadas por Wi-Fi"</string>
     <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"Não usar o assistente de chamada"</string>
     <string name="wifi_calling_call_assistant_none" msgid="6283702349285593683">"Nenhum"</string>
@@ -201,12 +199,9 @@
   </string-array>
     <string name="enhanced_4g_lte_mode_title" msgid="522191650223239171">"Modo 4G LTE avançado"</string>
     <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"Usar serviços de LTE para melhorar a voz e outras comunicações (recomendado)"</string>
-    <!-- no translation found for wfc_mode_wifi_preferred_summary (9143208157600896911) -->
-    <skip />
-    <!-- no translation found for wfc_mode_cellular_preferred_summary (2259869029990883080) -->
-    <skip />
-    <!-- no translation found for wfc_mode_wifi_only_summary (6176822199433274101) -->
-    <skip />
+    <string name="wfc_mode_wifi_preferred_summary" msgid="9143208157600896911">"Wi-Fi preferido: usa a rede celular apenas se o Wi-Fi não está disponível"</string>
+    <string name="wfc_mode_cellular_preferred_summary" msgid="2259869029990883080">"Celular preferido: usa o Wi-Fi apenas se a rede celular não está disponível"</string>
+    <string name="wfc_mode_wifi_only_summary" msgid="6176822199433274101">"Wi-Fi apenas: nunca usa rede celular. Não faz nem recebe chamadas se o Wi-Fi não está disponível"</string>
     <string name="data_enabled" msgid="5972538663568715366">"Dados ativados"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"Permitir o uso de dados"</string>
     <string name="roaming" msgid="8871412572928323707">"Roaming de dados"</string>
@@ -383,8 +378,7 @@
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"Lendo a partir do cartão SIM…"</string>
     <string name="simContacts_empty" msgid="5270660846489561932">"Não há contatos no seu cartão SIM."</string>
     <string name="simContacts_title" msgid="1861472842524839921">"Selecione os contatos a serem importados"</string>
-    <!-- no translation found for simContacts_airplaneMode (5254946758982621072) -->
-    <skip />
+    <string name="simContacts_airplaneMode" msgid="5254946758982621072">"Desative o modo avião para importar contatos do cartão SIM."</string>
     <string name="enable_pin" msgid="5422767284133234860">"Ativar/desativar PIN do SIM"</string>
     <string name="change_pin" msgid="9174186126330785343">"Alterar PIN do SIM"</string>
     <string name="enter_pin_text" msgid="8532615714751931951">"PIN do SIM:"</string>
@@ -445,14 +439,11 @@
     <string name="notification_action_end_call" msgid="6069460915123531620">"Desligar"</string>
     <string name="notification_missedCall_call_back" msgid="2684890353590890187">"Retornar chamada"</string>
     <string name="notification_missedCall_message" msgid="3049928912736917988">"Mensagem"</string>
-    <!-- no translation found for incall_error_power_off (2947938060513306698) -->
-    <skip />
-    <!-- no translation found for incall_error_power_off_wfc (8711428920632416575) -->
-    <skip />
+    <string name="incall_error_power_off" msgid="2947938060513306698">"Desative o modo avião para fazer uma chamada."</string>
+    <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"Desative o modo avião ou conecte-se a uma rede sem fio para fazer uma chamada."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"Não registrado na rede."</string>
     <string name="incall_error_out_of_service" msgid="4100065333878929223">"Rede celular não disponível."</string>
-    <!-- no translation found for incall_error_out_of_service_wfc (323851839058697057) -->
-    <skip />
+    <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"A rede celular não está disponível. Conecte-se a uma rede sem fio para fazer uma chamada."</string>
     <string name="incall_error_no_phone_number_supplied" msgid="1150414018684246528">"Para realizar uma chamada, digite um número válido."</string>
     <string name="incall_error_call_failed" msgid="6302746943230078197">"Não é possível realizar chamadas."</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"Iniciando sequência MMI…"</string>
@@ -463,8 +454,7 @@
     <string name="incall_error_supp_service_conference" msgid="2505727299596357312">"Não é possível realizar conferências telefônicas."</string>
     <string name="incall_error_supp_service_reject" msgid="8998568661508655638">"Não é possível rejeitar a chamada."</string>
     <string name="incall_error_supp_service_hangup" msgid="7434513517153834426">"Não é possível liberar chamadas."</string>
-    <!-- no translation found for incall_error_wfc_only_no_wireless_network (1782466780452640089) -->
-    <skip />
+    <string name="incall_error_wfc_only_no_wireless_network" msgid="1782466780452640089">"Conecte-se a uma rede sem fio para fazer uma chamada."</string>
     <string name="emergency_enable_radio_dialog_title" msgid="4627849966634578257">"Chamada de emergência"</string>
     <string name="emergency_enable_radio_dialog_message" msgid="207613549344420291">"Ativando o rádio…"</string>
     <string name="emergency_enable_radio_dialog_retry" msgid="5960061579996526883">"Sem serviço. Tentando novamente..."</string>
