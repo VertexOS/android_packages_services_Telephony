@@ -505,6 +505,12 @@
                 android:uiOptions="splitActionBarWhenNarrow">
         </activity>
 
+        <activity android:name="ImsEditor"
+                android:theme="@style/DialerSettingsLight"
+                android:configChanges="orientation|screenSize|keyboardHidden"
+                android:uiOptions="splitActionBarWhenNarrow">
+        </activity>
+
         <!-- End SIP -->
 
         <activity android:name="ErrorDialogActivity"

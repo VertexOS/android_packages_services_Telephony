@@ -35,11 +35,12 @@ public class VoicemailDialogUtil {
     public static final int VM_FWD_SAVING_DIALOG = 601;
     public static final int VM_FWD_READING_DIALOG = 602;
     public static final int VM_REVERTING_DIALOG = 603;
+    public static final int TTY_SET_RESPONSE_ERROR = 800;
 
     public static Dialog getDialog(CallFeaturesSetting parent, int id) {
         if ((id == VM_RESPONSE_ERROR_DIALOG) || (id == VM_NOCHANGE_ERROR_DIALOG) ||
             (id == FWD_SET_RESPONSE_ERROR_DIALOG) || (id == FWD_GET_RESPONSE_ERROR_DIALOG) ||
-                (id == VM_CONFIRM_DIALOG)) {
+                (id == VM_CONFIRM_DIALOG) || (id == TTY_SET_RESPONSE_ERROR)) {
 
             AlertDialog.Builder b = new AlertDialog.Builder(parent);
 
@@ -74,6 +75,12 @@ public class VoicemailDialogUtil {
                     msgId = R.string.fw_get_in_vm_failed;
                     b.setPositiveButton(R.string.alert_dialog_yes, parent);
                     b.setNegativeButton(R.string.alert_dialog_no, parent);
+                    break;
+                case TTY_SET_RESPONSE_ERROR:
+                    titleId = R.string.tty_mode_option_title;
+                    msgId = R.string.tty_mode_not_allowed_video_call;
+                    b.setIconAttribute(android.R.attr.alertDialogIcon);
+                    b.setPositiveButton(R.string.ok, parent);
                     break;
                 default:
                     msgId = R.string.exception_error;

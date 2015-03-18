@@ -753,7 +753,8 @@
     <string name="tty_mode_option_summary">Set TTY mode</string>
     <string name="auto_retry_mode_title">Auto-retry</string>
     <string name="auto_retry_mode_summary">Enable Auto-retry mode</string>
-
+    <!-- TTY Mode change is NOT allowed during a video call -->
+    <string name="tty_mode_not_allowed_video_call">TTY Mode change is not allowed during a video call</string>
     <!-- FDN list screen: menu item label -->
     <string name="menu_add">Add contact</string>
     <!-- FDN list screen: menu item label -->
@@ -1298,4 +1299,17 @@
     <!-- DO NOT TRANSLATE. Internal key for a voicemail notification preference. -->
     <string name="wifi_calling_settings_key">button_wifi_calling_settings_key</string>
 
+    <!-- IMS settings related strings -->
+    <!-- Title of the ims editor screen. [CHAR LIMIT=NONE] -->
+    <string name="ims_edit_title">IMS account details</string>
+    <!-- Title displayed IMS account settings in the sip settings category. [CHAR LIMIT=NONE] -->
+    <string name="ims_accounts_title">IMS Account</string>
+
+    <!-- VT call quality settings. -->
+    <string translatable="false" name="ims_vt_call_quality">VtCallQuality</string>
+    <string name="ims_vt_call_quality_title">VT Call Quality</string>
+    <string name="ims_vt_call_quality_low">Low</string>
+    <string name="ims_vt_call_quality_high">High</string>
+    <string name="ims_vt_call_quality_unknown">Unknown</string>
+    <string name="ims_vt_call_quality_set_failed">Failed to set video quality</string>
 </resources>

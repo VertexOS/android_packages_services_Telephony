@@ -155,13 +155,16 @@ final class CdmaConnection extends TelephonyConnection {
         mIsCallWaiting = originalConnection != null &&
                 originalConnection.getState() == Call.State.WAITING;
 
-        if (state == android.telecom.Connection.STATE_DIALING) {
-            if (isEmergency()) {
-                mEmergencyTonePlayer.start();
+        if (mEmergencyTonePlayer != null) {
+            if (state == android.telecom.Connection.STATE_DIALING) {
+                if (isEmergency()) {
+                    mEmergencyTonePlayer.start();
+                }
+            } else {
+                // No need to check if it is an emergency call, since it is a no-op if it
+                // isn't started.
+                mEmergencyTonePlayer.stop();
             }
-        } else {
-            // No need to check if it is an emergency call, since it is a no-op if it isn't started.
-            mEmergencyTonePlayer.stop();
         }
 
         super.onStateChanged(state);

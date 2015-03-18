@@ -336,6 +336,10 @@ public class CallFeaturesSetting extends PreferenceActivity
         } else if (preference == mButtonDTMF) {
             return true;
         } else if (preference == mButtonTTY) {
+            if(mPhone.isVideoCallPresent()) {
+                // TTY Mode change is not allowed during a VT call
+                showDialogIfForeground(VoicemailDialogUtil.TTY_SET_RESPONSE_ERROR);
+            }
             return true;
         } else if (preference == mButtonAutoRetry) {
             android.provider.Settings.Global.putInt(mPhone.getContext().getContentResolver(),
