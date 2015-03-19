@@ -19,7 +19,12 @@ import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.content.ContentResolver;
 import android.content.Context;
+import android.provider.VoicemailContract;
+import android.telecom.PhoneAccountHandle;
+import android.telephony.SubscriptionManager;
 import android.util.Log;
+
+import com.android.phone.PhoneUtils;
 
 /**
  * A singleton class designed to assist in OMTP visual voicemail sync behavior.
@@ -34,6 +39,8 @@ public class OmtpVvmSyncAccountManager {
 
     private static OmtpVvmSyncAccountManager sInstance = new OmtpVvmSyncAccountManager();
 
+    private Context mContext;
+    private SubscriptionManager mSubscriptionManager;
     private AccountManager mAccountManager;
 
     /**
@@ -42,16 +49,18 @@ public class OmtpVvmSyncAccountManager {
     private OmtpVvmSyncAccountManager() {}
 
     public static OmtpVvmSyncAccountManager getInstance(Context context) {
-        sInstance.setAccountManager(context);
+        sInstance.setup(context);
         return sInstance;
     }
 
     /**
-     * Set the account manager so it does not need to be retrieved every time.
-     * @param context The context to get the account manager for.
+     * Set the context and system services so they do not need to be retrieved every time.
+     * @param context The context to get the account manager and subscription manager for.
      */
-    private void setAccountManager(Context context) {
-        if (mAccountManager == null) {
+    private void setup(Context context) {
+        if (mContext == null) {
+            mContext = context;
+            mSubscriptionManager = SubscriptionManager.from(context);
             mAccountManager = AccountManager.get(context);
         }
     }
@@ -70,6 +79,26 @@ public class OmtpVvmSyncAccountManager {
              ContentResolver.setSyncAutomatically(account, AUTHORITY, true);
         } else {
             Log.w(TAG, "Attempted to re-register existing account.");
+        }
+    }
+
+    /**
+     * When a voicemail source is removed, we don't always know which one was removed. Check the
+     * list of registered sync accounts against the active subscriptions list and remove the
+     * inactive accounts.
+     */
+    public void removeInactiveAccounts() {
+        Account[] registeredAccounts = mAccountManager.getAccountsByType(ACCOUNT_TYPE);
+        for (int i = 0; i < registeredAccounts.length; i++) {
+            PhoneAccountHandle handle = PhoneUtils.makePstnPhoneAccountHandle(
+                    registeredAccounts[i].name);
+            if (!PhoneUtils.isPhoneAccountActive(mSubscriptionManager, handle)) {
+                mAccountManager.removeAccount(registeredAccounts[i], null, null, null);
+                VoicemailContract.Status.setStatus(mContext, handle,
+                        VoicemailContract.Status.CONFIGURATION_STATE_NOT_CONFIGURED,
+                        VoicemailContract.Status.DATA_CHANNEL_STATE_NO_CONNECTION,
+                        VoicemailContract.Status.NOTIFICATION_CHANNEL_STATE_NO_CONNECTION);
+            }
         }
     }
 
