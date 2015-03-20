@@ -1283,6 +1283,9 @@
     <!-- Configuration setting for world mode Format is <true;GID if any to be checked>-->
     <string translatable="false" name="config_world_mode"/>
 
+    <!-- Status hint label for an incoming call over a wifi network which has not been accepted yet.
+         [CHAR LIMIT=25] -->
+    <string name="status_hint_label_incoming_wifi_call">Incoming Wi-Fi call</string>
     <!-- Status hint label for a call being made over a wifi network. [CHAR LIMIT=25] -->
     <string name="status_hint_label_wifi_call">Wi-Fi call</string>
 
