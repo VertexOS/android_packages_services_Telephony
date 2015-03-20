@@ -16,6 +16,8 @@
 
 package com.android.services.telephony;
 
+import android.content.ComponentName;
+import android.content.Context;
 import android.net.Uri;
 import android.os.AsyncResult;
 import android.os.Handler;
@@ -24,12 +26,14 @@ import android.telecom.AudioState;
 import android.telecom.ConferenceParticipant;
 import android.telecom.Connection;
 import android.telecom.PhoneAccount;
+import android.telecom.StatusHints;
 
 import com.android.internal.telephony.Call;
 import com.android.internal.telephony.CallStateException;
 import com.android.internal.telephony.Connection.PostDialListener;
 import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.imsphone.ImsPhoneConnection;
+import com.android.phone.R;
 
 import java.lang.Override;
 import java.util.Collections;
@@ -790,6 +794,19 @@ abstract class TelephonyConnection extends Connection {
     public void setWifi(boolean isWifi) {
         mIsWifi = isWifi;
         updateConnectionCapabilities();
+
+        if (mIsWifi && mOriginalConnection.isIncoming()) {
+            Context context = getPhone().getContext();
+            ComponentName componentName =
+                    new ComponentName(context, TelephonyConnectionService.class);
+            setStatusHints(new StatusHints(
+                    new ComponentName(context, TelephonyConnectionService.class),
+                    context.getString(R.string.status_hint_label_wifi_call),
+                    R.drawable.ic_signal_wifi_4_bar_24dp,
+                    null /* extras */));
+        } else {
+            setStatusHints(null);
+        }
     }
 
     /**
