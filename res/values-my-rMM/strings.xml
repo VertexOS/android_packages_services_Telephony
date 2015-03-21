@@ -510,18 +510,18 @@
     <string name="phone_entered_ecm_text" msgid="6266424252578731203">"အရေးပေါ်ပြန်လည်ခေါ်ဆိုမှုအား ရိုက်သွင်းပြီး"</string>
     <string name="phone_in_ecm_notification_title" msgid="3226896828951687085">"အရေးပေါ်ပြန်လည်ခေါ်ဆိုမှု"</string>
     <string name="phone_in_ecm_call_notification_text" msgid="4611608947314729773">"ဒေတာဆက်သွယ်မှု မရှိပါ"</string>
-    <plurals name="phone_in_ecm_notification_time" formatted="false" msgid="8308381858502470919">
-      <item quantity="other"> ဒေတာဆက်သွယ်မှု <xliff:g id="COUNT_1">%s</xliff:g> မိနစ်မရှိပါ</item>
-      <item quantity="one"> ဒေတာဆက်သွယ်မှု <xliff:g id="COUNT_0">%s</xliff:g> မိနစ်မရှိပါ</item>
-    </plurals>
-    <plurals name="alert_dialog_exit_ecm" formatted="false" msgid="7179911675595441201">
-      <item quantity="other"> ဖုန်းသည် <xliff:g id="COUNT_1">%s</xliff:g> မိနစ်လောက် အရေးပေါ် ပြန်ခေါ်ခြင်းမုဒ်တွင် ရှိနေလိမ့်မည်။ ဤမုဒ်တွင် ဒေတာချိတ်ဆက်မှုအသုံးပြုသည့် app များကို အသုံးပြု၍ ရနိုင်မည်မဟုတ်ပါ။ ယခုထွက်လိုပါသလား? </item>
-      <item quantity="one"> ဖုန်းသည် <xliff:g id="COUNT_0">%s</xliff:g> မိနစ်လောက် အရေးပေါ် ပြန်ခေါ်ခြင်းမုဒ်တွင် ရှိနေလိမ့်မည်။ ဤမုဒ်တွင် ဒေတာချိတ်ဆက်မှုအသုံးပြုသည့် app များကို အသုံးပြု၍ ရနိုင်မည်မဟုတ်ပါ။ ယခုထွက်လိုပါသလား?</item>
-    </plurals>
-    <plurals name="alert_dialog_not_avaialble_in_ecm" formatted="false" msgid="8042973425225093895">
-      <item quantity="other"> ရွေးချယ်ထားသော အပြုအမူမှာ အရေပေါ်ခေါ်ဆိုမှုပြုလုပ်နေစဉ် မရှိနိုင်ပါ။ ဖုန်းသည်ဤ မုဒ်တွင် <xliff:g id="COUNT_1">%s</xliff:g> မိနစ်ရှိနေမည်ဖြစ်သည်။ ယခုထွက်လိုပါသလား?</item>
-      <item quantity="one"> အရေးပေါ် ပြန်လည်ခေါ်ဆိုခြင်းမုဒ်တွင် ရွေးချယ်သည့် လုပ်ရပ်မလုပ်ဆောင်နိုင်ပါ။ ဖုန်းသည်ဤ မုဒ်တွင် <xliff:g id="COUNT_0">%s</xliff:g> မိနစ်ရှိနေမည်ဖြစ်သည်။ ယခုထွက်လိုပါသလား?</item>
-    </plurals>
+  <plurals name="phone_in_ecm_notification_time">
+    <item quantity="one" msgid="4866221796252472622">"<xliff:g id="COUNT">%s</xliff:g> မိနစ် ဒေတာဆက်သွယ်မှု မရှိပါ။"</item>
+    <item quantity="other" msgid="3122217344579273583">"<xliff:g id="COUNT">%s</xliff:g> မိနစ် ဒေတာဆက်သွယ်မှု  မရှိပါ။"</item>
+  </plurals>
+  <plurals name="alert_dialog_exit_ecm">
+    <item quantity="one" msgid="8060210887681426682">"ဖုန်းဟာ အရေးပေါ်ပြန်ခေါ်ရေး အခြေအနေမှာ <xliff:g id="COUNT">%s</xliff:g> မိနစ် ဖြစ်နေပါမည်။ ဒီအခြေအနေမှာ ရှိနေစဉ် ဒေတာ သုံးစွဲသော အပ်ပလီကေးရှင်းများ အသုံးပြုလို့ မရပါ။ ဒီကနေ ထွက်ချင်ပါသလား?"</item>
+    <item quantity="other" msgid="8617116564023933114">"ဖုန်းဟာ အရေးပေါ်ပြန်ခေါ်ရေး အခြေအနေမှာ <xliff:g id="COUNT">%s</xliff:g> မိနစ် ဖြစ်နေပါမည်။ ဒီအခြေအနေမှာ ရှိနေစဉ် ဒေတာ သုံးစွဲသော အပ်ပလီကေးရှင်းများ အသုံးပြုလို့ မရပါ။ ဒီကနေ ထွက်ချင်ပါသလား?"</item>
+  </plurals>
+  <plurals name="alert_dialog_not_avaialble_in_ecm">
+    <item quantity="one" msgid="2585506997024726599">"ရွေးချယ်သော အပြုအမူဟာ အရေးပေါ် ပြန်ခေါ်မှု အခြေအနေမှာ မပြုလုပ်နိုင်ပါ။ ဖုန်းဟာ ဒီအခြေအနေမှာ <xliff:g id="COUNT">%s</xliff:g> မိနစ် ရှိနေမှာ ဖြစ်ပါသည်။ ဒီကနေ ထွက်ချင်ပါသလား?"</item>
+    <item quantity="other" msgid="6115622137771382224">"ရွေးချယ်သော အပြုအမူဟာ အရေးပေါ် ပြန်ခေါ်မှု အခြေအနေမှာ မပြုလုပ်နိုင်ပါ။ ဖုန်းဟာ ဒီအခြေအနေမှာ <xliff:g id="COUNT">%s</xliff:g> မိနစ် ရှိနေမှာ ဖြစ်ပါသည်။  ဒီကနေ ထွက်ချင်ပါသလား?"</item>
+  </plurals>
     <string name="alert_dialog_in_ecm_call" msgid="1886723687211887104">"ရွေးချယ်ထားသော အပြုအမူမှာ အရေပေါ်ခေါ်ဆိုမှုပြုလုပ်နေစဉ် မရှိနိုင်ပါ"</string>
     <string name="progress_dialog_exiting_ecm" msgid="4835734101617817074">"အရေးပေါ်ပြန်လည်ခေါ်ဆိုမှု အခြေအနေအား ထွက်ပါမည်"</string>
     <string name="alert_dialog_yes" msgid="6674268047820703974">"ဟုတ်သည်"</string>

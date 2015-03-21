@@ -510,18 +510,18 @@
     <string name="phone_entered_ecm_text" msgid="6266424252578731203">"Entered Emergency Callback Mode"</string>
     <string name="phone_in_ecm_notification_title" msgid="3226896828951687085">"Emergency Callback Mode"</string>
     <string name="phone_in_ecm_call_notification_text" msgid="4611608947314729773">"Data connection disabled"</string>
-    <plurals name="phone_in_ecm_notification_time" formatted="false" msgid="8308381858502470919">
-      <item quantity="other">No data connection for <xliff:g id="COUNT_1">%s</xliff:g> minutes</item>
-      <item quantity="one">No data connection for <xliff:g id="COUNT_0">%s</xliff:g> minute</item>
-    </plurals>
-    <plurals name="alert_dialog_exit_ecm" formatted="false" msgid="7179911675595441201">
-      <item quantity="other">The phone will be in Emergency Callback mode for <xliff:g id="COUNT_1">%s</xliff:g> minutes. While in this mode no applications using a data connection can be used. Do you want to exit now?</item>
-      <item quantity="one">The phone will be in Emergency Callback mode for <xliff:g id="COUNT_0">%s</xliff:g> minute. While in this mode no apps using a data connection can be used. Do you want to exit now?</item>
-    </plurals>
-    <plurals name="alert_dialog_not_avaialble_in_ecm" formatted="false" msgid="8042973425225093895">
-      <item quantity="other">The selected action isn\'t available while in the Emergency Callback mode. The phone will be in this mode for <xliff:g id="COUNT_1">%s</xliff:g> minutes. Do you want to exit now?</item>
-      <item quantity="one">The selected action isn\'t available while in the Emergency Callback mode. The phone will be in this mode for <xliff:g id="COUNT_0">%s</xliff:g> minute. Do you want to exit now?</item>
-    </plurals>
+  <plurals name="phone_in_ecm_notification_time">
+    <item quantity="one" msgid="4866221796252472622">"No data connection for <xliff:g id="COUNT">%s</xliff:g> minute"</item>
+    <item quantity="other" msgid="3122217344579273583">"No data connection for <xliff:g id="COUNT">%s</xliff:g> minutes"</item>
+  </plurals>
+  <plurals name="alert_dialog_exit_ecm">
+    <item quantity="one" msgid="8060210887681426682">"The phone will be in Emergency Callback mode for <xliff:g id="COUNT">%s</xliff:g> minute. While in this mode no apps using a data connection can be used. Do you want to exit now?"</item>
+    <item quantity="other" msgid="8617116564023933114">"The phone will be in Emergency Callback mode for <xliff:g id="COUNT">%s</xliff:g> minutes. While in this mode no applications using a data connection can be used. Do you want to exit now?"</item>
+  </plurals>
+  <plurals name="alert_dialog_not_avaialble_in_ecm">
+    <item quantity="one" msgid="2585506997024726599">"The selected action isn\'t available while in the Emergency Callback mode. The phone will be in this mode for <xliff:g id="COUNT">%s</xliff:g> minute. Do you want to exit now?"</item>
+    <item quantity="other" msgid="6115622137771382224">"The action selected isn\'t available while in the Emergency Callback mode. The phone will be in this mode for <xliff:g id="COUNT">%s</xliff:g> minutes. Do you want to exit now?"</item>
+  </plurals>
     <string name="alert_dialog_in_ecm_call" msgid="1886723687211887104">"The action selected isn\'t available during an emergency call."</string>
     <string name="progress_dialog_exiting_ecm" msgid="4835734101617817074">"Exiting Emergency Callback mode"</string>
     <string name="alert_dialog_yes" msgid="6674268047820703974">"Yes"</string>

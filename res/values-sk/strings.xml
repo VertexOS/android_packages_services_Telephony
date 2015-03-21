@@ -510,24 +510,18 @@
     <string name="phone_entered_ecm_text" msgid="6266424252578731203">"Bol aktivovaný režim tiesňového spätného volania"</string>
     <string name="phone_in_ecm_notification_title" msgid="3226896828951687085">"Režim tiesňového spätného volania"</string>
     <string name="phone_in_ecm_call_notification_text" msgid="4611608947314729773">"Dátové pripojenie zakázané"</string>
-    <plurals name="phone_in_ecm_notification_time" formatted="false" msgid="8308381858502470919">
-      <item quantity="few">Žiadne dátové pripojenie – <xliff:g id="COUNT_1">%s</xliff:g> min</item>
-      <item quantity="many">Žiadne dátové pripojenie – <xliff:g id="COUNT_1">%s</xliff:g> min</item>
-      <item quantity="other">Žiadne dátové pripojenie – <xliff:g id="COUNT_1">%s</xliff:g> min</item>
-      <item quantity="one">Žiadne dátové pripojenie – <xliff:g id="COUNT_0">%s</xliff:g> min</item>
-    </plurals>
-    <plurals name="alert_dialog_exit_ecm" formatted="false" msgid="7179911675595441201">
-      <item quantity="few">Telefón bude <xliff:g id="COUNT_1">%s</xliff:g> minúty v režime spätného tiesňového volania. Keď bude v tomto režime, nesmiete používať žiadne aplikácie využívajúce dátové pripojenie. Chcete ho ukončiť?</item>
-      <item quantity="many">Telefón bude <xliff:g id="COUNT_1">%s</xliff:g> minúty v režime spätného tiesňového volania. Keď bude v tomto režime, nesmiete používať žiadne aplikácie využívajúce dátové pripojenie. Chcete ho ukončiť?</item>
-      <item quantity="other">Telefón bude <xliff:g id="COUNT_1">%s</xliff:g> minút v režime spätného tiesňového volania. Keď bude v tomto režime, nesmiete používať žiadne aplikácie využívajúce dátové pripojenie. Chcete ho ukončiť?</item>
-      <item quantity="one">Telefón bude <xliff:g id="COUNT_0">%s</xliff:g> minútu v režime spätného tiesňového volania. Keď bude v tomto režime, nesmiete používať žiadne aplikácie využívajúce dátové pripojenie. Chcete ho ukončiť?</item>
-    </plurals>
-    <plurals name="alert_dialog_not_avaialble_in_ecm" formatted="false" msgid="8042973425225093895">
-      <item quantity="few">Pri spustenom režime spätného tiesňového volania nie je vybraná akcia k dispozícii. Telefón bude v tomto režime <xliff:g id="COUNT_1">%s</xliff:g> minúty. Chcete ho ukončiť?</item>
-      <item quantity="many">Pri spustenom režime spätného tiesňového volania nie je vybraná akcia k dispozícii. Telefón bude v tomto režime <xliff:g id="COUNT_1">%s</xliff:g> minúty. Chcete ho ukončiť?</item>
-      <item quantity="other">Pri spustenom režime spätného tiesňového volania nie je vybraná akcia k dispozícii. Telefón bude v tomto režime <xliff:g id="COUNT_1">%s</xliff:g> minút. Chcete ho ukončiť?</item>
-      <item quantity="one">Pri spustenom režime spätného tiesňového volania nie je vybraná akcia k dispozícii. Telefón bude v tomto režime <xliff:g id="COUNT_0">%s</xliff:g> minútu. Chcete ho ukončiť?</item>
-    </plurals>
+  <plurals name="phone_in_ecm_notification_time">
+    <item quantity="one" msgid="4866221796252472622">"Žiadne dátové pripojenie po dobu <xliff:g id="COUNT">%s</xliff:g> min"</item>
+    <item quantity="other" msgid="3122217344579273583">"Žiadne dátové pripojenie po dobu <xliff:g id="COUNT">%s</xliff:g> min"</item>
+  </plurals>
+  <plurals name="alert_dialog_exit_ecm">
+    <item quantity="one" msgid="8060210887681426682">"Telefón bude v režime spätného núdzového volania počas <xliff:g id="COUNT">%s</xliff:g> min. V tomto režime nie je možné používať žiadne aplikácie používajúce dátové pripojenie. Chcete ho ukončiť?"</item>
+    <item quantity="other" msgid="8617116564023933114">"Telefón bude v režime spätného núdzového volania počas <xliff:g id="COUNT">%s</xliff:g> min. V tomto režime nie je možné používať žiadne aplikácie používajúce dátové pripojenie. Chcete ho ukončiť?"</item>
+  </plurals>
+  <plurals name="alert_dialog_not_avaialble_in_ecm">
+    <item quantity="one" msgid="2585506997024726599">"Vybratá akcia nie je k dispozícii v režime Tiesňového spätného volania. Telefón v ňom bude <xliff:g id="COUNT">%s</xliff:g> min. Chcete ho ukončiť?"</item>
+    <item quantity="other" msgid="6115622137771382224">"Vybratá akcia nie je k dispozícii v režime Tiesňového spätného volania. Telefón v ňom bude <xliff:g id="COUNT">%s</xliff:g> min. Chcete ho ukončiť?"</item>
+  </plurals>
     <string name="alert_dialog_in_ecm_call" msgid="1886723687211887104">"Počas tiesňového volania nie je vybratá akcia k dispozícii."</string>
     <string name="progress_dialog_exiting_ecm" msgid="4835734101617817074">"Ukončenie režimu tiesňového spätného volania"</string>
     <string name="alert_dialog_yes" msgid="6674268047820703974">"Áno"</string>

@@ -66,10 +66,8 @@
     <string name="phone_accounts_selection_header" msgid="1365215726106915865">"फोन खाती"</string>
     <string name="phone_accounts_add_sip_account" msgid="2023821743341923271">"SIP खाते जोडा"</string>
     <string name="phone_accounts_configure_account_settings" msgid="1361715069911607109">"खाते सेटिंग्ज कॉन्‍फिगर करा"</string>
-    <!-- no translation found for wifi_calling (739018212480165598) -->
-    <skip />
-    <!-- no translation found for wifi_calling_off_summary (2992184822432174168) -->
-    <skip />
+    <string name="wifi_calling" msgid="739018212480165598">"वाय-फाय कॉलिंग"</string>
+    <string name="wifi_calling_off_summary" msgid="2992184822432174168">"बंद"</string>
     <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"वाय-फाय कॉल करणे वापरू नका"</string>
     <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"कॉल सहाय्यक वापरू नका"</string>
     <string name="wifi_calling_call_assistant_none" msgid="6283702349285593683">"काहीही नाही"</string>
@@ -201,12 +199,9 @@
   </string-array>
     <string name="enhanced_4g_lte_mode_title" msgid="522191650223239171">"वर्धित 4G LTE मोड"</string>
     <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"व्‍हॉइस आणि इतर संप्रेषणे (शिफारस केलेली) सुधारित करण्‍यासाठी LTE सेवांचा वापर करा"</string>
-    <!-- no translation found for wfc_mode_wifi_preferred_summary (9143208157600896911) -->
-    <skip />
-    <!-- no translation found for wfc_mode_cellular_preferred_summary (2259869029990883080) -->
-    <skip />
-    <!-- no translation found for wfc_mode_wifi_only_summary (6176822199433274101) -->
-    <skip />
+    <string name="wfc_mode_wifi_preferred_summary" msgid="9143208157600896911">"वाय-फाय प्राधान्यकृत (वाय-फाय उपलब्‍ध नसते केवळ तेव्‍हाच सेल नेटवर्क वापरते)"</string>
+    <string name="wfc_mode_cellular_preferred_summary" msgid="2259869029990883080">"सेल्युलर प्राधान्यकृत (सेल नेटवर्क उपलब्‍ध नसते केवळ तेव्हाच वाय-फाय वापरते)"</string>
+    <string name="wfc_mode_wifi_only_summary" msgid="6176822199433274101">"केवळ वाय-फाय (सेल नेटवर्क कधीही वापरत नाही. वाय-फाय उपलब्ध नसल्यास कॉल करू किंवा प्राप्त करू शकत नाही)"</string>
     <string name="data_enabled" msgid="5972538663568715366">"डेटा सक्षम केला"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"डेटा वापरास अनुमती द्या"</string>
     <string name="roaming" msgid="8871412572928323707">"डेटा रोमिंग"</string>
@@ -383,8 +378,7 @@
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"सिक कार्डमधून वाचत आहे..."</string>
     <string name="simContacts_empty" msgid="5270660846489561932">"आपल्‍या सिम कार्डवर कोणतेही संपर्क नाहीत."</string>
     <string name="simContacts_title" msgid="1861472842524839921">"आयात करण्यासाठी संपर्क निवडा"</string>
-    <!-- no translation found for simContacts_airplaneMode (5254946758982621072) -->
-    <skip />
+    <string name="simContacts_airplaneMode" msgid="5254946758982621072">"सिम कार्डमधील संपर्क आयात करण्‍यासाठी विमान मोड बंद करा."</string>
     <string name="enable_pin" msgid="5422767284133234860">"सिम पिन सक्षम करा/अक्षम करा"</string>
     <string name="change_pin" msgid="9174186126330785343">"सिम पिन बदला"</string>
     <string name="enter_pin_text" msgid="8532615714751931951">"सिम पिन"</string>
@@ -445,14 +439,11 @@
     <string name="notification_action_end_call" msgid="6069460915123531620">"हँग अप"</string>
     <string name="notification_missedCall_call_back" msgid="2684890353590890187">"पुन्हा कॉल करा"</string>
     <string name="notification_missedCall_message" msgid="3049928912736917988">"संदेश"</string>
-    <!-- no translation found for incall_error_power_off (2947938060513306698) -->
-    <skip />
-    <!-- no translation found for incall_error_power_off_wfc (8711428920632416575) -->
-    <skip />
+    <string name="incall_error_power_off" msgid="2947938060513306698">"कॉल करण्‍यासाठी विमान मोड बंद करा."</string>
+    <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"कॉल करण्‍यासाठी विमान मोड बंद करा किंवा वायरलेस नेटवर्कशी कनेक्‍ट करा."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"नेटवर्कवर नोंदणीकृत नाही."</string>
     <string name="incall_error_out_of_service" msgid="4100065333878929223">"सेल्युलर नेटवर्क उपलब्ध नाही."</string>
-    <!-- no translation found for incall_error_out_of_service_wfc (323851839058697057) -->
-    <skip />
+    <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"सेल्युलर नेटवर्क उपलब्‍ध नाही. कॉल करण्‍यासाठी वायरलेस नेटवर्कशी कनेक्‍ट करा."</string>
     <string name="incall_error_no_phone_number_supplied" msgid="1150414018684246528">"कॉल करण्यासाठी, एक वैध नंबर प्रविष्ट करा."</string>
     <string name="incall_error_call_failed" msgid="6302746943230078197">"कॉल करू शकत नाही."</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"MMI क्रम प्रारंभ करीत आहे..."</string>
@@ -463,8 +454,7 @@
     <string name="incall_error_supp_service_conference" msgid="2505727299596357312">"परिषद कॉल करण्‍यात अक्षम."</string>
     <string name="incall_error_supp_service_reject" msgid="8998568661508655638">"कॉल नाकारू शकत नाही."</string>
     <string name="incall_error_supp_service_hangup" msgid="7434513517153834426">"कॉल रिलीझ करू शकत नाही."</string>
-    <!-- no translation found for incall_error_wfc_only_no_wireless_network (1782466780452640089) -->
-    <skip />
+    <string name="incall_error_wfc_only_no_wireless_network" msgid="1782466780452640089">"कॉल करण्‍यासाठी वायरलेस नेटवर्कशी कनेक्‍ट करा."</string>
     <string name="emergency_enable_radio_dialog_title" msgid="4627849966634578257">"आणीबाणीचा कॉल"</string>
     <string name="emergency_enable_radio_dialog_message" msgid="207613549344420291">"रेडिओ चालू करीत आहे..."</string>
     <string name="emergency_enable_radio_dialog_retry" msgid="5960061579996526883">"सेवा नाही. पुन्हा प्रयत्न करत आहे…"</string>
@@ -520,18 +510,18 @@
     <string name="phone_entered_ecm_text" msgid="6266424252578731203">"आणीबाणी कॉलबॅक मोड प्रविष्‍ट केला"</string>
     <string name="phone_in_ecm_notification_title" msgid="3226896828951687085">"आणीबाणी कॉलबॅक मोड"</string>
     <string name="phone_in_ecm_call_notification_text" msgid="4611608947314729773">"डेटा कनेक्शन अक्षम केले"</string>
-    <plurals name="phone_in_ecm_notification_time" formatted="false" msgid="8308381858502470919">
-      <item quantity="one"><xliff:g id="COUNT_1">%s</xliff:g> मिनिटासाठी कोणतेही डेटा कनेक्‍शन नाही</item>
-      <item quantity="other"><xliff:g id="COUNT_1">%s</xliff:g> मिनिटांसाठी कोणतेही डेटा कनेक्‍शन नाही</item>
-    </plurals>
-    <plurals name="alert_dialog_exit_ecm" formatted="false" msgid="7179911675595441201">
-      <item quantity="one">फोन <xliff:g id="COUNT_1">%s</xliff:g> मिनिटासाठी आणीबाणी कॉलबॅक मोडमध्ये राहील. या मोडमध्ये असताना डेटा कनेक्शन वापरणारे कोणतेही अनुप्रयोग वापरले जाऊ शकत नाहीत. आपण आता बाहेर पडू इच्छिता?</item>
-      <item quantity="other">फोन <xliff:g id="COUNT_1">%s</xliff:g> मिनिटांसाठी आणीबाणी कॉलबॅक मोडमध्ये राहील. या मोडमध्ये असताना डेटा कनेक्शन वापरणारे कोणतेही अनुप्रयोग वापरले जाऊ शकत नाहीत. आपण आता बाहेर पडू इच्छिता?</item>
-    </plurals>
-    <plurals name="alert_dialog_not_avaialble_in_ecm" formatted="false" msgid="8042973425225093895">
-      <item quantity="one">आणीबाणी कॉलबॅक मोडमध्ये असताना निवडलेली क्रिया उपलब्ध नसते. फोन <xliff:g id="COUNT_1">%s</xliff:g> मिनिटासाठी या मोडमध्ये राहील. आपण आता बाहेर पडू इच्छिता?</item>
-      <item quantity="other">आणीबाणी कॉलबॅक मोडमध्ये असताना निवडलेली क्रिया उपलब्ध नसते. फोन <xliff:g id="COUNT_1">%s</xliff:g> मिनिटांसाठी या मोडमध्ये राहील. आपण आता बाहेर पडू इच्छिता?</item>
-    </plurals>
+  <plurals name="phone_in_ecm_notification_time">
+    <item quantity="one" msgid="4866221796252472622">"<xliff:g id="COUNT">%s</xliff:g> मिनिटासाठी कोणतेही डेटा कनेक्‍शन नाही"</item>
+    <item quantity="other" msgid="3122217344579273583">"<xliff:g id="COUNT">%s</xliff:g> मिनिटांसाठी कोणतेही डेटा कनेक्‍शन नाही"</item>
+  </plurals>
+  <plurals name="alert_dialog_exit_ecm">
+    <item quantity="one" msgid="8060210887681426682">"फोन <xliff:g id="COUNT">%s</xliff:g> मिनिटासाठी आणीबाणी कॉलबॅक मोडमध्‍ये असेल. या मोडमध्‍ये असताना डेटा कनेक्‍शन वापरणारे कोणतेही अ‍ॅप्‍स वापरले जाऊ शकत नाहीत. आपण आता बाहेर पडू इच्छिता?"</item>
+    <item quantity="other" msgid="8617116564023933114">"फोन <xliff:g id="COUNT">%s</xliff:g> मिनिटांसाठी आणीबाणी कॉलबॅक मोडमध्‍ये असेल. या मोडमध्‍ये असताना डेटा कनेक्‍शन वापरणारे कोणतेही अनुप्रयोग वापरले जाऊ शकत नाहीत. आपण आता बाहेर पडू इच्छिता?"</item>
+  </plurals>
+  <plurals name="alert_dialog_not_avaialble_in_ecm">
+    <item quantity="one" msgid="2585506997024726599">"आणीबाणी कॉलबॅक मोडमध्‍ये असताना निवडलेली क्रिया उपलब्‍ध नाही. फोन <xliff:g id="COUNT">%s</xliff:g> मिनिटासाठी या मोडमध्‍ये असेल. आपण आता बाहेर पडू इच्छिता?"</item>
+    <item quantity="other" msgid="6115622137771382224">"आणीबाणी कॉलबॅक मोडमध्‍ये असताना निवडलेली क्रिया उपलब्‍ध नाही. फोन <xliff:g id="COUNT">%s</xliff:g> मिनिटांसाठी या मोडमध्‍ये असेल. आपण आता बाहेर पडू इच्छिता?"</item>
+  </plurals>
     <string name="alert_dialog_in_ecm_call" msgid="1886723687211887104">"आणीबाणीच्‍या कॉलमध्‍ये असताना निवडलेली क्रिया उपलब्‍ध नसते."</string>
     <string name="progress_dialog_exiting_ecm" msgid="4835734101617817074">"आणीबाणी कॉलबॅक मोडमधून बाहेर पडत आहे"</string>
     <string name="alert_dialog_yes" msgid="6674268047820703974">"होय"</string>

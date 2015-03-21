@@ -66,10 +66,8 @@
     <string name="phone_accounts_selection_header" msgid="1365215726106915865">"Comptes téléphone"</string>
     <string name="phone_accounts_add_sip_account" msgid="2023821743341923271">"Ajouter un compte SIP"</string>
     <string name="phone_accounts_configure_account_settings" msgid="1361715069911607109">"Configurer les paramètres du compte"</string>
-    <!-- no translation found for wifi_calling (739018212480165598) -->
-    <skip />
-    <!-- no translation found for wifi_calling_off_summary (2992184822432174168) -->
-    <skip />
+    <string name="wifi_calling" msgid="739018212480165598">"Appels Wi-Fi"</string>
+    <string name="wifi_calling_off_summary" msgid="2992184822432174168">"Désactivés"</string>
     <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"Ne pas utiliser les appels Wi-Fi"</string>
     <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"Ne pas utiliser l\'assistant d\'appel"</string>
     <string name="wifi_calling_call_assistant_none" msgid="6283702349285593683">"Aucun"</string>
@@ -201,12 +199,9 @@
   </string-array>
     <string name="enhanced_4g_lte_mode_title" msgid="522191650223239171">"Mode LTE 4G avancé"</string>
     <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"Utiliser services LTE pour améliorer communications vocales et autres (recommandé)"</string>
-    <!-- no translation found for wfc_mode_wifi_preferred_summary (9143208157600896911) -->
-    <skip />
-    <!-- no translation found for wfc_mode_cellular_preferred_summary (2259869029990883080) -->
-    <skip />
-    <!-- no translation found for wfc_mode_wifi_only_summary (6176822199433274101) -->
-    <skip />
+    <string name="wfc_mode_wifi_preferred_summary" msgid="9143208157600896911">"Wi-Fi préféré (N\'utilise le réseau mobile que si le Wi-Fi n\'est pas disponible.)"</string>
+    <string name="wfc_mode_cellular_preferred_summary" msgid="2259869029990883080">"Mobile préféré (N\'utilise le Wi-Fi que si le réseau mobile n\'est pas disponible.)"</string>
+    <string name="wfc_mode_wifi_only_summary" msgid="6176822199433274101">"Wi-Fi uniquement (Réseau mobile jamais utilisé. Impossible passer/recevoir appels si Wi-Fi non dispo.)"</string>
     <string name="data_enabled" msgid="5972538663568715366">"Données activées"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"Autoriser la consommation des données"</string>
     <string name="roaming" msgid="8871412572928323707">"Itinérance des données"</string>
@@ -383,8 +378,7 @@
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"Lecture de la carte SIM…"</string>
     <string name="simContacts_empty" msgid="5270660846489561932">"Aucun contact n\'a été trouvé sur votre carte SIM."</string>
     <string name="simContacts_title" msgid="1861472842524839921">"Sélection des contacts à importer"</string>
-    <!-- no translation found for simContacts_airplaneMode (5254946758982621072) -->
-    <skip />
+    <string name="simContacts_airplaneMode" msgid="5254946758982621072">"Désactivez le mode Avion pour importer des contacts depuis la carte SIM."</string>
     <string name="enable_pin" msgid="5422767284133234860">"Activer/désactiver le code PIN de la carte SIM"</string>
     <string name="change_pin" msgid="9174186126330785343">"Modifier le code PIN de la carte SIM"</string>
     <string name="enter_pin_text" msgid="8532615714751931951">"Code PIN de la carte SIM :"</string>
@@ -445,14 +439,11 @@
     <string name="notification_action_end_call" msgid="6069460915123531620">"Raccrocher"</string>
     <string name="notification_missedCall_call_back" msgid="2684890353590890187">"Rappeler"</string>
     <string name="notification_missedCall_message" msgid="3049928912736917988">"Message"</string>
-    <!-- no translation found for incall_error_power_off (2947938060513306698) -->
-    <skip />
-    <!-- no translation found for incall_error_power_off_wfc (8711428920632416575) -->
-    <skip />
+    <string name="incall_error_power_off" msgid="2947938060513306698">"Désactivez le mode Avion pour passer un appel."</string>
+    <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"Désactivez le mode Avion ou connectez-vous à un réseau sans fil pour passer un appel."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"Non enregistré sur le réseau."</string>
     <string name="incall_error_out_of_service" msgid="4100065333878929223">"Réseau mobile non disponible."</string>
-    <!-- no translation found for incall_error_out_of_service_wfc (323851839058697057) -->
-    <skip />
+    <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"Le réseau mobile n\'est pas disponible. Connectez-vous à un réseau sans fil pour passer un appel."</string>
     <string name="incall_error_no_phone_number_supplied" msgid="1150414018684246528">"Pour émettre un appel, veuillez saisir un numéro valide."</string>
     <string name="incall_error_call_failed" msgid="6302746943230078197">"Impossible d\'émettre l\'appel."</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"Lancement de la séquence IHM..."</string>
@@ -463,8 +454,7 @@
     <string name="incall_error_supp_service_conference" msgid="2505727299596357312">"Impossible d\'effectuer des conférences téléphoniques."</string>
     <string name="incall_error_supp_service_reject" msgid="8998568661508655638">"Impossible de refuser l\'appel."</string>
     <string name="incall_error_supp_service_hangup" msgid="7434513517153834426">"Impossible de lancer les appels."</string>
-    <!-- no translation found for incall_error_wfc_only_no_wireless_network (1782466780452640089) -->
-    <skip />
+    <string name="incall_error_wfc_only_no_wireless_network" msgid="1782466780452640089">"Connectez-vous à un réseau sans fil pour passer un appel."</string>
     <string name="emergency_enable_radio_dialog_title" msgid="4627849966634578257">"Appel d\'urgence"</string>
     <string name="emergency_enable_radio_dialog_message" msgid="207613549344420291">"Activation du signal radio..."</string>
     <string name="emergency_enable_radio_dialog_retry" msgid="5960061579996526883">"Aucun service disponible. Nouvelle tentative en cours…"</string>
@@ -520,18 +510,18 @@
     <string name="phone_entered_ecm_text" msgid="6266424252578731203">"Mode de rappel d\'urgence activé"</string>
     <string name="phone_in_ecm_notification_title" msgid="3226896828951687085">"Mode de rappel d\'urgence"</string>
     <string name="phone_in_ecm_call_notification_text" msgid="4611608947314729773">"Connexion des données désactivée"</string>
-    <plurals name="phone_in_ecm_notification_time" formatted="false" msgid="8308381858502470919">
-      <item quantity="one">Aucune connexion à Internet pendant <xliff:g id="COUNT_1">%s</xliff:g> minute</item>
-      <item quantity="other">Aucune connexion à Internet pendant <xliff:g id="COUNT_1">%s</xliff:g> minutes</item>
-    </plurals>
-    <plurals name="alert_dialog_exit_ecm" formatted="false" msgid="7179911675595441201">
-      <item quantity="one">Le téléphone sera en mode de rappel d\'urgence pendant <xliff:g id="COUNT_1">%s</xliff:g> minute. Lorsque ce mode est activé, vous ne pouvez pas utiliser d\'applications nécessitant une connexion à Internet. Voulez-vous quitter l\'écran maintenant ?</item>
-      <item quantity="other">Le téléphone sera en mode de rappel d\'urgence pendant <xliff:g id="COUNT_1">%s</xliff:g> minutes. Lorsque ce mode est activé, vous ne pouvez pas utiliser d\'applications nécessitant une connexion à Internet. Voulez-vous quitter l\'écran maintenant ?</item>
-    </plurals>
-    <plurals name="alert_dialog_not_avaialble_in_ecm" formatted="false" msgid="8042973425225093895">
-      <item quantity="one">L\'action sélectionnée n\'est pas disponible lorsque le mode de rappel d\'urgence est activé. Ce mode restera activé sur ce téléphone pendant <xliff:g id="COUNT_1">%s</xliff:g> minute. Voulez-vous quitter l\'écran maintenant ?</item>
-      <item quantity="other">L\'action sélectionnée n\'est pas disponible lorsque le mode de rappel d\'urgence est activé. Ce mode restera activé sur ce téléphone pendant <xliff:g id="COUNT_1">%s</xliff:g> minute. Voulez-vous quitter l\'écran maintenant ?</item>
-    </plurals>
+  <plurals name="phone_in_ecm_notification_time">
+    <item quantity="one" msgid="4866221796252472622">"Aucune connexion de données pendant <xliff:g id="COUNT">%s</xliff:g> minute"</item>
+    <item quantity="other" msgid="3122217344579273583">"Aucune connexion de données pendant <xliff:g id="COUNT">%s</xliff:g> minutes"</item>
+  </plurals>
+  <plurals name="alert_dialog_exit_ecm">
+    <item quantity="one" msgid="8060210887681426682">"Le mode de rappel d\'urgence sera actif sur le téléphone pendant <xliff:g id="COUNT">%s</xliff:g> minute. Tant que ce mode est actif, vous ne pouvez utiliser aucune des applications nécessitant une connexion Internet. Voulez-vous quitter maintenant ?"</item>
+    <item quantity="other" msgid="8617116564023933114">"Le mode de rappel d\'urgence sera actif sur le téléphone pendant <xliff:g id="COUNT">%s</xliff:g> minutes. Tant que ce mode est actif, vous ne pouvez utiliser aucune des applications nécessitant une connexion Internet. Voulez-vous quitter maintenant ?"</item>
+  </plurals>
+  <plurals name="alert_dialog_not_avaialble_in_ecm">
+    <item quantity="one" msgid="2585506997024726599">"L\'action sélectionnée n\'est pas disponible en mode de rappel d\'urgence. Ce mode sera actif sur le téléphone pendant <xliff:g id="COUNT">%s</xliff:g> minute. Voulez-vous quitter maintenant ?"</item>
+    <item quantity="other" msgid="6115622137771382224">"L\'action sélectionnée n\'est pas disponible en mode de rappel d\'urgence. Ce mode sera actif sur le téléphone pendant <xliff:g id="COUNT">%s</xliff:g> minutes. Voulez-vous quitter maintenant ?"</item>
+  </plurals>
     <string name="alert_dialog_in_ecm_call" msgid="1886723687211887104">"L\'action sélectionnée n\'est pas disponible pendant un appel d\'urgence."</string>
     <string name="progress_dialog_exiting_ecm" msgid="4835734101617817074">"Sortie du mode de rappel d\'urgence…"</string>
     <string name="alert_dialog_yes" msgid="6674268047820703974">"Oui"</string>

@@ -516,18 +516,18 @@
     <string name="phone_entered_ecm_text" msgid="6266424252578731203">"Starta läget Återuppringning vid nödsamtal"</string>
     <string name="phone_in_ecm_notification_title" msgid="3226896828951687085">"Läget Återuppringning vid nödsamtal"</string>
     <string name="phone_in_ecm_call_notification_text" msgid="4611608947314729773">"Dataanslutning inaktiverad"</string>
-    <plurals name="phone_in_ecm_notification_time" formatted="false" msgid="8308381858502470919">
-      <item quantity="other">Ingen dataanslutning i <xliff:g id="COUNT_1">%s</xliff:g> minuter</item>
-      <item quantity="one">Ingen dataanslutning i <xliff:g id="COUNT_0">%s</xliff:g> minut</item>
-    </plurals>
-    <plurals name="alert_dialog_exit_ecm" formatted="false" msgid="7179911675595441201">
-      <item quantity="other">Mobilen försätts i nödsamtalsläge i <xliff:g id="COUNT_1">%s</xliff:g> minuter. I det här läget går det inte att använda några appar där en dataanslutning används. Vill du avsluta nu?</item>
-      <item quantity="one">Mobilen försätts i nödsamtalsläge i <xliff:g id="COUNT_0">%s</xliff:g> minut. I det här läget går det inte att använda några appar där en dataanslutning används. Vill du avsluta nu?</item>
-    </plurals>
-    <plurals name="alert_dialog_not_avaialble_in_ecm" formatted="false" msgid="8042973425225093895">
-      <item quantity="other">Den valda åtgärden är inte tillgänglig i nödsamtalsläget. Mobilen försätts i det här läget i <xliff:g id="COUNT_1">%s</xliff:g> minuter. Vill du avsluta nu?</item>
-      <item quantity="one">Den valda åtgärden är inte tillgänglig i nödsamtalsläget. Mobilen försätts i det här läget i <xliff:g id="COUNT_0">%s</xliff:g> minut. Vill du avsluta nu?</item>
-    </plurals>
+  <plurals name="phone_in_ecm_notification_time">
+    <item quantity="one" msgid="4866221796252472622">"Inga dataanslutningar på <xliff:g id="COUNT">%s</xliff:g> minut"</item>
+    <item quantity="other" msgid="3122217344579273583">"Inga dataanslutningar på <xliff:g id="COUNT">%s</xliff:g> minuter"</item>
+  </plurals>
+  <plurals name="alert_dialog_exit_ecm">
+    <item quantity="one" msgid="8060210887681426682">"Telefonen kommer att vara i läget Återuppringning vid nödsamtal i <xliff:g id="COUNT">%s</xliff:g> minut. I det här läget kan inga appar som kräver en dataanslutning användas. Vill du avsluta nu?"</item>
+    <item quantity="other" msgid="8617116564023933114">"Telefonen kommer att vara i läget Återuppringning vid nödsamtal i <xliff:g id="COUNT">%s</xliff:g> minuter. I det här läget kan inga appar som kräver en dataanslutning användas. Vill du avsluta nu?"</item>
+  </plurals>
+  <plurals name="alert_dialog_not_avaialble_in_ecm">
+    <item quantity="one" msgid="2585506997024726599">"Den valda åtgärden är inte tillgänglig i läget Återuppringning vid nödsamtal. Telefonen kommer att vara i det här läget i <xliff:g id="COUNT">%s</xliff:g> minut. Vill du avsluta nu?"</item>
+    <item quantity="other" msgid="6115622137771382224">"Den valda åtgärden är inte tillgänglig i läget Återuppringning vid nödsamtal. Telefonen kommer att vara i det här läget i <xliff:g id="COUNT">%s</xliff:g> minuter. Vill du avsluta nu?"</item>
+  </plurals>
     <string name="alert_dialog_in_ecm_call" msgid="1886723687211887104">"Den valda åtgärden är inte tillgänglig under nödsamtal."</string>
     <string name="progress_dialog_exiting_ecm" msgid="4835734101617817074">"Avslutar läget Återuppringning vid nödsamtal"</string>
     <string name="alert_dialog_yes" msgid="6674268047820703974">"Ja"</string>

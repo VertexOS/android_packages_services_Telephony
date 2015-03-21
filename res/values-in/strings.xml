@@ -510,18 +510,18 @@
     <string name="phone_entered_ecm_text" msgid="6266424252578731203">"Masukkan Mode Telepon Balik Darurat"</string>
     <string name="phone_in_ecm_notification_title" msgid="3226896828951687085">"Mode Panggilan Balik Darurat"</string>
     <string name="phone_in_ecm_call_notification_text" msgid="4611608947314729773">"Sambungan data dinonaktifkan"</string>
-    <plurals name="phone_in_ecm_notification_time" formatted="false" msgid="8308381858502470919">
-      <item quantity="other">Tidak ada sambungan data selama <xliff:g id="COUNT_1">%s</xliff:g> menit</item>
-      <item quantity="one">Tidak ada sambungan data selama <xliff:g id="COUNT_0">%s</xliff:g> menit</item>
-    </plurals>
-    <plurals name="alert_dialog_exit_ecm" formatted="false" msgid="7179911675595441201">
-      <item quantity="other">Ponsel ini akan berada dalam mode Panggilan Balik Darurat selama <xliff:g id="COUNT_1">%s</xliff:g> menit. Saat dalam mode ini, aplikasi yang menggunakan sambungan data tidak dapat digunakan. Ingin keluar sekarang?</item>
-      <item quantity="one">Ponsel ini akan berada dalam mode Panggilan Balik Darurat selama <xliff:g id="COUNT_0">%s</xliff:g> menit. Saat dalam mode ini, aplikasi yang menggunakan sambungan data tidak dapat digunakan. Ingin keluar sekarang?</item>
-    </plurals>
-    <plurals name="alert_dialog_not_avaialble_in_ecm" formatted="false" msgid="8042973425225093895">
-      <item quantity="other">Tindakan yang dipilih tidak tersedia saat dalam mode Panggilan Balik Darurat. Ponsel ini akan berada dalam mode ini selama <xliff:g id="COUNT_1">%s</xliff:g> menit. Ingin keluar sekarang?</item>
-      <item quantity="one">Tindakan yang dipilih tidak tersedia saat dalam mode Panggilan Balik Darurat. Ponsel ini akan berada dalam mode ini selama <xliff:g id="COUNT_0">%s</xliff:g> menit. Ingin keluar sekarang?</item>
-    </plurals>
+  <plurals name="phone_in_ecm_notification_time">
+    <item quantity="one" msgid="4866221796252472622">"Tidak ada sambungan data selama <xliff:g id="COUNT">%s</xliff:g> menit"</item>
+    <item quantity="other" msgid="3122217344579273583">"Tidak ada sambungan data selama <xliff:g id="COUNT">%s</xliff:g> menit"</item>
+  </plurals>
+  <plurals name="alert_dialog_exit_ecm">
+    <item quantity="one" msgid="8060210887681426682">"Ponsel akan berada dalam mode Telepon Balik Darurat selama <xliff:g id="COUNT">%s</xliff:g> menit. Selama dalam mode ini, aplikasi yang menggunakan sambungan data tidak dapat dipakai. Apakah Anda ingin keluar sekarang?"</item>
+    <item quantity="other" msgid="8617116564023933114">"Ponsel akan berada dalam mode Telepon Balik Darurat selama <xliff:g id="COUNT">%s</xliff:g> menit. Selama dalam mode ini, aplikasi yang menggunakan sambungan data tidak dapat dipakai. Apakah Anda ingin keluar sekarang?"</item>
+  </plurals>
+  <plurals name="alert_dialog_not_avaialble_in_ecm">
+    <item quantity="one" msgid="2585506997024726599">"Tindakan yang dipilih tidak tersedia saat berada dalam mode Telepon Balik Darurat. Ponsel akan berada dalam mode ini selama <xliff:g id="COUNT">%s</xliff:g> menit. Apakah Anda ingin keluar sekarang?"</item>
+    <item quantity="other" msgid="6115622137771382224">"Tindakan yang dipilih tidak tersedia saat berada dalam mode Telepon Balik Darurat. Ponsel akan berada dalam mode ini untuk <xliff:g id="COUNT">%s</xliff:g> menit. Apakah Anda ingin keluar sekarang?"</item>
+  </plurals>
     <string name="alert_dialog_in_ecm_call" msgid="1886723687211887104">"Tindakan yang dipilih tidak tersedia ketika dalam panggilan darurat."</string>
     <string name="progress_dialog_exiting_ecm" msgid="4835734101617817074">"Keluar dari mode Telepon Balik Darurat"</string>
     <string name="alert_dialog_yes" msgid="6674268047820703974">"Ya"</string>

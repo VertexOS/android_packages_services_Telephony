@@ -199,8 +199,8 @@
   </string-array>
     <string name="enhanced_4g_lte_mode_title" msgid="522191650223239171">"Mod 4G LTE îmbunătățit"</string>
     <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"Folosiți servicii LTE pt. a îmbunătăți comunicări vocale și altele (recomandat)"</string>
-    <string name="wfc_mode_wifi_preferred_summary" msgid="9143208157600896911">"Se preferă Wi-Fi (Folosește rețeaua mobilă numai când conexiunea Wi-Fi nu este disponibilă)"</string>
-    <string name="wfc_mode_cellular_preferred_summary" msgid="2259869029990883080">"Se preferă conexiunea mobilă (Folosește Wi-Fi numai când rețeaua mobilă nu este disponibilă)"</string>
+    <string name="wfc_mode_wifi_preferred_summary" msgid="9143208157600896911">"Se preferă Wi-Fi (Folosește rețeaua mobilă numai când conexiunea Wi-Fi nu e disponibilă)"</string>
+    <string name="wfc_mode_cellular_preferred_summary" msgid="2259869029990883080">"Se preferă conexiunea mobilă (Folosește Wi-Fi numai când rețeaua mobilă nu e disponibilă)"</string>
     <string name="wfc_mode_wifi_only_summary" msgid="6176822199433274101">"Numai Wi-Fi (Nu folosește niciodată rețeaua mobilă. Nu se pot efectua sau primi apeluri fără Wi-Fi)"</string>
     <string name="data_enabled" msgid="5972538663568715366">"Date activate"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"Permiteți utilizarea datelor"</string>
@@ -510,21 +510,18 @@
     <string name="phone_entered_ecm_text" msgid="6266424252578731203">"S-a activat modul de apelare inversă de urgenţă"</string>
     <string name="phone_in_ecm_notification_title" msgid="3226896828951687085">"Mod de apelare inversă de urgenţă"</string>
     <string name="phone_in_ecm_call_notification_text" msgid="4611608947314729773">"Conexiune de date dezactivată"</string>
-    <plurals name="phone_in_ecm_notification_time" formatted="false" msgid="8308381858502470919">
-      <item quantity="few">Nicio conexiune de date timp de <xliff:g id="COUNT_1">%s</xliff:g> minute</item>
-      <item quantity="other">Nicio conexiune de date timp de <xliff:g id="COUNT_1">%s</xliff:g> de minute</item>
-      <item quantity="one">Nicio conexiune de date timp de <xliff:g id="COUNT_0">%s</xliff:g> minut</item>
-    </plurals>
-    <plurals name="alert_dialog_exit_ecm" formatted="false" msgid="7179911675595441201">
-      <item quantity="few">Telefonul va fi în modul Apelare inversă de urgență pentru <xliff:g id="COUNT_1">%s</xliff:g> minute. Când telefonul este în acest mod, nu se poate folosi nicio aplicație care necesită o conexiune de date. Doriți să ieșiți acum?</item>
-      <item quantity="other">Telefonul va fi în modul Apelare inversă de urgență pentru <xliff:g id="COUNT_1">%s</xliff:g> de minute. Când telefonul este în acest mod, nu se poate folosi nicio aplicație care necesită o conexiune de date. Doriți să ieșiți acum?</item>
-      <item quantity="one">Telefonul va fi în modul Apelare inversă de urgență pentru <xliff:g id="COUNT_0">%s</xliff:g> minut. Când telefonul este în acest mod, nu se poate folosi nicio aplicație care necesită o conexiune de date. Doriți să ieșiți acum?</item>
-    </plurals>
-    <plurals name="alert_dialog_not_avaialble_in_ecm" formatted="false" msgid="8042973425225093895">
-      <item quantity="few">Acțiunea selectată nu este disponibilă când telefonul este în modul Apelare inversă de urgență. Telefonul va fi în acest mod pentru <xliff:g id="COUNT_1">%s</xliff:g> minute. Doriți să ieșiți acum?</item>
-      <item quantity="other">Acțiunea selectată nu este disponibilă când telefonul este în modul Apelare inversă de urgență. Telefonul va fi în acest mod pentru <xliff:g id="COUNT_1">%s</xliff:g> de minute. Doriți să ieșiți acum?</item>
-      <item quantity="one">Acțiunea selectată nu este disponibilă când telefonul este în modul Apelare inversă de urgență. Telefonul va fi în acest mod pentru <xliff:g id="COUNT_0">%s</xliff:g> minut. Doriți să ieșiți acum?</item>
-    </plurals>
+  <plurals name="phone_in_ecm_notification_time">
+    <item quantity="one" msgid="4866221796252472622">"Nicio conexiune de date pentru <xliff:g id="COUNT">%s</xliff:g> minut"</item>
+    <item quantity="other" msgid="3122217344579273583">"Nicio conexiune de date pentru <xliff:g id="COUNT">%s</xliff:g> (de) minute"</item>
+  </plurals>
+  <plurals name="alert_dialog_exit_ecm">
+    <item quantity="one" msgid="8060210887681426682">"Telefonul va fi în modul Apelare inversă de urgenţă pentru <xliff:g id="COUNT">%s</xliff:g> minut. Cât timp se află în acest mod nu puteţi folosi aplicațiile care utilizează o conexiune de date. Doriţi să ieşiţi acum?"</item>
+    <item quantity="other" msgid="8617116564023933114">"Telefonul va fi în modul Apelare inversă de urgenţă pentru <xliff:g id="COUNT">%s</xliff:g> (de) minute. Cât timp se află în acest mod nu puteţi folosi aplicațiile care utilizează o conexiune de date. Doriţi să ieşiţi acum?"</item>
+  </plurals>
+  <plurals name="alert_dialog_not_avaialble_in_ecm">
+    <item quantity="one" msgid="2585506997024726599">"Acţiunea selectată nu este disponibilă în modul Apelare inversă de urgenţă. Telefonul va rămâne în acest mod pentru <xliff:g id="COUNT">%s</xliff:g> minut. Doriţi să ieşiţi acum?"</item>
+    <item quantity="other" msgid="6115622137771382224">"Acţiunea selectată nu este disponibilă în modul Apelare inversă de urgenţă. Telefonul va rămâne în acest mod pentru <xliff:g id="COUNT">%s</xliff:g> (de) minute. Doriţi să ieşiţi acum?"</item>
+  </plurals>
     <string name="alert_dialog_in_ecm_call" msgid="1886723687211887104">"Acţiunea selectată nu este disponibilă în timpul efectuării unui apel de urgenţă."</string>
     <string name="progress_dialog_exiting_ecm" msgid="4835734101617817074">"Se iese din modul Apelare inversă de urgenţă"</string>
     <string name="alert_dialog_yes" msgid="6674268047820703974">"Da"</string>

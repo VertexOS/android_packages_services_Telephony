@@ -66,10 +66,8 @@
     <string name="phone_accounts_selection_header" msgid="1365215726106915865">"Tālruņa konti"</string>
     <string name="phone_accounts_add_sip_account" msgid="2023821743341923271">"Pievienot SIP kontu"</string>
     <string name="phone_accounts_configure_account_settings" msgid="1361715069911607109">"Konta iestatījumu konfigurēšana"</string>
-    <!-- no translation found for wifi_calling (739018212480165598) -->
-    <skip />
-    <!-- no translation found for wifi_calling_off_summary (2992184822432174168) -->
-    <skip />
+    <string name="wifi_calling" msgid="739018212480165598">"Wi-Fi zvani"</string>
+    <string name="wifi_calling_off_summary" msgid="2992184822432174168">"Izslēgts"</string>
     <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"Neizmantot Wi-Fi zvanus"</string>
     <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"Neizmantot zvanu palīgu"</string>
     <string name="wifi_calling_call_assistant_none" msgid="6283702349285593683">"Nav"</string>
@@ -201,12 +199,9 @@
   </string-array>
     <string name="enhanced_4g_lte_mode_title" msgid="522191650223239171">"Uzlabota 4G LTE režīms"</string>
     <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"Lietojiet LTE pakalpojumus, lai uzlabotu balss un cita veida saziņu (ieteicams)"</string>
-    <!-- no translation found for wfc_mode_wifi_preferred_summary (9143208157600896911) -->
-    <skip />
-    <!-- no translation found for wfc_mode_cellular_preferred_summary (2259869029990883080) -->
-    <skip />
-    <!-- no translation found for wfc_mode_wifi_only_summary (6176822199433274101) -->
-    <skip />
+    <string name="wfc_mode_wifi_preferred_summary" msgid="9143208157600896911">"Vēlams Wi-Fi tīkls (Izmanto mobilo tīklu tikai tad, ja Wi-Fi tīkls nav pieejams.)"</string>
+    <string name="wfc_mode_cellular_preferred_summary" msgid="2259869029990883080">"Vēlams mobilais tīkls (Izmanto Wi-Fi tīklu tikai tad, ja nav pieejams mobilais tīkls.)"</string>
+    <string name="wfc_mode_wifi_only_summary" msgid="6176822199433274101">"Tikai Wi-Fi (Neizmanto mobilo tīklu. Nevar veikt vai saņemt zvanus, ja Wi-Fi tīkls nav pieejams.)"</string>
     <string name="data_enabled" msgid="5972538663568715366">"Dati ir iespējoti."</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"Atļaut datu izmantošanu"</string>
     <string name="roaming" msgid="8871412572928323707">"Datu viesabonēšana"</string>
@@ -385,8 +380,7 @@
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"Notiek lasīšana no SIM kartes..."</string>
     <string name="simContacts_empty" msgid="5270660846489561932">"SIM kartē nav nevienas kontaktpersonas."</string>
     <string name="simContacts_title" msgid="1861472842524839921">"Importējamo kontaktpersonu atlasīšana"</string>
-    <!-- no translation found for simContacts_airplaneMode (5254946758982621072) -->
-    <skip />
+    <string name="simContacts_airplaneMode" msgid="5254946758982621072">"Lai importētu kontaktpersonas no SIM kartes, izslēdziet lidojuma režīmu."</string>
     <string name="enable_pin" msgid="5422767284133234860">"Iespējot/atspējot SIM PIN"</string>
     <string name="change_pin" msgid="9174186126330785343">"SIM PIN mainīšana"</string>
     <string name="enter_pin_text" msgid="8532615714751931951">"SIM PIN:"</string>
@@ -447,14 +441,11 @@
     <string name="notification_action_end_call" msgid="6069460915123531620">"Pārtraukt"</string>
     <string name="notification_missedCall_call_back" msgid="2684890353590890187">"Atzvanīt"</string>
     <string name="notification_missedCall_message" msgid="3049928912736917988">"Ziņojums"</string>
-    <!-- no translation found for incall_error_power_off (2947938060513306698) -->
-    <skip />
-    <!-- no translation found for incall_error_power_off_wfc (8711428920632416575) -->
-    <skip />
+    <string name="incall_error_power_off" msgid="2947938060513306698">"Lai veiktu zvanu, izslēdziet lidojuma režīmu."</string>
+    <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"Lai veiktu zvanu, izslēdziet lidojuma režīmu vai izveidojiet savienojumu ar bezvadu tīklu."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"Tīklā nav reģistrēts."</string>
     <string name="incall_error_out_of_service" msgid="4100065333878929223">"Mobilais tīkls nav pieejams."</string>
-    <!-- no translation found for incall_error_out_of_service_wfc (323851839058697057) -->
-    <skip />
+    <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"Mobilais tīkls nav pieejams. Lai veiktu zvanu, izveidojiet savienojumu ar bezvadu tīklu."</string>
     <string name="incall_error_no_phone_number_supplied" msgid="1150414018684246528">"Lai veiktu zvanu, ievadiet derīgu numuru."</string>
     <string name="incall_error_call_failed" msgid="6302746943230078197">"Nevar veikt zvanu."</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"Notiek MMI secības startēšana…"</string>
@@ -465,8 +456,7 @@
     <string name="incall_error_supp_service_conference" msgid="2505727299596357312">"Nevar veikt konferences zvanus."</string>
     <string name="incall_error_supp_service_reject" msgid="8998568661508655638">"Nevar noraidīt zvanu."</string>
     <string name="incall_error_supp_service_hangup" msgid="7434513517153834426">"Nevar pārtraukt zvanu(-us)."</string>
-    <!-- no translation found for incall_error_wfc_only_no_wireless_network (1782466780452640089) -->
-    <skip />
+    <string name="incall_error_wfc_only_no_wireless_network" msgid="1782466780452640089">"Lai veiktu zvanu, izveidojiet savienojumu ar bezvadu tīklu."</string>
     <string name="emergency_enable_radio_dialog_title" msgid="4627849966634578257">"Ārkārtas zvans"</string>
     <string name="emergency_enable_radio_dialog_message" msgid="207613549344420291">"Notiek radio ieslēgšana..."</string>
     <string name="emergency_enable_radio_dialog_retry" msgid="5960061579996526883">"Nav pakalpojuma. Notiek atkārtots mēģinājums…"</string>
@@ -522,21 +512,18 @@
     <string name="phone_entered_ecm_text" msgid="6266424252578731203">"Ievadītais ārkārtas atzvana režīms"</string>
     <string name="phone_in_ecm_notification_title" msgid="3226896828951687085">"Ārkārtas atzvana režīms"</string>
     <string name="phone_in_ecm_call_notification_text" msgid="4611608947314729773">"Datu savienojums ir atspējots."</string>
-    <plurals name="phone_in_ecm_notification_time" formatted="false" msgid="8308381858502470919">
-      <item quantity="zero"><xliff:g id="COUNT_1">%s</xliff:g> minūtes nav datu savienojuma</item>
-      <item quantity="one"><xliff:g id="COUNT_1">%s</xliff:g> minūti nav datu savienojuma</item>
-      <item quantity="other"><xliff:g id="COUNT_1">%s</xliff:g> minūtes nav datu savienojuma</item>
-    </plurals>
-    <plurals name="alert_dialog_exit_ecm" formatted="false" msgid="7179911675595441201">
-      <item quantity="zero">Tālrunī <xliff:g id="COUNT_1">%s</xliff:g> minūtes būs aktivizēts ārkārtas atzvana režīms. Šajā režīmā nevar izmantot lietotnes, kurās tiek lietots datu savienojums. Vai vēlaties to aizvērt tūlīt?</item>
-      <item quantity="one">Tālrunī <xliff:g id="COUNT_1">%s</xliff:g> minūti būs aktivizēts ārkārtas atzvana režīms. Šajā režīmā nevar izmantot lietotnes, kurās tiek lietots datu savienojums. Vai vēlaties to aizvērt tūlīt?</item>
-      <item quantity="other">Tālrunī <xliff:g id="COUNT_1">%s</xliff:g> minūtes būs aktivizēts ārkārtas atzvana režīms. Šajā režīmā nevar izmantot lietotnes, kurās tiek lietots datu savienojums. Vai vēlaties to aizvērt tūlīt?</item>
-    </plurals>
-    <plurals name="alert_dialog_not_avaialble_in_ecm" formatted="false" msgid="8042973425225093895">
-      <item quantity="zero">Atlasītā darbība nav pieejama ārkārtas atzvana režīmā. Šis režīms tālrunī būs aktivizēts <xliff:g id="COUNT_1">%s</xliff:g> minūtes. Vai vēlaties to aizvērt tūlīt?</item>
-      <item quantity="one">Atlasītā darbība nav pieejama ārkārtas atzvana režīmā. Šis režīms tālrunī būs aktivizēts <xliff:g id="COUNT_1">%s</xliff:g> minūti. Vai vēlaties to aizvērt tūlīt?</item>
-      <item quantity="other">Atlasītā darbība nav pieejama ārkārtas atzvana režīmā. Šis režīms tālrunī būs aktivizēts <xliff:g id="COUNT_1">%s</xliff:g> minūtes. Vai vēlaties to aizvērt tūlīt?</item>
-    </plurals>
+  <plurals name="phone_in_ecm_notification_time">
+    <item quantity="one" msgid="4866221796252472622">"Nav datu savienojuma <xliff:g id="COUNT">%s</xliff:g> minūti"</item>
+    <item quantity="other" msgid="3122217344579273583">"<xliff:g id="COUNT">%s</xliff:g> minūti(-es) nav datu savienojuma."</item>
+  </plurals>
+  <plurals name="alert_dialog_exit_ecm">
+    <item quantity="one" msgid="8060210887681426682">"Tālrunis ārkārtas atzvana režīmā atradīsies <xliff:g id="COUNT">%s</xliff:g> minūti. Lietojot šo režīmu, nevar izmantot nevienu lietotni, kurai nepieciešams datu savienojums. Vai vēlaties iziet tūlīt?"</item>
+    <item quantity="other" msgid="8617116564023933114">"Tālrunis ārkārtas atzvana režīmā atradīsies <xliff:g id="COUNT">%s</xliff:g> minūti(-es). Lietojot šo režīmu, nevar izmantot nevienu lietojumprogrammu, kurai nepieciešams datu savienojums. Vai vēlaties iziet tūlīt?"</item>
+  </plurals>
+  <plurals name="alert_dialog_not_avaialble_in_ecm">
+    <item quantity="one" msgid="2585506997024726599">"Atlasītā darbība nav pieejama, izmantojot ārkārtas atzvana režīmu. Tālrunis šajā režīmā atradīsies <xliff:g id="COUNT">%s</xliff:g> minūti. Vai vēlaties iziet tūlīt?"</item>
+    <item quantity="other" msgid="6115622137771382224">"Atlasītā darbība nav pieejama, izmantojot ārkārtas atzvana režīmu. Tālrunis šajā režīmā atradīsies <xliff:g id="COUNT">%s</xliff:g> minūti(-es). Vai vēlaties iziet tūlīt?"</item>
+  </plurals>
     <string name="alert_dialog_in_ecm_call" msgid="1886723687211887104">"Atlasītā darbība nav pieejama, veicot ārkārtas izsaukumu."</string>
     <string name="progress_dialog_exiting_ecm" msgid="4835734101617817074">"Notiek iziešana no ārkārtas atzvana režīma"</string>
     <string name="alert_dialog_yes" msgid="6674268047820703974">"Jā"</string>

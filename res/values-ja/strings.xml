@@ -66,10 +66,8 @@
     <string name="phone_accounts_selection_header" msgid="1365215726106915865">"携帯端末アカウント"</string>
     <string name="phone_accounts_add_sip_account" msgid="2023821743341923271">"SIPアカウントを追加"</string>
     <string name="phone_accounts_configure_account_settings" msgid="1361715069911607109">"アカウントを設定"</string>
-    <!-- no translation found for wifi_calling (739018212480165598) -->
-    <skip />
-    <!-- no translation found for wifi_calling_off_summary (2992184822432174168) -->
-    <skip />
+    <string name="wifi_calling" msgid="739018212480165598">"Wi-Fi通話"</string>
+    <string name="wifi_calling_off_summary" msgid="2992184822432174168">"OFF"</string>
     <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"Wi-Fi発信を使用しない"</string>
     <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"発信アシスタントを使用しない"</string>
     <string name="wifi_calling_call_assistant_none" msgid="6283702349285593683">"使用しない"</string>
@@ -201,12 +199,9 @@
   </string-array>
     <string name="enhanced_4g_lte_mode_title" msgid="522191650223239171">"4G LTE拡張モード"</string>
     <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"LTEサービスを使用して音声などの通信を改善する（推奨）"</string>
-    <!-- no translation found for wfc_mode_wifi_preferred_summary (9143208157600896911) -->
-    <skip />
-    <!-- no translation found for wfc_mode_cellular_preferred_summary (2259869029990883080) -->
-    <skip />
-    <!-- no translation found for wfc_mode_wifi_only_summary (6176822199433274101) -->
-    <skip />
+    <string name="wfc_mode_wifi_preferred_summary" msgid="9143208157600896911">"Wi-Fi優先（Wi-Fiが利用できない場合のみモバイルネットワークを使用します）"</string>
+    <string name="wfc_mode_cellular_preferred_summary" msgid="2259869029990883080">"モバイル優先（モバイルネットワークが利用できない場合のみWi-Fiを使用します）"</string>
+    <string name="wfc_mode_wifi_only_summary" msgid="6176822199433274101">"Wi-Fiのみ（モバイルネットワークを使用しないため、Wi-Fiが利用できない場合は発信も着信も行えません）"</string>
     <string name="data_enabled" msgid="5972538663568715366">"データ通信を有効にする"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"データ使用を許可"</string>
     <string name="roaming" msgid="8871412572928323707">"データローミング"</string>
@@ -383,8 +378,7 @@
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"SIMカードから読み取り中..."</string>
     <string name="simContacts_empty" msgid="5270660846489561932">"SIMカードに連絡先がありません。"</string>
     <string name="simContacts_title" msgid="1861472842524839921">"インポートする連絡先の選択"</string>
-    <!-- no translation found for simContacts_airplaneMode (5254946758982621072) -->
-    <skip />
+    <string name="simContacts_airplaneMode" msgid="5254946758982621072">"SIMカードから連絡先をインポートするには機内モードをオフにしてください。"</string>
     <string name="enable_pin" msgid="5422767284133234860">"SIM PINの有効/無効"</string>
     <string name="change_pin" msgid="9174186126330785343">"SIM PINの変更"</string>
     <string name="enter_pin_text" msgid="8532615714751931951">"SIM PIN:"</string>
@@ -445,14 +439,11 @@
     <string name="notification_action_end_call" msgid="6069460915123531620">"通話終了"</string>
     <string name="notification_missedCall_call_back" msgid="2684890353590890187">"コールバック"</string>
     <string name="notification_missedCall_message" msgid="3049928912736917988">"メッセージ"</string>
-    <!-- no translation found for incall_error_power_off (2947938060513306698) -->
-    <skip />
-    <!-- no translation found for incall_error_power_off_wfc (8711428920632416575) -->
-    <skip />
+    <string name="incall_error_power_off" msgid="2947938060513306698">"電話をかけるには機内モードをオフにしてください。"</string>
+    <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"電話をかけるには、機内モードをオフにするか無線ネットワークに接続してください。"</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"ご加入の通信サービスがありません"</string>
     <string name="incall_error_out_of_service" msgid="4100065333878929223">"モバイルネットワークが利用できません。"</string>
-    <!-- no translation found for incall_error_out_of_service_wfc (323851839058697057) -->
-    <skip />
+    <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"モバイルネットワークが利用できません。電話をかけるには無線ネットワークに接続してください。"</string>
     <string name="incall_error_no_phone_number_supplied" msgid="1150414018684246528">"発信するには、有効な番号を入力してください。"</string>
     <string name="incall_error_call_failed" msgid="6302746943230078197">"発信できません。"</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"MMIシーケンスを開始中..."</string>
@@ -463,8 +454,7 @@
     <string name="incall_error_supp_service_conference" msgid="2505727299596357312">"グループ通話を利用できません。"</string>
     <string name="incall_error_supp_service_reject" msgid="8998568661508655638">"着信を拒否できません。"</string>
     <string name="incall_error_supp_service_hangup" msgid="7434513517153834426">"通話を解放できません。"</string>
-    <!-- no translation found for incall_error_wfc_only_no_wireless_network (1782466780452640089) -->
-    <skip />
+    <string name="incall_error_wfc_only_no_wireless_network" msgid="1782466780452640089">"電話をかけるには無線ネットワークに接続してください。"</string>
     <string name="emergency_enable_radio_dialog_title" msgid="4627849966634578257">"緊急通報"</string>
     <string name="emergency_enable_radio_dialog_message" msgid="207613549344420291">"無線通信をONにしています..."</string>
     <string name="emergency_enable_radio_dialog_retry" msgid="5960061579996526883">"通信サービスはありません。もう一度お試しください…"</string>
@@ -520,18 +510,18 @@
     <string name="phone_entered_ecm_text" msgid="6266424252578731203">"緊急通報待機モードになりました"</string>
     <string name="phone_in_ecm_notification_title" msgid="3226896828951687085">"緊急通報待機モード"</string>
     <string name="phone_in_ecm_call_notification_text" msgid="4611608947314729773">"データ接続が無効です"</string>
-    <plurals name="phone_in_ecm_notification_time" formatted="false" msgid="8308381858502470919">
-      <item quantity="other"><xliff:g id="COUNT_1">%s</xliff:g>分間データ接続できません</item>
-      <item quantity="one"><xliff:g id="COUNT_0">%s</xliff:g>分間データ接続できません</item>
-    </plurals>
-    <plurals name="alert_dialog_exit_ecm" formatted="false" msgid="7179911675595441201">
-      <item quantity="other">スマートフォンはあと<xliff:g id="COUNT_1">%s</xliff:g>分間、緊急通報待機モードです。このモードではデータ通信を行うアプリは使用できません。今すぐこのモードを終了しますか？</item>
-      <item quantity="one">スマートフォンはあと<xliff:g id="COUNT_0">%s</xliff:g>分間、緊急通報待機モードです。このモードではデータ通信を行うアプリは使用できません。今すぐこのモードを終了しますか？</item>
-    </plurals>
-    <plurals name="alert_dialog_not_avaialble_in_ecm" formatted="false" msgid="8042973425225093895">
-      <item quantity="other">選択した操作は緊急通報待機モードでは実行できません。スマートフォンはあと<xliff:g id="COUNT_1">%s</xliff:g>分間このモードです。今すぐこのモードを終了しますか？</item>
-      <item quantity="one">選択した操作は緊急通報待機モードでは実行できません。スマートフォンはあと<xliff:g id="COUNT_0">%s</xliff:g>分間このモードです。今すぐこのモードを終了しますか？</item>
-    </plurals>
+  <plurals name="phone_in_ecm_notification_time">
+    <item quantity="one" msgid="4866221796252472622">"<xliff:g id="COUNT">%s</xliff:g>分間データ接続できません"</item>
+    <item quantity="other" msgid="3122217344579273583">"<xliff:g id="COUNT">%s</xliff:g>分間データ接続できません"</item>
+  </plurals>
+  <plurals name="alert_dialog_exit_ecm">
+    <item quantity="one" msgid="8060210887681426682">"端末はあと<xliff:g id="COUNT">%s</xliff:g>分間、緊急通報待機モードです。このモードではデータ通信を行うアプリは使用できません。今すぐこのモードを終了しますか？"</item>
+    <item quantity="other" msgid="8617116564023933114">"端末はあと<xliff:g id="COUNT">%s</xliff:g>分間、緊急通報待機モードです。このモードではデータ通信を行うアプリケーションは使用できません。今すぐこのモードを終了しますか？"</item>
+  </plurals>
+  <plurals name="alert_dialog_not_avaialble_in_ecm">
+    <item quantity="one" msgid="2585506997024726599">"選択した操作は緊急通報待機モードでは実行できません。端末はあと<xliff:g id="COUNT">%s</xliff:g>分間このモードです。今すぐこのモードを終了しますか？"</item>
+    <item quantity="other" msgid="6115622137771382224">"選択した操作は緊急通報待機モードでは実行できません。端末はあと<xliff:g id="COUNT">%s</xliff:g>分間このモードです。今すぐこのモードを終了しますか？"</item>
+  </plurals>
     <string name="alert_dialog_in_ecm_call" msgid="1886723687211887104">"選択した操作は緊急通報時には実行できません。"</string>
     <string name="progress_dialog_exiting_ecm" msgid="4835734101617817074">"緊急通報待機モードを終了しています"</string>
     <string name="alert_dialog_yes" msgid="6674268047820703974">"はい"</string>

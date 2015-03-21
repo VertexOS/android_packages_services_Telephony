@@ -66,10 +66,8 @@
     <string name="phone_accounts_selection_header" msgid="1365215726106915865">"电话帐户"</string>
     <string name="phone_accounts_add_sip_account" msgid="2023821743341923271">"添加 SIP 帐户"</string>
     <string name="phone_accounts_configure_account_settings" msgid="1361715069911607109">"配置帐户设置"</string>
-    <!-- no translation found for wifi_calling (739018212480165598) -->
-    <skip />
-    <!-- no translation found for wifi_calling_off_summary (2992184822432174168) -->
-    <skip />
+    <string name="wifi_calling" msgid="739018212480165598">"WLAN 通话"</string>
+    <string name="wifi_calling_off_summary" msgid="2992184822432174168">"关闭"</string>
     <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"不使用 WLAN 通话功能"</string>
     <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"不使用通话助手"</string>
     <string name="wifi_calling_call_assistant_none" msgid="6283702349285593683">"无"</string>
@@ -201,12 +199,9 @@
   </string-array>
     <string name="enhanced_4g_lte_mode_title" msgid="522191650223239171">"增强型 4G LTE 模式"</string>
     <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"使用 LTE 服务改进语音和其他通信功能（推荐）"</string>
-    <!-- no translation found for wfc_mode_wifi_preferred_summary (9143208157600896911) -->
-    <skip />
-    <!-- no translation found for wfc_mode_cellular_preferred_summary (2259869029990883080) -->
-    <skip />
-    <!-- no translation found for wfc_mode_wifi_only_summary (6176822199433274101) -->
-    <skip />
+    <string name="wfc_mode_wifi_preferred_summary" msgid="9143208157600896911">"首选 WLAN（只有 WLAN 不可用时才使用移动网络）"</string>
+    <string name="wfc_mode_cellular_preferred_summary" msgid="2259869029990883080">"首选移动网络（只有移动网络不可用时才使用 WLAN）"</string>
+    <string name="wfc_mode_wifi_only_summary" msgid="6176822199433274101">"仅限 WLAN（始终不使用移动网络。如果 WLAN 不可用，则无法拨打或接听电话）"</string>
     <string name="data_enabled" msgid="5972538663568715366">"启用移动数据网络"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"允许使用数据流量"</string>
     <string name="roaming" msgid="8871412572928323707">"移动数据网络漫游"</string>
@@ -383,8 +378,7 @@
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"正在从SIM卡读取..."</string>
     <string name="simContacts_empty" msgid="5270660846489561932">"SIM卡上无联系人。"</string>
     <string name="simContacts_title" msgid="1861472842524839921">"选择要导入的联系人"</string>
-    <!-- no translation found for simContacts_airplaneMode (5254946758982621072) -->
-    <skip />
+    <string name="simContacts_airplaneMode" msgid="5254946758982621072">"需关闭飞行模式才能导入 SIM 卡中的联系人。"</string>
     <string name="enable_pin" msgid="5422767284133234860">"启用/停用SIM卡PIN码"</string>
     <string name="change_pin" msgid="9174186126330785343">"更改SIM卡PIN码"</string>
     <string name="enter_pin_text" msgid="8532615714751931951">"SIM卡PIN码："</string>
@@ -445,14 +439,11 @@
     <string name="notification_action_end_call" msgid="6069460915123531620">"挂断"</string>
     <string name="notification_missedCall_call_back" msgid="2684890353590890187">"回拨"</string>
     <string name="notification_missedCall_message" msgid="3049928912736917988">"短信"</string>
-    <!-- no translation found for incall_error_power_off (2947938060513306698) -->
-    <skip />
-    <!-- no translation found for incall_error_power_off_wfc (8711428920632416575) -->
-    <skip />
+    <string name="incall_error_power_off" msgid="2947938060513306698">"需关闭飞行模式才能拨打电话。"</string>
+    <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"需关闭飞行模式或连接至无线网络才能拨打电话。"</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"尚未注册网络。"</string>
     <string name="incall_error_out_of_service" msgid="4100065333878929223">"无法连接到移动网络。"</string>
-    <!-- no translation found for incall_error_out_of_service_wfc (323851839058697057) -->
-    <skip />
+    <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"移动网络不可用。需连接至无线网络才能拨打电话。"</string>
     <string name="incall_error_no_phone_number_supplied" msgid="1150414018684246528">"要拨打电话，请输入有效的电话号码。"</string>
     <string name="incall_error_call_failed" msgid="6302746943230078197">"无法拨打该电话。"</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"正在启动 MMI 序列..."</string>
@@ -463,8 +454,7 @@
     <string name="incall_error_supp_service_conference" msgid="2505727299596357312">"无法进行电话会议。"</string>
     <string name="incall_error_supp_service_reject" msgid="8998568661508655638">"无法拒接来电。"</string>
     <string name="incall_error_supp_service_hangup" msgid="7434513517153834426">"无法挂断电话。"</string>
-    <!-- no translation found for incall_error_wfc_only_no_wireless_network (1782466780452640089) -->
-    <skip />
+    <string name="incall_error_wfc_only_no_wireless_network" msgid="1782466780452640089">"需连接至无线网络才能拨打电话。"</string>
     <string name="emergency_enable_radio_dialog_title" msgid="4627849966634578257">"紧急呼救"</string>
     <string name="emergency_enable_radio_dialog_message" msgid="207613549344420291">"正在打开天线..."</string>
     <string name="emergency_enable_radio_dialog_retry" msgid="5960061579996526883">"无服务，正在重试…"</string>
@@ -520,18 +510,18 @@
     <string name="phone_entered_ecm_text" msgid="6266424252578731203">"已进入紧急回拨模式"</string>
     <string name="phone_in_ecm_notification_title" msgid="3226896828951687085">"紧急回拨模式"</string>
     <string name="phone_in_ecm_call_notification_text" msgid="4611608947314729773">"数据连接已停用"</string>
-    <plurals name="phone_in_ecm_notification_time" formatted="false" msgid="8308381858502470919">
-      <item quantity="other">持续 <xliff:g id="COUNT_1">%s</xliff:g> 分钟没有数据网络连接</item>
-      <item quantity="one">持续 <xliff:g id="COUNT_0">%s</xliff:g> 分钟没有数据网络连接</item>
-    </plurals>
-    <plurals name="alert_dialog_exit_ecm" formatted="false" msgid="7179911675595441201">
-      <item quantity="other">手机在 <xliff:g id="COUNT_1">%s</xliff:g> 分钟内都会处于紧急回拨模式。此模式下无法使用任何需要连接数据网络的应用。要立即退出吗？</item>
-      <item quantity="one">手机在 <xliff:g id="COUNT_0">%s</xliff:g> 分钟内都会处于紧急回拨模式。此模式下无法使用任何需要连接数据网络的应用。要立即退出吗？</item>
-    </plurals>
-    <plurals name="alert_dialog_not_avaialble_in_ecm" formatted="false" msgid="8042973425225093895">
-      <item quantity="other">在紧急回拨模式下无法执行所选操作。手机在 <xliff:g id="COUNT_1">%s</xliff:g> 分钟内都会处于此模式。要立即退出吗？</item>
-      <item quantity="one">在紧急回拨模式下无法执行所选操作。手机在 <xliff:g id="COUNT_0">%s</xliff:g> 分钟内都会处于此模式。要立即退出吗？</item>
-    </plurals>
+  <plurals name="phone_in_ecm_notification_time">
+    <item quantity="one" msgid="4866221796252472622">"持续 <xliff:g id="COUNT">%s</xliff:g> 分钟没有数据连接"</item>
+    <item quantity="other" msgid="3122217344579273583">"持续 <xliff:g id="COUNT">%s</xliff:g> 分钟没有数据连接"</item>
+  </plurals>
+  <plurals name="alert_dialog_exit_ecm">
+    <item quantity="one" msgid="8060210887681426682">"手机在 <xliff:g id="COUNT">%s</xliff:g> 分钟内都会处于紧急回拨模式下，此模式下无法使用需要联网的应用。您要立即退出吗？"</item>
+    <item quantity="other" msgid="8617116564023933114">"手机在 <xliff:g id="COUNT">%s</xliff:g> 分钟内都会处于紧急回拨模式下，此模式下无法使用需要联网的应用。要立即退出吗？"</item>
+  </plurals>
+  <plurals name="alert_dialog_not_avaialble_in_ecm">
+    <item quantity="one" msgid="2585506997024726599">"无法在紧急回拨模式下执行所选操作，而手机在 <xliff:g id="COUNT">%s</xliff:g> 分钟内都会处于此模式下。要立即退出吗？"</item>
+    <item quantity="other" msgid="6115622137771382224">"无法在紧急回拨模式下执行所选操作，而手机在 <xliff:g id="COUNT">%s</xliff:g> 分钟内都会处于此模式下。要立即退出吗？"</item>
+  </plurals>
     <string name="alert_dialog_in_ecm_call" msgid="1886723687211887104">"进行紧急呼救时无法执行所选操作。"</string>
     <string name="progress_dialog_exiting_ecm" msgid="4835734101617817074">"正在退出紧急回拨模式"</string>
     <string name="alert_dialog_yes" msgid="6674268047820703974">"是"</string>

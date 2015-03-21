@@ -510,18 +510,18 @@
     <string name="phone_entered_ecm_text" msgid="6266424252578731203">"حالت پاسخ تماس اضطراری وارد شده"</string>
     <string name="phone_in_ecm_notification_title" msgid="3226896828951687085">"حال پاسخ تماس اضطراری"</string>
     <string name="phone_in_ecm_call_notification_text" msgid="4611608947314729773">"اتصال داده غیر فعال شد"</string>
-    <plurals name="phone_in_ecm_notification_time" formatted="false" msgid="8308381858502470919">
-      <item quantity="one">هیچ اتصال داده‌ای برای <xliff:g id="COUNT_1">%s</xliff:g> دقیقه موجود نیست</item>
-      <item quantity="other">هیچ اتصال داده‌ای برای <xliff:g id="COUNT_1">%s</xliff:g> دقیقه موجود نیست</item>
-    </plurals>
-    <plurals name="alert_dialog_exit_ecm" formatted="false" msgid="7179911675595441201">
-      <item quantity="one">تلفن برای <xliff:g id="COUNT_1">%s</xliff:g> دقیقه در حالت تماس اضطراری خواهد بود. در این حالت برنامه‌ای که از اتصال داده استفاده می‌کند، نمی‌تواند استفاده شود. می‌خواهید اکنون خارج شوید؟</item>
-      <item quantity="other">تلفن برای <xliff:g id="COUNT_1">%s</xliff:g> دقیقه در حالت تماس اضطراری خواهد بود. در این حالت برنامه‌ای که از اتصال داده استفاده می‌کند، نمی‌تواند استفاده شود. می‌خواهید اکنون خارج شوید؟</item>
-    </plurals>
-    <plurals name="alert_dialog_not_avaialble_in_ecm" formatted="false" msgid="8042973425225093895">
-      <item quantity="one">اقدام انتخاب شده در حالت تماس اضطراری در دسترس نیست. این تلفن برای <xliff:g id="COUNT_1">%s</xliff:g> دقیقه در این حالت خواهد بود. می‌خواهید اکنون خارج شوید؟</item>
-      <item quantity="other">اقدام انتخاب شده در حالت تماس اضطراری در دسترس نیست. این تلفن برای <xliff:g id="COUNT_1">%s</xliff:g> دقیقه در این حالت خواهد بود. می‌خواهید اکنون خارج شوید؟</item>
-    </plurals>
+  <plurals name="phone_in_ecm_notification_time">
+    <item quantity="one" msgid="4866221796252472622">"اتصال داده‌ای به مدت <xliff:g id="COUNT">%s</xliff:g> دقیقه موجود نیست"</item>
+    <item quantity="other" msgid="3122217344579273583">"اتصال داده‌ای به مدت <xliff:g id="COUNT">%s</xliff:g> دقیقه موجود نیست"</item>
+  </plurals>
+  <plurals name="alert_dialog_exit_ecm">
+    <item quantity="one" msgid="8060210887681426682">"تلفن به مدت <xliff:g id="COUNT">%s</xliff:g> دقیقه در حالت پاسخ به تماس‌های اضطراری خواهد بود. در این حالت برنامه‌هایی که از اتصال داده استفاده می‌کنند قابل استفاده نیستند. آیا می‌خواهید اکنون خارج شوید؟"</item>
+    <item quantity="other" msgid="8617116564023933114">"تلفلن به مدت <xliff:g id="COUNT">%s</xliff:g> دقیقه در حالت پاسخ به تماس‌های اضطراری خواهد بود. در این حالت برنامه‌هایی که از اتصال داده استفاده می‌کنند قابل استفاده نیستند. آیا می‌خواهید اکنون خارج شوید؟"</item>
+  </plurals>
+  <plurals name="alert_dialog_not_avaialble_in_ecm">
+    <item quantity="one" msgid="2585506997024726599">"عملکرد انتخاب شده در حالت پاسخ به تماس اضطراری در دسترس نیست. تلفن مدت <xliff:g id="COUNT">%s</xliff:g> دقیقه در این حالت است. آیا می‌خواهید اکنون خارج شوید؟"</item>
+    <item quantity="other" msgid="6115622137771382224">"عمل انتخاب شده در حالت پاسخ به تماس اضطراری در دسترس نیست. تلفن مدت <xliff:g id="COUNT">%s</xliff:g> دقیقه در این حالت باقی می‌ماند. آیا می‌خواهید اکنون خارج شوید؟"</item>
+  </plurals>
     <string name="alert_dialog_in_ecm_call" msgid="1886723687211887104">"در حین یک تماس اضطراری، عملکرد انتخابی در دسترس نیست."</string>
     <string name="progress_dialog_exiting_ecm" msgid="4835734101617817074">"خروج از حالت پاسخ تماس اضطراری"</string>
     <string name="alert_dialog_yes" msgid="6674268047820703974">"بله"</string>

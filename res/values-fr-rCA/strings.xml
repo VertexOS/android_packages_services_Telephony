@@ -514,18 +514,18 @@
     <string name="phone_entered_ecm_text" msgid="6266424252578731203">"Mode de rappel d\'urgence activé"</string>
     <string name="phone_in_ecm_notification_title" msgid="3226896828951687085">"Mode de rappel d\'urgence"</string>
     <string name="phone_in_ecm_call_notification_text" msgid="4611608947314729773">"Connexion des données désactivée"</string>
-    <plurals name="phone_in_ecm_notification_time" formatted="false" msgid="8308381858502470919">
-      <item quantity="one">Aucune connexion de données pendant <xliff:g id="COUNT_1">%s</xliff:g> minute</item>
-      <item quantity="other">Aucune connexion de données pendant <xliff:g id="COUNT_1">%s</xliff:g> minutes</item>
-    </plurals>
-    <plurals name="alert_dialog_exit_ecm" formatted="false" msgid="7179911675595441201">
-      <item quantity="one">Le téléphone sera en mode de rappel d\'urgence pendant <xliff:g id="COUNT_1">%s</xliff:g> minute.  Lorsque ce mode est activé, vous ne pouvez pas utiliser d\'applications nécessitant une connexion à Internet. Voulez-vous quitter l\'écran maintenant?</item>
-      <item quantity="other"> Le téléphone sera en mode de rappel d\'urgence pendant <xliff:g id="COUNT_1">%s</xliff:g> minutes. Lorsque ce mode est activé, vous ne pouvez pas utiliser d\'applications nécessitant une connexion à Internet. Voulez-vous quitter l\'écran maintenant?</item>
-    </plurals>
-    <plurals name="alert_dialog_not_avaialble_in_ecm" formatted="false" msgid="8042973425225093895">
-      <item quantity="one">L\'action sélectionnée n\'est pas disponible lorsque le mode de rappel d\'urgence est activé. Ce mode restera activé sur ce téléphone pendant <xliff:g id="COUNT_1">%s</xliff:g> minute. Voulez-vous quitter l\'écran maintenant?</item>
-      <item quantity="other">L\'action sélectionnée n\'est pas disponible lorsque le mode de rappel d\'urgence est activé. Ce mode restera activé sur ce téléphone pendant <xliff:g id="COUNT_1">%s</xliff:g> minutes. Voulez-vous quitter l\'écran maintenant?</item>
-    </plurals>
+  <plurals name="phone_in_ecm_notification_time">
+    <item quantity="one" msgid="4866221796252472622">"Aucune connexion à Internet pendant <xliff:g id="COUNT">%s</xliff:g> minute"</item>
+    <item quantity="other" msgid="3122217344579273583">"Aucune connexion de données pendant <xliff:g id="COUNT">%s</xliff:g> minutes"</item>
+  </plurals>
+  <plurals name="alert_dialog_exit_ecm">
+    <item quantity="one" msgid="8060210887681426682">"Le mode de rappel d\'urgence sera actif sur le téléphone pendant <xliff:g id="COUNT">%s</xliff:g> minute. Tant que ce mode est actif, vous ne pouvez utiliser aucune des applications nécessitant une connexion Internet. Voulez-vous quitter maintenant?"</item>
+    <item quantity="other" msgid="8617116564023933114">"Le mode de rappel d\'urgence sera actif sur le téléphone pendant <xliff:g id="COUNT">%s</xliff:g> minutes. Tant que ce mode est actif, vous ne pouvez utiliser aucune des applications nécessitant une connexion Internet. Voulez-vous quitter maintenant?"</item>
+  </plurals>
+  <plurals name="alert_dialog_not_avaialble_in_ecm">
+    <item quantity="one" msgid="2585506997024726599">"L\'action sélectionnée n\'est pas disponible en mode de rappel d\'urgence. Ce mode sera actif sur le téléphone pendant <xliff:g id="COUNT">%s</xliff:g> minute. Voulez-vous quitter maintenant?"</item>
+    <item quantity="other" msgid="6115622137771382224">"L\'action sélectionnée n\'est pas disponible en mode de rappel d\'urgence. Ce mode sera actif sur le téléphone pendant <xliff:g id="COUNT">%s</xliff:g> minutes. Voulez-vous quitter maintenant?"</item>
+  </plurals>
     <string name="alert_dialog_in_ecm_call" msgid="1886723687211887104">"L\'action sélectionnée n\'est pas disponible pendant un appel d\'urgence."</string>
     <string name="progress_dialog_exiting_ecm" msgid="4835734101617817074">"Sortie du mode de rappel d\'urgence…"</string>
     <string name="alert_dialog_yes" msgid="6674268047820703974">"Oui"</string>

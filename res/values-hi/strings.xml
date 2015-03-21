@@ -66,10 +66,8 @@
     <string name="phone_accounts_selection_header" msgid="1365215726106915865">"फ़ोन खाते"</string>
     <string name="phone_accounts_add_sip_account" msgid="2023821743341923271">"SIP खाता जोड़ें"</string>
     <string name="phone_accounts_configure_account_settings" msgid="1361715069911607109">"खाता सेटिंग कॉन्‍फ़िगर करें"</string>
-    <!-- no translation found for wifi_calling (739018212480165598) -->
-    <skip />
-    <!-- no translation found for wifi_calling_off_summary (2992184822432174168) -->
-    <skip />
+    <string name="wifi_calling" msgid="739018212480165598">"वाई-फ़ाई कॉलिंग"</string>
+    <string name="wifi_calling_off_summary" msgid="2992184822432174168">"बंद"</string>
     <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"वाई-फ़ाई कॉलिंग का उपयोग न करें"</string>
     <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"कॉल सहायक का उपयोग न करें"</string>
     <string name="wifi_calling_call_assistant_none" msgid="6283702349285593683">"कोई नहीं"</string>
@@ -201,12 +199,9 @@
   </string-array>
     <string name="enhanced_4g_lte_mode_title" msgid="522191650223239171">"उन्नत 4G LTE मोड"</string>
     <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"ध्‍वनि और अन्‍य संचारों को बेहतर बनाने हेतु LTE सेवाओं का उपयोग करें (अनुशंसित)"</string>
-    <!-- no translation found for wfc_mode_wifi_preferred_summary (9143208157600896911) -->
-    <skip />
-    <!-- no translation found for wfc_mode_cellular_preferred_summary (2259869029990883080) -->
-    <skip />
-    <!-- no translation found for wfc_mode_wifi_only_summary (6176822199433274101) -->
-    <skip />
+    <string name="wfc_mode_wifi_preferred_summary" msgid="9143208157600896911">"वाई-फ़ाई को प्राथमिकता (वाई-फ़ाई उपलब्‍ध ना होने पर ही सेल नेटवर्क का उपयोग करती है)"</string>
+    <string name="wfc_mode_cellular_preferred_summary" msgid="2259869029990883080">"सेल्‍युलर को प्राथमिकता (सेल नेटवर्क उपलब्‍ध ना होने पर ही वाई-फ़ाई का उपयोग करती है)"</string>
+    <string name="wfc_mode_wifi_only_summary" msgid="6176822199433274101">"केवल वाई-फ़ाई (कभी भी सेल नेटवर्क का उपयोग नहीं करती. वाई-फ़ाई ना हो तो कॉल करना या पाना संभव नहीं)"</string>
     <string name="data_enabled" msgid="5972538663568715366">"डेटा सक्षम किया गया"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"डेटा उपयोग करने दें"</string>
     <string name="roaming" msgid="8871412572928323707">"रोमिंग डेटा"</string>
@@ -383,8 +378,7 @@
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"सिम कार्ड से पढ़ रहा है…"</string>
     <string name="simContacts_empty" msgid="5270660846489561932">"आपके सिम कार्ड पर कोई संपर्क नहीं है."</string>
     <string name="simContacts_title" msgid="1861472842524839921">"आयात करने के लिए संपर्कों को चुनें"</string>
-    <!-- no translation found for simContacts_airplaneMode (5254946758982621072) -->
-    <skip />
+    <string name="simContacts_airplaneMode" msgid="5254946758982621072">"SIM कार्ड से संपर्क आयात करने के लिए हवाई जहाज़ मोड बंद करें."</string>
     <string name="enable_pin" msgid="5422767284133234860">"सिम पिन सक्षम/अक्षम करें"</string>
     <string name="change_pin" msgid="9174186126330785343">"सिम पिन बदलें"</string>
     <string name="enter_pin_text" msgid="8532615714751931951">"सिम पिन:"</string>
@@ -445,14 +439,11 @@
     <string name="notification_action_end_call" msgid="6069460915123531620">"समाप्त करें"</string>
     <string name="notification_missedCall_call_back" msgid="2684890353590890187">"वापस कॉल करें"</string>
     <string name="notification_missedCall_message" msgid="3049928912736917988">"संदेश"</string>
-    <!-- no translation found for incall_error_power_off (2947938060513306698) -->
-    <skip />
-    <!-- no translation found for incall_error_power_off_wfc (8711428920632416575) -->
-    <skip />
+    <string name="incall_error_power_off" msgid="2947938060513306698">"कॉल करने के लिए हवाई जहाज़ मोड बंद करें."</string>
+    <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"कॉल करने के लिए हवाई जहाज़ मोड बंद करें या किसी वायरलेस नेटवर्क से कनेक्‍ट करें."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"नेटवर्क पर पंजीकृत नहीं."</string>
     <string name="incall_error_out_of_service" msgid="4100065333878929223">"सेल्युलर नेटवर्क उपलब्ध नहीं."</string>
-    <!-- no translation found for incall_error_out_of_service_wfc (323851839058697057) -->
-    <skip />
+    <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"सेल्‍युलर नेटवर्क उपलब्‍ध नहीं है. कॉल करने के लिए किसी वायरलेस नेटवर्क से कनेक्‍ट करें."</string>
     <string name="incall_error_no_phone_number_supplied" msgid="1150414018684246528">"कॉल करने के लिए, मान्‍य नंबर डालें."</string>
     <string name="incall_error_call_failed" msgid="6302746943230078197">"कॉल नहीं किया जा सकता."</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"MMI अनुक्रम प्रारंभ हो रहा है…"</string>
@@ -463,8 +454,7 @@
     <string name="incall_error_supp_service_conference" msgid="2505727299596357312">"कॉंन्फ़्रेंस कॉल करने में असमर्थ."</string>
     <string name="incall_error_supp_service_reject" msgid="8998568661508655638">"कॉल अस्‍वीकार नहीं किया जा सकता."</string>
     <string name="incall_error_supp_service_hangup" msgid="7434513517153834426">"कॉल रिलीज़ नहीं किया जा सकता (किए जा सकते)."</string>
-    <!-- no translation found for incall_error_wfc_only_no_wireless_network (1782466780452640089) -->
-    <skip />
+    <string name="incall_error_wfc_only_no_wireless_network" msgid="1782466780452640089">"कॉल करने के लिए किसी वायरलेस नेटवर्क से कनेक्‍ट करें."</string>
     <string name="emergency_enable_radio_dialog_title" msgid="4627849966634578257">"आपातकालीन कॉल"</string>
     <string name="emergency_enable_radio_dialog_message" msgid="207613549344420291">"रेडियो चालू कर रहा है..."</string>
     <string name="emergency_enable_radio_dialog_retry" msgid="5960061579996526883">"कोई सेवा नहीं. पुन: प्रयास किया जा रहा है…"</string>
@@ -520,18 +510,18 @@
     <string name="phone_entered_ecm_text" msgid="6266424252578731203">"आपातकालीन कॉलबैक मोड में प्रविष्ट हुए"</string>
     <string name="phone_in_ecm_notification_title" msgid="3226896828951687085">"आपातकालीन कॉलबैक मोड"</string>
     <string name="phone_in_ecm_call_notification_text" msgid="4611608947314729773">"डेटा कनेक्शन अक्षम किया गया"</string>
-    <plurals name="phone_in_ecm_notification_time" formatted="false" msgid="8308381858502470919">
-      <item quantity="one"><xliff:g id="COUNT_1">%s</xliff:g> मिनट तक कोई डेटा कनेक्‍शन नहीं</item>
-      <item quantity="other"><xliff:g id="COUNT_1">%s</xliff:g> मिनट तक कोई डेटा कनेक्‍शन नहीं</item>
-    </plurals>
-    <plurals name="alert_dialog_exit_ecm" formatted="false" msgid="7179911675595441201">
-      <item quantity="one">फ़ोन <xliff:g id="COUNT_1">%s</xliff:g> मिनट तक आपातकालीन कॉलबैक मोड में रहेगा. इस मोड में रहने पर डेटा कनेक्‍शन का उपयोग करने वाले किसी भी ऐप्‍लिकेशन का उपयोग नहीं किया जा सकता. क्‍या आप अभी बाहर निकलना चाहते हैं?</item>
-      <item quantity="other">फ़ोन <xliff:g id="COUNT_1">%s</xliff:g> मिनट तक आपातकालीन कॉलबैक मोड में रहेगा. इस मोड में रहने पर डेटा कनेक्‍शन का उपयोग करने वाले किसी भी ऐप्‍लिकेशन का उपयोग नहीं किया जा सकता. क्‍या आप अभी बाहर निकलना चाहते हैं?</item>
-    </plurals>
-    <plurals name="alert_dialog_not_avaialble_in_ecm" formatted="false" msgid="8042973425225093895">
-      <item quantity="one">आपातकालीन कॉलबैक मोड में रहने पर चयनित कार्रवाई उपलब्‍ध नहीं होती. फ़ोन <xliff:g id="COUNT_1">%s</xliff:g> मिनट तक इस मोड में रहेगा. क्‍या आप अभी बाहर निकलना चाहते हैं?</item>
-      <item quantity="other">आपातकालीन कॉलबैक मोड में रहने पर चयनित कार्रवाई उपलब्‍ध नहीं होती. फ़ोन <xliff:g id="COUNT_1">%s</xliff:g> मिनट तक इस मोड में रहेगा. क्‍या आप अभी बाहर निकलना चाहते हैं?</item>
-    </plurals>
+  <plurals name="phone_in_ecm_notification_time">
+    <item quantity="one" msgid="4866221796252472622">"<xliff:g id="COUNT">%s</xliff:g> मिनट के लिए कोई डेटा कनेक्शन नहीं"</item>
+    <item quantity="other" msgid="3122217344579273583">"<xliff:g id="COUNT">%s</xliff:g> मिनट के लिए कोई डेटा कनेक्शन नहीं"</item>
+  </plurals>
+  <plurals name="alert_dialog_exit_ecm">
+    <item quantity="one" msgid="8060210887681426682">"फ़ोन <xliff:g id="COUNT">%s</xliff:g> मिनट के लिए आपातकालीन कॉलबैक मोड में रहेगा. हालांकि, इस मोड में होने पर डेटा कनेक्शन का उपयोग करने वाले किसी ऐप्स  का उपयोग नहीं किया जा सकता. क्या आप अभी बाहर निकलना चाहते हैं?"</item>
+    <item quantity="other" msgid="8617116564023933114">"फ़ोन <xliff:g id="COUNT">%s</xliff:g> मिनट के लिए आपातकालीन कॉलबैक मोड में रहेगा. हालांकि, इस मोड में होने पर डेटा कनेक्शन का उपयोग करने वाले किसी ऐप्स  का उपयोग नहीं किया जा सकता. क्या आप अभी बाहर निकलना चाहते हैं?"</item>
+  </plurals>
+  <plurals name="alert_dialog_not_avaialble_in_ecm">
+    <item quantity="one" msgid="2585506997024726599">"आपातकालीन कॉलबैक मोड के समय चयनित क्रिया उपलब्ध नहीं है. फ़ोन <xliff:g id="COUNT">%s</xliff:g> मिनट तक इस मोड में रहेगा. क्या आप अभी बाहर निकलना चाहते हैं?"</item>
+    <item quantity="other" msgid="6115622137771382224">"आपातकालीन कॉलबैक मोड के समय चयनित क्रिया उपलब्ध नहीं है. फ़ोन <xliff:g id="COUNT">%s</xliff:g> मिनट तक इस मोड में रहेगा. क्या आप अभी बाहर निकलना चाहते हैं?"</item>
+  </plurals>
     <string name="alert_dialog_in_ecm_call" msgid="1886723687211887104">"आपातकालीन कॉल के समय चयनित क्रिया उपलब्ध नहीं होती है."</string>
     <string name="progress_dialog_exiting_ecm" msgid="4835734101617817074">"आपातकालीन कॉलबैक मोड से बाहर निकल रहा है"</string>
     <string name="alert_dialog_yes" msgid="6674268047820703974">"हां"</string>

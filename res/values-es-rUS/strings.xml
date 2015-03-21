@@ -67,7 +67,7 @@
     <string name="phone_accounts_add_sip_account" msgid="2023821743341923271">"Agregar cuenta SIP"</string>
     <string name="phone_accounts_configure_account_settings" msgid="1361715069911607109">"Cómo configurar la cuenta"</string>
     <string name="wifi_calling" msgid="739018212480165598">"Llamada por Wi-Fi"</string>
-    <string name="wifi_calling_off_summary" msgid="2992184822432174168">"Desactivado"</string>
+    <string name="wifi_calling_off_summary" msgid="2992184822432174168">"Desactivada"</string>
     <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"No utilizar llamadas por Wi-Fi"</string>
     <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"No utilizar asistente de llamadas"</string>
     <string name="wifi_calling_call_assistant_none" msgid="6283702349285593683">"Ninguno"</string>
@@ -510,18 +510,18 @@
     <string name="phone_entered_ecm_text" msgid="6266424252578731203">"Modo de devolución de llamada de emergencia ingresado"</string>
     <string name="phone_in_ecm_notification_title" msgid="3226896828951687085">"Modo de devolución de llamada de emergencia"</string>
     <string name="phone_in_ecm_call_notification_text" msgid="4611608947314729773">"La conexión de datos se ha desactivado"</string>
-    <plurals name="phone_in_ecm_notification_time" formatted="false" msgid="8308381858502470919">
-      <item quantity="other">Sin conexión de datos por <xliff:g id="COUNT_1">%s</xliff:g> minutos</item>
-      <item quantity="one">Sin conexión de datos por <xliff:g id="COUNT_0">%s</xliff:g> minuto</item>
-    </plurals>
-    <plurals name="alert_dialog_exit_ecm" formatted="false" msgid="7179911675595441201">
-      <item quantity="other">El teléfono estará en el modo de llamada de emergencia durante <xliff:g id="COUNT_1">%s</xliff:g> minutos. Mientras esté en este modo, no se podrá utilizar ninguna aplicación que utilice una conexión de datos. ¿Quieres salir ahora?</item>
-      <item quantity="one">El teléfono estará en el modo de llamada de emergencia durante <xliff:g id="COUNT_0">%s</xliff:g> minuto. Mientras esté en este modo, no se podrá utilizar ninguna aplicación que utilice una conexión de datos. ¿Quieres salir ahora?</item>
-    </plurals>
-    <plurals name="alert_dialog_not_avaialble_in_ecm" formatted="false" msgid="8042973425225093895">
-      <item quantity="other">La acción seleccionada no está disponible en el modo de llamada de emergencia. El teléfono estará en este modo durante <xliff:g id="COUNT_1">%s</xliff:g> minutos. ¿Quieres salir ahora?</item>
-      <item quantity="one">La acción seleccionada no está disponible en el modo de llamada de emergencia. El teléfono estará en este modo durante <xliff:g id="COUNT_0">%s</xliff:g> minuto. ¿Quieres salir ahora?</item>
-    </plurals>
+  <plurals name="phone_in_ecm_notification_time">
+    <item quantity="one" msgid="4866221796252472622">"Sin conexión de datos por <xliff:g id="COUNT">%s</xliff:g> minuto"</item>
+    <item quantity="other" msgid="3122217344579273583">"Sin conexión de datos por <xliff:g id="COUNT">%s</xliff:g> minutos"</item>
+  </plurals>
+  <plurals name="alert_dialog_exit_ecm">
+    <item quantity="one" msgid="8060210887681426682">"El teléfono permanecerá en el modo de llamada de retorno de emergencia <xliff:g id="COUNT">%s</xliff:g> minuto. Mientras el teléfono se encuentre en este modo, no se podrá usar ninguna aplicación que requiera de una conexión de datos. ¿Deseas salir ahora?"</item>
+    <item quantity="other" msgid="8617116564023933114">"El teléfono permanecerá en el modo de llamada de retorno de emergencia <xliff:g id="COUNT">%s</xliff:g> minutos. Mientras el teléfono se encuentre en este modo, no se podrá usar ninguna aplicación que requiera de una conexión de datos. ¿Deseas salir ahora?"</item>
+  </plurals>
+  <plurals name="alert_dialog_not_avaialble_in_ecm">
+    <item quantity="one" msgid="2585506997024726599">"La acción seleccionada no está disponible cuando el teléfono se encuentra en el modo de llamada de retorno de emergencia. El teléfono permanecerá en este modo <xliff:g id="COUNT">%s</xliff:g> minuto. ¿Deseas salir ahora?"</item>
+    <item quantity="other" msgid="6115622137771382224">"La acción seleccionada no está disponible cuando el teléfono se encuentra en el modo de llamada de retorno de emergencia. El teléfono permanecerá en este modo <xliff:g id="COUNT">%s</xliff:g> minutos. ¿Deseas salir ahora?"</item>
+  </plurals>
     <string name="alert_dialog_in_ecm_call" msgid="1886723687211887104">"La acción seleccionada no está disponible durante una llamada de emergencia."</string>
     <string name="progress_dialog_exiting_ecm" msgid="4835734101617817074">"Saliendo del modo de llamada de retorno de emergencia"</string>
     <string name="alert_dialog_yes" msgid="6674268047820703974">"Sí"</string>

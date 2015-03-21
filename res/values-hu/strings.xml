@@ -66,10 +66,8 @@
     <string name="phone_accounts_selection_header" msgid="1365215726106915865">"Telefonos fiókok"</string>
     <string name="phone_accounts_add_sip_account" msgid="2023821743341923271">"SIP-fiók hozzáadása"</string>
     <string name="phone_accounts_configure_account_settings" msgid="1361715069911607109">"Fiókbeállítások konfigurálása"</string>
-    <!-- no translation found for wifi_calling (739018212480165598) -->
-    <skip />
-    <!-- no translation found for wifi_calling_off_summary (2992184822432174168) -->
-    <skip />
+    <string name="wifi_calling" msgid="739018212480165598">"Wi-Fi-hívás"</string>
+    <string name="wifi_calling_off_summary" msgid="2992184822432174168">"Ki"</string>
     <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"Ne használja a Wi-Fi-hívást"</string>
     <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"Ne használja a hívássegédet"</string>
     <string name="wifi_calling_call_assistant_none" msgid="6283702349285593683">"Nincs"</string>
@@ -201,12 +199,9 @@
   </string-array>
     <string name="enhanced_4g_lte_mode_title" msgid="522191650223239171">"Javított 4G LTE mód"</string>
     <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"LTE-szolgáltatások használata hang- és egyéb kommunikáció javításához (ajánlott)"</string>
-    <!-- no translation found for wfc_mode_wifi_preferred_summary (9143208157600896911) -->
-    <skip />
-    <!-- no translation found for wfc_mode_cellular_preferred_summary (2259869029990883080) -->
-    <skip />
-    <!-- no translation found for wfc_mode_wifi_only_summary (6176822199433274101) -->
-    <skip />
+    <string name="wfc_mode_wifi_preferred_summary" msgid="9143208157600896911">"Wi-Fi előnyben részesítve (csak akkor használ mobilhálózatot, ha a Wi-Fi nem érhető el)"</string>
+    <string name="wfc_mode_cellular_preferred_summary" msgid="2259869029990883080">"Mobilhálózat előnyben részesítve (csak akkor használ Wi-Fi-t, ha a mobilhálózat nem érhető el)"</string>
+    <string name="wfc_mode_wifi_only_summary" msgid="6176822199433274101">"Csak Wi-Fi (Nem használ mobilhálózatot. Nem lehet hívásokat indítani vagy fogadni, ha nincs Wi-Fi.)"</string>
     <string name="data_enabled" msgid="5972538663568715366">"Adatok engedélyezése"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"Adatforgalom engedélyezése"</string>
     <string name="roaming" msgid="8871412572928323707">"Adatbarangolás"</string>
@@ -383,8 +378,7 @@
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"Beolvasás a SIM kártyáról..."</string>
     <string name="simContacts_empty" msgid="5270660846489561932">"Nincsenek névjegyek a SIM kártyán."</string>
     <string name="simContacts_title" msgid="1861472842524839921">"Válassza ki az importálni kívánt névjegyeket"</string>
-    <!-- no translation found for simContacts_airplaneMode (5254946758982621072) -->
-    <skip />
+    <string name="simContacts_airplaneMode" msgid="5254946758982621072">"A repülős üzemmód kikapcsolása a névjegyek SIM kártyáról történő importálásához."</string>
     <string name="enable_pin" msgid="5422767284133234860">"SIM kártya PIN kódjának be-/kikapcsolása"</string>
     <string name="change_pin" msgid="9174186126330785343">"SIM kártya PIN kódjának módosítása"</string>
     <string name="enter_pin_text" msgid="8532615714751931951">"SIM kártya PIN kódja:"</string>
@@ -445,14 +439,11 @@
     <string name="notification_action_end_call" msgid="6069460915123531620">"Hívás befejezése"</string>
     <string name="notification_missedCall_call_back" msgid="2684890353590890187">"Visszahívás"</string>
     <string name="notification_missedCall_message" msgid="3049928912736917988">"Üzenet"</string>
-    <!-- no translation found for incall_error_power_off (2947938060513306698) -->
-    <skip />
-    <!-- no translation found for incall_error_power_off_wfc (8711428920632416575) -->
-    <skip />
+    <string name="incall_error_power_off" msgid="2947938060513306698">"Repülős üzemmód kikapcsolása hívás indításához."</string>
+    <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"Hívás indításához kapcsolja ki a repülős üzemmódot, illetve csatlakozzon egy vezeték nélküli hálózathoz."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"Nincs regisztrálva a hálózaton."</string>
     <string name="incall_error_out_of_service" msgid="4100065333878929223">"A mobilhálózat nem érhető el."</string>
-    <!-- no translation found for incall_error_out_of_service_wfc (323851839058697057) -->
-    <skip />
+    <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"A mobilhálózat nem érhető el. Hívás indításához csatlakozzon egy vezeték nélküli hálózathoz."</string>
     <string name="incall_error_no_phone_number_supplied" msgid="1150414018684246528">"Hívásindításhoz adjon meg egy érvényes számot."</string>
     <string name="incall_error_call_failed" msgid="6302746943230078197">"A hívás sikertelen."</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"MMI-sorozat indítása..."</string>
@@ -463,8 +454,7 @@
     <string name="incall_error_supp_service_conference" msgid="2505727299596357312">"Nem lehet konferenciahívást folytatni."</string>
     <string name="incall_error_supp_service_reject" msgid="8998568661508655638">"A híváselutasítás sikertelen."</string>
     <string name="incall_error_supp_service_hangup" msgid="7434513517153834426">"A tartásban lévő hívás(ok) folytatása sikertelen."</string>
-    <!-- no translation found for incall_error_wfc_only_no_wireless_network (1782466780452640089) -->
-    <skip />
+    <string name="incall_error_wfc_only_no_wireless_network" msgid="1782466780452640089">"Hívás indításához csatlakozzon egy vezeték nélküli hálózathoz."</string>
     <string name="emergency_enable_radio_dialog_title" msgid="4627849966634578257">"Segélyhívás"</string>
     <string name="emergency_enable_radio_dialog_message" msgid="207613549344420291">"Rádió bekapcsolása..."</string>
     <string name="emergency_enable_radio_dialog_retry" msgid="5960061579996526883">"Nincs szolgáltatás. Újrapróbálkozás folyamatban…"</string>
@@ -520,18 +510,18 @@
     <string name="phone_entered_ecm_text" msgid="6266424252578731203">"Segélykérő visszahívása mód bekapcsolva"</string>
     <string name="phone_in_ecm_notification_title" msgid="3226896828951687085">"Segélykérő visszahívása mód"</string>
     <string name="phone_in_ecm_call_notification_text" msgid="4611608947314729773">"Adatkapcsolat letiltva"</string>
-    <plurals name="phone_in_ecm_notification_time" formatted="false" msgid="8308381858502470919">
-      <item quantity="other"><xliff:g id="COUNT_1">%s</xliff:g> perce nincs adatkapcsolat</item>
-      <item quantity="one"><xliff:g id="COUNT_0">%s</xliff:g> perce nincs adatkapcsolat</item>
-    </plurals>
-    <plurals name="alert_dialog_exit_ecm" formatted="false" msgid="7179911675595441201">
-      <item quantity="other">A telefon <xliff:g id="COUNT_1">%s</xliff:g> percig lesz Segélykérő visszahívása módban. Ebben az üzemmódban nem használhatók olyan alkalmazások, amelyeknél adatkapcsolatra van szükség. Szeretne kilépni most?</item>
-      <item quantity="one">A telefon <xliff:g id="COUNT_0">%s</xliff:g> percig lesz Segélykérő visszahívása módban. Ebben az üzemmódban nem használhatók olyan alkalmazások, amelyeknél adatkapcsolatra van szükség. Szeretne kilépni most?</item>
-    </plurals>
-    <plurals name="alert_dialog_not_avaialble_in_ecm" formatted="false" msgid="8042973425225093895">
-      <item quantity="other">A választott művelet nem érhető el Segélykérő visszahívása módban. A telefon <xliff:g id="COUNT_1">%s</xliff:g> percig lesz ebben a módban. Szeretne kilépni most?</item>
-      <item quantity="one">A választott művelet nem érhető el Segélykérő visszahívása módban. A telefon <xliff:g id="COUNT_0">%s</xliff:g> percig lesz ebben a módban. Szeretne kilépni most?</item>
-    </plurals>
+  <plurals name="phone_in_ecm_notification_time">
+    <item quantity="one" msgid="4866221796252472622">"<xliff:g id="COUNT">%s</xliff:g> perce nincs adatkapcsolat"</item>
+    <item quantity="other" msgid="3122217344579273583">"<xliff:g id="COUNT">%s</xliff:g> perce nincs adatkapcsolat"</item>
+  </plurals>
+  <plurals name="alert_dialog_exit_ecm">
+    <item quantity="one" msgid="8060210887681426682">"A telefon <xliff:g id="COUNT">%s</xliff:g> percig Sürgősségi visszahívás módban lesz. Ebben az üzemmódban nem használhatók az adatkapcsolatot használó alkalmazások. Szeretne most kilépni?"</item>
+    <item quantity="other" msgid="8617116564023933114">"A telefon <xliff:g id="COUNT">%s</xliff:g> percig Sürgősségi visszahívás módban lesz. Ebben az üzemmódban nem használhatók az adatkapcsolatot használó alkalmazások. Szeretne most kilépni?"</item>
+  </plurals>
+  <plurals name="alert_dialog_not_avaialble_in_ecm">
+    <item quantity="one" msgid="2585506997024726599">"A kiválasztott művelet nem áll rendelkezésre Sürgősségi visszahívás módban. A telefon <xliff:g id="COUNT">%s</xliff:g> percig lesz ebben a módban. Szeretne most kilépni?"</item>
+    <item quantity="other" msgid="6115622137771382224">"A kiválasztott művelet nem áll rendelkezésre Sürgősségi visszahívás módban. A telefon <xliff:g id="COUNT">%s</xliff:g> percig lesz ebben a módban. Szeretne most kilépni?"</item>
+  </plurals>
     <string name="alert_dialog_in_ecm_call" msgid="1886723687211887104">"A választott művelet nem érhető el segélyhívás során."</string>
     <string name="progress_dialog_exiting_ecm" msgid="4835734101617817074">"Kilépés a Sürgősségi visszahívás módból"</string>
     <string name="alert_dialog_yes" msgid="6674268047820703974">"Igen"</string>
