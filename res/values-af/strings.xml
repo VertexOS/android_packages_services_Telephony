@@ -514,18 +514,18 @@
     <string name="phone_entered_ecm_text" msgid="6266424252578731203">"Noodterugbel-modus betree"</string>
     <string name="phone_in_ecm_notification_title" msgid="3226896828951687085">"Noodterugbel-modus"</string>
     <string name="phone_in_ecm_call_notification_text" msgid="4611608947314729773">"Dataverbinding gedeaktiveer"</string>
-  <plurals name="phone_in_ecm_notification_time">
-    <item quantity="one" msgid="4866221796252472622">"Geen dataverbinding vir <xliff:g id="COUNT">%s</xliff:g> minuut nie"</item>
-    <item quantity="other" msgid="3122217344579273583">"Geen dataverbinding vir <xliff:g id="COUNT">%s</xliff:g> minute nie"</item>
-  </plurals>
-  <plurals name="alert_dialog_exit_ecm">
-    <item quantity="one" msgid="8060210887681426682">"Die telefoon sal in Noodterugbel-modus wees vir <xliff:g id="COUNT">%s</xliff:g> minuut. Terwyl in hierdie modus kan geen programme wat \'n dataverbinding nodig het, gebruik word nie. Wil jy nou uitgaan?"</item>
-    <item quantity="other" msgid="8617116564023933114">"Die telefoon sal in Noodterugbel-modus wees vir <xliff:g id="COUNT">%s</xliff:g> minute. Terwyl in hierdie modus kan geen programme wat \'n dataverbinding nodig het, gebruik word nie. Wil jy nou uitgaan?"</item>
-  </plurals>
-  <plurals name="alert_dialog_not_avaialble_in_ecm">
-    <item quantity="one" msgid="2585506997024726599">"Die geselekteerde aksie is nie beskikbaar terwyl in die Noodterugbelmodus is nie. Die foon sal in hierdie modus vir <xliff:g id="COUNT">%s</xliff:g> minuut wees. Wil jy nou uitgaan?"</item>
-    <item quantity="other" msgid="6115622137771382224">"Die geselekteerde aksie is nie beskikbaar terwyl in die Noodterugbelmodus is nie. Die foon sal in hierdie modus vir <xliff:g id="COUNT">%s</xliff:g> minuut wees. Wil jy nou uitgaan?"</item>
-  </plurals>
+    <plurals name="phone_in_ecm_notification_time" formatted="false" msgid="8308381858502470919">
+      <item quantity="other">Geen dataverbinding vir <xliff:g id="COUNT_1">%s</xliff:g> minute nie</item>
+      <item quantity="one">Geen dataverbinding vir <xliff:g id="COUNT_0">%s</xliff:g> minuut nie</item>
+    </plurals>
+    <plurals name="alert_dialog_exit_ecm" formatted="false" msgid="7179911675595441201">
+      <item quantity="other">Die foon sal <xliff:g id="COUNT_1">%s</xliff:g> minute lank in noodterugbelmodus wees. Terwyl dit in hierdie modus is, kan geen programme gebruik word wat \'n dataverbinding gebruik nie. Wil jy nou uitgaan?</item>
+      <item quantity="one">Die foon sal <xliff:g id="COUNT_0">%s</xliff:g> minuut lank in noodterugbelmodus wees. Terwyl dit in hierdie modus is, kan geen programme gebruik word wat \'n dataverbinding gebruik nie. Wil jy nou uitgaan?</item>
+    </plurals>
+    <plurals name="alert_dialog_not_avaialble_in_ecm" formatted="false" msgid="8042973425225093895">
+      <item quantity="other">Die gekose handeling is nie beskikbaar terwyl die foon in die noodterugbelmodus is nie. Die foon sal <xliff:g id="COUNT_1">%s</xliff:g> minute lank in hierdie modus wees. Wil jy nou uitgaan?</item>
+      <item quantity="one">Die gekose handeling is nie beskikbaar terwyl die foon in die noodterugbelmodus is nie. Die foon sal <xliff:g id="COUNT_0">%s</xliff:g> minuut lank in hierdie modus wees. Wil jy nou uitgaan?</item>
+    </plurals>
     <string name="alert_dialog_in_ecm_call" msgid="1886723687211887104">"Die gekose handeling is nie beskikbaar tydens \'n noodoproep nie."</string>
     <string name="progress_dialog_exiting_ecm" msgid="4835734101617817074">"Verlaat noodterugbel-modus"</string>
     <string name="alert_dialog_yes" msgid="6674268047820703974">"Ja"</string>

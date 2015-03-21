@@ -512,18 +512,24 @@
     <string name="phone_entered_ecm_text" msgid="6266424252578731203">"Телефон переведен в режим экстренных обратных вызовов"</string>
     <string name="phone_in_ecm_notification_title" msgid="3226896828951687085">"Режим экстренных обратных вызовов"</string>
     <string name="phone_in_ecm_call_notification_text" msgid="4611608947314729773">"Передача данных отключена"</string>
-  <plurals name="phone_in_ecm_notification_time">
-    <item quantity="one" msgid="4866221796252472622">"Подключение для передачи данных отсутствует <xliff:g id="COUNT">%s</xliff:g> мин."</item>
-    <item quantity="other" msgid="3122217344579273583">"Подключение для передачи данных отсутствует <xliff:g id="COUNT">%s</xliff:g> мин."</item>
-  </plurals>
-  <plurals name="alert_dialog_exit_ecm">
-    <item quantity="one" msgid="8060210887681426682">"Телефон будет оставаться в режиме экстренных обратных вызовов еще <xliff:g id="COUNT">%s</xliff:g> мин. При этом будут недоступны приложения с поддержкой передачи данных. Выйти?"</item>
-    <item quantity="other" msgid="8617116564023933114">"Телефон будет оставаться в режиме экстренных обратных вызовов еще <xliff:g id="COUNT">%s</xliff:g> мин. При этом будут недоступны приложения с поддержкой передачи данных. Выйти?"</item>
-  </plurals>
-  <plurals name="alert_dialog_not_avaialble_in_ecm">
-    <item quantity="one" msgid="2585506997024726599">"Выбранное действие невозможно при экстренных обратных вызовах. Телефон будет оставаться в этом режиме еще <xliff:g id="COUNT">%s</xliff:g> мин. Выйти?"</item>
-    <item quantity="other" msgid="6115622137771382224">"Выбранное действие невозможно при экстренных обратных вызовах. Телефон будет оставаться в этом режиме еще <xliff:g id="COUNT">%s</xliff:g> мин. Выйти?"</item>
-  </plurals>
+    <plurals name="phone_in_ecm_notification_time" formatted="false" msgid="8308381858502470919">
+      <item quantity="one">Подключение для передачи данных отсутствует <xliff:g id="COUNT_1">%s</xliff:g> минуту</item>
+      <item quantity="few">Подключение для передачи данных отсутствует <xliff:g id="COUNT_1">%s</xliff:g> минуты</item>
+      <item quantity="many">Подключение для передачи данных отсутствует <xliff:g id="COUNT_1">%s</xliff:g> минут</item>
+      <item quantity="other">Подключение для передачи данных отсутствует <xliff:g id="COUNT_1">%s</xliff:g> минуты</item>
+    </plurals>
+    <plurals name="alert_dialog_exit_ecm" formatted="false" msgid="7179911675595441201">
+      <item quantity="one">Режим экстренных обратных вызовов будет действовать ещё <xliff:g id="COUNT_1">%s</xliff:g> минуту. При этом будут недоступны приложения с поддержкой передачи данных. Выйти?</item>
+      <item quantity="few">Режим экстренных обратных вызовов будет действовать ещё <xliff:g id="COUNT_1">%s</xliff:g> минуты. При этом будут недоступны приложения с поддержкой передачи данных. Выйти?</item>
+      <item quantity="many">Режим экстренных обратных вызовов будет действовать ещё <xliff:g id="COUNT_1">%s</xliff:g> минут. При этом будут недоступны приложения с поддержкой передачи данных. Выйти?</item>
+      <item quantity="other">Режим экстренных обратных вызовов будет действовать ещё <xliff:g id="COUNT_1">%s</xliff:g> минуты. При этом будут недоступны приложения с поддержкой передачи данных. Выйти?</item>
+    </plurals>
+    <plurals name="alert_dialog_not_avaialble_in_ecm" formatted="false" msgid="8042973425225093895">
+      <item quantity="one">Эта операция недоступна в режиме экстренных обратных вызовов. Телефон останется в этом режиме ещё на <xliff:g id="COUNT_1">%s</xliff:g> минуту. Выйти?</item>
+      <item quantity="few">Эта операция недоступна в режиме экстренных обратных вызовов. Телефон останется в этом режиме ещё <xliff:g id="COUNT_1">%s</xliff:g> минуты. Выйти?</item>
+      <item quantity="many">Эта операция недоступна в режиме экстренных обратных вызовов. Телефон останется в этом режиме ещё на <xliff:g id="COUNT_1">%s</xliff:g> минут. Выйти?</item>
+      <item quantity="other">Эта операция недоступна в режиме экстренных обратных вызовов. Телефон останется в этом режиме ещё на <xliff:g id="COUNT_1">%s</xliff:g> минуты. Выйти?</item>
+    </plurals>
     <string name="alert_dialog_in_ecm_call" msgid="1886723687211887104">"Выбранное действие невозможно при экстренном вызове."</string>
     <string name="progress_dialog_exiting_ecm" msgid="4835734101617817074">"Выход из режима экстренных обратных вызовов"</string>
     <string name="alert_dialog_yes" msgid="6674268047820703974">"Да"</string>

@@ -510,18 +510,18 @@
     <string name="phone_entered_ecm_text" msgid="6266424252578731203">"ເຂົ້າສູ່ໂໝດໂທກັບສຸກເສີນແລ້ວ"</string>
     <string name="phone_in_ecm_notification_title" msgid="3226896828951687085">"ໂໝດໂທກັບສຸກເສີນ"</string>
     <string name="phone_in_ecm_call_notification_text" msgid="4611608947314729773">"ປິດການເຊື່ອມຕໍ່ຂໍ້ມູນແລ້ວ"</string>
-  <plurals name="phone_in_ecm_notification_time">
-    <item quantity="one" msgid="4866221796252472622">"ບໍ່ສາມາດໃຊ້ການເຊື່ອມຕໍ່ຂໍ້ມູນໄດ້ເປັນເວລາ <xliff:g id="COUNT">%s</xliff:g> ນາທີ"</item>
-    <item quantity="other" msgid="3122217344579273583">"ບໍ່ສາມາດເຊື່ອມຕໍ່ຂໍ້ມູນໄດ້ເປັນເວລາ <xliff:g id="COUNT">%s</xliff:g> ນາທີ"</item>
-  </plurals>
-  <plurals name="alert_dialog_exit_ecm">
-    <item quantity="one" msgid="8060210887681426682">"ໂທລະສັບຈະຢູ່ໃນໂໝດການໂທກັບສຸກເສີນ ເປັນເວລາ <xliff:g id="COUNT">%s</xliff:g> ນາທີ. ໃນລະຫວ່າງທີ່ຢູ່ໃນໂໝດນີ້ ຈະບໍ່ມີແອັບຯໃດສາມາດໃຊ້ການເຊື່ອມຕໍ່ຂໍ້ມູນໄດ້. ທ່ານຕ້ອງການອອກດຽວນີ້ບໍ່?"</item>
-    <item quantity="other" msgid="8617116564023933114">"ໂທລະສັບຈະຢູ່ໃນໂໝດການໂທກັບສຸກເສີນ ເປັນເວລາ <xliff:g id="COUNT">%s</xliff:g> ນາທີ. ໃນລະຫວ່າງທີ່ຢູ່ໃນໂໝດນີ້ ຈະບໍ່ມີແອັບພລິເຄຊັນໃດສາມາດໃຊ້ການເຊື່ອມຕໍ່ຂໍ້ມູນໄດ້. ທ່ານຕ້ອງການອອກດຽວນີ້ບໍ່?"</item>
-  </plurals>
-  <plurals name="alert_dialog_not_avaialble_in_ecm">
-    <item quantity="one" msgid="2585506997024726599">"ການດຳເນີນການທີ່ເລືອກ ບໍ່ສາມາດໃຊ້ໄດ້ໃນຂະນະທີ່ຢູ່ໃນໂໝດໂທກັບສຸກເສີນ. ໂທລະສັບຈະຢູ່ໃນໂໝດນີ້ອີກ <xliff:g id="COUNT">%s</xliff:g> ນາທີ. ທ່ານຕ້ອງການອອກດຽວນີ້ບໍ່?"</item>
-    <item quantity="other" msgid="6115622137771382224">"ການດຳເນີນການທີ່ເລືອກ ບໍ່ສາມາດໃຊ້ໄດ້ໃນຂະນະທີ່ຢູ່ໃນໂໝດໂທກັບສຸກເສີນ. ໂທລະສັບຈະຢູ່ໃນໂໝດນີ້ອີກ <xliff:g id="COUNT">%s</xliff:g> ນາທີ. ທ່ານຕ້ອງການອອກດຽວນີ້ບໍ່?"</item>
-  </plurals>
+    <plurals name="phone_in_ecm_notification_time" formatted="false" msgid="8308381858502470919">
+      <item quantity="other"> <xliff:g id="COUNT_1">%s</xliff:g> ນາ​ທີ</item>
+      <item quantity="one">ບໍ່​ມີ​ການ​ເຊື່ອມ​ຕໍ່​ຂໍ້​ມູນ​ເປັນ​ເວ​ລາ <xliff:g id="COUNT_0">%s</xliff:g> ນາ​ທີ</item>
+    </plurals>
+    <plurals name="alert_dialog_exit_ecm" formatted="false" msgid="7179911675595441201">
+      <item quantity="other">ໂທ​ລະ​ສັບ​ຈະ​ຢູ່​ໃນ​ໂໝດ​ການ​ໂທ​​ສຸກ​ເສີນ​ເປັນ​ເວ​ລາ <xliff:g id="COUNT_1">%s</xliff:g> ນາ​ທີ. ໃນ​ຂະ​ນະ​ທີ່​ຢູ່​ໃນ​ໂໝດ​ນີ້ ບໍ່​ມີ​ແອພ​ພ​ລິ​ເຄ​ຊັນທີ່​ໃຊ້​ການ​ເຊື່ອມ​ຕໍ່​ຂໍ້​ມູນ​ທີ່​ສາ​ມາດ​ໃຊ້​ໄດ້. ທ່ານ​ຕ້ອງ​ການ​ອອກ​ດຽວ​ນີ້​ບໍ?</item>
+      <item quantity="one">ໂທ​ລະ​ສັບ​ຈະ​ຢູ່​ໃນ​ໂໝດ​ການ​ໂທ​​ສຸກ​ເສີນ​ເປັນ​ເວ​ລາ <xliff:g id="COUNT_0">%s</xliff:g> ນາ​ທີ. ໃນ​ຂະ​ນະ​ທີ່​ຢູ່​ໃນ​ໂໝດ​ນີ້ ບໍ່​ມີ​ແອັບ​ທີ່​ໃຊ້​ການ​ເຊື່ອມ​ຕໍ່​ຂໍ້​ມູນ​ທີ່​ສາ​ມາດ​ໃຊ້​ໄດ້. ທ່ານ​ຕ້ອງ​ການ​ອອກ​ດຽວ​ນີ້​ບໍ?</item>
+    </plurals>
+    <plurals name="alert_dialog_not_avaialble_in_ecm" formatted="false" msgid="8042973425225093895">
+      <item quantity="other">. ໂທ​ລະ​ສັບ​ຈະ​ຢູ່​ໃນ​ໂໝດ​ນີ້​ເປັນ​ເວ​ລາ <xliff:g id="COUNT_1">%s</xliff:g> ນາ​ທີ. ທ່ານ​ຕ້ອງ​ການ​ອອກ​ດຽວ​ນີ້​ບໍ?</item>
+      <item quantity="one">ການດຳເນີນການທີ່ເລືອກໄວ້ ບໍ່ສາມາດໃຊ້ໄດ້ໃນຂະນະທີ່ຢູ່ໃນການໂທສຸກເສີນ. ໂທ​ລະ​ສັບ​ຈະ​ຢູ່​ໃນ​ໂໝດ​ນີ້​ເປັນ​ເວ​ລາ <xliff:g id="COUNT_0">%s</xliff:g> ນາ​ທີ. ທ່ານ​ຕ້ອງ​ການ​ອອກ​ດຽວ​ນີ້​ບໍ?</item>
+    </plurals>
     <string name="alert_dialog_in_ecm_call" msgid="1886723687211887104">"ການດຳເນີນການທີ່ເລືອກ ບໍ່ສາມາດໃຊ້ໄດ້ໃນຂະນະທີ່ຢູ່ໃນການໂທສຸກເສີນ."</string>
     <string name="progress_dialog_exiting_ecm" msgid="4835734101617817074">"ກຳລັງອອກຈາກໂໝດໂທກັບສຸກເສີນ"</string>
     <string name="alert_dialog_yes" msgid="6674268047820703974">"ຕົກລົງ"</string>

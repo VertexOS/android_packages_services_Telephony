@@ -510,18 +510,18 @@
     <string name="phone_entered_ecm_text" msgid="6266424252578731203">"ತುರ್ತು ಕಾಲ್‌ಬ್ಯಾಕ್‌ ಮೋಡ್‌ ನಮೂದಿಸಲಾಗಿದೆ"</string>
     <string name="phone_in_ecm_notification_title" msgid="3226896828951687085">"ತುರ್ತು ಕಾಲ್‌ಬ್ಯಾಕ್‌ ಮೋಡ್‌"</string>
     <string name="phone_in_ecm_call_notification_text" msgid="4611608947314729773">"ಡೇಟಾ ಸಂಪರ್ಕ ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ"</string>
-  <plurals name="phone_in_ecm_notification_time">
-    <item quantity="one" msgid="4866221796252472622">"<xliff:g id="COUNT">%s</xliff:g> ನಿಮಿಷದವರೆಗೆ ಯಾವುದೇ ಡೇಟಾ ಸಂಪರ್ಕವಿಲ್ಲ"</item>
-    <item quantity="other" msgid="3122217344579273583">"<xliff:g id="COUNT">%s</xliff:g> ನಿಮಿಷಗಳವರೆಗೆ ಯಾವುದೇ ಡೇಟಾ ಸಂಪರ್ಕವಿಲ್ಲ"</item>
-  </plurals>
-  <plurals name="alert_dialog_exit_ecm">
-    <item quantity="one" msgid="8060210887681426682">"<xliff:g id="COUNT">%s</xliff:g> ನಿಮಿಷದವರೆಗೆ ಫೋನ್‌‌ ತುರ್ತು ಕಾಲ್‌‌‌ಬ್ಯಾಕ್‌ ಮೋಡ್‌ನಲ್ಲಿರುತ್ತದೆ. ಈ ಮೋಡ್‌ನಲ್ಲಿರುವಾಗ ಡೇಟಾ ಸಂಪರ್ಕವನ್ನು ಬಳಸಿಕೊಂಡು ಯಾವುದೇ ಅಪ್ಲಿಕೇಶನ್‌ಗಳನ್ನು ಬಳಸ ಸಾಧ್ಯವಾಗದಿರಬಹುದು. ನೀವು ಈಗಲೇ ನಿರ್ಗಮಿಸಲು ಬಯಸುವಿರಾ?"</item>
-    <item quantity="other" msgid="8617116564023933114">"<xliff:g id="COUNT">%s</xliff:g> ನಿಮಿಷಗಳವರೆಗೆ ಫೋನ್‌‌ ತುರ್ತು ಕಾಲ್‌‌‌ಬ್ಯಾಕ್‌ ಮೋಡ್‌ನಲ್ಲಿರುತ್ತದೆ. ಈ ಮೋಡ್‌ನಲ್ಲಿರುವಾಗ ಡೇಟಾ ಸಂಪರ್ಕವನ್ನು ಬಳಸಿಕೊಂಡು ಯಾವುದೇ ಅಪ್ಲಿಕೇಶನ್‌ಗಳನ್ನು ಬಳಸಲು ಸಾಧ್ಯವಾಗದಿರಬಹುದು. ನೀವು ಈಗಲೇ ನಿರ್ಗಮಿಸಲು ಬಯಸುವಿರಾ?"</item>
-  </plurals>
-  <plurals name="alert_dialog_not_avaialble_in_ecm">
-    <item quantity="one" msgid="2585506997024726599">"ತುರ್ತು ಕಾಲ್‌ಬ್ಯಾಕ್‌‌ ಮೋಡ್‌ನಲ್ಲಿರುವಾಗ ಆಯ್ಕೆ ಮಾಡಿದ ಕ್ರಿಯೆಯು ಲಭ್ಯವಿರುವುದಿಲ್ಲ. <xliff:g id="COUNT">%s</xliff:g> ನಿಮಿಷದವರೆಗೆ ಫೋನ್‌‌ ಈ ಮೋಡ್‌ನಲ್ಲಿರುತ್ತದೆ. ನೀವು ಈಗಲೇ ನಿರ್ಗಮಿಸಲು ಬಯಸುವಿರಾ?"</item>
-    <item quantity="other" msgid="6115622137771382224">"ತುರ್ತು ಕಾಲ್‌ಬ್ಯಾಕ್‌‌ ಮೋಡ್‌ನಲ್ಲಿರುವಾಗ ಆಯ್ಕೆ ಮಾಡಿದ ಕ್ರಿಯೆಯು ಲಭ್ಯವಿರುವುದಿಲ್ಲ. <xliff:g id="COUNT">%s</xliff:g> ನಿಮಿಷಗಳವೆರೆಗೆ ಫೋನ್‌‌ ಈ ಮೋಡ್‌ನಲ್ಲಿರುತ್ತದೆ. ನೀವು ಈಗಲೇ ನಿರ್ಗಮಿಸಲು ಬಯಸುವಿರಾ?"</item>
-  </plurals>
+    <plurals name="phone_in_ecm_notification_time" formatted="false" msgid="8308381858502470919">
+      <item quantity="one"> <xliff:g id="COUNT_1">%s</xliff:g> ನಿಮಿಷಗಳ ಕಾಲ ಯಾವುದೇ ಡೇಟಾ ಸಂಪರ್ಕವಿಲ್ಲ</item>
+      <item quantity="other"> <xliff:g id="COUNT_1">%s</xliff:g> ನಿಮಿಷಗಳ ಕಾಲ ಯಾವುದೇ ಡೇಟಾ ಸಂಪರ್ಕವಿಲ್ಲ</item>
+    </plurals>
+    <plurals name="alert_dialog_exit_ecm" formatted="false" msgid="7179911675595441201">
+      <item quantity="one">ಪೋನ್‌ <xliff:g id="COUNT_1">%s</xliff:g> ನಿಮಿಷಗಳ ಕಾಲ ತುರ್ತು ಮರಳಿ ಕರೆಮಾಡು ಮೋಡ್‌ನಲ್ಲಿರುತ್ತದೆ. ಈ ಮೋಡ್‌ನಲ್ಲಿರುವಾಗ ಯಾವುದೇ ಅಪ್ಲಿಕೇಶನ್‌ಗಳನ್ನು ಡೇಟಾ ಸಂಪರ್ಕವನ್ನು ಬಳಸಿಕೊಂಡು ಬಳಸಲು ಸಾಧ್ಯವಾಗುವುದಿಲ್ಲ. ನೀವು ಇದೀಗ ನಿರ್ಗಮಿಸಲು ಬಯಸುವಿರಾ?</item>
+      <item quantity="other">ಪೋನ್‌ <xliff:g id="COUNT_1">%s</xliff:g> ನಿಮಿಷಗಳ ಕಾಲ ತುರ್ತು ಮರಳಿ ಕರೆಮಾಡು ಮೋಡ್‌ನಲ್ಲಿರುತ್ತದೆ. ಈ ಮೋಡ್‌ನಲ್ಲಿರುವಾಗ ಯಾವುದೇ ಅಪ್ಲಿಕೇಶನ್‌ಗಳನ್ನು ಡೇಟಾ ಸಂಪರ್ಕವನ್ನು ಬಳಸಿಕೊಂಡು ಬಳಸಲು ಸಾಧ್ಯವಾಗುವುದಿಲ್ಲ. ನೀವು ಇದೀಗ ನಿರ್ಗಮಿಸಲು ಬಯಸುವಿರಾ?</item>
+    </plurals>
+    <plurals name="alert_dialog_not_avaialble_in_ecm" formatted="false" msgid="8042973425225093895">
+      <item quantity="one">ತುರ್ತು ಮರಳಿ ಕರೆಮಾಡು ಮೋಡ್‌ನಲ್ಲಿರುವಾಗ ಆಯ್ಕೆಮಾಡಿದ ಕ್ರಿಯೆಯು ಲಭ್ಯವಿರುವುದಿಲ್ಲ. ಫೋನ್‌ <xliff:g id="COUNT_1">%s</xliff:g> ನಿಮಿಷಗಳ ಕಾಲ ಈ ಮೋಡ್‌ನಲ್ಲಿರುತ್ತದೆ. ನೀವು ಇದೀಗ ನಿರ್ಗಮಿಸಲು ಬಯಸುವಿರಾ?</item>
+      <item quantity="other">ತುರ್ತು ಮರಳಿ ಕರೆಮಾಡು ಮೋಡ್‌ನಲ್ಲಿರುವಾಗ ಆಯ್ಕೆಮಾಡಿದ ಕ್ರಿಯೆಯು ಲಭ್ಯವಿರುವುದಿಲ್ಲ. ಫೋನ್‌ <xliff:g id="COUNT_1">%s</xliff:g> ನಿಮಿಷಗಳ ಕಾಲ ಈ ಮೋಡ್‌ನಲ್ಲಿರುತ್ತದೆ. ನೀವು ಇದೀಗ ನಿರ್ಗಮಿಸಲು ಬಯಸುವಿರಾ?</item>
+    </plurals>
     <string name="alert_dialog_in_ecm_call" msgid="1886723687211887104">"ತುರ್ತು ಕರೆಯಲ್ಲಿರುವಾಗ ಆಯ್ಕೆಮಾಡಿದ ಕ್ರಿಯೆಯು ಲಭ್ಯವಿರುವುದಿಲ್ಲ."</string>
     <string name="progress_dialog_exiting_ecm" msgid="4835734101617817074">"ತುರ್ತು ಕಾಲ್‌ಬ್ಯಾಕ್‌ ಮೋಡ್‌ನಿಂದ ನಿರ್ಗಮಿಸಲಾಗುತ್ತಿದೆ"</string>
     <string name="alert_dialog_yes" msgid="6674268047820703974">"ಹೌದು"</string>

@@ -510,18 +510,18 @@
     <string name="phone_entered_ecm_text" msgid="6266424252578731203">"জরুরি কলব্যাক মোডে প্রবেশ করা হয়েছে"</string>
     <string name="phone_in_ecm_notification_title" msgid="3226896828951687085">"জরুরি কলব্যাক মোড"</string>
     <string name="phone_in_ecm_call_notification_text" msgid="4611608947314729773">"ডেটা সংযোগ অক্ষম করা হয়েছে"</string>
-  <plurals name="phone_in_ecm_notification_time">
-    <item quantity="one" msgid="4866221796252472622">"<xliff:g id="COUNT">%s</xliff:g> মিনিট পর্যন্ত কোনো ডেটা সংযোগ থাকবে না"</item>
-    <item quantity="other" msgid="3122217344579273583">"<xliff:g id="COUNT">%s</xliff:g> মিনিট পর্যন্ত কোনো ডেটা সংযোগ থাকবে না"</item>
-  </plurals>
-  <plurals name="alert_dialog_exit_ecm">
-    <item quantity="one" msgid="8060210887681426682">"ফোনটি <xliff:g id="COUNT">%s</xliff:g> মিনিট পর্যন্ত জরুরি কলব্যাক মোডে থাকবে৷ এই মোডে থাকাকালীন ডেটা সংযোগ ব্যবহার করে এমন কোনো অ্যাপ্লিকেশান ব্যবহার করা যাবে না৷ আপনি কি এখুনি এর থেকে বেরিয়ে যেতে চান?"</item>
-    <item quantity="other" msgid="8617116564023933114">"ফোনটি <xliff:g id="COUNT">%s</xliff:g> মিনিট পর্যন্ত জরুরি কলব্যাক মোডে থাকবে৷ এই মোডে থাকাকালীন ডেটা সংযোগ ব্যবহার করে এমন কোনো অ্যাপ্লিকেশান ব্যবহার করা যাবে না৷ আপনি কি এখুনি এর থেকে বেরিয়ে যেতে চান?"</item>
-  </plurals>
-  <plurals name="alert_dialog_not_avaialble_in_ecm">
-    <item quantity="one" msgid="2585506997024726599">"জরুরি কলব্যাক মোডে থাকাকালীন নির্বাচিত কার্যটি উপলব্ধ থাকবে না৷ ফোনটি <xliff:g id="COUNT">%s</xliff:g> মিনিট পর্যন্ত এই মোডে থাকবে৷ আপনি কি এখুনি এর থেকে বেরিয়ে যেতে চান?"</item>
-    <item quantity="other" msgid="6115622137771382224">"জরুরি কলব্যাক মোডে থাকাকালীন নির্বাচিত কার্যটি উপলব্ধ থাকবে না৷ ফোনটি <xliff:g id="COUNT">%s</xliff:g> মিনিট পর্যন্ত এই মোডে থাকবে৷ আপনি কি এখুনি এর থেকে বেরিয়ে যেতে চান?"</item>
-  </plurals>
+    <plurals name="phone_in_ecm_notification_time" formatted="false" msgid="8308381858502470919">
+      <item quantity="one"><xliff:g id="COUNT_1">%s</xliff:g> মিনিট পর্যন্ত কোনো ডেটা সংযোগ থাকবে না</item>
+      <item quantity="other"><xliff:g id="COUNT_1">%s</xliff:g> মিনিট পর্যন্ত কোনো ডেটা সংযোগ থাকবে না</item>
+    </plurals>
+    <plurals name="alert_dialog_exit_ecm" formatted="false" msgid="7179911675595441201">
+      <item quantity="one">ফোনটি <xliff:g id="COUNT_1">%s</xliff:g> মিনিটের জন্য জরুরী কলব্যাক মোডে থাকবে৷ এই মোডে থাকাকালীন একটি ডেটা সংযোগ ব্যবহার করে কোনো অ্যাপ্লিকেশান ব্যবহার করা যাবে না৷ আপনি কি এখনই প্রস্থান করতে চান?</item>
+      <item quantity="other">ফোনটি <xliff:g id="COUNT_1">%s</xliff:g> মিনিটের জন্য জরুরী কলব্যাক মোডে থাকবে৷ এই মোডে থাকাকালীন একটি ডেটা সংযোগ ব্যবহার করে কোনো অ্যাপ্লিকেশান ব্যবহার করা যাবে না৷ আপনি কি এখনই প্রস্থান করতে চান?</item>
+    </plurals>
+    <plurals name="alert_dialog_not_avaialble_in_ecm" formatted="false" msgid="8042973425225093895">
+      <item quantity="one">জরুরী কলব্যাক মোডে থাকাকালীন নির্বাচিত অ্যাকশন উপলব্ধ থাকবে না৷ ফোনটি <xliff:g id="COUNT_1">%s</xliff:g> মিনিটের জন্য এই মোডে থাকবে৷ আপনি কি এখনই প্রস্থান করতে চান?</item>
+      <item quantity="other">জরুরী কলব্যাক মোডে থাকাকালীন নির্বাচিত অ্যাকশন উপলব্ধ থাকবে না৷ ফোনটি <xliff:g id="COUNT_1">%s</xliff:g> মিনিটের জন্য এই মোডে থাকবে৷ আপনি কি এখনই প্রস্থান করতে চান?</item>
+    </plurals>
     <string name="alert_dialog_in_ecm_call" msgid="1886723687211887104">"কোনো জরুরি কলে থাকাকালীন নির্বাচিত ক্রিয়া উপলব্ধ নয়৷"</string>
     <string name="progress_dialog_exiting_ecm" msgid="4835734101617817074">"জরুরি কলব্যাক মোড থেকে প্রস্থান করা হচ্ছে"</string>
     <string name="alert_dialog_yes" msgid="6674268047820703974">"হ্যাঁ"</string>

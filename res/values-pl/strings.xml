@@ -510,18 +510,24 @@
     <string name="phone_entered_ecm_text" msgid="6266424252578731203">"Włączono tryb alarmowego połączenia zwrotnego"</string>
     <string name="phone_in_ecm_notification_title" msgid="3226896828951687085">"Tryb alarmowego połączenia zwrotnego"</string>
     <string name="phone_in_ecm_call_notification_text" msgid="4611608947314729773">"Połączenie transmisji danych jest wyłączone"</string>
-  <plurals name="phone_in_ecm_notification_time">
-    <item quantity="one" msgid="4866221796252472622">"Brak połączenia transmisji danych przez <xliff:g id="COUNT">%s</xliff:g> min"</item>
-    <item quantity="other" msgid="3122217344579273583">"Brak połączenia transmisji danych przez <xliff:g id="COUNT">%s</xliff:g> min"</item>
-  </plurals>
-  <plurals name="alert_dialog_exit_ecm">
-    <item quantity="one" msgid="8060210887681426682">"Telefon będzie w trybie alarmowym połączenia zwrotnego przez <xliff:g id="COUNT">%s</xliff:g> minutę. W tym trybie nie można korzystać z aplikacji używających połączeń danych. Czy chcesz teraz wyjść?"</item>
-    <item quantity="other" msgid="8617116564023933114">"Telefon będzie w trybie alarmowym połączenia zwrotnego przez <xliff:g id="COUNT">%s</xliff:g> min. W tym trybie nie można korzystać z aplikacji używających połączeń danych. Czy chcesz teraz wyjść?"</item>
-  </plurals>
-  <plurals name="alert_dialog_not_avaialble_in_ecm">
-    <item quantity="one" msgid="2585506997024726599">"Wybrana akcja nie jest dostępna w trybie alarmowym połączenia zwrotnego. Telefon będzie w tym trybie <xliff:g id="COUNT">%s</xliff:g> min. Czy chcesz teraz wyjść?"</item>
-    <item quantity="other" msgid="6115622137771382224">"Wybrana akcja nie jest dostępna w trybie alarmowym połączenia zwrotnego. Telefon będzie w tym trybie <xliff:g id="COUNT">%s</xliff:g> min. Czy chcesz teraz wyjść?"</item>
-  </plurals>
+    <plurals name="phone_in_ecm_notification_time" formatted="false" msgid="8308381858502470919">
+      <item quantity="few">Brak połączenia transmisji danych przez <xliff:g id="COUNT_1">%s</xliff:g> minuty</item>
+      <item quantity="many">Brak połączenia transmisji danych przez <xliff:g id="COUNT_1">%s</xliff:g> minut</item>
+      <item quantity="other">Brak połączenia transmisji danych przez <xliff:g id="COUNT_1">%s</xliff:g> minuty</item>
+      <item quantity="one">Brak połączenia transmisji danych przez <xliff:g id="COUNT_0">%s</xliff:g> minutę</item>
+    </plurals>
+    <plurals name="alert_dialog_exit_ecm" formatted="false" msgid="7179911675595441201">
+      <item quantity="few">Telefon będzie w trybie alarmowego połączenia zwrotnego przez <xliff:g id="COUNT_1">%s</xliff:g> minuty. W tym trybie nie można używać aplikacji, które korzystają z połączenia transmisji danych. Chcesz zakończyć tryb teraz?</item>
+      <item quantity="many">Telefon będzie w trybie alarmowego połączenia zwrotnego przez <xliff:g id="COUNT_1">%s</xliff:g> minut. W tym trybie nie można używać aplikacji, które korzystają z połączenia transmisji danych. Chcesz zakończyć tryb teraz?</item>
+      <item quantity="other">Telefon będzie w trybie alarmowego połączenia zwrotnego przez <xliff:g id="COUNT_1">%s</xliff:g> minuty. W tym trybie nie można używać aplikacji, które korzystają z połączenia transmisji danych. Chcesz zakończyć tryb teraz?</item>
+      <item quantity="one">Telefon będzie w trybie alarmowego połączenia zwrotnego przez <xliff:g id="COUNT_0">%s</xliff:g> minutę. W tym trybie nie można używać aplikacji, które korzystają z połączenia transmisji danych. Chcesz zakończyć tryb teraz?</item>
+    </plurals>
+    <plurals name="alert_dialog_not_avaialble_in_ecm" formatted="false" msgid="8042973425225093895">
+      <item quantity="few">Wybrana czynność jest niedostępna w trybie alarmowego połączenia zwrotnego. Telefon będzie w tym trybie przez <xliff:g id="COUNT_1">%s</xliff:g> minuty. Chcesz zakończyć tryb teraz?</item>
+      <item quantity="many">Wybrana czynność jest niedostępna w trybie alarmowego połączenia zwrotnego. Telefon będzie w tym trybie przez <xliff:g id="COUNT_1">%s</xliff:g> minut. Chcesz zakończyć tryb teraz?</item>
+      <item quantity="other">Wybrana czynność jest niedostępna w trybie alarmowego połączenia zwrotnego. Telefon będzie w tym trybie przez <xliff:g id="COUNT_1">%s</xliff:g> minuty. Chcesz zakończyć tryb teraz?</item>
+      <item quantity="one">Wybrana czynność jest niedostępna w trybie alarmowego połączenia zwrotnego. Telefon będzie w tym trybie przez <xliff:g id="COUNT_0">%s</xliff:g> minutę. Chcesz zakończyć tryb teraz?</item>
+    </plurals>
     <string name="alert_dialog_in_ecm_call" msgid="1886723687211887104">"Wybrana akcja jest niedostępna przy nawiązanym połączeniu alarmowym."</string>
     <string name="progress_dialog_exiting_ecm" msgid="4835734101617817074">"Kończenie trybu alarmowego połączenia zwrotnego"</string>
     <string name="alert_dialog_yes" msgid="6674268047820703974">"Tak"</string>

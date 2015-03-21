@@ -510,18 +510,18 @@
     <string name="phone_entered_ecm_text" msgid="6266424252578731203">"Ipinasok na Emergency Callback Mode"</string>
     <string name="phone_in_ecm_notification_title" msgid="3226896828951687085">"Emergency Callback Mode"</string>
     <string name="phone_in_ecm_call_notification_text" msgid="4611608947314729773">"Hindi pinagana ang koneksyon ng data"</string>
-  <plurals name="phone_in_ecm_notification_time">
-    <item quantity="one" msgid="4866221796252472622">"Walang koneksyon ng data sa loob ng <xliff:g id="COUNT">%s</xliff:g> (na) minuto"</item>
-    <item quantity="other" msgid="3122217344579273583">"Walang koneksyon ng data sa loob ng <xliff:g id="COUNT">%s</xliff:g> (na) minuto"</item>
-  </plurals>
-  <plurals name="alert_dialog_exit_ecm">
-    <item quantity="one" msgid="8060210887681426682">"Magiging nasa mode ng Emergency Callback ang telepono sa <xliff:g id="COUNT">%s</xliff:g> (a) minuto. Habang nasa mode na ito walang magagamit na apps na gumagamit ng koneksyon ng data. Gusto mo bang umalis ngayon?"</item>
-    <item quantity="other" msgid="8617116564023933114">"Magiging nasa mode ng Emergency Callback ang telepono sa <xliff:g id="COUNT">%s</xliff:g> (na) minuto. Habang nasa mode na ito walang magagamit na apps na gumagamit ng koneksyon ng data. Gusto mo bang umalis ngayon?"</item>
-  </plurals>
-  <plurals name="alert_dialog_not_avaialble_in_ecm">
-    <item quantity="one" msgid="2585506997024726599">"Hindi available ang napiling pagkilos habang nasa mode ng Emergency Callback. Magiging nasa ganitong mode ang telepono sa <xliff:g id="COUNT">%s</xliff:g> (na) minuto. Gusto mo bang umalis ngayon?"</item>
-    <item quantity="other" msgid="6115622137771382224">"Hindi available ang napiling pagkilos habang nasa mode ng Emergency Callback. Magiging nasa ganitong mode ang telepono sa <xliff:g id="COUNT">%s</xliff:g> (na) minuto. Gusto mo bang umalis ngayon?"</item>
-  </plurals>
+    <plurals name="phone_in_ecm_notification_time" formatted="false" msgid="8308381858502470919">
+      <item quantity="one">Walang koneksyon ng data sa loob ng <xliff:g id="COUNT_1">%s</xliff:g> minuto</item>
+      <item quantity="other">Walang koneksyon ng data sa loob ng <xliff:g id="COUNT_1">%s</xliff:g> na minuto</item>
+    </plurals>
+    <plurals name="alert_dialog_exit_ecm" formatted="false" msgid="7179911675595441201">
+      <item quantity="one">Mapupunta sa Emergency Callback mode ang telepono sa loob ng <xliff:g id="COUNT_1">%s</xliff:g> minuto. Habang nasa mode na ito, walang magagamit na mga application na gumagamit ng koneksyon ng data. Gusto mo bang lumabas ngayon?</item>
+      <item quantity="other">Mapupunta sa Emergency Callback mode ang telepono sa loob ng <xliff:g id="COUNT_1">%s</xliff:g> na minuto. Habang nasa mode na ito, walang magagamit na mga application na gumagamit ng koneksyon ng data. Gusto mo bang lumabas ngayon?</item>
+    </plurals>
+    <plurals name="alert_dialog_not_avaialble_in_ecm" formatted="false" msgid="8042973425225093895">
+      <item quantity="one">Hindi available ang napiling pagkilos habang nasa Emergency Callback mode. Mananatili ang telepono sa mode na ito sa loob ng <xliff:g id="COUNT_1">%s</xliff:g> minuto. Gusto mo bang lumabas ngayon?</item>
+      <item quantity="other">Hindi available ang napiling pagkilos habang nasa Emergency Callback mode. Mananatili ang telepono sa mode na ito sa loob ng <xliff:g id="COUNT_1">%s</xliff:g> na minuto. Gusto mo bang lumabas ngayon?</item>
+    </plurals>
     <string name="alert_dialog_in_ecm_call" msgid="1886723687211887104">"Hindi available ang piniling pagkilos habang nasa pang-emergency na tawag."</string>
     <string name="progress_dialog_exiting_ecm" msgid="4835734101617817074">"Lumalabas sa mode na Emergency Callback"</string>
     <string name="alert_dialog_yes" msgid="6674268047820703974">"Oo"</string>

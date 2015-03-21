@@ -512,18 +512,21 @@
     <string name="phone_entered_ecm_text" msgid="6266424252578731203">"Ievadītais ārkārtas atzvana režīms"</string>
     <string name="phone_in_ecm_notification_title" msgid="3226896828951687085">"Ārkārtas atzvana režīms"</string>
     <string name="phone_in_ecm_call_notification_text" msgid="4611608947314729773">"Datu savienojums ir atspējots."</string>
-  <plurals name="phone_in_ecm_notification_time">
-    <item quantity="one" msgid="4866221796252472622">"Nav datu savienojuma <xliff:g id="COUNT">%s</xliff:g> minūti"</item>
-    <item quantity="other" msgid="3122217344579273583">"<xliff:g id="COUNT">%s</xliff:g> minūti(-es) nav datu savienojuma."</item>
-  </plurals>
-  <plurals name="alert_dialog_exit_ecm">
-    <item quantity="one" msgid="8060210887681426682">"Tālrunis ārkārtas atzvana režīmā atradīsies <xliff:g id="COUNT">%s</xliff:g> minūti. Lietojot šo režīmu, nevar izmantot nevienu lietotni, kurai nepieciešams datu savienojums. Vai vēlaties iziet tūlīt?"</item>
-    <item quantity="other" msgid="8617116564023933114">"Tālrunis ārkārtas atzvana režīmā atradīsies <xliff:g id="COUNT">%s</xliff:g> minūti(-es). Lietojot šo režīmu, nevar izmantot nevienu lietojumprogrammu, kurai nepieciešams datu savienojums. Vai vēlaties iziet tūlīt?"</item>
-  </plurals>
-  <plurals name="alert_dialog_not_avaialble_in_ecm">
-    <item quantity="one" msgid="2585506997024726599">"Atlasītā darbība nav pieejama, izmantojot ārkārtas atzvana režīmu. Tālrunis šajā režīmā atradīsies <xliff:g id="COUNT">%s</xliff:g> minūti. Vai vēlaties iziet tūlīt?"</item>
-    <item quantity="other" msgid="6115622137771382224">"Atlasītā darbība nav pieejama, izmantojot ārkārtas atzvana režīmu. Tālrunis šajā režīmā atradīsies <xliff:g id="COUNT">%s</xliff:g> minūti(-es). Vai vēlaties iziet tūlīt?"</item>
-  </plurals>
+    <plurals name="phone_in_ecm_notification_time" formatted="false" msgid="8308381858502470919">
+      <item quantity="zero"><xliff:g id="COUNT_1">%s</xliff:g> minūtes nav datu savienojuma</item>
+      <item quantity="one"><xliff:g id="COUNT_1">%s</xliff:g> minūti nav datu savienojuma</item>
+      <item quantity="other"><xliff:g id="COUNT_1">%s</xliff:g> minūtes nav datu savienojuma</item>
+    </plurals>
+    <plurals name="alert_dialog_exit_ecm" formatted="false" msgid="7179911675595441201">
+      <item quantity="zero">Tālrunī <xliff:g id="COUNT_1">%s</xliff:g> minūtes būs aktivizēts ārkārtas atzvana režīms. Šajā režīmā nevar izmantot lietotnes, kurās tiek lietots datu savienojums. Vai vēlaties to aizvērt tūlīt?</item>
+      <item quantity="one">Tālrunī <xliff:g id="COUNT_1">%s</xliff:g> minūti būs aktivizēts ārkārtas atzvana režīms. Šajā režīmā nevar izmantot lietotnes, kurās tiek lietots datu savienojums. Vai vēlaties to aizvērt tūlīt?</item>
+      <item quantity="other">Tālrunī <xliff:g id="COUNT_1">%s</xliff:g> minūtes būs aktivizēts ārkārtas atzvana režīms. Šajā režīmā nevar izmantot lietotnes, kurās tiek lietots datu savienojums. Vai vēlaties to aizvērt tūlīt?</item>
+    </plurals>
+    <plurals name="alert_dialog_not_avaialble_in_ecm" formatted="false" msgid="8042973425225093895">
+      <item quantity="zero">Atlasītā darbība nav pieejama ārkārtas atzvana režīmā. Šis režīms tālrunī būs aktivizēts <xliff:g id="COUNT_1">%s</xliff:g> minūtes. Vai vēlaties to aizvērt tūlīt?</item>
+      <item quantity="one">Atlasītā darbība nav pieejama ārkārtas atzvana režīmā. Šis režīms tālrunī būs aktivizēts <xliff:g id="COUNT_1">%s</xliff:g> minūti. Vai vēlaties to aizvērt tūlīt?</item>
+      <item quantity="other">Atlasītā darbība nav pieejama ārkārtas atzvana režīmā. Šis režīms tālrunī būs aktivizēts <xliff:g id="COUNT_1">%s</xliff:g> minūtes. Vai vēlaties to aizvērt tūlīt?</item>
+    </plurals>
     <string name="alert_dialog_in_ecm_call" msgid="1886723687211887104">"Atlasītā darbība nav pieejama, veicot ārkārtas izsaukumu."</string>
     <string name="progress_dialog_exiting_ecm" msgid="4835734101617817074">"Notiek iziešana no ārkārtas atzvana režīma"</string>
     <string name="alert_dialog_yes" msgid="6674268047820703974">"Jā"</string>

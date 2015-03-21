@@ -510,18 +510,24 @@
     <string name="phone_entered_ecm_text" msgid="6266424252578731203">"Увійд. в реж. авар. зворот. виклику"</string>
     <string name="phone_in_ecm_notification_title" msgid="3226896828951687085">"Реж. авар. зворот. виклику"</string>
     <string name="phone_in_ecm_call_notification_text" msgid="4611608947314729773">"Передавання даних вимкнено"</string>
-  <plurals name="phone_in_ecm_notification_time">
-    <item quantity="one" msgid="4866221796252472622">"Немає передав. даних протягом <xliff:g id="COUNT">%s</xliff:g> хв."</item>
-    <item quantity="other" msgid="3122217344579273583">"Немає передав. даних протягом <xliff:g id="COUNT">%s</xliff:g> хв."</item>
-  </plurals>
-  <plurals name="alert_dialog_exit_ecm">
-    <item quantity="one" msgid="8060210887681426682">"Телефон буде в режимі екстреного зворотного виклику <xliff:g id="COUNT">%s</xliff:g> хв. У цьому режимі неможливо користуватися програмами, які використовують передавання даних. Вийти зараз?"</item>
-    <item quantity="other" msgid="8617116564023933114">"Телефон буде в режимі екстреного зворотного виклику <xliff:g id="COUNT">%s</xliff:g> хв. У цьому режимі неможливо користуватися програмами, які використовують передавання даних. Вийти зараз?"</item>
-  </plurals>
-  <plurals name="alert_dialog_not_avaialble_in_ecm">
-    <item quantity="one" msgid="2585506997024726599">"Вибрана дія не доступна в режимі екстреного зворотного виклику. Телефон буде в цьому режимі <xliff:g id="COUNT">%s</xliff:g> хв. Вийти зараз?"</item>
-    <item quantity="other" msgid="6115622137771382224">"Вибрана дія не доступна в режимі екстреного зворотного виклику. Телефон буде у цьому режимі <xliff:g id="COUNT">%s</xliff:g> хв. Вийти зараз?"</item>
-  </plurals>
+    <plurals name="phone_in_ecm_notification_time" formatted="false" msgid="8308381858502470919">
+      <item quantity="one">Передавання даних недоступне протягом <xliff:g id="COUNT_1">%s</xliff:g> хвилини</item>
+      <item quantity="few">Передавання даних недоступне протягом <xliff:g id="COUNT_1">%s</xliff:g> хвилин</item>
+      <item quantity="many">Передавання даних недоступне протягом <xliff:g id="COUNT_1">%s</xliff:g> хвилин</item>
+      <item quantity="other">Передавання даних недоступне протягом <xliff:g id="COUNT_1">%s</xliff:g> хвилин</item>
+    </plurals>
+    <plurals name="alert_dialog_exit_ecm" formatted="false" msgid="7179911675595441201">
+      <item quantity="one">Телефон перебуватиме в режимі екстреного виклику протягом <xliff:g id="COUNT_1">%s</xliff:g> хвилини. У цьому режимі не працюватимуть додатки, які передають дані. Вийти?</item>
+      <item quantity="few">Телефон перебуватиме в режимі екстреного виклику протягом <xliff:g id="COUNT_1">%s</xliff:g> хвилин. У цьому режимі не працюватимуть додатки, які передають дані. Вийти?</item>
+      <item quantity="many">Телефон перебуватиме в режимі екстреного виклику протягом <xliff:g id="COUNT_1">%s</xliff:g> хвилин. У цьому режимі не працюватимуть додатки, які передають дані. Вийти?</item>
+      <item quantity="other">Телефон перебуватиме в режимі екстреного виклику протягом <xliff:g id="COUNT_1">%s</xliff:g> хвилин. У цьому режимі не працюватимуть додатки, які передають дані. Вийти?</item>
+    </plurals>
+    <plurals name="alert_dialog_not_avaialble_in_ecm" formatted="false" msgid="8042973425225093895">
+      <item quantity="one">Вибрана дія недоступна в режимі екстреного виклику. Телефон перебуватиме в цьому режимі протягом <xliff:g id="COUNT_1">%s</xliff:g> хвилини. Вийти?</item>
+      <item quantity="few">Вибрана дія недоступна в режимі екстреного виклику. Телефон перебуватиме в цьому режимі протягом <xliff:g id="COUNT_1">%s</xliff:g> хвилин. Вийти?</item>
+      <item quantity="many">Вибрана дія недоступна в режимі екстреного виклику. Телефон перебуватиме в цьому режимі протягом <xliff:g id="COUNT_1">%s</xliff:g> хвилин. Вийти?</item>
+      <item quantity="other">Вибрана дія недоступна в режимі екстреного виклику. Телефон перебуватиме в цьому режимі протягом <xliff:g id="COUNT_1">%s</xliff:g> хвилин. Вийти?</item>
+    </plurals>
     <string name="alert_dialog_in_ecm_call" msgid="1886723687211887104">"Вибрана дія не доступна під час екстреного виклику."</string>
     <string name="progress_dialog_exiting_ecm" msgid="4835734101617817074">"Вихід із режиму екстреного зворотного виклику"</string>
     <string name="alert_dialog_yes" msgid="6674268047820703974">"Так"</string>

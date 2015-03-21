@@ -514,18 +514,18 @@
     <string name="phone_entered_ecm_text" msgid="6266424252578731203">"Notfallrückrufmodus aktiviert"</string>
     <string name="phone_in_ecm_notification_title" msgid="3226896828951687085">"Notfallrückrufmodus"</string>
     <string name="phone_in_ecm_call_notification_text" msgid="4611608947314729773">"Datenverbindung deaktiviert"</string>
-  <plurals name="phone_in_ecm_notification_time">
-    <item quantity="one" msgid="4866221796252472622">"<xliff:g id="COUNT">%s</xliff:g> Minute lang keine Datenverbindung"</item>
-    <item quantity="other" msgid="3122217344579273583">"<xliff:g id="COUNT">%s</xliff:g> Minuten lang keine Datenverbindung"</item>
-  </plurals>
-  <plurals name="alert_dialog_exit_ecm">
-    <item quantity="one" msgid="8060210887681426682">"Das Telefon bleibt <xliff:g id="COUNT">%s</xliff:g> Minuten im Notfallrückrufmodus. In diesem Modus können keine Apps verwendet werden, die eine Datenverbindung erfordern. Möchten Sie den Vorgang jetzt beenden?"</item>
-    <item quantity="other" msgid="8617116564023933114">"Das Telefon bleibt <xliff:g id="COUNT">%s</xliff:g> Minuten im Notfallrückrufmodus. In diesem Modus können keine Apps verwendet werden, die eine Datenverbindung erfordern. Möchten Sie den Vorgang jetzt beenden?"</item>
-  </plurals>
-  <plurals name="alert_dialog_not_avaialble_in_ecm">
-    <item quantity="one" msgid="2585506997024726599">"Die ausgewählte Aktion ist im Notfallrückrufmodus nicht verfügbar. Das Telefon bleibt <xliff:g id="COUNT">%s</xliff:g> Minuten in diesem Modus. Möchten Sie den Vorgang jetzt beenden?"</item>
-    <item quantity="other" msgid="6115622137771382224">"Die ausgewählte Aktion ist im Notfallrückrufmodus nicht verfügbar. Das Telefon bleibt <xliff:g id="COUNT">%s</xliff:g> Minuten in diesem Modus. Möchten Sie den Vorgang jetzt beenden?"</item>
-  </plurals>
+    <plurals name="phone_in_ecm_notification_time" formatted="false" msgid="8308381858502470919">
+      <item quantity="other"><xliff:g id="COUNT_1">%s</xliff:g> Minuten lang keine Datenverbindung</item>
+      <item quantity="one"><xliff:g id="COUNT_0">%s</xliff:g> Minute lang keine Datenverbindung</item>
+    </plurals>
+    <plurals name="alert_dialog_exit_ecm" formatted="false" msgid="7179911675595441201">
+      <item quantity="other">Das Smartphone wird <xliff:g id="COUNT_1">%s</xliff:g> Minuten lang in den Notfallrückrufmodus versetzt. In dieser Zeit können Apps mit Datenverbindung nicht genutzt werden. Möchten Sie den Vorgang jetzt abbrechen?</item>
+      <item quantity="one">Das Smartphone wird <xliff:g id="COUNT_0">%s</xliff:g> Minute lang in den Notfallrückrufmodus versetzt. In dieser Zeit können Apps mit Datenverbindung nicht genutzt werden. Möchten Sie den Vorgang jetzt abbrechen?</item>
+    </plurals>
+    <plurals name="alert_dialog_not_avaialble_in_ecm" formatted="false" msgid="8042973425225093895">
+      <item quantity="other">Die ausgewählte Aktion ist im Notfallrückrufmodus nicht verfügbar. Das Smartphone ist <xliff:g id="COUNT_1">%s</xliff:g> Minuten lang in diesem Modus. Möchten Sie den Vorgang jetzt abbrechen?</item>
+      <item quantity="one">Die ausgewählte Aktion ist im Notfallrückrufmodus nicht verfügbar. Das Smartphone ist <xliff:g id="COUNT_0">%s</xliff:g> Minute lang in diesem Modus. Möchten Sie den Vorgang jetzt abbrechen?</item>
+    </plurals>
     <string name="alert_dialog_in_ecm_call" msgid="1886723687211887104">"Die ausgewählte Aktion ist während eines Notrufs nicht verfügbar."</string>
     <string name="progress_dialog_exiting_ecm" msgid="4835734101617817074">"Notfallrückrufmodus wird beendet..."</string>
     <string name="alert_dialog_yes" msgid="6674268047820703974">"Ja"</string>

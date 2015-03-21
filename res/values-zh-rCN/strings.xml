@@ -510,18 +510,18 @@
     <string name="phone_entered_ecm_text" msgid="6266424252578731203">"已进入紧急回拨模式"</string>
     <string name="phone_in_ecm_notification_title" msgid="3226896828951687085">"紧急回拨模式"</string>
     <string name="phone_in_ecm_call_notification_text" msgid="4611608947314729773">"数据连接已停用"</string>
-  <plurals name="phone_in_ecm_notification_time">
-    <item quantity="one" msgid="4866221796252472622">"持续 <xliff:g id="COUNT">%s</xliff:g> 分钟没有数据连接"</item>
-    <item quantity="other" msgid="3122217344579273583">"持续 <xliff:g id="COUNT">%s</xliff:g> 分钟没有数据连接"</item>
-  </plurals>
-  <plurals name="alert_dialog_exit_ecm">
-    <item quantity="one" msgid="8060210887681426682">"手机在 <xliff:g id="COUNT">%s</xliff:g> 分钟内都会处于紧急回拨模式下，此模式下无法使用需要联网的应用。您要立即退出吗？"</item>
-    <item quantity="other" msgid="8617116564023933114">"手机在 <xliff:g id="COUNT">%s</xliff:g> 分钟内都会处于紧急回拨模式下，此模式下无法使用需要联网的应用。要立即退出吗？"</item>
-  </plurals>
-  <plurals name="alert_dialog_not_avaialble_in_ecm">
-    <item quantity="one" msgid="2585506997024726599">"无法在紧急回拨模式下执行所选操作，而手机在 <xliff:g id="COUNT">%s</xliff:g> 分钟内都会处于此模式下。要立即退出吗？"</item>
-    <item quantity="other" msgid="6115622137771382224">"无法在紧急回拨模式下执行所选操作，而手机在 <xliff:g id="COUNT">%s</xliff:g> 分钟内都会处于此模式下。要立即退出吗？"</item>
-  </plurals>
+    <plurals name="phone_in_ecm_notification_time" formatted="false" msgid="8308381858502470919">
+      <item quantity="other">持续 <xliff:g id="COUNT_1">%s</xliff:g> 分钟没有数据网络连接</item>
+      <item quantity="one">持续 <xliff:g id="COUNT_0">%s</xliff:g> 分钟没有数据网络连接</item>
+    </plurals>
+    <plurals name="alert_dialog_exit_ecm" formatted="false" msgid="7179911675595441201">
+      <item quantity="other">手机在 <xliff:g id="COUNT_1">%s</xliff:g> 分钟内都会处于紧急回拨模式。此模式下无法使用任何需要连接数据网络的应用。要立即退出吗？</item>
+      <item quantity="one">手机在 <xliff:g id="COUNT_0">%s</xliff:g> 分钟内都会处于紧急回拨模式。此模式下无法使用任何需要连接数据网络的应用。要立即退出吗？</item>
+    </plurals>
+    <plurals name="alert_dialog_not_avaialble_in_ecm" formatted="false" msgid="8042973425225093895">
+      <item quantity="other">在紧急回拨模式下无法执行所选操作。手机在 <xliff:g id="COUNT_1">%s</xliff:g> 分钟内都会处于此模式。要立即退出吗？</item>
+      <item quantity="one">在紧急回拨模式下无法执行所选操作。手机在 <xliff:g id="COUNT_0">%s</xliff:g> 分钟内都会处于此模式。要立即退出吗？</item>
+    </plurals>
     <string name="alert_dialog_in_ecm_call" msgid="1886723687211887104">"进行紧急呼救时无法执行所选操作。"</string>
     <string name="progress_dialog_exiting_ecm" msgid="4835734101617817074">"正在退出紧急回拨模式"</string>
     <string name="alert_dialog_yes" msgid="6674268047820703974">"是"</string>

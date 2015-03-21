@@ -510,18 +510,21 @@
     <string name="phone_entered_ecm_text" msgid="6266424252578731203">"Унет је режим за хитан повратни позив"</string>
     <string name="phone_in_ecm_notification_title" msgid="3226896828951687085">"Режим за хитан повратни позив"</string>
     <string name="phone_in_ecm_call_notification_text" msgid="4611608947314729773">"Веза за пренос података је онемогућена"</string>
-  <plurals name="phone_in_ecm_notification_time">
-    <item quantity="one" msgid="4866221796252472622">"Нема везе за пренос података за <xliff:g id="COUNT">%s</xliff:g>минут"</item>
-    <item quantity="other" msgid="3122217344579273583">"Нема везе за пренос података за <xliff:g id="COUNT">%s</xliff:g> минута"</item>
-  </plurals>
-  <plurals name="alert_dialog_exit_ecm">
-    <item quantity="one" msgid="8060210887681426682">"Телефон ће бити у Режиму хитног повратног позива <xliff:g id="COUNT">%s</xliff:g> минут. Док сте у овом режиму, не можете да користите ниједну апликацију која користи везу за пренос података. Да ли желите сада да изађете?"</item>
-    <item quantity="other" msgid="8617116564023933114">"Телефон ће бити у Режиму хитног повратног позива <xliff:g id="COUNT">%s</xliff:g> минута. Док сте у овом режиму, не можете да користите ниједну апликацију која користи везу за пренос података. Да ли желите сада да изађете?"</item>
-  </plurals>
-  <plurals name="alert_dialog_not_avaialble_in_ecm">
-    <item quantity="one" msgid="2585506997024726599">"Изабрана радња није доступна док сте у Режиму хитног повратног позива. Телефон ће бити у овом режиму <xliff:g id="COUNT">%s</xliff:g> минут. Да ли желите сада да изађете?"</item>
-    <item quantity="other" msgid="6115622137771382224">"Изабрана радња није доступна док сте у Режиму хитног повратног позива. Телефон ће бити у овом режиму <xliff:g id="COUNT">%s</xliff:g> минутa. Да ли желите сада да изађете?"</item>
-  </plurals>
+    <plurals name="phone_in_ecm_notification_time" formatted="false" msgid="8308381858502470919">
+      <item quantity="one">Нема везе за пренос података <xliff:g id="COUNT_1">%s</xliff:g> минута</item>
+      <item quantity="few">Нема везе за пренос података <xliff:g id="COUNT_1">%s</xliff:g> минута</item>
+      <item quantity="other">Нема везе за пренос података <xliff:g id="COUNT_1">%s</xliff:g> минута</item>
+    </plurals>
+    <plurals name="alert_dialog_exit_ecm" formatted="false" msgid="7179911675595441201">
+      <item quantity="one">Телефон ће бити у Режиму хитног повратног позива <xliff:g id="COUNT_1">%s</xliff:g> минут. Док је у овом режиму не можете да користите апликације које користе везу за пренос података. Желите ли одмах да изађете из овог режима?</item>
+      <item quantity="few">Телефон ће бити у Режиму хитног повратног позива <xliff:g id="COUNT_1">%s</xliff:g> минута. Док је у овом режиму не можете да користите апликације које користе везу за пренос података. Желите ли одмах да изађете из овог режима?</item>
+      <item quantity="other">Телефон ће бити у Режиму хитног повратног позива <xliff:g id="COUNT_1">%s</xliff:g> минута. Док је у овом режиму не можете да користите апликације које користе везу за пренос података. Желите ли одмах да изађете из овог режима?</item>
+    </plurals>
+    <plurals name="alert_dialog_not_avaialble_in_ecm" formatted="false" msgid="8042973425225093895">
+      <item quantity="one">Изабрана радња није доступна док сте у Режиму хитног повратног позива. Телефон ће бити у овом режиму <xliff:g id="COUNT_1">%s</xliff:g> минут. Желите ли одмах да изађете из овог режима?</item>
+      <item quantity="few">Изабрана радња није доступна док сте у Режиму хитног повратног позива. Телефон ће бити у овом режиму <xliff:g id="COUNT_1">%s</xliff:g> минута. Желите ли одмах да изађете из овог режима?</item>
+      <item quantity="other">Изабрана радња није доступна док сте у Режиму хитног повратног позива. Телефон ће бити у овом режиму <xliff:g id="COUNT_1">%s</xliff:g> минута. Желите ли одмах да изађете из овог режима?</item>
+    </plurals>
     <string name="alert_dialog_in_ecm_call" msgid="1886723687211887104">"Изабрана радња није доступна када је у току хитан позив"</string>
     <string name="progress_dialog_exiting_ecm" msgid="4835734101617817074">"Излазак из Режима хитног повратног позива"</string>
     <string name="alert_dialog_yes" msgid="6674268047820703974">"Да"</string>

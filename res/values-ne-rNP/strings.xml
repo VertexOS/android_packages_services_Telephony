@@ -510,18 +510,18 @@
     <string name="phone_entered_ecm_text" msgid="6266424252578731203">"आपतकालीन कलब्याक मोड प्रविष्टि गरियो"</string>
     <string name="phone_in_ecm_notification_title" msgid="3226896828951687085">"आपतकालीन कलब्याक मोड"</string>
     <string name="phone_in_ecm_call_notification_text" msgid="4611608947314729773">"डेटा जडान अक्षम भयो"</string>
-  <plurals name="phone_in_ecm_notification_time">
-    <item quantity="one" msgid="4866221796252472622">"<xliff:g id="COUNT">%s</xliff:g> मिनेटका लागि कुनै पनि डेटा सम्पर्क उपलब्ध छैन"</item>
-    <item quantity="other" msgid="3122217344579273583">"<xliff:g id="COUNT">%s</xliff:g> मिनटका लागि डेटा जडान छैन"</item>
-  </plurals>
-  <plurals name="alert_dialog_exit_ecm">
-    <item quantity="one" msgid="8060210887681426682">"फोन <xliff:g id="COUNT">%s</xliff:g> मिनटका लागि आपतकालिन कलब्याक मोडमा हुने छ। यो मोडमा हुँदा अनुप्रयोग बिना नै  डेटा जडान प्रयोग गरेर प्रयोग गर्न सकिन्छ। के तपाईं अहिले निस्कन चाहनु हुन्छ?"</item>
-    <item quantity="other" msgid="8617116564023933114">"फोन <xliff:g id="COUNT">%s</xliff:g> मिनटका लागि आपतकालिन कलब्याक मोडमा हुने छ। यो मोडमा हुँदा अनुप्रयोग बिना नै डेटा जडान प्रयोग गरेर प्रयोग गर्न सकिन्छ। के तपाईं अहिले निस्कन चाहनु हुन्छ?"</item>
-  </plurals>
-  <plurals name="alert_dialog_not_avaialble_in_ecm">
-    <item quantity="one" msgid="2585506997024726599">"चयन कार्य आपतकालिन कलब्याक मोडमा हुँदा यो उपलब्ध हुँदैन। फोन <xliff:g id="COUNT">%s</xliff:g> मिनटका लागि आपतकालिन कलब्याक मोडमा हुने छ। के तपाईं अहिले निस्कन चाहनु हुन्छ?"</item>
-    <item quantity="other" msgid="6115622137771382224">"चयन कार्य आपतकालिन कलब्याक मोडमा हुँदा यो उपलब्ध हुँदैन। फोन <xliff:g id="COUNT">%s</xliff:g> मिनटका लागि आपतकालिन कलब्याक मोडमा हुने छ। के तपाईं अहिले निस्कन चाहनुहुन्छ?"</item>
-  </plurals>
+    <plurals name="phone_in_ecm_notification_time" formatted="false" msgid="8308381858502470919">
+      <item quantity="other"> <xliff:g id="COUNT_1">%s</xliff:g> मिनेटको लागि कुनै डेटा जडान छैन</item>
+      <item quantity="one"> <xliff:g id="COUNT_0">%s</xliff:g> मिनेटको लागि कुनै डेटा जडान छैन</item>
+    </plurals>
+    <plurals name="alert_dialog_exit_ecm" formatted="false" msgid="7179911675595441201">
+      <item quantity="other"> फोन आपतकालीन कलब्याक मोडमा <xliff:g id="COUNT_1">%s</xliff:g> मिनेटको लागि हुनेछ। यस मोडको अवस्थामा एक डेटा जडान प्रयोग गरेर कुनै पनि अनुप्रयोगहरू प्रयोग गर्न सकिँदैन। के तपाईं अहिले निस्कन चाहनुहुन्छ?</item>
+      <item quantity="one"> फोन आपतकालीन कलब्याक मोडमा <xliff:g id="COUNT_0">%s</xliff:g> मिनेटको लागि हुनेछ। यस मोडको समयमा एक डेटा जडान प्रयोग गरेर कुनै पनि अनुप्रयोगहरू प्रयोग गर्न सकिँदैन। के तपाईं अहिले निस्कन चाहनुहुन्छ?</item>
+    </plurals>
+    <plurals name="alert_dialog_not_avaialble_in_ecm" formatted="false" msgid="8042973425225093895">
+      <item quantity="other"> आपतकालीन कलब्याक मोडको समयमा चयनित कार्य उपलब्ध छैन। फोन यस मोडमा <xliff:g id="COUNT_1">%s</xliff:g> मिनेटको लागि हुनेछ। के तपाईं अहिले निस्कन चाहनुहुन्छ?</item>
+      <item quantity="one"> आपतकालीन कलब्याक मोडको समयमा चयनित कार्य उपलब्ध छैन। फोन यस मोडमा <xliff:g id="COUNT_0">%s</xliff:g> मिनेटको लागि हुनेछ। के तपाईं अहिले निस्कन चाहनुहुन्छ?</item>
+    </plurals>
     <string name="alert_dialog_in_ecm_call" msgid="1886723687211887104">"आपतकालीन कल हुँदा चयन भएको कार्य उपलब्ध हुँदैन।"</string>
     <string name="progress_dialog_exiting_ecm" msgid="4835734101617817074">"आपतकालीन कलब्याक मोडबाट निस्कदै"</string>
     <string name="alert_dialog_yes" msgid="6674268047820703974">"हो"</string>

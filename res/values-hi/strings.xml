@@ -510,18 +510,18 @@
     <string name="phone_entered_ecm_text" msgid="6266424252578731203">"आपातकालीन कॉलबैक मोड में प्रविष्ट हुए"</string>
     <string name="phone_in_ecm_notification_title" msgid="3226896828951687085">"आपातकालीन कॉलबैक मोड"</string>
     <string name="phone_in_ecm_call_notification_text" msgid="4611608947314729773">"डेटा कनेक्शन अक्षम किया गया"</string>
-  <plurals name="phone_in_ecm_notification_time">
-    <item quantity="one" msgid="4866221796252472622">"<xliff:g id="COUNT">%s</xliff:g> मिनट के लिए कोई डेटा कनेक्शन नहीं"</item>
-    <item quantity="other" msgid="3122217344579273583">"<xliff:g id="COUNT">%s</xliff:g> मिनट के लिए कोई डेटा कनेक्शन नहीं"</item>
-  </plurals>
-  <plurals name="alert_dialog_exit_ecm">
-    <item quantity="one" msgid="8060210887681426682">"फ़ोन <xliff:g id="COUNT">%s</xliff:g> मिनट के लिए आपातकालीन कॉलबैक मोड में रहेगा. हालांकि, इस मोड में होने पर डेटा कनेक्शन का उपयोग करने वाले किसी ऐप्स  का उपयोग नहीं किया जा सकता. क्या आप अभी बाहर निकलना चाहते हैं?"</item>
-    <item quantity="other" msgid="8617116564023933114">"फ़ोन <xliff:g id="COUNT">%s</xliff:g> मिनट के लिए आपातकालीन कॉलबैक मोड में रहेगा. हालांकि, इस मोड में होने पर डेटा कनेक्शन का उपयोग करने वाले किसी ऐप्स  का उपयोग नहीं किया जा सकता. क्या आप अभी बाहर निकलना चाहते हैं?"</item>
-  </plurals>
-  <plurals name="alert_dialog_not_avaialble_in_ecm">
-    <item quantity="one" msgid="2585506997024726599">"आपातकालीन कॉलबैक मोड के समय चयनित क्रिया उपलब्ध नहीं है. फ़ोन <xliff:g id="COUNT">%s</xliff:g> मिनट तक इस मोड में रहेगा. क्या आप अभी बाहर निकलना चाहते हैं?"</item>
-    <item quantity="other" msgid="6115622137771382224">"आपातकालीन कॉलबैक मोड के समय चयनित क्रिया उपलब्ध नहीं है. फ़ोन <xliff:g id="COUNT">%s</xliff:g> मिनट तक इस मोड में रहेगा. क्या आप अभी बाहर निकलना चाहते हैं?"</item>
-  </plurals>
+    <plurals name="phone_in_ecm_notification_time" formatted="false" msgid="8308381858502470919">
+      <item quantity="one"><xliff:g id="COUNT_1">%s</xliff:g> मिनट तक कोई डेटा कनेक्‍शन नहीं</item>
+      <item quantity="other"><xliff:g id="COUNT_1">%s</xliff:g> मिनट तक कोई डेटा कनेक्‍शन नहीं</item>
+    </plurals>
+    <plurals name="alert_dialog_exit_ecm" formatted="false" msgid="7179911675595441201">
+      <item quantity="one">फ़ोन <xliff:g id="COUNT_1">%s</xliff:g> मिनट तक आपातकालीन कॉलबैक मोड में रहेगा. इस मोड में रहने पर डेटा कनेक्‍शन का उपयोग करने वाले किसी भी ऐप्‍लिकेशन का उपयोग नहीं किया जा सकता. क्‍या आप अभी बाहर निकलना चाहते हैं?</item>
+      <item quantity="other">फ़ोन <xliff:g id="COUNT_1">%s</xliff:g> मिनट तक आपातकालीन कॉलबैक मोड में रहेगा. इस मोड में रहने पर डेटा कनेक्‍शन का उपयोग करने वाले किसी भी ऐप्‍लिकेशन का उपयोग नहीं किया जा सकता. क्‍या आप अभी बाहर निकलना चाहते हैं?</item>
+    </plurals>
+    <plurals name="alert_dialog_not_avaialble_in_ecm" formatted="false" msgid="8042973425225093895">
+      <item quantity="one">आपातकालीन कॉलबैक मोड में रहने पर चयनित कार्रवाई उपलब्‍ध नहीं होती. फ़ोन <xliff:g id="COUNT_1">%s</xliff:g> मिनट तक इस मोड में रहेगा. क्‍या आप अभी बाहर निकलना चाहते हैं?</item>
+      <item quantity="other">आपातकालीन कॉलबैक मोड में रहने पर चयनित कार्रवाई उपलब्‍ध नहीं होती. फ़ोन <xliff:g id="COUNT_1">%s</xliff:g> मिनट तक इस मोड में रहेगा. क्‍या आप अभी बाहर निकलना चाहते हैं?</item>
+    </plurals>
     <string name="alert_dialog_in_ecm_call" msgid="1886723687211887104">"आपातकालीन कॉल के समय चयनित क्रिया उपलब्ध नहीं होती है."</string>
     <string name="progress_dialog_exiting_ecm" msgid="4835734101617817074">"आपातकालीन कॉलबैक मोड से बाहर निकल रहा है"</string>
     <string name="alert_dialog_yes" msgid="6674268047820703974">"हां"</string>
