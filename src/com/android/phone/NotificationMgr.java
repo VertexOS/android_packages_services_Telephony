@@ -25,6 +25,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.UserInfo;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.os.SystemProperties;
 import android.os.UserHandle;
@@ -383,6 +384,7 @@ public class NotificationMgr {
                 ringtoneUri = VoicemailNotificationSettingsUtil.getRingtoneUri(mPhone);
             }
 
+            Resources res = mContext.getResources();
             Notification.Builder builder = new Notification.Builder(mContext);
             builder.setSmallIcon(resId)
                     .setWhen(System.currentTimeMillis())
@@ -391,8 +393,8 @@ public class NotificationMgr {
                     .setContentText(notificationText)
                     .setContentIntent(pendingIntent)
                     .setSound(ringtoneUri)
-                    .setColor(mContext.getResources().getColor(R.color.dialer_theme_color))
-                    .setOngoing(true);
+                    .setColor(res.getColor(R.color.dialer_theme_color))
+                    .setOngoing(res.getBoolean(R.bool.voicemail_notification_persistent));
 
             if (VoicemailNotificationSettingsUtil.isVibrationEnabled(phone)) {
                 builder.setDefaults(Notification.DEFAULT_VIBRATE);

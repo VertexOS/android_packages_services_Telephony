@@ -152,4 +152,8 @@
 
     <!-- After a CDMA conference call is merged, the swap button should be displayed. -->
     <bool name="support_swap_after_merge" translatable="false">true</bool>
+
+    <!-- Determine whether the voicemail notification is persistent in the notification bar.
+         If true, the voicemail notifications cannot be dismissed from the notification bar. -->
+    <bool name="voicemail_notification_persistent">false</bool>
 </resources>
