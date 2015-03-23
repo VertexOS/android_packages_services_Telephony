@@ -148,8 +148,6 @@
 
     <!-- Title for setting to select Wi-Fi call manager account -->
     <string name="wifi_calling">Wi-Fi calling</string>
-    <!-- Summary label for wi-fi calling when it is turned off. [CHAR LIMIT=NONE] -->
-    <string name="wifi_calling_off_summary">Off</string>
     <!-- Indication for option to not use a Wi-Fi call manager -->
     <string name="wifi_calling_do_not_use">Do not use Wi-Fi calling</string>
     <!-- Indication for option to not use a call assistant. -->
@@ -429,13 +427,6 @@
     <string name="enhanced_4g_lte_mode_title">Enhanced 4G LTE Mode</string>
     <!-- Cellular network 4G summary [CHAR LIMIT=80] -->
     <string name="enhanced_4g_lte_mode_summary">Use LTE services to improve voice and other communications (recommended)</string>
-
-    <!-- WFC, summary for Wi-Fi Preferred [CHAR LIMIT=100] -->
-    <string name="wfc_mode_wifi_preferred_summary">Wi-Fi preferred (Uses cell network only if Wi-Fi isn\'t available)</string>
-    <!-- WFC, summary for Cellular Preferred [CHAR LIMIT=100] -->
-    <string name="wfc_mode_cellular_preferred_summary">Cellular preferred (Uses Wi-Fi only if cell network isn\'t available)</string>
-    <!-- WFC, summary for Wi-Fi Only [CHAR LIMIT=100] -->
-    <string name="wfc_mode_wifi_only_summary">Wi-Fi only (Never uses cell network. Can\'t make or receive calls if Wi-Fi isn\'t available)</string>
 
     <!-- Mobile network settings screen, data enabling checkbox name -->
     <string name="data_enabled">Data enabled</string>
