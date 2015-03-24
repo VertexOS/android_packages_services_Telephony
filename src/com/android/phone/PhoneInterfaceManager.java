@@ -2290,4 +2290,20 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     public int getSubIdForPhoneAccount(PhoneAccount phoneAccount) {
         return PhoneUtils.getSubIdForPhoneAccount(phoneAccount);
     }
+
+    /*
+     * {@hide}
+     * Returns the IMS Registration Status
+     */
+    public boolean isWifiCallingEnabled() {
+        return mPhone.isWifiCallingEnabled();
+    }
+
+    /*
+     * {@hide}
+     * Returns the IMS Registration Status
+     */
+    public boolean isVolteEnabled() {
+        return mPhone.isVolteEnabled();
+    }
 }
