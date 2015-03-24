@@ -1283,6 +1283,9 @@
     <!-- Configuration setting for world mode Format is <true;GID if any to be checked>-->
     <string translatable="false" name="config_world_mode"/>
 
+    <!-- Status hint label for a call being made over a wifi network. [CHAR LIMIT=25] -->
+    <string name="status_hint_label_wifi_call">Wi-Fi call</string>
+
     <!-- DO NOT TRANSLATE. Internal key for a voicemail notification preference. -->
     <string name="voicemail_notification_ringtone_key">voicemail_notification_ringtone_key</string>
     <!-- DO NOT TRANSLATE. Internal key for a voicemail notification preference. -->
@@ -1291,4 +1294,5 @@
     <string name="tty_mode_key">button_tty_mode_key</string>
     <!-- DO NOT TRANSLATE. Internal key for a voicemail notification preference. -->
     <string name="wifi_calling_settings_key">button_wifi_calling_settings_key</string>
+
 </resources>
