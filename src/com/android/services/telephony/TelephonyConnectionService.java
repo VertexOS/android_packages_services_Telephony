@@ -334,9 +334,12 @@ public class TelephonyConnectionService extends ConnectionService {
             originalConnection = phone.dial(number, request.getVideoState());
         } catch (CallStateException e) {
             Log.e(this, e, "placeOutgoingConnection, phone.dial exception: " + e);
+            int cause = android.telephony.DisconnectCause.OUTGOING_FAILURE;
+            if (e.getError() == CallStateException.ERROR_DISCONNECTED) {
+                cause = android.telephony.DisconnectCause.OUT_OF_SERVICE;
+            }
             connection.setDisconnected(DisconnectCauseUtil.toTelecomDisconnectCause(
-                    android.telephony.DisconnectCause.OUTGOING_FAILURE,
-                    e.getMessage()));
+                    cause, e.getMessage()));
             return;
         }
 
