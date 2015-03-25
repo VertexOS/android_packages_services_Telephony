@@ -267,6 +267,7 @@ abstract class TelephonyConnection extends Connection {
     @Override
     public void onStateChanged(int state) {
         Log.v(this, "onStateChanged, state: " + Connection.stateToString(state));
+        updateStatusHints();
     }
 
     @Override
@@ -801,19 +802,7 @@ abstract class TelephonyConnection extends Connection {
     public void setWifi(boolean isWifi) {
         mIsWifi = isWifi;
         updateConnectionCapabilities();
-
-        if (mIsWifi && mOriginalConnection.isIncoming()) {
-            Context context = getPhone().getContext();
-            ComponentName componentName =
-                    new ComponentName(context, TelephonyConnectionService.class);
-            setStatusHints(new StatusHints(
-                    new ComponentName(context, TelephonyConnectionService.class),
-                    context.getString(R.string.status_hint_label_wifi_call),
-                    R.drawable.ic_signal_wifi_4_bar_24dp,
-                    null /* extras */));
-        } else {
-            setStatusHints(null);
-        }
+        updateStatusHints();
     }
 
     /**
@@ -883,6 +872,24 @@ abstract class TelephonyConnection extends Connection {
             return capabilities | capability;
         } else {
             return capabilities & ~capability;
+        }
+    }
+
+    private void updateStatusHints() {
+        if (mIsWifi && (mOriginalConnection.getState() == Call.State.INCOMING
+                || mOriginalConnection.getState() == Call.State.ACTIVE)) {
+            int labelId = mOriginalConnection.getState() == Call.State.INCOMING
+                    ? R.string.status_hint_label_incoming_wifi_call
+                    : R.string.status_hint_label_wifi_call;
+
+            Context context = getPhone().getContext();
+            setStatusHints(new StatusHints(
+                    new ComponentName(context, TelephonyConnectionService.class),
+                    context.getString(labelId),
+                    R.drawable.ic_signal_wifi_4_bar_24dp,
+                    null /* extras */));
+        } else {
+            setStatusHints(null);
         }
     }
 
