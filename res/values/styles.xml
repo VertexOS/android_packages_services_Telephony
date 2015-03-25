@@ -256,11 +256,12 @@
         <item name="android:src">@drawable/overflow_menu</item>
     </style>
 
-    <style name="EmergencyDialerTheme" parent="@android:style/Theme.Material.Light">
-        <item name="dialpad_key_button_touch_tint">@color/dialer_dialpad_touch_tint</item>
-        <item name="android:actionBarStyle">@style/TelephonyActionBarStyle</item>
-        <item name="android:colorPrimary">@color/dialer_theme_color</item>
-        <item name="android:colorPrimaryDark">@color/dialer_theme_color_dark</item>
+    <style name="EmergencyDialerTheme" parent="@android:style/Theme.Material.NoActionBar">
+        <item name="android:colorPrimary">@color/emergency_dialer_background</item>
+        <item name="android:colorPrimaryDark">@color/emergency_dialer_background</item>
+        <item name="android:windowBackground">@color/emergency_dialer_background</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
     </style>
 
     <style name="SimImportTheme" parent="@android:style/Theme.Material.Light">

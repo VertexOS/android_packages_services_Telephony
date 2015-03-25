@@ -115,7 +115,8 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_marginTop="1dip"
-                android:visibility="gone" >
+                android:visibility="gone"
+                android:theme="@style/Dialpad_Light">
 
             <!-- Note there's no "dtmfDialerField" EditText here;
                  in the OTA UI there's no visible "digits" display

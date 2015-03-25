@@ -16,10 +16,101 @@
 
 <!-- Layout for the emergency dialer; see EmergencyDialer.java. -->
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/top"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" >
-    <include layout="@layout/dialpad_view" />
+        android:id="@+id/top"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="bottom"
+            android:orientation="vertical">
+
+        <!-- FrameLayout -->
+        <com.android.phone.EmergencyActionGroup
+                android:layout_height="64dp"
+                android:layout_width="match_parent"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="24dp">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                <Button android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:id="@+id/action1"
+                        />
+                <Button android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:id="@+id/action2"
+                        />
+                <Button android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:id="@+id/action3"
+                        />
+            </LinearLayout>
+
+            <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/selected_container"
+                    android:visibility="invisible"
+                    android:focusable="true"
+                    android:clickable="true">
+
+                <View
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:backgroundTint="#ffe53935"
+                        android:focusable="false"
+                        android:clickable="false"
+                        style="?android:attr/buttonStyle"/>
+
+                <View
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/ripple_view"
+                        android:backgroundTint="#22000000"
+                        android:visibility="invisible"
+                        android:focusable="false"
+                        android:clickable="false"
+                        style="?android:attr/buttonStyle"/>
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:focusable="false"
+                        android:clickable="false"
+                        android:backgroundTint="#00000000"
+                        style="?android:attr/buttonStyle">
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/selected_label"
+                            android:textAppearance="?android:attr/textAppearanceButton" />
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/launch_hint"
+                            android:text="@string/emergency_action_launch_hint"
+                            android:textStyle="italic" />
+                </LinearLayout>
+
+            </FrameLayout>
+
+        </com.android.phone.EmergencyActionGroup>
+
+        <include layout="@layout/dialpad_view_unthemed"
+                android:theme="@style/Dialpad_Dark" />
+
+    </LinearLayout>
+
     <FrameLayout
         android:id="@+id/floating_action_button_container"
         android:layout_width="@dimen/floating_action_button_width"
@@ -35,4 +126,5 @@
             android:contentDescription="@string/description_dial_button"
             android:src="@drawable/fab_ic_call"/>
     </FrameLayout>
+
 </FrameLayout>
