@@ -20,8 +20,8 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.android.phone.common.mail.FixedLengthInputStream;
-import com.android.phone.common.mail.PeekableInputStream;
 import com.android.phone.common.mail.MessagingException;
+import com.android.phone.common.mail.PeekableInputStream;
 
 import java.io.IOException;
 import java.io.InputStream;

@@ -13,16 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.android.phone.common.mail.store.imap;
 
-import android.content.Context;
-import android.util.Log;
-
 import com.android.phone.common.mail.FixedLengthInputStream;
+import com.android.phone.common.mail.TempDirectory;
+import com.android.phone.common.mail.utils.Utility;
+import com.android.phone.common.mail.utils.LogUtils;
+
+import org.apache.commons.io.IOUtils;
 
 import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -51,67 +51,8 @@ public class ImapTempFileLiteral extends ImapString {
         // deleteOnExit() simply adds filenames to a static list and the list will never shrink.
         // mFile.deleteOnExit();
         OutputStream out = new FileOutputStream(mFile);
-        StreamUtils.copy(stream, out);
+        IOUtils.copy(stream, out);
         out.close();
-    }
-
-    /**
-     * Copies utility methods for working with byte arrays and I/O streams from guava library.
-     */
-    public static class StreamUtils {
-        private static final int BUF_SIZE = 0x1000; // 4K
-        /**
-         * Copies all bytes from the input stream to the output stream.
-         * Does not close or flush either stream.
-         *
-         * @param from the input stream to read from
-         * @param to the output stream to write to
-         * @return the number of bytes copied
-         * @throws IOException if an I/O error occurs
-         */
-        public static long copy(InputStream from, OutputStream to) throws IOException {
-            checkNotNull(from);
-            checkNotNull(to);
-            byte[] buf = new byte[BUF_SIZE];
-            long total = 0;
-            while (true) {
-              int r = from.read(buf);
-              if (r == -1) {
-                break;
-              }
-              to.write(buf, 0, r);
-              total += r;
-            }
-            return total;
-        }
-
-        /**
-         * Reads all bytes from an input stream into a byte array.
-         * Does not close the stream.
-         *
-         * @param in the input stream to read from
-         * @return a byte array containing all the bytes from the stream
-         * @throws IOException if an I/O error occurs
-         */
-        public static byte[] toByteArray(InputStream in) throws IOException {
-            ByteArrayOutputStream out = new ByteArrayOutputStream();
-            copy(in, out);
-            return out.toByteArray();
-        }
-
-        /**
-         * Ensures that an object reference passed as a parameter to the calling method is not null.
-         *
-         * @param reference an object reference
-         * @return the non-null reference that was validated
-         * @throws NullPointerException if {@code reference} is null
-         */
-        public static <T> T checkNotNull(T reference) {
-            if (reference == null) {
-                throw new NullPointerException();
-            }
-            return reference;
-        }
     }
 
     /**
@@ -135,7 +76,7 @@ public class ImapTempFileLiteral extends ImapString {
             return new FileInputStream(mFile);
         } catch (FileNotFoundException e) {
             // It's probably possible if we're low on storage and the system clears the cache dir.
-            Log.w(TAG, "ImapTempFileLiteral: Temp file not found");
+            LogUtils.w(TAG, "ImapTempFileLiteral: Temp file not found");
 
             // Return 0 byte stream as a dummy...
             return new ByteArrayInputStream(new byte[0]);
@@ -146,14 +87,14 @@ public class ImapTempFileLiteral extends ImapString {
     public String getString() {
         checkNotDestroyed();
         try {
-            byte[] bytes = StreamUtils.toByteArray(getAsStream());
+            byte[] bytes = IOUtils.toByteArray(getAsStream());
             // Prevent crash from OOM; we've seen this, but only rarely and not reproducibly
             if (bytes.length > ImapResponseParser.LITERAL_KEEP_IN_MEMORY_THRESHOLD) {
                 throw new IOException();
             }
-            return new String(bytes, "US-ASCII");
+            return Utility.fromAscii(bytes);
         } catch (IOException e) {
-            Log.w(TAG, "ImapTempFileLiteral: Error while reading temp file", e);
+            LogUtils.w(TAG, "ImapTempFileLiteral: Error while reading temp file", e);
             return "";
         }
     }
@@ -166,7 +107,7 @@ public class ImapTempFileLiteral extends ImapString {
             }
         } catch (RuntimeException re) {
             // Just log and ignore.
-            Log.w(TAG, "Failed to remove temp file: " + re.getMessage());
+            LogUtils.w(TAG, "Failed to remove temp file: " + re.getMessage());
         }
         super.destroy();
     }
@@ -179,25 +120,4 @@ public class ImapTempFileLiteral extends ImapString {
     public boolean tempFileExistsForTest() {
         return mFile.exists();
     }
-
-   /**
-    * TempDirectory caches the directory used for caching file.  It is set up during application
-    * initialization.
-    */
-   public static class TempDirectory {
-       private static File sTempDirectory = null;
-
-       public static void setTempDirectory(Context context) {
-           sTempDirectory = context.getCacheDir();
-       }
-
-       public static File getTempDirectory() {
-           if (sTempDirectory == null) {
-               throw new RuntimeException(
-                       "TempDirectory not set.  " +
-                       "If in a unit test, call Email.setTempDirectory(context) in setUp().");
-           }
-           return sTempDirectory;
-       }
-   }
 }

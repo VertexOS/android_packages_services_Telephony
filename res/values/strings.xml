@@ -1292,4 +1292,10 @@
 
     <!-- Hint appearing below a selected action on the emergency dialer telling user to tap again to execute the action [CHAR LIMIT=NONE] -->
     <string name="emergency_action_launch_hint">Touch again to open</string>
+
+    <!-- Strings for IMAP -->
+
+    <!-- String used in place of a message that could not be properly decoded (e.g. bad base64
+       data was received.) [CHAR LIMIT=none] -->
+    <string name="message_decode_error">There was an error while decoding the message.</string>
 </resources>

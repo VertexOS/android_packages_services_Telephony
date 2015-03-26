@@ -16,9 +16,9 @@
 package com.android.phone.common.mail;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.android.phone.common.mail.store.ImapStore;
+import com.android.phone.common.mail.utils.LogUtils;
 
 import java.net.SocketAddress;
 
@@ -87,9 +87,7 @@ public class MailTransport {
      * an SSL connection if indicated.
      */
     public void open() throws MessagingException, CertificateValidationException {
-        if (Log.isLoggable(TAG, Log.DEBUG)) {
-            Log.d(TAG, "*** IMAP open " + mHost + ":" + String.valueOf(mPort));
-        }
+        LogUtils.d(TAG, "*** IMAP open " + mHost + ":" + String.valueOf(mPort));
 
         try {
             SocketAddress socketAddress = new InetSocketAddress(mHost, mPort);
@@ -108,19 +106,13 @@ public class MailTransport {
             mOut = new BufferedOutputStream(mSocket.getOutputStream(), 512);
             mSocket.setSoTimeout(SOCKET_READ_TIMEOUT);
         } catch (SSLException e) {
-            if (Log.isLoggable(TAG, Log.DEBUG)) {
-                Log.d(TAG, e.toString());
-            }
+            LogUtils.d(TAG, e.toString());
             throw new CertificateValidationException(e.getMessage(), e);
         } catch (IOException ioe) {
-            if (Log.isLoggable(TAG, Log.DEBUG)) {
-                Log.d(TAG, ioe.toString());
-            }
+            LogUtils.d(TAG, ioe.toString());
             throw new MessagingException(MessagingException.IOERROR, ioe.toString());
         } catch (IllegalArgumentException iae) {
-            if (Log.isLoggable(TAG, Log.DEBUG)) {
-                Log.d(TAG, iae.toString());
-            }
+            LogUtils.d(TAG, iae.toString());
             throw new MessagingException(MessagingException.UNSPECIFIED_EXCEPTION, iae.toString());
         }
     }
@@ -203,12 +195,10 @@ public class MailTransport {
      * Writes a single line to the server using \r\n termination.
      */
     public void writeLine(String s, String sensitiveReplacement) throws IOException {
-        if (Log.isLoggable(TAG, Log.DEBUG)) {
-            if (sensitiveReplacement != null) {
-                Log.d(TAG, ">>> " + sensitiveReplacement);
-            } else {
-                Log.d(TAG, ">>> " + s);
-            }
+        if (sensitiveReplacement != null) {
+            LogUtils.d(TAG, ">>> " + sensitiveReplacement);
+        } else {
+            LogUtils.d(TAG, ">>> " + s);
         }
 
         OutputStream out = getOutputStream();
@@ -235,12 +225,12 @@ public class MailTransport {
                 sb.append((char)d);
             }
         }
-        if (d == -1 && Log.isLoggable(TAG, Log.DEBUG)) {
-            Log.d(TAG, "End of stream reached while trying to read line.");
+        if (d == -1) {
+            LogUtils.d(TAG, "End of stream reached while trying to read line.");
         }
         String ret = sb.toString();
-        if (loggable && Log.isLoggable(TAG, Log.DEBUG)) {
-            Log.d(TAG, "<<< " + ret);
+        if (loggable) {
+            LogUtils.d(TAG, "<<< " + ret);
         }
         return ret;
     }

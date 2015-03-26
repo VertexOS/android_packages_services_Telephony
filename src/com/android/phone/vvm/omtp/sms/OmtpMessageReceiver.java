@@ -32,6 +32,7 @@ import com.android.internal.telephony.PhoneConstants;
 import com.android.phone.PhoneUtils;
 import com.android.phone.vvm.omtp.OmtpConstants;
 import com.android.phone.vvm.omtp.OmtpVvmSyncAccountManager;
+import com.android.phone.vvm.omtp.OmtpVvmSyncService.OmtpVvmSyncAdapter;
 
 import java.io.UnsupportedEncodingException;
 
@@ -133,12 +134,15 @@ public class OmtpMessageReceiver extends BroadcastReceiver {
                     VoicemailContract.Status.CONFIGURATION_STATE_OK,
                     VoicemailContract.Status.DATA_CHANNEL_STATE_OK,
                     VoicemailContract.Status.NOTIFICATION_CHANNEL_STATE_OK);
+
+            Bundle bundle = new Bundle();
+            bundle.putBoolean(OmtpVvmSyncAdapter.SYNC_EXTRAS_CLEAR_AND_RELOAD, true);
+            bundle.putBoolean(ContentResolver.SYNC_EXTRAS_UPLOAD, true);
+            ContentResolver.requestSync(account, VoicemailContract.AUTHORITY, bundle);
         }
 
         // Save the IMAP credentials in the corresponding account object so they are
         // persistent and can be retrieved.
         vvmAccountSyncManager.setAccountCredentialsFromStatusMessage(account, message);
-
-        ContentResolver.requestSync(account, VoicemailContract.AUTHORITY, new Bundle());
     }
 }

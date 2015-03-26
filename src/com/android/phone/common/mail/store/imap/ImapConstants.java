@@ -18,18 +18,21 @@ package com.android.phone.common.mail.store.imap;
 
 import com.android.phone.common.mail.store.ImapStore;
 
+import java.util.Locale;
+
 public final class ImapConstants {
     private ImapConstants() {}
 
     public static final String FETCH_FIELD_BODY_PEEK_BARE = "BODY.PEEK";
     public static final String FETCH_FIELD_BODY_PEEK = FETCH_FIELD_BODY_PEEK_BARE + "[]";
-    public static final String FETCH_FIELD_BODY_PEEK_SANE
-            = String.format("BODY.PEEK[]<0.%d>", ImapStore.FETCH_BODY_SANE_SUGGESTED_SIZE);
+    public static final String FETCH_FIELD_BODY_PEEK_SANE = String.format(
+            Locale.US, "BODY.PEEK[]<0.%d>", ImapStore.FETCH_BODY_SANE_SUGGESTED_SIZE);
     public static final String FETCH_FIELD_HEADERS =
             "BODY.PEEK[HEADER.FIELDS (date subject from content-type to cc message-id)]";
 
     public static final String ALERT = "ALERT";
     public static final String APPEND = "APPEND";
+    public static final String AUTHENTICATE = "AUTHENTICATE";
     public static final String BAD = "BAD";
     public static final String BADCHARSET = "BADCHARSET";
     public static final String BODY = "BODY";
@@ -40,6 +43,7 @@ public final class ImapConstants {
     public static final String CHECK = "CHECK";
     public static final String CLOSE = "CLOSE";
     public static final String COPY = "COPY";
+    public static final String COPYUID = "COPYUID";
     public static final String CREATE = "CREATE";
     public static final String DELETE = "DELETE";
     public static final String EXAMINE = "EXAMINE";
@@ -60,6 +64,7 @@ public final class ImapConstants {
     public static final String LOGIN = "LOGIN";
     public static final String LOGOUT = "LOGOUT";
     public static final String LSUB = "LSUB";
+    public static final String NAMESPACE = "NAMESPACE";
     public static final String NO = "NO";
     public static final String NOOP = "NOOP";
     public static final String OK = "OK";
@@ -84,9 +89,11 @@ public final class ImapConstants {
     public static final String UID_SEARCH = "UID SEARCH";
     public static final String UID_STORE = "UID STORE";
     public static final String UIDNEXT = "UIDNEXT";
+    public static final String UIDPLUS = "UIDPLUS";
     public static final String UIDVALIDITY = "UIDVALIDITY";
     public static final String UNSEEN = "UNSEEN";
     public static final String UNSUBSCRIBE = "UNSUBSCRIBE";
+    public static final String XOAUTH2 = "XOAUTH2";
     public static final String APPENDUID = "APPENDUID";
     public static final String NIL = "NIL";
 

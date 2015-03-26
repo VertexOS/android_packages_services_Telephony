@@ -16,7 +16,6 @@
 package com.android.phone.common.mail.store;
 
 import android.text.TextUtils;
-import android.util.Log;
 
 import com.android.phone.common.mail.AuthenticationFailedException;
 import com.android.phone.common.mail.CertificateValidationException;
@@ -26,6 +25,7 @@ import com.android.phone.common.mail.store.imap.ImapConstants;
 import com.android.phone.common.mail.store.imap.ImapResponse;
 import com.android.phone.common.mail.store.imap.ImapResponseParser;
 import com.android.phone.common.mail.store.imap.ImapUtility;
+import com.android.phone.common.mail.utils.LogUtils;
 import com.android.phone.common.mail.store.ImapStore.ImapException;
 
 import java.io.IOException;
@@ -104,14 +104,10 @@ public class ImapConnection {
             // LOGIN
             doLogin();
         } catch (SSLException e) {
-            if (Log.isLoggable(TAG, Log.DEBUG)) {
-                Log.d(TAG, "SSLException ", e);
-            }
+            LogUtils.d(TAG, "SSLException ", e);
             throw new CertificateValidationException(e.getMessage(), e);
         } catch (IOException ioe) {
-            if (Log.isLoggable(TAG, Log.DEBUG)) {
-                Log.d(TAG, "IOException", ioe);
-            }
+            LogUtils.d(TAG, "IOException", ioe);
             throw ioe;
         } finally {
             destroyResponses();
@@ -139,9 +135,7 @@ public class ImapConnection {
         try {
             executeSimpleCommand(getLoginPhrase(), true);
         } catch (ImapException ie) {
-            if (Log.isLoggable(TAG, Log.DEBUG)) {
-                Log.d(TAG, "ImapException", ie);
-            }
+            LogUtils.d(TAG, "ImapException", ie);
             final String status = ie.getStatus();
             final String code = ie.getResponseCode();
             final String alertText = ie.getAlertText();
@@ -174,6 +168,10 @@ public class ImapConnection {
         if (mParser != null) {
             mParser.destroyResponses();
         }
+    }
+
+    ImapResponse readResponse() throws IOException, MessagingException {
+        return mParser.readResponse();
     }
 
     List<ImapResponse> executeSimpleCommand(String command)

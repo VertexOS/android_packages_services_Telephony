@@ -35,6 +35,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.provider.VoicemailContract;
 import android.provider.VoicemailContract.Voicemails;
 import android.telecom.Voicemail;
 
@@ -68,6 +69,12 @@ public class OmtpVvmSyncService extends Service {
     }
 
     public class OmtpVvmSyncAdapter extends AbstractThreadedSyncAdapter {
+        /**
+         * Sync triggers should pass this extra to clear the database and freshly populate from the
+         * server.
+         */
+        public static final String SYNC_EXTRAS_CLEAR_AND_RELOAD = "extra_clear_and_reload";
+
         private Context mContext;
         private ContentResolver mContentResolver;
 
@@ -80,6 +87,8 @@ public class OmtpVvmSyncService extends Service {
         @Override
         public void onPerformSync(Account account, Bundle extras, String authority,
                 ContentProviderClient provider, SyncResult syncResult) {
+            ImapHelper imapHelper = new ImapHelper(mContext, account);
+
             if (extras.getBoolean(ContentResolver.SYNC_EXTRAS_UPLOAD, false)) {
                 List<Voicemail> readVoicemails = new ArrayList<Voicemail>();
                 List<Voicemail> deletedVoicemails = new ArrayList<Voicemail>();
@@ -106,7 +115,6 @@ public class OmtpVvmSyncService extends Service {
                 } finally {
                     cursor.close();
                 }
-                ImapHelper imapHelper = new ImapHelper(mContext, account);
                 if (imapHelper.markMessagesAsDeleted(deletedVoicemails)) {
                     // We want to delete selectively instead of all the voicemails for this provider
                     // in case the state changed since the IMAP query was completed.
@@ -115,6 +123,19 @@ public class OmtpVvmSyncService extends Service {
 
                 if (imapHelper.markMessagesAsRead(readVoicemails)) {
                     markReadInDatabase(readVoicemails);
+                }
+            }
+
+            if (extras.getBoolean(SYNC_EXTRAS_CLEAR_AND_RELOAD, false)) {
+                // Fetch voicemails first before deleting local copy, the fetching may take awhile.
+                List<Voicemail> voicemails = imapHelper.fetchAllVoicemails();
+
+                // Deleting current local messages ensure that we start with a fresh copy
+                // and also don't need to deal with comparing between local and server.
+                VoicemailContract.Voicemails.deleteAll(mContext);
+
+                if (voicemails != null) {
+                    VoicemailContract.Voicemails.insert(mContext, voicemails);
                 }
             }
         }

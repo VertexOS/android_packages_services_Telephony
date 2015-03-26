@@ -18,10 +18,14 @@ package com.android.phone.common.mail.store;
 
 import android.content.Context;
 
+import com.android.phone.common.mail.internet.MimeMessage;
 import com.android.phone.common.mail.MailTransport;
 import com.android.phone.common.mail.Message;
 import com.android.phone.common.mail.MessagingException;
 import com.android.phone.common.mail.store.ImapFolder;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 public class ImapStore {
     /**
@@ -53,8 +57,8 @@ public class ImapStore {
         mTransport = new MailTransport(context, serverName, port, flags);
     }
 
-    public ImapFolder getFolder(String name) {
-        return new ImapFolder(this, name);
+    public Context getContext() {
+        return mContext;
     }
 
     public String getUsername() {
@@ -68,6 +72,50 @@ public class ImapStore {
     /** Returns a clone of the transport associated with this store. */
     MailTransport cloneTransport() {
         return mTransport.clone();
+    }
+
+    /**
+     * Returns UIDs of Messages joined with "," as the separator.
+     */
+    static String joinMessageUids(Message[] messages) {
+        StringBuilder sb = new StringBuilder();
+        boolean notFirst = false;
+        for (Message m : messages) {
+            if (notFirst) {
+                sb.append(',');
+            }
+            sb.append(m.getUid());
+            notFirst = true;
+        }
+        return sb.toString();
+    }
+
+    static class ImapMessage extends MimeMessage {
+        private ImapFolder mFolder;
+
+        ImapMessage(String uid, ImapFolder folder) {
+            mUid = uid;
+            mFolder = folder;
+        }
+
+        public void setSize(int size) {
+            mSize = size;
+        }
+
+        @Override
+        public void parse(InputStream in) throws IOException, MessagingException {
+            super.parse(in);
+        }
+
+        public void setFlagInternal(String flag, boolean set) throws MessagingException {
+            super.setFlag(flag, set);
+        }
+
+        @Override
+        public void setFlag(String flag, boolean set) throws MessagingException {
+            super.setFlag(flag, set);
+            mFolder.setFlags(new Message[] { this }, new String[] { flag }, set);
+        }
     }
 
     static class ImapException extends MessagingException {
