@@ -869,8 +869,9 @@ abstract class TelephonyConnection extends Connection {
     }
 
     private void updateStatusHints() {
-        if (mIsWifi && (mOriginalConnection.getState() == Call.State.INCOMING
-                || mOriginalConnection.getState() == Call.State.ACTIVE)) {
+        if (mIsWifi && mOriginalConnection != null &&
+                (mOriginalConnection.getState() == Call.State.INCOMING
+                        || mOriginalConnection.getState() == Call.State.ACTIVE)) {
             int labelId = mOriginalConnection.getState() == Call.State.INCOMING
                     ? R.string.status_hint_label_incoming_wifi_call
                     : R.string.status_hint_label_wifi_call;
