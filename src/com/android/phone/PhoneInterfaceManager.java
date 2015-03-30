@@ -122,6 +122,8 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     private static final int EVENT_EXCHANGE_SIM_IO_DONE = 32;
     private static final int CMD_SET_VOICEMAIL_NUMBER = 33;
     private static final int EVENT_SET_VOICEMAIL_NUMBER_DONE = 34;
+    private static final int CMD_SET_NETWORK_SELECTION_MODE_AUTOMATIC = 35;
+    private static final int EVENT_SET_NETWORK_SELECTION_MODE_AUTOMATIC_DONE = 36;
 
     /** The singleton instance. */
     private static PhoneInterfaceManager sInstance;
@@ -555,7 +557,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
                 case CMD_GET_PREFERRED_NETWORK_TYPE:
                     request = (MainThreadRequest) msg.obj;
                     onCompleted = obtainMessage(EVENT_GET_PREFERRED_NETWORK_TYPE_DONE, request);
-                    mPhone.getPreferredNetworkType(onCompleted);
+                    getPhoneFromRequest(request).getPreferredNetworkType(onCompleted);
                     break;
 
                 case EVENT_GET_PREFERRED_NETWORK_TYPE_DONE:
@@ -583,7 +585,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
                     request = (MainThreadRequest) msg.obj;
                     onCompleted = obtainMessage(EVENT_SET_PREFERRED_NETWORK_TYPE_DONE, request);
                     int networkType = (Integer) request.argument;
-                    mPhone.setPreferredNetworkType(networkType, onCompleted);
+                    getPhoneFromRequest(request).setPreferredNetworkType(networkType, onCompleted);
                     break;
 
                 case EVENT_SET_PREFERRED_NETWORK_TYPE_DONE:
@@ -615,6 +617,17 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
 
                 case EVENT_SET_VOICEMAIL_NUMBER_DONE:
                     handleNullReturnEvent(msg, "setVoicemailNumber");
+                    break;
+
+                case CMD_SET_NETWORK_SELECTION_MODE_AUTOMATIC:
+                    request = (MainThreadRequest) msg.obj;
+                    onCompleted = obtainMessage(EVENT_SET_NETWORK_SELECTION_MODE_AUTOMATIC_DONE,
+                            request);
+                    getPhoneFromRequest(request).setNetworkSelectionModeAutomatic(onCompleted);
+                    break;
+
+                case EVENT_SET_NETWORK_SELECTION_MODE_AUTOMATIC_DONE:
+                    handleNullReturnEvent(msg, "setNetworkSelectionModeAutomatic");
                     break;
 
                 default:
@@ -1860,6 +1873,17 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     }
 
     /**
+     * Set the network selection mode to automatic.
+     *
+     */
+    @Override
+    public void setNetworkSelectionModeAutomatic(int subId) {
+        enforceModifyPermissionOrCarrierPrivilege();
+        if (DBG) log("setNetworkSelectionModeAutomatic: subId " + subId);
+        sendRequest(CMD_SET_NETWORK_SELECTION_MODE_AUTOMATIC, null, subId);
+    }
+
+    /**
      * Get the calculated preferred network type.
      * Used for debugging incorrect network type.
      *
@@ -1878,10 +1902,10 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
      * @return the preferred network type, defined in RILConstants.java.
      */
     @Override
-    public int getPreferredNetworkType() {
+    public int getPreferredNetworkType(int subId) {
         enforceModifyPermissionOrCarrierPrivilege();
         if (DBG) log("getPreferredNetworkType");
-        int[] result = (int[]) sendRequest(CMD_GET_PREFERRED_NETWORK_TYPE, null);
+        int[] result = (int[]) sendRequest(CMD_GET_PREFERRED_NETWORK_TYPE, null, subId);
         int networkType = (result != null ? result[0] : -1);
         if (DBG) log("getPreferredNetworkType: " + networkType);
         return networkType;
@@ -1895,15 +1919,14 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
      * @return true on success; false on any failure.
      */
     @Override
-    public boolean setPreferredNetworkType(int networkType) {
+    public boolean setPreferredNetworkType(int subId, int networkType) {
         enforceModifyPermissionOrCarrierPrivilege();
-        final int phoneSubId = mPhone.getSubId();
-        if (DBG) log("setPreferredNetworkType: type " + networkType);
-        Boolean success = (Boolean) sendRequest(CMD_SET_PREFERRED_NETWORK_TYPE, networkType);
+        if (DBG) log("setPreferredNetworkType: subId " + subId + " type " + networkType);
+        Boolean success = (Boolean) sendRequest(CMD_SET_PREFERRED_NETWORK_TYPE, networkType, subId);
         if (DBG) log("setPreferredNetworkType: " + (success ? "ok" : "fail"));
         if (success) {
             Settings.Global.putInt(mPhone.getContext().getContentResolver(),
-                    Settings.Global.PREFERRED_NETWORK_MODE + phoneSubId, networkType);
+                    Settings.Global.PREFERRED_NETWORK_MODE + subId, networkType);
         }
         return success;
     }
