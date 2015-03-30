@@ -85,9 +85,9 @@
     <string name="call_settings" msgid="6112441768261754562">"Indstillinger for opkald"</string>
     <string name="additional_gsm_call_settings" msgid="1391795981938800617">"Yderligere indstillinger"</string>
     <string name="additional_gsm_call_settings_with_label" msgid="1385241520708457376">"Yderligere indstillinger (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
-    <string name="sum_gsm_call_settings" msgid="4076647190996778012">"Yderligere indstillinger for opkald er for kun GSM"</string>
+    <string name="sum_gsm_call_settings" msgid="4076647190996778012">"Yderligere indstillinger for GSM-opkald"</string>
     <string name="additional_cdma_call_settings" msgid="8628958775721886909">"Yderligere CDMA-opkaldsindstillinger"</string>
-    <string name="sum_cdma_call_settings" msgid="284753265979035549">"Yderligere indstillinger for opkald er for kun CDMA"</string>
+    <string name="sum_cdma_call_settings" msgid="284753265979035549">"Yderligere indstillinger for CDMA-opkald"</string>
     <string name="labelNwService" msgid="4699970172021870983">"Indstillinger for netværkstjeneste"</string>
     <string name="labelCallerId" msgid="3888899447379069198">"Opkalds-id"</string>
     <string name="sum_loading_settings" msgid="1826692909391168620">"Indlæser indstillinger…"</string>

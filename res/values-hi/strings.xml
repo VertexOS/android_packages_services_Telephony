@@ -28,7 +28,7 @@
     <string name="mmiStarted" msgid="6347869857061147003">"MMI कोड प्रारंभ किया गया"</string>
     <string name="ussdRunning" msgid="485588686340541690">"USSD कोड चल रहा है…"</string>
     <string name="mmiCancelled" msgid="2771923949751842276">"MMI कोड रद्द किया गया"</string>
-    <string name="cancel" msgid="5044513931633602634">"रहने दें"</string>
+    <string name="cancel" msgid="5044513931633602634">"अभी नहीं"</string>
     <string name="enter_input" msgid="1810529547726803893">"USSD संदेश <xliff:g id="MIN_LEN">%d</xliff:g> और <xliff:g id="MAX_LEN">%d</xliff:g> वर्णों के बीच होना चाहिए. कृपया पुन: प्रयास करें."</string>
     <string name="manageConferenceLabel" msgid="4691922394301969053">"कॉन्फ़्रेंस कॉल प्रबंधित करें"</string>
     <string name="ok" msgid="3811371167865772377">"ठीक है"</string>
