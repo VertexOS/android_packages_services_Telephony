@@ -322,6 +322,26 @@ public class ImsConference extends Conference {
     }
 
     /**
+     * Determines if this conference is hosted on the current device or the peer device.
+     *
+     * @return {@code true} if this conference is hosted on the current device, {@code false} if it
+     *      is hosted on the peer device.
+     */
+    public boolean isConferenceHost() {
+        if (mConferenceHost == null) {
+            return false;
+        }
+        com.android.internal.telephony.Connection originalConnection =
+                mConferenceHost.getOriginalConnection();
+        if (!(originalConnection instanceof ImsPhoneConnection)) {
+            return false;
+        }
+
+        ImsPhoneConnection imsPhoneConnection = (ImsPhoneConnection) originalConnection;
+        return imsPhoneConnection.isMultiparty() && imsPhoneConnection.isConferenceHost();
+    }
+
+    /**
      * Updates the manage conference capability of the conference.  Where there are one or more
      * conference event package participants, the conference management is permitted.  Where there
      * are no conference event package participants, conference management is not permitted.
