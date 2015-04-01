@@ -551,4 +551,6 @@
     <string name="sim_description_emergency_calls" msgid="7535215397212301562">"Ainult hädaabikõned"</string>
     <string name="sim_description_default" msgid="4778679519938775515">"SIM-kaart, pilu: <xliff:g id="SLOT_ID">%s</xliff:g>"</string>
     <string name="accessibility_settings_activity_title" msgid="8562004288733103868">"Juurdepääsetavus"</string>
+    <!-- no translation found for emergency_action_launch_hint (5841511849007540970) -->
+    <skip />
 </resources>
