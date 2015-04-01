@@ -20,7 +20,10 @@ import android.accounts.AccountManager;
 import android.content.Context;
 import android.telecom.Voicemail;
 
+import android.util.Base64;
+
 import com.android.phone.common.mail.Address;
+import com.android.phone.common.mail.Body;
 import com.android.phone.common.mail.BodyPart;
 import com.android.phone.common.mail.FetchProfile;
 import com.android.phone.common.mail.Flag;
@@ -34,7 +37,13 @@ import com.android.phone.common.mail.store.ImapStore;
 import com.android.phone.common.mail.store.imap.ImapConstants;
 import com.android.phone.common.mail.utils.LogUtils;
 import com.android.phone.vvm.omtp.OmtpConstants;
+import com.android.phone.vvm.omtp.sync.VoicemailFetchedCallback;
 
+import libcore.io.IoUtils;
+
+import java.io.BufferedOutputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -63,7 +72,7 @@ public class ImapHelper {
             // TODO: determine the security protocol (e.g. ssl, tls, none, etc.)
             mImapStore = new ImapStore(
                     context, username, password, port, serverName,
-                    ImapStore.FLAG_TLS);
+                    ImapStore.FLAG_NONE);
         } catch (NumberFormatException e) {
             LogUtils.e(TAG, e, "Could not parse port number");
         }
@@ -160,6 +169,42 @@ public class ImapHelper {
         return listener.getVoicemail();
     }
 
+
+    public void fetchVoicemailPayload(VoicemailFetchedCallback callback, final String uid) {
+        Message message;
+        try {
+            mFolder = openImapFolder(ImapFolder.MODE_READ_WRITE);
+            if (mFolder == null) {
+                // This means we were unable to successfully open the folder.
+                return;
+            }
+            message = mFolder.getMessage(uid);
+            VoicemailPayload voicemailPayload = fetchVoicemailPayload(message);
+            callback.setVoicemailContent(voicemailPayload);
+        } catch (MessagingException e) {
+        } finally {
+            closeImapFolder();
+        }
+    }
+
+    /**
+     * Fetches the body of the given message and returns the parsed voicemail payload.
+     *
+     * @throws MessagingException if fetching the body of the message fails
+     */
+    private VoicemailPayload fetchVoicemailPayload(Message message)
+            throws MessagingException {
+        LogUtils.d(TAG, "Fetching message body for " + message.getUid());
+
+        MessageBodyFetchedListener listener = new MessageBodyFetchedListener();
+
+        FetchProfile fetchProfile = new FetchProfile();
+        fetchProfile.add(FetchProfile.Item.BODY);
+
+        mFolder.fetch(new Message[] {message}, fetchProfile, listener);
+        return listener.getVoicemailPayload();
+    }
+
     /**
      * Listener for the message structure being fetched.
      */
@@ -190,9 +235,6 @@ public class ImapHelper {
             }
         }
 
-        @Override
-        public void loadAttachmentProgress(int progress) {}
-
         /**
          * Convert an IMAP message to a voicemail object.
          *
@@ -205,14 +247,11 @@ public class ImapHelper {
                 LogUtils.w(TAG, "Ignored non multi-part message");
                 return null;
             }
+
             Multipart multipart = (Multipart) message.getBody();
-
-            LogUtils.d(TAG, "Num body parts: " + multipart.getCount());
-
             for (int i = 0; i < multipart.getCount(); ++i) {
                 BodyPart bodyPart = multipart.getBodyPart(i);
                 String bodyPartMimeType = bodyPart.getMimeType().toLowerCase();
-
                 LogUtils.d(TAG, "bodyPart mime type: " + bodyPartMimeType);
 
                 if (bodyPartMimeType.startsWith("audio/")) {
@@ -253,6 +292,60 @@ public class ImapHelper {
                 return sender;
             }
             return null;
+        }
+    }
+
+    /**
+     * Listener for the message body being fetched.
+     */
+    private final class MessageBodyFetchedListener implements ImapFolder.MessageRetrievalListener {
+        private VoicemailPayload mVoicemailPayload;
+
+        /** Returns the fetch voicemail payload. */
+        public VoicemailPayload getVoicemailPayload() {
+            return mVoicemailPayload;
+        }
+
+        @Override
+        public void messageRetrieved(Message message) {
+            LogUtils.d(TAG, "Fetched message body for " + message.getUid());
+            LogUtils.d(TAG, "Message retrieved: " + message);
+            try {
+                mVoicemailPayload = getVoicemailPayloadFromMessage(message);
+            } catch (MessagingException e) {
+                LogUtils.e(TAG, "Messaging Exception:", e);
+            } catch (IOException e) {
+                LogUtils.e(TAG, "IO Exception:", e);
+            }
+        }
+
+        private VoicemailPayload getVoicemailPayloadFromMessage(Message message)
+                throws MessagingException, IOException {
+            Multipart multipart = (Multipart) message.getBody();
+            for (int i = 0; i < multipart.getCount(); ++i) {
+                BodyPart bodyPart = multipart.getBodyPart(i);
+                String bodyPartMimeType = bodyPart.getMimeType().toLowerCase();
+                LogUtils.d(TAG, "bodyPart mime type: " + bodyPartMimeType);
+
+                if (bodyPartMimeType.startsWith("audio/")) {
+                    byte[] bytes = getAudioDataFromBody(bodyPart.getBody());
+                    LogUtils.d(TAG, String.format("Fetched %s bytes of data", bytes.length));
+                    return new VoicemailPayload(bodyPartMimeType, bytes);
+                }
+            }
+            LogUtils.e(TAG, "No audio attachment found on this voicemail");
+            return null;
+        }
+
+        private byte[] getAudioDataFromBody(Body body) throws IOException, MessagingException {
+            ByteArrayOutputStream out = new ByteArrayOutputStream();
+            BufferedOutputStream bufferedOut = new BufferedOutputStream(out);
+            try {
+                body.writeTo(bufferedOut);
+            } finally {
+                IoUtils.closeQuietly(bufferedOut);
+            }
+            return Base64.decode(out.toByteArray(), Base64.DEFAULT);
         }
     }
 

@@ -92,7 +92,6 @@ public class ImapFolder {
      */
     public interface MessageRetrievalListener {
         public void messageRetrieved(Message message);
-        public void loadAttachmentProgress(int progress);
     }
 
     private void destroyResponses() {
@@ -457,14 +456,6 @@ public class ImapFolder {
             while (-1 != (n = in.read(buffer))) {
                 out.write(buffer, 0, n);
                 count += n;
-                if (listener != null) {
-                    if (size == 0) {
-                        // We don't know how big the file is, so just fake it.
-                        listener.loadAttachmentProgress((int)Math.ceil(100 * (1-1.0/count)));
-                    } else {
-                        listener.loadAttachmentProgress(count * 100 / size);
-                    }
-                }
             }
         } catch (Base64DataException bde) {
             String warning = "\n\n" + context.getString(R.string.message_decode_error);
