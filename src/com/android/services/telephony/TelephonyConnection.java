@@ -670,6 +670,7 @@ abstract class TelephonyConnection extends Connection {
                     break;
             }
         }
+        updateStatusHints();
         updateConnectionCapabilities();
         updateAddress();
         updateMultiparty();
@@ -869,10 +870,9 @@ abstract class TelephonyConnection extends Connection {
     }
 
     private void updateStatusHints() {
-        if (mIsWifi && mOriginalConnection != null &&
-                (mOriginalConnection.getState() == Call.State.INCOMING
-                        || mOriginalConnection.getState() == Call.State.ACTIVE)) {
-            int labelId = mOriginalConnection.getState() == Call.State.INCOMING
+        boolean isIncoming = isValidRingingCall();
+        if (mIsWifi && (isIncoming || getState() == STATE_ACTIVE)) {
+            int labelId = isIncoming
                     ? R.string.status_hint_label_incoming_wifi_call
                     : R.string.status_hint_label_wifi_call;
 
