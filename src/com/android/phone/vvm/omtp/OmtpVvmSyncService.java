@@ -26,14 +26,19 @@ import android.app.Service;
 import android.content.AbstractThreadedSyncAdapter;
 import android.content.ContentProviderClient;
 import android.content.ContentResolver;
+import android.content.ContentUris;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SyncResult;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.provider.VoicemailContract.Voicemails;
 import android.telecom.Voicemail;
 
+import com.android.phone.vvm.omtp.imap.ImapHelper;
 import com.android.phone.vvm.omtp.sync.DirtyVoicemailQuery;
 
 import java.util.ArrayList;
@@ -47,8 +52,6 @@ public class OmtpVvmSyncService extends Service {
     private static OmtpVvmSyncAdapter sSyncAdapter = null;
     // Object to use as a thread-safe lock
     private static final Object sSyncAdapterLock = new Object();
-
-    private Context mContext;
 
     @Override
     public void onCreate() {
@@ -65,9 +68,13 @@ public class OmtpVvmSyncService extends Service {
     }
 
     public class OmtpVvmSyncAdapter extends AbstractThreadedSyncAdapter {
+        private Context mContext;
+        private ContentResolver mContentResolver;
+
         public OmtpVvmSyncAdapter(Context context, boolean autoInitialize) {
             super(context, autoInitialize);
             mContext = context;
+            mContentResolver = context.getContentResolver();
         }
 
         @Override
@@ -99,8 +106,51 @@ public class OmtpVvmSyncService extends Service {
                 } finally {
                     cursor.close();
                 }
-                //TODO: send to server via IMAP
+                ImapHelper imapHelper = new ImapHelper(mContext, account);
+                if (imapHelper.markMessagesAsDeleted(deletedVoicemails)) {
+                    // We want to delete selectively instead of all the voicemails for this provider
+                    // in case the state changed since the IMAP query was completed.
+                    deleteFromDatabase(deletedVoicemails);
+                }
+
+                if (imapHelper.markMessagesAsRead(readVoicemails)) {
+                    markReadInDatabase(readVoicemails);
+                }
             }
+        }
+
+        /**
+         * Deletes a list of voicemails from the voicemail content provider.
+         *
+         * @param voicemails The list of voicemails to delete
+         * @return The number of voicemails deleted
+         */
+        public int deleteFromDatabase(List<Voicemail> voicemails) {
+            int count = voicemails.size();
+            for (int i = 0; i < count; i++) {
+                mContentResolver.delete(Voicemails.CONTENT_URI, Voicemails._ID + "=?",
+                        new String[] { Long.toString(voicemails.get(i).getId()) });
+            }
+            return count;
+        }
+
+        /**
+         * Sends an update command to the voicemail content provider for a list of voicemails.
+         * From the view of the provider, since the updater is the owner of the entry, a blank
+         * "update" means that the voicemail source is indicating that the server has up-to-date
+         * information on the voicemail. This flips the "dirty" bit to "0".
+         *
+         * @param voicemails The list of voicemails to update
+         * @return The number of voicemails updated
+         */
+        public int markReadInDatabase(List<Voicemail> voicemails) {
+            int count = voicemails.size();
+            for (int i = 0; i < count; i++) {
+                Uri uri = ContentUris.withAppendedId(Voicemails.CONTENT_URI,
+                        voicemails.get(i).getId());
+                mContentResolver.update(uri, new ContentValues(), null, null);
+            }
+            return count;
         }
     }
 }
