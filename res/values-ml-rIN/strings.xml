@@ -67,7 +67,6 @@
     <string name="phone_accounts_add_sip_account" msgid="2023821743341923271">"SIP അക്കൗണ്ട് ചേർക്കുക"</string>
     <string name="phone_accounts_configure_account_settings" msgid="1361715069911607109">"അക്കൗണ്ട് ക്രമീകരണങ്ങൾ കോൺഫിഗർചെയ്യുക"</string>
     <string name="wifi_calling" msgid="739018212480165598">"Wi-Fi കോളിംഗ്"</string>
-    <string name="wifi_calling_off_summary" msgid="2992184822432174168">"ഓഫ്"</string>
     <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"Wi-Fi കോൾ ചെയ്യൽ ഉപയോഗിക്കരുത്"</string>
     <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"കോൾ സഹായി ഉപയോഗിക്കരുത്"</string>
     <string name="wifi_calling_call_assistant_none" msgid="6283702349285593683">"ഒന്നുമില്ല"</string>
@@ -199,9 +198,6 @@
   </string-array>
     <string name="enhanced_4g_lte_mode_title" msgid="522191650223239171">"മെച്ചപ്പെടുത്തിയ 4G LTE മോഡ്"</string>
     <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"വോയ്‌സ്, മറ്റ് ആശയവിനിമയങ്ങൾ (ശുപാർശിതം) എന്നിവ മികച്ചതാക്കുന്നതിന് LTE സേവനങ്ങൾ ഉപയോഗിക്കുക"</string>
-    <string name="wfc_mode_wifi_preferred_summary" msgid="9143208157600896911">"Wi-Fi തിരഞ്ഞെടുത്തിരിക്കുന്നു (Wi-Fi ലഭ്യമല്ലെങ്കിൽ മാത്രം സെൽ നെറ്റ്‌വർക്ക് ഉപയോഗിക്കുന്നു)"</string>
-    <string name="wfc_mode_cellular_preferred_summary" msgid="2259869029990883080">"സെല്ലുലാർ തിരഞ്ഞെടുത്തിരിക്കുന്നു (സെൽ നെറ്റ്‌വർക്ക് ലഭ്യമല്ലെങ്കിൽ മാത്രം Wi-Fi ഉപയോഗിക്കുന്നു)"</string>
-    <string name="wfc_mode_wifi_only_summary" msgid="6176822199433274101">"Wi-Fi മാത്രം (ഒരിക്കലും സെൽ നെറ്റ്‌വർക്ക് ഉപയോഗിക്കുന്നില്ല. Wi-Fi ലഭ്യമല്ലെങ്കിൽ കോളുകൾ വിളിക്കാനോ സ്വീകരിക്കാനോ കഴിയില്ല)"</string>
     <string name="data_enabled" msgid="5972538663568715366">"ഡാറ്റ പ്രവർത്തനക്ഷമമാക്കി"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"ഡാറ്റ ഉപയോഗം അനുവദിക്കുക"</string>
     <string name="roaming" msgid="8871412572928323707">"ഡാറ്റ റോമിംഗ്"</string>
@@ -551,5 +547,11 @@
     <string name="sim_description_emergency_calls" msgid="7535215397212301562">"അടിയന്തിര കോൾചെയ്യൽ മാത്രം"</string>
     <string name="sim_description_default" msgid="4778679519938775515">"SIM കാർഡ്, സ്ലോട്ട്: <xliff:g id="SLOT_ID">%s</xliff:g>"</string>
     <string name="accessibility_settings_activity_title" msgid="8562004288733103868">"പ്രവേശനക്ഷമത"</string>
+    <!-- no translation found for status_hint_label_incoming_wifi_call (8772915926382037499) -->
+    <skip />
+    <!-- no translation found for status_hint_label_wifi_call (8900805254974653903) -->
+    <skip />
     <string name="emergency_action_launch_hint" msgid="5841511849007540970">"തുറക്കുന്നതിന് വീണ്ടും സ്‌പർശിക്കുക"</string>
+    <!-- no translation found for message_decode_error (3456481534066924855) -->
+    <skip />
 </resources>

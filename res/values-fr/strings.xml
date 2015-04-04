@@ -67,7 +67,6 @@
     <string name="phone_accounts_add_sip_account" msgid="2023821743341923271">"Ajouter un compte SIP"</string>
     <string name="phone_accounts_configure_account_settings" msgid="1361715069911607109">"Configurer les paramètres du compte"</string>
     <string name="wifi_calling" msgid="739018212480165598">"Appels Wi-Fi"</string>
-    <string name="wifi_calling_off_summary" msgid="2992184822432174168">"Désactivés"</string>
     <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"Ne pas utiliser les appels Wi-Fi"</string>
     <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"Ne pas utiliser l\'assistant d\'appel"</string>
     <string name="wifi_calling_call_assistant_none" msgid="6283702349285593683">"Aucun"</string>
@@ -199,9 +198,6 @@
   </string-array>
     <string name="enhanced_4g_lte_mode_title" msgid="522191650223239171">"Mode LTE 4G avancé"</string>
     <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"Utiliser services LTE pour améliorer communications vocales et autres (recommandé)"</string>
-    <string name="wfc_mode_wifi_preferred_summary" msgid="9143208157600896911">"Wi-Fi préféré (N\'utilise le réseau mobile que si le Wi-Fi n\'est pas disponible.)"</string>
-    <string name="wfc_mode_cellular_preferred_summary" msgid="2259869029990883080">"Mobile préféré (N\'utilise le Wi-Fi que si le réseau mobile n\'est pas disponible.)"</string>
-    <string name="wfc_mode_wifi_only_summary" msgid="6176822199433274101">"Wi-Fi uniquement (Réseau mobile jamais utilisé. Impossible passer/recevoir appels si Wi-Fi non dispo.)"</string>
     <string name="data_enabled" msgid="5972538663568715366">"Données activées"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"Autoriser la consommation des données"</string>
     <string name="roaming" msgid="8871412572928323707">"Itinérance des données"</string>
@@ -551,5 +547,11 @@
     <string name="sim_description_emergency_calls" msgid="7535215397212301562">"Appels d\'urgence seulement"</string>
     <string name="sim_description_default" msgid="4778679519938775515">"Carte SIM, emplacement : <xliff:g id="SLOT_ID">%s</xliff:g>"</string>
     <string name="accessibility_settings_activity_title" msgid="8562004288733103868">"Accessibilité"</string>
+    <!-- no translation found for status_hint_label_incoming_wifi_call (8772915926382037499) -->
+    <skip />
+    <!-- no translation found for status_hint_label_wifi_call (8900805254974653903) -->
+    <skip />
     <string name="emergency_action_launch_hint" msgid="5841511849007540970">"Appuyer à nouveau pour ouvrir"</string>
+    <!-- no translation found for message_decode_error (3456481534066924855) -->
+    <skip />
 </resources>

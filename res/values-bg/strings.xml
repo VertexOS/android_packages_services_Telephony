@@ -67,7 +67,6 @@
     <string name="phone_accounts_add_sip_account" msgid="2023821743341923271">"Добавяне на профил за SIP"</string>
     <string name="phone_accounts_configure_account_settings" msgid="1361715069911607109">"Конфигуриране на настройките на профила"</string>
     <string name="wifi_calling" msgid="739018212480165598">"Обаждания през Wi-Fi"</string>
-    <string name="wifi_calling_off_summary" msgid="2992184822432174168">"Изкл."</string>
     <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"Без използване на услуга за обаждане през Wi-Fi"</string>
     <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"Без използване на помощник за обаждания"</string>
     <string name="wifi_calling_call_assistant_none" msgid="6283702349285593683">"Без"</string>
@@ -199,9 +198,6 @@
   </string-array>
     <string name="enhanced_4g_lte_mode_title" msgid="522191650223239171">"Подобрен режим с 4G LTE"</string>
     <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"Ползване на LTE услуги за подобряване на гласовите и др. комуникации (препоръч.)"</string>
-    <string name="wfc_mode_wifi_preferred_summary" msgid="9143208157600896911">"Предпочита се Wi-Fi (Използва се клетъчна мрежа само ако не е налице Wi-Fi)"</string>
-    <string name="wfc_mode_cellular_preferred_summary" msgid="2259869029990883080">"Предпочита се клетъчна мрежа (Само ако такава не е налице, се използва Wi-Fi)"</string>
-    <string name="wfc_mode_wifi_only_summary" msgid="6176822199433274101">"Само Wi-Fi (Никога не се ползва клет. мрежа. Не могат да се осъщ./получ. обажд., ако не е налице Wi-Fi)"</string>
     <string name="data_enabled" msgid="5972538663568715366">"Данните са активирани"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"Разрешаване на преноса на данни"</string>
     <string name="roaming" msgid="8871412572928323707">"Роуминг на данни"</string>
@@ -551,6 +547,11 @@
     <string name="sim_description_emergency_calls" msgid="7535215397212301562">"Само спешни обаждания"</string>
     <string name="sim_description_default" msgid="4778679519938775515">"SIM карта, слот: <xliff:g id="SLOT_ID">%s</xliff:g>"</string>
     <string name="accessibility_settings_activity_title" msgid="8562004288733103868">"Достъпност"</string>
-    <!-- no translation found for emergency_action_launch_hint (5841511849007540970) -->
+    <!-- no translation found for status_hint_label_incoming_wifi_call (8772915926382037499) -->
+    <skip />
+    <!-- no translation found for status_hint_label_wifi_call (8900805254974653903) -->
+    <skip />
+    <string name="emergency_action_launch_hint" msgid="5841511849007540970">"Докоснете отново за отваряне"</string>
+    <!-- no translation found for message_decode_error (3456481534066924855) -->
     <skip />
 </resources>

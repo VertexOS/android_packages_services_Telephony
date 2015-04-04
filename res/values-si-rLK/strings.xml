@@ -67,7 +67,6 @@
     <string name="phone_accounts_add_sip_account" msgid="2023821743341923271">"SIP ගිණුම් එකතු කරන්න"</string>
     <string name="phone_accounts_configure_account_settings" msgid="1361715069911607109">"ගිණුමේ සැකසීම් වින්‍යාස කරන්න"</string>
     <string name="wifi_calling" msgid="739018212480165598">"Wi-Fi ඇමතීම"</string>
-    <string name="wifi_calling_off_summary" msgid="2992184822432174168">"ක්‍රියාවිරහිතයි"</string>
     <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"Wi-Fi ඇමතුම භාවිතා කරන්න එපා"</string>
     <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"ඇමතුම් සහායක භාවිතා කරන්න එපා"</string>
     <string name="wifi_calling_call_assistant_none" msgid="6283702349285593683">"කිසිවක් නැත"</string>
@@ -199,9 +198,6 @@
   </string-array>
     <string name="enhanced_4g_lte_mode_title" msgid="522191650223239171">"දියුණු කරන ලද 4G LTE මෝඩය"</string>
     <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"හඬ සහ වෙනත් සන්නිවේදනයන් දියුණු කිරීමට LTE සේවාව භාවිතා කරන්න (නිර්දේශ කළ)"</string>
-    <string name="wfc_mode_wifi_preferred_summary" msgid="9143208157600896911">"Wi-Fi වඩා කැමතියි (Wi-Fi නොමැති නම් පමණක් සෙලියුලර් ජාලය භාවිතා කරයි)"</string>
-    <string name="wfc_mode_cellular_preferred_summary" msgid="2259869029990883080">"සෙලියුලර් වඩා කැමතියි (සෙලියුලර් ජාලය නොමැති නම් පමණක් Wi-Fi භාවිතා කරයි)"</string>
-    <string name="wfc_mode_wifi_only_summary" msgid="6176822199433274101">"Wi-Fi වඩා කැමතියි (සෙලියුලර් ජාලය කිසිදා භාවිතා නොකරයි. Wi-Fi නොමැති නම් පමණක් ඇමතුම් ගැනීම සහ ලබාගැනීම කළ නොහැක)"</string>
     <string name="data_enabled" msgid="5972538663568715366">"දත්ත සබලයි"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"දත්ත භාවිතයට ඉඩ දෙන්න"</string>
     <string name="roaming" msgid="8871412572928323707">"දත්ත රෝමින්"</string>
@@ -551,5 +547,11 @@
     <string name="sim_description_emergency_calls" msgid="7535215397212301562">"හදිස්සි ඇමතූම් පමණි"</string>
     <string name="sim_description_default" msgid="4778679519938775515">"SIM කාඩ්පත්, තව්ව: <xliff:g id="SLOT_ID">%s</xliff:g>"</string>
     <string name="accessibility_settings_activity_title" msgid="8562004288733103868">"ප්‍රවේශ්‍යතාව"</string>
+    <!-- no translation found for status_hint_label_incoming_wifi_call (8772915926382037499) -->
+    <skip />
+    <!-- no translation found for status_hint_label_wifi_call (8900805254974653903) -->
+    <skip />
     <string name="emergency_action_launch_hint" msgid="5841511849007540970">"විවෘත කිරීමට නැවත ස්පර්ශ කරන්න"</string>
+    <!-- no translation found for message_decode_error (3456481534066924855) -->
+    <skip />
 </resources>

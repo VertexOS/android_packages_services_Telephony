@@ -67,7 +67,6 @@
     <string name="phone_accounts_add_sip_account" msgid="2023821743341923271">"SIP खाता थप्नुहोस्"</string>
     <string name="phone_accounts_configure_account_settings" msgid="1361715069911607109">"खाता सेटिङ कन्फिगर गर्नुहोस्"</string>
     <string name="wifi_calling" msgid="739018212480165598">"Wi-Fi कलिङ"</string>
-    <string name="wifi_calling_off_summary" msgid="2992184822432174168">"बन्द गर्नुहोस्"</string>
     <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"Wi-Fi कल प्रयोग नगर्नुहोस्"</string>
     <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"कल सहायक प्रयोग नगर्नुहोस्"</string>
     <string name="wifi_calling_call_assistant_none" msgid="6283702349285593683">"कुनै पनि होइन"</string>
@@ -199,9 +198,6 @@
   </string-array>
     <string name="enhanced_4g_lte_mode_title" msgid="522191650223239171">"Enhanced 4G LTE Mode"</string>
     <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"आवाज र अन्य सञ्चार सुधार गर्न LTE सेवाहरूको प्रयोग गर्नुहोस् (सिफारिस गरिएको)"</string>
-    <string name="wfc_mode_wifi_preferred_summary" msgid="9143208157600896911">"Wi-Fi को सुझाव गरियो (Wi-Fi उपलब्ध नहुँदा मात्र सेल सञ्जालको प्रयोग गर्दछ)"</string>
-    <string name="wfc_mode_cellular_preferred_summary" msgid="2259869029990883080">"सेलुलरको सुझाव गरियो (सेल सञ्जाल उपलब्ध नहुँदा Wi-Fi मात्र प्रयोग गर्दछ)"</string>
-    <string name="wfc_mode_wifi_only_summary" msgid="6176822199433274101">"Wi-Fi मात्र (सेल सञ्जालको कहिल्यै प्रयोग गर्दैन। Wi-Fi उपलब्ध नहुँदा कलहरू गर्न वा प्राप्त गर्न सकिँदैन)"</string>
     <string name="data_enabled" msgid="5972538663568715366">"डेटा सक्षम भयो"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"डेटा उपयोगलाई अनुमति दिनुहोस्"</string>
     <string name="roaming" msgid="8871412572928323707">"डेटा रोमिङ"</string>
@@ -551,5 +547,11 @@
     <string name="sim_description_emergency_calls" msgid="7535215397212301562">"आपातकालीन कल मात्र"</string>
     <string name="sim_description_default" msgid="4778679519938775515">"SIM कार्ड, स्लट: <xliff:g id="SLOT_ID">%s</xliff:g>"</string>
     <string name="accessibility_settings_activity_title" msgid="8562004288733103868">"पहुँचता"</string>
+    <!-- no translation found for status_hint_label_incoming_wifi_call (8772915926382037499) -->
+    <skip />
+    <!-- no translation found for status_hint_label_wifi_call (8900805254974653903) -->
+    <skip />
     <string name="emergency_action_launch_hint" msgid="5841511849007540970">"खोल्न फेरि छुनुहोस्"</string>
+    <!-- no translation found for message_decode_error (3456481534066924855) -->
+    <skip />
 </resources>

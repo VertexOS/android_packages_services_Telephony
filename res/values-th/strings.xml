@@ -67,7 +67,6 @@
     <string name="phone_accounts_add_sip_account" msgid="2023821743341923271">"เพิ่มบัญชี SIP"</string>
     <string name="phone_accounts_configure_account_settings" msgid="1361715069911607109">"กำหนดการตั้งค่าบัญชี"</string>
     <string name="wifi_calling" msgid="739018212480165598">"การโทรผ่าน Wi-Fi"</string>
-    <string name="wifi_calling_off_summary" msgid="2992184822432174168">"ปิด"</string>
     <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"ไม่ใช้การโทรผ่าน Wi-Fi"</string>
     <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"ไม่ใช้ผู้ช่วยโทร"</string>
     <string name="wifi_calling_call_assistant_none" msgid="6283702349285593683">"ไม่มี"</string>
@@ -199,9 +198,6 @@
   </string-array>
     <string name="enhanced_4g_lte_mode_title" msgid="522191650223239171">"โหมด 4G LTE ที่ปรับปรุงแล้ว"</string>
     <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"ใช้บริการ LTE เพื่อปรับปรุงเสียงและการติดต่อสื่อสารด้วยวิธีอื่นๆ (แนะนำ)"</string>
-    <string name="wfc_mode_wifi_preferred_summary" msgid="9143208157600896911">"ต้องการใช้ Wi-Fi (ใช้เครือข่ายมือถือต่อเมื่อ Wi-Fi ไม่พร้อมใช้งาน)"</string>
-    <string name="wfc_mode_cellular_preferred_summary" msgid="2259869029990883080">"ต้องการใช้เครือข่ายมือถือ (ใช้ Wi-Fi ต่อเมื่อเครือข่ายมือถือไม่พร้อมใช้งาน)"</string>
-    <string name="wfc_mode_wifi_only_summary" msgid="6176822199433274101">"Wi-Fi เท่านั้น (ไม่ใช้เครือข่ายมือถือเลย ไม่สามารถโทรออกหรือรับสายได้หาก Wi-Fi ไม่พร้อมใช้งาน)"</string>
     <string name="data_enabled" msgid="5972538663568715366">"เปิดใช้งานข้อมูลแล้ว"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"อนุญาตการใช้ข้อมูล"</string>
     <string name="roaming" msgid="8871412572928323707">"การโรมมิ่งข้อมูล"</string>
@@ -551,6 +547,11 @@
     <string name="sim_description_emergency_calls" msgid="7535215397212301562">"เฉพาะหมายเลขฉุกเฉินเท่านั้น"</string>
     <string name="sim_description_default" msgid="4778679519938775515">"ซิมการ์ด ช่อง: <xliff:g id="SLOT_ID">%s</xliff:g>"</string>
     <string name="accessibility_settings_activity_title" msgid="8562004288733103868">"การเข้าถึง"</string>
-    <!-- no translation found for emergency_action_launch_hint (5841511849007540970) -->
+    <!-- no translation found for status_hint_label_incoming_wifi_call (8772915926382037499) -->
+    <skip />
+    <!-- no translation found for status_hint_label_wifi_call (8900805254974653903) -->
+    <skip />
+    <string name="emergency_action_launch_hint" msgid="5841511849007540970">"แตะอีกครั้งเพื่อเปิด"</string>
+    <!-- no translation found for message_decode_error (3456481534066924855) -->
     <skip />
 </resources>

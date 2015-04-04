@@ -67,7 +67,6 @@
     <string name="phone_accounts_add_sip_account" msgid="2023821743341923271">"SIP အကောင့်ပေါင်းထည့်မည်။"</string>
     <string name="phone_accounts_configure_account_settings" msgid="1361715069911607109">"အကောင့် ချိန်ညှိချက်များ ပြုပြင်မည်"</string>
     <string name="wifi_calling" msgid="739018212480165598">"ဝိုင်ဖိုင် ခေါ်ဆိုမှု"</string>
-    <string name="wifi_calling_off_summary" msgid="2992184822432174168">"ပိတ်ထားရသည်"</string>
     <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"ကြိုးမဲ့ ခေါ်ဆိုမှုကို မသုံးပါနှင့်"</string>
     <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"ခေါ်ဆိုမှု အကူ အသုံးမပြုပါ"</string>
     <string name="wifi_calling_call_assistant_none" msgid="6283702349285593683">"မရှိ"</string>
@@ -199,9 +198,6 @@
   </string-array>
     <string name="enhanced_4g_lte_mode_title" msgid="522191650223239171">"မြှင့်တင်ထား 4G LTE မုဒ်"</string>
     <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"အသံခေါ်ဆိုမှုနှင့် အခြားဆက်သွယ်ရေးများ တိုးတက်စေရန် LTE ဝန်ဆောင်မှုများ ကိုအသုံးပြုမည် (အကြံပြုထား)"</string>
-    <string name="wfc_mode_wifi_preferred_summary" msgid="9143208157600896911">"ဝိုင်ဖိုင်အား ပိုနှစ်သက်သော (ဝိုင်ဖိုင် မရပါက ဆဲလ်ကွန်ယက်ကိုသာလျှင် သုံးရန်)"</string>
-    <string name="wfc_mode_cellular_preferred_summary" msgid="2259869029990883080">"ဆယ်လူလာအား ပိုနှစ်သက်သော (ဆဲလ်ကွန်ယက် မရပါက ဝိုင်ဖိုင်ကိုသာလျှင် အသုံးပြုရန်)"</string>
-    <string name="wfc_mode_wifi_only_summary" msgid="6176822199433274101">"ဝိုင်ဖိုင် သာလျှင် (ဆဲလ်ကွန်ယက် လုံးဝ မသုံးရန်။ ဝိုင်ဖိုင် မရပါက ဖုန်းခေါ်ဆိုမှု သို့မဟုတ် လက်ခံမှု မပြုလုပ်နိုင်)"</string>
     <string name="data_enabled" msgid="5972538663568715366">"ဒေတာ ဖွင့်ထားပြီး"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"ဒေတာ သုံးစွဲမှု ခွင့်ပြုရန်"</string>
     <string name="roaming" msgid="8871412572928323707">"ဒေတာရုန်းမင်း"</string>
@@ -551,5 +547,11 @@
     <string name="sim_description_emergency_calls" msgid="7535215397212301562">"အရေးပေါ် ခေါ်ဆိုမှုသာလျှင်"</string>
     <string name="sim_description_default" msgid="4778679519938775515">"SIM ကဒ်၊ အပေါက်: <xliff:g id="SLOT_ID">%s</xliff:g>"</string>
     <string name="accessibility_settings_activity_title" msgid="8562004288733103868">"ရယူသုံးနိုင်မှု"</string>
+    <!-- no translation found for status_hint_label_incoming_wifi_call (8772915926382037499) -->
+    <skip />
+    <!-- no translation found for status_hint_label_wifi_call (8900805254974653903) -->
+    <skip />
     <string name="emergency_action_launch_hint" msgid="5841511849007540970">"ဖွင့်ရန် ထပ်ပြီး ထိပါ"</string>
+    <!-- no translation found for message_decode_error (3456481534066924855) -->
+    <skip />
 </resources>

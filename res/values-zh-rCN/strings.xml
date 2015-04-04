@@ -67,7 +67,6 @@
     <string name="phone_accounts_add_sip_account" msgid="2023821743341923271">"添加 SIP 帐户"</string>
     <string name="phone_accounts_configure_account_settings" msgid="1361715069911607109">"配置帐户设置"</string>
     <string name="wifi_calling" msgid="739018212480165598">"WLAN 通话"</string>
-    <string name="wifi_calling_off_summary" msgid="2992184822432174168">"关闭"</string>
     <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"不使用 WLAN 通话功能"</string>
     <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"不使用通话助手"</string>
     <string name="wifi_calling_call_assistant_none" msgid="6283702349285593683">"无"</string>
@@ -199,9 +198,6 @@
   </string-array>
     <string name="enhanced_4g_lte_mode_title" msgid="522191650223239171">"增强型 4G LTE 模式"</string>
     <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"使用 LTE 服务改进语音和其他通信功能（推荐）"</string>
-    <string name="wfc_mode_wifi_preferred_summary" msgid="9143208157600896911">"首选 WLAN（只有 WLAN 不可用时才使用移动网络）"</string>
-    <string name="wfc_mode_cellular_preferred_summary" msgid="2259869029990883080">"首选移动网络（只有移动网络不可用时才使用 WLAN）"</string>
-    <string name="wfc_mode_wifi_only_summary" msgid="6176822199433274101">"仅限 WLAN（始终不使用移动网络。如果 WLAN 不可用，则无法拨打或接听电话）"</string>
     <string name="data_enabled" msgid="5972538663568715366">"启用移动数据网络"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"允许使用数据流量"</string>
     <string name="roaming" msgid="8871412572928323707">"移动数据网络漫游"</string>
@@ -551,6 +547,11 @@
     <string name="sim_description_emergency_calls" msgid="7535215397212301562">"只能拨打紧急呼救电话"</string>
     <string name="sim_description_default" msgid="4778679519938775515">"SIM 卡，插槽：<xliff:g id="SLOT_ID">%s</xliff:g>"</string>
     <string name="accessibility_settings_activity_title" msgid="8562004288733103868">"无障碍功能"</string>
-    <!-- no translation found for emergency_action_launch_hint (5841511849007540970) -->
+    <!-- no translation found for status_hint_label_incoming_wifi_call (8772915926382037499) -->
+    <skip />
+    <!-- no translation found for status_hint_label_wifi_call (8900805254974653903) -->
+    <skip />
+    <string name="emergency_action_launch_hint" msgid="5841511849007540970">"再次触摸即可打开"</string>
+    <!-- no translation found for message_decode_error (3456481534066924855) -->
     <skip />
 </resources>

@@ -67,7 +67,6 @@
     <string name="phone_accounts_add_sip_account" msgid="2023821743341923271">"Aggiungi account SIP"</string>
     <string name="phone_accounts_configure_account_settings" msgid="1361715069911607109">"Configurazione delle impostazioni dell\'account"</string>
     <string name="wifi_calling" msgid="739018212480165598">"Chiamate Wi-Fi"</string>
-    <string name="wifi_calling_off_summary" msgid="2992184822432174168">"Non attive"</string>
     <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"Non utilizzare chiamate Wi-Fi"</string>
     <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"Non utilizzare assistente chiamate"</string>
     <string name="wifi_calling_call_assistant_none" msgid="6283702349285593683">"Nessuno"</string>
@@ -199,9 +198,6 @@
   </string-array>
     <string name="enhanced_4g_lte_mode_title" msgid="522191650223239171">"Modalità 4G LTE avanzata"</string>
     <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"Usa i servizi LTE per migliorare la voce e le altre comunicazioni (consigliato)"</string>
-    <string name="wfc_mode_wifi_preferred_summary" msgid="9143208157600896911">"Rete preferita: Wi-Fi (utilizza la rete cellulare solo se il Wi-Fi non è disponibile)"</string>
-    <string name="wfc_mode_cellular_preferred_summary" msgid="2259869029990883080">"Rete preferita: cellulare (utilizza il Wi-Fi solo se la rete cellulare non è disponibile)"</string>
-    <string name="wfc_mode_wifi_only_summary" msgid="6176822199433274101">"Solo Wi-Fi (non usa mai la rete cell. Non può eseguire/ricevere chiamate se il Wi-Fi non è dispon.)"</string>
     <string name="data_enabled" msgid="5972538663568715366">"Dati attivati"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"Consenti l\'utilizzo dei dati"</string>
     <string name="roaming" msgid="8871412572928323707">"Roaming dati"</string>
@@ -555,5 +551,11 @@
     <string name="sim_description_emergency_calls" msgid="7535215397212301562">"Solo chiamate di emergenza"</string>
     <string name="sim_description_default" msgid="4778679519938775515">"Scheda SIM, slot: <xliff:g id="SLOT_ID">%s</xliff:g>"</string>
     <string name="accessibility_settings_activity_title" msgid="8562004288733103868">"Accessibilità"</string>
+    <!-- no translation found for status_hint_label_incoming_wifi_call (8772915926382037499) -->
+    <skip />
+    <!-- no translation found for status_hint_label_wifi_call (8900805254974653903) -->
+    <skip />
     <string name="emergency_action_launch_hint" msgid="5841511849007540970">"Tocca di nuovo per aprire"</string>
+    <!-- no translation found for message_decode_error (3456481534066924855) -->
+    <skip />
 </resources>

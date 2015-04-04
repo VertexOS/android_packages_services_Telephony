@@ -67,7 +67,6 @@
     <string name="phone_accounts_add_sip_account" msgid="2023821743341923271">"Gehitu SIP kontua"</string>
     <string name="phone_accounts_configure_account_settings" msgid="1361715069911607109">"Konfiguratu kontuaren ezarpenak"</string>
     <string name="wifi_calling" msgid="739018212480165598">"Wi-Fi bidezko deiak"</string>
-    <string name="wifi_calling_off_summary" msgid="2992184822432174168">"Desaktibatuta"</string>
     <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"Ez erabili Wi-Fi bidezko deiak"</string>
     <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"Ez erabili deiak egiteko laguntzailea"</string>
     <string name="wifi_calling_call_assistant_none" msgid="6283702349285593683">"Bat ere ez"</string>
@@ -199,9 +198,6 @@
   </string-array>
     <string name="enhanced_4g_lte_mode_title" msgid="522191650223239171">"4G LTE modu hobetua"</string>
     <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"Erabili LTE zerbitzuak ahotsa eta bestelako komunikazioak hobetzeko (gomendatua)"</string>
-    <string name="wfc_mode_wifi_preferred_summary" msgid="9143208157600896911">"Wi-Fi sarea hobetsia (Wi-Fi sarea erabilgarri ez badago soilik erabiltzen du sare mugikorra)"</string>
-    <string name="wfc_mode_cellular_preferred_summary" msgid="2259869029990883080">"Sare mugikorra hobetsia (sare mugikorra erabilgarri ez badago soilik erabiltzen du Wi-Fi sarea)"</string>
-    <string name="wfc_mode_wifi_only_summary" msgid="6176822199433274101">"Wi-Fi sarea soilik (Ez du sare mugikorra erabiltzen inoiz. Ezin da dierik egin edo jaso Wi-Fi sarera konektatuta egon ezean.)"</string>
     <string name="data_enabled" msgid="5972538663568715366">"Datuak gaituta"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"Onartu datuak erabiltzea"</string>
     <string name="roaming" msgid="8871412572928323707">"Ibiltaritzako datuak"</string>
@@ -557,5 +553,11 @@
     <string name="sim_description_emergency_calls" msgid="7535215397212301562">"Larrialdi-deiak soilik"</string>
     <string name="sim_description_default" msgid="4778679519938775515">"SIM txartela, <xliff:g id="SLOT_ID">%s</xliff:g> erretena"</string>
     <string name="accessibility_settings_activity_title" msgid="8562004288733103868">"Erabilerraztasuna"</string>
+    <!-- no translation found for status_hint_label_incoming_wifi_call (8772915926382037499) -->
+    <skip />
+    <!-- no translation found for status_hint_label_wifi_call (8900805254974653903) -->
+    <skip />
     <string name="emergency_action_launch_hint" msgid="5841511849007540970">"Irekitzeko, ukitu berriro"</string>
+    <!-- no translation found for message_decode_error (3456481534066924855) -->
+    <skip />
 </resources>

@@ -67,7 +67,6 @@
     <string name="phone_accounts_add_sip_account" msgid="2023821743341923271">"Додај SIP налог"</string>
     <string name="phone_accounts_configure_account_settings" msgid="1361715069911607109">"Конфигурисање подешавања налога"</string>
     <string name="wifi_calling" msgid="739018212480165598">"Позивање преко Wi-Fi-ја"</string>
-    <string name="wifi_calling_off_summary" msgid="2992184822432174168">"Искључено"</string>
     <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"Не користи Wi-Fi позивање"</string>
     <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"Не користи помоћника за позиве"</string>
     <string name="wifi_calling_call_assistant_none" msgid="6283702349285593683">"Ништа"</string>
@@ -199,9 +198,6 @@
   </string-array>
     <string name="enhanced_4g_lte_mode_title" msgid="522191650223239171">"Побољшани 4G LTE режим"</string>
     <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"Коришћење LTE услуга за побољшање гласовних и других комуникација (препоручено)"</string>
-    <string name="wfc_mode_wifi_preferred_summary" msgid="9143208157600896911">"Предност има Wi-Fi (Мобилна мрежа се користи само ако Wi-Fi није доступан)"</string>
-    <string name="wfc_mode_cellular_preferred_summary" msgid="2259869029990883080">"Предност има мобилна мрежа (Wi-Fi се користи само ако мобилна мрежа није доступна)"</string>
-    <string name="wfc_mode_wifi_only_summary" msgid="6176822199433274101">"Само Wi-Fi (Никада не користи мобилну мрежу. Упућивање или прим. позива није могуће ако је Wi-Fi недоступан)"</string>
     <string name="data_enabled" msgid="5972538663568715366">"Подаци су омогућени"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"Омогућавање потрошње података"</string>
     <string name="roaming" msgid="8871412572928323707">"Пренос података у ромингу"</string>
@@ -554,5 +550,11 @@
     <string name="sim_description_emergency_calls" msgid="7535215397212301562">"Само за хитне позиве"</string>
     <string name="sim_description_default" msgid="4778679519938775515">"SIM картица, отвор: <xliff:g id="SLOT_ID">%s</xliff:g>"</string>
     <string name="accessibility_settings_activity_title" msgid="8562004288733103868">"Приступачност"</string>
+    <!-- no translation found for status_hint_label_incoming_wifi_call (8772915926382037499) -->
+    <skip />
+    <!-- no translation found for status_hint_label_wifi_call (8900805254974653903) -->
+    <skip />
     <string name="emergency_action_launch_hint" msgid="5841511849007540970">"Додирните поново да бисте отворили"</string>
+    <!-- no translation found for message_decode_error (3456481534066924855) -->
+    <skip />
 </resources>

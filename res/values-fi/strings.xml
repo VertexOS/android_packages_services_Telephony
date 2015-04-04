@@ -67,7 +67,6 @@
     <string name="phone_accounts_add_sip_account" msgid="2023821743341923271">"Lisää SIP-tili"</string>
     <string name="phone_accounts_configure_account_settings" msgid="1361715069911607109">"Tiliasetusten määrittäminen"</string>
     <string name="wifi_calling" msgid="739018212480165598">"Wi-Fi-puhelut"</string>
-    <string name="wifi_calling_off_summary" msgid="2992184822432174168">"Ei käytössä"</string>
     <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"Älä käytä puheluihin Wi-Fiä"</string>
     <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"Älä käytä puheluapuria"</string>
     <string name="wifi_calling_call_assistant_none" msgid="6283702349285593683">"Ei mitään"</string>
@@ -199,9 +198,6 @@
   </string-array>
     <string name="enhanced_4g_lte_mode_title" msgid="522191650223239171">"Enhanced 4G LTE -tila"</string>
     <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"Käytä LTE-palveluita puheviestinnän ja muiden viestintätapojen parantamiseen (suositeltu)"</string>
-    <string name="wfc_mode_wifi_preferred_summary" msgid="9143208157600896911">"Wi-Fi ensisijainen (käyttää matkapuhelinverkkoa vain jos Wi-Fi-verkko ei ole käytettävissä)"</string>
-    <string name="wfc_mode_cellular_preferred_summary" msgid="2259869029990883080">"Matkapuhelinverkko ensisijainen (käyttää Wi-Fi-verkkoa vain jos matkapuhelinverkko ei ole käytettävissä)"</string>
-    <string name="wfc_mode_wifi_only_summary" msgid="6176822199433274101">"Vain Wi-Fi (Ei koskaan käytä matkapuhelinverkkoa. Ei voi soittaa tai vastaanottaa puheluita, jos Wi-Fi ei ole käytettävissä.)"</string>
     <string name="data_enabled" msgid="5972538663568715366">"Datayhteys käytössä"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"Salli tiedonsiirto"</string>
     <string name="roaming" msgid="8871412572928323707">"Verkkoyhteys roaming-tilassa"</string>
@@ -555,6 +551,11 @@
     <string name="sim_description_emergency_calls" msgid="7535215397212301562">"Vain hätäpuhelut"</string>
     <string name="sim_description_default" msgid="4778679519938775515">"SIM-kortti, paikka: <xliff:g id="SLOT_ID">%s</xliff:g>"</string>
     <string name="accessibility_settings_activity_title" msgid="8562004288733103868">"Esteettömyys"</string>
-    <!-- no translation found for emergency_action_launch_hint (5841511849007540970) -->
+    <!-- no translation found for status_hint_label_incoming_wifi_call (8772915926382037499) -->
+    <skip />
+    <!-- no translation found for status_hint_label_wifi_call (8900805254974653903) -->
+    <skip />
+    <string name="emergency_action_launch_hint" msgid="5841511849007540970">"Avaa koskettamalla uudelleen."</string>
+    <!-- no translation found for message_decode_error (3456481534066924855) -->
     <skip />
 </resources>

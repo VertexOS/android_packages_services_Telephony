@@ -67,7 +67,6 @@
     <string name="phone_accounts_add_sip_account" msgid="2023821743341923271">"SIP 계정 추가"</string>
     <string name="phone_accounts_configure_account_settings" msgid="1361715069911607109">"계정 설정 조정"</string>
     <string name="wifi_calling" msgid="739018212480165598">"Wi-Fi 통화"</string>
-    <string name="wifi_calling_off_summary" msgid="2992184822432174168">"사용 안함"</string>
     <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"Wi-Fi 통화 사용 안함"</string>
     <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"통화 도우미 사용 안함"</string>
     <string name="wifi_calling_call_assistant_none" msgid="6283702349285593683">"선택 안함"</string>
@@ -199,9 +198,6 @@
   </string-array>
     <string name="enhanced_4g_lte_mode_title" msgid="522191650223239171">"향상된 4G LTE 모드"</string>
     <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"LTE 서비스를 사용하여 음성 및 기타 통신을 개선할 수 있습니다(권장)."</string>
-    <string name="wfc_mode_wifi_preferred_summary" msgid="9143208157600896911">"Wi-Fi를 기본으로 설정(Wi-Fi를 사용할 수 없는 경우에만 모바일 네트워크 사용)"</string>
-    <string name="wfc_mode_cellular_preferred_summary" msgid="2259869029990883080">"모바일 데이터를 기본으로 설정(모바일 네트워크를 사용할 수 없는 경우에만 Wi-Fi 사용)"</string>
-    <string name="wfc_mode_wifi_only_summary" msgid="6176822199433274101">"Wi-Fi에서만(모바일 네트워크를 사용하지 않으며 Wi-Fi를 사용할 수 없는 경우 전화를 걸거나 받을 수 없음)"</string>
     <string name="data_enabled" msgid="5972538663568715366">"데이터 사용"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"데이터 사용 허용"</string>
     <string name="roaming" msgid="8871412572928323707">"데이터 로밍"</string>
@@ -551,6 +547,11 @@
     <string name="sim_description_emergency_calls" msgid="7535215397212301562">"긴급 전화 전용"</string>
     <string name="sim_description_default" msgid="4778679519938775515">"SIM 카드, 슬롯: <xliff:g id="SLOT_ID">%s</xliff:g>"</string>
     <string name="accessibility_settings_activity_title" msgid="8562004288733103868">"접근성"</string>
-    <!-- no translation found for emergency_action_launch_hint (5841511849007540970) -->
+    <!-- no translation found for status_hint_label_incoming_wifi_call (8772915926382037499) -->
+    <skip />
+    <!-- no translation found for status_hint_label_wifi_call (8900805254974653903) -->
+    <skip />
+    <string name="emergency_action_launch_hint" msgid="5841511849007540970">"다시 터치하여 열기"</string>
+    <!-- no translation found for message_decode_error (3456481534066924855) -->
     <skip />
 </resources>

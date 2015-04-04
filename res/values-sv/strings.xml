@@ -67,7 +67,6 @@
     <string name="phone_accounts_add_sip_account" msgid="2023821743341923271">"Lägg till SIP-konto"</string>
     <string name="phone_accounts_configure_account_settings" msgid="1361715069911607109">"Konfigurera kontoinställningar"</string>
     <string name="wifi_calling" msgid="739018212480165598">"Wi-Fi-samtal"</string>
-    <string name="wifi_calling_off_summary" msgid="2992184822432174168">"Av"</string>
     <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"Använd inte Wi-Fi-samtal"</string>
     <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"Använd inte samtalsassistent"</string>
     <string name="wifi_calling_call_assistant_none" msgid="6283702349285593683">"Ingen"</string>
@@ -199,9 +198,6 @@
   </string-array>
     <string name="enhanced_4g_lte_mode_title" msgid="522191650223239171">"Förbättrat 4G LTE-läge"</string>
     <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"Använd LTE-tjänster för att förbättra bl.a. röstkommunikation (rekommenderas)"</string>
-    <string name="wfc_mode_wifi_preferred_summary" msgid="9143208157600896911">"Wi-Fi i första hand (Använder endast mobilnätverk om Wi-Fi inte är tillgängligt)"</string>
-    <string name="wfc_mode_cellular_preferred_summary" msgid="2259869029990883080">"Mobil i första hand (Använder endast Wi-Fi om mobilnätverket inte är tillgängligt)"</string>
-    <string name="wfc_mode_wifi_only_summary" msgid="6176822199433274101">"Endast Wi-Fi (Använder aldrig mobilnätverk. Det går inte att ringa eller ta emot samtal om Wi-Fi inte är tillgängligt)"</string>
     <string name="data_enabled" msgid="5972538663568715366">"Data är aktiverat"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"Tillåt dataanvändning"</string>
     <string name="roaming" msgid="8871412572928323707">"Dataroaming"</string>
@@ -557,5 +553,11 @@
     <string name="sim_description_emergency_calls" msgid="7535215397212301562">"Endast nödsamtal"</string>
     <string name="sim_description_default" msgid="4778679519938775515">"SIM-kortsplats: <xliff:g id="SLOT_ID">%s</xliff:g>"</string>
     <string name="accessibility_settings_activity_title" msgid="8562004288733103868">"Tillgänglighet"</string>
+    <!-- no translation found for status_hint_label_incoming_wifi_call (8772915926382037499) -->
+    <skip />
+    <!-- no translation found for status_hint_label_wifi_call (8900805254974653903) -->
+    <skip />
     <string name="emergency_action_launch_hint" msgid="5841511849007540970">"Tryck igen för att öppna"</string>
+    <!-- no translation found for message_decode_error (3456481534066924855) -->
+    <skip />
 </resources>
