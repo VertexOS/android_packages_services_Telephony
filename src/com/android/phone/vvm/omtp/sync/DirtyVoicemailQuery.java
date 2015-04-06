@@ -48,7 +48,7 @@ public class DirtyVoicemailQuery {
      */
     public static Cursor getDirtyVoicemails(Context context) {
         ContentResolver contentResolver = context.getContentResolver();
-        Uri statusUri = VoicemailContract.Voicemails.buildSourceUri(context.getPackageName());
-        return contentResolver.query(statusUri, PROJECTION, SELECTION, null, null);
+        Uri sourceUri = VoicemailContract.Voicemails.buildSourceUri(context.getPackageName());
+        return contentResolver.query(sourceUri, PROJECTION, SELECTION, null, null);
     }
 }

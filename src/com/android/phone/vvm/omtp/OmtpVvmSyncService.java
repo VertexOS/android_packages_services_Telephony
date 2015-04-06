@@ -167,7 +167,8 @@ public class OmtpVvmSyncService extends Service {
         public int markReadInDatabase(List<Voicemail> voicemails) {
             int count = voicemails.size();
             for (int i = 0; i < count; i++) {
-                Uri uri = ContentUris.withAppendedId(Voicemails.CONTENT_URI,
+                Uri uri = ContentUris.withAppendedId(
+                        VoicemailContract.Voicemails.buildSourceUri(mContext.getPackageName()),
                         voicemails.get(i).getId());
                 mContentResolver.update(uri, new ContentValues(), null, null);
             }
