@@ -261,6 +261,7 @@
         <item name="android:actionBarStyle">@style/TelephonyActionBarStyle</item>
         <item name="android:colorPrimary">@color/dialer_theme_color</item>
         <item name="android:colorPrimaryDark">@color/dialer_theme_color_dark</item>
+        <item name="android:homeAsUpIndicator">@drawable/ic_back_arrow</item>
     </style>
 
     <style name="SimImportTheme" parent="@android:style/Theme.Material.Light">
