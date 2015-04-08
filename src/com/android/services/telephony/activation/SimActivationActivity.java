@@ -17,8 +17,11 @@
 package com.android.services.telephony.activation;
 
 import android.app.Activity;
+import android.app.PendingIntent;
+import android.app.PendingIntent.CanceledException;
 import android.content.Intent;
 import android.os.Bundle;
+import android.telephony.TelephonyManager;
 
 import com.android.services.telephony.Log;
 
@@ -30,11 +33,31 @@ public class SimActivationActivity extends Activity {
     @Override
     protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
+        Log.i(this, "onCreate");
 
         Intent intent = getIntent();
         if (Intent.ACTION_SIM_ACTIVATION_REQUEST.equals(intent.getAction())) {
             Log.i(this, "Activation requested " + intent);
+
+            runActivation(intent);
         }
         finish();
+    }
+
+    private void runActivation(Intent intent) {
+        PendingIntent response = intent.getParcelableExtra(Intent.EXTRA_SIM_ACTIVATION_RESPONSE);
+
+        Log.i(this, "Running activation w/ response " + response);
+        // TODO: Actually do activation
+
+        // Return the response as an activity result and the pending intent.
+        setResult(TelephonyManager.SIM_ACTIVATION_RESULT_COMPLETE);
+        if (response != null) {
+            try {
+                response.send();
+            } catch (CanceledException e) {
+                Log.w(this, "Could not respond to SIM Activation.");
+            }
+        }
     }
 }
