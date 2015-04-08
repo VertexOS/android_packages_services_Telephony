@@ -23,6 +23,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.android.phone.settings.VoicemailSettingsActivity;
+
 /**
  * Used to display an error dialog from within the Telephony service when an outgoing call fails
  */
@@ -105,8 +107,8 @@ public class ErrorDialogActivity extends Activity {
         }
 
         // navigate to the Voicemail setting in the Call Settings activity.
-        Intent intent = new Intent(CallFeaturesSetting.ACTION_ADD_VOICEMAIL);
-        intent.setClass(this, CallFeaturesSetting.class);
+        Intent intent = new Intent(VoicemailSettingsActivity.ACTION_ADD_VOICEMAIL);
+        intent.setClass(this, VoicemailSettingsActivity.class);
         startActivity(intent);
         finish();
     }

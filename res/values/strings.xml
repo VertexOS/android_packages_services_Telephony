@@ -173,6 +173,8 @@
     <string name="connection_service_default_label">Built-in connection service</string>
     <!-- Call settings screen, setting option name -->
     <string name="voicemail">Voicemail</string>
+    <!-- Title of the "Voicemail" settings screen, with a text label identifying which SIM the settings are for. -->
+    <string name="voicemail_settings_with_label">Voicemail (<xliff:g id="subscriptionlabel" example="Mock Carrier">%s</xliff:g>)</string>
     <!-- Call forwarding dialog box, voicemail number prefix -->
     <string name="voicemail_abbreviated">VM:</string>
     <!-- Mobile network settings screen, setting option name -->
@@ -184,7 +186,7 @@
     <!-- GSM Call settings screen, setting option name -->
     <string name="additional_gsm_call_settings">Additional settings</string>
     <!-- GSM Call settings screen, setting option name, with label identifying the SIM the settings are for. -->
-    <string name="additional_gsm_call_settings_with_label">Additional settings (<xliff:g id="subscriptionlabel" example="Verizon">%s</xliff:g>)</string>
+    <string name="additional_gsm_call_settings_with_label">Additional settings (<xliff:g id="subscriptionlabel" example="Mock Carrier">%s</xliff:g>)</string>
     <!-- GSM-only Call settings screen, setting option name-->
     <string name="sum_gsm_call_settings">Additional GSM only call settings</string>
     <!-- CDMA Call settings screen, setting option name -->
@@ -212,7 +214,7 @@
     <!-- Call forwarding settings screen, section heading -->
     <string name="call_forwarding_settings">Call forwarding settings</string>
     <!-- Call forwarding settings screen, section heading, with a label identifying the SIM the settings are for. -->
-    <string name="call_forwarding_settings_with_label">Call forwarding settings (<xliff:g id="subscriptionlabel" example="Verizon">%s</xliff:g>)</string>
+    <string name="call_forwarding_settings_with_label">Call forwarding settings (<xliff:g id="subscriptionlabel" example="Mock Carrier">%s</xliff:g>)</string>
     <!-- Call settings screen, setting option name -->
     <string name="labelCF">Call forwarding</string>
 
@@ -268,7 +270,7 @@
     <!-- Toast in Call settings when asked to launch settings for a secondary user -->
     <string name="call_settings_primary_user_only">Call settings can only be changed by the primary user.</string>
     <!-- Title of the "Call settings" settings screen, with a text label identifying which SIM the settings are for. -->
-    <string name="call_settings_with_label">Call settings (<xliff:g id="subscriptionlabel" example="Verizon">%s</xliff:g>)</string>
+    <string name="call_settings_with_label">Call settings (<xliff:g id="subscriptionlabel" example="Mock Carrier">%s</xliff:g>)</string>
     <!-- Title of the alert dialog displayed if an error occurs while updating Call settings -->
     <string name="error_updating_title">Call settings error</string>
     <!-- Toast in Call settings dialog while settings are being read -->
@@ -729,13 +731,13 @@
     <string name="fdn">Fixed Dialing Numbers</string>
     <!-- Title for "Fixed Dialing Number" settings, with a label to identify the SIM the settings
         apply to. -->
-    <string name="fdn_with_label">Fixed Dialing Numbers (<xliff:g id="subscriptionlabel" example="Verizon">%s</xliff:g>)</string>
+    <string name="fdn_with_label">Fixed Dialing Numbers (<xliff:g id="subscriptionlabel" example="Mock Carrier">%s</xliff:g>)</string>
 
     <!-- Call settings screen, button label that takes you to the Fixed Dialing Number management screen -->
     <string name="manage_fdn_list">FDN list</string>
     <!-- Title for settings screen to manage Fixed Dialing Number contacts, with a label to identify
          the SIM the settings apply to. -->
-    <string name="fdn_list_with_label">FDN list (<xliff:g id="subscriptionlabel" example="Verizon">%s</xliff:g>)</string>
+    <string name="fdn_list_with_label">FDN list (<xliff:g id="subscriptionlabel" example="Mock Carrier">%s</xliff:g>)</string>
     <!-- Call settings screen, preference item label -->
     <string name="fdn_activation">FDN activation</string>
     <!-- Call settings setting option name when FDN is enabled -->

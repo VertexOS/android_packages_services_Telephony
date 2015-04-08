@@ -49,6 +49,7 @@ import android.widget.Toast;
 import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneBase;
 import com.android.internal.telephony.TelephonyCapabilities;
+import com.android.phone.settings.VoicemailSettingsActivity;
 import com.android.phone.settings.VoicemailNotificationSettingsUtil;
 import com.android.phone.settings.VoicemailProviderSettingsUtil;
 
@@ -358,10 +359,9 @@ public class NotificationMgr {
                 // to the voicemail settings.
                 notificationText = mContext.getString(
                         R.string.notification_voicemail_no_vm_number);
-                intent = new Intent(CallFeaturesSetting.ACTION_ADD_VOICEMAIL);
-                intent.putExtra(CallFeaturesSetting.SETUP_VOICEMAIL_EXTRA, true);
+                intent = new Intent(VoicemailSettingsActivity.ACTION_ADD_VOICEMAIL);
                 intent.putExtra(SubscriptionInfoHelper.SUB_ID_EXTRA, subId);
-                intent.setClass(mContext, CallFeaturesSetting.class);
+                intent.setClass(mContext, VoicemailSettingsActivity.class);
             } else {
                 if (mTelephonyManager.getPhoneCount() > 1) {
                     notificationText = subInfo.getDisplayName().toString();

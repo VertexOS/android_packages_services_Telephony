@@ -94,7 +94,7 @@ public class EditPhoneNumberPreference extends EditTextPreference {
      * DialogPreference.onDialogClosed(), except we also pass in a buttonClicked
      * value indicating which of the three possible buttons were pressed.
      */
-    interface OnDialogClosedListener {
+    public interface OnDialogClosedListener {
         void onDialogClosed(EditPhoneNumberPreference preference, int buttonClicked);
     }
 
@@ -102,7 +102,7 @@ public class EditPhoneNumberPreference extends EditTextPreference {
      * Interface for the default number setting listener.  Handles requests for
      * the default display number for the dialog.
      */
-    interface GetDefaultNumberListener {
+    public interface GetDefaultNumberListener {
         /**
          * Notify that we are looking for a default display value.
          * @return null if there is no contribution from this interface,
