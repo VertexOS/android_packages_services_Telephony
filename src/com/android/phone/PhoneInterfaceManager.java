@@ -1414,6 +1414,12 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
                 null);
     }
 
+    private void enforceConnectivityInternalPermission() {
+        mApp.enforceCallingOrSelfPermission(
+                android.Manifest.permission.CONNECTIVITY_INTERNAL,
+                "ConnectivityService");
+    }
+
     private String createTelUrl(String number) {
         if (TextUtils.isEmpty(number)) {
             return null;
@@ -2352,5 +2358,20 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         }
 
         return true;
+    }
+
+    @Override
+    public void factoryReset(int subId) {
+        enforceConnectivityInternalPermission();
+        if (SubscriptionManager.isUsableSubIdValue(subId)) {
+            // Enable data
+            setDataEnabled(subId, true);
+            // Set network selection mode to automatic
+            setNetworkSelectionModeAutomatic(subId);
+            // Set preferred mobile network type to the best available
+            setPreferredNetworkType(subId, Phone.PREFERRED_NT_MODE);
+            // Turn off roaming
+            SubscriptionManager.from(mApp).setDataRoaming(0, subId);
+        }
     }
 }
