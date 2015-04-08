@@ -66,6 +66,7 @@ import com.android.internal.telephony.TelephonyIntents;
 import com.android.phone.common.CallLogAsync;
 import com.android.phone.settings.SettingsConstants;
 import com.android.server.sip.SipService;
+import com.android.services.telephony.activation.SimActivationManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -145,6 +146,7 @@ public class PhoneGlobals extends ContextWrapper {
     CallerInfoCache callerInfoCache;
     NotificationMgr notificationMgr;
     public PhoneInterfaceManager phoneMgr;
+    public SimActivationManager simActivationManager;
 
     private BluetoothManager bluetoothManager;
     private CallGatewayManager callGatewayManager;
@@ -440,6 +442,8 @@ public class PhoneGlobals extends ContextWrapper {
         cdmaOtaConfigData = new OtaUtils.CdmaOtaConfigData();
         cdmaOtaScreenState = new OtaUtils.CdmaOtaScreenState();
         cdmaOtaInCallScreenUiState = new OtaUtils.CdmaOtaInCallScreenUiState();
+
+        simActivationManager = new SimActivationManager();
 
         // XXX pre-load the SimProvider so that it's ready
         resolver.getType(Uri.parse("content://icc/adn"));

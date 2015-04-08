@@ -23,6 +23,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.telephony.TelephonyManager;
 
+import com.android.phone.PhoneGlobals;
 import com.android.services.telephony.Log;
 
 /**
@@ -45,19 +46,28 @@ public class SimActivationActivity extends Activity {
     }
 
     private void runActivation(Intent intent) {
-        PendingIntent response = intent.getParcelableExtra(Intent.EXTRA_SIM_ACTIVATION_RESPONSE);
+        final PendingIntent response =
+                intent.getParcelableExtra(Intent.EXTRA_SIM_ACTIVATION_RESPONSE);
 
         Log.i(this, "Running activation w/ response " + response);
-        // TODO: Actually do activation
 
+        PhoneGlobals app = PhoneGlobals.getInstance();
+        app.simActivationManager.runActivation(SimActivationManager.Triggers.EXPLICIT_REQUEST,
+                new SimActivationManager.Response() {
+                    @Override
+                    public void onResponse(int status) {
+                        if (response != null) {
+                            try {
+                                response.send();
+                            } catch (CanceledException e) {
+                                Log.w(this, "Could not respond to SIM Activation.");
+                            }
+                        }
+                    }
+                });
+
+        // TODO: Set this status to the return value of runActivation
         // Return the response as an activity result and the pending intent.
-        setResult(TelephonyManager.SIM_ACTIVATION_RESULT_COMPLETE);
-        if (response != null) {
-            try {
-                response.send();
-            } catch (CanceledException e) {
-                Log.w(this, "Could not respond to SIM Activation.");
-            }
-        }
+        setResult(TelephonyManager.SIM_ACTIVATION_RESULT_IN_PROGRESS);
     }
 }
