@@ -387,7 +387,8 @@ public class MobileNetworkSettings extends PreferenceActivity
     };
 
     private void updatePhone(int slotId) {
-        final SubscriptionInfo sir = findRecordBySlotId(slotId);
+        final SubscriptionInfo sir = mSubscriptionManager
+                .getActiveSubscriptionInfoForSimSlotIndex(slotId);
         if (sir != null) {
             mPhone = PhoneFactory.getPhone(
                     SubscriptionManager.getPhoneId(sir.getSubscriptionId()));
@@ -1274,23 +1275,4 @@ public class MobileNetworkSettings extends PreferenceActivity
         }
     }
 
-    /**
-     * finds a record with slotId.
-     * Since the number of SIMs are few, an array is fine.
-     */
-    public SubscriptionInfo findRecordBySlotId(final int slotId) {
-        if (mActiveSubInfos != null) {
-            final int subInfoLength = mActiveSubInfos.size();
-
-            for (int i = 0; i < subInfoLength; ++i) {
-                final SubscriptionInfo sir = mActiveSubInfos.get(i);
-                if (sir.getSimSlotIndex() == slotId) {
-                    //Right now we take the first subscription on a SIM.
-                    return sir;
-                }
-            }
-        }
-
-        return null;
-    }
 }
