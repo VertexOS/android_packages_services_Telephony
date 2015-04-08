@@ -552,6 +552,5 @@
     <!-- no translation found for status_hint_label_wifi_call (8900805254974653903) -->
     <skip />
     <string name="emergency_action_launch_hint" msgid="5841511849007540970">"다시 터치하여 열기"</string>
-    <!-- no translation found for message_decode_error (3456481534066924855) -->
-    <skip />
+    <string name="message_decode_error" msgid="3456481534066924855">"메시지를 디코딩하는 동안 오류가 발생했습니다."</string>
 </resources>
