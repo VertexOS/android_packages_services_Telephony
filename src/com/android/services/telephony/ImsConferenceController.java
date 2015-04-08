@@ -16,6 +16,8 @@
 
 package com.android.services.telephony;
 
+import com.android.internal.telephony.imsphone.ImsPhoneConnection;
+
 import android.net.Uri;
 import android.telecom.Conference;
 import android.telecom.Connection;
@@ -155,6 +157,15 @@ public class ImsConferenceController {
                 Log.d(this, "recalc - %s %s", connection.getState(), connection);
             }
 
+            // If this connection is a member of a conference hosted on another device, it is not
+            // conferenceable with any other connections.
+            if (isMemberOfPeerConference(connection)) {
+                if (Log.VERBOSE) {
+                    Log.v(this, "Skipping connection in peer conference: %s", connection);
+                }
+                continue;
+            }
+
             switch (connection.getState()) {
                 case Connection.STATE_ACTIVE:
                     activeConnections.add(connection);
@@ -168,9 +179,16 @@ public class ImsConferenceController {
             connection.setConferenceableConnections(Collections.<Connection>emptyList());
         }
 
-        for (Conference conference : mImsConferences) {
+        for (ImsConference conference : mImsConferences) {
             if (Log.DEBUG) {
                 Log.d(this, "recalc - %s %s", conference.getState(), conference);
+            }
+
+            if (!conference.isConferenceHost()) {
+                if (Log.VERBOSE) {
+                    Log.v(this, "skipping conference (not hosted on this device): %s", conference);
+                }
+                continue;
             }
 
             switch (conference.getState()) {
@@ -209,6 +227,16 @@ public class ImsConferenceController {
 
         // Set the conference as conferenceable with all the connections
         for (ImsConference conference : mImsConferences) {
+            // If this conference is not being hosted on the current device, we cannot conference it
+            // with any other connections.
+            if (!conference.isConferenceHost()) {
+                if (Log.VERBOSE) {
+                    Log.v(this, "skipping conference (not hosted on this device): %s",
+                            conference);
+                }
+                continue;
+            }
+
             List<Connection> nonConferencedConnections =
                 new ArrayList<>(mTelephonyConnections.size());
             for (Connection c : mTelephonyConnections) {
@@ -221,6 +249,27 @@ public class ImsConferenceController {
             }
             conference.setConferenceableConnections(nonConferencedConnections);
         }
+    }
+
+    /**
+     * Determines if a connection is a member of a conference hosted on another device.
+     *
+     * @param connection The connection.
+     * @return {@code true} if the connection is a member of a conference hosted on another device.
+     */
+    private boolean isMemberOfPeerConference(Connection connection) {
+        if (!(connection instanceof TelephonyConnection)) {
+            return false;
+        }
+        TelephonyConnection telephonyConnection = (TelephonyConnection) connection;
+        com.android.internal.telephony.Connection originalConnection =
+                telephonyConnection.getOriginalConnection();
+        if (!(originalConnection instanceof ImsPhoneConnection)) {
+            return false;
+        }
+
+        ImsPhoneConnection imsPhoneConnection = (ImsPhoneConnection) originalConnection;
+        return imsPhoneConnection.isMultiparty() && !imsPhoneConnection.isConferenceHost();
     }
 
     /**
