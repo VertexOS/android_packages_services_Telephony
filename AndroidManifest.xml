@@ -449,7 +449,6 @@
                 <action android:name="android.intent.action.VIEW" />
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.telecom.action.SHOW_CALL_SETTINGS" />
-                <action android:name="com.android.phone.CallFeaturesSetting.ADD_VOICEMAIL" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
@@ -575,6 +574,10 @@
         <activity android:name="com.android.phone.settings.VoicemailSettingsActivity"
             android:label="@string/voicemail"
             android:theme="@style/DialerSettingsLight">
+            <intent-filter >
+                <!-- DO NOT RENAME. There are existing apps which use this string. -->
+                <action android:name="com.android.phone.CallFeaturesSetting.ADD_VOICEMAIL" />
+            </intent-filter>
         </activity>
 
         <!-- BroadcastReceiver for receiving Intents from Notification mechanism. -->

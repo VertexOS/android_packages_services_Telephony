@@ -21,7 +21,6 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.view.WindowManager;
 
-import com.android.phone.CallFeaturesSetting;
 import com.android.phone.R;
 
 public class VoicemailDialogUtil {
@@ -36,7 +35,7 @@ public class VoicemailDialogUtil {
     public static final int VM_FWD_READING_DIALOG = 602;
     public static final int VM_REVERTING_DIALOG = 603;
 
-    public static Dialog getDialog(CallFeaturesSetting parent, int id) {
+    public static Dialog getDialog(VoicemailSettingsActivity parent, int id) {
         if ((id == VM_RESPONSE_ERROR_DIALOG) || (id == VM_NOCHANGE_ERROR_DIALOG) ||
             (id == FWD_SET_RESPONSE_ERROR_DIALOG) || (id == FWD_GET_RESPONSE_ERROR_DIALOG) ||
                 (id == VM_CONFIRM_DIALOG)) {

@@ -30,7 +30,6 @@ import android.util.AttributeSet;
 import android.util.Log;
 
 import com.android.internal.telephony.Phone;
-import com.android.phone.CallFeaturesSetting;
 import com.android.phone.PhoneGlobals;
 import com.android.phone.R;
 
@@ -95,12 +94,14 @@ public class VoicemailProviderListPreference extends ListPreference {
         if (DBG) log("initVoicemailProviders()");
 
         String providerToIgnore = null;
-        if (activityIntent.getAction().equals(CallFeaturesSetting.ACTION_ADD_VOICEMAIL)
-                && activityIntent.hasExtra(CallFeaturesSetting.IGNORE_PROVIDER_EXTRA)) {
+        String action = activityIntent.getAction();
+        if (!TextUtils.isEmpty(action)
+                && action.equals(VoicemailSettingsActivity.ACTION_ADD_VOICEMAIL)
+                && activityIntent.hasExtra(VoicemailSettingsActivity.IGNORE_PROVIDER_EXTRA)) {
             // Remove this provider from the list.
             if (DBG) log("Found ACTION_ADD_VOICEMAIL.");
             providerToIgnore =
-                    activityIntent.getStringExtra(CallFeaturesSetting.IGNORE_PROVIDER_EXTRA);
+                    activityIntent.getStringExtra(VoicemailSettingsActivity.IGNORE_PROVIDER_EXTRA);
             VoicemailProviderSettingsUtil.delete(mPhone.getContext(), providerToIgnore);
         }
 
@@ -119,7 +120,7 @@ public class VoicemailProviderListPreference extends ListPreference {
 
         // Add other voicemail providers.
         PackageManager pm = mPhone.getContext().getPackageManager();
-        Intent intent = new Intent(CallFeaturesSetting.ACTION_CONFIGURE_VOICEMAIL);
+        Intent intent = new Intent(VoicemailSettingsActivity.ACTION_CONFIGURE_VOICEMAIL);
         List<ResolveInfo> resolveInfos = pm.queryIntentActivities(intent, 0);
         for (int i = 0; i < resolveInfos.size(); i++) {
             final ResolveInfo ri= resolveInfos.get(i);
@@ -137,7 +138,7 @@ public class VoicemailProviderListPreference extends ListPreference {
             }
             String nameForDisplay = (label != null) ? label.toString() : "";
             Intent providerIntent = new Intent();
-            providerIntent.setAction(CallFeaturesSetting.ACTION_CONFIGURE_VOICEMAIL);
+            providerIntent.setAction(VoicemailSettingsActivity.ACTION_CONFIGURE_VOICEMAIL);
             providerIntent.setClassName(currentActivityInfo.packageName, currentActivityInfo.name);
             VoicemailProvider vmProvider = new VoicemailProvider(nameForDisplay, providerIntent);
 
