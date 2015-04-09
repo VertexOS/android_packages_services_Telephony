@@ -71,8 +71,7 @@ public class ImapHelper {
                     accountManager.getUserData(account, OmtpConstants.IMAP_PORT));
             // TODO: determine the security protocol (e.g. ssl, tls, none, etc.)
             mImapStore = new ImapStore(
-                    context, username, password, port, serverName,
-                    ImapStore.FLAG_NONE);
+                    context, username, password, port, serverName, ImapStore.FLAG_NONE);
         } catch (NumberFormatException e) {
             LogUtils.e(TAG, e, "Could not parse port number");
         }
