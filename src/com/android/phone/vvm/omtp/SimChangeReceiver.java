@@ -18,14 +18,22 @@ package com.android.phone.vvm.omtp;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
+import android.telephony.CarrierConfigManager;
+import android.telephony.SmsManager;
+import android.telephony.SubscriptionManager;
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.android.internal.telephony.IccCardConstants;
+import com.android.internal.telephony.PhoneConstants;
+import com.android.internal.telephony.TelephonyIntents;
+import com.android.phone.vvm.omtp.sms.OmtpMessageSender;
 
 /**
- * In order to determine when a SIM is added or removed, this class listens for changes to the
- * SIM state. On SIM state "absent", this means a SIM was removed. On SIM state "loaded", this means
- * a SIM is ready.
+ * This class listens to the {@link CarrierConfigManager#ACTION_CARRIER_CONFIG_CHANGED} and
+ * {@link TelephonyIntents#ACTION_SIM_STATE_CHANGED} to determine when a SIM is added, replaced,
+ * or removed.
  *
  * When a SIM is added, send an activate SMS. When a SIM is removed, remove the sync accounts and
  * change the status in the voicemail_status table.
@@ -34,15 +42,68 @@ public class SimChangeReceiver extends BroadcastReceiver {
     private final String TAG = "SimChangeReceiver";
     @Override
     public void onReceive(Context context, Intent intent) {
-        String state = intent.getStringExtra(IccCardConstants.INTENT_KEY_ICC_STATE);
-        Log.i(TAG, state);
-        switch (state) {
-            case IccCardConstants.INTENT_VALUE_ICC_ABSENT:
-                OmtpVvmSyncAccountManager.getInstance(context).removeInactiveAccounts();
+        final String action = intent.getAction();
+        if (action == null) {
+            Log.w(TAG, "Null action for intent.");
+            return;
+        }
+
+        switch (action) {
+            case TelephonyIntents.ACTION_SIM_STATE_CHANGED:
+                if (IccCardConstants.INTENT_VALUE_ICC_ABSENT.equals(
+                        intent.getStringExtra(IccCardConstants.INTENT_KEY_ICC_STATE))) {
+                    Log.i(TAG, "Sim removed, removing inactive accounts");
+                    OmtpVvmSyncAccountManager.getInstance(context).removeInactiveAccounts();
+                }
                 break;
-            case IccCardConstants.INTENT_VALUE_ICC_LOADED:
-                //TODO: get carrier configuration values and send activation SMS
+            case CarrierConfigManager.ACTION_CARRIER_CONFIG_CHANGED:
+                handleCarrierConfigChange(context, intent);
                 break;
         }
+    }
+
+    private void handleCarrierConfigChange(Context context, Intent intent) {
+        int subId = intent.getIntExtra(PhoneConstants.SUBSCRIPTION_KEY,
+                SubscriptionManager.INVALID_SUBSCRIPTION_ID);
+        if (subId == SubscriptionManager.INVALID_SUBSCRIPTION_ID) {
+            Log.w(TAG, "subscriptionId not provided in intent.");
+            return;
+        }
+
+        CarrierConfigManager carrierConfigManager = (CarrierConfigManager)
+                context.getSystemService(Context.CARRIER_CONFIG_SERVICE);
+        if (carrierConfigManager == null) {
+            Log.w(TAG, "No carrier config service found.");
+            return;
+        }
+
+        Bundle carrierConfig = carrierConfigManager.getConfigForSubId(subId);
+        if (carrierConfig == null) {
+            Log.w(TAG, "Empty carrier config.");
+            return;
+        }
+        String vvmType = carrierConfig.getString(
+                CarrierConfigManager.STRING_VVM_TYPE, null);
+
+        if (!CarrierConfigManager.VVM_TYPE_OMTP.equals(vvmType)) {
+            // This is not an OMTP visual voicemail compatible carrier.
+            return;
+        }
+
+        int applicationPort = carrierConfig.getInt(
+                CarrierConfigManager.INT_VVM_PORT_NUMBER, 0);
+        String destinationNumber = carrierConfig.getString(
+                CarrierConfigManager.STRING_VVM_DESTINATION_NUMBER);
+        if (TextUtils.isEmpty(destinationNumber)) {
+            Log.w(TAG, "No destination number for this carrier.");
+            return;
+        }
+
+        Log.i(TAG, "Requesting VVM activation for subId: " + subId);
+        SmsManager smsManager = SmsManager.getSmsManagerForSubscriptionId(subId);
+        OmtpMessageSender messageSender = new OmtpMessageSender(smsManager,
+                (short) applicationPort, destinationNumber, null,
+                OmtpConstants.PROTOCOL_VERSION1_1, null);
+        messageSender.requestVvmActivation(null);
     }
 }

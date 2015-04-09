@@ -649,6 +649,7 @@
        <receiver android:name="com.android.phone.vvm.omtp.SimChangeReceiver"
             android:exported="true">
             <intent-filter>
+                <action android:name="android.telephony.action.CARRIER_CONFIG_CHANGED" />
                 <action android:name="android.intent.action.SIM_STATE_CHANGED" />
             </intent-filter>
        </receiver>
