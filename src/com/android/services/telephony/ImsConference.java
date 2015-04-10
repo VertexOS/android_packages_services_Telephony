@@ -176,7 +176,10 @@ public class ImsConference extends Conference {
     public ImsConference(TelephonyConnectionService telephonyConnectionService,
             TelephonyConnection conferenceHost) {
 
-        super(null);
+        super((conferenceHost != null && conferenceHost.getCall() != null &&
+                        conferenceHost.getCall().getPhone() != null) ?
+                PhoneUtils.makePstnPhoneAccountHandle(
+                        conferenceHost.getCall().getPhone()) : null);
 
         // Specify the connection time of the conference to be the connection time of the original
         // connection.
@@ -184,13 +187,6 @@ public class ImsConference extends Conference {
 
         mTelephonyConnectionService = telephonyConnectionService;
         setConferenceHost(conferenceHost);
-        if (conferenceHost != null && conferenceHost.getCall() != null
-                && conferenceHost.getCall().getPhone() != null) {
-            mPhoneAccount = PhoneUtils.makePstnPhoneAccountHandle(
-                    conferenceHost.getCall().getPhone());
-            Log.v(this, "set phacc to " + mPhoneAccount);
-        }
-
         setConnectionCapabilities(
                 Connection.CAPABILITY_SUPPORT_HOLD |
                 Connection.CAPABILITY_HOLD |
