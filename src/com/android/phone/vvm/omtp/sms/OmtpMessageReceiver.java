@@ -52,12 +52,10 @@ public class OmtpMessageReceiver extends BroadcastReceiver {
                 intent.getExtras().getInt(PhoneConstants.PHONE_KEY));
 
         SmsMessage[] messages = Telephony.Sms.Intents.getMessagesFromIntent(intent);
-        StringBuilder userData = new StringBuilder();
         StringBuilder messageBody = new StringBuilder();
 
         for (int i = 0; i < messages.length; i++) {
             messageBody.append(messages[i].getMessageBody());
-            userData.append(extractUserData(messages[i]));
         }
 
         WrappedMessageData messageData = OmtpSmsParser.parse(messageBody.toString());
@@ -73,16 +71,6 @@ public class OmtpMessageReceiver extends BroadcastReceiver {
             }
         }
         // Let this fall through: this is not a message we're interested in.
-    }
-
-    private String extractUserData(SmsMessage sms) {
-        try {
-            // OMTP spec does not tell about the encoding. We assume ASCII.
-            // UTF-8 sounds safer as it can handle ascii as well as other charsets.
-            return new String(sms.getUserData(), "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            throw new IllegalStateException("This should have never happened", e);
-        }
     }
 
     /**
@@ -107,9 +95,11 @@ public class OmtpMessageReceiver extends BroadcastReceiver {
                 break;
             case OmtpConstants.MAILBOX_UPDATE:
                 // Needs a total resync
+                Bundle bundle = new Bundle();
+                bundle.putBoolean(OmtpVvmSyncAdapter.SYNC_EXTRAS_CLEAR_AND_RELOAD, true);
                 ContentResolver.requestSync(
                         new Account(mPhoneAccount.getId(), OmtpVvmSyncAccountManager.ACCOUNT_TYPE),
-                        VoicemailContract.AUTHORITY, new Bundle());
+                        VoicemailContract.AUTHORITY, bundle);
                 break;
             case OmtpConstants.GREETINGS_UPDATE:
                 // Not implemented in V1
