@@ -74,6 +74,7 @@ public class BinaryTempFileBody implements Body {
         IOUtils.copy(in, base64Out);
         base64Out.close();
         mFile.delete();
+        in.close();
     }
 
     class BinaryTempFileBodyInputStream extends FilterInputStream {
