@@ -78,6 +78,7 @@
     <string name="wifi_calling_call_assistant_configure" msgid="1092639708949670031">"Configurar"</string>
     <string name="connection_service_default_label" msgid="1498481943805913754">"Serviço de ligação incorporado"</string>
     <string name="voicemail" msgid="8693759337917898954">"Correio de voz"</string>
+    <string name="voicemail_settings_with_label" msgid="152724978380748296">"Correio de voz (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="voicemail_abbreviated" msgid="2215592488517217448">"Correio de voz:"</string>
     <string name="networks" msgid="8873030692174541976">"Operadores de rede"</string>
     <string name="cell_broadcast_settings" msgid="8740238216690502563">"Transmissões de emergência"</string>
@@ -547,10 +548,8 @@
     <string name="sim_description_emergency_calls" msgid="7535215397212301562">"Apenas chamadas de emergência"</string>
     <string name="sim_description_default" msgid="4778679519938775515">"Cartão SIM, ranhura: <xliff:g id="SLOT_ID">%s</xliff:g>"</string>
     <string name="accessibility_settings_activity_title" msgid="8562004288733103868">"Acessibilidade"</string>
-    <!-- no translation found for status_hint_label_incoming_wifi_call (8772915926382037499) -->
-    <skip />
-    <!-- no translation found for status_hint_label_wifi_call (8900805254974653903) -->
-    <skip />
+    <string name="status_hint_label_incoming_wifi_call" msgid="8772915926382037499">"Chamada Wi-Fi recebida"</string>
+    <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"Chamada Wi-Fi"</string>
     <string name="emergency_action_launch_hint" msgid="5841511849007540970">"Tocar novamente para abrir"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"Ocorreu um erro durante a descodificação da mensagem."</string>
 </resources>

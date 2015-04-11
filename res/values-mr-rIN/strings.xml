@@ -78,6 +78,7 @@
     <string name="wifi_calling_call_assistant_configure" msgid="1092639708949670031">"कॉन्फिगर करा"</string>
     <string name="connection_service_default_label" msgid="1498481943805913754">"अंगभूत कनेक्शन सेवा"</string>
     <string name="voicemail" msgid="8693759337917898954">"व्हॉइसमेल"</string>
+    <string name="voicemail_settings_with_label" msgid="152724978380748296">"व्हॉइसमेल (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="voicemail_abbreviated" msgid="2215592488517217448">"VM:"</string>
     <string name="networks" msgid="8873030692174541976">"नेटवर्क ऑपरेटर"</string>
     <string name="cell_broadcast_settings" msgid="8740238216690502563">"आणीबाणी प्रसारणे"</string>

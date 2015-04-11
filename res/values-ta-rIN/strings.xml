@@ -78,6 +78,7 @@
     <string name="wifi_calling_call_assistant_configure" msgid="1092639708949670031">"உள்ளமை"</string>
     <string name="connection_service_default_label" msgid="1498481943805913754">"உள்ளமைக்கப்பட்ட இணைப்பு சேவை"</string>
     <string name="voicemail" msgid="8693759337917898954">"குரலஞ்சல்"</string>
+    <string name="voicemail_settings_with_label" msgid="152724978380748296">"குரலஞ்சல் (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="voicemail_abbreviated" msgid="2215592488517217448">"VM:"</string>
     <string name="networks" msgid="8873030692174541976">"நெட்வொர்க் ஆபரேட்டர்கள்"</string>
     <string name="cell_broadcast_settings" msgid="8740238216690502563">"அவசரகால அலைபரப்புகள்"</string>

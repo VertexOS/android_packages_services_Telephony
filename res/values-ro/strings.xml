@@ -78,6 +78,7 @@
     <string name="wifi_calling_call_assistant_configure" msgid="1092639708949670031">"Configurați"</string>
     <string name="connection_service_default_label" msgid="1498481943805913754">"Serviciu de conectare încorporat"</string>
     <string name="voicemail" msgid="8693759337917898954">"Mesaj vocal"</string>
+    <string name="voicemail_settings_with_label" msgid="152724978380748296">"Mesagerie vocală (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="voicemail_abbreviated" msgid="2215592488517217448">"MV:"</string>
     <string name="networks" msgid="8873030692174541976">"Operatori de reţea"</string>
     <string name="cell_broadcast_settings" msgid="8740238216690502563">"Transmisiuni de urgență"</string>
@@ -550,10 +551,8 @@
     <string name="sim_description_emergency_calls" msgid="7535215397212301562">"Numai apeluri de urgență"</string>
     <string name="sim_description_default" msgid="4778679519938775515">"Cardul SIM, slotul: <xliff:g id="SLOT_ID">%s</xliff:g>"</string>
     <string name="accessibility_settings_activity_title" msgid="8562004288733103868">"Accesibilitate"</string>
-    <!-- no translation found for status_hint_label_incoming_wifi_call (8772915926382037499) -->
-    <skip />
-    <!-- no translation found for status_hint_label_wifi_call (8900805254974653903) -->
-    <skip />
+    <string name="status_hint_label_incoming_wifi_call" msgid="8772915926382037499">"Apel prin Wi-Fi primit"</string>
+    <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"Apel prin Wi-Fi"</string>
     <string name="emergency_action_launch_hint" msgid="5841511849007540970">"Atingeți din nou pentru a deschide"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"A apărut o eroare la decodificarea mesajului."</string>
 </resources>

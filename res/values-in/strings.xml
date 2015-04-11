@@ -78,6 +78,7 @@
     <string name="wifi_calling_call_assistant_configure" msgid="1092639708949670031">"Konfigurasi"</string>
     <string name="connection_service_default_label" msgid="1498481943805913754">"Layanan sambungan di dalamnya"</string>
     <string name="voicemail" msgid="8693759337917898954">"Kotak Pesan"</string>
+    <string name="voicemail_settings_with_label" msgid="152724978380748296">"Kotak pesan (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="voicemail_abbreviated" msgid="2215592488517217448">"VM:"</string>
     <string name="networks" msgid="8873030692174541976">"Operator jaringan"</string>
     <string name="cell_broadcast_settings" msgid="8740238216690502563">"Siaran darurat"</string>
@@ -550,5 +551,5 @@
     <string name="status_hint_label_incoming_wifi_call" msgid="8772915926382037499">"Panggilan Wi-Fi masuk"</string>
     <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"Panggilan Wi-Fi"</string>
     <string name="emergency_action_launch_hint" msgid="5841511849007540970">"Sentuh lagi untuk membuka"</string>
-    <string name="message_decode_error" msgid="3456481534066924855">"Terjadi kesalahan saat melakukan dekode pesan."</string>
+    <string name="message_decode_error" msgid="3456481534066924855">"Terjadi kesalahan saat mendekode pesan."</string>
 </resources>

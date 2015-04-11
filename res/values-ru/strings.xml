@@ -78,6 +78,7 @@
     <string name="wifi_calling_call_assistant_configure" msgid="1092639708949670031">"Настроить"</string>
     <string name="connection_service_default_label" msgid="1498481943805913754">"Встроенная служба подключения"</string>
     <string name="voicemail" msgid="8693759337917898954">"Голосовая почта"</string>
+    <string name="voicemail_settings_with_label" msgid="152724978380748296">"Голосовая почта (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="voicemail_abbreviated" msgid="2215592488517217448">"ГП:"</string>
     <string name="networks" msgid="8873030692174541976">"Операторы связи"</string>
     <string name="cell_broadcast_settings" msgid="8740238216690502563">"Уведомления о чрезвычайных ситуациях"</string>
@@ -555,10 +556,8 @@
     <string name="sim_description_emergency_calls" msgid="7535215397212301562">"Только экстренные вызовы"</string>
     <string name="sim_description_default" msgid="4778679519938775515">"SIM-карта, разъем: <xliff:g id="SLOT_ID">%s</xliff:g>"</string>
     <string name="accessibility_settings_activity_title" msgid="8562004288733103868">"Специальные возможности"</string>
-    <!-- no translation found for status_hint_label_incoming_wifi_call (8772915926382037499) -->
-    <skip />
-    <!-- no translation found for status_hint_label_wifi_call (8900805254974653903) -->
-    <skip />
+    <string name="status_hint_label_incoming_wifi_call" msgid="8772915926382037499">"Входящий Wi-Fi-звонок"</string>
+    <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"Wi-Fi-звонок"</string>
     <string name="emergency_action_launch_hint" msgid="5841511849007540970">"Нажмите ещё раз, чтобы открыть"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"При расшифровке сообщения произошла ошибка."</string>
 </resources>

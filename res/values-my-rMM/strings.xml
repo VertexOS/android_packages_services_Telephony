@@ -78,6 +78,7 @@
     <string name="wifi_calling_call_assistant_configure" msgid="1092639708949670031">"ပုံပေါ်စေသည်"</string>
     <string name="connection_service_default_label" msgid="1498481943805913754">"တပ်ဆင်ပြီး ချိတ်ဆက်ရေး ဝန်ဆောင်မှု"</string>
     <string name="voicemail" msgid="8693759337917898954">"အသံစာပို့စနစ်"</string>
+    <string name="voicemail_settings_with_label" msgid="152724978380748296">"အသံစာပို့စနစ် ( <xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g> )"</string>
     <string name="voicemail_abbreviated" msgid="2215592488517217448">"အသံစာပို့နစ်အမှတ် -"</string>
     <string name="networks" msgid="8873030692174541976">"ကွန်ရက် အော်ပရေတာများ"</string>
     <string name="cell_broadcast_settings" msgid="8740238216690502563">"အရေးပေါ် ထုတ်လွှင့်မှုများ"</string>
