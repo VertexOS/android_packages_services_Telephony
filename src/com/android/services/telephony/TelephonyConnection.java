@@ -464,9 +464,9 @@ abstract class TelephonyConnection extends Connection {
         int newCapabilities = buildConnectionCapabilities();
 
         newCapabilities = changeCapability(newCapabilities,
-                CAPABILITY_SUPPORTS_VT_REMOTE, mRemoteVideoCapable);
+                CAPABILITY_SUPPORTS_VT_REMOTE_BIDIRECTIONAL, mRemoteVideoCapable);
         newCapabilities = changeCapability(newCapabilities,
-                CAPABILITY_SUPPORTS_VT_LOCAL, mLocalVideoCapable);
+                CAPABILITY_SUPPORTS_VT_LOCAL_BIDIRECTIONAL, mLocalVideoCapable);
         newCapabilities = changeCapability(newCapabilities,
                 CAPABILITY_HIGH_DEF_AUDIO, mHasHighDefAudio);
         newCapabilities = changeCapability(newCapabilities, CAPABILITY_WIFI, mIsWifi);
