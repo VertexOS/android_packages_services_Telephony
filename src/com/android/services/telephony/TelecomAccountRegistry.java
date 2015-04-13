@@ -57,6 +57,7 @@ final class TelecomAccountRegistry {
         private final Phone mPhone;
         private final PhoneAccount mAccount;
         private final PstnIncomingCallNotifier mIncomingCallNotifier;
+        private final PstnPhoneCapabilitiesNotifier mPhoneCapabilitiesNotifier;
 
         AccountEntry(Phone phone, boolean isEmergency, boolean isDummy) {
             mPhone = phone;
@@ -64,10 +65,12 @@ final class TelecomAccountRegistry {
             Log.d(this, "Registered phoneAccount: %s with handle: %s",
                     mAccount, mAccount.getAccountHandle());
             mIncomingCallNotifier = new PstnIncomingCallNotifier((PhoneProxy) mPhone);
+            mPhoneCapabilitiesNotifier = new PstnPhoneCapabilitiesNotifier((PhoneProxy) mPhone);
         }
 
         void teardown() {
             mIncomingCallNotifier.teardown();
+            mPhoneCapabilitiesNotifier.teardown();
         }
 
         /**

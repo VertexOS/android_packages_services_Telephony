@@ -21,7 +21,11 @@ import android.telecom.Conference;
 import android.telecom.ConferenceParticipant;
 import android.telecom.Connection;
 import android.telecom.DisconnectCause;
+import android.telecom.Log;
 import android.telecom.PhoneAccountHandle;
+import android.telecom.VideoProfile;
+import android.telecom.Conference.Listener;
+import android.telecom.Connection.VideoProvider;
 
 import com.android.internal.telephony.Call;
 import com.android.internal.telephony.CallStateException;
@@ -145,6 +149,28 @@ public class ImsConference extends Conference {
             TelephonyConnection telephonyConnection = (TelephonyConnection) c;
             handleConferenceParticipantsUpdate(telephonyConnection, participants);
         }
+
+        @Override
+        public void onVideoStateChanged(android.telecom.Connection c, int videoState) {
+            Log.d(this, "onVideoStateChanged video state %d", videoState);
+            setVideoState(c, videoState);
+        }
+
+        @Override
+        public void onVideoProviderChanged(android.telecom.Connection c,
+                Connection.VideoProvider videoProvider) {
+            Log.d(this, "onVideoProviderChanged: Connection: %s, VideoProvider: %s", c,
+                    videoProvider);
+            setVideoProvider(c, videoProvider);
+        }
+
+        @Override
+        public void onConnectionCapabilitiesChanged(Connection c, int connectionCapabilities) {
+            Log.d(this, "onCallCapabilitiesChanged: Connection: %s, callCapabilities: %s", c,
+                    connectionCapabilities);
+            int capabilites = ImsConference.this.getCapabilities();
+            setCapabilities(applyVideoCapabilities(capabilites, connectionCapabilities));
+        }
     };
 
     /**
@@ -192,6 +218,47 @@ public class ImsConference extends Conference {
                 Connection.CAPABILITY_HOLD |
                 Connection.CAPABILITY_MUTE
         );
+
+        if (conferenceHost != null && conferenceHost.getCall() != null
+                && conferenceHost.getCall().getPhone() != null) {
+            mPhoneAccount = PhoneUtils.makePstnPhoneAccountHandle(
+                    conferenceHost.getCall().getPhone());
+            Log.v(this, "set phacc to " + mPhoneAccount);
+        }
+
+        int capabilities = Connection.CAPABILITY_SUPPORT_HOLD | Connection.CAPABILITY_HOLD |
+                Connection.CAPABILITY_MUTE;
+
+        capabilities = applyVideoCapabilities(capabilities, mConferenceHost.getCallCapabilities());
+        setConnectionCapabilities(capabilities);
+
+    }
+
+    private int applyVideoCapabilities(int conferenceCapabilities, int capabilities) {
+        if (can(capabilities, Connection.CAPABILITY_SUPPORTS_VT_LOCAL_BIDIRECTIONAL)) {
+            conferenceCapabilities = applyCapability(conferenceCapabilities,
+                    Connection.CAPABILITY_SUPPORTS_VT_LOCAL_BIDIRECTIONAL);
+        } else {
+            conferenceCapabilities = removeCapability(conferenceCapabilities,
+                    Connection.CAPABILITY_SUPPORTS_VT_LOCAL_BIDIRECTIONAL);
+        }
+
+        if (can(capabilities, Connection.CAPABILITY_SUPPORTS_VT_REMOTE_BIDIRECTIONAL)) {
+            conferenceCapabilities = applyCapability(conferenceCapabilities,
+                    Connection.CAPABILITY_SUPPORTS_VT_REMOTE_BIDIRECTIONAL);
+        } else {
+            conferenceCapabilities = removeCapability(conferenceCapabilities,
+                    Connection.CAPABILITY_SUPPORTS_VT_REMOTE_BIDIRECTIONAL);
+        }
+
+        if (can(capabilities, Connection.CAPABILITY_CAN_UPGRADE_TO_VIDEO)) {
+            conferenceCapabilities = applyCapability(conferenceCapabilities,
+                    Connection.CAPABILITY_CAN_UPGRADE_TO_VIDEO);
+        } else {
+            conferenceCapabilities = removeCapability(conferenceCapabilities,
+                    Connection.CAPABILITY_CAN_UPGRADE_TO_VIDEO);
+        }
+        return conferenceCapabilities;
     }
 
     /**
@@ -202,6 +269,32 @@ public class ImsConference extends Conference {
     @Override
     public android.telecom.Connection getPrimaryConnection() {
         return null;
+    }
+
+    /**
+     * Returns VideoProvider of the conference. This can be null.
+     *
+     * @hide
+     */
+    @Override
+    public VideoProvider getVideoProvider() {
+        if (mConferenceHost != null) {
+            return mConferenceHost.getVideoProvider();
+        }
+        return null;
+    }
+
+    /**
+     * Returns video state of conference
+     *
+     * @hide
+     */
+    @Override
+    public int getVideoState() {
+        if (mConferenceHost != null) {
+            return mConferenceHost.getVideoState();
+        }
+        return VideoProfile.VideoState.AUDIO_ONLY;
     }
 
     /**
@@ -317,6 +410,16 @@ public class ImsConference extends Conference {
         // No-op
     }
 
+    private int applyCapability(int capabilities, int capability) {
+        int newCapabilities = capabilities | capability;
+        return newCapabilities;
+    }
+
+    private int removeCapability(int capabilities, int capability) {
+        int newCapabilities = capabilities & ~capability;
+        return newCapabilities;
+    }
+
     /**
      * Updates the manage conference capability of the conference.  Where there are one or more
      * conference event package participants, the conference management is permitted.  Where there
@@ -352,6 +455,7 @@ public class ImsConference extends Conference {
         mConferenceHost = conferenceHost;
         mConferenceHost.addConnectionListener(mConferenceHostListener);
         mConferenceHost.addTelephonyConnectionListener(mTelephonyConnectionListener);
+        setState(mConferenceHost.getState());
     }
 
     /**

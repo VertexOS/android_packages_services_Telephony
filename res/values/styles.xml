@@ -262,6 +262,7 @@
         <item name="android:windowBackground">@color/emergency_dialer_background</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:homeAsUpIndicator">@drawable/ic_back_arrow</item>
     </style>
 
     <style name="SimImportTheme" parent="@android:style/Theme.Material.Light">
