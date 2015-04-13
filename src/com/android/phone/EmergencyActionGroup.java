@@ -30,6 +30,7 @@ import android.provider.Settings;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.view.ViewGroup;
@@ -56,6 +57,10 @@ public class EmergencyActionGroup extends FrameLayout implements View.OnClickLis
 
     private View mLastRevealed;
 
+    private MotionEvent mPendingTouchEvent;
+
+    private boolean mHiding;
+
     public EmergencyActionGroup(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         mFastOutLinearInInterpolator = AnimationUtils.loadInterpolator(context,
@@ -79,6 +84,36 @@ public class EmergencyActionGroup extends FrameLayout implements View.OnClickLis
         mRippleView = findViewById(R.id.ripple_view);
         mLaunchHint = findViewById(R.id.launch_hint);
     }
+
+    /**
+     * Called by the activity before a touch event is dispatched to the view hierarchy.
+     */
+    public void onPreTouchEvent(MotionEvent event) {
+        mPendingTouchEvent = event;
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent event) {
+        boolean handled = super.dispatchTouchEvent(event);
+        if (mPendingTouchEvent == event && handled) {
+            mPendingTouchEvent = null;
+        }
+        return handled;
+    }
+
+    /**
+     * Called by the activity after a touch event is dispatched to the view hierarchy.
+     */
+    public void onPostTouchEvent(MotionEvent event) {
+        // Hide the confirmation button if a touch event was delivered to the activity but not to
+        // this view.
+        if (mPendingTouchEvent != null) {
+            hideTheButton();
+        }
+        mPendingTouchEvent = null;
+    }
+
+
 
     private void setupAssistActions() {
         int[] buttonIds = new int[] {R.id.action1, R.id.action2, R.id.action3};
@@ -173,6 +208,8 @@ public class EmergencyActionGroup extends FrameLayout implements View.OnClickLis
 
     @Override
     public void onClick(View v) {
+        Intent intent = (Intent) v.getTag(R.id.tag_intent);
+
         switch (v.getId()) {
             case R.id.action1:
             case R.id.action2:
@@ -180,7 +217,9 @@ public class EmergencyActionGroup extends FrameLayout implements View.OnClickLis
                 revealTheButton(v);
                 break;
             case R.id.selected_container:
-                getContext().startActivity((Intent) v.getTag(R.id.tag_intent));
+                if (!mHiding) {
+                    getContext().startActivity(intent);
+                }
                 break;
         }
     }
@@ -204,8 +243,11 @@ public class EmergencyActionGroup extends FrameLayout implements View.OnClickLis
         mSelectedLabel.setText(((Button) v).getText());
         mSelectedContainer.setTag(R.id.tag_intent, v.getTag(R.id.tag_intent));
         mLastRevealed = v;
-        mSelectedContainer.postDelayed(mHideRunnable, HIDE_DELAY);
-        mSelectedContainer.postDelayed(mRippleRunnable, RIPPLE_PAUSE / 2);
+        postDelayed(mHideRunnable, HIDE_DELAY);
+        postDelayed(mRippleRunnable, RIPPLE_PAUSE / 2);
+
+        // Transfer focus from the originally clicked button to the expanded button.
+        mSelectedContainer.requestFocus();
     }
 
     private void animateHintText(View selectedView, View v, Animator reveal) {
@@ -220,6 +262,14 @@ public class EmergencyActionGroup extends FrameLayout implements View.OnClickLis
     }
 
     private void hideTheButton() {
+        if (mHiding || mSelectedContainer.getVisibility() != VISIBLE) {
+            return;
+        }
+
+        mHiding = true;
+
+        removeCallbacks(mHideRunnable);
+
         View v = mLastRevealed;
         int centerX = v.getLeft() + v.getWidth() / 2;
         int centerY = v.getTop() + v.getHeight() / 2;
@@ -234,10 +284,16 @@ public class EmergencyActionGroup extends FrameLayout implements View.OnClickLis
             @Override
             public void onAnimationEnd(Animator animation) {
                 mSelectedContainer.setVisibility(INVISIBLE);
-                mSelectedContainer.removeCallbacks(mRippleRunnable);
+                removeCallbacks(mRippleRunnable);
+                mHiding = false;
             }
         });
         reveal.start();
+
+        // Transfer focus back to the originally clicked button.
+        if (mSelectedContainer.isFocused()) {
+            v.requestFocus();
+        }
     }
 
     private void startRipple() {

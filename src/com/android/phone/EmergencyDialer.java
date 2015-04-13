@@ -40,6 +40,7 @@ import android.text.style.TtsSpan;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.accessibility.AccessibilityManager;
@@ -114,6 +115,8 @@ public class EmergencyDialer extends Activity implements View.OnClickListener,
 
     // Haptic feedback (vibration) for dialer key presses.
     private HapticFeedback mHaptic = new HapticFeedback();
+
+    private EmergencyActionGroup mEmergencyActionGroup;
 
     // close activity when screen turns off
     private BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
@@ -239,6 +242,8 @@ public class EmergencyDialer extends Activity implements View.OnClickListener,
         } catch (Resources.NotFoundException nfe) {
              Log.e(LOG_TAG, "Vibrate control bool missing.", nfe);
         }
+
+        mEmergencyActionGroup = (EmergencyActionGroup) findViewById(R.id.emergency_action_group);
     }
 
     @Override
@@ -337,6 +342,14 @@ public class EmergencyDialer extends Activity implements View.OnClickListener,
                 break;
         }
         return false;
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        mEmergencyActionGroup.onPreTouchEvent(ev);
+        boolean handled = super.dispatchTouchEvent(ev);
+        mEmergencyActionGroup.onPostTouchEvent(ev);
+        return handled;
     }
 
     @Override
