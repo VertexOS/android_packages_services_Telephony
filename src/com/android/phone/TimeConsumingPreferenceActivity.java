@@ -179,6 +179,8 @@ public class TimeConsumingPreferenceActivity extends PreferenceActivity
     public void onException(Preference preference, CommandException exception) {
         if (exception.getCommandError() == CommandException.Error.FDN_CHECK_FAILURE) {
             onError(preference, FDN_CHECK_FAILURE);
+        } else if (exception.getCommandError() == CommandException.Error.RADIO_NOT_AVAILABLE) {
+            onError(preference, RADIO_OFF_ERROR);
         } else {
             preference.setEnabled(false);
             onError(preference, EXCEPTION_ERROR);
