@@ -34,6 +34,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.view.ViewGroup;
+import android.view.accessibility.AccessibilityManager;
 import android.view.animation.AnimationUtils;
 import android.view.animation.Interpolator;
 import android.widget.Button;
@@ -214,7 +215,11 @@ public class EmergencyActionGroup extends FrameLayout implements View.OnClickLis
             case R.id.action1:
             case R.id.action2:
             case R.id.action3:
-                revealTheButton(v);
+                if (AccessibilityManager.getInstance(mContext).isTouchExplorationEnabled()) {
+                    getContext().startActivity(intent);
+                } else {
+                    revealTheButton(v);
+                }
                 break;
             case R.id.selected_container:
                 if (!mHiding) {
