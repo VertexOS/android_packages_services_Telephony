@@ -50,6 +50,7 @@ abstract class TelephonyConnection extends Connection {
     private static final int MSG_RINGBACK_TONE = 2;
     private static final int MSG_HANDOVER_STATE_CHANGED = 3;
     private static final int MSG_DISCONNECT = 4;
+    private static final int MSG_MULTIPARTY_STATE_CHANGED = 5;
 
     private final Handler mHandler = new Handler() {
         @Override
@@ -86,6 +87,14 @@ abstract class TelephonyConnection extends Connection {
                     break;
                 case MSG_DISCONNECT:
                     updateState();
+                    break;
+                case MSG_MULTIPARTY_STATE_CHANGED:
+                    boolean isMultiParty = (Boolean) msg.obj;
+                    Log.i(this, "Update multiparty state to %s", isMultiParty ? "Y" : "N");
+                    mIsMultiParty = isMultiParty;
+                    if (isMultiParty) {
+                        notifyConferenceStarted();
+                    }
                     break;
             }
         }
@@ -182,6 +191,7 @@ abstract class TelephonyConnection extends Connection {
         public void onAudioQualityChanged(int audioQuality) {
             setAudioQuality(audioQuality);
         }
+
         /**
          * Handles a change in the state of conference participant(s), as reported by the
          * {@link com.android.internal.telephony.Connection}.
@@ -202,6 +212,17 @@ abstract class TelephonyConnection extends Connection {
         @Override
         public void onCallSubstateChanged(int callSubstate) {
             setCallSubstate(callSubstate);
+        }
+
+        /*
+         * Handles a change to the multiparty state for this connection.
+         *
+         * @param isMultiParty {@code true} if the call became multiparty, {@code false}
+         *      otherwise.
+         */
+        @Override
+        public void onMultipartyStateChanged(boolean isMultiParty) {
+            handleMultipartyStateChange(isMultiParty);
         }
     };
 
@@ -719,6 +740,24 @@ abstract class TelephonyConnection extends Connection {
                 notifyConferenceStarted();
             }
         }
+    }
+
+    /**
+     * Handles requests to update the multiparty state received via the
+     * {@link com.android.internal.telephony.Connection.Listener#onMultipartyStateChanged(boolean)}
+     * listener.
+     * <p>
+     * Note: We post this to the mHandler to ensure that if a conference must be created as a
+     * result of the multiparty state change, the conference creation happens on the correct
+     * thread.  This ensures that the thread check in
+     * {@link com.android.internal.telephony.PhoneBase#checkCorrectThread(android.os.Handler)}
+     * does not fire.
+     *
+     * @param isMultiParty {@code true} if this connection is multiparty, {@code false} otherwise.
+     */
+    private void handleMultipartyStateChange(boolean isMultiParty) {
+        Log.i(this, "Update multiparty state to %s", isMultiParty ? "Y" : "N");
+        mHandler.obtainMessage(MSG_MULTIPARTY_STATE_CHANGED, isMultiParty).sendToTarget();
     }
 
     private void setActiveInternal() {
