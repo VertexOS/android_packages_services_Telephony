@@ -168,7 +168,7 @@ public class ImsConference extends Conference {
         public void onConnectionCapabilitiesChanged(Connection c, int connectionCapabilities) {
             Log.d(this, "onCallCapabilitiesChanged: Connection: %s, callCapabilities: %s", c,
                     connectionCapabilities);
-            int capabilites = ImsConference.this.getCapabilities();
+            int capabilites = ImsConference.this.getConnectionCapabilities();
             setCapabilities(applyVideoCapabilities(capabilites, connectionCapabilities));
         }
     };
@@ -213,23 +213,11 @@ public class ImsConference extends Conference {
 
         mTelephonyConnectionService = telephonyConnectionService;
         setConferenceHost(conferenceHost);
-        setConnectionCapabilities(
-                Connection.CAPABILITY_SUPPORT_HOLD |
-                Connection.CAPABILITY_HOLD |
-                Connection.CAPABILITY_MUTE
-        );
-
-        if (conferenceHost != null && conferenceHost.getCall() != null
-                && conferenceHost.getCall().getPhone() != null) {
-            mPhoneAccount = PhoneUtils.makePstnPhoneAccountHandle(
-                    conferenceHost.getCall().getPhone());
-            Log.v(this, "set phacc to " + mPhoneAccount);
-        }
 
         int capabilities = Connection.CAPABILITY_SUPPORT_HOLD | Connection.CAPABILITY_HOLD |
                 Connection.CAPABILITY_MUTE;
 
-        capabilities = applyVideoCapabilities(capabilities, mConferenceHost.getCallCapabilities());
+        capabilities = applyVideoCapabilities(capabilities, mConferenceHost.getConnectionCapabilities());
         setConnectionCapabilities(capabilities);
 
     }
