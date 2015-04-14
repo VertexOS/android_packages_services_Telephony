@@ -1204,16 +1204,13 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     }
 
     @Override
-    public Bundle getCellLocation() {
-        try {
-            mApp.enforceCallingOrSelfPermission(
-                android.Manifest.permission.ACCESS_FINE_LOCATION, null);
-        } catch (SecurityException e) {
-            // If we have ACCESS_FINE_LOCATION permission, skip the check for ACCESS_COARSE_LOCATION
-            // A failure should throw the SecurityException from ACCESS_COARSE_LOCATION since this
-            // is the weaker precondition
-            mApp.enforceCallingOrSelfPermission(
-                android.Manifest.permission.ACCESS_COARSE_LOCATION, null);
+    public Bundle getCellLocation(String callingPackage) {
+        enforceFineOrCoarseLocationPermission("getCellLocation");
+
+        // OP_COARSE_LOCATION controls both fine and coarse location.
+        if (mAppOps.noteOp(AppOpsManager.OP_COARSE_LOCATION, Binder.getCallingUid(),
+                callingPackage) != AppOpsManager.MODE_ALLOWED) {
+            return null;
         }
 
         if (checkIfCallerIsSelfOrForegroundUser()) {
@@ -1227,6 +1224,20 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
             return null;
         }
     }
+
+    private void enforceFineOrCoarseLocationPermission(String message) {
+        try {
+            mApp.enforceCallingOrSelfPermission(
+                    android.Manifest.permission.ACCESS_FINE_LOCATION, null);
+        } catch (SecurityException e) {
+            // If we have ACCESS_FINE_LOCATION permission, skip the check for ACCESS_COARSE_LOCATION
+            // A failure should throw the SecurityException from ACCESS_COARSE_LOCATION since this
+            // is the weaker precondition
+            mApp.enforceCallingOrSelfPermission(
+                    android.Manifest.permission.ACCESS_COARSE_LOCATION, message);
+        }
+    }
+
 
     @Override
     public void enableLocationUpdates() {
@@ -1253,22 +1264,19 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     @Override
     @SuppressWarnings("unchecked")
     public List<NeighboringCellInfo> getNeighboringCellInfo(String callingPackage) {
-        try {
-            mApp.enforceCallingOrSelfPermission(
-                    android.Manifest.permission.ACCESS_FINE_LOCATION, null);
-        } catch (SecurityException e) {
-            // If we have ACCESS_FINE_LOCATION permission, skip the check
-            // for ACCESS_COARSE_LOCATION
-            // A failure should throw the SecurityException from
-            // ACCESS_COARSE_LOCATION since this is the weaker precondition
-            mApp.enforceCallingOrSelfPermission(
-                    android.Manifest.permission.ACCESS_COARSE_LOCATION, null);
+        enforceFineOrCoarseLocationPermission("getNeighboringCellInfo");
+
+        // OP_COARSE_LOCATION controls both fine and coarse location.
+        if (mAppOps.noteOp(AppOpsManager.OP_COARSE_LOCATION, Binder.getCallingUid(),
+                callingPackage) != AppOpsManager.MODE_ALLOWED) {
+            return null;
         }
 
         if (mAppOps.noteOp(AppOpsManager.OP_NEIGHBORING_CELLS, Binder.getCallingUid(),
                 callingPackage) != AppOpsManager.MODE_ALLOWED) {
             return null;
         }
+
         if (checkIfCallerIsSelfOrForegroundUser()) {
             if (DBG_LOC) log("getNeighboringCellInfo: is active user");
 
@@ -1289,16 +1297,13 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
 
 
     @Override
-    public List<CellInfo> getAllCellInfo() {
-        try {
-            mApp.enforceCallingOrSelfPermission(
-                android.Manifest.permission.ACCESS_FINE_LOCATION, null);
-        } catch (SecurityException e) {
-            // If we have ACCESS_FINE_LOCATION permission, skip the check for ACCESS_COARSE_LOCATION
-            // A failure should throw the SecurityException from ACCESS_COARSE_LOCATION since this
-            // is the weaker precondition
-            mApp.enforceCallingOrSelfPermission(
-                android.Manifest.permission.ACCESS_COARSE_LOCATION, null);
+    public List<CellInfo> getAllCellInfo(String callingPackage) {
+        enforceFineOrCoarseLocationPermission("getAllCellInfo");
+
+        // OP_COARSE_LOCATION controls both fine and coarse location.
+        if (mAppOps.noteOp(AppOpsManager.OP_COARSE_LOCATION, Binder.getCallingUid(),
+                callingPackage) != AppOpsManager.MODE_ALLOWED) {
+            return null;
         }
 
         if (checkIfCallerIsSelfOrForegroundUser()) {
