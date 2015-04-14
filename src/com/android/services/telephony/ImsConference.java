@@ -16,18 +16,22 @@
 
 package com.android.services.telephony;
 
+import android.content.ComponentName;
+import android.content.Context;
 import android.net.Uri;
 import android.telecom.Conference;
 import android.telecom.ConferenceParticipant;
 import android.telecom.Connection;
 import android.telecom.DisconnectCause;
 import android.telecom.PhoneAccountHandle;
+import android.telecom.StatusHints;
 
 import com.android.internal.telephony.Call;
 import com.android.internal.telephony.CallStateException;
 import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.imsphone.ImsPhoneConnection;
 import com.android.phone.PhoneUtils;
+import com.android.phone.R;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -144,6 +148,12 @@ public class ImsConference extends Conference {
             Log.v(this, "onConferenceParticipantsChanged: %d participants", participants.size());
             TelephonyConnection telephonyConnection = (TelephonyConnection) c;
             handleConferenceParticipantsUpdate(telephonyConnection, participants);
+        }
+
+        @Override
+        public void onStatusHintsChanged(Connection c, StatusHints statusHints) {
+            Log.v(this, "onStatusHintsChanged");
+            updateStatusHints();
         }
     };
 
@@ -376,6 +386,7 @@ public class ImsConference extends Conference {
         mConferenceHost = conferenceHost;
         mConferenceHost.addConnectionListener(mConferenceHostListener);
         mConferenceHost.addTelephonyConnectionListener(mTelephonyConnectionListener);
+        updateStatusHints();
     }
 
     /**
@@ -537,6 +548,8 @@ public class ImsConference extends Conference {
             setDisconnected(new DisconnectCause(DisconnectCause.OTHER));
             destroy();
         }
+
+        updateStatusHints();
     }
 
     /**
@@ -571,6 +584,27 @@ public class ImsConference extends Conference {
             case Connection.STATE_HOLDING:
                 setOnHold();
                 break;
+        }
+    }
+
+    private void updateStatusHints() {
+        if (mConferenceHost == null) {
+            setStatusHints(null);
+            return;
+        }
+
+        if (mConferenceHost.isWifi()) {
+            Phone phone = mConferenceHost.getPhone();
+            if (phone != null) {
+                Context context = phone.getContext();
+                setStatusHints(new StatusHints(
+                        new ComponentName(context, TelephonyConnectionService.class),
+                        context.getString(R.string.status_hint_label_wifi_call),
+                        R.drawable.ic_signal_wifi_4_bar_24dp,
+                        null /* extras */));
+            }
+        } else {
+            setStatusHints(null);
         }
     }
 
