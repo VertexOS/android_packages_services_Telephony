@@ -867,6 +867,13 @@ abstract class TelephonyConnection extends Connection {
     }
 
     /**
+     * Whether the call is using wifi.
+     */
+    boolean isWifi() {
+        return mIsWifi;
+    }
+
+    /**
      * Sets the current call audio quality. Used during rebuild of the capabilities
      * to set or unset the {@link Connection#CAPABILITY_HIGH_DEF_AUDIO} capability.
      *
