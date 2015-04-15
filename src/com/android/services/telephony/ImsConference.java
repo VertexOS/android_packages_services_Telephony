@@ -223,20 +223,20 @@ public class ImsConference extends Conference {
     }
 
     private int applyVideoCapabilities(int conferenceCapabilities, int capabilities) {
-        if (can(capabilities, Connection.CAPABILITY_SUPPORTS_VT_LOCAL)) {
+        if (can(capabilities, Connection.CAPABILITY_SUPPORTS_VT_LOCAL_BIDIRECTIONAL)) {
             conferenceCapabilities = applyCapability(conferenceCapabilities,
-                    Connection.CAPABILITY_SUPPORTS_VT_LOCAL);
+                    Connection.CAPABILITY_SUPPORTS_VT_LOCAL_BIDIRECTIONAL);
         } else {
             conferenceCapabilities = removeCapability(conferenceCapabilities,
-                    Connection.CAPABILITY_SUPPORTS_VT_LOCAL);
+                    Connection.CAPABILITY_SUPPORTS_VT_LOCAL_BIDIRECTIONAL);
         }
 
-        if (can(capabilities, Connection.CAPABILITY_SUPPORTS_VT_REMOTE)) {
+        if (can(capabilities, Connection.CAPABILITY_SUPPORTS_VT_REMOTE_BIDIRECTIONAL)) {
             conferenceCapabilities = applyCapability(conferenceCapabilities,
-                    Connection.CAPABILITY_SUPPORTS_VT_REMOTE);
+                    Connection.CAPABILITY_SUPPORTS_VT_REMOTE_BIDIRECTIONAL);
         } else {
             conferenceCapabilities = removeCapability(conferenceCapabilities,
-                    Connection.CAPABILITY_SUPPORTS_VT_REMOTE);
+                    Connection.CAPABILITY_SUPPORTS_VT_REMOTE_BIDIRECTIONAL);
         }
 
         if (can(capabilities, Connection.CAPABILITY_CAN_UPGRADE_TO_VIDEO)) {
