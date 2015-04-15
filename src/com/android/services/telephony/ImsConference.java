@@ -169,7 +169,7 @@ public class ImsConference extends Conference {
             Log.d(this, "onCallCapabilitiesChanged: Connection: %s, callCapabilities: %s", c,
                     connectionCapabilities);
             int capabilites = ImsConference.this.getConnectionCapabilities();
-            setCapabilities(applyVideoCapabilities(capabilites, connectionCapabilities));
+            setConnectionCapabilities(applyVideoCapabilities(capabilites, connectionCapabilities));
         }
     };
 
