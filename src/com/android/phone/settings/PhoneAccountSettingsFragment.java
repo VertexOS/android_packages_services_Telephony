@@ -98,8 +98,8 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
 
         mDefaultOutgoingAccount = (AccountSelectionPreference)
                 getPreferenceScreen().findPreference(DEFAULT_OUTGOING_ACCOUNT_KEY);
-        if (mTelecomManager.hasMultipleCallCapableAccounts()) {
             mDefaultOutgoingAccount.setListener(this);
+            if (mTelecomManager.getCallCapablePhoneAccounts().size() > 1) {
             updateDefaultOutgoingAccountsModel();
         } else {
             getPreferenceScreen().removePreference(mDefaultOutgoingAccount);
