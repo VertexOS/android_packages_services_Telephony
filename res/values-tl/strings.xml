@@ -352,6 +352,7 @@
     <string name="tty_mode_option_summary" msgid="1073835131534808732">"Itakda ang TTY mode"</string>
     <string name="auto_retry_mode_title" msgid="4073265511427813322">"Awtomatikong Muling Pagsubok"</string>
     <string name="auto_retry_mode_summary" msgid="4973886004067532288">"Paganahin ang mode ng Awtomatikong muling pagsubok"</string>
+    <string name="tty_mode_not_allowed_video_call" msgid="3795846787901909176">"Hindi pinapayagan ang pagbago sa TTY Mode habang nagvi-video call"</string>
     <string name="menu_add" msgid="1882023737425114762">"Magdagdag ng contact"</string>
     <string name="menu_edit" msgid="7143003705504672374">"I-edit ang contact"</string>
     <string name="menu_delete" msgid="3977150783449642851">"Tanggalin ang contact"</string>
@@ -552,4 +553,11 @@
     <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"Tawag sa Wi-Fi"</string>
     <string name="emergency_action_launch_hint" msgid="5841511849007540970">"Pinduting muli upang buksan"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"Nagkaroon ng error habang dine-decode ang mensahe."</string>
+    <string name="ims_edit_title" msgid="774569578881609424">"Mga detalye ng IMS account"</string>
+    <string name="ims_accounts_title" msgid="7694796047267723270">"IMS Account"</string>
+    <string name="ims_vt_call_quality_title" msgid="8258588290555663714">"Kalidad ng VT Call"</string>
+    <string name="ims_vt_call_quality_low" msgid="3368039362272094442">"Mababa"</string>
+    <string name="ims_vt_call_quality_high" msgid="5257150840253665465">"Mataas"</string>
+    <string name="ims_vt_call_quality_unknown" msgid="5847968556324166500">"Hindi alam"</string>
+    <string name="ims_vt_call_quality_set_failed" msgid="714387299680894471">"Hindi naitakda ang kalidad ng video"</string>
 </resources>

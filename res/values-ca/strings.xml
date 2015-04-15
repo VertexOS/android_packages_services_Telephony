@@ -352,6 +352,8 @@
     <string name="tty_mode_option_summary" msgid="1073835131534808732">"Defineix el mode TTY"</string>
     <string name="auto_retry_mode_title" msgid="4073265511427813322">"Reintent automàtic"</string>
     <string name="auto_retry_mode_summary" msgid="4973886004067532288">"Activa el mode de reintent automàtic"</string>
+    <!-- no translation found for tty_mode_not_allowed_video_call (3795846787901909176) -->
+    <skip />
     <string name="menu_add" msgid="1882023737425114762">"Afegeix un contacte"</string>
     <string name="menu_edit" msgid="7143003705504672374">"Edita el contacte"</string>
     <string name="menu_delete" msgid="3977150783449642851">"Suprimeix el contacte"</string>
@@ -552,4 +554,18 @@
     <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"Trucada per Wi-Fi"</string>
     <string name="emergency_action_launch_hint" msgid="5841511849007540970">"Toca-ho de nou per obrir"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"S\'ha produït un error en descodificar el missatge."</string>
+    <!-- no translation found for ims_edit_title (774569578881609424) -->
+    <skip />
+    <!-- no translation found for ims_accounts_title (7694796047267723270) -->
+    <skip />
+    <!-- no translation found for ims_vt_call_quality_title (8258588290555663714) -->
+    <skip />
+    <!-- no translation found for ims_vt_call_quality_low (3368039362272094442) -->
+    <skip />
+    <!-- no translation found for ims_vt_call_quality_high (5257150840253665465) -->
+    <skip />
+    <!-- no translation found for ims_vt_call_quality_unknown (5847968556324166500) -->
+    <skip />
+    <!-- no translation found for ims_vt_call_quality_set_failed (714387299680894471) -->
+    <skip />
 </resources>
