@@ -184,7 +184,7 @@ public class TelephonyConnectionService extends ConnectionService {
         }
 
         final TelephonyConnection connection =
-                createConnectionFor(phone, null, true /* isOutgoing */);
+                createConnectionFor(phone, null, true /* isOutgoing */, request.getAccountHandle());
         if (connection == null) {
             return Connection.createFailedConnection(
                     DisconnectCauseUtil.toTelecomDisconnectCause(
@@ -257,9 +257,9 @@ public class TelephonyConnectionService extends ConnectionService {
         }
 
         Connection connection =
-                createConnectionFor(phone, originalConnection, false /* isOutgoing */);
+                createConnectionFor(phone, originalConnection, false /* isOutgoing */,
+                        request.getAccountHandle());
         if (connection == null) {
-            connection = Connection.createCanceledConnection();
             return Connection.createCanceledConnection();
         } else {
             return connection;
@@ -307,7 +307,8 @@ public class TelephonyConnectionService extends ConnectionService {
 
         TelephonyConnection connection =
                 createConnectionFor(phone, unknownConnection,
-                        !unknownConnection.isIncoming() /* isOutgoing */);
+                        !unknownConnection.isIncoming() /* isOutgoing */,
+                        request.getAccountHandle());
 
         if (connection == null) {
             return Connection.createCanceledConnection();
@@ -367,7 +368,8 @@ public class TelephonyConnectionService extends ConnectionService {
     private TelephonyConnection createConnectionFor(
             Phone phone,
             com.android.internal.telephony.Connection originalConnection,
-            boolean isOutgoing) {
+            boolean isOutgoing,
+            PhoneAccountHandle phoneAccountHandle) {
         TelephonyConnection returnConnection = null;
         int phoneType = phone.getPhoneType();
         if (phoneType == TelephonyManager.PHONE_TYPE_GSM) {
@@ -380,6 +382,9 @@ public class TelephonyConnectionService extends ConnectionService {
         if (returnConnection != null) {
             // Listen to Telephony specific callbacks from the connection
             returnConnection.addTelephonyConnectionListener(mTelephonyConnectionListener);
+            returnConnection.setVideoPauseSupported(
+                    TelecomAccountRegistry.getInstance(this).isVideoPauseSupported(
+                            phoneAccountHandle));
         }
         return returnConnection;
     }

@@ -81,15 +81,4 @@
             android:targetClass="com.android.phone.CdmaCallOptions"/>
 
     </PreferenceScreen>
-
-    <PreferenceScreen
-        android:key="ims_account_settings_key"
-        android:title="@string/ims_accounts_title"
-        android:persistent="false">
-
-        <intent android:action="android.intent.action.MAIN"
-            android:targetPackage="com.android.phone"
-            android:targetClass="com.android.phone.ImsEditor" />
-    </PreferenceScreen>
-
 </PreferenceScreen>

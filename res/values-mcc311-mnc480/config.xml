@@ -23,4 +23,5 @@
     <!-- Determine whether the voicemail notification is persistent in the notification bar.
          If true, the voicemail notifications cannot be dismissed from the notification bar. -->
     <bool name="voicemail_notification_persistent">true</bool>
+    <bool name="support_pause_ims_video_calls" translatable="false">true</bool>
 </resources>
