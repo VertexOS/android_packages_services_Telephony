@@ -249,6 +249,12 @@ abstract class TelephonyConnection extends Connection {
     private boolean mHasHighDefAudio;
 
     /**
+     * For video calls, indicates whether the outgoing video for the call can be paused using
+     * the {@link android.telecom.VideoProfile.VideoState#PAUSED} VideoState.
+     */
+    private boolean mIsVideoPauseSupported;
+
+    /**
      * Listeners to our TelephonyConnection specific callbacks
      */
     private final Set<TelephonyConnectionListener> mTelephonyListeners = Collections.newSetFromMap(
@@ -481,6 +487,8 @@ abstract class TelephonyConnection extends Connection {
         newCapabilities = changeCapability(newCapabilities,
                 CAPABILITY_HIGH_DEF_AUDIO, mHasHighDefAudio);
         newCapabilities = changeCapability(newCapabilities, CAPABILITY_WIFI, mIsWifi);
+        newCapabilities = changeCapability(newCapabilities, CAPABILITY_CAN_PAUSE_VIDEO,
+                mIsVideoPauseSupported && mRemoteVideoCapable && mLocalVideoCapable);
 
         newCapabilities = applyConferenceTerminationCapabilities(newCapabilities);
 
@@ -845,6 +853,16 @@ abstract class TelephonyConnection extends Connection {
             return true;
         }
         return false;
+    }
+
+    /**
+     * For video calls, sets whether this connection supports pausing the outgoing video for the
+     * call using the {@link android.telecom.VideoProfile.VideoState#PAUSED} VideoState.
+     *
+     * @param isVideoPauseSupported {@code true} if pause state supported, {@code false} otherwise.
+     */
+    public void setVideoPauseSupported(boolean isVideoPauseSupported) {
+        mIsVideoPauseSupported = isVideoPauseSupported;
     }
 
     /**

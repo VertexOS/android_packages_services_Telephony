@@ -156,4 +156,7 @@
     <!-- Determine whether the voicemail notification is persistent in the notification bar.
          If true, the voicemail notifications cannot be dismissed from the notification bar. -->
     <bool name="voicemail_notification_persistent">false</bool>
+
+    <!-- For IMS video over LTE calls, determines whether video pause signalling is supported. -->
+    <bool name="support_pause_ims_video_calls" translatable="false">true</bool>
 </resources>

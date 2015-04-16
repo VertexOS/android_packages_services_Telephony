@@ -18,6 +18,7 @@ package com.android.services.telephony;
 
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -53,11 +54,13 @@ final class TelecomAccountRegistry {
     // is not supported, i.e. SubscriptionManager.INVALID_SLOT_ID or the 5th SIM in a phone.
     private final static int defaultPhoneAccountIcon =  R.drawable.ic_multi_sim;
 
-    private final class AccountEntry {
+    final class AccountEntry implements PstnPhoneCapabilitiesNotifier.Listener {
         private final Phone mPhone;
         private final PhoneAccount mAccount;
         private final PstnIncomingCallNotifier mIncomingCallNotifier;
         private final PstnPhoneCapabilitiesNotifier mPhoneCapabilitiesNotifier;
+        private boolean mIsVideoCapable;
+        private boolean mIsVideoPauseSupported;
 
         AccountEntry(Phone phone, boolean isEmergency, boolean isDummy) {
             mPhone = phone;
@@ -65,7 +68,8 @@ final class TelecomAccountRegistry {
             Log.d(this, "Registered phoneAccount: %s with handle: %s",
                     mAccount, mAccount.getAccountHandle());
             mIncomingCallNotifier = new PstnIncomingCallNotifier((PhoneProxy) mPhone);
-            mPhoneCapabilitiesNotifier = new PstnPhoneCapabilitiesNotifier((PhoneProxy) mPhone);
+            mPhoneCapabilitiesNotifier = new PstnPhoneCapabilitiesNotifier((PhoneProxy) mPhone,
+                    this);
         }
 
         void teardown() {
@@ -101,6 +105,11 @@ final class TelecomAccountRegistry {
             String description;
             Bitmap iconBitmap = null;
 
+            // We can only get the real slotId from the SubInfoRecord, we can't calculate the
+            // slotId from the subId or the phoneId in all instances.
+            SubscriptionInfo record =
+                    mSubscriptionManager.getActiveSubscriptionInfo(subId);
+
             if (isEmergency) {
                 label = mContext.getResources().getString(R.string.sim_label_emergency_calls);
                 description =
@@ -111,10 +120,7 @@ final class TelecomAccountRegistry {
                 description = label = mTelephonyManager.getNetworkOperatorName();
             } else {
                 CharSequence subDisplayName = null;
-                // We can only get the real slotId from the SubInfoRecord, we can't calculate the
-                // slotId from the subId or the phoneId in all instances.
-                SubscriptionInfo record =
-                        mSubscriptionManager.getActiveSubscriptionInfo(subId);
+
                 if (record != null) {
                     subDisplayName = record.getDisplayName();
                     slotId = record.getSimSlotIndex();
@@ -149,8 +155,12 @@ final class TelecomAccountRegistry {
                     PhoneAccount.CAPABILITY_PLACE_EMERGENCY_CALLS |
                     PhoneAccount.CAPABILITY_MULTI_USER;
 
-            if (mPhone.isVideoEnabled()) {
+            mIsVideoCapable = mPhone.isVideoEnabled();
+            if (mIsVideoCapable) {
                 capabilities |= PhoneAccount.CAPABILITY_VIDEO_CALLING;
+            }
+            if (record != null) {
+                updateVideoPauseSupport(record);
             }
 
             if (iconBitmap == null) {
@@ -178,6 +188,56 @@ final class TelecomAccountRegistry {
 
         public PhoneAccountHandle getPhoneAccountHandle() {
             return mAccount != null ? mAccount.getAccountHandle() : null;
+        }
+
+        /**
+         * Updates indicator for this {@link AccountEntry} to determine if the carrier supports
+         * pause/resume signalling for IMS video calls.  The carrier setting is stored in MNC/MCC
+         * configuration files.
+         *
+         * @param subscriptionInfo The subscription info.
+         */
+        private void updateVideoPauseSupport(SubscriptionInfo subscriptionInfo) {
+            // Get the configuration for the MNC/MCC specified in the current subscription info.
+            Configuration configuration = new Configuration();
+            if (subscriptionInfo.getMcc() == 0 && subscriptionInfo.getMnc() == 0) {
+                Configuration config = mContext.getResources().getConfiguration();
+                configuration.mcc = config.mcc;
+                configuration.mnc = config.mnc;
+                Log.i(this, "updateVideoPauseSupport -- no mcc/mnc for sub: " + subscriptionInfo +
+                        " using mcc/mnc from main context: " + configuration.mcc + "/" +
+                        configuration.mnc);
+            } else {
+                Log.i(this, "updateVideoPauseSupport -- mcc/mnc for sub: " + subscriptionInfo);
+
+                configuration.mcc = subscriptionInfo.getMcc();
+                configuration.mnc = subscriptionInfo.getMnc();
+            }
+
+            // Load the MNC/MCC specific configuration.
+            Context subContext = mContext.createConfigurationContext(configuration);
+            mIsVideoPauseSupported = subContext.getResources().getBoolean(
+                    R.bool.support_pause_ims_video_calls);
+        }
+
+        /**
+         * Receives callback from {@link PstnPhoneCapabilitiesNotifier} when the video capabilities
+         * have changed.
+         *
+         * @param isVideoCapable {@code true} if video is capable.
+         */
+        @Override
+        public void onVideoCapabilitiesChanged(boolean isVideoCapable) {
+            mIsVideoCapable = isVideoCapable;
+        }
+
+        /**
+         * Indicates whether this account supports pausing video calls.
+         * @return {@code true} if the account supports pausing video calls, {@code false}
+         * otherwise.
+         */
+        public boolean isVideoPauseSupported() {
+            return mIsVideoCapable && mIsVideoPauseSupported;
         }
     }
 
@@ -238,6 +298,22 @@ final class TelecomAccountRegistry {
     }
 
     /**
+     * Determines if the {@link AccountEntry} associated with a {@link PhoneAccountHandle} supports
+     * pausing video calls.
+     *
+     * @param handle The {@link PhoneAccountHandle}.
+     * @return {@code True} if video pausing is supported.
+     */
+    boolean isVideoPauseSupported(PhoneAccountHandle handle) {
+        for (AccountEntry entry : mAccounts) {
+            if (entry.getPhoneAccountHandle().equals(handle)) {
+                return entry.isVideoPauseSupported();
+            }
+        }
+        return false;
+    }
+
+    /**
      * Sets up all the phone accounts for SIMs on first boot.
      */
     void setupOnBoot() {
@@ -255,6 +331,7 @@ final class TelecomAccountRegistry {
         // because this could signal a removal or addition of a SIM in a single SIM phone.
         mTelephonyManager.listen(mPhoneStateListener, PhoneStateListener.LISTEN_SERVICE_STATE);
     }
+
     /**
      * Determines if the list of {@link AccountEntry}(s) contains an {@link AccountEntry} with a
      * specified {@link PhoneAccountHandle}.

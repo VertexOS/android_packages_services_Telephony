@@ -20,7 +20,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.net.Uri;
 import android.os.AsyncResult;
 import android.os.Handler;
 import android.os.Message;
@@ -42,7 +41,15 @@ import com.android.phone.PhoneUtils;
 final class PstnPhoneCapabilitiesNotifier {
     private static final int EVENT_VIDEO_CAPABILITIES_CHANGED = 1;
 
+    /**
+     * Listener called when video capabilities have changed.
+     */
+    public interface Listener {
+        public void onVideoCapabilitiesChanged(boolean isVideoCapable);
+    }
+
     private final PhoneProxy mPhoneProxy;
+    private final Listener mListener;
     private Phone mPhoneBase;
 
     private final Handler mHandler = new Handler() {
@@ -72,10 +79,11 @@ final class PstnPhoneCapabilitiesNotifier {
     };
 
     /*package*/
-    PstnPhoneCapabilitiesNotifier(PhoneProxy phoneProxy) {
+    PstnPhoneCapabilitiesNotifier(PhoneProxy phoneProxy, Listener listener) {
         Preconditions.checkNotNull(phoneProxy);
 
         mPhoneProxy = phoneProxy;
+        mListener = listener;
 
         registerForNotifications();
 
@@ -117,14 +125,17 @@ final class PstnPhoneCapabilitiesNotifier {
             Log.d(this, "handleVideoCapabilitesChanged. Video capability - " + isVideoCapable);
             PhoneAccountHandle accountHandle =
                     PhoneUtils.makePstnPhoneAccountHandle(mPhoneProxy);
+
             TelecomManager telecomMgr = TelecomManager.from(mPhoneProxy.getContext());
             PhoneAccount oldPhoneAccount = telecomMgr.getPhoneAccount(accountHandle);
             PhoneAccount.Builder builder = new PhoneAccount.Builder(oldPhoneAccount);
 
             int capabilites = newCapabilities(oldPhoneAccount.getCapabilities(),
                     PhoneAccount.CAPABILITY_VIDEO_CALLING, isVideoCapable);
+
             builder.setCapabilities(capabilites);
             telecomMgr.registerPhoneAccount(builder.build());
+            mListener.onVideoCapabilitiesChanged(isVideoCapable);
         } catch (Exception e) {
             Log.d(this, "handleVideoCapabilitesChanged. Exception=" + e);
         }
