@@ -203,17 +203,6 @@ abstract class TelephonyConnection extends Connection {
             updateConferenceParticipants(participants);
         }
 
-        /**
-         * Used by the {@link com.android.internal.telephony.Connection} to report a change in the
-         * substate of the current call
-         *
-         * @param callSubstate The call substate.
-         */
-        @Override
-        public void onCallSubstateChanged(int callSubstate) {
-            setCallSubstate(callSubstate);
-        }
-
         /*
          * Handles a change to the multiparty state for this connection.
          *
@@ -565,7 +554,6 @@ abstract class TelephonyConnection extends Connection {
         setWifi(mOriginalConnection.isWifi());
         setVideoProvider(mOriginalConnection.getVideoProvider());
         setAudioQuality(mOriginalConnection.getAudioQuality());
-        setCallSubstate(mOriginalConnection.getCallSubstate());
 
         if (isImsConnection()) {
             mWasImsConnection = true;
