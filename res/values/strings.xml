@@ -1317,17 +1317,4 @@
        data was received.) [CHAR LIMIT=none] -->
     <string name="message_decode_error">There was an error while decoding the message.</string>
 
-    <!-- IMS settings related strings -->
-    <!-- Title of the ims editor screen. [CHAR LIMIT=NONE] -->
-    <string name="ims_edit_title">IMS account details</string>
-    <!-- Title displayed IMS account settings in the sip settings category. [CHAR LIMIT=NONE] -->
-    <string name="ims_accounts_title">IMS Account</string>
-
-    <!-- VT call quality settings. -->
-    <string translatable="false" name="ims_vt_call_quality">VtCallQuality</string>
-    <string name="ims_vt_call_quality_title">VT Call Quality</string>
-    <string name="ims_vt_call_quality_low">Low</string>
-    <string name="ims_vt_call_quality_high">High</string>
-    <string name="ims_vt_call_quality_unknown">Unknown</string>
-    <string name="ims_vt_call_quality_set_failed">Failed to set video quality</string>
 </resources>
