@@ -62,6 +62,7 @@ import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneFactory;
 import com.android.internal.telephony.ProxyController;
 import com.android.internal.telephony.PhoneConstants;
+import com.android.internal.telephony.RILConstants;
 import com.android.internal.telephony.SubscriptionController;
 import com.android.internal.telephony.uicc.IccIoResult;
 import com.android.internal.telephony.uicc.IccUtils;
@@ -923,8 +924,11 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         return (getPhone(subId).getState() == PhoneConstants.State.IDLE);
     }
 
-    public boolean isSimPinEnabled() {
-        enforceReadPermission();
+    public boolean isSimPinEnabled(String callingPackage) {
+        if (!canReadPhoneState(callingPackage, "isSimPinEnabled")) {
+            return false;
+        }
+
         return (PhoneGlobals.getInstance().isSimPinEnabled());
     }
 
@@ -1349,15 +1353,6 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         }
         if (DBG_LOC) log("checkIfCallerIsSelfOrForegoundUser: ret=" + ok);
         return ok;
-    }
-
-    /**
-     * Make sure the caller has the READ_PHONE_STATE permission.
-     *
-     * @throws SecurityException if the caller does not have the required permission
-     */
-    private void enforceReadPermission() {
-        mApp.enforceCallingOrSelfPermission(android.Manifest.permission.READ_PHONE_STATE, null);
     }
 
     /**
@@ -1862,8 +1857,12 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         return 0;
     }
 
-    public String[] getPcscfAddress(String apnType) {
-        enforceReadPermission();
+    public String[] getPcscfAddress(String apnType, String callingPackage) {
+        if (!canReadPhoneState(callingPackage, "getPcscfAddress")) {
+            return new String[0];
+        }
+
+
         return mPhone.getPcscfAddress(apnType);
     }
 
@@ -1890,8 +1889,11 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
      * @return the preferred network type, defined in RILConstants.java.
      */
     @Override
-    public int getCalculatedPreferredNetworkType() {
-        enforceReadPermission();
+    public int getCalculatedPreferredNetworkType(String callingPackage) {
+        if (!canReadPhoneState(callingPackage, "getCalculatedPreferredNetworkType")) {
+            return RILConstants.PREFERRED_NETWORK_MODE;
+        }
+
         return PhoneFactory.calculatePreferredNetworkType(mPhone.getContext(), 0); // wink FIXME: need to get SubId from somewhere.
     }
 
@@ -2092,8 +2094,10 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     }
 
     @Override
-    public String getLine1NumberForDisplay(int subId) {
-        enforceReadPermission();
+    public String getLine1NumberForDisplay(int subId, String callingPackage) {
+        if (!canReadPhoneState(callingPackage, "getLine1NumberForDisplay")) {
+            return null;
+        }
 
         String iccId = getIccId(subId);
         if (iccId != null) {
@@ -2104,8 +2108,10 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     }
 
     @Override
-    public String getLine1AlphaTagForDisplay(int subId) {
-        enforceReadPermission();
+    public String getLine1AlphaTagForDisplay(int subId, String callingPackage) {
+        if (!canReadPhoneState(callingPackage, "getLine1AlphaTagForDisplay")) {
+            return null;
+        }
 
         String iccId = getIccId(subId);
         if (iccId != null) {
@@ -2248,8 +2254,11 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     }
 
     @Override
-    public boolean isVideoCallingEnabled() {
-        enforceReadPermission();
+    public boolean isVideoCallingEnabled(String callingPackage) {
+        if (!canReadPhoneState(callingPackage, "isVideoCallingEnabled")) {
+            return false;
+        }
+
         // Check the user preference and the  system-level IMS setting. Even if the user has
         // enabled video calling, if IMS is disabled we aren't able to support video calling.
         // In the long run, we may instead need to check if there exists a connection service
@@ -2290,8 +2299,11 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
      *   {@link android.Manifest.permission#READ_PHONE_STATE READ_PHONE_STATE}
      */
     @Override
-    public String getDeviceId() {
-        enforceReadPermission();
+    public String getDeviceId(String callingPackage) {
+        if (!canReadPhoneState(callingPackage, "getDeviceId")) {
+            return null;
+        }
+
         final Phone phone = PhoneFactory.getPhone(0);
         if (phone != null) {
             return phone.getDeviceId();
@@ -2328,5 +2340,17 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
      */
     public boolean isVolteEnabled() {
         return mPhone.isVolteEnabled();
+    }
+
+    private boolean canReadPhoneState(String callingPackage, String message) {
+        mApp.enforceCallingOrSelfPermission(
+                android.Manifest.permission.READ_PHONE_STATE, message);
+
+        if (mAppOps.noteOp(AppOpsManager.OP_READ_PHONE_STATE, Binder.getCallingUid(),
+                callingPackage) != AppOpsManager.MODE_ALLOWED) {
+            return false;
+        }
+
+        return true;
     }
 }
