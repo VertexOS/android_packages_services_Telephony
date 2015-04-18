@@ -119,7 +119,7 @@
     <string name="labelCFNRc" msgid="2614827454402079766">"Quando non raggiungibile"</string>
     <string name="messageCFNRc" msgid="6380695421020295119">"Numero se non raggiungibile"</string>
     <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"Deviazione al numero <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
-    <string name="sum_cfnrc_disabled" msgid="2684474391807469832">"Non attiva"</string>
+    <string name="sum_cfnrc_disabled" msgid="7222141261321276464">"Disattivato"</string>
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"Il tuo operatore non supporta la disattivazione dell\'inoltro chiamate quando il telefono non è raggiungibile."</string>
     <string name="updating_title" msgid="6146755386174019046">"Impostazioni chiamate"</string>
     <string name="call_settings_primary_user_only" msgid="5679923943740900965">"Le impostazioni delle chiamate possono essere modificate solo dall\'utente principale."</string>
@@ -356,8 +356,7 @@
     <string name="tty_mode_option_summary" msgid="1073835131534808732">"Imposta modalità TTY"</string>
     <string name="auto_retry_mode_title" msgid="4073265511427813322">"Nuovo tentativo automatico"</string>
     <string name="auto_retry_mode_summary" msgid="4973886004067532288">"Attiva la modalità Nuovo tentativo automatico"</string>
-    <!-- no translation found for tty_mode_not_allowed_video_call (3795846787901909176) -->
-    <skip />
+    <string name="tty_mode_not_allowed_video_call" msgid="3795846787901909176">"Durante le videochiamate non è possibile cambiare modalità TTY"</string>
     <string name="menu_add" msgid="1882023737425114762">"Aggiungi contatto"</string>
     <string name="menu_edit" msgid="7143003705504672374">"Modifica contatto"</string>
     <string name="menu_delete" msgid="3977150783449642851">"Elimina contatto"</string>
@@ -487,6 +486,12 @@
     <item msgid="1937509904407445684">"TTY HCO"</item>
     <item msgid="5644925873488772224">"TTY VCO"</item>
   </string-array>
+    <string name="dtmf_tones_title" msgid="5163153771291340803">"Toni DTMF"</string>
+    <string name="dtmf_tones_summary" msgid="3351820372864020331">"Imposta la lunghezza dei toni DTMF"</string>
+  <string-array name="dtmf_tone_entries">
+    <item msgid="899650777817315681">"Normali"</item>
+    <item msgid="2883365539347850535">"Lunghi"</item>
+  </string-array>
     <string name="network_info_message" msgid="7738596060242881930">"Messaggio di rete"</string>
     <string name="network_error_message" msgid="3394780436230411413">"Messaggio di errore"</string>
     <string name="ota_title_activate" msgid="8616918561356194398">"Attiva il telefono"</string>
@@ -558,18 +563,4 @@
     <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"Chiamata Wi-Fi"</string>
     <string name="emergency_action_launch_hint" msgid="5841511849007540970">"Tocca di nuovo per aprire"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"Si è verificato un errore durante la decodifica del messaggio."</string>
-    <!-- no translation found for ims_edit_title (774569578881609424) -->
-    <skip />
-    <!-- no translation found for ims_accounts_title (7694796047267723270) -->
-    <skip />
-    <!-- no translation found for ims_vt_call_quality_title (8258588290555663714) -->
-    <skip />
-    <!-- no translation found for ims_vt_call_quality_low (3368039362272094442) -->
-    <skip />
-    <!-- no translation found for ims_vt_call_quality_high (5257150840253665465) -->
-    <skip />
-    <!-- no translation found for ims_vt_call_quality_unknown (5847968556324166500) -->
-    <skip />
-    <!-- no translation found for ims_vt_call_quality_set_failed (714387299680894471) -->
-    <skip />
 </resources>

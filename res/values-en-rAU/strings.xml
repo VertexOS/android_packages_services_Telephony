@@ -119,7 +119,7 @@
     <string name="labelCFNRc" msgid="2614827454402079766">"When unreachable"</string>
     <string name="messageCFNRc" msgid="6380695421020295119">"Number when unreachable"</string>
     <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"Forwarding to <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
-    <string name="sum_cfnrc_disabled" msgid="2684474391807469832">"Off"</string>
+    <string name="sum_cfnrc_disabled" msgid="7222141261321276464">"Disabled"</string>
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"Your operator doesn\'t support disabling call forwarding when your phone is unreachable."</string>
     <string name="updating_title" msgid="6146755386174019046">"Call settings"</string>
     <string name="call_settings_primary_user_only" msgid="5679923943740900965">"Call settings can only be changed by the primary user."</string>
@@ -482,6 +482,12 @@
     <item msgid="1937509904407445684">"TTY HCO"</item>
     <item msgid="5644925873488772224">"TTY VCO"</item>
   </string-array>
+    <string name="dtmf_tones_title" msgid="5163153771291340803">"DTMF tones"</string>
+    <string name="dtmf_tones_summary" msgid="3351820372864020331">"Set the length of DTMF tones"</string>
+  <string-array name="dtmf_tone_entries">
+    <item msgid="899650777817315681">"Normal"</item>
+    <item msgid="2883365539347850535">"Long"</item>
+  </string-array>
     <string name="network_info_message" msgid="7738596060242881930">"Network message"</string>
     <string name="network_error_message" msgid="3394780436230411413">"Error message"</string>
     <string name="ota_title_activate" msgid="8616918561356194398">"Activate your phone"</string>
@@ -553,11 +559,4 @@
     <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"Wi-Fi call"</string>
     <string name="emergency_action_launch_hint" msgid="5841511849007540970">"Touch again to open"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"There was an error while decoding the message."</string>
-    <string name="ims_edit_title" msgid="774569578881609424">"IMS account details"</string>
-    <string name="ims_accounts_title" msgid="7694796047267723270">"IMS Account"</string>
-    <string name="ims_vt_call_quality_title" msgid="8258588290555663714">"VT Call Quality"</string>
-    <string name="ims_vt_call_quality_low" msgid="3368039362272094442">"Low"</string>
-    <string name="ims_vt_call_quality_high" msgid="5257150840253665465">"High"</string>
-    <string name="ims_vt_call_quality_unknown" msgid="5847968556324166500">"Unknown"</string>
-    <string name="ims_vt_call_quality_set_failed" msgid="714387299680894471">"Failed to set video quality"</string>
 </resources>

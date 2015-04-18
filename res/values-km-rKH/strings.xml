@@ -119,7 +119,7 @@
     <string name="labelCFNRc" msgid="2614827454402079766">"នៅពេលមិនអាចទាក់ទងបាន"</string>
     <string name="messageCFNRc" msgid="6380695421020295119">"លេខ​នៅ​ពេល​ដែល​មិន​អាច​ហៅ​ចូល"</string>
     <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"បញ្ជូន​បន្ត​ទៅ​ <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
-    <string name="sum_cfnrc_disabled" msgid="2684474391807469832">"បិទ"</string>
+    <string name="sum_cfnrc_disabled" msgid="7222141261321276464">"បាន​បិទ"</string>
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"ក្រុមហ៊ុន​បញ្ជូន​របស់​អ្នក​​មិន​គាំទ្រ​ការ​បិទ​ការ​ហៅ​​បញ្ជូន​បន្ត នៅ​ពេល​ទូរស័ព្ទ​របស់​អ្នក​មិន​អាច​ហៅ​ចូល។"</string>
     <string name="updating_title" msgid="6146755386174019046">"កំណត់​ការ​ហៅ"</string>
     <string name="call_settings_primary_user_only" msgid="5679923943740900965">"ការកំណត់ការហៅអាចផ្លាស់ប្តូរបានដោយអ្នកប្រើបឋមតែប៉ុណ្ណោះ។"</string>
@@ -352,8 +352,7 @@
     <string name="tty_mode_option_summary" msgid="1073835131534808732">"កំណត់​របៀប TTY"</string>
     <string name="auto_retry_mode_title" msgid="4073265511427813322">"ព្យាយាម​ម្ដងទៀត​ស្វ័យប្រវត្តិ"</string>
     <string name="auto_retry_mode_summary" msgid="4973886004067532288">"បើក​របៀប​ព្យាយាម​ម្ដងទៀត​ស្វ័យប្រវត្តិ"</string>
-    <!-- no translation found for tty_mode_not_allowed_video_call (3795846787901909176) -->
-    <skip />
+    <string name="tty_mode_not_allowed_video_call" msgid="3795846787901909176">"ការផ្លាស់ប្តូររបៀប TTY មិនត្រូវបានអនុញ្ញាតអំឡុងពេលធ្វើការហៅជាវីដេអូទេ។"</string>
     <string name="menu_add" msgid="1882023737425114762">"បន្ថែម​ទំនាក់ទំនង"</string>
     <string name="menu_edit" msgid="7143003705504672374">"កែ​ទំនាក់ទំនង"</string>
     <string name="menu_delete" msgid="3977150783449642851">"លុប​ទំនាក់ទំនង"</string>
@@ -483,6 +482,12 @@
     <item msgid="1937509904407445684">"TTY HCO"</item>
     <item msgid="5644925873488772224">"TTY VCO"</item>
   </string-array>
+    <string name="dtmf_tones_title" msgid="5163153771291340803">"សំឡេង DTMF"</string>
+    <string name="dtmf_tones_summary" msgid="3351820372864020331">"កំណត់​រយៈ​​ពេល​រោទ៍ DTMF"</string>
+  <string-array name="dtmf_tone_entries">
+    <item msgid="899650777817315681">"ធម្មតា"</item>
+    <item msgid="2883365539347850535">"វែង"</item>
+  </string-array>
     <string name="network_info_message" msgid="7738596060242881930">"សារ​បណ្ដាញ"</string>
     <string name="network_error_message" msgid="3394780436230411413">"សារកំហុស"</string>
     <string name="ota_title_activate" msgid="8616918561356194398">"បាន​ធ្វើ​ឲ្យ​ទូរស័ព្ទ​របស់​អ្នក​សកម្ម"</string>
@@ -554,18 +559,4 @@
     <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"ហៅតាម Wi-Fi"</string>
     <string name="emergency_action_launch_hint" msgid="5841511849007540970">"ប៉ះ​ម្ដង​ទៀត​ដើម្បី​បើក"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"មានកំហុសខណៈពេលឌិកូដសារ។"</string>
-    <!-- no translation found for ims_edit_title (774569578881609424) -->
-    <skip />
-    <!-- no translation found for ims_accounts_title (7694796047267723270) -->
-    <skip />
-    <!-- no translation found for ims_vt_call_quality_title (8258588290555663714) -->
-    <skip />
-    <!-- no translation found for ims_vt_call_quality_low (3368039362272094442) -->
-    <skip />
-    <!-- no translation found for ims_vt_call_quality_high (5257150840253665465) -->
-    <skip />
-    <!-- no translation found for ims_vt_call_quality_unknown (5847968556324166500) -->
-    <skip />
-    <!-- no translation found for ims_vt_call_quality_set_failed (714387299680894471) -->
-    <skip />
 </resources>
