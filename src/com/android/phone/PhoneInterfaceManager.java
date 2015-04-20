@@ -2038,8 +2038,12 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     }
 
     @Override
-    public List<String> getCarrierPackageNamesForIntent(Intent intent) {
-        UiccCard card = UiccController.getInstance().getUiccCard(mPhone.getPhoneId());
+    public List<String> getCarrierPackageNamesForIntentAndPhone(Intent intent, int phoneId) {
+        if (!SubscriptionManager.isValidPhoneId(phoneId)) {
+            loge("phoneId " + phoneId + " is not valid.");
+            return null;
+        }
+        UiccCard card = UiccController.getInstance().getUiccCard(phoneId);
         if (card == null) {
             loge("getCarrierPackageNamesForIntent: No UICC");
             return null ;
