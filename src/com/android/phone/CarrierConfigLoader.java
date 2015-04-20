@@ -270,7 +270,8 @@ public class CarrierConfigLoader extends ICarrierConfigLoader.Stub {
         String gid2 = "";
         String spn = TelephonyManager.from(mContext).getSimOperatorNameForPhone(phoneId);
         String simOperator = TelephonyManager.from(mContext).getSimOperatorNumericForPhone(phoneId);
-        if (simOperator != null) {
+        // A valid simOperator should be 5 or 6 digits, depending on the length of the MNC.
+        if (simOperator != null && simOperator.length() >= 3) {
             mcc = simOperator.substring(0, 3);
             mnc = simOperator.substring(3);
         }
