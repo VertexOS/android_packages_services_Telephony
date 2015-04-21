@@ -123,7 +123,7 @@ public class EmergencyDialer extends Activity implements View.OnClickListener,
         @Override
         public void onReceive(Context context, Intent intent) {
             if (Intent.ACTION_SCREEN_OFF.equals(intent.getAction())) {
-                finish();
+                finishAndRemoveTask();
             }
         }
     };
