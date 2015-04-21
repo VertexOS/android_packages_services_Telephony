@@ -806,7 +806,16 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         }
 
         boolean isValid = false;
-        List<SubscriptionInfo> slist = mSubscriptionController.getActiveSubscriptionInfoList();
+        List<SubscriptionInfo> slist;
+
+        final long identity = Binder.clearCallingIdentity();
+        try {
+            slist = mSubscriptionController.getActiveSubscriptionInfoList(
+                    mPhone.getContext().getOpPackageName());
+        } finally {
+             Binder.restoreCallingIdentity(identity);
+        }
+
         if (slist != null) {
             for (SubscriptionInfo subInfoRecord : slist) {
                 if (subInfoRecord.getSubscriptionId() == subId) {
@@ -2049,7 +2058,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
             return null ;
         }
         return card.getCarrierPackageNamesForIntent(
-            mPhone.getContext().getPackageManager(), intent);
+                mPhone.getContext().getPackageManager(), intent);
     }
 
     private String getIccId(int subId) {
