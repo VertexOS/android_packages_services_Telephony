@@ -16,13 +16,16 @@
 
 package com.android.phone;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceScreen;
-import android.content.res.Resources;
-
 import android.provider.Settings;
+import android.telephony.CarrierConfigManager;
+
 import com.android.internal.telephony.PhoneConstants;
 import com.android.internal.telephony.PhoneFactory;
 
@@ -63,16 +66,18 @@ public class GsmUmtsOptions {
         } else {
             log("Not a CDMA phone");
             Resources res = mPrefActivity.getResources();
+            Bundle carrierConfig = PhoneGlobals.getInstance().getCarrierConfigForSubId(mSubId);
 
-            // Determine which options to display, for GSM these are defaulted
-            // are defaulted to true in Phone/res/values/config.xml. But for
-            // some operators like verizon they maybe overriden in operator
-            // specific resources or device specific overlays.
-            if (!res.getBoolean(R.bool.config_apn_expand) && mButtonAPNExpand != null) {
+            // Determine which options to display. For GSM these are defaulted to true in
+            // CarrierConfigManager, but they maybe overriden by DefaultCarrierConfigService or a
+            // carrier app.
+            // Note: these settings used to be controlled with overlays in
+            // Telephony/res/values/config.xml
+            if (!carrierConfig.getBoolean(CarrierConfigManager.BOOL_APN_EXPAND) && mButtonAPNExpand != null) {
                 mPrefScreen.removePreference(mButtonAPNExpand);
                 removedAPNExpand = true;
             }
-            if (!res.getBoolean(R.bool.config_operator_selection_expand)) {
+            if (!carrierConfig.getBoolean(CarrierConfigManager.BOOL_OPERATOR_SELECTION_EXPAND)) {
                 mPrefScreen.removePreference(mPrefScreen
                         .findPreference(BUTTON_OPERATOR_SELECTION_EXPAND_KEY));
             }
@@ -89,8 +94,8 @@ public class GsmUmtsOptions {
             }
 
             // Read platform settings for carrier settings
-            final boolean isCarrierSettingsEnabled = mPrefActivity.getResources().getBoolean(
-                    R.bool.config_carrier_settings_enable);
+            final boolean isCarrierSettingsEnabled = carrierConfig.getBoolean(
+                CarrierConfigManager.BOOL_CARRIER_SETTINGS_ENABLE);
             if (!isCarrierSettingsEnabled) {
                 Preference pref = mPrefScreen.findPreference(BUTTON_CARRIER_SETTINGS_KEY);
                 if (pref != null) {
