@@ -17,7 +17,9 @@
 package com.android.services.telephony;
 
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.telecom.Connection;
 import android.telecom.ConnectionRequest;
@@ -26,6 +28,7 @@ import android.telecom.PhoneAccount;
 import android.telecom.PhoneAccountHandle;
 import android.telephony.PhoneNumberUtils;
 import android.telephony.ServiceState;
+import android.telephony.SubscriptionInfo;
 import android.telephony.SubscriptionManager;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
@@ -40,21 +43,29 @@ import com.android.internal.telephony.SubscriptionController;
 import com.android.internal.telephony.cdma.CDMAPhone;
 import com.android.phone.MMIDialogActivity;
 import com.android.phone.PhoneUtils;
+import com.android.phone.R;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.regex.Pattern;
 
 /**
  * Service for making GSM and CDMA connections.
  */
 public class TelephonyConnectionService extends ConnectionService {
+
+    // If configured, reject attempts to dial numbers matching this pattern.
+    private static final Pattern CDMA_ACTIVATION_CODE_REGEX_PATTERN =
+            Pattern.compile("\\*228[0-9]{0,2}");
+
     private final TelephonyConferenceController mTelephonyConferenceController =
             new TelephonyConferenceController(this);
     private final CdmaConferenceController mCdmaConferenceController =
             new CdmaConferenceController(this);
     private final ImsConferenceController mImsConferenceController =
             new ImsConferenceController(this);
+
     private ComponentName mExpectedComponentName = null;
     private EmergencyCallHelper mEmergencyCallHelper;
     private EmergencyTonePlayer mEmergencyTonePlayer;
@@ -118,6 +129,7 @@ public class TelephonyConnectionService extends ConnectionService {
             // Convert voicemail: to tel:
             handle = Uri.fromParts(PhoneAccount.SCHEME_TEL, number, null);
         } else {
+            final Phone phone = getPhoneForAccount(request.getAccountHandle(), false);
             if (!PhoneAccount.SCHEME_TEL.equals(scheme)) {
                 Log.d(this, "onCreateOutgoingConnection, Handle %s is not type tel", scheme);
                 return Connection.createFailedConnection(
@@ -133,6 +145,28 @@ public class TelephonyConnectionService extends ConnectionService {
                         DisconnectCauseUtil.toTelecomDisconnectCause(
                                 android.telephony.DisconnectCause.INVALID_NUMBER,
                                 "Unable to parse number"));
+            }
+
+            // Obtain the configuration for the outgoing phone's SIM. If the outgoing number
+            // matches the *228 regex pattern, fail the call. This number is used for OTASP, and
+            // when dialed would lock LTE SIMs to 3G if not prohibited..
+            SubscriptionManager subManager = SubscriptionManager.from(phone.getContext());
+            SubscriptionInfo subInfo = subManager.getActiveSubscriptionInfo(phone.getSubId());
+            if (subInfo != null) {
+                Configuration config = new Configuration();
+                config.mcc = subInfo.getMcc();
+                config.mnc = subInfo.getMnc();
+                Context subContext = phone.getContext().createConfigurationContext(config);
+
+                if (subContext.getResources() != null && subContext.getResources()
+                        .getBoolean(R.bool.config_disable_cdma_activation_code)) {
+                    if (CDMA_ACTIVATION_CODE_REGEX_PATTERN.matcher(number).matches()) {
+                        return Connection.createFailedConnection(
+                                DisconnectCauseUtil.toTelecomDisconnectCause(
+                                        android.telephony.DisconnectCause.INVALID_NUMBER,
+                                        "Tried to dial *228"));
+                    }
+                }
             }
         }
 
