@@ -152,4 +152,8 @@
 
     <!-- After a CDMA conference call is merged, the swap button should be displayed. -->
     <bool name="support_swap_after_merge" translatable="false">true</bool>
+
+    <!-- Disables dialing "*228" (OTASP provisioning) on CDMA carriers where it is not supported or
+         is potentially harmful by locking the SIM to 3G. -->
+    <bool name="config_disable_cdma_activation_code">false</bool>
 </resources>
