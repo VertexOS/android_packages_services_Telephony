@@ -51,6 +51,7 @@ abstract class TelephonyConnection extends Connection {
     private static final int MSG_HANDOVER_STATE_CHANGED = 3;
     private static final int MSG_DISCONNECT = 4;
     private static final int MSG_MULTIPARTY_STATE_CHANGED = 5;
+    private static final int MSG_CONFERENCE_MERGE_FAILED = 6;
 
     private final Handler mHandler = new Handler() {
         @Override
@@ -95,6 +96,8 @@ abstract class TelephonyConnection extends Connection {
                     if (isMultiParty) {
                         notifyConferenceStarted();
                     }
+                case MSG_CONFERENCE_MERGE_FAILED:
+                    notifyConferenceMergeFailed();
                     break;
             }
         }
@@ -212,6 +215,14 @@ abstract class TelephonyConnection extends Connection {
         @Override
         public void onMultipartyStateChanged(boolean isMultiParty) {
             handleMultipartyStateChange(isMultiParty);
+        }
+
+        /**
+         * Handles the event that the request to merge calls failed.
+         */
+        @Override
+        public void onConferenceMergedFailed() {
+            handleConferenceMergeFailed();
         }
     };
 
@@ -728,6 +739,15 @@ abstract class TelephonyConnection extends Connection {
                 notifyConferenceStarted();
             }
         }
+    }
+
+    /**
+     * Handles a failure when merging calls into a conference.
+     * {@link com.android.internal.telephony.Connection.Listener#onConferenceMergedFailed()}
+     * listener.
+     */
+    private void handleConferenceMergeFailed(){
+        mHandler.obtainMessage(MSG_CONFERENCE_MERGE_FAILED).sendToTarget();
     }
 
     /**
