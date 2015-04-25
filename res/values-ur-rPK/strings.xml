@@ -54,7 +54,9 @@
     <string name="unlock_success" msgid="6770085622238180152">"نیٹ ورک غیر مقفل کرنا کامیاب رہا۔"</string>
     <string name="mobile_network_settings_not_available" msgid="3831911315358856062">"اس صارف کیلئے سیلولر نیٹ ورک کی ترتیبات دستیاب نہیں ہیں"</string>
     <string name="labelGSMMore" msgid="5930842194056092106">"‏GSM کال کی ترتیبات"</string>
+    <string name="labelGsmMore_with_label" msgid="2674012918829238901">"‏GSM کال کی ترتیبات (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="labelCDMAMore" msgid="1630676740428229339">"‏CDMA کال کی ترتیبات"</string>
+    <string name="labelCdmaMore_with_label" msgid="6333588719319970399">"‏CDMA کال کی ترتیبات (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="apn_settings" msgid="9043423184895642077">"رسائی پوائنٹ کے نام"</string>
     <string name="settings_label" msgid="3876743539816984008">"نیٹ ورک کی ترتیبات"</string>
     <string name="phone_accounts" msgid="6376603393888116364">"کالنگ اکاؤنٹس"</string>

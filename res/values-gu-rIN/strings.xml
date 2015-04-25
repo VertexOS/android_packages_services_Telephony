@@ -54,7 +54,9 @@
     <string name="unlock_success" msgid="6770085622238180152">"નેટવર્ક અનલૉક સફળ."</string>
     <string name="mobile_network_settings_not_available" msgid="3831911315358856062">"સેલ્યુલર નેટવર્ક સેટિંગ્સ આ વપરાશકર્તા માટે ઉપલબ્ધ નથી"</string>
     <string name="labelGSMMore" msgid="5930842194056092106">"GSM કૉલ સેટિંગ્સ"</string>
+    <string name="labelGsmMore_with_label" msgid="2674012918829238901">"GSM કૉલ સેટિંગ્સ (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="labelCDMAMore" msgid="1630676740428229339">"CDMA કૉલ સેટિંગ્સ"</string>
+    <string name="labelCdmaMore_with_label" msgid="6333588719319970399">"CDMA કૉલ સેટિંગ્સ (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="apn_settings" msgid="9043423184895642077">"ઍક્સેસ પોઇન્ટનું નામ"</string>
     <string name="settings_label" msgid="3876743539816984008">"નેટવર્ક સેટિંગ્સ"</string>
     <string name="phone_accounts" msgid="6376603393888116364">"કૉલિંગ એકાઉન્ટ્સ"</string>

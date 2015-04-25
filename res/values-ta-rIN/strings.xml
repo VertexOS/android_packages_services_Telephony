@@ -54,7 +54,9 @@
     <string name="unlock_success" msgid="6770085622238180152">"நெட்வொர்க்கின் தடைநீக்கப்பட்டது."</string>
     <string name="mobile_network_settings_not_available" msgid="3831911315358856062">"இவரால் செல்லுலார் நெட்வொர்க் அமைப்புகளை மாற்ற முடியாது"</string>
     <string name="labelGSMMore" msgid="5930842194056092106">"GSM அழைப்பு அமைப்பு"</string>
+    <string name="labelGsmMore_with_label" msgid="2674012918829238901">"GSM அழைப்பு அமைப்புகள் (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="labelCDMAMore" msgid="1630676740428229339">"CDMA அழைப்பு அமைப்பு"</string>
+    <string name="labelCdmaMore_with_label" msgid="6333588719319970399">"CDMA அழைப்பு அமைப்புகள் (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="apn_settings" msgid="9043423184895642077">"ஆக்சஸ் பாயிண்ட் நேம்கள்"</string>
     <string name="settings_label" msgid="3876743539816984008">"நெட்வொர்க் அமைப்பு"</string>
     <string name="phone_accounts" msgid="6376603393888116364">"அழைப்பு கணக்குகள்"</string>

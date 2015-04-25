@@ -54,7 +54,9 @@
     <string name="unlock_success" msgid="6770085622238180152">"네트워크의 잠금을 해제했습니다."</string>
     <string name="mobile_network_settings_not_available" msgid="3831911315358856062">"이 사용자는 이동통신망 설정을 사용할 수 없습니다."</string>
     <string name="labelGSMMore" msgid="5930842194056092106">"GSM 통화 설정"</string>
+    <string name="labelGsmMore_with_label" msgid="2674012918829238901">"GSM 통화 설정(<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="labelCDMAMore" msgid="1630676740428229339">"CDMA 통화 설정"</string>
+    <string name="labelCdmaMore_with_label" msgid="6333588719319970399">"CDMA 통화 설정(<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="apn_settings" msgid="9043423184895642077">"APN"</string>
     <string name="settings_label" msgid="3876743539816984008">"네트워크 설정"</string>
     <string name="phone_accounts" msgid="6376603393888116364">"전화 계정"</string>

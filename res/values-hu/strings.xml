@@ -54,7 +54,9 @@
     <string name="unlock_success" msgid="6770085622238180152">"A függetlenítés sikerült."</string>
     <string name="mobile_network_settings_not_available" msgid="3831911315358856062">"Mobilhálózati beállítások nem érhetők el ennél a felhasználónál"</string>
     <string name="labelGSMMore" msgid="5930842194056092106">"GSM-hívásbeállítások"</string>
+    <string name="labelGsmMore_with_label" msgid="2674012918829238901">"GSM-hívásbeállítások (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="labelCDMAMore" msgid="1630676740428229339">"CDMA-hívásbeállítások"</string>
+    <string name="labelCdmaMore_with_label" msgid="6333588719319970399">"CDMA-hívásbeállítások (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="apn_settings" msgid="9043423184895642077">"Hozzáférési pontok nevei"</string>
     <string name="settings_label" msgid="3876743539816984008">"Hálózati beállítások"</string>
     <string name="phone_accounts" msgid="6376603393888116364">"Telefonos fiókok"</string>

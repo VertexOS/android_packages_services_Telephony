@@ -54,7 +54,9 @@
     <string name="unlock_success" msgid="6770085622238180152">"Отключването на мрежата бе успешно."</string>
     <string name="mobile_network_settings_not_available" msgid="3831911315358856062">"Настройките за клетъчна мрежа не са налице за този потребител"</string>
     <string name="labelGSMMore" msgid="5930842194056092106">"Настройки за обаждане с GSM"</string>
+    <string name="labelGsmMore_with_label" msgid="2674012918829238901">"Настройки за обаждане с GSM (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="labelCDMAMore" msgid="1630676740428229339">"Настройки за обаждане в CDMА"</string>
+    <string name="labelCdmaMore_with_label" msgid="6333588719319970399">"Настройки за обаждане със CDMA (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="apn_settings" msgid="9043423184895642077">"Имена на точки за достъп"</string>
     <string name="settings_label" msgid="3876743539816984008">"Настройки на мрежата"</string>
     <string name="phone_accounts" msgid="6376603393888116364">"Профили за обаждане"</string>

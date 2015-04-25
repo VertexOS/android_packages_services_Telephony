@@ -54,7 +54,9 @@
     <string name="unlock_success" msgid="6770085622238180152">"ដោះ​សោ​បណ្ដាញ​បាន​ជោគជ័យ។"</string>
     <string name="mobile_network_settings_not_available" msgid="3831911315358856062">"ការ​កំណត់​បណ្ដាញ​ចល័ត​គឺ​មិន​មាន​​សម្រាប់​អ្នក​ប្រើ​នេះ"</string>
     <string name="labelGSMMore" msgid="5930842194056092106">"កំណត់​ការ​ហៅ GSM"</string>
+    <string name="labelGsmMore_with_label" msgid="2674012918829238901">"ការកំណត់ការហៅ GSM (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="labelCDMAMore" msgid="1630676740428229339">"កំណត់​ការ​ហៅ CDMA"</string>
+    <string name="labelCdmaMore_with_label" msgid="6333588719319970399">"ការកំណត់ការហៅ CDMA (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="apn_settings" msgid="9043423184895642077">"ឈ្មោះ​ចំណុច​ចូលដំណើរការ"</string>
     <string name="settings_label" msgid="3876743539816984008">"ការកំណត់​បណ្ដាញ"</string>
     <string name="phone_accounts" msgid="6376603393888116364">"គណនីហៅទូរស័ព្ទ"</string>

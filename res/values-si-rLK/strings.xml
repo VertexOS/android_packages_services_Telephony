@@ -54,7 +54,9 @@
     <string name="unlock_success" msgid="6770085622238180152">"ජාලය අඟුළු හරිම සාර්ථකයි."</string>
     <string name="mobile_network_settings_not_available" msgid="3831911315358856062">"මෙම පරිශීලකයා සඳහා සෙලියුලර් ජාල සැකසීම් නැත"</string>
     <string name="labelGSMMore" msgid="5930842194056092106">"GSM ඇමතුම් සැකසුම්"</string>
+    <string name="labelGsmMore_with_label" msgid="2674012918829238901">"GSM ඇමතුම් සැකසීම් (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="labelCDMAMore" msgid="1630676740428229339">"CDMA ඇමතුම් සැකසුම්"</string>
+    <string name="labelCdmaMore_with_label" msgid="6333588719319970399">"CDMA ඇමතුම් සැකසීම් (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="apn_settings" msgid="9043423184895642077">"ප්‍රවේශ ලක්ෂ්‍ය නම්"</string>
     <string name="settings_label" msgid="3876743539816984008">"ජාල සැකසුම්"</string>
     <string name="phone_accounts" msgid="6376603393888116364">"ගිණුම් ඇමතීම"</string>

@@ -54,7 +54,9 @@
     <string name="unlock_success" msgid="6770085622238180152">"قفل گشایی شبکه با موفقیت انجام شد."</string>
     <string name="mobile_network_settings_not_available" msgid="3831911315358856062">"تنظیمات شبکه تلفن همراه برای این کاربر در دسترس نیست"</string>
     <string name="labelGSMMore" msgid="5930842194056092106">"‏تنظیمات تماس GSM"</string>
+    <string name="labelGsmMore_with_label" msgid="2674012918829238901">"‏تنظیمات تماس GSM (‏<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="labelCDMAMore" msgid="1630676740428229339">"‏تنظیمات تماس CDMA"</string>
+    <string name="labelCdmaMore_with_label" msgid="6333588719319970399">"‏تنظیمات تماس CDMA (‏<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="apn_settings" msgid="9043423184895642077">"نام‌های نقاط دسترسی"</string>
     <string name="settings_label" msgid="3876743539816984008">"تنظیمات شبکه"</string>
     <string name="phone_accounts" msgid="6376603393888116364">"حساب‌های تماس"</string>

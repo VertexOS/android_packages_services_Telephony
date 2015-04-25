@@ -54,7 +54,9 @@
     <string name="unlock_success" msgid="6770085622238180152">"ကွန်ယက်ဖွင့်ခြင်း မအောင်မြင်ပါ"</string>
     <string name="mobile_network_settings_not_available" msgid="3831911315358856062">"ဒီအသုံးပြုသူ အတွက် မိုဘိုင်း ကွန်ရက် ဆက်တင်များ မရှိ"</string>
     <string name="labelGSMMore" msgid="5930842194056092106">"ဂျီအက်စ်အမ် ခေါ်ဆိုမှု ဆက်တင်"</string>
+    <string name="labelGsmMore_with_label" msgid="2674012918829238901">"GSM ခေါ်ဆိုမှု ဆက်တင်များ ( <xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g> )"</string>
     <string name="labelCDMAMore" msgid="1630676740428229339">"CDMA ဖုန်းခေါ်ဆိုမှု ဆက်တင်"</string>
+    <string name="labelCdmaMore_with_label" msgid="6333588719319970399">"CDMA ခေါ်ဆိုမှု ဆက်တင်များ ( <xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g> )"</string>
     <string name="apn_settings" msgid="9043423184895642077">"ချိတ်ဆက်သောပွိုင့်အမည်များ"</string>
     <string name="settings_label" msgid="3876743539816984008">"ကွန်ရက် ဆက်တင်များ"</string>
     <string name="phone_accounts" msgid="6376603393888116364">"ခေါ်ဆိုသော အကောင့်များ"</string>

@@ -54,7 +54,9 @@
     <string name="unlock_success" msgid="6770085622238180152">"ปลดล็อกเครือข่ายไม่สำเร็จ"</string>
     <string name="mobile_network_settings_not_available" msgid="3831911315358856062">"การตั้งค่าเครือข่ายมือถือไม่พร้อมใช้งานสำหรับผู้ใช้รายนี้"</string>
     <string name="labelGSMMore" msgid="5930842194056092106">"การตั้งค่าการโทร GSM"</string>
+    <string name="labelGsmMore_with_label" msgid="2674012918829238901">"การตั้งค่าการโทร GSM (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="labelCDMAMore" msgid="1630676740428229339">"การตั้งค่าการโทร CDMA"</string>
+    <string name="labelCdmaMore_with_label" msgid="6333588719319970399">"การตั้งค่าการโทร CDMA (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="apn_settings" msgid="9043423184895642077">"ชื่อจุดเข้าใช้งาน"</string>
     <string name="settings_label" msgid="3876743539816984008">"การตั้งค่าเครือข่าย"</string>
     <string name="phone_accounts" msgid="6376603393888116364">"บัญชีการโทร"</string>

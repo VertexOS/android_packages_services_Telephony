@@ -54,7 +54,9 @@
     <string name="unlock_success" msgid="6770085622238180152">"ການປົດລັອກເຄືອຂ່າຍບໍ່ສຳເລັດ."</string>
     <string name="mobile_network_settings_not_available" msgid="3831911315358856062">"​ການ​ຕັ້ງ​ຄ່າ​ເຄືອ​ຂ່າຍ​ມ​ື​ຖືບໍ່​ສາ​ມາດ​ໃຊ້​ໄດ້​ກັບ​ຜູ່​ໃຊ້​ນີ້"</string>
     <string name="labelGSMMore" msgid="5930842194056092106">"ການຕັ້ງຄ່າການໂທ GSM"</string>
+    <string name="labelGsmMore_with_label" msgid="2674012918829238901">"ການ​ຕັ້ງ​ຄ່າ GSM (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="labelCDMAMore" msgid="1630676740428229339">"ການຕັ້ງຄ່າໂທ CDMA"</string>
+    <string name="labelCdmaMore_with_label" msgid="6333588719319970399">"ການ​ຕັ້ງ​ຄ່າ CDMA (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="apn_settings" msgid="9043423184895642077">"ຊື່ຂອງຈຸດການເຂົ້າເຖິງ (APN)"</string>
     <string name="settings_label" msgid="3876743539816984008">"ການຕັ້ງຄ່າເຄືອຂ່າຍ"</string>
     <string name="phone_accounts" msgid="6376603393888116364">"ບັນ​ຊີ​ໂທ"</string>
