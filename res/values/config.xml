@@ -155,5 +155,5 @@
 
     <!-- Disables dialing "*228" (OTASP provisioning) on CDMA carriers where it is not supported or
          is potentially harmful by locking the SIM to 3G. -->
-    <bool name="config_disable_cdma_activation_code">false</bool>
+    <string name="config_disable_cdma_activation_code">false</string>
 </resources>
