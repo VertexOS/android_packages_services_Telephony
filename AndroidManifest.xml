@@ -516,6 +516,15 @@
             </intent-filter>
         </receiver>
 
+        <activity android:name="com.android.services.telephony.sip.SipPhoneAccountSettingsActivity"
+                android:theme="@android:style/Theme.NoDisplay"
+                android:excludeFromRecents="true">
+            <intent-filter>
+                <action android:name="android.telecom.action.CONNECTION_SERVICE_CONFIGURE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
         <activity android:label="Sip Settings"
                   android:name="com.android.services.telephony.sip.SipSettings"
                   android:theme="@style/DialerSettingsLight"
