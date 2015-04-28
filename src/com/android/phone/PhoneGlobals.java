@@ -34,6 +34,7 @@ import android.content.ServiceConnection;
 import android.media.AudioManager;
 import android.net.Uri;
 import android.os.AsyncResult;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.IPowerManager;
@@ -507,6 +508,10 @@ public class PhoneGlobals extends ContextWrapper {
 
     /* package */ CallManager getCallManager() {
         return mCM;
+    }
+
+    /* package */ Bundle getCarrierConfig() {
+        return configLoader.getConfigForSubId(SubscriptionManager.getDefaultSubId());
     }
 
     /**
