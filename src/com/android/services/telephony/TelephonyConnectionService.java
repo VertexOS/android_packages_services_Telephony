@@ -130,7 +130,6 @@ public class TelephonyConnectionService extends ConnectionService {
             // Convert voicemail: to tel:
             handle = Uri.fromParts(PhoneAccount.SCHEME_TEL, number, null);
         } else {
-            final Phone phone = getPhoneForAccount(request.getAccountHandle(), false);
             if (!PhoneAccount.SCHEME_TEL.equals(scheme)) {
                 Log.d(this, "onCreateOutgoingConnection, Handle %s is not type tel", scheme);
                 return Connection.createFailedConnection(
@@ -148,10 +147,11 @@ public class TelephonyConnectionService extends ConnectionService {
                                 "Unable to parse number"));
             }
 
-            // Obtain the configuration for the outgoing phone's SIM. If the outgoing number
-            // matches the *228 regex pattern, fail the call. This number is used for OTASP, and
-            // when dialed could lock LTE SIMs to 3G if not prohibited..
-            if (CDMA_ACTIVATION_CODE_REGEX_PATTERN.matcher(number).matches()) {
+            final Phone phone = getPhoneForAccount(request.getAccountHandle(), false);
+            if (phone != null && CDMA_ACTIVATION_CODE_REGEX_PATTERN.matcher(number).matches()) {
+                // Obtain the configuration for the outgoing phone's SIM. If the outgoing number
+                // matches the *228 regex pattern, fail the call. This number is used for OTASP, and
+                // when dialed could lock LTE SIMs to 3G if not prohibited..
                 SubscriptionManager subManager = SubscriptionManager.from(phone.getContext());
                 SubscriptionInfo subInfo = subManager.getActiveSubscriptionInfo(phone.getSubId());
                 if (subInfo != null) {
