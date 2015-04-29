@@ -25,6 +25,7 @@ import android.content.pm.ResolveInfo;
 import android.os.Bundle;
 import android.os.SystemProperties;
 import android.provider.Settings;
+import android.telephony.CarrierConfigManager;
 import android.util.Log;
 
 import com.android.internal.telephony.Phone;
@@ -71,7 +72,8 @@ public class InCallScreenShowActivation extends Activity {
 
         if (intent.getAction().equals(OtaUtils.ACTION_PERFORM_CDMA_PROVISIONING)) {
 
-            boolean usesHfa = getResources().getBoolean(R.bool.config_use_hfa_for_provisioning);
+            Bundle carrierConfig = app.getCarrierConfig();
+            boolean usesHfa = carrierConfig.getBoolean(CarrierConfigManager.BOOL_USE_HFA_FOR_PROVISIONING);
             if (usesHfa) {
                 Log.i(LOG_TAG, "Starting Hfa from ACTION_PERFORM_CDMA_PROVISIONING");
                 startHfa();
@@ -79,7 +81,7 @@ public class InCallScreenShowActivation extends Activity {
                 return;
             }
 
-            boolean usesOtasp = getResources().getBoolean(R.bool.config_use_otasp_for_provisioning);
+            boolean usesOtasp = carrierConfig.getBoolean(CarrierConfigManager.BOOL_USE_OTASP_FOR_PROVISIONING);
             if (usesOtasp) {
                 // On voice-capable devices, we perform CDMA provisioning in
                 // "interactive" mode by directly launching the InCallScreen.
