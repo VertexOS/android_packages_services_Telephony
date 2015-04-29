@@ -65,8 +65,8 @@ public class SimChangeReceiver extends BroadcastReceiver {
     private void handleCarrierConfigChange(Context context, Intent intent) {
         int subId = intent.getIntExtra(PhoneConstants.SUBSCRIPTION_KEY,
                 SubscriptionManager.INVALID_SUBSCRIPTION_ID);
-        if (subId == SubscriptionManager.INVALID_SUBSCRIPTION_ID) {
-            Log.w(TAG, "subscriptionId not provided in intent.");
+        if (!SubscriptionManager.isValidSubscriptionId(subId)) {
+            Log.w(TAG, "Invalid subscriptionId or subscriptionId not provided in intent.");
             return;
         }
 
