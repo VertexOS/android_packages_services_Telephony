@@ -104,7 +104,7 @@ public class CallFeaturesSetting extends PreferenceActivity
     private static final String LOG_TAG = "CallFeaturesSetting";
     private static final boolean DBG = (PhoneGlobals.DBG_LEVEL >= 2);
     // STOPSHIP if true. Flag to override behavior default behavior to hide VT setting.
-    private static final boolean ENABLE_VT_FLAG = false;
+    private static final boolean ENABLE_VT_FLAG = true;
 
     /**
      * Intent action to bring up Voicemail Provider settings.
