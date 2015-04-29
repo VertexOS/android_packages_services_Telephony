@@ -622,7 +622,8 @@ public class VoicemailSettingsActivity extends PreferenceActivity
         // In all dialogs, all buttons except BUTTON_POSITIVE lead to the end of user interaction
         // with settings UI. If we were called to explicitly configure voice mail then
         // we finish the settings activity here to come back to whatever the user was doing.
-        if (getIntent().getAction().equals(ACTION_ADD_VOICEMAIL)) {
+        final String action = getIntent() != null ? getIntent().getAction() : null;
+        if (ACTION_ADD_VOICEMAIL.equals(action)) {
             finish();
         }
     }
