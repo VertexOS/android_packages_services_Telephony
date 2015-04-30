@@ -20,21 +20,15 @@
 
     <PreferenceCategory
         android:key="phone_accounts_accounts_list_category_key"
-        android:title="@string/phone_accounts_settings_header" />
+        android:title="@string/phone_accounts_settings_header">
 
-    <com.android.phone.settings.AccountSelectionPreference
-        android:key="default_outgoing_account"
-        android:title="@string/phone_accounts_make_calls_with"
-        android:defaultValue=""
-        android:persistent="false" />
+        <com.android.phone.settings.AccountSelectionPreference
+            android:key="default_outgoing_account"
+            android:title="@string/phone_accounts_make_calls_with"
+            android:defaultValue=""
+            android:persistent="false" />
 
-    <com.android.phone.settings.TtyModeListPreference
-        android:key="@string/tty_mode_key"
-        android:title="@string/tty_mode_option_title"
-        android:summary="@string/tty_mode_option_summary"
-        android:persistent="false"
-        android:entries="@array/tty_mode_entries"
-        android:entryValues="@array/tty_mode_values"/>
+    </PreferenceCategory>
 
     <PreferenceCategory
         android:key="phone_accounts_call_assistant_settings_category_key"
