@@ -20,6 +20,7 @@ import com.android.internal.os.AtomicFile;
 
 import android.content.Context;
 import android.net.sip.SipProfile;
+import android.text.TextUtils;
 import android.util.Log;
 
 import java.io.File;
@@ -41,6 +42,8 @@ class SipProfileDb {
 
     private static final String PROFILES_DIR = "/profiles/";
     private static final String PROFILE_OBJ_FILE = ".pobj";
+
+    private static final String SCHEME_PREFIX = "sip:";
 
     private String mProfilesDirectory;
     private SipSharedPreferences mSipSharedPreferences;
@@ -100,6 +103,15 @@ class SipProfileDb {
         }
     }
 
+    public SipProfile retrieveSipProfile(String sipUri) {
+        sipUri = sipUri.trim();
+        if (sipUri.startsWith(SCHEME_PREFIX)) {
+            return retrieveSipProfileFromName(sipUri.substring(SCHEME_PREFIX.length()));
+        }
+
+        return null;
+    }
+
     private List<SipProfile> retrieveSipProfileListInternal() {
         List<SipProfile> sipProfileList = Collections.synchronizedList(
                 new ArrayList<SipProfile>());
@@ -108,21 +120,33 @@ class SipProfileDb {
         String[] dirs = root.list();
         if (dirs == null) return sipProfileList;
         for (String dir : dirs) {
-            File f = new File(new File(root, dir), PROFILE_OBJ_FILE);
-            if (!f.exists()) continue;
-            try {
-                SipProfile p = deserialize(f);
-                if (p == null) continue;
-                if (!dir.equals(p.getProfileName())) continue;
-
-                sipProfileList.add(p);
-            } catch (IOException e) {
-                log("retrieveSipProfileListInternal, exception: " + e);
-            }
+            SipProfile p = retrieveSipProfileFromName(dir);
+            if (p == null) continue;
+            sipProfileList.add(p);
         }
         mProfilesCount = sipProfileList.size();
         mSipSharedPreferences.setProfilesCount(mProfilesCount);
         return sipProfileList;
+    }
+
+    private SipProfile retrieveSipProfileFromName(String name) {
+        if (TextUtils.isEmpty(name)) {
+            return null;
+        }
+
+        File root = new File(mProfilesDirectory);
+        File f = new File(new File(root, name), PROFILE_OBJ_FILE);
+        if (f.exists()) {
+            try {
+                SipProfile p = deserialize(f);
+                if (p != null && name.equals(p.getProfileName())) {
+                    return p;
+                }
+            } catch (IOException e) {
+                log("retrieveSipProfileListInternal, exception: " + e);
+            }
+        }
+        return null;
     }
 
     private SipProfile deserialize(File profileObjectFile) throws IOException {
