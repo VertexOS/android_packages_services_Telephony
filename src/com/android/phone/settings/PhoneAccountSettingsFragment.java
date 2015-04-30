@@ -3,6 +3,11 @@ package com.android.phone.settings;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
+import android.graphics.Bitmap;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.net.sip.SipManager;
 import android.os.Bundle;
 import android.os.UserHandle;
@@ -11,6 +16,7 @@ import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceCategory;
 import android.preference.PreferenceFragment;
+import android.telecom.PhoneAccount;
 import android.telecom.PhoneAccountHandle;
 import android.telecom.TelecomManager;
 import android.telephony.SubscriptionInfo;
@@ -24,6 +30,9 @@ import com.android.services.telephony.sip.SipAccountRegistry;
 import com.android.services.telephony.sip.SipSharedPreferences;
 import com.android.services.telephony.sip.SipUtil;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class PhoneAccountSettingsFragment extends PreferenceFragment
@@ -51,6 +60,7 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
     private String LOG_TAG = PhoneAccountSettingsFragment.class.getSimpleName();
 
     private TelecomManager mTelecomManager;
+    private TelephonyManager mTelephonyManager;
     private SubscriptionManager mSubscriptionManager;
 
     private PreferenceCategory mAccountList;
@@ -68,6 +78,7 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
         super.onCreate(icicle);
 
         mTelecomManager = TelecomManager.from(getActivity());
+        mTelephonyManager = TelephonyManager.from(getActivity());
         mSubscriptionManager = SubscriptionManager.from(getActivity());
     }
 
@@ -81,28 +92,22 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
 
         addPreferencesFromResource(R.xml.phone_account_settings);
 
-        TelephonyManager telephonyManager =
-                (TelephonyManager) getActivity().getSystemService(Context.TELEPHONY_SERVICE);
         mAccountList = (PreferenceCategory) getPreferenceScreen().findPreference(
                 ACCOUNTS_LIST_CATEGORY_KEY);
-        TtyModeListPreference ttyModeListPreference =
-                (TtyModeListPreference) getPreferenceScreen().findPreference(
-                        getResources().getString(R.string.tty_mode_key));
-        if (telephonyManager.isMultiSimEnabled()) {
+        if (shouldShowConnectionServiceList()) {
             initAccountList();
-            ttyModeListPreference.init();
-        } else {
-            getPreferenceScreen().removePreference(mAccountList);
-            getPreferenceScreen().removePreference(ttyModeListPreference);
-        }
 
-        mDefaultOutgoingAccount = (AccountSelectionPreference)
-                getPreferenceScreen().findPreference(DEFAULT_OUTGOING_ACCOUNT_KEY);
+            mDefaultOutgoingAccount = (AccountSelectionPreference)
+                    getPreferenceScreen().findPreference(DEFAULT_OUTGOING_ACCOUNT_KEY);
             mDefaultOutgoingAccount.setListener(this);
             if (mTelecomManager.getCallCapablePhoneAccounts().size() > 1) {
-            updateDefaultOutgoingAccountsModel();
+                updateDefaultOutgoingAccountsModel();
+            } else {
+                getPreferenceScreen().removePreference(mDefaultOutgoingAccount);
+            }
+
         } else {
-            getPreferenceScreen().removePreference(mDefaultOutgoingAccount);
+            getPreferenceScreen().removePreference(mAccountList);
         }
 
         List<PhoneAccountHandle> simCallManagers = mTelecomManager.getSimCallManagers();
@@ -287,8 +292,7 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
      */
     public void updateCallAssistantModel() {
         mSelectCallAssistant.setModel(
-                mTelecomManager,
-                mTelecomManager.getSimCallManagers(),
+                mTelecomManager, mTelecomManager.getSimCallManagers(),
                 mTelecomManager.getSimCallManager(),
                 getString(R.string.wifi_calling_call_assistant_none));
     }
@@ -311,19 +315,103 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
     }
 
     private void initAccountList() {
-        List<SubscriptionInfo> sil = mSubscriptionManager.getActiveSubscriptionInfoList();
-        if (sil == null) {
-            return;
+        // Obtain the list of phone accounts.
+        List<PhoneAccount> accounts = new ArrayList<>();
+        for (PhoneAccountHandle handle : mTelecomManager.getCallCapablePhoneAccounts()) {
+            PhoneAccount account = mTelecomManager.getPhoneAccount(handle);
+            if (account != null) {
+                accounts.add(account);
+            }
         }
-        for (SubscriptionInfo subscription : sil) {
-            CharSequence label = subscription.getDisplayName();
-            Intent intent = new Intent(TelecomManager.ACTION_SHOW_CALL_SETTINGS);
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            SubscriptionInfoHelper.addExtrasToIntent(intent, subscription);
 
+        // Sort the accounts according to how we want to display them.
+        Collections.sort(accounts, new Comparator<PhoneAccount>() {
+            @Override
+            public int compare(PhoneAccount account1, PhoneAccount account2) {
+                int retval = 0;
+
+                // SIM accounts go first
+                boolean isSim1 = (account1.getCapabilities() &
+                        PhoneAccount.CAPABILITY_SIM_SUBSCRIPTION) != 0;
+                boolean isSim2 = (account2.getCapabilities() &
+                        PhoneAccount.CAPABILITY_SIM_SUBSCRIPTION) != 0;
+                if (isSim1 != isSim2) {
+                    retval = isSim1 ? -1 : 1;
+                }
+
+                // Then order by package
+                if (retval == 0) {
+                    String pkg1 = account1.getAccountHandle().getComponentName().getPackageName();
+                    String pkg2 = account2.getAccountHandle().getComponentName().getPackageName();
+                    retval = pkg1.compareTo(pkg2);
+                }
+
+                // Finally, order by label
+                if (retval == 0) {
+                    String label1 = nullToEmpty(account1.getLabel().toString());
+                    String label2 = nullToEmpty(account2.getLabel().toString());
+                    retval = label1.compareTo(label2);
+                }
+
+                // Then by hashcode
+                if (retval == 0) {
+                    retval = account1.hashCode() - account2.hashCode();
+                }
+                return retval;
+            }
+        });
+
+        // Add an entry for each account.
+        for (PhoneAccount account : accounts) {
+            PhoneAccountHandle handle = account.getAccountHandle();
+            Intent intent = null;
+            boolean isSimAccount = false;
+
+            // SIM phone accounts use a different setting intent and are thus handled differently.
+            if ((PhoneAccount.CAPABILITY_SIM_SUBSCRIPTION & account.getCapabilities()) != 0) {
+                isSimAccount = true;
+                SubscriptionInfo subInfo = mSubscriptionManager.getActiveSubscriptionInfo(
+                        mTelephonyManager.getSubIdForPhoneAccount(account));
+
+                if (subInfo != null) {
+                    intent = new Intent(TelecomManager.ACTION_SHOW_CALL_SETTINGS);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    SubscriptionInfoHelper.addExtrasToIntent(intent, subInfo);
+                }
+            } else {
+                // Build the settings intent.
+                intent = new Intent(TelecomManager.ACTION_CONNECTION_SERVICE_CONFIGURE);
+                intent.setPackage(handle.getComponentName().getPackageName());
+                intent.addCategory(Intent.CATEGORY_DEFAULT);
+                intent.putExtra(TelecomManager.EXTRA_PHONE_ACCOUNT_HANDLE, handle);
+
+                // Check to see that the phone account package can handle the setting intent.
+                PackageManager pm = getActivity().getPackageManager();
+                List<ResolveInfo> resolutions = pm.queryIntentActivities(intent, 0);
+                if (resolutions.size() == 0) {
+                    intent = null;  // set no intent if the package cannot handle it.
+                }
+            }
+
+            // Create the preference & add the label
             Preference accountPreference = new Preference(getActivity());
-            accountPreference.setTitle(label);
-            accountPreference.setIntent(intent);
+            accountPreference.setTitle(account.getLabel());
+
+            // Add an icon.
+            Drawable icon = account.createIconDrawable(getActivity());
+            if (isSimAccount && !mTelephonyManager.isMultiSimEnabled()) {
+                // If a device is not multi-SIM enabled, then it is unlikely the icon has any
+                // color to it.  In these cases, add a default gray tint.
+                icon.setTint(getResources().getColor(R.color.default_sim_icon_tint_color));
+                icon.setTintMode(PorterDuff.Mode.SRC_ATOP);
+            }
+            accountPreference.setIcon(icon);
+
+            // Add an intent to send the user to the account's settings.
+            if (intent != null) {
+                accountPreference.setIntent(intent);
+            }
+
             mAccountList.addPreference(accountPreference);
         }
     }
@@ -339,5 +427,14 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
             }
         }
         return null;
+    }
+
+    private boolean shouldShowConnectionServiceList() {
+        return mTelephonyManager.isMultiSimEnabled() ||
+                mTelecomManager.getCallCapablePhoneAccounts().size() > 1;
+    }
+
+    private String nullToEmpty(String str) {
+        return str == null ? "" : str;
     }
 }
