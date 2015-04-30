@@ -16,6 +16,7 @@
 
 package com.android.phone;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.ActivityManagerNative;
 import android.app.AlertDialog;
@@ -71,9 +72,6 @@ public class OutgoingCallBroadcaster extends Activity
             (PhoneGlobals.DBG_LEVEL >= 1) && (SystemProperties.getInt("ro.debuggable", 0) == 1);
     // Do not check in with VDBG = true, since that may write PII to the system log.
     private static final boolean VDBG = false;
-
-    /** Required permission for any app that wants to consume ACTION_NEW_OUTGOING_CALL. */
-    private static final String PERMISSION = android.Manifest.permission.PROCESS_OUTGOING_CALLS;
 
     public static final String ACTION_SIP_SELECT_PHONE = "com.android.phone.SIP_SELECT_PHONE";
     public static final String EXTRA_ALREADY_CALLED = "android.phone.extra.ALREADY_CALLED";
@@ -638,7 +636,9 @@ public class OutgoingCallBroadcaster extends Activity
         mHandler.sendEmptyMessageDelayed(EVENT_OUTGOING_CALL_TIMEOUT,
                 OUTGOING_CALL_TIMEOUT_THRESHOLD);
         sendOrderedBroadcastAsUser(broadcastIntent, UserHandle.OWNER,
-                PERMISSION, new OutgoingCallReceiver(),
+                android.Manifest.permission.PROCESS_OUTGOING_CALLS,
+                AppOpsManager.OP_PROCESS_OUTGOING_CALLS,
+                new OutgoingCallReceiver(),
                 null,  // scheduler
                 Activity.RESULT_OK,  // initialCode
                 number,  // initialData: initial value for the result data
