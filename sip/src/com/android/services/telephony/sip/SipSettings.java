@@ -57,25 +57,20 @@ import java.util.Map;
  * The PreferenceActivity class for managing sip profile preferences.
  */
 public class SipSettings extends PreferenceActivity {
-    private static final String PREFIX = "[SipSettings] ";
-    private static final boolean VERBOSE = false; /* STOP SHIP if true */
-
     public static final String SIP_SHARED_PREFERENCES = "SIP_PREFERENCES";
 
-    private static final int MENU_ADD_ACCOUNT = Menu.FIRST;
-
     static final String KEY_SIP_PROFILE = "sip_profile";
+    static final int REQUEST_ADD_OR_EDIT_SIP_PROFILE = 1;
 
+    private static final String PREFIX = "[SipSettings] ";
+    private static final boolean VERBOSE = false; /* STOP SHIP if true */
+    private static final int MENU_ADD_ACCOUNT = Menu.FIRST;
     private static final String PREF_SIP_LIST = "sip_account_list";
-
-    private static final int REQUEST_ADD_OR_EDIT_SIP_PROFILE = 1;
 
     private PackageManager mPackageManager;
     private SipManager mSipManager;
     private SipProfileDb mProfileDb;
-
     private SipProfile mProfile; // profile that's being edited
-
     private PreferenceCategory mSipListContainer;
     private Map<String, SipPreference> mSipPreferenceMap;
     private List<SipProfile> mSipProfileList;
@@ -144,8 +139,6 @@ public class SipSettings extends PreferenceActivity {
         addPreferencesFromResource(R.xml.sip_setting);
         mSipListContainer = (PreferenceCategory) findPreference(PREF_SIP_LIST);
 
-        updateProfilesStatus();
-
         ActionBar actionBar = getActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
@@ -155,6 +148,7 @@ public class SipSettings extends PreferenceActivity {
     @Override
     public void onResume() {
         super.onResume();
+        updateProfilesStatus();
     }
 
     @Override
