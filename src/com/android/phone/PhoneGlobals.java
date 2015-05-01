@@ -511,7 +511,11 @@ public class PhoneGlobals extends ContextWrapper {
     }
 
     /* package */ Bundle getCarrierConfig() {
-        return configLoader.getConfigForSubId(SubscriptionManager.getDefaultSubId());
+        return getCarrierConfigForSubId(SubscriptionManager.getDefaultSubId());
+    }
+
+    /* package */ Bundle getCarrierConfigForSubId(int subId) {
+        return configLoader.getConfigForSubId(subId);
     }
 
     /**
