@@ -37,6 +37,7 @@ import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.telecom.PhoneAccount;
 import android.telecom.TelecomManager;
+import android.telephony.CarrierConfigManager;
 import android.telephony.CellInfo;
 import android.telephony.IccOpenLogicalChannelResponse;
 import android.telephony.NeighboringCellInfo;
@@ -2294,12 +2295,12 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
 
     @Override
     public boolean canChangeDtmfToneLength() {
-        return mPhone.getContext().getResources().getBoolean(R.bool.dtmf_type_enabled);
+        return mApp.getCarrierConfig().getBoolean(CarrierConfigManager.BOOL_DTMF_TYPE_ENABLED);
     }
 
     @Override
     public boolean isWorldPhone() {
-        return mPhone.getContext().getResources().getBoolean(R.bool.world_phone);
+        return mApp.getCarrierConfig().getBoolean(CarrierConfigManager.BOOL_WORLD_PHONE);
     }
 
     @Override

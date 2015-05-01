@@ -48,6 +48,7 @@ import android.os.UpdateLock;
 import android.os.UserHandle;
 import android.preference.PreferenceManager;
 import android.provider.Settings.System;
+import android.telephony.CarrierConfigManager;
 import android.telephony.ServiceState;
 import android.telephony.SubscriptionInfo;
 import android.telephony.SubscriptionManager;
@@ -238,7 +239,7 @@ public class PhoneGlobals extends ContextWrapper {
                 // TODO: This event should be handled by the lock screen, just
                 // like the "SIM missing" and "Sim locked" cases (bug 1804111).
                 case EVENT_SIM_NETWORK_LOCKED:
-                    if (getResources().getBoolean(R.bool.ignore_sim_network_locked_events)) {
+                    if (getCarrierConfig().getBoolean(CarrierConfigManager.BOOL_IGNORE_SIM_NETWORK_LOCKED_EVENTS)) {
                         // Some products don't have the concept of a "SIM network lock"
                         Log.i(LOG_TAG, "Ignoring EVENT_SIM_NETWORK_LOCKED event; "
                               + "not showing 'SIM network unlock' PIN entry screen");
