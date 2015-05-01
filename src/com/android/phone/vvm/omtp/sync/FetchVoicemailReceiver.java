@@ -85,6 +85,13 @@ public class FetchVoicemailReceiver extends BroadcastReceiver {
                     }
                     final Account account = new Account(accountId,
                             OmtpVvmSyncAccountManager.ACCOUNT_TYPE);
+
+                    if (!OmtpVvmSyncAccountManager.getInstance(context)
+                            .isAccountRegistered(account)) {
+                        Log.w(TAG, "Account not registered - cannot retrieve message.");
+                        return;
+                    }
+
                     Executor executor = Executors.newCachedThreadPool();
                     executor.execute(new Runnable() {
                         @Override
