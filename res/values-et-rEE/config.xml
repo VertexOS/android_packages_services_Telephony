@@ -19,5 +19,5 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="config_disable_cdma_activation_code" msgid="2376168143147253073">"vale"</string>
+    <string name="config_disable_cdma_activation_code" msgid="2376168143147253073">"false"</string>
 </resources>
