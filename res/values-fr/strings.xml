@@ -546,7 +546,6 @@
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"Vibreur"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"Vibreur"</string>
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"Sonnerie"</string>
-    <string name="dial_pad_autocomplete" msgid="7683489952557536398">"Clavier à saisie semi-automatique"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"Sonnerie et vibreur"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"Cartes SIM intégrées"</string>
     <string name="enable_video_calling_title" msgid="7237253660669000899">"Activer les appels vidéo"</string>
