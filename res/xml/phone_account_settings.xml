@@ -26,7 +26,19 @@
             android:key="default_outgoing_account"
             android:title="@string/phone_accounts_make_calls_with"
             android:defaultValue=""
-            android:persistent="false" />
+            android:persistent="false"
+            android:order="1" />
+
+    <PreferenceScreen
+        android:title="@string/phone_accounts_all_calling_accounts"
+        android:summary="@string/phone_accounts_all_calling_accounts_summary"
+        android:persistent="false"
+        android:order="1000" >
+
+        <intent android:action="android.intent.action.MAIN"
+            android:targetPackage="com.android.server.telecom"
+            android:targetClass="com.android.server.telecom.settings.EnableAccountPreferenceActivity" />
+    </PreferenceScreen>
 
     </PreferenceCategory>
 

@@ -103,15 +103,6 @@ class SipProfileDb {
         }
     }
 
-    public SipProfile retrieveSipProfile(String sipUri) {
-        sipUri = sipUri.trim();
-        if (sipUri.startsWith(SCHEME_PREFIX)) {
-            return retrieveSipProfileFromName(sipUri.substring(SCHEME_PREFIX.length()));
-        }
-
-        return null;
-    }
-
     private List<SipProfile> retrieveSipProfileListInternal() {
         List<SipProfile> sipProfileList = Collections.synchronizedList(
                 new ArrayList<SipProfile>());
@@ -129,7 +120,7 @@ class SipProfileDb {
         return sipProfileList;
     }
 
-    private SipProfile retrieveSipProfileFromName(String name) {
+    public SipProfile retrieveSipProfileFromName(String name) {
         if (TextUtils.isEmpty(name)) {
             return null;
         }
