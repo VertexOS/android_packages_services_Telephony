@@ -50,6 +50,8 @@ abstract class TelephonyConnection extends Connection {
     private static final int MSG_RINGBACK_TONE = 2;
     private static final int MSG_HANDOVER_STATE_CHANGED = 3;
     private static final int MSG_DISCONNECT = 4;
+    private static final int MSG_MULTIPARTY_STATE_CHANGED = 5;
+    private static final int MSG_CONFERENCE_MERGE_FAILED = 6;
 
     private final Handler mHandler = new Handler() {
         @Override
@@ -86,6 +88,16 @@ abstract class TelephonyConnection extends Connection {
                     break;
                 case MSG_DISCONNECT:
                     updateState();
+                    break;
+                case MSG_MULTIPARTY_STATE_CHANGED:
+                    boolean isMultiParty = (Boolean) msg.obj;
+                    Log.i(this, "Update multiparty state to %s", isMultiParty ? "Y" : "N");
+                    mIsMultiParty = isMultiParty;
+                    if (isMultiParty) {
+                        notifyConferenceStarted();
+                    }
+                case MSG_CONFERENCE_MERGE_FAILED:
+                    notifyConferenceMergeFailed();
                     break;
             }
         }
@@ -191,6 +203,25 @@ abstract class TelephonyConnection extends Connection {
         @Override
         public void onConferenceParticipantsChanged(List<ConferenceParticipant> participants) {
             updateConferenceParticipants(participants);
+        }
+
+        /*
+         * Handles a change to the multiparty state for this connection.
+         *
+         * @param isMultiParty {@code true} if the call became multiparty, {@code false}
+         *      otherwise.
+         */
+        @Override
+        public void onMultipartyStateChanged(boolean isMultiParty) {
+            handleMultipartyStateChange(isMultiParty);
+        }
+
+        /**
+         * Handles the event that the request to merge calls failed.
+         */
+        @Override
+        public void onConferenceMergedFailed() {
+            handleConferenceMergeFailed();
         }
     };
 
@@ -707,6 +738,33 @@ abstract class TelephonyConnection extends Connection {
                 notifyConferenceStarted();
             }
         }
+    }
+
+    /**
+     * Handles a failure when merging calls into a conference.
+     * {@link com.android.internal.telephony.Connection.Listener#onConferenceMergedFailed()}
+     * listener.
+     */
+    private void handleConferenceMergeFailed(){
+        mHandler.obtainMessage(MSG_CONFERENCE_MERGE_FAILED).sendToTarget();
+    }
+
+    /**
+     * Handles requests to update the multiparty state received via the
+     * {@link com.android.internal.telephony.Connection.Listener#onMultipartyStateChanged(boolean)}
+     * listener.
+     * <p>
+     * Note: We post this to the mHandler to ensure that if a conference must be created as a
+     * result of the multiparty state change, the conference creation happens on the correct
+     * thread.  This ensures that the thread check in
+     * {@link com.android.internal.telephony.PhoneBase#checkCorrectThread(android.os.Handler)}
+     * does not fire.
+     *
+     * @param isMultiParty {@code true} if this connection is multiparty, {@code false} otherwise.
+     */
+    private void handleMultipartyStateChange(boolean isMultiParty) {
+        Log.i(this, "Update multiparty state to %s", isMultiParty ? "Y" : "N");
+        mHandler.obtainMessage(MSG_MULTIPARTY_STATE_CHANGED, isMultiParty).sendToTarget();
     }
 
     private void setActiveInternal() {
