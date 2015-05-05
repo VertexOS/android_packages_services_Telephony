@@ -103,8 +103,6 @@ public class CallFeaturesSetting extends PreferenceActivity
                 EditPhoneNumberPreference.GetDefaultNumberListener {
     private static final String LOG_TAG = "CallFeaturesSetting";
     private static final boolean DBG = (PhoneGlobals.DBG_LEVEL >= 2);
-    // STOPSHIP if true. Flag to override behavior default behavior to hide VT setting.
-    private static final boolean ENABLE_VT_FLAG = true;
 
     /**
      * Intent action to bring up Voicemail Provider settings.
@@ -1317,7 +1315,7 @@ public class CallFeaturesSetting extends PreferenceActivity
         mVoicemailNotificationVibrate.setChecked(
                 VoicemailNotificationSettingsUtil.isVibrationEnabled(mPhone));
 
-        if (ImsManager.isVtEnabledByPlatform(mPhone.getContext()) && ENABLE_VT_FLAG) {
+        if (ImsManager.isVtEnabledByPlatform(mPhone.getContext())) {
             boolean currentValue =
                     ImsManager.isEnhanced4gLteModeSettingEnabledByUser(mPhone.getContext())
                     ? PhoneGlobals.getInstance().phoneMgr.isVideoCallingEnabled() : false;
