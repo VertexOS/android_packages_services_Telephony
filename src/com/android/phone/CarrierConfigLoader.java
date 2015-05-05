@@ -157,7 +157,8 @@ public class CarrierConfigLoader extends ICarrierConfigLoader.Stub {
                         break;
                     }
                     List<String> carrierPackageNames = TelephonyManager.from(mContext)
-                            .getCarrierPackageNamesForIntent(new Intent(CarrierConfigService.SERVICE_INTERFACE));
+                            .getCarrierPackageNamesForIntentAndPhone(
+                                    new Intent(CarrierConfigService.SERVICE_INTERFACE), phoneId);
                     log("Found carrier config app: " + carrierPackageNames);
                     if (carrierPackageNames != null && carrierPackageNames.size() > 0) {
                         if (!bindToConfigPackage(carrierPackageNames.get(0),
