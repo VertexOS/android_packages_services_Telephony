@@ -66,6 +66,10 @@ public class WrappedMessageData {
      */
     String extractString(final String field) {
         String value = mFields.get(field);
+        if (value == null) {
+            return null;
+        }
+
         String[] possibleValues = OmtpConstants.possibleValuesMap.get(field);
         if (possibleValues == null) {
             return value;
