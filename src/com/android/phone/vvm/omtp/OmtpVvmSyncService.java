@@ -26,24 +26,20 @@ import android.app.Service;
 import android.content.AbstractThreadedSyncAdapter;
 import android.content.ContentProviderClient;
 import android.content.ContentResolver;
-import android.content.ContentUris;
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SyncResult;
-import android.database.Cursor;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.provider.VoicemailContract;
-import android.provider.VoicemailContract.Voicemails;
 import android.telecom.Voicemail;
 
 import com.android.phone.vvm.omtp.imap.ImapHelper;
-import com.android.phone.vvm.omtp.sync.DirtyVoicemailQuery;
+import com.android.phone.vvm.omtp.sync.VoicemailsQueryHelper;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * A service to run the VvmSyncAdapter.
@@ -73,106 +69,81 @@ public class OmtpVvmSyncService extends Service {
          * Sync triggers should pass this extra to clear the database and freshly populate from the
          * server.
          */
-        public static final String SYNC_EXTRAS_CLEAR_AND_RELOAD = "extra_clear_and_reload";
+        public static final String SYNC_EXTRAS_DOWNLOAD = "extra_download";
 
         private Context mContext;
-        private ContentResolver mContentResolver;
 
         public OmtpVvmSyncAdapter(Context context, boolean autoInitialize) {
             super(context, autoInitialize);
             mContext = context;
-            mContentResolver = context.getContentResolver();
         }
 
         @Override
         public void onPerformSync(Account account, Bundle extras, String authority,
                 ContentProviderClient provider, SyncResult syncResult) {
             ImapHelper imapHelper = new ImapHelper(mContext, account);
+            VoicemailsQueryHelper queryHelper = new VoicemailsQueryHelper(mContext);
 
             if (extras.getBoolean(ContentResolver.SYNC_EXTRAS_UPLOAD, false)) {
-                List<Voicemail> readVoicemails = new ArrayList<Voicemail>();
-                List<Voicemail> deletedVoicemails = new ArrayList<Voicemail>();
+                List<Voicemail> readVoicemails = queryHelper.getReadVoicemails();
+                List<Voicemail> deletedVoicemails = queryHelper.getDeletedVoicemails();
 
-                Cursor cursor = DirtyVoicemailQuery.getDirtyVoicemails(mContext);
-                if (cursor == null) {
-                    return;
-                }
-                try {
-                    while (cursor.moveToNext()) {
-                        final long id = cursor.getLong(DirtyVoicemailQuery._ID);
-                        final String sourceData = cursor.getString(DirtyVoicemailQuery.SOURCE_DATA);
-                        final boolean isRead = cursor.getInt(DirtyVoicemailQuery.IS_READ) == 1;
-                        final boolean deleted = cursor.getInt(DirtyVoicemailQuery.DELETED) == 1;
-                        Voicemail voicemail = Voicemail.createForUpdate(id, sourceData).build();
-                        if (deleted) {
-                            // Check deleted first because if the voicemail is deleted, there's no
-                            // need to mark as read.
-                            deletedVoicemails.add(voicemail);
-                        } else if (isRead) {
-                            readVoicemails.add(voicemail);
-                        }
-                    }
-                } finally {
-                    cursor.close();
-                }
-                if (imapHelper.markMessagesAsDeleted(deletedVoicemails)) {
+                if (deletedVoicemails != null &&
+                        imapHelper.markMessagesAsDeleted(deletedVoicemails)) {
                     // We want to delete selectively instead of all the voicemails for this provider
                     // in case the state changed since the IMAP query was completed.
-                    deleteFromDatabase(deletedVoicemails);
+                    queryHelper.deleteFromDatabase(deletedVoicemails);
                 }
 
-                if (imapHelper.markMessagesAsRead(readVoicemails)) {
-                    markReadInDatabase(readVoicemails);
+                if (readVoicemails != null && imapHelper.markMessagesAsRead(readVoicemails)) {
+                    queryHelper.markReadInDatabase(readVoicemails);
                 }
             }
 
-            if (extras.getBoolean(SYNC_EXTRAS_CLEAR_AND_RELOAD, false)) {
-                // Fetch voicemails first before deleting local copy, the fetching may take awhile.
-                List<Voicemail> voicemails = imapHelper.fetchAllVoicemails();
+            if (extras.getBoolean(SYNC_EXTRAS_DOWNLOAD, false)) {
+                List<Voicemail> serverVoicemails = imapHelper.fetchAllVoicemails();
+                List<Voicemail> localVoicemails = queryHelper.getAllVoicemails();
 
-                // Deleting current local messages ensure that we start with a fresh copy
-                // and also don't need to deal with comparing between local and server.
-                VoicemailContract.Voicemails.deleteAll(mContext);
+                if (localVoicemails == null || serverVoicemails == null) {
+                    // Null value means the query failed.
+                    return;
+                }
 
-                if (voicemails != null) {
-                    VoicemailContract.Voicemails.insert(mContext, voicemails);
+                Map<String, Voicemail> remoteMap = buildMap(serverVoicemails);
+
+                // Go through all the local voicemails and check if they are on the server.
+                // They may be read or deleted on the server but not locally. Perform the
+                // appropriate local operation if the status differs from the server. Remove
+                // the messages that exist both locally and on the server to know which server
+                // messages to insert locally.
+                for (int i = 0; i < localVoicemails.size(); i++) {
+                    Voicemail localVoicemail = localVoicemails.get(i);
+                    Voicemail remoteVoicemail = remoteMap.remove(localVoicemail.getSourceData());
+                    if (remoteVoicemail == null) {
+                        queryHelper.deleteFromDatabase(localVoicemail);
+                    } else {
+                        if (remoteVoicemail.isRead() != localVoicemail.isRead()) {
+                            queryHelper.markReadInDatabase(localVoicemail);
+                        }
+                    }
+                }
+
+                // The leftover messages are messages that exist on the server but not locally.
+                for (Voicemail remoteVoicemail : remoteMap.values()) {
+                    VoicemailContract.Voicemails.insert(mContext, remoteVoicemail);
                 }
             }
         }
 
         /**
-         * Deletes a list of voicemails from the voicemail content provider.
-         *
-         * @param voicemails The list of voicemails to delete
-         * @return The number of voicemails deleted
+         * Builds a map from provider data to message for the given collection of voicemails.
          */
-        public int deleteFromDatabase(List<Voicemail> voicemails) {
-            int count = voicemails.size();
-            for (int i = 0; i < count; i++) {
-                mContentResolver.delete(Voicemails.CONTENT_URI, Voicemails._ID + "=?",
-                        new String[] { Long.toString(voicemails.get(i).getId()) });
+        private Map<String, Voicemail> buildMap(List<Voicemail> messages) {
+            Map<String, Voicemail> map = new HashMap<String, Voicemail>();
+            for (Voicemail message : messages) {
+                map.put(message.getSourceData(), message);
             }
-            return count;
-        }
-
-        /**
-         * Sends an update command to the voicemail content provider for a list of voicemails.
-         * From the view of the provider, since the updater is the owner of the entry, a blank
-         * "update" means that the voicemail source is indicating that the server has up-to-date
-         * information on the voicemail. This flips the "dirty" bit to "0".
-         *
-         * @param voicemails The list of voicemails to update
-         * @return The number of voicemails updated
-         */
-        public int markReadInDatabase(List<Voicemail> voicemails) {
-            int count = voicemails.size();
-            for (int i = 0; i < count; i++) {
-                Uri uri = ContentUris.withAppendedId(
-                        VoicemailContract.Voicemails.buildSourceUri(mContext.getPackageName()),
-                        voicemails.get(i).getId());
-                mContentResolver.update(uri, new ContentValues(), null, null);
-            }
-            return count;
+            return map;
         }
     }
 }
