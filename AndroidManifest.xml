@@ -603,12 +603,6 @@
         <service android:name="HfaService" android:exported="false"/>
 
         <!-- Telecom integration -->
-        <service android:name="com.android.services.telephony.TelephonyCallServiceProvider"
-                android:singleUser="true">
-            <intent-filter>
-                <action android:name="android.telecom.CallServiceProvider" />
-            </intent-filter>
-        </service>
         <service
                 android:singleUser="true"
                 android:name="com.android.services.telephony.TelephonyConnectionService"
