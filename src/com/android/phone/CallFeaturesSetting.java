@@ -35,6 +35,7 @@ import android.preference.PreferenceScreen;
 import android.provider.Settings;
 import android.telecom.PhoneAccountHandle;
 import android.telecom.TelecomManager;
+import android.telephony.CarrierConfigManager;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
@@ -210,7 +211,9 @@ public class CallFeaturesSetting extends PreferenceActivity
 
         mEnableVideoCalling = (CheckBoxPreference) findPreference(ENABLE_VIDEO_CALLING_KEY);
 
-        if (getResources().getBoolean(R.bool.auto_retry_enabled)) {
+        Bundle carrierConfig = PhoneGlobals.getInstance().getCarrierConfigForSubId(mPhone.getSubId());
+
+        if (carrierConfig.getBoolean(CarrierConfigManager.BOOL_AUTO_RETRY_ENABLED)) {
             mButtonAutoRetry.setOnPreferenceChangeListener(this);
             int autoretry = Settings.Global.getInt(
                     getContentResolver(), Settings.Global.CALL_AUTO_RETRY, 0);
@@ -222,7 +225,7 @@ public class CallFeaturesSetting extends PreferenceActivity
 
         Preference cdmaOptions = prefSet.findPreference(BUTTON_CDMA_OPTIONS);
         Preference gsmOptions = prefSet.findPreference(BUTTON_GSM_UMTS_OPTIONS);
-        if (getResources().getBoolean(R.bool.world_phone)) {
+        if (carrierConfig.getBoolean(CarrierConfigManager.BOOL_WORLD_PHONE)) {
             cdmaOptions.setIntent(mSubscriptionInfoHelper.getIntent(CdmaCallOptions.class));
             gsmOptions.setIntent(mSubscriptionInfoHelper.getIntent(GsmUmtsCallOptions.class));
         } else {
@@ -239,13 +242,13 @@ public class CallFeaturesSetting extends PreferenceActivity
                 if (phoneType == PhoneConstants.PHONE_TYPE_CDMA) {
                     prefSet.removePreference(fdnButton);
 
-                    if (!getResources().getBoolean(R.bool.config_voice_privacy_disable)) {
+                    if (!carrierConfig.getBoolean(CarrierConfigManager.BOOL_VOICE_PRIVACY_DISABLE)) {
                         addPreferencesFromResource(R.xml.cdma_call_privacy);
                     }
                 } else if (phoneType == PhoneConstants.PHONE_TYPE_GSM) {
                     fdnButton.setIntent(mSubscriptionInfoHelper.getIntent(FdnSetting.class));
 
-                    if (getResources().getBoolean(R.bool.config_additional_call_setting)) {
+                    if (carrierConfig.getBoolean(CarrierConfigManager.BOOL_ADDITIONAL_CALL_SETTING)) {
                         addPreferencesFromResource(R.xml.gsm_umts_call_options);
                         GsmUmtsCallOptions.init(prefSet, mSubscriptionInfoHelper);
                     }
