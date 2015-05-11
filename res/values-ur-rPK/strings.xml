@@ -339,7 +339,7 @@
     <string name="fdn_list_with_label" msgid="7437232552210469217">"‏FDN فہرست (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="fdn_activation" msgid="2156479741307463576">"‏FDN کو فعال کرنا"</string>
     <string name="fdn_enabled" msgid="5238109009915521240">"فکسڈ ڈائلنگ نمبرز فعال ہیں"</string>
-    <string name="fdn_disabled" msgid="4700049736675368279">"فکسڈ ڈائلنگ نمبرز غیر فعال ہوگئے ہیں"</string>
+    <string name="fdn_disabled" msgid="4700049736675368279">"فکسڈ ڈائلنگ نمبرز غیر فعال ہیں"</string>
     <string name="enable_fdn" msgid="3740191529180493851">"‏FDN فعال کریں"</string>
     <string name="disable_fdn" msgid="7944020890722540616">"‏FDN غیر فعال کریں"</string>
     <string name="change_pin2" msgid="2153563695382176676">"‏PIN2 تبدیل کریں"</string>
@@ -479,8 +479,8 @@
     <string name="hac_mode_title" msgid="8740268574688743289">"سماعتی آلات"</string>
     <string name="hac_mode_summary" msgid="6833851160514929341">"سماعتی آلہ کی ہم آہنگی آن کریں"</string>
   <string-array name="tty_mode_entries">
-    <item msgid="512950011423868021">"‏TTY آف ہے"</item>
-    <item msgid="3971695875449640648">"‏TTY پورا ہے"</item>
+    <item msgid="512950011423868021">"‏TTY آف"</item>
+    <item msgid="3971695875449640648">"‏TTY مکمل"</item>
     <item msgid="1937509904407445684">"TTY HCO"</item>
     <item msgid="5644925873488772224">"TTY VCO"</item>
   </string-array>
