@@ -28,6 +28,7 @@ import android.preference.CheckBoxPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceScreen;
+import android.telephony.CarrierConfigManager;
 import android.util.Log;
 import android.view.MenuItem;
 
@@ -49,9 +50,16 @@ public class CdmaCallOptions extends PreferenceActivity {
                 getActionBar(), getResources(), R.string.labelCdmaMore_with_label);
 
         mButtonVoicePrivacy = (CheckBoxPreference) findPreference(BUTTON_VP_KEY);
+        Bundle carrierConfig;
+        if (subInfoHelper.hasSubId()) {
+            carrierConfig = PhoneGlobals.getInstance().getCarrierConfigForSubId(
+                    subInfoHelper.getSubId());
+        } else {
+            carrierConfig = PhoneGlobals.getInstance().getCarrierConfig();
+        }
         if (subInfoHelper.getPhone().getPhoneType() != PhoneConstants.PHONE_TYPE_CDMA
-                || getResources().getBoolean(R.bool.config_voice_privacy_disable)) {
-            //disable the entire screen
+                || carrierConfig.getBoolean(CarrierConfigManager.BOOL_VOICE_PRIVACY_DISABLE)) {
+            // disable the entire screen
             getPreferenceScreen().setEnabled(false);
         }
     }
