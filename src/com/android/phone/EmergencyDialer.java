@@ -31,6 +31,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.telecom.PhoneAccount;
+import android.telephony.CarrierConfigManager;
 import android.telephony.PhoneNumberUtils;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -198,8 +199,8 @@ public class EmergencyDialer extends Activity implements View.OnClickListener,
         mDialButton = findViewById(R.id.floating_action_button);
 
         // Check whether we should show the onscreen "Dial" button and co.
-        Resources res = getResources();
-        if (res.getBoolean(R.bool.config_show_onscreen_dial_button)) {
+        Bundle carrierConfig = PhoneGlobals.getInstance().getCarrierConfig();
+        if (carrierConfig.getBoolean(CarrierConfigManager.BOOL_SHOW_ONSCREEN_DIAL_BUTTON)) {
             mDialButton.setOnClickListener(this);
         } else {
             mDialButton.setVisibility(View.GONE);
@@ -238,7 +239,7 @@ public class EmergencyDialer extends Activity implements View.OnClickListener,
         registerReceiver(mBroadcastReceiver, intentFilter);
 
         try {
-            mHaptic.init(this, res.getBoolean(R.bool.config_enable_dialer_key_vibration));
+            mHaptic.init(this, carrierConfig.getBoolean(CarrierConfigManager.BOOL_ENABLE_DIALER_KEY_VIBRATION));
         } catch (Resources.NotFoundException nfe) {
              Log.e(LOG_TAG, "Vibrate control bool missing.", nfe);
         }
