@@ -19,7 +19,7 @@
  * syncing voicemails to and from a visual voicemail server.
  */
 
-package com.android.phone.vvm.omtp;
+package com.android.phone.vvm.omtp.sync;
 
 import android.accounts.Account;
 import android.app.Service;
@@ -35,7 +35,6 @@ import android.provider.VoicemailContract;
 import android.telecom.Voicemail;
 
 import com.android.phone.vvm.omtp.imap.ImapHelper;
-import com.android.phone.vvm.omtp.sync.VoicemailsQueryHelper;
 
 import java.util.HashMap;
 import java.util.List;
