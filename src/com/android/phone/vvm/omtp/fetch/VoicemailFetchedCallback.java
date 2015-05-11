@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License
  */
-package com.android.phone.vvm.omtp.sync;
+package com.android.phone.vvm.omtp.fetch;
 
 import android.content.ContentResolver;
 import android.content.ContentValues;

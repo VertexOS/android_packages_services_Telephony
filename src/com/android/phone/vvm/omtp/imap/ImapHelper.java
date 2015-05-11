@@ -37,7 +37,7 @@ import com.android.phone.common.mail.store.ImapStore;
 import com.android.phone.common.mail.store.imap.ImapConstants;
 import com.android.phone.common.mail.utils.LogUtils;
 import com.android.phone.vvm.omtp.OmtpConstants;
-import com.android.phone.vvm.omtp.sync.VoicemailFetchedCallback;
+import com.android.phone.vvm.omtp.fetch.VoicemailFetchedCallback;
 
 import libcore.io.IoUtils;
 

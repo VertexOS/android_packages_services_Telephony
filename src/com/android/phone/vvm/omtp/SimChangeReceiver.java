@@ -29,6 +29,7 @@ import com.android.internal.telephony.IccCardConstants;
 import com.android.internal.telephony.PhoneConstants;
 import com.android.internal.telephony.TelephonyIntents;
 import com.android.phone.vvm.omtp.sms.OmtpMessageSender;
+import com.android.phone.vvm.omtp.sync.OmtpVvmSyncAccountManager;
 
 /**
  * This class listens to the {@link CarrierConfigManager#ACTION_CARRIER_CONFIG_CHANGED} and

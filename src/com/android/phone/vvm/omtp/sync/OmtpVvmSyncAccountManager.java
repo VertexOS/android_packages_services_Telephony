@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License
  */
-package com.android.phone.vvm.omtp;
+package com.android.phone.vvm.omtp.sync;
 
 import android.accounts.Account;
 import android.accounts.AccountManager;
@@ -25,6 +25,7 @@ import android.telephony.SubscriptionManager;
 import android.util.Log;
 
 import com.android.phone.PhoneUtils;
+import com.android.phone.vvm.omtp.OmtpConstants;
 import com.android.phone.vvm.omtp.sms.StatusMessage;
 
 /**
