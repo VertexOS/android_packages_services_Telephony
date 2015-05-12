@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License
  */
-package com.android.phone.vvm.omtp.sync;
+package com.android.phone.vvm.omtp.fetch;
 
 import android.accounts.Account;
 import android.content.BroadcastReceiver;
@@ -28,8 +28,8 @@ import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.android.phone.vvm.omtp.OmtpVvmSyncAccountManager;
 import com.android.phone.vvm.omtp.imap.ImapHelper;
+import com.android.phone.vvm.omtp.sync.OmtpVvmSyncAccountManager;
 
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;

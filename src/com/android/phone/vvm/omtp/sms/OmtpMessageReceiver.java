@@ -31,8 +31,8 @@ import android.util.Log;
 import com.android.internal.telephony.PhoneConstants;
 import com.android.phone.PhoneUtils;
 import com.android.phone.vvm.omtp.OmtpConstants;
-import com.android.phone.vvm.omtp.OmtpVvmSyncAccountManager;
-import com.android.phone.vvm.omtp.OmtpVvmSyncService.OmtpVvmSyncAdapter;
+import com.android.phone.vvm.omtp.sync.OmtpVvmSyncAccountManager;
+import com.android.phone.vvm.omtp.sync.OmtpVvmSyncService.OmtpVvmSyncAdapter;
 
 /**
  * Receive SMS messages and send for processing by the OMTP visual voicemail source.
