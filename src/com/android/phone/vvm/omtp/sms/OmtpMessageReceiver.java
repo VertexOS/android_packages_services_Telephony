@@ -53,7 +53,9 @@ public class OmtpMessageReceiver extends BroadcastReceiver {
         StringBuilder messageBody = new StringBuilder();
 
         for (int i = 0; i < messages.length; i++) {
-            messageBody.append(messages[i].getMessageBody());
+            if (messages[i].mWrappedSmsMessage != null) {
+                messageBody.append(messages[i].getMessageBody());
+            }
         }
 
         WrappedMessageData messageData = OmtpSmsParser.parse(messageBody.toString());
