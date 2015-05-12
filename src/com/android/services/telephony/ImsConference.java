@@ -580,7 +580,6 @@ public class ImsConference extends Conference {
         }
 
         participant.removeConnectionListener(mParticipantListener);
-        participant.getEndpoint();
         mConferenceParticipantConnections.remove(participant.getEndpoint());
     }
 
@@ -593,8 +592,7 @@ public class ImsConference extends Conference {
         for (ConferenceParticipantConnection connection :
                 mConferenceParticipantConnections.values()) {
 
-            removeConferenceParticipant(connection);
-
+            connection.removeConnectionListener(mParticipantListener);
             // Mark disconnect cause as cancelled to ensure that the call is not logged in the
             // call log.
             connection.setDisconnected(new DisconnectCause(DisconnectCause.CANCELED));
