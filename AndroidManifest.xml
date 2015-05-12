@@ -631,7 +631,7 @@
             </intent-filter>
         </receiver>
         <service
-            android:name="com.android.phone.vvm.omtp.OmtpVvmSyncService"
+            android:name="com.android.phone.vvm.omtp.sync.OmtpVvmSyncService"
             android:exported="true"
             android:process=":sync">
             <intent-filter>
@@ -657,7 +657,7 @@
             </intent-filter>
        </receiver>
        <receiver
-           android:name="com.android.phone.vvm.omtp.sync.FetchVoicemailReceiver"
+           android:name="com.android.phone.vvm.omtp.fetch.FetchVoicemailReceiver"
            android:exported="true">
            <intent-filter>
               <action android:name="android.intent.action.FETCH_VOICEMAIL" />
