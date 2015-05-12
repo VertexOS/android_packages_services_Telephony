@@ -18,10 +18,12 @@ package com.android.phone.vvm.omtp.imap;
 import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.content.Context;
+import android.telecom.PhoneAccountHandle;
 import android.telecom.Voicemail;
 
 import android.util.Base64;
 
+import com.android.phone.PhoneUtils;
 import com.android.phone.common.mail.Address;
 import com.android.phone.common.mail.Body;
 import com.android.phone.common.mail.BodyPart;
@@ -57,10 +59,12 @@ public class ImapHelper {
     private ImapFolder mFolder;
     private ImapStore mImapStore;
     private Context mContext;
+    private PhoneAccountHandle mPhoneAccount;
 
     public ImapHelper(Context context, Account account) {
         try {
             mContext = context;
+            mPhoneAccount = PhoneUtils.makePstnPhoneAccountHandle(account.name);
             TempDirectory.setTempDirectory(context);
 
             AccountManager accountManager = AccountManager.get(context);
@@ -260,6 +264,7 @@ public class ImapHelper {
                     boolean isRead = Arrays.asList(message.getFlags()).contains(Flag.SEEN);
 
                     return Voicemail.createForInsertion(time, number)
+                            .setPhoneAccount(mPhoneAccount)
                             .setSourcePackage(mContext.getPackageName())
                             .setSourceData(message.getUid())
                             .setIsRead(isRead)
