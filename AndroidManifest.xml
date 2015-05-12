@@ -587,6 +587,7 @@
             <intent-filter >
                 <!-- DO NOT RENAME. There are existing apps which use this string. -->
                 <action android:name="com.android.phone.CallFeaturesSetting.ADD_VOICEMAIL" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
 
