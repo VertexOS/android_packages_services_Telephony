@@ -40,6 +40,7 @@ import android.os.AsyncResult;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.os.PersistableBundle;
 import android.os.SystemProperties;
 import android.os.UserHandle;
 import android.os.UserManager;
@@ -57,10 +58,10 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TabHost;
 import android.widget.TabHost.OnTabChangeListener;
 import android.widget.TabHost.TabContentFactory;
 import android.widget.TabHost.TabSpec;
+import android.widget.TabHost;
 
 /**
  * "Mobile network settings" screen.  This preference screen lets you
@@ -536,7 +537,8 @@ public class MobileNetworkSettings extends PreferenceActivity
                 android.provider.Settings.Global.PREFERRED_NETWORK_MODE + phoneSubId,
                 preferredNetworkMode);
 
-        Bundle carrierConfig = PhoneGlobals.getInstance().getCarrierConfigForSubId(mPhone.getSubId());
+        PersistableBundle carrierConfig =
+                PhoneGlobals.getInstance().getCarrierConfigForSubId(mPhone.getSubId());
         mIsGlobalCdma = isLteOnCdma
                 && carrierConfig.getBoolean(CarrierConfigManager.BOOL_SHOW_CDMA);
         int shouldHideCarrierSettings = android.provider.Settings.Global.getInt(

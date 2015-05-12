@@ -27,7 +27,7 @@ import android.content.SharedPreferences;
 import android.content.pm.UserInfo;
 import android.content.res.Resources;
 import android.net.Uri;
-import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.os.SystemProperties;
 import android.os.UserHandle;
 import android.os.UserManager;
@@ -387,7 +387,7 @@ public class NotificationMgr {
             }
 
             Resources res = mContext.getResources();
-            Bundle carrierConfig = PhoneGlobals.getInstance().getCarrierConfigForSubId(
+            PersistableBundle carrierConfig = PhoneGlobals.getInstance().getCarrierConfigForSubId(
                     mPhone.getSubId());
             Notification.Builder builder = new Notification.Builder(mContext);
             builder.setSmallIcon(resId)

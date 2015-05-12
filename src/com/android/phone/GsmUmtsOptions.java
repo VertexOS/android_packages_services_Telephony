@@ -19,7 +19,7 @@ package com.android.phone;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
-import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceScreen;
@@ -66,7 +66,7 @@ public class GsmUmtsOptions {
         } else {
             log("Not a CDMA phone");
             Resources res = mPrefActivity.getResources();
-            Bundle carrierConfig = PhoneGlobals.getInstance().getCarrierConfigForSubId(mSubId);
+            PersistableBundle carrierConfig = PhoneGlobals.getInstance().getCarrierConfigForSubId(mSubId);
 
             // Determine which options to display. For GSM these are defaulted to true in
             // CarrierConfigManager, but they maybe overriden by DefaultCarrierConfigService or a

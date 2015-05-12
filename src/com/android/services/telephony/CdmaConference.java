@@ -18,7 +18,7 @@ package com.android.services.telephony;
 
 import android.content.Context;
 import android.content.res.Resources;
-import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.telecom.Conference;
 import android.telecom.Connection;
 import android.telecom.PhoneAccountHandle;
@@ -169,7 +169,7 @@ public class CdmaConference extends Conference {
         if (context != null) {
             CarrierConfigManager configManager = (CarrierConfigManager) context.getSystemService(
                     Context.CARRIER_CONFIG_SERVICE);
-            Bundle b = configManager.getConfig();
+            PersistableBundle b = configManager.getConfig();
             if (b != null) {
                 supportSwapAfterMerge = b.getBoolean(CarrierConfigManager.BOOL_SUPPORT_SWAP_AFTER_MERGE);
                 Log.d(this, "Current network support swap after call merged capability is "
