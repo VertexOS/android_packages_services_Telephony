@@ -34,8 +34,6 @@ import com.android.phone.vvm.omtp.OmtpConstants;
 import com.android.phone.vvm.omtp.OmtpVvmSyncAccountManager;
 import com.android.phone.vvm.omtp.OmtpVvmSyncService.OmtpVvmSyncAdapter;
 
-import java.io.UnsupportedEncodingException;
-
 /**
  * Receive SMS messages and send for processing by the OMTP visual voicemail source.
  */
@@ -96,7 +94,7 @@ public class OmtpMessageReceiver extends BroadcastReceiver {
             case OmtpConstants.MAILBOX_UPDATE:
                 // Needs a total resync
                 Bundle bundle = new Bundle();
-                bundle.putBoolean(OmtpVvmSyncAdapter.SYNC_EXTRAS_CLEAR_AND_RELOAD, true);
+                bundle.putBoolean(OmtpVvmSyncAdapter.SYNC_EXTRAS_DOWNLOAD, true);
                 ContentResolver.requestSync(
                         new Account(mPhoneAccount.getId(), OmtpVvmSyncAccountManager.ACCOUNT_TYPE),
                         VoicemailContract.AUTHORITY, bundle);
@@ -105,7 +103,7 @@ public class OmtpMessageReceiver extends BroadcastReceiver {
                 // Not implemented in V1
                 break;
            default:
-               Log.e(TAG, "Unrecognized sync trigger event: "+message.getSyncTriggerEvent());
+               Log.e(TAG, "Unrecognized sync trigger event: " + message.getSyncTriggerEvent());
                break;
         }
     }
@@ -126,7 +124,7 @@ public class OmtpMessageReceiver extends BroadcastReceiver {
                     VoicemailContract.Status.NOTIFICATION_CHANNEL_STATE_OK);
 
             Bundle bundle = new Bundle();
-            bundle.putBoolean(OmtpVvmSyncAdapter.SYNC_EXTRAS_CLEAR_AND_RELOAD, true);
+            bundle.putBoolean(OmtpVvmSyncAdapter.SYNC_EXTRAS_DOWNLOAD, true);
             bundle.putBoolean(ContentResolver.SYNC_EXTRAS_UPLOAD, true);
             ContentResolver.requestSync(account, VoicemailContract.AUTHORITY, bundle);
         }
