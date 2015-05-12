@@ -27,6 +27,7 @@ import android.content.SharedPreferences;
 import android.content.pm.UserInfo;
 import android.content.res.Resources;
 import android.net.Uri;
+import android.os.Bundle;
 import android.os.SystemProperties;
 import android.os.UserHandle;
 import android.os.UserManager;
@@ -36,6 +37,7 @@ import android.provider.Settings;
 import android.telecom.PhoneAccount;
 import android.telecom.PhoneAccountHandle;
 import android.telecom.TelecomManager;
+import android.telephony.CarrierConfigManager;
 import android.telephony.PhoneNumberUtils;
 import android.telephony.ServiceState;
 import android.telephony.SubscriptionInfo;
@@ -372,7 +374,7 @@ public class NotificationMgr {
                 }
                 intent = new Intent(
                         Intent.ACTION_CALL, Uri.fromParts(PhoneAccount.SCHEME_VOICEMAIL, "",
-                        null));
+                                null));
                 intent.putExtra(TelecomManager.EXTRA_PHONE_ACCOUNT_HANDLE, phoneAccountHandle);
             }
 
@@ -385,6 +387,8 @@ public class NotificationMgr {
             }
 
             Resources res = mContext.getResources();
+            Bundle carrierConfig = PhoneGlobals.getInstance().getCarrierConfigForSubId(
+                    mPhone.getSubId());
             Notification.Builder builder = new Notification.Builder(mContext);
             builder.setSmallIcon(resId)
                     .setWhen(System.currentTimeMillis())
@@ -394,7 +398,8 @@ public class NotificationMgr {
                     .setContentIntent(pendingIntent)
                     .setSound(ringtoneUri)
                     .setColor(res.getColor(R.color.dialer_theme_color))
-                    .setOngoing(res.getBoolean(R.bool.voicemail_notification_persistent));
+                    .setOngoing(carrierConfig.getBoolean(
+                            CarrierConfigManager.BOOL_VOICEMAIL_NOTIFICATION_PERSISTENT));
 
             if (VoicemailNotificationSettingsUtil.isVibrationEnabled(phone)) {
                 builder.setDefaults(Notification.DEFAULT_VIBRATE);
@@ -407,7 +412,7 @@ public class NotificationMgr {
                 final UserHandle userHandle = user.getUserHandle();
                 if (!mUserManager.hasUserRestriction(
                         UserManager.DISALLOW_OUTGOING_CALLS, userHandle)
-                            && !user.isManagedProfile()) {
+                        && !user.isManagedProfile()) {
                     mNotificationManager.notifyAsUser(
                             Integer.toString(subId) /* tag */,
                             VOICEMAIL_NOTIFICATION,
