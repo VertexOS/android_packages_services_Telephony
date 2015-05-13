@@ -26,16 +26,16 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.pm.PackageManager;
 import android.content.ServiceConnection;
+import android.content.pm.PackageManager;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.AsyncResult;
 import android.os.Binder;
-import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
+import android.os.PersistableBundle;
 import android.os.RemoteException;
 import android.os.ServiceManager;
 import android.os.UserHandle;
@@ -75,9 +75,9 @@ public class CarrierConfigLoader extends ICarrierConfigLoader.Stub {
     // The context for phone app, passed from PhoneGlobals.
     private Context mContext;
     // Carrier configs from default app, indexed by phoneID.
-    private Bundle[] mConfigFromDefaultApp;
+    private PersistableBundle[] mConfigFromDefaultApp;
     // Carrier configs from privileged carrier config app, indexed by phoneID.
-    private Bundle[] mConfigFromCarrierApp;
+    private PersistableBundle[] mConfigFromCarrierApp;
     // Service connection for binding to config app.
     private ConfigServiceConnection[] mServiceConnection;
 
@@ -117,7 +117,7 @@ public class CarrierConfigLoader extends ICarrierConfigLoader.Stub {
             log("mHandler: " + msg.what + " phoneId: " + phoneId);
             CarrierIdentifier carrierId;
             ConfigServiceConnection conn;
-            Bundle config;
+            PersistableBundle config;
             switch (msg.what) {
                 case EVENT_CLEAR_CONFIG:
                     mConfigFromDefaultApp[phoneId] = null;
@@ -220,8 +220,8 @@ public class CarrierConfigLoader extends ICarrierConfigLoader.Stub {
         mContext.registerReceiver(mReceiver, triggers);
 
         int numPhones = TelephonyManager.from(context).getPhoneCount();
-        mConfigFromDefaultApp = new Bundle[numPhones];
-        mConfigFromCarrierApp = new Bundle[numPhones];
+        mConfigFromDefaultApp = new PersistableBundle[numPhones];
+        mConfigFromCarrierApp = new PersistableBundle[numPhones];
         mServiceConnection = new ConfigServiceConnection[numPhones];
         // Make this service available through ServiceManager.
         ServiceManager.addService(Context.CARRIER_CONFIG_SERVICE, this);
@@ -291,11 +291,11 @@ public class CarrierConfigLoader extends ICarrierConfigLoader.Stub {
     }
 
     @Override
-    public Bundle getConfigForSubId(int subId) {
+    public PersistableBundle getConfigForSubId(int subId) {
         int phoneId = SubscriptionManager.getPhoneId(subId);
-        Bundle retConfig = CarrierConfigManager.getDefaultConfig();
+        PersistableBundle retConfig = CarrierConfigManager.getDefaultConfig();
         if (SubscriptionManager.isValidPhoneId(phoneId)) {
-            Bundle config = mConfigFromDefaultApp[phoneId];
+            PersistableBundle config = mConfigFromDefaultApp[phoneId];
             if (config != null) retConfig.putAll(config);
             config = mConfigFromCarrierApp[phoneId];
             if (config != null) retConfig.putAll(config);
