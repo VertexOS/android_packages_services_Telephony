@@ -540,7 +540,7 @@ public class MobileNetworkSettings extends PreferenceActivity
         PersistableBundle carrierConfig =
                 PhoneGlobals.getInstance().getCarrierConfigForSubId(mPhone.getSubId());
         mIsGlobalCdma = isLteOnCdma
-                && carrierConfig.getBoolean(CarrierConfigManager.BOOL_SHOW_CDMA);
+                && carrierConfig.getBoolean(CarrierConfigManager.BOOL_SHOW_CDMA_CHOICES);
         int shouldHideCarrierSettings = android.provider.Settings.Global.getInt(
                 mPhone.getContext().getContentResolver(),
                 android.provider.Settings.Global.HIDE_CARRIER_NETWORK_SETTINGS, 0);
