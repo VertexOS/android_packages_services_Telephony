@@ -18,7 +18,7 @@ package com.android.phone.vvm.omtp;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.telephony.CarrierConfigManager;
 import android.telephony.SmsManager;
 import android.telephony.SubscriptionManager;
@@ -78,7 +78,7 @@ public class SimChangeReceiver extends BroadcastReceiver {
             return;
         }
 
-        Bundle carrierConfig = carrierConfigManager.getConfigForSubId(subId);
+        PersistableBundle carrierConfig = carrierConfigManager.getConfigForSubId(subId);
         if (carrierConfig == null) {
             Log.w(TAG, "Empty carrier config.");
             return;

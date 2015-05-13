@@ -20,7 +20,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.net.Uri;
-import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.os.SystemProperties;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
@@ -66,7 +66,7 @@ public class CdmaOptions {
 
         mButtonAPNExpand = (PreferenceScreen) mPrefScreen.findPreference(BUTTON_APN_EXPAND_KEY);
         boolean removedAPNExpand = false;
-        Bundle carrierConfig = PhoneGlobals.getInstance().getCarrierConfigForSubId(mPhone.getSubId());
+        PersistableBundle carrierConfig = PhoneGlobals.getInstance().getCarrierConfigForSubId(mPhone.getSubId());
         // Some CDMA carriers want the APN settings.
         if (!carrierConfig.getBoolean(CarrierConfigManager.BOOL_SHOW_APN_SETTING_CDMA) && mButtonAPNExpand != null) {
             mPrefScreen.removePreference(mButtonAPNExpand);

@@ -23,6 +23,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.os.SystemProperties;
 import android.provider.Settings;
 import android.telephony.CarrierConfigManager;
@@ -72,7 +73,7 @@ public class InCallScreenShowActivation extends Activity {
 
         if (intent.getAction().equals(OtaUtils.ACTION_PERFORM_CDMA_PROVISIONING)) {
 
-            Bundle carrierConfig = app.getCarrierConfig();
+            PersistableBundle carrierConfig = app.getCarrierConfig();
             boolean usesHfa = carrierConfig.getBoolean(CarrierConfigManager.BOOL_USE_HFA_FOR_PROVISIONING);
             if (usesHfa) {
                 Log.i(LOG_TAG, "Starting Hfa from ACTION_PERFORM_CDMA_PROVISIONING");
