@@ -18,6 +18,7 @@ package com.android.services.telephony;
 
 import android.content.ComponentName;
 import android.content.Context;
+import android.graphics.drawable.Icon;
 import android.net.Uri;
 import android.os.AsyncResult;
 import android.os.Handler;
@@ -969,9 +970,10 @@ abstract class TelephonyConnection extends Connection {
 
             Context context = getPhone().getContext();
             setStatusHints(new StatusHints(
-                    new ComponentName(context, TelephonyConnectionService.class),
                     context.getString(labelId),
-                    R.drawable.ic_signal_wifi_4_bar_24dp,
+                    Icon.createWithResource(
+                            context.getResources(),
+                            R.drawable.ic_signal_wifi_4_bar_24dp),
                     null /* extras */));
         } else {
             setStatusHints(null);
