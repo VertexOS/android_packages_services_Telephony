@@ -39,6 +39,7 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.IPowerManager;
 import android.os.Message;
+import android.os.PersistableBundle;
 import android.os.PowerManager;
 import android.os.RemoteException;
 import android.os.ServiceManager;
@@ -511,11 +512,11 @@ public class PhoneGlobals extends ContextWrapper {
         return mCM;
     }
 
-    /* package */ Bundle getCarrierConfig() {
+    /* package */ PersistableBundle getCarrierConfig() {
         return getCarrierConfigForSubId(SubscriptionManager.getDefaultSubId());
     }
 
-    /* package */ Bundle getCarrierConfigForSubId(int subId) {
+    /* package */ PersistableBundle getCarrierConfigForSubId(int subId) {
         return configLoader.getConfigForSubId(subId);
     }
 

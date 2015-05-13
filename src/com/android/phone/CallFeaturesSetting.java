@@ -26,6 +26,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.os.UserHandle;
 import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
@@ -211,7 +212,8 @@ public class CallFeaturesSetting extends PreferenceActivity
 
         mEnableVideoCalling = (CheckBoxPreference) findPreference(ENABLE_VIDEO_CALLING_KEY);
 
-        Bundle carrierConfig = PhoneGlobals.getInstance().getCarrierConfigForSubId(mPhone.getSubId());
+        PersistableBundle carrierConfig =
+                PhoneGlobals.getInstance().getCarrierConfigForSubId(mPhone.getSubId());
 
         if (carrierConfig.getBoolean(CarrierConfigManager.BOOL_AUTO_RETRY_ENABLED)) {
             mButtonAutoRetry.setOnPreferenceChangeListener(this);

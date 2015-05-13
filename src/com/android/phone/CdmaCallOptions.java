@@ -24,6 +24,7 @@ import android.os.AsyncResult;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.os.PersistableBundle;
 import android.preference.CheckBoxPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
@@ -50,7 +51,7 @@ public class CdmaCallOptions extends PreferenceActivity {
                 getActionBar(), getResources(), R.string.labelCdmaMore_with_label);
 
         mButtonVoicePrivacy = (CheckBoxPreference) findPreference(BUTTON_VP_KEY);
-        Bundle carrierConfig;
+        PersistableBundle carrierConfig;
         if (subInfoHelper.hasSubId()) {
             carrierConfig = PhoneGlobals.getInstance().getCarrierConfigForSubId(
                     subInfoHelper.getSubId());
