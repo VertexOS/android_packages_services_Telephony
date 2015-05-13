@@ -2382,15 +2382,20 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     @Override
     public void factoryReset(int subId) {
         enforceConnectivityInternalPermission();
-        if (SubscriptionManager.isUsableSubIdValue(subId)) {
-            // Enable data
-            setDataEnabled(subId, true);
-            // Set network selection mode to automatic
-            setNetworkSelectionModeAutomatic(subId);
-            // Set preferred mobile network type to the best available
-            setPreferredNetworkType(subId, Phone.PREFERRED_NT_MODE);
-            // Turn off roaming
-            SubscriptionManager.from(mApp).setDataRoaming(0, subId);
+        final long identity = Binder.clearCallingIdentity();
+        try {
+            if (SubscriptionManager.isUsableSubIdValue(subId)) {
+                // Enable data
+                setDataEnabled(subId, true);
+                // Set network selection mode to automatic
+                setNetworkSelectionModeAutomatic(subId);
+                // Set preferred mobile network type to the best available
+                setPreferredNetworkType(subId, Phone.PREFERRED_NT_MODE);
+                // Turn off roaming
+                SubscriptionManager.from(mApp).setDataRoaming(0, subId);
+            }
+        } finally {
+            Binder.restoreCallingIdentity(identity);
         }
     }
 }
