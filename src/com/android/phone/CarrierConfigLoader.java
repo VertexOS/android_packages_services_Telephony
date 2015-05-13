@@ -26,10 +26,12 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
 import android.content.ServiceConnection;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.AsyncResult;
+import android.os.Binder;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
@@ -52,6 +54,8 @@ import com.android.internal.telephony.PhoneConstants;
 import com.android.internal.telephony.PhoneFactory;
 import com.android.internal.telephony.TelephonyIntents;
 
+import java.io.FileDescriptor;
+import java.io.PrintWriter;
 import java.util.List;
 
 /**
@@ -326,6 +330,22 @@ public class CarrierConfigLoader extends ICarrierConfigLoader.Stub {
             case IccCardConstants.INTENT_VALUE_ICC_LOCKED:
                 mHandler.sendMessage(mHandler.obtainMessage(EVENT_UPDATE_CONFIG, phoneId));
                 break;
+        }
+    }
+
+    @Override
+    public void dump(FileDescriptor fd, PrintWriter pw, String[] args) {
+        if (mContext.checkCallingOrSelfPermission(android.Manifest.permission.DUMP)
+                != PackageManager.PERMISSION_GRANTED) {
+            pw.println("Permission Denial: can't dump carrierconfig from from pid="
+                    + Binder.getCallingPid() + ", uid=" + Binder.getCallingUid());
+            return;
+        }
+        pw.println("CarrierConfigLoader: " + this);
+        for (int i = 0; i < TelephonyManager.getDefault().getPhoneCount(); i++) {
+            pw.println("  Phone Id=" + i);
+            pw.println("  mConfigFromDefaultApp=" + mConfigFromDefaultApp[i]);
+            pw.println("  mConfigFromCarrierApp=" + mConfigFromCarrierApp[i]);
         }
     }
 
