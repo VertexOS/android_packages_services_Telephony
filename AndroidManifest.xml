@@ -98,7 +98,8 @@
     <uses-permission android:name="android.permission.DUMP" />
     <uses-permission android:name="android.permission.REGISTER_CALL_PROVIDER" />
     <uses-permission android:name="android.permission.REGISTER_SIM_SUBSCRIPTION" />
-    <uses-permission android:name="android.permission.BIND_CARRIER_CONFIG_SERVICE" />
+    <uses-permission android:name="android.permission.BIND_CARRIER_SERVICES" />
+    <!-- BIND_CARRIER_MESSAGING_SERVICE has been deprecated in favor of BIND_CARRIER_SERVICES. -->
     <uses-permission android:name="android.permission.BIND_CARRIER_MESSAGING_SERVICE" />
     <uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />
     <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
