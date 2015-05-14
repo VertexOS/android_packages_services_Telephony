@@ -20,6 +20,7 @@ package com.android.phone;
 import static android.Manifest.permission.READ_PHONE_STATE;
 import static com.android.internal.telephony.uicc.IccCardProxy.ACTION_INTERNAL_SIM_STATE_CHANGED;
 
+import android.annotation.NonNull;
 import android.app.ActivityManagerNative;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
@@ -291,7 +292,7 @@ public class CarrierConfigLoader extends ICarrierConfigLoader.Stub {
     }
 
     @Override
-    public PersistableBundle getConfigForSubId(int subId) {
+    public @NonNull PersistableBundle getConfigForSubId(int subId) {
         int phoneId = SubscriptionManager.getPhoneId(subId);
         PersistableBundle retConfig = CarrierConfigManager.getDefaultConfig();
         if (SubscriptionManager.isValidPhoneId(phoneId)) {
