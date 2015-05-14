@@ -20,10 +20,10 @@ import com.android.internal.telephony.imsphone.ImsPhoneConnection;
 
 import android.net.Uri;
 import android.telecom.Conference;
+import android.telecom.Conferenceable;
 import android.telecom.Connection;
 import android.telecom.ConnectionService;
 import android.telecom.DisconnectCause;
-import android.telecom.IConferenceable;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -148,8 +148,8 @@ public class ImsConferenceController {
      */
     private void recalculateConferenceable() {
         Log.v(this, "recalculateConferenceable : %d", mTelephonyConnections.size());
-        List<IConferenceable> activeConnections = new ArrayList<>(mTelephonyConnections.size());
-        List<IConferenceable> backgroundConnections = new ArrayList<>(mTelephonyConnections.size());
+        List<Conferenceable> activeConnections = new ArrayList<>(mTelephonyConnections.size());
+        List<Conferenceable> backgroundConnections = new ArrayList<>(mTelephonyConnections.size());
 
         // Loop through and collect all calls which are active or holding
         for (Connection connection : mTelephonyConnections) {
@@ -208,7 +208,7 @@ public class ImsConferenceController {
 
         // Go through all the active connections and set the background connections as
         // conferenceable.
-        for (IConferenceable conferenceable : activeConnections) {
+        for (Conferenceable conferenceable : activeConnections) {
             if (conferenceable instanceof Connection) {
                 Connection connection = (Connection) conferenceable;
                 connection.setConferenceables(backgroundConnections);
@@ -217,7 +217,7 @@ public class ImsConferenceController {
 
         // Go through all the background connections and set the active connections as
         // conferenceable.
-        for (IConferenceable conferenceable : backgroundConnections) {
+        for (Conferenceable conferenceable : backgroundConnections) {
             if (conferenceable instanceof Connection) {
                 Connection connection = (Connection) conferenceable;
                 connection.setConferenceables(activeConnections);
