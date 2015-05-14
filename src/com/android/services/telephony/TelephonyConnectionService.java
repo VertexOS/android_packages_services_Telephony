@@ -236,7 +236,8 @@ public class TelephonyConnectionService extends ConnectionService {
         if (phone == null) {
             return Connection.createFailedConnection(
                     DisconnectCauseUtil.toTelecomDisconnectCause(
-                            android.telephony.DisconnectCause.ERROR_UNSPECIFIED));
+                            android.telephony.DisconnectCause.ERROR_UNSPECIFIED,
+                            "Phone is null"));
         }
 
         Call call = phone.getRingingCall();
@@ -275,7 +276,8 @@ public class TelephonyConnectionService extends ConnectionService {
         if (phone == null) {
             return Connection.createFailedConnection(
                     DisconnectCauseUtil.toTelecomDisconnectCause(
-                            android.telephony.DisconnectCause.ERROR_UNSPECIFIED));
+                            android.telephony.DisconnectCause.ERROR_UNSPECIFIED,
+                            "Phone is null"));
         }
 
         final List<com.android.internal.telephony.Connection> allConnections = new ArrayList<>();
