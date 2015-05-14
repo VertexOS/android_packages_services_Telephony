@@ -8,6 +8,7 @@ import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.Icon;
 import android.net.sip.SipManager;
 import android.os.Bundle;
 import android.os.UserHandle;
@@ -398,14 +399,8 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
             accountPreference.setTitle(account.getLabel());
 
             // Add an icon.
-            Drawable icon = account.createIconDrawable(getActivity());
-            if (isSimAccount && !mTelephonyManager.isMultiSimEnabled()) {
-                // If a device is not multi-SIM enabled, then it is unlikely the icon has any
-                // color to it.  In these cases, add a default gray tint.
-                icon.setTint(getResources().getColor(R.color.default_sim_icon_tint_color));
-                icon.setTintMode(PorterDuff.Mode.SRC_ATOP);
-            }
-            accountPreference.setIcon(icon);
+            Icon icon = account.getIcon();
+            accountPreference.setIcon(icon.loadDrawable(getActivity()));
 
             // Add an intent to send the user to the account's settings.
             if (intent != null) {
