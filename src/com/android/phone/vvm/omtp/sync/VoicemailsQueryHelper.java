@@ -23,16 +23,19 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.provider.VoicemailContract;
 import android.provider.VoicemailContract.Voicemails;
+import android.telecom.PhoneAccountHandle;
 import android.telecom.Voicemail;
+import android.util.Log;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 /**
  * Construct a queries to interact with the voicemails table.
  */
 public class VoicemailsQueryHelper {
+    private static final String TAG = "VoicemailsQueryHelper";
+
     final static String[] PROJECTION = new String[] {
             Voicemails._ID,              // 0
             Voicemails.SOURCE_DATA,      // 1
@@ -167,5 +170,57 @@ public class VoicemailsQueryHelper {
         ContentValues contentValues = new ContentValues();
         contentValues.put(Voicemails.IS_READ, "1");
         mContentResolver.update(uri, contentValues, null, null);
+    }
+
+
+    /**
+     * Check if a particular voicemail has already been inserted. If not, insert the new voicemail.
+     * @param voicemail The voicemail to insert.
+     */
+    public void insertIfUnique(Voicemail voicemail) {
+        if (isVoicemailUnique(voicemail)) {
+            VoicemailContract.Voicemails.insert(mContext, voicemail);
+        } else {
+            Log.w(TAG, "Voicemail already exists.");
+        }
+    }
+
+    /**
+     * Voicemail is unique if the tuple of (phone account component name, phone account id, source
+     * data) is unique. If the phone account is missing, we also consider this unique since it's
+     * simply an "unknown" account.
+     * @param voicemail The voicemail to check if it is unique.
+     * @return {@code true} if the voicemail is unique, {@code false} otherwise.
+     */
+    private boolean isVoicemailUnique(Voicemail voicemail) {
+        Cursor cursor = null;
+        PhoneAccountHandle phoneAccount = voicemail.getPhoneAccount();
+        if (phoneAccount != null) {
+            String phoneAccountComponentName = phoneAccount.getComponentName().flattenToString();
+            String phoneAccountId = phoneAccount.getId();
+            String sourceData = voicemail.getSourceData();
+            if (phoneAccountComponentName == null || phoneAccountId == null || sourceData == null) {
+                return true;
+            }
+            try {
+                String whereClause =
+                        Voicemails.PHONE_ACCOUNT_COMPONENT_NAME + "=? AND " +
+                        Voicemails.PHONE_ACCOUNT_ID + "=? AND " + Voicemails.SOURCE_DATA + "=?";
+                String[] whereArgs = { phoneAccountComponentName, phoneAccountId, sourceData };
+                cursor = mContentResolver.query(
+                        mSourceUri, PROJECTION, whereClause, whereArgs, null);
+                if (cursor.getCount() == 0) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+            finally {
+                if (cursor != null) {
+                    cursor.close();
+                }
+            }
+        }
+        return true;
     }
 }
