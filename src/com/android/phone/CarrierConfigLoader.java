@@ -62,7 +62,6 @@ import java.util.List;
 /**
  * CarrierConfigLoader binds to privileged carrier apps to fetch carrier config overlays.
  * TODO: implement persist cache
- * TODO: add gid2 to phone
  * TODO: handle package install/uninstall events
  */
 
@@ -285,7 +284,7 @@ public class CarrierConfigLoader extends ICarrierConfigLoader.Stub {
         if (phone != null) {
             imsi = phone.getSubscriberId();
             gid1 = phone.getGroupIdLevel1();
-            // add gid2 after phone supports it.
+            gid2 = phone.getGroupIdLevel2();
         }
 
         return new CarrierIdentifier(mcc, mnc, spn, imsi, gid1, gid2);
