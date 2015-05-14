@@ -23,7 +23,7 @@ import android.net.Uri;
 import android.os.AsyncResult;
 import android.os.Handler;
 import android.os.Message;
-import android.telecom.AudioState;
+import android.telecom.CallAudioState;
 import android.telecom.ConferenceParticipant;
 import android.telecom.Connection;
 import android.telecom.PhoneAccount;
@@ -295,7 +295,7 @@ abstract class TelephonyConnection extends Connection {
     public abstract TelephonyConnection cloneConnection();
 
     @Override
-    public void onAudioStateChanged(AudioState audioState) {
+    public void onCallAudioStateChanged(CallAudioState audioState) {
         // TODO: update TTY mode.
         if (getPhone() != null) {
             getPhone().setEchoSuppressionEnabled();
