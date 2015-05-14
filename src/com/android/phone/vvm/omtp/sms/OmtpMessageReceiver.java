@@ -33,6 +33,7 @@ import com.android.phone.PhoneUtils;
 import com.android.phone.vvm.omtp.OmtpConstants;
 import com.android.phone.vvm.omtp.sync.OmtpVvmSyncAccountManager;
 import com.android.phone.vvm.omtp.sync.OmtpVvmSyncService.OmtpVvmSyncAdapter;
+import com.android.phone.vvm.omtp.sync.VoicemailsQueryHelper;
 
 /**
  * Receive SMS messages and send for processing by the OMTP visual voicemail source.
@@ -86,12 +87,13 @@ public class OmtpMessageReceiver extends BroadcastReceiver {
             case OmtpConstants.NEW_MESSAGE:
                 Voicemail voicemail = Voicemail.createForInsertion(
                         message.getTimestampMillis(), message.getSender())
+                        .setPhoneAccount(mPhoneAccount)
                         .setSourceData(message.getId())
                         .setDuration(message.getLength())
                         .setSourcePackage(mContext.getPackageName())
                         .build();
-
-                VoicemailContract.Voicemails.insert(mContext, voicemail);
+                VoicemailsQueryHelper queryHelper = new VoicemailsQueryHelper(mContext);
+                queryHelper.insertIfUnique(voicemail);
                 break;
             case OmtpConstants.MAILBOX_UPDATE:
                 // Needs a total resync
