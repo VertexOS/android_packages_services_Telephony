@@ -23,6 +23,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Icon;
 import android.net.Uri;
 import android.net.sip.SipManager;
 import android.net.sip.SipProfile;
@@ -128,7 +129,8 @@ public class SipUtil {
                         | PhoneAccount.CAPABILITY_MULTI_USER)
                 .setAddress(sipUri)
                 .setShortDescription(sipAddress)
-                .setIcon(context, R.drawable.ic_dialer_sip_black_24dp)
+                .setIcon(Icon.createWithResource(
+                        context.getResources(), R.drawable.ic_dialer_sip_black_24dp))
                 .setSupportedUriSchemes(supportedUriSchemes);
 
         return builder.build();
