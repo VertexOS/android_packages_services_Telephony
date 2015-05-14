@@ -21,6 +21,7 @@ import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Icon;
 import android.net.Uri;
 import android.telecom.PhoneAccount;
 import android.telecom.PhoneAccountHandle;
@@ -174,7 +175,7 @@ final class TelecomAccountRegistry {
                     .setSubscriptionAddress(
                             Uri.fromParts(PhoneAccount.SCHEME_TEL, subNumber, null))
                     .setCapabilities(capabilities)
-                    .setIcon(iconBitmap)
+                    .setIcon(iconBitmap == null ? null : Icon.createWithBitmap(iconBitmap))
                     .setHighlightColor(color)
                     .setShortDescription(description)
                     .setSupportedUriSchemes(Arrays.asList(
