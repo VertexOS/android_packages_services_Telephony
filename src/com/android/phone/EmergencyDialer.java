@@ -29,6 +29,7 @@ import android.media.AudioManager;
 import android.media.ToneGenerator;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.provider.Settings;
 import android.telecom.PhoneAccount;
 import android.telephony.CarrierConfigManager;
@@ -199,7 +200,7 @@ public class EmergencyDialer extends Activity implements View.OnClickListener,
         mDialButton = findViewById(R.id.floating_action_button);
 
         // Check whether we should show the onscreen "Dial" button and co.
-        Bundle carrierConfig = PhoneGlobals.getInstance().getCarrierConfig();
+        PersistableBundle carrierConfig = PhoneGlobals.getInstance().getCarrierConfig();
         if (carrierConfig.getBoolean(CarrierConfigManager.BOOL_SHOW_ONSCREEN_DIAL_BUTTON)) {
             mDialButton.setOnClickListener(this);
         } else {

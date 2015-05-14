@@ -21,6 +21,7 @@ import android.os.AsyncResult;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.os.PersistableBundle;
 import android.telephony.CarrierConfigManager;
 import android.text.Editable;
 import android.text.Spannable;
@@ -136,7 +137,7 @@ public class IccNetworkDepersonalizationPanel extends IccPanel {
         // The "Dismiss" button is present in some (but not all) products,
         // based on the "sim_network_unlock_allow_dismiss" resource.
         mDismissButton = (Button) findViewById(R.id.ndp_dismiss);
-        Bundle carrierConfig = PhoneGlobals.getInstance().getCarrierConfig();
+        PersistableBundle carrierConfig = PhoneGlobals.getInstance().getCarrierConfig();
         if (carrierConfig.getBoolean(CarrierConfigManager.BOOL_SIM_NETWORK_UNLOCK_ALLOW_DISMISS)) {
             if (DBG) log("Enabling 'Dismiss' button...");
             mDismissButton.setVisibility(View.VISIBLE);
