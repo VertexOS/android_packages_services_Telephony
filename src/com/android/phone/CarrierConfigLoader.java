@@ -166,8 +166,7 @@ public class CarrierConfigLoader extends ICarrierConfigLoader.Stub {
                                 .asInterface(conn.service);
                         config = configService.getCarrierConfig(carrierId);
                         mConfigFromDefaultApp[phoneId] = config;
-                        mHandler.sendMessage(
-                                mHandler.obtainMessage(EVENT_LOADED_FROM_DEFAULT, phoneId));
+                        sendMessage(obtainMessage(EVENT_LOADED_FROM_DEFAULT, phoneId, -1));
                     } catch (RemoteException ex) {
                         loge("Failed to get carrier config: " + ex.toString());
                     } finally {
@@ -207,8 +206,7 @@ public class CarrierConfigLoader extends ICarrierConfigLoader.Stub {
                                 .asInterface(conn.service);
                         config = configService.getCarrierConfig(carrierId);
                         mConfigFromCarrierApp[phoneId] = config;
-                        mHandler.sendMessage(
-                                mHandler.obtainMessage(EVENT_LOADED_FROM_CARRIER, phoneId));
+                        sendMessage(obtainMessage(EVENT_LOADED_FROM_CARRIER, phoneId, -1));
                     } catch (RemoteException ex) {
                         loge("Failed to get carrier config: " + ex.toString());
                     } finally {
@@ -447,7 +445,7 @@ public class CarrierConfigLoader extends ICarrierConfigLoader.Stub {
     public void reloadCarrierConfigForSubId(int subId) {
         int phoneId = SubscriptionManager.getPhoneId(subId);
         if (SubscriptionManager.isValidPhoneId(phoneId)) {
-            mHandler.sendMessage(mHandler.obtainMessage(EVENT_RELOAD_CONFIG, phoneId));
+            mHandler.sendMessage(mHandler.obtainMessage(EVENT_RELOAD_CONFIG, phoneId, -1));
         } else {
             log("Ignore invalid phoneId: " + phoneId + " for subId: " + subId);
         }
@@ -464,11 +462,11 @@ public class CarrierConfigLoader extends ICarrierConfigLoader.Stub {
             case IccCardConstants.INTENT_VALUE_ICC_ABSENT:
             case IccCardConstants.INTENT_VALUE_ICC_CARD_IO_ERROR:
             case IccCardConstants.INTENT_VALUE_ICC_UNKNOWN:
-                mHandler.sendMessage(mHandler.obtainMessage(EVENT_CLEAR_CONFIG, phoneId));
+                mHandler.sendMessage(mHandler.obtainMessage(EVENT_CLEAR_CONFIG, phoneId, -1));
                 break;
             case IccCardConstants.INTENT_VALUE_ICC_LOADED:
             case IccCardConstants.INTENT_VALUE_ICC_LOCKED:
-                mHandler.sendMessage(mHandler.obtainMessage(EVENT_UPDATE_CONFIG, phoneId));
+                mHandler.sendMessage(mHandler.obtainMessage(EVENT_UPDATE_CONFIG, phoneId, -1));
                 break;
         }
     }
