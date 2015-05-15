@@ -136,5 +136,8 @@ public class OmtpMessageReceiver extends BroadcastReceiver {
         // Save the IMAP credentials in the corresponding account object so they are
         // persistent and can be retrieved.
         vvmAccountSyncManager.setAccountCredentialsFromStatusMessage(account, message);
+
+        // Add a phone state listener so that changes to the communication channels can be recorded.
+        vvmAccountSyncManager.addPhoneStateListener(account);
     }
 }
