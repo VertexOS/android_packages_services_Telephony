@@ -65,13 +65,13 @@ import java.io.FileDescriptor;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
 /**
  * CarrierConfigLoader binds to privileged carrier apps to fetch carrier config overlays.
- * TODO: implement persist cache
  * TODO: handle package install/uninstall events
  */
 
@@ -97,10 +97,6 @@ public class CarrierConfigLoader extends ICarrierConfigLoader.Stub {
     // Message codes; see mHandler below.
     // Request from SubscriptionInfoUpdater when SIM becomes absent or error.
     private static final int EVENT_CLEAR_CONFIG = 0;
-    // Request from SubscriptionInfoUpdater to update config.
-    private static final int EVENT_UPDATE_CONFIG = 1;
-    // Request from carrier app to reload config.
-    private static final int EVENT_RELOAD_CONFIG = 2;
     // Has connected to default app.
     private static final int EVENT_CONNECTED_TO_DEFAULT = 3;
     // Has connected to carrier app.
@@ -109,6 +105,12 @@ public class CarrierConfigLoader extends ICarrierConfigLoader.Stub {
     private static final int EVENT_LOADED_FROM_DEFAULT = 5;
     // Config has been loaded from carrier app.
     private static final int EVENT_LOADED_FROM_CARRIER = 6;
+    // Attempt to fetch from default app or read from XML.
+    private static final int EVENT_FETCH_DEFAULT = 7;
+    // Attempt to fetch from carrier app or read from XML.
+    private static final int EVENT_FETCH_CARRIER = 8;
+    // A package has been installed, uninstalled, or updated.
+    private static final int EVENT_PACKAGE_CHANGED = 9;
 
     // Tags used for saving and restoring XML documents.
     private static final String TAG_DOCUMENT = "carrier_config";
@@ -117,22 +119,29 @@ public class CarrierConfigLoader extends ICarrierConfigLoader.Stub {
 
     // Handler to process various events.
     //
-    // For each phoneId, state transition should be: default app bind->connected->loaded, carrier
-    // app (if exists) bind-> connected->loaded. At any time, at most one connection is active.  If
-    // events are not in this order, previous connection will be unbind, so only latest event takes
-    // effect.
+    // For each phoneId, the event sequence should be:
+    //     fetch default, connected to default, loaded from default,
+    //     fetch carrier, connected to carrier, loaded from carrier.
     //
-    // We broadcast config change when:
-    // 1. loaded from carrier app
-    // 2. loaded from default app if no carrier app
-    // 3. config cleared, possibly due to sim removed
-    // 4. bind or IPC error
+    // If there is a saved config file for either the default app or the carrier app, we skip
+    // binding to the app and go straight from fetch to loaded.
+    //
+    // At any time, at most one connection is active. If events are not in this order, previous
+    // connection will be unbind, so only latest event takes effect.
+    //
+    // We broadcast ACTION_CARRIER_CONFIG_CHANGED after:
+    // 1. loading from carrier app (even if read from a file)
+    // 2. loading from default app if there is no carrier app (even if read from a file)
+    // 3. clearing config (e.g. due to sim removal)
+    // 4. encountering bind or IPC error
     private Handler mHandler = new Handler() {
             @Override
         public void handleMessage(Message msg) {
             int phoneId = msg.arg1;
             log("mHandler: " + msg.what + " phoneId: " + phoneId);
+            String iccid;
             CarrierIdentifier carrierId;
+            String carrierPackageName;
             ConfigServiceConnection conn;
             PersistableBundle config;
             switch (msg.what) {
@@ -142,14 +151,32 @@ public class CarrierConfigLoader extends ICarrierConfigLoader.Stub {
                     mServiceConnection[phoneId] = null;
                     broadcastConfigChangedIntent(phoneId);
                     break;
-                case EVENT_UPDATE_CONFIG:
-                    // Use persist cache to avoid loading from app.
-                    // Fall through to next event if cache not hit.
-                case EVENT_RELOAD_CONFIG:
-                    if (!bindToConfigPackage(DEFAULT_CARRIER_CONFIG_PACKAGE,
-                            phoneId, EVENT_CONNECTED_TO_DEFAULT)) {
-                        // Send bcast if bind fails
-                        broadcastConfigChangedIntent(phoneId);
+
+                case EVENT_PACKAGE_CHANGED:
+                    carrierPackageName = (String) msg.obj;
+                    deleteConfigForPackage(carrierPackageName);
+                    int numPhones = TelephonyManager.from(mContext).getPhoneCount();
+                    for (int i = 0; i < numPhones; ++i) {
+                        updateConfigForPhoneId(i);
+                    }
+                    break;
+
+                case EVENT_FETCH_DEFAULT:
+                    iccid = getIccIdForPhoneId(phoneId);
+                    config = restoreConfigFromXml(DEFAULT_CARRIER_CONFIG_PACKAGE, iccid);
+                    if (config != null) {
+                        log("Loaded config from XML. package=" + DEFAULT_CARRIER_CONFIG_PACKAGE
+                                + " phoneId=" + phoneId);
+                        mConfigFromDefaultApp[phoneId] = config;
+                        Message newMsg = obtainMessage(EVENT_LOADED_FROM_DEFAULT, phoneId, -1);
+                        newMsg.getData().putBoolean("loaded_from_xml", true);
+                        mHandler.sendMessage(newMsg);
+                    } else {
+                        if (!bindToConfigPackage(DEFAULT_CARRIER_CONFIG_PACKAGE,
+                                phoneId, EVENT_CONNECTED_TO_DEFAULT)) {
+                            // Send bcast if bind fails
+                            broadcastConfigChangedIntent(phoneId);
+                        }
                     }
                     break;
 
@@ -165,6 +192,8 @@ public class CarrierConfigLoader extends ICarrierConfigLoader.Stub {
                         ICarrierConfigService configService = ICarrierConfigService.Stub
                                 .asInterface(conn.service);
                         config = configService.getCarrierConfig(carrierId);
+                        iccid = getIccIdForPhoneId(phoneId);
+                        saveConfigToXml(DEFAULT_CARRIER_CONFIG_PACKAGE, iccid, config);
                         mConfigFromDefaultApp[phoneId] = config;
                         sendMessage(obtainMessage(EVENT_LOADED_FROM_DEFAULT, phoneId, -1));
                     } catch (RemoteException ex) {
@@ -175,20 +204,38 @@ public class CarrierConfigLoader extends ICarrierConfigLoader.Stub {
                     break;
 
                 case EVENT_LOADED_FROM_DEFAULT:
-                    if (mServiceConnection[phoneId] == null) {
+                    // If we did not load from XML and the service connection is null, do not
+                    // continue.
+                    if (!msg.getData().getBoolean("loaded_from_xml", false)
+                            && mServiceConnection[phoneId] == null) {
                         break;
                     }
-                    List<String> carrierPackageNames = TelephonyManager.from(mContext)
-                            .getCarrierPackageNamesForIntentAndPhone(
-                                    new Intent(CarrierConfigService.SERVICE_INTERFACE), phoneId);
-                    log("Found carrier config app: " + carrierPackageNames);
-                    if (carrierPackageNames != null && carrierPackageNames.size() > 0) {
-                        if (!bindToConfigPackage(carrierPackageNames.get(0),
-                                phoneId, EVENT_CONNECTED_TO_CARRIER)) {
-                            broadcastConfigChangedIntent(phoneId);
-                        }
+                    carrierPackageName = getCarrierPackageForPhoneId(phoneId);
+                    if (carrierPackageName != null) {
+                        log("Found carrier config app: " + carrierPackageName);
+                        sendMessage(obtainMessage(EVENT_FETCH_CARRIER, phoneId));
                     } else {
                         broadcastConfigChangedIntent(phoneId);
+                    }
+                    break;
+
+                case EVENT_FETCH_CARRIER:
+                    carrierPackageName = getCarrierPackageForPhoneId(phoneId);
+                    iccid = getIccIdForPhoneId(phoneId);
+                    config = restoreConfigFromXml(carrierPackageName, iccid);
+                    if (config != null) {
+                        log("Loaded config from XML. package=" + carrierPackageName + " phoneId="
+                                + phoneId);
+                        mConfigFromCarrierApp[phoneId] = config;
+                        Message newMsg = obtainMessage(EVENT_LOADED_FROM_CARRIER, phoneId, -1);
+                        newMsg.getData().putBoolean("loaded_from_xml", true);
+                        sendMessage(newMsg);
+                    } else {
+                        if (!bindToConfigPackage(carrierPackageName, phoneId,
+                                EVENT_CONNECTED_TO_CARRIER)) {
+                            // Send bcast if bind fails
+                            broadcastConfigChangedIntent(phoneId);
+                        }
                     }
                     break;
 
@@ -205,6 +252,9 @@ public class CarrierConfigLoader extends ICarrierConfigLoader.Stub {
                         ICarrierConfigService configService = ICarrierConfigService.Stub
                                 .asInterface(conn.service);
                         config = configService.getCarrierConfig(carrierId);
+                        carrierPackageName = getCarrierPackageForPhoneId(phoneId);
+                        iccid = getIccIdForPhoneId(phoneId);
+                        saveConfigToXml(carrierPackageName, iccid, config);
                         mConfigFromCarrierApp[phoneId] = config;
                         sendMessage(obtainMessage(EVENT_LOADED_FROM_CARRIER, phoneId, -1));
                     } catch (RemoteException ex) {
@@ -215,7 +265,10 @@ public class CarrierConfigLoader extends ICarrierConfigLoader.Stub {
                     break;
 
                 case EVENT_LOADED_FROM_CARRIER:
-                    if (mServiceConnection[phoneId] == null) {
+                    // If we did not load from XML and the service connection is null, do not
+                    // continue.
+                    if (!msg.getData().getBoolean("loaded_from_xml", false)
+                            && mServiceConnection[phoneId] == null) {
                         break;
                     }
                     broadcastConfigChangedIntent(phoneId);
@@ -309,12 +362,37 @@ public class CarrierConfigLoader extends ICarrierConfigLoader.Stub {
         return new CarrierIdentifier(mcc, mnc, spn, imsi, gid1, gid2);
     }
 
+    /** Returns the package name of a priveleged carrier app, or null if there is none. */
+    private String getCarrierPackageForPhoneId(int phoneId) {
+        List<String> carrierPackageNames = TelephonyManager.from(mContext)
+                .getCarrierPackageNamesForIntentAndPhone(
+                        new Intent(CarrierConfigService.SERVICE_INTERFACE), phoneId);
+        if (carrierPackageNames != null && carrierPackageNames.size() > 0) {
+            return carrierPackageNames.get(0);
+        } else {
+            return null;
+        }
+    }
+
+    private String getIccIdForPhoneId(int phoneId) {
+        if (!SubscriptionManager.isValidPhoneId(phoneId)) {
+            return null;
+        }
+        Phone phone = PhoneFactory.getPhone(phoneId);
+        if (phone == null) {
+            return null;
+        }
+        return phone.getIccSerialNumber();
+    }
+
     /**
      * Writes a bundle to an XML file.
      *
      * The bundle will be written to a file named after the package name and ICCID, so that it can
      * be restored later with {@link @restoreConfigFromXml}. The XML output will include the bundle
-     * and the current version of the specified package. In case of errors, no file will be written.
+     * and the current version of the specified package.
+     *
+     * In case of errors or invalid input, no file will be written.
      *
      * @param packageName the name of the package from which we fetched this bundle.
      * @param iccid the ICCID of the subscription for which this bundle was fetched.
@@ -324,6 +402,10 @@ public class CarrierConfigLoader extends ICarrierConfigLoader.Stub {
         final String version = getPackageVersion(packageName);
         if (version == null) {
             loge("Failed to get package version for: " + packageName);
+            return;
+        }
+        if (packageName == null || iccid == null) {
+            loge("Cannot save config with null packageName or iccid.");
             return;
         }
 
@@ -358,8 +440,10 @@ public class CarrierConfigLoader extends ICarrierConfigLoader.Stub {
      * Reads a bundle from an XML file.
      *
      * This restores a bundle that was written with {@link #saveConfigToXml}. This returns the saved
-     * config bundle for the given package and ICCID. If the saved config is for a different package
-     * version than the current version, then null will be returned.
+     * config bundle for the given package and ICCID.
+     *
+     * In case of errors, or if the saved config is from a different package version than the
+     * current version, then null will be returned.
      *
      * @param packageName the name of the package from which we fetched this bundle.
      * @param iccid the ICCID of the subscription for which this bundle was fetched.
@@ -370,6 +454,10 @@ public class CarrierConfigLoader extends ICarrierConfigLoader.Stub {
         final String version = getPackageVersion(packageName);
         if (version == null) {
             loge("Failed to get package version for: " + packageName);
+            return null;
+        }
+        if (packageName == null || iccid == null) {
+            loge("Cannot restore config with null packageName or iccid.");
             return null;
         }
 
@@ -411,23 +499,48 @@ public class CarrierConfigLoader extends ICarrierConfigLoader.Stub {
         return restoredBundle;
     }
 
+    /** Deletes all saved XML files associated with the given package name. */
+    private void deleteConfigForPackage(final String packageName) {
+        File dir = mContext.getFilesDir();
+        File[] packageFiles = dir.listFiles(new FilenameFilter() {
+            public boolean accept(File dir, String filename) {
+                return filename.startsWith("carrierconfig-" + packageName + "-");
+            }
+        });
+        for (File f : packageFiles) {
+            log("deleting " + f.getName());
+            f.delete();
+        }
+    }
+
     /** Builds a canonical file name for a config file. */
-    private String getFilenameForConfig(String packageName, String iccid) {
+    private String getFilenameForConfig(@NonNull String packageName, @NonNull String iccid) {
         return "carrierconfig-" + packageName + "-" + iccid + ".xml";
     }
 
-    /** Return the current version of a package, or null if the name is not found. */
+    /** Return the current version code of a package, or null if the name is not found. */
     private String getPackageVersion(String packageName) {
         try {
             PackageInfo info = mContext.getPackageManager().getPackageInfo(packageName, 0);
-            return info.versionName;
+            return Integer.toString(info.versionCode);
         } catch (PackageManager.NameNotFoundException e) {
             return null;
         }
     }
 
-    @Override
-    public @NonNull PersistableBundle getConfigForSubId(int subId) {
+    /** Read up to date config.
+     *
+     * This reads config bundles for the given phoneId. That means getting the latest bundle from
+     * the default app and a privileged carrier app, if present. This will not bind to an app if we
+     * have a saved config file to use instead.
+     */
+    private void updateConfigForPhoneId(int phoneId) {
+        mHandler.sendMessage(mHandler.obtainMessage(EVENT_FETCH_DEFAULT, phoneId, -1));
+    }
+
+    @Override public
+    @NonNull
+    PersistableBundle getConfigForSubId(int subId) {
         int phoneId = SubscriptionManager.getPhoneId(subId);
         PersistableBundle retConfig = CarrierConfigManager.getDefaultConfig();
         if (SubscriptionManager.isValidPhoneId(phoneId)) {
@@ -444,11 +557,26 @@ public class CarrierConfigLoader extends ICarrierConfigLoader.Stub {
     @Override
     public void reloadCarrierConfigForSubId(int subId) {
         int phoneId = SubscriptionManager.getPhoneId(subId);
-        if (SubscriptionManager.isValidPhoneId(phoneId)) {
-            mHandler.sendMessage(mHandler.obtainMessage(EVENT_RELOAD_CONFIG, phoneId, -1));
-        } else {
+        if (!SubscriptionManager.isValidPhoneId(phoneId)) {
             log("Ignore invalid phoneId: " + phoneId + " for subId: " + subId);
+            return;
         }
+        String callingPackageName = mContext.getPackageManager().getNameForUid(
+                Binder.getCallingUid());
+        // TODO: This check isn't per subId.
+        int privilegeStatus = TelephonyManager.from(mContext).checkCarrierPrivilegesForPackage(
+                callingPackageName);
+        if (privilegeStatus != TelephonyManager.CARRIER_PRIVILEGE_STATUS_HAS_ACCESS) {
+            throw new SecurityException(
+                    "Package is not privileged for subId=" + subId + ": " + callingPackageName);
+        }
+
+        // This method should block until deleting has completed, so that an error which prevents us
+        // from clearing the cache is passed back to the carrier app. With the files successfully
+        // deleted, this can return and we will eventually bind to the carrier app.
+        deleteConfigForPackage(callingPackageName);
+        updateConfigForPhoneId(phoneId);
+
     }
 
     @Override
@@ -466,7 +594,7 @@ public class CarrierConfigLoader extends ICarrierConfigLoader.Stub {
                 break;
             case IccCardConstants.INTENT_VALUE_ICC_LOADED:
             case IccCardConstants.INTENT_VALUE_ICC_LOCKED:
-                mHandler.sendMessage(mHandler.obtainMessage(EVENT_UPDATE_CONFIG, phoneId, -1));
+                updateConfigForPhoneId(phoneId);
                 break;
         }
     }
@@ -515,6 +643,18 @@ public class CarrierConfigLoader extends ICarrierConfigLoader.Stub {
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
             log("Receive action: " + action);
+            switch (action) {
+                case Intent.ACTION_PACKAGE_ADDED:
+                case Intent.ACTION_PACKAGE_CHANGED:
+                case Intent.ACTION_PACKAGE_REMOVED:
+                    int uid = intent.getIntExtra(Intent.EXTRA_UID, -1);
+                    String packageName = mContext.getPackageManager().getNameForUid(uid);
+                    // We don't have a phoneId for arg1.
+                    mHandler.sendMessage(
+                            mHandler.obtainMessage(EVENT_PACKAGE_CHANGED, packageName));
+                    break;
+
+            }
         }
     }
 
