@@ -16,13 +16,10 @@
 
 package com.android.services.telephony.sip;
 
-import com.android.phone.R;
-
 import android.app.PendingIntent;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.Icon;
 import android.net.Uri;
 import android.net.sip.SipManager;
@@ -33,6 +30,8 @@ import android.telecom.PhoneAccountHandle;
 import android.telecom.TelecomManager;
 import android.text.TextUtils;
 import android.util.Log;
+
+import com.android.phone.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -73,29 +72,29 @@ public class SipUtil {
     }
 
     /**
-     * Creates a {@link PhoneAccountHandle} from the specified SIP URI.
+     * Creates a {@link PhoneAccountHandle} from the specified SIP profile name.
      */
-    static PhoneAccountHandle createAccountHandle(Context context, String sipUri) {
+    static PhoneAccountHandle createAccountHandle(Context context, String sipProfileName) {
         return new PhoneAccountHandle(
-                new ComponentName(context, SipConnectionService.class), sipUri);
+                new ComponentName(context, SipConnectionService.class), sipProfileName);
     }
 
     /**
-     * Determines the SIP Uri for a specified {@link PhoneAccountHandle}.
+     * Determines the SIP profile name for a specified {@link PhoneAccountHandle}.
      *
      * @param phoneAccountHandle The {@link PhoneAccountHandle}.
-     * @return The SIP Uri.
+     * @return The SIP profile name.
      */
-    static String getSipUriFromPhoneAccount(PhoneAccountHandle phoneAccountHandle) {
+    static String getSipProfileNameFromPhoneAccount(PhoneAccountHandle phoneAccountHandle) {
         if (phoneAccountHandle == null) {
             return null;
         }
 
-        String sipUri = phoneAccountHandle.getId();
-        if (TextUtils.isEmpty(sipUri)) {
+        String sipProfileName = phoneAccountHandle.getId();
+        if (TextUtils.isEmpty(sipProfileName)) {
             return null;
         }
-        return sipUri;
+        return sipProfileName;
     }
 
     /**
@@ -110,13 +109,10 @@ public class SipUtil {
         // that prototype can include transport information which we do not want to see in the
         // phone account.
         String sipAddress = profile.getUserName() + "@" + profile.getSipDomain();
-        Uri sipUri = Uri.parse(PhoneAccount.SCHEME_SIP + ":" + sipAddress);
+        Uri sipUri = Uri.parse(profile.getUriString());
 
-        // SipProfile#getUriString() is used here for legacy reasons. Changing to use the sipAddress
-        // defined above would cause SIP profiles with a TCP transport to be duplicated in the
-        // PhoneAccountRegistry since the ID would change on re-registration.
         PhoneAccountHandle accountHandle =
-                SipUtil.createAccountHandle(context, profile.getUriString());
+                SipUtil.createAccountHandle(context, profile.getProfileName());
 
         final ArrayList<String> supportedUriSchemes = new ArrayList<String>();
         supportedUriSchemes.add(PhoneAccount.SCHEME_SIP);
