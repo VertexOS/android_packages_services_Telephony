@@ -249,7 +249,7 @@ public class SipEditor extends PreferenceActivity
     private void saveAndRegisterProfile(SipProfile p) throws IOException {
         if (p == null) return;
         mProfileDb.saveProfile(p);
-        mSipAccountRegistry.startSipService(this, p.getUriString());
+        mSipAccountRegistry.startSipService(this, p.getProfileName());
     }
 
     /**
@@ -261,7 +261,7 @@ public class SipEditor extends PreferenceActivity
     private void deleteAndUnregisterProfile(SipProfile p) {
         if (p == null) return;
         mProfileDb.deleteProfile(p);
-        mSipAccountRegistry.stopSipService(this, p.getUriString());
+        mSipAccountRegistry.stopSipService(this, p.getProfileName());
     }
 
     private void setRemovedProfileAndFinish() {

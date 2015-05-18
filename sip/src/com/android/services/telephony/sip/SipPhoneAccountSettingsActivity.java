@@ -47,8 +47,8 @@ public final class SipPhoneAccountSettingsActivity extends Activity {
 
             if (accountHandle != null) {
                 SipProfileDb profileDb = new SipProfileDb(this);
-                String sipUri = SipUtil.getSipUriFromPhoneAccount(accountHandle);
-                SipProfile profile = profileDb.retrieveSipProfile(sipUri);
+                String profileName = SipUtil.getSipProfileNameFromPhoneAccount(accountHandle);
+                SipProfile profile = profileDb.retrieveSipProfileFromName(profileName);
                 if (profile != null) {
                     Intent settingsIntent = new Intent(this, SipEditor.class);
                     settingsIntent.putExtra(SipSettings.KEY_SIP_PROFILE, (Parcelable) profile);
