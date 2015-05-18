@@ -151,6 +151,12 @@
     <string name="phone_accounts_add_sip_account">Add SIP account</string>
     <!-- Description label for icon to configure a phone account's settings. -->
     <string name="phone_accounts_configure_account_settings">Configure account settings</string>
+    <!-- Label for heading that takes user to the list of calling accounts where they can enable
+         and disable all accounts. -->
+    <string name="phone_accounts_all_calling_accounts">All calling accounts</string>
+    <!-- Summary for all-calling-account setting indicating that is where the user goes to enable
+         and disable phone accounts. -->
+    <string name="phone_accounts_all_calling_accounts_summary">Enable active calling accounts</string>
 
     <!-- Title for setting to select Wi-Fi call manager account -->
     <string name="wifi_calling">Wi-Fi calling</string>
