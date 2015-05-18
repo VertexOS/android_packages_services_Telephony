@@ -318,7 +318,9 @@ public class SipSettings extends PreferenceActivity {
     void deleteProfile(SipProfile p) {
         mSipProfileList.remove(p);
         SipPreference pref = mSipPreferenceMap.remove(p.getUriString());
-        mSipListContainer.removePreference(pref);
+        if (pref != null) {
+            mSipListContainer.removePreference(pref);
+        }
     }
 
     private void addProfile(SipProfile p) throws IOException {

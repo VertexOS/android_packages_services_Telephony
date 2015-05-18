@@ -34,6 +34,7 @@ import com.android.services.telephony.sip.SipUtil;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.List;
 
 public class PhoneAccountSettingsFragment extends PreferenceFragment
@@ -45,6 +46,7 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
             "phone_accounts_accounts_list_category_key";
 
     private static final String DEFAULT_OUTGOING_ACCOUNT_KEY = "default_outgoing_account";
+    private static final String ALL_CALLING_ACCOUNTS_KEY = "phone_account_all_calling_accounts";
 
     private static final String CONFIGURE_CALL_ASSISTANT_PREF_KEY =
             "wifi_calling_configure_call_assistant_preference";
@@ -57,6 +59,14 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
             "phone_accounts_sip_settings_category_key";
     private static final String USE_SIP_PREF_KEY = "use_sip_calling_options_key";
     private static final String SIP_RECEIVE_CALLS_PREF_KEY = "sip_receive_calls_key";
+
+    /**
+     * Value to start ordering of phone accounts relative to other preferences. By setting this
+     * value on the phone account listings, we ensure that anything that is ordered before
+     * {value} in the preference XML comes before the phone account list and anything with
+     * a value significantly larger will list after.
+     */
+    private static final int ACCOUNT_ORDERING_START_VALUE = 100;
 
     private String LOG_TAG = PhoneAccountSettingsFragment.class.getSimpleName();
 
@@ -107,6 +117,10 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
                 getPreferenceScreen().removePreference(mDefaultOutgoingAccount);
             }
 
+            Preference allAccounts = getPreferenceScreen().findPreference(ALL_CALLING_ACCOUNTS_KEY);
+            if (getNonSimCallingAccounts().size() == 0 && allAccounts != null) {
+                getPreferenceScreen().removePreference(allAccounts);
+            }
         } else {
             getPreferenceScreen().removePreference(mAccountList);
         }
@@ -362,6 +376,8 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
             }
         });
 
+        int order = ACCOUNT_ORDERING_START_VALUE;
+
         // Add an entry for each account.
         for (PhoneAccount account : accounts) {
             PhoneAccountHandle handle = account.getAccountHandle();
@@ -407,6 +423,7 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
                 accountPreference.setIntent(intent);
             }
 
+            accountPreference.setOrder(order++);
             mAccountList.addPreference(accountPreference);
         }
     }
@@ -426,7 +443,23 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
 
     private boolean shouldShowConnectionServiceList() {
         return mTelephonyManager.isMultiSimEnabled() ||
-                mTelecomManager.getCallCapablePhoneAccounts().size() > 1;
+            getNonSimCallingAccounts().size() > 0;
+    }
+
+    private List<PhoneAccountHandle> getNonSimCallingAccounts() {
+        List<PhoneAccountHandle> accountHandles =
+                mTelecomManager.getCallCapablePhoneAccounts();
+        for (Iterator<PhoneAccountHandle> i = accountHandles.iterator(); i.hasNext();) {
+            PhoneAccountHandle handle = i.next();
+            PhoneAccount account = mTelecomManager.getPhoneAccount(handle);
+            if (account == null || (account.getCapabilities() &
+                    PhoneAccount.CAPABILITY_SIM_SUBSCRIPTION) != 0) {
+                // If the account is no longer valid OR the account is a built-in SIM account,
+                // remove!
+                i.remove();
+            }
+        }
+        return accountHandles;
     }
 
     private String nullToEmpty(String str) {
