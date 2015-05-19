@@ -2042,13 +2042,33 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     }
 
     @Override
-    public int checkCarrierPrivilegesForPackage(String pkgname) {
+    public int checkCarrierPrivilegesForPackage(String pkgName) {
         UiccCard card = UiccController.getInstance().getUiccCard(mPhone.getPhoneId());
         if (card == null) {
             loge("checkCarrierPrivilegesForPackage: No UICC");
             return TelephonyManager.CARRIER_PRIVILEGE_STATUS_RULES_NOT_LOADED;
         }
-        return card.getCarrierPrivilegeStatus(mPhone.getContext().getPackageManager(), pkgname);
+        return card.getCarrierPrivilegeStatus(mPhone.getContext().getPackageManager(), pkgName);
+    }
+
+    @Override
+    public int checkCarrierPrivilegesForPackageAnyPhone(String pkgName) {
+        int result = TelephonyManager.CARRIER_PRIVILEGE_STATUS_RULES_NOT_LOADED;
+        for (int i = 0; i < TelephonyManager.getDefault().getPhoneCount(); i++) {
+            UiccCard card = UiccController.getInstance().getUiccCard(i);
+            if (card == null) {
+              loge("checkCarrierPrivilegesForPackageAnyPhones: No UICC");
+              continue;
+            }
+
+            result = card.getCarrierPrivilegeStatus(
+                mPhone.getContext().getPackageManager(), pkgName);
+            if (result == TelephonyManager.CARRIER_PRIVILEGE_STATUS_HAS_ACCESS) {
+                break;
+            }
+        }
+
+        return result;
     }
 
     @Override
