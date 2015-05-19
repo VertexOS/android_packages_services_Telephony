@@ -114,12 +114,12 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
             if (mTelecomManager.getCallCapablePhoneAccounts().size() > 1) {
                 updateDefaultOutgoingAccountsModel();
             } else {
-                getPreferenceScreen().removePreference(mDefaultOutgoingAccount);
+                mAccountList.removePreference(mDefaultOutgoingAccount);
             }
 
             Preference allAccounts = getPreferenceScreen().findPreference(ALL_CALLING_ACCOUNTS_KEY);
-            if (getNonSimCallingAccounts().size() == 0 && allAccounts != null) {
-                getPreferenceScreen().removePreference(allAccounts);
+            if (getNonSimCallingAccounts(true).isEmpty() && allAccounts != null) {
+                mAccountList.removePreference(allAccounts);
             }
         } else {
             getPreferenceScreen().removePreference(mAccountList);
@@ -330,6 +330,16 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
     }
 
     private void initAccountList() {
+        boolean isMultiSimDevice = mTelephonyManager.isMultiSimEnabled();
+
+        // On a single-SIM device, do not list any accounts if the only account is the SIM-based
+        // one. This is because on single-SIM devices, we do not expose SIM settings through the
+        // account listing entry so showing it does nothing to help the user. Nor does the lack of
+        // action match the "Settings" header above the listing.
+        if (!isMultiSimDevice && getNonSimCallingAccounts(false).isEmpty()) {
+            return;
+        }
+
         // Obtain the list of phone accounts.
         List<PhoneAccount> accounts = new ArrayList<>();
         for (PhoneAccountHandle handle : mTelecomManager.getCallCapablePhoneAccounts()) {
@@ -346,10 +356,8 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
                 int retval = 0;
 
                 // SIM accounts go first
-                boolean isSim1 = (account1.getCapabilities() &
-                        PhoneAccount.CAPABILITY_SIM_SUBSCRIPTION) != 0;
-                boolean isSim2 = (account2.getCapabilities() &
-                        PhoneAccount.CAPABILITY_SIM_SUBSCRIPTION) != 0;
+                boolean isSim1 = account1.hasCapabilities(PhoneAccount.CAPABILITY_SIM_SUBSCRIPTION);
+                boolean isSim2 = account2.hasCapabilities(PhoneAccount.CAPABILITY_SIM_SUBSCRIPTION);
                 if (isSim1 != isSim2) {
                     retval = isSim1 ? -1 : 1;
                 }
@@ -382,18 +390,22 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
         for (PhoneAccount account : accounts) {
             PhoneAccountHandle handle = account.getAccountHandle();
             Intent intent = null;
-            boolean isSimAccount = false;
 
             // SIM phone accounts use a different setting intent and are thus handled differently.
-            if ((PhoneAccount.CAPABILITY_SIM_SUBSCRIPTION & account.getCapabilities()) != 0) {
-                isSimAccount = true;
-                SubscriptionInfo subInfo = mSubscriptionManager.getActiveSubscriptionInfo(
-                        mTelephonyManager.getSubIdForPhoneAccount(account));
+            if (account.hasCapabilities(PhoneAccount.CAPABILITY_SIM_SUBSCRIPTION)) {
 
-                if (subInfo != null) {
-                    intent = new Intent(TelecomManager.ACTION_SHOW_CALL_SETTINGS);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    SubscriptionInfoHelper.addExtrasToIntent(intent, subInfo);
+                // For SIM-based accounts, we only expose the settings through the account list
+                // if we are on a multi-SIM device. For single-SIM devices, the settings are
+                // more spread out so there is no good single place to take the user, so we don't.
+                if (isMultiSimDevice) {
+                    SubscriptionInfo subInfo = mSubscriptionManager.getActiveSubscriptionInfo(
+                            mTelephonyManager.getSubIdForPhoneAccount(account));
+
+                    if (subInfo != null) {
+                        intent = new Intent(TelecomManager.ACTION_SHOW_CALL_SETTINGS);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        SubscriptionInfoHelper.addExtrasToIntent(intent, subInfo);
+                    }
                 }
             } else {
                 // Build the settings intent.
@@ -443,17 +455,17 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
 
     private boolean shouldShowConnectionServiceList() {
         return mTelephonyManager.isMultiSimEnabled() ||
-            getNonSimCallingAccounts().size() > 0;
+            getNonSimCallingAccounts(true).size() > 0;
     }
 
-    private List<PhoneAccountHandle> getNonSimCallingAccounts() {
+    private List<PhoneAccountHandle> getNonSimCallingAccounts(boolean includeDisabledAccounts) {
         List<PhoneAccountHandle> accountHandles =
-                mTelecomManager.getCallCapablePhoneAccounts();
+                mTelecomManager.getCallCapablePhoneAccounts(includeDisabledAccounts);
         for (Iterator<PhoneAccountHandle> i = accountHandles.iterator(); i.hasNext();) {
             PhoneAccountHandle handle = i.next();
             PhoneAccount account = mTelecomManager.getPhoneAccount(handle);
-            if (account == null || (account.getCapabilities() &
-                    PhoneAccount.CAPABILITY_SIM_SUBSCRIPTION) != 0) {
+            if (account == null ||
+                    (account.hasCapabilities(PhoneAccount.CAPABILITY_SIM_SUBSCRIPTION))) {
                 // If the account is no longer valid OR the account is a built-in SIM account,
                 // remove!
                 i.remove();
