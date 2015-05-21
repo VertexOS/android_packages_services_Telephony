@@ -156,7 +156,7 @@
     <string name="phone_accounts_all_calling_accounts">All calling accounts</string>
     <!-- Summary for all-calling-account setting indicating that is where the user goes to enable
          and disable phone accounts. -->
-    <string name="phone_accounts_all_calling_accounts_summary">Enable active calling accounts</string>
+    <string name="phone_accounts_all_calling_accounts_summary">Select which accounts can make calls</string>
 
     <!-- Title for setting to select Wi-Fi call manager account -->
     <string name="wifi_calling">Wi-Fi calling</string>
