@@ -52,6 +52,7 @@ import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneBase;
 import com.android.internal.telephony.TelephonyCapabilities;
 import com.android.phone.settings.VoicemailSettingsActivity;
+import com.android.phone.vvm.omtp.sync.VoicemailStatusQueryHelper;
 import com.android.phone.settings.VoicemailNotificationSettingsUtil;
 import com.android.phone.settings.VoicemailProviderSettingsUtil;
 
@@ -299,11 +300,20 @@ public class NotificationMgr {
             return;
         }
 
+        Phone phone = PhoneGlobals.getPhone(subId);
+        if (visible && phone != null) {
+            VoicemailStatusQueryHelper queryHelper = new VoicemailStatusQueryHelper(mContext);
+            PhoneAccountHandle phoneAccount = PhoneUtils.makePstnPhoneAccountHandle(phone);
+            if (queryHelper.isNotificationsChannelActive(phoneAccount)) {
+                Log.v(LOG_TAG, "Notifications channel active for visual voicemail, hiding mwi.");
+                visible = false;
+            }
+        }
+
         Log.i(LOG_TAG, "updateMwi(): subId " + subId + " update to " + visible);
         mMwiVisible.put(subId, visible);
 
         if (visible) {
-            Phone phone = PhoneGlobals.getPhone(subId);
             if (phone == null) {
                 Log.w(LOG_TAG, "Found null phone for: " + subId);
                 return;
