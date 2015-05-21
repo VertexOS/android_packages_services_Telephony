@@ -261,7 +261,12 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
                     request = (MainThreadRequest) msg.obj;
                     int end_subId = request.subId;
                     final boolean hungUp;
-                    int phoneType = getPhone(end_subId).getPhoneType();
+                    Phone phone = getPhone(end_subId);
+                    if (phone == null) {
+                        if (DBG) log("CMD_END_CALL: no phone for id: " + end_subId);
+                        break;
+                    }
+                    int phoneType = phone.getPhoneType();
                     if (phoneType == PhoneConstants.PHONE_TYPE_CDMA) {
                         // CDMA: If the user presses the Power button we treat it as
                         // ending the complete call session
