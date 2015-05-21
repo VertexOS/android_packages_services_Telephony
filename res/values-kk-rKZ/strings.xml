@@ -68,6 +68,8 @@
     <string name="phone_accounts_selection_header" msgid="1365215726106915865">"Телефон есептік жазбалары"</string>
     <string name="phone_accounts_add_sip_account" msgid="2023821743341923271">"SIP есептік жазбасын қосу"</string>
     <string name="phone_accounts_configure_account_settings" msgid="1361715069911607109">"Есептік жазба параметрлерін конфигурациялау"</string>
+    <string name="phone_accounts_all_calling_accounts" msgid="207619531589278471">"Барлық қоңырау шалу шоттары"</string>
+    <string name="phone_accounts_all_calling_accounts_summary" msgid="5613012844819762450">"Қоңырау шалу шоттарын қосу"</string>
     <string name="wifi_calling" msgid="739018212480165598">"Wi-Fi қоңыраулары"</string>
     <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"Wi-Fi қоңырауларын пайдаланбау"</string>
     <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"Қоңыраулар көмекшісін пайдаланбау"</string>
@@ -412,7 +414,7 @@
     <string name="puk2_blocked" msgid="3150263853077280049">"PUK2 уақытша бөгелген."</string>
     <string name="pin2_attempts" msgid="720736232885011507">\n"<xliff:g id="NUMBER">%d</xliff:g> әрекет қалды."</string>
     <string name="pin2_unblocked" msgid="7791600368153469078">"PIN2 енді бөгелмеген"</string>
-    <string name="doneButton" msgid="2859593360997984240">"Орындалды"</string>
+    <string name="doneButton" msgid="2859593360997984240">"Дайын"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"Дауыс хабарының нөмірі"</string>
     <string name="card_title_dialing" msgid="5769417478498348054">"Теруде"</string>
     <string name="card_title_redialing" msgid="8253487008234167266">"Қайта терілуде"</string>
@@ -437,7 +439,7 @@
     <string name="notification_network_selection_title" msgid="4224455487793492772">"Қызмет көрсетілмейді"</string>
     <string name="notification_network_selection_text" msgid="2607085729661923269">"Таңдалған (<xliff:g id="OPERATOR_NAME">%s</xliff:g>) желісі қол жетімсіз"</string>
     <string name="notification_action_end_call" msgid="6069460915123531620">"Қоңырауды аяқтау"</string>
-    <string name="notification_missedCall_call_back" msgid="2684890353590890187">"Кері қоңырау шалу"</string>
+    <string name="notification_missedCall_call_back" msgid="2684890353590890187">"Қоңырау шалу"</string>
     <string name="notification_missedCall_message" msgid="3049928912736917988">"Хабар"</string>
     <string name="incall_error_power_off" msgid="2947938060513306698">"Қоңырау шалу үшін ұшақ режимін өшіріңіз."</string>
     <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"Қоңырау шалу үшін ұшақ режимін өшіріңіз не сымсыз желіге қосылыңыз."</string>

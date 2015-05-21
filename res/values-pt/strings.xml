@@ -68,6 +68,8 @@
     <string name="phone_accounts_selection_header" msgid="1365215726106915865">"Contas de telefone"</string>
     <string name="phone_accounts_add_sip_account" msgid="2023821743341923271">"Adicionar conta SIP"</string>
     <string name="phone_accounts_configure_account_settings" msgid="1361715069911607109">"Configurar conta"</string>
+    <string name="phone_accounts_all_calling_accounts" msgid="207619531589278471">"Todas as contas de chamadas"</string>
+    <string name="phone_accounts_all_calling_accounts_summary" msgid="5613012844819762450">"Ativar contas de chamadas ativas"</string>
     <string name="wifi_calling" msgid="739018212480165598">"Chamadas por Wi-Fi"</string>
     <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"Não usar chamadas por Wi-Fi"</string>
     <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"Não usar o assistente de chamada"</string>
