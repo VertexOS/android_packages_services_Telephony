@@ -19,8 +19,12 @@ package com.android.services.telephony;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.graphics.drawable.Icon;
 import android.net.Uri;
 import android.telecom.PhoneAccount;
@@ -53,7 +57,7 @@ final class TelecomAccountRegistry {
 
     // This icon is the one that is used when the Slot ID that we have for a particular SIM
     // is not supported, i.e. SubscriptionManager.INVALID_SLOT_ID or the 5th SIM in a phone.
-    private final static int defaultPhoneAccountIcon =  R.drawable.ic_multi_sim;
+    private final static int DEFAULT_SIM_ICON =  R.drawable.ic_multi_sim;
 
     final class AccountEntry implements PstnPhoneCapabilitiesNotifier.Listener {
         private final Phone mPhone;
@@ -104,7 +108,7 @@ final class TelecomAccountRegistry {
 
             String label;
             String description;
-            Bitmap iconBitmap = null;
+            Icon icon = null;
 
             // We can only get the real slotId from the SubInfoRecord, we can't calculate the
             // slotId from the subId or the phoneId in all instances.
@@ -126,7 +130,7 @@ final class TelecomAccountRegistry {
                     subDisplayName = record.getDisplayName();
                     slotId = record.getSimSlotIndex();
                     color = record.getIconTint();
-                    iconBitmap = record.createIconBitmap(mContext);
+                    icon = Icon.createWithBitmap(record.createIconBitmap(mContext));
                 }
 
                 String slotIdString;
@@ -164,10 +168,21 @@ final class TelecomAccountRegistry {
                 updateVideoPauseSupport(record);
             }
 
-            if (iconBitmap == null) {
-                iconBitmap = BitmapFactory.decodeResource(
-                        mContext.getResources(),
-                        defaultPhoneAccountIcon);
+            if (icon == null) {
+                // TODO: Switch to using Icon.createWithResource() once that supports tinting.
+                Resources res = mContext.getResources();
+                Drawable drawable = res.getDrawable(DEFAULT_SIM_ICON, null);
+                drawable.setTint(res.getColor(R.color.default_sim_icon_tint_color, null));
+                drawable.setTintMode(PorterDuff.Mode.SRC_ATOP);
+
+                int width = drawable.getIntrinsicWidth();
+                int height = drawable.getIntrinsicHeight();
+                Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+                Canvas canvas = new Canvas(bitmap);
+                drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+                drawable.draw(canvas);
+
+                icon = Icon.createWithBitmap(bitmap);
             }
 
             PhoneAccount account = PhoneAccount.builder(phoneAccountHandle, label)
@@ -175,7 +190,7 @@ final class TelecomAccountRegistry {
                     .setSubscriptionAddress(
                             Uri.fromParts(PhoneAccount.SCHEME_TEL, subNumber, null))
                     .setCapabilities(capabilities)
-                    .setIcon(iconBitmap == null ? null : Icon.createWithBitmap(iconBitmap))
+                    .setIcon(icon)
                     .setHighlightColor(color)
                     .setShortDescription(description)
                     .setSupportedUriSchemes(Arrays.asList(
