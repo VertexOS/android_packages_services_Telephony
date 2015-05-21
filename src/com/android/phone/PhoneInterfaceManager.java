@@ -464,10 +464,12 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
                         }
 
                         int errorCode = IccOpenLogicalChannelResponse.STATUS_UNKNOWN_ERROR;
-                        if ((ar.exception != null) && (ar.exception instanceof CommandException)) {
-                            if (ar.exception.getMessage().compareTo("MISSING_RESOURCE") == 0) {
+                        if (ar.exception instanceof CommandException) {
+                            CommandException.Error error =
+                                ((CommandException) (ar.exception)).getCommandError();
+                            if (error == CommandException.Error.MISSING_RESOURCE) {
                                 errorCode = IccOpenLogicalChannelResponse.STATUS_MISSING_RESOURCE;
-                            } else if (ar.exception.getMessage().compareTo("NO_SUCH_ELEMENT") == 0) {
+                            } else if (error == CommandException.Error.NO_SUCH_ELEMENT) {
                                 errorCode = IccOpenLogicalChannelResponse.STATUS_NO_SUCH_ELEMENT;
                             }
                         }
