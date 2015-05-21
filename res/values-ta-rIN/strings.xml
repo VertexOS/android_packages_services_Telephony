@@ -68,6 +68,8 @@
     <string name="phone_accounts_selection_header" msgid="1365215726106915865">"ஃபோன் கணக்குகள்"</string>
     <string name="phone_accounts_add_sip_account" msgid="2023821743341923271">"SIP கணக்கைச் சேர்"</string>
     <string name="phone_accounts_configure_account_settings" msgid="1361715069911607109">"கணக்கு அமைப்புகளை உள்ளமைக்கவும்"</string>
+    <string name="phone_accounts_all_calling_accounts" msgid="207619531589278471">"எல்லா அழைப்புக் கணக்குகளும்"</string>
+    <string name="phone_accounts_all_calling_accounts_summary" msgid="5613012844819762450">"செயலில் உள்ள அழைப்புக் கணக்குகளை இயக்கவும்"</string>
     <string name="wifi_calling" msgid="739018212480165598">"வைஃபை அழைப்பு"</string>
     <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"வைஃபை அழைப்பைப் பயன்படுத்தாதே"</string>
     <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"அழைப்பு உதவியைப் பயன்படுத்தாதே"</string>
