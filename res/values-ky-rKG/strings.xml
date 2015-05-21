@@ -101,6 +101,10 @@
     <string name="phone_accounts_selection_header" msgid="1365215726106915865">"Телефон каттоо эсептери"</string>
     <string name="phone_accounts_add_sip_account" msgid="2023821743341923271">"SIP каттоо эсебин кошуу"</string>
     <string name="phone_accounts_configure_account_settings" msgid="1361715069911607109">"Каттоо эсеп жөндөөлөрүн конфигурациялоо"</string>
+    <!-- no translation found for phone_accounts_all_calling_accounts (207619531589278471) -->
+    <skip />
+    <!-- no translation found for phone_accounts_all_calling_accounts_summary (5613012844819762450) -->
+    <skip />
     <string name="wifi_calling" msgid="739018212480165598">"Wi-Fi чалуу"</string>
     <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"Wi-Fi чалуу колдонулбасын"</string>
     <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"Чалуу жардамчысы колдонулбасын"</string>
