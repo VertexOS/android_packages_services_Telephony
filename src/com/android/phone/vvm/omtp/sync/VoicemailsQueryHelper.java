@@ -31,7 +31,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Construct a queries to interact with the voicemails table.
+ * Construct queries to interact with the voicemails table.
  */
 public class VoicemailsQueryHelper {
     private static final String TAG = "VoicemailsQueryHelper";
@@ -102,8 +102,8 @@ public class VoicemailsQueryHelper {
         try {
             List<Voicemail> voicemails = new ArrayList<Voicemail>();
             while (cursor.moveToNext()) {
-                final long id = cursor.getLong(VoicemailsQueryHelper._ID);
-                final String sourceData = cursor.getString(VoicemailsQueryHelper.SOURCE_DATA);
+                final long id = cursor.getLong(_ID);
+                final String sourceData = cursor.getString(SOURCE_DATA);
                 Voicemail voicemail = Voicemail.createForUpdate(id, sourceData).build();
                 voicemails.add(voicemail);
             }

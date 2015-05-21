@@ -21,12 +21,17 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.provider.VoicemailContract;
 import android.telecom.PhoneAccountHandle;
+import android.telephony.PhoneStateListener;
 import android.telephony.SubscriptionManager;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 
 import com.android.phone.PhoneUtils;
 import com.android.phone.vvm.omtp.OmtpConstants;
 import com.android.phone.vvm.omtp.sms.StatusMessage;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * A singleton class designed to assist in OMTP visual voicemail sync behavior.
@@ -44,6 +49,10 @@ public class OmtpVvmSyncAccountManager {
     private Context mContext;
     private SubscriptionManager mSubscriptionManager;
     private AccountManager mAccountManager;
+    private TelephonyManager mTelephonyManager;
+    // Each account is associated with a phone state listener for updates to whether the device
+    // is able to sync.
+    private Map<Account, PhoneStateListener> mPhoneStateListenerMap;
 
     /**
      * Private constructor. Instance should only be acquired through getInstance().
@@ -64,6 +73,9 @@ public class OmtpVvmSyncAccountManager {
             mContext = context;
             mSubscriptionManager = SubscriptionManager.from(context);
             mAccountManager = AccountManager.get(context);
+            mTelephonyManager = (TelephonyManager)
+                    mContext.getSystemService(Context.TELEPHONY_SERVICE);
+            mPhoneStateListenerMap = new HashMap<Account, PhoneStateListener>();
         }
     }
 
@@ -100,8 +112,25 @@ public class OmtpVvmSyncAccountManager {
                         VoicemailContract.Status.CONFIGURATION_STATE_NOT_CONFIGURED,
                         VoicemailContract.Status.DATA_CHANNEL_STATE_NO_CONNECTION,
                         VoicemailContract.Status.NOTIFICATION_CHANNEL_STATE_NO_CONNECTION);
+
+                removePhoneStateListener(registeredAccounts[i]);
             }
         }
+    }
+
+    public void addPhoneStateListener(Account account) {
+        if (!mPhoneStateListenerMap.containsKey(account)) {
+            VvmPhoneStateListener phoneStateListener = new VvmPhoneStateListener(mContext,
+                    PhoneUtils.makePstnPhoneAccountHandle(account.name));
+            mPhoneStateListenerMap.put(account, phoneStateListener);
+            mTelephonyManager.listen(phoneStateListener, PhoneStateListener.LISTEN_SERVICE_STATE);
+        }
+    }
+
+    public void removePhoneStateListener(Account account) {
+        PhoneStateListener phoneStateListener =
+                mPhoneStateListenerMap.remove(account);
+        mTelephonyManager.listen(phoneStateListener, 0);
     }
 
     /**
