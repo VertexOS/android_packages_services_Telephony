@@ -25,6 +25,8 @@ import android.telephony.SubscriptionManager;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 
+import com.android.internal.telephony.Phone;
+import com.android.phone.PhoneUtils;
 import com.android.phone.R;
 import com.android.phone.SubscriptionInfoHelper;
 import com.android.services.telephony.sip.SipAccountRegistry;
@@ -103,22 +105,56 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
 
         addPreferencesFromResource(R.xml.phone_account_settings);
 
+        /**
+         * Here we make decisions about what we will and will not display with regards to phone-
+         * account settings.  The basic settings structure is this:
+         * (1) <Make Calls With...>  // Lets user pick a default account for outgoing calls
+         * (2) <Account List>
+         *       <Account>
+         *       ...
+         *       <Account>
+         *     </Account List>
+         * (3) <All Accounts>  // Lets user enable/disable third-party accounts. SIM-based accounts
+         *                     // are always enabled and so aren't relevant here.
+         *
+         * Here are the rules that we follow:
+         * - (1) is only shown if there are multiple enabled accounts, including SIM accounts.
+         *   This can be 2+ SIM accounts, 2+ third party accounts or any combination.
+         * - (2) The account list only lists (a) enabled third party accounts and (b) SIM-based
+         *   accounts. However, for single-SIM devices, if the only account to show is the
+         *   SIM-based account, we don't show the list at all under the assumption that the user
+         *   already knows about the account.
+         * - (3) Is only shown if there exist any third party accounts.  If none exist, then the
+         *   option is hidden since there is nothing that can be done in it.
+         *
+         * By far, the most common case for users will be the single-SIM device without any
+         * third party accounts. IOW, the great majority of users won't see any of these options.
+         */
         mAccountList = (PreferenceCategory) getPreferenceScreen().findPreference(
                 ACCOUNTS_LIST_CATEGORY_KEY);
-        if (shouldShowConnectionServiceList()) {
-            initAccountList();
+        List<PhoneAccountHandle> allNonSimAccounts =
+                getCallingAccounts(false /* includeSims */, true /* includeDisabled */);
+        // Check to see if we should show the entire section at all.
+        if (shouldShowConnectionServiceList(allNonSimAccounts)) {
+            List<PhoneAccountHandle> enabledAccounts =
+                    getCallingAccounts(true /* includeSims */, false /* includeDisabled */);
+            // Initialize the account list with the set of enabled & SIM accounts.
+            initAccountList(enabledAccounts);
 
             mDefaultOutgoingAccount = (AccountSelectionPreference)
                     getPreferenceScreen().findPreference(DEFAULT_OUTGOING_ACCOUNT_KEY);
             mDefaultOutgoingAccount.setListener(this);
-            if (mTelecomManager.getCallCapablePhoneAccounts().size() > 1) {
+
+            // Only show the 'Make Calls With..." option if there are multiple accounts.
+            if (enabledAccounts.size() > 1) {
                 updateDefaultOutgoingAccountsModel();
             } else {
                 mAccountList.removePreference(mDefaultOutgoingAccount);
             }
 
             Preference allAccounts = getPreferenceScreen().findPreference(ALL_CALLING_ACCOUNTS_KEY);
-            if (getNonSimCallingAccounts(true).isEmpty() && allAccounts != null) {
+            // If there are no third party (nonSim) accounts, then don't show enable/disable dialog.
+            if (allNonSimAccounts.isEmpty() && allAccounts != null) {
                 mAccountList.removePreference(allAccounts);
             }
         } else {
@@ -296,7 +332,7 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
     private void updateDefaultOutgoingAccountsModel() {
         mDefaultOutgoingAccount.setModel(
                 mTelecomManager,
-                mTelecomManager.getCallCapablePhoneAccounts(),
+                getCallingAccounts(true /* includeSims */, false /* includeDisabled */),
                 mTelecomManager.getUserSelectedOutgoingPhoneAccount(),
                 getString(R.string.phone_accounts_ask_every_time));
     }
@@ -329,20 +365,22 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
         }
     }
 
-    private void initAccountList() {
+    private void initAccountList(List<PhoneAccountHandle> enabledAccounts) {
+
         boolean isMultiSimDevice = mTelephonyManager.isMultiSimEnabled();
 
         // On a single-SIM device, do not list any accounts if the only account is the SIM-based
         // one. This is because on single-SIM devices, we do not expose SIM settings through the
         // account listing entry so showing it does nothing to help the user. Nor does the lack of
         // action match the "Settings" header above the listing.
-        if (!isMultiSimDevice && getNonSimCallingAccounts(false).isEmpty()) {
+        if (!isMultiSimDevice && getCallingAccounts(
+                false /* includeSims */, false /* includeDisabled */).isEmpty()){
             return;
         }
 
         // Obtain the list of phone accounts.
         List<PhoneAccount> accounts = new ArrayList<>();
-        for (PhoneAccountHandle handle : mTelecomManager.getCallCapablePhoneAccounts()) {
+        for (PhoneAccountHandle handle : enabledAccounts) {
             PhoneAccount account = mTelecomManager.getPhoneAccount(handle);
             if (account != null) {
                 accounts.add(account);
@@ -453,21 +491,29 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
         return null;
     }
 
-    private boolean shouldShowConnectionServiceList() {
-        return mTelephonyManager.isMultiSimEnabled() ||
-            getNonSimCallingAccounts(true).size() > 0;
+    private boolean shouldShowConnectionServiceList(List<PhoneAccountHandle> allNonSimAccounts) {
+        return mTelephonyManager.isMultiSimEnabled() || allNonSimAccounts.size() > 0;
     }
 
-    private List<PhoneAccountHandle> getNonSimCallingAccounts(boolean includeDisabledAccounts) {
+    private List<PhoneAccountHandle> getCallingAccounts(
+            boolean includeSims, boolean includeDisabledAccounts) {
+        PhoneAccountHandle emergencyAccountHandle = getEmergencyPhoneAccount();
+
         List<PhoneAccountHandle> accountHandles =
                 mTelecomManager.getCallCapablePhoneAccounts(includeDisabledAccounts);
         for (Iterator<PhoneAccountHandle> i = accountHandles.iterator(); i.hasNext();) {
             PhoneAccountHandle handle = i.next();
+            if (handle.equals(emergencyAccountHandle)) {
+                // never include emergency call accounts in this piece of code.
+                i.remove();
+                continue;
+            }
+
             PhoneAccount account = mTelecomManager.getPhoneAccount(handle);
-            if (account == null ||
-                    (account.hasCapabilities(PhoneAccount.CAPABILITY_SIM_SUBSCRIPTION))) {
-                // If the account is no longer valid OR the account is a built-in SIM account,
-                // remove!
+            if (account == null) {
+                i.remove();
+            } else if (!includeSims &&
+                    account.hasCapabilities(PhoneAccount.CAPABILITY_SIM_SUBSCRIPTION)) {
                 i.remove();
             }
         }
@@ -476,5 +522,10 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
 
     private String nullToEmpty(String str) {
         return str == null ? "" : str;
+    }
+
+    private PhoneAccountHandle getEmergencyPhoneAccount() {
+        return PhoneUtils.makePstnPhoneAccountHandleWithPrefix(
+                (Phone) null, "" /* prefix */, true /* isEmergency */);
     }
 }
