@@ -188,4 +188,6 @@ public class OmtpConstants {
         put(RETURN_CODE, RETURN_CODE_VALUES);
     }};
 
+    /** Indicates the client is Google visual voicemail version 1.0. */
+    public static final String CLIENT_TYPE_GOOGLE_10 = "google.vvm.10";
 }
