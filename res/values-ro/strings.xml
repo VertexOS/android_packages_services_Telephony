@@ -68,8 +68,6 @@
     <string name="phone_accounts_selection_header" msgid="1365215726106915865">"Conturi telefon"</string>
     <string name="phone_accounts_add_sip_account" msgid="2023821743341923271">"Adăugați un cont SIP"</string>
     <string name="phone_accounts_configure_account_settings" msgid="1361715069911607109">"Configurați setările contului"</string>
-    <string name="phone_accounts_all_calling_accounts" msgid="207619531589278471">"Toate conturile pentru apelare"</string>
-    <string name="phone_accounts_all_calling_accounts_summary" msgid="5613012844819762450">"Activați conturile pentru apelare de pe telefon"</string>
     <string name="wifi_calling" msgid="739018212480165598">"Apelare prin Wi-Fi"</string>
     <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"Nu folosiți apelarea prin Wi-Fi"</string>
     <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"Nu folosiți un asistent de apelare"</string>

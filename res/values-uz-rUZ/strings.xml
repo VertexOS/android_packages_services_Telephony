@@ -42,8 +42,8 @@
     <string name="pause_prompt_yes" msgid="3564467212025151797">"Ha"</string>
     <string name="pause_prompt_no" msgid="6686238803236884877">"Yo‘q"</string>
     <string name="wild_prompt_str" msgid="5543521676355533577">"Belgilarni quyidagilar bilan almashtiring:"</string>
-    <string name="no_vm_number" msgid="4164780423805688336">"Ovozli pochta raqami ko‘rsatilmagan"</string>
-    <string name="no_vm_number_msg" msgid="1300729501030053828">"SIM kartada birorta ham ovozli pochta raqami yo‘q."</string>
+    <string name="no_vm_number" msgid="4164780423805688336">"Javobsiz ovozli xabar raqami"</string>
+    <string name="no_vm_number_msg" msgid="1300729501030053828">"SIM kartada birorta ham ovozli xabar saqlanmagan."</string>
     <string name="add_vm_number_str" msgid="4676479471644687453">"Raqam qo‘shish"</string>
     <string name="puk_unlocked" msgid="2284912838477558454">"To‘sib qo‘yilgan SIM kartangiz ochildi. Telefoningiz qulfdan chiqarilmoqda…"</string>
     <string name="label_ndp" msgid="780479633159517250">"SIM kartani tarmoqdagi qulfidan chiqarish PIN kodi"</string>
@@ -59,7 +59,7 @@
     <string name="labelCdmaMore_with_label" msgid="6333588719319970399">"CDMA qo‘ng‘iroq sozlamalari (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="apn_settings" msgid="9043423184895642077">"Ulanish nuqtasi nomlari"</string>
     <string name="settings_label" msgid="3876743539816984008">"Tarmoq sozlamalari"</string>
-    <string name="phone_accounts" msgid="6376603393888116364">"Qo‘ng‘iroq hisoblari"</string>
+    <string name="phone_accounts" msgid="6376603393888116364">"Qo‘ng‘iroq uchun hisoblar"</string>
     <string name="phone_accounts_make_calls_with" msgid="1969188078933152231">"Qo‘ng‘iroqlar uchun hisob"</string>
     <string name="phone_accounts_make_sip_calls_with" msgid="4677789312053828493">"SIP qo‘ng‘iroqlari uchun hisob"</string>
     <string name="phone_accounts_ask_every_time" msgid="4346499067149985702">"Avval so‘ralsin"</string>
@@ -68,12 +68,10 @@
     <string name="phone_accounts_selection_header" msgid="1365215726106915865">"Telefon hisoblari"</string>
     <string name="phone_accounts_add_sip_account" msgid="2023821743341923271">"SIP hisobini qo‘shish"</string>
     <string name="phone_accounts_configure_account_settings" msgid="1361715069911607109">"Hisob sozlamalarini shakllantirish"</string>
-    <string name="phone_accounts_all_calling_accounts" msgid="207619531589278471">"Barcha qo‘ng‘iroq hisoblari"</string>
-    <string name="phone_accounts_all_calling_accounts_summary" msgid="5613012844819762450">"Faol qo‘ng‘iroq hisoblarini yoqish"</string>
     <string name="wifi_calling" msgid="739018212480165598">"Wi-Fi qo‘ng‘iroq"</string>
     <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"Wi-Fi qo‘ng‘iroqlardan foydalanilmasin"</string>
     <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"Qo‘ng‘iroq yordamchisidan foydalanilmasin"</string>
-    <string name="wifi_calling_call_assistant_none" msgid="6283702349285593683">"Ishlatilmasin"</string>
+    <string name="wifi_calling_call_assistant_none" msgid="6283702349285593683">"Hech biri"</string>
     <string name="wifi_calling_call_assistant" msgid="229102032881680320">"Qo‘ng‘iroq yordamchisi"</string>
     <string name="wifi_calling_use_call_assistant" msgid="8460024827012666199">"Qo‘ng‘iroq yordamchisidan foydalanish"</string>
     <string name="wifi_calling_select_call_assistant" msgid="9296558058772293">"Qo‘ng‘iroq yordamchisini tanlang"</string>
@@ -145,8 +143,8 @@
     <item msgid="7876195870037833661">"Raqamni yashirish"</item>
     <item msgid="1108394741608734023">"Raqamni ko‘rsatish"</item>
   </string-array>
-    <string name="vm_changed" msgid="380744030726254139">"Ovozli pochta raqami o‘zgardi."</string>
-    <string name="vm_change_failed" msgid="3352934863246208918">"Ovozli pochta raqami o‘zgarmadi.\nUshbu muammoni hal qila olmasangiz, operatoringiz bilan bog‘laning."</string>
+    <string name="vm_changed" msgid="380744030726254139">"Ovozli xabar raqami o‘zgartirildi."</string>
+    <string name="vm_change_failed" msgid="3352934863246208918">"Ovozli xabar raqami o‘zgartirimaldi.\nUshbu muammoni hal qila olmasangiz, operatoringiz bilan bog‘laning."</string>
     <string name="fw_change_failed" msgid="5298103228470214665">"Yo‘naltirish raqamini o‘zgartirib bo‘lmadi.\nAgar ushbu muammoni hal qilib bo‘lmasa, operator bilan bog‘laning."</string>
     <string name="fw_get_in_vm_failed" msgid="8862896836093833973">"Joriy raqamlarni yo‘naltirish sozlamalarini olib va saqlab bo‘lmadi.\nYangi operatorga o‘tilaverilsinmi?"</string>
     <string name="no_change" msgid="3186040086622435212">"O‘zgarishlar qilinmadi."</string>
@@ -379,7 +377,7 @@
     <string name="fdn_failed" msgid="540018079008319747">"FDN jarayoni amalga oshmadi."</string>
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"SIM kartadan o‘qilmoqda…"</string>
     <string name="simContacts_empty" msgid="5270660846489561932">"SIM kartangizda kontaktlar yo‘q."</string>
-    <string name="simContacts_title" msgid="1861472842524839921">"Import u-n kontaktlarni tanlang"</string>
+    <string name="simContacts_title" msgid="1861472842524839921">"Import qilish uchun kontaktlarni tanlang"</string>
     <string name="simContacts_airplaneMode" msgid="5254946758982621072">"SIM kartadan kontaktlarni import qilish uchun parvoz rejimini o‘chiring"</string>
     <string name="enable_pin" msgid="5422767284133234860">"SIM karta PIN kodini yoqish/o‘chirish"</string>
     <string name="change_pin" msgid="9174186126330785343">"SIM karta PIN kodini o‘zgartirish"</string>
@@ -415,7 +413,7 @@
     <string name="pin2_attempts" msgid="720736232885011507">\n"Sizda <xliff:g id="NUMBER">%d</xliff:g> ta urinish qoldi."</string>
     <string name="pin2_unblocked" msgid="7791600368153469078">"PIN2 kodi blokdan chiqarildi"</string>
     <string name="doneButton" msgid="2859593360997984240">"Tayyor"</string>
-    <string name="voicemail_settings_number_label" msgid="8524164258691887790">"Ovozli pochta raqami"</string>
+    <string name="voicemail_settings_number_label" msgid="8524164258691887790">"Ovozli xabar raqami"</string>
     <string name="card_title_dialing" msgid="5769417478498348054">"Raqam terilmoqda"</string>
     <string name="card_title_redialing" msgid="8253487008234167266">"Qayta terilmoqda"</string>
     <string name="card_title_conf_call" msgid="1162980346189744501">"Konferensiya qo‘ng‘irog‘i"</string>
@@ -425,22 +423,22 @@
     <string name="card_title_hanging_up" msgid="3999101620995182450">"Go‘shak qo‘yilmoqda"</string>
     <string name="card_title_in_call" msgid="6346543933068225205">"Qo‘ng‘iroqda"</string>
     <string name="notification_dialing" msgid="2107666444937350731">"Terilmoqda"</string>
-    <string name="notification_missedCallTitle" msgid="7554385905572364535">"Javobsiz qo‘ng‘iroq"</string>
+    <string name="notification_missedCallTitle" msgid="7554385905572364535">"Javob berilmagan qo‘ng‘iroq"</string>
     <string name="notification_missedCallsTitle" msgid="1361677948941502522">"Javobsiz qo‘ng‘iroqlar"</string>
     <string name="notification_missedCallsMsg" msgid="4575787816055205600">"<xliff:g id="NUM_MISSED_CALLS">%s</xliff:g> ta javobsiz qo‘ng‘iroq"</string>
-    <string name="notification_missedCallTicker" msgid="504686252427747209">"<xliff:g id="MISSED_CALL_FROM">%s</xliff:g> qo‘ng‘irog‘i javobsiz qoldirildi"</string>
+    <string name="notification_missedCallTicker" msgid="504686252427747209">"<xliff:g id="MISSED_CALL_FROM">%s</xliff:g>dan javobsiz qo‘ng‘iroq"</string>
     <string name="notification_ongoing_call" msgid="7068688957273482989">"Joriy qo‘ng‘iroq"</string>
     <string name="notification_on_hold" msgid="3480694969511790465">"Kutmoqda"</string>
     <string name="notification_incoming_call" msgid="2820429205043529642">"Kiruvchi qo‘ng‘iroq"</string>
     <string name="notification_voicemail_title" msgid="8933468752045550523">"Yangi ovozli xabar"</string>
     <string name="notification_voicemail_title_count" msgid="4366360747660929916">"Yangi ovozli xabar (<xliff:g id="COUNT">%d</xliff:g>)"</string>
     <string name="notification_voicemail_text_format" msgid="4447323569453981685">"<xliff:g id="VOICEMAIL_NUMBER">%s</xliff:g>ni terish"</string>
-    <string name="notification_voicemail_no_vm_number" msgid="760963466895609716">"Ovozli pochta raqami noma’lum"</string>
+    <string name="notification_voicemail_no_vm_number" msgid="760963466895609716">"Ovozli qo‘ng‘iroq raqami noma’lum"</string>
     <string name="notification_network_selection_title" msgid="4224455487793492772">"Xizmat mavjud emas"</string>
     <string name="notification_network_selection_text" msgid="2607085729661923269">"Tanlangan tarmoq (<xliff:g id="OPERATOR_NAME">%s</xliff:g>) mavjud emas"</string>
     <string name="notification_action_end_call" msgid="6069460915123531620">"Go‘shakni qo‘yish"</string>
-    <string name="notification_missedCall_call_back" msgid="2684890353590890187">"Qo‘ng‘iroq"</string>
-    <string name="notification_missedCall_message" msgid="3049928912736917988">"SMS"</string>
+    <string name="notification_missedCall_call_back" msgid="2684890353590890187">"Teskari qo‘ng‘iroq"</string>
+    <string name="notification_missedCall_message" msgid="3049928912736917988">"Xabar"</string>
     <string name="incall_error_power_off" msgid="2947938060513306698">"Qo‘ng‘iroq qilish uchun parvoz rejimini o‘chiring"</string>
     <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"Qo‘ng‘iroq qilish uchun parvoz rejimini o‘chiring yoki simsiz tarmoqqa ulaning."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"Tarmoqda ro‘yxatdan o‘tmagan."</string>
@@ -537,7 +535,7 @@
     <string name="alert_dialog_dismiss" msgid="2491494287075907171">"Rad qilish"</string>
     <string name="voicemail_provider" msgid="5135942703327136909">"Xizmat"</string>
     <string name="voicemail_settings" msgid="72448049107749316">"Moslash"</string>
-    <string name="voicemail_number_not_set" msgid="6724904736891087856">"&lt;Ko‘rsatilmagan&gt;"</string>
+    <string name="voicemail_number_not_set" msgid="6724904736891087856">"&lt;O‘rnatilmagan&gt;"</string>
     <string name="other_settings" msgid="3672912580359716394">"Boshqa qo‘ng‘iroq sozlamalari"</string>
     <string name="calling_via_template" msgid="4839419581866928142">"<xliff:g id="PROVIDER_NAME">%s</xliff:g> orqali qo‘ng‘rioq qilinmoqda"</string>
     <string name="contactPhoto" msgid="4713193418046639466">"kontakt surati"</string>

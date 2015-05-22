@@ -68,8 +68,6 @@
     <string name="phone_accounts_selection_header" msgid="1365215726106915865">"ഫോൺ അക്കൗണ്ടുകൾ"</string>
     <string name="phone_accounts_add_sip_account" msgid="2023821743341923271">"SIP അക്കൗണ്ട് ചേർക്കുക"</string>
     <string name="phone_accounts_configure_account_settings" msgid="1361715069911607109">"അക്കൗണ്ട് ക്രമീകരണങ്ങൾ കോൺഫിഗർചെയ്യുക"</string>
-    <string name="phone_accounts_all_calling_accounts" msgid="207619531589278471">"കോളുചെയ്യാനുള്ള എല്ലാ അക്കൗണ്ടുകളും"</string>
-    <string name="phone_accounts_all_calling_accounts_summary" msgid="5613012844819762450">"കോളുചെയ്യാനുള്ള സജീവ അക്കൗണ്ടുകൾ പ്രവർത്തനക്ഷമമാക്കുക"</string>
     <string name="wifi_calling" msgid="739018212480165598">"Wi-Fi കോളിംഗ്"</string>
     <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"Wi-Fi കോൾ ചെയ്യൽ ഉപയോഗിക്കരുത്"</string>
     <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"കോൾ സഹായി ഉപയോഗിക്കരുത്"</string>
