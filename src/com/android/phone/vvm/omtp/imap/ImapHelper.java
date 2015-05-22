@@ -18,6 +18,7 @@ package com.android.phone.vvm.omtp.imap;
 import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.content.Context;
+import android.net.Network;
 import android.telecom.PhoneAccountHandle;
 import android.telecom.Voicemail;
 
@@ -61,7 +62,7 @@ public class ImapHelper {
     private Context mContext;
     private PhoneAccountHandle mPhoneAccount;
 
-    public ImapHelper(Context context, Account account) {
+    public ImapHelper(Context context, Account account, Network network) {
         try {
             mContext = context;
             mPhoneAccount = PhoneUtils.makePstnPhoneAccountHandle(account.name);
@@ -75,7 +76,7 @@ public class ImapHelper {
                     accountManager.getUserData(account, OmtpConstants.IMAP_PORT));
             // TODO: determine the security protocol (e.g. ssl, tls, none, etc.)
             mImapStore = new ImapStore(
-                    context, username, password, port, serverName, ImapStore.FLAG_NONE);
+                    context, username, password, port, serverName, ImapStore.FLAG_NONE, network);
         } catch (NumberFormatException e) {
             LogUtils.e(TAG, e, "Could not parse port number");
         }
