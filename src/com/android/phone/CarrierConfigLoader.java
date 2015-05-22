@@ -137,6 +137,9 @@ public class CarrierConfigLoader extends ICarrierConfigLoader.Stub {
             PersistableBundle config;
             switch (msg.what) {
                 case EVENT_CLEAR_CONFIG:
+                    if (mConfigFromDefaultApp[phoneId] == null &&
+                        mConfigFromCarrierApp[phoneId] == null)
+                        break;
                     mConfigFromDefaultApp[phoneId] = null;
                     mConfigFromCarrierApp[phoneId] = null;
                     mServiceConnection[phoneId] = null;
