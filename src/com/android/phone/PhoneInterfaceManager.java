@@ -141,6 +141,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     private static final String PREF_CARRIERS_ALPHATAG_PREFIX = "carrier_alphtag_";
     private static final String PREF_CARRIERS_NUMBER_PREFIX = "carrier_number_";
     private static final String PREF_CARRIERS_SUBSCRIBER_PREFIX = "carrier_subscriber_";
+    private static final String PREF_ENABLE_VIDEO_CALLING = "enable_video_calling";
 
     /**
      * A request object to use for transmitting data to an ICC.
@@ -2279,7 +2280,9 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     @Override
     public void enableVideoCalling(boolean enable) {
         enforceModifyPermission();
-        ImsManager.setVtSetting(mPhone.getContext(), enable);
+        SharedPreferences.Editor editor = mTelephonySharedPreferences.edit();
+        editor.putBoolean(PREF_ENABLE_VIDEO_CALLING, enable);
+        editor.commit();
     }
 
     @Override
@@ -2294,7 +2297,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         // which can support video calling.
         return ImsManager.isVtEnabledByPlatform(mPhone.getContext())
                 && ImsManager.isEnhanced4gLteModeSettingEnabledByUser(mPhone.getContext())
-                && ImsManager.isVtEnabledByUser(mPhone.getContext());
+                && mTelephonySharedPreferences.getBoolean(PREF_ENABLE_VIDEO_CALLING, true);
     }
 
     @Override
