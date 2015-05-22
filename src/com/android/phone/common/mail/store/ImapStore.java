@@ -17,6 +17,7 @@
 package com.android.phone.common.mail.store;
 
 import android.content.Context;
+import android.net.Network;
 
 import com.android.phone.common.mail.internet.MimeMessage;
 import com.android.phone.common.mail.MailTransport;
@@ -50,11 +51,11 @@ public class ImapStore {
      * Contains all the information necessary to log into an imap server
      */
     public ImapStore(Context context, String username, String password, int port,
-            String serverName, int flags) {
+            String serverName, int flags, Network network) {
         mContext = context;
         mUsername = username;
         mPassword = password;
-        mTransport = new MailTransport(context, serverName, port, flags);
+        mTransport = new MailTransport(context, network, serverName, port, flags);
     }
 
     public Context getContext() {
