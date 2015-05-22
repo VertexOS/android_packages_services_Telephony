@@ -21,6 +21,10 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.net.ConnectivityManager;
+import android.net.Network;
+import android.net.NetworkCapabilities;
+import android.net.NetworkRequest;
 import android.net.Uri;
 import android.provider.VoicemailContract;
 import android.provider.VoicemailContract.Voicemails;
@@ -28,6 +32,7 @@ import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.android.phone.PhoneUtils;
 import com.android.phone.vvm.omtp.imap.ImapHelper;
 import com.android.phone.vvm.omtp.sync.OmtpVvmSyncAccountManager;
 
@@ -45,12 +50,22 @@ public class FetchVoicemailReceiver extends BroadcastReceiver {
     public static final int SOURCE_DATA = 0;
     public static final int PHONE_ACCOUNT_ID = 1;
 
+    // Timeout used to call ConnectivityManager.requestNetwork
+    private static final int NETWORK_REQUEST_TIMEOUT_MILLIS = 60 * 1000;
+
     private ContentResolver mContentResolver;
     private Uri mUri;
+    private NetworkRequest mNetworkRequest;
+    private OmtpVvmNetworkRequestCallback mNetworkCallback;
+    private Context mContext;
+    private Account mAccount;
+    private String mUid;
+    private ConnectivityManager mConnectivityManager;
 
     @Override
     public void onReceive(final Context context, Intent intent) {
         if (VoicemailContract.ACTION_FETCH_VOICEMAIL.equals(intent.getAction())) {
+            mContext = context;
             mContentResolver = context.getContentResolver();
             mUri = intent.getData();
 
@@ -71,7 +86,7 @@ public class FetchVoicemailReceiver extends BroadcastReceiver {
             }
             try {
                 if (cursor.moveToFirst()) {
-                    final String uid = cursor.getString(SOURCE_DATA);
+                    mUid = cursor.getString(SOURCE_DATA);
                     String accountId = cursor.getString(PHONE_ACCOUNT_ID);
                     if (TextUtils.isEmpty(accountId)) {
                         TelephonyManager telephonyManager = (TelephonyManager)
@@ -83,27 +98,71 @@ public class FetchVoicemailReceiver extends BroadcastReceiver {
                             return;
                         }
                     }
-                    final Account account = new Account(accountId,
+                    mAccount = new Account(accountId,
                             OmtpVvmSyncAccountManager.ACCOUNT_TYPE);
 
                     if (!OmtpVvmSyncAccountManager.getInstance(context)
-                            .isAccountRegistered(account)) {
+                            .isAccountRegistered(mAccount)) {
                         Log.w(TAG, "Account not registered - cannot retrieve message.");
                         return;
                     }
 
-                    Executor executor = Executors.newCachedThreadPool();
-                    executor.execute(new Runnable() {
-                        @Override
-                        public void run() {
-                            new ImapHelper(context, account).fetchVoicemailPayload(
-                                    new VoicemailFetchedCallback(context, mUri), uid);
-                        }
-                    });
+                    int subId = PhoneUtils.getSubIdForPhoneAccountHandle(
+                            PhoneUtils.makePstnPhoneAccountHandle(accountId));
+
+                    mNetworkRequest = new NetworkRequest.Builder()
+                            .addTransportType(NetworkCapabilities.TRANSPORT_CELLULAR)
+                            .addCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
+                            .setNetworkSpecifier(Integer.toString(subId))
+                            .build();
+                    mNetworkCallback = new OmtpVvmNetworkRequestCallback();
+                    getConnectivityManager().requestNetwork(
+                            mNetworkRequest, mNetworkCallback, NETWORK_REQUEST_TIMEOUT_MILLIS);
                 }
             } finally {
                 cursor.close();
             }
         }
+    }
+
+    private class OmtpVvmNetworkRequestCallback extends ConnectivityManager.NetworkCallback {
+        @Override
+        public void onAvailable(final Network network) {
+            super.onAvailable(network);
+
+            Executor executor = Executors.newCachedThreadPool();
+            executor.execute(new Runnable() {
+                @Override
+                public void run() {
+                    new ImapHelper(mContext, mAccount, network).fetchVoicemailPayload(
+                            new VoicemailFetchedCallback(mContext, mUri), mUid);
+                    releaseNetwork();
+                }
+            });
+        }
+
+        @Override
+        public void onLost(Network network) {
+            super.onLost(network);
+            releaseNetwork();
+        }
+
+        @Override
+        public void onUnavailable() {
+            super.onUnavailable();
+            releaseNetwork();
+        }
+    }
+
+    private void releaseNetwork() {
+        getConnectivityManager().unregisterNetworkCallback(mNetworkCallback);
+    }
+
+    private ConnectivityManager getConnectivityManager() {
+        if (mConnectivityManager == null) {
+            mConnectivityManager = (ConnectivityManager) mContext.getSystemService(
+                    Context.CONNECTIVITY_SERVICE);
+        }
+        return mConnectivityManager;
     }
 }

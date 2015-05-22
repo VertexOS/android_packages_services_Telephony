@@ -80,7 +80,7 @@ public class OmtpVvmSyncService extends Service {
         @Override
         public void onPerformSync(Account account, Bundle extras, String authority,
                 ContentProviderClient provider, SyncResult syncResult) {
-            ImapHelper imapHelper = new ImapHelper(mContext, account);
+            ImapHelper imapHelper = new ImapHelper(mContext, account, null);
             VoicemailsQueryHelper queryHelper = new VoicemailsQueryHelper(mContext);
 
             if (extras.getBoolean(ContentResolver.SYNC_EXTRAS_UPLOAD, false)) {
