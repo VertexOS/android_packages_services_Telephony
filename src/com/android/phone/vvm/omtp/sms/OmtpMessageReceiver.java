@@ -126,11 +126,6 @@ public class OmtpMessageReceiver extends BroadcastReceiver {
                     VoicemailContract.Status.CONFIGURATION_STATE_OK,
                     VoicemailContract.Status.DATA_CHANNEL_STATE_OK,
                     VoicemailContract.Status.NOTIFICATION_CHANNEL_STATE_OK);
-
-            Bundle bundle = new Bundle();
-            bundle.putBoolean(OmtpVvmSyncAdapter.SYNC_EXTRAS_DOWNLOAD, true);
-            bundle.putBoolean(ContentResolver.SYNC_EXTRAS_UPLOAD, true);
-            ContentResolver.requestSync(account, VoicemailContract.AUTHORITY, bundle);
         }
 
         // Save the IMAP credentials in the corresponding account object so they are
@@ -139,5 +134,10 @@ public class OmtpMessageReceiver extends BroadcastReceiver {
 
         // Add a phone state listener so that changes to the communication channels can be recorded.
         vvmAccountSyncManager.addPhoneStateListener(account);
+
+        Bundle bundle = new Bundle();
+        bundle.putBoolean(OmtpVvmSyncAdapter.SYNC_EXTRAS_DOWNLOAD, true);
+        bundle.putBoolean(ContentResolver.SYNC_EXTRAS_UPLOAD, true);
+        ContentResolver.requestSync(account, VoicemailContract.AUTHORITY, bundle);
     }
 }
