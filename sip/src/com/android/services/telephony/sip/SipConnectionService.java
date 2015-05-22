@@ -110,8 +110,8 @@ public final class SipConnectionService extends ConnectionService {
         if (attemptCall) {
             // The ID used for SIP-based phone account is the SIP profile Uri. Use it to find
             // the actual profile.
-            String profileUri = accountHandle.getId();
-            findProfile(profileUri, new IProfileFinderCallback() {
+            String profileName = accountHandle.getId();
+            findProfile(profileName, new IProfileFinderCallback() {
                 @Override
                 public void onFound(SipProfile profile) {
                     if (profile == null) {
@@ -205,7 +205,7 @@ public final class SipConnectionService extends ConnectionService {
      * in communicating with the database, so it is done asynchronously with a separate thread and a
      * callback interface.
      */
-    private void findProfile(final String profileUri, final IProfileFinderCallback callback) {
+    private void findProfile(final String profileName, final IProfileFinderCallback callback) {
         if (VERBOSE) log("findProfile");
         new Thread(new Runnable() {
             @Override
@@ -214,7 +214,7 @@ public final class SipConnectionService extends ConnectionService {
                 List<SipProfile> profileList = mSipProfileDb.retrieveSipProfileList();
                 if (profileList != null) {
                     for (SipProfile profile : profileList) {
-                        if (Objects.equals(profileUri, profile.getUriString())) {
+                        if (Objects.equals(profileName, profile.getProfileName())) {
                             profileToUse = profile;
                             break;
                         }
