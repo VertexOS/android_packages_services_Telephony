@@ -79,6 +79,8 @@ public class CallFeaturesSetting extends PreferenceActivity
         implements Preference.OnPreferenceChangeListener {
     private static final String LOG_TAG = "CallFeaturesSetting";
     private static final boolean DBG = (PhoneGlobals.DBG_LEVEL >= 2);
+    // STOPSHIP if true. Flag to override behavior default behavior to hide VT setting.
+    private static final boolean ENABLE_VT_FLAG = true;
 
     // String keys for preference lookup
     // TODO: Naming these "BUTTON_*" is confusing since they're not actually buttons(!)
@@ -258,7 +260,7 @@ public class CallFeaturesSetting extends PreferenceActivity
             }
         }
 
-        if (ImsManager.isVtEnabledByPlatform(mPhone.getContext())) {
+        if (ImsManager.isVtEnabledByPlatform(mPhone.getContext()) && ENABLE_VT_FLAG) {
             boolean currentValue =
                     ImsManager.isEnhanced4gLteModeSettingEnabledByUser(mPhone.getContext())
                     ? PhoneGlobals.getInstance().phoneMgr.isVideoCallingEnabled(
