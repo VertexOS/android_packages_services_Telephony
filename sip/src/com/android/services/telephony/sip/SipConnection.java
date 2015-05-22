@@ -132,7 +132,8 @@ final class SipConnection extends Connection {
     public void onHold() {
         if (VERBOSE) log("onHold");
         try {
-            if (getPhone() != null && getState() == STATE_ACTIVE) {
+            if (getPhone() != null && getState() == STATE_ACTIVE
+                    && getPhone().getRingingCall().getState() != Call.State.WAITING) {
                 getPhone().switchHoldingAndActive();
             }
         } catch (CallStateException e) {
