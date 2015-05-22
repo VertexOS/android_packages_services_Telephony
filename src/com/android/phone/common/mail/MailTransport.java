@@ -16,6 +16,7 @@
 package com.android.phone.common.mail;
 
 import android.content.Context;
+import android.net.Network;
 
 import com.android.phone.common.mail.store.ImapStore;
 import com.android.phone.common.mail.utils.LogUtils;
@@ -51,6 +52,7 @@ public class MailTransport {
             HttpsURLConnection.getDefaultHostnameVerifier();
 
     private Context mContext;
+    private Network mNetwork;
     private String mHost;
     private int mPort;
     private Socket mSocket;
@@ -58,8 +60,9 @@ public class MailTransport {
     private BufferedOutputStream mOut;
     private int mFlags;
 
-    public MailTransport(Context context, String address, int port, int flags) {
+    public MailTransport(Context context, Network network, String address, int port, int flags) {
         mContext = context;
+        mNetwork = network;
         mHost = address;
         mPort = port;
         mFlags = flags;
@@ -71,7 +74,7 @@ public class MailTransport {
      */
     @Override
     public MailTransport clone() {
-        return new MailTransport(mContext, mHost, mPort, mFlags);
+        return new MailTransport(mContext, mNetwork, mHost, mPort, mFlags);
     }
 
     public boolean canTrySslSecurity() {
@@ -94,7 +97,11 @@ public class MailTransport {
             if (canTrySslSecurity()) {
                 mSocket = HttpsURLConnection.getDefaultSSLSocketFactory().createSocket();
             } else {
-                mSocket = new Socket();
+                if (mNetwork == null) {
+                    mSocket = new Socket();
+                } else {
+                    mSocket = mNetwork.getSocketFactory().createSocket();
+                }
             }
             mSocket.connect(socketAddress, SOCKET_CONNECT_TIMEOUT);
             // After the socket connects to an SSL server, confirm that the hostname is as expected
