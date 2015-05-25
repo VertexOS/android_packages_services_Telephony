@@ -69,7 +69,7 @@
     <string name="phone_accounts_add_sip_account" msgid="2023821743341923271">"Aggiungi account SIP"</string>
     <string name="phone_accounts_configure_account_settings" msgid="1361715069911607109">"Configurazione delle impostazioni dell\'account"</string>
     <string name="phone_accounts_all_calling_accounts" msgid="207619531589278471">"Tutti gli account chiamate"</string>
-    <string name="phone_accounts_all_calling_accounts_summary" msgid="5613012844819762450">"Attiva account chiamate"</string>
+    <string name="phone_accounts_all_calling_accounts_summary" msgid="8594186415822657011">"Seleziona gli account autorizzati a effettuare chiamate"</string>
     <string name="wifi_calling" msgid="739018212480165598">"Chiamate Wi-Fi"</string>
     <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"Non utilizzare chiamate Wi-Fi"</string>
     <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"Non utilizzare assistente chiamate"</string>

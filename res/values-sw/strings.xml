@@ -69,7 +69,7 @@
     <string name="phone_accounts_add_sip_account" msgid="2023821743341923271">"Ongeza akaunti ya SIP"</string>
     <string name="phone_accounts_configure_account_settings" msgid="1361715069911607109">"Sanidi mipangilio ya akaunti"</string>
     <string name="phone_accounts_all_calling_accounts" msgid="207619531589278471">"Akaunti zote za simu"</string>
-    <string name="phone_accounts_all_calling_accounts_summary" msgid="5613012844819762450">"Washa akaunti zote zinazotumika za simu"</string>
+    <string name="phone_accounts_all_calling_accounts_summary" msgid="8594186415822657011">"Chagua akaunti ambazo zinaweza kupiga simu"</string>
     <string name="wifi_calling" msgid="739018212480165598">"Upigaji simu kwa Wi-Fi"</string>
     <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"Usitumie upigaji simu kwa Wi-Fi"</string>
     <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"Usitumie kisaidizi cha simu"</string>

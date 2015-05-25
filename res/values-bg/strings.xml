@@ -69,7 +69,7 @@
     <string name="phone_accounts_add_sip_account" msgid="2023821743341923271">"Добавяне на профил за SIP"</string>
     <string name="phone_accounts_configure_account_settings" msgid="1361715069911607109">"Конфигуриране на настройките на профила"</string>
     <string name="phone_accounts_all_calling_accounts" msgid="207619531589278471">"Всички профили за обаждане"</string>
-    <string name="phone_accounts_all_calling_accounts_summary" msgid="5613012844819762450">"Активиране на активните профили за обаждане"</string>
+    <string name="phone_accounts_all_calling_accounts_summary" msgid="8594186415822657011">"Изберете от кои профили могат да се извършват обаждания"</string>
     <string name="wifi_calling" msgid="739018212480165598">"Обаждания през Wi-Fi"</string>
     <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"Без използване на услуга за обаждане през Wi-Fi"</string>
     <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"Без използване на помощник за обаждания"</string>

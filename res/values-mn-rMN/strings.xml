@@ -68,8 +68,8 @@
     <string name="phone_accounts_selection_header" msgid="1365215726106915865">"Гар утасны акаунт"</string>
     <string name="phone_accounts_add_sip_account" msgid="2023821743341923271">"SIP акаунт нэмэх"</string>
     <string name="phone_accounts_configure_account_settings" msgid="1361715069911607109">"Акаунтын тохиргоог хийх"</string>
-    <string name="phone_accounts_all_calling_accounts" msgid="207619531589278471">"Бүх дуудах данс"</string>
-    <string name="phone_accounts_all_calling_accounts_summary" msgid="5613012844819762450">"Идэвхтэй дуудах дансыг идэвхжүүлэх"</string>
+    <string name="phone_accounts_all_calling_accounts" msgid="207619531589278471">"Дуудлагын эрхтэй бүх бүртгэл"</string>
+    <string name="phone_accounts_all_calling_accounts_summary" msgid="8594186415822657011">"Дуудлага хийх боломжтой бүртгэлээ сонгоно уу"</string>
     <string name="wifi_calling" msgid="739018212480165598">"Wi-Fi дуудлага"</string>
     <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"Wi-Fi дуудлагыг бүү ашигла"</string>
     <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"Дуудлагын туслагчийг бүү ашигла"</string>

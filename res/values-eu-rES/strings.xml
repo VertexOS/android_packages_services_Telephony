@@ -69,7 +69,7 @@
     <string name="phone_accounts_add_sip_account" msgid="2023821743341923271">"Gehitu SIP kontua"</string>
     <string name="phone_accounts_configure_account_settings" msgid="1361715069911607109">"Konfiguratu kontuaren ezarpenak"</string>
     <string name="phone_accounts_all_calling_accounts" msgid="207619531589278471">"Deiak egiteko kontu guztiak"</string>
-    <string name="phone_accounts_all_calling_accounts_summary" msgid="5613012844819762450">"Gaitu deiak egiteko kontu aktiboak"</string>
+    <string name="phone_accounts_all_calling_accounts_summary" msgid="8594186415822657011">"Hautatu zein kontutatik egin daitezkeen deiak"</string>
     <string name="wifi_calling" msgid="739018212480165598">"Wi-Fi bidezko deiak"</string>
     <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"Ez erabili Wi-Fi bidezko deiak"</string>
     <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"Ez erabili deiak egiteko laguntzailea"</string>

@@ -69,7 +69,8 @@
     <string name="phone_accounts_add_sip_account" msgid="2023821743341923271">"SIP 계정 추가"</string>
     <string name="phone_accounts_configure_account_settings" msgid="1361715069911607109">"계정 설정 조정"</string>
     <string name="phone_accounts_all_calling_accounts" msgid="207619531589278471">"모든 통화 계정"</string>
-    <string name="phone_accounts_all_calling_accounts_summary" msgid="5613012844819762450">"활성 통화 계정 사용"</string>
+    <!-- no translation found for phone_accounts_all_calling_accounts_summary (8594186415822657011) -->
+    <skip />
     <string name="wifi_calling" msgid="739018212480165598">"Wi-Fi 통화"</string>
     <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"Wi-Fi 통화 사용 안함"</string>
     <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"통화 도우미 사용 안함"</string>

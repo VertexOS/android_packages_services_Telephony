@@ -69,7 +69,7 @@
     <string name="phone_accounts_add_sip_account" msgid="2023821743341923271">"SIP-fiók hozzáadása"</string>
     <string name="phone_accounts_configure_account_settings" msgid="1361715069911607109">"Fiókbeállítások konfigurálása"</string>
     <string name="phone_accounts_all_calling_accounts" msgid="207619531589278471">"Az összes telefonos fiók"</string>
-    <string name="phone_accounts_all_calling_accounts_summary" msgid="5613012844819762450">"Az aktív telefonos fiókok engedélyezése"</string>
+    <string name="phone_accounts_all_calling_accounts_summary" msgid="8594186415822657011">"Válassza ki, hogy mely fiókokkal lehessen hívást kezdeményezni"</string>
     <string name="wifi_calling" msgid="739018212480165598">"Wi-Fi-hívás"</string>
     <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"Ne használja a Wi-Fi-hívást"</string>
     <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"Ne használja a hívássegédet"</string>
