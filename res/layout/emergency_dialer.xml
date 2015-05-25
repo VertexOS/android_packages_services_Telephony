@@ -121,8 +121,9 @@
 
         <ImageButton
             android:id="@+id/floating_action_button"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:background="@drawable/floating_action_button"
             android:contentDescription="@string/description_dial_button"
             android:src="@drawable/fab_ic_call"/>
