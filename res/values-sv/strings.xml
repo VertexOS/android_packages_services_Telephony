@@ -68,6 +68,8 @@
     <string name="phone_accounts_selection_header" msgid="1365215726106915865">"Konton på mobilen"</string>
     <string name="phone_accounts_add_sip_account" msgid="2023821743341923271">"Lägg till SIP-konto"</string>
     <string name="phone_accounts_configure_account_settings" msgid="1361715069911607109">"Konfigurera kontoinställningar"</string>
+    <string name="phone_accounts_all_calling_accounts" msgid="207619531589278471">"Alla konton för samtal"</string>
+    <string name="phone_accounts_all_calling_accounts_summary" msgid="8594186415822657011">"Välj vilka konton som kan ringa samtal"</string>
     <string name="wifi_calling" msgid="739018212480165598">"Wi-Fi-samtal"</string>
     <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"Använd inte Wi-Fi-samtal"</string>
     <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"Använd inte samtalsassistent"</string>

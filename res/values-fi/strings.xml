@@ -68,6 +68,8 @@
     <string name="phone_accounts_selection_header" msgid="1365215726106915865">"Puhelintilit"</string>
     <string name="phone_accounts_add_sip_account" msgid="2023821743341923271">"Lisää SIP-tili"</string>
     <string name="phone_accounts_configure_account_settings" msgid="1361715069911607109">"Tiliasetusten määrittäminen"</string>
+    <string name="phone_accounts_all_calling_accounts" msgid="207619531589278471">"Kaikki puhelutilit"</string>
+    <string name="phone_accounts_all_calling_accounts_summary" msgid="8594186415822657011">"Valitse, mitkä tilit voivat soittaa puheluita."</string>
     <string name="wifi_calling" msgid="739018212480165598">"Wi-Fi-puhelut"</string>
     <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"Älä käytä puheluihin Wi-Fiä"</string>
     <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"Älä käytä puheluapuria"</string>

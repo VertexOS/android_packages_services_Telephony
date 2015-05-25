@@ -68,6 +68,8 @@
     <string name="phone_accounts_selection_header" msgid="1365215726106915865">"ఫోన్ ఖాతాలు"</string>
     <string name="phone_accounts_add_sip_account" msgid="2023821743341923271">"SIP ఖాతాను జోడించు"</string>
     <string name="phone_accounts_configure_account_settings" msgid="1361715069911607109">"ఖాతా సెట్టింగ్‌లను కాన్ఫిగర్ చేయి"</string>
+    <string name="phone_accounts_all_calling_accounts" msgid="207619531589278471">"అన్ని కాలింగ్ ఖాతాలు"</string>
+    <string name="phone_accounts_all_calling_accounts_summary" msgid="8594186415822657011">"ఏ ఖాతాల నుండి కాల్‌లు చేయవచ్చనే దాన్ని ఎంచుకోండి"</string>
     <string name="wifi_calling" msgid="739018212480165598">"Wi-Fi కాలింగ్"</string>
     <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"Wi-Fi కాలింగ్‌ను ఉపయోగించవద్దు"</string>
     <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"కాల్ సహాయకాన్ని ఉపయోగించవద్దు"</string>

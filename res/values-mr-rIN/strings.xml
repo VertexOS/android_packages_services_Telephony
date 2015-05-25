@@ -35,7 +35,7 @@
     <string name="audio_mode_speaker" msgid="27649582100085266">"स्पीकर"</string>
     <string name="audio_mode_earpiece" msgid="4156527186373869107">"हँडसेट इअरपीस"</string>
     <string name="audio_mode_wired_headset" msgid="1465350758489175975">"वायर्ड हेडसेट"</string>
-    <string name="audio_mode_bluetooth" msgid="3047641300848211128">"ब"</string>
+    <string name="audio_mode_bluetooth" msgid="3047641300848211128">"ब्लूटुथ"</string>
     <string name="wait_prompt_str" msgid="7601815427707856238">"खालील टोन पाठवायचे?\n"</string>
     <string name="pause_prompt_str" msgid="1789964702154314806">"टोन पाठवित आहे\n"</string>
     <string name="send_button" msgid="4106860097497818751">"पाठवा"</string>
@@ -68,6 +68,8 @@
     <string name="phone_accounts_selection_header" msgid="1365215726106915865">"फोन खाती"</string>
     <string name="phone_accounts_add_sip_account" msgid="2023821743341923271">"SIP खाते जोडा"</string>
     <string name="phone_accounts_configure_account_settings" msgid="1361715069911607109">"खाते सेटिंग्ज कॉन्‍फिगर करा"</string>
+    <string name="phone_accounts_all_calling_accounts" msgid="207619531589278471">"सर्व कॉल करण्याची खाती"</string>
+    <string name="phone_accounts_all_calling_accounts_summary" msgid="8594186415822657011">"कोणती खाती कॉल करू शकतात ते निवडा"</string>
     <string name="wifi_calling" msgid="739018212480165598">"वाय-फाय कॉलिंग"</string>
     <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"वाय-फाय कॉल करणे वापरू नका"</string>
     <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"कॉल सहाय्यक वापरू नका"</string>

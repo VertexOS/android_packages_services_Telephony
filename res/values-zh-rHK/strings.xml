@@ -68,6 +68,8 @@
     <string name="phone_accounts_selection_header" msgid="1365215726106915865">"手機帳戶"</string>
     <string name="phone_accounts_add_sip_account" msgid="2023821743341923271">"加入 SIP 帳戶"</string>
     <string name="phone_accounts_configure_account_settings" msgid="1361715069911607109">"設定帳戶設定"</string>
+    <string name="phone_accounts_all_calling_accounts" msgid="207619531589278471">"所有通話帳戶"</string>
+    <string name="phone_accounts_all_calling_accounts_summary" msgid="8594186415822657011">"選擇可以撥號的帳戶"</string>
     <string name="wifi_calling" msgid="739018212480165598">"Wi-Fi 通話"</string>
     <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"不要使用 Wi-Fi 通話功能"</string>
     <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"不要使用通話小幫手"</string>

@@ -68,6 +68,9 @@
     <string name="phone_accounts_selection_header" msgid="1365215726106915865">"电话帐户"</string>
     <string name="phone_accounts_add_sip_account" msgid="2023821743341923271">"添加 SIP 帐户"</string>
     <string name="phone_accounts_configure_account_settings" msgid="1361715069911607109">"配置帐户设置"</string>
+    <string name="phone_accounts_all_calling_accounts" msgid="207619531589278471">"所有通话帐户"</string>
+    <!-- no translation found for phone_accounts_all_calling_accounts_summary (8594186415822657011) -->
+    <skip />
     <string name="wifi_calling" msgid="739018212480165598">"WLAN 通话"</string>
     <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"不使用 WLAN 通话功能"</string>
     <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"不使用通话助手"</string>

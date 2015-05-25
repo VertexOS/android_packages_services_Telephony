@@ -68,6 +68,8 @@
     <string name="phone_accounts_selection_header" msgid="1365215726106915865">"දුරකථන ගිණුම්"</string>
     <string name="phone_accounts_add_sip_account" msgid="2023821743341923271">"SIP ගිණුම් එකතු කරන්න"</string>
     <string name="phone_accounts_configure_account_settings" msgid="1361715069911607109">"ගිණුමේ සැකසීම් වින්‍යාස කරන්න"</string>
+    <string name="phone_accounts_all_calling_accounts" msgid="207619531589278471">"සියලු ඇමතුම් ගිණුම්"</string>
+    <string name="phone_accounts_all_calling_accounts_summary" msgid="8594186415822657011">"ඇමතුම් සිදු කළ හැකි ගිණුම් තෝරන්න"</string>
     <string name="wifi_calling" msgid="739018212480165598">"Wi-Fi ඇමතීම"</string>
     <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"Wi-Fi ඇමතුම භාවිතා කරන්න එපා"</string>
     <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"ඇමතුම් සහායක භාවිතා කරන්න එපා"</string>
