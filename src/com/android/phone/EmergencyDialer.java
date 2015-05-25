@@ -206,8 +206,7 @@ public class EmergencyDialer extends Activity implements View.OnClickListener,
         } else {
             mDialButton.setVisibility(View.GONE);
         }
-        View floatingActionButtonContainer = findViewById(R.id.floating_action_button_container);
-        ViewUtil.setupFloatingActionButton(floatingActionButtonContainer, getResources());
+        ViewUtil.setupFloatingActionButton(mDialButton, getResources());
 
         if (icicle != null) {
             super.onRestoreInstanceState(icicle);
