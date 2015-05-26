@@ -113,7 +113,7 @@ public final class SipAccountRegistry {
     }
 
     void setup(Context context) {
-        startSipProfilesAsync(context, (String) null);
+        startSipProfilesAsync(context, (String) null, false);
 
         // TODO: remove orphaned SIP Accounts
     }
@@ -124,9 +124,10 @@ public final class SipAccountRegistry {
      *
      * @param context The context.
      * @param sipProfileName The name of the {@link SipProfile} to start, or {@code null} for all.
+     * @param enableProfile Sip account should be enabled
      */
-    void startSipService(Context context, String sipProfileName) {
-        startSipProfilesAsync(context, sipProfileName);
+    void startSipService(Context context, String sipProfileName, boolean enableProfile) {
+        startSipProfilesAsync(context, sipProfileName, enableProfile);
     }
 
     /**
@@ -175,7 +176,7 @@ public final class SipAccountRegistry {
      * @param context The context.
      */
     public void restartSipService(Context context) {
-        startSipProfiles(context, null);
+        startSipProfiles(context, null, false);
     }
 
     /**
@@ -185,14 +186,16 @@ public final class SipAccountRegistry {
      *
      * @param context The context.
      * @param sipProfileName Name of the SIP profile.
+     * @param enableProfile Sip account should be enabled.
      */
-    private void startSipProfilesAsync(final Context context, final String sipProfileName) {
+    private void startSipProfilesAsync(
+            final Context context, final String sipProfileName, final boolean enableProfile) {
         if (VERBOSE) log("startSipProfiles, start auto registration");
 
         new Thread(new Runnable() {
             @Override
             public void run() {
-                startSipProfiles(context, sipProfileName);
+                startSipProfiles(context, sipProfileName, enableProfile);
             }}
         ).start();
     }
@@ -204,8 +207,9 @@ public final class SipAccountRegistry {
      *
      * @param context The context.
      * @param sipProfileName A specific SIP profile Name to start, or {@code null} to start all.
+     * @param enableProfile Sip account should be enabled.
      */
-    private void startSipProfiles(Context context, String sipProfileName) {
+    private void startSipProfiles(Context context, String sipProfileName, boolean enableProfile) {
         final SipSharedPreferences sipSharedPreferences = new SipSharedPreferences(context);
         boolean isReceivingCalls = sipSharedPreferences.isReceivingCallsEnabled();
         String primaryProfile = sipSharedPreferences.getPrimaryAccount();
@@ -220,6 +224,9 @@ public final class SipAccountRegistry {
             if (sipProfileName == null || sipProfileName.equals(profile.getProfileName())) {
                 PhoneAccount phoneAccount = SipUtil.createPhoneAccount(context, profile);
                 telecomManager.registerPhoneAccount(phoneAccount);
+                if (enableProfile) {
+                    telecomManager.enablePhoneAccount(phoneAccount.getAccountHandle(), true);
+                }
                 startSipServiceForProfile(profile, sipManager, context, isReceivingCalls);
             }
         }
