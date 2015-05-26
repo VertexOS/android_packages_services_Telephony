@@ -22,6 +22,7 @@ import android.os.PersistableBundle;
 import android.telephony.CarrierConfigManager;
 import android.telephony.SmsManager;
 import android.telephony.SubscriptionManager;
+import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -29,6 +30,8 @@ import com.android.internal.telephony.IccCardConstants;
 import com.android.internal.telephony.PhoneConstants;
 import com.android.internal.telephony.TelephonyIntents;
 import com.android.phone.vvm.omtp.sms.OmtpMessageSender;
+import com.android.phone.vvm.omtp.sms.OmtpStandardMessageSender;
+import com.android.phone.vvm.omtp.sms.OmtpCvvmMessageSender;
 import com.android.phone.vvm.omtp.sync.OmtpVvmSyncAccountManager;
 
 /**
@@ -41,6 +44,9 @@ import com.android.phone.vvm.omtp.sync.OmtpVvmSyncAccountManager;
  */
 public class SimChangeReceiver extends BroadcastReceiver {
     private final String TAG = "SimChangeReceiver";
+    // Whether CVVM is allowed, is currently false until settings to enable/disable vvm are added.
+    private boolean CVVM_ALLOWED = false;
+
     @Override
     public void onReceive(Context context, Intent intent) {
         final String action = intent.getAction();
@@ -86,7 +92,8 @@ public class SimChangeReceiver extends BroadcastReceiver {
         String vvmType = carrierConfig.getString(
                 CarrierConfigManager.STRING_VVM_TYPE, null);
 
-        if (!CarrierConfigManager.VVM_TYPE_OMTP.equals(vvmType)) {
+        if (!(TelephonyManager.VVM_TYPE_OMTP.equals(vvmType) ||
+                TelephonyManager.VVM_TYPE_CVVM.equals(vvmType))) {
             // This is not an OMTP visual voicemail compatible carrier.
             return;
         }
@@ -102,9 +109,27 @@ public class SimChangeReceiver extends BroadcastReceiver {
 
         Log.i(TAG, "Requesting VVM activation for subId: " + subId);
         SmsManager smsManager = SmsManager.getSmsManagerForSubscriptionId(subId);
-        OmtpMessageSender messageSender = new OmtpMessageSender(smsManager,
-                (short) applicationPort, destinationNumber, OmtpConstants.CLIENT_TYPE_GOOGLE_10,
-                OmtpConstants.PROTOCOL_VERSION1_1, null);
-        messageSender.requestVvmActivation(null);
+
+        OmtpMessageSender messageSender = null;
+        switch (vvmType) {
+            case TelephonyManager.VVM_TYPE_OMTP:
+                messageSender = new OmtpStandardMessageSender(smsManager, (short) applicationPort,
+                        destinationNumber, null, OmtpConstants.PROTOCOL_VERSION1_1, null);
+                break;
+            case TelephonyManager.VVM_TYPE_CVVM:
+                if (CVVM_ALLOWED) {
+                    messageSender = new OmtpCvvmMessageSender(smsManager, (short) applicationPort,
+                            destinationNumber);
+                }
+                break;
+            default:
+                Log.w(TAG, "Unexpected visual voicemail type: "+vvmType);
+        }
+
+        // It should be impossible for the messageSender to be null because the two types of vvm
+        // were checked earlier.
+        if (messageSender != null) {
+            messageSender.requestVvmActivation(null);
+        }
     }
 }
