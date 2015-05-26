@@ -39,6 +39,13 @@
     <protected-broadcast android:name="android.provider.Telephony.SIM_FULL" />
     <protected-broadcast android:name="com.android.internal.telephony.data-restart-trysetup" />
     <protected-broadcast android:name="com.android.internal.telephony.data-stall" />
+    <protected-broadcast android:name="android.intent.action.DATA_SMS_RECEIVED" />
+    <protected-broadcast android:name="android.provider.Telephony.SMS_RECEIVED" />
+    <protected-broadcast android:name="android.provider.Telephony.SMS_DELIVER" />
+    <protected-broadcast android:name="android.provider.Telephony.WAP_PUSH_DELIVER" />
+    <protected-broadcast android:name="android.provider.Telephony.WAP_PUSH_RECEIVED" />
+    <protected-broadcast android:name="android.provider.Telephony.SMS_CB_RECEIVED" />
+    <protected-broadcast android:name="android.provider.Telephony.SMS_EMERGENCY_CB_RECEIVED" />
 
     <uses-permission android:name="android.permission.BROADCAST_STICKY" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
