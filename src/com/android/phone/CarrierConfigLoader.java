@@ -40,9 +40,9 @@ import android.os.PersistableBundle;
 import android.os.RemoteException;
 import android.os.ServiceManager;
 import android.os.UserHandle;
-import android.service.carrier.CarrierConfigService;
 import android.service.carrier.CarrierIdentifier;
-import android.service.carrier.ICarrierConfigService;
+import android.service.carrier.CarrierService;
+import android.service.carrier.ICarrierService;
 import android.telephony.CarrierConfigManager;
 import android.telephony.SubscriptionManager;
 import android.telephony.TelephonyManager;
@@ -89,7 +89,7 @@ public class CarrierConfigLoader extends ICarrierConfigLoader.Stub {
     // Carrier configs from privileged carrier config app, indexed by phoneID.
     private PersistableBundle[] mConfigFromCarrierApp;
     // Service connection for binding to config app.
-    private ConfigServiceConnection[] mServiceConnection;
+    private CarrierServiceConnection[] mServiceConnection;
 
     // Broadcast receiver for SIM and pkg intents, register intent filter in constructor.
     private final BroadcastReceiver mReceiver = new ConfigLoaderBroadcastReceiver();
@@ -133,7 +133,7 @@ public class CarrierConfigLoader extends ICarrierConfigLoader.Stub {
             int phoneId = msg.arg1;
             log("mHandler: " + msg.what + " phoneId: " + phoneId);
             CarrierIdentifier carrierId;
-            ConfigServiceConnection conn;
+            CarrierServiceConnection conn;
             PersistableBundle config;
             switch (msg.what) {
                 case EVENT_CLEAR_CONFIG:
@@ -158,16 +158,16 @@ public class CarrierConfigLoader extends ICarrierConfigLoader.Stub {
 
                 case EVENT_CONNECTED_TO_DEFAULT:
                     carrierId = getCarrierIdForPhoneId(phoneId);
-                    conn = (ConfigServiceConnection) msg.obj;
+                    conn = (CarrierServiceConnection) msg.obj;
                     // If new service connection has been created, unbind.
                     if (mServiceConnection[phoneId] != conn || conn.service == null) {
                         mContext.unbindService(conn);
                         break;
                     }
                     try {
-                        ICarrierConfigService configService = ICarrierConfigService.Stub
+                        ICarrierService carrierService = ICarrierService.Stub
                                 .asInterface(conn.service);
-                        config = configService.getCarrierConfig(carrierId);
+                        config = carrierService.getCarrierConfig(carrierId);
                         mConfigFromDefaultApp[phoneId] = config;
                         sendMessage(obtainMessage(EVENT_LOADED_FROM_DEFAULT, phoneId, -1));
                     } catch (RemoteException ex) {
@@ -183,7 +183,7 @@ public class CarrierConfigLoader extends ICarrierConfigLoader.Stub {
                     }
                     List<String> carrierPackageNames = TelephonyManager.from(mContext)
                             .getCarrierPackageNamesForIntentAndPhone(
-                                    new Intent(CarrierConfigService.SERVICE_INTERFACE), phoneId);
+                                    new Intent(CarrierService.SERVICE_INTERFACE), phoneId);
                     log("Found carrier config app: " + carrierPackageNames);
                     if (carrierPackageNames != null && carrierPackageNames.size() > 0) {
                         if (!bindToConfigPackage(carrierPackageNames.get(0),
@@ -197,7 +197,7 @@ public class CarrierConfigLoader extends ICarrierConfigLoader.Stub {
 
                 case EVENT_CONNECTED_TO_CARRIER:
                     carrierId = getCarrierIdForPhoneId(phoneId);
-                    conn = (ConfigServiceConnection) msg.obj;
+                    conn = (CarrierServiceConnection) msg.obj;
                     // If new service connection has been created, unbind.
                     if (mServiceConnection[phoneId] != conn ||
                             conn.service == null) {
@@ -205,9 +205,9 @@ public class CarrierConfigLoader extends ICarrierConfigLoader.Stub {
                         break;
                     }
                     try {
-                        ICarrierConfigService configService = ICarrierConfigService.Stub
+                        ICarrierService carrierService = ICarrierService.Stub
                                 .asInterface(conn.service);
-                        config = configService.getCarrierConfig(carrierId);
+                        config = carrierService.getCarrierConfig(carrierId);
                         mConfigFromCarrierApp[phoneId] = config;
                         sendMessage(obtainMessage(EVENT_LOADED_FROM_CARRIER, phoneId, -1));
                     } catch (RemoteException ex) {
@@ -244,7 +244,7 @@ public class CarrierConfigLoader extends ICarrierConfigLoader.Stub {
         int numPhones = TelephonyManager.from(context).getPhoneCount();
         mConfigFromDefaultApp = new PersistableBundle[numPhones];
         mConfigFromCarrierApp = new PersistableBundle[numPhones];
-        mServiceConnection = new ConfigServiceConnection[numPhones];
+        mServiceConnection = new CarrierServiceConnection[numPhones];
         // Make this service available through ServiceManager.
         ServiceManager.addService(Context.CARRIER_CONFIG_SERVICE, this);
         log("CarrierConfigLoader has started");
@@ -278,11 +278,11 @@ public class CarrierConfigLoader extends ICarrierConfigLoader.Stub {
     /** Binds to the default or carrier config app. */
     private boolean bindToConfigPackage(String pkgName, int phoneId, int eventId) {
         log("Binding to " + pkgName + " for phone " + phoneId);
-        Intent carrierConfigService = new Intent(CarrierConfigService.SERVICE_INTERFACE);
-        carrierConfigService.setPackage(pkgName);
-        mServiceConnection[phoneId] = new ConfigServiceConnection(phoneId, eventId);
+        Intent carrierService = new Intent(CarrierService.SERVICE_INTERFACE);
+        carrierService.setPackage(pkgName);
+        mServiceConnection[phoneId] = new CarrierServiceConnection(phoneId, eventId);
         try {
-            return mContext.bindService(carrierConfigService, mServiceConnection[phoneId],
+            return mContext.bindService(carrierService, mServiceConnection[phoneId],
                     Context.BIND_AUTO_CREATE);
         } catch (SecurityException ex) {
             return false;
@@ -490,12 +490,12 @@ public class CarrierConfigLoader extends ICarrierConfigLoader.Stub {
         }
     }
 
-    private class ConfigServiceConnection implements ServiceConnection {
+    private class CarrierServiceConnection implements ServiceConnection {
         int phoneId;
         int eventId;
         IBinder service;
 
-        public ConfigServiceConnection(int phoneId, int eventId) {
+        public CarrierServiceConnection(int phoneId, int eventId) {
             this.phoneId = phoneId;
             this.eventId = eventId;
         }
