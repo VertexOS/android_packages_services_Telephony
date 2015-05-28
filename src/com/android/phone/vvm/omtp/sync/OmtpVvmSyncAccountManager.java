@@ -133,6 +133,10 @@ public class OmtpVvmSyncAccountManager {
         mTelephonyManager.listen(phoneStateListener, 0);
     }
 
+    public Account[] getOmtpAccounts() {
+        return mAccountManager.getAccountsByType(ACCOUNT_TYPE);
+    }
+
     /**
      * Check if a certain account is registered.
      *
@@ -141,7 +145,7 @@ public class OmtpVvmSyncAccountManager {
      * accounts. {@code false} otherwise.
      */
     public boolean isAccountRegistered(Account account) {
-        Account[] accounts = mAccountManager.getAccountsByType(ACCOUNT_TYPE);
+        Account[] accounts = getOmtpAccounts();
         for (int i = 0; i < accounts.length; i++) {
             if (account.equals(accounts[i])) {
                 return true;
