@@ -59,6 +59,7 @@ import com.android.internal.telephony.CommandException;
 import com.android.internal.telephony.DefaultPhoneNotifier;
 import com.android.internal.telephony.ITelephony;
 import com.android.internal.telephony.IccCard;
+import com.android.internal.telephony.MccTable;
 import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneFactory;
 import com.android.internal.telephony.ProxyController;
@@ -78,6 +79,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 
@@ -813,16 +815,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         }
 
         boolean isValid = false;
-        List<SubscriptionInfo> slist;
-
-        final long identity = Binder.clearCallingIdentity();
-        try {
-            slist = mSubscriptionController.getActiveSubscriptionInfoList(
-                    mPhone.getContext().getOpPackageName());
-        } finally {
-             Binder.restoreCallingIdentity(identity);
-        }
-
+        final List<SubscriptionInfo> slist = getActiveSubscriptionInfoList();
         if (slist != null) {
             for (SubscriptionInfo subInfoRecord : slist) {
                 if (subInfoRecord.getSubscriptionId() == subId) {
@@ -2398,6 +2391,76 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
                 // Turn off roaming
                 SubscriptionManager.from(mApp).setDataRoaming(0, subId);
             }
+        } finally {
+            Binder.restoreCallingIdentity(identity);
+        }
+    }
+
+    @Override
+    public String getLocaleFromDefaultSim() {
+        // We query all subscriptions instead of just the active ones, because
+        // this might be called early on in the provisioning flow when the
+        // subscriptions potentially aren't active yet.
+        final List<SubscriptionInfo> slist = getAllSubscriptionInfoList();
+        if (slist == null || slist.isEmpty()) {
+            return null;
+        }
+
+        // This function may be called very early, say, from the setup wizard, at
+        // which point we won't have a default subscription set. If that's the case
+        // we just choose the first, which will be valid in "most cases".
+        final int defaultSubId = getDefaultSubscription();
+        SubscriptionInfo info = null;
+        if (defaultSubId == SubscriptionManager.INVALID_SUBSCRIPTION_ID) {
+            info = slist.get(0);
+        } else {
+            for (SubscriptionInfo item : slist) {
+                if (item.getSubscriptionId() == defaultSubId) {
+                    info = item;
+                    break;
+                }
+            }
+
+            if (info == null) {
+                return null;
+            }
+        }
+
+        // Try and fetch the locale from the carrier properties or from the SIM language
+        // preferences (EF-PL and EF-LI)...
+        final Phone defaultPhone = getPhone(info.getSubscriptionId());
+        if (defaultPhone != null) {
+            final Locale localeFromDefaultSim = defaultPhone.getLocaleFromSimAndCarrierPrefs();
+            if (localeFromDefaultSim != null) {
+                return localeFromDefaultSim.toLanguageTag();
+            }
+        }
+
+        // .. if that doesn't work, try and guess the language from the sim MCC.
+        final int mcc = info.getMcc();
+        final Locale locale = MccTable.getLocaleFromMcc(mPhone.getContext(), mcc);
+        if (locale != null) {
+            return locale.toLanguageTag();
+        }
+
+        return null;
+    }
+
+    private List<SubscriptionInfo> getAllSubscriptionInfoList() {
+        final long identity = Binder.clearCallingIdentity();
+        try {
+            return mSubscriptionController.getAllSubInfoList(
+                    mPhone.getContext().getOpPackageName());
+        } finally {
+            Binder.restoreCallingIdentity(identity);
+        }
+    }
+
+    private List<SubscriptionInfo> getActiveSubscriptionInfoList() {
+        final long identity = Binder.clearCallingIdentity();
+        try {
+            return mSubscriptionController.getActiveSubscriptionInfoList(
+                    mPhone.getContext().getOpPackageName());
         } finally {
             Binder.restoreCallingIdentity(identity);
         }
