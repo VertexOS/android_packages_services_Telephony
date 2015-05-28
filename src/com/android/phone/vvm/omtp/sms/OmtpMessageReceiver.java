@@ -17,10 +17,8 @@ package com.android.phone.vvm.omtp.sms;
 
 import android.accounts.Account;
 import android.content.BroadcastReceiver;
-import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.provider.Telephony;
 import android.provider.VoicemailContract;
 import android.telecom.PhoneAccountHandle;
@@ -32,7 +30,7 @@ import com.android.internal.telephony.PhoneConstants;
 import com.android.phone.PhoneUtils;
 import com.android.phone.vvm.omtp.OmtpConstants;
 import com.android.phone.vvm.omtp.sync.OmtpVvmSyncAccountManager;
-import com.android.phone.vvm.omtp.sync.OmtpVvmSyncService.OmtpVvmSyncAdapter;
+import com.android.phone.vvm.omtp.sync.OmtpVvmSyncService;
 import com.android.phone.vvm.omtp.sync.VoicemailsQueryHelper;
 
 /**
@@ -96,12 +94,12 @@ public class OmtpMessageReceiver extends BroadcastReceiver {
                 queryHelper.insertIfUnique(voicemail);
                 break;
             case OmtpConstants.MAILBOX_UPDATE:
-                // Needs a total resync
-                Bundle bundle = new Bundle();
-                bundle.putBoolean(OmtpVvmSyncAdapter.SYNC_EXTRAS_DOWNLOAD, true);
-                ContentResolver.requestSync(
-                        new Account(mPhoneAccount.getId(), OmtpVvmSyncAccountManager.ACCOUNT_TYPE),
-                        VoicemailContract.AUTHORITY, bundle);
+                Account account = new Account(
+                        mPhoneAccount.getId(), OmtpVvmSyncAccountManager.ACCOUNT_TYPE);
+                Intent serviceIntent = new Intent(mContext, OmtpVvmSyncService.class);
+                serviceIntent.setAction(OmtpVvmSyncService.SYNC_DOWNLOAD_ONLY);
+                serviceIntent.putExtra(OmtpVvmSyncService.EXTRA_ACCOUNT, account);
+                mContext.startService(serviceIntent);
                 break;
             case OmtpConstants.GREETINGS_UPDATE:
                 // Not implemented in V1
@@ -135,9 +133,9 @@ public class OmtpMessageReceiver extends BroadcastReceiver {
         // Add a phone state listener so that changes to the communication channels can be recorded.
         vvmAccountSyncManager.addPhoneStateListener(account);
 
-        Bundle bundle = new Bundle();
-        bundle.putBoolean(OmtpVvmSyncAdapter.SYNC_EXTRAS_DOWNLOAD, true);
-        bundle.putBoolean(ContentResolver.SYNC_EXTRAS_UPLOAD, true);
-        ContentResolver.requestSync(account, VoicemailContract.AUTHORITY, bundle);
+        Intent serviceIntent = new Intent(mContext, OmtpVvmSyncService.class);
+        serviceIntent.setAction(OmtpVvmSyncService.SYNC_FULL_SYNC);
+        serviceIntent.putExtra(OmtpVvmSyncService.EXTRA_ACCOUNT, account);
+        mContext.startService(serviceIntent);
     }
 }

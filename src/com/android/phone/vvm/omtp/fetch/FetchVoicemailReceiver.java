@@ -128,8 +128,6 @@ public class FetchVoicemailReceiver extends BroadcastReceiver {
     private class OmtpVvmNetworkRequestCallback extends ConnectivityManager.NetworkCallback {
         @Override
         public void onAvailable(final Network network) {
-            super.onAvailable(network);
-
             Executor executor = Executors.newCachedThreadPool();
             executor.execute(new Runnable() {
                 @Override
@@ -143,13 +141,11 @@ public class FetchVoicemailReceiver extends BroadcastReceiver {
 
         @Override
         public void onLost(Network network) {
-            super.onLost(network);
             releaseNetwork();
         }
 
         @Override
         public void onUnavailable() {
-            super.onUnavailable();
             releaseNetwork();
         }
     }
