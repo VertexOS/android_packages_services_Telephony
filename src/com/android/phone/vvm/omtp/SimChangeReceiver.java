@@ -108,9 +108,9 @@ public class SimChangeReceiver extends BroadcastReceiver {
         }
 
         Log.i(TAG, "Requesting VVM activation for subId: " + subId);
-        SmsManager smsManager = SmsManager.getSmsManagerForSubscriptionId(subId);
 
         OmtpMessageSender messageSender = null;
+        SmsManager smsManager = SmsManager.getSmsManagerForSubscriptionId(subId);
         switch (vvmType) {
             case TelephonyManager.VVM_TYPE_OMTP:
                 messageSender = new OmtpStandardMessageSender(smsManager, (short) applicationPort,
