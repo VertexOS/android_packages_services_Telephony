@@ -152,7 +152,4 @@
 
     <!-- After a CDMA conference call is merged, the swap button should be displayed. -->
     <bool name="support_swap_after_merge" translatable="false">true</bool>
-
-    <!-- For IMS video over LTE calls, determines whether video pause signalling is supported. -->
-    <bool name="support_pause_ims_video_calls" translatable="false">true</bool>
 </resources>

@@ -20,5 +20,4 @@
     <!-- Flag indicating if dtmf tone type is enabled -->
     <bool name="dtmf_type_enabled">true</bool>
     <bool name="support_swap_after_merge" translatable="false">false</bool>
-    <bool name="support_pause_ims_video_calls" translatable="false">true</bool>
 </resources>

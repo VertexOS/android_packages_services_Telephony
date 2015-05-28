@@ -22,9 +22,12 @@ import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.telecom.PhoneAccount;
 import android.telecom.PhoneAccountHandle;
 import android.telecom.TelecomManager;
+import android.telephony.CarrierConfigManager;
 import android.telephony.PhoneStateListener;
 import android.telephony.ServiceState;
 import android.telephony.SubscriptionInfo;
@@ -48,6 +51,7 @@ import java.util.List;
  * removal of SIMs and SIP accounts.
  */
 final class TelecomAccountRegistry {
+    private static final String TAG = "TelecomAccountRegistry";
     private static final boolean DBG = false; /* STOP SHIP if true */
 
     // This icon is the one that is used when the Slot ID that we have for a particular SIM
@@ -65,7 +69,7 @@ final class TelecomAccountRegistry {
         AccountEntry(Phone phone, boolean isEmergency, boolean isDummy) {
             mPhone = phone;
             mAccount = registerPstnPhoneAccount(isEmergency, isDummy);
-            Log.d(this, "Registered phoneAccount: %s with handle: %s",
+            Log.d(TAG, "Registered phoneAccount: %s with handle: %s",
                     mAccount, mAccount.getAccountHandle());
             mIncomingCallNotifier = new PstnIncomingCallNotifier((PhoneProxy) mPhone);
             mPhoneCapabilitiesNotifier = new PstnPhoneCapabilitiesNotifier((PhoneProxy) mPhone,
@@ -137,7 +141,7 @@ final class TelecomAccountRegistry {
 
                 if (TextUtils.isEmpty(subDisplayName)) {
                     // Either the sub record is not there or it has an empty display name.
-                    Log.w(this, "Could not get a display name for subid: %d", subId);
+                    Log.w(TAG, "Could not get a display name for subid: %d", subId);
                     subDisplayName = mContext.getResources().getString(
                             R.string.sim_description_default, slotIdString);
                 }
@@ -192,32 +196,31 @@ final class TelecomAccountRegistry {
 
         /**
          * Updates indicator for this {@link AccountEntry} to determine if the carrier supports
-         * pause/resume signalling for IMS video calls.  The carrier setting is stored in MNC/MCC
-         * configuration files.
+         * pause/resume signalling for IMS video calls.  The carrier setting is stored in the
+         * {@link CarrierConfigManager} service.
          *
          * @param subscriptionInfo The subscription info.
          */
         private void updateVideoPauseSupport(SubscriptionInfo subscriptionInfo) {
-            // Get the configuration for the MNC/MCC specified in the current subscription info.
-            Configuration configuration = new Configuration();
-            if (subscriptionInfo.getMcc() == 0 && subscriptionInfo.getMnc() == 0) {
-                Configuration config = mContext.getResources().getConfiguration();
-                configuration.mcc = config.mcc;
-                configuration.mnc = config.mnc;
-                Log.i(this, "updateVideoPauseSupport -- no mcc/mnc for sub: " + subscriptionInfo +
-                        " using mcc/mnc from main context: " + configuration.mcc + "/" +
-                        configuration.mnc);
-            } else {
-                Log.i(this, "updateVideoPauseSupport -- mcc/mnc for sub: " + subscriptionInfo);
-
-                configuration.mcc = subscriptionInfo.getMcc();
-                configuration.mnc = subscriptionInfo.getMnc();
+            CarrierConfigManager carrierConfigManager = (CarrierConfigManager)
+                    mContext.getSystemService(Context.CARRIER_CONFIG_SERVICE);
+            if (carrierConfigManager == null) {
+                Log.w(TAG, "updateVideoPauseSupport: No carrier config service found.");
+                return;
             }
 
-            // Load the MNC/MCC specific configuration.
-            Context subContext = mContext.createConfigurationContext(configuration);
-            mIsVideoPauseSupported = subContext.getResources().getBoolean(
-                    R.bool.support_pause_ims_video_calls);
+            int subId = subscriptionInfo.getSubscriptionId();
+            Bundle carrierConfig = carrierConfigManager.getConfigForSubId(subId);
+            if (carrierConfig == null) {
+                Log.w(TAG, "updateVideoPauseSupport: Empty carrier config.");
+                return;
+            }
+
+            mIsVideoPauseSupported = carrierConfig.getBoolean(
+                    CarrierConfigManager.BOOL_ALLOW_VIDEO_PAUSE);
+
+            Log.v(TAG, "updateVideoPauseSupport: subId = " + subId + " pauseSupported = " +
+                    mIsVideoPauseSupported);
         }
 
         /**
