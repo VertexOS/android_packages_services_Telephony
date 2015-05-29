@@ -102,7 +102,7 @@
     <string name="phone_accounts_add_sip_account" msgid="2023821743341923271">"SIP каттоо эсебин кошуу"</string>
     <string name="phone_accounts_configure_account_settings" msgid="1361715069911607109">"Каттоо эсеп жөндөөлөрүн конфигурациялоо"</string>
     <string name="phone_accounts_all_calling_accounts" msgid="207619531589278471">"Бардык чалуу каттоо эсептери"</string>
-    <string name="phone_accounts_all_calling_accounts_summary" msgid="8594186415822657011">"Чалуулар жасала турган каттоо эсептерин тандаңыз"</string>
+    <string name="phone_accounts_all_calling_accounts_summary" msgid="8594186415822657011">"Кайсыл эсептер чала алаарын тандоо"</string>
     <string name="wifi_calling" msgid="739018212480165598">"Wi-Fi чалуу"</string>
     <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"Wi-Fi чалуу колдонулбасын"</string>
     <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"Чалуу жардамчысы колдонулбасын"</string>
@@ -647,6 +647,20 @@
     <skip />
     <!-- no translation found for card_title_in_call (6346543933068225205) -->
     <skip />
+    <string name="notification_dialing" msgid="2107666444937350731">"Терилүүдө"</string>
+    <!-- no translation found for notification_missedCallTitle (7554385905572364535) -->
+    <skip />
+    <!-- no translation found for notification_missedCallsTitle (1361677948941502522) -->
+    <skip />
+    <!-- no translation found for notification_missedCallsMsg (4575787816055205600) -->
+    <skip />
+    <!-- no translation found for notification_missedCallTicker (504686252427747209) -->
+    <skip />
+    <string name="notification_ongoing_call" msgid="7068688957273482989">"Учурдагы чалуу"</string>
+    <!-- no translation found for notification_on_hold (3480694969511790465) -->
+    <skip />
+    <!-- no translation found for notification_incoming_call (2820429205043529642) -->
+    <skip />
     <!-- no translation found for notification_voicemail_title (8933468752045550523) -->
     <skip />
     <!-- no translation found for notification_voicemail_title_count (4366360747660929916) -->
@@ -659,6 +673,9 @@
     <skip />
     <!-- no translation found for notification_network_selection_text (2607085729661923269) -->
     <skip />
+    <string name="notification_action_end_call" msgid="6069460915123531620">"Телефонду коюу"</string>
+    <string name="notification_missedCall_call_back" msgid="2684890353590890187">"Кайра чалуу"</string>
+    <string name="notification_missedCall_message" msgid="3049928912736917988">"Билдирүү"</string>
     <string name="incall_error_power_off" msgid="2947938060513306698">"Чалуу үчүн учак режимин өчүрүңүз."</string>
     <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"Чалуу үчүн учак режимин өчүрүңүз же зымсыз тармакка туташыңыз."</string>
     <!-- no translation found for incall_error_emergency_only (4678640422710818317) -->

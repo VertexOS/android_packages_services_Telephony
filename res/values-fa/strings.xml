@@ -424,12 +424,23 @@
     <string name="card_title_on_hold" msgid="821463117892339942">"در انتظار"</string>
     <string name="card_title_hanging_up" msgid="3999101620995182450">"قطع تماس"</string>
     <string name="card_title_in_call" msgid="6346543933068225205">"در تماس"</string>
+    <string name="notification_dialing" msgid="2107666444937350731">"شماره‌گیری"</string>
+    <string name="notification_missedCallTitle" msgid="7554385905572364535">"تماس بی پاسخ"</string>
+    <string name="notification_missedCallsTitle" msgid="1361677948941502522">"تماس‌های بی پاسخ"</string>
+    <string name="notification_missedCallsMsg" msgid="4575787816055205600">"<xliff:g id="NUM_MISSED_CALLS">%s</xliff:g> تماس بی پاسخ"</string>
+    <string name="notification_missedCallTicker" msgid="504686252427747209">"تماس بی پاسخ از <xliff:g id="MISSED_CALL_FROM">%s</xliff:g>"</string>
+    <string name="notification_ongoing_call" msgid="7068688957273482989">"تماس جاری"</string>
+    <string name="notification_on_hold" msgid="3480694969511790465">"در انتظار"</string>
+    <string name="notification_incoming_call" msgid="2820429205043529642">"تماس ورودی"</string>
     <string name="notification_voicemail_title" msgid="8933468752045550523">"پست صوتی جدید"</string>
     <string name="notification_voicemail_title_count" msgid="4366360747660929916">"پست صوتی جدید (<xliff:g id="COUNT">%d</xliff:g>)"</string>
     <string name="notification_voicemail_text_format" msgid="4447323569453981685">"شماره گیری <xliff:g id="VOICEMAIL_NUMBER">%s</xliff:g>"</string>
     <string name="notification_voicemail_no_vm_number" msgid="760963466895609716">"شماره پست صوتی ناشناس"</string>
     <string name="notification_network_selection_title" msgid="4224455487793492772">"بدون سرویس"</string>
     <string name="notification_network_selection_text" msgid="2607085729661923269">"شبکه انتخابی (<xliff:g id="OPERATOR_NAME">%s</xliff:g>) قابل دسترس نیست"</string>
+    <string name="notification_action_end_call" msgid="6069460915123531620">"قطع تماس"</string>
+    <string name="notification_missedCall_call_back" msgid="2684890353590890187">"پاسخ تماس"</string>
+    <string name="notification_missedCall_message" msgid="3049928912736917988">"پیام"</string>
     <string name="incall_error_power_off" msgid="2947938060513306698">"برای برقراری تماس، حالت پرواز را خاموش کنید."</string>
     <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"برای برقرای تماس، حالت پرواز را خاموش کنید یا به شبکه بی‌سیم وصل شوید."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"در شبکه ثبت نشده است."</string>
