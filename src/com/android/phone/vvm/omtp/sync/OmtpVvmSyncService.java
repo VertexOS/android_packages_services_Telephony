@@ -15,7 +15,6 @@
  */
 package com.android.phone.vvm.omtp.sync;
 
-import android.accounts.Account;
 import android.app.IntentService;
 import android.content.Context;
 import android.content.Intent;
@@ -25,15 +24,18 @@ import android.net.ConnectivityManager.NetworkCallback;
 import android.net.NetworkCapabilities;
 import android.net.NetworkRequest;
 import android.provider.VoicemailContract;
+import android.telecom.PhoneAccountHandle;
 import android.telecom.Voicemail;
 import android.util.Log;
 
 import com.android.phone.PhoneUtils;
+import com.android.phone.settings.VisualVoicemailSettingsUtil;
 import com.android.phone.vvm.omtp.imap.ImapHelper;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * Sync OMTP visual voicemail.
@@ -48,7 +50,7 @@ public class OmtpVvmSyncService extends IntentService {
     /** Only download from the server. */
     public static final String SYNC_DOWNLOAD_ONLY = "download_only";
     /** The account to sync. */
-    public static final String EXTRA_ACCOUNT = "account";
+    public static final String EXTRA_PHONE_ACCOUNT = "phone_account";
 
     // Timeout used to call ConnectivityManager.requestNetwork
     private static final int NETWORK_REQUEST_TIMEOUT_MILLIS = 60 * 1000;
@@ -75,48 +77,55 @@ public class OmtpVvmSyncService extends IntentService {
         }
 
         String action = intent.getAction();
-        OmtpVvmSyncAccountManager syncAccountManager = OmtpVvmSyncAccountManager.getInstance(this);
-        Account account = intent.getParcelableExtra(EXTRA_ACCOUNT);
-        if (account != null && syncAccountManager.isAccountRegistered(account)) {
-            Log.v(TAG, "Sync requested: " + action + " - for account: " + account.name);
-            doSync(account, action);
+        PhoneAccountHandle phoneAccount = intent.getParcelableExtra(EXTRA_PHONE_ACCOUNT);
+        if (phoneAccount != null) {
+            Log.v(TAG, "Sync requested: " + action + " - for account: " + phoneAccount);
+            doSync(phoneAccount, action);
         } else {
             Log.v(TAG, "Sync requested: " + action + " - for all accounts");
-            Account[] accounts = syncAccountManager.getOmtpAccounts();
-            for (int i = 0; i < accounts.length; i++) {
-                doSync(accounts[i], action);
+            OmtpVvmSourceManager vvmSourceManager =
+                    OmtpVvmSourceManager.getInstance(this);
+            Set<PhoneAccountHandle> sources = vvmSourceManager.getOmtpVvmSources();
+            for (PhoneAccountHandle source : sources) {
+                doSync(source, action);
             }
         }
     }
 
-    private void doSync(Account account, String action) {
-        int subId = PhoneUtils.getSubIdForPhoneAccountHandle(
-                PhoneUtils.makePstnPhoneAccountHandle(account.name));
+    private void doSync(PhoneAccountHandle phoneAccount, String action) {
+        if (!VisualVoicemailSettingsUtil.getVisualVoicemailEnabled(this, phoneAccount)) {
+            Log.v(TAG, "Sync requested for disabled account");
+            return;
+        }
+
+        int subId = PhoneUtils.getSubIdForPhoneAccountHandle(phoneAccount);
 
         NetworkRequest networkRequest = new NetworkRequest.Builder()
                 .addTransportType(NetworkCapabilities.TRANSPORT_CELLULAR)
                 .addCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
                 .setNetworkSpecifier(Integer.toString(subId))
                 .build();
-        NetworkCallback networkCallback = new OmtpVvmNetworkRequestCallback(this, account, action);
+        NetworkCallback networkCallback = new OmtpVvmNetworkRequestCallback(this, phoneAccount,
+                action);
         getConnectivityManager().requestNetwork(
                 networkRequest, networkCallback, NETWORK_REQUEST_TIMEOUT_MILLIS);
     }
 
     private class OmtpVvmNetworkRequestCallback extends ConnectivityManager.NetworkCallback {
         Context mContext;
-        Account mAccount;
+        PhoneAccountHandle mPhoneAccount;
         String mAction;
 
-        public OmtpVvmNetworkRequestCallback(Context context, Account account, String action) {
+        public OmtpVvmNetworkRequestCallback(Context context, PhoneAccountHandle phoneAccount,
+                String action) {
             mContext = context;
-            mAccount = account;
+            mPhoneAccount = phoneAccount;
             mAction = action;
         }
 
         @Override
         public void onAvailable(final Network network) {
-            ImapHelper imapHelper = new ImapHelper(mContext, mAccount, network);
+            ImapHelper imapHelper = new ImapHelper(mContext, mPhoneAccount, network);
             if (SYNC_FULL_SYNC.equals(mAction) || SYNC_UPLOAD_ONLY.equals(mAction)) {
                 upload(imapHelper);
             }
