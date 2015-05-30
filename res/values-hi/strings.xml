@@ -424,23 +424,12 @@
     <string name="card_title_on_hold" msgid="821463117892339942">"होल्ड पर"</string>
     <string name="card_title_hanging_up" msgid="3999101620995182450">"कॉल समाप्त हो रहा है"</string>
     <string name="card_title_in_call" msgid="6346543933068225205">"कॉल में"</string>
-    <string name="notification_dialing" msgid="2107666444937350731">"डायल हो रहा है"</string>
-    <string name="notification_missedCallTitle" msgid="7554385905572364535">"छूटी कॉल"</string>
-    <string name="notification_missedCallsTitle" msgid="1361677948941502522">"छूटी कॉल"</string>
-    <string name="notification_missedCallsMsg" msgid="4575787816055205600">"<xliff:g id="NUM_MISSED_CALLS">%s</xliff:g> छूटी कॉल"</string>
-    <string name="notification_missedCallTicker" msgid="504686252427747209">"<xliff:g id="MISSED_CALL_FROM">%s</xliff:g> की कॉल छूटी"</string>
-    <string name="notification_ongoing_call" msgid="7068688957273482989">"चल रही कॉल"</string>
-    <string name="notification_on_hold" msgid="3480694969511790465">"होल्ड पर"</string>
-    <string name="notification_incoming_call" msgid="2820429205043529642">"इनकमिंग कॉल"</string>
     <string name="notification_voicemail_title" msgid="8933468752045550523">"नया वॉयस मेल"</string>
     <string name="notification_voicemail_title_count" msgid="4366360747660929916">"नई वॉयस मेल (<xliff:g id="COUNT">%d</xliff:g>)"</string>
     <string name="notification_voicemail_text_format" msgid="4447323569453981685">"<xliff:g id="VOICEMAIL_NUMBER">%s</xliff:g> डायल करें"</string>
     <string name="notification_voicemail_no_vm_number" msgid="760963466895609716">"वॉयस मेल नंबर अज्ञात"</string>
     <string name="notification_network_selection_title" msgid="4224455487793492772">"कोई सेवा नहीं"</string>
     <string name="notification_network_selection_text" msgid="2607085729661923269">"चयनित नेटवर्क (<xliff:g id="OPERATOR_NAME">%s</xliff:g>) अनुपलब्ध"</string>
-    <string name="notification_action_end_call" msgid="6069460915123531620">"समाप्त करें"</string>
-    <string name="notification_missedCall_call_back" msgid="2684890353590890187">"वापस कॉल करें"</string>
-    <string name="notification_missedCall_message" msgid="3049928912736917988">"संदेश"</string>
     <string name="incall_error_power_off" msgid="2947938060513306698">"कॉल करने के लिए हवाई जहाज़ मोड बंद करें."</string>
     <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"कॉल करने के लिए हवाई जहाज़ मोड बंद करें या किसी वायरलेस नेटवर्क से कनेक्‍ट करें."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"नेटवर्क पर पंजीकृत नहीं."</string>

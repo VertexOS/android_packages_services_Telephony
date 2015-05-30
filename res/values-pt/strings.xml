@@ -424,23 +424,12 @@
     <string name="card_title_on_hold" msgid="821463117892339942">"Em espera"</string>
     <string name="card_title_hanging_up" msgid="3999101620995182450">"Desligando"</string>
     <string name="card_title_in_call" msgid="6346543933068225205">"Em chamada"</string>
-    <string name="notification_dialing" msgid="2107666444937350731">"Discando"</string>
-    <string name="notification_missedCallTitle" msgid="7554385905572364535">"Chamada perdida"</string>
-    <string name="notification_missedCallsTitle" msgid="1361677948941502522">"Chamadas perdidas"</string>
-    <string name="notification_missedCallsMsg" msgid="4575787816055205600">"<xliff:g id="NUM_MISSED_CALLS">%s</xliff:g> chamadas perdidas"</string>
-    <string name="notification_missedCallTicker" msgid="504686252427747209">"Chamada perdida de <xliff:g id="MISSED_CALL_FROM">%s</xliff:g>"</string>
-    <string name="notification_ongoing_call" msgid="7068688957273482989">"Chamada em andamento"</string>
-    <string name="notification_on_hold" msgid="3480694969511790465">"Em espera"</string>
-    <string name="notification_incoming_call" msgid="2820429205043529642">"Recebendo chamada"</string>
     <string name="notification_voicemail_title" msgid="8933468752045550523">"Novo correio de voz"</string>
     <string name="notification_voicemail_title_count" msgid="4366360747660929916">"Novo correio de voz (<xliff:g id="COUNT">%d</xliff:g>)"</string>
     <string name="notification_voicemail_text_format" msgid="4447323569453981685">"Discar <xliff:g id="VOICEMAIL_NUMBER">%s</xliff:g>"</string>
     <string name="notification_voicemail_no_vm_number" msgid="760963466895609716">"Número correio de voz desconhecido"</string>
     <string name="notification_network_selection_title" msgid="4224455487793492772">"Sem serviço"</string>
     <string name="notification_network_selection_text" msgid="2607085729661923269">"A rede selecionada (<xliff:g id="OPERATOR_NAME">%s</xliff:g>) não está disponível"</string>
-    <string name="notification_action_end_call" msgid="6069460915123531620">"Desligar"</string>
-    <string name="notification_missedCall_call_back" msgid="2684890353590890187">"Retornar chamada"</string>
-    <string name="notification_missedCall_message" msgid="3049928912736917988">"Mensagem"</string>
     <string name="incall_error_power_off" msgid="2947938060513306698">"Desative o modo avião para fazer uma chamada."</string>
     <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"Desative o modo avião ou conecte-se a uma rede sem fio para fazer uma chamada."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"Não registrado na rede."</string>
