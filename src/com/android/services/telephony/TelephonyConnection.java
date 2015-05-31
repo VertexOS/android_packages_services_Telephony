@@ -21,6 +21,7 @@ import android.content.Context;
 import android.graphics.drawable.Icon;
 import android.net.Uri;
 import android.os.AsyncResult;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.telecom.CallAudioState;
@@ -229,6 +230,7 @@ abstract class TelephonyConnection extends Connection {
 
     private com.android.internal.telephony.Connection mOriginalConnection;
     private Call.State mOriginalConnectionState = Call.State.IDLE;
+    private Bundle mOriginalConnectionExtras = new Bundle();
 
     private boolean mWasImsConnection;
 
@@ -696,6 +698,55 @@ abstract class TelephonyConnection extends Connection {
         return true;
     }
 
+    protected void updateExtras() {
+        Bundle extras = null;
+        if (mOriginalConnection != null) {
+            extras = mOriginalConnection.getExtras();
+            if (extras != null) {
+                // Check if extras have changed and need updating.
+                if (!areBundlesEqual(mOriginalConnectionExtras, extras)) {
+                    if (Log.DEBUG) {
+                        Log.d(TelephonyConnection.this, "Updating extras:");
+                        for (String key : extras.keySet()) {
+                            Object value = extras.get(key);
+                            if (value instanceof String) {
+                                Log.d(this, "updateExtras Key=" + Log.pii(key) +
+                                             " value=" + Log.pii((String)value));
+                            }
+                        }
+                    }
+                    mOriginalConnectionExtras.clear();
+                    mOriginalConnectionExtras.putAll(extras);
+                } else {
+                    Log.d(this, "Extras update not required");
+                }
+            } else {
+                Log.d(this, "updateExtras extras: " + Log.pii(extras));
+            }
+        }
+    }
+
+    private static boolean areBundlesEqual(Bundle extras, Bundle newExtras) {
+        if (extras == null || newExtras == null) {
+            return extras == newExtras;
+        }
+
+        if (extras.size() != newExtras.size()) {
+            return false;
+        }
+
+        for(String key : extras.keySet()) {
+            if (key != null) {
+                final Object value = extras.get(key);
+                final Object newValue = newExtras.get(key);
+                if (!Objects.equals(value, newValue)) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
     void updateState() {
         if (mOriginalConnection == null) {
             return;
@@ -736,6 +787,7 @@ abstract class TelephonyConnection extends Connection {
         updateConnectionCapabilities();
         updateAddress();
         updateMultiparty();
+        updateExtras();
     }
 
     /**
