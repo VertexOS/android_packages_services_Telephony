@@ -102,7 +102,7 @@
     <string name="sum_cw_enabled" msgid="8083061901633671397">"Med klicem me opozori na dohodne klice"</string>
     <string name="sum_cw_disabled" msgid="3648693907300104575">"Med klicem me opozori na dohodne klice"</string>
     <string name="call_forwarding_settings" msgid="3378927671091537173">"Nastavitve preusmerjanja klicev"</string>
-    <string name="call_forwarding_settings_with_label" msgid="8569489414006897127">"Nastavitve posredovanja klicev (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="call_forwarding_settings_with_label" msgid="8569489414006897127">"Nastavitve preusmerjanja klicev (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="labelCF" msgid="2574386948026924737">"Preusmerjanje klicev"</string>
     <string name="labelCFU" msgid="8147177368148660600">"Vedno preusmeri"</string>
     <string name="messageCFU" msgid="3560082430662923687">"Vedno uporabi to številko"</string>
@@ -335,20 +335,20 @@
     <string name="cdma_activate_device" msgid="3793805892364814518">"Vklop naprave"</string>
     <string name="cdma_lte_data_service" msgid="4255018217292548962">"Nastavite podatkovni prenos"</string>
     <string name="carrier_settings_title" msgid="9028166176523012300">"Nastavitve operaterja"</string>
-    <string name="fdn" msgid="7878832555095183202">"Zapore odhodnih klicev"</string>
+    <string name="fdn" msgid="7878832555095183202">"Številke za omejeno klicanje"</string>
     <string name="fdn_with_label" msgid="187084204115493366">"Številke za omejeno klicanje (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="manage_fdn_list" msgid="8777755791892122369">"Seznam FDN"</string>
     <string name="fdn_list_with_label" msgid="7437232552210469217">"Seznam FDN (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="fdn_activation" msgid="2156479741307463576">"Aktiviranje FDN"</string>
     <string name="fdn_enabled" msgid="5238109009915521240">"Zapore odhodnih klicev so omogočene"</string>
-    <string name="fdn_disabled" msgid="4700049736675368279">"Zapore odhodnih klicev so onemogočene"</string>
+    <string name="fdn_disabled" msgid="4700049736675368279">"Številke za omejeno klicanje (FDN) so onemogočene"</string>
     <string name="enable_fdn" msgid="3740191529180493851">"Omogoči FDN"</string>
     <string name="disable_fdn" msgid="7944020890722540616">"Onemogoči FDN"</string>
     <string name="change_pin2" msgid="2153563695382176676">"Sprememba kode PIN2"</string>
     <string name="enable_fdn_ok" msgid="7215588870329688132">"Onemogoči FDN"</string>
     <string name="disable_fdn_ok" msgid="5727046928930740173">"Omogoči FDN"</string>
     <string name="sum_fdn" msgid="1959399454900272878">"Upravljanje zapor odhodnih klicev"</string>
-    <string name="sum_fdn_change_pin" msgid="6666549734792827932">"Spremeni kodo PIN za dostop FDN"</string>
+    <string name="sum_fdn_change_pin" msgid="6666549734792827932">"Spremeni kodo PIN za dostop do FDN"</string>
     <string name="sum_fdn_manage_list" msgid="8431088265332628316">"Upravljanje seznama telefonskih številk"</string>
     <string name="voice_privacy" msgid="3776841382844614716">"Zasebnost odzivnika"</string>
     <string name="voice_privacy_summary" msgid="3159383389833516214">"Omogoči izboljšane nastavitve zasebnosti"</string>
@@ -379,7 +379,7 @@
     <string name="fdn_failed" msgid="540018079008319747">"Postopek za omejeno klicanje ni uspel."</string>
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"Branje kartice SIM ..."</string>
     <string name="simContacts_empty" msgid="5270660846489561932">"Na kartici SIM ni stikov."</string>
-    <string name="simContacts_title" msgid="1861472842524839921">"Izberite stike, ki jih želite uvoziti"</string>
+    <string name="simContacts_title" msgid="1861472842524839921">"Izberite stike za uvoz"</string>
     <string name="simContacts_airplaneMode" msgid="5254946758982621072">"Izklopite način za letalo, če želite uvoziti stike s kartice SIM."</string>
     <string name="enable_pin" msgid="5422767284133234860">"Omogoči/onemogoči PIN kartice SIM"</string>
     <string name="change_pin" msgid="9174186126330785343">"Spremeni PIN kartice SIM"</string>
@@ -424,23 +424,12 @@
     <string name="card_title_on_hold" msgid="821463117892339942">"Zadržano"</string>
     <string name="card_title_hanging_up" msgid="3999101620995182450">"Prekinitev"</string>
     <string name="card_title_in_call" msgid="6346543933068225205">"Dohodni klic"</string>
-    <string name="notification_dialing" msgid="2107666444937350731">"Klicanje"</string>
-    <string name="notification_missedCallTitle" msgid="7554385905572364535">"Neodgovorjeni klic"</string>
-    <string name="notification_missedCallsTitle" msgid="1361677948941502522">"Neodgovorjeni klici"</string>
-    <string name="notification_missedCallsMsg" msgid="4575787816055205600">"<xliff:g id="NUM_MISSED_CALLS">%s</xliff:g> neodgovorjenih klicev"</string>
-    <string name="notification_missedCallTicker" msgid="504686252427747209">"Neodgovorjeni klic od <xliff:g id="MISSED_CALL_FROM">%s</xliff:g>"</string>
-    <string name="notification_ongoing_call" msgid="7068688957273482989">"Aktivni klic"</string>
-    <string name="notification_on_hold" msgid="3480694969511790465">"Zadržano"</string>
-    <string name="notification_incoming_call" msgid="2820429205043529642">"Dohodni klic"</string>
     <string name="notification_voicemail_title" msgid="8933468752045550523">"Nova glasovna pošta"</string>
     <string name="notification_voicemail_title_count" msgid="4366360747660929916">"Nova glasovna pošta (<xliff:g id="COUNT">%d</xliff:g>)"</string>
     <string name="notification_voicemail_text_format" msgid="4447323569453981685">"Kliči <xliff:g id="VOICEMAIL_NUMBER">%s</xliff:g>"</string>
     <string name="notification_voicemail_no_vm_number" msgid="760963466895609716">"Neznana številka glasovne pošte"</string>
     <string name="notification_network_selection_title" msgid="4224455487793492772">"Ni storitve"</string>
     <string name="notification_network_selection_text" msgid="2607085729661923269">"Izbrano omrežje (<xliff:g id="OPERATOR_NAME">%s</xliff:g>) ni na voljo"</string>
-    <string name="notification_action_end_call" msgid="6069460915123531620">"Prekinite klic"</string>
-    <string name="notification_missedCall_call_back" msgid="2684890353590890187">"Povratni klic"</string>
-    <string name="notification_missedCall_message" msgid="3049928912736917988">"Sporočilo"</string>
     <string name="incall_error_power_off" msgid="2947938060513306698">"Izklopite način za letalo, če želite opraviti klic."</string>
     <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"Izklopite način za letalo ali se povežite v omrežje Wi-Fi, če želite opraviti klic."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"Ni registrirano v omrežju."</string>
