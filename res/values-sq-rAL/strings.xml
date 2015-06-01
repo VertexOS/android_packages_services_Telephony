@@ -31,7 +31,7 @@
     <string name="cancel" msgid="5044513931633602634">"Anulo"</string>
     <string name="enter_input" msgid="1810529547726803893">"Mesazhi USSD duhet të jetë mes karaktereve <xliff:g id="MIN_LEN">%d</xliff:g> dhe <xliff:g id="MAX_LEN">%d</xliff:g>. Provo sërish."</string>
     <string name="manageConferenceLabel" msgid="4691922394301969053">"Menaxho telefonatën-konferencë"</string>
-    <string name="ok" msgid="3811371167865772377">"Në rregull!"</string>
+    <string name="ok" msgid="3811371167865772377">"Në rregull"</string>
     <string name="audio_mode_speaker" msgid="27649582100085266">"Altoparlant"</string>
     <string name="audio_mode_earpiece" msgid="4156527186373869107">"Kufje për vesh"</string>
     <string name="audio_mode_wired_headset" msgid="1465350758489175975">"Kufje me tel"</string>
@@ -136,7 +136,7 @@
     <string name="exception_error" msgid="7027667130619518211">"Gabim në rrjet ose në kartën SIM."</string>
     <string name="fdn_check_failure" msgid="18200614306525434">"Cilësimet e numrave me formim fiks të aplikacionit të telefonit tënd janë aktivizuar. Si rezultat, disa funksione që lidhen me telefonatën nuk funksionojnë."</string>
     <string name="radio_off_error" msgid="2304459933248513376">"Aktivizo radion para se të shohësh këto cilësime."</string>
-    <string name="close_dialog" msgid="2365884406356986917">"Në rregull!"</string>
+    <string name="close_dialog" msgid="2365884406356986917">"Në rregull"</string>
     <string name="enable" msgid="7248657275000173526">"Aktivizo"</string>
     <string name="disable" msgid="4678348128118573672">"Çaktivizo"</string>
     <string name="change_num" msgid="239476305819844391">"Përditëso"</string>
@@ -424,23 +424,12 @@
     <string name="card_title_on_hold" msgid="821463117892339942">"Në pritje"</string>
     <string name="card_title_hanging_up" msgid="3999101620995182450">"Mbyllja"</string>
     <string name="card_title_in_call" msgid="6346543933068225205">"Në telefonatë"</string>
-    <string name="notification_dialing" msgid="2107666444937350731">"Po formon numrin"</string>
-    <string name="notification_missedCallTitle" msgid="7554385905572364535">"Telefonatë e humbur"</string>
-    <string name="notification_missedCallsTitle" msgid="1361677948941502522">"Telefonata të humbura"</string>
-    <string name="notification_missedCallsMsg" msgid="4575787816055205600">"<xliff:g id="NUM_MISSED_CALLS">%s</xliff:g> telefonata të humbura"</string>
-    <string name="notification_missedCallTicker" msgid="504686252427747209">"Telefonatë e humbur nga <xliff:g id="MISSED_CALL_FROM">%s</xliff:g>"</string>
-    <string name="notification_ongoing_call" msgid="7068688957273482989">"Telefonatë në vazhdim"</string>
-    <string name="notification_on_hold" msgid="3480694969511790465">"Në pritje"</string>
-    <string name="notification_incoming_call" msgid="2820429205043529642">"Telefonatë hyrëse"</string>
     <string name="notification_voicemail_title" msgid="8933468752045550523">"Postë e re zanore"</string>
     <string name="notification_voicemail_title_count" msgid="4366360747660929916">"Postë e re zanore (<xliff:g id="COUNT">%d</xliff:g>)"</string>
     <string name="notification_voicemail_text_format" msgid="4447323569453981685">"Formo numrin <xliff:g id="VOICEMAIL_NUMBER">%s</xliff:g>"</string>
     <string name="notification_voicemail_no_vm_number" msgid="760963466895609716">"Numri i postës zanore është i panjohur"</string>
     <string name="notification_network_selection_title" msgid="4224455487793492772">"Nuk ka shërbim"</string>
     <string name="notification_network_selection_text" msgid="2607085729661923269">"Rrjeti i përzgjedhur (<xliff:g id="OPERATOR_NAME">%s</xliff:g>) nuk mundësohet"</string>
-    <string name="notification_action_end_call" msgid="6069460915123531620">"Mbyll"</string>
-    <string name="notification_missedCall_call_back" msgid="2684890353590890187">"Ri-telefono"</string>
-    <string name="notification_missedCall_message" msgid="3049928912736917988">"Mesazh"</string>
     <string name="incall_error_power_off" msgid="2947938060513306698">"Çaktivizo modalitetin \"në aeroplan\" për të bërë një telefonatë."</string>
     <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"Çaktivizo modalitetin \"në aeroplan\" ose lidhu me një rrjet me valë për të bërë një telefonatë."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"I paregjistruar në rrjet."</string>
