@@ -33,6 +33,7 @@ import android.os.Message;
 import android.os.Process;
 import android.os.ServiceManager;
 import android.os.UserHandle;
+import android.os.UserManager;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.telecom.PhoneAccount;
@@ -135,6 +136,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     private PhoneGlobals mApp;
     private Phone mPhone;
     private CallManager mCM;
+    private UserManager mUserManager;
     private AppOpsManager mAppOps;
     private MainThreadHandler mMainThreadHandler;
     private SubscriptionController mSubscriptionController;
@@ -742,6 +744,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         mApp = app;
         mPhone = phone;
         mCM = PhoneGlobals.getInstance().mCM;
+        mUserManager = (UserManager) app.getSystemService(Context.USER_SERVICE);
         mAppOps = (AppOpsManager)app.getSystemService(Context.APP_OPS_SERVICE);
         mMainThreadHandler = new MainThreadHandler();
         mTelephonySharedPreferences =
@@ -2382,9 +2385,14 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     @Override
     public void factoryReset(int subId) {
         enforceConnectivityInternalPermission();
+        if (mUserManager.hasUserRestriction(UserManager.DISALLOW_NETWORK_RESET)) {
+            return;
+        }
+
         final long identity = Binder.clearCallingIdentity();
         try {
-            if (SubscriptionManager.isUsableSubIdValue(subId)) {
+            if (SubscriptionManager.isUsableSubIdValue(subId) && !mUserManager.hasUserRestriction(
+                    UserManager.DISALLOW_CONFIG_MOBILE_NETWORKS)) {
                 // Enable data
                 setDataEnabled(subId, true);
                 // Set network selection mode to automatic
