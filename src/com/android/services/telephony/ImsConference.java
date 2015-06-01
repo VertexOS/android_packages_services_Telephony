@@ -147,7 +147,7 @@ public class ImsConference extends Conference {
         public void onConferenceParticipantsChanged(android.telecom.Connection c,
                 List<ConferenceParticipant> participants) {
 
-            if (c == null) {
+            if (c == null || participants == null) {
                 return;
             }
             Log.v(this, "onConferenceParticipantsChanged: %d participants", participants.size());
@@ -202,6 +202,16 @@ public class ImsConference extends Conference {
     private final ConcurrentHashMap<Uri, ConferenceParticipantConnection>
             mConferenceParticipantConnections =
                     new ConcurrentHashMap<Uri, ConferenceParticipantConnection>(8, 0.9f, 1);
+
+    public void updateConferenceParticipantsAfterCreation() {
+        if (mConferenceHost != null) {
+            Log.v(this, "updateConferenceStateAfterCreation :: process participant update");
+            handleConferenceParticipantsUpdate(mConferenceHost,
+                    mConferenceHost.getConferenceParticipants());
+        } else {
+            Log.v(this, "updateConferenceStateAfterCreation :: null mConferenceHost");
+        }
+    }
 
     /**
      * Initializes a new {@link ImsConference}.
@@ -487,22 +497,26 @@ public class ImsConference extends Conference {
     private void handleConferenceParticipantsUpdate(
             TelephonyConnection parent, List<ConferenceParticipant> participants) {
 
+        if (participants == null) {
+            return;
+        }
         boolean newParticipantsAdded = false;
         boolean oldParticipantsRemoved = false;
         ArrayList<ConferenceParticipant> newParticipants = new ArrayList<>(participants.size());
-        HashSet<Uri> participantEndpoints = new HashSet<>(participants.size());
+        HashSet<Uri> participantUserEntities = new HashSet<>(participants.size());
 
         // Add any new participants and update existing.
         for (ConferenceParticipant participant : participants) {
-            Uri endpoint = participant.getEndpoint();
-            participantEndpoints.add(endpoint);
-            if (!mConferenceParticipantConnections.containsKey(endpoint)) {
+            Uri userEntity = participant.getHandle();
+
+            participantUserEntities.add(userEntity);
+            if (!mConferenceParticipantConnections.containsKey(userEntity)) {
                 createConferenceParticipantConnection(parent, participant);
                 newParticipants.add(participant);
                 newParticipantsAdded = true;
             } else {
                 ConferenceParticipantConnection connection =
-                        mConferenceParticipantConnections.get(endpoint);
+                        mConferenceParticipantConnections.get(userEntity);
                 connection.updateState(participant.getState());
             }
         }
@@ -512,7 +526,7 @@ public class ImsConference extends Conference {
             // Set the state of the new participants at once and add to the conference
             for (ConferenceParticipant newParticipant : newParticipants) {
                 ConferenceParticipantConnection connection =
-                        mConferenceParticipantConnections.get(newParticipant.getEndpoint());
+                        mConferenceParticipantConnections.get(newParticipant.getHandle());
                 connection.updateState(newParticipant.getState());
             }
         }
@@ -524,9 +538,11 @@ public class ImsConference extends Conference {
         while (entryIterator.hasNext()) {
             Map.Entry<Uri, ConferenceParticipantConnection> entry = entryIterator.next();
 
-            if (!participantEndpoints.contains(entry.getKey())) {
+            if (!participantUserEntities.contains(entry.getKey())) {
                 ConferenceParticipantConnection participant = entry.getValue();
+                participant.setDisconnected(new DisconnectCause(DisconnectCause.CANCELED));
                 participant.removeConnectionListener(mParticipantListener);
+                mTelephonyConnectionService.removeConnection(participant);
                 removeConnection(participant);
                 entryIterator.remove();
                 oldParticipantsRemoved = true;
@@ -563,7 +579,7 @@ public class ImsConference extends Conference {
             Log.v(this, "createConferenceParticipantConnection: %s", connection);
         }
 
-        mConferenceParticipantConnections.put(participant.getEndpoint(), connection);
+        mConferenceParticipantConnections.put(participant.getHandle(), connection);
         PhoneAccountHandle phoneAccountHandle =
                 PhoneUtils.makePstnPhoneAccountHandle(parent.getPhone());
         mTelephonyConnectionService.addExistingConnection(phoneAccountHandle, connection);
@@ -576,12 +592,10 @@ public class ImsConference extends Conference {
      * @param participant The participant to remove.
      */
     private void removeConferenceParticipant(ConferenceParticipantConnection participant) {
-        if (Log.VERBOSE) {
-            Log.v(this, "removeConferenceParticipant: %s", participant);
-        }
+        Log.d(this, "removeConferenceParticipant: %s", participant);
 
         participant.removeConnectionListener(mParticipantListener);
-        mConferenceParticipantConnections.remove(participant.getEndpoint());
+        mConferenceParticipantConnections.remove(participant.getUserEntity());
     }
 
     /**
@@ -597,6 +611,7 @@ public class ImsConference extends Conference {
             // Mark disconnect cause as cancelled to ensure that the call is not logged in the
             // call log.
             connection.setDisconnected(new DisconnectCause(DisconnectCause.CANCELED));
+            mTelephonyConnectionService.removeConnection(connection);
             connection.destroy();
         }
         mConferenceParticipantConnections.clear();
@@ -651,8 +666,10 @@ public class ImsConference extends Conference {
             case Connection.STATE_INITIALIZING:
             case Connection.STATE_NEW:
             case Connection.STATE_RINGING:
-            case Connection.STATE_DIALING:
                 // No-op -- not applicable.
+                break;
+            case Connection.STATE_DIALING:
+                setDialing();
                 break;
             case Connection.STATE_DISCONNECTED:
                 DisconnectCause disconnectCause;
