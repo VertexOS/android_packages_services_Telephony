@@ -318,8 +318,9 @@ public class ImsConferenceController {
         // Create conference and add to telecom
         ImsConference conference = new ImsConference(mConnectionService, conferenceHostConnection);
         conference.setState(connection.getState());
-        mConnectionService.addConference(conference);
         conference.addListener(mConferenceListener);
+        conference.updateConferenceParticipantsAfterCreation();
+        mConnectionService.addConference(conference);
 
         // Cleanup TelephonyConnection which backed the original connection and remove from telecom.
         // Use the "Other" disconnect cause to ensure the call is logged to the call log but the
