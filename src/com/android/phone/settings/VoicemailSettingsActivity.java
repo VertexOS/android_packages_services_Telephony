@@ -28,7 +28,9 @@ import android.preference.CheckBoxPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceScreen;
+import android.preference.SwitchPreference;
 import android.provider.ContactsContract.CommonDataKinds;
+import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
@@ -40,7 +42,10 @@ import com.android.internal.telephony.PhoneConstants;
 import com.android.phone.R;
 import com.android.phone.EditPhoneNumberPreference;
 import com.android.phone.PhoneGlobals;
+import com.android.phone.PhoneUtils;
 import com.android.phone.SubscriptionInfoHelper;
+import com.android.phone.vvm.omtp.OmtpVvmCarrierConfigHelper;
+import com.android.phone.vvm.omtp.sync.OmtpVvmSourceManager;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -187,12 +192,14 @@ public class VoicemailSettingsActivity extends PreferenceActivity
     private boolean mForeground;
     private Phone mPhone;
     private SubscriptionInfoHelper mSubscriptionInfoHelper;
+    private OmtpVvmCarrierConfigHelper mOmtpVvmCarrierConfigHelper;
 
     private EditPhoneNumberPreference mSubMenuVoicemailSettings;
     private VoicemailProviderListPreference mVoicemailProviders;
     private PreferenceScreen mVoicemailSettings;
     private VoicemailRingtonePreference mVoicemailNotificationRingtone;
     private CheckBoxPreference mVoicemailNotificationVibrate;
+    private SwitchPreference mVoicemailVisualVoicemail;
 
 
     //*********************************************************************************************
@@ -212,6 +219,8 @@ public class VoicemailSettingsActivity extends PreferenceActivity
         mSubscriptionInfoHelper.setActionBarTitle(
                 getActionBar(), getResources(), R.string.voicemail_settings_with_label);
         mPhone = mSubscriptionInfoHelper.getPhone();
+        mOmtpVvmCarrierConfigHelper = new OmtpVvmCarrierConfigHelper(
+                mPhone.getContext(), mPhone.getSubId());
     }
 
     @Override
@@ -247,6 +256,18 @@ public class VoicemailSettingsActivity extends PreferenceActivity
         mVoicemailNotificationVibrate = (CheckBoxPreference) findPreference(
                 getResources().getString(R.string.voicemail_notification_vibrate_key));
         mVoicemailNotificationVibrate.setOnPreferenceChangeListener(this);
+
+        mVoicemailVisualVoicemail = (SwitchPreference) findPreference(
+                getResources().getString(R.string.voicemail_visual_voicemail_key));
+        if (TelephonyManager.VVM_TYPE_OMTP.equals(mOmtpVvmCarrierConfigHelper.getVvmType()) ||
+                TelephonyManager.VVM_TYPE_CVVM.equals(mOmtpVvmCarrierConfigHelper.getVvmType())) {
+            mVoicemailVisualVoicemail.setOnPreferenceChangeListener(this);
+            mVoicemailVisualVoicemail.setChecked(
+                    VisualVoicemailSettingsUtil.isVisualVoicemailEnabled(mPhone));
+        } else {
+            prefSet.removePreference(mVoicemailVisualVoicemail);
+        }
+
 
         updateVMPreferenceWidgets(mVoicemailProviders.getValue());
 
@@ -366,6 +387,15 @@ public class VoicemailSettingsActivity extends PreferenceActivity
             // TODO: Revert to checking reference after migrating voicemail to its own activity.
             VoicemailNotificationSettingsUtil.setVibrationEnabled(
                     mPhone, Boolean.TRUE.equals(objValue));
+        } else if (preference.getKey().equals(mVoicemailVisualVoicemail.getKey())) {
+            boolean isEnabled = (Boolean) objValue;
+            VisualVoicemailSettingsUtil.setVisualVoicemailEnabled(mPhone, isEnabled);
+            if (isEnabled) {
+                mOmtpVvmCarrierConfigHelper.startActivation();
+            } else {
+                OmtpVvmSourceManager.getInstance(mPhone.getContext()).removeSource(mPhone);
+                mOmtpVvmCarrierConfigHelper.startDeactivation();
+            }
         }
 
         // Always let the preference setting proceed.
