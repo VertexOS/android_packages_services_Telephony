@@ -247,25 +247,29 @@ public class FdnSetting extends PreferenceActivity
                 // a toast, or just update the UI.
                 case EVENT_PIN2_ENTRY_COMPLETE: {
                         AsyncResult ar = (AsyncResult) msg.obj;
-                        if (ar.exception != null && ar.exception instanceof CommandException) {
-                            int attemptsRemaining = msg.arg1;
-                            // see if PUK2 is requested and alert the user accordingly.
-                            CommandException.Error e =
-                                    ((CommandException) ar.exception).getCommandError();
-                            switch (e) {
-                                case SIM_PUK2:
-                                    // make sure we set the PUK2 state so that we can skip
-                                    // some redundant behaviour.
-                                    displayMessage(R.string.fdn_enable_puk2_requested,
-                                            attemptsRemaining);
-                                    resetPinChangeStateForPUK2();
-                                    break;
-                                case PASSWORD_INCORRECT:
-                                    displayMessage(R.string.pin2_invalid, attemptsRemaining);
-                                    break;
-                                default:
-                                    displayMessage(R.string.fdn_failed, attemptsRemaining);
-                                    break;
+                        if (ar.exception != null) {
+                            if (ar.exception instanceof CommandException) {
+                                int attemptsRemaining = msg.arg1;
+                                // see if PUK2 is requested and alert the user accordingly.
+                                CommandException.Error e =
+                                        ((CommandException) ar.exception).getCommandError();
+                                switch (e) {
+                                    case SIM_PUK2:
+                                        // make sure we set the PUK2 state so that we can skip
+                                        // some redundant behaviour.
+                                        displayMessage(R.string.fdn_enable_puk2_requested,
+                                                attemptsRemaining);
+                                        resetPinChangeStateForPUK2();
+                                        break;
+                                    case PASSWORD_INCORRECT:
+                                        displayMessage(R.string.pin2_invalid, attemptsRemaining);
+                                        break;
+                                    default:
+                                        displayMessage(R.string.fdn_failed, attemptsRemaining);
+                                        break;
+                                }
+                            } else {
+                                displayMessage(R.string.pin2_error_exception);
                             }
                         }
                         updateEnableFDN();
@@ -280,32 +284,36 @@ public class FdnSetting extends PreferenceActivity
                             log("Handle EVENT_PIN2_CHANGE_COMPLETE");
                         AsyncResult ar = (AsyncResult) msg.obj;
                         if (ar.exception != null) {
-                            int attemptsRemaining = msg.arg1;
-                            log("Handle EVENT_PIN2_CHANGE_COMPLETE attemptsRemaining="
-                                    + attemptsRemaining);
-                            CommandException ce = (CommandException) ar.exception;
-                            if (ce.getCommandError() == CommandException.Error.SIM_PUK2) {
-                                // throw an alert dialog on the screen, displaying the
-                                // request for a PUK2.  set the cancel listener to
-                                // FdnSetting.onCancel().
-                                AlertDialog a = new AlertDialog.Builder(FdnSetting.this)
-                                    .setMessage(R.string.puk2_requested)
-                                    .setCancelable(true)
-                                    .setOnCancelListener(FdnSetting.this)
-                                    .create();
-                                a.getWindow().addFlags(
-                                        WindowManager.LayoutParams.FLAG_DIM_BEHIND);
-                                a.show();
-                            } else {
-                                // set the correct error message depending upon the state.
-                                // Reset the state depending upon or knowledge of the PUK state.
-                                if (!mIsPuk2Locked) {
-                                    displayMessage(R.string.badPin2, attemptsRemaining);
-                                    resetPinChangeState();
+                            if (ar.exception instanceof CommandException) {
+                                int attemptsRemaining = msg.arg1;
+                                log("Handle EVENT_PIN2_CHANGE_COMPLETE attemptsRemaining="
+                                        + attemptsRemaining);
+                                CommandException ce = (CommandException) ar.exception;
+                                if (ce.getCommandError() == CommandException.Error.SIM_PUK2) {
+                                    // throw an alert dialog on the screen, displaying the
+                                    // request for a PUK2.  set the cancel listener to
+                                    // FdnSetting.onCancel().
+                                    AlertDialog a = new AlertDialog.Builder(FdnSetting.this)
+                                        .setMessage(R.string.puk2_requested)
+                                        .setCancelable(true)
+                                        .setOnCancelListener(FdnSetting.this)
+                                        .create();
+                                    a.getWindow().addFlags(
+                                            WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+                                    a.show();
                                 } else {
-                                    displayMessage(R.string.badPuk2, attemptsRemaining);
-                                    resetPinChangeStateForPUK2();
+                                    // set the correct error message depending upon the state.
+                                    // Reset the state depending upon or knowledge of the PUK state.
+                                    if (!mIsPuk2Locked) {
+                                        displayMessage(R.string.badPin2, attemptsRemaining);
+                                        resetPinChangeState();
+                                    } else {
+                                        displayMessage(R.string.badPuk2, attemptsRemaining);
+                                        resetPinChangeStateForPUK2();
+                                    }
                                 }
+                            } else {
+                                displayMessage(R.string.pin2_error_exception);
                             }
                         } else {
                             if (mPinChangeState == PIN_CHANGE_PUK) {

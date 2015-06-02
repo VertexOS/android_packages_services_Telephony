@@ -897,6 +897,9 @@
     <string name="pin2_attempts">\nYou have <xliff:g id="number">%d</xliff:g> remaining attempts.</string>
     <!-- SIM PIN screen: status message displayed in a popup (toast) -->
     <string name="pin2_unblocked">PIN2 no longer blocked</string>
+    <!-- SIM PIN screen: error message shown in dialog when there is a network or sim error.
+         [CHAR LIMIT=NONE] -->
+    <string name="pin2_error_exception">Network or SIM card error</string>
 
     <!-- SIM PIN screen: button label -->
     <string name="doneButton">Done</string>
