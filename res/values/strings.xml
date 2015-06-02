@@ -1212,7 +1212,7 @@
     -->
     <string name="description_dial_button">dial</string>
 
-    <!-- Dialog title for the vibration settings for voicemail notifications [CHAR LIMIT=40] -->
+    <!-- Title for the vibration settings for voicemail notifications [CHAR LIMIT=40] -->
     <string name="voicemail_notification_vibrate_when_title" msgid="8731372580674292759">Vibrate</string>
     <!-- Dialog title for the vibration settings for voice mail notifications [CHAR LIMIT=40]-->
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="8995274609647451109">Vibrate</string>

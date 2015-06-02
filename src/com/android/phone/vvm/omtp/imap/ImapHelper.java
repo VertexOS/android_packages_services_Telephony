@@ -15,8 +15,6 @@
  */
 package com.android.phone.vvm.omtp.imap;
 
-import android.accounts.Account;
-import android.accounts.AccountManager;
 import android.content.Context;
 import android.net.Network;
 import android.telecom.PhoneAccountHandle;
@@ -24,7 +22,6 @@ import android.telecom.Voicemail;
 
 import android.util.Base64;
 
-import com.android.phone.PhoneUtils;
 import com.android.phone.common.mail.Address;
 import com.android.phone.common.mail.Body;
 import com.android.phone.common.mail.BodyPart;
@@ -39,6 +36,7 @@ import com.android.phone.common.mail.store.ImapFolder;
 import com.android.phone.common.mail.store.ImapStore;
 import com.android.phone.common.mail.store.imap.ImapConstants;
 import com.android.phone.common.mail.utils.LogUtils;
+import com.android.phone.settings.VisualVoicemailSettingsUtil;
 import com.android.phone.vvm.omtp.OmtpConstants;
 import com.android.phone.vvm.omtp.fetch.VoicemailFetchedCallback;
 
@@ -62,18 +60,21 @@ public class ImapHelper {
     private Context mContext;
     private PhoneAccountHandle mPhoneAccount;
 
-    public ImapHelper(Context context, Account account, Network network) {
+    public ImapHelper(Context context, PhoneAccountHandle phoneAccount, Network network) {
         try {
             mContext = context;
-            mPhoneAccount = PhoneUtils.makePstnPhoneAccountHandle(account.name);
+            mPhoneAccount = phoneAccount;
             TempDirectory.setTempDirectory(context);
 
-            AccountManager accountManager = AccountManager.get(context);
-            String username = accountManager.getUserData(account, OmtpConstants.IMAP_USER_NAME);
-            String password = accountManager.getUserData(account, OmtpConstants.IMAP_PASSWORD);
-            String serverName = accountManager.getUserData(account, OmtpConstants.SERVER_ADDRESS);
+            String username = VisualVoicemailSettingsUtil.getCredentialForSource(context,
+                    OmtpConstants.IMAP_USER_NAME, phoneAccount);
+            String password = VisualVoicemailSettingsUtil.getCredentialForSource(context,
+                    OmtpConstants.IMAP_PASSWORD, phoneAccount);
+            String serverName = VisualVoicemailSettingsUtil.getCredentialForSource(context,
+                    OmtpConstants.SERVER_ADDRESS, phoneAccount);
             int port = Integer.parseInt(
-                    accountManager.getUserData(account, OmtpConstants.IMAP_PORT));
+                    VisualVoicemailSettingsUtil.getCredentialForSource(context,
+                            OmtpConstants.IMAP_PORT, phoneAccount));
             // TODO: determine the security protocol (e.g. ssl, tls, none, etc.)
             mImapStore = new ImapStore(
                     context, username, password, port, serverName, ImapStore.FLAG_NONE, network);
