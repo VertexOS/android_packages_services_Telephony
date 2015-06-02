@@ -15,7 +15,6 @@
  */
 package com.android.phone.vvm.omtp.fetch;
 
-import android.accounts.Account;
 import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
 import android.content.Context;
@@ -28,13 +27,14 @@ import android.net.NetworkRequest;
 import android.net.Uri;
 import android.provider.VoicemailContract;
 import android.provider.VoicemailContract.Voicemails;
+import android.telecom.PhoneAccountHandle;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
 
 import com.android.phone.PhoneUtils;
 import com.android.phone.vvm.omtp.imap.ImapHelper;
-import com.android.phone.vvm.omtp.sync.OmtpVvmSyncAccountManager;
+import com.android.phone.vvm.omtp.sync.OmtpVvmSourceManager;
 
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
@@ -58,9 +58,9 @@ public class FetchVoicemailReceiver extends BroadcastReceiver {
     private NetworkRequest mNetworkRequest;
     private OmtpVvmNetworkRequestCallback mNetworkCallback;
     private Context mContext;
-    private Account mAccount;
     private String mUid;
     private ConnectivityManager mConnectivityManager;
+    private PhoneAccountHandle mPhoneAccount;
 
     @Override
     public void onReceive(final Context context, Intent intent) {
@@ -98,17 +98,15 @@ public class FetchVoicemailReceiver extends BroadcastReceiver {
                             return;
                         }
                     }
-                    mAccount = new Account(accountId,
-                            OmtpVvmSyncAccountManager.ACCOUNT_TYPE);
 
-                    if (!OmtpVvmSyncAccountManager.getInstance(context)
-                            .isAccountRegistered(mAccount)) {
+                    mPhoneAccount = PhoneUtils.makePstnPhoneAccountHandle(accountId);
+                    if (!OmtpVvmSourceManager.getInstance(context)
+                            .isVvmSourceRegistered(mPhoneAccount)) {
                         Log.w(TAG, "Account not registered - cannot retrieve message.");
                         return;
                     }
 
-                    int subId = PhoneUtils.getSubIdForPhoneAccountHandle(
-                            PhoneUtils.makePstnPhoneAccountHandle(accountId));
+                    int subId = PhoneUtils.getSubIdForPhoneAccountHandle(mPhoneAccount);
 
                     mNetworkRequest = new NetworkRequest.Builder()
                             .addTransportType(NetworkCapabilities.TRANSPORT_CELLULAR)
@@ -132,7 +130,7 @@ public class FetchVoicemailReceiver extends BroadcastReceiver {
             executor.execute(new Runnable() {
                 @Override
                 public void run() {
-                    new ImapHelper(mContext, mAccount, network).fetchVoicemailPayload(
+                    new ImapHelper(mContext, mPhoneAccount, network).fetchVoicemailPayload(
                             new VoicemailFetchedCallback(mContext, mUri), mUid);
                     releaseNetwork();
                 }

@@ -634,15 +634,6 @@
                 <data android:scheme="sms" />
             </intent-filter>
         </receiver>
-        <service
-            android:name="android.telecom.AuthenticatorService">
-            <intent-filter>
-                <action android:name="android.accounts.AccountAuthenticator"/>
-            </intent-filter>
-            <meta-data
-                android:name="android.accounts.AccountAuthenticator"
-                android:resource="@xml/authenticator" />
-       </service>
        <receiver android:name="com.android.phone.vvm.omtp.SimChangeReceiver"
             android:exported="true">
             <intent-filter>

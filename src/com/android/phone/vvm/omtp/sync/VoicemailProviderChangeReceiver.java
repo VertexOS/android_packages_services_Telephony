@@ -18,6 +18,7 @@ package com.android.phone.vvm.omtp.sync;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.provider.VoicemailContract;
 
 /**
  * Receives changes to the voicemail provider so they can be sent to the voicemail server.
@@ -25,9 +26,10 @@ import android.content.Intent;
 public class VoicemailProviderChangeReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
-        OmtpVvmSyncAccountManager syncAccountManager =
-                OmtpVvmSyncAccountManager.getInstance(context);
-        if (syncAccountManager.getOmtpAccounts().length > 0) {
+        boolean isSelfChanged = intent.getBooleanExtra(VoicemailContract.EXTRA_SELF_CHANGE, false);
+        OmtpVvmSourceManager vvmSourceManager =
+                OmtpVvmSourceManager.getInstance(context);
+        if (vvmSourceManager.getOmtpVvmSources().size() > 0 && !isSelfChanged) {
             Intent serviceIntent = new Intent(context, OmtpVvmSyncService.class);
             serviceIntent.setAction(OmtpVvmSyncService.SYNC_UPLOAD_ONLY);
             context.startService(serviceIntent);
