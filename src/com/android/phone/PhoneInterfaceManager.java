@@ -1223,6 +1223,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         // OP_COARSE_LOCATION controls both fine and coarse location.
         if (mAppOps.noteOp(AppOpsManager.OP_COARSE_LOCATION, Binder.getCallingUid(),
                 callingPackage) != AppOpsManager.MODE_ALLOWED) {
+            log("getCellLocation: returning null; mode != allowed");
             return null;
         }
 
@@ -1233,7 +1234,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
             phone.getCellLocation().fillInNotifierBundle(data);
             return data;
         } else {
-            if (DBG_LOC) log("getCellLocation: suppress non-active user");
+            log("getCellLocation: suppress non-active user");
             return null;
         }
     }
