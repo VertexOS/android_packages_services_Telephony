@@ -76,7 +76,6 @@ public class EmergencyActionGroup extends FrameLayout implements View.OnClickLis
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
-
         setupAssistActions();
 
         mSelectedContainer = (ViewGroup) findViewById(R.id.selected_container);
@@ -119,7 +118,13 @@ public class EmergencyActionGroup extends FrameLayout implements View.OnClickLis
     private void setupAssistActions() {
         int[] buttonIds = new int[] {R.id.action1, R.id.action2, R.id.action3};
 
-        List<ResolveInfo> infos = resolveAssistPackageAndQueryActivites();
+        List<ResolveInfo> infos;
+
+        if (TelephonyManager.EMERGENCY_ASSISTANCE_ENABLED) {
+            infos = resolveAssistPackageAndQueryActivites();
+        } else {
+            infos = null;
+        }
 
         for (int i = 0; i < 3; i++) {
             Button button = (Button) findViewById(buttonIds[i]);
