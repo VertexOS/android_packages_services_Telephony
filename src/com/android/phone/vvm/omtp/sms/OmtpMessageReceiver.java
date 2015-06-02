@@ -15,7 +15,6 @@
  */
 package com.android.phone.vvm.omtp.sms;
 
-import android.accounts.Account;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -28,8 +27,9 @@ import android.util.Log;
 
 import com.android.internal.telephony.PhoneConstants;
 import com.android.phone.PhoneUtils;
+import com.android.phone.settings.VisualVoicemailSettingsUtil;
 import com.android.phone.vvm.omtp.OmtpConstants;
-import com.android.phone.vvm.omtp.sync.OmtpVvmSyncAccountManager;
+import com.android.phone.vvm.omtp.sync.OmtpVvmSourceManager;
 import com.android.phone.vvm.omtp.sync.OmtpVvmSyncService;
 import com.android.phone.vvm.omtp.sync.VoicemailsQueryHelper;
 
@@ -47,6 +47,11 @@ public class OmtpMessageReceiver extends BroadcastReceiver {
         mContext = context;
         mPhoneAccount = PhoneUtils.makePstnPhoneAccountHandle(
                 intent.getExtras().getInt(PhoneConstants.PHONE_KEY));
+
+        if (!VisualVoicemailSettingsUtil.getVisualVoicemailEnabled(mContext, mPhoneAccount)) {
+            Log.v(TAG, "Received vvm message for disabled vvm source.");
+            return;
+        }
 
         SmsMessage[] messages = Telephony.Sms.Intents.getMessagesFromIntent(intent);
         StringBuilder messageBody = new StringBuilder();
@@ -94,11 +99,9 @@ public class OmtpMessageReceiver extends BroadcastReceiver {
                 queryHelper.insertIfUnique(voicemail);
                 break;
             case OmtpConstants.MAILBOX_UPDATE:
-                Account account = new Account(
-                        mPhoneAccount.getId(), OmtpVvmSyncAccountManager.ACCOUNT_TYPE);
                 Intent serviceIntent = new Intent(mContext, OmtpVvmSyncService.class);
                 serviceIntent.setAction(OmtpVvmSyncService.SYNC_DOWNLOAD_ONLY);
-                serviceIntent.putExtra(OmtpVvmSyncService.EXTRA_ACCOUNT, account);
+                serviceIntent.putExtra(OmtpVvmSyncService.EXTRA_PHONE_ACCOUNT, mPhoneAccount);
                 mContext.startService(serviceIntent);
                 break;
             case OmtpConstants.GREETINGS_UPDATE:
@@ -111,31 +114,26 @@ public class OmtpMessageReceiver extends BroadcastReceiver {
     }
 
     private void updateAccount(StatusMessage message) {
-        OmtpVvmSyncAccountManager vvmAccountSyncManager =
-                OmtpVvmSyncAccountManager.getInstance(mContext);
-        Account account = new Account(mPhoneAccount.getId(),
-                OmtpVvmSyncAccountManager.ACCOUNT_TYPE);
-
-        if (!vvmAccountSyncManager.isAccountRegistered(account)) {
-            // If the account has not been previously registered, it means that this STATUS sms
-            // is a result of the ACTIVATE sms, so register the voicemail source.
-            vvmAccountSyncManager.createSyncAccount(account);
-            VoicemailContract.Status.setStatus(mContext, mPhoneAccount,
-                    VoicemailContract.Status.CONFIGURATION_STATE_OK,
-                    VoicemailContract.Status.DATA_CHANNEL_STATE_OK,
-                    VoicemailContract.Status.NOTIFICATION_CHANNEL_STATE_OK);
-        }
+        OmtpVvmSourceManager vvmSourceManager =
+                OmtpVvmSourceManager.getInstance(mContext);
+        VoicemailContract.Status.setStatus(mContext, mPhoneAccount,
+                VoicemailContract.Status.CONFIGURATION_STATE_OK,
+                VoicemailContract.Status.DATA_CHANNEL_STATE_OK,
+                VoicemailContract.Status.NOTIFICATION_CHANNEL_STATE_OK);
 
         // Save the IMAP credentials in the corresponding account object so they are
         // persistent and can be retrieved.
-        vvmAccountSyncManager.setAccountCredentialsFromStatusMessage(account, message);
+        VisualVoicemailSettingsUtil.setSourceCredentialsFromStatusMessage(
+                mContext,
+                mPhoneAccount,
+                message);
 
         // Add a phone state listener so that changes to the communication channels can be recorded.
-        vvmAccountSyncManager.addPhoneStateListener(account);
+        vvmSourceManager.addPhoneStateListener(mPhoneAccount);
 
         Intent serviceIntent = new Intent(mContext, OmtpVvmSyncService.class);
         serviceIntent.setAction(OmtpVvmSyncService.SYNC_FULL_SYNC);
-        serviceIntent.putExtra(OmtpVvmSyncService.EXTRA_ACCOUNT, account);
+        serviceIntent.putExtra(OmtpVvmSyncService.EXTRA_PHONE_ACCOUNT, mPhoneAccount);
         mContext.startService(serviceIntent);
     }
 }
