@@ -74,6 +74,7 @@ abstract class TelephonyConnection extends Connection {
                         Log.d(TelephonyConnection.this, "SettingOriginalConnection " +
                                 mOriginalConnection.toString() + " with " + connection.toString());
                         setOriginalConnection(connection);
+                        mWasImsConnection = false;
                     }
                     break;
                 case MSG_RINGBACK_TONE:
@@ -655,6 +656,18 @@ abstract class TelephonyConnection extends Connection {
             return getPhone().getForegroundCall().getEarliestConnection();
         }
         return null;
+    }
+
+     /**
+     * Checks for and returns the list of conference participants
+     * associated with this connection.
+     */
+    public List<ConferenceParticipant> getConferenceParticipants() {
+        if (mOriginalConnection == null) {
+            Log.v(this, "Null mOriginalConnection, cannot get conf participants.");
+            return null;
+        }
+        return mOriginalConnection.getConferenceParticipants();
     }
 
     /**
