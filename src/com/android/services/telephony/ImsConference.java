@@ -16,11 +16,9 @@
 
 package com.android.services.telephony;
 
-import android.content.ComponentName;
 import android.content.Context;
 import android.graphics.drawable.Icon;
 import android.net.Uri;
-import android.telecom.Conference.Listener;
 import android.telecom.Conference;
 import android.telecom.ConferenceParticipant;
 import android.telecom.Connection.VideoProvider;
@@ -303,7 +301,7 @@ public class ImsConference extends Conference {
         if (mConferenceHost != null) {
             return mConferenceHost.getVideoState();
         }
-        return VideoProfile.VideoState.AUDIO_ONLY;
+        return VideoProfile.STATE_AUDIO_ONLY;
     }
 
     /**
