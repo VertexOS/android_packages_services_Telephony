@@ -58,7 +58,7 @@
     <string name="labelCDMAMore" msgid="1630676740428229339">"Ajustes de llamadas CDMA"</string>
     <string name="labelCdmaMore_with_label" msgid="6333588719319970399">"Ajustes de llamada de CDMA (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="apn_settings" msgid="9043423184895642077">"APN"</string>
-    <string name="settings_label" msgid="3876743539816984008">"Configuración de red"</string>
+    <string name="settings_label" msgid="3876743539816984008">"Ajustes de red"</string>
     <string name="phone_accounts" msgid="6376603393888116364">"Cuentas de llamadas"</string>
     <string name="phone_accounts_make_calls_with" msgid="1969188078933152231">"Realizar llamadas con"</string>
     <string name="phone_accounts_make_sip_calls_with" msgid="4677789312053828493">"Realizar llamadas SIP con"</string>
@@ -87,25 +87,25 @@
     <string name="networks" msgid="8873030692174541976">"Operadores de red"</string>
     <string name="cell_broadcast_settings" msgid="8740238216690502563">"Difusiones de emergencia"</string>
     <string name="call_settings" msgid="6112441768261754562">"Ajustes de llamadas"</string>
-    <string name="additional_gsm_call_settings" msgid="1391795981938800617">"Configuración adicional"</string>
+    <string name="additional_gsm_call_settings" msgid="1391795981938800617">"Ajustes adicionales"</string>
     <string name="additional_gsm_call_settings_with_label" msgid="1385241520708457376">"Ajustes adicionales (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
-    <string name="sum_gsm_call_settings" msgid="4076647190996778012">"Configuración adicional de llamadas solo GSM"</string>
-    <string name="additional_cdma_call_settings" msgid="8628958775721886909">"Configuración adicional de llamadas CDMA"</string>
-    <string name="sum_cdma_call_settings" msgid="284753265979035549">"Configuración adicional de llamadas solo CDMA"</string>
-    <string name="labelNwService" msgid="4699970172021870983">"Configuración del servicio de red"</string>
-    <string name="labelCallerId" msgid="3888899447379069198">"ID de emisor"</string>
+    <string name="sum_gsm_call_settings" msgid="4076647190996778012">"Ajustes adicionales de llamadas solo GSM"</string>
+    <string name="additional_cdma_call_settings" msgid="8628958775721886909">"Ajustes adicionales de llamadas CDMA"</string>
+    <string name="sum_cdma_call_settings" msgid="284753265979035549">"Ajustes adicionales de llamadas solo CDMA"</string>
+    <string name="labelNwService" msgid="4699970172021870983">"Ajustes del servicio de red"</string>
+    <string name="labelCallerId" msgid="3888899447379069198">"Identificador del emisor"</string>
     <string name="sum_loading_settings" msgid="1826692909391168620">"Cargando ajustes…"</string>
     <string name="sum_hide_caller_id" msgid="1071407020290873782">"Número oculto en llamadas salientes"</string>
     <string name="sum_show_caller_id" msgid="6768534125447290401">"Número mostrado en llamadas salientes"</string>
-    <string name="sum_default_caller_id" msgid="1954518825510901365">"Utilizar la configuración predeterminada del operador para mostrar mi número en las llamadas salientes"</string>
+    <string name="sum_default_caller_id" msgid="1954518825510901365">"Utilizar ajustes predeterminados del operador para mostrar mi número en las llamadas salientes"</string>
     <string name="labelCW" msgid="6120513814915920200">"Llamada en espera"</string>
     <string name="sum_cw_enabled" msgid="8083061901633671397">"Notificarme de llamadas entrantes durante una llamada"</string>
     <string name="sum_cw_disabled" msgid="3648693907300104575">"Notificar si hay una llamada entrante durante una llamada"</string>
     <string name="call_forwarding_settings" msgid="3378927671091537173">"Ajustes de desvío de llamadas"</string>
-    <string name="call_forwarding_settings_with_label" msgid="8569489414006897127">"Ajustes de reenvío de llamadas (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="call_forwarding_settings_with_label" msgid="8569489414006897127">"Desvío de llamadas (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="labelCF" msgid="2574386948026924737">"Desvío de llamada"</string>
     <string name="labelCFU" msgid="8147177368148660600">"Desviar siempre"</string>
-    <string name="messageCFU" msgid="3560082430662923687">"Utilizar siempre este número"</string>
+    <string name="messageCFU" msgid="3560082430662923687">"Usar siempre este número"</string>
     <string name="sum_cfu_enabled_indicator" msgid="4014187342724130197">"Desviar todas las llamadas"</string>
     <string name="sum_cfu_enabled" msgid="2450052502198827927">"Desviando todas las llamadas a <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfu_enabled_no_number" msgid="6591985777096823616">"Número no disponible"</string>
@@ -129,9 +129,9 @@
     <string name="call_settings_primary_user_only" msgid="5679923943740900965">"El usuario principal es el único que puede cambiar los ajustes de llamadas."</string>
     <string name="call_settings_with_label" msgid="89359812614544532">"Ajustes de llamadas (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="error_updating_title" msgid="7970259216988931777">"Error de configuración de llamada"</string>
-    <string name="reading_settings" msgid="1920291699287055284">"Leyendo configuración..."</string>
-    <string name="updating_settings" msgid="8171225533884883252">"Actualizando configuración..."</string>
-    <string name="reverting_settings" msgid="4752151682666912828">"Restableciendo configuración…"</string>
+    <string name="reading_settings" msgid="1920291699287055284">"Leyendo ajustes..."</string>
+    <string name="updating_settings" msgid="8171225533884883252">"Actualizando ajustes..."</string>
+    <string name="reverting_settings" msgid="4752151682666912828">"Restableciendo ajustes…"</string>
     <string name="response_error" msgid="6674110501330139405">"Respuesta inesperada de la red"</string>
     <string name="exception_error" msgid="7027667130619518211">"Error en la tarjeta SIM o en la red."</string>
     <string name="fdn_check_failure" msgid="18200614306525434">"La opción de marcación fija de la aplicación Teléfono está activada. Por ello, algunas funciones relacionadas con las llamadas no funcionan correctamente."</string>
@@ -232,7 +232,7 @@
     <string name="enable_disable_cell_bc_sms" msgid="4851147873691392255">"SMS de difusión móvil"</string>
     <string name="cell_bc_sms_enable" msgid="6441688565738921084">"SMS de difusión móvil habilitado"</string>
     <string name="cell_bc_sms_disable" msgid="3398365088309408749">"SMS de difusión móvil inhabilitado"</string>
-    <string name="cb_sms_settings" msgid="651715019785107312">"Configuración de SMS de difusión móvil"</string>
+    <string name="cb_sms_settings" msgid="651715019785107312">"Ajustes de SMS de difusión móvil"</string>
     <string name="enable_disable_emergency_broadcast" msgid="2157014609041245335">"Difusión de emergencia"</string>
     <string name="emergency_broadcast_enable" msgid="2645980025414010211">"Difusión de emergencia habilitada"</string>
     <string name="emergency_broadcast_disable" msgid="3665199821267569426">"Difusión de emergencia inhabilitada"</string>
@@ -418,6 +418,8 @@
     <string name="puk2_blocked" msgid="3150263853077280049">"El PUK2 se ha bloqueado de forma permanente."</string>
     <string name="pin2_attempts" msgid="720736232885011507">\n"Quedan <xliff:g id="NUMBER">%d</xliff:g> intentos."</string>
     <string name="pin2_unblocked" msgid="7791600368153469078">"PIN2 desbloqueado"</string>
+    <!-- no translation found for pin2_error_exception (1088689322248996699) -->
+    <skip />
     <string name="doneButton" msgid="2859593360997984240">"Listo"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"Número del buzón de voz"</string>
     <string name="card_title_dialing" msgid="5769417478498348054">"Llamando"</string>
@@ -545,7 +547,7 @@
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"Tarjetas SIM integradas"</string>
     <string name="enable_video_calling_title" msgid="7237253660669000899">"Activar videollamadas"</string>
     <string name="enable_video_calling_dialog_msg" msgid="8948186136957417948">"Para activar las videollamadas, debes habilitar el modo 4G LTE en los ajustes de red."</string>
-    <string name="enable_video_calling_dialog_settings" msgid="576528473599603249">"Configuración de red"</string>
+    <string name="enable_video_calling_dialog_settings" msgid="576528473599603249">"Ajustes de red"</string>
     <string name="enable_video_calling_dialog_close" msgid="7411471282167927991">"Cerrar"</string>
     <string name="sim_label_emergency_calls" msgid="4847699229529306397">"Llamadas de emergencia"</string>
     <string name="sim_description_emergency_calls" msgid="7535215397212301562">"Solo llamadas de emergencia"</string>

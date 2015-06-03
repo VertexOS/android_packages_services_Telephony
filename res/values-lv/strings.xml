@@ -338,7 +338,7 @@
     <string name="cdma_lte_data_service" msgid="4255018217292548962">"Datu pakalpojuma iestatīšana"</string>
     <string name="carrier_settings_title" msgid="9028166176523012300">"Operatora iestatījumi"</string>
     <string name="fdn" msgid="7878832555095183202">"Fiksētie numuru sastādīšanas numuri"</string>
-    <string name="fdn_with_label" msgid="187084204115493366">"Ierobežotais zvanu saraksts (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="fdn_with_label" msgid="187084204115493366">"Fiksētie numuri (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="manage_fdn_list" msgid="8777755791892122369">"FNSN saraksts"</string>
     <string name="fdn_list_with_label" msgid="7437232552210469217">"FDN saraksts (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="fdn_activation" msgid="2156479741307463576">"FNSN aktivizācija"</string>
@@ -416,6 +416,8 @@
     <string name="puk2_blocked" msgid="3150263853077280049">"PUK2 kods ir neatgriezeniski bloķēts."</string>
     <string name="pin2_attempts" msgid="720736232885011507">\n"Jums atlikuši <xliff:g id="NUMBER">%d</xliff:g> mēģinājumi."</string>
     <string name="pin2_unblocked" msgid="7791600368153469078">"PIN2 vairs nav bloķēts"</string>
+    <!-- no translation found for pin2_error_exception (1088689322248996699) -->
+    <skip />
     <string name="doneButton" msgid="2859593360997984240">"Gatavs"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"Balss pasta numurs"</string>
     <string name="card_title_dialing" msgid="5769417478498348054">"Notiek numura sastādīšana"</string>

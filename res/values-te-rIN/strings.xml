@@ -414,6 +414,8 @@
     <string name="puk2_blocked" msgid="3150263853077280049">"PUK2 శాశ్వతంగా బ్లాక్ చేయబడింది."</string>
     <string name="pin2_attempts" msgid="720736232885011507">\n"మీకు <xliff:g id="NUMBER">%d</xliff:g> ప్రయత్నాలు మిగిలి ఉన్నాయి."</string>
     <string name="pin2_unblocked" msgid="7791600368153469078">"PIN2 ఇప్పుడు బ్లాక్ అయ్యి లేదు"</string>
+    <!-- no translation found for pin2_error_exception (1088689322248996699) -->
+    <skip />
     <string name="doneButton" msgid="2859593360997984240">"పూర్తయింది"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"వాయిస్ మెయిల్ నంబర్"</string>
     <string name="card_title_dialing" msgid="5769417478498348054">"డయల్ చేస్తోంది"</string>

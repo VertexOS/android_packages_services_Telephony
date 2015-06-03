@@ -48,7 +48,7 @@
     <string name="puk_unlocked" msgid="2284912838477558454">"Karta jote SIM u zhbllokua. Telefoni yt po shkyçet..."</string>
     <string name="label_ndp" msgid="780479633159517250">"PIN-i i shkyçjes së rrjetit të kartës SIM"</string>
     <string name="sim_ndp_unlock_text" msgid="683628237760543009">"Shkyçe"</string>
-    <string name="sim_ndp_dismiss_text" msgid="1604823375752456947">"Hiq dorë"</string>
+    <string name="sim_ndp_dismiss_text" msgid="1604823375752456947">"Refuzo"</string>
     <string name="requesting_unlock" msgid="6412629401033249351">"Po kërkon shkyçjen e rrjetit…"</string>
     <string name="unlock_failed" msgid="6490531697031504225">"Kërkesa për shkyçjen e rrjetit ishte e pasuksesshme."</string>
     <string name="unlock_success" msgid="6770085622238180152">"Shkyçja e rrjetit ishte e suksesshme."</string>
@@ -107,22 +107,22 @@
     <string name="labelCFU" msgid="8147177368148660600">"Transfero gjithmonë"</string>
     <string name="messageCFU" msgid="3560082430662923687">"Përdor gjithmonë këtë numër"</string>
     <string name="sum_cfu_enabled_indicator" msgid="4014187342724130197">"Po transferon të gjitha telefonatat"</string>
-    <string name="sum_cfu_enabled" msgid="2450052502198827927">"Po transferon të gjitha telefonatat te <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
+    <string name="sum_cfu_enabled" msgid="2450052502198827927">"Transferim i të gjitha telefonatave te <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfu_enabled_no_number" msgid="6591985777096823616">"Numri nuk mund të përdoret"</string>
     <string name="sum_cfu_disabled" msgid="8384177689501334080">"Çaktivizuar"</string>
     <string name="labelCFB" msgid="6139853033106283172">"Kur është e zënë"</string>
-    <string name="messageCFB" msgid="3711089705936187129">"Llogarit kur është i zënë"</string>
-    <string name="sum_cfb_enabled" msgid="5984198104833116690">"Po transferon te <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
+    <string name="messageCFB" msgid="3711089705936187129">"Numri, nëse është i zënë"</string>
+    <string name="sum_cfb_enabled" msgid="5984198104833116690">"Transferim te <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfb_disabled" msgid="4913145177320506827">"Çaktivizuar"</string>
     <string name="disable_cfb_forbidden" msgid="3506984333877998061">"Operatori yt nuk mbështet çaktivizimin e transferimit të telefonatës kur telefoni është i zënë."</string>
     <string name="labelCFNRy" msgid="1736067178393744351">"Kur nuk përgjigjet"</string>
-    <string name="messageCFNRy" msgid="672317899884380374">"Llogarit kur nuk ka përgjigje"</string>
-    <string name="sum_cfnry_enabled" msgid="6955775691317662910">"Po transferon te <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
+    <string name="messageCFNRy" msgid="672317899884380374">"Numri, nëse s\'ka përgjigje"</string>
+    <string name="sum_cfnry_enabled" msgid="6955775691317662910">"Transferim te <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfnry_disabled" msgid="3884684060443538097">"Çaktivizuar"</string>
     <string name="disable_cfnry_forbidden" msgid="4308233959150658058">"Operatori yt nuk mbështet çaktivizimin e transferimit të telefonatës kur telefoni nuk përgjigjet."</string>
     <string name="labelCFNRc" msgid="2614827454402079766">"Kur është e paarritshme"</string>
-    <string name="messageCFNRc" msgid="6380695421020295119">"Llogarit kur është i paarritshëm"</string>
-    <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"Po transferon te <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
+    <string name="messageCFNRc" msgid="6380695421020295119">"Numri, nëse është i paarritshëm"</string>
+    <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"Transferim te <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfnrc_disabled" msgid="7222141261321276464">"Çaktivizuar"</string>
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"Operatori yt nuk mbështet çaktivizimin e transferimit të telefonatës kur telefoni është i paarritshëm."</string>
     <string name="updating_title" msgid="6146755386174019046">"Cilësimet e telefonatës"</string>
@@ -134,14 +134,14 @@
     <string name="reverting_settings" msgid="4752151682666912828">"Po rikthen cilësimet…"</string>
     <string name="response_error" msgid="6674110501330139405">"Përgjigje e papritur nga rrjeti."</string>
     <string name="exception_error" msgid="7027667130619518211">"Gabim në rrjet ose në kartën SIM."</string>
-    <string name="fdn_check_failure" msgid="18200614306525434">"Cilësimet e numrave me formim fiks të aplikacionit të telefonit tënd janë aktivizuar. Si rezultat, disa funksione që lidhen me telefonatën nuk funksionojnë."</string>
+    <string name="fdn_check_failure" msgid="18200614306525434">"Cilësimet e numrave fiks të aplikacionit të telefonit tënd janë aktivizuar. Si rezultat, disa funksione që lidhen me telefonatën nuk funksionojnë."</string>
     <string name="radio_off_error" msgid="2304459933248513376">"Aktivizo radion para se të shohësh këto cilësime."</string>
     <string name="close_dialog" msgid="2365884406356986917">"Në rregull"</string>
     <string name="enable" msgid="7248657275000173526">"Aktivizo"</string>
     <string name="disable" msgid="4678348128118573672">"Çaktivizo"</string>
     <string name="change_num" msgid="239476305819844391">"Përditëso"</string>
   <string-array name="clir_display_values">
-    <item msgid="5560134294467334594">"Rrjet i parazgjedhur"</item>
+    <item msgid="5560134294467334594">"I parazgjedhur nga rrjeti"</item>
     <item msgid="7876195870037833661">"Fshih numrin"</item>
     <item msgid="1108394741608734023">"Shfaq numrin"</item>
   </string-array>
@@ -335,19 +335,19 @@
     <string name="cdma_activate_device" msgid="3793805892364814518">"Aktivizo"</string>
     <string name="cdma_lte_data_service" msgid="4255018217292548962">"Konfiguro shërbimin e të dhënave"</string>
     <string name="carrier_settings_title" msgid="9028166176523012300">"Cilësimet e operatorit"</string>
-    <string name="fdn" msgid="7878832555095183202">"Numrat me formim fiks"</string>
-    <string name="fdn_with_label" msgid="187084204115493366">"Numrat me formim fiks (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="fdn" msgid="7878832555095183202">"Numrat e telefonave fiks"</string>
+    <string name="fdn_with_label" msgid="187084204115493366">"Numrat e telefonave fiks (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="manage_fdn_list" msgid="8777755791892122369">"Lista FDN"</string>
     <string name="fdn_list_with_label" msgid="7437232552210469217">"Lista FDN (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="fdn_activation" msgid="2156479741307463576">"Aktivizimi FDN"</string>
-    <string name="fdn_enabled" msgid="5238109009915521240">"Numrat me formim fiks u aktivizuan"</string>
-    <string name="fdn_disabled" msgid="4700049736675368279">"Numrat me formim fiks u çaktivizuan"</string>
+    <string name="fdn_enabled" msgid="5238109009915521240">"Numrat e telefonave fiks u aktivizuan"</string>
+    <string name="fdn_disabled" msgid="4700049736675368279">"Numrat e telefonave fiks u çaktivizuan"</string>
     <string name="enable_fdn" msgid="3740191529180493851">"Aktivizo FDN-në"</string>
     <string name="disable_fdn" msgid="7944020890722540616">"Çaktivizo FDN-në"</string>
     <string name="change_pin2" msgid="2153563695382176676">"Ndrysho PIN2-shin"</string>
     <string name="enable_fdn_ok" msgid="7215588870329688132">"Çaktivizo FDN-në"</string>
     <string name="disable_fdn_ok" msgid="5727046928930740173">"Aktivizo FDN-në"</string>
-    <string name="sum_fdn" msgid="1959399454900272878">"Menaxho numrat me formim fiks"</string>
+    <string name="sum_fdn" msgid="1959399454900272878">"Menaxho numrat e telefonave fiks"</string>
     <string name="sum_fdn_change_pin" msgid="6666549734792827932">"Ndrysho PIN-in për qasje FDN"</string>
     <string name="sum_fdn_manage_list" msgid="8431088265332628316">"Menaxho listën e numrave të telefonit"</string>
     <string name="voice_privacy" msgid="3776841382844614716">"Privatësia e zërit"</string>
@@ -378,8 +378,8 @@
     <string name="pin2_or_fdn_invalid" msgid="6025144083384701197">"FDN-ja nuk u përditësua. PIN2-shi ishte i pasaktë ose numri i telefonit u refuzua."</string>
     <string name="fdn_failed" msgid="540018079008319747">"Operacioni FDN dështoi"</string>
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"Po lexon nga karta SIM..."</string>
-    <string name="simContacts_empty" msgid="5270660846489561932">"Nuk ka kontakte në kartën tënde SIM."</string>
-    <string name="simContacts_title" msgid="1861472842524839921">"Përzgjidh kontakte për të importuar"</string>
+    <string name="simContacts_empty" msgid="5270660846489561932">"S\'ka kontakte në kartën SIM."</string>
+    <string name="simContacts_title" msgid="1861472842524839921">"Zgjidh kontaktet për importim"</string>
     <string name="simContacts_airplaneMode" msgid="5254946758982621072">"Çaktivizo modalitetin \'në aeroplan\" për të importuar kontaktet nga karta SIM."</string>
     <string name="enable_pin" msgid="5422767284133234860">"Aktivizo/çaktivizo PIN-in e kartës SIM"</string>
     <string name="change_pin" msgid="9174186126330785343">"Ndrysho PIN-in e kartës SIM"</string>
@@ -414,9 +414,11 @@
     <string name="puk2_blocked" msgid="3150263853077280049">"PUK2-shi është i bllokuar përgjithmonë."</string>
     <string name="pin2_attempts" msgid="720736232885011507">\n"Të kanë mbetur edhe <xliff:g id="NUMBER">%d</xliff:g> përpjekje."</string>
     <string name="pin2_unblocked" msgid="7791600368153469078">"PIN2-shi nuk është më i bllokuar"</string>
+    <!-- no translation found for pin2_error_exception (1088689322248996699) -->
+    <skip />
     <string name="doneButton" msgid="2859593360997984240">"U krye!"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"Numri i postës zanore"</string>
-    <string name="card_title_dialing" msgid="5769417478498348054">"Formimi i numrit"</string>
+    <string name="card_title_dialing" msgid="5769417478498348054">"Po telefonon"</string>
     <string name="card_title_redialing" msgid="8253487008234167266">"Po riformon numrin"</string>
     <string name="card_title_conf_call" msgid="1162980346189744501">"Telefonatë konference"</string>
     <string name="card_title_incoming_call" msgid="7364539451234646909">"Telefonatë hyrëse"</string>
@@ -523,7 +525,7 @@
     <string name="progress_dialog_exiting_ecm" msgid="4835734101617817074">"Modaliteti i \"Kthimit të telefonatës dalëse të urgjencës\""</string>
     <string name="alert_dialog_yes" msgid="6674268047820703974">"Po"</string>
     <string name="alert_dialog_no" msgid="1476091437797628703">"Jo"</string>
-    <string name="alert_dialog_dismiss" msgid="2491494287075907171">"Hiq dorë"</string>
+    <string name="alert_dialog_dismiss" msgid="2491494287075907171">"Refuzo"</string>
     <string name="voicemail_provider" msgid="5135942703327136909">"Shërbimi"</string>
     <string name="voicemail_settings" msgid="72448049107749316">"Konfigurimi"</string>
     <string name="voicemail_number_not_set" msgid="6724904736891087856">"&lt;I pavendosur&gt;"</string>

@@ -414,6 +414,8 @@
     <string name="puk2_blocked" msgid="3150263853077280049">"PUK2 Imezuiwa kabisa."</string>
     <string name="pin2_attempts" msgid="720736232885011507">\n"Una majaribio <xliff:g id="NUMBER">%d</xliff:g> yaliyobaki."</string>
     <string name="pin2_unblocked" msgid="7791600368153469078">"PIN2 sasa haijazuiwa"</string>
+    <!-- no translation found for pin2_error_exception (1088689322248996699) -->
+    <skip />
     <string name="doneButton" msgid="2859593360997984240">"Kwisha"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"Nambari ya ujumbe wa sauti"</string>
     <string name="card_title_dialing" msgid="5769417478498348054">"Inapiga"</string>

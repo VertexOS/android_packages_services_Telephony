@@ -416,6 +416,8 @@
     <string name="puk2_blocked" msgid="3150263853077280049">"Код PUK2 заблокирован навсегда"</string>
     <string name="pin2_attempts" msgid="720736232885011507">\n"Осталось попыток: <xliff:g id="NUMBER">%d</xliff:g>."</string>
     <string name="pin2_unblocked" msgid="7791600368153469078">"Код PIN2 разблокирован"</string>
+    <!-- no translation found for pin2_error_exception (1088689322248996699) -->
+    <skip />
     <string name="doneButton" msgid="2859593360997984240">"Готово"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"Номер голосовой почты"</string>
     <string name="card_title_dialing" msgid="5769417478498348054">"Набор номера"</string>

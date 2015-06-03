@@ -414,6 +414,8 @@
     <string name="puk2_blocked" msgid="3150263853077280049">"PUK2 ຖືກບລັອກຢ່າງຖາວອນແລ້ວ."</string>
     <string name="pin2_attempts" msgid="720736232885011507">\n"ທ່ານ​ຍັງ​ພະ​ຍາ​ຍາມ​ໄດ້​ອີກ <xliff:g id="NUMBER">%d</xliff:g> ຄັ້ງ."</string>
     <string name="pin2_unblocked" msgid="7791600368153469078">"PIN2 ບໍ່​ຖືກ​ບ​ລັອກ​ອີກ"</string>
+    <!-- no translation found for pin2_error_exception (1088689322248996699) -->
+    <skip />
     <string name="doneButton" msgid="2859593360997984240">"ແລ້ວໆ"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"ເບີຂໍ້ຄວາມສຽງ"</string>
     <string name="card_title_dialing" msgid="5769417478498348054">"ກຳລັງໂທ"</string>

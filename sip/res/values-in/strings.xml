@@ -56,7 +56,7 @@
     <string name="display_name_title" msgid="579241787583079773">"Nama tampilan"</string>
     <string name="proxy_address_title" msgid="6890163365640631841">"Alamat proxy di luar"</string>
     <string name="port_title" msgid="6693965912656593862">"Nomor port"</string>
-    <string name="transport_title" msgid="889155457465372527">"Jenis transportasi"</string>
+    <string name="transport_title" msgid="889155457465372527">"Jenis transpor"</string>
     <string name="send_keepalive_title" msgid="599627072150501159">"Kirim keep-alive"</string>
     <string name="advanced_settings" msgid="6622996380747040711">"Setelan opsional"</string>
     <string name="auth_username_title" msgid="8262491689004708265">"Nama pengguna autentikasi"</string>
