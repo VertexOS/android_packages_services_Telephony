@@ -61,7 +61,6 @@ import com.android.internal.telephony.PhoneFactory;
 import com.android.internal.telephony.TelephonyCapabilities;
 import com.android.internal.telephony.TelephonyProperties;
 import com.android.internal.telephony.sip.SipPhone;
-import com.android.internal.telephony.uicc.UiccCard;
 import com.android.phone.CallGatewayManager.RawGatewayInfo;
 import com.android.services.telephony.TelephonyConnectionService;
 
@@ -612,7 +611,7 @@ public class PhoneUtils {
         final boolean initiallyIdle = app.mCM.getState() == PhoneConstants.State.IDLE;
 
         try {
-            connection = app.mCM.dial(phone, numberToDial, VideoProfile.VideoState.AUDIO_ONLY);
+            connection = app.mCM.dial(phone, numberToDial, VideoProfile.STATE_AUDIO_ONLY);
         } catch (CallStateException ex) {
             // CallStateException means a new outgoing call is not currently
             // possible: either no more call slots exist, or there's another

@@ -271,7 +271,7 @@ abstract class TelephonyConnection extends Connection {
 
     /**
      * For video calls, indicates whether the outgoing video for the call can be paused using
-     * the {@link android.telecom.VideoProfile.VideoState#PAUSED} VideoState.
+     * the {@link android.telecom.VideoProfile#STATE_PAUSED} VideoState.
      */
     private boolean mIsVideoPauseSupported;
 
@@ -911,7 +911,7 @@ abstract class TelephonyConnection extends Connection {
 
     /**
      * For video calls, sets whether this connection supports pausing the outgoing video for the
-     * call using the {@link android.telecom.VideoProfile.VideoState#PAUSED} VideoState.
+     * call using the {@link android.telecom.VideoProfile#STATE_PAUSED} VideoState.
      *
      * @param isVideoPauseSupported {@code true} if pause state supported, {@code false} otherwise.
      */
