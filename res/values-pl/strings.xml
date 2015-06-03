@@ -112,17 +112,17 @@
     <string name="sum_cfu_disabled" msgid="8384177689501334080">"Wyłączone"</string>
     <string name="labelCFB" msgid="6139853033106283172">"Gdy zajęty"</string>
     <string name="messageCFB" msgid="3711089705936187129">"Przekieruj na numer"</string>
-    <string name="sum_cfb_enabled" msgid="5984198104833116690">"Przekazywanie do <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
+    <string name="sum_cfb_enabled" msgid="5984198104833116690">"Przekierowanie na <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfb_disabled" msgid="4913145177320506827">"Wyłączone"</string>
     <string name="disable_cfb_forbidden" msgid="3506984333877998061">"Twój operator nie umożliwia wyłączenia przekazywania połączeń, gdy numer jest zajęty."</string>
     <string name="labelCFNRy" msgid="1736067178393744351">"Gdy nie odbieram"</string>
     <string name="messageCFNRy" msgid="672317899884380374">"Przekieruj na numer"</string>
-    <string name="sum_cfnry_enabled" msgid="6955775691317662910">"Przekazywanie do <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
+    <string name="sum_cfnry_enabled" msgid="6955775691317662910">"Przekierowanie na <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfnry_disabled" msgid="3884684060443538097">"Wyłączone"</string>
     <string name="disable_cfnry_forbidden" msgid="4308233959150658058">"Twój operator nie umożliwia wyłączenia przekazywania połączeń, gdy numer nie odpowiada."</string>
     <string name="labelCFNRc" msgid="2614827454402079766">"Gdy niedostępny"</string>
     <string name="messageCFNRc" msgid="6380695421020295119">"Przekieruj na numer"</string>
-    <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"Przekazywanie do <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
+    <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"Przekierowanie na <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfnrc_disabled" msgid="7222141261321276464">"Wyłączone"</string>
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"Twój operator nie umożliwia wyłączenia przekazywania połączeń, gdy numer jest nieosiągalny."</string>
     <string name="updating_title" msgid="6146755386174019046">"Ustawienia połączeń"</string>
@@ -141,7 +141,7 @@
     <string name="disable" msgid="4678348128118573672">"Wyłącz"</string>
     <string name="change_num" msgid="239476305819844391">"Aktualizuj"</string>
   <string-array name="clir_display_values">
-    <item msgid="5560134294467334594">"Domyślna wartość dla sieci"</item>
+    <item msgid="5560134294467334594">"Domyślne ustawienie sieci"</item>
     <item msgid="7876195870037833661">"Ukryj numer"</item>
     <item msgid="1108394741608734023">"Pokaż numer"</item>
   </string-array>
@@ -414,6 +414,8 @@
     <string name="puk2_blocked" msgid="3150263853077280049">"PUK2 został trwale zablokowany."</string>
     <string name="pin2_attempts" msgid="720736232885011507">\n"Masz jeszcze <xliff:g id="NUMBER">%d</xliff:g> prób(y)."</string>
     <string name="pin2_unblocked" msgid="7791600368153469078">"PIN2 nie jest już zablokowany"</string>
+    <!-- no translation found for pin2_error_exception (1088689322248996699) -->
+    <skip />
     <string name="doneButton" msgid="2859593360997984240">"Gotowe"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"Numer poczty głosowej"</string>
     <string name="card_title_dialing" msgid="5769417478498348054">"Wybieranie"</string>

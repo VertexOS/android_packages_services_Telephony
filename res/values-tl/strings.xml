@@ -414,6 +414,8 @@
     <string name="puk2_blocked" msgid="3150263853077280049">"Permanenteng na-block ang PUK2."</string>
     <string name="pin2_attempts" msgid="720736232885011507">\n"Mayroon ka na lang <xliff:g id="NUMBER">%d</xliff:g> (na) natitirang pagsubok."</string>
     <string name="pin2_unblocked" msgid="7791600368153469078">"Hindi na naka-block ang PIN2"</string>
+    <!-- no translation found for pin2_error_exception (1088689322248996699) -->
+    <skip />
     <string name="doneButton" msgid="2859593360997984240">"Tapos na"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"Numero ng voicemail"</string>
     <string name="card_title_dialing" msgid="5769417478498348054">"Dina-dial"</string>

@@ -102,7 +102,7 @@
     <string name="sum_cw_enabled" msgid="8083061901633671397">"במהלך שיחה, שלח לי התראה על שיחות נכנסות"</string>
     <string name="sum_cw_disabled" msgid="3648693907300104575">"במהלך שיחה, שלח לי התראות על שיחות נכנסות"</string>
     <string name="call_forwarding_settings" msgid="3378927671091537173">"הגדרות של העברת שיחות"</string>
-    <string name="call_forwarding_settings_with_label" msgid="8569489414006897127">"הגדרות העברת שיחות (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="call_forwarding_settings_with_label" msgid="8569489414006897127">"הגדרות של העברת שיחות (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="labelCF" msgid="2574386948026924737">"העברת שיחות"</string>
     <string name="labelCFU" msgid="8147177368148660600">"העבר תמיד"</string>
     <string name="messageCFU" msgid="3560082430662923687">"השתמש תמיד במספר זה"</string>
@@ -414,6 +414,8 @@
     <string name="puk2_blocked" msgid="3150263853077280049">"‏PUK2 נחסם לצמיתות."</string>
     <string name="pin2_attempts" msgid="720736232885011507">\n"נותרו לך עוד <xliff:g id="NUMBER">%d</xliff:g> ניסיונות."</string>
     <string name="pin2_unblocked" msgid="7791600368153469078">"‏PIN2 אינו חסום עוד"</string>
+    <!-- no translation found for pin2_error_exception (1088689322248996699) -->
+    <skip />
     <string name="doneButton" msgid="2859593360997984240">"סיום"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"המספר של הדואר הקולי"</string>
     <string name="card_title_dialing" msgid="5769417478498348054">"מחייג"</string>

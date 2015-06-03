@@ -418,6 +418,8 @@
     <string name="puk2_blocked" msgid="3150263853077280049">"PUK2 bloccato definitivamente."</string>
     <string name="pin2_attempts" msgid="720736232885011507">\n"Hai a disposizione ancora <xliff:g id="NUMBER">%d</xliff:g> tentativi."</string>
     <string name="pin2_unblocked" msgid="7791600368153469078">"PIN2 sbloccato"</string>
+    <!-- no translation found for pin2_error_exception (1088689322248996699) -->
+    <skip />
     <string name="doneButton" msgid="2859593360997984240">"Fine"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"Numero segreteria"</string>
     <string name="card_title_dialing" msgid="5769417478498348054">"Chiamata in corso"</string>

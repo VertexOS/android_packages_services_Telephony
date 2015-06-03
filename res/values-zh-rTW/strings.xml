@@ -420,6 +420,8 @@
     <string name="puk2_blocked" msgid="3150263853077280049">"PUK2 遭到永久封鎖。"</string>
     <string name="pin2_attempts" msgid="720736232885011507">\n"您還可以嘗試 <xliff:g id="NUMBER">%d</xliff:g> 次。"</string>
     <string name="pin2_unblocked" msgid="7791600368153469078">"PIN2 已解除封鎖"</string>
+    <!-- no translation found for pin2_error_exception (1088689322248996699) -->
+    <skip />
     <string name="doneButton" msgid="2859593360997984240">"完成"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"語音信箱號碼"</string>
     <string name="card_title_dialing" msgid="5769417478498348054">"撥號中"</string>

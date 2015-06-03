@@ -116,12 +116,12 @@
     <string name="sum_cfb_disabled" msgid="4913145177320506827">"Av"</string>
     <string name="disable_cfb_forbidden" msgid="3506984333877998061">"Operatören stöder inte inaktivering av vidarebefordran av samtal under pågående samtal."</string>
     <string name="labelCFNRy" msgid="1736067178393744351">"När jag inte svarar"</string>
-    <string name="messageCFNRy" msgid="672317899884380374">"Nummer vid ej svar"</string>
+    <string name="messageCFNRy" msgid="672317899884380374">"Använd nummer"</string>
     <string name="sum_cfnry_enabled" msgid="6955775691317662910">"Vidarebefordrar till <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfnry_disabled" msgid="3884684060443538097">"Av"</string>
     <string name="disable_cfnry_forbidden" msgid="4308233959150658058">"Operatören stöder inte inaktivering av vidarebefordran av samtal när du inte svarar i telefonen."</string>
     <string name="labelCFNRc" msgid="2614827454402079766">"När jag inte kan nås"</string>
-    <string name="messageCFNRc" msgid="6380695421020295119">"Nummer när du inte är tillgänglig"</string>
+    <string name="messageCFNRc" msgid="6380695421020295119">"Använd nummer"</string>
     <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"Vidarebefordrar till <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfnrc_disabled" msgid="7222141261321276464">"Inaktiverat"</string>
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"Operatören stöder inte inaktivering av vidarebefordran av samtal när det inte går att nå telefonen."</string>
@@ -420,6 +420,8 @@
     <string name="puk2_blocked" msgid="3150263853077280049">"PUK-kod 2 har blockerats permanent."</string>
     <string name="pin2_attempts" msgid="720736232885011507">\n"Du har <xliff:g id="NUMBER">%d</xliff:g> försök kvar."</string>
     <string name="pin2_unblocked" msgid="7791600368153469078">"PIN2 är inte längre blockerad"</string>
+    <!-- no translation found for pin2_error_exception (1088689322248996699) -->
+    <skip />
     <string name="doneButton" msgid="2859593360997984240">"Färdig"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"Nummer till röstbrevlåda"</string>
     <string name="card_title_dialing" msgid="5769417478498348054">"Ringer"</string>

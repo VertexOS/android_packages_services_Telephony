@@ -379,7 +379,7 @@
     <string name="fdn_failed" msgid="540018079008319747">"Operace s čísly FDN se nezdařila."</string>
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"Čtení ze SIM karty..."</string>
     <string name="simContacts_empty" msgid="5270660846489561932">"Na SIM kartě nejsou žádné kontakty."</string>
-    <string name="simContacts_title" msgid="1861472842524839921">"Vybrat kontakty pro import"</string>
+    <string name="simContacts_title" msgid="1861472842524839921">"Kontakty pro import"</string>
     <string name="simContacts_airplaneMode" msgid="5254946758982621072">"Chcete-li importovat kontakty ze SIM karty, vypněte režim Letadlo."</string>
     <string name="enable_pin" msgid="5422767284133234860">"Povolit nebo zakázat PIN SIM karty"</string>
     <string name="change_pin" msgid="9174186126330785343">"Změnit PIN SIM karty"</string>
@@ -414,6 +414,8 @@
     <string name="puk2_blocked" msgid="3150263853077280049">"PUK2 je trvale zablokován."</string>
     <string name="pin2_attempts" msgid="720736232885011507">\n"Počet zbývajících pokusů: <xliff:g id="NUMBER">%d</xliff:g>."</string>
     <string name="pin2_unblocked" msgid="7791600368153469078">"PIN2 již není blokován"</string>
+    <!-- no translation found for pin2_error_exception (1088689322248996699) -->
+    <skip />
     <string name="doneButton" msgid="2859593360997984240">"Hotovo"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"Číslo hlasové schránky"</string>
     <string name="card_title_dialing" msgid="5769417478498348054">"Vytáčení"</string>

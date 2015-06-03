@@ -141,7 +141,7 @@
     <string name="disable" msgid="4678348128118573672">"OFFにする"</string>
     <string name="change_num" msgid="239476305819844391">"更新"</string>
   <string-array name="clir_display_values">
-    <item msgid="5560134294467334594">"ネットワーク既定"</item>
+    <item msgid="5560134294467334594">"ネットワークのデフォルト"</item>
     <item msgid="7876195870037833661">"番号を非通知"</item>
     <item msgid="1108394741608734023">"番号を通知"</item>
   </string-array>
@@ -414,6 +414,8 @@
     <string name="puk2_blocked" msgid="3150263853077280049">"PUK2は完全にブロックされています。"</string>
     <string name="pin2_attempts" msgid="720736232885011507">\n"入力できるのはあと<xliff:g id="NUMBER">%d</xliff:g>回です。"</string>
     <string name="pin2_unblocked" msgid="7791600368153469078">"PIN2はブロックされなくなりました"</string>
+    <!-- no translation found for pin2_error_exception (1088689322248996699) -->
+    <skip />
     <string name="doneButton" msgid="2859593360997984240">"完了"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"ボイスメールの番号"</string>
     <string name="card_title_dialing" msgid="5769417478498348054">"発信中"</string>

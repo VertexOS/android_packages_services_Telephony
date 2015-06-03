@@ -139,7 +139,7 @@
     <string name="close_dialog" msgid="2365884406356986917">"Gerai"</string>
     <string name="enable" msgid="7248657275000173526">"Įjungti"</string>
     <string name="disable" msgid="4678348128118573672">"Išjungti"</string>
-    <string name="change_num" msgid="239476305819844391">"Naujinimas"</string>
+    <string name="change_num" msgid="239476305819844391">"Naujinti"</string>
   <string-array name="clir_display_values">
     <item msgid="5560134294467334594">"Numatytieji tinklo nustatymai"</item>
     <item msgid="7876195870037833661">"Slėpti numerį"</item>
@@ -378,7 +378,7 @@
     <string name="pin2_or_fdn_invalid" msgid="6025144083384701197">"FDN nebuvo atnaujintas. Įvestas PIN2 kodas buvo netinkamas arba telefono numeris buvo atmestas."</string>
     <string name="fdn_failed" msgid="540018079008319747">"Nepavyko atlikti FDN operacijos."</string>
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"Skaitoma iš SIM kortelės..."</string>
-    <string name="simContacts_empty" msgid="5270660846489561932">"SIM kortelėje adresatų nėra."</string>
+    <string name="simContacts_empty" msgid="5270660846489561932">"SIM kortelėje kontaktų nėra."</string>
     <string name="simContacts_title" msgid="1861472842524839921">"Pasirinkti importuojamus adresatus"</string>
     <string name="simContacts_airplaneMode" msgid="5254946758982621072">"Išjunkite lėktuvo režimą, kad galėtumėte importuoti kontaktus iš SIM kortelės."</string>
     <string name="enable_pin" msgid="5422767284133234860">"Įgalinti / išjungti SIM kortelės PIN"</string>
@@ -414,6 +414,8 @@
     <string name="puk2_blocked" msgid="3150263853077280049">"PUK2 kodas visam laikui užblokuotas."</string>
     <string name="pin2_attempts" msgid="720736232885011507">\n"Liko <xliff:g id="NUMBER">%d</xliff:g> bandym."</string>
     <string name="pin2_unblocked" msgid="7791600368153469078">"PIN2 kodas atblokuotas"</string>
+    <!-- no translation found for pin2_error_exception (1088689322248996699) -->
+    <skip />
     <string name="doneButton" msgid="2859593360997984240">"Atlikta"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"Balso pašto numeris"</string>
     <string name="card_title_dialing" msgid="5769417478498348054">"Renkamas numeris"</string>
