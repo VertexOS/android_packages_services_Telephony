@@ -540,7 +540,7 @@ public class MobileNetworkSettings extends PreferenceActivity
         PersistableBundle carrierConfig =
                 PhoneGlobals.getInstance().getCarrierConfigForSubId(mPhone.getSubId());
         mIsGlobalCdma = isLteOnCdma
-                && carrierConfig.getBoolean(CarrierConfigManager.BOOL_SHOW_CDMA_CHOICES);
+                && carrierConfig.getBoolean(CarrierConfigManager.KEY_SHOW_CDMA_CHOICES_BOOL);
         int shouldHideCarrierSettings = android.provider.Settings.Global.getInt(
                 mPhone.getContext().getContentResolver(),
                 android.provider.Settings.Global.HIDE_CARRIER_NETWORK_SETTINGS, 0);
@@ -548,7 +548,7 @@ public class MobileNetworkSettings extends PreferenceActivity
             prefSet.removePreference(mButtonPreferredNetworkMode);
             prefSet.removePreference(mButtonEnabledNetworks);
             prefSet.removePreference(mLteDataServicePref);
-        } else if (carrierConfig.getBoolean(CarrierConfigManager.BOOL_WORLD_PHONE) == true) {
+        } else if (carrierConfig.getBoolean(CarrierConfigManager.KEY_WORLD_PHONE_BOOL) == true) {
             prefSet.removePreference(mButtonEnabledNetworks);
             // set the listener for the mButtonPreferredNetworkMode list preference so we can issue
             // change Preferred Network Mode.
@@ -606,13 +606,13 @@ public class MobileNetworkSettings extends PreferenceActivity
                     mGsmUmtsOptions = null;
                 }
             } else if (phoneType == PhoneConstants.PHONE_TYPE_GSM) {
-                if (!carrierConfig.getBoolean(CarrierConfigManager.BOOL_PREFER_2G)
+                if (!carrierConfig.getBoolean(CarrierConfigManager.KEY_PREFER_2G_BOOL)
                         && !getResources().getBoolean(R.bool.config_enabled_lte)) {
                     mButtonEnabledNetworks.setEntries(
                             R.array.enabled_networks_except_gsm_lte_choices);
                     mButtonEnabledNetworks.setEntryValues(
                             R.array.enabled_networks_except_gsm_lte_values);
-                } else if (!carrierConfig.getBoolean(CarrierConfigManager.BOOL_PREFER_2G)) {
+                } else if (!carrierConfig.getBoolean(CarrierConfigManager.KEY_PREFER_2G_BOOL)) {
                     int select = (mShow4GForLTE == true) ?
                             R.array.enabled_networks_except_gsm_4g_choices
                             : R.array.enabled_networks_except_gsm_choices;

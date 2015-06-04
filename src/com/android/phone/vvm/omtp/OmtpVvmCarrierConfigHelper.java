@@ -53,7 +53,7 @@ public class OmtpVvmCarrierConfigHelper {
         }
 
         return mCarrierConfig.getString(
-                CarrierConfigManager.STRING_VVM_TYPE, null);
+                CarrierConfigManager.KEY_VVM_TYPE_STRING, null);
     }
 
     public String getCarrierVvmPackageName() {
@@ -62,7 +62,7 @@ public class OmtpVvmCarrierConfigHelper {
         }
 
         return mCarrierConfig.getString(
-                CarrierConfigManager.STRING_CARRIER_VVM_PACKAGE_NAME, null);
+                CarrierConfigManager.KEY_CARRIER_VVM_PACKAGE_NAME_STRING, null);
     }
 
     public boolean isOmtpVvmType() {
@@ -76,7 +76,7 @@ public class OmtpVvmCarrierConfigHelper {
      */
     public boolean isEnabledByDefault() {
         String packageName = mCarrierConfig.getString(
-                CarrierConfigManager.STRING_CARRIER_VVM_PACKAGE_NAME);
+                CarrierConfigManager.KEY_CARRIER_VVM_PACKAGE_NAME_STRING);
         if (packageName == null) {
             return true;
         }
@@ -127,9 +127,9 @@ public class OmtpVvmCarrierConfigHelper {
         }
 
         int applicationPort = mCarrierConfig.getInt(
-                CarrierConfigManager.INT_VVM_PORT_NUMBER, 0);
+                CarrierConfigManager.KEY_VVM_PORT_NUMBER_INT, 0);
         String destinationNumber = mCarrierConfig.getString(
-                CarrierConfigManager.STRING_VVM_DESTINATION_NUMBER);
+                CarrierConfigManager.KEY_VVM_DESTINATION_NUMBER_STRING);
         if (TextUtils.isEmpty(destinationNumber)) {
             Log.w(TAG, "No destination number for this carrier.");
             return null;

@@ -59,7 +59,7 @@ public class CdmaCallOptions extends PreferenceActivity {
             carrierConfig = PhoneGlobals.getInstance().getCarrierConfig();
         }
         if (subInfoHelper.getPhone().getPhoneType() != PhoneConstants.PHONE_TYPE_CDMA
-                || carrierConfig.getBoolean(CarrierConfigManager.BOOL_VOICE_PRIVACY_DISABLE)) {
+                || carrierConfig.getBoolean(CarrierConfigManager.KEY_VOICE_PRIVACY_DISABLE_BOOL)) {
             // disable the entire screen
             getPreferenceScreen().setEnabled(false);
         }
