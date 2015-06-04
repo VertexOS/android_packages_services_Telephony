@@ -2355,7 +2355,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
      * {@hide}
      * Returns the IMS Registration Status
      */
-    public boolean isWifiCallingEnabled() {
+    public boolean isWifiCallingAvailable() {
         return mPhone.isWifiCallingEnabled();
     }
 
@@ -2363,8 +2363,15 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
      * {@hide}
      * Returns the IMS Registration Status
      */
-    public boolean isVolteEnabled() {
+    public boolean isVolteAvailable() {
         return mPhone.isVolteEnabled();
+    }
+
+    /*
+     * {@hide} Returns the IMS Registration Status
+     */
+    public boolean isVideoTelephonyAvailable() {
+        return mPhone.isVideoEnabled();
     }
 
     private boolean canReadPhoneState(String callingPackage, String message) {
