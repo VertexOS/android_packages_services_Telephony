@@ -159,7 +159,7 @@ public class PhoneGlobals extends ContextWrapper {
     static int mDockState = Intent.EXTRA_DOCK_STATE_UNDOCKED;
     static boolean sVoiceCapable = true;
 
-    // Internal PhoneApp Call state tracker
+    // TODO: Remove, no longer used.
     CdmaPhoneCallState cdmaPhoneCallState;
 
     // The currently-active PUK entry activity and progress dialog.
@@ -780,14 +780,8 @@ public class PhoneGlobals extends ContextWrapper {
         if (DBG) Log.d(LOG_TAG, "initForNewRadioTechnology...");
 
         final Phone phone = PhoneFactory.getPhone(phoneId);
-
-        if (phone.getPhoneType() == PhoneConstants.PHONE_TYPE_CDMA) {
-            // Create an instance of CdmaPhoneCallState and initialize it to IDLE
-            cdmaPhoneCallState = new CdmaPhoneCallState();
-            cdmaPhoneCallState.CdmaPhoneCallStateInit();
-        }
-        if (!TelephonyCapabilities.supportsOtasp(phone)) {
-            //Clean up OTA data in GSM/UMTS. It is valid only for CDMA
+        if (phone == null || !TelephonyCapabilities.supportsOtasp(phone)) {
+            // Clean up OTA for non-CDMA since it is only valid for CDMA.
             clearOtaState();
         }
 
@@ -795,7 +789,7 @@ public class PhoneGlobals extends ContextWrapper {
         callStateMonitor.updateAfterRadioTechnologyChange();
 
         // Update registration for ICC status after radio technology change
-        IccCard sim = phone.getIccCard();
+        IccCard sim = phone == null ? null : phone.getIccCard();
         if (sim != null) {
             if (DBG) Log.d(LOG_TAG, "Update registration for ICC status...");
 
@@ -830,6 +824,7 @@ public class PhoneGlobals extends ContextWrapper {
                 }
                 Phone phone = SubscriptionManager.isValidPhoneId(phoneId) ?
                         PhoneFactory.getPhone(phoneId) : PhoneFactory.getDefaultPhone();
+
                 // The "data disconnected due to roaming" notification is shown
                 // if (a) you have the "data roaming" feature turned off, and
                 // (b) you just lost data connectivity because you're roaming.
@@ -916,11 +911,13 @@ public class PhoneGlobals extends ContextWrapper {
          */
 
         // If service just returned, start sending out the queued messages
-        ServiceState ss = ServiceState.newFromBundle(intent.getExtras());
-
-        if (ss != null) {
-            int state = ss.getState();
-            notificationMgr.updateNetworkSelection(state);
+        Bundle extras = intent.getExtras();
+        if (extras != null) {
+            ServiceState ss = ServiceState.newFromBundle(extras);
+            if (ss != null) {
+                int state = ss.getState();
+                notificationMgr.updateNetworkSelection(state);
+            }
         }
     }
 
