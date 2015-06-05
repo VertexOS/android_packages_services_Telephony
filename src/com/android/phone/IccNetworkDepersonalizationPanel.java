@@ -138,7 +138,8 @@ public class IccNetworkDepersonalizationPanel extends IccPanel {
         // based on the "sim_network_unlock_allow_dismiss" resource.
         mDismissButton = (Button) findViewById(R.id.ndp_dismiss);
         PersistableBundle carrierConfig = PhoneGlobals.getInstance().getCarrierConfig();
-        if (carrierConfig.getBoolean(CarrierConfigManager.BOOL_SIM_NETWORK_UNLOCK_ALLOW_DISMISS)) {
+        if (carrierConfig.getBoolean(
+                CarrierConfigManager.KEY_SIM_NETWORK_UNLOCK_ALLOW_DISMISS_BOOL)) {
             if (DBG) log("Enabling 'Dismiss' button...");
             mDismissButton.setVisibility(View.VISIBLE);
             mDismissButton.setOnClickListener(mDismissListener);
