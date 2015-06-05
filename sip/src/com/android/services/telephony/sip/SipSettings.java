@@ -53,6 +53,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.android.phone.R;
+
 /**
  * The PreferenceActivity class for managing sip profile preferences.
  */
@@ -409,8 +411,9 @@ public class SipSettings extends PreferenceActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
-        menu.add(0, MENU_ADD_ACCOUNT, 0, R.string.add_sip_account)
-                .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
+        MenuItem addAccountMenuItem = menu.add(0, MENU_ADD_ACCOUNT, 0, R.string.add_sip_account);
+        addAccountMenuItem.setIcon(R.drawable.ic_add_24dp);
+        addAccountMenuItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
         return true;
     }
 
