@@ -60,5 +60,8 @@
         android:key="@string/voicemail_notification_vibrate_key"
         android:title="@string/voicemail_notification_vibrate_when_title"
         android:persistent="true" />
+    <SwitchPreference
+        android:key="@string/voicemail_visual_voicemail_key"
+        android:title="@string/voicemail_visual_voicemail_switch_title" />"
 
 </PreferenceScreen>

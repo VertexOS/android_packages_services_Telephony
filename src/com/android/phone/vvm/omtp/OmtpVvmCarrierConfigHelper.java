@@ -34,54 +34,73 @@ import com.android.phone.vvm.omtp.sms.OmtpStandardMessageSender;
  */
 public class OmtpVvmCarrierConfigHelper {
     private static final String TAG = "OmtpVvmCarrierConfigHelper";
+    private Context mContext;
+    private int mSubId;
+    private PersistableBundle mCarrierConfig;
+    private String mVvmType;
 
-    public static void startActivation(Context context, int subId) {
-        OmtpMessageSender messageSender = getMessageSender(context, subId);
+    public OmtpVvmCarrierConfigHelper(Context context, int subId) {
+        mContext = context;
+        mSubId = subId;
+        mCarrierConfig = getCarrierConfig();
+        mVvmType = getVvmType();
+    }
+
+    public String getVvmType() {
+        if (mCarrierConfig == null) {
+            return null;
+        }
+
+        return mCarrierConfig.getString(
+                CarrierConfigManager.STRING_VVM_TYPE, null);
+    }
+
+    public boolean isOmtpVvmType() {
+        return (TelephonyManager.VVM_TYPE_OMTP.equals(mVvmType) ||
+                TelephonyManager.VVM_TYPE_CVVM.equals(mVvmType));
+    }
+
+    public void startActivation() {
+        OmtpMessageSender messageSender = getMessageSender();
         if (messageSender != null) {
-            Log.i(TAG, "Requesting VVM activation for subId: " + subId);
+            Log.i(TAG, "Requesting VVM activation for subId: " + mSubId);
             messageSender.requestVvmActivation(null);
         }
     }
 
-    public static void startDeactivation(Context context, int subId) {
-        OmtpMessageSender messageSender = getMessageSender(context, subId);
+    public void startDeactivation() {
+        OmtpMessageSender messageSender = getMessageSender();
         if (messageSender != null) {
-            Log.i(TAG, "Requesting VVM deactivation for subId: " + subId);
+            Log.i(TAG, "Requesting VVM deactivation for subId: " + mSubId);
             messageSender.requestVvmDeactivation(null);
         }
     }
 
-    private static OmtpMessageSender getMessageSender(Context context, int subId) {
-        if (!SubscriptionManager.isValidSubscriptionId(subId)) {
+    private PersistableBundle getCarrierConfig() {
+        if (!SubscriptionManager.isValidSubscriptionId(mSubId)) {
             Log.w(TAG, "Invalid subscriptionId or subscriptionId not provided in intent.");
             return null;
         }
 
         CarrierConfigManager carrierConfigManager = (CarrierConfigManager)
-                context.getSystemService(Context.CARRIER_CONFIG_SERVICE);
+                mContext.getSystemService(Context.CARRIER_CONFIG_SERVICE);
         if (carrierConfigManager == null) {
             Log.w(TAG, "No carrier config service found.");
             return null;
         }
 
-        PersistableBundle carrierConfig = carrierConfigManager.getConfigForSubId(subId);
-        if (carrierConfig == null) {
+        return carrierConfigManager.getConfigForSubId(mSubId);
+    }
+
+    private OmtpMessageSender getMessageSender() {
+        if (mCarrierConfig == null) {
             Log.w(TAG, "Empty carrier config.");
             return null;
         }
 
-        String vvmType = carrierConfig.getString(
-                CarrierConfigManager.STRING_VVM_TYPE, null);
-
-        if (!(TelephonyManager.VVM_TYPE_OMTP.equals(vvmType) ||
-                TelephonyManager.VVM_TYPE_CVVM.equals(vvmType))) {
-            // This is not an OMTP visual voicemail compatible carrier.
-            return null;
-        }
-
-        int applicationPort = carrierConfig.getInt(
+        int applicationPort = mCarrierConfig.getInt(
                 CarrierConfigManager.INT_VVM_PORT_NUMBER, 0);
-        String destinationNumber = carrierConfig.getString(
+        String destinationNumber = mCarrierConfig.getString(
                 CarrierConfigManager.STRING_VVM_DESTINATION_NUMBER);
         if (TextUtils.isEmpty(destinationNumber)) {
             Log.w(TAG, "No destination number for this carrier.");
@@ -89,8 +108,8 @@ public class OmtpVvmCarrierConfigHelper {
         }
 
         OmtpMessageSender messageSender = null;
-        SmsManager smsManager = SmsManager.getSmsManagerForSubscriptionId(subId);
-        switch (vvmType) {
+        SmsManager smsManager = SmsManager.getSmsManagerForSubscriptionId(mSubId);
+        switch (mVvmType) {
             case TelephonyManager.VVM_TYPE_OMTP:
                 messageSender = new OmtpStandardMessageSender(smsManager, (short) applicationPort,
                         destinationNumber, null, OmtpConstants.PROTOCOL_VERSION1_1, null);
@@ -100,7 +119,7 @@ public class OmtpVvmCarrierConfigHelper {
                         destinationNumber);
                 break;
             default:
-                Log.w(TAG, "Unexpected visual voicemail type: "+vvmType);
+                Log.w(TAG, "Unexpected visual voicemail type: " + mVvmType);
         }
 
         return messageSender;

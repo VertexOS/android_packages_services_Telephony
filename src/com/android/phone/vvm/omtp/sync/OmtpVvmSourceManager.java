@@ -22,6 +22,7 @@ import android.telephony.PhoneStateListener;
 import android.telephony.SubscriptionManager;
 import android.telephony.TelephonyManager;
 
+import com.android.internal.telephony.Phone;
 import com.android.phone.PhoneUtils;
 import com.android.phone.settings.VisualVoicemailSettingsUtil;
 
@@ -30,7 +31,9 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * A singleton class designed to remember the active OMTP visual voicemail sources.
+ * A singleton class designed to remember the active OMTP visual voicemail sources. Because a
+ * voicemail source is tied 1:1 to a phone account, the phone account handle is used as the key
+ * for each voicemail source and the associated data.
  */
 public class OmtpVvmSourceManager {
     public static final String TAG = "OmtpVvmSourceManager";
@@ -71,20 +74,28 @@ public class OmtpVvmSourceManager {
     /**
      * When a voicemail source is removed, we don't always know which one was removed. Check the
      * list of registered phone accounts against the active subscriptions list and remove the
-     * inactive accounts.
+     * inactive sources.
      */
     public void removeInactiveSources() {
-        Set<PhoneAccountHandle> sources = getOmtpVvmSources();
-        for (PhoneAccountHandle source : sources) {
-            if (!PhoneUtils.isPhoneAccountActive(mSubscriptionManager, source)) {
-                VoicemailContract.Status.setStatus(mContext, source,
-                        VoicemailContract.Status.CONFIGURATION_STATE_NOT_CONFIGURED,
-                        VoicemailContract.Status.DATA_CHANNEL_STATE_NO_CONNECTION,
-                        VoicemailContract.Status.NOTIFICATION_CHANNEL_STATE_NO_CONNECTION);
-                removePhoneStateListener(source);
-                VisualVoicemailSettingsUtil.setVisualVoicemailEnabled(mContext, source, false);
+        Set<PhoneAccountHandle> phoneAccounts = getOmtpVvmSources();
+        for (PhoneAccountHandle phoneAccount : phoneAccounts) {
+            if (!PhoneUtils.isPhoneAccountActive(mSubscriptionManager, phoneAccount)) {
+                removeSource(phoneAccount);
             }
         }
+    }
+
+    public void removeSource(Phone phone) {
+        removeSource(PhoneUtils.makePstnPhoneAccountHandle(phone));
+    }
+
+    public void removeSource(PhoneAccountHandle phoneAccount) {
+        VoicemailContract.Status.setStatus(mContext, phoneAccount,
+                VoicemailContract.Status.CONFIGURATION_STATE_NOT_CONFIGURED,
+                VoicemailContract.Status.DATA_CHANNEL_STATE_NO_CONNECTION,
+                VoicemailContract.Status.NOTIFICATION_CHANNEL_STATE_NO_CONNECTION);
+        removePhoneStateListener(phoneAccount);
+        VisualVoicemailSettingsUtil.setVisualVoicemailEnabled(mContext, phoneAccount, false);
     }
 
     public void addPhoneStateListener(PhoneAccountHandle phoneAccount) {

@@ -93,7 +93,7 @@ public class OmtpVvmSyncService extends IntentService {
     }
 
     private void doSync(PhoneAccountHandle phoneAccount, String action) {
-        if (!VisualVoicemailSettingsUtil.getVisualVoicemailEnabled(this, phoneAccount)) {
+        if (!VisualVoicemailSettingsUtil.isVisualVoicemailEnabled(this, phoneAccount)) {
             Log.v(TAG, "Sync requested for disabled account");
             return;
         }
