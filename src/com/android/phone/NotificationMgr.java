@@ -409,7 +409,7 @@ public class NotificationMgr {
                     .setSound(ringtoneUri)
                     .setColor(res.getColor(R.color.dialer_theme_color))
                     .setOngoing(carrierConfig.getBoolean(
-                            CarrierConfigManager.BOOL_VOICEMAIL_NOTIFICATION_PERSISTENT));
+                            CarrierConfigManager.KEY_VOICEMAIL_NOTIFICATION_PERSISTENT_BOOL));
 
             if (VoicemailNotificationSettingsUtil.isVibrationEnabled(phone)) {
                 builder.setDefaults(Notification.DEFAULT_VIBRATE);

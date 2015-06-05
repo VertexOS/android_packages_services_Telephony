@@ -201,7 +201,7 @@ public class EmergencyDialer extends Activity implements View.OnClickListener,
 
         // Check whether we should show the onscreen "Dial" button and co.
         PersistableBundle carrierConfig = PhoneGlobals.getInstance().getCarrierConfig();
-        if (carrierConfig.getBoolean(CarrierConfigManager.BOOL_SHOW_ONSCREEN_DIAL_BUTTON)) {
+        if (carrierConfig.getBoolean(CarrierConfigManager.KEY_SHOW_ONSCREEN_DIAL_BUTTON_BOOL)) {
             mDialButton.setOnClickListener(this);
         } else {
             mDialButton.setVisibility(View.GONE);
@@ -239,7 +239,10 @@ public class EmergencyDialer extends Activity implements View.OnClickListener,
         registerReceiver(mBroadcastReceiver, intentFilter);
 
         try {
-            mHaptic.init(this, carrierConfig.getBoolean(CarrierConfigManager.BOOL_ENABLE_DIALER_KEY_VIBRATION));
+            mHaptic.init(
+                    this,
+                    carrierConfig.getBoolean(
+                            CarrierConfigManager.KEY_ENABLE_DIALER_KEY_VIBRATION_BOOL));
         } catch (Resources.NotFoundException nfe) {
              Log.e(LOG_TAG, "Vibrate control bool missing.", nfe);
         }

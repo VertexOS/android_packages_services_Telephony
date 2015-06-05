@@ -66,18 +66,21 @@ public class GsmUmtsOptions {
         } else {
             log("Not a CDMA phone");
             Resources res = mPrefActivity.getResources();
-            PersistableBundle carrierConfig = PhoneGlobals.getInstance().getCarrierConfigForSubId(mSubId);
+            PersistableBundle carrierConfig =
+                    PhoneGlobals.getInstance().getCarrierConfigForSubId(mSubId);
 
             // Determine which options to display. For GSM these are defaulted to true in
             // CarrierConfigManager, but they maybe overriden by DefaultCarrierConfigService or a
             // carrier app.
             // Note: these settings used to be controlled with overlays in
             // Telephony/res/values/config.xml
-            if (!carrierConfig.getBoolean(CarrierConfigManager.BOOL_APN_EXPAND) && mButtonAPNExpand != null) {
+            if (!carrierConfig.getBoolean(CarrierConfigManager.KEY_APN_EXPAND_BOOL)
+                    && mButtonAPNExpand != null) {
                 mPrefScreen.removePreference(mButtonAPNExpand);
                 removedAPNExpand = true;
             }
-            if (!carrierConfig.getBoolean(CarrierConfigManager.BOOL_OPERATOR_SELECTION_EXPAND)) {
+            if (!carrierConfig.getBoolean(
+                    CarrierConfigManager.KEY_OPERATOR_SELECTION_EXPAND_BOOL)) {
                 mPrefScreen.removePreference(mPrefScreen
                         .findPreference(BUTTON_OPERATOR_SELECTION_EXPAND_KEY));
             }
@@ -95,7 +98,7 @@ public class GsmUmtsOptions {
 
             // Read platform settings for carrier settings
             final boolean isCarrierSettingsEnabled = carrierConfig.getBoolean(
-                CarrierConfigManager.BOOL_CARRIER_SETTINGS_ENABLE);
+                CarrierConfigManager.KEY_CARRIER_SETTINGS_ENABLE_BOOL);
             if (!isCarrierSettingsEnabled) {
                 Preference pref = mPrefScreen.findPreference(BUTTON_CARRIER_SETTINGS_KEY);
                 if (pref != null) {
