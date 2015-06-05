@@ -268,7 +268,6 @@ public class VoicemailSettingsActivity extends PreferenceActivity
             prefSet.removePreference(mVoicemailVisualVoicemail);
         }
 
-
         updateVMPreferenceWidgets(mVoicemailProviders.getValue());
 
         // check the intent that started this activity and pop up the voicemail
@@ -388,9 +387,8 @@ public class VoicemailSettingsActivity extends PreferenceActivity
             VoicemailNotificationSettingsUtil.setVibrationEnabled(
                     mPhone, Boolean.TRUE.equals(objValue));
         } else if (preference.getKey().equals(mVoicemailVisualVoicemail.getKey())) {
-            boolean isEnabled = (Boolean) objValue;
-            VisualVoicemailSettingsUtil.setVisualVoicemailEnabled(mPhone, isEnabled);
-            if (isEnabled) {
+            if ((Boolean) objValue) {
+                VisualVoicemailSettingsUtil.setVisualVoicemailEnabled(mPhone, true);
                 mOmtpVvmCarrierConfigHelper.startActivation();
             } else {
                 OmtpVvmSourceManager.getInstance(mPhone.getContext()).removeSource(mPhone);

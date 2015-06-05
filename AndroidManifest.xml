@@ -667,5 +667,12 @@
             android:name="com.android.phone.vvm.omtp.sync.OmtpVvmSyncService"
             android:exported="false"
        />
+       <receiver android:name="com.android.phone.vvm.omtp.VvmPackageInstallReceiver">
+          <intent-filter>
+              <action android:name="android.intent.action.PACKAGE_INSTALL" />
+              <action android:name="android.intent.action.PACKAGE_ADDED" />
+              <data android:scheme="package"/>
+          </intent-filter>
+       </receiver>
     </application>
 </manifest>
