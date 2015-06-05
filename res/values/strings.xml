@@ -1217,6 +1217,9 @@
     <!-- Dialog title for the vibration settings for voice mail notifications [CHAR LIMIT=40]-->
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="8995274609647451109">Vibrate</string>
 
+    <!-- Visual voicemail on/off title [CHAR LIMIT=40] -->
+    <string name="voicemail_visual_voicemail_switch_title">Visual Voicemail</string>
+
     <!-- Voicemail ringtone title. The user clicks on this preference to select
          which sound to play when a voicemail notification is received.
          [CHAR LIMIT=30] -->
@@ -1282,6 +1285,8 @@
     <string name="voicemail_notification_ringtone_key">voicemail_notification_ringtone_key</string>
     <!-- DO NOT TRANSLATE. Internal key for a voicemail notification preference. -->
     <string name="voicemail_notification_vibrate_key">voicemail_notification_vibrate_key</string>
+    <!-- DO NOT TRANSLATE. Internal key for a visual voicemail preference. -->
+    <string name="voicemail_visual_voicemail_key">voicemail_visual_voicemail_key</string>
     <!-- DO NOT TRANSLATE. Internal key for tty mode preference. -->
     <string name="tty_mode_key">button_tty_mode_key</string>
     <!-- DO NOT TRANSLATE. Internal key for a voicemail notification preference. -->

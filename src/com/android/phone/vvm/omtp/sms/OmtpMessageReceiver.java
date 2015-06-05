@@ -48,7 +48,7 @@ public class OmtpMessageReceiver extends BroadcastReceiver {
         mPhoneAccount = PhoneUtils.makePstnPhoneAccountHandle(
                 intent.getExtras().getInt(PhoneConstants.PHONE_KEY));
 
-        if (!VisualVoicemailSettingsUtil.getVisualVoicemailEnabled(mContext, mPhoneAccount)) {
+        if (!VisualVoicemailSettingsUtil.isVisualVoicemailEnabled(mContext, mPhoneAccount)) {
             Log.v(TAG, "Received vvm message for disabled vvm source.");
             return;
         }
@@ -69,7 +69,7 @@ public class OmtpMessageReceiver extends BroadcastReceiver {
                 processSync(message);
             } else if (messageData.getPrefix() == OmtpConstants.STATUS_SMS_PREFIX) {
                 StatusMessage message = new StatusMessage(messageData);
-                updateAccount(message);
+                updateSource(message);
             } else {
                 Log.e(TAG, "This should never have happened");
             }
@@ -113,7 +113,7 @@ public class OmtpMessageReceiver extends BroadcastReceiver {
         }
     }
 
-    private void updateAccount(StatusMessage message) {
+    private void updateSource(StatusMessage message) {
         OmtpVvmSourceManager vvmSourceManager =
                 OmtpVvmSourceManager.getInstance(mContext);
         VoicemailContract.Status.setStatus(mContext, mPhoneAccount,
@@ -123,7 +123,7 @@ public class OmtpMessageReceiver extends BroadcastReceiver {
 
         // Save the IMAP credentials in the corresponding account object so they are
         // persistent and can be retrieved.
-        VisualVoicemailSettingsUtil.setSourceCredentialsFromStatusMessage(
+        VisualVoicemailSettingsUtil.setVisualVoicemailCredentialsFromStatusMessage(
                 mContext,
                 mPhoneAccount,
                 message);
