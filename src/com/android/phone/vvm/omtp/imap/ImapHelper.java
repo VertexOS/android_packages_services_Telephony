@@ -66,14 +66,14 @@ public class ImapHelper {
             mPhoneAccount = phoneAccount;
             TempDirectory.setTempDirectory(context);
 
-            String username = VisualVoicemailSettingsUtil.getCredentialForSource(context,
+            String username = VisualVoicemailSettingsUtil.getVisualVoicemailCredentials(context,
                     OmtpConstants.IMAP_USER_NAME, phoneAccount);
-            String password = VisualVoicemailSettingsUtil.getCredentialForSource(context,
+            String password = VisualVoicemailSettingsUtil.getVisualVoicemailCredentials(context,
                     OmtpConstants.IMAP_PASSWORD, phoneAccount);
-            String serverName = VisualVoicemailSettingsUtil.getCredentialForSource(context,
+            String serverName = VisualVoicemailSettingsUtil.getVisualVoicemailCredentials(context,
                     OmtpConstants.SERVER_ADDRESS, phoneAccount);
             int port = Integer.parseInt(
-                    VisualVoicemailSettingsUtil.getCredentialForSource(context,
+                    VisualVoicemailSettingsUtil.getVisualVoicemailCredentials(context,
                             OmtpConstants.IMAP_PORT, phoneAccount));
             // TODO: determine the security protocol (e.g. ssl, tls, none, etc.)
             mImapStore = new ImapStore(

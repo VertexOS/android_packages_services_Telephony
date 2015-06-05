@@ -20,17 +20,26 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.telecom.PhoneAccountHandle;
 
+import com.android.internal.telephony.Phone;
+import com.android.phone.PhoneUtils;
 import com.android.phone.vvm.omtp.OmtpConstants;
 import com.android.phone.vvm.omtp.sms.StatusMessage;
 
 /**
  * Save visual voicemail login values in shared preferences to be retrieved later.
+ * Because a voicemail source is tied 1:1 to a phone account, the phone account handle is used in
+ * the key for each voicemail source and the associated data.
  */
 public class VisualVoicemailSettingsUtil {
     private static final String VISUAL_VOICEMAIL_SHARED_PREFS_KEY_PREFIX =
             "visual_voicemail_";
 
     private static final String IS_ENABLED_KEY = "is_enabled";
+
+    public static void setVisualVoicemailEnabled(Phone phone, boolean isEnabled) {
+        setVisualVoicemailEnabled(phone.getContext(), PhoneUtils.makePstnPhoneAccountHandle(phone),
+                isEnabled);
+    }
 
     public static void setVisualVoicemailEnabled(Context context, PhoneAccountHandle phoneAccount,
             boolean isEnabled) {
@@ -41,17 +50,22 @@ public class VisualVoicemailSettingsUtil {
         editor.commit();
     }
 
-    public static boolean getVisualVoicemailEnabled(Context context,
+    public static boolean isVisualVoicemailEnabled(Context context,
             PhoneAccountHandle phoneAccount) {
         if (phoneAccount == null) {
             return false;
         }
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         return prefs.getBoolean(getVisualVoicemailSharedPrefsKey(IS_ENABLED_KEY, phoneAccount),
-                true);
+                false);
     }
 
-    public static void setSourceCredentialsFromStatusMessage(Context context,
+    public static boolean isVisualVoicemailEnabled(Phone phone) {
+        return isVisualVoicemailEnabled(phone.getContext(),
+                PhoneUtils.makePstnPhoneAccountHandle(phone));
+    }
+
+    public static void setVisualVoicemailCredentialsFromStatusMessage(Context context,
             PhoneAccountHandle phoneAccount, StatusMessage message) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = prefs.edit();
@@ -71,7 +85,7 @@ public class VisualVoicemailSettingsUtil {
         editor.commit();
     }
 
-    public static String getCredentialForSource(Context context, String key,
+    public static String getVisualVoicemailCredentials(Context context, String key,
             PhoneAccountHandle phoneAccount) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         return prefs.getString(getVisualVoicemailSharedPrefsKey(key, phoneAccount), null);
