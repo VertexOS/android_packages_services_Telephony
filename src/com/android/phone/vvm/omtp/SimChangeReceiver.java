@@ -18,13 +18,17 @@ package com.android.phone.vvm.omtp;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.telecom.PhoneAccountHandle;
 import android.telephony.CarrierConfigManager;
 import android.telephony.SubscriptionManager;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 
 import com.android.internal.telephony.IccCardConstants;
 import com.android.internal.telephony.PhoneConstants;
 import com.android.internal.telephony.TelephonyIntents;
+import com.android.phone.PhoneUtils;
+import com.android.phone.settings.VisualVoicemailSettingsUtil;
 import com.android.phone.vvm.omtp.sync.OmtpVvmSourceManager;
 
 /**
@@ -57,7 +61,22 @@ public class SimChangeReceiver extends BroadcastReceiver {
             case CarrierConfigManager.ACTION_CARRIER_CONFIG_CHANGED:
                 int subId = intent.getIntExtra(PhoneConstants.SUBSCRIPTION_KEY,
                         SubscriptionManager.INVALID_SUBSCRIPTION_ID);
-                OmtpVvmCarrierConfigHelper.startActivation(context, subId);
+                OmtpVvmCarrierConfigHelper carrierConfigHelper =
+                        new OmtpVvmCarrierConfigHelper(context, subId);
+
+                if (carrierConfigHelper.isOmtpVvmType()) {
+                    PhoneAccountHandle phoneAccount = PhoneUtils.makePstnPhoneAccountHandle(
+                            SubscriptionManager.getPhoneId(subId));
+
+                    if (TelephonyManager.VVM_TYPE_OMTP.equals(carrierConfigHelper.getVvmType())) {
+                        carrierConfigHelper.startActivation();
+                        VisualVoicemailSettingsUtil.setVisualVoicemailEnabled(
+                                context, phoneAccount, true);
+                    } else {
+                        VisualVoicemailSettingsUtil.setVisualVoicemailEnabled(
+                                context, phoneAccount, false);
+                    }
+                }
                 break;
         }
     }
