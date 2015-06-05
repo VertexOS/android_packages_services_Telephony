@@ -12,6 +12,8 @@ import android.content.res.TypedArray;
 import android.os.AsyncResult;
 import android.os.Handler;
 import android.os.Message;
+import android.text.BidiFormatter;
+import android.text.TextDirectionHeuristics;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -152,7 +154,10 @@ public class CallForwardEditPreference extends EditPhoneNumberPreference {
             CharSequence summaryOn;
             final String number = getRawPhoneNumber();
             if (number != null && number.length() > 0) {
-                String values[] = { number };
+                // Wrap the number to preserve presentation in RTL languages.
+                String wrappedNumber = BidiFormatter.getInstance().unicodeWrap(
+                        number, TextDirectionHeuristics.LTR);
+                String values[] = { wrappedNumber };
                 summaryOn = TextUtils.replace(mSummaryOnTemplate, SRC_TAGS, values);
             } else {
                 summaryOn = getContext().getString(R.string.sum_cfu_enabled_no_number);
