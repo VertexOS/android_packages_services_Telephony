@@ -2295,12 +2295,12 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
 
     @Override
     public boolean canChangeDtmfToneLength() {
-        return mApp.getCarrierConfig().getBoolean(CarrierConfigManager.BOOL_DTMF_TYPE_ENABLED);
+        return mApp.getCarrierConfig().getBoolean(CarrierConfigManager.KEY_DTMF_TYPE_ENABLED_BOOL);
     }
 
     @Override
     public boolean isWorldPhone() {
-        return mApp.getCarrierConfig().getBoolean(CarrierConfigManager.BOOL_WORLD_PHONE);
+        return mApp.getCarrierConfig().getBoolean(CarrierConfigManager.KEY_WORLD_PHONE_BOOL);
     }
 
     @Override
