@@ -171,7 +171,8 @@ public class CdmaConference extends Conference {
                     Context.CARRIER_CONFIG_SERVICE);
             PersistableBundle b = configManager.getConfig();
             if (b != null) {
-                supportSwapAfterMerge = b.getBoolean(CarrierConfigManager.BOOL_SUPPORT_SWAP_AFTER_MERGE);
+                supportSwapAfterMerge =
+                        b.getBoolean(CarrierConfigManager.KEY_SUPPORT_SWAP_AFTER_MERGE_BOOL);
                 Log.d(this, "Current network support swap after call merged capability is "
                         + supportSwapAfterMerge);
             }
