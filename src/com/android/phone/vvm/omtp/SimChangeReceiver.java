@@ -68,13 +68,15 @@ public class SimChangeReceiver extends BroadcastReceiver {
                     PhoneAccountHandle phoneAccount = PhoneUtils.makePstnPhoneAccountHandle(
                             SubscriptionManager.getPhoneId(subId));
 
-                    if (TelephonyManager.VVM_TYPE_OMTP.equals(carrierConfigHelper.getVvmType())) {
-                        carrierConfigHelper.startActivation();
+                    if (carrierConfigHelper.isEnabledByDefault()) {
                         VisualVoicemailSettingsUtil.setVisualVoicemailEnabled(
                                 context, phoneAccount, true);
+                        carrierConfigHelper.startActivation();
                     } else {
-                        VisualVoicemailSettingsUtil.setVisualVoicemailEnabled(
-                                context, phoneAccount, false);
+                        // It may be that the source was not registered to begin with but we want
+                        // to run through the steps to remove the source just in case.
+                        OmtpVvmSourceManager.getInstance(context).removeSource(phoneAccount);
+                        carrierConfigHelper.startDeactivation();
                     }
                 }
                 break;
