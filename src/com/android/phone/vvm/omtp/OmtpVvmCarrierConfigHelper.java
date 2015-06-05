@@ -16,6 +16,7 @@
 package com.android.phone.vvm.omtp;
 
 import android.content.Context;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.PersistableBundle;
 import android.telephony.CarrierConfigManager;
 import android.telephony.SmsManager;
@@ -55,9 +56,36 @@ public class OmtpVvmCarrierConfigHelper {
                 CarrierConfigManager.STRING_VVM_TYPE, null);
     }
 
+    public String getCarrierVvmPackageName() {
+        if (mCarrierConfig == null) {
+            return null;
+        }
+
+        return mCarrierConfig.getString(
+                CarrierConfigManager.STRING_CARRIER_VVM_PACKAGE_NAME, null);
+    }
+
     public boolean isOmtpVvmType() {
         return (TelephonyManager.VVM_TYPE_OMTP.equals(mVvmType) ||
                 TelephonyManager.VVM_TYPE_CVVM.equals(mVvmType));
+    }
+
+    /**
+     * For checking upon sim insertion whether visual voicemail should be enabled. This method does
+     * so by checking if the carrier's voicemail app is installed.
+     */
+    public boolean isEnabledByDefault() {
+        String packageName = mCarrierConfig.getString(
+                CarrierConfigManager.STRING_CARRIER_VVM_PACKAGE_NAME);
+        if (packageName == null) {
+            return true;
+        }
+        try {
+            mContext.getPackageManager().getPackageInfo(packageName, 0);
+            return false;
+        } catch (NameNotFoundException e) {
+            return true;
+        }
     }
 
     public void startActivation() {
