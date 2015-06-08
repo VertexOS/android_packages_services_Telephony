@@ -234,9 +234,7 @@ public class CallFeaturesSetting extends PreferenceActivity
 
             int phoneType = mPhone.getPhoneType();
             Preference fdnButton = prefSet.findPreference(BUTTON_FDN_KEY);
-            boolean shouldHideCarrierSettings = Settings.Global.getInt(
-                    getContentResolver(), Settings.Global.HIDE_CARRIER_NETWORK_SETTINGS, 0) == 1;
-            if (shouldHideCarrierSettings) {
+            if (carrierConfig.getBoolean(CarrierConfigManager.KEY_HIDE_CARRIER_NETWORK_SETTINGS_BOOL)) {
                 prefSet.removePreference(fdnButton);
             } else {
                 if (phoneType == PhoneConstants.PHONE_TYPE_CDMA) {
