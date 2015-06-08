@@ -562,7 +562,7 @@ public class CarrierConfigLoader extends ICarrierConfigLoader.Stub {
     }
 
     @Override
-    public void reloadCarrierConfigForSubId(int subId) {
+    public void notifyConfigChangedForSubId(int subId) {
         int phoneId = SubscriptionManager.getPhoneId(subId);
         if (!SubscriptionManager.isValidPhoneId(phoneId)) {
             log("Ignore invalid phoneId: " + phoneId + " for subId: " + subId);
