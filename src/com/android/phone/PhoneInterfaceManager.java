@@ -47,6 +47,7 @@ import android.telephony.ServiceState;
 import android.telephony.SubscriptionInfo;
 import android.telephony.SubscriptionManager;
 import android.telephony.TelephonyManager;
+import android.telephony.ModemActivityInfo;
 import android.text.TextUtils;
 import android.util.ArrayMap;
 import android.util.ArraySet;
@@ -129,6 +130,9 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     private static final int EVENT_SET_VOICEMAIL_NUMBER_DONE = 34;
     private static final int CMD_SET_NETWORK_SELECTION_MODE_AUTOMATIC = 35;
     private static final int EVENT_SET_NETWORK_SELECTION_MODE_AUTOMATIC_DONE = 36;
+    private static final int CMD_GET_MODEM_ACTIVITY_INFO = 37;
+    private static final int EVENT_GET_MODEM_ACTIVITY_INFO_DONE = 38;
+
 
     /** The singleton instance. */
     private static PhoneInterfaceManager sInstance;
@@ -641,6 +645,32 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
 
                 case EVENT_SET_NETWORK_SELECTION_MODE_AUTOMATIC_DONE:
                     handleNullReturnEvent(msg, "setNetworkSelectionModeAutomatic");
+                    break;
+
+                case CMD_GET_MODEM_ACTIVITY_INFO:
+                    request = (MainThreadRequest) msg.obj;
+                    onCompleted = obtainMessage(EVENT_GET_MODEM_ACTIVITY_INFO_DONE, request);
+                    mPhone.queryModemActivityInfo(onCompleted);
+                    break;
+
+                case EVENT_GET_MODEM_ACTIVITY_INFO_DONE:
+                    ar = (AsyncResult) msg.obj;
+                    request = (MainThreadRequest) ar.userObj;
+                    if (ar.exception == null && ar.result != null) {
+                        request.result = ar.result;
+                    } else {
+                        if (ar.result == null) {
+                            loge("queryModemActivityInfo: Empty response");
+                        } else if (ar.exception instanceof CommandException) {
+                            loge("queryModemActivityInfo: CommandException: " +
+                                    ar.exception);
+                        } else {
+                            loge("queryModemActivityInfo: Unknown exception");
+                        }
+                    }
+                    synchronized (request) {
+                        request.notifyAll();
+                    }
                     break;
 
                 default:
@@ -2476,5 +2506,14 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         } finally {
             Binder.restoreCallingIdentity(identity);
         }
+    }
+
+    /**
+     * {@hide}
+     * Returns the modem stats
+     */
+    @Override
+    public ModemActivityInfo getModemActivityInfo() {
+        return (ModemActivityInfo) sendRequest(CMD_GET_MODEM_ACTIVITY_INFO, null);
     }
 }
