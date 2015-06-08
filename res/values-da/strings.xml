@@ -93,11 +93,11 @@
     <string name="additional_cdma_call_settings" msgid="8628958775721886909">"Yderligere CDMA-opkaldsindstillinger"</string>
     <string name="sum_cdma_call_settings" msgid="284753265979035549">"Yderligere indstillinger for CDMA-opkald"</string>
     <string name="labelNwService" msgid="4699970172021870983">"Indstillinger for netværkstjeneste"</string>
-    <string name="labelCallerId" msgid="3888899447379069198">"Opkalds-id"</string>
+    <string name="labelCallerId" msgid="3888899447379069198">"Vis nummer"</string>
     <string name="sum_loading_settings" msgid="1826692909391168620">"Indlæser indstillinger…"</string>
     <string name="sum_hide_caller_id" msgid="1071407020290873782">"Nummer skjules i udgående opkald"</string>
     <string name="sum_show_caller_id" msgid="6768534125447290401">"Nummer vises i udgående opkald"</string>
-    <string name="sum_default_caller_id" msgid="1954518825510901365">"Brug udbyderens standardindstillinger til at vise mine numre i udgående opkald"</string>
+    <string name="sum_default_caller_id" msgid="1954518825510901365">"Brug mobilselskabets standardindstillinger til at vise mit nummer ved udgående opkald"</string>
     <string name="labelCW" msgid="6120513814915920200">"Ventende opkald"</string>
     <string name="sum_cw_enabled" msgid="8083061901633671397">"Fortæl mig om indgående opkald under et opkald"</string>
     <string name="sum_cw_disabled" msgid="3648693907300104575">"Fortæl mig om indgående opkald under et opkald"</string>
@@ -344,7 +344,7 @@
     <string name="fdn" msgid="7878832555095183202">"Numre til begrænset opkald"</string>
     <string name="fdn_with_label" msgid="187084204115493366">"Begrænset opkald (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="manage_fdn_list" msgid="8777755791892122369">"Liste over numre til begrænset opkald"</string>
-    <string name="fdn_list_with_label" msgid="7437232552210469217">"Liste over faste opkald (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="fdn_list_with_label" msgid="7437232552210469217">"Numre til begrænset opkald (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="fdn_activation" msgid="2156479741307463576">"Aktivering af begrænset opkald"</string>
     <string name="fdn_enabled" msgid="5238109009915521240">"Numre til begrænset opkald er aktiveret"</string>
     <string name="fdn_disabled" msgid="4700049736675368279">"Numre til begrænset opkald er deaktiveret"</string>
@@ -420,8 +420,7 @@
     <string name="puk2_blocked" msgid="3150263853077280049">"PUK2 er permanent blokeret."</string>
     <string name="pin2_attempts" msgid="720736232885011507">\n"Du har <xliff:g id="NUMBER">%d</xliff:g> forsøg tilbage."</string>
     <string name="pin2_unblocked" msgid="7791600368153469078">"Pinkode 2 er ikke længere blokeret"</string>
-    <!-- no translation found for pin2_error_exception (1088689322248996699) -->
-    <skip />
+    <string name="pin2_error_exception" msgid="1088689322248996699">"Fejl i netværk eller SIM-kort"</string>
     <string name="doneButton" msgid="2859593360997984240">"Afslut"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"Telefonsvarernummer"</string>
     <string name="card_title_dialing" msgid="5769417478498348054">"Ringer op"</string>
@@ -544,6 +543,8 @@
     <string name="description_dial_button" msgid="7459705245418435351">"ring op"</string>
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"Vibration"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"Vibration"</string>
+    <!-- no translation found for voicemail_visual_voicemail_switch_title (5012622186976275457) -->
+    <skip />
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"Lyd"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"Ringetone og vibration"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"Indbyggede SIM-kort"</string>

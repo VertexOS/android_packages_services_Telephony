@@ -93,7 +93,7 @@
     <string name="additional_cdma_call_settings" msgid="8628958775721886909">"Cài đặt cuộc gọi CDMA bổ sung"</string>
     <string name="sum_cdma_call_settings" msgid="284753265979035549">"Cài đặt cuộc gọi chỉ CDMA bổ sung"</string>
     <string name="labelNwService" msgid="4699970172021870983">"Cài đặt dịch vụ mạng"</string>
-    <string name="labelCallerId" msgid="3888899447379069198">"Số gọi đến"</string>
+    <string name="labelCallerId" msgid="3888899447379069198">"ID người gọi"</string>
     <string name="sum_loading_settings" msgid="1826692909391168620">"Đang tải cài đặt…"</string>
     <string name="sum_hide_caller_id" msgid="1071407020290873782">"Số bị ẩn trong cuộc gọi đi"</string>
     <string name="sum_show_caller_id" msgid="6768534125447290401">"Số được hiển thị trong cuộc gọi đi"</string>
@@ -115,8 +115,8 @@
     <string name="sum_cfb_enabled" msgid="5984198104833116690">"Chuyển tiếp tới <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfb_disabled" msgid="4913145177320506827">"Tắt"</string>
     <string name="disable_cfb_forbidden" msgid="3506984333877998061">"Nhà cung cấp dịch vụ của bạn không hỗ trợ vô hiệu hóa chuyển tiếp cuộc gọi khi điện thoại của bạn bận."</string>
-    <string name="labelCFNRy" msgid="1736067178393744351">"Khi không được trả lời"</string>
-    <string name="messageCFNRy" msgid="672317899884380374">"Số khi không được trả lời"</string>
+    <string name="labelCFNRy" msgid="1736067178393744351">"Khi không trả lời"</string>
+    <string name="messageCFNRy" msgid="672317899884380374">"Số khi không trả lời"</string>
     <string name="sum_cfnry_enabled" msgid="6955775691317662910">"Chuyển tiếp tới <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfnry_disabled" msgid="3884684060443538097">"Tắt"</string>
     <string name="disable_cfnry_forbidden" msgid="4308233959150658058">"Nhà cung cấp dịch vụ của bạn không hỗ trợ vô hiệu hóa chuyển tiếp cuộc gọi khi điện thoại của bạn không trả lời."</string>
@@ -141,7 +141,7 @@
     <string name="disable" msgid="4678348128118573672">"Tắt"</string>
     <string name="change_num" msgid="239476305819844391">"Cập nhật"</string>
   <string-array name="clir_display_values">
-    <item msgid="5560134294467334594">"Mặc định mạng"</item>
+    <item msgid="5560134294467334594">"Mặc định theo mạng"</item>
     <item msgid="7876195870037833661">"Ẩn số"</item>
     <item msgid="1108394741608734023">"Hiển thị số"</item>
   </string-array>
@@ -336,7 +336,7 @@
     <string name="cdma_lte_data_service" msgid="4255018217292548962">"Thiết lập dịch vụ dữ liệu"</string>
     <string name="carrier_settings_title" msgid="9028166176523012300">"Cài đặt nhà cung cấp dịch vụ"</string>
     <string name="fdn" msgid="7878832555095183202">"Số Quay Định sẵn"</string>
-    <string name="fdn_with_label" msgid="187084204115493366">"Số gọi cố định (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="fdn_with_label" msgid="187084204115493366">"Số gọi định sẵn (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="manage_fdn_list" msgid="8777755791892122369">"Danh sách FDN"</string>
     <string name="fdn_list_with_label" msgid="7437232552210469217">"Danh sách FDN (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="fdn_activation" msgid="2156479741307463576">"Kích hoạt FDN"</string>
@@ -414,11 +414,10 @@
     <string name="puk2_blocked" msgid="3150263853077280049">"PUK2 bị chặn vĩnh viễn."</string>
     <string name="pin2_attempts" msgid="720736232885011507">\n"Bạn còn <xliff:g id="NUMBER">%d</xliff:g> lần thử."</string>
     <string name="pin2_unblocked" msgid="7791600368153469078">"PIN2 không còn bị chặn"</string>
-    <!-- no translation found for pin2_error_exception (1088689322248996699) -->
-    <skip />
+    <string name="pin2_error_exception" msgid="1088689322248996699">"Lỗi mạng hoặc thẻ SIM"</string>
     <string name="doneButton" msgid="2859593360997984240">"Xong"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"Số thư thoại"</string>
-    <string name="card_title_dialing" msgid="5769417478498348054">"Đang quay số"</string>
+    <string name="card_title_dialing" msgid="5769417478498348054">"Đang gọi"</string>
     <string name="card_title_redialing" msgid="8253487008234167266">"Đang quay số lại"</string>
     <string name="card_title_conf_call" msgid="1162980346189744501">"Cuộc gọi hội nghị"</string>
     <string name="card_title_incoming_call" msgid="7364539451234646909">"Cuộc gọi đến"</string>
@@ -528,7 +527,7 @@
     <string name="alert_dialog_dismiss" msgid="2491494287075907171">"Loại bỏ"</string>
     <string name="voicemail_provider" msgid="5135942703327136909">"Dịch vụ"</string>
     <string name="voicemail_settings" msgid="72448049107749316">"Thiết lập"</string>
-    <string name="voicemail_number_not_set" msgid="6724904736891087856">"&lt;Chưa được đặt&gt;"</string>
+    <string name="voicemail_number_not_set" msgid="6724904736891087856">"&lt;Chưa đặt&gt;"</string>
     <string name="other_settings" msgid="3672912580359716394">"Cài đặt cuộc gọi khác"</string>
     <string name="calling_via_template" msgid="4839419581866928142">"Gọi điện qua <xliff:g id="PROVIDER_NAME">%s</xliff:g>"</string>
     <string name="contactPhoto" msgid="4713193418046639466">"ảnh liên hệ"</string>
@@ -538,6 +537,8 @@
     <string name="description_dial_button" msgid="7459705245418435351">"quay số"</string>
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"Rung"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"Rung"</string>
+    <!-- no translation found for voicemail_visual_voicemail_switch_title (5012622186976275457) -->
+    <skip />
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"Âm thanh"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"Nhạc chuông và rung"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"Thẻ SIM tích hợp sẵn"</string>

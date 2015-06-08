@@ -115,13 +115,13 @@
     <string name="sum_cfb_enabled" msgid="5984198104833116690">"Átirányítás ide: <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfb_disabled" msgid="4913145177320506827">"Ki"</string>
     <string name="disable_cfb_forbidden" msgid="3506984333877998061">"Szolgáltatója nem támogatja a hívásátirányítás letiltását, ha a  telefon foglalt."</string>
-    <string name="labelCFNRy" msgid="1736067178393744351">"Amikor nem válaszol"</string>
-    <string name="messageCFNRy" msgid="672317899884380374">"Átirányítási szám, ha nem válaszol"</string>
+    <string name="labelCFNRy" msgid="1736067178393744351">"Amikor nem veszi fel"</string>
+    <string name="messageCFNRy" msgid="672317899884380374">"Átirányítási szám, ha nem veszi fel"</string>
     <string name="sum_cfnry_enabled" msgid="6955775691317662910">"Átirányítás ide: <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfnry_disabled" msgid="3884684060443538097">"Ki"</string>
     <string name="disable_cfnry_forbidden" msgid="4308233959150658058">"Szolgáltatója nem támogatja a hívásátirányítás letiltását, ha telefonja nem fogad hívásokat."</string>
     <string name="labelCFNRc" msgid="2614827454402079766">"Amikor ki van kapcsolva"</string>
-    <string name="messageCFNRc" msgid="6380695421020295119">"Átirányítási szám, ha nem elérhető"</string>
+    <string name="messageCFNRc" msgid="6380695421020295119">"Átirányítási szám, ha ki van kapcsolva"</string>
     <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"Átirányítás ide: <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfnrc_disabled" msgid="7222141261321276464">"Kikapcsolva"</string>
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"Szolgáltatója nem támogatja a hívásátirányítás letiltását, ha a telefon nem érhető el."</string>
@@ -141,7 +141,7 @@
     <string name="disable" msgid="4678348128118573672">"Kikapcsolás"</string>
     <string name="change_num" msgid="239476305819844391">"Frissítés"</string>
   <string-array name="clir_display_values">
-    <item msgid="5560134294467334594">"Hálózati alapértelmezés"</item>
+    <item msgid="5560134294467334594">"Hálózati alapbeállítás"</item>
     <item msgid="7876195870037833661">"Szám elrejtése"</item>
     <item msgid="1108394741608734023">"Szám megjelenítése"</item>
   </string-array>
@@ -348,7 +348,7 @@
     <string name="enable_fdn_ok" msgid="7215588870329688132">"Fix hívószám letiltása"</string>
     <string name="disable_fdn_ok" msgid="5727046928930740173">"Fix hívószám engedélyezése"</string>
     <string name="sum_fdn" msgid="1959399454900272878">"Fix hívószámok kezelése"</string>
-    <string name="sum_fdn_change_pin" msgid="6666549734792827932">"PIN kód módosítása a fix hívószámok eléréséhez"</string>
+    <string name="sum_fdn_change_pin" msgid="6666549734792827932">"A fix hívószámok eléréséhez szükséges PIN kód módosítása"</string>
     <string name="sum_fdn_manage_list" msgid="8431088265332628316">"Telefonszámok listájának kezelése"</string>
     <string name="voice_privacy" msgid="3776841382844614716">"Adatvédelem"</string>
     <string name="voice_privacy_summary" msgid="3159383389833516214">"Fokozott adatvédelmi mód engedélyezése"</string>
@@ -414,8 +414,7 @@
     <string name="puk2_blocked" msgid="3150263853077280049">"A PUK2 végleg letiltva."</string>
     <string name="pin2_attempts" msgid="720736232885011507">\n"<xliff:g id="NUMBER">%d</xliff:g> próbálkozási lehetősége maradt."</string>
     <string name="pin2_unblocked" msgid="7791600368153469078">"PIN2 kód letiltása feloldva"</string>
-    <!-- no translation found for pin2_error_exception (1088689322248996699) -->
-    <skip />
+    <string name="pin2_error_exception" msgid="1088689322248996699">"Hálózattal vagy SIM kártyával kapcsolatos hiba"</string>
     <string name="doneButton" msgid="2859593360997984240">"Kész"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"Hangposta száma"</string>
     <string name="card_title_dialing" msgid="5769417478498348054">"Tárcsázás"</string>
@@ -451,8 +450,8 @@
     <string name="emergency_enable_radio_dialog_title" msgid="4627849966634578257">"Segélyhívás"</string>
     <string name="emergency_enable_radio_dialog_message" msgid="207613549344420291">"Rádió bekapcsolása..."</string>
     <string name="emergency_enable_radio_dialog_retry" msgid="5960061579996526883">"Nincs szolgáltatás. Újrapróbálkozás folyamatban…"</string>
-    <string name="dial_emergency_error" msgid="1509085166367420355">"A hívás sikertelen. A(z) <xliff:g id="NON_EMERGENCY_NUMBER">%s</xliff:g> szám nem vészhívószám."</string>
-    <string name="dial_emergency_empty_error" msgid="9130194953830414638">"A hívás sikertelen. Tárcsázzon vészhívószámot."</string>
+    <string name="dial_emergency_error" msgid="1509085166367420355">"A hívás sikertelen. A(z) <xliff:g id="NON_EMERGENCY_NUMBER">%s</xliff:g> szám nem segélyhívószám."</string>
+    <string name="dial_emergency_empty_error" msgid="9130194953830414638">"A hívás sikertelen. Tárcsázzon segélyhívószámot."</string>
     <string name="dialerKeyboardHintText" msgid="9192914825413747792">"A tárcsázáshoz használja a billentyűzetet"</string>
     <string name="onscreenHoldText" msgid="2285258239691145872">"Tartás"</string>
     <string name="onscreenEndCallText" msgid="4403855834875398585">"Befejezés"</string>
@@ -538,6 +537,8 @@
     <string name="description_dial_button" msgid="7459705245418435351">"tárcsázás"</string>
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"Rezgés"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"Rezgés"</string>
+    <!-- no translation found for voicemail_visual_voicemail_switch_title (5012622186976275457) -->
+    <skip />
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"Hang"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"Csengőhang és rezgés"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"Beépített SIM kártyák"</string>

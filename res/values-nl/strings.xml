@@ -101,8 +101,8 @@
     <string name="labelCW" msgid="6120513814915920200">"Wisselgesprek"</string>
     <string name="sum_cw_enabled" msgid="8083061901633671397">"Inkomende oproepen melden als ik aan het bellen ben"</string>
     <string name="sum_cw_disabled" msgid="3648693907300104575">"Inkomende oproepen melden als ik aan het bellen ben"</string>
-    <string name="call_forwarding_settings" msgid="3378927671091537173">"Instellingen voor doorschakelen van oproepen"</string>
-    <string name="call_forwarding_settings_with_label" msgid="8569489414006897127">"Instellingen voor oproepen doorschakelen (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="call_forwarding_settings" msgid="3378927671091537173">"Doorschakelinstellingen voor oproepen"</string>
+    <string name="call_forwarding_settings_with_label" msgid="8569489414006897127">"Doorschakelinstellingen voor oproepen (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="labelCF" msgid="2574386948026924737">"Oproep doorschakelen"</string>
     <string name="labelCFU" msgid="8147177368148660600">"Altijd doorschakelen"</string>
     <string name="messageCFU" msgid="3560082430662923687">"Altijd dit nummer gebruiken"</string>
@@ -138,7 +138,7 @@
     <string name="radio_off_error" msgid="2304459933248513376">"Schakel de radio in voordat u deze instellingen bekijkt."</string>
     <string name="close_dialog" msgid="2365884406356986917">"OK"</string>
     <string name="enable" msgid="7248657275000173526">"Inschakelen"</string>
-    <string name="disable" msgid="4678348128118573672">"Uitschakelen"</string>
+    <string name="disable" msgid="4678348128118573672">"Uit"</string>
     <string name="change_num" msgid="239476305819844391">"Updaten"</string>
   <string-array name="clir_display_values">
     <item msgid="5560134294467334594">"Netwerkstandaard"</item>
@@ -336,7 +336,7 @@
     <string name="cdma_lte_data_service" msgid="4255018217292548962">"Gegevensservice instellen"</string>
     <string name="carrier_settings_title" msgid="9028166176523012300">"Providerinstellingen"</string>
     <string name="fdn" msgid="7878832555095183202">"Vaste nummers"</string>
-    <string name="fdn_with_label" msgid="187084204115493366">"Fixed Dialing Numbers (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="fdn_with_label" msgid="187084204115493366">"Vaste nummers (FDN, <xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="manage_fdn_list" msgid="8777755791892122369">"FDN-lijst"</string>
     <string name="fdn_list_with_label" msgid="7437232552210469217">"FDN-lijst (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="fdn_activation" msgid="2156479741307463576">"FDN-activering"</string>
@@ -414,8 +414,7 @@
     <string name="puk2_blocked" msgid="3150263853077280049">"PUK2-code is definitief geblokkeerd."</string>
     <string name="pin2_attempts" msgid="720736232885011507">\n"U heeft nog <xliff:g id="NUMBER">%d</xliff:g> pogingen."</string>
     <string name="pin2_unblocked" msgid="7791600368153469078">"PIN2 niet langer geblokkeerd"</string>
-    <!-- no translation found for pin2_error_exception (1088689322248996699) -->
-    <skip />
+    <string name="pin2_error_exception" msgid="1088689322248996699">"Netwerk- of simkaartfout"</string>
     <string name="doneButton" msgid="2859593360997984240">"Gereed"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"Voicemailnummer"</string>
     <string name="card_title_dialing" msgid="5769417478498348054">"Kiezen"</string>
@@ -538,6 +537,8 @@
     <string name="description_dial_button" msgid="7459705245418435351">"bellen"</string>
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"Trillen"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"Trillen"</string>
+    <!-- no translation found for voicemail_visual_voicemail_switch_title (5012622186976275457) -->
+    <skip />
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"Geluid"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"Beltoon en trillen"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"Ingebouwde simkaarten"</string>

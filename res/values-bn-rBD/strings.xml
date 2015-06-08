@@ -414,8 +414,7 @@
     <string name="puk2_blocked" msgid="3150263853077280049">"PUK2 স্থায়ীভাবে অবরুদ্ধ করা হয়েছে৷"</string>
     <string name="pin2_attempts" msgid="720736232885011507">\n"আপনার কাছে <xliff:g id="NUMBER">%d</xliff:g>টি প্রচেষ্টা অবশিষ্ট রয়েছে৷"</string>
     <string name="pin2_unblocked" msgid="7791600368153469078">"PIN2 এখন আর অবরুদ্ধ নয়"</string>
-    <!-- no translation found for pin2_error_exception (1088689322248996699) -->
-    <skip />
+    <string name="pin2_error_exception" msgid="1088689322248996699">"নেটওয়ার্ক বা SIM কার্ড ত্রুটি৷"</string>
     <string name="doneButton" msgid="2859593360997984240">"সম্পন্ন হয়েছে"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"ভয়েসমেল নম্বর"</string>
     <string name="card_title_dialing" msgid="5769417478498348054">"ডায়াল করা হচ্ছে"</string>
@@ -538,6 +537,8 @@
     <string name="description_dial_button" msgid="7459705245418435351">"ডায়াল করুন"</string>
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"কম্পন"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"কম্পন"</string>
+    <!-- no translation found for voicemail_visual_voicemail_switch_title (5012622186976275457) -->
+    <skip />
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"শব্দ"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"রিংটোন ও কম্পন"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"বিল্ট-ইন সিম কার্ডগুলি"</string>

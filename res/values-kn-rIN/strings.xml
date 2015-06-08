@@ -62,7 +62,7 @@
     <string name="phone_accounts" msgid="6376603393888116364">"ಕರೆ ಮಾಡುವ ಖಾತೆಗಳು"</string>
     <string name="phone_accounts_make_calls_with" msgid="1969188078933152231">"ಇದರೊಂದಿಗೆ ಕರೆಗಳನ್ನು ಮಾಡಿ"</string>
     <string name="phone_accounts_make_sip_calls_with" msgid="4677789312053828493">"SIP ಕರೆಗಳನ್ನು ಇದರೊಂದಿಗೆ ಮಾಡಿ"</string>
-    <string name="phone_accounts_ask_every_time" msgid="4346499067149985702">"ಮೊದಲು ಕೇಳಿ"</string>
+    <string name="phone_accounts_ask_every_time" msgid="4346499067149985702">"ಮೊದಲು ಕೇಳು"</string>
     <string name="phone_accounts_settings_header" msgid="4141710640883261094">"ಸೆಟ್ಟಿಂಗ್‌ಗಳು"</string>
     <string name="phone_accounts_choose_accounts" msgid="5232948804226424002">"ಖಾತೆಗಳನ್ನು ಆಯ್ಕೆಮಾಡಿ"</string>
     <string name="phone_accounts_selection_header" msgid="1365215726106915865">"ಫೋನ್ ಖಾತೆಗಳು"</string>
@@ -70,7 +70,7 @@
     <string name="phone_accounts_configure_account_settings" msgid="1361715069911607109">"ಖಾತೆ ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ಕಾನ್ಫಿಗರ್ ಮಾಡಿ"</string>
     <string name="phone_accounts_all_calling_accounts" msgid="207619531589278471">"ಎಲ್ಲಾ ಕರೆ ಮಾಡುವ ಖಾತೆಗಳು"</string>
     <string name="phone_accounts_all_calling_accounts_summary" msgid="8594186415822657011">"ಯಾವ ಖಾತೆಗಳು ಕರೆಗಳನ್ನು ಮಾಡಬಹುದು ಎಂಬುದನ್ನು ಆಯ್ಕೆಮಾಡಿ"</string>
-    <string name="wifi_calling" msgid="739018212480165598">"ವೈ-ಫೈ ಕರೆ ಮಾಡುವಿಕೆ"</string>
+    <string name="wifi_calling" msgid="739018212480165598">"Wi-Fi ಕರೆ ಮಾಡುವಿಕೆ"</string>
     <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"Wi-Fi ಕರೆ ಮಾಡುವಿಕೆಯನ್ನು ಬಳಸಬೇಡಿ"</string>
     <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"ಕರೆ ಸಹಾಯಕವನ್ನು ಬಳಸಬೇಡಿ"</string>
     <string name="wifi_calling_call_assistant_none" msgid="6283702349285593683">"ಯಾವುದೂ ಇಲ್ಲ"</string>
@@ -121,7 +121,7 @@
     <string name="sum_cfnry_disabled" msgid="3884684060443538097">"ಆಫ್ ಆಗಿದೆ"</string>
     <string name="disable_cfnry_forbidden" msgid="4308233959150658058">"ನಿಮ್ಮ ಫೋನ್‌ ಉತ್ತರಿಸದಿರುವಾಗ ಕರೆಯ ಫಾರ್ವರ್ಡ್‌ ಮಾಡುವಿಕೆ ನಿಷ್ಕ್ರಿಯಗೊಳಿಸುವುದನ್ನು ನಿಮ್ಮ ಆಪರೇಟರ್ ಬೆಂಬಲಿಸುವುದಿಲ್ಲ."</string>
     <string name="labelCFNRc" msgid="2614827454402079766">"ಅಲಭ್ಯವಿರುವಾಗ"</string>
-    <string name="messageCFNRc" msgid="6380695421020295119">"ತಲುಪಲಾಗದಿದ್ದಾಗ ಸಂಖ್ಯೆ"</string>
+    <string name="messageCFNRc" msgid="6380695421020295119">"ಅಲಭ್ಯವಿರುವಾಗ ಸಂಖ್ಯೆ"</string>
     <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"<xliff:g id="PHONENUMBER">{0}</xliff:g> ಗೆ ಫಾರ್ವರ್ಡ್‌ ಮಾಡಲಾಗುತ್ತಿದೆ"</string>
     <string name="sum_cfnrc_disabled" msgid="7222141261321276464">"ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ"</string>
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"ನಿಮ್ಮ ಫೋನ್‌ ಅನ್ನು ತಲುಪಲಾಗದಿದ್ದಾಗ ನಿಮ್ಮ ವಾಹಕ ಕರೆಯ ಫಾರ್ವರ್ಡ್‌ ಮಾಡುವಿಕೆ ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲು ಬೆಂಬಲಿಸುವುದಿಲ್ಲ."</string>
@@ -379,7 +379,7 @@
     <string name="fdn_failed" msgid="540018079008319747">"FDN ಕಾರ್ಯಾಚರಣೆ ವಿಫಲವಾಗಿದೆ."</string>
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"ಸಿಮ್‌ ಕಾರ್ಡ್‌ನಿಂದ ಓದಲಾಗುತ್ತಿದೆ…"</string>
     <string name="simContacts_empty" msgid="5270660846489561932">"ನಿಮ್ಮ ಸಿಮ್‌ ಕಾರ್ಡ್‌ನಲ್ಲಿ ಯಾವುದೇ ಸಂಪರ್ಕಗಳಿಲ್ಲ."</string>
-    <string name="simContacts_title" msgid="1861472842524839921">"ಆಮದು ಮಾಡಲು ಸಂಪರ್ಕಗಳನ್ನು ಆಯ್ಕೆಮಾಡಿ"</string>
+    <string name="simContacts_title" msgid="1861472842524839921">"ಆಮದು ಮಾಡಲು ಸಂಪರ್ಕಗಳು"</string>
     <string name="simContacts_airplaneMode" msgid="5254946758982621072">"ಸಿಮ್ ಕಾರ್ಡ್‌ನಿಂದ ಸಂಪರ್ಕಗಳನ್ನು ಆಮದು ಮಾಡಲು ಏರ್‌ಪ್ಲೇನ್ ಮೋಡ್ ಆಫ್ ಮಾಡಿ."</string>
     <string name="enable_pin" msgid="5422767284133234860">"ಸಿಮ್‌ ಪಿನ್‌ ಸಕ್ರಿಯಗೊಳಿಸಿ/ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿ"</string>
     <string name="change_pin" msgid="9174186126330785343">"ಸಿಮ್‌ ಪಿನ್‌ ಬದಲಾಯಿಸಿ"</string>
@@ -414,8 +414,7 @@
     <string name="puk2_blocked" msgid="3150263853077280049">"PUK2 ಅನ್ನು ಶಾಶ್ವತವಾಗಿ ನಿರ್ಬಂಧಿಸಲಾಗಿದೆ."</string>
     <string name="pin2_attempts" msgid="720736232885011507">\n"ನೀವು <xliff:g id="NUMBER">%d</xliff:g> ಬಾಕಿ ಉಳಿದಿರುವ ಪ್ರಯತ್ನಗಳನ್ನು ಹೊಂದಿರುವಿರಿ."</string>
     <string name="pin2_unblocked" msgid="7791600368153469078">"PIN2 ಇನ್ನು ಮುಂದೆ ನಿರ್ಬಂಧಿತವಾಗಿರುವುದಿಲ್ಲ"</string>
-    <!-- no translation found for pin2_error_exception (1088689322248996699) -->
-    <skip />
+    <string name="pin2_error_exception" msgid="1088689322248996699">"ನೆಟ್‌ವರ್ಕ್‌ ಅಥವಾ ಸಿಮ್ ಕಾರ್ಡ್‌ ದೋಷ"</string>
     <string name="doneButton" msgid="2859593360997984240">"ಮುಗಿದಿದೆ"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"ಧ್ವನಿಮೇಲ್‌ ಸಂಖ್ಯೆ"</string>
     <string name="card_title_dialing" msgid="5769417478498348054">"ಡಯಲ್‌ ಮಾಡಲಾಗುತ್ತಿದೆ"</string>
@@ -538,6 +537,8 @@
     <string name="description_dial_button" msgid="7459705245418435351">"ಡಯಲ್"</string>
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"ವೈಬ್ರೇಟ್‌"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"ವೈಬ್ರೇಟ್‌"</string>
+    <!-- no translation found for voicemail_visual_voicemail_switch_title (5012622186976275457) -->
+    <skip />
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"ಧ್ವನಿ"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"ರಿಂಗ್‌ಟೋನ್‌‌ &amp; ವೈಬ್ರೇಟ್‌"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"ಅಂತರ್-ರಚಿತ ಸಿಮ್‌ ಕಾರ್ಡ್‌ಗಳು"</string>
@@ -549,7 +550,7 @@
     <string name="sim_description_emergency_calls" msgid="7535215397212301562">"ತುರ್ತು ಕರೆ ಮಾಡುವಿಕೆ ಮಾತ್ರ"</string>
     <string name="sim_description_default" msgid="4778679519938775515">"SIM ಕಾರ್ಡ್, ಸ್ಲಾಟ್: <xliff:g id="SLOT_ID">%s</xliff:g>"</string>
     <string name="accessibility_settings_activity_title" msgid="8562004288733103868">"ಪ್ರವೇಶಿಸುವಿಕೆ"</string>
-    <string name="status_hint_label_incoming_wifi_call" msgid="8772915926382037499">"ಒಳಬರುವ ವೈ-ಫೈ ಕರೆ"</string>
+    <string name="status_hint_label_incoming_wifi_call" msgid="8772915926382037499">"ಒಳಬರುವ Wi-Fi ಕರೆ"</string>
     <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"ವೈ-ಫೈ ಕರೆ"</string>
     <string name="emergency_action_launch_hint" msgid="5841511849007540970">"ತೆರೆಯಲು ಮತ್ತೊಮ್ಮೆ ಸ್ಪರ್ಶಿಸಿ"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"ಸಂದೇಶವನ್ನು ಡೀಕೋಡ್ ಮಾಡುವಾಗ ದೋಷವುಂಟಾಗಿದೆ."</string>

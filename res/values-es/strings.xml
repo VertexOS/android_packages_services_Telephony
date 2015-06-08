@@ -418,8 +418,7 @@
     <string name="puk2_blocked" msgid="3150263853077280049">"El PUK2 se ha bloqueado de forma permanente."</string>
     <string name="pin2_attempts" msgid="720736232885011507">\n"Quedan <xliff:g id="NUMBER">%d</xliff:g> intentos."</string>
     <string name="pin2_unblocked" msgid="7791600368153469078">"PIN2 desbloqueado"</string>
-    <!-- no translation found for pin2_error_exception (1088689322248996699) -->
-    <skip />
+    <string name="pin2_error_exception" msgid="1088689322248996699">"Error en la tarjeta SIM o en la red"</string>
     <string name="doneButton" msgid="2859593360997984240">"Listo"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"Número del buzón de voz"</string>
     <string name="card_title_dialing" msgid="5769417478498348054">"Llamando"</string>
@@ -542,6 +541,8 @@
     <string name="description_dial_button" msgid="7459705245418435351">"marcar"</string>
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"Vibrar"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"Vibrar"</string>
+    <!-- no translation found for voicemail_visual_voicemail_switch_title (5012622186976275457) -->
+    <skip />
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"Sonido"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"Tono y vibración"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"Tarjetas SIM integradas"</string>

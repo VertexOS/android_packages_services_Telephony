@@ -414,8 +414,7 @@
     <string name="puk2_blocked" msgid="3150263853077280049">"PUK2 ને કાયમી રૂપે અવરોધિત કરેલ છે."</string>
     <string name="pin2_attempts" msgid="720736232885011507">\n"તમારી પાસે <xliff:g id="NUMBER">%d</xliff:g> પ્રયાસ બાકી છે."</string>
     <string name="pin2_unblocked" msgid="7791600368153469078">"PIN2 હવે અવરોધિત નથી"</string>
-    <!-- no translation found for pin2_error_exception (1088689322248996699) -->
-    <skip />
+    <string name="pin2_error_exception" msgid="1088689322248996699">"નેટવર્ક અથવા SIM કાર્ડ ભૂલ"</string>
     <string name="doneButton" msgid="2859593360997984240">"થઈ ગયું"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"વૉઇસમેઇલ નંબર"</string>
     <string name="card_title_dialing" msgid="5769417478498348054">"ડાયલ કરી રહ્યાં છે"</string>
@@ -538,6 +537,8 @@
     <string name="description_dial_button" msgid="7459705245418435351">"ડાયલ કરો"</string>
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"વાઇબ્રેટ"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"વાઇબ્રેટ"</string>
+    <!-- no translation found for voicemail_visual_voicemail_switch_title (5012622186976275457) -->
+    <skip />
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"ધ્વનિ"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"રિંગટોન અને વાઇબ્રેટ"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"બિલ્ટ-ઇન SIM કાર્ડ્સ"</string>

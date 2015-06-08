@@ -116,12 +116,12 @@
     <string name="sum_cfb_disabled" msgid="4913145177320506827">"Naka-off"</string>
     <string name="disable_cfb_forbidden" msgid="3506984333877998061">"Hindi sinusuportahan ng iyong operator ang hindi pagpapagana sa pagpasa ng tawag kapag abala ang iyong telepono."</string>
     <string name="labelCFNRy" msgid="1736067178393744351">"Kapag hindi sinagot"</string>
-    <string name="messageCFNRy" msgid="672317899884380374">"Numero kapag hindi nasagot"</string>
+    <string name="messageCFNRy" msgid="672317899884380374">"Numero kapag hindi sinagot"</string>
     <string name="sum_cfnry_enabled" msgid="6955775691317662910">"Pinapasa sa <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfnry_disabled" msgid="3884684060443538097">"Naka-off"</string>
     <string name="disable_cfnry_forbidden" msgid="4308233959150658058">"Hindi sinusuportahan ng iyong operator ang hindi pagpapagana sa pagpasa ng tawag kapag hindi sumasagot ang iyong telepono."</string>
     <string name="labelCFNRc" msgid="2614827454402079766">"Kapag hindi makontak"</string>
-    <string name="messageCFNRc" msgid="6380695421020295119">"Numero kapag hindi maabot"</string>
+    <string name="messageCFNRc" msgid="6380695421020295119">"Numero kapag hindi makontak"</string>
     <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"Pinapasa sa <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfnrc_disabled" msgid="7222141261321276464">"Hindi pinagana"</string>
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"Hindi sinusuportahan ng iyong carrier ang hindi pagpapagana ng pagpasa ng tawag kapag hindi maabot ang iyong telepono."</string>
@@ -341,12 +341,12 @@
     <string name="fdn_list_with_label" msgid="7437232552210469217">"Listahan ng FDN (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="fdn_activation" msgid="2156479741307463576">"Pag-activate ng FDN"</string>
     <string name="fdn_enabled" msgid="5238109009915521240">"Pinagana ang Mga Fixed Dialing Number"</string>
-    <string name="fdn_disabled" msgid="4700049736675368279">"Hindi pinagana ang Mga Fixed Dialing Number"</string>
-    <string name="enable_fdn" msgid="3740191529180493851">"Paganahin ang FDN"</string>
+    <string name="fdn_disabled" msgid="4700049736675368279">"Naka-disable ang Mga Fixed Dialing Number"</string>
+    <string name="enable_fdn" msgid="3740191529180493851">"I-enable ang FDN"</string>
     <string name="disable_fdn" msgid="7944020890722540616">"Huwag paganahin ang FDN"</string>
     <string name="change_pin2" msgid="2153563695382176676">"Baguhin ang PIN2"</string>
     <string name="enable_fdn_ok" msgid="7215588870329688132">"Huwag paganahin ang FDN"</string>
-    <string name="disable_fdn_ok" msgid="5727046928930740173">"Paganahin ang FDN"</string>
+    <string name="disable_fdn_ok" msgid="5727046928930740173">"I-enable ang FDN"</string>
     <string name="sum_fdn" msgid="1959399454900272878">"Pamahalaan ang Mga Fixed Dialing Number"</string>
     <string name="sum_fdn_change_pin" msgid="6666549734792827932">"Palitan ang PIN para sa access sa FDN"</string>
     <string name="sum_fdn_manage_list" msgid="8431088265332628316">"Pamahalaan ang listahan ng numero ng telepono"</string>
@@ -379,7 +379,7 @@
     <string name="fdn_failed" msgid="540018079008319747">"Nagbigo ang operasyon ng FDN."</string>
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"Nagbabasa mula sa SIM card…"</string>
     <string name="simContacts_empty" msgid="5270660846489561932">"Walang mga contact sa iyong SIM card."</string>
-    <string name="simContacts_title" msgid="1861472842524839921">"Piliin ang mga contact upang i-import"</string>
+    <string name="simContacts_title" msgid="1861472842524839921">"Piliin ang mga contact na ii-import"</string>
     <string name="simContacts_airplaneMode" msgid="5254946758982621072">"I-off ang airplane mode upang mag-import ng mga contact mula sa SIM card."</string>
     <string name="enable_pin" msgid="5422767284133234860">"Paganahin/huwag paganahin ang PIN ng SIM"</string>
     <string name="change_pin" msgid="9174186126330785343">"Baguhin ang PIN ng SIM"</string>
@@ -414,8 +414,7 @@
     <string name="puk2_blocked" msgid="3150263853077280049">"Permanenteng na-block ang PUK2."</string>
     <string name="pin2_attempts" msgid="720736232885011507">\n"Mayroon ka na lang <xliff:g id="NUMBER">%d</xliff:g> (na) natitirang pagsubok."</string>
     <string name="pin2_unblocked" msgid="7791600368153469078">"Hindi na naka-block ang PIN2"</string>
-    <!-- no translation found for pin2_error_exception (1088689322248996699) -->
-    <skip />
+    <string name="pin2_error_exception" msgid="1088689322248996699">"Error sa network o SIM card"</string>
     <string name="doneButton" msgid="2859593360997984240">"Tapos na"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"Numero ng voicemail"</string>
     <string name="card_title_dialing" msgid="5769417478498348054">"Dina-dial"</string>
@@ -538,6 +537,8 @@
     <string name="description_dial_button" msgid="7459705245418435351">"Mag-dial"</string>
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"Mag-vibrate"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"Mag-vibrate"</string>
+    <!-- no translation found for voicemail_visual_voicemail_switch_title (5012622186976275457) -->
+    <skip />
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"Tunog"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"Ringtone at Pag-vibrate"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"Mga built-in na SIM card"</string>
