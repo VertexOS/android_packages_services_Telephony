@@ -357,6 +357,9 @@ public class ImapHelper {
 
     private ImapFolder openImapFolder(String modeReadWrite) {
         try {
+            if (mImapStore == null) {
+                return null;
+            }
             ImapFolder folder = new ImapFolder(mImapStore, ImapConstants.INBOX);
             folder.open(modeReadWrite);
             return folder;
