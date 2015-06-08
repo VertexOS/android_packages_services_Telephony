@@ -156,7 +156,7 @@
     <string name="label_available" msgid="1181658289009300430">"Rangkaian sedia ada"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"Mencari..."</string>
     <string name="empty_networks_list" msgid="4249426905018815316">"Tiada rangkaian ditemui."</string>
-    <string name="search_networks" msgid="1601136049300882441">"Cari dalam rangkaian"</string>
+    <string name="search_networks" msgid="1601136049300882441">"Cari rangkaian"</string>
     <string name="network_query_error" msgid="6828516148953325006">"Ralat ketika mencari rangkaian."</string>
     <string name="register_on_network" msgid="9055203954040805084">"Mendaftar di <xliff:g id="NETWORK">%s</xliff:g>..."</string>
     <string name="not_allowed" msgid="5613353860205691579">"Kad SIM anda tidak membenarkan sambungan ke rangkaian ini."</string>
@@ -209,7 +209,7 @@
     <string name="roaming_enable" msgid="7331106985174381987">"Sambung ke perkhidmatan data apabila melakukan perayauan"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"Bersambung ke perkhidmatan data semasa melakukan perayauan"</string>
     <string name="roaming_reenable_message" msgid="8913735676127858115">"Anda telah kehilangan kesambungan data kerana anda meninggalkan rangkaian rumah anda dengan data perayauan dimatikan."</string>
-    <string name="roaming_warning" msgid="1603164667540144353">"Anda boleh dikenakan caj yang ketara."</string>
+    <string name="roaming_warning" msgid="1603164667540144353">"Anda mungkin dikenakan caj yang tinggi."</string>
     <string name="roaming_alert_title" msgid="3654815360303826008">"Benarkan perayauan data?"</string>
     <string name="gsm_umts_options" msgid="6538311689850981686">"Pilihan GSM/UMTS"</string>
     <string name="cdma_options" msgid="4016822858172249884">"Pilihan CDMA"</string>
@@ -377,7 +377,7 @@
     <string name="fdn_invalid_number" msgid="1494755047900009147">"FDN tidak dikemas kini kerana nombor tidak boleh melebihi 20 digit."</string>
     <string name="pin2_or_fdn_invalid" msgid="6025144083384701197">"FDN tidak dikemaskini. PIN2 salah atau nombor telefon telah ditolak."</string>
     <string name="fdn_failed" msgid="540018079008319747">"Operasi FDN gagal."</string>
-    <string name="simContacts_emptyLoading" msgid="2203331234764498011">"Membaca dari kad SIM..."</string>
+    <string name="simContacts_emptyLoading" msgid="2203331234764498011">"Membaca daripada kad SIM..."</string>
     <string name="simContacts_empty" msgid="5270660846489561932">"Tiada kenalan pada kad SIM anda."</string>
     <string name="simContacts_title" msgid="1861472842524839921">"Pilih kenalan untuk diimport"</string>
     <string name="simContacts_airplaneMode" msgid="5254946758982621072">"Matikan mod pesawat untuk mengimport kenalan daripada kad SIM."</string>
@@ -414,8 +414,7 @@
     <string name="puk2_blocked" msgid="3150263853077280049">"PUK2 disekat secara kekal."</string>
     <string name="pin2_attempts" msgid="720736232885011507">\n"Anda mempunyai <xliff:g id="NUMBER">%d</xliff:g> percubaan lagi."</string>
     <string name="pin2_unblocked" msgid="7791600368153469078">"PIN2 tidak disekat lagi"</string>
-    <!-- no translation found for pin2_error_exception (1088689322248996699) -->
-    <skip />
+    <string name="pin2_error_exception" msgid="1088689322248996699">"Ralat rangkaian atau kad SIM"</string>
     <string name="doneButton" msgid="2859593360997984240">"Selesai"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"Nombor mel suara"</string>
     <string name="card_title_dialing" msgid="5769417478498348054">"Mendail"</string>
@@ -426,8 +425,8 @@
     <string name="card_title_on_hold" msgid="821463117892339942">"Ditunda"</string>
     <string name="card_title_hanging_up" msgid="3999101620995182450">"Menamatkan panggilan"</string>
     <string name="card_title_in_call" msgid="6346543933068225205">"Dalam panggilan"</string>
-    <string name="notification_voicemail_title" msgid="8933468752045550523">"Mel suara baru"</string>
-    <string name="notification_voicemail_title_count" msgid="4366360747660929916">"Mel suara baru (<xliff:g id="COUNT">%d</xliff:g>)"</string>
+    <string name="notification_voicemail_title" msgid="8933468752045550523">"Mel suara baharu"</string>
+    <string name="notification_voicemail_title_count" msgid="4366360747660929916">"Mel suara baharu (<xliff:g id="COUNT">%d</xliff:g>)"</string>
     <string name="notification_voicemail_text_format" msgid="4447323569453981685">"Dail <xliff:g id="VOICEMAIL_NUMBER">%s</xliff:g>"</string>
     <string name="notification_voicemail_no_vm_number" msgid="760963466895609716">"Nombor mel suara tidak dikenali"</string>
     <string name="notification_network_selection_title" msgid="4224455487793492772">"Tiada perkhidmatan"</string>
@@ -538,6 +537,8 @@
     <string name="description_dial_button" msgid="7459705245418435351">"dail"</string>
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"Getar"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"Getar"</string>
+    <!-- no translation found for voicemail_visual_voicemail_switch_title (5012622186976275457) -->
+    <skip />
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"Bunyi"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"Nada dering &amp; Bergetar"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"Kad SIM terbina dalam"</string>

@@ -101,28 +101,28 @@
     <string name="labelCW" msgid="6120513814915920200">"Паралельний виклик"</string>
     <string name="sum_cw_enabled" msgid="8083061901633671397">"Під час дзвінка сповіщати про вхідні дзвінки"</string>
     <string name="sum_cw_disabled" msgid="3648693907300104575">"Під час дзвінка сповіщати про вхідні дзвінки"</string>
-    <string name="call_forwarding_settings" msgid="3378927671091537173">"Налаштування переадресації виклику"</string>
+    <string name="call_forwarding_settings" msgid="3378927671091537173">"Переадресація"</string>
     <string name="call_forwarding_settings_with_label" msgid="8569489414006897127">"Налаштування переадресації виклику (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="labelCF" msgid="2574386948026924737">"Переадресація виклику"</string>
     <string name="labelCFU" msgid="8147177368148660600">"Завжди переадресовувати"</string>
     <string name="messageCFU" msgid="3560082430662923687">"Завжди переадресовувати на цей номер"</string>
     <string name="sum_cfu_enabled_indicator" msgid="4014187342724130197">"Пересил. всіх викликів"</string>
-    <string name="sum_cfu_enabled" msgid="2450052502198827927">"Пересилання всіх викликів на <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
+    <string name="sum_cfu_enabled" msgid="2450052502198827927">"Переадресація всіх викликів на <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfu_enabled_no_number" msgid="6591985777096823616">"Номер недоступний"</string>
     <string name="sum_cfu_disabled" msgid="8384177689501334080">"Вимкнено"</string>
     <string name="labelCFB" msgid="6139853033106283172">"Коли зайнято"</string>
     <string name="messageCFB" msgid="3711089705936187129">"Переадресовувати на цей номер"</string>
-    <string name="sum_cfb_enabled" msgid="5984198104833116690">"Пересилання на <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
+    <string name="sum_cfb_enabled" msgid="5984198104833116690">"Переадресація на <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfb_disabled" msgid="4913145177320506827">"Вимкнено"</string>
     <string name="disable_cfb_forbidden" msgid="3506984333877998061">"Ваш оператор не підтримує вимкнення переадресації викликів, коли телефон зайнятий."</string>
     <string name="labelCFNRy" msgid="1736067178393744351">"Коли немає відповіді"</string>
     <string name="messageCFNRy" msgid="672317899884380374">"Переадресовувати на цей номер"</string>
-    <string name="sum_cfnry_enabled" msgid="6955775691317662910">"Пересилання на <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
+    <string name="sum_cfnry_enabled" msgid="6955775691317662910">"Переадресація на <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfnry_disabled" msgid="3884684060443538097">"Вимкнено"</string>
     <string name="disable_cfnry_forbidden" msgid="4308233959150658058">"Ваш оператор не підтримує вимкнення переадресації викликів, коли телефон не відповідає."</string>
     <string name="labelCFNRc" msgid="2614827454402079766">"Коли недоступно"</string>
     <string name="messageCFNRc" msgid="6380695421020295119">"Переадресовувати на цей номер"</string>
-    <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"Пересилання на <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
+    <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"Переадресація на <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfnrc_disabled" msgid="7222141261321276464">"Вимкнено"</string>
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"Ваш оператор не підтримує вимкнення переадресації викликів, коли телефон недосяжний."</string>
     <string name="updating_title" msgid="6146755386174019046">"Налаштування викликів"</string>
@@ -143,7 +143,7 @@
   <string-array name="clir_display_values">
     <item msgid="5560134294467334594">"Налаштування мережі за умовчанням"</item>
     <item msgid="7876195870037833661">"Сховати номер"</item>
-    <item msgid="1108394741608734023">"Показ. номер"</item>
+    <item msgid="1108394741608734023">"Показувати номер"</item>
   </string-array>
     <string name="vm_changed" msgid="380744030726254139">"Номер голос. пошти змінено."</string>
     <string name="vm_change_failed" msgid="3352934863246208918">"Не вдалося змінити номер голосової пошти.\nЗв’яжіться зі своїм оператором, якщо проблема не зникне."</string>
@@ -338,7 +338,7 @@
     <string name="fdn" msgid="7878832555095183202">"Номери фіксованого набору"</string>
     <string name="fdn_with_label" msgid="187084204115493366">"Фіксовані номери (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="manage_fdn_list" msgid="8777755791892122369">"Список FDN"</string>
-    <string name="fdn_list_with_label" msgid="7437232552210469217">"Список фіксованих номерів (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="fdn_list_with_label" msgid="7437232552210469217">"Фіксовані номери (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="fdn_activation" msgid="2156479741307463576">"Активація FDN"</string>
     <string name="fdn_enabled" msgid="5238109009915521240">"Номери фіксованого набору увімкнено"</string>
     <string name="fdn_disabled" msgid="4700049736675368279">"Номери фіксованого набору вимкнено"</string>
@@ -377,8 +377,8 @@
     <string name="fdn_invalid_number" msgid="1494755047900009147">"Фіксований номер (FDN) не оновлено, оскільки кількість цифр не може перевищувати 20."</string>
     <string name="pin2_or_fdn_invalid" msgid="6025144083384701197">"Фіксований номер (FDN) не оновлено. PIN2-код неправильний або номер телефону відхилено."</string>
     <string name="fdn_failed" msgid="540018079008319747">"Помилка набору фіксованого номера."</string>
-    <string name="simContacts_emptyLoading" msgid="2203331234764498011">"Читання з SIM-карти…"</string>
-    <string name="simContacts_empty" msgid="5270660846489561932">"У SIM-карті немає контактів."</string>
+    <string name="simContacts_emptyLoading" msgid="2203331234764498011">"Читання із SIM-карти…"</string>
+    <string name="simContacts_empty" msgid="5270660846489561932">"На SIM-карті немає контактів"</string>
     <string name="simContacts_title" msgid="1861472842524839921">"Виберіть контакти для імпорту"</string>
     <string name="simContacts_airplaneMode" msgid="5254946758982621072">"Щоб імпортувати контакти із SIM-карти, вимкніть режим польоту."</string>
     <string name="enable_pin" msgid="5422767284133234860">"Увімк./вимк. PIN-код SIM"</string>
@@ -414,11 +414,10 @@
     <string name="puk2_blocked" msgid="3150263853077280049">"PUK2-код назавжди заблоковано."</string>
     <string name="pin2_attempts" msgid="720736232885011507">\n"У вас залишилося стільки спроб: <xliff:g id="NUMBER">%d</xliff:g>."</string>
     <string name="pin2_unblocked" msgid="7791600368153469078">"PIN2-код більше не заблоковано"</string>
-    <!-- no translation found for pin2_error_exception (1088689322248996699) -->
-    <skip />
+    <string name="pin2_error_exception" msgid="1088689322248996699">"Помилка мережі або SIM-карти"</string>
     <string name="doneButton" msgid="2859593360997984240">"Готово"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"Номер голос. пошти"</string>
-    <string name="card_title_dialing" msgid="5769417478498348054">"Набір"</string>
+    <string name="card_title_dialing" msgid="5769417478498348054">"Набір номера"</string>
     <string name="card_title_redialing" msgid="8253487008234167266">"Повторний набір"</string>
     <string name="card_title_conf_call" msgid="1162980346189744501">"Конференц-виклик"</string>
     <string name="card_title_incoming_call" msgid="7364539451234646909">"Вхідний дзвінок"</string>
@@ -458,7 +457,7 @@
     <string name="onscreenEndCallText" msgid="4403855834875398585">"Закінч."</string>
     <string name="onscreenShowDialpadText" msgid="8561805492659639893">"Цифр. клав."</string>
     <string name="onscreenMuteText" msgid="5011369181754261374">"Вимк. зв."</string>
-    <string name="onscreenAddCallText" msgid="5140385634712287403">"Дод. виклик"</string>
+    <string name="onscreenAddCallText" msgid="5140385634712287403">"Додати виклик"</string>
     <string name="onscreenMergeCallsText" msgid="6640195098064538950">"Об’єдн. дзвінки"</string>
     <string name="onscreenSwapCallsText" msgid="1602990689244030047">"Поміняти"</string>
     <string name="onscreenManageCallsText" msgid="5473231160123254154">"Керув. викликами"</string>
@@ -544,6 +543,8 @@
     <string name="description_dial_button" msgid="7459705245418435351">"дзвонити"</string>
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"Вібросигнал"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"Вібросигнал"</string>
+    <!-- no translation found for voicemail_visual_voicemail_switch_title (5012622186976275457) -->
+    <skip />
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"Звук"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"Сигнал дзвінка та вібросигнал"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"Вбудовані SIM-карти"</string>

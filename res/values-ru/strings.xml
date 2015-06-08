@@ -416,8 +416,7 @@
     <string name="puk2_blocked" msgid="3150263853077280049">"Код PUK2 заблокирован навсегда"</string>
     <string name="pin2_attempts" msgid="720736232885011507">\n"Осталось попыток: <xliff:g id="NUMBER">%d</xliff:g>."</string>
     <string name="pin2_unblocked" msgid="7791600368153469078">"Код PIN2 разблокирован"</string>
-    <!-- no translation found for pin2_error_exception (1088689322248996699) -->
-    <skip />
+    <string name="pin2_error_exception" msgid="1088689322248996699">"Ошибка сети или SIM-карты"</string>
     <string name="doneButton" msgid="2859593360997984240">"Готово"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"Номер голосовой почты"</string>
     <string name="card_title_dialing" msgid="5769417478498348054">"Набор номера"</string>
@@ -460,7 +459,7 @@
     <string name="onscreenEndCallText" msgid="4403855834875398585">"Завершить"</string>
     <string name="onscreenShowDialpadText" msgid="8561805492659639893">"Кнопки"</string>
     <string name="onscreenMuteText" msgid="5011369181754261374">"Откл. звук"</string>
-    <string name="onscreenAddCallText" msgid="5140385634712287403">"+ вызов"</string>
+    <string name="onscreenAddCallText" msgid="5140385634712287403">"Добавить вызов"</string>
     <string name="onscreenMergeCallsText" msgid="6640195098064538950">"Соединить"</string>
     <string name="onscreenSwapCallsText" msgid="1602990689244030047">"Перевод звонка"</string>
     <string name="onscreenManageCallsText" msgid="5473231160123254154">"Управление вызовами"</string>
@@ -546,6 +545,8 @@
     <string name="description_dial_button" msgid="7459705245418435351">"набор номера"</string>
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"Вибросигнал"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"Вибросигнал"</string>
+    <!-- no translation found for voicemail_visual_voicemail_switch_title (5012622186976275457) -->
+    <skip />
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"Звук"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"Рингтон и вибросигнал"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"Встроенные SIM-карты"</string>
@@ -555,7 +556,7 @@
     <string name="enable_video_calling_dialog_close" msgid="7411471282167927991">"Закрыть"</string>
     <string name="sim_label_emergency_calls" msgid="4847699229529306397">"Экстренные вызовы"</string>
     <string name="sim_description_emergency_calls" msgid="7535215397212301562">"Только экстренные вызовы"</string>
-    <string name="sim_description_default" msgid="4778679519938775515">"SIM-карта, разъем: <xliff:g id="SLOT_ID">%s</xliff:g>"</string>
+    <string name="sim_description_default" msgid="4778679519938775515">"SIM-карта, слот: <xliff:g id="SLOT_ID">%s</xliff:g>"</string>
     <string name="accessibility_settings_activity_title" msgid="8562004288733103868">"Специальные возможности"</string>
     <string name="status_hint_label_incoming_wifi_call" msgid="8772915926382037499">"Входящий Wi-Fi-звонок"</string>
     <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"Wi-Fi-звонок"</string>

@@ -97,7 +97,7 @@
     <string name="sum_loading_settings" msgid="1826692909391168620">"Настройките се зареждат…"</string>
     <string name="sum_hide_caller_id" msgid="1071407020290873782">"Скриване на номера при изходящи обаждания"</string>
     <string name="sum_show_caller_id" msgid="6768534125447290401">"Показване на номера при изходящи обаждания"</string>
-    <string name="sum_default_caller_id" msgid="1954518825510901365">"Използване на стандартните ннастройки на оператора за извеждане на номера ми при изходящи обаждания"</string>
+    <string name="sum_default_caller_id" msgid="1954518825510901365">"Използване на стандартните настройки на оператора за показване на номера ми при изходящи обаждания"</string>
     <string name="labelCW" msgid="6120513814915920200">"Изчакващо обаждане"</string>
     <string name="sum_cw_enabled" msgid="8083061901633671397">"Да бъда уведомяван/а за вх. обаждания по време на разговор"</string>
     <string name="sum_cw_disabled" msgid="3648693907300104575">"Да бъда уведомяван/а за вх. обаждания по време на разговор"</string>
@@ -111,23 +111,23 @@
     <string name="sum_cfu_enabled_no_number" msgid="6591985777096823616">"Номерът не е наличен"</string>
     <string name="sum_cfu_disabled" msgid="8384177689501334080">"Изключено"</string>
     <string name="labelCFB" msgid="6139853033106283172">"При заета линия"</string>
-    <string name="messageCFB" msgid="3711089705936187129">"Показва номер, при заета мрежа"</string>
+    <string name="messageCFB" msgid="3711089705936187129">"Номер при заета линия"</string>
     <string name="sum_cfb_enabled" msgid="5984198104833116690">"Пренасочва се към <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfb_disabled" msgid="4913145177320506827">"Изключено"</string>
     <string name="disable_cfb_forbidden" msgid="3506984333877998061">"Операторът ви не поддържа деактивиране на пренасочването на обаждания по време на разговор."</string>
     <string name="labelCFNRy" msgid="1736067178393744351">"Когато няма отговор"</string>
-    <string name="messageCFNRy" msgid="672317899884380374">"Показва номер, когато няма отговор"</string>
+    <string name="messageCFNRy" msgid="672317899884380374">"Номер, когато няма отговор"</string>
     <string name="sum_cfnry_enabled" msgid="6955775691317662910">"Пренасочва се към <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfnry_disabled" msgid="3884684060443538097">"Изключено"</string>
     <string name="disable_cfnry_forbidden" msgid="4308233959150658058">"Операторът ви не поддържа деактивиране на пренасочването на обаждания, когато телефонът ви не отговаря."</string>
-    <string name="labelCFNRc" msgid="2614827454402079766">"Когато не може да се установи връзка"</string>
-    <string name="messageCFNRc" msgid="6380695421020295119">"Показва номер, когато няма достъп"</string>
+    <string name="labelCFNRc" msgid="2614827454402079766">"Когато няма връзка"</string>
+    <string name="messageCFNRc" msgid="6380695421020295119">"Номер, когато няма достъп"</string>
     <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"Пренасочва се към <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfnrc_disabled" msgid="7222141261321276464">"Деактивирано"</string>
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"Операторът ви не поддържа деактивиране на пренасочването на обаждания, когато няма връзка с телефона."</string>
     <string name="updating_title" msgid="6146755386174019046">"Настройки за обаждане"</string>
     <string name="call_settings_primary_user_only" msgid="5679923943740900965">"Само основният потребител може да променя настройките за обаждане."</string>
-    <string name="call_settings_with_label" msgid="89359812614544532">"Настройки за обаждане (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="call_settings_with_label" msgid="89359812614544532">"Настройки (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="error_updating_title" msgid="7970259216988931777">"Грешка в настройките за обаждане"</string>
     <string name="reading_settings" msgid="1920291699287055284">"Извършва се четене на настройки…"</string>
     <string name="updating_settings" msgid="8171225533884883252">"Настройките се актуализират…"</string>
@@ -335,10 +335,10 @@
     <string name="cdma_activate_device" msgid="3793805892364814518">"Активиране на устройството"</string>
     <string name="cdma_lte_data_service" msgid="4255018217292548962">"Настройка на услугата за данни"</string>
     <string name="carrier_settings_title" msgid="9028166176523012300">"Настройки за оператора"</string>
-    <string name="fdn" msgid="7878832555095183202">"Фиксирани номера за набиране"</string>
+    <string name="fdn" msgid="7878832555095183202">"Фиксирани номера"</string>
     <string name="fdn_with_label" msgid="187084204115493366">"Фиксирани номера за набиране (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="manage_fdn_list" msgid="8777755791892122369">"Списък с FDN"</string>
-    <string name="fdn_list_with_label" msgid="7437232552210469217">"Списък с фиксирани номера за набиране (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="fdn_list_with_label" msgid="7437232552210469217">"Списък с FDN (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="fdn_activation" msgid="2156479741307463576">"Активиране на FDN"</string>
     <string name="fdn_enabled" msgid="5238109009915521240">"Фиксираните номера за набиране са активирани"</string>
     <string name="fdn_disabled" msgid="4700049736675368279">"Фиксираните номера за набиране са деактивирани"</string>
@@ -377,9 +377,9 @@
     <string name="fdn_invalid_number" msgid="1494755047900009147">"FDN не бе актуализирано, защото номерът не може да надвишава 20 цифри."</string>
     <string name="pin2_or_fdn_invalid" msgid="6025144083384701197">"FDN не е актуализирано. PIN2 бе неправилен или телефонният номер бе отхвърлен."</string>
     <string name="fdn_failed" msgid="540018079008319747">"Операцията с фиксираните номера за набиране (FDN) не бе успешна."</string>
-    <string name="simContacts_emptyLoading" msgid="2203331234764498011">"Извършва се четене на данни от SIM картата…"</string>
+    <string name="simContacts_emptyLoading" msgid="2203331234764498011">"Четене на данни от SIM картата…"</string>
     <string name="simContacts_empty" msgid="5270660846489561932">"Няма контакти в SIM картата ви."</string>
-    <string name="simContacts_title" msgid="1861472842524839921">"Избиране на контакти за импортиране"</string>
+    <string name="simContacts_title" msgid="1861472842524839921">"Контакти за импортиране"</string>
     <string name="simContacts_airplaneMode" msgid="5254946758982621072">"Изключете самолетния режим, за да импортирате контактите от SIM картата."</string>
     <string name="enable_pin" msgid="5422767284133234860">"Активиране/деактивиране на PIN за SIM карта"</string>
     <string name="change_pin" msgid="9174186126330785343">"Промяна на PIN за SIM карта"</string>
@@ -414,8 +414,7 @@
     <string name="puk2_blocked" msgid="3150263853077280049">"PUK2 е блокиран завинаги."</string>
     <string name="pin2_attempts" msgid="720736232885011507">\n"Остават ви <xliff:g id="NUMBER">%d</xliff:g> опита."</string>
     <string name="pin2_unblocked" msgid="7791600368153469078">"ПИН2 кодът вече не е блокиран"</string>
-    <!-- no translation found for pin2_error_exception (1088689322248996699) -->
-    <skip />
+    <string name="pin2_error_exception" msgid="1088689322248996699">"Грешка в мрежата или SIM картата"</string>
     <string name="doneButton" msgid="2859593360997984240">"Готово"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"Номер за гласова поща"</string>
     <string name="card_title_dialing" msgid="5769417478498348054">"Набиране"</string>
@@ -538,6 +537,8 @@
     <string name="description_dial_button" msgid="7459705245418435351">"набиране"</string>
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"Вибриране"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"Вибриране"</string>
+    <!-- no translation found for voicemail_visual_voicemail_switch_title (5012622186976275457) -->
+    <skip />
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"Звук"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"Мелодия и вибриране"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"Вградени SIM карти"</string>

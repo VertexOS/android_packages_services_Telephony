@@ -335,13 +335,13 @@
     <string name="cdma_activate_device" msgid="3793805892364814518">"పరికరాన్ని సక్రియం చేయండి"</string>
     <string name="cdma_lte_data_service" msgid="4255018217292548962">"డేటా సేవను సెటప్ చేయండి"</string>
     <string name="carrier_settings_title" msgid="9028166176523012300">"క్యారియర్ సెట్టింగ్‌లు"</string>
-    <string name="fdn" msgid="7878832555095183202">"ఫిక్స్‌డ్ డయలింగ్ నంబర్‌లు"</string>
-    <string name="fdn_with_label" msgid="187084204115493366">"ఫిక్స్‌డ్ డయలింగ్ నంబర్‌లు (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="fdn" msgid="7878832555095183202">"ఫిక్సెడ్ డయలింగ్ నంబర్‌లు"</string>
+    <string name="fdn_with_label" msgid="187084204115493366">"ఫిక్సెడ్ డయలింగ్ నంబర్‌లు (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="manage_fdn_list" msgid="8777755791892122369">"FDN జాబితా"</string>
     <string name="fdn_list_with_label" msgid="7437232552210469217">"FDN జాబితా (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="fdn_activation" msgid="2156479741307463576">"FDN సక్రియం"</string>
-    <string name="fdn_enabled" msgid="5238109009915521240">"ఫిక్స్‌డ్ డయలింగ్ నంబర్‌లు ప్రారంభించబడ్డాయి"</string>
-    <string name="fdn_disabled" msgid="4700049736675368279">"ఫిక్స్‌డ్ డయలింగ్ నంబర్‌లు నిలిపివేయబడ్డాయి"</string>
+    <string name="fdn_enabled" msgid="5238109009915521240">"ఫిక్సెడ్ డయలింగ్ నంబర్‌లు ప్రారంభించబడ్డాయి"</string>
+    <string name="fdn_disabled" msgid="4700049736675368279">"ఫిక్సెడ్ డయలింగ్ నంబర్‌లు నిలిపివేయబడ్డాయి"</string>
     <string name="enable_fdn" msgid="3740191529180493851">"FDNని ప్రారంభించు"</string>
     <string name="disable_fdn" msgid="7944020890722540616">"FDNని నిలిపివేయి"</string>
     <string name="change_pin2" msgid="2153563695382176676">"PIN2ని మార్చు"</string>
@@ -379,7 +379,7 @@
     <string name="fdn_failed" msgid="540018079008319747">"FDN చర్య విఫలమైంది."</string>
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"SIM కార్డు నుండి చదువుతోంది…"</string>
     <string name="simContacts_empty" msgid="5270660846489561932">"మీ SIM కార్డులో పరిచయాలు ఏవీ లేవు."</string>
-    <string name="simContacts_title" msgid="1861472842524839921">"దిగుమతి చేయడానికి పరిచయాలను ఎంచుకోండి"</string>
+    <string name="simContacts_title" msgid="1861472842524839921">"దిగుమతి కోసం పరిచయాలు"</string>
     <string name="simContacts_airplaneMode" msgid="5254946758982621072">"SIM కార్డ్‌లోని పరిచయాలను దిగుమతి చేయడానికి ఎయిర్‌ప్లైన్ మోడ్‌ను ఆఫ్ చేయండి."</string>
     <string name="enable_pin" msgid="5422767284133234860">"SIM PINను ప్రారంభించండి/నిలిపివేయండి"</string>
     <string name="change_pin" msgid="9174186126330785343">"SIM PINను మార్చండి"</string>
@@ -414,8 +414,7 @@
     <string name="puk2_blocked" msgid="3150263853077280049">"PUK2 శాశ్వతంగా బ్లాక్ చేయబడింది."</string>
     <string name="pin2_attempts" msgid="720736232885011507">\n"మీకు <xliff:g id="NUMBER">%d</xliff:g> ప్రయత్నాలు మిగిలి ఉన్నాయి."</string>
     <string name="pin2_unblocked" msgid="7791600368153469078">"PIN2 ఇప్పుడు బ్లాక్ అయ్యి లేదు"</string>
-    <!-- no translation found for pin2_error_exception (1088689322248996699) -->
-    <skip />
+    <string name="pin2_error_exception" msgid="1088689322248996699">"నెట్‌వర్క్ లేదా SIM కార్డ్ లోపం"</string>
     <string name="doneButton" msgid="2859593360997984240">"పూర్తయింది"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"వాయిస్ మెయిల్ నంబర్"</string>
     <string name="card_title_dialing" msgid="5769417478498348054">"డయల్ చేస్తోంది"</string>
@@ -538,6 +537,8 @@
     <string name="description_dial_button" msgid="7459705245418435351">"డయల్ చేయి"</string>
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"వైబ్రేట్"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"వైబ్రేట్"</string>
+    <!-- no translation found for voicemail_visual_voicemail_switch_title (5012622186976275457) -->
+    <skip />
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"ధ్వని"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"రింగ్‌టోన్ &amp; వైబ్రేట్"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"అంతర్నిర్మిత SIM కార్డులు"</string>

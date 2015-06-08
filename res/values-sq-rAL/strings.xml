@@ -210,7 +210,7 @@
     <string name="roaming_disable" msgid="1843417228755568110">"Lidhu me shërbimin e të dhënave kur je në roaming"</string>
     <string name="roaming_reenable_message" msgid="8913735676127858115">"E humbët lidhjen e të dhënave sepse sapo latë rrjetin e vendit tuaj dhe tani jeni me të dhëna roaming-u, të cilat ende nuk janë aktivizuar."</string>
     <string name="roaming_warning" msgid="1603164667540144353">"Mund të shkaktohen tarifa të larta."</string>
-    <string name="roaming_alert_title" msgid="3654815360303826008">"Të lejohen të dhënat e roaming-ut?"</string>
+    <string name="roaming_alert_title" msgid="3654815360303826008">"Të lejohet përdorimi i të dhënave kur je në roaming?"</string>
     <string name="gsm_umts_options" msgid="6538311689850981686">"Opsionet GSM/UMTS"</string>
     <string name="cdma_options" msgid="4016822858172249884">"Opsionet CDMA"</string>
     <string name="throttle_data_usage" msgid="3715677828160555808">"Përdorimi i të dhënave"</string>
@@ -220,9 +220,9 @@
     <string name="throttle_help" msgid="243651091785169900">"Mëso më shumë"</string>
     <string name="throttle_status_subtext" msgid="1657318943142085170">"<xliff:g id="USED_0">%1$s</xliff:g> (<xliff:g id="USED_1">%2$d</xliff:g>٪) nga maksimumi i periudhës prej <xliff:g id="USED_2">%3$s</xliff:g> \nPeriudha tjetër fillon për <xliff:g id="USED_3">%4$d</xliff:g> ditë (<xliff:g id="USED_4">%5$s</xliff:g>)"</string>
     <string name="throttle_data_usage_subtext" msgid="6029276011123694701">"<xliff:g id="USED_0">%1$s</xliff:g> (<xliff:g id="USED_1">%2$d</xliff:g>٪) nga maksimumi i periudhës prej <xliff:g id="USED_2">%3$s</xliff:g>"</string>
-    <string name="throttle_data_rate_reduced_subtext" msgid="7492763592720107737">"U kapërcye maksimumi i <xliff:g id="USED_0">%1$s</xliff:g>\nShpejtësia e të dhënave u pakësua deri në <xliff:g id="USED_1">%2$d</xliff:g> kilobit/sek."</string>
+    <string name="throttle_data_rate_reduced_subtext" msgid="7492763592720107737">"U kapërcye maksimumi i <xliff:g id="USED_0">%1$s</xliff:g>\nShpejtësia e të dhënave u pakësua deri në <xliff:g id="USED_1">%2$d</xliff:g> Kb/s"</string>
     <string name="throttle_time_frame_subtext" msgid="7732763021560399960">"Ka kaluar <xliff:g id="USED_0">%1$d</xliff:g>٪ të ciklit\nPeriudha tjetër fillon për <xliff:g id="USED_1">%2$d</xliff:g> ditë (<xliff:g id="USED_2">%3$s</xliff:g>)"</string>
-    <string name="throttle_rate_subtext" msgid="2149102656120726855">"Shpejtësia e të dhënave pakësohet në <xliff:g id="USED">%1$d</xliff:g> kilobit/sek. nëse tejkalohet kufiri i përdorimit të të dhënave"</string>
+    <string name="throttle_rate_subtext" msgid="2149102656120726855">"Shpejtësia e të dhënave pakësohet në <xliff:g id="USED">%1$d</xliff:g> Kb/s nëse tejkalohet kufiri i përdorimit të të dhënave"</string>
     <string name="throttle_help_subtext" msgid="3633091498168446044">"Më shumë informacion rreth politikës së përdorimit të të dhënave të rrjetit celular të operatorit tënd"</string>
     <string name="cell_broadcast_sms" msgid="5584192824053625842">"SMS-ja e \"Transmetimit celular\""</string>
     <string name="enable_disable_cell_bc_sms" msgid="4851147873691392255">"SMS-ja e transmetimit celular"</string>
@@ -364,15 +364,15 @@
     <string name="name" msgid="7329028332786872378">"Emri"</string>
     <string name="number" msgid="7905950798349903858">"Numri"</string>
     <string name="save" msgid="4094274636321939086">"Ruaj"</string>
-    <string name="add_fdn_contact" msgid="2481915899633353976">"Shto numër me formim fiks"</string>
-    <string name="adding_fdn_contact" msgid="7627379633721940991">"Po shton numër me formim fiks…"</string>
-    <string name="fdn_contact_added" msgid="7458335758501736665">"Numri me formim fiks u shtua."</string>
-    <string name="edit_fdn_contact" msgid="7976936035587081480">"Redakto numrin me formim fiks"</string>
-    <string name="updating_fdn_contact" msgid="8370929876849803600">"Po përditëson numrin me formim fiks…"</string>
-    <string name="fdn_contact_updated" msgid="5497828782609005017">"Numri me formim fiks u përditësua."</string>
-    <string name="delete_fdn_contact" msgid="6668958073074151717">"Fshije numrin me formim fiks"</string>
-    <string name="deleting_fdn_contact" msgid="5669163206349319969">"Po fshin numrin me formim fiks…"</string>
-    <string name="fdn_contact_deleted" msgid="7154162327112259569">"Numri me formim fiks u fshi."</string>
+    <string name="add_fdn_contact" msgid="2481915899633353976">"Shto numrin me telefonim të përzgjedhur"</string>
+    <string name="adding_fdn_contact" msgid="7627379633721940991">"Po shton numrin me telefonim të përzgjedhur..."</string>
+    <string name="fdn_contact_added" msgid="7458335758501736665">"Numri me telefonim të përzgjedhur u shtua."</string>
+    <string name="edit_fdn_contact" msgid="7976936035587081480">"Redakto numrin me telefonim të përzgjedhur"</string>
+    <string name="updating_fdn_contact" msgid="8370929876849803600">"Po përditëson numrin me telefonim të përzgjedhur..."</string>
+    <string name="fdn_contact_updated" msgid="5497828782609005017">"Numri me telefonim të përzgjedhur u përditësua."</string>
+    <string name="delete_fdn_contact" msgid="6668958073074151717">"Fshi numrin me telefonim të përzgjedhur"</string>
+    <string name="deleting_fdn_contact" msgid="5669163206349319969">"Po fshin numrin me telefonim të përzgjedhur..."</string>
+    <string name="fdn_contact_deleted" msgid="7154162327112259569">"Numri me telefonim të përzgjedhur u fshi."</string>
     <string name="pin2_invalid" msgid="5470854099230755944">"FDN-ja nuk u përditësua sepse shkrove një PIN të pasaktë."</string>
     <string name="fdn_invalid_number" msgid="1494755047900009147">"FDN-ja nuk ishte i përditësuar sepse numri nuk mund të kalojë 20 shifra."</string>
     <string name="pin2_or_fdn_invalid" msgid="6025144083384701197">"FDN-ja nuk u përditësua. PIN2-shi ishte i pasaktë ose numri i telefonit u refuzua."</string>
@@ -380,7 +380,7 @@
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"Po lexon nga karta SIM..."</string>
     <string name="simContacts_empty" msgid="5270660846489561932">"S\'ka kontakte në kartën SIM."</string>
     <string name="simContacts_title" msgid="1861472842524839921">"Zgjidh kontaktet për importim"</string>
-    <string name="simContacts_airplaneMode" msgid="5254946758982621072">"Çaktivizo modalitetin \'në aeroplan\" për të importuar kontaktet nga karta SIM."</string>
+    <string name="simContacts_airplaneMode" msgid="5254946758982621072">"Çaktivizo modalitetin e aeroplanit për të importuar kontaktet nga karta SIM."</string>
     <string name="enable_pin" msgid="5422767284133234860">"Aktivizo/çaktivizo PIN-in e kartës SIM"</string>
     <string name="change_pin" msgid="9174186126330785343">"Ndrysho PIN-in e kartës SIM"</string>
     <string name="enter_pin_text" msgid="8532615714751931951">"PIN-i i kartës SIM:"</string>
@@ -414,8 +414,7 @@
     <string name="puk2_blocked" msgid="3150263853077280049">"PUK2-shi është i bllokuar përgjithmonë."</string>
     <string name="pin2_attempts" msgid="720736232885011507">\n"Të kanë mbetur edhe <xliff:g id="NUMBER">%d</xliff:g> përpjekje."</string>
     <string name="pin2_unblocked" msgid="7791600368153469078">"PIN2-shi nuk është më i bllokuar"</string>
-    <!-- no translation found for pin2_error_exception (1088689322248996699) -->
-    <skip />
+    <string name="pin2_error_exception" msgid="1088689322248996699">"Gabim në rrjet ose në kartën SIM"</string>
     <string name="doneButton" msgid="2859593360997984240">"U krye!"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"Numri i postës zanore"</string>
     <string name="card_title_dialing" msgid="5769417478498348054">"Po telefonon"</string>
@@ -432,8 +431,8 @@
     <string name="notification_voicemail_no_vm_number" msgid="760963466895609716">"Numri i postës zanore është i panjohur"</string>
     <string name="notification_network_selection_title" msgid="4224455487793492772">"Nuk ka shërbim"</string>
     <string name="notification_network_selection_text" msgid="2607085729661923269">"Rrjeti i përzgjedhur (<xliff:g id="OPERATOR_NAME">%s</xliff:g>) nuk mundësohet"</string>
-    <string name="incall_error_power_off" msgid="2947938060513306698">"Çaktivizo modalitetin \"në aeroplan\" për të bërë një telefonatë."</string>
-    <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"Çaktivizo modalitetin \"në aeroplan\" ose lidhu me një rrjet me valë për të bërë një telefonatë."</string>
+    <string name="incall_error_power_off" msgid="2947938060513306698">"Çaktivizo modalitetin e aeroplanit për të bërë telefonata."</string>
+    <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"Çaktivizo modalitetin e aeroplanit ose lidhu me ndonjë rrjet interneti valor për të bërë telefonata."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"I paregjistruar në rrjet."</string>
     <string name="incall_error_out_of_service" msgid="4100065333878929223">"Rrjeti celular nuk mundësohet."</string>
     <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"Rrjeti celular nuk mundësohet. Lidhu me një rrjet me valë për të bërë një telefonatë."</string>
@@ -504,7 +503,7 @@
     <string name="ota_spc_failure" msgid="3909983542575030796">"DËSHTIME TË SHUMTA SPC"</string>
     <string name="ota_call_end" msgid="4537279738134612388">"Prapa"</string>
     <string name="ota_try_again" msgid="7685477206465902290">"Provo sërish"</string>
-    <string name="ota_next" msgid="3904945374358235910">"Tjetër"</string>
+    <string name="ota_next" msgid="3904945374358235910">"Përpara"</string>
     <string name="ecm_exit_dialog" msgid="4448531867763097533">"EcmExitDialog"</string>
     <string name="phone_entered_ecm_text" msgid="6266424252578731203">"Hyri në modalitetin e \"Kthimit të telefonatës së urgjencës\""</string>
     <string name="phone_in_ecm_notification_title" msgid="3226896828951687085">"Modaliteti i \"Kthimit të telefonatës së urgjencës\""</string>
@@ -538,6 +537,8 @@
     <string name="description_dial_button" msgid="7459705245418435351">"formo numrin"</string>
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"Dridhja"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"Dridhja"</string>
+    <!-- no translation found for voicemail_visual_voicemail_switch_title (5012622186976275457) -->
+    <skip />
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"Tingulli"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"Me zile dhe me dridhje"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"Kartat e integruara SIM"</string>

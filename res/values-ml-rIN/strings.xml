@@ -82,7 +82,7 @@
     <string name="wifi_calling_call_assistant_configure" msgid="1092639708949670031">"കോൺഫിഗർ ചെയ്യുക"</string>
     <string name="connection_service_default_label" msgid="1498481943805913754">"അന്തർ നിർമ്മിത കണക്ഷൻ സേവനം"</string>
     <string name="voicemail" msgid="8693759337917898954">"വോയ്സ് മെയില്‍"</string>
-    <string name="voicemail_settings_with_label" msgid="152724978380748296">"വോയ്‌സ്‌മെയിൽ (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="voicemail_settings_with_label" msgid="152724978380748296">"ശബ്ദമെയിൽ(<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="voicemail_abbreviated" msgid="2215592488517217448">"VM:"</string>
     <string name="networks" msgid="8873030692174541976">"നെറ്റ്‌വർക്ക് ഓപ്പറേറ്റർമാർ"</string>
     <string name="cell_broadcast_settings" msgid="8740238216690502563">"അടിയന്തര പ്രക്ഷേപണങ്ങൾ"</string>
@@ -110,18 +110,18 @@
     <string name="sum_cfu_enabled" msgid="2450052502198827927">"എല്ലാ കോളുകളും <xliff:g id="PHONENUMBER">{0}</xliff:g> എന്നതിലേക്ക് കൈമാറുന്നു"</string>
     <string name="sum_cfu_enabled_no_number" msgid="6591985777096823616">"നമ്പർ ലഭ്യമല്ല"</string>
     <string name="sum_cfu_disabled" msgid="8384177689501334080">"ഓഫാണ്"</string>
-    <string name="labelCFB" msgid="6139853033106283172">"തിരക്കിലായിരിക്കുമ്പോൾ"</string>
-    <string name="messageCFB" msgid="3711089705936187129">"തിരക്കിലായിരിക്കുന്ന നമ്പർ"</string>
+    <string name="labelCFB" msgid="6139853033106283172">"തിരക്കിലാകുമ്പോൾ"</string>
+    <string name="messageCFB" msgid="3711089705936187129">"തിരക്കിലായിരിക്കുമ്പോഴുള്ള നമ്പർ"</string>
     <string name="sum_cfb_enabled" msgid="5984198104833116690">"<xliff:g id="PHONENUMBER">{0}</xliff:g> എന്നതിലേക്ക് കൈമാറുന്നു"</string>
     <string name="sum_cfb_disabled" msgid="4913145177320506827">"ഓഫാണ്"</string>
     <string name="disable_cfb_forbidden" msgid="3506984333877998061">"നിങ്ങളുടെ ഫോൺ തിരക്കിലായിരിക്കുമ്പോൾ കോൾ കൈമാറൽ പ്രവർത്തനരഹിതമാക്കുന്നതിനെ നിങ്ങളുടെ ഓപ്പറേറ്റർ പിന്തുണയ്‌ക്കുന്നില്ല."</string>
-    <string name="labelCFNRy" msgid="1736067178393744351">"പ്രതികരണമില്ലാതിരിക്കുമ്പോൾ"</string>
-    <string name="messageCFNRy" msgid="672317899884380374">"മറുപടി നൽകാത്ത നമ്പർ"</string>
+    <string name="labelCFNRy" msgid="1736067178393744351">"മറുപടിയില്ലാത്തപ്പോൾ"</string>
+    <string name="messageCFNRy" msgid="672317899884380374">"മറുപടിനൽകാത്തപ്പോഴുള്ള നമ്പർ"</string>
     <string name="sum_cfnry_enabled" msgid="6955775691317662910">"<xliff:g id="PHONENUMBER">{0}</xliff:g> എന്നതിലേക്ക് കൈമാറുന്നു"</string>
     <string name="sum_cfnry_disabled" msgid="3884684060443538097">"ഓഫാണ്"</string>
     <string name="disable_cfnry_forbidden" msgid="4308233959150658058">"നിങ്ങളുടെ ഫോൺ മറുപടി നൽകാതിരിക്കുമ്പോൾ കോൾ കൈമാറൽ പ്രവർത്തനരഹിതമാക്കുന്നതിനെ നിങ്ങളുടെ ഓപ്പറേറ്റർ പിന്തുണയ്‌ക്കുന്നില്ല."</string>
     <string name="labelCFNRc" msgid="2614827454402079766">"ലഭ്യമല്ലാതിരിക്കുമ്പോൾ"</string>
-    <string name="messageCFNRc" msgid="6380695421020295119">"പരിധിയ്‌ക്ക് പുറത്തുള്ള നമ്പർ"</string>
+    <string name="messageCFNRc" msgid="6380695421020295119">"പരിധിയ്‌ക്ക് പുറത്തായിരിക്കുമ്പോൾ"</string>
     <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"<xliff:g id="PHONENUMBER">{0}</xliff:g> എന്നതിലേക്ക് കൈമാറുന്നു"</string>
     <string name="sum_cfnrc_disabled" msgid="7222141261321276464">"പ്രവർത്തനരഹിതമാക്കി"</string>
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"നിങ്ങളുടെ ഫോൺ പരിധിയ്ക്ക് പുറത്തായിരിക്കുമ്പോൾ കോൾ കൈമാറൽ പ്രവർത്തനരഹിതമാക്കുന്നതിനെ നിങ്ങളുടെ ഓപ്പറേറ്റർ പിന്തുണയ്‌ക്കുന്നില്ല."</string>
@@ -138,7 +138,7 @@
     <string name="radio_off_error" msgid="2304459933248513376">"ഈ ക്രമീകരണങ്ങൾ കാണുന്നതിന് മുമ്പ് റേഡിയോ ഓൺ ചെയ്യുക."</string>
     <string name="close_dialog" msgid="2365884406356986917">"ശരി"</string>
     <string name="enable" msgid="7248657275000173526">"ഓണാക്കുക"</string>
-    <string name="disable" msgid="4678348128118573672">"ഓഫുചെയ്യുക"</string>
+    <string name="disable" msgid="4678348128118573672">"ഓഫ്"</string>
     <string name="change_num" msgid="239476305819844391">"അപ്‌ഡേറ്റ്  ചെയ്യുക"</string>
   <string-array name="clir_display_values">
     <item msgid="5560134294467334594">"സ്ഥിര നെറ്റ്‌വർക്ക്"</item>
@@ -164,8 +164,8 @@
     <string name="registration_done" msgid="495135664535876612">"ഒരു നെറ്റ്‌വർക്കിൽ രജിസ്റ്റർ ചെയ്‌തു."</string>
     <string name="sum_carrier_select" msgid="3494252551249882718">"ഒരു നെ‌റ്റ്‌വർക്ക് ഓപ്പറേറ്ററെ തിരഞ്ഞെടുക്കുക"</string>
     <string name="sum_search_networks" msgid="2921092249873272715">"ലഭ്യമായ എല്ലാ നെറ്റ്‌വർക്കുകൾക്കായും തിരയുക"</string>
-    <string name="select_automatically" msgid="5628402124471810174">"യാന്ത്രികമായി തിരഞ്ഞെടുക്കുക"</string>
-    <string name="sum_select_automatically" msgid="5614890115123292400">"താൽപ്പര്യമുള്ള നെറ്റ്‌വർക്ക് യാന്ത്രികമായി തിരഞ്ഞെടുക്കുക"</string>
+    <string name="select_automatically" msgid="5628402124471810174">"സ്വയമേവ തിരഞ്ഞെടുക്കൂ"</string>
+    <string name="sum_select_automatically" msgid="5614890115123292400">"താൽപ്പര്യമുള്ള നെറ്റ്‌വർക്ക് സ്വയമേവ തിരഞ്ഞെടുക്കൂ"</string>
     <string name="register_automatically" msgid="6017849844573519637">"യാന്ത്രിക രജിസ്‌ട്രേഷൻ…"</string>
     <string name="preferred_network_mode_title" msgid="2336624679902659306">"തിരഞ്ഞെടുത്ത നെറ്റ്‌വർക്ക് തരം"</string>
     <string name="preferred_network_mode_summary" msgid="1434820673166126609">"നെറ്റ്‌വർക്ക് ഓപ്പറേറ്റുചെയ്യൽ മോഡ് മാറ്റുക"</string>
@@ -379,7 +379,7 @@
     <string name="fdn_failed" msgid="540018079008319747">"FDN പ്രവർത്തനം പരാജയപ്പെട്ടു."</string>
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"സിം കാർഡിൽ നിന്നും റീഡുചെയ്യുന്നു…"</string>
     <string name="simContacts_empty" msgid="5270660846489561932">"നിങ്ങളുടെ സിം കാർഡിൽ കോൺടാക്റ്റുകളൊന്നുമില്ല."</string>
-    <string name="simContacts_title" msgid="1861472842524839921">"ഇമ്പോർറ്റുചെയ്യാനുള്ള കോൺടാക്റ്റുകൾ തിരഞ്ഞെടുക്കുക"</string>
+    <string name="simContacts_title" msgid="1861472842524839921">"ഇമ്പോർട്ടുചെയ്യാനുള്ളവ തിരഞ്ഞെടുക്കൂ"</string>
     <string name="simContacts_airplaneMode" msgid="5254946758982621072">"SIM കാർഡിൽ നിന്ന് കോൺടാക്റ്റുകൾ ഇമ്പോർട്ടുചെയ്യാൻ വിമാന മോഡ് ഓഫാക്കുക."</string>
     <string name="enable_pin" msgid="5422767284133234860">"സിം പിൻ പ്രവർത്തനക്ഷമമാക്കുക/പ്രവർത്തനരഹിതമാക്കുക"</string>
     <string name="change_pin" msgid="9174186126330785343">"സിം പിൻ മാറ്റുക"</string>
@@ -414,8 +414,7 @@
     <string name="puk2_blocked" msgid="3150263853077280049">"PUK2 ശാശ്വതമായി തടഞ്ഞിരിക്കുന്നു."</string>
     <string name="pin2_attempts" msgid="720736232885011507">\n"നിങ്ങൾക്ക് <xliff:g id="NUMBER">%d</xliff:g> ശ്രമങ്ങൾ ശേഷിക്കുന്നു."</string>
     <string name="pin2_unblocked" msgid="7791600368153469078">"PIN2 ഇനി തടയില്ല"</string>
-    <!-- no translation found for pin2_error_exception (1088689322248996699) -->
-    <skip />
+    <string name="pin2_error_exception" msgid="1088689322248996699">"നെറ്റ്‌വർക്ക് അല്ലെങ്കിൽ സിം കാർഡ് പിശക്"</string>
     <string name="doneButton" msgid="2859593360997984240">"പൂർത്തിയായി"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"വോയ്‌സ്‌മെയിൽ നമ്പർ"</string>
     <string name="card_title_dialing" msgid="5769417478498348054">"ഡയൽ ചെയ്യുന്നു"</string>
@@ -538,6 +537,8 @@
     <string name="description_dial_button" msgid="7459705245418435351">"ഡയൽ ചെയ്യുക"</string>
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"വൈബ്രേറ്റുചെയ്യുക"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"വൈബ്രേറ്റുചെയ്യുക"</string>
+    <!-- no translation found for voicemail_visual_voicemail_switch_title (5012622186976275457) -->
+    <skip />
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"ശബ്‌ദം"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"റിംഗ്ടോണും വൈബ്രേറ്റുചെയ്യലും"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"അന്തർ നിർമ്മിത സിം കാർഡുകൾ"</string>

@@ -101,8 +101,8 @@
     <string name="labelCW" msgid="6120513814915920200">"Další hovor na lince"</string>
     <string name="sum_cw_enabled" msgid="8083061901633671397">"Oznamuje příchozí hovory i při probíhajícím hovoru"</string>
     <string name="sum_cw_disabled" msgid="3648693907300104575">"Oznamovat příchozí hovory i při probíhajícím hovoru"</string>
-    <string name="call_forwarding_settings" msgid="3378927671091537173">"Nastavení přesměrování hovorů"</string>
-    <string name="call_forwarding_settings_with_label" msgid="8569489414006897127">"Nastavení přesměrování hovorů (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="call_forwarding_settings" msgid="3378927671091537173">"Přesměrování hovorů"</string>
+    <string name="call_forwarding_settings_with_label" msgid="8569489414006897127">"Přesměrování hovorů (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="labelCF" msgid="2574386948026924737">"Přesměrování hovorů"</string>
     <string name="labelCFU" msgid="8147177368148660600">"Přesměrovat vždy"</string>
     <string name="messageCFU" msgid="3560082430662923687">"Vždy používat toto číslo"</string>
@@ -342,13 +342,13 @@
     <string name="fdn_activation" msgid="2156479741307463576">"Aktivace povolených telefonních čísel"</string>
     <string name="fdn_enabled" msgid="5238109009915521240">"Funkce Povolená tel. čísla je zapnuta"</string>
     <string name="fdn_disabled" msgid="4700049736675368279">"Funkce Povolená tel. čísla je vypnuta"</string>
-    <string name="enable_fdn" msgid="3740191529180493851">"Zapnout funkci Povolená tel. čísla"</string>
+    <string name="enable_fdn" msgid="3740191529180493851">"Zapnout funkci Povolená tel. čísla"</string>
     <string name="disable_fdn" msgid="7944020890722540616">"Vypnout funkci Povolená tel. čísla"</string>
     <string name="change_pin2" msgid="2153563695382176676">"Změna kódu PIN2"</string>
     <string name="enable_fdn_ok" msgid="7215588870329688132">"Vypnout funkci Povolená tel. čísla"</string>
-    <string name="disable_fdn_ok" msgid="5727046928930740173">"Zapnout funkci Povolená tel. čísla"</string>
+    <string name="disable_fdn_ok" msgid="5727046928930740173">"Zapnout funkci Povolená tel. čísla"</string>
     <string name="sum_fdn" msgid="1959399454900272878">"Umožňuje spravovat povolená telefonní čísla"</string>
-    <string name="sum_fdn_change_pin" msgid="6666549734792827932">"Umožňuje změnit kód PIN pro přístup k povoleným telefonním číslům"</string>
+    <string name="sum_fdn_change_pin" msgid="6666549734792827932">"Umožňuje změnit kód PIN pro přístup k povoleným telefonním číslům"</string>
     <string name="sum_fdn_manage_list" msgid="8431088265332628316">"Správa telefonního seznamu"</string>
     <string name="voice_privacy" msgid="3776841382844614716">"Ochrana soukromí v hlasové poště"</string>
     <string name="voice_privacy_summary" msgid="3159383389833516214">"Povolit režim vylepšené ochrany soukromí"</string>
@@ -414,8 +414,7 @@
     <string name="puk2_blocked" msgid="3150263853077280049">"PUK2 je trvale zablokován."</string>
     <string name="pin2_attempts" msgid="720736232885011507">\n"Počet zbývajících pokusů: <xliff:g id="NUMBER">%d</xliff:g>."</string>
     <string name="pin2_unblocked" msgid="7791600368153469078">"PIN2 již není blokován"</string>
-    <!-- no translation found for pin2_error_exception (1088689322248996699) -->
-    <skip />
+    <string name="pin2_error_exception" msgid="1088689322248996699">"Došlo k chybě sítě nebo SIM karty."</string>
     <string name="doneButton" msgid="2859593360997984240">"Hotovo"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"Číslo hlasové schránky"</string>
     <string name="card_title_dialing" msgid="5769417478498348054">"Vytáčení"</string>
@@ -544,6 +543,8 @@
     <string name="description_dial_button" msgid="7459705245418435351">"vytáčení"</string>
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"Vibrace"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"Vibrace"</string>
+    <!-- no translation found for voicemail_visual_voicemail_switch_title (5012622186976275457) -->
+    <skip />
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"Zvuk"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"Vyzvánění a vibrace"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"Vestavěné SIM karty"</string>
@@ -554,7 +555,7 @@
     <string name="sim_label_emergency_calls" msgid="4847699229529306397">"Tísňová volání"</string>
     <string name="sim_description_emergency_calls" msgid="7535215397212301562">"Pouze tísňová volání"</string>
     <string name="sim_description_default" msgid="4778679519938775515">"SIM karta, slot: <xliff:g id="SLOT_ID">%s</xliff:g>"</string>
-    <string name="accessibility_settings_activity_title" msgid="8562004288733103868">"Usnadnění"</string>
+    <string name="accessibility_settings_activity_title" msgid="8562004288733103868">"Přístupnost"</string>
     <string name="status_hint_label_incoming_wifi_call" msgid="8772915926382037499">"Příchozí hovor přes Wi-Fi"</string>
     <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"Volání přes Wi-Fi"</string>
     <string name="emergency_action_launch_hint" msgid="5841511849007540970">"Otevřete opětovným klepnutím"</string>

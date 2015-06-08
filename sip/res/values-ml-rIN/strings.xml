@@ -19,14 +19,14 @@
     <string name="sip_settings" msgid="3768482698061677257">"SIP ക്രമീകരണങ്ങൾ"</string>
     <string name="sip_accounts" msgid="85559497282185405">"SIP അക്കൗണ്ടുകൾ"</string>
     <string name="sip_accounts_title" msgid="2082527045326874519">"അക്കൗണ്ടുകൾ"</string>
-    <string name="sip_receive_calls" msgid="426678617137462173">"ഇൻകമിംഗ് കോളുകൾ സ്വീകരിക്കുക"</string>
+    <string name="sip_receive_calls" msgid="426678617137462173">"ഇൻകമിംഗ് കോൾ സ്വീകരിക്കൂ"</string>
     <string name="sip_receive_calls_summary" msgid="946161517528227523">"കൂടുതൽ ബാറ്ററി ആയുസ് ഉപയോഗിക്കുന്നു"</string>
     <string name="sip_call_options_title" msgid="8421210494703869806">"SIP കോൾചെയ്യൽ ഉപയോഗിക്കുക"</string>
     <string name="sip_call_options_wifi_only_title" msgid="5112579243580893890">"SIP കോൾചെയ്യൽ ഉപയോഗിക്കുക (Wi-Fi മാത്രം)"</string>
     <string name="sip_call_options_entry_1" msgid="7217659161237099900">"ഡാറ്റ നെറ്റ്‌വർക്ക് ലഭ്യമാകുമ്പോൾ എല്ലാ കോളുകൾക്കായും"</string>
     <string name="sip_call_options_entry_2" msgid="1815335903940609729">"SIP കോളുകൾക്ക് മാത്രം"</string>
     <string name="sip_call_options_wifi_only_entry_1" msgid="1358513095551847314">"എല്ലാ കോളുകൾക്കും"</string>
-    <string name="add_sip_account" msgid="800843669753980091">"അക്കൗണ്ട് ചേർക്കുക"</string>
+    <string name="add_sip_account" msgid="800843669753980091">"ചേർക്കുക"</string>
     <string name="remove_sip_account" msgid="1367664438506503690">"അക്കൗണ്ട് നീക്കംചെയ്യുക"</string>
     <string name="sip_account_list" msgid="5610858485304821480">"SIP അക്കൗണ്ടുകൾ"</string>
     <string name="saving_account" msgid="5336529880235177448">"അക്കൗണ്ട് സംരക്ഷിക്കുന്നു…"</string>
@@ -57,7 +57,7 @@
     <string name="proxy_address_title" msgid="6890163365640631841">"ഔട്ട്ബൗണ്ട് പ്രോക്സി വിലാസം"</string>
     <string name="port_title" msgid="6693965912656593862">"പോർട്ട് നമ്പർ"</string>
     <string name="transport_title" msgid="889155457465372527">"ട്രാൻസ്‌പോർട്ട് തരം"</string>
-    <string name="send_keepalive_title" msgid="599627072150501159">"സജീവമായി തുടരുക എന്നത് അയയ്‌ക്കുക"</string>
+    <string name="send_keepalive_title" msgid="599627072150501159">"\'സജീവമായി തുടരുക\'യെന്ന് അയയ്‌ക്കുക"</string>
     <string name="advanced_settings" msgid="6622996380747040711">"ഓപ്‌ഷണൽ ക്രമീകരണങ്ങൾ"</string>
     <string name="auth_username_title" msgid="8262491689004708265">"പ്രാമാണീകരണ ഉപയോക്തൃനാമം"</string>
     <string name="auth_username_summary" msgid="941160241371436473">"പ്രാമാണീകരണത്തിന് ഉപയോഗിച്ച ഉപയോക്തൃനാമം"</string>

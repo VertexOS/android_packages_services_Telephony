@@ -82,7 +82,7 @@
     <string name="wifi_calling_call_assistant_configure" msgid="1092639708949670031">"Διαμόρφωση"</string>
     <string name="connection_service_default_label" msgid="1498481943805913754">"Ενσωματωμένη υπηρεσία σύνδεσης"</string>
     <string name="voicemail" msgid="8693759337917898954">"Αυτόματος τηλεφωνητής"</string>
-    <string name="voicemail_settings_with_label" msgid="152724978380748296">"Αυτόματος τηλεφωνητής (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="voicemail_settings_with_label" msgid="152724978380748296">"Τηλεφωνητής (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="voicemail_abbreviated" msgid="2215592488517217448">"ΑΤ:"</string>
     <string name="networks" msgid="8873030692174541976">"Εταιρείες δικτύου"</string>
     <string name="cell_broadcast_settings" msgid="8740238216690502563">"Εκπομπές έκτακτης ανάγκης"</string>
@@ -98,7 +98,7 @@
     <string name="sum_hide_caller_id" msgid="1071407020290873782">"Απόκρυψη αριθμού στις εξερχόμενες κλήσεις"</string>
     <string name="sum_show_caller_id" msgid="6768534125447290401">"Αριθμός που προβάλλεται στις εξερχόμενες κλήσεις"</string>
     <string name="sum_default_caller_id" msgid="1954518825510901365">"Χρήση των προεπιλεγμένων ρυθμίσεων της εταιρείας για την προβολή του αριθμού μου στις εξερχόμενες κλήσεις"</string>
-    <string name="labelCW" msgid="6120513814915920200">"Αναμ. κλήσ."</string>
+    <string name="labelCW" msgid="6120513814915920200">"Αναμονή"</string>
     <string name="sum_cw_enabled" msgid="8083061901633671397">"Κατά τη διάρκεια μιας κλήσης, να ειδοποιούμαι για τις εισερχόμενες κλήσεις"</string>
     <string name="sum_cw_disabled" msgid="3648693907300104575">"Κατά τη διάρκεια μιας κλήσης, να ειδοποιούμαι για τις εισερχόμενες κλήσεις"</string>
     <string name="call_forwarding_settings" msgid="3378927671091537173">"Ρυθμίσεις προώθησης κλήσης"</string>
@@ -115,7 +115,7 @@
     <string name="sum_cfb_enabled" msgid="5984198104833116690">"Προώθηση προς <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfb_disabled" msgid="4913145177320506827">"Ανενεργό"</string>
     <string name="disable_cfb_forbidden" msgid="3506984333877998061">"Ο φορέας σας δεν υποστηρίζει την απενεργοποίηση της προώθησης κλήσεων όταν το τηλέφωνό σας είναι απασχολημένο."</string>
-    <string name="labelCFNRy" msgid="1736067178393744351">"Όταν δεν απαντά"</string>
+    <string name="labelCFNRy" msgid="1736067178393744351">"Όταν δεν απαντώ"</string>
     <string name="messageCFNRy" msgid="672317899884380374">"Αριθμός όταν δεν απαντάω"</string>
     <string name="sum_cfnry_enabled" msgid="6955775691317662910">"Προώθηση προς <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfnry_disabled" msgid="3884684060443538097">"Ανενεργό"</string>
@@ -414,8 +414,7 @@
     <string name="puk2_blocked" msgid="3150263853077280049">"Ο κωδικός PUK2 έχει μπλοκαριστεί οριστικά."</string>
     <string name="pin2_attempts" msgid="720736232885011507">\n"Απομένουν <xliff:g id="NUMBER">%d</xliff:g> προσπάθειες."</string>
     <string name="pin2_unblocked" msgid="7791600368153469078">"Το PIN2 δεν είναι πλέον αποκλεισμένο"</string>
-    <!-- no translation found for pin2_error_exception (1088689322248996699) -->
-    <skip />
+    <string name="pin2_error_exception" msgid="1088689322248996699">"Σφάλμα δικτύου ή κάρτας SIM"</string>
     <string name="doneButton" msgid="2859593360997984240">"Τέλος"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"Αριθμός αυτόματου τηλεφωνητή"</string>
     <string name="card_title_dialing" msgid="5769417478498348054">"Κλήση"</string>
@@ -538,6 +537,8 @@
     <string name="description_dial_button" msgid="7459705245418435351">"κλήση"</string>
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"Δόνηση"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"Δόνηση"</string>
+    <!-- no translation found for voicemail_visual_voicemail_switch_title (5012622186976275457) -->
+    <skip />
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"Ήχος"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"Ήχος κλήσης &amp; δόνηση"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"Ενσωματωμένες κάρτες SIM"</string>
