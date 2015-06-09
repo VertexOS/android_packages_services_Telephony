@@ -236,7 +236,7 @@ final class PstnIncomingCallNotifier {
                 !TextUtils.isEmpty(connection.getAddress())) {
             extras = new Bundle();
             Uri uri = Uri.fromParts(PhoneAccount.SCHEME_TEL, connection.getAddress(), null);
-            extras.putParcelable(TelephonyManager.EXTRA_INCOMING_NUMBER, uri);
+            extras.putParcelable(TelecomManager.EXTRA_INCOMING_CALL_ADDRESS, uri);
         }
         TelecomManager.from(mPhoneProxy.getContext()).addNewIncomingCall(
                 PhoneUtils.makePstnPhoneAccountHandle(mPhoneProxy), extras);
