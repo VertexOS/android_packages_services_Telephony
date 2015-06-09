@@ -649,7 +649,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
                 case CMD_GET_MODEM_ACTIVITY_INFO:
                     request = (MainThreadRequest) msg.obj;
                     onCompleted = obtainMessage(EVENT_GET_MODEM_ACTIVITY_INFO_DONE, request);
-                    mPhone.queryModemActivityInfo(onCompleted);
+                    mPhone.getModemActivityInfo(onCompleted);
                     break;
 
                 case EVENT_GET_MODEM_ACTIVITY_INFO_DONE:
