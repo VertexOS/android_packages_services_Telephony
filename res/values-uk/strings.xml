@@ -363,7 +363,7 @@
     <string name="get_pin2" msgid="8204677063922225311">"Введіть PIN2-код"</string>
     <string name="name" msgid="7329028332786872378">"Ім\'я"</string>
     <string name="number" msgid="7905950798349903858">"Номер"</string>
-    <string name="save" msgid="4094274636321939086">"Зберег."</string>
+    <string name="save" msgid="4094274636321939086">"Зберегти"</string>
     <string name="add_fdn_contact" msgid="2481915899633353976">"Додати номер фіксов. набору"</string>
     <string name="adding_fdn_contact" msgid="7627379633721940991">"Додавання номеру фікс. набору…"</string>
     <string name="fdn_contact_added" msgid="7458335758501736665">"Номер фікс. набору додано."</string>
@@ -386,7 +386,7 @@
     <string name="enter_pin_text" msgid="8532615714751931951">"PIN-код SIM:"</string>
     <string name="oldPinLabel" msgid="5287773661246368314">"Старий PIN"</string>
     <string name="newPinLabel" msgid="207488227285336897">"Новий PIN"</string>
-    <string name="confirmPinLabel" msgid="257597715098070206">"Підтверд. новий PIN"</string>
+    <string name="confirmPinLabel" msgid="257597715098070206">"Підтвердьте новий PIN"</string>
     <string name="badPin" msgid="8955102849303984935">"Введений попередній PIN-код не правильний. Повторіть спробу."</string>
     <string name="mismatchPin" msgid="5923253370683071889">"Введені PIN-коди не збігаються. Повторіть спробу."</string>
     <string name="invalidPin" msgid="5981171102258684792">"Введіть PIN-код з цифр від 4 до 8."</string>
@@ -401,7 +401,7 @@
     <string name="enter_pin2_text" msgid="8339444124477720345">"PIN2"</string>
     <string name="oldPin2Label" msgid="8559146795026261502">"Старий PIN2"</string>
     <string name="newPin2Label" msgid="4573956902204349054">"Новий PIN2"</string>
-    <string name="confirmPin2Label" msgid="8100319484454787708">"Підтверд. новий PIN2"</string>
+    <string name="confirmPin2Label" msgid="8100319484454787708">"Підтвердьте новий PIN2"</string>
     <string name="badPuk2" msgid="7910064009531541708">"Неправильний PUK2-код. Повторіть спробу."</string>
     <string name="badPin2" msgid="6646896629970023109">"Неправильний старий PIN2-код. Повторіть спробу."</string>
     <string name="mismatchPin2" msgid="4177967478551851117">"PIN2-коди не збігаються. Повторіть спробу."</string>
@@ -543,8 +543,7 @@
     <string name="description_dial_button" msgid="7459705245418435351">"дзвонити"</string>
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"Вібросигнал"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"Вібросигнал"</string>
-    <!-- no translation found for voicemail_visual_voicemail_switch_title (5012622186976275457) -->
-    <skip />
+    <string name="voicemail_visual_voicemail_switch_title" msgid="5012622186976275457">"Візуальна голосова пошта"</string>
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"Звук"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"Сигнал дзвінка та вібросигнал"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"Вбудовані SIM-карти"</string>

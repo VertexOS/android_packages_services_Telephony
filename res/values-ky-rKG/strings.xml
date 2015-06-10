@@ -812,8 +812,7 @@
     <skip />
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"Титиретүү"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"Титиретүү"</string>
-    <!-- no translation found for voicemail_visual_voicemail_switch_title (5012622186976275457) -->
-    <skip />
+    <string name="voicemail_visual_voicemail_switch_title" msgid="5012622186976275457">"Визуалдык үн почтасы"</string>
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"Үнү"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"Рингтон жана Титирөө"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"Кыналган SIM карталар"</string>

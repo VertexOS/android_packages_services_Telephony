@@ -88,7 +88,7 @@
     <string name="cell_broadcast_settings" msgid="8740238216690502563">"Messages d\'urgence"</string>
     <string name="call_settings" msgid="6112441768261754562">"Paramètres d\'appel"</string>
     <string name="additional_gsm_call_settings" msgid="1391795981938800617">"Autres paramètres"</string>
-    <string name="additional_gsm_call_settings_with_label" msgid="1385241520708457376">"Paramètres supplémentaires (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="additional_gsm_call_settings_with_label" msgid="1385241520708457376">"Param. suppl. (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="sum_gsm_call_settings" msgid="4076647190996778012">"Autres paramètres d\'appel \"GSM uniquement\""</string>
     <string name="additional_cdma_call_settings" msgid="8628958775721886909">"Autres paramètres d\'appel CDMA"</string>
     <string name="sum_cdma_call_settings" msgid="284753265979035549">"Autres paramètres d\'appel \"CDMA uniquement\""</string>
@@ -102,7 +102,7 @@
     <string name="sum_cw_enabled" msgid="8083061901633671397">"Me signaler les appels entrants lorsque je suis en communication"</string>
     <string name="sum_cw_disabled" msgid="3648693907300104575">"Me signaler les appels entrants lorsque je suis en communication"</string>
     <string name="call_forwarding_settings" msgid="3378927671091537173">"Paramètres de transfert d\'appel"</string>
-    <string name="call_forwarding_settings_with_label" msgid="8569489414006897127">"Paramètres du transfert d\'appel (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="call_forwarding_settings_with_label" msgid="8569489414006897127">"Transfert d\'appel (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="labelCF" msgid="2574386948026924737">"Transfert d\'appel"</string>
     <string name="labelCFU" msgid="8147177368148660600">"Toujours transférer"</string>
     <string name="messageCFU" msgid="3560082430662923687">"Toujours utiliser ce numéro"</string>
@@ -336,9 +336,9 @@
     <string name="cdma_lte_data_service" msgid="4255018217292548962">"Configurer service données"</string>
     <string name="carrier_settings_title" msgid="9028166176523012300">"Paramètres de l\'opérateur"</string>
     <string name="fdn" msgid="7878832555095183202">"Numéros autorisés"</string>
-    <string name="fdn_with_label" msgid="187084204115493366">"Numéros autorisés (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="fdn_with_label" msgid="187084204115493366">"Numéros aut. (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="manage_fdn_list" msgid="8777755791892122369">"Liste de numéros autorisés"</string>
-    <string name="fdn_list_with_label" msgid="7437232552210469217">"Liste de numéros autorisés (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="fdn_list_with_label" msgid="7437232552210469217">"Liste num. aut. (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="fdn_activation" msgid="2156479741307463576">"Activation des numéros autorisés"</string>
     <string name="fdn_enabled" msgid="5238109009915521240">"La liste de numéros autorisés est activée."</string>
     <string name="fdn_disabled" msgid="4700049736675368279">"Liste de numéros autorisés désactivée"</string>
@@ -537,8 +537,7 @@
     <string name="description_dial_button" msgid="7459705245418435351">"composer"</string>
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"Vibreur"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"Vibreur"</string>
-    <!-- no translation found for voicemail_visual_voicemail_switch_title (5012622186976275457) -->
-    <skip />
+    <string name="voicemail_visual_voicemail_switch_title" msgid="5012622186976275457">"Messagerie vocale visuelle"</string>
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"Sonnerie"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"Sonnerie et vibreur"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"Cartes SIM intégrées"</string>
