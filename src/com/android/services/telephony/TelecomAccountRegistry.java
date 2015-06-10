@@ -41,6 +41,7 @@ import android.text.TextUtils;
 import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneFactory;
 import com.android.internal.telephony.PhoneProxy;
+import com.android.phone.PhoneGlobals;
 import com.android.phone.PhoneUtils;
 import com.android.phone.R;
 
@@ -411,6 +412,30 @@ final class TelecomAccountRegistry {
 
         // Clean up any PhoneAccounts that are no longer relevant
         cleanupPhoneAccounts();
+
+        // At some point, the phone account ID was switched from the subId to the iccId.
+        // If there is a default account, check if this is the case, and upgrade the default account
+        // from using the subId to iccId if so.
+        PhoneAccountHandle defaultPhoneAccount =
+                mTelecomManager.getUserSelectedOutgoingPhoneAccount();
+        ComponentName telephonyComponentName =
+                new ComponentName(mContext, TelephonyConnectionService.class);
+
+        if (defaultPhoneAccount != null &&
+                telephonyComponentName.equals(defaultPhoneAccount.getComponentName()) &&
+                !hasAccountEntryForPhoneAccount(defaultPhoneAccount)) {
+
+            String phoneAccountId = defaultPhoneAccount.getId();
+            if (!TextUtils.isEmpty(phoneAccountId) && TextUtils.isDigitsOnly(phoneAccountId)) {
+                PhoneAccountHandle upgradedPhoneAccount =
+                        PhoneUtils.makePstnPhoneAccountHandle(
+                                PhoneGlobals.getPhone(Integer.parseInt(phoneAccountId)));
+
+                if (hasAccountEntryForPhoneAccount(upgradedPhoneAccount)) {
+                    mTelecomManager.setUserSelectedOutgoingPhoneAccount(upgradedPhoneAccount);
+                }
+            }
+        }
     }
 
     private void tearDownAccounts() {
