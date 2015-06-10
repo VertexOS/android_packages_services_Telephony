@@ -163,7 +163,7 @@
     <string name="connect_later" msgid="2308119155752343975">"K této síti se momentálně nelze přihlásit. Zkuste to znovu později."</string>
     <string name="registration_done" msgid="495135664535876612">"Přihlášení k síti bylo úspěšné."</string>
     <string name="sum_carrier_select" msgid="3494252551249882718">"Vybrat síťového operátora"</string>
-    <string name="sum_search_networks" msgid="2921092249873272715">"Vyhledá všechny dostupné sítě"</string>
+    <string name="sum_search_networks" msgid="2921092249873272715">"Hledat všechny dostupné sítě"</string>
     <string name="select_automatically" msgid="5628402124471810174">"Zvolit automaticky"</string>
     <string name="sum_select_automatically" msgid="5614890115123292400">"Automaticky zvolit upřednostňovanou síť"</string>
     <string name="register_automatically" msgid="6017849844573519637">"Automatická registrace..."</string>
@@ -543,8 +543,7 @@
     <string name="description_dial_button" msgid="7459705245418435351">"vytáčení"</string>
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"Vibrace"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"Vibrace"</string>
-    <!-- no translation found for voicemail_visual_voicemail_switch_title (5012622186976275457) -->
-    <skip />
+    <string name="voicemail_visual_voicemail_switch_title" msgid="5012622186976275457">"Vizuální hlasová schránka"</string>
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"Zvuk"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"Vyzvánění a vibrace"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"Vestavěné SIM karty"</string>

@@ -20,7 +20,7 @@
     <string name="phoneAppLabel" product="default" msgid="906161039445636857">"Telefon"</string>
     <string name="emergencyDialerIconLabel" msgid="7812140032168171053">"Notruf"</string>
     <string name="phoneIconLabel" msgid="2331230813161304895">"Telefon"</string>
-    <string name="fdnListLabel" msgid="8630418672279521003">"Anrufbegrenzung"</string>
+    <string name="fdnListLabel" msgid="8630418672279521003">"Liste der zugelassenen Rufnummern"</string>
     <string name="unknown" msgid="6878797917991465859">"Unbekannt"</string>
     <string name="private_num" msgid="6713286113000232309">"Private Nummer"</string>
     <string name="payphone" msgid="4793877574636445118">"Münztelefon"</string>
@@ -343,16 +343,16 @@
     <string name="fdn_with_label" msgid="187084204115493366">"Zugelassene Rufnummern (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="manage_fdn_list" msgid="8777755791892122369">"Zugelassene Rufnummern"</string>
     <string name="fdn_list_with_label" msgid="7437232552210469217">"Liste der zugelassenen Rufnummern (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
-    <string name="fdn_activation" msgid="2156479741307463576">"Aktivierung der Anrufbegrenzung"</string>
+    <string name="fdn_activation" msgid="2156479741307463576">"Aktivierung der Rufnummernbeschränkung"</string>
     <string name="fdn_enabled" msgid="5238109009915521240">"Anrufbegrenzung ist aktiviert"</string>
     <string name="fdn_disabled" msgid="4700049736675368279">"Anrufbegrenzung ist deaktiviert"</string>
-    <string name="enable_fdn" msgid="3740191529180493851">"Begrenzung aktivieren"</string>
-    <string name="disable_fdn" msgid="7944020890722540616">"Anrufbegrenzung deaktivieren"</string>
+    <string name="enable_fdn" msgid="3740191529180493851">"Rufnummernbeschränkung aktivieren"</string>
+    <string name="disable_fdn" msgid="7944020890722540616">"Rufnummernbeschränkung deaktivieren"</string>
     <string name="change_pin2" msgid="2153563695382176676">"PIN2 ändern"</string>
-    <string name="enable_fdn_ok" msgid="7215588870329688132">"Anrufbegrenzung deaktivieren"</string>
-    <string name="disable_fdn_ok" msgid="5727046928930740173">"Begrenzung aktivieren"</string>
+    <string name="enable_fdn_ok" msgid="7215588870329688132">"Rufnummernbeschränkung deaktivieren"</string>
+    <string name="disable_fdn_ok" msgid="5727046928930740173">"Rufnummernbeschränkung aktivieren"</string>
     <string name="sum_fdn" msgid="1959399454900272878">"Zugelassene Rufnummern verwalten"</string>
-    <string name="sum_fdn_change_pin" msgid="6666549734792827932">"Anrufbegrenzungs-PIN ändern"</string>
+    <string name="sum_fdn_change_pin" msgid="6666549734792827932">"PIN für Rufnummernbeschränkung ändern"</string>
     <string name="sum_fdn_manage_list" msgid="8431088265332628316">"Telefonnummernliste verwalten"</string>
     <string name="voice_privacy" msgid="3776841382844614716">"Datenschutz für Sprachnotizen"</string>
     <string name="voice_privacy_summary" msgid="3159383389833516214">"Erweiterten Datenschutzmodus aktivieren"</string>
@@ -377,10 +377,10 @@
     <string name="delete_fdn_contact" msgid="6668958073074151717">"Zugelassene Rufnummer löschen"</string>
     <string name="deleting_fdn_contact" msgid="5669163206349319969">"Zugelassene Rufnummer wird gelöscht..."</string>
     <string name="fdn_contact_deleted" msgid="7154162327112259569">"Zugelassene Rufnummer gelöscht"</string>
-    <string name="pin2_invalid" msgid="5470854099230755944">"Die Anrufbegrenzung wurde nicht aktualisiert, weil Sie eine falsche PIN eingegeben haben."</string>
-    <string name="fdn_invalid_number" msgid="1494755047900009147">"Die Anrufbegrenzung wurde nicht aktualisiert, weil die Nummer maximal 20 Ziffern enthalten darf."</string>
-    <string name="pin2_or_fdn_invalid" msgid="6025144083384701197">"FDN wurde nicht aktualisiert. PIN2 war ungültig oder die Telefonnummer wurde abgelehnt."</string>
-    <string name="fdn_failed" msgid="540018079008319747">"Fehler bei der Nummernbeschränkung"</string>
+    <string name="pin2_invalid" msgid="5470854099230755944">"Die Liste der zugelassenen Rufnummern konnte nicht aktualisiert werden, da Sie eine falsche PIN eingegeben haben."</string>
+    <string name="fdn_invalid_number" msgid="1494755047900009147">"Die Liste der zugelassenen Rufnummern konnte nicht aktualisiert werden, da die Nummer maximal 20 Ziffern haben darf."</string>
+    <string name="pin2_or_fdn_invalid" msgid="6025144083384701197">"Die Liste der zugelassenen Rufnummern konnte nicht aktualisiert werden. Die eingegebene PIN2 ist ungültig oder die Rufnummer wurde abgelehnt."</string>
+    <string name="fdn_failed" msgid="540018079008319747">"Fehler bei der Rufnummernbeschränkung"</string>
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"SIM-Karte wird ausgelesen..."</string>
     <string name="simContacts_empty" msgid="5270660846489561932">"Keine Kontakte auf SIM-Karte"</string>
     <string name="simContacts_title" msgid="1861472842524839921">"Kontakte für Import auswählen"</string>
@@ -541,8 +541,7 @@
     <string name="description_dial_button" msgid="7459705245418435351">"Wählen"</string>
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"Vibration"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"Vibration"</string>
-    <!-- no translation found for voicemail_visual_voicemail_switch_title (5012622186976275457) -->
-    <skip />
+    <string name="voicemail_visual_voicemail_switch_title" msgid="5012622186976275457">"Visuelle Mailbox"</string>
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"Töne"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"Klingelton &amp; Vibration"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"Integrierte SIM-Karten"</string>

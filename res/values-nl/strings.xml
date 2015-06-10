@@ -46,7 +46,7 @@
     <string name="no_vm_number_msg" msgid="1300729501030053828">"Er is geen voicemailnummer op de SIM-kaart opgeslagen."</string>
     <string name="add_vm_number_str" msgid="4676479471644687453">"Nummer toevoegen"</string>
     <string name="puk_unlocked" msgid="2284912838477558454">"Uw SIM-kaart is gedeblokkeerd. Uw telefoon wordt ontgrendeld..."</string>
-    <string name="label_ndp" msgid="780479633159517250">"PIN-code voor ontgrendelen SIM-netwerk"</string>
+    <string name="label_ndp" msgid="780479633159517250">"Pincode voor ontgrendelen SIM-netwerk"</string>
     <string name="sim_ndp_unlock_text" msgid="683628237760543009">"Ontgrendelen"</string>
     <string name="sim_ndp_dismiss_text" msgid="1604823375752456947">"Negeren"</string>
     <string name="requesting_unlock" msgid="6412629401033249351">"Verzoek om ontgrendelen netwerk..."</string>
@@ -348,7 +348,7 @@
     <string name="enable_fdn_ok" msgid="7215588870329688132">"FDN uitschakelen"</string>
     <string name="disable_fdn_ok" msgid="5727046928930740173">"FDN inschakelen"</string>
     <string name="sum_fdn" msgid="1959399454900272878">"Vaste nummers beheren"</string>
-    <string name="sum_fdn_change_pin" msgid="6666549734792827932">"PIN-code voor FDN-toegang wijzigen"</string>
+    <string name="sum_fdn_change_pin" msgid="6666549734792827932">"Pincode voor FDN-toegang wijzigen"</string>
     <string name="sum_fdn_manage_list" msgid="8431088265332628316">"Lijst met telefoonnummers beheren"</string>
     <string name="voice_privacy" msgid="3776841382844614716">"Spraakprivacy"</string>
     <string name="voice_privacy_summary" msgid="3159383389833516214">"Geavanceerde privacymodus inschakelen"</string>
@@ -381,15 +381,15 @@
     <string name="simContacts_empty" msgid="5270660846489561932">"Geen contacten op uw SIM-kaart."</string>
     <string name="simContacts_title" msgid="1861472842524839921">"Contacten selecteren om te importeren"</string>
     <string name="simContacts_airplaneMode" msgid="5254946758982621072">"Schakel de vliegtuigmodus uit om contacten van de simkaart te importeren."</string>
-    <string name="enable_pin" msgid="5422767284133234860">"SIM PIN-code in-/uitschakelen"</string>
-    <string name="change_pin" msgid="9174186126330785343">"SIM PIN-code wijzigen"</string>
-    <string name="enter_pin_text" msgid="8532615714751931951">"SIM PIN-code:"</string>
-    <string name="oldPinLabel" msgid="5287773661246368314">"Oude PIN-code"</string>
-    <string name="newPinLabel" msgid="207488227285336897">"Nieuwe PIN-code"</string>
-    <string name="confirmPinLabel" msgid="257597715098070206">"Nieuwe PIN-code bevestigen"</string>
+    <string name="enable_pin" msgid="5422767284133234860">"SIM pincode in-/uitschakelen"</string>
+    <string name="change_pin" msgid="9174186126330785343">"SIM pincode wijzigen"</string>
+    <string name="enter_pin_text" msgid="8532615714751931951">"SIM pincode:"</string>
+    <string name="oldPinLabel" msgid="5287773661246368314">"Oude pincode"</string>
+    <string name="newPinLabel" msgid="207488227285336897">"Nieuwe pincode"</string>
+    <string name="confirmPinLabel" msgid="257597715098070206">"Nieuwe pincode bevestigen"</string>
     <string name="badPin" msgid="8955102849303984935">"De oude pincode die u heeft ingevoerd, is onjuist. Probeer het opnieuw."</string>
     <string name="mismatchPin" msgid="5923253370683071889">"De pincodes die u heeft ingevoerd, komen niet overeen. Probeer het opnieuw."</string>
-    <string name="invalidPin" msgid="5981171102258684792">"Voer een PIN-code van 4 tot 8 cijfers in."</string>
+    <string name="invalidPin" msgid="5981171102258684792">"Voer een pincode van 4 tot 8 cijfers in."</string>
     <string name="disable_sim_pin" msgid="3419351358300716472">"Pincode voor simkaart wissen"</string>
     <string name="enable_sim_pin" msgid="4845145659651484248">"Pincode voor simkaart instellen"</string>
     <string name="enable_in_progress" msgid="3417917024688497010">"Pincode instellen…"</string>
@@ -537,8 +537,7 @@
     <string name="description_dial_button" msgid="7459705245418435351">"bellen"</string>
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"Trillen"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"Trillen"</string>
-    <!-- no translation found for voicemail_visual_voicemail_switch_title (5012622186976275457) -->
-    <skip />
+    <string name="voicemail_visual_voicemail_switch_title" msgid="5012622186976275457">"Visuele voicemail"</string>
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"Geluid"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"Beltoon en trillen"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"Ingebouwde simkaarten"</string>

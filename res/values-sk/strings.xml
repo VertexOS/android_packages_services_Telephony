@@ -154,9 +154,9 @@
     <string name="voicemail_default" msgid="2001233554889016880">"Váš operátor"</string>
     <string name="mobile_networks" msgid="2843854043339307375">"Nastavenia mobilnej siete"</string>
     <string name="label_available" msgid="1181658289009300430">"Dostupné siete"</string>
-    <string name="load_networks_progress" msgid="5230707536168902952">"Prebieha vyhľadávanie…"</string>
+    <string name="load_networks_progress" msgid="5230707536168902952">"Hľadá sa…"</string>
     <string name="empty_networks_list" msgid="4249426905018815316">"Nebola nájdená žiadna sieť."</string>
-    <string name="search_networks" msgid="1601136049300882441">"Vyhľadávanie sietí"</string>
+    <string name="search_networks" msgid="1601136049300882441">"Vyhľadávať siete"</string>
     <string name="network_query_error" msgid="6828516148953325006">"Pri vyhľadávaní sietí došlo k chybe."</string>
     <string name="register_on_network" msgid="9055203954040805084">"Prebieha registrácia v sieti <xliff:g id="NETWORK">%s</xliff:g>..."</string>
     <string name="not_allowed" msgid="5613353860205691579">"Vaša SIM karta nepovoľuje pripojenie k tejto sieti."</string>
@@ -364,15 +364,15 @@
     <string name="name" msgid="7329028332786872378">"Meno"</string>
     <string name="number" msgid="7905950798349903858">"Číslo"</string>
     <string name="save" msgid="4094274636321939086">"Uložiť"</string>
-    <string name="add_fdn_contact" msgid="2481915899633353976">"Pridať pevne určené čísla"</string>
-    <string name="adding_fdn_contact" msgid="7627379633721940991">"Prebieha pridávanie pevne určených čísiel..."</string>
-    <string name="fdn_contact_added" msgid="7458335758501736665">"Pevne určené číslo bolo pridané."</string>
-    <string name="edit_fdn_contact" msgid="7976936035587081480">"Upraviť pevne určené číslo"</string>
-    <string name="updating_fdn_contact" msgid="8370929876849803600">"Prebieha aktualizácia pevne určeného čísla..."</string>
-    <string name="fdn_contact_updated" msgid="5497828782609005017">"Pevne určené číslo bolo aktualizované."</string>
-    <string name="delete_fdn_contact" msgid="6668958073074151717">"Odstrániť pevne určené čísla"</string>
-    <string name="deleting_fdn_contact" msgid="5669163206349319969">"Prebieha odstraňovanie pevne určených čísiel..."</string>
-    <string name="fdn_contact_deleted" msgid="7154162327112259569">"Pevne určené čísla boli odstránené."</string>
+    <string name="add_fdn_contact" msgid="2481915899633353976">"Pridať povolené číslo"</string>
+    <string name="adding_fdn_contact" msgid="7627379633721940991">"Pridáva sa povolené číslo…"</string>
+    <string name="fdn_contact_added" msgid="7458335758501736665">"Povolené číslo bolo pridané."</string>
+    <string name="edit_fdn_contact" msgid="7976936035587081480">"Upraviť povolené číslo"</string>
+    <string name="updating_fdn_contact" msgid="8370929876849803600">"Prebieha aktualizácia povoleného čísla…"</string>
+    <string name="fdn_contact_updated" msgid="5497828782609005017">"Povolené číslo bolo aktualizované."</string>
+    <string name="delete_fdn_contact" msgid="6668958073074151717">"Odstrániť povolené číslo"</string>
+    <string name="deleting_fdn_contact" msgid="5669163206349319969">"Odstraňuje sa povolené číslo…"</string>
+    <string name="fdn_contact_deleted" msgid="7154162327112259569">"Povolené číslo bolo odstránené."</string>
     <string name="pin2_invalid" msgid="5470854099230755944">"Povolené čísla neboli aktualizované. Zadali ste nesprávny kód PIN."</string>
     <string name="fdn_invalid_number" msgid="1494755047900009147">"Povolené čísla neboli aktualizované. Číslo nemôže mať viac ako 20 číslic."</string>
     <string name="pin2_or_fdn_invalid" msgid="6025144083384701197">"Povolené čísla neboli aktualizované. Kód PIN2 je nesprávny alebo bolo telefónne číslo odmietnuté."</string>
@@ -543,8 +543,7 @@
     <string name="description_dial_button" msgid="7459705245418435351">"vytáčanie"</string>
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"Vibrovať"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"Vibrovať"</string>
-    <!-- no translation found for voicemail_visual_voicemail_switch_title (5012622186976275457) -->
-    <skip />
+    <string name="voicemail_visual_voicemail_switch_title" msgid="5012622186976275457">"Vizuálna hlasová schránka"</string>
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"Zvuk"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"Tón zvonenia a vibrovanie"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"Vstavané SIM karty"</string>
