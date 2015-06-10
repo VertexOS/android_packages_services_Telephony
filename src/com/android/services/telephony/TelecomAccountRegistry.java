@@ -101,7 +101,8 @@ final class TelecomAccountRegistry {
             if (line1Number == null) {
                 line1Number = "";
             }
-            String subNumber = mPhone.getPhoneSubInfo().getLine1Number();
+            String subNumber = mPhone.getPhoneSubInfo().getLine1Number(
+                    mPhone.getContext().getOpPackageName());
             if (subNumber == null) {
                 subNumber = "";
             }
