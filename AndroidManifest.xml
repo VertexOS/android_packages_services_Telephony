@@ -46,6 +46,11 @@
     <protected-broadcast android:name="android.provider.Telephony.WAP_PUSH_RECEIVED" />
     <protected-broadcast android:name="android.provider.Telephony.SMS_CB_RECEIVED" />
     <protected-broadcast android:name="android.provider.Telephony.SMS_EMERGENCY_CB_RECEIVED" />
+    <protected-broadcast android:name= "android.intent.action.stk.command" />
+    <protected-broadcast android:name= "android.intent.action.stk.session_end" />
+    <protected-broadcast android:name= "android.intent.action.stk.icc_status_change" />
+    <protected-broadcast android:name= "android.intent.action.stk.alpha_notify" />
+
 
     <uses-permission android:name="android.permission.BROADCAST_STICKY" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
