@@ -317,7 +317,7 @@ public class ImsConferenceController {
 
         // Create conference and add to telecom
         ImsConference conference = new ImsConference(mConnectionService, conferenceHostConnection);
-        conference.setState(connection.getState());
+        conference.setState(conferenceHostConnection.getState());
         conference.addListener(mConferenceListener);
         conference.updateConferenceParticipantsAfterCreation();
         mConnectionService.addConference(conference);
