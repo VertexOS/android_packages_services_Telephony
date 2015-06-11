@@ -70,7 +70,7 @@ final class TelecomAccountRegistry {
         AccountEntry(Phone phone, boolean isEmergency, boolean isDummy) {
             mPhone = phone;
             mAccount = registerPstnPhoneAccount(isEmergency, isDummy);
-            Log.d(this, "Registered phoneAccount: %s with handle: %s",
+            Log.i(this, "Registered phoneAccount: %s with handle: %s",
                     mAccount, mAccount.getAccountHandle());
             mIncomingCallNotifier = new PstnIncomingCallNotifier((PhoneProxy) mPhone);
             mPhoneCapabilitiesNotifier = new PstnPhoneCapabilitiesNotifier((PhoneProxy) mPhone,
@@ -371,11 +371,12 @@ final class TelecomAccountRegistry {
     private void cleanupPhoneAccounts() {
         ComponentName telephonyComponentName =
                 new ComponentName(mContext, TelephonyConnectionService.class);
-        List<PhoneAccountHandle> accountHandles = mTelecomManager.getAllPhoneAccountHandles();
+        List<PhoneAccountHandle> accountHandles =
+                mTelecomManager.getCallCapablePhoneAccounts(true /* includeDisabled */);
         for (PhoneAccountHandle handle : accountHandles) {
             if (telephonyComponentName.equals(handle.getComponentName()) &&
                     !hasAccountEntryForPhoneAccount(handle)) {
-                Log.d(this, "Unregistering phone account %s.", handle);
+                Log.i(this, "Unregistering phone account %s.", handle);
                 mTelecomManager.unregisterPhoneAccount(handle);
             }
         }
