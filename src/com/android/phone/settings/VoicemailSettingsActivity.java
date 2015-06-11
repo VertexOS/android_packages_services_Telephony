@@ -387,8 +387,9 @@ public class VoicemailSettingsActivity extends PreferenceActivity
             VoicemailNotificationSettingsUtil.setVibrationEnabled(
                     mPhone, Boolean.TRUE.equals(objValue));
         } else if (preference.getKey().equals(mVoicemailVisualVoicemail.getKey())) {
-            if ((Boolean) objValue) {
-                VisualVoicemailSettingsUtil.setVisualVoicemailEnabled(mPhone, true);
+            boolean isEnabled = (Boolean) objValue;
+            VisualVoicemailSettingsUtil.setVisualVoicemailEnabled(mPhone, isEnabled, true);
+            if (isEnabled) {
                 mOmtpVvmCarrierConfigHelper.startActivation();
             } else {
                 OmtpVvmSourceManager.getInstance(mPhone.getContext()).removeSource(mPhone);
