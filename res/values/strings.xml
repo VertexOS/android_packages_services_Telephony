@@ -1301,4 +1301,9 @@
        data was received.) [CHAR LIMIT=none] -->
     <string name="message_decode_error">There was an error while decoding the message.</string>
 
+    <!-- Call failure reason: SIM card and roaming capabilities have already been activated. [CHAR LIMIT=NONE]-->
+    <string name="callFailed_cdma_activation_">
+        A SIM card has activated your service and updated your phone\'s roaming capabilities.
+    </string>
+
 </resources>
