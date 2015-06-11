@@ -241,7 +241,7 @@ public class CallFeaturesSetting extends PreferenceActivity
                     prefSet.removePreference(fdnButton);
 
                     if (!carrierConfig.getBoolean(
-                            CarrierConfigManager.KEY_VOICE_PRIVACY_DISABLE_BOOL)) {
+                            CarrierConfigManager.KEY_VOICE_PRIVACY_DISABLE_UI_BOOL)) {
                         addPreferencesFromResource(R.xml.cdma_call_privacy);
                     }
                 } else if (phoneType == PhoneConstants.PHONE_TYPE_GSM) {
