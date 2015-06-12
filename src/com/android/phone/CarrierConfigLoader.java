@@ -111,6 +111,12 @@ public class CarrierConfigLoader extends ICarrierConfigLoader.Stub {
     private static final int EVENT_FETCH_CARRIER = 8;
     // A package has been installed, uninstalled, or updated.
     private static final int EVENT_PACKAGE_CHANGED = 9;
+    // Bind timed out for the default app.
+    private static final int EVENT_BIND_DEFAULT_TIMEOUT = 10;
+    // Bind timed out for a carrier app.
+    private static final int EVENT_BIND_CARRIER_TIMEOUT = 11;
+
+    private static final int BIND_TIMEOUT_MILLIS = 10000;
 
     // Tags used for saving and restoring XML documents.
     private static final String TAG_DOCUMENT = "carrier_config";
@@ -175,8 +181,11 @@ public class CarrierConfigLoader extends ICarrierConfigLoader.Stub {
                         newMsg.getData().putBoolean("loaded_from_xml", true);
                         mHandler.sendMessage(newMsg);
                     } else {
-                        if (!bindToConfigPackage(DEFAULT_CARRIER_CONFIG_PACKAGE,
+                        if (bindToConfigPackage(DEFAULT_CARRIER_CONFIG_PACKAGE,
                                 phoneId, EVENT_CONNECTED_TO_DEFAULT)) {
+                            sendMessageDelayed(obtainMessage(EVENT_BIND_DEFAULT_TIMEOUT, phoneId, -1),
+                                    BIND_TIMEOUT_MILLIS);
+                        } else {
                             // Send bcast if bind fails
                             broadcastConfigChangedIntent(phoneId);
                         }
@@ -184,6 +193,7 @@ public class CarrierConfigLoader extends ICarrierConfigLoader.Stub {
                     break;
 
                 case EVENT_CONNECTED_TO_DEFAULT:
+                    removeMessages(EVENT_BIND_DEFAULT_TIMEOUT);
                     carrierId = getCarrierIdForPhoneId(phoneId);
                     conn = (CarrierServiceConnection) msg.obj;
                     // If new service connection has been created, unbind.
@@ -204,6 +214,11 @@ public class CarrierConfigLoader extends ICarrierConfigLoader.Stub {
                     } finally {
                         mContext.unbindService(mServiceConnection[phoneId]);
                     }
+                    break;
+
+                case EVENT_BIND_DEFAULT_TIMEOUT:
+                    mContext.unbindService(mServiceConnection[phoneId]);
+                    broadcastConfigChangedIntent(phoneId);
                     break;
 
                 case EVENT_LOADED_FROM_DEFAULT:
@@ -234,8 +249,11 @@ public class CarrierConfigLoader extends ICarrierConfigLoader.Stub {
                         newMsg.getData().putBoolean("loaded_from_xml", true);
                         sendMessage(newMsg);
                     } else {
-                        if (!bindToConfigPackage(carrierPackageName, phoneId,
+                        if (bindToConfigPackage(carrierPackageName, phoneId,
                                 EVENT_CONNECTED_TO_CARRIER)) {
+                            sendMessageDelayed(obtainMessage(EVENT_BIND_CARRIER_TIMEOUT, phoneId, -1),
+                                    BIND_TIMEOUT_MILLIS);
+                        } else {
                             // Send bcast if bind fails
                             broadcastConfigChangedIntent(phoneId);
                         }
@@ -243,6 +261,7 @@ public class CarrierConfigLoader extends ICarrierConfigLoader.Stub {
                     break;
 
                 case EVENT_CONNECTED_TO_CARRIER:
+                    removeMessages(EVENT_BIND_CARRIER_TIMEOUT);
                     carrierId = getCarrierIdForPhoneId(phoneId);
                     conn = (CarrierServiceConnection) msg.obj;
                     // If new service connection has been created, unbind.
@@ -265,6 +284,11 @@ public class CarrierConfigLoader extends ICarrierConfigLoader.Stub {
                     } finally {
                         mContext.unbindService(mServiceConnection[phoneId]);
                     }
+                    break;
+
+                case EVENT_BIND_CARRIER_TIMEOUT:
+                    mContext.unbindService(mServiceConnection[phoneId]);
+                    broadcastConfigChangedIntent(phoneId);
                     break;
 
                 case EVENT_LOADED_FROM_CARRIER:
