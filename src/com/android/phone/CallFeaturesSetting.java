@@ -25,6 +25,8 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.os.UserHandle;
@@ -99,6 +101,7 @@ public class CallFeaturesSetting extends PreferenceActivity
 
     private Phone mPhone;
     private SubscriptionInfoHelper mSubscriptionInfoHelper;
+    private TelecomManager mTelecomManager;
 
     private CheckBoxPreference mButtonAutoRetry;
     private PreferenceScreen mVoicemailSettingsScreen;
@@ -177,6 +180,7 @@ public class CallFeaturesSetting extends PreferenceActivity
         mSubscriptionInfoHelper.setActionBarTitle(
                 getActionBar(), getResources(), R.string.call_settings_with_label);
         mPhone = mSubscriptionInfoHelper.getPhone();
+        mTelecomManager = TelecomManager.from(this);
     }
 
     @Override
@@ -190,12 +194,11 @@ public class CallFeaturesSetting extends PreferenceActivity
 
         addPreferencesFromResource(R.xml.call_feature_setting);
 
-        TelecomManager telecomManager = TelecomManager.from(this);
         TelephonyManager telephonyManager =
                 (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
 
         Preference phoneAccountSettingsPreference = findPreference(PHONE_ACCOUNT_SETTINGS_KEY);
-        if (telephonyManager.isMultiSimEnabled() || (telecomManager.getSimCallManagers().isEmpty()
+        if (telephonyManager.isMultiSimEnabled() || (mTelecomManager.getSimCallManagers().isEmpty()
                     && !SipUtil.isVoipSupported(mPhone.getContext()))) {
             getPreferenceScreen().removePreference(phoneAccountSettingsPreference);
         }
@@ -278,7 +281,29 @@ public class CallFeaturesSetting extends PreferenceActivity
 
         Preference wifiCallingSettings = findPreference(
                 getResources().getString(R.string.wifi_calling_settings_key));
-        if (!ImsManager.isWfcEnabledByPlatform(mPhone.getContext())) {
+
+        final PhoneAccountHandle simCallManager = mTelecomManager.getSimCallManager();
+        String simCallManagerPackage = simCallManager != null
+                && simCallManager.getComponentName() != null
+                        ? simCallManager.getComponentName().getPackageName()
+                        : null;
+
+        if (!TextUtils.isEmpty(simCallManagerPackage)) {
+            final Intent intent = new Intent(TelecomManager.ACTION_CONNECTION_SERVICE_CONFIGURE)
+                    .addCategory(Intent.CATEGORY_DEFAULT)
+                    .setPackage(simCallManagerPackage);
+
+            // Check whether the configuration intent is supported.
+            PackageManager pm = getPackageManager();
+            List<ResolveInfo> resolutions = pm.queryIntentActivities(intent, 0);
+            if (resolutions.size() > 0) {
+                wifiCallingSettings.setTitle(R.string.wifi_calling);
+                wifiCallingSettings.setSummary(null);
+                wifiCallingSettings.setIntent(intent);
+            } else {
+                prefSet.removePreference(wifiCallingSettings);
+            }
+        } else if (!ImsManager.isWfcEnabledByPlatform(mPhone.getContext())) {
             prefSet.removePreference(wifiCallingSettings);
         } else {
             int resId = com.android.internal.R.string.wifi_calling_off_summary;
