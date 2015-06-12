@@ -43,24 +43,6 @@
     </PreferenceCategory>
 
     <PreferenceCategory
-        android:key="phone_accounts_call_assistant_settings_category_key"
-        android:title="@string/wifi_calling_call_assistant"
-        android:persistent="false">
-
-        <com.android.phone.settings.AccountSelectionPreference
-            android:key="wifi_calling_call_assistant_preference"
-            android:title="@string/wifi_calling_call_assistant"
-            android:summary="@string/wifi_calling_call_assistant_none"
-            android:persistent="false" />
-
-        <Preference
-            android:key="wifi_calling_configure_call_assistant_preference"
-            android:title="@string/wifi_calling_call_assistant_configure"
-            android:persistent="false" />
-
-    </PreferenceCategory>
-
-    <PreferenceCategory
         android:key="phone_accounts_sip_settings_category_key"
         android:title="@string/sip_settings"
         android:persistent="false">
