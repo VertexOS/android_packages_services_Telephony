@@ -31,6 +31,8 @@ import android.preference.PreferenceScreen;
 import android.preference.SwitchPreference;
 import android.provider.ContactsContract.CommonDataKinds;
 import android.telephony.TelephonyManager;
+import android.text.BidiFormatter;
+import android.text.TextDirectionHeuristics;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
@@ -1014,7 +1016,8 @@ public class VoicemailSettingsActivity extends PreferenceActivity
             mSubMenuVoicemailSettings.setSummary(getString(R.string.voicemail_number_not_set));
         } else {
             mSubMenuVoicemailSettings.setPhoneNumber(mOldVmNumber);
-            mSubMenuVoicemailSettings.setSummary(mOldVmNumber);
+            mSubMenuVoicemailSettings.setSummary(BidiFormatter.getInstance().unicodeWrap(
+                    mOldVmNumber, TextDirectionHeuristics.LTR));
         }
     }
 
