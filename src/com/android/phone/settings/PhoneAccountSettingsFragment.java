@@ -1,17 +1,12 @@
 package com.android.phone.settings;
 
-import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
-import android.graphics.Bitmap;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
 import android.graphics.drawable.Icon;
 import android.net.sip.SipManager;
 import android.os.Bundle;
-import android.os.UserHandle;
 import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
@@ -23,7 +18,6 @@ import android.telecom.TelecomManager;
 import android.telephony.SubscriptionInfo;
 import android.telephony.SubscriptionManager;
 import android.telephony.TelephonyManager;
-import android.util.Log;
 
 import com.android.internal.telephony.Phone;
 import com.android.phone.PhoneUtils;
@@ -41,7 +35,6 @@ import java.util.List;
 
 public class PhoneAccountSettingsFragment extends PreferenceFragment
         implements Preference.OnPreferenceChangeListener,
-                Preference.OnPreferenceClickListener,
                 AccountSelectionPreference.AccountSelectionListener {
 
     private static final String ACCOUNTS_LIST_CATEGORY_KEY =
@@ -49,13 +42,6 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
 
     private static final String DEFAULT_OUTGOING_ACCOUNT_KEY = "default_outgoing_account";
     private static final String ALL_CALLING_ACCOUNTS_KEY = "phone_account_all_calling_accounts";
-
-    private static final String CONFIGURE_CALL_ASSISTANT_PREF_KEY =
-            "wifi_calling_configure_call_assistant_preference";
-    private static final String CALL_ASSISTANT_CATEGORY_PREF_KEY =
-            "phone_accounts_call_assistant_settings_category_key";
-    private static final String SELECT_CALL_ASSISTANT_PREF_KEY =
-            "wifi_calling_call_assistant_preference";
 
     private static final String SIP_SETTINGS_CATEGORY_PREF_KEY =
             "phone_accounts_sip_settings_category_key";
@@ -79,8 +65,6 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
     private PreferenceCategory mAccountList;
 
     private AccountSelectionPreference mDefaultOutgoingAccount;
-    private AccountSelectionPreference mSelectCallAssistant;
-    private Preference mConfigureCallAssistant;
 
     private ListPreference mUseSipCalling;
     private CheckBoxPreference mSipReceiveCallsPreference;
@@ -161,27 +145,6 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
             getPreferenceScreen().removePreference(mAccountList);
         }
 
-        List<PhoneAccountHandle> simCallManagers = mTelecomManager.getSimCallManagers();
-        PreferenceCategory callAssistantCategory = (PreferenceCategory)
-                getPreferenceScreen().findPreference(CALL_ASSISTANT_CATEGORY_PREF_KEY);
-        if (simCallManagers.isEmpty()) {
-            getPreferenceScreen().removePreference(callAssistantCategory);
-        } else {
-            // Display a list of call assistants. Choosing an item from the list enables the
-            // corresponding call assistant.
-            mSelectCallAssistant = (AccountSelectionPreference)
-                    getPreferenceScreen().findPreference(SELECT_CALL_ASSISTANT_PREF_KEY);
-            mSelectCallAssistant.setListener(this);
-            mSelectCallAssistant.setDialogTitle(
-                    R.string.wifi_calling_select_call_assistant_summary);
-            updateCallAssistantModel();
-
-            mConfigureCallAssistant =
-                    getPreferenceScreen().findPreference(CONFIGURE_CALL_ASSISTANT_PREF_KEY);
-            mConfigureCallAssistant.setOnPreferenceClickListener(this);
-            updateConfigureCallAssistant();
-        }
-
         if (SipUtil.isVoipSupported(getActivity())) {
             mSipSharedPreferences = new SipSharedPreferences(getActivity());
 
@@ -243,30 +206,8 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
         return false;
     }
 
-    @Override
-    public boolean onPreferenceClick(Preference pref) {
-        if (pref == mConfigureCallAssistant) {
-            Intent intent = getConfigureCallAssistantIntent();
-            if (intent != null) {
-                PhoneAccountHandle handle = mTelecomManager.getSimCallManager();
-                UserHandle userHandle = handle.getUserHandle();
-                try {
-                    if (userHandle != null) {
-                        getActivity().startActivityAsUser(intent, userHandle);
-                    } else {
-                        startActivity(intent);
-                    }
-                } catch (ActivityNotFoundException e) {
-                    Log.d(LOG_TAG, "Could not resolve call assistant configure intent: " + intent);
-                }
-            }
-            return true;
-        }
-        return false;
-    }
-
     /**
-     * Handles a phone account selection, namely when a call assistant has been selected.
+     * Handles a phone account selection for the default outgoing phone account.
      *
      * @param pref The account selection preference which triggered the account selected event.
      * @param account The account selected.
@@ -276,9 +217,6 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
     public boolean onAccountSelected(AccountSelectionPreference pref, PhoneAccountHandle account) {
         if (pref == mDefaultOutgoingAccount) {
             mTelecomManager.setUserSelectedOutgoingPhoneAccount(account);
-            return true;
-        } else if (pref == mSelectCallAssistant) {
-            mTelecomManager.setSimCallManager(account);
             return true;
         }
         return false;
@@ -293,21 +231,11 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
     public void onAccountSelectionDialogShow(AccountSelectionPreference pref) {
         if (pref == mDefaultOutgoingAccount) {
             updateDefaultOutgoingAccountsModel();
-        } else if (pref == mSelectCallAssistant) {
-            updateCallAssistantModel();
-            updateConfigureCallAssistant();
         }
     }
 
-    /**
-     * Update the configure preference summary when the call assistant changes.
-     */
     @Override
-    public void onAccountChanged(AccountSelectionPreference pref) {
-        if (pref == mSelectCallAssistant) {
-            updateConfigureCallAssistant();
-        }
-    }
+    public void onAccountChanged(AccountSelectionPreference pref) {}
 
     private synchronized void handleSipReceiveCallsOption(boolean isEnabled) {
         Context context = getActivity();
@@ -335,34 +263,6 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
                 getCallingAccounts(true /* includeSims */, false /* includeDisabled */),
                 mTelecomManager.getUserSelectedOutgoingPhoneAccount(),
                 getString(R.string.phone_accounts_ask_every_time));
-    }
-
-    /**
-     * Queries the telecomm manager to update the account selection preference with the list of
-     * call assistants, and the currently selected call assistant.
-     */
-    public void updateCallAssistantModel() {
-        mSelectCallAssistant.setModel(
-                mTelecomManager, mTelecomManager.getSimCallManagers(),
-                mTelecomManager.getSimCallManager(),
-                getString(R.string.wifi_calling_call_assistant_none));
-    }
-
-    /**
-     * Shows or hides the "configure call assistant" preference.
-     */
-    private void updateConfigureCallAssistant() {
-        Intent intent = getConfigureCallAssistantIntent();
-        boolean shouldShow = intent != null && !getActivity().getPackageManager()
-            .queryIntentActivities(intent, 0).isEmpty();
-
-        PreferenceCategory callAssistantCategory = (PreferenceCategory)
-                getPreferenceScreen().findPreference(CALL_ASSISTANT_CATEGORY_PREF_KEY);
-        if (shouldShow) {
-            callAssistantCategory.addPreference(mConfigureCallAssistant);
-        } else {
-            callAssistantCategory.removePreference(mConfigureCallAssistant);
-        }
     }
 
     private void initAccountList(List<PhoneAccountHandle> enabledAccounts) {
@@ -476,19 +376,6 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
             accountPreference.setOrder(order++);
             mAccountList.addPreference(accountPreference);
         }
-    }
-
-    private Intent getConfigureCallAssistantIntent() {
-        PhoneAccountHandle handle = mTelecomManager.getSimCallManager();
-        if (handle != null) {
-            String packageName = handle.getComponentName().getPackageName();
-            if (packageName != null) {
-                return new Intent(TelecomManager.ACTION_CONNECTION_SERVICE_CONFIGURE)
-                        .addCategory(Intent.CATEGORY_DEFAULT)
-                        .setPackage(packageName);
-            }
-        }
-        return null;
     }
 
     private boolean shouldShowConnectionServiceList(List<PhoneAccountHandle> allNonSimAccounts) {
