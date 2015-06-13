@@ -95,7 +95,6 @@ public class OmtpVvmSourceManager {
                 VoicemailContract.Status.DATA_CHANNEL_STATE_NO_CONNECTION,
                 VoicemailContract.Status.NOTIFICATION_CHANNEL_STATE_NO_CONNECTION);
         removePhoneStateListener(phoneAccount);
-        VisualVoicemailSettingsUtil.setVisualVoicemailEnabled(mContext, phoneAccount, false);
     }
 
     public void addPhoneStateListener(PhoneAccountHandle phoneAccount) {
