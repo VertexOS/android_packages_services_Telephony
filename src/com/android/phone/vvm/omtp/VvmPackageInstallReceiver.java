@@ -21,6 +21,7 @@ import android.content.Intent;
 import android.telecom.PhoneAccountHandle;
 
 import com.android.phone.PhoneUtils;
+import com.android.phone.settings.VisualVoicemailSettingsUtil;
 import com.android.phone.vvm.omtp.sync.OmtpVvmSourceManager;
 
 import java.util.Set;
@@ -44,11 +45,17 @@ public class VvmPackageInstallReceiver extends BroadcastReceiver {
         OmtpVvmSourceManager vvmSourceManager = OmtpVvmSourceManager.getInstance(context);
         Set<PhoneAccountHandle> phoneAccounts = vvmSourceManager.getOmtpVvmSources();
         for (PhoneAccountHandle phoneAccount : phoneAccounts) {
+            if (VisualVoicemailSettingsUtil.isEnabledByUserOverride(context, phoneAccount)) {
+                // Skip the check if this voicemail source is enabled by the user.
+                continue;
+            }
+
             OmtpVvmCarrierConfigHelper carrierConfigHelper = new OmtpVvmCarrierConfigHelper(
                     context, PhoneUtils.getSubIdForPhoneAccountHandle(phoneAccount));
             if (packageName.equals(carrierConfigHelper.getCarrierVvmPackageName())) {
+                VisualVoicemailSettingsUtil.setVisualVoicemailEnabled(
+                        context, phoneAccount, false, false);
                 OmtpVvmSourceManager.getInstance(context).removeSource(phoneAccount);
-                carrierConfigHelper.startDeactivation();
             }
         }
     }
