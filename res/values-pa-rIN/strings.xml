@@ -71,15 +71,6 @@
     <string name="phone_accounts_all_calling_accounts" msgid="207619531589278471">"ਸਾਰੇ ਕਾਲਿੰਗ ਖਾਤੇ"</string>
     <string name="phone_accounts_all_calling_accounts_summary" msgid="8594186415822657011">"ਚੁਣੋ ਕਿ ਕਿਹੜੇ ਖਾਤੇ ਕਾਲਾਂ ਨੂੰ ਕਰ ਸਕਦੇ ਹਨ"</string>
     <string name="wifi_calling" msgid="739018212480165598">"Wi-Fi ਕਾਲਿੰਗ"</string>
-    <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"Wi-Fi ਕਾਲਿੰਗ ਨਾ ਵਰਤੋ"</string>
-    <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"ਕਾਲ ਸਹਾਇਕ ਨਾ ਵਰਤੋ"</string>
-    <string name="wifi_calling_call_assistant_none" msgid="6283702349285593683">"ਕੋਈ ਨਹੀਂ"</string>
-    <string name="wifi_calling_call_assistant" msgid="229102032881680320">"ਕਾਲ ਸਹਾਇਕ"</string>
-    <string name="wifi_calling_use_call_assistant" msgid="8460024827012666199">"ਕਾਲ ਸਹਾਇਕ ਵਰਤੋ"</string>
-    <string name="wifi_calling_select_call_assistant" msgid="9296558058772293">"ਕਾਲ ਸਹਾਇਕ ਚੁਣੋ"</string>
-    <string name="wifi_calling_select_call_assistant_summary" msgid="164985727137156474">"ਇਸ ਨਾਲ ਕਾਲਾਂ ਲਈ ਵਰਤੇ ਜਾਣ ਵਾਲੇ ਨੈਟਵਰਕਾਂ ਨੂੰ ਵਿਵਸਥਿਤ ਕਰੋ"</string>
-    <string name="wifi_calling_use_call_assistant_summary" msgid="6599987137133339698">"ਐਪਸ ਜਾਂ ਸੇਵਾਵਾਂ ਨੂੰ ਕਾਲਾਂ ਲਈ ਵਰਤੇ ਜਾਣ ਵਾਲੇ ਨੈਟਵਰਕਾਂ ਨੂੰ ਵਿਵਸਥਿਤ ਕਰਨ ਦਿਓ"</string>
-    <string name="wifi_calling_call_assistant_configure" msgid="1092639708949670031">"ਕੌਂਫਿਗਰ ਕਰੋ"</string>
     <string name="connection_service_default_label" msgid="1498481943805913754">"ਬਿਲਟ-ਇਨ ਕਨੈਕਸ਼ਨ ਸੇਵਾ"</string>
     <string name="voicemail" msgid="8693759337917898954">"ਵੌਇਸਮੇਲ"</string>
     <string name="voicemail_settings_with_label" msgid="152724978380748296">"ਵੌਇਸਮੇਲ (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
@@ -553,4 +544,5 @@
     <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"Wi-Fi ਕਾਲ"</string>
     <string name="emergency_action_launch_hint" msgid="5841511849007540970">"ਖੋਲ੍ਹਣ ਲਈ ਦੁਬਾਰਾ ਛੋਹਵੋ"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"ਸੁਨੇਹਾ ਡੀਕੋਡ ਕਰਦੇ ਸਮੇਂ ਇੱਕ ਅਸ਼ੁੱਧੀ ਹੋਈ ਸੀ।"</string>
+    <string name="callFailed_cdma_activation_" msgid="7865724396309578840">"ਇੱਕ SIM ਕਾਰਡ ਨੇ ਤੁਹਾਡੀ ਸੇਵਾ ਸਕਿਰਿਆ ਕੀਤੀ ਹੈ ਅਤੇ ਤੁਹਾਡੇ ਫੋਨ ਦੀਆਂ ਰੋਮਿੰਗ ਸਮਰੱਥਤਾਵਾਂ ਅਪਡੇਟ ਕੀਤੀਆਂ ਹਨ।"</string>
 </resources>

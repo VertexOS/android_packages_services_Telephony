@@ -71,15 +71,6 @@
     <string name="phone_accounts_all_calling_accounts" msgid="207619531589278471">"Todas las cuentas telefónicas"</string>
     <string name="phone_accounts_all_calling_accounts_summary" msgid="8594186415822657011">"Elige las cuentas que pueden realizar llamadas."</string>
     <string name="wifi_calling" msgid="739018212480165598">"Llamada por Wi-Fi"</string>
-    <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"No utilizar llamadas por Wi-Fi"</string>
-    <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"No utilizar asistente de llamadas"</string>
-    <string name="wifi_calling_call_assistant_none" msgid="6283702349285593683">"Ninguno"</string>
-    <string name="wifi_calling_call_assistant" msgid="229102032881680320">"Asistente de llamadas"</string>
-    <string name="wifi_calling_use_call_assistant" msgid="8460024827012666199">"Usar asistente de llamadas"</string>
-    <string name="wifi_calling_select_call_assistant" msgid="9296558058772293">"Elegir asistente de llamadas"</string>
-    <string name="wifi_calling_select_call_assistant_summary" msgid="164985727137156474">"Administrar las redes usadas para llamadas con"</string>
-    <string name="wifi_calling_use_call_assistant_summary" msgid="6599987137133339698">"Permitir que las aplicaciones o los servicios administren las redes utilizadas para llamadas"</string>
-    <string name="wifi_calling_call_assistant_configure" msgid="1092639708949670031">"Configurar"</string>
     <string name="connection_service_default_label" msgid="1498481943805913754">"Servicio de conexión integrado"</string>
     <string name="voicemail" msgid="8693759337917898954">"Correo de voz"</string>
     <string name="voicemail_settings_with_label" msgid="152724978380748296">"Buzón de voz (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
@@ -335,7 +326,7 @@
     <string name="cdma_activate_device" msgid="3793805892364814518">"Activar dispositivo"</string>
     <string name="cdma_lte_data_service" msgid="4255018217292548962">"Configurar servicio de datos"</string>
     <string name="carrier_settings_title" msgid="9028166176523012300">"Config. del proveedor"</string>
-    <string name="fdn" msgid="7878832555095183202">"Números de marc. fijos"</string>
+    <string name="fdn" msgid="7878832555095183202">"Marcación fija"</string>
     <string name="fdn_with_label" msgid="187084204115493366">"Números de marcación fija (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="manage_fdn_list" msgid="8777755791892122369">"Lista de NMF"</string>
     <string name="fdn_list_with_label" msgid="7437232552210469217">"Lista de FDN (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
@@ -416,7 +407,7 @@
     <string name="pin2_unblocked" msgid="7791600368153469078">"El PIN2 ya no está bloqueado."</string>
     <string name="pin2_error_exception" msgid="1088689322248996699">"Error en la red o en la tarjeta SIM"</string>
     <string name="doneButton" msgid="2859593360997984240">"Finalizado"</string>
-    <string name="voicemail_settings_number_label" msgid="8524164258691887790">"Núm. de correo de voz"</string>
+    <string name="voicemail_settings_number_label" msgid="8524164258691887790">"Correo de voz"</string>
     <string name="card_title_dialing" msgid="5769417478498348054">"Marcando"</string>
     <string name="card_title_redialing" msgid="8253487008234167266">"Volviendo a marcar"</string>
     <string name="card_title_conf_call" msgid="1162980346189744501">"Llamada en conferencia"</string>
@@ -553,4 +544,5 @@
     <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"Llamada por Wi-Fi"</string>
     <string name="emergency_action_launch_hint" msgid="5841511849007540970">"Vuelve a tocar para realizar la acción."</string>
     <string name="message_decode_error" msgid="3456481534066924855">"Se produjo un error al decodificar el mensaje."</string>
+    <string name="callFailed_cdma_activation_" msgid="7865724396309578840">"Una tarjeta SIM activó tu servicio y actualizó las capacidades de roaming del teléfono."</string>
 </resources>

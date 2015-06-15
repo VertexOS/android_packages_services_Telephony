@@ -71,15 +71,6 @@
     <string name="phone_accounts_all_calling_accounts" msgid="207619531589278471">"모든 통화 계정"</string>
     <string name="phone_accounts_all_calling_accounts_summary" msgid="8594186415822657011">"전화를 걸 수 있는 계정 선택"</string>
     <string name="wifi_calling" msgid="739018212480165598">"Wi-Fi 통화"</string>
-    <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"Wi-Fi 통화 사용 안함"</string>
-    <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"통화 도우미 사용 안함"</string>
-    <string name="wifi_calling_call_assistant_none" msgid="6283702349285593683">"선택 안함"</string>
-    <string name="wifi_calling_call_assistant" msgid="229102032881680320">"통화 도우미"</string>
-    <string name="wifi_calling_use_call_assistant" msgid="8460024827012666199">"통화 도우미 사용"</string>
-    <string name="wifi_calling_select_call_assistant" msgid="9296558058772293">"통화 도우미 선택"</string>
-    <string name="wifi_calling_select_call_assistant_summary" msgid="164985727137156474">"다음으로 통화에 사용되는 네트워크 관리"</string>
-    <string name="wifi_calling_use_call_assistant_summary" msgid="6599987137133339698">"앱 또는 서비스로 통화에 사용되는 네트워크 관리"</string>
-    <string name="wifi_calling_call_assistant_configure" msgid="1092639708949670031">"구성"</string>
     <string name="connection_service_default_label" msgid="1498481943805913754">"내장된 연결 서비스"</string>
     <string name="voicemail" msgid="8693759337917898954">"음성사서함"</string>
     <string name="voicemail_settings_with_label" msgid="152724978380748296">"음성사서함(<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
@@ -553,4 +544,6 @@
     <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"Wi-Fi 통화"</string>
     <string name="emergency_action_launch_hint" msgid="5841511849007540970">"다시 터치하여 열기"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"메시지를 디코딩하는 중에 오류가 발생했습니다."</string>
+    <!-- no translation found for callFailed_cdma_activation_ (7865724396309578840) -->
+    <skip />
 </resources>

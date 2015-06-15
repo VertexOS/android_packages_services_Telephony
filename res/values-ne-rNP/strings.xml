@@ -71,15 +71,6 @@
     <string name="phone_accounts_all_calling_accounts" msgid="207619531589278471">"सबै कलिङ खाताहरू"</string>
     <string name="phone_accounts_all_calling_accounts_summary" msgid="8594186415822657011">"कुन खाताहरूले कल गर्न सक्छन् चयन गर्नुहोस्"</string>
     <string name="wifi_calling" msgid="739018212480165598">"Wi-Fi कलिङ"</string>
-    <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"Wi-Fi कल प्रयोग नगर्नुहोस्"</string>
-    <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"कल सहायक प्रयोग नगर्नुहोस्"</string>
-    <string name="wifi_calling_call_assistant_none" msgid="6283702349285593683">"कुनै पनि होइन"</string>
-    <string name="wifi_calling_call_assistant" msgid="229102032881680320">"कल सहायक"</string>
-    <string name="wifi_calling_use_call_assistant" msgid="8460024827012666199">"कल सहायक प्रयोग गर्नुहोस्"</string>
-    <string name="wifi_calling_select_call_assistant" msgid="9296558058772293">"कल सहायक छान्नुहोस्"</string>
-    <string name="wifi_calling_select_call_assistant_summary" msgid="164985727137156474">"सँग कलहरू गर्नको लागि प्रयोग हुने संजालहरूको व्यवस्थापन गर्नुहोस्"</string>
-    <string name="wifi_calling_use_call_assistant_summary" msgid="6599987137133339698">"कलका लागि प्रयोग हुने सञ्जालहरू व्यवस्थापन गर्न  अनुप्रयोग वा सेवालाई अनुमति दिन्छ ।"</string>
-    <string name="wifi_calling_call_assistant_configure" msgid="1092639708949670031">"कन्फिगर गर्नुहोस्"</string>
     <string name="connection_service_default_label" msgid="1498481943805913754">"निर्मित जडान सेवा"</string>
     <string name="voicemail" msgid="8693759337917898954">"भ्वाइसमेल"</string>
     <string name="voicemail_settings_with_label" msgid="152724978380748296">"भ्वाइस मेल (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
@@ -537,7 +528,7 @@
     <string name="description_dial_button" msgid="7459705245418435351">"डायल"</string>
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"भाइब्रेट"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"भाइब्रेट"</string>
-    <string name="voicemail_visual_voicemail_switch_title" msgid="5012622186976275457">"दृष्‍टिगत भ्वाइस मेल"</string>
+    <string name="voicemail_visual_voicemail_switch_title" msgid="5012622186976275457">"भिजुअल भ्वाइस मेल"</string>
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"आवाज:"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"रिङ्गटोन र भाइब्रेट"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"निर्मित SIM कार्डहरू"</string>
@@ -553,4 +544,5 @@
     <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"Wi-Fi कल"</string>
     <string name="emergency_action_launch_hint" msgid="5841511849007540970">"खोल्न फेरि छुनुहोस्"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"सन्देश डिकोड गर्दा एउटा समस्या भयो।"</string>
+    <string name="callFailed_cdma_activation_" msgid="7865724396309578840">"SIM कार्डले तपाईँको सेवा सक्रिय गर्नुका तथा फोनको रोमिङ क्षमताहरू पनि अद्यावधिक गरी दिएको छ।"</string>
 </resources>

@@ -71,15 +71,6 @@
     <string name="phone_accounts_all_calling_accounts" msgid="207619531589278471">"すべての通話アカウント"</string>
     <string name="phone_accounts_all_calling_accounts_summary" msgid="8594186415822657011">"通話できるアカウントを選択"</string>
     <string name="wifi_calling" msgid="739018212480165598">"Wi-Fi通話"</string>
-    <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"Wi-Fi発信を使用しない"</string>
-    <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"発信アシスタントを使用しない"</string>
-    <string name="wifi_calling_call_assistant_none" msgid="6283702349285593683">"使用しない"</string>
-    <string name="wifi_calling_call_assistant" msgid="229102032881680320">"発信アシスタント"</string>
-    <string name="wifi_calling_use_call_assistant" msgid="8460024827012666199">"発信アシスタントを使用"</string>
-    <string name="wifi_calling_select_call_assistant" msgid="9296558058772293">"発信アシスタントを選択"</string>
-    <string name="wifi_calling_select_call_assistant_summary" msgid="164985727137156474">"通話用ネットワークを管理する"</string>
-    <string name="wifi_calling_use_call_assistant_summary" msgid="6599987137133339698">"通話用ネットワークの管理をアプリやサービスに許可する"</string>
-    <string name="wifi_calling_call_assistant_configure" msgid="1092639708949670031">"設定"</string>
     <string name="connection_service_default_label" msgid="1498481943805913754">"組み込みの接続サービス"</string>
     <string name="voicemail" msgid="8693759337917898954">"ボイスメール"</string>
     <string name="voicemail_settings_with_label" msgid="152724978380748296">"ボイスメール（<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>）"</string>
@@ -553,4 +544,6 @@
     <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"Wi-Fi通話"</string>
     <string name="emergency_action_launch_hint" msgid="5841511849007540970">"開くにはもう一度タップしてください"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"メッセージのデコード中にエラーが発生しました。"</string>
+    <!-- no translation found for callFailed_cdma_activation_ (7865724396309578840) -->
+    <skip />
 </resources>
