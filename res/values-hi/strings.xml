@@ -71,15 +71,6 @@
     <string name="phone_accounts_all_calling_accounts" msgid="207619531589278471">"सभी कॉलिंग खाते"</string>
     <string name="phone_accounts_all_calling_accounts_summary" msgid="8594186415822657011">"चुनें कि कौन से खाते कॉल कर सकते हैं"</string>
     <string name="wifi_calling" msgid="739018212480165598">"वाई-फ़ाई कॉलिंग"</string>
-    <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"वाई-फ़ाई कॉलिंग का उपयोग न करें"</string>
-    <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"कॉल सहायक का उपयोग न करें"</string>
-    <string name="wifi_calling_call_assistant_none" msgid="6283702349285593683">"कोई नहीं"</string>
-    <string name="wifi_calling_call_assistant" msgid="229102032881680320">"कॉल सहायक"</string>
-    <string name="wifi_calling_use_call_assistant" msgid="8460024827012666199">"कॉल सहायक का उपयोग करें"</string>
-    <string name="wifi_calling_select_call_assistant" msgid="9296558058772293">"कॉल सहायक चुनें"</string>
-    <string name="wifi_calling_select_call_assistant_summary" msgid="164985727137156474">"इससे कॉल करने हेतु उपयोग किए जाने वाले नेटवर्क प्रबंधित करें:"</string>
-    <string name="wifi_calling_use_call_assistant_summary" msgid="6599987137133339698">"ऐप्‍स या सेवाओं को कॉल हेतु उपयाेग किए जाने वाले नेटवर्क प्रबंधित करने दें"</string>
-    <string name="wifi_calling_call_assistant_configure" msgid="1092639708949670031">"कॉन्फ़िगर करें"</string>
     <string name="connection_service_default_label" msgid="1498481943805913754">"अंतर्निहित कनेक्शन सेवा"</string>
     <string name="voicemail" msgid="8693759337917898954">"वॉयस मेल"</string>
     <string name="voicemail_settings_with_label" msgid="152724978380748296">"वॉइसमेल (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
@@ -553,4 +544,6 @@
     <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"वाई-फ़ाई कॉल"</string>
     <string name="emergency_action_launch_hint" msgid="5841511849007540970">"खोलने के लिए पुन: स्पर्श करें"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"संदेश डीकोड करते समय कोई त्रुटि हुई थी."</string>
+    <!-- no translation found for callFailed_cdma_activation_ (7865724396309578840) -->
+    <skip />
 </resources>

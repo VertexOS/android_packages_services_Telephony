@@ -71,15 +71,6 @@
     <string name="phone_accounts_all_calling_accounts" msgid="207619531589278471">"Allir símtalareikningar"</string>
     <string name="phone_accounts_all_calling_accounts_summary" msgid="8594186415822657011">"Velja hvaða reikningar geta hringt símtöl"</string>
     <string name="wifi_calling" msgid="739018212480165598">"Wi-Fi símtöl"</string>
-    <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"Ekki nota Wi-Fi símtöl"</string>
-    <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"Ekki nota símtalaaðstoð"</string>
-    <string name="wifi_calling_call_assistant_none" msgid="6283702349285593683">"Engin"</string>
-    <string name="wifi_calling_call_assistant" msgid="229102032881680320">"Símtalaaðstoð"</string>
-    <string name="wifi_calling_use_call_assistant" msgid="8460024827012666199">"Nota símtalaaðstoð"</string>
-    <string name="wifi_calling_select_call_assistant" msgid="9296558058772293">"Velja símtalaaðstoð"</string>
-    <string name="wifi_calling_select_call_assistant_summary" msgid="164985727137156474">"Stjórna símkerfum til að nota fyrir símtöl með"</string>
-    <string name="wifi_calling_use_call_assistant_summary" msgid="6599987137133339698">"Láta forrit eða þjónustu stjórna símkerfum sem notuð eru fyrir símtöl"</string>
-    <string name="wifi_calling_call_assistant_configure" msgid="1092639708949670031">"Stilla"</string>
     <string name="connection_service_default_label" msgid="1498481943805913754">"Innbyggð tengingarþjónusta"</string>
     <string name="voicemail" msgid="8693759337917898954">"Talhólf"</string>
     <string name="voicemail_settings_with_label" msgid="152724978380748296">"Talhólf (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
@@ -553,4 +544,5 @@
     <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"Wi-Fi símtal"</string>
     <string name="emergency_action_launch_hint" msgid="5841511849007540970">"Snertu aftur til að opna"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"Villa kom upp við að afkóða skeytið."</string>
+    <string name="callFailed_cdma_activation_" msgid="7865724396309578840">"SIM-kort hefur virkjað þjónustuna þína og uppfært reikigetu símans."</string>
 </resources>

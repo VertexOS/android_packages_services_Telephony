@@ -71,15 +71,6 @@
     <string name="phone_accounts_all_calling_accounts" msgid="207619531589278471">"అన్ని కాలింగ్ ఖాతాలు"</string>
     <string name="phone_accounts_all_calling_accounts_summary" msgid="8594186415822657011">"ఏ ఖాతాల నుండి కాల్‌లు చేయవచ్చనే దాన్ని ఎంచుకోండి"</string>
     <string name="wifi_calling" msgid="739018212480165598">"Wi-Fi కాలింగ్"</string>
-    <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"Wi-Fi కాలింగ్‌ను ఉపయోగించవద్దు"</string>
-    <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"కాల్ సహాయకాన్ని ఉపయోగించవద్దు"</string>
-    <string name="wifi_calling_call_assistant_none" msgid="6283702349285593683">"ఏదీ వద్దు"</string>
-    <string name="wifi_calling_call_assistant" msgid="229102032881680320">"కాల్ సహాయకం"</string>
-    <string name="wifi_calling_use_call_assistant" msgid="8460024827012666199">"కాల్ సహాయకాన్ని ఉపయోగించు"</string>
-    <string name="wifi_calling_select_call_assistant" msgid="9296558058772293">"కాల్ సహాయకాన్ని ఎంచుకోండి"</string>
-    <string name="wifi_calling_select_call_assistant_summary" msgid="164985727137156474">"కాల్‌ల కోసం ఉపయోగించే నెట్‌వర్క్‌లను నిర్వహించండి"</string>
-    <string name="wifi_calling_use_call_assistant_summary" msgid="6599987137133339698">"కాల్‌ల కోసం ఉపయోగించే నెట్‌వర్క్‌లను నిర్వహించడానికి అనువర్తనాలు లేదా సేవలను అనుమతించండి"</string>
-    <string name="wifi_calling_call_assistant_configure" msgid="1092639708949670031">"కాన్ఫిగర్ చేయి"</string>
     <string name="connection_service_default_label" msgid="1498481943805913754">"అంతర్నిర్మిత కనెక్షన్ సేవ"</string>
     <string name="voicemail" msgid="8693759337917898954">"వాయిస్ మెయిల్"</string>
     <string name="voicemail_settings_with_label" msgid="152724978380748296">"వాయిస్ మెయిల్ (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
@@ -553,4 +544,6 @@
     <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"Wi-Fi కాల్"</string>
     <string name="emergency_action_launch_hint" msgid="5841511849007540970">"తెరవడానికి మళ్లీ తాకండి"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"సందేశాన్ని డీకోడ్ చేస్తున్నప్పుడు లోపం సంభవించింది."</string>
+    <!-- no translation found for callFailed_cdma_activation_ (7865724396309578840) -->
+    <skip />
 </resources>

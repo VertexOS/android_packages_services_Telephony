@@ -71,15 +71,6 @@
     <string name="phone_accounts_all_calling_accounts" msgid="207619531589278471">"Barcha qo‘ng‘iroq hisoblari"</string>
     <string name="phone_accounts_all_calling_accounts_summary" msgid="8594186415822657011">"Qo‘ng‘iroqlarni amalga oshirish mumkin bo‘lgan hisoblarni tanlang"</string>
     <string name="wifi_calling" msgid="739018212480165598">"Wi-Fi qo‘ng‘iroq"</string>
-    <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"Wi-Fi qo‘ng‘iroqlardan foydalanilmasin"</string>
-    <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"Qo‘ng‘iroq yordamchisidan foydalanilmasin"</string>
-    <string name="wifi_calling_call_assistant_none" msgid="6283702349285593683">"Ishlatilmasin"</string>
-    <string name="wifi_calling_call_assistant" msgid="229102032881680320">"Qo‘ng‘iroq yordamchisi"</string>
-    <string name="wifi_calling_use_call_assistant" msgid="8460024827012666199">"Qo‘ng‘iroq yordamchisidan foydalanish"</string>
-    <string name="wifi_calling_select_call_assistant" msgid="9296558058772293">"Qo‘ng‘iroq yordamchisini tanlang"</string>
-    <string name="wifi_calling_select_call_assistant_summary" msgid="164985727137156474">"Qo‘ng‘iroqlar uchun ishlatiladigan tarmoqlarni boshqarish"</string>
-    <string name="wifi_calling_use_call_assistant_summary" msgid="6599987137133339698">"Ilova yoki xizmatlarga qo‘ng‘iroqlarni amalga oshirish uchun ishlatiladigan tarmoqlarni boshqarishga ruxsat bering"</string>
-    <string name="wifi_calling_call_assistant_configure" msgid="1092639708949670031">"Sozlash"</string>
     <string name="connection_service_default_label" msgid="1498481943805913754">"Ichki o‘rnatilgan ulanish xizmati"</string>
     <string name="voicemail" msgid="8693759337917898954">"Ovozli xabar"</string>
     <string name="voicemail_settings_with_label" msgid="152724978380748296">"Ovozli pochta (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
@@ -553,4 +544,5 @@
     <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"Wi-Fi qo‘ng‘irog‘i"</string>
     <string name="emergency_action_launch_hint" msgid="5841511849007540970">"Ochish uchun yana bosing"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"Xabarni kodsizlashda xatolik yuz berdi."</string>
+    <string name="callFailed_cdma_activation_" msgid="7865724396309578840">"SIM-karta xizmatni faollashtirgan hamda telefonning rouming imkoniyatlarini yangilagan."</string>
 </resources>

@@ -71,15 +71,6 @@
     <string name="phone_accounts_all_calling_accounts" msgid="207619531589278471">"Tous les comptes téléphoniques"</string>
     <string name="phone_accounts_all_calling_accounts_summary" msgid="8594186415822657011">"Sélectionner les comptes pour lesquels les appels sont activés"</string>
     <string name="wifi_calling" msgid="739018212480165598">"Appels Wi-Fi"</string>
-    <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"Ne pas utiliser les appels Wi-Fi"</string>
-    <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"Ne pas utiliser l\'assistant d\'appel"</string>
-    <string name="wifi_calling_call_assistant_none" msgid="6283702349285593683">"Aucun"</string>
-    <string name="wifi_calling_call_assistant" msgid="229102032881680320">"Assistant d\'appel"</string>
-    <string name="wifi_calling_use_call_assistant" msgid="8460024827012666199">"Utiliser un assistant d\'appel"</string>
-    <string name="wifi_calling_select_call_assistant" msgid="9296558058772293">"Sélectionner un assistant d\'appel"</string>
-    <string name="wifi_calling_select_call_assistant_summary" msgid="164985727137156474">"Gérer les réseaux utilisés pour les appels avec"</string>
-    <string name="wifi_calling_use_call_assistant_summary" msgid="6599987137133339698">"Laisser les applications ou les services gérer les réseaux utilisés pour les appels"</string>
-    <string name="wifi_calling_call_assistant_configure" msgid="1092639708949670031">"Configurer"</string>
     <string name="connection_service_default_label" msgid="1498481943805913754">"Service de connexion intégré"</string>
     <string name="voicemail" msgid="8693759337917898954">"Messagerie vocale"</string>
     <string name="voicemail_settings_with_label" msgid="152724978380748296">"Mess. vocale (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
@@ -553,4 +544,5 @@
     <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"Appel Wi-Fi"</string>
     <string name="emergency_action_launch_hint" msgid="5841511849007540970">"Appuyer à nouveau pour ouvrir"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"Une erreur s\'est produite lors du décodage du message."</string>
+    <string name="callFailed_cdma_activation_" msgid="7865724396309578840">"Votre service a été activé et les fonctionnalités d\'itinérance de votre téléphone ont été mises à jour via une carte SIM."</string>
 </resources>

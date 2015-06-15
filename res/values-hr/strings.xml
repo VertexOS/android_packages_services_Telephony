@@ -71,15 +71,6 @@
     <string name="phone_accounts_all_calling_accounts" msgid="207619531589278471">"Svi računi za pozivanje"</string>
     <string name="phone_accounts_all_calling_accounts_summary" msgid="8594186415822657011">"Odaberite račune koji mogu upućivati pozive"</string>
     <string name="wifi_calling" msgid="739018212480165598">"Wi-Fi pozivi"</string>
-    <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"Ne upotrebljavaj Wi-Fi pozive"</string>
-    <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"Ne upotrebljavaj pomoćnik za pozive"</string>
-    <string name="wifi_calling_call_assistant_none" msgid="6283702349285593683">"Ništa"</string>
-    <string name="wifi_calling_call_assistant" msgid="229102032881680320">"Pomoćnik za pozive"</string>
-    <string name="wifi_calling_use_call_assistant" msgid="8460024827012666199">"Upotrebljavaj pomoćnik za pozive"</string>
-    <string name="wifi_calling_select_call_assistant" msgid="9296558058772293">"Odabir pomoćnika za pozive"</string>
-    <string name="wifi_calling_select_call_assistant_summary" msgid="164985727137156474">"Upravljanje mrežama koje se upotrebljavaju za pozive putem"</string>
-    <string name="wifi_calling_use_call_assistant_summary" msgid="6599987137133339698">"Neka aplikacije ili usluge upravljaju mrežama koje se upotrebljavaju za pozive"</string>
-    <string name="wifi_calling_call_assistant_configure" msgid="1092639708949670031">"Konfiguriraj"</string>
     <string name="connection_service_default_label" msgid="1498481943805913754">"Ugrađena usluga povezivanja"</string>
     <string name="voicemail" msgid="8693759337917898954">"Govorna pošta"</string>
     <string name="voicemail_settings_with_label" msgid="152724978380748296">"Govorna pošta (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
@@ -556,4 +547,5 @@
     <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"Wi-Fi poziv"</string>
     <string name="emergency_action_launch_hint" msgid="5841511849007540970">"Dodirnite ponovo da biste otvorili"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"Došlo je do pogreške prilikom dekodiranja poruke."</string>
+    <string name="callFailed_cdma_activation_" msgid="7865724396309578840">"SIM kartica aktivirala je vašu uslugu i ažurirala mogućnosti telefona za roaming."</string>
 </resources>

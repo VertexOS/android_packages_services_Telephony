@@ -71,15 +71,6 @@
     <string name="phone_accounts_all_calling_accounts" msgid="207619531589278471">"Bütün çağrı hesabları"</string>
     <string name="phone_accounts_all_calling_accounts_summary" msgid="8594186415822657011">"Hansı hesabların zəng edə biləcəyini seçin"</string>
     <string name="wifi_calling" msgid="739018212480165598">"Wi-Fi zəngi"</string>
-    <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"Wi-Fi zəngindən istifadə etmə"</string>
-    <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"Zəng köməkçisindən istifadə etmə"</string>
-    <string name="wifi_calling_call_assistant_none" msgid="6283702349285593683">"Yoxdur"</string>
-    <string name="wifi_calling_call_assistant" msgid="229102032881680320">"Zəng köməkçisi"</string>
-    <string name="wifi_calling_use_call_assistant" msgid="8460024827012666199">"Zəng köməkçisindən istifadə edin"</string>
-    <string name="wifi_calling_select_call_assistant" msgid="9296558058772293">"Zəng köməkçisini seç"</string>
-    <string name="wifi_calling_select_call_assistant_summary" msgid="164985727137156474">"Bunlara olan zənglər üçün şəbəkələri idarə edin:"</string>
-    <string name="wifi_calling_use_call_assistant_summary" msgid="6599987137133339698">"Proqramlar və ya xidmətlərə zənglər üçün istifadə olunan şəbəkələri idarə etmək imkanı verin"</string>
-    <string name="wifi_calling_call_assistant_configure" msgid="1092639708949670031">"Konfiqurasiya et"</string>
     <string name="connection_service_default_label" msgid="1498481943805913754">"Daxili bağlantı xidməti"</string>
     <string name="voicemail" msgid="8693759337917898954">"Səsli poçt"</string>
     <string name="voicemail_settings_with_label" msgid="152724978380748296">"Səsli məktub (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
@@ -537,7 +528,7 @@
     <string name="description_dial_button" msgid="7459705245418435351">"Yığ"</string>
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"Vibrasiya"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"Vibrasiya"</string>
-    <string name="voicemail_visual_voicemail_switch_title" msgid="5012622186976275457">"Visual Voicemail"</string>
+    <string name="voicemail_visual_voicemail_switch_title" msgid="5012622186976275457">"Vizual Səsli Mesaj"</string>
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"Səs"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"Zəng səsi &amp; Vibrasiya"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"Daxili SIM kartlar"</string>
@@ -553,4 +544,5 @@
     <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"Wi-Fi zəng"</string>
     <string name="emergency_action_launch_hint" msgid="5841511849007540970">"Yenidən açmaq üçün toxunun"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"Mesaj dekod edilən zaman xəta oldu."</string>
+    <string name="callFailed_cdma_activation_" msgid="7865724396309578840">"SIM kart xidmətinizi aktivləşdirdi və telefonunuzun rominq imkanlarını güncəllədi."</string>
 </resources>

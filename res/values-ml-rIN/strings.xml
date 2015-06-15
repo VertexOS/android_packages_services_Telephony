@@ -71,15 +71,6 @@
     <string name="phone_accounts_all_calling_accounts" msgid="207619531589278471">"കോളുചെയ്യാനുള്ള എല്ലാ അക്കൗണ്ടുകളും"</string>
     <string name="phone_accounts_all_calling_accounts_summary" msgid="8594186415822657011">"ഫോൺ വിളിക്കാനാകുന്ന അക്കൗണ്ടുകൾ തിരഞ്ഞെടുക്കുക"</string>
     <string name="wifi_calling" msgid="739018212480165598">"Wi-Fi കോളിംഗ്"</string>
-    <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"Wi-Fi കോൾ ചെയ്യൽ ഉപയോഗിക്കരുത്"</string>
-    <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"കോൾ സഹായി ഉപയോഗിക്കരുത്"</string>
-    <string name="wifi_calling_call_assistant_none" msgid="6283702349285593683">"ഒന്നുമില്ല"</string>
-    <string name="wifi_calling_call_assistant" msgid="229102032881680320">"കോൾ സഹായി"</string>
-    <string name="wifi_calling_use_call_assistant" msgid="8460024827012666199">"കോൾ സഹായി ഉപയോഗിക്കുക"</string>
-    <string name="wifi_calling_select_call_assistant" msgid="9296558058772293">"കോൾ സഹായി തിരഞ്ഞെടുക്കുക"</string>
-    <string name="wifi_calling_select_call_assistant_summary" msgid="164985727137156474">"കോളുകൾക്കായി ഉപയോഗിക്കുന്ന നെറ്റ്‌വർക്കുകൾ നിയന്ത്രിക്കുക"</string>
-    <string name="wifi_calling_use_call_assistant_summary" msgid="6599987137133339698">"കോളുകൾക്കായി ഉപയോഗിച്ച നെറ്റ്‌വർക്കുകൾ നിയന്ത്രിക്കുന്നതിന് അപ്ലിക്കേഷനുകളെയോ സേവനങ്ങളെയോ അനുവദിക്കുക"</string>
-    <string name="wifi_calling_call_assistant_configure" msgid="1092639708949670031">"കോൺഫിഗർ ചെയ്യുക"</string>
     <string name="connection_service_default_label" msgid="1498481943805913754">"അന്തർ നിർമ്മിത കണക്ഷൻ സേവനം"</string>
     <string name="voicemail" msgid="8693759337917898954">"വോയ്സ് മെയില്‍"</string>
     <string name="voicemail_settings_with_label" msgid="152724978380748296">"ശബ്ദമെയിൽ(<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
@@ -553,4 +544,5 @@
     <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"Wi-Fi കോൾ"</string>
     <string name="emergency_action_launch_hint" msgid="5841511849007540970">"തുറക്കുന്നതിന് വീണ്ടും സ്‌പർശിക്കുക"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"സന്ദേശം ഡീകോഡുചെയ്യുമ്പോൾ ഒരു പിശകുണ്ടായി."</string>
+    <string name="callFailed_cdma_activation_" msgid="7865724396309578840">"ഒരു SIM കാർഡ് നിങ്ങളുടെ സേവനം സജീവമാക്കി, ഫോണിന്റെ റോമിംഗ് ശേഷികൾ അപ്‌ഡേറ്റ് ചെയ്തു."</string>
 </resources>

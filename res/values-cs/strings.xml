@@ -71,15 +71,6 @@
     <string name="phone_accounts_all_calling_accounts" msgid="207619531589278471">"Všechny účty pro volání"</string>
     <string name="phone_accounts_all_calling_accounts_summary" msgid="8594186415822657011">"Vyberte, které účty mohou uskutečňovat volání"</string>
     <string name="wifi_calling" msgid="739018212480165598">"Volání přes Wi-Fi"</string>
-    <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"Nepoužívat volání pomocí Wi-Fi"</string>
-    <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"Nepoužívat asistenta pro volání"</string>
-    <string name="wifi_calling_call_assistant_none" msgid="6283702349285593683">"Žádný"</string>
-    <string name="wifi_calling_call_assistant" msgid="229102032881680320">"Asistent pro volání"</string>
-    <string name="wifi_calling_use_call_assistant" msgid="8460024827012666199">"Používat asistenta pro volání"</string>
-    <string name="wifi_calling_select_call_assistant" msgid="9296558058772293">"Zvolit asistenta pro volání"</string>
-    <string name="wifi_calling_select_call_assistant_summary" msgid="164985727137156474">"Správa sítí používaných pro volání pomocí"</string>
-    <string name="wifi_calling_use_call_assistant_summary" msgid="6599987137133339698">"Nechat aplikace nebo služby spravovat sítě používané pro volání"</string>
-    <string name="wifi_calling_call_assistant_configure" msgid="1092639708949670031">"Konfigurovat"</string>
     <string name="connection_service_default_label" msgid="1498481943805913754">"Integrovaná služba připojení"</string>
     <string name="voicemail" msgid="8693759337917898954">"Hlasová schránka"</string>
     <string name="voicemail_settings_with_label" msgid="152724978380748296">"Hlasová schránka (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
@@ -559,4 +550,6 @@
     <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"Volání přes Wi-Fi"</string>
     <string name="emergency_action_launch_hint" msgid="5841511849007540970">"Otevřete opětovným klepnutím"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"Při dekódování zprávy došlo k chybě."</string>
+    <!-- no translation found for callFailed_cdma_activation_ (7865724396309578840) -->
+    <skip />
 </resources>
