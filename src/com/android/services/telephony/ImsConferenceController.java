@@ -75,7 +75,7 @@ public class ImsConferenceController {
         @Override
         public void onConferenceStarted() {
             Log.v(this, "onConferenceStarted");
-            recalculateConference();
+            recalculate();
         }
     };
 
