@@ -342,8 +342,15 @@ public class TelephonyConnectionService extends ConnectionService {
             allConnections.addAll(ringingCall.getConnections());
         }
         final Call foregroundCall = phone.getForegroundCall();
-        if (foregroundCall.hasConnections()) {
+        if ((foregroundCall.getState() != Call.State.DISCONNECTED)
+                && (foregroundCall.hasConnections())) {
             allConnections.addAll(foregroundCall.getConnections());
+        }
+        if (phone.getImsPhone() != null) {
+            final Call imsFgCall = phone.getImsPhone().getForegroundCall();
+            if ((imsFgCall.getState() != Call.State.DISCONNECTED) && imsFgCall.hasConnections()) {
+                allConnections.addAll(imsFgCall.getConnections());
+            }
         }
         final Call backgroundCall = phone.getBackgroundCall();
         if (backgroundCall.hasConnections()) {
@@ -354,6 +361,7 @@ public class TelephonyConnectionService extends ConnectionService {
         for (com.android.internal.telephony.Connection telephonyConnection : allConnections) {
             if (!isOriginalConnectionKnown(telephonyConnection)) {
                 unknownConnection = telephonyConnection;
+                Log.d(this, "onCreateUnknownConnection: conn = " + unknownConnection);
                 break;
             }
         }
