@@ -395,5 +395,8 @@ public class ImsConferenceController {
         connection.setDisconnected(new DisconnectCause(DisconnectCause.OTHER));
         connection.destroy();
         mImsConferences.add(conference);
+        // If one of the participants failed to join the conference, recalculate will set the
+        // conferenceable connections for the conference to show merge calls option
+        recalculate();
     }
 }
