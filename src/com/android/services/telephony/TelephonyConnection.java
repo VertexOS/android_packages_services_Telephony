@@ -718,6 +718,7 @@ abstract class TelephonyConnection extends Connection {
                     }
                     mOriginalConnectionExtras.clear();
                     mOriginalConnectionExtras.putAll(extras);
+                    setExtras(extras);
                 } else {
                     Log.d(this, "Extras update not required");
                 }
