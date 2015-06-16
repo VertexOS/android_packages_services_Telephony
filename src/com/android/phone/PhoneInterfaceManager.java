@@ -2086,7 +2086,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         for (int i = 0; i < TelephonyManager.getDefault().getPhoneCount(); i++) {
             UiccCard card = UiccController.getInstance().getUiccCard(i);
             if (card == null) {
-              loge("checkCarrierPrivilegesForPackageAnyPhones: No UICC");
+              // No UICC in that slot.
               continue;
             }
 
