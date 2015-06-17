@@ -2201,16 +2201,26 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     }
 
     @Override
-    public String[] getMergedSubscriberIds() {
+    public String[] getMergedSubscriberIds(String callingPackage) {
+        if (!canReadPhoneState(callingPackage, "getMergedSubscriberIds")) {
+            return null;
+        }
         final Context context = mPhone.getContext();
         final TelephonyManager tele = TelephonyManager.from(context);
         final SubscriptionManager sub = SubscriptionManager.from(context);
 
         // Figure out what subscribers are currently active
         final ArraySet<String> activeSubscriberIds = new ArraySet<>();
-        final int[] subIds = sub.getActiveSubscriptionIdList();
-        for (int subId : subIds) {
-            activeSubscriberIds.add(tele.getSubscriberId(subId));
+        // Clear calling identity, when calling TelephonyManager, because callerUid must be
+        // the process, where TelephonyManager was instantiated. Otherwise AppOps check will fail.
+        final long identity  = Binder.clearCallingIdentity();
+        try {
+            final int[] subIds = sub.getActiveSubscriptionIdList();
+            for (int subId : subIds) {
+                activeSubscriberIds.add(tele.getSubscriberId(subId));
+            }
+        } finally {
+            Binder.restoreCallingIdentity(identity);
         }
 
         // First pass, find a number override for an active subscriber
