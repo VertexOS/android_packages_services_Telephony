@@ -544,6 +544,5 @@
     <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"Обаждане през Wi-Fi"</string>
     <string name="emergency_action_launch_hint" msgid="5841511849007540970">"Докоснете отново за отваряне"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"При декодирането на съобщението възникна грешка."</string>
-    <!-- no translation found for callFailed_cdma_activation_ (7865724396309578840) -->
-    <skip />
+    <string name="callFailed_cdma_activation_" msgid="7865724396309578840">"SIM картата е активирала услугата ви и е актуализирала възможностите за роуминг на телефона ви."</string>
 </resources>

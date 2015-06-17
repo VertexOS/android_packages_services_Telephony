@@ -544,5 +544,5 @@
     <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"Wi-Fi कल"</string>
     <string name="emergency_action_launch_hint" msgid="5841511849007540970">"खोल्न फेरि छुनुहोस्"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"सन्देश डिकोड गर्दा एउटा समस्या भयो।"</string>
-    <string name="callFailed_cdma_activation_" msgid="7865724396309578840">"SIM कार्डले तपाईँको सेवा सक्रिय गर्नुका तथा फोनको रोमिङ क्षमताहरू पनि अद्यावधिक गरी दिएको छ।"</string>
+    <string name="callFailed_cdma_activation_" msgid="7865724396309578840">"SIM कार्डले तपाईँको सेवा सक्रिय गर्नुका साथै फोनको रोमिङ क्षमताहरू पनि अद्यावधिक गरिदिएको छ।"</string>
 </resources>

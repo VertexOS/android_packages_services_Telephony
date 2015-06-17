@@ -544,6 +544,5 @@
     <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"Trucada per Wi-Fi"</string>
     <string name="emergency_action_launch_hint" msgid="5841511849007540970">"Toca-ho de nou per obrir"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"S\'ha produït un error en descodificar el missatge."</string>
-    <!-- no translation found for callFailed_cdma_activation_ (7865724396309578840) -->
-    <skip />
+    <string name="callFailed_cdma_activation_" msgid="7865724396309578840">"Una targeta SIM ha activat el servei, i s\'han actualitzat les capacitats d\'itinerància del telèfon."</string>
 </resources>
