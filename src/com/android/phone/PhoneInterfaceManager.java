@@ -227,15 +227,18 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
             IccAPDUArgument iccArgument;
 
             switch (msg.what) {
-                case CMD_HANDLE_PIN_MMI:
+                case CMD_HANDLE_PIN_MMI: {
                     request = (MainThreadRequest) msg.obj;
-                    request.result = getPhoneFromRequest(request).handlePinMmi(
-                            (String) request.argument);
+                    final Phone phone = getPhoneFromRequest(request);
+                    request.result = phone != null ?
+                            getPhoneFromRequest(request).handlePinMmi((String) request.argument)
+                            : false;
                     // Wake up the requesting thread
                     synchronized (request) {
                         request.notifyAll();
                     }
                     break;
+                }
 
                 case CMD_HANDLE_NEIGHBORING_CELL:
                     request = (MainThreadRequest) msg.obj;
