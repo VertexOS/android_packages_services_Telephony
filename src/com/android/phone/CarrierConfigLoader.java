@@ -17,7 +17,6 @@
 package com.android.phone;
 
 import static android.Manifest.permission.READ_PHONE_STATE;
-import static com.android.internal.telephony.uicc.IccCardProxy.ACTION_INTERNAL_SIM_STATE_CHANGED;
 
 import android.annotation.NonNull;
 import android.app.ActivityManagerNative;
@@ -72,7 +71,6 @@ import java.util.List;
 
 /**
  * CarrierConfigLoader binds to privileged carrier apps to fetch carrier config overlays.
- * TODO: handle package install/uninstall events
  */
 
 public class CarrierConfigLoader extends ICarrierConfigLoader.Stub {
@@ -163,10 +161,13 @@ public class CarrierConfigLoader extends ICarrierConfigLoader.Stub {
 
                 case EVENT_PACKAGE_CHANGED:
                     carrierPackageName = (String) msg.obj;
-                    deleteConfigForPackage(carrierPackageName);
-                    int numPhones = TelephonyManager.from(mContext).getPhoneCount();
-                    for (int i = 0; i < numPhones; ++i) {
-                        updateConfigForPhoneId(i);
+                    // Only update if there are cached config removed to avoid updating config
+                    // for unrelated packages.
+                    if (deleteConfigForPackage(carrierPackageName)) {
+                        int numPhones = TelephonyManager.from(mContext).getPhoneCount();
+                        for (int i = 0; i < numPhones; ++i) {
+                            updateConfigForPhoneId(i);
+                        }
                     }
                     break;
 
@@ -311,12 +312,14 @@ public class CarrierConfigLoader extends ICarrierConfigLoader.Stub {
     private CarrierConfigLoader(Context context) {
         mContext = context;
 
-        // Register for package updates.
-        IntentFilter triggers = new IntentFilter();
-        triggers.addAction(Intent.ACTION_PACKAGE_ADDED);
-        triggers.addAction(Intent.ACTION_PACKAGE_CHANGED);
-        triggers.addAction(Intent.ACTION_PACKAGE_REMOVED);
-        mContext.registerReceiver(mReceiver, triggers);
+        // Register for package updates. Update app or uninstall app update will have all 3 intents,
+        // in the order or removed, added, replaced, all with extra_replace set to true.
+        IntentFilter pkgFilter = new IntentFilter();
+        pkgFilter.addAction(Intent.ACTION_PACKAGE_ADDED);
+        pkgFilter.addAction(Intent.ACTION_PACKAGE_REMOVED);
+        pkgFilter.addAction(Intent.ACTION_PACKAGE_REPLACED);
+        pkgFilter.addDataScheme("package");
+        context.registerReceiverAsUser(mReceiver, UserHandle.ALL, pkgFilter, null, null);
 
         int numPhones = TelephonyManager.from(context).getPhoneCount();
         mConfigFromDefaultApp = new PersistableBundle[numPhones];
@@ -530,18 +533,23 @@ public class CarrierConfigLoader extends ICarrierConfigLoader.Stub {
         return restoredBundle;
     }
 
-    /** Deletes all saved XML files associated with the given package name. */
-    private void deleteConfigForPackage(final String packageName) {
+    /**
+     * Deletes all saved XML files associated with the given package name.
+     * Return false if can't find matching XML files.
+     */
+    private boolean deleteConfigForPackage(final String packageName) {
         File dir = mContext.getFilesDir();
         File[] packageFiles = dir.listFiles(new FilenameFilter() {
             public boolean accept(File dir, String filename) {
                 return filename.startsWith("carrierconfig-" + packageName + "-");
             }
         });
+        if (packageFiles == null || packageFiles.length < 1) return false;
         for (File f : packageFiles) {
             log("deleting " + f.getName());
             f.delete();
         }
+        return true;
     }
 
     /** Builds a canonical file name for a config file. */
@@ -566,6 +574,12 @@ public class CarrierConfigLoader extends ICarrierConfigLoader.Stub {
      * have a saved config file to use instead.
      */
     private void updateConfigForPhoneId(int phoneId) {
+        // Clear in-memory cache for carrier app config, so when carrier app gets uninstalled, no
+        // stale config is left.
+        if (mConfigFromCarrierApp[phoneId] != null &&
+                getCarrierPackageForPhoneId(phoneId) == null) {
+            mConfigFromCarrierApp[phoneId] = null;
+        }
         mHandler.sendMessage(mHandler.obtainMessage(EVENT_FETCH_DEFAULT, phoneId, -1));
     }
 
@@ -672,18 +686,23 @@ public class CarrierConfigLoader extends ICarrierConfigLoader.Stub {
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
-            log("Receive action: " + action);
+            boolean replace = intent.getBooleanExtra(Intent.EXTRA_REPLACING, false);
+            // If replace is true, only care ACTION_PACKAGE_REPLACED.
+            if (replace && !Intent.ACTION_PACKAGE_REPLACED.equals(action))
+                return;
+
             switch (action) {
                 case Intent.ACTION_PACKAGE_ADDED:
-                case Intent.ACTION_PACKAGE_CHANGED:
                 case Intent.ACTION_PACKAGE_REMOVED:
+                case Intent.ACTION_PACKAGE_REPLACED:
                     int uid = intent.getIntExtra(Intent.EXTRA_UID, -1);
                     String packageName = mContext.getPackageManager().getNameForUid(uid);
-                    // We don't have a phoneId for arg1.
-                    mHandler.sendMessage(
-                            mHandler.obtainMessage(EVENT_PACKAGE_CHANGED, packageName));
+                    if (packageName != null) {
+                        // We don't have a phoneId for arg1.
+                        mHandler.sendMessage(
+                                mHandler.obtainMessage(EVENT_PACKAGE_CHANGED, packageName));
+                    }
                     break;
-
             }
         }
     }
