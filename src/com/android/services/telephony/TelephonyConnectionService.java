@@ -185,7 +185,8 @@ public class TelephonyConnectionService extends ConnectionService {
                         if (disableActivation) {
                             return Connection.createFailedConnection(
                                     DisconnectCauseUtil.toTelecomDisconnectCause(
-                                            android.telephony.DisconnectCause.INVALID_NUMBER,
+                                            android.telephony.DisconnectCause
+                                                    .CDMA_ALREADY_ACTIVATED,
                                             "Tried to dial *228"));
                         }
                     }
