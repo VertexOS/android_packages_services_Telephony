@@ -95,6 +95,7 @@ public class DisconnectCauseUtil {
                 return DisconnectCause.RESTRICTED;
 
             case android.telephony.DisconnectCause.CDMA_ACCESS_FAILURE:
+            case android.telephony.DisconnectCause.CDMA_ALREADY_ACTIVATED:
             case android.telephony.DisconnectCause.CDMA_CALL_LOST:
             case android.telephony.DisconnectCause.CDMA_DROP:
             case android.telephony.DisconnectCause.CDMA_INTERCEPT:
@@ -228,6 +229,10 @@ public class DisconnectCauseUtil {
         switch (telephonyDisconnectCause) {
             case android.telephony.DisconnectCause.CALL_BARRED:
                 resourceId = R.string.callFailed_cb_enabled;
+                break;
+
+            case android.telephony.DisconnectCause.CDMA_ALREADY_ACTIVATED:
+                resourceId = R.string.callFailed_cdma_activation;
                 break;
 
             case android.telephony.DisconnectCause.FDN_BLOCKED:
