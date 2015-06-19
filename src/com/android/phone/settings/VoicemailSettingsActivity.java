@@ -707,8 +707,6 @@ public class VoicemailSettingsActivity extends PreferenceActivity
             }
             showDialogIfForeground(VoicemailDialogUtil.VM_FWD_READING_DIALOG);
         }
-
-        PhoneGlobals.getInstance().refreshMwiIndicator(mSubscriptionInfoHelper.getSubId());
     }
 
     private final Handler mGetOptionComplete = new Handler() {
@@ -820,6 +818,8 @@ public class VoicemailSettingsActivity extends PreferenceActivity
                 case EVENT_VOICEMAIL_CHANGED:
                     mVoicemailChangeResult = result;
                     mVMChangeCompletedSuccessfully = isVmChangeSuccess();
+                    PhoneGlobals.getInstance().refreshMwiIndicator(
+                            mSubscriptionInfoHelper.getSubId());
                     done = true;
                     break;
                 case EVENT_FORWARDING_CHANGED:
