@@ -198,8 +198,7 @@ public class CallFeaturesSetting extends PreferenceActivity
                 (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
 
         Preference phoneAccountSettingsPreference = findPreference(PHONE_ACCOUNT_SETTINGS_KEY);
-        if (telephonyManager.isMultiSimEnabled() || (mTelecomManager.getSimCallManagers().isEmpty()
-                    && !SipUtil.isVoipSupported(mPhone.getContext()))) {
+        if (telephonyManager.isMultiSimEnabled() || !SipUtil.isVoipSupported(mPhone.getContext())) {
             getPreferenceScreen().removePreference(phoneAccountSettingsPreference);
         }
 
