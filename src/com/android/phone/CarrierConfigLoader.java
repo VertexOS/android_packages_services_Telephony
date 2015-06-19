@@ -586,6 +586,7 @@ public class CarrierConfigLoader extends ICarrierConfigLoader.Stub {
     @Override public
     @NonNull
     PersistableBundle getConfigForSubId(int subId) {
+        mContext.enforceCallingOrSelfPermission(READ_PHONE_STATE, null);
         int phoneId = SubscriptionManager.getPhoneId(subId);
         PersistableBundle retConfig = CarrierConfigManager.getDefaultConfig();
         if (SubscriptionManager.isValidPhoneId(phoneId)) {
@@ -625,6 +626,8 @@ public class CarrierConfigLoader extends ICarrierConfigLoader.Stub {
 
     @Override
     public void updateConfigForPhoneId(int phoneId, String simState) {
+        mContext.enforceCallingOrSelfPermission(
+                android.Manifest.permission.MODIFY_PHONE_STATE, null);
         log("update config for phoneId: " + phoneId + " simState: " + simState);
         if (!SubscriptionManager.isValidPhoneId(phoneId)) {
             return;
