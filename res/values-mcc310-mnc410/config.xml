@@ -16,5 +16,4 @@
   -->
 
 <resources>
-    <bool name="support_pause_ims_video_calls" translatable="false">false</bool>
 </resources>
