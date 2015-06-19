@@ -57,11 +57,13 @@ import android.util.Slog;
 
 import com.android.ims.ImsManager;
 import com.android.internal.telephony.CallManager;
+import com.android.internal.telephony.CellNetworkScanResult;
 import com.android.internal.telephony.CommandException;
 import com.android.internal.telephony.DefaultPhoneNotifier;
 import com.android.internal.telephony.ITelephony;
 import com.android.internal.telephony.IccCard;
 import com.android.internal.telephony.MccTable;
+import com.android.internal.telephony.OperatorInfo;
 import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneFactory;
 import com.android.internal.telephony.ProxyController;
@@ -132,7 +134,10 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     private static final int EVENT_SET_NETWORK_SELECTION_MODE_AUTOMATIC_DONE = 36;
     private static final int CMD_GET_MODEM_ACTIVITY_INFO = 37;
     private static final int EVENT_GET_MODEM_ACTIVITY_INFO_DONE = 38;
-
+    private static final int CMD_PERFORM_NETWORK_SCAN = 39;
+    private static final int EVENT_PERFORM_NETWORK_SCAN_DONE = 40;
+    private static final int CMD_SET_NETWORK_SELECTION_MODE_MANUAL = 41;
+    private static final int EVENT_SET_NETWORK_SELECTION_MODE_MANUAL_DONE = 42;
 
     /** The singleton instance. */
     private static PhoneInterfaceManager sInstance;
@@ -645,6 +650,57 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
 
                 case EVENT_SET_NETWORK_SELECTION_MODE_AUTOMATIC_DONE:
                     handleNullReturnEvent(msg, "setNetworkSelectionModeAutomatic");
+                    break;
+
+                case CMD_PERFORM_NETWORK_SCAN:
+                    request = (MainThreadRequest) msg.obj;
+                    onCompleted = obtainMessage(EVENT_PERFORM_NETWORK_SCAN_DONE, request);
+                    getPhoneFromRequest(request).getAvailableNetworks(onCompleted);
+                    break;
+
+                case EVENT_PERFORM_NETWORK_SCAN_DONE:
+                    ar = (AsyncResult) msg.obj;
+                    request = (MainThreadRequest) ar.userObj;
+                    CellNetworkScanResult cellScanResult;
+                    if (ar.exception == null && ar.result != null) {
+                        cellScanResult = new CellNetworkScanResult(
+                                CellNetworkScanResult.STATUS_SUCCESS,
+                                (List<OperatorInfo>) ar.result);
+                    } else {
+                        if (ar.result == null) {
+                            loge("getCellNetworkScanResults: Empty response");
+                        }
+                        if (ar.exception != null) {
+                            loge("getCellNetworkScanResults: Exception: " + ar.exception);
+                        }
+                        int errorCode = CellNetworkScanResult.STATUS_UNKNOWN_ERROR;
+                        if (ar.exception instanceof CommandException) {
+                            CommandException.Error error =
+                                ((CommandException) (ar.exception)).getCommandError();
+                            if (error == CommandException.Error.RADIO_NOT_AVAILABLE) {
+                                errorCode = CellNetworkScanResult.STATUS_RADIO_NOT_AVAILABLE;
+                            } else if (error == CommandException.Error.GENERIC_FAILURE) {
+                                errorCode = CellNetworkScanResult.STATUS_RADIO_GENERIC_FAILURE;
+                            }
+                        }
+                        cellScanResult = new CellNetworkScanResult(errorCode, null);
+                    }
+                    request.result = cellScanResult;
+                    synchronized (request) {
+                        request.notifyAll();
+                    }
+                    break;
+
+                case CMD_SET_NETWORK_SELECTION_MODE_MANUAL:
+                    request = (MainThreadRequest) msg.obj;
+                    OperatorInfo operator = (OperatorInfo) request.argument;
+                    onCompleted = obtainMessage(EVENT_SET_NETWORK_SELECTION_MODE_MANUAL_DONE,
+                            request);
+                    getPhoneFromRequest(request).selectNetworkManually(operator, onCompleted);
+                    break;
+
+                case EVENT_SET_NETWORK_SELECTION_MODE_MANUAL_DONE:
+                    handleNullReturnEvent(msg, "setNetworkSelectionModeManual");
                     break;
 
                 case CMD_GET_MODEM_ACTIVITY_INFO:
@@ -1935,6 +1991,28 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         enforceModifyPermissionOrCarrierPrivilege();
         if (DBG) log("setNetworkSelectionModeAutomatic: subId " + subId);
         sendRequest(CMD_SET_NETWORK_SELECTION_MODE_AUTOMATIC, null, subId);
+    }
+
+    /**
+     * Set the network selection mode to manual with the selected carrier.
+     */
+    @Override
+    public boolean setNetworkSelectionModeManual(int subId, OperatorInfo operator) {
+        enforceModifyPermissionOrCarrierPrivilege();
+        if (DBG) log("setNetworkSelectionModeManual: subId:" + subId + " operator:" + operator);
+        return (Boolean) sendRequest(CMD_SET_NETWORK_SELECTION_MODE_MANUAL, operator, subId);
+    }
+
+    /**
+     * Scans for available networks.
+     */
+    @Override
+    public CellNetworkScanResult getCellNetworkScanResults(int subId) {
+        enforceModifyPermissionOrCarrierPrivilege();
+        if (DBG) log("getCellNetworkScanResults: subId " + subId);
+        CellNetworkScanResult result = (CellNetworkScanResult) sendRequest(
+                CMD_PERFORM_NETWORK_SCAN, null, subId);
+        return result;
     }
 
     /**
