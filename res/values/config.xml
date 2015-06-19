@@ -157,9 +157,6 @@
          If true, the voicemail notifications cannot be dismissed from the notification bar. -->
     <bool name="voicemail_notification_persistent">false</bool>
 
-    <!-- For IMS video over LTE calls, determines whether video pause signalling is supported. -->
-    <bool name="support_pause_ims_video_calls" translatable="false">true</bool>
-
     <!-- Disables dialing "*228" (OTASP provisioning) on CDMA carriers where it is not supported or
          is potentially harmful by locking the SIM to 3G. -->
     <string name="config_disable_cdma_activation_code" translatable="false">false</string>
