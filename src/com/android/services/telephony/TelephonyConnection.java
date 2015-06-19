@@ -777,7 +777,8 @@ abstract class TelephonyConnection extends Connection {
                     break;
                 case DISCONNECTED:
                     setDisconnected(DisconnectCauseUtil.toTelecomDisconnectCause(
-                            mOriginalConnection.getDisconnectCause()));
+                            mOriginalConnection.getDisconnectCause(),
+                            mOriginalConnection.getVendorDisconnectCause()));
                     close();
                     break;
                 case DISCONNECTING:
