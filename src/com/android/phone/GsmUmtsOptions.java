@@ -85,7 +85,7 @@ public class GsmUmtsOptions {
                         .findPreference(BUTTON_OPERATOR_SELECTION_EXPAND_KEY));
             }
 
-            if (res.getBoolean(R.bool.csp_enabled)) {
+            if (carrierConfig.getBoolean(CarrierConfigManager.KEY_CSP_ENABLED_BOOL)) {
                 if (PhoneFactory.getDefaultPhone().isCspPlmnEnabled()) {
                     log("[CSP] Enabling Operator Selection menu.");
                     mButtonOperatorSelectionExpand.setEnabled(true);
