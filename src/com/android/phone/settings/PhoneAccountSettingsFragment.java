@@ -366,7 +366,9 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
 
             // Add an icon.
             Icon icon = account.getIcon();
-            accountPreference.setIcon(icon.loadDrawable(getActivity()));
+            if (icon != null) {
+                accountPreference.setIcon(icon.loadDrawable(getActivity()));
+            }
 
             // Add an intent to send the user to the account's settings.
             if (intent != null) {
