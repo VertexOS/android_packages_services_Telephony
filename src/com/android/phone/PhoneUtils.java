@@ -30,11 +30,13 @@ import android.media.AudioManager;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
+import android.os.PersistableBundle;
 import android.os.RemoteException;
 import android.os.SystemProperties;
 import android.telecom.PhoneAccount;
 import android.telecom.PhoneAccountHandle;
 import android.telecom.VideoProfile;
+import android.telephony.CarrierConfigManager;
 import android.telephony.PhoneNumberUtils;
 import android.telephony.SubscriptionManager;
 import android.text.TextUtils;
@@ -1828,7 +1830,8 @@ public class PhoneUtils {
         if (DBG) log("turnOnNoiseSuppression: " + flag);
         AudioManager audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
 
-        if (!context.getResources().getBoolean(R.bool.has_in_call_noise_suppression)) {
+        PersistableBundle b = PhoneGlobals.getInstance().getCarrierConfig();
+        if (!b.getBoolean(CarrierConfigManager.KEY_HAS_IN_CALL_NOISE_SUPPRESSION_BOOL)) {
             return;
         }
 
@@ -1850,7 +1853,8 @@ public class PhoneUtils {
     static void restoreNoiseSuppression(Context context) {
         if (DBG) log("restoreNoiseSuppression, restoring to: " + sIsNoiseSuppressionEnabled);
 
-        if (!context.getResources().getBoolean(R.bool.has_in_call_noise_suppression)) {
+        PersistableBundle b = PhoneGlobals.getInstance().getCarrierConfig();
+        if (!b.getBoolean(CarrierConfigManager.KEY_HAS_IN_CALL_NOISE_SUPPRESSION_BOOL)) {
             return;
         }
 
@@ -1862,7 +1866,8 @@ public class PhoneUtils {
 
     static boolean isNoiseSuppressionOn(Context context) {
 
-        if (!context.getResources().getBoolean(R.bool.has_in_call_noise_suppression)) {
+        PersistableBundle b = PhoneGlobals.getInstance().getCarrierConfig();
+        if (!b.getBoolean(CarrierConfigManager.KEY_HAS_IN_CALL_NOISE_SUPPRESSION_BOOL)) {
             return false;
         }
 
