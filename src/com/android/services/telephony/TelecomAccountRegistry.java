@@ -27,9 +27,11 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.Icon;
 import android.net.Uri;
+import android.os.PersistableBundle;
 import android.telecom.PhoneAccount;
 import android.telecom.PhoneAccountHandle;
 import android.telecom.TelecomManager;
+import android.telephony.CarrierConfigManager;
 import android.telephony.PhoneStateListener;
 import android.telephony.ServiceState;
 import android.telephony.SubscriptionInfo;
@@ -232,10 +234,11 @@ final class TelecomAccountRegistry {
                 configuration.mnc = subscriptionInfo.getMnc();
             }
 
-            // Load the MNC/MCC specific configuration.
-            Context subContext = mContext.createConfigurationContext(configuration);
-            mIsVideoPauseSupported = subContext.getResources().getBoolean(
-                    R.bool.support_pause_ims_video_calls);
+            // Check if IMS video pause is supported.
+            PersistableBundle b =
+                    PhoneGlobals.getInstance().getCarrierConfigForSubId(mPhone.getSubId());
+            mIsVideoPauseSupported
+                    = b.getBoolean(CarrierConfigManager.KEY_SUPPORT_PAUSE_IMS_VIDEO_CALLS_BOOL);
         }
 
         /**
