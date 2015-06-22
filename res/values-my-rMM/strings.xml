@@ -544,5 +544,5 @@
     <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"ဝိုင်ဖိုင်ခေါ်ဆိုမှု"</string>
     <string name="emergency_action_launch_hint" msgid="5841511849007540970">"ဖွင့်ရန် ထပ်ပြီး ထိပါ"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"စာကို ကုဒ်ဖွင့်နေစဉ် အမှားရှိခဲ့သည်။"</string>
-    <string name="callFailed_cdma_activation_" msgid="7865724396309578840">"SIM ကဒ်သည် သင့် ဖုန်းဝန်ဆောင်မှုအား အသက်သွင်းခဲ့ပြီး သင့်ဖုန်း၏ ကွန်ယက်ပြင်ပဒေတာသုံးနိုင်စွမ်းအား ပြင်ဆင်မွမ်းမံပြီးဖြစ်၏။"</string>
+    <string name="callFailed_cdma_activation" msgid="2307989779233262164">"SIM ကဒ်သည် သင့် ဖုန်းဝန်ဆောင်မှုအား အသက်သွင်းခဲ့ပြီး သင့်ဖုန်း၏ ကွန်ယက်ပြင်ပဒေတာသုံးနိုင်စွမ်းအား ပြင်ဆင်မွမ်းမံပြီးဖြစ်၏။"</string>
 </resources>

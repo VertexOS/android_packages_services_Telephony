@@ -544,5 +544,5 @@
     <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"Panggilan Wi-Fi"</string>
     <string name="emergency_action_launch_hint" msgid="5841511849007540970">"Sentuh lagi untuk membuka"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"Terjadi kesalahan saat mendekode pesan."</string>
-    <string name="callFailed_cdma_activation_" msgid="7865724396309578840">"Kartu SIM telah mengaktifkan layanan dan memperbarui kemampuan roaming ponsel."</string>
+    <string name="callFailed_cdma_activation" msgid="2307989779233262164">"Kartu SIM telah mengaktifkan layanan dan memperbarui kemampuan roaming ponsel."</string>
 </resources>

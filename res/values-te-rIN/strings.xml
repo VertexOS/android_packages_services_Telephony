@@ -544,5 +544,5 @@
     <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"Wi-Fi కాల్"</string>
     <string name="emergency_action_launch_hint" msgid="5841511849007540970">"తెరవడానికి మళ్లీ తాకండి"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"సందేశాన్ని డీకోడ్ చేస్తున్నప్పుడు లోపం సంభవించింది."</string>
-    <string name="callFailed_cdma_activation_" msgid="7865724396309578840">"SIM కార్డ్ మీ సేవను సక్రియం చేసింది మరియు మీ ఫోన్ రోమింగ్ సామర్థ్యాలను నవీకరించింది."</string>
+    <string name="callFailed_cdma_activation" msgid="2307989779233262164">"SIM కార్డ్ మీ సేవను సక్రియం చేసింది మరియు మీ ఫోన్ రోమింగ్ సామర్థ్యాలను నవీకరించింది."</string>
 </resources>

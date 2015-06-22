@@ -548,5 +548,5 @@
     <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"Chiamata Wi-Fi"</string>
     <string name="emergency_action_launch_hint" msgid="5841511849007540970">"Tocca di nuovo per aprire"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"Si è verificato un errore durante la decodifica del messaggio."</string>
-    <string name="callFailed_cdma_activation_" msgid="7865724396309578840">"Una scheda SIM ha attivato il tuo servizio e ha aggiornato le funzionalità di roaming del telefono."</string>
+    <string name="callFailed_cdma_activation" msgid="2307989779233262164">"Una scheda SIM ha attivato il tuo servizio e ha aggiornato le funzionalità di roaming del telefono."</string>
 </resources>

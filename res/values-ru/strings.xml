@@ -552,5 +552,5 @@
     <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"Wi-Fi-звонок"</string>
     <string name="emergency_action_launch_hint" msgid="5841511849007540970">"Нажмите ещё раз, чтобы открыть"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"При расшифровке сообщения произошла ошибка."</string>
-    <string name="callFailed_cdma_activation_" msgid="7865724396309578840">"В вашем телефоне уже настроен роуминг и активирована SIM-карта."</string>
+    <string name="callFailed_cdma_activation" msgid="2307989779233262164">"В вашем телефоне уже настроен роуминг и активирована SIM-карта."</string>
 </resources>

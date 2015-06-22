@@ -556,5 +556,5 @@
     <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"‏مكالمة عبر Wi-Fi"</string>
     <string name="emergency_action_launch_hint" msgid="5841511849007540970">"المس مرة أخرى للفتح"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"حدث خطأ أثناء فك ترميز الرسالة."</string>
-    <string name="callFailed_cdma_activation_" msgid="7865724396309578840">"‏نشطّت شريحة SIM خدمتك وحدّثت إمكانات التجوال لهاتفك."</string>
+    <string name="callFailed_cdma_activation" msgid="2307989779233262164">"‏نشطت شريحة SIM خدمتك وحدّثت إمكانات التجوال لهاتفك."</string>
 </resources>

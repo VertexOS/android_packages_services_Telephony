@@ -550,5 +550,5 @@
     <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"Wi-Fi 通話"</string>
     <string name="emergency_action_launch_hint" msgid="5841511849007540970">"再次輕觸即可開啟"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"為郵件解碼時發生錯誤。"</string>
-    <string name="callFailed_cdma_activation_" msgid="7865724396309578840">"SIM 卡已啟用您的服務並更新了手機的漫遊功能。"</string>
+    <string name="callFailed_cdma_activation" msgid="2307989779233262164">"SIM 卡已啟用您的服務並更新了手機的漫遊功能。"</string>
 </resources>

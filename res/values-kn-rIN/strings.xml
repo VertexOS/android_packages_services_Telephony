@@ -130,7 +130,7 @@
     <string name="close_dialog" msgid="2365884406356986917">"ಸರಿ"</string>
     <string name="enable" msgid="7248657275000173526">"ಆನ್ ಮಾಡು"</string>
     <string name="disable" msgid="4678348128118573672">"ಆಫ್ ಮಾಡು"</string>
-    <string name="change_num" msgid="239476305819844391">"ನವೀಕರಿಸು"</string>
+    <string name="change_num" msgid="239476305819844391">"ಅಪ್‌ಡೇಟ್‌ ಮಾಡು"</string>
   <string-array name="clir_display_values">
     <item msgid="5560134294467334594">"ನೆಟ್‌ವರ್ಕ್ ಡೀಫಾಲ್ಟ್"</item>
     <item msgid="7876195870037833661">"ಸಂಖ್ಯೆಯನ್ನು ಮರೆಮಾಡು"</item>
@@ -544,5 +544,5 @@
     <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"ವೈ-ಫೈ ಕರೆ"</string>
     <string name="emergency_action_launch_hint" msgid="5841511849007540970">"ತೆರೆಯಲು ಮತ್ತೊಮ್ಮೆ ಸ್ಪರ್ಶಿಸಿ"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"ಸಂದೇಶವನ್ನು ಡೀಕೋಡ್ ಮಾಡುವಾಗ ದೋಷವುಂಟಾಗಿದೆ."</string>
-    <string name="callFailed_cdma_activation_" msgid="7865724396309578840">"ನಿಮ್ಮ ಸೇವೆಯನ್ನು ಸಿಮ್‌ ಕಾರ್ಡ್‌ ಸಕ್ರಿಯಗೊಳಿಸಿದೆ ಮತ್ತು ನಿಮ್ಮ ಫೋನ್‌ನ ರೋಮಿಂಗ್ ಸಾಮರ್ಥ್ಯವನ್ನು ಅಪ್‌ಡೇಟ್‌ ಮಾಡಲಾಗಿದೆ."</string>
+    <string name="callFailed_cdma_activation" msgid="2307989779233262164">"ನಿಮ್ಮ ಸೇವೆಯನ್ನು ಸಿಮ್‌ ಕಾರ್ಡ್‌ ಸಕ್ರಿಯಗೊಳಿಸಿದೆ ಮತ್ತು ನಿಮ್ಮ ಫೋನ್‌ನ ರೋಮಿಂಗ್ ಸಾಮರ್ಥ್ಯವನ್ನು ಅಪ್‌ಡೇಟ್‌ ಮಾಡಲಾಗಿದೆ."</string>
 </resources>
