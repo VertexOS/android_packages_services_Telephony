@@ -544,5 +544,5 @@
     <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"Wi-Fi ඇමතුම"</string>
     <string name="emergency_action_launch_hint" msgid="5841511849007540970">"විවෘත කිරීමට නැවත ස්පර්ශ කරන්න"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"පණිවිඩය විකේතනය කරන අතරතුර දෝෂයක් සිදු විය."</string>
-    <string name="callFailed_cdma_activation_" msgid="7865724396309578840">"SIM කාඩ්පතක් ඔබේ සේවාව සක්‍රිය කර ඔබේ දුරකථනයේ රෝමිං හැකියා යාවත්කාලීන කර තිබේ."</string>
+    <string name="callFailed_cdma_activation" msgid="2307989779233262164">"SIM කාඩ්පතක් ඔබේ සේවාව සක්‍රිය කර ඔබේ දුරකථනයේ රෝමිං හැකියා යාවත්කාලීන කර තිබේ."</string>
 </resources>

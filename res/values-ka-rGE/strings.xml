@@ -544,5 +544,5 @@
     <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"Wi-Fi ზარი"</string>
     <string name="emergency_action_launch_hint" msgid="5841511849007540970">"შეეხეთ ისევ გასახსნელად"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"შეტყობინების გაშიფრვისას წარმოიშვა შეცდომა."</string>
-    <string name="callFailed_cdma_activation_" msgid="7865724396309578840">"SIM ბარათმა გაააქტიურა თქვენი სერვისი და თქვენი ტელეფონის როუმინგის შესაძლებლობები განაახლა."</string>
+    <string name="callFailed_cdma_activation" msgid="2307989779233262164">"SIM ბარათმა გაააქტიურა თქვენი სერვისი და თქვენი ტელეფონის როუმინგის შესაძლებლობები განაახლა."</string>
 </resources>

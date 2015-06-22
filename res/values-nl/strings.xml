@@ -544,5 +544,5 @@
     <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"Wifi-oproep"</string>
     <string name="emergency_action_launch_hint" msgid="5841511849007540970">"Tik nogmaals om te openen"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"Er is een fout opgetreden tijdens het decoderen van het bericht."</string>
-    <string name="callFailed_cdma_activation_" msgid="7865724396309578840">"Een simkaart heeft uw service geactiveerd en heeft de roaming-mogelijkheden van uw telefoon geüpdatet."</string>
+    <string name="callFailed_cdma_activation" msgid="2307989779233262164">"Een simkaart heeft uw service geactiveerd en heeft de roaming-mogelijkheden van uw telefoon geüpdatet."</string>
 </resources>

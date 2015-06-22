@@ -544,5 +544,5 @@
     <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"வைஃபை அழைப்பு"</string>
     <string name="emergency_action_launch_hint" msgid="5841511849007540970">"திறக்க, மீண்டும் தட்டவும்"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"செய்தியைக் குறிவிலக்கும்போது பிழை ஏற்பட்டது."</string>
-    <string name="callFailed_cdma_activation_" msgid="7865724396309578840">"சிம் கார்டு சேவையை இயக்கியுள்ளது மற்றும் மொபைலின் ரோமிங் செயல்திறன்களைப் புதுப்பித்துள்ளது."</string>
+    <string name="callFailed_cdma_activation" msgid="2307989779233262164">"ஏற்கனவே சிம் கார்டைப் பயன்படுத்தி சேவை இயக்கப்பட்டது மற்றும் மொபைலின் ரோமிங் செயல்திறன்கள் புதுப்பிக்கப்பட்டன."</string>
 </resources>

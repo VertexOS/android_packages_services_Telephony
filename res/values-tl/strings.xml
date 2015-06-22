@@ -544,5 +544,5 @@
     <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"Tawag sa Wi-Fi"</string>
     <string name="emergency_action_launch_hint" msgid="5841511849007540970">"Pinduting muli upang buksan"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"Nagkaroon ng error habang dine-decode ang mensahe."</string>
-    <string name="callFailed_cdma_activation_" msgid="7865724396309578840">"Na-activate ng isang SIM card ang iyong serbisyo at na-update ang mga kakayahang roaming ng iyong telepono."</string>
+    <string name="callFailed_cdma_activation" msgid="2307989779233262164">"Na-activate ng isang SIM card ang iyong serbisyo at na-update ang mga kakayahang roaming ng iyong telepono."</string>
 </resources>

@@ -548,5 +548,5 @@
     <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"Ikholi ye-Wi-Fi"</string>
     <string name="emergency_action_launch_hint" msgid="5841511849007540970">"Thinta futhi ukuze uvule"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"Kube nephutha ngenkathi kukhishwa ikhodi kumlayezo."</string>
-    <string name="callFailed_cdma_activation_" msgid="7865724396309578840">"Ikhadi le-SIM lenze kwasebenza isevisi yakho laphinde labuyekeza amakhono okuzula wefoni yakho."</string>
+    <string name="callFailed_cdma_activation" msgid="2307989779233262164">"Ikhadi le-SIM lenze kwasebenza isevisi yakho laphinde labuyekeza amakhono okuzula wefoni yakho."</string>
 </resources>

@@ -544,5 +544,5 @@
     <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"Wi-Fi 통화"</string>
     <string name="emergency_action_launch_hint" msgid="5841511849007540970">"다시 터치하여 열기"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"메시지를 디코딩하는 중에 오류가 발생했습니다."</string>
-    <string name="callFailed_cdma_activation_" msgid="7865724396309578840">"SIM 카드로 서비스가 활성화되었으며 휴대전화 로밍 기능이 업데이트되었습니다."</string>
+    <string name="callFailed_cdma_activation" msgid="2307989779233262164">"SIM 카드로 서비스가 활성화되었으며 휴대전화 로밍 기능이 업데이트되었습니다."</string>
 </resources>

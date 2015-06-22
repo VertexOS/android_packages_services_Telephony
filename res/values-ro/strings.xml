@@ -547,5 +547,5 @@
     <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"Apel prin Wi-Fi"</string>
     <string name="emergency_action_launch_hint" msgid="5841511849007540970">"Atingeți din nou pentru a deschide"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"A apărut o eroare la decodificarea mesajului."</string>
-    <string name="callFailed_cdma_activation_" msgid="7865724396309578840">"Un card SIM a activat serviciul și a actualizat funcțiile de roaming ale telefonului."</string>
+    <string name="callFailed_cdma_activation" msgid="2307989779233262164">"Un card SIM a activat serviciul și a actualizat funcțiile de roaming ale telefonului."</string>
 </resources>

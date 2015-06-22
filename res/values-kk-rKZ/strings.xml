@@ -544,5 +544,5 @@
     <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"Wi-Fi қоңырауы"</string>
     <string name="emergency_action_launch_hint" msgid="5841511849007540970">"Ашу үшін қайтадан түртіңіз"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"Хабарды кодтан шығару кезінде қате пайда болды."</string>
-    <string name="callFailed_cdma_activation_" msgid="7865724396309578840">"SIM картасы қызметті белсендірді және телефонның роуминг мүмкіндіктерін жаңартты."</string>
+    <string name="callFailed_cdma_activation" msgid="2307989779233262164">"SIM карта қызметті белсендіріп, телефонның роуминг мүмкіндіктерін жаңартты."</string>
 </resources>
