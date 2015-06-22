@@ -513,11 +513,11 @@ public class PhoneGlobals extends ContextWrapper {
         return mCM;
     }
 
-    /* package */ PersistableBundle getCarrierConfig() {
+    public PersistableBundle getCarrierConfig() {
         return getCarrierConfigForSubId(SubscriptionManager.getDefaultSubId());
     }
 
-    /* package */ PersistableBundle getCarrierConfigForSubId(int subId) {
+    public PersistableBundle getCarrierConfigForSubId(int subId) {
         return configLoader.getConfigForSubId(subId);
     }
 
