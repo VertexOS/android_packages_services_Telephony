@@ -27,12 +27,9 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.Icon;
 import android.net.Uri;
-import android.os.PersistableBundle;
-import android.os.RemoteException;
 import android.telecom.PhoneAccount;
 import android.telecom.PhoneAccountHandle;
 import android.telecom.TelecomManager;
-import android.telephony.CarrierConfigManager;
 import android.telephony.PhoneStateListener;
 import android.telephony.ServiceState;
 import android.telephony.SubscriptionInfo;
@@ -41,7 +38,6 @@ import android.telephony.SubscriptionManager.OnSubscriptionsChangedListener;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 
-import com.android.internal.telephony.ICarrierConfigLoader;
 import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneFactory;
 import com.android.internal.telephony.PhoneProxy;
@@ -236,20 +232,10 @@ final class TelecomAccountRegistry {
                 configuration.mnc = subscriptionInfo.getMnc();
             }
 
-            // Check if IMS video pause is supported.
-            mIsVideoPauseSupported = false;
-
-            ICarrierConfigLoader configLoader =
-                (ICarrierConfigLoader) mContext.getSystemService(Context.CARRIER_CONFIG_SERVICE);
-            if (configLoader != null) {
-                try {
-                    PersistableBundle b = configLoader.getConfigForSubId(mPhone.getSubId());
-                    mIsVideoPauseSupported
-                        = b.getBoolean(CarrierConfigManager.KEY_SUPPORT_PAUSE_IMS_VIDEO_CALLS_BOOL);
-                } catch (RemoteException e) {
-                    Log.i(this, "updateVideoPauseSupport: unable to access carrier config service");
-                }
-            }
+            // Load the MNC/MCC specific configuration.
+            Context subContext = mContext.createConfigurationContext(configuration);
+            mIsVideoPauseSupported = subContext.getResources().getBoolean(
+                    R.bool.support_pause_ims_video_calls);
         }
 
         /**
