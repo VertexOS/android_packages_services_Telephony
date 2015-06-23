@@ -135,7 +135,7 @@ public class IccNetworkDepersonalizationPanel extends IccPanel {
         mUnlockButton.setOnClickListener(mUnlockListener);
 
         // The "Dismiss" button is present in some (but not all) products,
-        // based on the "sim_network_unlock_allow_dismiss" resource.
+        // based on the "KEY_SIM_NETWORK_UNLOCK_ALLOW_DISMISS_BOOL" variable.
         mDismissButton = (Button) findViewById(R.id.ndp_dismiss);
         PersistableBundle carrierConfig = PhoneGlobals.getInstance().getCarrierConfig();
         if (carrierConfig.getBoolean(
