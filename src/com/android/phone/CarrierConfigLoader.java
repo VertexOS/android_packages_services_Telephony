@@ -358,7 +358,7 @@ public class CarrierConfigLoader extends ICarrierConfigLoader.Stub {
     /** Binds to the default or carrier config app. */
     private boolean bindToConfigPackage(String pkgName, int phoneId, int eventId) {
         log("Binding to " + pkgName + " for phone " + phoneId);
-        Intent carrierService = new Intent(CarrierService.CONFIG_SERVICE_INTERFACE);
+        Intent carrierService = new Intent(CarrierService.CARRIER_SERVICE_INTERFACE);
         carrierService.setPackage(pkgName);
         mServiceConnection[phoneId] = new CarrierServiceConnection(phoneId, eventId);
         try {
@@ -396,7 +396,7 @@ public class CarrierConfigLoader extends ICarrierConfigLoader.Stub {
     private String getCarrierPackageForPhoneId(int phoneId) {
         List<String> carrierPackageNames = TelephonyManager.from(mContext)
                 .getCarrierPackageNamesForIntentAndPhone(
-                        new Intent(CarrierService.CONFIG_SERVICE_INTERFACE), phoneId);
+                        new Intent(CarrierService.CARRIER_SERVICE_INTERFACE), phoneId);
         if (carrierPackageNames != null && carrierPackageNames.size() > 0) {
             return carrierPackageNames.get(0);
         } else {
