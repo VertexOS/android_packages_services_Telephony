@@ -34,6 +34,7 @@ import android.provider.Settings;
 import android.telecom.PhoneAccount;
 import android.telephony.CarrierConfigManager;
 import android.telephony.PhoneNumberUtils;
+import android.telephony.SubscriptionManager;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -199,8 +200,10 @@ public class EmergencyDialer extends Activity implements View.OnClickListener,
 
         mDialButton = findViewById(R.id.floating_action_button);
 
+        CarrierConfigLoader configLoader = CarrierConfigLoader.init(this);
         // Check whether we should show the onscreen "Dial" button and co.
-        PersistableBundle carrierConfig = PhoneGlobals.getInstance().getCarrierConfig();
+        PersistableBundle carrierConfig =
+                configLoader.getConfigForSubId(SubscriptionManager.getDefaultVoiceSubId());
         if (carrierConfig.getBoolean(CarrierConfigManager.KEY_SHOW_ONSCREEN_DIAL_BUTTON_BOOL)) {
             mDialButton.setOnClickListener(this);
         } else {
