@@ -274,8 +274,8 @@ public class CallFeaturesSetting extends PreferenceActivity
         }
 
         if (ImsManager.isVolteEnabledByPlatform(this) &&
-                !mPhone.getContext().getResources().getBoolean(
-                        com.android.internal.R.bool.config_carrier_volte_tty_supported)) {
+                !carrierConfig.getBoolean(
+                        CarrierConfigManager.KEY_CARRIER_VOLTE_TTY_SUPPORTED_BOOL)) {
             TelephonyManager tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
             /* tm.listen(mPhoneStateListener, PhoneStateListener.LISTEN_CALL_STATE); */
         }
