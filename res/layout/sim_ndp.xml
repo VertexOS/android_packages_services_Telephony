@@ -51,7 +51,7 @@
                 android:paddingEnd="20dip" />
 
         <!-- Dismiss button.  (Not present in some products; see
-             sim_network_unlock_allow_dismiss in config.xml.) -->
+             CarrierConfigManager#KEY_SIM_NETWORK_UNLOCK_ALLOW_DISMISS_BOOL) -->
         <Button android:id="@+id/ndp_dismiss"
                 android:layout_gravity="center_horizontal"
                 android:text="@string/sim_ndp_dismiss_text"
