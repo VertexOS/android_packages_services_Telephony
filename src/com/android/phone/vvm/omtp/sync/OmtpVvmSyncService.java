@@ -162,15 +162,22 @@ public class OmtpVvmSyncService extends IntentService {
         List<Voicemail> readVoicemails = mQueryHelper.getReadVoicemails();
         List<Voicemail> deletedVoicemails = mQueryHelper.getDeletedVoicemails();
 
-        if (deletedVoicemails != null &&
-                imapHelper.markMessagesAsDeleted(deletedVoicemails)) {
-            // We want to delete selectively instead of all the voicemails for this provider
-            // in case the state changed since the IMAP query was completed.
-            mQueryHelper.deleteFromDatabase(deletedVoicemails);
+        if (deletedVoicemails != null) {
+            if (imapHelper.markMessagesAsDeleted(deletedVoicemails)) {
+                // We want to delete selectively instead of all the voicemails for this provider
+                // in case the state changed since the IMAP query was completed.
+                mQueryHelper.deleteFromDatabase(deletedVoicemails);
+            } else {
+                mQueryHelper.markUndeletedInDatabase(deletedVoicemails);
+            }
         }
 
-        if (readVoicemails != null && imapHelper.markMessagesAsRead(readVoicemails)) {
-            mQueryHelper.markReadInDatabase(readVoicemails);
+        if (readVoicemails != null) {
+            if (imapHelper.markMessagesAsRead(readVoicemails)) {
+                mQueryHelper.markReadInDatabase(readVoicemails);
+            } else {
+                mQueryHelper.markUnreadInDatabase(readVoicemails);
+            }
         }
     }
 
