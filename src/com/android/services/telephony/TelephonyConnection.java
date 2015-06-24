@@ -33,11 +33,15 @@ import android.telecom.StatusHints;
 import com.android.internal.telephony.Call;
 import com.android.internal.telephony.CallStateException;
 import com.android.internal.telephony.Connection.PostDialListener;
+import com.android.internal.telephony.gsm.SuppServiceNotification;
+
 import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.imsphone.ImsPhoneConnection;
 import com.android.phone.R;
 
 import java.lang.Override;
+import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -54,6 +58,8 @@ abstract class TelephonyConnection extends Connection {
     private static final int MSG_DISCONNECT = 4;
     private static final int MSG_MULTIPARTY_STATE_CHANGED = 5;
     private static final int MSG_CONFERENCE_MERGE_FAILED = 6;
+    private static final int MSG_SUPP_SERVICE_NOTIFY = 7;
+    private SuppServiceNotification mSsNotification = null;
 
     private final Handler mHandler = new Handler() {
         @Override
@@ -101,6 +107,24 @@ abstract class TelephonyConnection extends Connection {
                     }
                 case MSG_CONFERENCE_MERGE_FAILED:
                     notifyConferenceMergeFailed();
+                    break;
+                case MSG_SUPP_SERVICE_NOTIFY:
+                    Log.v(TelephonyConnection.this, "MSG_SUPP_SERVICE_NOTIFY on phoneId : "
+                            +getPhone().getPhoneId());
+                    if (msg.obj != null && ((AsyncResult) msg.obj).result != null) {
+                        mSsNotification =
+                                (SuppServiceNotification)((AsyncResult) msg.obj).result;
+                        if (mOriginalConnection != null && mSsNotification.history != null) {
+                            Bundle extras = mOriginalConnection.getExtras();
+                            if (extras != null) {
+                                Log.v(TelephonyConnection.this,
+                                        "Updating call history info in extras.");
+                                extras.putStringArrayList(EXTRA_CALL_HISTORY_INFO,
+                                        new ArrayList(Arrays.asList(mSsNotification.history)));
+                                setExtras(extras);
+                            }
+                        }
+                    }
                     break;
             }
         }
@@ -557,6 +581,7 @@ abstract class TelephonyConnection extends Connection {
                 mHandler, MSG_HANDOVER_STATE_CHANGED, null);
         getPhone().registerForRingbackTone(mHandler, MSG_RINGBACK_TONE, null);
         getPhone().registerForDisconnect(mHandler, MSG_DISCONNECT, null);
+        getPhone().registerForSuppServiceNotification(mHandler, MSG_SUPP_SERVICE_NOTIFY, null);
         mOriginalConnection.addPostDialListener(mPostDialListener);
         mOriginalConnection.addListener(mOriginalConnectionListener);
 
@@ -588,6 +613,7 @@ abstract class TelephonyConnection extends Connection {
             getPhone().unregisterForRingbackTone(mHandler);
             getPhone().unregisterForHandoverStateChanged(mHandler);
             getPhone().unregisterForDisconnect(mHandler);
+            getPhone().unregisterForSuppServiceNotification(mHandler);
             mOriginalConnection = null;
         }
     }
@@ -867,6 +893,7 @@ abstract class TelephonyConnection extends Connection {
             getPhone().unregisterForPreciseCallStateChanged(mHandler);
             getPhone().unregisterForRingbackTone(mHandler);
             getPhone().unregisterForHandoverStateChanged(mHandler);
+            getPhone().unregisterForSuppServiceNotification(mHandler);
         }
         mOriginalConnection = null;
         destroy();
