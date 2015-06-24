@@ -66,8 +66,13 @@ public class OmtpMessageReceiver extends BroadcastReceiver {
         if (messageData != null) {
             if (messageData.getPrefix() == OmtpConstants.SYNC_SMS_PREFIX) {
                 SyncMessage message = new SyncMessage(messageData);
+
+                Log.v(TAG, "Received SYNC sms for " + mPhoneAccount.getId() +
+                        " with event" + message.getSyncTriggerEvent());
+
                 processSync(message);
             } else if (messageData.getPrefix() == OmtpConstants.STATUS_SMS_PREFIX) {
+                Log.v(TAG, "Received STATUS sms for " + mPhoneAccount.getId());
                 StatusMessage message = new StatusMessage(messageData);
                 updateSource(message);
             } else {
@@ -121,8 +126,7 @@ public class OmtpMessageReceiver extends BroadcastReceiver {
                 VoicemailContract.Status.DATA_CHANNEL_STATE_OK,
                 VoicemailContract.Status.NOTIFICATION_CHANNEL_STATE_OK);
 
-        // Save the IMAP credentials in the corresponding account object so they are
-        // persistent and can be retrieved.
+        // Save the IMAP credentials in preferences so they are persistent and can be retrieved.
         VisualVoicemailSettingsUtil.setVisualVoicemailCredentialsFromStatusMessage(
                 mContext,
                 mPhoneAccount,
