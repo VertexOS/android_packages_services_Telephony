@@ -25,6 +25,7 @@ import android.preference.PreferenceFragment;
 import android.preference.PreferenceScreen;
 import android.provider.Settings;
 import android.telecom.TelecomManager;
+import android.telephony.CarrierConfigManager;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 import android.util.Log;
@@ -98,9 +99,7 @@ public class AccessibilitySettingsFragment extends PreferenceFragment {
     public void onResume() {
         super.onResume();
 
-        if (ImsManager.isVolteEnabledByPlatform(mContext) &&
-                !mContext.getResources().getBoolean(
-                        com.android.internal.R.bool.config_carrier_volte_tty_supported)) {
+        if (ImsManager.isVolteEnabledByPlatform(mContext) && !getVolteTtySupported()) {
             TelephonyManager tm =
                     (TelephonyManager) mContext.getSystemService(Context.TELEPHONY_SERVICE);
             tm.listen(mPhoneStateListener, PhoneStateListener.LISTEN_CALL_STATE);
@@ -111,9 +110,7 @@ public class AccessibilitySettingsFragment extends PreferenceFragment {
     public void onPause() {
         super.onPause();
 
-        if (ImsManager.isVolteEnabledByPlatform(mContext) &&
-                !mContext.getResources().getBoolean(
-                        com.android.internal.R.bool.config_carrier_volte_tty_supported)) {
+        if (ImsManager.isVolteEnabledByPlatform(mContext) && !getVolteTtySupported()) {
             TelephonyManager tm =
                     (TelephonyManager) mContext.getSystemService(Context.TELEPHONY_SERVICE);
             tm.listen(mPhoneStateListener, PhoneStateListener.LISTEN_NONE);
@@ -137,5 +134,12 @@ public class AccessibilitySettingsFragment extends PreferenceFragment {
             return true;
         }
         return false;
+    }
+
+    private boolean getVolteTtySupported() {
+        CarrierConfigManager configManager =
+                (CarrierConfigManager) mContext.getSystemService(Context.CARRIER_CONFIG_SERVICE);
+        return configManager.getConfig().getBoolean(
+                CarrierConfigManager.KEY_CARRIER_VOLTE_TTY_SUPPORTED_BOOL);
     }
 }
