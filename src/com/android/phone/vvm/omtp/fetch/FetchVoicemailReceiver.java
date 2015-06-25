@@ -53,6 +53,9 @@ public class FetchVoicemailReceiver extends BroadcastReceiver {
     // Timeout used to call ConnectivityManager.requestNetwork
     private static final int NETWORK_REQUEST_TIMEOUT_MILLIS = 60 * 1000;
 
+    // Number of retries
+    private static final int NETWORK_RETRY_COUNT = 3;
+
     private ContentResolver mContentResolver;
     private Uri mUri;
     private NetworkRequest mNetworkRequest;
@@ -61,6 +64,7 @@ public class FetchVoicemailReceiver extends BroadcastReceiver {
     private String mUid;
     private ConnectivityManager mConnectivityManager;
     private PhoneAccountHandle mPhoneAccount;
+    private int mRetryCount = NETWORK_RETRY_COUNT;
 
     @Override
     public void onReceive(final Context context, Intent intent) {
@@ -107,15 +111,14 @@ public class FetchVoicemailReceiver extends BroadcastReceiver {
                     }
 
                     int subId = PhoneUtils.getSubIdForPhoneAccountHandle(mPhoneAccount);
-
                     mNetworkRequest = new NetworkRequest.Builder()
-                            .addTransportType(NetworkCapabilities.TRANSPORT_CELLULAR)
-                            .addCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
-                            .setNetworkSpecifier(Integer.toString(subId))
-                            .build();
+                    .addTransportType(NetworkCapabilities.TRANSPORT_CELLULAR)
+                    .addCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
+                    .setNetworkSpecifier(Integer.toString(subId))
+                    .build();
+
                     mNetworkCallback = new OmtpVvmNetworkRequestCallback();
-                    getConnectivityManager().requestNetwork(
-                            mNetworkRequest, mNetworkCallback, NETWORK_REQUEST_TIMEOUT_MILLIS);
+                    requestNetwork();
                 }
             } finally {
                 cursor.close();
@@ -130,9 +133,16 @@ public class FetchVoicemailReceiver extends BroadcastReceiver {
             executor.execute(new Runnable() {
                 @Override
                 public void run() {
-                    new ImapHelper(mContext, mPhoneAccount, network).fetchVoicemailPayload(
+                    ImapHelper imapHelper = new ImapHelper(mContext, mPhoneAccount, network);
+                    boolean success = imapHelper.fetchVoicemailPayload(
                             new VoicemailFetchedCallback(mContext, mUri), mUid);
+
                     releaseNetwork();
+
+                    if (!success && mRetryCount > 0) {
+                        mRetryCount--;
+                        requestNetwork();
+                    }
                 }
             });
         }
@@ -140,12 +150,27 @@ public class FetchVoicemailReceiver extends BroadcastReceiver {
         @Override
         public void onLost(Network network) {
             releaseNetwork();
+
+            if (mRetryCount > 0) {
+                mRetryCount--;
+                requestNetwork();
+            }
         }
 
         @Override
         public void onUnavailable() {
             releaseNetwork();
+
+            if (mRetryCount > 0) {
+                mRetryCount--;
+                requestNetwork();
+            }
         }
+    }
+
+    private void requestNetwork() {
+        getConnectivityManager().requestNetwork(
+                mNetworkRequest, mNetworkCallback, NETWORK_REQUEST_TIMEOUT_MILLIS);
     }
 
     private void releaseNetwork() {

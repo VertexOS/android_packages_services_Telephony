@@ -175,21 +175,23 @@ public class ImapHelper {
     }
 
 
-    public void fetchVoicemailPayload(VoicemailFetchedCallback callback, final String uid) {
+    public boolean fetchVoicemailPayload(VoicemailFetchedCallback callback, final String uid) {
         Message message;
         try {
             mFolder = openImapFolder(ImapFolder.MODE_READ_WRITE);
             if (mFolder == null) {
                 // This means we were unable to successfully open the folder.
-                return;
+                return false;
             }
             message = mFolder.getMessage(uid);
             VoicemailPayload voicemailPayload = fetchVoicemailPayload(message);
             callback.setVoicemailContent(voicemailPayload);
+            return true;
         } catch (MessagingException e) {
         } finally {
             closeImapFolder();
         }
+        return false;
     }
 
     /**
