@@ -222,8 +222,10 @@ public class TelephonyConnectionService extends ConnectionService {
         // when voice RAT is OOS but Data RAT is present.
         int state = phone.getServiceState().getState();
         if (state == ServiceState.STATE_OUT_OF_SERVICE) {
-            if (phone.getServiceState().getDataNetworkType() == TelephonyManager.NETWORK_TYPE_LTE) {
-                state = phone.getServiceState().getDataRegState();
+            int dataNetType = phone.getServiceState().getDataNetworkType();
+            if (dataNetType == TelephonyManager.NETWORK_TYPE_LTE ||
+                    dataNetType == TelephonyManager.NETWORK_TYPE_LTE_CA) {
+                        state = phone.getServiceState().getDataRegState();
             }
         }
         boolean useEmergencyCallHelper = false;
