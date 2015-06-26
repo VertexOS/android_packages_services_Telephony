@@ -200,10 +200,9 @@ public class EmergencyDialer extends Activity implements View.OnClickListener,
 
         mDialButton = findViewById(R.id.floating_action_button);
 
-        CarrierConfigLoader configLoader = CarrierConfigLoader.init(this);
         // Check whether we should show the onscreen "Dial" button and co.
-        PersistableBundle carrierConfig =
-                configLoader.getConfigForSubId(SubscriptionManager.getDefaultVoiceSubId());
+        PersistableBundle carrierConfig = PhoneGlobals.getInstance().getCarrierConfigForSubId(
+                SubscriptionManager.getDefaultVoiceSubId());
         if (carrierConfig.getBoolean(CarrierConfigManager.KEY_SHOW_ONSCREEN_DIAL_BUTTON_BOOL)) {
             mDialButton.setOnClickListener(this);
         } else {
