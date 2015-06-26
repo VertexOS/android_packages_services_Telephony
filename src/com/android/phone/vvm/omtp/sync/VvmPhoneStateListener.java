@@ -23,11 +23,13 @@ import android.telephony.PhoneStateListener;
 import android.telephony.ServiceState;
 
 import com.android.phone.PhoneUtils;
+import com.android.phone.vvm.omtp.OmtpVvmCarrierConfigHelper;
 
 /**
  * Check if service is lost and indicate this in the voicemail status.
  */
 public class VvmPhoneStateListener extends PhoneStateListener {
+
     private PhoneAccountHandle mPhoneAccount;
     private Context mContext;
     public VvmPhoneStateListener(Context context, PhoneAccountHandle accountHandle) {
@@ -41,17 +43,22 @@ public class VvmPhoneStateListener extends PhoneStateListener {
         if (serviceState.getState() == ServiceState.STATE_IN_SERVICE) {
             VoicemailStatusQueryHelper voicemailStatusQueryHelper =
                     new VoicemailStatusQueryHelper(mContext);
-            if (!voicemailStatusQueryHelper.isNotificationsChannelActive(mPhoneAccount)) {
-                VoicemailContract.Status.setStatus(mContext, mPhoneAccount,
-                        VoicemailContract.Status.CONFIGURATION_STATE_OK,
-                        VoicemailContract.Status.DATA_CHANNEL_STATE_OK,
-                        VoicemailContract.Status.NOTIFICATION_CHANNEL_STATE_OK);
-
-                // Run a full sync in case something was missed while signal was down.
-                Intent serviceIntent = new Intent(mContext, OmtpVvmSyncService.class);
-                serviceIntent.setAction(OmtpVvmSyncService.SYNC_FULL_SYNC);
-                serviceIntent.putExtra(OmtpVvmSyncService.EXTRA_PHONE_ACCOUNT, mPhoneAccount);
-                mContext.startService(serviceIntent);
+            if (voicemailStatusQueryHelper.isVoicemailSourceConfigured(mPhoneAccount)) {
+                if (!voicemailStatusQueryHelper.isNotificationsChannelActive(mPhoneAccount)) {
+                    VoicemailContract.Status.setStatus(mContext, mPhoneAccount,
+                            VoicemailContract.Status.CONFIGURATION_STATE_OK,
+                            VoicemailContract.Status.DATA_CHANNEL_STATE_OK,
+                            VoicemailContract.Status.NOTIFICATION_CHANNEL_STATE_OK);
+                    // Run a full sync in case something was missed while signal was down.
+                    Intent serviceIntent = new Intent(mContext, OmtpVvmSyncService.class);
+                    serviceIntent.setAction(OmtpVvmSyncService.SYNC_FULL_SYNC);
+                    serviceIntent.putExtra(OmtpVvmSyncService.EXTRA_PHONE_ACCOUNT, mPhoneAccount);
+                    mContext.startService(serviceIntent);
+                }
+            } else {
+                OmtpVvmCarrierConfigHelper carrierConfigHelper = new OmtpVvmCarrierConfigHelper(
+                        mContext, PhoneUtils.getSubIdForPhoneAccountHandle(mPhoneAccount));
+                carrierConfigHelper.startActivation();
             }
         } else {
             VoicemailContract.Status.setStatus(mContext, mPhoneAccount,

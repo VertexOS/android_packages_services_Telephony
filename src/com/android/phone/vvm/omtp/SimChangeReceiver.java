@@ -21,7 +21,6 @@ import android.content.Intent;
 import android.telecom.PhoneAccountHandle;
 import android.telephony.CarrierConfigManager;
 import android.telephony.SubscriptionManager;
-import android.telephony.TelephonyManager;
 import android.util.Log;
 
 import com.android.internal.telephony.IccCardConstants;
@@ -68,20 +67,30 @@ public class SimChangeReceiver extends BroadcastReceiver {
                     PhoneAccountHandle phoneAccount = PhoneUtils.makePstnPhoneAccountHandle(
                             SubscriptionManager.getPhoneId(subId));
 
-                    if (carrierConfigHelper.isEnabledByDefault()) {
-                        VisualVoicemailSettingsUtil.setVisualVoicemailEnabled(
-                                context, phoneAccount, true, false);
+                    boolean isUserSet = VisualVoicemailSettingsUtil.isVisualVoicemailUserSet(
+                            context, phoneAccount);
+                    boolean isEnabledInSettings =
+                            VisualVoicemailSettingsUtil.isVisualVoicemailEnabled(context,
+                            phoneAccount);
+                    boolean isEnabled = isUserSet ? isEnabledInSettings :
+                        carrierConfigHelper.isEnabledByDefault();
+
+                    if (!isUserSet) {
+                        // Preserve the previous setting for "isVisualVoicemailEnabled" if it is
+                        // set by the user, otherwise, set this value for the first time.
+                        VisualVoicemailSettingsUtil.setVisualVoicemailEnabled(context, phoneAccount,
+                                isEnabled, /** isUserSet */ false);
                     }
 
-                    if (carrierConfigHelper.isEnabledByDefault() ||
-                            VisualVoicemailSettingsUtil.isEnabledByUserOverride(
-                                    context, phoneAccount)) {
+                    if (isEnabled) {
+                        // Add a phone state listener so that changes to the communication channels
+                        // can be recorded.
+                        OmtpVvmSourceManager.getInstance(context).addPhoneStateListener(
+                                phoneAccount);
                         carrierConfigHelper.startActivation();
                     } else {
                         // It may be that the source was not registered to begin with but we want
                         // to run through the steps to remove the source just in case.
-                        VisualVoicemailSettingsUtil.setVisualVoicemailEnabled(
-                                context, phoneAccount, false, false);
                         OmtpVvmSourceManager.getInstance(context).removeSource(phoneAccount);
                         carrierConfigHelper.startDeactivation();
                     }
