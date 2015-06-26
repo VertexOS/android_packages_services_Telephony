@@ -15,7 +15,9 @@
  */
 package com.android.phone.vvm.omtp.sync;
 
+import android.app.AlarmManager;
 import android.app.IntentService;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
@@ -55,9 +57,12 @@ public class OmtpVvmSyncService extends IntentService {
     // Timeout used to call ConnectivityManager.requestNetwork
     private static final int NETWORK_REQUEST_TIMEOUT_MILLIS = 60 * 1000;
 
-    private VoicemailsQueryHelper mQueryHelper;
+    // Number of retries
+    private static final int NETWORK_RETRY_COUNT = 3;
 
+    private VoicemailsQueryHelper mQueryHelper;
     private ConnectivityManager mConnectivityManager;
+    private Map<NetworkCallback, NetworkRequest> mNetworkRequestMap;
 
     public OmtpVvmSyncService() {
         super("OmtpVvmSyncService");
@@ -75,6 +80,8 @@ public class OmtpVvmSyncService extends IntentService {
             Log.d(TAG, "onHandleIntent: could not handle null intent");
             return;
         }
+
+        mNetworkRequestMap = new HashMap<NetworkCallback, NetworkRequest>();
 
         String action = intent.getAction();
         PhoneAccountHandle phoneAccount = intent.getParcelableExtra(EXTRA_PHONE_ACCOUNT);
@@ -98,56 +105,107 @@ public class OmtpVvmSyncService extends IntentService {
             return;
         }
 
-        int subId = PhoneUtils.getSubIdForPhoneAccountHandle(phoneAccount);
-
         NetworkRequest networkRequest = new NetworkRequest.Builder()
-                .addTransportType(NetworkCapabilities.TRANSPORT_CELLULAR)
-                .addCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
-                .setNetworkSpecifier(Integer.toString(subId))
-                .build();
+        .addTransportType(NetworkCapabilities.TRANSPORT_CELLULAR)
+        .addCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
+        .setNetworkSpecifier(
+                Integer.toString(PhoneUtils.getSubIdForPhoneAccountHandle(phoneAccount)))
+        .build();
+
         NetworkCallback networkCallback = new OmtpVvmNetworkRequestCallback(this, phoneAccount,
                 action);
-        getConnectivityManager().requestNetwork(
-                networkRequest, networkCallback, NETWORK_REQUEST_TIMEOUT_MILLIS);
+
+        mNetworkRequestMap.put(networkCallback, networkRequest);
+
+        requestNetwork(networkCallback);
     }
 
     private class OmtpVvmNetworkRequestCallback extends ConnectivityManager.NetworkCallback {
         Context mContext;
         PhoneAccountHandle mPhoneAccount;
         String mAction;
+        int mRetryCount;
 
         public OmtpVvmNetworkRequestCallback(Context context, PhoneAccountHandle phoneAccount,
                 String action) {
             mContext = context;
             mPhoneAccount = phoneAccount;
             mAction = action;
+            mRetryCount = NETWORK_RETRY_COUNT;
         }
 
         @Override
         public void onAvailable(final Network network) {
+            boolean uploadSuccess = true;
+            boolean downloadSuccess = true;
+
             ImapHelper imapHelper = new ImapHelper(mContext, mPhoneAccount, network);
             if (SYNC_FULL_SYNC.equals(mAction) || SYNC_UPLOAD_ONLY.equals(mAction)) {
-                upload(imapHelper);
+                uploadSuccess = upload(imapHelper);
             }
             if (SYNC_FULL_SYNC.equals(mAction) || SYNC_DOWNLOAD_ONLY.equals(mAction)) {
-                download(imapHelper);
+                downloadSuccess = download(imapHelper);
             }
-            releaseNetwork();
+
+            releaseNetwork(this);
+
+            Log.v(TAG, "upload succeeded: ["+  String.valueOf(uploadSuccess)
+                    + "] download succeeded: [" + String.valueOf(downloadSuccess) + "]");
+
+            if ((!uploadSuccess || !downloadSuccess)) {
+                if (mRetryCount > 0) {
+                    mRetryCount--;
+                    // Re-adjust so that only the unsuccessful action needs to be retried.
+                    // No need to re-adjust if both are unsuccessful. It means the full sync failed
+                    // so the action remains unchanged.
+                    if (uploadSuccess) {
+                        mAction = SYNC_DOWNLOAD_ONLY;
+                    } else if (downloadSuccess) {
+                        mAction = SYNC_UPLOAD_ONLY;
+                    }
+
+                    Log.v(TAG, "Retrying " + mAction);
+
+                    requestNetwork(this);
+                } else {
+                    setRetryAlarm(mPhoneAccount);
+                }
+            }
         }
 
         @Override
         public void onLost(Network network) {
-            releaseNetwork();
+            releaseNetwork(this);
+
+            if (mRetryCount > 0) {
+                mRetryCount--;
+                requestNetwork(this);
+            } else {
+                setRetryAlarm(mPhoneAccount);
+            }
         }
 
         @Override
         public void onUnavailable() {
-            releaseNetwork();
-        }
+            releaseNetwork(this);
 
-        private void releaseNetwork() {
-            getConnectivityManager().unregisterNetworkCallback(this);
+            if (mRetryCount> 0) {
+                mRetryCount--;
+                requestNetwork(this);
+            } else {
+                setRetryAlarm(mPhoneAccount);
+            }
         }
+    }
+
+    private void requestNetwork(NetworkCallback networkCallback) {
+        NetworkRequest networkRequest = mNetworkRequestMap.get(networkCallback);
+        getConnectivityManager().requestNetwork(
+                networkRequest, networkCallback, NETWORK_REQUEST_TIMEOUT_MILLIS);
+    }
+
+    private void releaseNetwork(NetworkCallback networkCallback) {
+        getConnectivityManager().unregisterNetworkCallback(networkCallback);
     }
 
     private ConnectivityManager getConnectivityManager() {
@@ -158,36 +216,53 @@ public class OmtpVvmSyncService extends IntentService {
         return mConnectivityManager;
     }
 
-    private void upload(ImapHelper imapHelper) {
+    private void setRetryAlarm(PhoneAccountHandle phoneAccount) {
+        Intent serviceIntent = new Intent(this, OmtpVvmSyncService.class);
+        serviceIntent.setAction(OmtpVvmSyncService.SYNC_FULL_SYNC);
+        serviceIntent.putExtra(OmtpVvmSyncService.EXTRA_PHONE_ACCOUNT, phoneAccount);
+        PendingIntent pendingIntent = PendingIntent.getService(this, 0, serviceIntent, 0);
+
+        AlarmManager alarmManager = (AlarmManager)
+                this.getSystemService(Context.ALARM_SERVICE);
+        alarmManager.set(AlarmManager.ELAPSED_REALTIME, 5000, pendingIntent);
+    }
+
+    private boolean upload(ImapHelper imapHelper) {
         List<Voicemail> readVoicemails = mQueryHelper.getReadVoicemails();
         List<Voicemail> deletedVoicemails = mQueryHelper.getDeletedVoicemails();
 
-        if (deletedVoicemails != null) {
+        boolean success = true;
+
+        if (deletedVoicemails.size() > 0) {
             if (imapHelper.markMessagesAsDeleted(deletedVoicemails)) {
                 // We want to delete selectively instead of all the voicemails for this provider
                 // in case the state changed since the IMAP query was completed.
                 mQueryHelper.deleteFromDatabase(deletedVoicemails);
             } else {
+                success = false;
                 mQueryHelper.markUndeletedInDatabase(deletedVoicemails);
             }
         }
 
-        if (readVoicemails != null) {
+        if (readVoicemails.size() > 0) {
             if (imapHelper.markMessagesAsRead(readVoicemails)) {
                 mQueryHelper.markReadInDatabase(readVoicemails);
             } else {
+                success = false;
                 mQueryHelper.markUnreadInDatabase(readVoicemails);
             }
         }
+
+        return success;
     }
 
-    private void download(ImapHelper imapHelper) {
+    private boolean download(ImapHelper imapHelper) {
         List<Voicemail> serverVoicemails = imapHelper.fetchAllVoicemails();
         List<Voicemail> localVoicemails = mQueryHelper.getAllVoicemails();
 
         if (localVoicemails == null || serverVoicemails == null) {
             // Null value means the query failed.
-            return;
+            return false;
         }
 
         Map<String, Voicemail> remoteMap = buildMap(serverVoicemails);
@@ -213,6 +288,8 @@ public class OmtpVvmSyncService extends IntentService {
         for (Voicemail remoteVoicemail : remoteMap.values()) {
             VoicemailContract.Voicemails.insert(this, remoteVoicemail);
         }
+
+        return true;
     }
 
     /**
