@@ -22,23 +22,23 @@ import android.net.Uri;
 import android.provider.VoicemailContract;
 import android.provider.VoicemailContract.Status;
 import android.telecom.PhoneAccountHandle;
-import android.util.Log;
 
 /**
  * Construct queries to interact with the voicemail status table.
  */
 public class VoicemailStatusQueryHelper {
-    private static final String TAG = "VoicemailStatusQueryHelper";
 
     final static String[] PROJECTION = new String[] {
             Status._ID,                        // 0
-            Status.NOTIFICATION_CHANNEL_STATE, // 1
-            Status.SOURCE_PACKAGE              // 2
+            Status.CONFIGURATION_STATE,        // 1
+            Status.NOTIFICATION_CHANNEL_STATE, // 2
+            Status.SOURCE_PACKAGE              // 3
    };
 
     public static final int _ID = 0;
-    public static final int NOTIFICATION_CHANNEL_STATE = 1;
-    public static final int SOURCE_PACKAGE = 2;
+    public static final int CONFIGURATION_STATE = 1;
+    public static final int NOTIFICATION_CHANNEL_STATE = 2;
+    public static final int SOURCE_PACKAGE = 3;
 
     private Context mContext;
     private ContentResolver mContentResolver;
@@ -51,12 +51,38 @@ public class VoicemailStatusQueryHelper {
     }
 
     /**
+     * Check if the configuration state for the voicemail source is "ok", meaning that the
+     * source is set up.
+     *
+     * @param phoneAccount The phone account for the voicemail source to check.
+     * @return {@code true} if the voicemail source is configured, {@code} false otherwise,
+     * including if the voicemail source is not registered in the table.
+     */
+    public boolean isVoicemailSourceConfigured(PhoneAccountHandle phoneAccount) {
+        return isFieldEqualTo(phoneAccount, CONFIGURATION_STATE, Status.CONFIGURATION_STATE_OK);
+    }
+
+    /**
      * Check if the notifications channel of a voicemail source is active. That is, when a new
      * voicemail is available, if the server able to notify the device.
      *
      * @return {@code true} if notifications channel is active, {@code false} otherwise.
      */
     public boolean isNotificationsChannelActive(PhoneAccountHandle phoneAccount) {
+        return isFieldEqualTo(phoneAccount, NOTIFICATION_CHANNEL_STATE,
+                Status.NOTIFICATION_CHANNEL_STATE_OK);
+    }
+
+    /**
+     * Check if a field for an entry in the status table is equal to a specific value.
+     *
+     * @param phoneAccount The phone account of the voicemail source to query for.
+     * @param columnIndex The column index of the field in the returned query.
+     * @param value The value to compare against.
+     * @return {@code true} if the stored value is equal to the provided value. {@code false}
+     * otherwise.
+     */
+    private boolean isFieldEqualTo(PhoneAccountHandle phoneAccount, int columnIndex, int value) {
         Cursor cursor = null;
         if (phoneAccount != null) {
             String phoneAccountComponentName = phoneAccount.getComponentName().flattenToString();
@@ -73,8 +99,7 @@ public class VoicemailStatusQueryHelper {
                 cursor = mContentResolver.query(
                         mSourceUri, PROJECTION, whereClause, whereArgs, null);
                 if (cursor != null && cursor.moveToFirst()) {
-                    return cursor.getInt(NOTIFICATION_CHANNEL_STATE) ==
-                            Status.NOTIFICATION_CHANNEL_STATE_OK;
+                    return cursor.getInt(columnIndex) == value;
                 }
             }
             finally {

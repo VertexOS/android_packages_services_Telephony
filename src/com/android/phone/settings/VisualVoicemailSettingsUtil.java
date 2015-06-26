@@ -73,12 +73,6 @@ public class VisualVoicemailSettingsUtil {
                 PhoneUtils.makePstnPhoneAccountHandle(phone));
     }
 
-    public static boolean isEnabledByUserOverride(Context context,
-            PhoneAccountHandle phoneAccount) {
-        return isVisualVoicemailUserSet(context, phoneAccount) &&
-                isVisualVoicemailEnabled(context, phoneAccount);
-    }
-
     /**
      * Differentiate user-enabled/disabled to know whether to ignore automatic enabling and
      * disabling by the system. This is relevant when a carrier vvm app is installed and the user
