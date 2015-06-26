@@ -2651,8 +2651,20 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     }
 
     private boolean canReadPhoneState(String callingPackage, String message) {
-        mApp.enforceCallingOrSelfPermission(
-                android.Manifest.permission.READ_PHONE_STATE, message);
+        boolean failReadPhoneState = false;
+        try {
+            mApp.enforceCallingOrSelfPermission(android.Manifest.permission.READ_PHONE_STATE,
+                    message);
+        } catch (SecurityException e) {
+            failReadPhoneState = true;
+        }
+        if (failReadPhoneState) {
+            mApp.enforceCallingOrSelfPermission(
+                    android.Manifest.permission.READ_PRIVILEGED_PHONE_STATE, message);
+
+            // SKIP checking for run-time permission since obtained PRIVILEDGED
+            return true;
+        }
 
         if (mAppOps.noteOp(AppOpsManager.OP_READ_PHONE_STATE, Binder.getCallingUid(),
                 callingPackage) != AppOpsManager.MODE_ALLOWED) {
