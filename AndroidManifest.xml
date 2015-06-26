@@ -39,6 +39,10 @@
     <protected-broadcast android:name="android.provider.Telephony.SIM_FULL" />
     <protected-broadcast android:name="com.android.internal.telephony.data-restart-trysetup" />
     <protected-broadcast android:name="com.android.internal.telephony.data-stall" />
+    <protected-broadcast android:name= "android.intent.action.stk.command" />
+    <protected-broadcast android:name= "android.intent.action.stk.session_end" />
+    <protected-broadcast android:name= "android.intent.action.stk.icc_status_change" />
+    <protected-broadcast android:name= "android.intent.action.stk.alpha_notify" />
 
     <uses-permission android:name="android.permission.BROADCAST_STICKY" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
