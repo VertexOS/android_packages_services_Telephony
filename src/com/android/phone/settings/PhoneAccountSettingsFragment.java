@@ -18,6 +18,8 @@ import android.telecom.TelecomManager;
 import android.telephony.SubscriptionInfo;
 import android.telephony.SubscriptionManager;
 import android.telephony.TelephonyManager;
+import android.text.TextUtils;
+import android.util.Log;
 
 import com.android.internal.telephony.Phone;
 import com.android.phone.PhoneUtils;
@@ -48,6 +50,9 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
     private static final String USE_SIP_PREF_KEY = "use_sip_calling_options_key";
     private static final String SIP_RECEIVE_CALLS_PREF_KEY = "sip_receive_calls_key";
 
+    private static final String LEGACY_ACTION_CONFIGURE_PHONE_ACCOUNT =
+            "android.telecom.action.CONNECTION_SERVICE_CONFIGURE";
+
     /**
      * Value to start ordering of phone accounts relative to other preferences. By setting this
      * value on the phone account listings, we ensure that anything that is ordered before
@@ -56,7 +61,7 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
      */
     private static final int ACCOUNT_ORDERING_START_VALUE = 100;
 
-    private String LOG_TAG = PhoneAccountSettingsFragment.class.getSimpleName();
+    private static final String LOG_TAG = PhoneAccountSettingsFragment.class.getSimpleName();
 
     private TelecomManager mTelecomManager;
     private TelephonyManager mTelephonyManager;
@@ -346,18 +351,7 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
                     }
                 }
             } else {
-                // Build the settings intent.
-                intent = new Intent(TelecomManager.ACTION_CONNECTION_SERVICE_CONFIGURE);
-                intent.setPackage(handle.getComponentName().getPackageName());
-                intent.addCategory(Intent.CATEGORY_DEFAULT);
-                intent.putExtra(TelecomManager.EXTRA_PHONE_ACCOUNT_HANDLE, handle);
-
-                // Check to see that the phone account package can handle the setting intent.
-                PackageManager pm = getActivity().getPackageManager();
-                List<ResolveInfo> resolutions = pm.queryIntentActivities(intent, 0);
-                if (resolutions.size() == 0) {
-                    intent = null;  // set no intent if the package cannot handle it.
-                }
+                intent = buildPhoneAccountConfigureIntent(getActivity(), handle);
             }
 
             // Create the preference & add the label
@@ -416,5 +410,44 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
     private PhoneAccountHandle getEmergencyPhoneAccount() {
         return PhoneUtils.makePstnPhoneAccountHandleWithPrefix(
                 (Phone) null, "" /* prefix */, true /* isEmergency */);
+    }
+
+    public static Intent buildPhoneAccountConfigureIntent(
+            Context context, PhoneAccountHandle accountHandle) {
+        Intent intent = buildConfigureIntent(
+                context, accountHandle, TelecomManager.ACTION_CONFIGURE_PHONE_ACCOUNT);
+
+        if (intent == null) {
+            // If the new configuration didn't work, try the old configuration intent.
+            intent = buildConfigureIntent(
+                    context, accountHandle, LEGACY_ACTION_CONFIGURE_PHONE_ACCOUNT);
+            if (intent != null) {
+                Log.w(LOG_TAG, "Phone account using old configuration intent: " + accountHandle);
+            }
+        }
+        return intent;
+    }
+
+    private static Intent buildConfigureIntent(
+            Context context, PhoneAccountHandle accountHandle, String actionStr) {
+        if (accountHandle == null || accountHandle.getComponentName() == null ||
+                TextUtils.isEmpty(accountHandle.getComponentName().getPackageName())) {
+            return null;
+        }
+
+        // Build the settings intent.
+        Intent intent = new Intent(actionStr);
+        intent.setPackage(accountHandle.getComponentName().getPackageName());
+        intent.addCategory(Intent.CATEGORY_DEFAULT);
+        intent.putExtra(TelecomManager.EXTRA_PHONE_ACCOUNT_HANDLE, accountHandle);
+
+        // Check to see that the phone account package can handle the setting intent.
+        PackageManager pm = context.getPackageManager();
+        List<ResolveInfo> resolutions = pm.queryIntentActivities(intent, 0);
+        if (resolutions.size() == 0) {
+            intent = null;  // set no intent if the package cannot handle it.
+        }
+
+        return intent;
     }
 }
