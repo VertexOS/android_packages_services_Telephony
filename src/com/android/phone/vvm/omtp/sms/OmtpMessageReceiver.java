@@ -132,8 +132,8 @@ public class OmtpMessageReceiver extends BroadcastReceiver {
                 mPhoneAccount,
                 message);
 
-        // Add a phone state listener so that changes to the communication channels can be recorded.
-        vvmSourceManager.addPhoneStateListener(mPhoneAccount);
+        // Add the source to indicate that it is active.
+        vvmSourceManager.addSource(mPhoneAccount);
 
         Intent serviceIntent = new Intent(mContext, OmtpVvmSyncService.class);
         serviceIntent.setAction(OmtpVvmSyncService.SYNC_FULL_SYNC);

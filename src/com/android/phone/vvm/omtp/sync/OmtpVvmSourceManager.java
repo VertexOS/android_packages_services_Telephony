@@ -24,9 +24,9 @@ import android.telephony.TelephonyManager;
 
 import com.android.internal.telephony.Phone;
 import com.android.phone.PhoneUtils;
-import com.android.phone.settings.VisualVoicemailSettingsUtil;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -45,6 +45,7 @@ public class OmtpVvmSourceManager {
     private TelephonyManager mTelephonyManager;
     // Each phone account is associated with a phone state listener for updates to whether the
     // device is able to sync.
+    private Set<PhoneAccountHandle> mActiveVvmSources;
     private Map<PhoneAccountHandle, PhoneStateListener> mPhoneStateListenerMap;
 
     /**
@@ -67,8 +68,13 @@ public class OmtpVvmSourceManager {
             mSubscriptionManager = SubscriptionManager.from(context);
             mTelephonyManager = (TelephonyManager)
                     mContext.getSystemService(Context.TELEPHONY_SERVICE);
+            mActiveVvmSources = new HashSet<PhoneAccountHandle>();
             mPhoneStateListenerMap = new HashMap<PhoneAccountHandle, PhoneStateListener>();
         }
+    }
+
+    public void addSource(PhoneAccountHandle phoneAccount) {
+        mActiveVvmSources.add(phoneAccount);
     }
 
     /**
@@ -77,8 +83,7 @@ public class OmtpVvmSourceManager {
      * inactive sources.
      */
     public void removeInactiveSources() {
-        Set<PhoneAccountHandle> phoneAccounts = getOmtpVvmSources();
-        for (PhoneAccountHandle phoneAccount : phoneAccounts) {
+        for (PhoneAccountHandle phoneAccount : mActiveVvmSources) {
             if (!PhoneUtils.isPhoneAccountActive(mSubscriptionManager, phoneAccount)) {
                 removeSource(phoneAccount);
             }
@@ -95,6 +100,7 @@ public class OmtpVvmSourceManager {
                 VoicemailContract.Status.DATA_CHANNEL_STATE_NO_CONNECTION,
                 VoicemailContract.Status.NOTIFICATION_CHANNEL_STATE_NO_CONNECTION);
         removePhoneStateListener(phoneAccount);
+        mActiveVvmSources.remove(phoneAccount);
     }
 
     public void addPhoneStateListener(PhoneAccountHandle phoneAccount) {
@@ -113,27 +119,21 @@ public class OmtpVvmSourceManager {
     }
 
     public Set<PhoneAccountHandle> getOmtpVvmSources() {
-        return mPhoneStateListenerMap.keySet();
+        return mActiveVvmSources;
     }
 
     /**
      * Check if a certain account is registered.
      *
      * @param phoneAccount The account to look for.
-     * @return {@code true} if the account is in the list of registered OMTP voicemail sync
-     * accounts. {@code false} otherwise.
+     * @return {@code true} if the account is in the list of registered OMTP voicemail sources.
+     * {@code false} otherwise.
      */
     public boolean isVvmSourceRegistered(PhoneAccountHandle phoneAccount) {
         if (phoneAccount == null) {
             return false;
         }
 
-        Set<PhoneAccountHandle> sources = getOmtpVvmSources();
-        for (PhoneAccountHandle source : sources) {
-            if (phoneAccount.equals(source)) {
-                return true;
-            }
-        }
-        return false;
+        return mActiveVvmSources.contains(phoneAccount);
     }
 }
