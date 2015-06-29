@@ -2655,19 +2655,15 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     }
 
     private boolean canReadPhoneState(String callingPackage, String message) {
-        boolean failReadPhoneState = false;
         try {
-            mApp.enforceCallingOrSelfPermission(android.Manifest.permission.READ_PHONE_STATE,
-                    message);
-        } catch (SecurityException e) {
-            failReadPhoneState = true;
-        }
-        if (failReadPhoneState) {
             mApp.enforceCallingOrSelfPermission(
                     android.Manifest.permission.READ_PRIVILEGED_PHONE_STATE, message);
 
-            // SKIP checking for run-time permission since obtained PRIVILEDGED
+            // SKIP checking for run-time permission since self or obtained PRIVILEDGED
             return true;
+        } catch (SecurityException e) {
+            mApp.enforceCallingOrSelfPermission(android.Manifest.permission.READ_PHONE_STATE,
+                    message);
         }
 
         if (mAppOps.noteOp(AppOpsManager.OP_READ_PHONE_STATE, Binder.getCallingUid(),
