@@ -133,15 +133,16 @@ public class FetchVoicemailReceiver extends BroadcastReceiver {
             executor.execute(new Runnable() {
                 @Override
                 public void run() {
-                    ImapHelper imapHelper = new ImapHelper(mContext, mPhoneAccount, network);
-                    boolean success = imapHelper.fetchVoicemailPayload(
-                            new VoicemailFetchedCallback(mContext, mUri), mUid);
-
-                    releaseNetwork();
-
-                    if (!success && mRetryCount > 0) {
-                        mRetryCount--;
-                        requestNetwork();
+                    while (mRetryCount > 0) {
+                        ImapHelper imapHelper = new ImapHelper(mContext, mPhoneAccount, network);
+                        boolean success = imapHelper.fetchVoicemailPayload(
+                                new VoicemailFetchedCallback(mContext, mUri), mUid);
+                        if (!success && mRetryCount > 0) {
+                            mRetryCount--;
+                        } else {
+                            releaseNetwork();
+                            return;
+                        }
                     }
                 }
             });
