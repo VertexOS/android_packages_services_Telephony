@@ -30,8 +30,8 @@ public class VoicemailProviderChangeReceiver extends BroadcastReceiver {
         OmtpVvmSourceManager vvmSourceManager =
                 OmtpVvmSourceManager.getInstance(context);
         if (vvmSourceManager.getOmtpVvmSources().size() > 0 && !isSelfChanged) {
-            Intent serviceIntent = new Intent(context, OmtpVvmSyncService.class);
-            serviceIntent.setAction(OmtpVvmSyncService.SYNC_UPLOAD_ONLY);
+            Intent serviceIntent = OmtpVvmSyncService.getSyncIntent(
+                    context, OmtpVvmSyncService.SYNC_UPLOAD_ONLY, null, true /* firstAttempt */);
             context.startService(serviceIntent);
         }
     }
