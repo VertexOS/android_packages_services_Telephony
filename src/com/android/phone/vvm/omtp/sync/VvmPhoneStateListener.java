@@ -50,9 +50,9 @@ public class VvmPhoneStateListener extends PhoneStateListener {
                             VoicemailContract.Status.DATA_CHANNEL_STATE_OK,
                             VoicemailContract.Status.NOTIFICATION_CHANNEL_STATE_OK);
                     // Run a full sync in case something was missed while signal was down.
-                    Intent serviceIntent = new Intent(mContext, OmtpVvmSyncService.class);
-                    serviceIntent.setAction(OmtpVvmSyncService.SYNC_FULL_SYNC);
-                    serviceIntent.putExtra(OmtpVvmSyncService.EXTRA_PHONE_ACCOUNT, mPhoneAccount);
+                    Intent serviceIntent = OmtpVvmSyncService.getSyncIntent(
+                            mContext, OmtpVvmSyncService.SYNC_FULL_SYNC, mPhoneAccount,
+                            true /* firstAttempt */);
                     mContext.startService(serviceIntent);
                 }
             } else {
