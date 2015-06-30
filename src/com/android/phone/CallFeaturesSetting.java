@@ -52,6 +52,7 @@ import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneConstants;
 import com.android.phone.common.util.SettingsUtil;
 import com.android.phone.settings.AccountSelectionPreference;
+import com.android.phone.settings.PhoneAccountSettingsFragment;
 import com.android.phone.settings.VoicemailSettingsActivity;
 import com.android.phone.settings.fdn.FdnSetting;
 import com.android.services.telephony.sip.SipUtil;
@@ -284,20 +285,10 @@ public class CallFeaturesSetting extends PreferenceActivity
                 getResources().getString(R.string.wifi_calling_settings_key));
 
         final PhoneAccountHandle simCallManager = mTelecomManager.getSimCallManager();
-        String simCallManagerPackage = simCallManager != null
-                && simCallManager.getComponentName() != null
-                        ? simCallManager.getComponentName().getPackageName()
-                        : null;
-
-        if (!TextUtils.isEmpty(simCallManagerPackage)) {
-            final Intent intent = new Intent(TelecomManager.ACTION_CONNECTION_SERVICE_CONFIGURE)
-                    .addCategory(Intent.CATEGORY_DEFAULT)
-                    .setPackage(simCallManagerPackage);
-
-            // Check whether the configuration intent is supported.
-            PackageManager pm = getPackageManager();
-            List<ResolveInfo> resolutions = pm.queryIntentActivities(intent, 0);
-            if (resolutions.size() > 0) {
+        if (simCallManager != null) {
+            Intent intent = PhoneAccountSettingsFragment.buildPhoneAccountConfigureIntent(
+                    this, simCallManager);
+            if (intent != null) {
                 wifiCallingSettings.setTitle(R.string.wifi_calling);
                 wifiCallingSettings.setSummary(null);
                 wifiCallingSettings.setIntent(intent);

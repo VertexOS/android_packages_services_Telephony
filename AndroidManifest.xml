@@ -536,7 +536,7 @@
                 android:theme="@android:style/Theme.NoDisplay"
                 android:excludeFromRecents="true">
             <intent-filter>
-                <action android:name="android.telecom.action.CONNECTION_SERVICE_CONFIGURE" />
+                <action android:name="android.telecom.action.CONFIGURE_PHONE_ACCOUNT" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
