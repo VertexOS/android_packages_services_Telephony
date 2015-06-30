@@ -104,9 +104,9 @@ public class OmtpMessageReceiver extends BroadcastReceiver {
                 queryHelper.insertIfUnique(voicemail);
                 break;
             case OmtpConstants.MAILBOX_UPDATE:
-                Intent serviceIntent = new Intent(mContext, OmtpVvmSyncService.class);
-                serviceIntent.setAction(OmtpVvmSyncService.SYNC_DOWNLOAD_ONLY);
-                serviceIntent.putExtra(OmtpVvmSyncService.EXTRA_PHONE_ACCOUNT, mPhoneAccount);
+                Intent serviceIntent = OmtpVvmSyncService.getSyncIntent(
+                        mContext, OmtpVvmSyncService.SYNC_DOWNLOAD_ONLY, mPhoneAccount,
+                        true /* firstAttempt */);
                 mContext.startService(serviceIntent);
                 break;
             case OmtpConstants.GREETINGS_UPDATE:
@@ -135,9 +135,9 @@ public class OmtpMessageReceiver extends BroadcastReceiver {
         // Add the source to indicate that it is active.
         vvmSourceManager.addSource(mPhoneAccount);
 
-        Intent serviceIntent = new Intent(mContext, OmtpVvmSyncService.class);
-        serviceIntent.setAction(OmtpVvmSyncService.SYNC_FULL_SYNC);
-        serviceIntent.putExtra(OmtpVvmSyncService.EXTRA_PHONE_ACCOUNT, mPhoneAccount);
+        Intent serviceIntent = OmtpVvmSyncService.getSyncIntent(
+                mContext, OmtpVvmSyncService.SYNC_FULL_SYNC, mPhoneAccount,
+                true /* firstAttempt */);
         mContext.startService(serviceIntent);
     }
 }
