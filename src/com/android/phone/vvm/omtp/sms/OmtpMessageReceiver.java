@@ -121,23 +121,32 @@ public class OmtpMessageReceiver extends BroadcastReceiver {
     private void updateSource(StatusMessage message) {
         OmtpVvmSourceManager vvmSourceManager =
                 OmtpVvmSourceManager.getInstance(mContext);
-        VoicemailContract.Status.setStatus(mContext, mPhoneAccount,
-                VoicemailContract.Status.CONFIGURATION_STATE_OK,
-                VoicemailContract.Status.DATA_CHANNEL_STATE_OK,
-                VoicemailContract.Status.NOTIFICATION_CHANNEL_STATE_OK);
 
-        // Save the IMAP credentials in preferences so they are persistent and can be retrieved.
-        VisualVoicemailSettingsUtil.setVisualVoicemailCredentialsFromStatusMessage(
-                mContext,
-                mPhoneAccount,
-                message);
+        if (OmtpConstants.SUCCESS.equals(message.getReturnCode())) {
+            VoicemailContract.Status.setStatus(mContext, mPhoneAccount,
+                    VoicemailContract.Status.CONFIGURATION_STATE_OK,
+                    VoicemailContract.Status.DATA_CHANNEL_STATE_OK,
+                    VoicemailContract.Status.NOTIFICATION_CHANNEL_STATE_OK);
 
-        // Add the source to indicate that it is active.
-        vvmSourceManager.addSource(mPhoneAccount);
+            // Save the IMAP credentials in preferences so they are persistent and can be retrieved.
+            VisualVoicemailSettingsUtil.setVisualVoicemailCredentialsFromStatusMessage(
+                    mContext,
+                    mPhoneAccount,
+                    message);
 
-        Intent serviceIntent = OmtpVvmSyncService.getSyncIntent(
-                mContext, OmtpVvmSyncService.SYNC_FULL_SYNC, mPhoneAccount,
-                true /* firstAttempt */);
-        mContext.startService(serviceIntent);
+            // Add the source to indicate that it is active.
+            vvmSourceManager.addSource(mPhoneAccount);
+
+            Intent serviceIntent = OmtpVvmSyncService.getSyncIntent(
+                    mContext, OmtpVvmSyncService.SYNC_FULL_SYNC, mPhoneAccount,
+                    true /* firstAttempt */);
+            mContext.startService(serviceIntent);
+        } else {
+            Log.w(TAG, "Visual voicemail not available for subscriber.");
+            // Override default isEnabled setting to false since visual voicemail is unable to
+            // be accessed for some reason.
+            VisualVoicemailSettingsUtil.setVisualVoicemailEnabled(mContext, mPhoneAccount,
+                    /* isEnabled */ false, /* isUserSet */ true);
+        }
     }
 }
