@@ -40,6 +40,12 @@ public class VisualVoicemailSettingsUtil {
     // however, the user can override this setting.
     private static final String IS_USER_SET = "is_user_set";
 
+    // Setting for how often retries should be done.
+    private static final String SYNC_RETRY_INTERVAL = "sync_retry_interval";
+    private static final long MAX_SYNC_RETRY_INTERVAL_MS = 86400000;   // 24 hours
+    private static final long DEFAULT_SYNC_RETRY_INTERVAL_MS = 900000; // 15 minutes
+
+
     public static void setVisualVoicemailEnabled(Phone phone, boolean isEnabled,
             boolean isUserSet) {
         setVisualVoicemailEnabled(phone.getContext(), PhoneUtils.makePstnPhoneAccountHandle(phone),
@@ -113,6 +119,27 @@ public class VisualVoicemailSettingsUtil {
             PhoneAccountHandle phoneAccount) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         return prefs.getString(getVisualVoicemailSharedPrefsKey(key, phoneAccount), null);
+    }
+
+    public static long getVisualVoicemailRetryInterval(Context context,
+            PhoneAccountHandle phoneAccount) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        return prefs.getLong(getVisualVoicemailSharedPrefsKey(SYNC_RETRY_INTERVAL, phoneAccount),
+                DEFAULT_SYNC_RETRY_INTERVAL_MS);
+    }
+
+    public static void resetVisualVoicemailRetryInterval(Context context,
+            PhoneAccountHandle phoneAccount) {
+        setVisualVoicemailRetryInterval(context, phoneAccount, DEFAULT_SYNC_RETRY_INTERVAL_MS);
+    }
+
+    public static void setVisualVoicemailRetryInterval(Context context,
+            PhoneAccountHandle phoneAccount, long interval) {
+        SharedPreferences.Editor editor =
+                PreferenceManager.getDefaultSharedPreferences(context).edit();
+        editor.putLong(getVisualVoicemailSharedPrefsKey(SYNC_RETRY_INTERVAL, phoneAccount),
+                Math.min(interval, MAX_SYNC_RETRY_INTERVAL_MS));
+        editor.commit();
     }
 
     private static String getVisualVoicemailSharedPrefsKey(String key,
