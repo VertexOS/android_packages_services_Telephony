@@ -22,6 +22,8 @@ import com.android.phone.common.mail.store.ImapStore;
 import com.android.phone.common.mail.utils.LogUtils;
 
 import java.net.SocketAddress;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.HttpsURLConnection;
@@ -35,6 +37,7 @@ import java.io.BufferedOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 
@@ -92,35 +95,49 @@ public class MailTransport {
     public void open() throws MessagingException, CertificateValidationException {
         LogUtils.d(TAG, "*** IMAP open " + mHost + ":" + String.valueOf(mPort));
 
+        List<SocketAddress> socketAddresses = new ArrayList<SocketAddress>();
         try {
-            SocketAddress socketAddress = new InetSocketAddress(mHost, mPort);
             if (canTrySslSecurity()) {
                 mSocket = HttpsURLConnection.getDefaultSSLSocketFactory().createSocket();
+                socketAddresses.add(new InetSocketAddress(mHost, mPort));
             } else {
                 if (mNetwork == null) {
                     mSocket = new Socket();
+                    socketAddresses.add(new InetSocketAddress(mHost, mPort));
                 } else {
+                    InetAddress[] inetAddresses = mNetwork.getAllByName(mHost);
+                    for (int i = 0; i < inetAddresses.length; i++) {
+                        socketAddresses.add(new InetSocketAddress(inetAddresses[i], mPort));
+                    }
                     mSocket = mNetwork.getSocketFactory().createSocket();
                 }
             }
-            mSocket.connect(socketAddress, SOCKET_CONNECT_TIMEOUT);
-            // After the socket connects to an SSL server, confirm that the hostname is as expected
-            if (canTrySslSecurity() && !canTrustAllCertificates()) {
-                verifyHostname(mSocket, mHost);
-            }
-
-            mIn = new BufferedInputStream(mSocket.getInputStream(), 1024);
-            mOut = new BufferedOutputStream(mSocket.getOutputStream(), 512);
-            mSocket.setSoTimeout(SOCKET_READ_TIMEOUT);
-        } catch (SSLException e) {
-            LogUtils.d(TAG, e.toString());
-            throw new CertificateValidationException(e.getMessage(), e);
         } catch (IOException ioe) {
             LogUtils.d(TAG, ioe.toString());
             throw new MessagingException(MessagingException.IOERROR, ioe.toString());
-        } catch (IllegalArgumentException iae) {
-            LogUtils.d(TAG, iae.toString());
-            throw new MessagingException(MessagingException.UNSPECIFIED_EXCEPTION, iae.toString());
+        }
+
+        while (socketAddresses.size() > 0) {
+            try {
+                mSocket.connect(socketAddresses.remove(0), SOCKET_CONNECT_TIMEOUT);
+
+                // After the socket connects to an SSL server, confirm that the hostname is as
+                // expected
+                if (canTrySslSecurity() && !canTrustAllCertificates()) {
+                    verifyHostname(mSocket, mHost);
+                }
+
+                mIn = new BufferedInputStream(mSocket.getInputStream(), 1024);
+                mOut = new BufferedOutputStream(mSocket.getOutputStream(), 512);
+                mSocket.setSoTimeout(SOCKET_READ_TIMEOUT);
+                return;
+            } catch (IOException ioe) {
+                LogUtils.d(TAG, ioe.toString());
+                if (socketAddresses.size() == 0) {
+                    // Only throw an error when there are no more sockets to try.
+                    throw new MessagingException(MessagingException.IOERROR, ioe.toString());
+                }
+            }
         }
     }
 
