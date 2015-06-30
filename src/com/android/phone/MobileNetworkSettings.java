@@ -470,6 +470,12 @@ public class MobileNetworkSettings extends PreferenceActivity
     }
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(mPhoneChangeReceiver);
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
         if (DBG) log("onResume:+");
