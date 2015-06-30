@@ -104,7 +104,10 @@ public class VoicemailsQueryHelper {
             while (cursor.moveToNext()) {
                 final long id = cursor.getLong(_ID);
                 final String sourceData = cursor.getString(SOURCE_DATA);
-                Voicemail voicemail = Voicemail.createForUpdate(id, sourceData).build();
+                final boolean isRead = cursor.getInt(IS_READ) == 1;
+                Voicemail voicemail = Voicemail
+                        .createForUpdate(id, sourceData)
+                        .setIsRead(isRead).build();
                 voicemails.add(voicemail);
             }
             return voicemails;
@@ -166,36 +169,9 @@ public class VoicemailsQueryHelper {
      * Utility method to mark single message as read.
      */
     public void markReadInDatabase(Voicemail voicemail) {
-        updateInDatabase(voicemail, Voicemails.IS_READ, "1");
-    }
-
-    /**
-     * Undelete in database. This will be called if sync to server fails.
-     */
-    public void markUndeletedInDatabase(List<Voicemail> voicemails) {
-        int count = voicemails.size();
-        for (int i = 0; i < count; i++) {
-            updateInDatabase(voicemails.get(i), Voicemails.DELETED, "0");
-        }
-    }
-
-    /**
-     * Unread in database. This will be called if sync to server fails.
-     */
-    public void markUnreadInDatabase(List<Voicemail> voicemails) {
-        int count = voicemails.size();
-        for (int i = 0; i < count; i++) {
-            updateInDatabase(voicemails.get(i), Voicemails.IS_READ, "0");
-        }
-    }
-
-    /**
-     * Make an update of the requested field in the database.
-     */
-    private void updateInDatabase(Voicemail voicemail, String field, String value) {
         Uri uri = ContentUris.withAppendedId(mSourceUri, voicemail.getId());
         ContentValues contentValues = new ContentValues();
-        contentValues.put(field, value);
+        contentValues.put(Voicemails.IS_READ, "1");
         mContentResolver.update(uri, contentValues, null, null);
     }
 

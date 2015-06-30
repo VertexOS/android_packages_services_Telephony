@@ -101,6 +101,7 @@ public class OmtpVvmSourceManager {
                 VoicemailContract.Status.NOTIFICATION_CHANNEL_STATE_NO_CONNECTION);
         removePhoneStateListener(phoneAccount);
         mActiveVvmSources.remove(phoneAccount);
+        OmtpVvmSyncService.cancelAllRetries(mContext, phoneAccount);
     }
 
     public void addPhoneStateListener(PhoneAccountHandle phoneAccount) {
