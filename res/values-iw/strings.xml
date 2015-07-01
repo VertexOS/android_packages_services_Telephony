@@ -370,7 +370,7 @@
     <string name="fdn_failed" msgid="540018079008319747">"‏פעולת FDN נכשלה."</string>
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"‏קורא מכרטיס SIM…"</string>
     <string name="simContacts_empty" msgid="5270660846489561932">"‏אין אנשי קשר בכרטיס ה-SIM."</string>
-    <string name="simContacts_title" msgid="1861472842524839921">"בחר אנשי קשר ליבוא"</string>
+    <string name="simContacts_title" msgid="1861472842524839921">"בחר אנשי קשר לייבוא"</string>
     <string name="simContacts_airplaneMode" msgid="5254946758982621072">"‏בטל את מצב טיסה כדי לייבא אנשי קשר מכרטיס ה-SIM."</string>
     <string name="enable_pin" msgid="5422767284133234860">"‏הפוך לפעיל/השבת PIN של SIM"</string>
     <string name="change_pin" msgid="9174186126330785343">"‏שנה PIN של SIM"</string>
