@@ -55,7 +55,9 @@ public class VvmPhoneStateListener extends PhoneStateListener {
                             true /* firstAttempt */);
                     mContext.startService(serviceIntent);
                 }
-            } else {
+            }
+
+            if (!OmtpVvmSourceManager.getInstance(mContext).isVvmSourceRegistered(mPhoneAccount)) {
                 OmtpVvmCarrierConfigHelper carrierConfigHelper = new OmtpVvmCarrierConfigHelper(
                         mContext, PhoneUtils.getSubIdForPhoneAccountHandle(mPhoneAccount));
                 carrierConfigHelper.startActivation();
