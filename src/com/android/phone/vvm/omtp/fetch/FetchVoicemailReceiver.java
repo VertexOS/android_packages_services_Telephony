@@ -135,6 +135,12 @@ public class FetchVoicemailReceiver extends BroadcastReceiver {
                 public void run() {
                     while (mRetryCount > 0) {
                         ImapHelper imapHelper = new ImapHelper(mContext, mPhoneAccount, network);
+                        if (!imapHelper.isSuccessfullyInitialized()) {
+                            Log.w(TAG, "Can't retrieve Imap credentials.");
+                            releaseNetwork();
+                            return;
+                        }
+
                         boolean success = imapHelper.fetchVoicemailPayload(
                                 new VoicemailFetchedCallback(mContext, mUri), mUid);
                         if (!success && mRetryCount > 0) {

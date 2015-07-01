@@ -79,8 +79,17 @@ public class ImapHelper {
             mImapStore = new ImapStore(
                     context, username, password, port, serverName, ImapStore.FLAG_NONE, network);
         } catch (NumberFormatException e) {
-            LogUtils.e(TAG, e, "Could not parse port number");
+            LogUtils.w(TAG, "Could not parse port number");
         }
+    }
+
+    /**
+     * If mImapStore is null, this means that there was a missing or badly formatted port number,
+     * which means there aren't sufficient credentials for login. If mImapStore is succcessfully
+     * initialized, then ImapHelper is ready to go.
+     */
+    public boolean isSuccessfullyInitialized() {
+        return mImapStore != null;
     }
 
     /** The caller thread will block until the method returns. */
