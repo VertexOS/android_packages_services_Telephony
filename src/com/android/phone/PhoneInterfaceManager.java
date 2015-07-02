@@ -2392,7 +2392,8 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
 
     @Override
     public String getLine1NumberForDisplay(int subId, String callingPackage) {
-        if (!canReadPhoneState(callingPackage, "getLine1NumberForDisplay")) {
+        // This is open to apps with WRITE_SMS.
+        if (!canReadPhoneNumber(callingPackage, "getLine1NumberForDisplay")) {
             return null;
         }
 
@@ -2672,6 +2673,16 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         }
 
         return true;
+    }
+
+    /**
+     * Besides READ_PHONE_STATE, WRITE_SMS also allows apps to get phone numbers.
+     */
+    private boolean canReadPhoneNumber(String callingPackage, String message) {
+        // Note canReadPhoneState() may throw, so we need to do the appops check first.
+        return (mAppOps.noteOp(AppOpsManager.OP_WRITE_SMS,
+                        Binder.getCallingUid(), callingPackage) == AppOpsManager.MODE_ALLOWED)
+                || canReadPhoneState(callingPackage, message);
     }
 
     @Override
