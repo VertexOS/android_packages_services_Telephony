@@ -27,6 +27,7 @@ import android.telecom.ConnectionRequest;
 import android.telecom.ConnectionService;
 import android.telecom.PhoneAccount;
 import android.telecom.PhoneAccountHandle;
+import android.telephony.CarrierConfigManager;
 import android.telephony.PhoneNumberUtils;
 import android.telephony.ServiceState;
 import android.telephony.SubscriptionInfo;
@@ -152,44 +153,20 @@ public class TelephonyConnectionService extends ConnectionService {
                 // Obtain the configuration for the outgoing phone's SIM. If the outgoing number
                 // matches the *228 regex pattern, fail the call. This number is used for OTASP, and
                 // when dialed could lock LTE SIMs to 3G if not prohibited..
-                SubscriptionManager subManager = SubscriptionManager.from(phone.getContext());
-                SubscriptionInfo subInfo = subManager.getActiveSubscriptionInfo(phone.getSubId());
-                if (subInfo != null) {
-                    Configuration config = new Configuration();
-                    config.mcc = subInfo.getMcc();
-                    config.mnc = subInfo.getMnc();
-                    Context subContext = phone.getContext().createConfigurationContext(config);
+                boolean disableActivation = false;
+                CarrierConfigManager cfgManager = (CarrierConfigManager)
+                        phone.getContext().getSystemService(Context.CARRIER_CONFIG_SERVICE);
+                if (cfgManager != null) {
+                    disableActivation = cfgManager.getConfigForSubId(phone.getSubId())
+                            .getBoolean(CarrierConfigManager.KEY_DISABLE_CDMA_ACTIVATION_CODE_BOOL);
+                }
 
-                    // Get the resources specific to the subscription in question.
-                    Resources res = subContext.getResources();
-                    if (res != null) {
-                        boolean disableActivation = false;
-                        String configValue =
-                                res.getString(R.string.config_disable_cdma_activation_code);
-
-                        // Set disableActivation based on the configuration value.
-                        if (!TextUtils.isEmpty(configValue)) {
-                            String [] valueArray = configValue.split(";");
-
-                            if (valueArray.length == 1) {
-                                // If the configuration says just "true" disable it.
-                                disableActivation = valueArray[0].equalsIgnoreCase("true");
-                            } else if (valueArray.length == 2) {
-                                // If the configuration is split by a semicolon, make sure the
-                                // second half is equal to the group ID for the phone.
-                                disableActivation = valueArray[0].equalsIgnoreCase("true") &&
-                                        valueArray[1].equalsIgnoreCase(phone.getGroupIdLevel1());
-                            }
-                        }
-
-                        if (disableActivation) {
-                            return Connection.createFailedConnection(
-                                    DisconnectCauseUtil.toTelecomDisconnectCause(
-                                            android.telephony.DisconnectCause
-                                                    .CDMA_ALREADY_ACTIVATED,
-                                            "Tried to dial *228"));
-                        }
-                    }
+                if (disableActivation) {
+                    return Connection.createFailedConnection(
+                            DisconnectCauseUtil.toTelecomDisconnectCause(
+                                    android.telephony.DisconnectCause
+                                            .CDMA_ALREADY_ACTIVATED,
+                                    "Tried to dial *228"));
                 }
             }
         }
