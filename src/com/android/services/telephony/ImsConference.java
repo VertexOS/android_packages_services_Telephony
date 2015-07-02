@@ -235,7 +235,7 @@ public class ImsConference extends Conference {
         setConferenceHost(conferenceHost);
 
         int capabilities = Connection.CAPABILITY_SUPPORT_HOLD | Connection.CAPABILITY_HOLD |
-                Connection.CAPABILITY_MUTE;
+                Connection.CAPABILITY_MUTE | Connection.CAPABILITY_CONFERENCE_HAS_NO_CHILDREN;
 
         capabilities = applyVideoCapabilities(capabilities, mConferenceHost.getConnectionCapabilities());
         setConnectionCapabilities(capabilities);
@@ -452,21 +452,28 @@ public class ImsConference extends Conference {
      * Updates the manage conference capability of the conference.  Where there are one or more
      * conference event package participants, the conference management is permitted.  Where there
      * are no conference event package participants, conference management is not permitted.
+     * <p>
+     * Note: We add and remove {@link Connection#CAPABILITY_CONFERENCE_HAS_NO_CHILDREN} to ensure
+     * that the conference is represented appropriately on Bluetooth devices.
      */
     private void updateManageConference() {
         boolean couldManageConference = can(Connection.CAPABILITY_MANAGE_CONFERENCE);
         boolean canManageConference = !mConferenceParticipantConnections.isEmpty();
-        Log.v(this, "updateManageConference was:%s is:%s", couldManageConference ? "Y" : "N",
+        Log.v(this, "updateManageConference was :%s is:%s", couldManageConference ? "Y" : "N",
                 canManageConference ? "Y" : "N");
 
         if (couldManageConference != canManageConference) {
-            int newCapabilities = getConnectionCapabilities();
+            int capabilities = getConnectionCapabilities();
 
             if (canManageConference) {
-                addCapability(Connection.CAPABILITY_MANAGE_CONFERENCE);
+                capabilities |= Connection.CAPABILITY_MANAGE_CONFERENCE;
+                capabilities &= ~Connection.CAPABILITY_CONFERENCE_HAS_NO_CHILDREN;
             } else {
-                removeCapability(Connection.CAPABILITY_MANAGE_CONFERENCE);
+                capabilities &= ~Connection.CAPABILITY_MANAGE_CONFERENCE;
+                capabilities |= Connection.CAPABILITY_CONFERENCE_HAS_NO_CHILDREN;
             }
+
+            setConnectionCapabilities(capabilities);
         }
     }
 
