@@ -200,6 +200,15 @@ public class OmtpVvmSyncService extends IntentService {
                 downloadSuccess = true;
 
                 ImapHelper imapHelper = new ImapHelper(mContext, mPhoneAccount, network);
+
+                if (!imapHelper.isSuccessfullyInitialized()) {
+                    Log.w(TAG, "Can't retrieve Imap credentials.");
+                    releaseNetwork(this);
+                    VisualVoicemailSettingsUtil.resetVisualVoicemailRetryInterval(mContext,
+                            mPhoneAccount);
+                    return;
+                }
+
                 if (SYNC_FULL_SYNC.equals(mAction) || SYNC_UPLOAD_ONLY.equals(mAction)) {
                     uploadSuccess = upload(imapHelper);
                 }
