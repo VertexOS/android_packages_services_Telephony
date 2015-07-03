@@ -52,7 +52,7 @@
     <string name="requesting_unlock" msgid="6412629401033249351">"Anmoder om oplåsning af netværk ..."</string>
     <string name="unlock_failed" msgid="6490531697031504225">"Anmodningen om oplåsning af netværk mislykkedes."</string>
     <string name="unlock_success" msgid="6770085622238180152">"Netværket blev låst op."</string>
-    <string name="mobile_network_settings_not_available" msgid="3831911315358856062">"Denne bruger har ikke adgang til mobilnetværksindstillinger"</string>
+    <string name="mobile_network_settings_not_available" msgid="3831911315358856062">"Denne bruger har ikke adgang til indstillingerne for mobilnetværk"</string>
     <string name="labelGSMMore" msgid="5930842194056092106">"Indstillinger for GSM-opkald"</string>
     <string name="labelGsmMore_with_label" msgid="2674012918829238901">"Indstillinger for GSM-opkald (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="labelCDMAMore" msgid="1630676740428229339">"Indstillinger for CDMA-opkald"</string>
@@ -73,7 +73,7 @@
     <string name="wifi_calling" msgid="739018212480165598">"Opkald via Wi-Fi"</string>
     <string name="connection_service_default_label" msgid="1498481943805913754">"Indbygget forbindelsestjeneste"</string>
     <string name="voicemail" msgid="8693759337917898954">"Telefonsvarer"</string>
-    <string name="voicemail_settings_with_label" msgid="152724978380748296">"Talebesked (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="voicemail_settings_with_label" msgid="152724978380748296">"Telefonsvarer (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="voicemail_abbreviated" msgid="2215592488517217448">"VM:"</string>
     <string name="networks" msgid="8873030692174541976">"Netværksudbydere"</string>
     <string name="cell_broadcast_settings" msgid="8740238216690502563">"Nødudsendelser"</string>
@@ -143,7 +143,7 @@
     <string name="no_change" msgid="3186040086622435212">"Der blev ikke foretaget nogen ændringer."</string>
     <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"Vælg telefonsvarertjeneste"</string>
     <string name="voicemail_default" msgid="2001233554889016880">"Dit mobilselskab"</string>
-    <string name="mobile_networks" msgid="2843854043339307375">"Mobilnetværksindstillinger"</string>
+    <string name="mobile_networks" msgid="2843854043339307375">"Indstillinger for mobilnetværk"</string>
     <string name="label_available" msgid="1181658289009300430">"Tilgængelige netværk"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"Søger..."</string>
     <string name="empty_networks_list" msgid="4249426905018815316">"Der blev ikke fundet nogen netværk."</string>
@@ -544,7 +544,7 @@
     <string name="enable_video_calling_dialog_close" msgid="7411471282167927991">"Luk"</string>
     <string name="sim_label_emergency_calls" msgid="4847699229529306397">"Nødopkald"</string>
     <string name="sim_description_emergency_calls" msgid="7535215397212301562">"Kun nødopkald"</string>
-    <string name="sim_description_default" msgid="4778679519938775515">"SIM-kortholder: <xliff:g id="SLOT_ID">%s</xliff:g>"</string>
+    <string name="sim_description_default" msgid="4778679519938775515">"SIM-kortrille: <xliff:g id="SLOT_ID">%s</xliff:g>"</string>
     <string name="accessibility_settings_activity_title" msgid="8562004288733103868">"Hjælpefunktioner"</string>
     <string name="status_hint_label_incoming_wifi_call" msgid="8772915926382037499">"Indgående Wi-Fi-opkald"</string>
     <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"Wi-Fi-opkald"</string>

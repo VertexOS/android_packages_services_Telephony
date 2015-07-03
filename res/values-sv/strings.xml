@@ -90,8 +90,8 @@
     <string name="sum_show_caller_id" msgid="6768534125447290401">"Nummer som visas för utgående samtal"</string>
     <string name="sum_default_caller_id" msgid="1954518825510901365">"Använd operatörens standardinställningar när mitt nummer visas för utgående samtal"</string>
     <string name="labelCW" msgid="6120513814915920200">"Samtal väntar"</string>
-    <string name="sum_cw_enabled" msgid="8083061901633671397">"Meddela mig om inkommande samtal under samtal"</string>
-    <string name="sum_cw_disabled" msgid="3648693907300104575">"Meddela mig om inkommande samtal under samtal"</string>
+    <string name="sum_cw_enabled" msgid="8083061901633671397">"Meddela mig om inkommande samtal under pågående samtal"</string>
+    <string name="sum_cw_disabled" msgid="3648693907300104575">"Meddela mig om inkommande samtal under pågående samtal"</string>
     <string name="call_forwarding_settings" msgid="3378927671091537173">"Inställningar för Vidarebefordra samtal"</string>
     <string name="call_forwarding_settings_with_label" msgid="8569489414006897127">"Inställningar för vidarebefordran av samtal (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="labelCF" msgid="2574386948026924737">"Vidarebefordra samtal"</string>
@@ -102,7 +102,7 @@
     <string name="sum_cfu_enabled_no_number" msgid="6591985777096823616">"Numret är inte tillgängligt"</string>
     <string name="sum_cfu_disabled" msgid="8384177689501334080">"Av"</string>
     <string name="labelCFB" msgid="6139853033106283172">"När det är upptaget"</string>
-    <string name="messageCFB" msgid="3711089705936187129">"Nummer vid upptagen"</string>
+    <string name="messageCFB" msgid="3711089705936187129">"Använd nummer"</string>
     <string name="sum_cfb_enabled" msgid="5984198104833116690">"Vidarebefordrar till <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfb_disabled" msgid="4913145177320506827">"Av"</string>
     <string name="disable_cfb_forbidden" msgid="3506984333877998061">"Operatören stöder inte inaktivering av vidarebefordran av samtal under pågående samtal."</string>

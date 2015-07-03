@@ -69,7 +69,7 @@
     <string name="phone_accounts_add_sip_account" msgid="2023821743341923271">"Pridať účet SIP"</string>
     <string name="phone_accounts_configure_account_settings" msgid="1361715069911607109">"Konfigurácia nastavení účtu"</string>
     <string name="phone_accounts_all_calling_accounts" msgid="207619531589278471">"Všetky telefónne účty"</string>
-    <string name="phone_accounts_all_calling_accounts_summary" msgid="8594186415822657011">"Výber účtov, v ktorých bude možné telefonovať"</string>
+    <string name="phone_accounts_all_calling_accounts_summary" msgid="8594186415822657011">"Výber účtov, pomocou ktorých bude možné telefonovať"</string>
     <string name="wifi_calling" msgid="739018212480165598">"Volanie cez Wi-Fi"</string>
     <string name="connection_service_default_label" msgid="1498481943805913754">"Vstavaná služba pripojenia"</string>
     <string name="voicemail" msgid="8693759337917898954">"Hlasová schránka"</string>
@@ -102,16 +102,16 @@
     <string name="sum_cfu_enabled_no_number" msgid="6591985777096823616">"Číslo nie je k dispozícii"</string>
     <string name="sum_cfu_disabled" msgid="8384177689501334080">"Vypnuté"</string>
     <string name="labelCFB" msgid="6139853033106283172">"Keď mám obsadené"</string>
-    <string name="messageCFB" msgid="3711089705936187129">"Číslo keď mám obsadené"</string>
+    <string name="messageCFB" msgid="3711089705936187129">"Číslo, keď mám obsadené"</string>
     <string name="sum_cfb_enabled" msgid="5984198104833116690">"Presmerovanie na <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfb_disabled" msgid="4913145177320506827">"Vypnuté"</string>
     <string name="disable_cfb_forbidden" msgid="3506984333877998061">"Váš operátor neumožňuje zakázanie presmerovaní, keď je telefón nedostupný."</string>
     <string name="labelCFNRy" msgid="1736067178393744351">"Keď neprijímam"</string>
-    <string name="messageCFNRy" msgid="672317899884380374">"Číslo keď neprijímam"</string>
+    <string name="messageCFNRy" msgid="672317899884380374">"Číslo, keď neprijímam"</string>
     <string name="sum_cfnry_enabled" msgid="6955775691317662910">"Presmerovanie na <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfnry_disabled" msgid="3884684060443538097">"Vypnuté"</string>
     <string name="disable_cfnry_forbidden" msgid="4308233959150658058">"Váš operátor neumožňuje zakázanie presmerovaní hovorov, keď telefón neodpovedá."</string>
-    <string name="labelCFNRc" msgid="2614827454402079766">"Keď som nedostupný/-á"</string>
+    <string name="labelCFNRc" msgid="2614827454402079766">"Pri nedostupnosti"</string>
     <string name="messageCFNRc" msgid="6380695421020295119">"Číslo pri nedostupnosti"</string>
     <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"Presmerovanie na <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfnrc_disabled" msgid="7222141261321276464">"Vypnuté"</string>
@@ -339,7 +339,7 @@
     <string name="enable_fdn_ok" msgid="7215588870329688132">"Vypnúť režim povolených čísel"</string>
     <string name="disable_fdn_ok" msgid="5727046928930740173">"Zapnúť režim povolených čísel"</string>
     <string name="sum_fdn" msgid="1959399454900272878">"Umožňuje spravovať povolené čísla"</string>
-    <string name="sum_fdn_change_pin" msgid="6666549734792827932">"Umožňuje zmeniť kód PIN na prístup k povoleným číslam"</string>
+    <string name="sum_fdn_change_pin" msgid="6666549734792827932">"Umožňuje zmeniť kód PIN na prístup k povoleným číslam"</string>
     <string name="sum_fdn_manage_list" msgid="8431088265332628316">"Správa telefónneho zoznamu"</string>
     <string name="voice_privacy" msgid="3776841382844614716">"Ochrana osobných údajov hlasovej pošty"</string>
     <string name="voice_privacy_summary" msgid="3159383389833516214">"Povoliť režim vylepšenej ochrany osobných údajov"</string>

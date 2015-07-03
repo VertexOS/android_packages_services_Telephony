@@ -48,8 +48,8 @@
     <string name="registration_status_invalid_credentials" msgid="8406872554323334182">"അക്കൗണ്ട് രജിസ്‌ട്രേഷൻ പരാജയപ്പെട്ടു. ഉപയോക്തൃനാമമോ പാസ്‌വേഡോ തെറ്റാണ്."</string>
     <string name="registration_status_server_unreachable" msgid="7710275557045148634">"അക്കൗണ്ട് രജിസ്ട്രേഷൻ പരാജയപ്പെട്ടു: സെർവറിന്റെ പേര് പരിശോധിക്കുക."</string>
     <string name="third_party_account_summary" msgid="9041060473615403041">"ഈ അക്കൗണ്ട് നിലവിൽ <xliff:g id="ACCOUNT_OWNER">%s</xliff:g> അപ്ലിക്കേഷൻ ഉപയോഗിക്കുന്നു."</string>
-    <string name="sip_edit_title" msgid="1967247832635750410">"SIP അക്കൗണ്ട് വിശദാംശങ്ങൾ"</string>
-    <string name="sip_edit_new_title" msgid="266414118302574305">"SIP അക്കൗണ്ട് വിശദാംശങ്ങൾ"</string>
+    <string name="sip_edit_title" msgid="1967247832635750410">"SIP വിശദാംശം"</string>
+    <string name="sip_edit_new_title" msgid="266414118302574305">"SIP വിശദാംശം"</string>
     <string name="domain_address_title" msgid="1968479941328225423">"സെർവർ"</string>
     <string name="username_title" msgid="6770064611005663470">"ഉപയോക്തൃനാമം"</string>
     <string name="password_title" msgid="5289013731515564295">"പാസ്‌വേഡ്"</string>

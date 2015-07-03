@@ -88,7 +88,7 @@
     <string name="sum_loading_settings" msgid="1826692909391168620">"Ladataan asetuksia..."</string>
     <string name="sum_hide_caller_id" msgid="1071407020290873782">"Numeroa ei näytetä soitetuissa puheluissa"</string>
     <string name="sum_show_caller_id" msgid="6768534125447290401">"Numero näytetään soitetuissa puheluissa"</string>
-    <string name="sum_default_caller_id" msgid="1954518825510901365">"Käytä numeroni näyttämistä soitettavissa puheluissa koskevia operaattorin oletusasetuksia"</string>
+    <string name="sum_default_caller_id" msgid="1954518825510901365">"Puheluja soitettaessa käytä operaattorin oletusasetuksia numeroni näyttämiseen"</string>
     <string name="labelCW" msgid="6120513814915920200">"Koputus"</string>
     <string name="sum_cw_enabled" msgid="8083061901633671397">"Ilmoita puhelun aikana saapuvista puheluista"</string>
     <string name="sum_cw_disabled" msgid="3648693907300104575">"Ilmoita puhelun aikana saapuvista puheluista"</string>
@@ -103,17 +103,17 @@
     <string name="sum_cfu_disabled" msgid="8384177689501334080">"Ei käytössä"</string>
     <string name="labelCFB" msgid="6139853033106283172">"Kun olen varattu"</string>
     <string name="messageCFB" msgid="3711089705936187129">"Soita, kun numero on varattu:"</string>
-    <string name="sum_cfb_enabled" msgid="5984198104833116690">"Siirretään puhelu numeroon <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
+    <string name="sum_cfb_enabled" msgid="5984198104833116690">"Puhelu siirretään numeroon <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfb_disabled" msgid="4913145177320506827">"Ei käytössä"</string>
     <string name="disable_cfb_forbidden" msgid="3506984333877998061">"Operaattorisi ei tue soitonsiirtojen poistamista käytöstä, kun puhelimesi on varattuna."</string>
     <string name="labelCFNRy" msgid="1736067178393744351">"Kun en vastaa"</string>
     <string name="messageCFNRy" msgid="672317899884380374">"Soita, kun numero ei vastaa:"</string>
-    <string name="sum_cfnry_enabled" msgid="6955775691317662910">"Siirretään puhelu numeroon <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
+    <string name="sum_cfnry_enabled" msgid="6955775691317662910">"Puhelu siirretään numeroon <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfnry_disabled" msgid="3884684060443538097">"Ei käytössä"</string>
     <string name="disable_cfnry_forbidden" msgid="4308233959150658058">"Operaattorisi ei tue soitonsiirtojen poistamista käytöstä, kun puhelimesi ei vastaa."</string>
     <string name="labelCFNRc" msgid="2614827454402079766">"Kun en ole tavoitettavissa"</string>
     <string name="messageCFNRc" msgid="6380695421020295119">"Soita, kun numeroon ei saada yhteyttä:"</string>
-    <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"Siirretään puhelu numeroon <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
+    <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"Puhelu siirretään numeroon <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfnrc_disabled" msgid="7222141261321276464">"Pois käytöstä"</string>
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"Operaattorisi ei tue soitonsiirtojen poistamista käytöstä puhelimesi ollessa saavuttamattomissa."</string>
     <string name="updating_title" msgid="6146755386174019046">"Puheluasetukset"</string>
@@ -158,9 +158,9 @@
     <string name="select_automatically" msgid="5628402124471810174">"Valitse automaattisesti"</string>
     <string name="sum_select_automatically" msgid="5614890115123292400">"Valitse ensisijainen verkko automaattisesti"</string>
     <string name="register_automatically" msgid="6017849844573519637">"Automaattinen rekisteröinti..."</string>
-    <string name="preferred_network_mode_title" msgid="2336624679902659306">"Ensisijainen verkon tyyppi"</string>
+    <string name="preferred_network_mode_title" msgid="2336624679902659306">"Ensisijainen verkko"</string>
     <string name="preferred_network_mode_summary" msgid="1434820673166126609">"Vaihda verkon käyttötilaa"</string>
-    <string name="preferred_network_mode_dialogtitle" msgid="4048082093347807230">"Ensisijainen verkon tyyppi"</string>
+    <string name="preferred_network_mode_dialogtitle" msgid="4048082093347807230">"Ensisijainen verkko"</string>
     <string name="preferred_network_mode_wcdma_perf_summary" msgid="8521677230113533809">"Ensisijainen verkkotila: ensisijaisesti WCDMA"</string>
     <string name="preferred_network_mode_gsm_only_summary" msgid="3352445413437453511">"Ensisijainen verkkotila: vain GSM"</string>
     <string name="preferred_network_mode_wcdma_only_summary" msgid="2836897236221063413">"Ensisijainen verkkotila: vain WCDMA"</string>
@@ -374,7 +374,7 @@
     <string name="fdn_failed" msgid="540018079008319747">"FDN-toiminto epäonnistui."</string>
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"Luetaan SIM-korttia…"</string>
     <string name="simContacts_empty" msgid="5270660846489561932">"SIM-kortilla ei ole yhteystietoja."</string>
-    <string name="simContacts_title" msgid="1861472842524839921">"Valitse tuotavat yhteystiedot"</string>
+    <string name="simContacts_title" msgid="1861472842524839921">"Valitse yhteystiedot"</string>
     <string name="simContacts_airplaneMode" msgid="5254946758982621072">"Poista lentokonetila käytöstä, jos haluat tuoda yhteystietoja SIM-kortilta."</string>
     <string name="enable_pin" msgid="5422767284133234860">"Ota SIM-kortin PIN-koodi käyttöön / poista koodi käytöstä"</string>
     <string name="change_pin" msgid="9174186126330785343">"Vaihda SIM-kortin PIN-koodi"</string>

@@ -59,7 +59,7 @@
     <string name="labelCdmaMore_with_label" msgid="6333588719319970399">"CDMA കോൾ ക്രമീകരണം (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="apn_settings" msgid="9043423184895642077">"ആക്‌സസ്സ് പോയിന്റ് പേരുകൾ"</string>
     <string name="settings_label" msgid="3876743539816984008">"നെറ്റ്‌വർക്ക് ക്രമീകരണങ്ങൾ"</string>
-    <string name="phone_accounts" msgid="6376603393888116364">"കോളുചെയ്യാനുള്ള അക്കൗണ്ട്"</string>
+    <string name="phone_accounts" msgid="6376603393888116364">"കോളിംഗ് അക്കൗണ്ട്"</string>
     <string name="phone_accounts_make_calls_with" msgid="1969188078933152231">"ഇത് ഉപയോഗിച്ച് കോളുചെയ്യുക"</string>
     <string name="phone_accounts_make_sip_calls_with" msgid="4677789312053828493">"ഇതുപയോഗിച്ച് SIP കോളുചെയ്യുക"</string>
     <string name="phone_accounts_ask_every_time" msgid="4346499067149985702">"ആദ്യതവണ ചോദിക്കുക"</string>
@@ -68,7 +68,7 @@
     <string name="phone_accounts_selection_header" msgid="1365215726106915865">"ഫോൺ അക്കൗണ്ടുകൾ"</string>
     <string name="phone_accounts_add_sip_account" msgid="2023821743341923271">"SIP അക്കൗണ്ട് ചേർക്കുക"</string>
     <string name="phone_accounts_configure_account_settings" msgid="1361715069911607109">"അക്കൗണ്ട് ക്രമീകരണങ്ങൾ കോൺഫിഗർചെയ്യുക"</string>
-    <string name="phone_accounts_all_calling_accounts" msgid="207619531589278471">"കോളുചെയ്യാനുള്ള എല്ലാ അക്കൗണ്ടുകളും"</string>
+    <string name="phone_accounts_all_calling_accounts" msgid="207619531589278471">"എല്ലാ കോളിംഗ് അക്കൗണ്ടുകളും"</string>
     <string name="phone_accounts_all_calling_accounts_summary" msgid="8594186415822657011">"ഫോൺ വിളിക്കാനാകുന്ന അക്കൗണ്ടുകൾ തിരഞ്ഞെടുക്കുക"</string>
     <string name="wifi_calling" msgid="739018212480165598">"Wi-Fi കോളിംഗ്"</string>
     <string name="connection_service_default_label" msgid="1498481943805913754">"അന്തർ നിർമ്മിത കണക്ഷൻ സേവനം"</string>
@@ -79,7 +79,7 @@
     <string name="cell_broadcast_settings" msgid="8740238216690502563">"അടിയന്തര പ്രക്ഷേപണങ്ങൾ"</string>
     <string name="call_settings" msgid="6112441768261754562">"കോൾ ക്രമീകരണങ്ങൾ"</string>
     <string name="additional_gsm_call_settings" msgid="1391795981938800617">"അധിക ക്രമീകരണങ്ങൾ"</string>
-    <string name="additional_gsm_call_settings_with_label" msgid="1385241520708457376">"കൂടുതൽ ക്രമീകരണങ്ങൾ (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="additional_gsm_call_settings_with_label" msgid="1385241520708457376">"കൂടുതൽ ക്രമീകരണം (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="sum_gsm_call_settings" msgid="4076647190996778012">"GSM-ന് മാത്രമുള്ള അധിക കോൾ ക്രമീകരണങ്ങൾ"</string>
     <string name="additional_cdma_call_settings" msgid="8628958775721886909">"അധിക CDMA കോൾ ക്രമീകരണങ്ങൾ"</string>
     <string name="sum_cdma_call_settings" msgid="284753265979035549">"CDMA-യ്‌ക്ക് മാത്രമുള്ള അധിക കോൾ ക്രമീകരണങ്ങൾ"</string>
@@ -92,8 +92,8 @@
     <string name="labelCW" msgid="6120513814915920200">"കോൾ വെയ്‌റ്റിംഗ്"</string>
     <string name="sum_cw_enabled" msgid="8083061901633671397">"ഒരു കോളിനിടയിൽ, ഇൻകമിംഗ് കോളുകളെക്കുറിച്ച് എന്നെ അറിയിക്കുക"</string>
     <string name="sum_cw_disabled" msgid="3648693907300104575">"ഒരു കോളിനിടയിൽ, ഇൻകമിംഗ് കോളുകളെക്കുറിച്ച് എന്നെ അറിയിക്കുക"</string>
-    <string name="call_forwarding_settings" msgid="3378927671091537173">"കോൾ കൈമാറൽ ക്രമീകരണങ്ങൾ"</string>
-    <string name="call_forwarding_settings_with_label" msgid="8569489414006897127">"കോൾ ഫോർവാഡുചെയ്യൽ ക്രമീകരണങ്ങൾ (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="call_forwarding_settings" msgid="3378927671091537173">"കോൾകൈമാറൽ ക്രമീകരണം"</string>
+    <string name="call_forwarding_settings_with_label" msgid="8569489414006897127">"കോൾകൈമാറൽ ക്രമീകരണം (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="labelCF" msgid="2574386948026924737">"കോൾ കൈമാറൽ"</string>
     <string name="labelCFU" msgid="8147177368148660600">"എല്ലായ്പ്പോഴും കൈമാറുക"</string>
     <string name="messageCFU" msgid="3560082430662923687">"എല്ലായ്പ്പോഴും ഈ നമ്പർ ഉപയോഗിക്കുക"</string>
@@ -118,7 +118,7 @@
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"നിങ്ങളുടെ ഫോൺ പരിധിയ്ക്ക് പുറത്തായിരിക്കുമ്പോൾ കോൾ കൈമാറൽ പ്രവർത്തനരഹിതമാക്കുന്നതിനെ നിങ്ങളുടെ ഓപ്പറേറ്റർ പിന്തുണയ്‌ക്കുന്നില്ല."</string>
     <string name="updating_title" msgid="6146755386174019046">"കോൾ ക്രമീകരണങ്ങൾ"</string>
     <string name="call_settings_primary_user_only" msgid="5679923943740900965">"കോൾ ക്രമീകരണങ്ങൾ, പ്രാഥമിക ഉപയോക്താവിന് മാത്രമെ മാറ്റാനാവൂ."</string>
-    <string name="call_settings_with_label" msgid="89359812614544532">"കോൾ ക്രമീകരണങ്ങൾ (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="call_settings_with_label" msgid="89359812614544532">"ക്രമീകരണം (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="error_updating_title" msgid="7970259216988931777">"കോൾ ക്രമീകരണ പിശക്"</string>
     <string name="reading_settings" msgid="1920291699287055284">"ക്രമീകരണങ്ങൾ റീഡുചെയ്യുന്നു.…"</string>
     <string name="updating_settings" msgid="8171225533884883252">"ക്രമീകരണങ്ങൾ അപ്‌ഡേറ്റുചെയ്യുന്നു…"</string>
@@ -130,7 +130,7 @@
     <string name="close_dialog" msgid="2365884406356986917">"ശരി"</string>
     <string name="enable" msgid="7248657275000173526">"ഓണാക്കുക"</string>
     <string name="disable" msgid="4678348128118573672">"ഓഫ്"</string>
-    <string name="change_num" msgid="239476305819844391">"അപ്‌ഡേറ്റ്  ചെയ്യുക"</string>
+    <string name="change_num" msgid="239476305819844391">"അപ്‌ഡേറ്റുചെയ്യുക"</string>
   <string-array name="clir_display_values">
     <item msgid="5560134294467334594">"സ്ഥിര നെറ്റ്‌വർക്ക്"</item>
     <item msgid="7876195870037833661">"നമ്പർ മറയ്‌ക്കുക"</item>
@@ -327,7 +327,7 @@
     <string name="cdma_lte_data_service" msgid="4255018217292548962">"ഡാറ്റ സേവനം സജ്ജീകരിക്കുക"</string>
     <string name="carrier_settings_title" msgid="9028166176523012300">"കാരിയർ ക്രമീകരണങ്ങൾ"</string>
     <string name="fdn" msgid="7878832555095183202">"സ്ഥിര ഡയലിംഗ് നമ്പറുകൾ"</string>
-    <string name="fdn_with_label" msgid="187084204115493366">"സ്ഥിരമായി ഡയൽചെയ്യുന്ന നമ്പറുകൾ (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="fdn_with_label" msgid="187084204115493366">"സ്ഥിര ഡയലിംഗ് നമ്പറുകൾ (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="manage_fdn_list" msgid="8777755791892122369">"FDN ലിസ്റ്റ്"</string>
     <string name="fdn_list_with_label" msgid="7437232552210469217">"FDN ലിസ്‌റ്റ് (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="fdn_activation" msgid="2156479741307463576">"FDN സജീവമാക്കൽ"</string>

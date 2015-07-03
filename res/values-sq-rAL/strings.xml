@@ -20,7 +20,7 @@
     <string name="phoneAppLabel" product="default" msgid="906161039445636857">"Telefoni"</string>
     <string name="emergencyDialerIconLabel" msgid="7812140032168171053">"Formuesi i numrit të urgjencës"</string>
     <string name="phoneIconLabel" msgid="2331230813161304895">"Telefoni"</string>
-    <string name="fdnListLabel" msgid="8630418672279521003">"Lista FDN"</string>
+    <string name="fdnListLabel" msgid="8630418672279521003">"Lista e FDN-ve"</string>
     <string name="unknown" msgid="6878797917991465859">"I panjohur"</string>
     <string name="private_num" msgid="6713286113000232309">"Numër privat"</string>
     <string name="payphone" msgid="4793877574636445118">"Telefon me pagesë"</string>
@@ -89,9 +89,9 @@
     <string name="sum_hide_caller_id" msgid="1071407020290873782">"Numri është i fshehur në telefonatat dalëse"</string>
     <string name="sum_show_caller_id" msgid="6768534125447290401">"Numri është shfaqur në telefonatat dalëse"</string>
     <string name="sum_default_caller_id" msgid="1954518825510901365">"Përdor cilësimet e operatorit për të shfaqur numrin tim në telefonatat dalëse"</string>
-    <string name="labelCW" msgid="6120513814915920200">"Pritje telefonate"</string>
-    <string name="sum_cw_enabled" msgid="8083061901633671397">"Gjatë një telefonate, më njofto për telefonatat hyrëse"</string>
-    <string name="sum_cw_disabled" msgid="3648693907300104575">"Gjatë një telefonate, më njofto për telefonatat hyrëse"</string>
+    <string name="labelCW" msgid="6120513814915920200">"Pritja e telefonatave"</string>
+    <string name="sum_cw_enabled" msgid="8083061901633671397">"Gjatë një telefonate, më sinjalizo për telefonata të reja hyrëse"</string>
+    <string name="sum_cw_disabled" msgid="3648693907300104575">"Gjatë një telefonate, më sinjalizo për telefonata të reja hyrëse"</string>
     <string name="call_forwarding_settings" msgid="3378927671091537173">"Cilësimet e transferimit të telefonatës"</string>
     <string name="call_forwarding_settings_with_label" msgid="8569489414006897127">"Cilësimet e transferimit të telefonatës (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="labelCF" msgid="2574386948026924737">"Transferimi i telefonatës"</string>
@@ -102,17 +102,17 @@
     <string name="sum_cfu_enabled_no_number" msgid="6591985777096823616">"Numri nuk mund të përdoret"</string>
     <string name="sum_cfu_disabled" msgid="8384177689501334080">"Çaktivizuar"</string>
     <string name="labelCFB" msgid="6139853033106283172">"Kur është e zënë"</string>
-    <string name="messageCFB" msgid="3711089705936187129">"Numri, nëse është i zënë"</string>
+    <string name="messageCFB" msgid="3711089705936187129">"Numri, nëse linja është e zënë"</string>
     <string name="sum_cfb_enabled" msgid="5984198104833116690">"Transferim te <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfb_disabled" msgid="4913145177320506827">"Çaktivizuar"</string>
     <string name="disable_cfb_forbidden" msgid="3506984333877998061">"Operatori yt nuk mbështet çaktivizimin e transferimit të telefonatës kur telefoni është i zënë."</string>
     <string name="labelCFNRy" msgid="1736067178393744351">"Kur nuk përgjigjet"</string>
-    <string name="messageCFNRy" msgid="672317899884380374">"Numri, nëse s\'ka përgjigje"</string>
+    <string name="messageCFNRy" msgid="672317899884380374">"Numri, nëse nuk përgjigjet"</string>
     <string name="sum_cfnry_enabled" msgid="6955775691317662910">"Transferim te <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfnry_disabled" msgid="3884684060443538097">"Çaktivizuar"</string>
     <string name="disable_cfnry_forbidden" msgid="4308233959150658058">"Operatori yt nuk mbështet çaktivizimin e transferimit të telefonatës kur telefoni nuk përgjigjet."</string>
     <string name="labelCFNRc" msgid="2614827454402079766">"Kur është e paarritshme"</string>
-    <string name="messageCFNRc" msgid="6380695421020295119">"Numri, nëse është i paarritshëm"</string>
+    <string name="messageCFNRc" msgid="6380695421020295119">"Numri, nëse linja është e paarritshme"</string>
     <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"Transferim te <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfnrc_disabled" msgid="7222141261321276464">"Çaktivizuar"</string>
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"Operatori yt nuk mbështet çaktivizimin e transferimit të telefonatës kur telefoni është i paarritshëm."</string>
@@ -132,9 +132,9 @@
     <string name="disable" msgid="4678348128118573672">"Çaktivizo"</string>
     <string name="change_num" msgid="239476305819844391">"Përditëso"</string>
   <string-array name="clir_display_values">
-    <item msgid="5560134294467334594">"I parazgjedhur nga rrjeti"</item>
-    <item msgid="7876195870037833661">"Fshih numrin"</item>
-    <item msgid="1108394741608734023">"Shfaq numrin"</item>
+    <item msgid="5560134294467334594">"E parazgjedhur nga rrjeti"</item>
+    <item msgid="7876195870037833661">"Fshihe numrin"</item>
+    <item msgid="1108394741608734023">"Shfaqe numrin"</item>
   </string-array>
     <string name="vm_changed" msgid="380744030726254139">"Numri i postës zanore ndryshoi"</string>
     <string name="vm_change_failed" msgid="3352934863246208918">"Nuk mundi ta ndryshonte numrin e postës zanore.\nKontakto operatorin tënd nëse problemi vazhdon."</string>
@@ -328,8 +328,8 @@
     <string name="carrier_settings_title" msgid="9028166176523012300">"Cilësimet e operatorit"</string>
     <string name="fdn" msgid="7878832555095183202">"Numrat e telefonave fiks"</string>
     <string name="fdn_with_label" msgid="187084204115493366">"Numrat e telefonave fiks (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
-    <string name="manage_fdn_list" msgid="8777755791892122369">"Lista FDN"</string>
-    <string name="fdn_list_with_label" msgid="7437232552210469217">"Lista FDN (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="manage_fdn_list" msgid="8777755791892122369">"Lista e FDN-ve"</string>
+    <string name="fdn_list_with_label" msgid="7437232552210469217">"Lista e FDN-ve (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="fdn_activation" msgid="2156479741307463576">"Aktivizimi FDN"</string>
     <string name="fdn_enabled" msgid="5238109009915521240">"Numrat e telefonave fiks u aktivizuan"</string>
     <string name="fdn_disabled" msgid="4700049736675368279">"Numrat e telefonave fiks u çaktivizuan"</string>
@@ -339,7 +339,7 @@
     <string name="enable_fdn_ok" msgid="7215588870329688132">"Çaktivizo FDN-në"</string>
     <string name="disable_fdn_ok" msgid="5727046928930740173">"Aktivizo FDN-në"</string>
     <string name="sum_fdn" msgid="1959399454900272878">"Menaxho numrat e telefonave fiks"</string>
-    <string name="sum_fdn_change_pin" msgid="6666549734792827932">"Ndrysho PIN-in për qasje FDN"</string>
+    <string name="sum_fdn_change_pin" msgid="6666549734792827932">"Ndrysho PIN-in për qasje te FDN-ja"</string>
     <string name="sum_fdn_manage_list" msgid="8431088265332628316">"Menaxho listën e numrave të telefonit"</string>
     <string name="voice_privacy" msgid="3776841382844614716">"Privatësia e zërit"</string>
     <string name="voice_privacy_summary" msgid="3159383389833516214">"Aktivizo modalitetin e privatësisë së përparuar"</string>

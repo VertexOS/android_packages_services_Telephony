@@ -20,7 +20,7 @@
     <string name="phoneAppLabel" product="default" msgid="906161039445636857">"Telefon"</string>
     <string name="emergencyDialerIconLabel" msgid="7812140032168171053">"Nødnummer"</string>
     <string name="phoneIconLabel" msgid="2331230813161304895">"Telefon"</string>
-    <string name="fdnListLabel" msgid="8630418672279521003">"Faste numre"</string>
+    <string name="fdnListLabel" msgid="8630418672279521003">"Liste over faste numre"</string>
     <string name="unknown" msgid="6878797917991465859">"Ukjent"</string>
     <string name="private_num" msgid="6713286113000232309">"Hemmelig nummer"</string>
     <string name="payphone" msgid="4793877574636445118">"Telefonkiosk"</string>
@@ -42,8 +42,8 @@
     <string name="pause_prompt_yes" msgid="3564467212025151797">"Ja"</string>
     <string name="pause_prompt_no" msgid="6686238803236884877">"Nei"</string>
     <string name="wild_prompt_str" msgid="5543521676355533577">"Erstatt jokertegn med"</string>
-    <string name="no_vm_number" msgid="4164780423805688336">"Mangler nummer til telefonsvarer"</string>
-    <string name="no_vm_number_msg" msgid="1300729501030053828">"Det er ikke lagret noe telefonsvarernummer på SIM-kortet."</string>
+    <string name="no_vm_number" msgid="4164780423805688336">"Mangler nummer til talepostkasse"</string>
+    <string name="no_vm_number_msg" msgid="1300729501030053828">"Det er ikke lagret noe nummer for talepostkasse på SIM-kortet."</string>
     <string name="add_vm_number_str" msgid="4676479471644687453">"Legg til nummer"</string>
     <string name="puk_unlocked" msgid="2284912838477558454">"SIM-kortet er blitt avblokkert. Telefonen låses opp…"</string>
     <string name="label_ndp" msgid="780479633159517250">"PIN-kode for å fjerne operatørlås"</string>
@@ -61,7 +61,7 @@
     <string name="settings_label" msgid="3876743539816984008">"Nettverksinnstillinger"</string>
     <string name="phone_accounts" msgid="6376603393888116364">"Ringekontoer"</string>
     <string name="phone_accounts_make_calls_with" msgid="1969188078933152231">"Ring med"</string>
-    <string name="phone_accounts_make_sip_calls_with" msgid="4677789312053828493">"Foreta SIP-oppringing med"</string>
+    <string name="phone_accounts_make_sip_calls_with" msgid="4677789312053828493">"Foreta SIP-anrop med"</string>
     <string name="phone_accounts_ask_every_time" msgid="4346499067149985702">"Spør først"</string>
     <string name="phone_accounts_settings_header" msgid="4141710640883261094">"Innstillinger"</string>
     <string name="phone_accounts_choose_accounts" msgid="5232948804226424002">"Velg kontoer"</string>
@@ -72,8 +72,8 @@
     <string name="phone_accounts_all_calling_accounts_summary" msgid="8594186415822657011">"Velg hvilke kontoer som kan ringe"</string>
     <string name="wifi_calling" msgid="739018212480165598">"Wi-Fi-anrop"</string>
     <string name="connection_service_default_label" msgid="1498481943805913754">"Innebygd tilkoblingstjeneste"</string>
-    <string name="voicemail" msgid="8693759337917898954">"Telefonsvarer"</string>
-    <string name="voicemail_settings_with_label" msgid="152724978380748296">"Telefonsvarer (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="voicemail" msgid="8693759337917898954">"Talepostkasse"</string>
+    <string name="voicemail_settings_with_label" msgid="152724978380748296">"Talepostkasse (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="voicemail_abbreviated" msgid="2215592488517217448">"Svarer:"</string>
     <string name="networks" msgid="8873030692174541976">"Nettoperatører"</string>
     <string name="cell_broadcast_settings" msgid="8740238216690502563">"Nødvarsler"</string>
@@ -88,14 +88,14 @@
     <string name="sum_loading_settings" msgid="1826692909391168620">"Laster inn innstillinger …"</string>
     <string name="sum_hide_caller_id" msgid="1071407020290873782">"Skjul nummer ved utgående samtaler"</string>
     <string name="sum_show_caller_id" msgid="6768534125447290401">"Vis nummer ved utgående samtaler"</string>
-    <string name="sum_default_caller_id" msgid="1954518825510901365">"La operatøren bestemme om nummeret vises ved utgående samtaler"</string>
+    <string name="sum_default_caller_id" msgid="1954518825510901365">"Bruk standard operatørinnstillinger til å vise nummeret mitt i utgående anrop"</string>
     <string name="labelCW" msgid="6120513814915920200">"Samtale venter"</string>
     <string name="sum_cw_enabled" msgid="8083061901633671397">"Under samtaler, varsle om innkommende anrop"</string>
     <string name="sum_cw_disabled" msgid="3648693907300104575">"Varsle om innkommende anrop under samtaler"</string>
     <string name="call_forwarding_settings" msgid="3378927671091537173">"Innstillinger for viderekobling"</string>
-    <string name="call_forwarding_settings_with_label" msgid="8569489414006897127">"Videresending av anrop (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="call_forwarding_settings_with_label" msgid="8569489414006897127">"Innstillinger for viderekobling (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="labelCF" msgid="2574386948026924737">"Viderekobling"</string>
-    <string name="labelCFU" msgid="8147177368148660600">"Viderekoble alltid"</string>
+    <string name="labelCFU" msgid="8147177368148660600">"Alltid viderekoble"</string>
     <string name="messageCFU" msgid="3560082430662923687">"Bruk alltid dette nummeret"</string>
     <string name="sum_cfu_enabled_indicator" msgid="4014187342724130197">"Viderekoble alle anrop"</string>
     <string name="sum_cfu_enabled" msgid="2450052502198827927">"Viderekobler alle anrop til <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
@@ -111,16 +111,16 @@
     <string name="sum_cfnry_enabled" msgid="6955775691317662910">"Viderekobler til <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfnry_disabled" msgid="3884684060443538097">"Av"</string>
     <string name="disable_cfnry_forbidden" msgid="4308233959150658058">"Operatøren støtter ikke deaktivering av viderekobling når anropet ikke besvares."</string>
-    <string name="labelCFNRc" msgid="2614827454402079766">"Når mottaker ikke kan nås"</string>
+    <string name="labelCFNRc" msgid="2614827454402079766">"Når mottaker ikke nås"</string>
     <string name="messageCFNRc" msgid="6380695421020295119">"Nummer når mottaker ikke kan nås"</string>
     <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"Viderekobler til <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfnrc_disabled" msgid="7222141261321276464">"Slått av"</string>
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"Operatøren støtter ikke deaktivering av viderekobling når telefonen er utenfor dekning."</string>
     <string name="updating_title" msgid="6146755386174019046">"Samtaleinnstillinger"</string>
     <string name="call_settings_primary_user_only" msgid="5679923943740900965">"Anropsinnstillinger kan bare endres av hovedbrukeren."</string>
-    <string name="call_settings_with_label" msgid="89359812614544532">"Anropsvalg (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="call_settings_with_label" msgid="89359812614544532">"Samtaleinnstillinger (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="error_updating_title" msgid="7970259216988931777">"Feil ved samtaleinnstillinger"</string>
-    <string name="reading_settings" msgid="1920291699287055284">"Leser innstillinger …"</string>
+    <string name="reading_settings" msgid="1920291699287055284">"Leser innstillingene …"</string>
     <string name="updating_settings" msgid="8171225533884883252">"Oppdaterer innstillinger…"</string>
     <string name="reverting_settings" msgid="4752151682666912828">"Tilbakestiller innstillinger ..."</string>
     <string name="response_error" msgid="6674110501330139405">"Uventet svar fra nettverket."</string>
@@ -136,12 +136,12 @@
     <item msgid="7876195870037833661">"Skjul nummer"</item>
     <item msgid="1108394741608734023">"Vis nummer"</item>
   </string-array>
-    <string name="vm_changed" msgid="380744030726254139">"Telefonsvarernummeret ble endret."</string>
-    <string name="vm_change_failed" msgid="3352934863246208918">"Kan ikke endre mobilsvarnummeret.\nKontakt operatøren din hvis dette problemet vedvarer."</string>
+    <string name="vm_changed" msgid="380744030726254139">"Nummeret til talepostkassen ble endret."</string>
+    <string name="vm_change_failed" msgid="3352934863246208918">"Kan ikke endre nummeret for talepostkassen.\nKontakt operatøren din hvis problemet vedvarer."</string>
     <string name="fw_change_failed" msgid="5298103228470214665">"Kunne ikke endre viderekoblingsnummeret.\nKontakt operatøren hvis dette problemet vedvarer."</string>
     <string name="fw_get_in_vm_failed" msgid="8862896836093833973">"Kunne ikke hente og lagre gjeldende innstillinger for viderekoblingsnummer.\nVil du likevel bytte til den nye leverandøren?"</string>
     <string name="no_change" msgid="3186040086622435212">"Ingen endringer ble utført."</string>
-    <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"Velg talemeldingsleverandør"</string>
+    <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"Velg leverandør for talepostkasse"</string>
     <string name="voicemail_default" msgid="2001233554889016880">"Operatøren din"</string>
     <string name="mobile_networks" msgid="2843854043339307375">"Mobilnettinnstillinger"</string>
     <string name="label_available" msgid="1181658289009300430">"Tilgjengelige nettverk"</string>
@@ -335,7 +335,7 @@
     <string name="fdn" msgid="7878832555095183202">"Faste numre"</string>
     <string name="fdn_with_label" msgid="187084204115493366">"Faste numre (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="manage_fdn_list" msgid="8777755791892122369">"Liste over faste numre"</string>
-    <string name="fdn_list_with_label" msgid="7437232552210469217">"FDN-liste (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="fdn_list_with_label" msgid="7437232552210469217">"Liste over faste numre (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="fdn_activation" msgid="2156479741307463576">"Aktivering av faste numre"</string>
     <string name="fdn_enabled" msgid="5238109009915521240">"Kun faste numre kan ringes"</string>
     <string name="fdn_disabled" msgid="4700049736675368279">"Faste numre er slått av"</string>
@@ -343,10 +343,10 @@
     <string name="disable_fdn" msgid="7944020890722540616">"Slå av faste numre"</string>
     <string name="change_pin2" msgid="2153563695382176676">"Endre PIN2"</string>
     <string name="enable_fdn_ok" msgid="7215588870329688132">"Slå av faste numre"</string>
-    <string name="disable_fdn_ok" msgid="5727046928930740173">"Slå på faste nummre"</string>
+    <string name="disable_fdn_ok" msgid="5727046928930740173">"Slå på faste numre"</string>
     <string name="sum_fdn" msgid="1959399454900272878">"Vedlikehold liste over faste numre"</string>
     <string name="sum_fdn_change_pin" msgid="6666549734792827932">"Endre PIN-kode for å styre faste numre"</string>
-    <string name="sum_fdn_manage_list" msgid="8431088265332628316">"Endre liste over telefonnumre"</string>
+    <string name="sum_fdn_manage_list" msgid="8431088265332628316">"Administrer liste over telefonnumre"</string>
     <string name="voice_privacy" msgid="3776841382844614716">"Personvern for Google Voice"</string>
     <string name="voice_privacy_summary" msgid="3159383389833516214">"Aktiver forbedret personvern"</string>
     <string name="tty_mode_option_title" msgid="9033098925144434669">"TTY-modus"</string>
@@ -374,7 +374,7 @@
     <string name="fdn_invalid_number" msgid="1494755047900009147">"FDN ble ikke oppdatert fordi tallet ikke kan overstige 20 sifre."</string>
     <string name="pin2_or_fdn_invalid" msgid="6025144083384701197">"Fast nummer ble ikke oppdatert. PIN2 var feil, eller telefonnummeret ble avvist."</string>
     <string name="fdn_failed" msgid="540018079008319747">"FDN-handlingen mislyktes."</string>
-    <string name="simContacts_emptyLoading" msgid="2203331234764498011">"Leser fra SIM-kort…"</string>
+    <string name="simContacts_emptyLoading" msgid="2203331234764498011">"Leser fra SIM-kort …"</string>
     <string name="simContacts_empty" msgid="5270660846489561932">"Ingen kontakter på SIM-kortet."</string>
     <string name="simContacts_title" msgid="1861472842524839921">"Velg kontakter for import"</string>
     <string name="simContacts_airplaneMode" msgid="5254946758982621072">"Slå av flymodus for å importere kontakter fra SIM-kortet."</string>
@@ -413,7 +413,7 @@
     <string name="pin2_unblocked" msgid="7791600368153469078">"PIN2-koden er ikke lenger blokkert"</string>
     <string name="pin2_error_exception" msgid="1088689322248996699">"Feil på nettverket eller SIM-kortet"</string>
     <string name="doneButton" msgid="2859593360997984240">"Ferdig"</string>
-    <string name="voicemail_settings_number_label" msgid="8524164258691887790">"Nummer til telefonsvarer"</string>
+    <string name="voicemail_settings_number_label" msgid="8524164258691887790">"Nummer til talepostkasse"</string>
     <string name="card_title_dialing" msgid="5769417478498348054">"Ringer"</string>
     <string name="card_title_redialing" msgid="8253487008234167266">"Slår nummer på nytt"</string>
     <string name="card_title_conf_call" msgid="1162980346189744501">"Telefonmøte"</string>
@@ -422,10 +422,10 @@
     <string name="card_title_on_hold" msgid="821463117892339942">"Parkert"</string>
     <string name="card_title_hanging_up" msgid="3999101620995182450">"Legger på"</string>
     <string name="card_title_in_call" msgid="6346543933068225205">"Samtale pågår"</string>
-    <string name="notification_voicemail_title" msgid="8933468752045550523">"Nye talemeldinger"</string>
+    <string name="notification_voicemail_title" msgid="8933468752045550523">"Ny talemelding"</string>
     <string name="notification_voicemail_title_count" msgid="4366360747660929916">"Nye talemeldinger (<xliff:g id="COUNT">%d</xliff:g>)"</string>
     <string name="notification_voicemail_text_format" msgid="4447323569453981685">"Ring <xliff:g id="VOICEMAIL_NUMBER">%s</xliff:g>"</string>
-    <string name="notification_voicemail_no_vm_number" msgid="760963466895609716">"Mangler nummer til telefonsvarer"</string>
+    <string name="notification_voicemail_no_vm_number" msgid="760963466895609716">"Mangler nummer til talepostkasse"</string>
     <string name="notification_network_selection_title" msgid="4224455487793492772">"Ingen tjeneste"</string>
     <string name="notification_network_selection_text" msgid="2607085729661923269">"Valgt nettverk (<xliff:g id="OPERATOR_NAME">%s</xliff:g>) er ikke tilgjengelig"</string>
     <string name="incall_error_power_off" msgid="2947938060513306698">"Slå av flymodus for å ringe."</string>
@@ -534,7 +534,7 @@
     <string name="description_dial_button" msgid="7459705245418435351">"ring"</string>
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"Vibrering"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"Vibrering"</string>
-    <string name="voicemail_visual_voicemail_switch_title" msgid="5012622186976275457">"Visual Voicemail"</string>
+    <string name="voicemail_visual_voicemail_switch_title" msgid="5012622186976275457">"Visuell talepostkasse"</string>
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"Lyd"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"Ringetone og vibrering"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"Innebygde SIM-kort"</string>

@@ -51,7 +51,7 @@
     <string name="sip_edit_title" msgid="1967247832635750410">"Účet SIP"</string>
     <string name="sip_edit_new_title" msgid="266414118302574305">"Účet SIP"</string>
     <string name="domain_address_title" msgid="1968479941328225423">"Server"</string>
-    <string name="username_title" msgid="6770064611005663470">"Meno používateľa"</string>
+    <string name="username_title" msgid="6770064611005663470">"Používateľské meno"</string>
     <string name="password_title" msgid="5289013731515564295">"Heslo"</string>
     <string name="display_name_title" msgid="579241787583079773">"Zobrazované meno"</string>
     <string name="proxy_address_title" msgid="6890163365640631841">"Adresa výstupného proxy servera"</string>

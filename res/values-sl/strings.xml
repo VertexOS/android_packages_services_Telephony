@@ -112,7 +112,7 @@
     <string name="sum_cfnry_disabled" msgid="3884684060443538097">"Izklopljeno"</string>
     <string name="disable_cfnry_forbidden" msgid="4308233959150658058">"Operater ne podpira izklopa preusmeritve klicev, kadar ni odgovora."</string>
     <string name="labelCFNRc" msgid="2614827454402079766">"Pri nedosegljivosti"</string>
-    <string name="messageCFNRc" msgid="6380695421020295119">"Številka, ko ni dosegljivo"</string>
+    <string name="messageCFNRc" msgid="6380695421020295119">"Številka, ko nisem dosegljiv"</string>
     <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"Preusmerjanje na <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfnrc_disabled" msgid="7222141261321276464">"Onemogočeno"</string>
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"Vaš operater ne podpira izklopa preusmeritve klicev, kadar je telefon nedosegljiv."</string>
@@ -132,9 +132,9 @@
     <string name="disable" msgid="4678348128118573672">"Izklopi"</string>
     <string name="change_num" msgid="239476305819844391">"Posodobi"</string>
   <string-array name="clir_display_values">
-    <item msgid="5560134294467334594">"Privzeto omrežje"</item>
+    <item msgid="5560134294467334594">"Omrežno privzeto"</item>
     <item msgid="7876195870037833661">"Skrij številko"</item>
-    <item msgid="1108394741608734023">"Prikaz številke"</item>
+    <item msgid="1108394741608734023">"Prikaži številko"</item>
   </string-array>
     <string name="vm_changed" msgid="380744030726254139">"Številka glasovne pošte je spremenjena."</string>
     <string name="vm_change_failed" msgid="3352934863246208918">"Številke odzivnika ni mogoče spremeniti.\nČe se težava ponovi, se obrnite na operaterja."</string>
@@ -143,7 +143,7 @@
     <string name="no_change" msgid="3186040086622435212">"Narejena ni bila nobena sprememba."</string>
     <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"Izberite storitev glasovne pošte"</string>
     <string name="voicemail_default" msgid="2001233554889016880">"Vaš operater"</string>
-    <string name="mobile_networks" msgid="2843854043339307375">"Nastavitve mobilnega omrežja"</string>
+    <string name="mobile_networks" msgid="2843854043339307375">"Nastavitve mob. omrežja"</string>
     <string name="label_available" msgid="1181658289009300430">"Razpoložljiva omrežja"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"Iskanje ..."</string>
     <string name="empty_networks_list" msgid="4249426905018815316">"Najdeno ni bilo nobeno omrežje."</string>
