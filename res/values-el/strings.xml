@@ -98,22 +98,22 @@
     <string name="labelCFU" msgid="8147177368148660600">"Προώθηση πάντα"</string>
     <string name="messageCFU" msgid="3560082430662923687">"Να γίνεται πάντα χρήση αυτού του αριθμού"</string>
     <string name="sum_cfu_enabled_indicator" msgid="4014187342724130197">"Προώθηση όλων των κλήσεων"</string>
-    <string name="sum_cfu_enabled" msgid="2450052502198827927">"Προώθηση όλων των κλήσεων προς <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
+    <string name="sum_cfu_enabled" msgid="2450052502198827927">"Προώθηση όλων των κλήσεων στο <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfu_enabled_no_number" msgid="6591985777096823616">"Ο αριθμός δεν είναι διαθέσιμος"</string>
     <string name="sum_cfu_disabled" msgid="8384177689501334080">"Ανενεργό"</string>
     <string name="labelCFB" msgid="6139853033106283172">"Όταν η γραμμή είναι απασχολημένη"</string>
     <string name="messageCFB" msgid="3711089705936187129">"Αριθμός όταν είμαι απασχολημένος/ή"</string>
-    <string name="sum_cfb_enabled" msgid="5984198104833116690">"Προώθηση προς <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
+    <string name="sum_cfb_enabled" msgid="5984198104833116690">"Προώθηση στο <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfb_disabled" msgid="4913145177320506827">"Ανενεργό"</string>
     <string name="disable_cfb_forbidden" msgid="3506984333877998061">"Ο φορέας σας δεν υποστηρίζει την απενεργοποίηση της προώθησης κλήσεων όταν το τηλέφωνό σας είναι απασχολημένο."</string>
     <string name="labelCFNRy" msgid="1736067178393744351">"Όταν δεν απαντώ"</string>
     <string name="messageCFNRy" msgid="672317899884380374">"Αριθμός όταν δεν απαντάω"</string>
-    <string name="sum_cfnry_enabled" msgid="6955775691317662910">"Προώθηση προς <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
+    <string name="sum_cfnry_enabled" msgid="6955775691317662910">"Προώθηση στο <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfnry_disabled" msgid="3884684060443538097">"Ανενεργό"</string>
     <string name="disable_cfnry_forbidden" msgid="4308233959150658058">"Η εταιρεία σας δεν υποστηρίζει την απενεργοποίηση της προώθησης κλήσεων όταν το τηλέφωνό σας δεν απαντάει."</string>
     <string name="labelCFNRc" msgid="2614827454402079766">"Όταν είναι αδύνατη η επικοινωνία"</string>
     <string name="messageCFNRc" msgid="6380695421020295119">"Αριθμός όταν δεν είμαι διαθέσιμος/η"</string>
-    <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"Προώθηση προς <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
+    <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"Προώθηση στο <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfnrc_disabled" msgid="7222141261321276464">"Απενεργοποιημένη"</string>
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"Η εταιρεία κινητής τηλεφωνίας δεν υποστηρίζει την απενεργοποίηση της προώθησης κλήσεων όταν το τηλέφωνό σας δεν έχει σήμα."</string>
     <string name="updating_title" msgid="6146755386174019046">"Ρυθμίσεις κλήσης"</string>
@@ -142,7 +142,7 @@
     <string name="fw_get_in_vm_failed" msgid="8862896836093833973">"Δεν ήταν δυνατή η ανάκτησης και η αποθήκευση των τρεχουσών ρυθμίσεων αριθμού προώθησης.\nΝα γίνει εναλλαγή στο νέο πάροχο υπηρεσιών;"</string>
     <string name="no_change" msgid="3186040086622435212">"Δεν έγιναν αλλαγές."</string>
     <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"Επιλογή υπηρεσίας αυτόματου τηλεφωνητή"</string>
-    <string name="voicemail_default" msgid="2001233554889016880">"Η εταιρεία σας κινητής τηλεφωνίας"</string>
+    <string name="voicemail_default" msgid="2001233554889016880">"Ο πάροχος κινητής τηλεφωνίας"</string>
     <string name="mobile_networks" msgid="2843854043339307375">"Ρυθμίσεις δικτύου κινητής τηλεφωνίας"</string>
     <string name="label_available" msgid="1181658289009300430">"Διαθέσιμα δίκτυα"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"Αναζήτηση..."</string>
@@ -528,7 +528,7 @@
     <string name="description_dial_button" msgid="7459705245418435351">"κλήση"</string>
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"Δόνηση"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"Δόνηση"</string>
-    <string name="voicemail_visual_voicemail_switch_title" msgid="5012622186976275457">"Οπτικός αυτόματος τηλεφωνητής"</string>
+    <string name="voicemail_visual_voicemail_switch_title" msgid="5012622186976275457">"Οπτικός αυτόματος τηλεφ."</string>
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"Ήχος"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"Ήχος κλήσης &amp; δόνηση"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"Ενσωματωμένες κάρτες SIM"</string>

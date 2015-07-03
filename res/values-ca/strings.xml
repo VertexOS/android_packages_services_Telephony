@@ -48,7 +48,7 @@
     <string name="puk_unlocked" msgid="2284912838477558454">"La targeta SIM s\'ha desbloquejat. El telèfon s\'està desbloquejant..."</string>
     <string name="label_ndp" msgid="780479633159517250">"PIN de desbloqueig de xarxa SIM"</string>
     <string name="sim_ndp_unlock_text" msgid="683628237760543009">"Desbloqueja"</string>
-    <string name="sim_ndp_dismiss_text" msgid="1604823375752456947">"Omet"</string>
+    <string name="sim_ndp_dismiss_text" msgid="1604823375752456947">"Ignora"</string>
     <string name="requesting_unlock" msgid="6412629401033249351">"S\'està sol·licitant el desbloqueig de la xarxa..."</string>
     <string name="unlock_failed" msgid="6490531697031504225">"Sol·licitud de desbloqueig de xarxa incorrecta."</string>
     <string name="unlock_success" msgid="6770085622238180152">"Desbloqueig de la xarxa correcte."</string>
@@ -515,7 +515,7 @@
     <string name="progress_dialog_exiting_ecm" msgid="4835734101617817074">"S\'està sortint del mode de devolució de trucades d\'emergència"</string>
     <string name="alert_dialog_yes" msgid="6674268047820703974">"Sí"</string>
     <string name="alert_dialog_no" msgid="1476091437797628703">"No"</string>
-    <string name="alert_dialog_dismiss" msgid="2491494287075907171">"Omet"</string>
+    <string name="alert_dialog_dismiss" msgid="2491494287075907171">"Ignora"</string>
     <string name="voicemail_provider" msgid="5135942703327136909">"Servei"</string>
     <string name="voicemail_settings" msgid="72448049107749316">"Configuració"</string>
     <string name="voicemail_number_not_set" msgid="6724904736891087856">"&lt;No definit&gt;"</string>
@@ -528,7 +528,7 @@
     <string name="description_dial_button" msgid="7459705245418435351">"marca"</string>
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"Vibra"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"Vibra"</string>
-    <string name="voicemail_visual_voicemail_switch_title" msgid="5012622186976275457">"Bústia de veu de Visual"</string>
+    <string name="voicemail_visual_voicemail_switch_title" msgid="5012622186976275457">"Bústia de veu visual"</string>
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"So"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"So i vibració"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"Targetes SIM integrades"</string>

@@ -20,9 +20,9 @@
     <string name="sip_accounts" msgid="85559497282185405">"Účty SIP"</string>
     <string name="sip_accounts_title" msgid="2082527045326874519">"Účty"</string>
     <string name="sip_receive_calls" msgid="426678617137462173">"Prijímať prichádzajúce hovory"</string>
-    <string name="sip_receive_calls_summary" msgid="946161517528227523">"Má väčšiu spotrebu batérie"</string>
-    <string name="sip_call_options_title" msgid="8421210494703869806">"Používanie hovorov SIP"</string>
-    <string name="sip_call_options_wifi_only_title" msgid="5112579243580893890">"Používanie hovorov SIP (iba sieť Wi-Fi)"</string>
+    <string name="sip_receive_calls_summary" msgid="946161517528227523">"Viac vybíja batériu"</string>
+    <string name="sip_call_options_title" msgid="8421210494703869806">"Používanie volania SIP"</string>
+    <string name="sip_call_options_wifi_only_title" msgid="5112579243580893890">"Používanie volania SIP (iba Wi-Fi)"</string>
     <string name="sip_call_options_entry_1" msgid="7217659161237099900">"Pre všetky hovory, pokiaľ je k dispozícii dátová sieť"</string>
     <string name="sip_call_options_entry_2" msgid="1815335903940609729">"Iba pre hovory SIP"</string>
     <string name="sip_call_options_wifi_only_entry_1" msgid="1358513095551847314">"Pre všetky hovory"</string>
@@ -32,7 +32,7 @@
     <string name="saving_account" msgid="5336529880235177448">"Prebieha ukladanie účtu..."</string>
     <string name="removing_account" msgid="5537351356808985756">"Prebieha odstraňovanie účtu..."</string>
     <string name="sip_menu_save" msgid="7882219814563869225">"Uložiť"</string>
-    <string name="sip_menu_discard" msgid="2350421645423888438">"Zrušiť"</string>
+    <string name="sip_menu_discard" msgid="2350421645423888438">"Zahodiť"</string>
     <string name="alert_dialog_close" msgid="1326011828713435134">"Zavrieť profil"</string>
     <string name="alert_dialog_ok" msgid="4752048404605388940">"OK"</string>
     <string name="close_profile" msgid="3122414058856309881">"Zavrieť"</string>
@@ -48,16 +48,16 @@
     <string name="registration_status_invalid_credentials" msgid="8406872554323334182">"Registrácia účtu nebola úspešná: nesprávne používateľské meno alebo heslo."</string>
     <string name="registration_status_server_unreachable" msgid="7710275557045148634">"Registrácia účtu nebola úspešná: skontrolujte názov servera."</string>
     <string name="third_party_account_summary" msgid="9041060473615403041">"Tento účet momentálne používa aplikácia používateľa <xliff:g id="ACCOUNT_OWNER">%s</xliff:g>."</string>
-    <string name="sip_edit_title" msgid="1967247832635750410">"Podrobnosti o účtu SIP"</string>
-    <string name="sip_edit_new_title" msgid="266414118302574305">"Podrobnosti o účtu SIP"</string>
+    <string name="sip_edit_title" msgid="1967247832635750410">"Účet SIP"</string>
+    <string name="sip_edit_new_title" msgid="266414118302574305">"Účet SIP"</string>
     <string name="domain_address_title" msgid="1968479941328225423">"Server"</string>
-    <string name="username_title" msgid="6770064611005663470">"Meno používateľa"</string>
+    <string name="username_title" msgid="6770064611005663470">"Používateľské meno"</string>
     <string name="password_title" msgid="5289013731515564295">"Heslo"</string>
     <string name="display_name_title" msgid="579241787583079773">"Zobrazované meno"</string>
-    <string name="proxy_address_title" msgid="6890163365640631841">"Adresa výstupného servera proxy"</string>
+    <string name="proxy_address_title" msgid="6890163365640631841">"Adresa výstupného proxy servera"</string>
     <string name="port_title" msgid="6693965912656593862">"Číslo portu"</string>
     <string name="transport_title" msgid="889155457465372527">"Typ prenosu"</string>
-    <string name="send_keepalive_title" msgid="599627072150501159">"Odosielať správy na zachovanie pripojenia"</string>
+    <string name="send_keepalive_title" msgid="599627072150501159">"Správy na zachovanie pripojenia"</string>
     <string name="advanced_settings" msgid="6622996380747040711">"Voliteľné nastavenia"</string>
     <string name="auth_username_title" msgid="8262491689004708265">"Používateľské meno na overenie"</string>
     <string name="auth_username_summary" msgid="941160241371436473">"Používateľské meno použité na overenie"</string>

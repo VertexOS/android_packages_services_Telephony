@@ -111,7 +111,7 @@
     <string name="sum_cfnry_enabled" msgid="6955775691317662910">"Meneruskan ke <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfnry_disabled" msgid="3884684060443538097">"Nonaktif"</string>
     <string name="disable_cfnry_forbidden" msgid="4308233959150658058">"Operator Anda tidak mendukung penonaktifan penerusan panggilan ketika ponsel tidak menjawab panggilan."</string>
-    <string name="labelCFNRc" msgid="2614827454402079766">"Saat tidak dapat dijangkau"</string>
+    <string name="labelCFNRc" msgid="2614827454402079766">"Saat tidak dapat dihubungi"</string>
     <string name="messageCFNRc" msgid="6380695421020295119">"Nomor jika tidak dapat dihubungi"</string>
     <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"Meneruskan ke <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfnrc_disabled" msgid="7222141261321276464">"Dinonaktifkan"</string>

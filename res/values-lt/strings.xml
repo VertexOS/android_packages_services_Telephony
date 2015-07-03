@@ -20,7 +20,7 @@
     <string name="phoneAppLabel" product="default" msgid="906161039445636857">"Telefonas"</string>
     <string name="emergencyDialerIconLabel" msgid="7812140032168171053">"Pagalbos numerio rinkiklis"</string>
     <string name="phoneIconLabel" msgid="2331230813161304895">"Telefonas"</string>
-    <string name="fdnListLabel" msgid="8630418672279521003">"FDN sąrašas"</string>
+    <string name="fdnListLabel" msgid="8630418672279521003">"FRN sąrašas"</string>
     <string name="unknown" msgid="6878797917991465859">"Nežinomas"</string>
     <string name="private_num" msgid="6713286113000232309">"Privatus numeris"</string>
     <string name="payphone" msgid="4793877574636445118">"Taksofonas"</string>
@@ -107,7 +107,7 @@
     <string name="sum_cfb_disabled" msgid="4913145177320506827">"Išjungta"</string>
     <string name="disable_cfb_forbidden" msgid="3506984333877998061">"Operatorius nepalaiko skambučių peradresavimo išjungimo, kai telefonas užimtas."</string>
     <string name="labelCFNRy" msgid="1736067178393744351">"Kai neatsako"</string>
-    <string name="messageCFNRy" msgid="672317899884380374">"Numeris kai neatsiliepiama"</string>
+    <string name="messageCFNRy" msgid="672317899884380374">"Numeris, kai neatsiliepiama"</string>
     <string name="sum_cfnry_enabled" msgid="6955775691317662910">"Peradresuojama į <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfnry_disabled" msgid="3884684060443538097">"Išjungta"</string>
     <string name="disable_cfnry_forbidden" msgid="4308233959150658058">"Operatorius nepalaiko skambučių peradresavimo išjungimo, kai neatsiliepiama."</string>
@@ -328,18 +328,18 @@
     <string name="carrier_settings_title" msgid="9028166176523012300">"Operatoriaus nustatymai"</string>
     <string name="fdn" msgid="7878832555095183202">"Fiksuoto rinkimo numeriai"</string>
     <string name="fdn_with_label" msgid="187084204115493366">"Fiksuotojo rinkimo numeriai (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
-    <string name="manage_fdn_list" msgid="8777755791892122369">"FDN sąrašas"</string>
-    <string name="fdn_list_with_label" msgid="7437232552210469217">"Fiksuotojo rinkimo numerių sąrašas (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="manage_fdn_list" msgid="8777755791892122369">"FRN sąrašas"</string>
+    <string name="fdn_list_with_label" msgid="7437232552210469217">"FRN sąrašas (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="fdn_activation" msgid="2156479741307463576">"FDN aktyvinimas"</string>
     <string name="fdn_enabled" msgid="5238109009915521240">"Įgalinti fiksuoto rinkimo numeriai"</string>
     <string name="fdn_disabled" msgid="4700049736675368279">"Fiksuoto rinkimo numeriai išjungti"</string>
-    <string name="enable_fdn" msgid="3740191529180493851">"Įgalinti FDN"</string>
+    <string name="enable_fdn" msgid="3740191529180493851">"Įgalinti FRN"</string>
     <string name="disable_fdn" msgid="7944020890722540616">"Išjungti FDN"</string>
     <string name="change_pin2" msgid="2153563695382176676">"Pakeisti PIN2"</string>
     <string name="enable_fdn_ok" msgid="7215588870329688132">"Išjungti FDN"</string>
-    <string name="disable_fdn_ok" msgid="5727046928930740173">"Įgalinti FDN"</string>
+    <string name="disable_fdn_ok" msgid="5727046928930740173">"Įgalinti FRN"</string>
     <string name="sum_fdn" msgid="1959399454900272878">"Valdyti fiksuoto rinkimo numerius"</string>
-    <string name="sum_fdn_change_pin" msgid="6666549734792827932">"Pakeisti PIN kodą FDN prieigai"</string>
+    <string name="sum_fdn_change_pin" msgid="6666549734792827932">"Pakeisti PIN kodą FRN prieigai"</string>
     <string name="sum_fdn_manage_list" msgid="8431088265332628316">"Valdyti telefono numerių sąrašą"</string>
     <string name="voice_privacy" msgid="3776841382844614716">"Balso privatumas"</string>
     <string name="voice_privacy_summary" msgid="3159383389833516214">"Įgalinti patobulintą privatumo režimą"</string>

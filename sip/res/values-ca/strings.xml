@@ -21,8 +21,8 @@
     <string name="sip_accounts_title" msgid="2082527045326874519">"Comptes"</string>
     <string name="sip_receive_calls" msgid="426678617137462173">"Rep trucades entrants"</string>
     <string name="sip_receive_calls_summary" msgid="946161517528227523">"Fa servir més bateria."</string>
-    <string name="sip_call_options_title" msgid="8421210494703869806">"Ús de les trucades SIP"</string>
-    <string name="sip_call_options_wifi_only_title" msgid="5112579243580893890">"Ús de les trucades SIP (només Wi-Fi)"</string>
+    <string name="sip_call_options_title" msgid="8421210494703869806">"Fes servir trucades SIP"</string>
+    <string name="sip_call_options_wifi_only_title" msgid="5112579243580893890">"Fes servir trucades SIP (només Wi-Fi)"</string>
     <string name="sip_call_options_entry_1" msgid="7217659161237099900">"Per a totes les trucades quan hi hagi xarxes de dades disponibles"</string>
     <string name="sip_call_options_entry_2" msgid="1815335903940609729">"Només per a trucades SIP"</string>
     <string name="sip_call_options_wifi_only_entry_1" msgid="1358513095551847314">"Per a totes les trucades"</string>
@@ -57,7 +57,7 @@
     <string name="proxy_address_title" msgid="6890163365640631841">"Adreça de servidor intermediari de sortida"</string>
     <string name="port_title" msgid="6693965912656593862">"Número de port"</string>
     <string name="transport_title" msgid="889155457465372527">"Tipus de transport"</string>
-    <string name="send_keepalive_title" msgid="599627072150501159">"Envia mantenir en línia"</string>
+    <string name="send_keepalive_title" msgid="599627072150501159">"Mantén connexió"</string>
     <string name="advanced_settings" msgid="6622996380747040711">"Configuració opcional"</string>
     <string name="auth_username_title" msgid="8262491689004708265">"Nom d\'usuari per a l\'autenticació"</string>
     <string name="auth_username_summary" msgid="941160241371436473">"Nom d\'usuari utilitzat per a l\'autenticació"</string>

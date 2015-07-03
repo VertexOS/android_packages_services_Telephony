@@ -21,8 +21,8 @@
     <string name="sip_accounts_title" msgid="2082527045326874519">"Účty"</string>
     <string name="sip_receive_calls" msgid="426678617137462173">"Přijímat příchozí hovory"</string>
     <string name="sip_receive_calls_summary" msgid="946161517528227523">"Více vybíjí baterii"</string>
-    <string name="sip_call_options_title" msgid="8421210494703869806">"Použít volání SIP"</string>
-    <string name="sip_call_options_wifi_only_title" msgid="5112579243580893890">"Použít volání SIP (pouze Wi-Fi)"</string>
+    <string name="sip_call_options_title" msgid="8421210494703869806">"Používat volání SIP"</string>
+    <string name="sip_call_options_wifi_only_title" msgid="5112579243580893890">"Používat volání SIP (pouze Wi-Fi)"</string>
     <string name="sip_call_options_entry_1" msgid="7217659161237099900">"Pro všechny hovory, pokud je k dispozici datová síť"</string>
     <string name="sip_call_options_entry_2" msgid="1815335903940609729">"Pouze pro volání SIP"</string>
     <string name="sip_call_options_wifi_only_entry_1" msgid="1358513095551847314">"Pro všechny hovory"</string>
@@ -48,8 +48,8 @@
     <string name="registration_status_invalid_credentials" msgid="8406872554323334182">"Registrace účtu se nezdařila: nesprávné uživatelské jméno nebo heslo."</string>
     <string name="registration_status_server_unreachable" msgid="7710275557045148634">"Registrace účtu se nezdařila. Zkontrolujte prosím název serveru."</string>
     <string name="third_party_account_summary" msgid="9041060473615403041">"Tento účet je aktuálně používán aplikací <xliff:g id="ACCOUNT_OWNER">%s</xliff:g>."</string>
-    <string name="sip_edit_title" msgid="1967247832635750410">"Podrobnosti o účtu SIP"</string>
-    <string name="sip_edit_new_title" msgid="266414118302574305">"Podrobnosti o účtu SIP"</string>
+    <string name="sip_edit_title" msgid="1967247832635750410">"Účet SIP"</string>
+    <string name="sip_edit_new_title" msgid="266414118302574305">"Účet SIP"</string>
     <string name="domain_address_title" msgid="1968479941328225423">"Server"</string>
     <string name="username_title" msgid="6770064611005663470">"Uživatelské jméno"</string>
     <string name="password_title" msgid="5289013731515564295">"Heslo"</string>

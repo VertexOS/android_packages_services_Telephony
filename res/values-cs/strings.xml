@@ -130,7 +130,7 @@
     <string name="close_dialog" msgid="2365884406356986917">"OK"</string>
     <string name="enable" msgid="7248657275000173526">"Zapnout"</string>
     <string name="disable" msgid="4678348128118573672">"Vypnout"</string>
-    <string name="change_num" msgid="239476305819844391">"Aktualizovat"</string>
+    <string name="change_num" msgid="239476305819844391">"Aktualiz."</string>
   <string-array name="clir_display_values">
     <item msgid="5560134294467334594">"Výchozí nastavení sítě"</item>
     <item msgid="7876195870037833661">"Skrýt číslo"</item>
@@ -329,7 +329,7 @@
     <string name="fdn" msgid="7878832555095183202">"Povolená tel. čísla"</string>
     <string name="fdn_with_label" msgid="187084204115493366">"Povolená tel. čísla (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="manage_fdn_list" msgid="8777755791892122369">"Seznam povolených telefonních čísel"</string>
-    <string name="fdn_list_with_label" msgid="7437232552210469217">"Seznam povolených telefonních čísel (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="fdn_list_with_label" msgid="7437232552210469217">"Povolená čísla (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="fdn_activation" msgid="2156479741307463576">"Aktivace povolených telefonních čísel"</string>
     <string name="fdn_enabled" msgid="5238109009915521240">"Funkce Povolená tel. čísla je zapnuta"</string>
     <string name="fdn_disabled" msgid="4700049736675368279">"Funkce Povolená tel. čísla je vypnuta"</string>

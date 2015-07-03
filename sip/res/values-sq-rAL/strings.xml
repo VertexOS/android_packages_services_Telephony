@@ -21,10 +21,10 @@
     <string name="sip_accounts_title" msgid="2082527045326874519">"Llogaritë"</string>
     <string name="sip_receive_calls" msgid="426678617137462173">"Merr telefonata hyrëse"</string>
     <string name="sip_receive_calls_summary" msgid="946161517528227523">"Pakëson jetëgjatësinë e baterisë"</string>
-    <string name="sip_call_options_title" msgid="8421210494703869806">"Përdor \"telefonatat SIP\""</string>
-    <string name="sip_call_options_wifi_only_title" msgid="5112579243580893890">"Përdor \"telefonatat SIP\" (vetëm Wi-Fi)"</string>
+    <string name="sip_call_options_title" msgid="8421210494703869806">"Përdor telefonatat me SIP"</string>
+    <string name="sip_call_options_wifi_only_title" msgid="5112579243580893890">"Përdor telefonatat me SIP (vetëm Wi-Fi)"</string>
     <string name="sip_call_options_entry_1" msgid="7217659161237099900">"Për të gjitha telefonat kur rrjeti i të dhënave mund të përdoret"</string>
-    <string name="sip_call_options_entry_2" msgid="1815335903940609729">"Vetëm për telefonatat SIP"</string>
+    <string name="sip_call_options_entry_2" msgid="1815335903940609729">"Vetëm për telefonatat me SIP"</string>
     <string name="sip_call_options_wifi_only_entry_1" msgid="1358513095551847314">"Për të gjitha telefonatat"</string>
     <string name="add_sip_account" msgid="800843669753980091">"Shto llogari"</string>
     <string name="remove_sip_account" msgid="1367664438506503690">"Hiq llogarinë"</string>
@@ -32,9 +32,9 @@
     <string name="saving_account" msgid="5336529880235177448">"Po ruan llogarinë…"</string>
     <string name="removing_account" msgid="5537351356808985756">"Po heq llogarinë…"</string>
     <string name="sip_menu_save" msgid="7882219814563869225">"Ruaj"</string>
-    <string name="sip_menu_discard" msgid="2350421645423888438">"Hidh poshtë"</string>
+    <string name="sip_menu_discard" msgid="2350421645423888438">"Injoro"</string>
     <string name="alert_dialog_close" msgid="1326011828713435134">"Mbyll profilin"</string>
-    <string name="alert_dialog_ok" msgid="4752048404605388940">"Në rregull!"</string>
+    <string name="alert_dialog_ok" msgid="4752048404605388940">"Në rregull"</string>
     <string name="close_profile" msgid="3122414058856309881">"Mbyll"</string>
     <string name="registration_status_checking_status" msgid="6136793741862200337">"Po kontrollon statusin..."</string>
     <string name="registration_status_registering" msgid="2677183977796278749">"Po regjistron..."</string>
@@ -48,8 +48,8 @@
     <string name="registration_status_invalid_credentials" msgid="8406872554323334182">"Regjistrimi i llogarisë ishte i pasuksesshëm: emri i përdoruesit ose fjalëkalimi ishte i pasaktë."</string>
     <string name="registration_status_server_unreachable" msgid="7710275557045148634">"Regjistrimi i llogarisë ishte i pasuksesshëm. Kontrollo emrin e serverit."</string>
     <string name="third_party_account_summary" msgid="9041060473615403041">"Kjo llogari është aktualisht në përdorim nga aplikacioni <xliff:g id="ACCOUNT_OWNER">%s</xliff:g>."</string>
-    <string name="sip_edit_title" msgid="1967247832635750410">"Detajet e llogarisë SIP"</string>
-    <string name="sip_edit_new_title" msgid="266414118302574305">"Detajet e llogarisë SIP"</string>
+    <string name="sip_edit_title" msgid="1967247832635750410">"SIP"</string>
+    <string name="sip_edit_new_title" msgid="266414118302574305">"SIP"</string>
     <string name="domain_address_title" msgid="1968479941328225423">"Serveri"</string>
     <string name="username_title" msgid="6770064611005663470">"Emri i përdoruesit"</string>
     <string name="password_title" msgid="5289013731515564295">"Fjalëkalimi"</string>
@@ -57,7 +57,7 @@
     <string name="proxy_address_title" msgid="6890163365640631841">"Adresa e përfaqësuesit dalës"</string>
     <string name="port_title" msgid="6693965912656593862">"Numri i portës"</string>
     <string name="transport_title" msgid="889155457465372527">"Lloji i transportit"</string>
-    <string name="send_keepalive_title" msgid="599627072150501159">"Dërgo preferencën e kontrollit të operimit"</string>
+    <string name="send_keepalive_title" msgid="599627072150501159">"Kontrolli i veprimtarisë"</string>
     <string name="advanced_settings" msgid="6622996380747040711">"Cilësimet opsionale"</string>
     <string name="auth_username_title" msgid="8262491689004708265">"Emri i përdoruesit për vërtetim"</string>
     <string name="auth_username_summary" msgid="941160241371436473">"Emri i përdoruesit i përdorur për vërtetim"</string>

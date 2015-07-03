@@ -20,7 +20,7 @@
     <string name="phoneAppLabel" product="default" msgid="906161039445636857">"Tālrunis"</string>
     <string name="emergencyDialerIconLabel" msgid="7812140032168171053">"Ārkārtas numuru sastādītājs"</string>
     <string name="phoneIconLabel" msgid="2331230813161304895">"Tālrunis"</string>
-    <string name="fdnListLabel" msgid="8630418672279521003">"FNSN saraksts"</string>
+    <string name="fdnListLabel" msgid="8630418672279521003">"IZSN saraksts"</string>
     <string name="unknown" msgid="6878797917991465859">"Nezināms"</string>
     <string name="private_num" msgid="6713286113000232309">"Privāts numurs"</string>
     <string name="payphone" msgid="4793877574636445118">"Maksas tālrunis"</string>
@@ -330,18 +330,18 @@
     <string name="carrier_settings_title" msgid="9028166176523012300">"Operatora iestatījumi"</string>
     <string name="fdn" msgid="7878832555095183202">"Fiksētie numuru sastādīšanas numuri"</string>
     <string name="fdn_with_label" msgid="187084204115493366">"Fiksētie numuri (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
-    <string name="manage_fdn_list" msgid="8777755791892122369">"FNSN saraksts"</string>
-    <string name="fdn_list_with_label" msgid="7437232552210469217">"FDN saraksts (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
-    <string name="fdn_activation" msgid="2156479741307463576">"FNSN aktivizācija"</string>
+    <string name="manage_fdn_list" msgid="8777755791892122369">"IZSN saraksts"</string>
+    <string name="fdn_list_with_label" msgid="7437232552210469217">"IZSN saraksts (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="fdn_activation" msgid="2156479741307463576">"IZSN aktivizācija"</string>
     <string name="fdn_enabled" msgid="5238109009915521240">"Fiksētie numuru sastādīšanas numuri ir iespējoti."</string>
     <string name="fdn_disabled" msgid="4700049736675368279">"Fiksētie numuru sastādīšanas numuri ir atspējoti."</string>
-    <string name="enable_fdn" msgid="3740191529180493851">"Iespējot FNSN"</string>
-    <string name="disable_fdn" msgid="7944020890722540616">"Atspējot FNSN"</string>
+    <string name="enable_fdn" msgid="3740191529180493851">"Iespējot IZSN"</string>
+    <string name="disable_fdn" msgid="7944020890722540616">"Atspējot IZSN"</string>
     <string name="change_pin2" msgid="2153563695382176676">"Mainīt PIN2"</string>
-    <string name="enable_fdn_ok" msgid="7215588870329688132">"Atspējot FNSN"</string>
-    <string name="disable_fdn_ok" msgid="5727046928930740173">"Iespējot FNSN"</string>
+    <string name="enable_fdn_ok" msgid="7215588870329688132">"Atspējot IZSN"</string>
+    <string name="disable_fdn_ok" msgid="5727046928930740173">"Iespējot IZSN"</string>
     <string name="sum_fdn" msgid="1959399454900272878">"Pārvaldiet fiksētos numuru sastādīšanas numurus"</string>
-    <string name="sum_fdn_change_pin" msgid="6666549734792827932">"Mainīt PIN kodu FNSN piekļuvei"</string>
+    <string name="sum_fdn_change_pin" msgid="6666549734792827932">"Mainīt PIN kodu IZSN piekļuvei"</string>
     <string name="sum_fdn_manage_list" msgid="8431088265332628316">"Pārvaldīt tālruņa numuru sarakstu"</string>
     <string name="voice_privacy" msgid="3776841382844614716">"Balss konfidencialitāte"</string>
     <string name="voice_privacy_summary" msgid="3159383389833516214">"Iespējot uzlabotās konfidencialitātes režīmu"</string>
@@ -366,10 +366,10 @@
     <string name="delete_fdn_contact" msgid="6668958073074151717">"Fiksētā numura sastādīšanas numura dzēšana"</string>
     <string name="deleting_fdn_contact" msgid="5669163206349319969">"Notiek fiksētā numuru sastādīšanas numura dzēšana…"</string>
     <string name="fdn_contact_deleted" msgid="7154162327112259569">"Fiksētais numuru sastādīšanas numurs ir atspējots."</string>
-    <string name="pin2_invalid" msgid="5470854099230755944">"FDN nav atjaunināts, jo tika ievadīts nepareizs PIN."</string>
-    <string name="fdn_invalid_number" msgid="1494755047900009147">"FDN netika atjaunināts, jo numurā nedrīkst būt vairāk par 20 cipariem."</string>
-    <string name="pin2_or_fdn_invalid" msgid="6025144083384701197">"FDN netika atjaunināts. Ievadītais PIN2 nebija pareizs, vai tālruņa numurs tika noraidīts."</string>
-    <string name="fdn_failed" msgid="540018079008319747">"FNSN ievadīšana neizdevās."</string>
+    <string name="pin2_invalid" msgid="5470854099230755944">"IZSN nav atjaunināts, jo tika ievadīts nepareizs PIN."</string>
+    <string name="fdn_invalid_number" msgid="1494755047900009147">"IZSN netika atjaunināts, jo numurā nedrīkst būt vairāk par 20 cipariem."</string>
+    <string name="pin2_or_fdn_invalid" msgid="6025144083384701197">"IZSN netika atjaunināts. Ievadītais PIN2 nebija pareizs, vai tālruņa numurs tika noraidīts."</string>
+    <string name="fdn_failed" msgid="540018079008319747">"IZSN ievadīšana neizdevās."</string>
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"Notiek lasīšana no SIM kartes..."</string>
     <string name="simContacts_empty" msgid="5270660846489561932">"SIM kartē nav nevienas kontaktpersonas."</string>
     <string name="simContacts_title" msgid="1861472842524839921">"Importējamo kontaktu atlase"</string>
