@@ -195,7 +195,7 @@
     <string name="enhanced_4g_lte_mode_title" msgid="522191650223239171">"‏حالت پیشرفته 4G LTE"</string>
     <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"‏استفاده از سرویس‌های LTE جهت بهبود ارتباطات صوتی و سایر ارتباطات (توصیه می‌شود)"</string>
     <string name="data_enabled" msgid="5972538663568715366">"داده‌ها فعال شدند"</string>
-    <string name="data_enable_summary" msgid="2382798156640007971">"اجازه استفاده از داده"</string>
+    <string name="data_enable_summary" msgid="2382798156640007971">"استفاده از داده مجاز است"</string>
     <string name="roaming" msgid="8871412572928323707">"رومینگ داده"</string>
     <string name="roaming_enable" msgid="7331106985174381987">"اتصال به سرویس‌های داده هنگام رومینگ"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"اتصال به سرویس‌های داده هنگام رومینگ"</string>
@@ -370,7 +370,7 @@
     <string name="fdn_failed" msgid="540018079008319747">"‏عملیات FDN ناموفق بود."</string>
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"در حال خواندن سیم کارت..."</string>
     <string name="simContacts_empty" msgid="5270660846489561932">"مخاطبی در سیم کارت شما موجود نیست."</string>
-    <string name="simContacts_title" msgid="1861472842524839921">"انتخاب مخاطبین برای ورود"</string>
+    <string name="simContacts_title" msgid="1861472842524839921">"انتخاب مخاطبین برای وارد کردن"</string>
     <string name="simContacts_airplaneMode" msgid="5254946758982621072">"برای وارد کردن مخاطبین از سیم کارت، حالت هواپیما را خاموش کنید."</string>
     <string name="enable_pin" msgid="5422767284133234860">"فعال کردن/غیر فعال کردن پین سیم"</string>
     <string name="change_pin" msgid="9174186126330785343">"تغییر پین سیم"</string>

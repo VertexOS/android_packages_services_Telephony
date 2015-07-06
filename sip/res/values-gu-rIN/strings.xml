@@ -57,7 +57,7 @@
     <string name="proxy_address_title" msgid="6890163365640631841">"આઉટબાઉન્ડ પ્રોક્સી સરનામું"</string>
     <string name="port_title" msgid="6693965912656593862">"પોર્ટ નંબર"</string>
     <string name="transport_title" msgid="889155457465372527">"સંક્રમણ પ્રકાર"</string>
-    <string name="send_keepalive_title" msgid="599627072150501159">"જીવંત-રાખો મોકલો"</string>
+    <string name="send_keepalive_title" msgid="599627072150501159">"કીપ-અલાઇવ મોકલો"</string>
     <string name="advanced_settings" msgid="6622996380747040711">"વૈકલ્પિક સેટિંગ્સ"</string>
     <string name="auth_username_title" msgid="8262491689004708265">"પ્રમાણીકરણ વપરાશકર્તાનામ"</string>
     <string name="auth_username_summary" msgid="941160241371436473">"પ્રમાણીકરણ માટે ઉપયોગમાં લેવાયેલ વપરાશકર્તાનામ"</string>
