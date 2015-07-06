@@ -120,7 +120,7 @@
     <string name="call_settings_primary_user_only" msgid="5679923943740900965">"Postavke može mijenjati samo primarni korisnik."</string>
     <string name="call_settings_with_label" msgid="89359812614544532">"Post. poziva (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="error_updating_title" msgid="7970259216988931777">"Pogreška postavki poziva"</string>
-    <string name="reading_settings" msgid="1920291699287055284">"Postavke čitanja..."</string>
+    <string name="reading_settings" msgid="1920291699287055284">"Čitanje postavki..."</string>
     <string name="updating_settings" msgid="8171225533884883252">"Ažuriranje postavki..."</string>
     <string name="reverting_settings" msgid="4752151682666912828">"Povrat postavki…"</string>
     <string name="response_error" msgid="6674110501330139405">"Neočekivan mrežni odgovor."</string>
@@ -332,7 +332,7 @@
     <string name="fdn_list_with_label" msgid="7437232552210469217">"FDN popis (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="fdn_activation" msgid="2156479741307463576">"Aktivacija FDN-a"</string>
     <string name="fdn_enabled" msgid="5238109009915521240">"Brojevi za fiksno biranje su omogućeni"</string>
-    <string name="fdn_disabled" msgid="4700049736675368279">"Brojevi za fiksno biranje su onemogućeni"</string>
+    <string name="fdn_disabled" msgid="4700049736675368279">"Brojevi za fiksno biranje onemogućeni su"</string>
     <string name="enable_fdn" msgid="3740191529180493851">"Omogući FDN"</string>
     <string name="disable_fdn" msgid="7944020890722540616">"Onemogući FDN"</string>
     <string name="change_pin2" msgid="2153563695382176676">"Promijeni PIN2"</string>

@@ -48,7 +48,7 @@
     <string name="puk_unlocked" msgid="2284912838477558454">"Karta jote SIM u zhbllokua. Telefoni yt po shkyçet..."</string>
     <string name="label_ndp" msgid="780479633159517250">"PIN-i i shkyçjes së rrjetit të kartës SIM"</string>
     <string name="sim_ndp_unlock_text" msgid="683628237760543009">"Shkyçe"</string>
-    <string name="sim_ndp_dismiss_text" msgid="1604823375752456947">"Refuzo"</string>
+    <string name="sim_ndp_dismiss_text" msgid="1604823375752456947">"Injoro"</string>
     <string name="requesting_unlock" msgid="6412629401033249351">"Po kërkon shkyçjen e rrjetit…"</string>
     <string name="unlock_failed" msgid="6490531697031504225">"Kërkesa për shkyçjen e rrjetit ishte e pasuksesshme."</string>
     <string name="unlock_success" msgid="6770085622238180152">"Shkyçja e rrjetit ishte e suksesshme."</string>
@@ -515,7 +515,7 @@
     <string name="progress_dialog_exiting_ecm" msgid="4835734101617817074">"Modaliteti i \"Kthimit të telefonatës dalëse të urgjencës\""</string>
     <string name="alert_dialog_yes" msgid="6674268047820703974">"Po"</string>
     <string name="alert_dialog_no" msgid="1476091437797628703">"Jo"</string>
-    <string name="alert_dialog_dismiss" msgid="2491494287075907171">"Refuzo"</string>
+    <string name="alert_dialog_dismiss" msgid="2491494287075907171">"Injoro"</string>
     <string name="voicemail_provider" msgid="5135942703327136909">"Shërbimi"</string>
     <string name="voicemail_settings" msgid="72448049107749316">"Konfigurimi"</string>
     <string name="voicemail_number_not_set" msgid="6724904736891087856">"&lt;I pavendosur&gt;"</string>

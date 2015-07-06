@@ -103,17 +103,17 @@
     <string name="sum_cfu_disabled" msgid="8384177689501334080">"Desativado"</string>
     <string name="labelCFB" msgid="6139853033106283172">"Quando ocupado"</string>
     <string name="messageCFB" msgid="3711089705936187129">"Número quando ocupado"</string>
-    <string name="sum_cfb_enabled" msgid="5984198104833116690">"Encaminhando para <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
+    <string name="sum_cfb_enabled" msgid="5984198104833116690">"Encaminhar para <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfb_disabled" msgid="4913145177320506827">"Desativado"</string>
     <string name="disable_cfb_forbidden" msgid="3506984333877998061">"Sua operadora não suporta a desativação do encaminhamento de chamada quando seu telefone está ocupado."</string>
     <string name="labelCFNRy" msgid="1736067178393744351">"Quando não atendido"</string>
     <string name="messageCFNRy" msgid="672317899884380374">"Número quando não atendido"</string>
-    <string name="sum_cfnry_enabled" msgid="6955775691317662910">"Encaminhando para <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
+    <string name="sum_cfnry_enabled" msgid="6955775691317662910">"Encaminhar para <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfnry_disabled" msgid="3884684060443538097">"Desativado"</string>
     <string name="disable_cfnry_forbidden" msgid="4308233959150658058">"Sua operadora não suporta a desativação do encaminhamento de chamada quando seu telefone não responde."</string>
     <string name="labelCFNRc" msgid="2614827454402079766">"Quando inacessível"</string>
     <string name="messageCFNRc" msgid="6380695421020295119">"Número quando inacessível"</string>
-    <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"Encaminhando para <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
+    <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"Encaminhar para <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfnrc_disabled" msgid="7222141261321276464">"Desativado"</string>
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"Sua operadora não suporta a desativação do encaminhamento de chamada quando seu telefone não está acessível."</string>
     <string name="updating_title" msgid="6146755386174019046">"Configurações de chamadas"</string>

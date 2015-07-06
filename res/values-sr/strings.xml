@@ -101,18 +101,18 @@
     <string name="sum_cfu_enabled" msgid="2450052502198827927">"Прослеђивање свих позива на <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfu_enabled_no_number" msgid="6591985777096823616">"Број није доступан"</string>
     <string name="sum_cfu_disabled" msgid="8384177689501334080">"Искључено"</string>
-    <string name="labelCFB" msgid="6139853033106283172">"Када је заузето"</string>
-    <string name="messageCFB" msgid="3711089705936187129">"Број када је заузето"</string>
+    <string name="labelCFB" msgid="6139853033106283172">"Кад је заузето"</string>
+    <string name="messageCFB" msgid="3711089705936187129">"Број кад је заузето"</string>
     <string name="sum_cfb_enabled" msgid="5984198104833116690">"Прослеђује се на <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfb_disabled" msgid="4913145177320506827">"Искључено"</string>
     <string name="disable_cfb_forbidden" msgid="3506984333877998061">"Оператер не подржава онемогућавање преусмеравања позива када је телефон заузет."</string>
-    <string name="labelCFNRy" msgid="1736067178393744351">"Када се нисте јавили"</string>
-    <string name="messageCFNRy" msgid="672317899884380374">"Број када нема одговора"</string>
+    <string name="labelCFNRy" msgid="1736067178393744351">"Кад се не јавите"</string>
+    <string name="messageCFNRy" msgid="672317899884380374">"Број кад се не јавите"</string>
     <string name="sum_cfnry_enabled" msgid="6955775691317662910">"Прослеђује се на <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfnry_disabled" msgid="3884684060443538097">"Искључено"</string>
     <string name="disable_cfnry_forbidden" msgid="4308233959150658058">"Оператер не подржава онемогућавање преусмеравања позива када се на позив не одговори."</string>
-    <string name="labelCFNRc" msgid="2614827454402079766">"Када сте недоступни"</string>
-    <string name="messageCFNRc" msgid="6380695421020295119">"Број у случају недоступности"</string>
+    <string name="labelCFNRc" msgid="2614827454402079766">"Када је недоступно"</string>
+    <string name="messageCFNRc" msgid="6380695421020295119">"Број кад је недоступно"</string>
     <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"Прослеђује се на <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfnrc_disabled" msgid="7222141261321276464">"Онемогућено"</string>
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"Мобилни оператер не подржава онемогућавање преусмеравања позива када је телефон недоступан."</string>
