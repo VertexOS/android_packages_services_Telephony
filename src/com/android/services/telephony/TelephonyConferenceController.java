@@ -17,6 +17,7 @@
 package com.android.services.telephony;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -29,6 +30,7 @@ import android.telecom.ConferenceParticipant;
 import android.telecom.Connection;
 import android.telecom.DisconnectCause;
 import android.telecom.PhoneAccountHandle;
+import com.android.phone.PhoneUtils;
 
 import com.android.internal.telephony.Call;
 import com.android.internal.telephony.gsm.GsmConnection;
@@ -46,6 +48,8 @@ final class TelephonyConferenceController {
     private final Connection.Listener mConnectionListener = new Connection.Listener() {
         @Override
         public void onStateChanged(Connection c, int state) {
+            Log.v(this, "onStateChange triggered in Conf Controller : connection = "+ c
+                 + " state = " + state);
             recalculate();
         }
 
@@ -65,6 +69,7 @@ final class TelephonyConferenceController {
     private final List<TelephonyConnection> mTelephonyConnections = new ArrayList<>();
 
     private final TelephonyConnectionService mConnectionService;
+    private boolean mTriggerRecalculate = false;
 
     public TelephonyConferenceController(TelephonyConnectionService connectionService) {
         mConnectionService = connectionService;
@@ -72,6 +77,11 @@ final class TelephonyConferenceController {
 
     /** The TelephonyConference connection object. */
     private TelephonyConference mTelephonyConference;
+
+    boolean shouldRecalculate() {
+        Log.d(this, "shouldRecalculate is " + mTriggerRecalculate);
+        return mTriggerRecalculate;
+    }
 
     void add(TelephonyConnection connection) {
         mTelephonyConnections.add(connection);
@@ -82,11 +92,10 @@ final class TelephonyConferenceController {
     void remove(Connection connection) {
         connection.removeConnectionListener(mConnectionListener);
         mTelephonyConnections.remove(connection);
-
         recalculate();
     }
 
-    private void recalculate() {
+    void recalculate() {
         recalculateConference();
         recalculateConferenceable();
     }
@@ -183,6 +192,21 @@ final class TelephonyConferenceController {
         Log.d(this, "Recalculate conference calls %s %s.",
                 mTelephonyConference, conferencedConnections);
 
+        // Check if all conferenced connections are in Connection Service
+        boolean allConnInService = true;
+        Collection<Connection> allConnections = mConnectionService.getAllConnections();
+        for (Connection connection : conferencedConnections) {
+            Log.v (this, "Finding connection in Connection Service for " + connection);
+            if (!allConnections.contains(connection)) {
+                allConnInService = false;
+                Log.v(this, "Finding connection in Connection Service Failed");
+                break;
+            }
+        }
+
+        Log.d(this, "Is there a match for all connections in connection service " +
+            allConnInService);
+
         // If this is a GSM conference and the number of connections drops below 2, we will
         // terminate the conference.
         if (numGsmConnections < 2) {
@@ -204,35 +228,47 @@ final class TelephonyConferenceController {
                         mTelephonyConference.removeConnection(connection);
                     }
                 }
-
-                // Add any new ones
-                for (Connection connection : conferencedConnections) {
-                    if (!existingConnections.contains(connection)) {
-                        mTelephonyConference.addConnection(connection);
+                if (allConnInService) {
+                    mTriggerRecalculate = false;
+                    // Add any new ones
+                    for (Connection connection : conferencedConnections) {
+                        if (!existingConnections.contains(connection)) {
+                            mTelephonyConference.addConnection(connection);
+                        }
                     }
+                } else {
+                    Log.d(this, "Trigger recalculate later");
+                    mTriggerRecalculate = true;
                 }
             } else {
-                mTelephonyConference = new TelephonyConference(null);
-
-                for (Connection connection : conferencedConnections) {
-                    Log.d(this, "Adding a connection to a conference call: %s %s",
-                            mTelephonyConference, connection);
-                    mTelephonyConference.addConnection(connection);
+                if (allConnInService) {
+                    mTriggerRecalculate = false;
+                    mTelephonyConference = new TelephonyConference(null);
+                    for (Connection connection : conferencedConnections) {
+                        Log.d(this, "Adding a connection to a conference call: %s %s",
+                                mTelephonyConference, connection);
+                        mTelephonyConference.addConnection(connection);
+                    }
+                    mConnectionService.addConference(mTelephonyConference);
+                } else {
+                    Log.d(this, "Trigger recalculate later");
+                    mTriggerRecalculate = true;
                 }
-
-                mConnectionService.addConference(mTelephonyConference);
             }
-
-            // Set the conference state to the same state as its child connections.
-            Connection conferencedConnection = mTelephonyConference.getPrimaryConnection();
-            if (conferencedConnection != null) {
-                switch (conferencedConnection.getState()) {
-                    case Connection.STATE_ACTIVE:
-                        mTelephonyConference.setActive();
-                        break;
-                    case Connection.STATE_HOLDING:
-                        mTelephonyConference.setOnHold();
-                        break;
+            if (mTelephonyConference != null) {
+                Connection conferencedConnection = mTelephonyConference.getPrimaryConnection();
+                Log.v(this, "Primary Conferenced connection is " + conferencedConnection);
+                if (conferencedConnection != null) {
+                    switch (conferencedConnection.getState()) {
+                        case Connection.STATE_ACTIVE:
+                            Log.v(this, "Setting conference to active");
+                            mTelephonyConference.setActive();
+                            break;
+                        case Connection.STATE_HOLDING:
+                            Log.v(this, "Setting conference to hold");
+                            mTelephonyConference.setOnHold();
+                            break;
+                    }
                 }
             }
         }
