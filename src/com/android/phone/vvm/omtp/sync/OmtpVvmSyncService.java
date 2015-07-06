@@ -200,7 +200,6 @@ public class OmtpVvmSyncService extends IntentService {
                 downloadSuccess = true;
 
                 ImapHelper imapHelper = new ImapHelper(mContext, mPhoneAccount, network);
-
                 if (!imapHelper.isSuccessfullyInitialized()) {
                     Log.w(TAG, "Can't retrieve Imap credentials.");
                     releaseNetwork(this);
@@ -274,8 +273,10 @@ public class OmtpVvmSyncService extends IntentService {
 
     private void requestNetwork(NetworkCallback networkCallback) {
         NetworkRequest networkRequest = mNetworkRequestMap.get(networkCallback);
-        getConnectivityManager().requestNetwork(
-                networkRequest, networkCallback, NETWORK_REQUEST_TIMEOUT_MILLIS);
+        if (networkRequest != null) {
+            getConnectivityManager().requestNetwork(
+                    networkRequest, networkCallback, NETWORK_REQUEST_TIMEOUT_MILLIS);
+        }
     }
 
     private void releaseNetwork(NetworkCallback networkCallback) {
