@@ -303,7 +303,8 @@ public class OmtpVvmSyncService extends IntentService {
 
         AlarmManager alarmManager = (AlarmManager)
                 this.getSystemService(Context.ALARM_SERVICE);
-        alarmManager.set(AlarmManager.ELAPSED_REALTIME, retryInterval, pendingIntent);
+        alarmManager.set(AlarmManager.RTC, System.currentTimeMillis() + retryInterval,
+                pendingIntent);
 
         VisualVoicemailSettingsUtil.setVisualVoicemailRetryInterval(this, phoneAccount,
                 retryInterval * 2);
