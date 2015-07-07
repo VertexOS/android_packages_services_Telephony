@@ -62,7 +62,25 @@ public class InCallScreenShowActivation extends Activity {
             Log.d(LOG_TAG, "      - extras = " + extras);
         }
 
-        PhoneGlobals app = PhoneGlobals.getInstance();
+        PhoneGlobals app = PhoneGlobals.getInstanceIfPrimary();
+        if (app == null) {
+            // TODO: All CDMA provisioning code should move into a BroadcastReceiver that runs
+            // exclusively in the primary user's context.  This is because the majority of the
+            // telephony logic -- and all of the important bits -- runs only as primary so we don't
+            // have access to the things we need. We still need to maintain an Activity to support
+            // legacy code which starts this using startActivity() but that Activity should be a
+            // simple intent-trampoline for the new BroadcastReceiver.
+            //
+            // Though this conditional protects this code from NPEs on a secondary user due to an
+            // uninitialized PhoneGlobals, there's not a good reason at the time of this writing as
+            // to why a secondary user context shouldn't trigger a CDMA provisioning, or at least
+            // nobody has expressed concern.
+            Log.i(LOG_TAG, "Being asked to provision CDMA SIM from secondary user, skipping.");
+            setResult(RESULT_CANCELED);
+            finish();
+            return;
+        }
+
         Phone phone = app.getPhone();
         if (!TelephonyCapabilities.supportsOtasp(phone)) {
             Log.w(LOG_TAG, "CDMA Provisioning not supported on this device");
