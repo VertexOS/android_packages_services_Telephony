@@ -62,7 +62,6 @@ public class OmtpVvmSyncService extends IntentService {
 
     private VoicemailsQueryHelper mQueryHelper;
     private ConnectivityManager mConnectivityManager;
-    private Map<NetworkCallback, NetworkRequest> mNetworkRequestMap;
 
     public OmtpVvmSyncService() {
         super("OmtpVvmSyncService");
@@ -137,8 +136,6 @@ public class OmtpVvmSyncService extends IntentService {
             return;
         }
 
-        mNetworkRequestMap = new HashMap<NetworkCallback, NetworkRequest>();
-
         String action = intent.getAction();
         PhoneAccountHandle phoneAccount = intent.getParcelableExtra(EXTRA_PHONE_ACCOUNT);
         if (phoneAccount != null) {
@@ -161,18 +158,8 @@ public class OmtpVvmSyncService extends IntentService {
             return;
         }
 
-        NetworkRequest networkRequest = new NetworkRequest.Builder()
-        .addTransportType(NetworkCapabilities.TRANSPORT_CELLULAR)
-        .addCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
-        .setNetworkSpecifier(
-                Integer.toString(PhoneUtils.getSubIdForPhoneAccountHandle(phoneAccount)))
-        .build();
-
-        NetworkCallback networkCallback = new OmtpVvmNetworkRequestCallback(this, phoneAccount,
-                action);
-
-        mNetworkRequestMap.put(networkCallback, networkRequest);
-
+        OmtpVvmNetworkRequestCallback networkCallback = new OmtpVvmNetworkRequestCallback(this,
+                phoneAccount, action);
         requestNetwork(networkCallback);
     }
 
@@ -180,6 +167,7 @@ public class OmtpVvmSyncService extends IntentService {
         Context mContext;
         PhoneAccountHandle mPhoneAccount;
         String mAction;
+        NetworkRequest mNetworkRequest;
         int mRetryCount;
 
         public OmtpVvmNetworkRequestCallback(Context context, PhoneAccountHandle phoneAccount,
@@ -187,7 +175,17 @@ public class OmtpVvmSyncService extends IntentService {
             mContext = context;
             mPhoneAccount = phoneAccount;
             mAction = action;
+            mNetworkRequest = new NetworkRequest.Builder()
+            .addTransportType(NetworkCapabilities.TRANSPORT_CELLULAR)
+            .addCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
+            .setNetworkSpecifier(
+                    Integer.toString(PhoneUtils.getSubIdForPhoneAccountHandle(phoneAccount)))
+            .build();
             mRetryCount = NETWORK_RETRY_COUNT;
+        }
+
+        public NetworkRequest getNetworkRequest() {
+            return mNetworkRequest;
         }
 
         @Override
@@ -271,12 +269,9 @@ public class OmtpVvmSyncService extends IntentService {
         }
     }
 
-    private void requestNetwork(NetworkCallback networkCallback) {
-        NetworkRequest networkRequest = mNetworkRequestMap.get(networkCallback);
-        if (networkRequest != null) {
-            getConnectivityManager().requestNetwork(
-                    networkRequest, networkCallback, NETWORK_REQUEST_TIMEOUT_MILLIS);
-        }
+    private void requestNetwork(OmtpVvmNetworkRequestCallback networkCallback) {
+        getConnectivityManager().requestNetwork(networkCallback.getNetworkRequest(),
+                networkCallback, NETWORK_REQUEST_TIMEOUT_MILLIS);
     }
 
     private void releaseNetwork(NetworkCallback networkCallback) {
