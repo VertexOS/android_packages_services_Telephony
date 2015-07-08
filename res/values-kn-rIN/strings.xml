@@ -481,7 +481,7 @@
     <string name="ota_hfa_activation_dialog_message" msgid="8092479227918463415">"ನಿಮ್ಮ ಮೊಬೈಲ್‌‌ ಡೇಟಾ ಸೇವೆಯನ್ನು ಫೋನ್‌ ಸಕ್ರಿಯಗೊಳಿಸುತ್ತಿದೆ.\n\nಇದು ಸುಮಾರು 5 ನಿಮಿಷಗಳ ಕಾಲಾವಕಾಶ ತೆಗೆದುಕೊಳ್ಳಬಹುದು."</string>
     <string name="ota_skip_activation_dialog_title" msgid="2943366608272261306">"ಸಕ್ರಿಯಗೊಳಿಸುವುದನ್ನು ಸ್ಕಿಪ್‌ ಮಾಡುವುದೇ?"</string>
     <string name="ota_skip_activation_dialog_message" msgid="2440770373498870550">"ನೀವು ಸಕ್ರಿಯಗೊಳಿಸುವುದನ್ನು ಸ್ಕಿಪ್‌ ಮಾಡಿದರೆ, ನೀವು ಕರೆಗಳನ್ನು ಮಾಡಲು ಅಥವಾ ಮೊಬೈಲ್‌ ಡೇಟಾ ನೆಟ್‌ವರ್ಕ್‌ಗಳಿಗೆ ಸಂಪರ್ಕಗೊಳಿಸಲು ಸಾಧ್ಯವಾಗುವುದಿಲ್ಲ (ಆದರೂ ನೀವು Wi-Fi ನೆಟ್‌ವರ್ಕ್‌ಗಳಿಗೆ ಸಂಪರ್ಕಗೊಳಿಸಬಹುದು). ನಿಮ್ಮ ಫೋನ್ ಅನ್ನು ನೀವು ಸಕ್ರಿಯಗೊಳಿಸುವವರೆಗೂ, ನೀವು ಅದನ್ನು ಪ್ರತಿಬಾರಿ ಆನ್‌ ಮಾಡಿದಾಗಲೆಲ್ಲಾ ಅದನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಲು ನಿಮಗೆ ತಿಳಿಸಲಾಗುತ್ತದೆ."</string>
-    <string name="ota_skip_activation_dialog_skip_label" msgid="3458532775091563208">"ಸ್ಕಿಪ್ ಮಾಡು"</string>
+    <string name="ota_skip_activation_dialog_skip_label" msgid="3458532775091563208">"ಸ್ಕಿಪ್"</string>
     <string name="ota_activate" msgid="1368528132525626264">"ಸಕ್ರಿಯಗೊಳಿಸು"</string>
     <string name="ota_title_activate_success" msgid="6570240212263372046">"ಫೋನ್‌ ಸಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ."</string>
     <string name="ota_title_problem_with_activation" msgid="7095824491970084367">"ಸಕ್ರಿಯಗೊಳಿಸುವಲ್ಲಿ ಸಮಸ್ಯೆ"</string>

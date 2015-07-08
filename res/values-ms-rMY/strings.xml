@@ -106,12 +106,12 @@
     <string name="sum_cfb_enabled" msgid="5984198104833116690">"Memajukan ke <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfb_disabled" msgid="4913145177320506827">"Dimatikan"</string>
     <string name="disable_cfb_forbidden" msgid="3506984333877998061">"Pembawa anda tidak menyokong pelumpuhan pemajuan panggilan semasa telefon anda sibuk."</string>
-    <string name="labelCFNRy" msgid="1736067178393744351">"Semasa tidak dijawab"</string>
+    <string name="labelCFNRy" msgid="1736067178393744351">"Jika tidak dijawab"</string>
     <string name="messageCFNRy" msgid="672317899884380374">"Nombor apabila tidak dijawab"</string>
     <string name="sum_cfnry_enabled" msgid="6955775691317662910">"Memajukan ke <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfnry_disabled" msgid="3884684060443538097">"Dimatikan"</string>
     <string name="disable_cfnry_forbidden" msgid="4308233959150658058">"Pengendali anda tidak menyokong pelumpuhan pemajuan panggilan semasa telefon anda tidak menjawab."</string>
-    <string name="labelCFNRc" msgid="2614827454402079766">"Semasa tidak dapat dihubungi"</string>
+    <string name="labelCFNRc" msgid="2614827454402079766">"Jika tidak dapat dihubungi"</string>
     <string name="messageCFNRc" msgid="6380695421020295119">"Nombor apabila tidak dapat dihubungi"</string>
     <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"Memajukan ke <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfnrc_disabled" msgid="7222141261321276464">"Dilumpuhkan"</string>
@@ -197,8 +197,8 @@
     <string name="data_enabled" msgid="5972538663568715366">"Data didayakan"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"Benarkan penggunaan data"</string>
     <string name="roaming" msgid="8871412572928323707">"Perayauan data"</string>
-    <string name="roaming_enable" msgid="7331106985174381987">"Sambung ke perkhidmatan data apabila melakukan perayauan"</string>
-    <string name="roaming_disable" msgid="1843417228755568110">"Bersambung ke perkhidmatan data semasa melakukan perayauan"</string>
+    <string name="roaming_enable" msgid="7331106985174381987">"Sambung ke perkhidmatan data semasa perayauan"</string>
+    <string name="roaming_disable" msgid="1843417228755568110">"Sambung ke perkhidmatan data semasa perayauan"</string>
     <string name="roaming_reenable_message" msgid="8913735676127858115">"Anda telah kehilangan kesambungan data kerana anda meninggalkan rangkaian rumah anda dengan data perayauan dimatikan."</string>
     <string name="roaming_warning" msgid="1603164667540144353">"Anda mungkin dikenakan caj yang tinggi."</string>
     <string name="roaming_alert_title" msgid="3654815360303826008">"Benarkan perayauan data?"</string>

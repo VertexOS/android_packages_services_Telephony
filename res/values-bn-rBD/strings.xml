@@ -46,7 +46,7 @@
     <string name="no_vm_number_msg" msgid="1300729501030053828">"সিম কার্ডটিতে কোনো ভয়েসমেল নম্বর সংরক্ষিত নেই৷"</string>
     <string name="add_vm_number_str" msgid="4676479471644687453">"একটি নম্বর যোগ করুন"</string>
     <string name="puk_unlocked" msgid="2284912838477558454">"আপনার সিম কার্ডকে অবরোধ মুক্ত করা হয়েছে৷ আপনার ফোন আনলক করা হচ্ছে..."</string>
-    <string name="label_ndp" msgid="780479633159517250">"সিম নেটওয়ার্ক আনলক PIN"</string>
+    <string name="label_ndp" msgid="780479633159517250">"সিম নেটওয়ার্ক আনলক পিন"</string>
     <string name="sim_ndp_unlock_text" msgid="683628237760543009">"আনলক করুন"</string>
     <string name="sim_ndp_dismiss_text" msgid="1604823375752456947">"খারিজ করুন"</string>
     <string name="requesting_unlock" msgid="6412629401033249351">"নেটওয়ার্ক আনলকের অনুরোধ করা হচ্ছে..."</string>
@@ -339,7 +339,7 @@
     <string name="enable_fdn_ok" msgid="7215588870329688132">"FDN অক্ষম করুন"</string>
     <string name="disable_fdn_ok" msgid="5727046928930740173">"FDN সক্ষম করুন"</string>
     <string name="sum_fdn" msgid="1959399454900272878">"স্থায়ী ডায়াল করার নম্বরগুলি পরিচালনা করুন"</string>
-    <string name="sum_fdn_change_pin" msgid="6666549734792827932">"FDN অ্যাক্সেসের জন্য PIN পরিবর্তন করুন"</string>
+    <string name="sum_fdn_change_pin" msgid="6666549734792827932">"FDN অ্যাক্সেসের জন্য পিন পরিবর্তন করুন"</string>
     <string name="sum_fdn_manage_list" msgid="8431088265332628316">"ফোন নম্বরের তালিকা পরিচালনা করুন"</string>
     <string name="voice_privacy" msgid="3776841382844614716">"ভয়েস গোপনীয়তা"</string>
     <string name="voice_privacy_summary" msgid="3159383389833516214">"উন্নত গোপনীয়তা মোড সক্ষম করুন"</string>
@@ -364,7 +364,7 @@
     <string name="delete_fdn_contact" msgid="6668958073074151717">"ডায়াল করার জন্য স্থির নম্বর মুছুন"</string>
     <string name="deleting_fdn_contact" msgid="5669163206349319969">"ডায়াল করার জন্য স্থির নম্বর মোছা হচ্ছে..."</string>
     <string name="fdn_contact_deleted" msgid="7154162327112259569">"স্থায়ী ডায়ালের নম্বর মুছে ফেলা হয়েছে৷"</string>
-    <string name="pin2_invalid" msgid="5470854099230755944">"আপনি একটি ভুল PIN টাইপ করায় FDN আপডেট করা হয়নি৷"</string>
+    <string name="pin2_invalid" msgid="5470854099230755944">"আপনি একটি ভুল পিন টাইপ করায় FDN আপডেট করা হয়নি৷"</string>
     <string name="fdn_invalid_number" msgid="1494755047900009147">"FDN আপডেট করা হয়নি কারণ নম্বরটি ২০ সংখ্যার বেশি হলে চলবে না৷"</string>
     <string name="pin2_or_fdn_invalid" msgid="6025144083384701197">"FDN আপডেট করা হয়নি৷ PIN2 ভুল ছিল, বা ফোন নম্বর বাতিল করা হয়েছে৷"</string>
     <string name="fdn_failed" msgid="540018079008319747">"FDN অপারেশন ব্যর্থ হয়েছে৷"</string>
@@ -372,23 +372,23 @@
     <string name="simContacts_empty" msgid="5270660846489561932">"আপনার সিম কার্ডে কোনো পরিচিত নেই৷"</string>
     <string name="simContacts_title" msgid="1861472842524839921">"পরিচিতগুলি আমদানি করুন"</string>
     <string name="simContacts_airplaneMode" msgid="5254946758982621072">"SIM কার্ডটি থেকে পরিচিতিগুলি আমদানি করতে বিমান মোড বন্ধ করুন৷"</string>
-    <string name="enable_pin" msgid="5422767284133234860">"সিম PIN সক্ষম/অক্ষম করুন"</string>
-    <string name="change_pin" msgid="9174186126330785343">"সিম PIN পরিবর্তন করুন"</string>
-    <string name="enter_pin_text" msgid="8532615714751931951">"সিম PIN:"</string>
-    <string name="oldPinLabel" msgid="5287773661246368314">"পুরোনো PIN"</string>
-    <string name="newPinLabel" msgid="207488227285336897">"নতুন PIN"</string>
+    <string name="enable_pin" msgid="5422767284133234860">"সিম পিন সক্ষম/অক্ষম করুন"</string>
+    <string name="change_pin" msgid="9174186126330785343">"সিম পিন পরিবর্তন করুন"</string>
+    <string name="enter_pin_text" msgid="8532615714751931951">"সিম পিন:"</string>
+    <string name="oldPinLabel" msgid="5287773661246368314">"পুরোনো পিন"</string>
+    <string name="newPinLabel" msgid="207488227285336897">"নতুন পিন"</string>
     <string name="confirmPinLabel" msgid="257597715098070206">"নতুন PINটি নিশ্চিত করুন"</string>
-    <string name="badPin" msgid="8955102849303984935">"আপনার দ্বারা টাইপ করা পুরানো PIN সঠিক নয়৷ আবার চেষ্টা করুন৷"</string>
+    <string name="badPin" msgid="8955102849303984935">"আপনার দ্বারা টাইপ করা পুরানো পিন সঠিক নয়৷ আবার চেষ্টা করুন৷"</string>
     <string name="mismatchPin" msgid="5923253370683071889">"আপনার টাইপ করা PINগুলি মিলছে না৷ আবার চেষ্টা করুন৷"</string>
-    <string name="invalidPin" msgid="5981171102258684792">"৪ থেকে ৮ সংখ্যা বিশিষ্ট একটি PIN টাইপ করুন৷"</string>
-    <string name="disable_sim_pin" msgid="3419351358300716472">"SIM এর PIN সাফ করুন"</string>
-    <string name="enable_sim_pin" msgid="4845145659651484248">"SIM এর PIN সেট করুন"</string>
-    <string name="enable_in_progress" msgid="3417917024688497010">"PIN সেটিং…"</string>
-    <string name="enable_pin_ok" msgid="2918545971413270063">"PIN সেট করুন"</string>
-    <string name="disable_pin_ok" msgid="2109571368635883688">"PIN সাফ করা হয়েছে"</string>
-    <string name="pin_failed" msgid="5644377896213584760">"PIN ভুল"</string>
-    <string name="pin_changed" msgid="4455736268023261662">"PIN আপডেট হয়েছে"</string>
-    <string name="puk_requested" msgid="5921393215789090200">"পাসওয়ার্ডটি ভুল৷ PIN এখন অবরুদ্ধ৷ PUK এর জন্য অনুরোধ করা হয়েছে৷"</string>
+    <string name="invalidPin" msgid="5981171102258684792">"৪ থেকে ৮ সংখ্যা বিশিষ্ট একটি পিন টাইপ করুন৷"</string>
+    <string name="disable_sim_pin" msgid="3419351358300716472">"SIM এর পিন সাফ করুন"</string>
+    <string name="enable_sim_pin" msgid="4845145659651484248">"SIM এর পিন সেট করুন"</string>
+    <string name="enable_in_progress" msgid="3417917024688497010">"পিন সেটিং…"</string>
+    <string name="enable_pin_ok" msgid="2918545971413270063">"পিন সেট করুন"</string>
+    <string name="disable_pin_ok" msgid="2109571368635883688">"পিন সাফ করা হয়েছে"</string>
+    <string name="pin_failed" msgid="5644377896213584760">"পিন ভুল"</string>
+    <string name="pin_changed" msgid="4455736268023261662">"পিন আপডেট হয়েছে"</string>
+    <string name="puk_requested" msgid="5921393215789090200">"পাসওয়ার্ডটি ভুল৷ পিন এখন অবরুদ্ধ৷ PUK এর জন্য অনুরোধ করা হয়েছে৷"</string>
     <string name="enter_pin2_text" msgid="8339444124477720345">"PIN2"</string>
     <string name="oldPin2Label" msgid="8559146795026261502">"পুরোনো PIN2"</string>
     <string name="newPin2Label" msgid="4573956902204349054">"নতুন PIN2"</string>
@@ -400,7 +400,7 @@
     <string name="invalidPuk2" msgid="7059081153334815973">"৮ সংখ্যার একটি PIN2 লিখুন৷"</string>
     <string name="pin2_changed" msgid="3724522579945610956">"PIN2 আপডেট হয়েছে"</string>
     <string name="label_puk2_code" msgid="4688069961795341948">"PUK2 কোড লিখুন"</string>
-    <string name="fdn_enable_puk2_requested" msgid="4991074891459554705">"পাসওয়ার্ডটি ভুল৷ PIN2 এখন অবরুদ্ধ৷ আবার চেষ্টা করতে, PIN 2 পরিবর্তন করুন৷"</string>
+    <string name="fdn_enable_puk2_requested" msgid="4991074891459554705">"পাসওয়ার্ডটি ভুল৷ পিন2 এখন অবরুদ্ধ৷ আবার চেষ্টা করতে, পিন 2 পরিবর্তন করুন৷"</string>
     <string name="puk2_requested" msgid="5831015200030161434">"পাসওয়ার্ডটি ভুল৷ SIM এখন অবরুদ্ধ৷ PUK2 লিখুন৷"</string>
     <string name="puk2_blocked" msgid="3150263853077280049">"PUK2 স্থায়ীভাবে অবরুদ্ধ করা হয়েছে৷"</string>
     <string name="pin2_attempts" msgid="720736232885011507">\n"আপনার কাছে <xliff:g id="NUMBER">%d</xliff:g>টি প্রচেষ্টা অবশিষ্ট রয়েছে৷"</string>
