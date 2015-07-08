@@ -143,7 +143,7 @@
     <string name="no_change" msgid="3186040086622435212">"Aucune modification n\'a été apportée."</string>
     <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"Choisissez un service de messagerie vocale."</string>
     <string name="voicemail_default" msgid="2001233554889016880">"Votre opérateur"</string>
-    <string name="mobile_networks" msgid="2843854043339307375">"Paramètres du réseau mobile"</string>
+    <string name="mobile_networks" msgid="2843854043339307375">"Paramètres réseau mobile"</string>
     <string name="label_available" msgid="1181658289009300430">"Réseaux disponibles"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"Recherche..."</string>
     <string name="empty_networks_list" msgid="4249426905018815316">"Aucun réseau trouvé."</string>
@@ -327,7 +327,7 @@
     <string name="cdma_lte_data_service" msgid="4255018217292548962">"Configurer service données"</string>
     <string name="carrier_settings_title" msgid="9028166176523012300">"Paramètres de l\'opérateur"</string>
     <string name="fdn" msgid="7878832555095183202">"Numéros autorisés"</string>
-    <string name="fdn_with_label" msgid="187084204115493366">"Numéros aut. (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="fdn_with_label" msgid="187084204115493366">"Num. autorisés (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="manage_fdn_list" msgid="8777755791892122369">"Liste de numéros autorisés"</string>
     <string name="fdn_list_with_label" msgid="7437232552210469217">"Liste num. aut. (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="fdn_activation" msgid="2156479741307463576">"Activation des numéros autorisés"</string>

@@ -88,10 +88,10 @@
     <string name="sum_loading_settings" msgid="1826692909391168620">"Загрузка настроек…"</string>
     <string name="sum_hide_caller_id" msgid="1071407020290873782">"Скрывать номер при исходящих вызовах"</string>
     <string name="sum_show_caller_id" msgid="6768534125447290401">"Номер, отображающийся при исходящих вызовах"</string>
-    <string name="sum_default_caller_id" msgid="1954518825510901365">"Использовать стандартные настройки оператора для показа моего номера при исходящих вызовах"</string>
+    <string name="sum_default_caller_id" msgid="1954518825510901365">"Использовать стандартные настройки оператора для показа моего номера при исходящих вызовах."</string>
     <string name="labelCW" msgid="6120513814915920200">"Параллельный вызов"</string>
-    <string name="sum_cw_enabled" msgid="8083061901633671397">"Извещать меня о входящих вызовах во время разговора"</string>
-    <string name="sum_cw_disabled" msgid="3648693907300104575">"Извещать меня о входящих вызовах во время разговора"</string>
+    <string name="sum_cw_enabled" msgid="8083061901633671397">"Извещать меня о входящих вызовах во время разговора."</string>
+    <string name="sum_cw_disabled" msgid="3648693907300104575">"Извещать меня о входящих вызовах во время разговора."</string>
     <string name="call_forwarding_settings" msgid="3378927671091537173">"Переадресация"</string>
     <string name="call_forwarding_settings_with_label" msgid="8569489414006897127">"Переадресация (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="labelCF" msgid="2574386948026924737">"Переадресация вызовов"</string>
@@ -536,7 +536,7 @@
     <string name="description_dial_button" msgid="7459705245418435351">"набор номера"</string>
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"Вибросигнал"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"Вибросигнал"</string>
-    <string name="voicemail_visual_voicemail_switch_title" msgid="5012622186976275457">"Анимированная голосовая почта"</string>
+    <string name="voicemail_visual_voicemail_switch_title" msgid="5012622186976275457">"Визуальная голосовая почта"</string>
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"Звук"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"Рингтон и вибросигнал"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"Встроенные SIM-карты"</string>

@@ -481,7 +481,7 @@
     <string name="ota_hfa_activation_dialog_message" msgid="8092479227918463415">"A telefon aktiválja a mobiladat-szolgáltatást.\n\nEz akár 5 percet is igénybe vehet."</string>
     <string name="ota_skip_activation_dialog_title" msgid="2943366608272261306">"Kihagyja az aktiválást?"</string>
     <string name="ota_skip_activation_dialog_message" msgid="2440770373498870550">"Ha kihagyja az aktiválást, nem indíthat hívásokat és nem kapcsolódhat mobil adathálózatokhoz (de csatlakozhat Wi-Fi hálózatokhoz). Amíg nem aktiválja telefonját, az minden egyes bekapcsoláskor felkéri Önt erre."</string>
-    <string name="ota_skip_activation_dialog_skip_label" msgid="3458532775091563208">"Átugrás"</string>
+    <string name="ota_skip_activation_dialog_skip_label" msgid="3458532775091563208">"Kihagyás"</string>
     <string name="ota_activate" msgid="1368528132525626264">"Aktiválás"</string>
     <string name="ota_title_activate_success" msgid="6570240212263372046">"A telefon aktiválva."</string>
     <string name="ota_title_problem_with_activation" msgid="7095824491970084367">"Gond volt az aktiválással"</string>

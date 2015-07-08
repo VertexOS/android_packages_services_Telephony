@@ -20,7 +20,7 @@
     <string name="phoneAppLabel" product="default" msgid="906161039445636857">"Telepono"</string>
     <string name="emergencyDialerIconLabel" msgid="7812140032168171053">"Pang-emergency na Dialer"</string>
     <string name="phoneIconLabel" msgid="2331230813161304895">"Telepono"</string>
-    <string name="fdnListLabel" msgid="8630418672279521003">"Listahan ng FDN"</string>
+    <string name="fdnListLabel" msgid="8630418672279521003">"List ng FDN"</string>
     <string name="unknown" msgid="6878797917991465859">"Di-kilala"</string>
     <string name="private_num" msgid="6713286113000232309">"Pribadong numero"</string>
     <string name="payphone" msgid="4793877574636445118">"Payphone"</string>
@@ -57,9 +57,9 @@
     <string name="labelGsmMore_with_label" msgid="2674012918829238901">"Mga setting ng tawag gamit ang GSM (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="labelCDMAMore" msgid="1630676740428229339">"Mga setting ng CDMA na tawag"</string>
     <string name="labelCdmaMore_with_label" msgid="6333588719319970399">"Mga setting ng tawag gamit ang CDMA (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
-    <string name="apn_settings" msgid="9043423184895642077">"Access Point Names"</string>
+    <string name="apn_settings" msgid="9043423184895642077">"Mga Access Point Name"</string>
     <string name="settings_label" msgid="3876743539816984008">"Mga Setting ng Network"</string>
-    <string name="phone_accounts" msgid="6376603393888116364">"Mga account sa pagtawag"</string>
+    <string name="phone_accounts" msgid="6376603393888116364">"Account sa pagtawag"</string>
     <string name="phone_accounts_make_calls_with" msgid="1969188078933152231">"Tumawag gamit ang"</string>
     <string name="phone_accounts_make_sip_calls_with" msgid="4677789312053828493">"Tumawag sa pamamagitan ng SIP gamit ang"</string>
     <string name="phone_accounts_ask_every_time" msgid="4346499067149985702">"Itanong muna"</string>
@@ -79,7 +79,7 @@
     <string name="cell_broadcast_settings" msgid="8740238216690502563">"Mga pang-emergency na broadcast"</string>
     <string name="call_settings" msgid="6112441768261754562">"Mga setting ng tawag"</string>
     <string name="additional_gsm_call_settings" msgid="1391795981938800617">"Mga karagdagang setting"</string>
-    <string name="additional_gsm_call_settings_with_label" msgid="1385241520708457376">"Mga karagdagang setting (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="additional_gsm_call_settings_with_label" msgid="1385241520708457376">"Karagdagang setting (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="sum_gsm_call_settings" msgid="4076647190996778012">"Mga karagdagang setting ng tawag na GSM lang"</string>
     <string name="additional_cdma_call_settings" msgid="8628958775721886909">"Mga karagdagang setting ng pagtawag sa CDMA"</string>
     <string name="sum_cdma_call_settings" msgid="284753265979035549">"Mga karagdagang setting ng tawag na CDMA lang"</string>
@@ -92,9 +92,9 @@
     <string name="labelCW" msgid="6120513814915920200">"Call waiting"</string>
     <string name="sum_cw_enabled" msgid="8083061901633671397">"Habang nasa isang tawag, i-notify ako ng mga papasok na tawag"</string>
     <string name="sum_cw_disabled" msgid="3648693907300104575">"Habang nasa isang tawag, i-notify ako ng mga papasok na tawag"</string>
-    <string name="call_forwarding_settings" msgid="3378927671091537173">"Mga setting ng pagpapasa ng tawag"</string>
-    <string name="call_forwarding_settings_with_label" msgid="8569489414006897127">"Mga setting ng pagpapasa ng tawag (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
-    <string name="labelCF" msgid="2574386948026924737">"Pagpapasa ng Tawag"</string>
+    <string name="call_forwarding_settings" msgid="3378927671091537173">"Setting ng pagpasa ng tawag"</string>
+    <string name="call_forwarding_settings_with_label" msgid="8569489414006897127">"Setting ng pagpasa ng tawag (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="labelCF" msgid="2574386948026924737">"Pagpapasa ng tawag"</string>
     <string name="labelCFU" msgid="8147177368148660600">"Palaging ipasa"</string>
     <string name="messageCFU" msgid="3560082430662923687">"Palaging gamitin ang numerong ito"</string>
     <string name="sum_cfu_enabled_indicator" msgid="4014187342724130197">"Ipinapasa ang lahat ng mga tawag"</string>
@@ -143,7 +143,7 @@
     <string name="no_change" msgid="3186040086622435212">"Walang ginawang mga pagbabago."</string>
     <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"Piliin ang serbisyo ng voicemail"</string>
     <string name="voicemail_default" msgid="2001233554889016880">"Ang iyong carrier"</string>
-    <string name="mobile_networks" msgid="2843854043339307375">"Mga setting ng cellular network"</string>
+    <string name="mobile_networks" msgid="2843854043339307375">"Setting ng cellular network"</string>
     <string name="label_available" msgid="1181658289009300430">"Mga available na network"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"Naghahanap…"</string>
     <string name="empty_networks_list" msgid="4249426905018815316">"Walang nakitang mga network."</string>
@@ -156,7 +156,7 @@
     <string name="sum_carrier_select" msgid="3494252551249882718">"Pumili ng network operator"</string>
     <string name="sum_search_networks" msgid="2921092249873272715">"Hanapin ang lahat ng mga available na network"</string>
     <string name="select_automatically" msgid="5628402124471810174">"Awtomatikong pumili"</string>
-    <string name="sum_select_automatically" msgid="5614890115123292400">"Awtomatikong pumili ng ninanais na network"</string>
+    <string name="sum_select_automatically" msgid="5614890115123292400">"Awtomatikong pumili ng gustong network"</string>
     <string name="register_automatically" msgid="6017849844573519637">"Awtomatikong pagpaparehistro..."</string>
     <string name="preferred_network_mode_title" msgid="2336624679902659306">"Gustong uri ng network"</string>
     <string name="preferred_network_mode_summary" msgid="1434820673166126609">"Baguhin ang network operating mode"</string>
@@ -200,7 +200,7 @@
     <string name="roaming_enable" msgid="7331106985174381987">"Kumonekta sa mga serbisyo ng data kapag nagro-roam"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"Kumonekta sa mga serbisyo ng data kapag nagro-roam"</string>
     <string name="roaming_reenable_message" msgid="8913735676127858115">"Nawalan ka ng pagkonekta sa data dahil iniwan mo ang iyong home network na naka-off ang roaming ng data."</string>
-    <string name="roaming_warning" msgid="1603164667540144353">"Maaari kang magkaroon ng malalaking singil."</string>
+    <string name="roaming_warning" msgid="1603164667540144353">"Maaari kang magkaroon ng malaking bayarin."</string>
     <string name="roaming_alert_title" msgid="3654815360303826008">"Payagan ang roaming ng data?"</string>
     <string name="gsm_umts_options" msgid="6538311689850981686">"Mga pagpipilian sa GSM/UMTS"</string>
     <string name="cdma_options" msgid="4016822858172249884">"Mga pagpipiliian sa CDMA"</string>
@@ -328,8 +328,8 @@
     <string name="carrier_settings_title" msgid="9028166176523012300">"Mga setting ng carrier"</string>
     <string name="fdn" msgid="7878832555095183202">"Mga Fixed Dialing Number"</string>
     <string name="fdn_with_label" msgid="187084204115493366">"Mga Fixed Dialing Number (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
-    <string name="manage_fdn_list" msgid="8777755791892122369">"Listahan ng FDN"</string>
-    <string name="fdn_list_with_label" msgid="7437232552210469217">"Listahan ng FDN (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="manage_fdn_list" msgid="8777755791892122369">"List ng FDN"</string>
+    <string name="fdn_list_with_label" msgid="7437232552210469217">"List ng FDN (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="fdn_activation" msgid="2156479741307463576">"Pag-activate ng FDN"</string>
     <string name="fdn_enabled" msgid="5238109009915521240">"Pinagana ang Mga Fixed Dialing Number"</string>
     <string name="fdn_disabled" msgid="4700049736675368279">"Naka-disable ang Mga Fixed Dialing Number"</string>
@@ -370,7 +370,7 @@
     <string name="fdn_failed" msgid="540018079008319747">"Nagbigo ang operasyon ng FDN."</string>
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"Nagbabasa mula sa SIM card…"</string>
     <string name="simContacts_empty" msgid="5270660846489561932">"Walang mga contact sa iyong SIM card."</string>
-    <string name="simContacts_title" msgid="1861472842524839921">"Piliin ang mga contact na ii-import"</string>
+    <string name="simContacts_title" msgid="1861472842524839921">"Piliin mga contact na i-import"</string>
     <string name="simContacts_airplaneMode" msgid="5254946758982621072">"I-off ang airplane mode upang mag-import ng mga contact mula sa SIM card."</string>
     <string name="enable_pin" msgid="5422767284133234860">"Paganahin/huwag paganahin ang PIN ng SIM"</string>
     <string name="change_pin" msgid="9174186126330785343">"Baguhin ang PIN ng SIM"</string>

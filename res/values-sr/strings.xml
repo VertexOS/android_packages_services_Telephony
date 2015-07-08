@@ -85,7 +85,7 @@
     <string name="sum_cdma_call_settings" msgid="284753265979035549">"Додатна само CDMA подешавања позива"</string>
     <string name="labelNwService" msgid="4699970172021870983">"Подешавања мрежне услуге"</string>
     <string name="labelCallerId" msgid="3888899447379069198">"ИД позиваоца"</string>
-    <string name="sum_loading_settings" msgid="1826692909391168620">"Учитавање подешавања…"</string>
+    <string name="sum_loading_settings" msgid="1826692909391168620">"Учитавају се подешавања…"</string>
     <string name="sum_hide_caller_id" msgid="1071407020290873782">"Број је скривен у одлазним позивима"</string>
     <string name="sum_show_caller_id" msgid="6768534125447290401">"Број приказан у одлазним позивима"</string>
     <string name="sum_default_caller_id" msgid="1954518825510901365">"Користи подразумевана подешавања оператера за приказивање мог броја у одлазним порукама"</string>
@@ -201,7 +201,7 @@
     <string name="roaming_disable" msgid="1843417228755568110">"Повезивање са услугом за податке током роминга"</string>
     <string name="roaming_reenable_message" msgid="8913735676127858115">"Веза за пренос података је прекинута зато што сте напустили кућну мрежу са искљученим преносом података у ромингу."</string>
     <string name="roaming_warning" msgid="1603164667540144353">"Могу да настану значајни трошкови."</string>
-    <string name="roaming_alert_title" msgid="3654815360303826008">"Желите ли да дозволите пренос података у ромингу?"</string>
+    <string name="roaming_alert_title" msgid="3654815360303826008">"Дозвољавате ли пренос података у ромингу?"</string>
     <string name="gsm_umts_options" msgid="6538311689850981686">"Опције за GSM/UMTS"</string>
     <string name="cdma_options" msgid="4016822858172249884">"CDMA опције"</string>
     <string name="throttle_data_usage" msgid="3715677828160555808">"Коришћење података"</string>
