@@ -26,12 +26,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
+import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.AsyncResult;
 import android.os.Binder;
+import android.os.Build;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
@@ -39,6 +41,7 @@ import android.os.PersistableBundle;
 import android.os.RemoteException;
 import android.os.ServiceManager;
 import android.os.UserHandle;
+import android.preference.PreferenceManager;
 import android.service.carrier.CarrierIdentifier;
 import android.service.carrier.CarrierService;
 import android.service.carrier.ICarrierService;
@@ -113,6 +116,8 @@ public class CarrierConfigLoader extends ICarrierConfigLoader.Stub {
     private static final int EVENT_BIND_DEFAULT_TIMEOUT = 10;
     // Bind timed out for a carrier app.
     private static final int EVENT_BIND_CARRIER_TIMEOUT = 11;
+    // Check if the system fingerprint has changed.
+    private static final int EVENT_CHECK_SYSTEM_UPDATE = 12;
 
     private static final int BIND_TIMEOUT_MILLIS = 10000;
 
@@ -120,6 +125,9 @@ public class CarrierConfigLoader extends ICarrierConfigLoader.Stub {
     private static final String TAG_DOCUMENT = "carrier_config";
     private static final String TAG_VERSION = "package_version";
     private static final String TAG_BUNDLE = "bundle_data";
+
+    // SharedPreferences key for last known build fingerprint.
+    private static final String KEY_FINGERPRINT = "build_fingerprint";
 
     // Handler to process various events.
     //
@@ -163,7 +171,7 @@ public class CarrierConfigLoader extends ICarrierConfigLoader.Stub {
                     carrierPackageName = (String) msg.obj;
                     // Only update if there are cached config removed to avoid updating config
                     // for unrelated packages.
-                    if (deleteConfigForPackage(carrierPackageName)) {
+                    if (clearCachedConfigForPackage(carrierPackageName)) {
                         int numPhones = TelephonyManager.from(mContext).getPhoneCount();
                         for (int i = 0; i < numPhones; ++i) {
                             updateConfigForPhoneId(i);
@@ -301,6 +309,18 @@ public class CarrierConfigLoader extends ICarrierConfigLoader.Stub {
                     }
                     broadcastConfigChangedIntent(phoneId);
                     break;
+
+                case EVENT_CHECK_SYSTEM_UPDATE:
+                    SharedPreferences sharedPrefs =
+                            PreferenceManager.getDefaultSharedPreferences(mContext);
+                    final String lastFingerprint = sharedPrefs.getString(KEY_FINGERPRINT, null);
+                    if (!Build.FINGERPRINT.equals(lastFingerprint)) {
+                        log("Build fingerprint changed. old: "
+                                + lastFingerprint + " new: " + Build.FINGERPRINT);
+                        clearCachedConfigForPackage(null);
+                        sharedPrefs.edit().putString(KEY_FINGERPRINT, Build.FINGERPRINT).apply();
+                    }
+                    break;
             }
         }
     };
@@ -328,6 +348,7 @@ public class CarrierConfigLoader extends ICarrierConfigLoader.Stub {
         // Make this service available through ServiceManager.
         ServiceManager.addService(Context.CARRIER_CONFIG_SERVICE, this);
         log("CarrierConfigLoader has started");
+        mHandler.sendEmptyMessage(EVENT_CHECK_SYSTEM_UPDATE);
     }
 
     /**
@@ -534,14 +555,23 @@ public class CarrierConfigLoader extends ICarrierConfigLoader.Stub {
     }
 
     /**
-     * Deletes all saved XML files associated with the given package name.
-     * Return false if can't find matching XML files.
+     * Clears cached carrier config.
+     * This deletes all saved XML files associated with the given package name. If packageName is
+     * null, then it deletes all saved XML files.
+     *
+     * @param packageName the name of a carrier package, or null if all cached config should be
+     *                    cleared.
+     * @return true iff one or more files were deleted.
      */
-    private boolean deleteConfigForPackage(final String packageName) {
+    private boolean clearCachedConfigForPackage(final String packageName) {
         File dir = mContext.getFilesDir();
         File[] packageFiles = dir.listFiles(new FilenameFilter() {
             public boolean accept(File dir, String filename) {
-                return filename.startsWith("carrierconfig-" + packageName + "-");
+                if (packageName != null) {
+                    return filename.startsWith("carrierconfig-" + packageName + "-");
+                } else {
+                    return filename.startsWith("carrierconfig-");
+                }
             }
         });
         if (packageFiles == null || packageFiles.length < 1) return false;
@@ -620,7 +650,7 @@ public class CarrierConfigLoader extends ICarrierConfigLoader.Stub {
         // This method should block until deleting has completed, so that an error which prevents us
         // from clearing the cache is passed back to the carrier app. With the files successfully
         // deleted, this can return and we will eventually bind to the carrier app.
-        deleteConfigForPackage(callingPackageName);
+        clearCachedConfigForPackage(callingPackageName);
         updateConfigForPhoneId(phoneId);
     }
 
