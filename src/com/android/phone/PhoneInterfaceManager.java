@@ -1001,11 +1001,17 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         Log.e(LOG_TAG, "silenseRinger not supported");
     }
 
-    public boolean isOffhook() {
-        return isOffhookForSubscriber(getDefaultSubscription());
+    @Override
+    public boolean isOffhook(String callingPackage) {
+        return isOffhookForSubscriber(getDefaultSubscription(), callingPackage);
     }
 
-    public boolean isOffhookForSubscriber(int subId) {
+    @Override
+    public boolean isOffhookForSubscriber(int subId, String callingPackage) {
+        if (!canReadPhoneState(callingPackage, "isOffhookForSubscriber")) {
+            return false;
+        }
+
         final Phone phone = getPhone(subId);
         if (phone != null) {
             return (phone.getState() == PhoneConstants.State.OFFHOOK);
@@ -1014,11 +1020,17 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         }
     }
 
-    public boolean isRinging() {
-        return (isRingingForSubscriber(getDefaultSubscription()));
+    @Override
+    public boolean isRinging(String callingPackage) {
+        return (isRingingForSubscriber(getDefaultSubscription(), callingPackage));
     }
 
-    public boolean isRingingForSubscriber(int subId) {
+    @Override
+    public boolean isRingingForSubscriber(int subId, String callingPackage) {
+        if (!canReadPhoneState(callingPackage, "isRingingForSubscriber")) {
+            return false;
+        }
+
         final Phone phone = getPhone(subId);
         if (phone != null) {
             return (phone.getState() == PhoneConstants.State.RINGING);
@@ -1027,11 +1039,17 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         }
     }
 
-    public boolean isIdle() {
-        return isIdleForSubscriber(getDefaultSubscription());
+    @Override
+    public boolean isIdle(String callingPackage) {
+        return isIdleForSubscriber(getDefaultSubscription(), callingPackage);
     }
 
-    public boolean isIdleForSubscriber(int subId) {
+    @Override
+    public boolean isIdleForSubscriber(int subId, String callingPackage) {
+        if (!canReadPhoneState(callingPackage, "isIdleForSubscriber")) {
+            return false;
+        }
+
         final Phone phone = getPhone(subId);
         if (phone != null) {
             return (phone.getState() == PhoneConstants.State.IDLE);
@@ -1204,11 +1222,20 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         }
     }
 
-    public boolean isRadioOn() {
-        return isRadioOnForSubscriber(getDefaultSubscription());
+    @Override
+    public boolean isRadioOn(String callingPackage) {
+        return isRadioOnForSubscriber(getDefaultSubscription(), callingPackage);
     }
 
-    public boolean isRadioOnForSubscriber(int subId) {
+    @Override
+    public boolean isRadioOnForSubscriber(int subId, String callingPackage) {
+        if (!canReadPhoneState(callingPackage, "isRadioOnForSubscriber")) {
+            return false;
+        }
+        return isRadioOnForSubscriber(subId);
+    }
+
+    private boolean isRadioOnForSubscriber(int subId) {
         final Phone phone = getPhone(subId);
         if (phone != null) {
             return phone.getServiceState().getState() != ServiceState.STATE_POWER_OFF;
@@ -1624,6 +1651,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         Log.e(LOG_TAG, "[PhoneIntfMgr] " + msg);
     }
 
+    @Override
     public int getActivePhoneType() {
         return getActivePhoneTypeForSubscriber(getDefaultSubscription());
     }
@@ -1641,12 +1669,16 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     /**
      * Returns the CDMA ERI icon index to display
      */
-    public int getCdmaEriIconIndex() {
-        return getCdmaEriIconIndexForSubscriber(getDefaultSubscription());
+    @Override
+    public int getCdmaEriIconIndex(String callingPackage) {
+        return getCdmaEriIconIndexForSubscriber(getDefaultSubscription(), callingPackage);
     }
 
     @Override
-    public int getCdmaEriIconIndexForSubscriber(int subId) {
+    public int getCdmaEriIconIndexForSubscriber(int subId, String callingPackage) {
+        if (!canReadPhoneState(callingPackage, "getCdmaEriIconIndexForSubscriber")) {
+            return -1;
+        }
         final Phone phone = getPhone(subId);
         if (phone != null) {
             return phone.getCdmaEriIconIndex();
@@ -1660,12 +1692,16 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
      * 0 - ON
      * 1 - FLASHING
      */
-    public int getCdmaEriIconMode() {
-        return getCdmaEriIconModeForSubscriber(getDefaultSubscription());
+    @Override
+    public int getCdmaEriIconMode(String callingPackage) {
+        return getCdmaEriIconModeForSubscriber(getDefaultSubscription(), callingPackage);
     }
 
     @Override
-    public int getCdmaEriIconModeForSubscriber(int subId) {
+    public int getCdmaEriIconModeForSubscriber(int subId, String callingPackage) {
+        if (!canReadPhoneState(callingPackage, "getCdmaEriIconModeForSubscriber")) {
+            return -1;
+        }
         final Phone phone = getPhone(subId);
         if (phone != null) {
             return phone.getCdmaEriIconMode();
@@ -1677,12 +1713,16 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     /**
      * Returns the CDMA ERI text,
      */
-    public String getCdmaEriText() {
-        return getCdmaEriTextForSubscriber(getDefaultSubscription());
+    @Override
+    public String getCdmaEriText(String callingPackage) {
+        return getCdmaEriTextForSubscriber(getDefaultSubscription(), callingPackage);
     }
 
     @Override
-    public String getCdmaEriTextForSubscriber(int subId) {
+    public String getCdmaEriTextForSubscriber(int subId, String callingPackage) {
+        if (!canReadPhoneState(callingPackage, "getCdmaEriIconTextForSubscriber")) {
+            return null;
+        }
         final Phone phone = getPhone(subId);
         if (phone != null) {
             return phone.getCdmaEriText();
@@ -1763,17 +1803,20 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
      * @Deprecated to be removed Q3 2013 use {@link #getDataNetworkType}.
      */
     @Override
-    public int getNetworkType() {
-        return getNetworkTypeForSubscriber(getDefaultSubscription());
+    public int getNetworkType(String callingPackage) {
+        return getNetworkTypeForSubscriber(getDefaultSubscription(), callingPackage);
     }
 
     /**
      * Returns the network type for a subId
      */
     @Override
-    public int getNetworkTypeForSubscriber(int subId) {
+    public int getNetworkTypeForSubscriber(int subId, String callingPackage) {
+        if (!canReadPhoneState(callingPackage, "getNetworkTypeForSubscriber")) {
+            return TelephonyManager.NETWORK_TYPE_UNKNOWN;
+        }
         final Phone phone = getPhone(subId);
-        if (phone != null) { 
+        if (phone != null) {
             return phone.getServiceState().getDataNetworkType();
         } else {
             return TelephonyManager.NETWORK_TYPE_UNKNOWN;
@@ -1784,15 +1827,19 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
      * Returns the data network type
      */
     @Override
-    public int getDataNetworkType() {
-        return getDataNetworkTypeForSubscriber(getDefaultSubscription());
+    public int getDataNetworkType(String callingPackage) {
+        return getDataNetworkTypeForSubscriber(getDefaultSubscription(), callingPackage);
     }
 
     /**
      * Returns the data network type for a subId
      */
     @Override
-    public int getDataNetworkTypeForSubscriber(int subId) {
+    public int getDataNetworkTypeForSubscriber(int subId, String callingPackage) {
+        if (!canReadPhoneState(callingPackage, "getDataNetworkTypeForSubscriber")) {
+            return TelephonyManager.NETWORK_TYPE_UNKNOWN;
+        }
+
         final Phone phone = getPhone(subId);
         if (phone != null) {
             return phone.getServiceState().getDataNetworkType();
@@ -1849,15 +1896,21 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
      * is a tri-state return value as for a period of time
      * the mode may be unknown.
      *
+     * @param callingPackage the name of the package making the call.
      * @return {@link Phone#LTE_ON_CDMA_UNKNOWN}, {@link Phone#LTE_ON_CDMA_FALSE}
      * or {@link Phone#LTE_ON_CDMA_TRUE}
      */
-    public int getLteOnCdmaMode() {
-        return getLteOnCdmaModeForSubscriber(getDefaultSubscription());
+    @Override
+    public int getLteOnCdmaMode(String callingPackage) {
+        return getLteOnCdmaModeForSubscriber(getDefaultSubscription(), callingPackage);
     }
 
     @Override
-    public int getLteOnCdmaModeForSubscriber(int subId) {
+    public int getLteOnCdmaModeForSubscriber(int subId, String callingPackage) {
+        if (!canReadPhoneState(callingPackage, "getLteOnCdmaModeForSubscriber")) {
+            return PhoneConstants.LTE_ON_CDMA_UNKNOWN;
+        }
+
         final Phone phone = getPhone(subId);
         if (phone == null) {
             return PhoneConstants.LTE_ON_CDMA_UNKNOWN;
@@ -2549,7 +2602,11 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     }
 
     @Override
-    public int getRadioAccessFamily(int phoneId) {
+    public int getRadioAccessFamily(int phoneId, String callingPackage) {
+        if (!canReadPhoneState(callingPackage, "getRadioAccessFamily")) {
+            return RadioAccessFamily.RAF_UNKNOWN;
+        }
+
         return ProxyController.getInstance().getRadioAccessFamily(phoneId);
     }
 
