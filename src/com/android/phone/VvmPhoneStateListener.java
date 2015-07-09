@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License
  */
-package com.android.phone.vvm.omtp.sync;
+package com.android.phone;
 
 import android.content.Context;
 import android.content.Intent;
@@ -22,8 +22,10 @@ import android.telecom.PhoneAccountHandle;
 import android.telephony.PhoneStateListener;
 import android.telephony.ServiceState;
 
-import com.android.phone.PhoneUtils;
 import com.android.phone.vvm.omtp.OmtpVvmCarrierConfigHelper;
+import com.android.phone.vvm.omtp.sync.OmtpVvmSourceManager;
+import com.android.phone.vvm.omtp.sync.OmtpVvmSyncService;
+import com.android.phone.vvm.omtp.sync.VoicemailStatusQueryHelper;
 
 /**
  * Check if service is lost and indicate this in the voicemail status.
@@ -49,15 +51,22 @@ public class VvmPhoneStateListener extends PhoneStateListener {
                             VoicemailContract.Status.CONFIGURATION_STATE_OK,
                             VoicemailContract.Status.DATA_CHANNEL_STATE_OK,
                             VoicemailContract.Status.NOTIFICATION_CHANNEL_STATE_OK);
-                    // Run a full sync in case something was missed while signal was down.
-                    Intent serviceIntent = OmtpVvmSyncService.getSyncIntent(
-                            mContext, OmtpVvmSyncService.SYNC_FULL_SYNC, mPhoneAccount,
-                            true /* firstAttempt */);
-                    mContext.startService(serviceIntent);
+                    PhoneGlobals.getInstance().notificationMgr.updateMwi(
+                            PhoneUtils.getSubIdForPhoneAccountHandle(mPhoneAccount), false);
                 }
             }
 
-            if (!OmtpVvmSourceManager.getInstance(mContext).isVvmSourceRegistered(mPhoneAccount)) {
+            if (OmtpVvmSourceManager.getInstance(mContext).isVvmSourceRegistered(mPhoneAccount)) {
+                // If the source is already registered, run a full sync in case something was missed
+                // while signal was down.
+                Intent serviceIntent = OmtpVvmSyncService.getSyncIntent(
+                        mContext, OmtpVvmSyncService.SYNC_FULL_SYNC, mPhoneAccount,
+                        true /* firstAttempt */);
+                mContext.startService(serviceIntent);
+            } else {
+                // Otherwise initiate an activation because this means that an OMTP source was
+                // recognized but either the activation text was not successfully sent or a response
+                // was not received.
                 OmtpVvmCarrierConfigHelper carrierConfigHelper = new OmtpVvmCarrierConfigHelper(
                         mContext, PhoneUtils.getSubIdForPhoneAccountHandle(mPhoneAccount));
                 carrierConfigHelper.startActivation();
