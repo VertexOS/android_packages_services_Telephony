@@ -24,6 +24,7 @@ import android.telephony.TelephonyManager;
 
 import com.android.internal.telephony.Phone;
 import com.android.phone.PhoneUtils;
+import com.android.phone.VvmPhoneStateListener;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -102,6 +103,10 @@ public class OmtpVvmSourceManager {
         removePhoneStateListener(phoneAccount);
         mActiveVvmSources.remove(phoneAccount);
         OmtpVvmSyncService.cancelAllRetries(mContext, phoneAccount);
+    }
+
+    public void addPhoneStateListener(Phone phone) {
+        addPhoneStateListener(PhoneUtils.makePstnPhoneAccountHandle(phone));
     }
 
     public void addPhoneStateListener(PhoneAccountHandle phoneAccount) {

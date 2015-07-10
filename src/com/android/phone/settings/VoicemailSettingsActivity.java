@@ -392,6 +392,7 @@ public class VoicemailSettingsActivity extends PreferenceActivity
             boolean isEnabled = (Boolean) objValue;
             VisualVoicemailSettingsUtil.setVisualVoicemailEnabled(mPhone, isEnabled, true);
             if (isEnabled) {
+                OmtpVvmSourceManager.getInstance(mPhone.getContext()).addPhoneStateListener(mPhone);
                 mOmtpVvmCarrierConfigHelper.startActivation();
             } else {
                 OmtpVvmSourceManager.getInstance(mPhone.getContext()).removeSource(mPhone);
