@@ -1798,13 +1798,19 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     }
 
     /**
-     * Returns the data network type
+     * Returns the data network type.
+     * Legacy call, permission-free.
      *
      * @Deprecated to be removed Q3 2013 use {@link #getDataNetworkType}.
      */
     @Override
-    public int getNetworkType(String callingPackage) {
-        return getNetworkTypeForSubscriber(getDefaultSubscription(), callingPackage);
+    public int getNetworkType() {
+        final Phone phone = getPhone(getDefaultSubscription());
+        if (phone != null) {
+            return phone.getServiceState().getDataNetworkType();
+        } else {
+            return TelephonyManager.NETWORK_TYPE_UNKNOWN;
+        }
     }
 
     /**
@@ -1815,6 +1821,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         if (!canReadPhoneState(callingPackage, "getNetworkTypeForSubscriber")) {
             return TelephonyManager.NETWORK_TYPE_UNKNOWN;
         }
+
         final Phone phone = getPhone(subId);
         if (phone != null) {
             return phone.getServiceState().getDataNetworkType();
@@ -1849,18 +1856,14 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     }
 
     /**
-     * Returns the data network type
-     */
-    @Override
-    public int getVoiceNetworkType() {
-        return getVoiceNetworkTypeForSubscriber(getDefaultSubscription());
-    }
-
-    /**
      * Returns the Voice network type for a subId
      */
     @Override
-    public int getVoiceNetworkTypeForSubscriber(int subId) {
+    public int getVoiceNetworkTypeForSubscriber(int subId, String callingPackage) {
+        if (!canReadPhoneState(callingPackage, "getDataNetworkTypeForSubscriber")) {
+            return TelephonyManager.NETWORK_TYPE_UNKNOWN;
+        }
+
         final Phone phone = getPhone(subId);
         if (phone != null) {
             return phone.getServiceState().getVoiceNetworkType();
