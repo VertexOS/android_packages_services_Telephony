@@ -171,7 +171,7 @@ public class TelephonyConnectionService extends ConnectionService {
             }
         }
 
-        boolean isEmergencyNumber = PhoneNumberUtils.isPotentialEmergencyNumber(number);
+        boolean isEmergencyNumber = PhoneNumberUtils.isLocalEmergencyNumber(this, number);
 
         // Get the right phone object from the account data passed in.
         final Phone phone = getPhoneForAccount(request.getAccountHandle(), isEmergencyNumber);
