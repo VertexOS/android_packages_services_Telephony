@@ -93,7 +93,7 @@
     <string name="sum_cw_enabled" msgid="8083061901633671397">"Да бъда уведомяван/а за вх. обаждания по време на разговор"</string>
     <string name="sum_cw_disabled" msgid="3648693907300104575">"Да бъда уведомяван/а за вх. обаждания по време на разговор"</string>
     <string name="call_forwarding_settings" msgid="3378927671091537173">"Настройки за пренасочване на обажданията"</string>
-    <string name="call_forwarding_settings_with_label" msgid="8569489414006897127">"Настройки за прехвърляне на обаждане (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="call_forwarding_settings_with_label" msgid="8569489414006897127">"Настройки за пренасочване на обаждане (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="labelCF" msgid="2574386948026924737">"Пренасочване на обаждания"</string>
     <string name="labelCFU" msgid="8147177368148660600">"Да се пренасочва винаги"</string>
     <string name="messageCFU" msgid="3560082430662923687">"Винаги използвайте този номер"</string>
@@ -111,7 +111,7 @@
     <string name="sum_cfnry_enabled" msgid="6955775691317662910">"Пренасочва се към <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfnry_disabled" msgid="3884684060443538097">"Изключено"</string>
     <string name="disable_cfnry_forbidden" msgid="4308233959150658058">"Операторът ви не поддържа деактивиране на пренасочването на обаждания, когато телефонът ви не отговаря."</string>
-    <string name="labelCFNRc" msgid="2614827454402079766">"Когато няма връзка"</string>
+    <string name="labelCFNRc" msgid="2614827454402079766">"Когато няма достъп"</string>
     <string name="messageCFNRc" msgid="6380695421020295119">"Номер, когато няма достъп"</string>
     <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"Пренасочва се към <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfnrc_disabled" msgid="7222141261321276464">"Деактивирано"</string>

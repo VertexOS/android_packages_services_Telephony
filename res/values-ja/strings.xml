@@ -139,7 +139,7 @@
     <string name="vm_changed" msgid="380744030726254139">"ボイスメールの番号が変更されました。"</string>
     <string name="vm_change_failed" msgid="3352934863246208918">"ボイスメール番号を変更できませんでした。\nこの問題が続くようであれば携帯通信会社にお問い合わせください。"</string>
     <string name="fw_change_failed" msgid="5298103228470214665">"転送番号を変更できませんでした。\nこの問題が続くようであれば携帯通信会社にお問い合わせください。"</string>
-    <string name="fw_get_in_vm_failed" msgid="8862896836093833973">"現在の転送先番号設定の取得と保存ができませんでした。\n別の携帯通信会社に切り替えますか？"</string>
+    <string name="fw_get_in_vm_failed" msgid="8862896836093833973">"現在の転送先番号設定の取得と保存ができませんでした。\nかまわず新しい携帯通信会社に切り替えますか？"</string>
     <string name="no_change" msgid="3186040086622435212">"変更されていません。"</string>
     <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"ボイスメールサービスを選択"</string>
     <string name="voicemail_default" msgid="2001233554889016880">"携帯通信会社"</string>

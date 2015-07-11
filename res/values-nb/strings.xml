@@ -145,7 +145,7 @@
     <string name="voicemail_default" msgid="2001233554889016880">"Operatøren din"</string>
     <string name="mobile_networks" msgid="2843854043339307375">"Mobilnettinnstillinger"</string>
     <string name="label_available" msgid="1181658289009300430">"Tilgjengelige nettverk"</string>
-    <string name="load_networks_progress" msgid="5230707536168902952">"Søker…"</string>
+    <string name="load_networks_progress" msgid="5230707536168902952">"Søker …"</string>
     <string name="empty_networks_list" msgid="4249426905018815316">"Fant ingen nettverk."</string>
     <string name="search_networks" msgid="1601136049300882441">"Søk etter nettverk"</string>
     <string name="network_query_error" msgid="6828516148953325006">"Det oppsto en feil under søking etter nettverk."</string>

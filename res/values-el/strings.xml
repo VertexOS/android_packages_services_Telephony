@@ -79,7 +79,7 @@
     <string name="cell_broadcast_settings" msgid="8740238216690502563">"Εκπομπές έκτακτης ανάγκης"</string>
     <string name="call_settings" msgid="6112441768261754562">"Ρυθμίσεις κλήσης"</string>
     <string name="additional_gsm_call_settings" msgid="1391795981938800617">"Πρόσθετες ρυθμίσεις"</string>
-    <string name="additional_gsm_call_settings_with_label" msgid="1385241520708457376">"Επιπλέον ρυθμίσεις (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="additional_gsm_call_settings_with_label" msgid="1385241520708457376">"Ρυθμίσεις (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="sum_gsm_call_settings" msgid="4076647190996778012">"Πρόσθετες ρυθμίσεις κλήσης μόνο GSM"</string>
     <string name="additional_cdma_call_settings" msgid="8628958775721886909">"Επιπρόσθετες ρυθμίσεις κλήσης CDMA"</string>
     <string name="sum_cdma_call_settings" msgid="284753265979035549">"Πρόσθετες ρυθμίσεις κλήσης μόνο CDMA"</string>
@@ -111,7 +111,7 @@
     <string name="sum_cfnry_enabled" msgid="6955775691317662910">"Προώθηση στο <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfnry_disabled" msgid="3884684060443538097">"Ανενεργό"</string>
     <string name="disable_cfnry_forbidden" msgid="4308233959150658058">"Η εταιρεία σας δεν υποστηρίζει την απενεργοποίηση της προώθησης κλήσεων όταν το τηλέφωνό σας δεν απαντάει."</string>
-    <string name="labelCFNRc" msgid="2614827454402079766">"Όταν είναι αδύνατη η επικοινωνία"</string>
+    <string name="labelCFNRc" msgid="2614827454402079766">"Όταν δεν είμαι διαθέσιμος/η"</string>
     <string name="messageCFNRc" msgid="6380695421020295119">"Αριθμός όταν δεν είμαι διαθέσιμος/η"</string>
     <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"Προώθηση στο <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfnrc_disabled" msgid="7222141261321276464">"Απενεργοποιημένη"</string>
@@ -143,7 +143,7 @@
     <string name="no_change" msgid="3186040086622435212">"Δεν έγιναν αλλαγές."</string>
     <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"Επιλογή υπηρεσίας αυτόματου τηλεφωνητή"</string>
     <string name="voicemail_default" msgid="2001233554889016880">"Ο πάροχος κινητής τηλεφωνίας"</string>
-    <string name="mobile_networks" msgid="2843854043339307375">"Ρυθμίσεις δικτύου κινητής τηλεφωνίας"</string>
+    <string name="mobile_networks" msgid="2843854043339307375">"Ρυθμίσεις δικτ. κιν. τηλ."</string>
     <string name="label_available" msgid="1181658289009300430">"Διαθέσιμα δίκτυα"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"Αναζήτηση..."</string>
     <string name="empty_networks_list" msgid="4249426905018815316">"Δεν βρέθηκαν δίκτυα."</string>

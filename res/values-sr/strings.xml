@@ -85,7 +85,7 @@
     <string name="sum_cdma_call_settings" msgid="284753265979035549">"Додатна само CDMA подешавања позива"</string>
     <string name="labelNwService" msgid="4699970172021870983">"Подешавања мрежне услуге"</string>
     <string name="labelCallerId" msgid="3888899447379069198">"ИД позиваоца"</string>
-    <string name="sum_loading_settings" msgid="1826692909391168620">"Учитавање подешавања…"</string>
+    <string name="sum_loading_settings" msgid="1826692909391168620">"Учитавају се подешавања…"</string>
     <string name="sum_hide_caller_id" msgid="1071407020290873782">"Број је скривен у одлазним позивима"</string>
     <string name="sum_show_caller_id" msgid="6768534125447290401">"Број приказан у одлазним позивима"</string>
     <string name="sum_default_caller_id" msgid="1954518825510901365">"Користи подразумевана подешавања оператера за приказивање мог броја у одлазним порукама"</string>
@@ -101,18 +101,18 @@
     <string name="sum_cfu_enabled" msgid="2450052502198827927">"Прослеђивање свих позива на <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfu_enabled_no_number" msgid="6591985777096823616">"Број није доступан"</string>
     <string name="sum_cfu_disabled" msgid="8384177689501334080">"Искључено"</string>
-    <string name="labelCFB" msgid="6139853033106283172">"Када је заузето"</string>
-    <string name="messageCFB" msgid="3711089705936187129">"Број када је заузето"</string>
+    <string name="labelCFB" msgid="6139853033106283172">"Кад је заузето"</string>
+    <string name="messageCFB" msgid="3711089705936187129">"Број кад је заузето"</string>
     <string name="sum_cfb_enabled" msgid="5984198104833116690">"Прослеђује се на <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfb_disabled" msgid="4913145177320506827">"Искључено"</string>
     <string name="disable_cfb_forbidden" msgid="3506984333877998061">"Оператер не подржава онемогућавање преусмеравања позива када је телефон заузет."</string>
-    <string name="labelCFNRy" msgid="1736067178393744351">"Када се нисте јавили"</string>
-    <string name="messageCFNRy" msgid="672317899884380374">"Број када нема одговора"</string>
+    <string name="labelCFNRy" msgid="1736067178393744351">"Кад се не јавите"</string>
+    <string name="messageCFNRy" msgid="672317899884380374">"Број кад се не јавите"</string>
     <string name="sum_cfnry_enabled" msgid="6955775691317662910">"Прослеђује се на <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfnry_disabled" msgid="3884684060443538097">"Искључено"</string>
     <string name="disable_cfnry_forbidden" msgid="4308233959150658058">"Оператер не подржава онемогућавање преусмеравања позива када се на позив не одговори."</string>
-    <string name="labelCFNRc" msgid="2614827454402079766">"Када сте недоступни"</string>
-    <string name="messageCFNRc" msgid="6380695421020295119">"Број у случају недоступности"</string>
+    <string name="labelCFNRc" msgid="2614827454402079766">"Када је недоступно"</string>
+    <string name="messageCFNRc" msgid="6380695421020295119">"Број кад је недоступно"</string>
     <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"Прослеђује се на <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfnrc_disabled" msgid="7222141261321276464">"Онемогућено"</string>
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"Мобилни оператер не подржава онемогућавање преусмеравања позива када је телефон недоступан."</string>
@@ -201,7 +201,7 @@
     <string name="roaming_disable" msgid="1843417228755568110">"Повезивање са услугом за податке током роминга"</string>
     <string name="roaming_reenable_message" msgid="8913735676127858115">"Веза за пренос података је прекинута зато што сте напустили кућну мрежу са искљученим преносом података у ромингу."</string>
     <string name="roaming_warning" msgid="1603164667540144353">"Могу да настану значајни трошкови."</string>
-    <string name="roaming_alert_title" msgid="3654815360303826008">"Желите ли да дозволите пренос података у ромингу?"</string>
+    <string name="roaming_alert_title" msgid="3654815360303826008">"Дозвољавате ли пренос података у ромингу?"</string>
     <string name="gsm_umts_options" msgid="6538311689850981686">"Опције за GSM/UMTS"</string>
     <string name="cdma_options" msgid="4016822858172249884">"CDMA опције"</string>
     <string name="throttle_data_usage" msgid="3715677828160555808">"Коришћење података"</string>
