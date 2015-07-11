@@ -326,19 +326,19 @@
     <string name="cdma_activate_device" msgid="3793805892364814518">"Aktivizo"</string>
     <string name="cdma_lte_data_service" msgid="4255018217292548962">"Konfiguro shërbimin e të dhënave"</string>
     <string name="carrier_settings_title" msgid="9028166176523012300">"Cilësimet e operatorit"</string>
-    <string name="fdn" msgid="7878832555095183202">"Numrat e telefonave fiks"</string>
-    <string name="fdn_with_label" msgid="187084204115493366">"Numrat e telefonave fiks (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="fdn" msgid="7878832555095183202">"Numrat me telefonim të përzgjedhur"</string>
+    <string name="fdn_with_label" msgid="187084204115493366">"Numrat me telefonim të përzgjedhur (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="manage_fdn_list" msgid="8777755791892122369">"Lista e FDN-ve"</string>
-    <string name="fdn_list_with_label" msgid="7437232552210469217">"Lista e FDN-ve (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
-    <string name="fdn_activation" msgid="2156479741307463576">"Aktivizimi FDN"</string>
-    <string name="fdn_enabled" msgid="5238109009915521240">"Numrat e telefonave fiks u aktivizuan"</string>
-    <string name="fdn_disabled" msgid="4700049736675368279">"Numrat e telefonave fiks u çaktivizuan"</string>
+    <string name="fdn_list_with_label" msgid="7437232552210469217">"Lista e FDN-së (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="fdn_activation" msgid="2156479741307463576">"Aktivizimi i FDN-së"</string>
+    <string name="fdn_enabled" msgid="5238109009915521240">"Numrat me telefonim të përzgjedhur u aktivizuan"</string>
+    <string name="fdn_disabled" msgid="4700049736675368279">"Numrat me telefonim të përzgjedhur u çaktivizuan"</string>
     <string name="enable_fdn" msgid="3740191529180493851">"Aktivizo FDN-në"</string>
     <string name="disable_fdn" msgid="7944020890722540616">"Çaktivizo FDN-në"</string>
     <string name="change_pin2" msgid="2153563695382176676">"Ndrysho PIN2-shin"</string>
     <string name="enable_fdn_ok" msgid="7215588870329688132">"Çaktivizo FDN-në"</string>
     <string name="disable_fdn_ok" msgid="5727046928930740173">"Aktivizo FDN-në"</string>
-    <string name="sum_fdn" msgid="1959399454900272878">"Menaxho numrat e telefonave fiks"</string>
+    <string name="sum_fdn" msgid="1959399454900272878">"Menaxho numrat me telefonim të përzgjedhur"</string>
     <string name="sum_fdn_change_pin" msgid="6666549734792827932">"Ndrysho PIN-in për qasje te FDN-ja"</string>
     <string name="sum_fdn_manage_list" msgid="8431088265332628316">"Menaxho listën e numrave të telefonit"</string>
     <string name="voice_privacy" msgid="3776841382844614716">"Privatësia e zërit"</string>
