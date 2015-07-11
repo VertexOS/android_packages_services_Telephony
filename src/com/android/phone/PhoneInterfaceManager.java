@@ -2710,10 +2710,10 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
 
     private boolean canReadPhoneState(String callingPackage, String message) {
         try {
-            mApp.enforceCallingOrSelfPermission(
+            mApp.enforceCallingPermission(
                     android.Manifest.permission.READ_PRIVILEGED_PHONE_STATE, message);
 
-            // SKIP checking for run-time permission since self or obtained PRIVILEDGED
+            // SKIP checking for run-time permission since obtained PRIVILEDGED
             return true;
         } catch (SecurityException e) {
             mApp.enforceCallingOrSelfPermission(android.Manifest.permission.READ_PHONE_STATE,
