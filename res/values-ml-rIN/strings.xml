@@ -70,7 +70,7 @@
     <string name="phone_accounts_configure_account_settings" msgid="1361715069911607109">"അക്കൗണ്ട് ക്രമീകരണങ്ങൾ കോൺഫിഗർചെയ്യുക"</string>
     <string name="phone_accounts_all_calling_accounts" msgid="207619531589278471">"എല്ലാ കോളിംഗ് അക്കൗണ്ടുകളും"</string>
     <string name="phone_accounts_all_calling_accounts_summary" msgid="8594186415822657011">"ഫോൺ വിളിക്കാനാകുന്ന അക്കൗണ്ടുകൾ തിരഞ്ഞെടുക്കുക"</string>
-    <string name="wifi_calling" msgid="739018212480165598">"Wi-Fi കോളിംഗ്"</string>
+    <string name="wifi_calling" msgid="739018212480165598">"വൈഫൈ കോളിംഗ്"</string>
     <string name="connection_service_default_label" msgid="1498481943805913754">"അന്തർ നിർമ്മിത കണക്ഷൻ സേവനം"</string>
     <string name="voicemail" msgid="8693759337917898954">"വോയ്സ് മെയില്‍"</string>
     <string name="voicemail_settings_with_label" msgid="152724978380748296">"ശബ്ദമെയിൽ(<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
@@ -480,7 +480,7 @@
     <string name="ota_hfa_activation_title" msgid="2234246934160473981">"സജീവമാക്കുന്നു..."</string>
     <string name="ota_hfa_activation_dialog_message" msgid="8092479227918463415">"ഫോൺ നിങ്ങളുടെ മൊബൈൽ ഡാറ്റ സേവനം സജീവമാക്കുന്നു.\n\nഇതിന് 5 മിനിറ്റ് വരെയെടുക്കാം."</string>
     <string name="ota_skip_activation_dialog_title" msgid="2943366608272261306">"സജീവമാക്കൽ ഒഴിവാക്കണോ?"</string>
-    <string name="ota_skip_activation_dialog_message" msgid="2440770373498870550">"നിങ്ങൾ സജീവമാക്കൽ ഒഴിവാക്കുകയാണെങ്കിൽ, നിങ്ങൾക്ക് കോളുകൾ വിളിക്കാനോ മൊബൈൽ ഡാറ്റ നെറ്റ്‌വർക്കുകളിൽ കണക്റ്റുചെയ്യാനോ കഴിയില്ല (എങ്കിലും നിങ്ങൾക്ക് Wi-Fi നെറ്റ്‌വർക്കുകളിൽ കണക്റ്റുചെയ്യാം). നിങ്ങളുടെ ഫോൺ സജീവമാക്കുന്നതുവരെ, അത് ഓൺ ചെയ്യുമ്പോഴെല്ലാം സജീവമാക്കാൻ നിങ്ങളോട് ആവശ്യപ്പെടും."</string>
+    <string name="ota_skip_activation_dialog_message" msgid="2440770373498870550">"നിങ്ങൾ സജീവമാക്കൽ ഒഴിവാക്കുകയാണെങ്കിൽ, നിങ്ങൾക്ക് കോളുകൾ വിളിക്കാനോ മൊബൈൽ ഡാറ്റ നെറ്റ്‌വർക്കുകളിൽ കണക്റ്റുചെയ്യാനോ കഴിയില്ല (എങ്കിലും നിങ്ങൾക്ക് വൈഫൈ നെറ്റ്‌വർക്കുകളിൽ കണക്റ്റുചെയ്യാം). നിങ്ങളുടെ ഫോൺ സജീവമാക്കുന്നതുവരെ, അത് ഓൺ ചെയ്യുമ്പോഴെല്ലാം സജീവമാക്കാൻ നിങ്ങളോട് ആവശ്യപ്പെടും."</string>
     <string name="ota_skip_activation_dialog_skip_label" msgid="3458532775091563208">"ഒഴിവാക്കുക"</string>
     <string name="ota_activate" msgid="1368528132525626264">"സജീവമാക്കുക"</string>
     <string name="ota_title_activate_success" msgid="6570240212263372046">"ഫോൺ സജീവമാക്കി."</string>
@@ -540,8 +540,8 @@
     <string name="sim_description_emergency_calls" msgid="7535215397212301562">"അടിയന്തിര കോൾചെയ്യൽ മാത്രം"</string>
     <string name="sim_description_default" msgid="4778679519938775515">"SIM കാർഡ്, സ്ലോട്ട്: <xliff:g id="SLOT_ID">%s</xliff:g>"</string>
     <string name="accessibility_settings_activity_title" msgid="8562004288733103868">"പ്രവേശനക്ഷമത"</string>
-    <string name="status_hint_label_incoming_wifi_call" msgid="8772915926382037499">"ഇൻകമിംഗ് Wi-Fi കോൾ"</string>
-    <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"Wi-Fi കോൾ"</string>
+    <string name="status_hint_label_incoming_wifi_call" msgid="8772915926382037499">"ഇൻകമിംഗ് വൈഫൈ കോൾ"</string>
+    <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"വൈഫൈ കോൾ"</string>
     <string name="emergency_action_launch_hint" msgid="5841511849007540970">"തുറക്കുന്നതിന് വീണ്ടും സ്‌പർശിക്കുക"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"സന്ദേശം ഡീകോഡുചെയ്യുമ്പോൾ ഒരു പിശകുണ്ടായി."</string>
     <string name="callFailed_cdma_activation" msgid="2307989779233262164">"ഒരു SIM കാർഡ് നിങ്ങളുടെ സേവനം സജീവമാക്കി, ഫോണിന്റെ റോമിംഗ് ശേഷികൾ അപ്‌ഡേറ്റ് ചെയ്തു."</string>

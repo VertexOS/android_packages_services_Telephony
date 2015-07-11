@@ -269,9 +269,9 @@
     <string name="enable_disable_local_weather" msgid="986967454867219114">"ಸ್ಥಳೀಯ ಹವಾಮಾನ"</string>
     <string name="local_weather_enable" msgid="6199315114382448922">"ಸ್ಥಳೀಯ ಹವಾಮಾನ ಸಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ"</string>
     <string name="local_weather_disable" msgid="2510158089142626480">"ಸ್ಥಳೀಯ ಹವಾಮಾನ ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ"</string>
-    <string name="enable_disable_atr" msgid="8339572391278872343">"ಪ್ರದೇಶ ದಟ್ಟಣೆ ವರದಿಗಳು"</string>
-    <string name="atr_enable" msgid="5541757457789181799">"ಪ್ರದೇಶ ದಟ್ಟಣೆ ವರದಿಗಳು ಸಕ್ರಿಯಗೊಂಡಿವೆ"</string>
-    <string name="atr_disable" msgid="7085558154727596455">"ಪ್ರದೇಶ ದಟ್ಟಣೆ ವರದಿಗಳು ನಿಷ್ಕ್ರಿಯಗೊಂಡಿವೆ"</string>
+    <string name="enable_disable_atr" msgid="8339572391278872343">"ಪ್ರದೇಶ ಟ್ರಾಫಿಕ್‌ ವರದಿಗಳು"</string>
+    <string name="atr_enable" msgid="5541757457789181799">"ಪ್ರದೇಶ ಟ್ರಾಫಿಕ್‌ ವರದಿಗಳು ಸಕ್ರಿಯಗೊಂಡಿವೆ"</string>
+    <string name="atr_disable" msgid="7085558154727596455">"ಪ್ರದೇಶ ಟ್ರಾಫಿಕ್‌ ವರದಿಗಳು ನಿಷ್ಕ್ರಿಯಗೊಂಡಿವೆ"</string>
     <string name="enable_disable_lafs" msgid="668189073721277199">"ಸ್ಥಳೀಯ ವಿಮಾನ ನಿಲ್ದಾಣ ಹಾರಾಟದ ವೇಳಾಪಟ್ಟಿ"</string>
     <string name="lafs_enable" msgid="2791978667205137052">"ಸ್ಥಳೀಯ ವಿಮಾನ ನಿಲ್ದಾಣದ ಹಾರಾಟ ವೇಳಾಪಟ್ಟಿಯನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ"</string>
     <string name="lafs_disable" msgid="2391212397725495350">"ಸ್ಥಳೀಯ ವಿಮಾನ ನಿಲ್ದಾಣದ ಹಾರಾಟ ವೇಳಾಪಟ್ಟಿಯನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ"</string>
