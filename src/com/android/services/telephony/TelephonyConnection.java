@@ -616,15 +616,11 @@ abstract class TelephonyConnection extends Connection {
      */
     void clearOriginalConnection() {
         if (mOriginalConnection != null) {
-            if (getPhone() != null) {
-                getPhone().unregisterForPreciseCallStateChanged(mHandler);
-                getPhone().unregisterForRingbackTone(mHandler);
-                getPhone().unregisterForHandoverStateChanged(mHandler);
-                getPhone().unregisterForDisconnect(mHandler);
-                getPhone().unregisterForSuppServiceNotification(mHandler);
-            }
-            mOriginalConnection.removePostDialListener(mPostDialListener);
-            mOriginalConnection.removeListener(mOriginalConnectionListener);
+            getPhone().unregisterForPreciseCallStateChanged(mHandler);
+            getPhone().unregisterForRingbackTone(mHandler);
+            getPhone().unregisterForHandoverStateChanged(mHandler);
+            getPhone().unregisterForDisconnect(mHandler);
+            getPhone().unregisterForSuppServiceNotification(mHandler);
             mOriginalConnection = null;
         }
     }
@@ -900,7 +896,13 @@ abstract class TelephonyConnection extends Connection {
 
     private void close() {
         Log.v(this, "close");
-        clearOriginalConnection();
+        if (getPhone() != null) {
+            getPhone().unregisterForPreciseCallStateChanged(mHandler);
+            getPhone().unregisterForRingbackTone(mHandler);
+            getPhone().unregisterForHandoverStateChanged(mHandler);
+            getPhone().unregisterForSuppServiceNotification(mHandler);
+        }
+        mOriginalConnection = null;
         destroy();
     }
 
