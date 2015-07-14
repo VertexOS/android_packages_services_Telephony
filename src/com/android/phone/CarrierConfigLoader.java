@@ -17,6 +17,7 @@
 package com.android.phone;
 
 import static android.Manifest.permission.READ_PHONE_STATE;
+import static android.Manifest.permission.READ_PRIVILEGED_PHONE_STATE;
 
 import android.annotation.NonNull;
 import android.app.ActivityManagerNative;
@@ -616,7 +617,12 @@ public class CarrierConfigLoader extends ICarrierConfigLoader.Stub {
     @Override public
     @NonNull
     PersistableBundle getConfigForSubId(int subId) {
-        mContext.enforceCallingOrSelfPermission(READ_PHONE_STATE, null);
+        try {
+            mContext.enforceCallingOrSelfPermission(READ_PRIVILEGED_PHONE_STATE, null);
+            // SKIP checking run-time READ_PHONE_STATE since using PRIVILEGED
+        } catch (SecurityException e) {
+            mContext.enforceCallingOrSelfPermission(READ_PHONE_STATE, null);
+        }
         int phoneId = SubscriptionManager.getPhoneId(subId);
         PersistableBundle retConfig = CarrierConfigManager.getDefaultConfig();
         if (SubscriptionManager.isValidPhoneId(phoneId)) {
