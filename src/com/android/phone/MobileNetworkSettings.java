@@ -288,7 +288,7 @@ public class MobileNetworkSettings extends PreferenceActivity
                 if (DBG) log("initializeSubscriptions: UPDATE");
                 currentTab = mTabHost != null ? mTabHost.getCurrentTab() : 0;
 
-                setContentView(R.layout.network_settings);
+                setContentView(com.android.internal.R.layout.common_tab_settings);
 
                 mTabHost = (TabHost) findViewById(android.R.id.tabhost);
                 mTabHost.setup();
@@ -327,7 +327,7 @@ public class MobileNetworkSettings extends PreferenceActivity
                     mTabHost.clearAllTabs();
                     mTabHost = null;
                 }
-                setContentView(R.layout.network_settings);
+                setContentView(com.android.internal.R.layout.common_tab_settings);
                 break;
             }
             case DO_NOTHING: {
