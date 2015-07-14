@@ -74,14 +74,21 @@ abstract class TelephonyConnection extends Connection {
                     AsyncResult ar = (AsyncResult) msg.obj;
                     com.android.internal.telephony.Connection connection =
                          (com.android.internal.telephony.Connection) ar.result;
-                    if ((connection.getAddress() != null &&
-                                    mOriginalConnection.getAddress() != null &&
+                    if (mOriginalConnection != null) {
+                        if (connection != null &&
+                            ((connection.getAddress() != null &&
+                            mOriginalConnection.getAddress() != null &&
                             mOriginalConnection.getAddress().contains(connection.getAddress())) ||
-                            mOriginalConnection.getStateBeforeHandover() == connection.getState()) {
-                        Log.d(TelephonyConnection.this, "SettingOriginalConnection " +
-                                mOriginalConnection.toString() + " with " + connection.toString());
-                        setOriginalConnection(connection);
-                        mWasImsConnection = false;
+                            connection.getStateBeforeHandover() == mOriginalConnection.getState())) {
+                            Log.d(TelephonyConnection.this,
+                                    "SettingOriginalConnection " + mOriginalConnection.toString()
+                                            + " with " + connection.toString());
+                            setOriginalConnection(connection);
+                            mWasImsConnection = false;
+                        }
+                    } else {
+                        Log.w(TelephonyConnection.this,
+                                "MSG_HANDOVER_STATE_CHANGED: mOriginalConnection==null - invalid state (not cleaned up)");
                     }
                     break;
                 case MSG_RINGBACK_TONE:
