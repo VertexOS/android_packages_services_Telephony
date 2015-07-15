@@ -24,7 +24,7 @@
 
     <!-- Official label of the phone app, as seen in "Manage Applications"
          and other settings UIs. -->
-    <string name="phoneAppLabel" product="default">Phone</string>
+    <string name="phoneAppLabel" product="default">Phone Services</string>
 
     <!-- Screen title for Emergency Dialer UI -->
     <string name="emergencyDialerIconLabel">Emergency Dialer</string>
