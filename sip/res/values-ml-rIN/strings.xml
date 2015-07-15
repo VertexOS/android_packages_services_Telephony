@@ -22,7 +22,7 @@
     <string name="sip_receive_calls" msgid="426678617137462173">"ഇൻകമിംഗ് കോൾ സ്വീകരിക്കൂ"</string>
     <string name="sip_receive_calls_summary" msgid="946161517528227523">"കൂടുതൽ ബാറ്ററി ആയുസ് ഉപയോഗിക്കുന്നു"</string>
     <string name="sip_call_options_title" msgid="8421210494703869806">"SIP കോൾചെയ്യൽ ഉപയോഗിക്കുക"</string>
-    <string name="sip_call_options_wifi_only_title" msgid="5112579243580893890">"SIP കോൾചെയ്യൽ ഉപയോഗിക്കുക (Wi-Fi മാത്രം)"</string>
+    <string name="sip_call_options_wifi_only_title" msgid="5112579243580893890">"SIP കോൾചെയ്യൽ ഉപയോഗിക്കുക (വൈഫൈ മാത്രം)"</string>
     <string name="sip_call_options_entry_1" msgid="7217659161237099900">"ഡാറ്റ നെറ്റ്‌വർക്ക് ലഭ്യമാകുമ്പോൾ എല്ലാ കോളുകൾക്കായും"</string>
     <string name="sip_call_options_entry_2" msgid="1815335903940609729">"SIP കോളുകൾക്ക് മാത്രം"</string>
     <string name="sip_call_options_wifi_only_entry_1" msgid="1358513095551847314">"എല്ലാ കോളുകൾക്കും"</string>
@@ -41,7 +41,7 @@
     <string name="registration_status_still_trying" msgid="7648151061205513458">"ഇപ്പോഴും ശ്രമിക്കുന്നു…"</string>
     <string name="registration_status_not_receiving" msgid="7620333886153361090">"കോളുകൾ സ്വീകരിക്കുന്നില്ല."</string>
     <string name="registration_status_no_data" msgid="2541999976218192413">"ഇന്റർനെറ്റ് കണക്ഷനില്ലാത്താതിനാൽ അക്കൗണ്ട് രജിസ്ട്രേഷൻ നിർത്തിവച്ചു."</string>
-    <string name="registration_status_no_wifi_data" msgid="9154717387473039546">"Wi-Fi കണക്ഷനില്ലാത്താതിനാൽ അക്കൗണ്ട് രജിസ്ട്രേഷൻ നിർത്തിവച്ചു."</string>
+    <string name="registration_status_no_wifi_data" msgid="9154717387473039546">"വൈഫൈ കണക്ഷനില്ലാത്താതിനാൽ അക്കൗണ്ട് രജിസ്ട്രേഷൻ നിർത്തിവച്ചു."</string>
     <string name="registration_status_not_running" msgid="514205414303796800">"അക്കൗണ്ട് രജിസ്ട്രേഷൻ പരാജയപ്പെട്ടു."</string>
     <string name="registration_status_done" msgid="3264961069247314253">"കോളുകൾ സ്വീകരിക്കുന്നു."</string>
     <string name="registration_status_failed_try_later" msgid="2199970021756384317">"അക്കൗണ്ട് രജിസ്‌ട്രേഷൻ പരാജയപ്പെട്ടു: (<xliff:g id="REGISTRATION_ERROR_MESSAGE">%s</xliff:g>); പിന്നീട് വീണ്ടും ശ്രമിക്കും"</string>
@@ -69,7 +69,7 @@
     <string name="empty_alert" msgid="6659484914371384024">"<xliff:g id="INPUT_FIELD_NAME">%s</xliff:g> ആവശ്യമായതിനാൽ ശൂന്യമായിടാനാകില്ല."</string>
     <string name="not_a_valid_port" msgid="7931422555587011830">"പോർട്ട് നമ്പർ 1000, 65534 എന്നിവയ്‌ക്കിടയിലായിരിക്കണം."</string>
     <string name="no_internet_available" msgid="5523747991760017298">"SIP കോൾചെയ്യുന്നതിന്, ആദ്യം നിങ്ങളുടെ ഇന്റർനെറ്റ് കണക്ഷൻ പരിശോധിക്കുക."</string>
-    <string name="no_wifi_available" msgid="1955023904229673488">"SIP കോളുകൾക്കായി Wi-Fi നെറ്റ്‌വർക്കിലേക്ക് കണക്‌റ്റുചെയ്യേണ്ടതുണ്ട് (വയർലെസ്, നെറ്റ്‌വർക്ക് ക്രമീകരണങ്ങൾ ഉപയോഗിക്കുക)."</string>
+    <string name="no_wifi_available" msgid="1955023904229673488">"SIP കോളുകൾക്കായി വൈഫൈ നെറ്റ്‌വർക്കിലേക്ക് കണക്‌റ്റുചെയ്യേണ്ടതുണ്ട് (വയർലെസ്, നെറ്റ്‌വർക്ക് ക്രമീകരണങ്ങൾ ഉപയോഗിക്കുക)."</string>
     <string name="no_voip" msgid="3038021971231952704">"SIP കോൾചെയ്യൽ പിന്തുണയ്‌ക്കുന്നില്ല"</string>
     <string name="sip_system_decide" msgid="5577696249416700671">"യാന്ത്രികമായി"</string>
     <string name="sip_always_send_keepalive" msgid="4773022409239823318">"എല്ലായ്പ്പോഴും അയയ്‌ക്കുക"</string>
