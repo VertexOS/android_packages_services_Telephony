@@ -671,7 +671,7 @@ public class PhoneGlobals extends ContextWrapper {
         synchronized (this) {
             if (mWakeState == WakeState.SLEEP) {
                 if (DBG) Log.d(LOG_TAG, "pulse screen lock");
-                mPowerManager.wakeUp(SystemClock.uptimeMillis());
+                mPowerManager.wakeUp(SystemClock.uptimeMillis(), "android.phone:WAKE");
             }
         }
     }
