@@ -134,7 +134,7 @@
   <string-array name="clir_display_values">
     <item msgid="5560134294467334594">"નેટવર્ક ડિફોલ્ટ"</item>
     <item msgid="7876195870037833661">"નંબર છુપાવો"</item>
-    <item msgid="1108394741608734023">"નંબર દર્શાવો"</item>
+    <item msgid="1108394741608734023">"નંબર બતાવો"</item>
   </string-array>
     <string name="vm_changed" msgid="380744030726254139">"વૉઇસમેઇલ નંબર બદલ્યો."</string>
     <string name="vm_change_failed" msgid="3352934863246208918">"વૉઇસમેઇલ નંબર બદલી શકાયો નથી.\nજો આ સમસ્યા ચાલુ રહે છે, તો તમારા કેરિઅરનો સંપર્ક કરો."</string>

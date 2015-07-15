@@ -20,7 +20,7 @@
     <string name="sip_accounts" msgid="85559497282185405">"‏حساب‌های SIP"</string>
     <string name="sip_accounts_title" msgid="2082527045326874519">"حساب‌ها"</string>
     <string name="sip_receive_calls" msgid="426678617137462173">"دریافت تماس‌های ورودی"</string>
-    <string name="sip_receive_calls_summary" msgid="946161517528227523">"از نیروی باتری بیشتری استفاده می‌کند"</string>
+    <string name="sip_receive_calls_summary" msgid="946161517528227523">"از باتری بیشتری استفاده می‌کند"</string>
     <string name="sip_call_options_title" msgid="8421210494703869806">"‏استفاده از تماس SIP"</string>
     <string name="sip_call_options_wifi_only_title" msgid="5112579243580893890">"‏استفاده از تماس SIP (فقط Wi-Fi)"</string>
     <string name="sip_call_options_entry_1" msgid="7217659161237099900">"برای همه تماس‌ها وقتی شبکه داده در دسترس است"</string>
@@ -65,7 +65,7 @@
     <string name="display_name_summary" msgid="7155076491675565407">"‏&lt;مانند نام کاربری&gt;"</string>
     <string name="optional_summary" msgid="2363105560396317624">"‏&lt;اختیاری&gt;"</string>
     <string name="advanced_settings_show" msgid="7838761602853998622">"▷ جهت نمایش همه لمس کنید"</string>
-    <string name="advanced_settings_hide" msgid="3480554978705290228">"▽ جهت پنهان کردن همه لمس کنید"</string>
+    <string name="advanced_settings_hide" msgid="3480554978705290228">"▽ برای پنهان کردن همه لمس کنید"</string>
     <string name="empty_alert" msgid="6659484914371384024">"<xliff:g id="INPUT_FIELD_NAME">%s</xliff:g> ضروری است و نباید خالی بماند."</string>
     <string name="not_a_valid_port" msgid="7931422555587011830">"شماره درگاه باید بین ۱۰۰۰ و ۶۵۵۳۴ باشد."</string>
     <string name="no_internet_available" msgid="5523747991760017298">"‏برای برقراری تماس SIP، ابتدا اتصال اینترنتتان را بررسی کنید."</string>
