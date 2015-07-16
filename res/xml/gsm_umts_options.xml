@@ -31,11 +31,6 @@
         android:title="@string/networks"
         android:summary="@string/sum_carrier_select"
         android:persistent="false">
-
-        <intent android:action="android.intent.action.MAIN"
-            android:targetPackage="com.android.phone"
-            android:targetClass="com.android.phone.NetworkSetting" />
-
     </PreferenceScreen>
 
     <PreferenceScreen
