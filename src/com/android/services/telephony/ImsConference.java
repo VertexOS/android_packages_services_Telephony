@@ -228,7 +228,10 @@ public class ImsConference extends Conference {
 
         // Specify the connection time of the conference to be the connection time of the original
         // connection.
-        setConnectTimeMillis(conferenceHost.getOriginalConnection().getConnectTime());
+        long connectTime = conferenceHost.getOriginalConnection().getConnectTime();
+        setConnectTimeMillis(connectTime);
+        // Set the connectTime in the connection as well.
+        conferenceHost.setConnectTimeMillis(connectTime);
 
         mTelephonyConnectionService = telephonyConnectionService;
         setConferenceHost(conferenceHost);
