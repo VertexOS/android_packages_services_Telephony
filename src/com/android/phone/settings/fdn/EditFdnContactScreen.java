@@ -90,8 +90,8 @@ public class EditFdnContactScreen extends Activity {
     /** request code when invoking subactivity */
     private static final int CONTACTS_PICKER_CODE = 200;
     /** projection for phone number query */
-    private static final String NUM_PROJECTION[] = {PeopleColumns.DISPLAY_NAME,
-        PhonesColumns.NUMBER};
+    private static final String[] NUM_PROJECTION = new String[] {CommonDataKinds.Phone.DISPLAY_NAME,
+            CommonDataKinds.Phone.NUMBER};
     /** static intent to invoke phone number picker */
     private static final Intent CONTACT_IMPORT_INTENT;
     static {
