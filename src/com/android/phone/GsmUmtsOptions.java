@@ -25,6 +25,7 @@ import android.preference.PreferenceActivity;
 import android.preference.PreferenceScreen;
 import android.provider.Settings;
 import android.telephony.CarrierConfigManager;
+import android.content.ComponentName;
 
 import com.android.internal.telephony.PhoneConstants;
 import com.android.internal.telephony.PhoneFactory;
@@ -41,6 +42,7 @@ public class GsmUmtsOptions {
     private static final String BUTTON_APN_EXPAND_KEY = "button_apn_key";
     private static final String BUTTON_OPERATOR_SELECTION_EXPAND_KEY = "button_carrier_sel_key";
     private static final String BUTTON_CARRIER_SETTINGS_KEY = "carrier_settings_key";
+    public static final String EXTRA_SUB_ID = "sub_id";
     private PreferenceActivity mPrefActivity;
     private PreferenceScreen mPrefScreen;
     private int mSubId;
@@ -117,7 +119,21 @@ public class GsmUmtsOptions {
                             final Intent intent = new Intent(Settings.ACTION_APN_SETTINGS);
                             // This will setup the Home and Search affordance
                             intent.putExtra(":settings:show_fragment_as_subsetting", true);
-                            intent.putExtra("sub_id", mSubId);
+                            intent.putExtra(EXTRA_SUB_ID, mSubId);
+                            mPrefActivity.startActivity(intent);
+                            return true;
+                        }
+            });
+        }
+        if (mPrefScreen.findPreference(BUTTON_OPERATOR_SELECTION_EXPAND_KEY) != null) {
+            mButtonOperatorSelectionExpand.setOnPreferenceClickListener(
+                    new Preference.OnPreferenceClickListener() {
+                        @Override
+                        public boolean onPreferenceClick(Preference preference) {
+                            final Intent intent = new Intent(Intent.ACTION_MAIN);
+                            intent.setComponent(new ComponentName("com.android.phone",
+                                    "com.android.phone.NetworkSetting"));
+                            intent.putExtra(EXTRA_SUB_ID, mSubId);
                             mPrefActivity.startActivity(intent);
                             return true;
                         }
