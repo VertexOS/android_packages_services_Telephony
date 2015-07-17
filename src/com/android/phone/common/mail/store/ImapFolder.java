@@ -416,7 +416,7 @@ public class ImapFolder {
                             // decodeBody creates BinaryTempFileBody, but we could avoid this
                             // if we implement ImapStringBody.
                             // (We'll need to share a temp file.  Protect it with a ref-count.)
-                            fetchPart.setBody(decodeBody(mStore.getContext(), bodyStream,
+                            message.setBody(decodeBody(mStore.getContext(), bodyStream,
                                     contentTransferEncoding, fetchPart.getSize(), listener));
                         } catch(Exception e) {
                             // TODO: Figure out what kinds of exceptions might actually be thrown

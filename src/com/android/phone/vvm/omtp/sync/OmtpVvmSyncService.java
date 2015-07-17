@@ -20,15 +20,12 @@ import android.app.IntentService;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.net.ConnectivityManager;
 import android.net.Network;
-import android.net.ConnectivityManager.NetworkCallback;
-import android.net.NetworkCapabilities;
-import android.net.NetworkRequest;
 import android.provider.VoicemailContract;
 import android.telecom.PhoneAccountHandle;
 import android.telecom.Voicemail;
 import android.telephony.TelephonyManager;
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.android.phone.PhoneUtils;
@@ -48,26 +45,24 @@ import java.util.Set;
 public class OmtpVvmSyncService extends IntentService {
     private static final String TAG = OmtpVvmSyncService.class.getSimpleName();
 
+    // Number of retries
+    private static final int NETWORK_RETRY_COUNT = 3;
+
     /** Signifies a sync with both uploading to the server and downloading from the server. */
     public static final String SYNC_FULL_SYNC = "full_sync";
     /** Only upload to the server. */
     public static final String SYNC_UPLOAD_ONLY = "upload_only";
     /** Only download from the server. */
     public static final String SYNC_DOWNLOAD_ONLY = "download_only";
+    /** Only download single voicemail transcription. */
+    public static final String SYNC_DOWNLOAD_ONE_TRANSCRIPTION =
+            "download_one_transcription";
     /** The account to sync. */
     public static final String EXTRA_PHONE_ACCOUNT = "phone_account";
-
-    // Timeout used to call ConnectivityManager.requestNetwork
-    private static final int NETWORK_REQUEST_TIMEOUT_MILLIS = 60 * 1000;
-
-    // Minimum time allowed between full syncs
-    private static final int MINIMUM_FULL_SYNC_INTERVAL_MILLIS = 60 * 1000;
-
-    // Number of retries
-    private static final int NETWORK_RETRY_COUNT = 6;
+    /** The voicemail to fetch. */
+    public static final String EXTRA_VOICEMAIL = "voicemail";
 
     private VoicemailsQueryHelper mQueryHelper;
-    private ConnectivityManager mConnectivityManager;
 
     public OmtpVvmSyncService() {
         super("OmtpVvmSyncService");
@@ -75,6 +70,11 @@ public class OmtpVvmSyncService extends IntentService {
 
     public static Intent getSyncIntent(Context context, String action,
             PhoneAccountHandle phoneAccount, boolean firstAttempt) {
+        return getSyncIntent(context, action, phoneAccount, null, firstAttempt);
+    }
+
+    public static Intent getSyncIntent(Context context, String action,
+            PhoneAccountHandle phoneAccount, Voicemail voicemail, boolean firstAttempt) {
         if (firstAttempt) {
             if (phoneAccount != null) {
                 VisualVoicemailSettingsUtil.resetVisualVoicemailRetryInterval(context,
@@ -93,6 +93,9 @@ public class OmtpVvmSyncService extends IntentService {
         serviceIntent.setAction(action);
         if (phoneAccount != null) {
             serviceIntent.putExtra(EXTRA_PHONE_ACCOUNT, phoneAccount);
+        }
+        if (voicemail != null) {
+            serviceIntent.putExtra(EXTRA_VOICEMAIL, voicemail);
         }
 
         cancelRetriesForIntent(context, serviceIntent);
@@ -143,44 +146,30 @@ public class OmtpVvmSyncService extends IntentService {
         }
 
         String action = intent.getAction();
-
         PhoneAccountHandle phoneAccount = intent.getParcelableExtra(EXTRA_PHONE_ACCOUNT);
-
         LocalLogHelper.log(TAG, "Sync requested: " + action +
                 " for all accounts: " + String.valueOf(phoneAccount == null));
 
+        Voicemail voicemail = intent.getParcelableExtra(EXTRA_VOICEMAIL);
         if (phoneAccount != null) {
             Log.v(TAG, "Sync requested: " + action + " - for account: " + phoneAccount);
-            setupAndSendRequest(phoneAccount, action);
+            setupAndSendRequest(phoneAccount, voicemail, action);
         } else {
             Log.v(TAG, "Sync requested: " + action + " - for all accounts");
             OmtpVvmSourceManager vvmSourceManager =
                     OmtpVvmSourceManager.getInstance(this);
             Set<PhoneAccountHandle> sources = vvmSourceManager.getOmtpVvmSources();
             for (PhoneAccountHandle source : sources) {
-                setupAndSendRequest(source, action);
+                setupAndSendRequest(source, null, action);
             }
         }
     }
 
-    private void setupAndSendRequest(PhoneAccountHandle phoneAccount, String action) {
+    private void setupAndSendRequest(PhoneAccountHandle phoneAccount, Voicemail voicemail,
+            String action) {
         if (!VisualVoicemailSettingsUtil.isVisualVoicemailEnabled(this, phoneAccount)) {
             Log.v(TAG, "Sync requested for disabled account");
             return;
-        }
-
-        if (SYNC_FULL_SYNC.equals(action)) {
-            long lastSyncTime = VisualVoicemailSettingsUtil.getVisualVoicemailLastFullSyncTime(
-                    this, phoneAccount);
-            long currentTime = System.currentTimeMillis();
-            if (currentTime - lastSyncTime < MINIMUM_FULL_SYNC_INTERVAL_MILLIS) {
-                // If it's been less than a minute since the last sync, bail.
-                Log.v(TAG, "Avoiding duplicate full sync: synced recently for "
-                        + phoneAccount.getId());
-                return;
-            }
-            VisualVoicemailSettingsUtil.setVisualVoicemailLastFullSyncTime(
-                    this, phoneAccount, currentTime);
         }
 
         int subId = PhoneUtils.getSubIdForPhoneAccountHandle(phoneAccount);
@@ -188,148 +177,101 @@ public class OmtpVvmSyncService extends IntentService {
                 new OmtpVvmCarrierConfigHelper(this, subId);
 
         if (TelephonyManager.VVM_TYPE_CVVM.equals(carrierConfigHelper.getVvmType())) {
-            doSync(null, null, phoneAccount, action);
+            if (voicemail == null) {
+                doSync(null, null, phoneAccount, voicemail, action);
+            }
         } else {
-            OmtpVvmNetworkRequestCallback networkCallback = new OmtpVvmNetworkRequestCallback(
-                    phoneAccount, action);
-            requestNetwork(networkCallback);
-        }
-    }
-
-    private class OmtpVvmNetworkRequestCallback extends ConnectivityManager.NetworkCallback {
-        PhoneAccountHandle mPhoneAccount;
-        String mAction;
-        NetworkRequest mNetworkRequest;
-
-        public OmtpVvmNetworkRequestCallback(PhoneAccountHandle phoneAccount,
-                String action) {
-            mPhoneAccount = phoneAccount;
-            mAction = action;
-            mNetworkRequest = new NetworkRequest.Builder()
-                    .addTransportType(NetworkCapabilities.TRANSPORT_CELLULAR)
-                    .addCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
-                    .setNetworkSpecifier(
-                            Integer.toString(
-                                    PhoneUtils.getSubIdForPhoneAccountHandle(phoneAccount)))
-                    .build();
-        }
-
-        public NetworkRequest getNetworkRequest() {
-            return mNetworkRequest;
-        }
-
-        @Override
-        public void onAvailable(final Network network) {
-            doSync(network, this, mPhoneAccount, mAction);
-        }
-
-        @Override
-        public void onLost(Network network) {
-            releaseNetwork(this);
-        }
-
-        @Override
-        public void onUnavailable() {
-            releaseNetwork(this);
+            OmtpVvmNetworkRequestCallback networkCallback =
+                    new SyncAllNetworkRequestCallback(this, phoneAccount, voicemail, action);
+            networkCallback.requestNetwork();
         }
     }
 
     private void doSync(Network network, OmtpVvmNetworkRequestCallback callback,
-            PhoneAccountHandle phoneAccount, String action) {
+            PhoneAccountHandle phoneAccount, Voicemail voicemail, String action) {
         int retryCount = NETWORK_RETRY_COUNT;
-
-        boolean uploadSuccess;
-        boolean downloadSuccess;
-
         while (retryCount > 0) {
-            uploadSuccess = true;
-            downloadSuccess = true;
-
             ImapHelper imapHelper = new ImapHelper(this, phoneAccount, network);
             if (!imapHelper.isSuccessfullyInitialized()) {
                 Log.w(TAG, "Can't retrieve Imap credentials.");
-                releaseNetwork(callback);
+                if (callback != null) {
+                    callback.releaseNetwork();
+                }
                 VisualVoicemailSettingsUtil.resetVisualVoicemailRetryInterval(this,
                         phoneAccount);
                 return;
             }
 
-            if (SYNC_FULL_SYNC.equals(action) || SYNC_UPLOAD_ONLY.equals(action)) {
-                uploadSuccess = upload(imapHelper);
+            boolean success = true;
+            if (voicemail == null) {
+                success = syncAll(action, imapHelper);
+            } else {
+                success = syncOne(imapHelper, voicemail);
             }
-            if (SYNC_FULL_SYNC.equals(action) || SYNC_DOWNLOAD_ONLY.equals(action)) {
-                downloadSuccess = download(imapHelper);
-            }
-
-            Log.v(TAG, "upload succeeded: ["+  String.valueOf(uploadSuccess)
-                    + "] download succeeded: [" + String.valueOf(downloadSuccess) + "]");
 
             // Need to check again for whether visual voicemail is enabled because it could have
             // been disabled while waiting for the response from the network.
             if (VisualVoicemailSettingsUtil.isVisualVoicemailEnabled(this, phoneAccount) &&
-                    (!uploadSuccess || !downloadSuccess)) {
+                    !success) {
                 retryCount--;
-                // Re-adjust so that only the unsuccessful action needs to be retried.
-                // No need to re-adjust if both are unsuccessful. It means the full sync
-                // failed so the action remains unchanged.
-                if (uploadSuccess) {
-                    action = SYNC_DOWNLOAD_ONLY;
-                } else if (downloadSuccess) {
-                    action = SYNC_UPLOAD_ONLY;
-                }
-
                 Log.v(TAG, "Retrying " + action);
-                LocalLogHelper.log(TAG, "Immediately retrying " + action);
             } else {
                 // Nothing more to do here, just exit.
-                releaseNetwork(callback);
-
-                VisualVoicemailSettingsUtil.resetVisualVoicemailRetryInterval(this, phoneAccount);
+                if (callback != null) {
+                    callback.releaseNetwork();
+                }
+                VisualVoicemailSettingsUtil.resetVisualVoicemailRetryInterval(this,
+                        phoneAccount);
                 return;
             }
         }
-
-        releaseNetwork(callback);
-        setRetryAlarm(phoneAccount, action);
     }
 
-    private void requestNetwork(OmtpVvmNetworkRequestCallback networkCallback) {
-        getConnectivityManager().requestNetwork(networkCallback.getNetworkRequest(),
-                networkCallback, NETWORK_REQUEST_TIMEOUT_MILLIS);
-    }
+    private boolean syncAll(String action, ImapHelper imapHelper) {
+        boolean uploadSuccess = true;
+        boolean downloadSuccess = true;
 
-    private void releaseNetwork(NetworkCallback networkCallback) {
-        if (networkCallback != null) {
-            getConnectivityManager().unregisterNetworkCallback(networkCallback);
+        if (SYNC_FULL_SYNC.equals(action) || SYNC_UPLOAD_ONLY.equals(action)) {
+            uploadSuccess = upload(imapHelper);
         }
-    }
-
-    private ConnectivityManager getConnectivityManager() {
-        if (mConnectivityManager == null) {
-            mConnectivityManager = (ConnectivityManager) this.getSystemService(
-                    Context.CONNECTIVITY_SERVICE);
+        if (SYNC_FULL_SYNC.equals(action) || SYNC_DOWNLOAD_ONLY.equals(action)) {
+            downloadSuccess = download(imapHelper);
         }
-        return mConnectivityManager;
+
+        Log.v(TAG, "upload succeeded: ["+  String.valueOf(uploadSuccess)
+                + "] download succeeded: [" + String.valueOf(downloadSuccess) + "]");
+
+        boolean success = uploadSuccess && downloadSuccess;
+        if (!uploadSuccess || !downloadSuccess) {
+            if (uploadSuccess) {
+                action = SYNC_DOWNLOAD_ONLY;
+            } else if (downloadSuccess) {
+                action = SYNC_UPLOAD_ONLY;
+            }
+        }
+
+        return success;
     }
 
-    private void setRetryAlarm(PhoneAccountHandle phoneAccount, String action) {
-        Intent serviceIntent = new Intent(this, OmtpVvmSyncService.class);
-        serviceIntent.setAction(action);
-        serviceIntent.putExtra(OmtpVvmSyncService.EXTRA_PHONE_ACCOUNT, phoneAccount);
-        PendingIntent pendingIntent = PendingIntent.getService(this, 0, serviceIntent, 0);
-        long retryInterval = VisualVoicemailSettingsUtil.getVisualVoicemailRetryInterval(this,
-                phoneAccount);
+    private boolean syncOne(ImapHelper imapHelper, Voicemail voicemail) {
+        return imapHelper.fetchTranscription(
+                new TranscriptionFetchedCallback(this, voicemail),
+                voicemail.getSourceData());
+    }
 
-        Log.v(TAG, "Retrying "+ action + " in " + retryInterval + "ms");
-        LocalLogHelper.log(TAG, "Retrying "+ action + " in " + retryInterval + "ms");
+    private class SyncAllNetworkRequestCallback extends OmtpVvmNetworkRequestCallback {
+        Voicemail mVoicemail;
 
-        AlarmManager alarmManager = (AlarmManager)
-                this.getSystemService(Context.ALARM_SERVICE);
-        alarmManager.set(AlarmManager.RTC, System.currentTimeMillis() + retryInterval,
-                pendingIntent);
+        public SyncAllNetworkRequestCallback(Context context, PhoneAccountHandle phoneAccount,
+                Voicemail voicemail, String action) {
+            super(context, phoneAccount, action);
+            mVoicemail = voicemail;
+        }
 
-        VisualVoicemailSettingsUtil.setVisualVoicemailRetryInterval(this, phoneAccount,
-                retryInterval * 2);
+        @Override
+        public void onAvailable(Network network) {
+            doSync(network, this, mPhoneAccount, mVoicemail, mAction);
+        }
     }
 
     private boolean upload(ImapHelper imapHelper) {
@@ -384,6 +326,12 @@ public class OmtpVvmSyncService extends IntentService {
                 if (remoteVoicemail.isRead() != localVoicemail.isRead()) {
                     mQueryHelper.markReadInDatabase(localVoicemail);
                 }
+
+                if (!TextUtils.isEmpty(remoteVoicemail.getTranscription()) &&
+                        TextUtils.isEmpty(localVoicemail.getTranscription())) {
+                    mQueryHelper.updateWithTranscription(localVoicemail,
+                            remoteVoicemail.getTranscription());
+                }
             }
         }
 
@@ -395,6 +343,24 @@ public class OmtpVvmSyncService extends IntentService {
         return true;
     }
 
+    protected void setRetryAlarm(PhoneAccountHandle phoneAccount, String action) {
+        Intent serviceIntent = new Intent(this, OmtpVvmSyncService.class);
+        serviceIntent.setAction(action);
+        serviceIntent.putExtra(OmtpVvmSyncService.EXTRA_PHONE_ACCOUNT, phoneAccount);
+        PendingIntent pendingIntent = PendingIntent.getService(this, 0, serviceIntent, 0);
+        long retryInterval = VisualVoicemailSettingsUtil.getVisualVoicemailRetryInterval(this,
+                phoneAccount);
+
+        Log.v(TAG, "Retrying "+ action + " in " + retryInterval + "ms");
+
+        AlarmManager alarmManager = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
+        alarmManager.set(AlarmManager.RTC, System.currentTimeMillis() + retryInterval,
+                pendingIntent);
+
+        VisualVoicemailSettingsUtil.setVisualVoicemailRetryInterval(this, phoneAccount,
+                retryInterval * 2);
+    }
+
     /**
      * Builds a map from provider data to message for the given collection of voicemails.
      */
@@ -404,5 +370,20 @@ public class OmtpVvmSyncService extends IntentService {
             map.put(message.getSourceData(), message);
         }
         return map;
+    }
+
+    public class TranscriptionFetchedCallback {
+        private Context mContext;
+        private Voicemail mVoicemail;
+
+        public TranscriptionFetchedCallback(Context context, Voicemail voicemail) {
+            mContext = context;
+            mVoicemail = voicemail;
+        }
+
+        public void setVoicemailTranscription(String transcription) {
+            VoicemailsQueryHelper queryHelper = new VoicemailsQueryHelper(mContext);
+            queryHelper.updateWithTranscription(mVoicemail, transcription);
+        }
     }
 }
