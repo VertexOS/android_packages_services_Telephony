@@ -194,6 +194,11 @@ public class ImapHelper {
             }
             message = mFolder.getMessage(uid);
             VoicemailPayload voicemailPayload = fetchVoicemailPayload(message);
+
+            if (voicemailPayload == null) {
+                return false;
+            }
+
             callback.setVoicemailContent(voicemailPayload);
             return true;
         } catch (MessagingException e) {
