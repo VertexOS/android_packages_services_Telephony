@@ -33,7 +33,7 @@ oneway interface INetworkQueryService {
      * then just add the callback to the list of notifications
      * that will be sent upon query completion.
      */
-    void startNetworkQuery(in INetworkQueryServiceCallback cb);
+    void startNetworkQuery(in INetworkQueryServiceCallback cb, in int phoneId);
 
     /**
      * Tells the service that the requested query is to be ignored.
