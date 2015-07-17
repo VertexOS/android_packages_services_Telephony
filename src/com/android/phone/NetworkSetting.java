@@ -36,9 +36,11 @@ import android.preference.PreferenceGroup;
 import android.preference.PreferenceScreen;
 import android.text.TextUtils;
 import android.util.Log;
+import android.telephony.SubscriptionManager;
 
 import com.android.internal.telephony.CommandException;
 import com.android.internal.telephony.Phone;
+import com.android.internal.telephony.PhoneFactory;
 import com.android.internal.telephony.OperatorInfo;
 
 import java.util.HashMap;
@@ -70,7 +72,7 @@ public class NetworkSetting extends PreferenceActivity
     //map of network controls to the network data.
     private HashMap<Preference, OperatorInfo> mNetworkMap;
 
-    Phone mPhone;
+    int mPhoneId = SubscriptionManager.INVALID_PHONE_INDEX;
     protected boolean mIsForeground = false;
 
     private UserManager mUm;
@@ -107,9 +109,6 @@ public class NetworkSetting extends PreferenceActivity
                         displayNetworkSelectionSucceeded();
                     }
 
-                    // update the phone in case replaced as part of selection
-                    mPhone = PhoneGlobals.getPhone();
-
                     break;
                 case EVENT_AUTO_SELECT_DONE:
                     if (DBG) log("hideProgressPanel");
@@ -134,9 +133,6 @@ public class NetworkSetting extends PreferenceActivity
                         if (DBG) log("automatic network selection: succeeded!");
                         displayNetworkSelectionSucceeded();
                     }
-
-                    // update the phone in case replaced as part of selection
-                    mPhone = PhoneGlobals.getPhone();
 
                     break;
             }
@@ -204,11 +200,16 @@ public class NetworkSetting extends PreferenceActivity
             if (DBG) log("selected network: " + networkStr);
 
             Message msg = mHandler.obtainMessage(EVENT_NETWORK_SELECTION_DONE);
-            mPhone.selectNetworkManually(mNetworkMap.get(selectedCarrier), msg);
+            Phone phone = PhoneFactory.getPhone(mPhoneId);
+            if (phone != null) {
+                phone.selectNetworkManually(mNetworkMap.get(selectedCarrier), msg);
+                displayNetworkSeletionInProgress(networkStr);
+                handled = true;
+            } else {
+                log("Error selecting network. phone is null.");
+            }
 
-            displayNetworkSeletionInProgress(networkStr);
 
-            handled = true;
         }
 
         return handled;
@@ -246,7 +247,14 @@ public class NetworkSetting extends PreferenceActivity
 
         addPreferencesFromResource(R.xml.carrier_select);
 
-        mPhone = PhoneGlobals.getPhone();
+        int subId;
+        Intent intent = getIntent();
+        if (intent != null && intent.getExtras() != null) {
+            subId = intent.getExtras().getInt(GsmUmtsOptions.EXTRA_SUB_ID);
+            if (SubscriptionManager.isValidSubscriptionId(subId)) {
+                mPhoneId = SubscriptionManager.getPhoneId(subId);
+            }
+        }
 
         mNetworkList = (PreferenceGroup) getPreferenceScreen().findPreference(LIST_NETWORKS_KEY);
         mNetworkMap = new HashMap<Preference, OperatorInfo>();
@@ -402,7 +410,7 @@ public class NetworkSetting extends PreferenceActivity
 
         // delegate query request to the service.
         try {
-            mNetworkQueryService.startNetworkQuery(mCallback);
+            mNetworkQueryService.startNetworkQuery(mCallback, mPhoneId);
         } catch (RemoteException e) {
             log("loadNetworksList: exception from startNetworkQuery " + e);
             if (mIsForeground) {
@@ -511,7 +519,10 @@ public class NetworkSetting extends PreferenceActivity
         }
 
         Message msg = mHandler.obtainMessage(EVENT_AUTO_SELECT_DONE);
-        mPhone.setNetworkSelectionModeAutomatic(msg);
+        Phone phone = PhoneFactory.getPhone(mPhoneId);
+        if (phone != null) {
+            phone.setNetworkSelectionModeAutomatic(msg);
+        }
     }
 
     private void log(String msg) {
