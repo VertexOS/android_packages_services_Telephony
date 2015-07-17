@@ -57,9 +57,6 @@ public class NetworkQueryService extends Service {
     /** state of the query service */
     private int mState;
     
-    /** local handle to the phone object */
-    private Phone mPhone;
-    
     /**
      * Class for clients to access.  Because we know this service always
      * runs in the same process as its clients, we don't need to deal with
@@ -109,7 +106,7 @@ public class NetworkQueryService extends Service {
          * callback object in the queue to be notified upon request 
          * completion.
          */
-        public void startNetworkQuery(INetworkQueryServiceCallback cb) {
+        public void startNetworkQuery(INetworkQueryServiceCallback cb, int phoneId) {
             if (cb != null) {
                 // register the callback to the list of callbacks.
                 synchronized (mCallbacks) {
@@ -120,10 +117,17 @@ public class NetworkQueryService extends Service {
                         case QUERY_READY:
                             // TODO: we may want to install a timeout here in case we
                             // do not get a timely response from the RIL.
-                            mPhone.getAvailableNetworks(
-                                    mHandler.obtainMessage(EVENT_NETWORK_SCAN_COMPLETED));
-                            mState = QUERY_IS_RUNNING;
-                            if (DBG) log("starting new query");
+                            Phone phone = PhoneFactory.getPhone(phoneId);
+                            if (phone != null) {
+                                phone.getAvailableNetworks(
+                                        mHandler.obtainMessage(EVENT_NETWORK_SCAN_COMPLETED));
+                                mState = QUERY_IS_RUNNING;
+                                if (DBG) log("starting new query");
+                            } else {
+                                if (DBG) {
+                                    log("phone is null");
+                                }
+                            }
                             break;
                             
                         // do nothing if we're currently busy.
@@ -166,8 +170,6 @@ public class NetworkQueryService extends Service {
     @Override
     public void onCreate() {
         mState = QUERY_READY;        
-        mPhone = PhoneFactory.getPhone(
-                SubscriptionManager.getPhoneId(SubscriptionManager.getDefaultSubId()));
     }
 
     /**
