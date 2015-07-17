@@ -61,7 +61,8 @@ public class VoicemailFetchedCallback {
                 outputStream.write(inputBytes);
             }
         } catch (IOException e) {
-            Log.e(TAG, "Error writing to file: ", e);
+            Log.w(TAG, String.format("File not found for %s", mUri));
+            return;
         } finally {
             IoUtils.closeQuietly(outputStream);
         }
