@@ -17,7 +17,7 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="phoneAppLabel" product="tablet" msgid="1107073389495104784">"સેલ્યુલર ડેટા"</string>
-    <string name="phoneAppLabel" product="default" msgid="906161039445636857">"ફોન"</string>
+    <string name="phoneAppLabel" product="default" msgid="6790717591729922998">"ફોન સેવાઓ"</string>
     <string name="emergencyDialerIconLabel" msgid="7812140032168171053">"કટોકટીનું ડાયલર"</string>
     <string name="phoneIconLabel" msgid="2331230813161304895">"ફોન"</string>
     <string name="fdnListLabel" msgid="8630418672279521003">"FDN સૂચિ"</string>
@@ -134,7 +134,7 @@
   <string-array name="clir_display_values">
     <item msgid="5560134294467334594">"નેટવર્ક ડિફોલ્ટ"</item>
     <item msgid="7876195870037833661">"નંબર છુપાવો"</item>
-    <item msgid="1108394741608734023">"નંબર દર્શાવો"</item>
+    <item msgid="1108394741608734023">"નંબર બતાવો"</item>
   </string-array>
     <string name="vm_changed" msgid="380744030726254139">"વૉઇસમેઇલ નંબર બદલ્યો."</string>
     <string name="vm_change_failed" msgid="3352934863246208918">"વૉઇસમેઇલ નંબર બદલી શકાયો નથી.\nજો આ સમસ્યા ચાલુ રહે છે, તો તમારા કેરિઅરનો સંપર્ક કરો."</string>

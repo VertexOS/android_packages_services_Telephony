@@ -17,7 +17,7 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="phoneAppLabel" product="tablet" msgid="1107073389495104784">"செல்லுலார் தரவு"</string>
-    <string name="phoneAppLabel" product="default" msgid="906161039445636857">"ஃபோன்"</string>
+    <string name="phoneAppLabel" product="default" msgid="6790717591729922998">"ஃபோன் சேவைகள்"</string>
     <string name="emergencyDialerIconLabel" msgid="7812140032168171053">"அவசரகால டயலர்"</string>
     <string name="phoneIconLabel" msgid="2331230813161304895">"மொபைல்"</string>
     <string name="fdnListLabel" msgid="8630418672279521003">"FDN பட்டியல்"</string>
@@ -100,19 +100,19 @@
     <string name="sum_cfu_enabled_indicator" msgid="4014187342724130197">"எல்லா அழைப்புகளையும் பகிர்"</string>
     <string name="sum_cfu_enabled" msgid="2450052502198827927">"<xliff:g id="PHONENUMBER">{0}</xliff:g> க்கு எல்லா அழைப்புகளையும் பகிர்"</string>
     <string name="sum_cfu_enabled_no_number" msgid="6591985777096823616">"எண் கிடைக்கவில்லை"</string>
-    <string name="sum_cfu_disabled" msgid="8384177689501334080">"முடக்கு"</string>
+    <string name="sum_cfu_disabled" msgid="8384177689501334080">"முடக்கத்தில்"</string>
     <string name="labelCFB" msgid="6139853033106283172">"பிஸியாக இருக்கும்போது"</string>
-    <string name="messageCFB" msgid="3711089705936187129">"பிஸியாக இருக்கும்போது இதில்"</string>
+    <string name="messageCFB" msgid="3711089705936187129">"பிஸியாக இருக்கும்போது:"</string>
     <string name="sum_cfb_enabled" msgid="5984198104833116690">"<xliff:g id="PHONENUMBER">{0}</xliff:g> க்குப் பகிர்"</string>
-    <string name="sum_cfb_disabled" msgid="4913145177320506827">"முடக்கு"</string>
+    <string name="sum_cfb_disabled" msgid="4913145177320506827">"முடக்கத்தில்"</string>
     <string name="disable_cfb_forbidden" msgid="3506984333877998061">"மொபைல் பிஸியாக இருக்கும்போது, அழைப்பு பகிர்தலை முடக்குவதை ஆபரேட்டர் ஆதரிக்கவில்லை."</string>
     <string name="labelCFNRy" msgid="1736067178393744351">"பதிலளிக்காமல் இருக்கும்போது"</string>
-    <string name="messageCFNRy" msgid="672317899884380374">"பதிலளிக்காதபோது இதில்"</string>
+    <string name="messageCFNRy" msgid="672317899884380374">"பதிலளிக்காதபோது:"</string>
     <string name="sum_cfnry_enabled" msgid="6955775691317662910">"<xliff:g id="PHONENUMBER">{0}</xliff:g> க்குப் பகிர்"</string>
-    <string name="sum_cfnry_disabled" msgid="3884684060443538097">"முடக்கு"</string>
+    <string name="sum_cfnry_disabled" msgid="3884684060443538097">"முடக்கத்தில்"</string>
     <string name="disable_cfnry_forbidden" msgid="4308233959150658058">"பதிலளிக்காமல் இருக்கும்போது, அழைப்பு பகிர்தலை முடக்குவதை ஆபரேட்டர் ஆதரிக்கவில்லை."</string>
     <string name="labelCFNRc" msgid="2614827454402079766">"தொடர்புகொள்ள முடியாமல் இருக்கும்போது"</string>
-    <string name="messageCFNRc" msgid="6380695421020295119">"தொடர்பு கிடைக்காதபோது இதில்"</string>
+    <string name="messageCFNRc" msgid="6380695421020295119">"தொடர்பு கிடைக்காதபோது:"</string>
     <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"<xliff:g id="PHONENUMBER">{0}</xliff:g> க்குப் பகிர்"</string>
     <string name="sum_cfnrc_disabled" msgid="7222141261321276464">"முடக்கப்பட்டது"</string>
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"மொபைல் தொடர்புகொள்ள முடியாத இடத்தில் இருக்கும்போது, அழைப்பு பகிர்தலை முடக்குவதை ஆபரேட்டர் ஆதரிக்கவில்லை."</string>
@@ -132,7 +132,7 @@
     <string name="disable" msgid="4678348128118573672">"முடக்கு"</string>
     <string name="change_num" msgid="239476305819844391">"புதுப்பி"</string>
   <string-array name="clir_display_values">
-    <item msgid="5560134294467334594">"நெட்வொர்க் இயல்பு"</item>
+    <item msgid="5560134294467334594">"நெட்வொர்க் பொருத்து"</item>
     <item msgid="7876195870037833661">"எண்ணை மறை"</item>
     <item msgid="1108394741608734023">"எண்ணைக் காட்டு"</item>
   </string-array>
@@ -370,7 +370,7 @@
     <string name="fdn_failed" msgid="540018079008319747">"FDN செயல்பாடு தோல்வி."</string>
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"சிம் கார்டில் இருப்பதைப் படிக்கிறது…"</string>
     <string name="simContacts_empty" msgid="5270660846489561932">"சிம் கார்டில் தொடர்புகள் இல்லை."</string>
-    <string name="simContacts_title" msgid="1861472842524839921">"இறக்குமதிக்கு தொடர்புகளைத் தேர்ந்தெடுக்கவும்"</string>
+    <string name="simContacts_title" msgid="1861472842524839921">"ஏற்ற தொடர்புகளைத் தேர்ந்தெடு"</string>
     <string name="simContacts_airplaneMode" msgid="5254946758982621072">"SIM கார்டிலிருந்து தொடர்புகளை இறக்க, விமானப் பயன்முறையை முடக்கவும்."</string>
     <string name="enable_pin" msgid="5422767284133234860">"சிம்மின் பின்னை இயக்கு/முடக்கு"</string>
     <string name="change_pin" msgid="9174186126330785343">"சிம்மின் பின்னை மாற்று"</string>
@@ -379,7 +379,7 @@
     <string name="newPinLabel" msgid="207488227285336897">"புதிய பின்"</string>
     <string name="confirmPinLabel" msgid="257597715098070206">"புதிய பின்னை உறுதிப்படுத்தவும்"</string>
     <string name="badPin" msgid="8955102849303984935">"உள்ளிட்ட பழைய பின் தவறானது. மீண்டும் முயற்சிக்கவும்."</string>
-    <string name="mismatchPin" msgid="5923253370683071889">"உள்ளிட்ட PINகள் பொருந்தவில்லை. மீண்டும் முயற்சிக்கவும்."</string>
+    <string name="mismatchPin" msgid="5923253370683071889">"உள்ளிட்ட பின்கள் பொருந்தவில்லை. மீண்டும் முயற்சிக்கவும்."</string>
     <string name="invalidPin" msgid="5981171102258684792">"4 இலிருந்து 8 எண்கள் வரையுள்ள பின்னை உள்ளிடவும்."</string>
     <string name="disable_sim_pin" msgid="3419351358300716472">"சிம் பின்னை அழி"</string>
     <string name="enable_sim_pin" msgid="4845145659651484248">"சிம் பின்னை அமை"</string>
