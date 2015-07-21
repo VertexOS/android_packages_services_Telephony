@@ -468,6 +468,20 @@ public class FdnSetting extends PreferenceActivity
         }
     }
 
+    /**
+    * Reflect the updated change PIN2 state in the UI.
+    */
+    private void updateChangePIN2() {
+        if (mPhone.getIccCard().getIccPin2Blocked()) {
+            // If the pin2 is blocked, the state of the change pin2 dialog
+            // should be set for puk2 use (that is, the user should be prompted
+            // to enter puk2 code instead of old pin2).
+            resetPinChangeStateForPUK2();
+        } else {
+            resetPinChangeState();
+        }
+    }
+
     @Override
     protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
@@ -518,6 +532,7 @@ public class FdnSetting extends PreferenceActivity
         super.onResume();
         mPhone = mSubscriptionInfoHelper.getPhone();
         updateEnableFDN();
+        updateChangePIN2();
     }
 
     /**
