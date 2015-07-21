@@ -553,28 +553,69 @@ public class CallNotifier extends Handler {
     /**
      * Displays a notification when the phone receives a notice that a supplemental
      * service has failed.
-     * TODO: This is a NOOP if it isn't for conferences or resuming call failures right now.
      */
     private void onSuppServiceFailed(AsyncResult r) {
-        if (r.result != Phone.SuppService.CONFERENCE && r.result != Phone.SuppService.RESUME) {
-            if (DBG) log("onSuppServiceFailed: not a merge or resume failure event");
-            return;
-        }
-
-        String mergeFailedString = "";
-        if (r.result == Phone.SuppService.CONFERENCE) {
-            if (DBG) log("onSuppServiceFailed: displaying merge failure message");
-            mergeFailedString = mApplication.getResources().getString(
-                    R.string.incall_error_supp_service_conference);
-        } else if (r.result == Phone.SuppService.RESUME) {
-            if (DBG) log("onSuppServiceFailed: displaying merge failure message");
-            mergeFailedString = mApplication.getResources().getString(
+        Phone.SuppService service = (Phone.SuppService) r.result;
+        Log.d(LOG_TAG, "onSuppServiceFailed: " + service);
+        String errorMessageString;
+        switch (service) {
+            case SWITCH:
+            case RESUME:
+                // Attempt to switch foreground and background/incoming calls failed
+                // ("Failed to switch calls")
+                errorMessageString = mApplication.getResources().getString(
                     R.string.incall_error_supp_service_switch);
-        } else if (r.result == Phone.SuppService.HOLD) {
-            mergeFailedString = mApplication.getResources().getString(
+                break;
+
+            case SEPARATE:
+                // Attempt to separate a call from a conference call
+                // failed ("Failed to separate out call")
+                errorMessageString = mApplication.getResources().getString(
+                    R.string.incall_error_supp_service_separate);
+                break;
+
+            case TRANSFER:
+                // Attempt to connect foreground and background calls to
+                // each other (and hanging up user's line) failed ("Call
+                // transfer failed")
+                errorMessageString = mApplication.getResources().getString(
+                    R.string.incall_error_supp_service_transfer);
+                break;
+
+            case CONFERENCE:
+                // Attempt to add a call to conference call failed
+                // ("Conference call failed")
+                errorMessageString = mApplication.getResources().getString(
+                    R.string.incall_error_supp_service_conference);
+                break;
+
+            case REJECT:
+                // Attempt to reject an incoming call failed
+                // ("Call rejection failed")
+                errorMessageString = mApplication.getResources().getString(
+                    R.string.incall_error_supp_service_reject);
+                break;
+
+            case HANGUP:
+                // Attempt to release a call failed ("Failed to release call(s)")
+                errorMessageString = mApplication.getResources().getString(
+                    R.string.incall_error_supp_service_hangup);
+                break;
+
+            case HOLD:
+                errorMessageString = mApplication.getResources().getString(
                     R.string.incall_error_supp_service_hold);
+                break;
+
+            case UNKNOWN:
+            default:
+                // Attempt to use a service we don't recognize or support
+                // ("Unsupported service" or "Selected service failed")
+                errorMessageString = mApplication.getResources().getString(
+                    R.string.incall_error_supp_service_unknown);
+                break;
         }
-        PhoneDisplayMessage.displayErrorMessage(mApplication, mergeFailedString);
+        PhoneDisplayMessage.displayErrorMessage(mApplication, errorMessageString);
 
         // start a timer that kills the dialog
         sendEmptyMessageDelayed(INTERNAL_SHOW_MESSAGE_NOTIFICATION_DONE,
