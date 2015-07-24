@@ -89,6 +89,9 @@ public class SimChangeReceiver extends BroadcastReceiver {
                     }
 
                     if (isEnabled) {
+                        LocalLogHelper.log(TAG, "Sim state or carrier config changed: requesting"
+                                + " activation for " + phoneAccount.getId());
+
                         // Add a phone state listener so that changes to the communication channels
                         // can be recorded.
                         OmtpVvmSourceManager.getInstance(context).addPhoneStateListener(
