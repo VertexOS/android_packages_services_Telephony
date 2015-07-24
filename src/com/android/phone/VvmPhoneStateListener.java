@@ -21,7 +21,9 @@ import android.provider.VoicemailContract;
 import android.telecom.PhoneAccountHandle;
 import android.telephony.PhoneStateListener;
 import android.telephony.ServiceState;
+import android.util.Log;
 
+import com.android.phone.vvm.omtp.LocalLogHelper;
 import com.android.phone.vvm.omtp.OmtpVvmCarrierConfigHelper;
 import com.android.phone.vvm.omtp.sync.OmtpVvmSourceManager;
 import com.android.phone.vvm.omtp.sync.OmtpVvmSyncService;
@@ -31,9 +33,12 @@ import com.android.phone.vvm.omtp.sync.VoicemailStatusQueryHelper;
  * Check if service is lost and indicate this in the voicemail status.
  */
 public class VvmPhoneStateListener extends PhoneStateListener {
+    private static final String TAG = "VvmPhoneStateListener";
 
     private PhoneAccountHandle mPhoneAccount;
     private Context mContext;
+    private int mPreviousState = -1;
+
     public VvmPhoneStateListener(Context context, PhoneAccountHandle accountHandle) {
         super(PhoneUtils.getSubIdForPhoneAccountHandle(accountHandle));
         mContext = context;
@@ -42,11 +47,21 @@ public class VvmPhoneStateListener extends PhoneStateListener {
 
     @Override
     public void onServiceStateChanged(ServiceState serviceState) {
-        if (serviceState.getState() == ServiceState.STATE_IN_SERVICE) {
+        int state = serviceState.getState();
+        if (state == mPreviousState || (state != ServiceState.STATE_IN_SERVICE
+                && mPreviousState != ServiceState.STATE_IN_SERVICE)) {
+            // Only interested in state changes or transitioning into or out of "in service".
+            // Otherwise just quit.
+            mPreviousState = state;
+            return;
+        }
+
+        if (state == ServiceState.STATE_IN_SERVICE) {
             VoicemailStatusQueryHelper voicemailStatusQueryHelper =
                     new VoicemailStatusQueryHelper(mContext);
             if (voicemailStatusQueryHelper.isVoicemailSourceConfigured(mPhoneAccount)) {
                 if (!voicemailStatusQueryHelper.isNotificationsChannelActive(mPhoneAccount)) {
+                    Log.v(TAG, "Notifications channel is active for " + mPhoneAccount.getId());
                     VoicemailContract.Status.setStatus(mContext, mPhoneAccount,
                             VoicemailContract.Status.CONFIGURATION_STATE_OK,
                             VoicemailContract.Status.DATA_CHANNEL_STATE_OK,
@@ -57,6 +72,9 @@ public class VvmPhoneStateListener extends PhoneStateListener {
             }
 
             if (OmtpVvmSourceManager.getInstance(mContext).isVvmSourceRegistered(mPhoneAccount)) {
+                Log.v(TAG, "Signal returned: requesting resync for " + mPhoneAccount.getId());
+                LocalLogHelper.log(TAG,
+                        "Signal returned: requesting resync for " + mPhoneAccount.getId());
                 // If the source is already registered, run a full sync in case something was missed
                 // while signal was down.
                 Intent serviceIntent = OmtpVvmSyncService.getSyncIntent(
@@ -64,6 +82,9 @@ public class VvmPhoneStateListener extends PhoneStateListener {
                         true /* firstAttempt */);
                 mContext.startService(serviceIntent);
             } else {
+                Log.v(TAG, "Signal returned: reattempting activation for " + mPhoneAccount.getId());
+                LocalLogHelper.log(TAG,
+                        "Signal returned: reattempting activation for " + mPhoneAccount.getId());
                 // Otherwise initiate an activation because this means that an OMTP source was
                 // recognized but either the activation text was not successfully sent or a response
                 // was not received.
@@ -72,10 +93,16 @@ public class VvmPhoneStateListener extends PhoneStateListener {
                 carrierConfigHelper.startActivation();
             }
         } else {
+            Log.v(TAG, "Notifications channel is inactive for " + mPhoneAccount.getId());
+            mContext.stopService(OmtpVvmSyncService.getSyncIntent(
+                    mContext, OmtpVvmSyncService.SYNC_FULL_SYNC, mPhoneAccount,
+                    true /* firstAttempt */));
+
             VoicemailContract.Status.setStatus(mContext, mPhoneAccount,
                     VoicemailContract.Status.CONFIGURATION_STATE_OK,
                     VoicemailContract.Status.DATA_CHANNEL_STATE_NO_CONNECTION,
                     VoicemailContract.Status.NOTIFICATION_CHANNEL_STATE_NO_CONNECTION);
         }
+        mPreviousState = state;
     }
 }
