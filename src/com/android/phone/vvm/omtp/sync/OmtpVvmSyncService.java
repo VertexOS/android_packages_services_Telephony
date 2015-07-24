@@ -32,6 +32,7 @@ import android.util.Log;
 
 import com.android.phone.PhoneUtils;
 import com.android.phone.settings.VisualVoicemailSettingsUtil;
+import com.android.phone.vvm.omtp.LocalLogHelper;
 import com.android.phone.vvm.omtp.imap.ImapHelper;
 
 import java.util.HashMap;
@@ -137,7 +138,12 @@ public class OmtpVvmSyncService extends IntentService {
         }
 
         String action = intent.getAction();
+
         PhoneAccountHandle phoneAccount = intent.getParcelableExtra(EXTRA_PHONE_ACCOUNT);
+
+        LocalLogHelper.log(TAG, "Sync requested: " + action +
+                " for all accounts: " + String.valueOf(phoneAccount == null));
+
         if (phoneAccount != null) {
             Log.v(TAG, "Sync requested: " + action + " - for account: " + phoneAccount);
             setupAndSendNetworkRequest(phoneAccount, action);
@@ -231,6 +237,7 @@ public class OmtpVvmSyncService extends IntentService {
                     }
 
                     Log.v(TAG, "Retrying " + mAction);
+                    LocalLogHelper.log(TAG, "Immediately retrying " + mAction);
                 } else {
                     // Nothing more to do here, just exit.
                     releaseNetwork(this);
@@ -295,6 +302,7 @@ public class OmtpVvmSyncService extends IntentService {
                 phoneAccount);
 
         Log.v(TAG, "Retrying "+ action + " in " + retryInterval + "ms");
+        LocalLogHelper.log(TAG, "Retrying "+ action + " in " + retryInterval + "ms");
 
         AlarmManager alarmManager = (AlarmManager)
                 this.getSystemService(Context.ALARM_SERVICE);
