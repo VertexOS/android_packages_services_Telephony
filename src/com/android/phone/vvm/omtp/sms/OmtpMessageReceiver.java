@@ -28,6 +28,7 @@ import android.util.Log;
 import com.android.internal.telephony.PhoneConstants;
 import com.android.phone.PhoneUtils;
 import com.android.phone.settings.VisualVoicemailSettingsUtil;
+import com.android.phone.vvm.omtp.LocalLogHelper;
 import com.android.phone.vvm.omtp.OmtpConstants;
 import com.android.phone.vvm.omtp.sync.OmtpVvmSourceManager;
 import com.android.phone.vvm.omtp.sync.OmtpVvmSyncService;
@@ -69,10 +70,12 @@ public class OmtpMessageReceiver extends BroadcastReceiver {
 
                 Log.v(TAG, "Received SYNC sms for " + mPhoneAccount.getId() +
                         " with event" + message.getSyncTriggerEvent());
-
+                LocalLogHelper.log(TAG, "Received SYNC sms for " + mPhoneAccount.getId() +
+                        " with event" + message.getSyncTriggerEvent());
                 processSync(message);
             } else if (messageData.getPrefix() == OmtpConstants.STATUS_SMS_PREFIX) {
                 Log.v(TAG, "Received STATUS sms for " + mPhoneAccount.getId());
+                LocalLogHelper.log(TAG, "Received Status sms for " + mPhoneAccount.getId());
                 StatusMessage message = new StatusMessage(messageData);
                 updateSource(message);
             } else {
