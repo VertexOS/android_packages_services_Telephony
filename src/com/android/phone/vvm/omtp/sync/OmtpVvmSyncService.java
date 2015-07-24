@@ -58,6 +58,9 @@ public class OmtpVvmSyncService extends IntentService {
     // Timeout used to call ConnectivityManager.requestNetwork
     private static final int NETWORK_REQUEST_TIMEOUT_MILLIS = 60 * 1000;
 
+    // Minimum time allowed between full syncs
+    private static final int MINIMUM_FULL_SYNC_INTERVAL_MILLIS = 60 * 1000;
+
     // Number of retries
     private static final int NETWORK_RETRY_COUNT = 6;
 
@@ -162,6 +165,20 @@ public class OmtpVvmSyncService extends IntentService {
         if (!VisualVoicemailSettingsUtil.isVisualVoicemailEnabled(this, phoneAccount)) {
             Log.v(TAG, "Sync requested for disabled account");
             return;
+        }
+
+        if (SYNC_FULL_SYNC.equals(action)) {
+            long lastSyncTime = VisualVoicemailSettingsUtil.getVisualVoicemailLastFullSyncTime(
+                    this, phoneAccount);
+            long currentTime = System.currentTimeMillis();
+            if (currentTime - lastSyncTime < MINIMUM_FULL_SYNC_INTERVAL_MILLIS) {
+                // If it's been less than a minute since the last sync, bail.
+                Log.v(TAG, "Avoiding duplicate full sync: synced recently for "
+                        + phoneAccount.getId());
+                return;
+            }
+            VisualVoicemailSettingsUtil.setVisualVoicemailLastFullSyncTime(
+                    this, phoneAccount, currentTime);
         }
 
         OmtpVvmNetworkRequestCallback networkCallback = new OmtpVvmNetworkRequestCallback(this,
