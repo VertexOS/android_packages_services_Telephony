@@ -393,6 +393,8 @@
      <string name="preferred_network_mode_lte_gsm_umts_summary">Preferred network mode: LTE / GSM / UMTS</string>
      <!-- Mobile network settings, summary for preferred network mode LTE / CDMA [CHAR LIMIT=100] -->
      <string name="preferred_network_mode_lte_cdma_summary">Preferred network mode: LTE / CDMA</string>
+     <!-- Mobile network settings, summary for preferred network mode TDSCDMTA [CHAR LIMIT=100] -->
+     <string name="preferred_network_mode_tdscdma_summary">Preferred network mode: TDSCDMA</string>
 
     <string-array name="preferred_network_mode_choices">
         <item>LTE / WCDMA</item>
@@ -594,6 +596,7 @@
     <string name="network_2G" translatable="false">2G</string>
     <string name="network_1x" translatable="false">1x</string>
     <string name="network_global">Global</string>
+    <string name="network_tdscdma">TDSCDMA Only</string>
 
     <string-array name="enabled_networks_except_gsm_choices" translatable="false">
         <item>@string/network_lte</item>
@@ -669,6 +672,19 @@
     <string-array name="enabled_networks_cdma_only_lte_values" translatable="false">
         <item>"8"</item>
         <item>"10"</item>
+    </string-array>
+
+    <string-array name="enabled_networks_tdscdma_choices" translatable="false">
+        <item>@string/network_lte</item>
+        <item>@string/network_3G</item>
+        <item>@string/network_2G</item>
+        <item>@string/network_tdscdma</item>
+    </string-array>
+    <string-array name="enabled_networks_tdscdma_values" translatable="false">
+        <item>"22"</item>
+        <item>"18"</item>
+        <item>"1"</item>
+        <item>"13"</item>
     </string-array>
 
     <!-- CDMA System select strings -->
