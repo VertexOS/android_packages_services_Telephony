@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License
  */
-package com.android.phone;
+package com.android.phone.vvm.omtp;
 
 import android.content.Context;
 import android.content.Intent;
@@ -23,8 +23,8 @@ import android.telephony.PhoneStateListener;
 import android.telephony.ServiceState;
 import android.util.Log;
 
-import com.android.phone.vvm.omtp.LocalLogHelper;
-import com.android.phone.vvm.omtp.OmtpVvmCarrierConfigHelper;
+import com.android.phone.PhoneGlobals;
+import com.android.phone.PhoneUtils;
 import com.android.phone.vvm.omtp.sync.OmtpVvmSourceManager;
 import com.android.phone.vvm.omtp.sync.OmtpVvmSyncService;
 import com.android.phone.vvm.omtp.sync.VoicemailStatusQueryHelper;
@@ -66,8 +66,8 @@ public class VvmPhoneStateListener extends PhoneStateListener {
                             VoicemailContract.Status.CONFIGURATION_STATE_OK,
                             VoicemailContract.Status.DATA_CHANNEL_STATE_OK,
                             VoicemailContract.Status.NOTIFICATION_CHANNEL_STATE_OK);
-                    PhoneGlobals.getInstance().notificationMgr.updateMwi(
-                            PhoneUtils.getSubIdForPhoneAccountHandle(mPhoneAccount), false);
+                    PhoneGlobals.getInstance().clearMwiIndicator(
+                            PhoneUtils.getSubIdForPhoneAccountHandle(mPhoneAccount));
                 }
             }
 
