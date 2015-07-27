@@ -27,6 +27,7 @@ import android.telephony.SubscriptionManager;
 import android.util.Log;
 
 import com.android.internal.telephony.PhoneConstants;
+import com.android.phone.PhoneGlobals;
 import com.android.phone.PhoneUtils;
 import com.android.phone.settings.VisualVoicemailSettingsUtil;
 import com.android.phone.vvm.omtp.LocalLogHelper;
@@ -150,6 +151,9 @@ public class OmtpMessageReceiver extends BroadcastReceiver {
                     mContext, OmtpVvmSyncService.SYNC_FULL_SYNC, mPhoneAccount,
                     true /* firstAttempt */);
             mContext.startService(serviceIntent);
+
+            PhoneGlobals.getInstance().clearMwiIndicator(
+                    PhoneUtils.getSubIdForPhoneAccountHandle(mPhoneAccount));
         } else {
             Log.w(TAG, "Visual voicemail not available for subscriber.");
             // Override default isEnabled setting to false since visual voicemail is unable to
