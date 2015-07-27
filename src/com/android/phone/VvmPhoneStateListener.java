@@ -98,6 +98,10 @@ public class VvmPhoneStateListener extends PhoneStateListener {
                     mContext, OmtpVvmSyncService.SYNC_FULL_SYNC, mPhoneAccount,
                     true /* firstAttempt */));
 
+            if (!OmtpVvmSourceManager.getInstance(mContext).isVvmSourceRegistered(mPhoneAccount)) {
+                return;
+            }
+
             VoicemailContract.Status.setStatus(mContext, mPhoneAccount,
                     VoicemailContract.Status.CONFIGURATION_STATE_OK,
                     VoicemailContract.Status.DATA_CHANNEL_STATE_NO_CONNECTION,
