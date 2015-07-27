@@ -956,6 +956,15 @@ public class PhoneGlobals extends ContextWrapper {
     }
 
     /**
+     * Dismisses the message waiting (voicemail) indicator.
+     *
+     * @param subId the subscription id we should dismiss the notification for.
+     */
+    public void clearMwiIndicator(int subId) {
+        notificationMgr.updateMwi(subId, false);
+    }
+
+    /**
      * "Call origin" may be used by Contacts app to specify where the phone call comes from.
      * Currently, the only permitted value for this extra is {@link #ALLOWED_EXTRA_CALL_ORIGIN}.
      * Any other value will be ignored, to make sure that malicious apps can't trick the in-call
