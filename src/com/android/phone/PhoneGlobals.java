@@ -344,12 +344,8 @@ public class PhoneGlobals extends ContextWrapper {
             startService(intent);
 
             mCM = CallManager.getInstance();
-            boolean hasCdmaPhoneType = false;
             for (Phone phone : PhoneFactory.getPhones()) {
                 mCM.registerPhone(phone);
-                if (phone.getPhoneType() == PhoneConstants.PHONE_TYPE_CDMA) {
-                    hasCdmaPhoneType = true;
-                }
             }
 
             // Create the NotificationMgr singleton, which is used to display
@@ -358,11 +354,9 @@ public class PhoneGlobals extends ContextWrapper {
 
             mHandler.sendEmptyMessage(EVENT_START_SIP_SERVICE);
 
-            if (hasCdmaPhoneType) {
-                // Create an instance of CdmaPhoneCallState and initialize it to IDLE
-                cdmaPhoneCallState = new CdmaPhoneCallState();
-                cdmaPhoneCallState.CdmaPhoneCallStateInit();
-            }
+            // Create an instance of CdmaPhoneCallState and initialize it to IDLE
+            cdmaPhoneCallState = new CdmaPhoneCallState();
+            cdmaPhoneCallState.CdmaPhoneCallStateInit();
 
             // before registering for phone state changes
             mPowerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
