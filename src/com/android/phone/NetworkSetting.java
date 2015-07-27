@@ -43,6 +43,8 @@ import com.android.internal.telephony.OperatorInfo;
 
 import java.util.HashMap;
 import java.util.List;
+import android.text.BidiFormatter;
+import android.text.TextDirectionHeuristics;
 
 /**
  * "Networks" settings UI for the Phone app.
@@ -471,7 +473,6 @@ public class NetworkSetting extends PreferenceActivity
 
                     if (DBG) log("  " + ni);
                 }
-
             } else {
                 displayEmptyNetworkList(true);
             }
@@ -493,7 +494,8 @@ public class NetworkSetting extends PreferenceActivity
         } else if (!TextUtils.isEmpty(ni.getOperatorAlphaShort())) {
             return ni.getOperatorAlphaShort();
         } else {
-            return ni.getOperatorNumeric();
+            BidiFormatter bidiFormatter = BidiFormatter.getInstance();
+            return bidiFormatter.unicodeWrap(ni.getOperatorNumeric(), TextDirectionHeuristics.LTR);
         }
     }
 
