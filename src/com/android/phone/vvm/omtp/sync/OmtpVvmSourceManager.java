@@ -24,7 +24,7 @@ import android.telephony.TelephonyManager;
 
 import com.android.internal.telephony.Phone;
 import com.android.phone.PhoneUtils;
-import com.android.phone.VvmPhoneStateListener;
+import com.android.phone.vvm.omtp.VvmPhoneStateListener;
 
 import java.util.Collections;
 import java.util.Map;
