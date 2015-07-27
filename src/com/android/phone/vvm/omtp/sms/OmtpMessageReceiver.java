@@ -23,6 +23,7 @@ import android.provider.VoicemailContract;
 import android.telecom.PhoneAccountHandle;
 import android.telecom.Voicemail;
 import android.telephony.SmsMessage;
+import android.telephony.SubscriptionManager;
 import android.util.Log;
 
 import com.android.internal.telephony.PhoneConstants;
@@ -48,6 +49,11 @@ public class OmtpMessageReceiver extends BroadcastReceiver {
         mContext = context;
         mPhoneAccount = PhoneUtils.makePstnPhoneAccountHandle(
                 intent.getExtras().getInt(PhoneConstants.PHONE_KEY));
+
+        if (mPhoneAccount == null) {
+            Log.w(TAG, "Received message for null phone account");
+            return;
+        }
 
         if (!VisualVoicemailSettingsUtil.isVisualVoicemailEnabled(mContext, mPhoneAccount)) {
             Log.v(TAG, "Received vvm message for disabled vvm source.");
