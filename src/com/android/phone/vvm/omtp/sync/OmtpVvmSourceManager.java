@@ -26,10 +26,10 @@ import com.android.internal.telephony.Phone;
 import com.android.phone.PhoneUtils;
 import com.android.phone.VvmPhoneStateListener;
 
-import java.util.HashMap;
-import java.util.HashSet;
+import java.util.Collections;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * A singleton class designed to remember the active OMTP visual voicemail sources. Because a
@@ -69,8 +69,10 @@ public class OmtpVvmSourceManager {
             mSubscriptionManager = SubscriptionManager.from(context);
             mTelephonyManager = (TelephonyManager)
                     mContext.getSystemService(Context.TELEPHONY_SERVICE);
-            mActiveVvmSources = new HashSet<PhoneAccountHandle>();
-            mPhoneStateListenerMap = new HashMap<PhoneAccountHandle, PhoneStateListener>();
+            mActiveVvmSources = Collections.newSetFromMap(
+                    new ConcurrentHashMap<PhoneAccountHandle, Boolean>(8, 0.9f, 1));
+            mPhoneStateListenerMap =
+                    new ConcurrentHashMap<PhoneAccountHandle, PhoneStateListener>(8, 0.9f, 1);
         }
     }
 
@@ -87,6 +89,13 @@ public class OmtpVvmSourceManager {
         for (PhoneAccountHandle phoneAccount : mActiveVvmSources) {
             if (!PhoneUtils.isPhoneAccountActive(mSubscriptionManager, phoneAccount)) {
                 removeSource(phoneAccount);
+            }
+        }
+
+        // Remove any orphaned phone state listeners as well.
+        for (PhoneAccountHandle phoneAccount : mPhoneStateListenerMap.keySet()) {
+            if (!PhoneUtils.isPhoneAccountActive(mSubscriptionManager, phoneAccount)) {
+                removePhoneStateListener(phoneAccount);
             }
         }
     }
