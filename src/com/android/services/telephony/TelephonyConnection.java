@@ -580,7 +580,7 @@ abstract class TelephonyConnection extends Connection {
     void setOriginalConnection(com.android.internal.telephony.Connection originalConnection) {
         Log.v(this, "new TelephonyConnection, originalConnection: " + originalConnection);
         clearOriginalConnection();
-
+        mOriginalConnectionExtras.clear();
         mOriginalConnection = originalConnection;
         getPhone().registerForPreciseCallStateChanged(
                 mHandler, MSG_PRECISE_CALL_STATE_CHANGED, null);
@@ -754,6 +754,14 @@ abstract class TelephonyConnection extends Connection {
                     }
                     mOriginalConnectionExtras.clear();
                     mOriginalConnectionExtras.putAll(extras);
+
+                    // Ensure extras are propagated to Telecom.
+                    Bundle connectionExtras = getExtras();
+                    if (connectionExtras == null) {
+                        connectionExtras = new Bundle();
+                    }
+                    connectionExtras.putAll(mOriginalConnectionExtras);
+                    setExtras(connectionExtras);
                 } else {
                     Log.d(this, "Extras update not required");
                 }
