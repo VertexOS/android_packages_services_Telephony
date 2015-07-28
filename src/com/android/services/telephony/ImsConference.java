@@ -663,6 +663,7 @@ public class ImsConference extends Conference {
             mConferenceHost.removeTelephonyConnectionListener(mTelephonyConnectionListener);
             mConferenceHost = null;
             setDisconnected(new DisconnectCause(DisconnectCause.OTHER));
+            disconnectConferenceParticipants();
             destroy();
         }
 

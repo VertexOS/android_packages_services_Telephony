@@ -79,7 +79,7 @@ abstract class TelephonyConnection extends Connection {
                             ((connection.getAddress() != null &&
                             mOriginalConnection.getAddress() != null &&
                             mOriginalConnection.getAddress().contains(connection.getAddress())) ||
-                            connection.getStateBeforeHandover() == mOriginalConnection.getState())) {
+                            connection.getState() == mOriginalConnection.getStateBeforeHandover())) {
                             Log.d(TelephonyConnection.this,
                                     "SettingOriginalConnection " + mOriginalConnection.toString()
                                             + " with " + connection.toString());
