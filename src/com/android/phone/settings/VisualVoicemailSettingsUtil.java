@@ -39,6 +39,10 @@ public class VisualVoicemailSettingsUtil {
     // If a carrier vvm app is installed, Google visual voicemail is automatically switched off
     // however, the user can override this setting.
     private static final String IS_USER_SET = "is_user_set";
+    // Record the timestamp of the last full sync so that duplicate syncs can be reduced.
+    private static final String LAST_FULL_SYNC_TIMESTAMP = "last_full_sync_timestamp";
+    // Constant indicating that there has never been a full sync.
+    public static final long NO_PRIOR_FULL_SYNC = -1;
 
     // Setting for how often retries should be done.
     private static final String SYNC_RETRY_INTERVAL = "sync_retry_interval";
@@ -140,6 +144,24 @@ public class VisualVoicemailSettingsUtil {
         editor.putLong(getVisualVoicemailSharedPrefsKey(SYNC_RETRY_INTERVAL, phoneAccount),
                 Math.min(interval, MAX_SYNC_RETRY_INTERVAL_MS));
         editor.commit();
+    }
+
+    public static void setVisualVoicemailLastFullSyncTime(Context context,
+            PhoneAccountHandle phoneAccount, long timestamp) {
+        SharedPreferences.Editor editor =
+                PreferenceManager.getDefaultSharedPreferences(context).edit();
+        editor.putLong(getVisualVoicemailSharedPrefsKey(LAST_FULL_SYNC_TIMESTAMP, phoneAccount),
+                timestamp);
+        editor.commit();
+
+    }
+
+    public static long getVisualVoicemailLastFullSyncTime(Context context,
+            PhoneAccountHandle phoneAccount) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        return prefs.getLong(
+                getVisualVoicemailSharedPrefsKey(LAST_FULL_SYNC_TIMESTAMP, phoneAccount),
+                NO_PRIOR_FULL_SYNC);
     }
 
     private static String getVisualVoicemailSharedPrefsKey(String key,
