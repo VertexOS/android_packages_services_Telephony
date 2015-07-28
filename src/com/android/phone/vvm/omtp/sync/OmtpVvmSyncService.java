@@ -254,25 +254,11 @@ public class OmtpVvmSyncService extends IntentService {
         @Override
         public void onLost(Network network) {
             releaseNetwork(this);
-
-            if (mRetryCount > 0) {
-                mRetryCount--;
-                requestNetwork(this);
-            } else {
-                setRetryAlarm(mPhoneAccount, mAction);
-            }
         }
 
         @Override
         public void onUnavailable() {
             releaseNetwork(this);
-
-            if (mRetryCount> 0) {
-                mRetryCount--;
-                requestNetwork(this);
-            } else {
-                setRetryAlarm(mPhoneAccount, mAction);
-            }
         }
     }
 
