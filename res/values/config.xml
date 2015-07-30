@@ -186,4 +186,11 @@
     <!-- Disables dialing "*228" (OTASP provisioning) on CDMA carriers where it is not supported or
          is potentially harmful by locking the SIM to 3G. -->
     <string name="config_disable_cdma_activation_code" translatable="false">false</string>
+
+    <!-- Flag indicating if SIM state should be checked before making an outgoing call. -->
+    <bool name="config_checkSimStateBeforeOutgoingCall">false</bool>
+    <!-- Package name for the SIM unlock dialog.[DO NOT TRANSLATE] -->
+    <string name="config_simUnlockUiPackage" translatable="false">@null</string>
+    <!-- Class name for the SIM unlock dialog.[DO NOT TRANSLATE] -->
+    <string name="config_simUnlockUiClass" translatable="false">@null</string>
 </resources>
