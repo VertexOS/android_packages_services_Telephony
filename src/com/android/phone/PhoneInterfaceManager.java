@@ -2803,29 +2803,25 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         // Try and fetch the locale from the carrier properties or from the SIM language
         // preferences (EF-PL and EF-LI)...
         final int mcc = info.getMcc();
-        final Locale mccLocale = MccTable.getLocaleFromMcc(mPhone.getContext(), mcc);
         final Phone defaultPhone = getPhone(info.getSubscriptionId());
+        String simLanguage = null;
         if (defaultPhone != null) {
             final Locale localeFromDefaultSim = defaultPhone.getLocaleFromSimAndCarrierPrefs();
             if (localeFromDefaultSim != null) {
-                // The SIM language preferences only store a language (e.g. fr = French), not an
-                // exact locale (e.g. fr_FR = French/France). So, if the locale returned from
-                // the SIM and carrier preferences does not include a country we add the country
-                // determined from the SIM MCC to provide an exact locale.
-                // Note this can result in unusual locale combinatons (e.g. en_DE) being returned.
-                if ((localeFromDefaultSim.getCountry().isEmpty()) && (mccLocale != null)) {
-                    final Locale combinedLocale = new Locale (localeFromDefaultSim.getLanguage(),
-                                                              mccLocale.getCountry());
-                    if (DBG) log("Using SIM language and mcc country:" + combinedLocale);
-                    return combinedLocale.toLanguageTag();
-                } else {
+                if (!localeFromDefaultSim.getCountry().isEmpty()) {
                     if (DBG) log("Using locale from default SIM:" + localeFromDefaultSim);
                     return localeFromDefaultSim.toLanguageTag();
+                } else {
+                    simLanguage = localeFromDefaultSim.getLanguage();
                 }
             }
         }
 
-        // .. if that doesn't work, try and guess the language from the sim MCC.
+        // The SIM language preferences only store a language (e.g. fr = French), not an
+        // exact locale (e.g. fr_FR = French/France). So, if the locale returned from
+        // the SIM and carrier preferences does not include a country we add the country
+        // determined from the SIM MCC to provide an exact locale.
+        final Locale mccLocale = MccTable.getLocaleFromMcc(mPhone.getContext(), mcc, simLanguage);
         if (mccLocale != null) {
             if (DBG) log("No locale from default SIM, using mcc locale:" + mccLocale);
             return mccLocale.toLanguageTag();
