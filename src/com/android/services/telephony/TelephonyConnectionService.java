@@ -16,11 +16,10 @@
 
 package com.android.services.telephony;
 
+import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.net.Uri;
 import android.telecom.Connection;
 import android.telecom.ConnectionRequest;
@@ -30,13 +29,14 @@ import android.telecom.PhoneAccountHandle;
 import android.telephony.CarrierConfigManager;
 import android.telephony.PhoneNumberUtils;
 import android.telephony.ServiceState;
-import android.telephony.SubscriptionInfo;
 import android.telephony.SubscriptionManager;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 
 import com.android.internal.telephony.Call;
 import com.android.internal.telephony.CallStateException;
+import com.android.internal.telephony.IccCard;
+import com.android.internal.telephony.IccCardConstants;
 import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneConstants;
 import com.android.internal.telephony.PhoneFactory;
@@ -49,7 +49,6 @@ import com.android.phone.R;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.regex.Pattern;
 
 /**
@@ -176,6 +175,38 @@ public class TelephonyConnectionService extends ConnectionService {
         // Get the right phone object from the account data passed in.
         final Phone phone = getPhoneForAccount(request.getAccountHandle(), isEmergencyNumber);
         if (phone == null) {
+            final Context context = getApplicationContext();
+            if (context.getResources().getBoolean(R.bool.config_checkSimStateBeforeOutgoingCall)) {
+                // Check SIM card state before the outgoing call.
+                // Start the SIM unlock activity if PIN_REQUIRED.
+                final Phone defaultPhone = PhoneFactory.getDefaultPhone();
+                final IccCard icc = defaultPhone.getIccCard();
+                IccCardConstants.State simState = IccCardConstants.State.UNKNOWN;
+                if (icc != null) {
+                    simState = icc.getState();
+                }
+                if (simState == IccCardConstants.State.PIN_REQUIRED) {
+                    final String simUnlockUiPackage = context.getResources().getString(
+                            R.string.config_simUnlockUiPackage);
+                    final String simUnlockUiClass = context.getResources().getString(
+                            R.string.config_simUnlockUiClass);
+                    if (simUnlockUiPackage != null && simUnlockUiClass != null) {
+                        Intent simUnlockIntent = new Intent().setComponent(new ComponentName(
+                                simUnlockUiPackage, simUnlockUiClass));
+                        simUnlockIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        try {
+                            context.startActivity(simUnlockIntent);
+                        } catch (ActivityNotFoundException exception) {
+                            Log.e(this, exception, "Unable to find SIM unlock UI activity.");
+                        }
+                    }
+                    return Connection.createFailedConnection(
+                            DisconnectCauseUtil.toTelecomDisconnectCause(
+                                    android.telephony.DisconnectCause.OUT_OF_SERVICE,
+                                    "SIM_STATE_PIN_REQUIRED"));
+                }
+            }
+
             Log.d(this, "onCreateOutgoingConnection, phone is null");
             return Connection.createFailedConnection(
                     DisconnectCauseUtil.toTelecomDisconnectCause(
