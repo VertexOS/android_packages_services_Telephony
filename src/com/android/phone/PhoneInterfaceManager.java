@@ -1615,16 +1615,6 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         mApp.enforceCallingOrSelfPermission(android.Manifest.permission.CALL_PHONE, null);
     }
 
-    /**
-     * Make sure the caller has the READ_PRIVILEGED_PHONE_STATE permission.
-     *
-     * @throws SecurityException if the caller does not have the required permission
-     */
-    private void enforcePrivilegedPhoneStatePermission() {
-        mApp.enforceCallingOrSelfPermission(android.Manifest.permission.READ_PRIVILEGED_PHONE_STATE,
-                null);
-    }
-
     private void enforceConnectivityInternalPermission() {
         mApp.enforceCallingOrSelfPermission(
                 android.Manifest.permission.CONNECTIVITY_INTERNAL,
@@ -2717,10 +2707,10 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
 
     private boolean canReadPhoneState(String callingPackage, String message) {
         try {
-            mApp.enforceCallingPermission(
+            mApp.enforceCallingOrSelfPermission(
                     android.Manifest.permission.READ_PRIVILEGED_PHONE_STATE, message);
 
-            // SKIP checking for run-time permission since obtained PRIVILEDGED
+            // SKIP checking for run-time permission since caller or self has PRIVILEDGED permission
             return true;
         } catch (SecurityException e) {
             mApp.enforceCallingOrSelfPermission(android.Manifest.permission.READ_PHONE_STATE,
