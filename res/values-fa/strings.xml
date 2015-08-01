@@ -137,8 +137,8 @@
     <item msgid="1108394741608734023">"نمایش شماره"</item>
   </string-array>
     <string name="vm_changed" msgid="380744030726254139">"شماره پست صوتی تغییر کرد."</string>
-    <string name="vm_change_failed" msgid="3352934863246208918">"نمی‌توان شماره صندوق صوتی را تغییر داد.\nدر صورتی که این مشکل همچنان ادامه دارد با شرکت مخابراتی خود تماس بگیرید."</string>
-    <string name="fw_change_failed" msgid="5298103228470214665">"نمی‌توان شماره هدایت تماس را تغییر داد.\nدر صورتی که این مشکل همچنان ادامه دارد با شرکت مخابراتی خود تماس بگیرید."</string>
+    <string name="vm_change_failed" msgid="3352934863246208918">"نمی‌توان شماره صندوق صوتی را تغییر داد.\nدرصورتی‌که این مشکل همچنان ادامه دارد با شرکت مخابراتی خود تماس بگیرید."</string>
+    <string name="fw_change_failed" msgid="5298103228470214665">"نمی‌توان شماره هدایت تماس را تغییر داد.\nدرصورتی‌که این مشکل همچنان ادامه دارد با شرکت مخابراتی خود تماس بگیرید."</string>
     <string name="fw_get_in_vm_failed" msgid="8862896836093833973">"نمی‌توان تنظیمات هدایت شماره فعلی را بازیابی و ذخیره کرد.\nبه هر حال به ارائه دهنده جدید تغییر کند؟"</string>
     <string name="no_change" msgid="3186040086622435212">"تغییری انجام نشده است."</string>
     <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"انتخاب سرویس پست صوتی"</string>
@@ -155,7 +155,7 @@
     <string name="registration_done" msgid="495135664535876612">"در شبکه ثبت شد."</string>
     <string name="sum_carrier_select" msgid="3494252551249882718">"انتخاب یک اپراتور شبکه"</string>
     <string name="sum_search_networks" msgid="2921092249873272715">"جستجوی همه شبکه‌های موجود"</string>
-    <string name="select_automatically" msgid="5628402124471810174">"انتخاب به طور خودکار"</string>
+    <string name="select_automatically" msgid="5628402124471810174">"انتخاب به‌طور خودکار"</string>
     <string name="sum_select_automatically" msgid="5614890115123292400">"به صورت خودکار شبکه برگزیده را انتخاب کنید"</string>
     <string name="register_automatically" msgid="6017849844573519637">"ثبت خودکار..."</string>
     <string name="preferred_network_mode_title" msgid="2336624679902659306">"نوع شبکه برگزیده"</string>
