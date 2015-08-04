@@ -929,6 +929,7 @@ public class VoicemailSettingsActivity extends PreferenceActivity
             if (prevSettings == null) {
                 Log.e(LOG_TAG, "VoicemailProviderSettings for the key \""
                         + mPreviousVMProviderKey + "\" is null but should be loaded.");
+                return;
             }
 
             if (mVMChangeCompletedSuccessfully) {
