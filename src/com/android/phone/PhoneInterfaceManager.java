@@ -2732,10 +2732,19 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
      * Besides READ_PHONE_STATE, WRITE_SMS also allows apps to get phone numbers.
      */
     private boolean canReadPhoneNumber(String callingPackage, String message) {
-        // Note canReadPhoneState() may throw, so we need to do the appops check first.
-        return (mAppOps.noteOp(AppOpsManager.OP_WRITE_SMS,
-                        Binder.getCallingUid(), callingPackage) == AppOpsManager.MODE_ALLOWED)
-                || canReadPhoneState(callingPackage, message);
+        // Default SMS app can always read it.
+        if (mAppOps.noteOp(AppOpsManager.OP_WRITE_SMS,
+                Binder.getCallingUid(), callingPackage) == AppOpsManager.MODE_ALLOWED) {
+            return true;
+        }
+        try {
+            return canReadPhoneState(callingPackage, message);
+        } catch (SecurityException e) {
+            // Can be read with READ_SMS too.
+            mApp.enforceCallingOrSelfPermission(android.Manifest.permission.READ_SMS, message);
+            return mAppOps.noteOp(AppOpsManager.OP_READ_SMS,
+                    Binder.getCallingUid(), callingPackage) == AppOpsManager.MODE_ALLOWED;
+        }
     }
 
     @Override
