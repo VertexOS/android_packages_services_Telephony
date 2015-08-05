@@ -126,8 +126,8 @@ abstract class TelephonyConnection extends Connection {
                             if (extras != null) {
                                 Log.v(TelephonyConnection.this,
                                         "Updating call history info in extras.");
-                                extras.putStringArrayList(EXTRA_CALL_HISTORY_INFO,
-                                        new ArrayList(Arrays.asList(mSsNotification.history)));
+                                /*extras.putStringArrayList(EXTRA_CALL_HISTORY_INFO,
+                                        new ArrayList(Arrays.asList(mSsNotification.history)));*/
                                 setExtras(extras);
                             }
                         }
