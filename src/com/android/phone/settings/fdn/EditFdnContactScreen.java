@@ -281,7 +281,7 @@ public class EditFdnContactScreen extends Activity {
       * TODO: Fix this logic.
       */
      private boolean isValidNumber(String number) {
-         return (number.length() <= 20);
+         return (number.length() <= 20) && (number.length() > 0);
      }
 
 
@@ -419,6 +419,12 @@ public class EditFdnContactScreen extends Activity {
             } else if (v == mNumberField) {
                 mButton.requestFocus();
             } else if (v == mButton) {
+                final String number = PhoneNumberUtils.convertAndStrip(getNumberFromTextField());
+
+                if (!isValidNumber(number)) {
+                    handleResult(false, true);
+                    return;
+                }
                 // Authenticate the pin AFTER the contact information
                 // is entered, and if we're not busy.
                 if (!mDataBusy) {
