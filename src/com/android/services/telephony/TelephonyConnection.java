@@ -16,7 +16,6 @@
 
 package com.android.services.telephony;
 
-import android.content.ComponentName;
 import android.content.Context;
 import android.graphics.drawable.Icon;
 import android.net.Uri;
@@ -30,6 +29,7 @@ import android.telecom.Connection;
 import android.telecom.PhoneAccount;
 import android.telecom.StatusHints;
 
+import com.android.ims.ImsCallProfile;
 import com.android.internal.telephony.Call;
 import com.android.internal.telephony.CallStateException;
 import com.android.internal.telephony.Connection.PostDialListener;
@@ -43,7 +43,9 @@ import java.lang.Override;
 import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
@@ -59,6 +61,12 @@ abstract class TelephonyConnection extends Connection {
     private static final int MSG_MULTIPARTY_STATE_CHANGED = 5;
     private static final int MSG_CONFERENCE_MERGE_FAILED = 6;
     private static final int MSG_SUPP_SERVICE_NOTIFY = 7;
+    /**
+     * Mappings from {@link com.android.internal.telephony.Connection} extras keys to their
+     * equivalents defined in {@link android.telecom.Connection}.
+     */
+    private static final Map<String, String> sExtrasMap = createExtrasMap();
+
     private SuppServiceNotification mSsNotification = null;
 
     private final Handler mHandler = new Handler() {
@@ -122,12 +130,12 @@ abstract class TelephonyConnection extends Connection {
                         mSsNotification =
                                 (SuppServiceNotification)((AsyncResult) msg.obj).result;
                         if (mOriginalConnection != null && mSsNotification.history != null) {
-                            Bundle extras = mOriginalConnection.getExtras();
+                            Bundle extras = getExtras();
                             if (extras != null) {
                                 Log.v(TelephonyConnection.this,
                                         "Updating call history info in extras.");
-                                /*extras.putStringArrayList(EXTRA_CALL_HISTORY_INFO,
-                                        new ArrayList(Arrays.asList(mSsNotification.history)));*/
+                                extras.putStringArrayList(Connection.EXTRA_LAST_FORWARDED_NUMBER,
+                                        new ArrayList(Arrays.asList(mSsNotification.history)));
                                 setExtras(extras);
                             }
                         }
@@ -753,7 +761,17 @@ abstract class TelephonyConnection extends Connection {
                         }
                     }
                     mOriginalConnectionExtras.clear();
+
                     mOriginalConnectionExtras.putAll(extras);
+
+                    // Remap any string extras that have a remapping defined.
+                    for (String key : mOriginalConnectionExtras.keySet()) {
+                        if (sExtrasMap.containsKey(key)) {
+                            String newKey = sExtrasMap.get(key);
+                            mOriginalConnectionExtras.putString(newKey, extras.getString(key));
+                            mOriginalConnectionExtras.remove(key);
+                        }
+                    }
 
                     // Ensure extras are propagated to Telecom.
                     Bundle connectionExtras = getExtras();
@@ -1122,6 +1140,23 @@ abstract class TelephonyConnection extends Connection {
         for (TelephonyConnectionListener l : mTelephonyListeners) {
             l.onOriginalConnectionConfigured(this);
         }
+    }
+
+
+    /**
+     * Provides a mapping from extras keys which may be found in the
+     * {@link com.android.internal.telephony.Connection} to their equivalents defined in
+     * {@link android.telecom.Connection}.
+     *
+     * @return Map containing key mappings.
+     */
+    private static Map<String, String> createExtrasMap() {
+        Map<String, String> result = new HashMap<String, String>();
+        result.put(ImsCallProfile.EXTRA_CHILD_NUMBER,
+                android.telecom.Connection.EXTRA_CHILD_ADDRESS);
+        result.put(ImsCallProfile.EXTRA_DISPLAY_TEXT,
+                android.telecom.Connection.EXTRA_CALL_SUBJECT);
+        return Collections.unmodifiableMap(result);
     }
 
     /**
