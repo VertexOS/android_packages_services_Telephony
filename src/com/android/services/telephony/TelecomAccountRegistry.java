@@ -168,8 +168,9 @@ final class TelecomAccountRegistry {
             if (mIsVideoCapable) {
                 capabilities |= PhoneAccount.CAPABILITY_VIDEO_CALLING;
             }
-            if (record != null) {
-                updateVideoPauseSupport(record);
+            mIsVideoPauseSupported = isCarrierVideoPauseSupported();
+            if (isCarrierInstantLetteringSupported()) {
+                capabilities |= PhoneAccount.CAPABILITY_CALL_SUBJECT;
             }
 
             if (icon == null) {
@@ -211,34 +212,26 @@ final class TelecomAccountRegistry {
         }
 
         /**
-         * Updates indicator for this {@link AccountEntry} to determine if the carrier supports
-         * pause/resume signalling for IMS video calls.  The carrier setting is stored in MNC/MCC
-         * configuration files.
+         * Determines from carrier configuration whether pausing of IMS video calls is supported.
          *
-         * @param subscriptionInfo The subscription info.
+         * @return {@code true} if pausing IMS video calls is supported.
          */
-        private void updateVideoPauseSupport(SubscriptionInfo subscriptionInfo) {
-            // Get the configuration for the MNC/MCC specified in the current subscription info.
-            Configuration configuration = new Configuration();
-            if (subscriptionInfo.getMcc() == 0 && subscriptionInfo.getMnc() == 0) {
-                Configuration config = mContext.getResources().getConfiguration();
-                configuration.mcc = config.mcc;
-                configuration.mnc = config.mnc;
-                Log.i(this, "updateVideoPauseSupport -- no mcc/mnc for sub: " + subscriptionInfo +
-                        " using mcc/mnc from main context: " + configuration.mcc + "/" +
-                        configuration.mnc);
-            } else {
-                Log.i(this, "updateVideoPauseSupport -- mcc/mnc for sub: " + subscriptionInfo);
-
-                configuration.mcc = subscriptionInfo.getMcc();
-                configuration.mnc = subscriptionInfo.getMnc();
-            }
-
+        private boolean isCarrierVideoPauseSupported() {
             // Check if IMS video pause is supported.
             PersistableBundle b =
                     PhoneGlobals.getInstance().getCarrierConfigForSubId(mPhone.getSubId());
-            mIsVideoPauseSupported
-                    = b.getBoolean(CarrierConfigManager.KEY_SUPPORT_PAUSE_IMS_VIDEO_CALLS_BOOL);
+            return b.getBoolean(CarrierConfigManager.KEY_SUPPORT_PAUSE_IMS_VIDEO_CALLS_BOOL);
+        }
+
+        /**
+         * Determines from carrier config whether instant lettering is supported.
+         *
+         * @return {@code true} if instant lettering is supported, {@code false} otherwise.
+         */
+        private boolean isCarrierInstantLetteringSupported() {
+            PersistableBundle b =
+                    PhoneGlobals.getInstance().getCarrierConfigForSubId(mPhone.getSubId());
+            return b.getBoolean(CarrierConfigManager.KEY_CARRIER_INSTANT_LETTERING_AVAILABLE_BOOL);
         }
 
         /**
