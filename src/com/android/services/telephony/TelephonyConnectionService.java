@@ -231,10 +231,15 @@ public class TelephonyConnectionService extends ConnectionService {
                 case ServiceState.STATE_EMERGENCY_ONLY:
                     break;
                 case ServiceState.STATE_OUT_OF_SERVICE:
-                    return Connection.createFailedConnection(
-                            DisconnectCauseUtil.toTelecomDisconnectCause(
-                                    android.telephony.DisconnectCause.OUT_OF_SERVICE,
-                                    "ServiceState.STATE_OUT_OF_SERVICE"));
+                    if (phone.isUtEnabled() && number.endsWith("#")) {
+                        Log.d(this, "onCreateOutgoingConnection dial for UT");
+                        break;
+                    } else {
+                        return Connection.createFailedConnection(
+                                DisconnectCauseUtil.toTelecomDisconnectCause(
+                                        android.telephony.DisconnectCause.OUT_OF_SERVICE,
+                                        "ServiceState.STATE_OUT_OF_SERVICE"));
+                    }
                 case ServiceState.STATE_POWER_OFF:
                     return Connection.createFailedConnection(
                             DisconnectCauseUtil.toTelecomDisconnectCause(
