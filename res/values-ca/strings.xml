@@ -118,7 +118,7 @@
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"El teu operador de telefonia mòbil no permet desactivar la desviació de trucades quan el telèfon estigui il·localitzable."</string>
     <string name="updating_title" msgid="6146755386174019046">"Configuració de trucada"</string>
     <string name="call_settings_primary_user_only" msgid="5679923943740900965">"Només l\'usuari principal pot canviar la configuració de trucades."</string>
-    <string name="call_settings_with_label" msgid="89359812614544532">"Configuració de trucades (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="call_settings_with_label" msgid="3401177261468593519">"Configuració (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="error_updating_title" msgid="7970259216988931777">"Error de configuració de trucada"</string>
     <string name="reading_settings" msgid="1920291699287055284">"S\'està llegint la configuració…"</string>
     <string name="updating_settings" msgid="8171225533884883252">"S\'està actualitzant la configuració..."</string>

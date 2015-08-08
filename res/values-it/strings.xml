@@ -118,7 +118,7 @@
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"Il tuo operatore non supporta la disattivazione dell\'inoltro chiamate quando il telefono non è raggiungibile."</string>
     <string name="updating_title" msgid="6146755386174019046">"Impostazioni chiamate"</string>
     <string name="call_settings_primary_user_only" msgid="5679923943740900965">"Le impostazioni delle chiamate possono essere modificate solo dall\'utente principale."</string>
-    <string name="call_settings_with_label" msgid="89359812614544532">"Impostazioni chiamate (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="call_settings_with_label" msgid="3401177261468593519">"Impostazioni (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="error_updating_title" msgid="7970259216988931777">"Errore durante aggiornam. impostaz. chiamate"</string>
     <string name="reading_settings" msgid="1920291699287055284">"Lettura impostazioni..."</string>
     <string name="updating_settings" msgid="8171225533884883252">"Aggiornamento impostazioni..."</string>
