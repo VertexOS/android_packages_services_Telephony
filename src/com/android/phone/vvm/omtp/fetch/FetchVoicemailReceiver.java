@@ -33,6 +33,7 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.android.phone.PhoneUtils;
+import com.android.phone.vvm.omtp.OmtpVvmCarrierConfigHelper;
 import com.android.phone.vvm.omtp.imap.ImapHelper;
 import com.android.phone.vvm.omtp.sync.OmtpVvmSourceManager;
 
@@ -111,14 +112,21 @@ public class FetchVoicemailReceiver extends BroadcastReceiver {
                     }
 
                     int subId = PhoneUtils.getSubIdForPhoneAccountHandle(mPhoneAccount);
-                    mNetworkRequest = new NetworkRequest.Builder()
-                    .addTransportType(NetworkCapabilities.TRANSPORT_CELLULAR)
-                    .addCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
-                    .setNetworkSpecifier(Integer.toString(subId))
-                    .build();
+                    OmtpVvmCarrierConfigHelper carrierConfigHelper =
+                            new OmtpVvmCarrierConfigHelper(context, subId);
 
-                    mNetworkCallback = new OmtpVvmNetworkRequestCallback();
-                    requestNetwork();
+                    if (TelephonyManager.VVM_TYPE_CVVM.equals(carrierConfigHelper.getVvmType())) {
+                        fetchVoicemail(null);
+                    } else {
+                        mNetworkRequest = new NetworkRequest.Builder()
+                                .addTransportType(NetworkCapabilities.TRANSPORT_CELLULAR)
+                                .addCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
+                                .setNetworkSpecifier(Integer.toString(subId))
+                                .build();
+
+                        mNetworkCallback = new OmtpVvmNetworkRequestCallback();
+                        requestNetwork();
+                    }
                 }
             } finally {
                 cursor.close();
@@ -129,50 +137,45 @@ public class FetchVoicemailReceiver extends BroadcastReceiver {
     private class OmtpVvmNetworkRequestCallback extends ConnectivityManager.NetworkCallback {
         @Override
         public void onAvailable(final Network network) {
-            Executor executor = Executors.newCachedThreadPool();
-            executor.execute(new Runnable() {
-                @Override
-                public void run() {
-                    while (mRetryCount > 0) {
-                        ImapHelper imapHelper = new ImapHelper(mContext, mPhoneAccount, network);
-                        if (!imapHelper.isSuccessfullyInitialized()) {
-                            Log.w(TAG, "Can't retrieve Imap credentials.");
-                            releaseNetwork();
-                            return;
-                        }
-
-                        boolean success = imapHelper.fetchVoicemailPayload(
-                                new VoicemailFetchedCallback(mContext, mUri), mUid);
-                        if (!success && mRetryCount > 0) {
-                            mRetryCount--;
-                        } else {
-                            releaseNetwork();
-                            return;
-                        }
-                    }
-                }
-            });
+            fetchVoicemail(network);
         }
 
         @Override
         public void onLost(Network network) {
             releaseNetwork();
-
-            if (mRetryCount > 0) {
-                mRetryCount--;
-                requestNetwork();
-            }
         }
 
         @Override
         public void onUnavailable() {
             releaseNetwork();
-
-            if (mRetryCount > 0) {
-                mRetryCount--;
-                requestNetwork();
-            }
         }
+    }
+
+    private void fetchVoicemail(final Network network) {
+        Executor executor = Executors.newCachedThreadPool();
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                while (mRetryCount > 0) {
+                    ImapHelper imapHelper = new ImapHelper(mContext, mPhoneAccount, network);
+                    if (!imapHelper.isSuccessfullyInitialized()) {
+                        Log.w(TAG, "Can't retrieve Imap credentials.");
+                        // releaseNetwork() will check if the network callback exists
+                        releaseNetwork();
+                        return;
+                    }
+
+                    boolean success = imapHelper.fetchVoicemailPayload(
+                            new VoicemailFetchedCallback(mContext, mUri), mUid);
+                    if (!success && mRetryCount > 0) {
+                        mRetryCount--;
+                    } else {
+                        releaseNetwork();
+                        return;
+                    }
+                }
+            }
+        });
     }
 
     private void requestNetwork() {
@@ -181,7 +184,9 @@ public class FetchVoicemailReceiver extends BroadcastReceiver {
     }
 
     private void releaseNetwork() {
-        getConnectivityManager().unregisterNetworkCallback(mNetworkCallback);
+        if (mNetworkCallback != null) {
+            getConnectivityManager().unregisterNetworkCallback(mNetworkCallback);
+        }
     }
 
     private ConnectivityManager getConnectivityManager() {
