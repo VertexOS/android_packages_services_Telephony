@@ -19,9 +19,10 @@ import android.content.Context;
 import android.net.Network;
 import android.telecom.PhoneAccountHandle;
 import android.telecom.Voicemail;
-
+import android.telephony.TelephonyManager;
 import android.util.Base64;
 
+import com.android.phone.PhoneUtils;
 import com.android.phone.common.mail.Address;
 import com.android.phone.common.mail.Body;
 import com.android.phone.common.mail.BodyPart;
@@ -38,6 +39,7 @@ import com.android.phone.common.mail.store.imap.ImapConstants;
 import com.android.phone.common.mail.utils.LogUtils;
 import com.android.phone.settings.VisualVoicemailSettingsUtil;
 import com.android.phone.vvm.omtp.OmtpConstants;
+import com.android.phone.vvm.omtp.OmtpVvmCarrierConfigHelper;
 import com.android.phone.vvm.omtp.fetch.VoicemailFetchedCallback;
 
 import libcore.io.IoUtils;
@@ -75,9 +77,18 @@ public class ImapHelper {
             int port = Integer.parseInt(
                     VisualVoicemailSettingsUtil.getVisualVoicemailCredentials(context,
                             OmtpConstants.IMAP_PORT, phoneAccount));
-            // TODO: determine the security protocol (e.g. ssl, tls, none, etc.)
+            int auth = ImapStore.FLAG_NONE;
+
+            OmtpVvmCarrierConfigHelper carrierConfigHelper = new OmtpVvmCarrierConfigHelper(context,
+                    PhoneUtils.getSubIdForPhoneAccountHandle(phoneAccount));
+            if (TelephonyManager.VVM_TYPE_CVVM.equals(carrierConfigHelper.getVvmType())) {
+                // TODO: move these into the carrier config app
+                port = 993;
+                auth = ImapStore.FLAG_SSL;
+            }
+
             mImapStore = new ImapStore(
-                    context, username, password, port, serverName, ImapStore.FLAG_NONE, network);
+                    context, username, password, port, serverName, auth, network);
         } catch (NumberFormatException e) {
             LogUtils.w(TAG, "Could not parse port number");
         }
