@@ -273,6 +273,12 @@
     <string name="response_error">Unexpected response from network.</string>
     <!-- Status message displayed in the "Call settings error" dialog -->
     <string name="exception_error">Network or SIM card error.</string>
+    <!-- Status message displayed in the "Call settings error" dialog when
+         current SS request is modified to a different request by STK CC -->
+    <string name="stk_cc_ss_to_dial_error">SS request modified to DIAL request.</string>
+    <string name="stk_cc_ss_to_ussd_error">SS request modified to USSD request.</string>
+    <string name="stk_cc_ss_to_ss_error">SS request modified to new SS request.</string>
+
     <!-- Status message displayed in the "Call settings error" dialog when operation fails due to FDN
          [CHAR LIMIT=NONE] -->
     <string name="fdn_check_failure">Your Phone app\'s Fixed Dialing Numbers setting is turned on. As a result, some call-related features aren\'t working.</string>
