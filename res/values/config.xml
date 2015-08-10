@@ -193,4 +193,6 @@
     <string name="config_simUnlockUiPackage" translatable="false">@null</string>
     <!-- Class name for the SIM unlock dialog.[DO NOT TRANSLATE] -->
     <string name="config_simUnlockUiClass" translatable="false">@null</string>
+
+    <bool name="allow_visual_voicemail">true</bool>
 </resources>

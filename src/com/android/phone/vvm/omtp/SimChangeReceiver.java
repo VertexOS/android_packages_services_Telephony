@@ -28,6 +28,7 @@ import com.android.internal.telephony.IccCardConstants;
 import com.android.internal.telephony.PhoneConstants;
 import com.android.internal.telephony.TelephonyIntents;
 import com.android.phone.PhoneUtils;
+import com.android.phone.R;
 import com.android.phone.settings.VisualVoicemailSettingsUtil;
 import com.android.phone.vvm.omtp.sync.OmtpVvmSourceManager;
 
@@ -78,8 +79,10 @@ public class SimChangeReceiver extends BroadcastReceiver {
                     boolean isEnabledInSettings =
                             VisualVoicemailSettingsUtil.isVisualVoicemailEnabled(context,
                             phoneAccount);
-                    boolean isEnabled = isUserSet ? isEnabledInSettings :
-                        carrierConfigHelper.isEnabledByDefault();
+                    boolean isSupported =
+                            context.getResources().getBoolean(R.bool.allow_visual_voicemail);
+                    boolean isEnabled = isSupported && (isUserSet ? isEnabledInSettings :
+                        carrierConfigHelper.isEnabledByDefault());
 
                     if (!isUserSet) {
                         // Preserve the previous setting for "isVisualVoicemailEnabled" if it is
