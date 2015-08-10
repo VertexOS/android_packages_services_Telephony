@@ -70,4 +70,14 @@
         android:summary="@string/sum_cdma_call_settings"
         android:persistent="false" />
 
+    <PreferenceScreen
+        android:key="ims_settings_key"
+        android:title="@string/ims_settings"
+        android:persistent="false">
+
+        <intent android:action="android.intent.action.MAIN"
+            android:targetPackage="com.qualcomm.qti.ims"
+            android:targetClass="com.qualcomm.qti.ims.ImsSettings"/>
+    </PreferenceScreen>
+
 </PreferenceScreen>
