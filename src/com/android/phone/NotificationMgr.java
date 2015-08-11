@@ -93,6 +93,7 @@ public class NotificationMgr {
 
     private Context mContext;
     private NotificationManager mNotificationManager;
+    private final ComponentName mNotificationComponent;
     private StatusBarManager mStatusBarManager;
     private UserManager mUserManager;
     private Toast mToast;
@@ -125,6 +126,12 @@ public class NotificationMgr {
         mSubscriptionManager = SubscriptionManager.from(mContext);
         mTelecomManager = TelecomManager.from(mContext);
         mTelephonyManager = (TelephonyManager) app.getSystemService(Context.TELEPHONY_SERVICE);
+
+        final String notificationComponent = mContext.getString(
+                R.string.config_customVoicemailComponent);
+
+        mNotificationComponent = notificationComponent != null
+                ? ComponentName.unflattenFromString(notificationComponent) : null;
     }
 
     /**
@@ -352,8 +359,10 @@ public class NotificationMgr {
                 return;
             }
 
+            Integer vmCount = null;
+
             if (TelephonyCapabilities.supportsVoiceMessageCount(phone)) {
-                int vmCount = phone.getVoiceMessageCount();
+                vmCount = phone.getVoiceMessageCount();
                 String titleFormat = mContext.getString(R.string.notification_voicemail_title_count);
                 notificationTitle = String.format(titleFormat, vmCount);
             }
@@ -363,7 +372,9 @@ public class NotificationMgr {
 
             Intent intent;
             String notificationText;
-            if (TextUtils.isEmpty(vmNumber)) {
+            boolean isSettingsIntent = TextUtils.isEmpty(vmNumber);
+
+            if (isSettingsIntent) {
                 notificationText = mContext.getString(
                         R.string.notification_voicemail_no_vm_number);
 
@@ -423,19 +434,72 @@ public class NotificationMgr {
                 if (!mUserManager.hasUserRestriction(
                         UserManager.DISALLOW_OUTGOING_CALLS, userHandle)
                         && !user.isManagedProfile()) {
-                    mNotificationManager.notifyAsUser(
-                            Integer.toString(subId) /* tag */,
-                            VOICEMAIL_NOTIFICATION,
-                            notification,
-                            userHandle);
+                    if (!sendNotificationCustomComponent(vmCount, vmNumber, pendingIntent,
+                            isSettingsIntent)) {
+                        mNotificationManager.notifyAsUser(
+                                Integer.toString(subId) /* tag */,
+                                VOICEMAIL_NOTIFICATION,
+                                notification,
+                                userHandle);
+                    }
                 }
             }
         } else {
-            mNotificationManager.cancelAsUser(
-                    Integer.toString(subId) /* tag */,
-                    VOICEMAIL_NOTIFICATION,
-                    UserHandle.ALL);
+            if (!sendNotificationCustomComponent(0, null, null, false)) {
+                mNotificationManager.cancelAsUser(
+                        Integer.toString(subId) /* tag */,
+                        VOICEMAIL_NOTIFICATION,
+                        UserHandle.ALL);
+            }
         }
+    }
+
+    /**
+     * Sends a broadcast with the voicemail notification information to a custom component to
+     * handle. This method is also used to indicate to the custom component when to clear the
+     * notification. A pending intent can be passed to the custom component to indicate an action to
+     * be taken as it would by a notification produced in this class.
+     * @param count The number of pending voicemail messages to indicate on the notification. A
+     *              Value of 0 is passed here to indicate that the notification should be cleared.
+     * @param number The voicemail phone number if specified.
+     * @param pendingIntent The intent that should be passed as the action to be taken.
+     * @param isSettingsIntent {@code true} to indicate the pending intent is to launch settings.
+     *                         otherwise, {@code false} to indicate the intent launches voicemail.
+     * @return {@code true} if a custom component was notified of the notification.
+     */
+    private boolean sendNotificationCustomComponent(Integer count, String number,
+            PendingIntent pendingIntent, boolean isSettingsIntent) {
+        if (mNotificationComponent != null) {
+            Intent intent = new Intent();
+            intent.setFlags(Intent.FLAG_RECEIVER_FOREGROUND);
+            intent.setComponent(mNotificationComponent);
+            intent.setAction(TelephonyManager.ACTION_SHOW_VOICEMAIL_NOTIFICATION);
+
+            if (count != null) {
+                intent.putExtra(TelephonyManager.EXTRA_NOTIFICATION_COUNT, count);
+            }
+
+            // Additional information about the voicemail notification beyond the count is only
+            // present when the count not specified or greater than 0. The value of 0 represents
+            // clearing the notification, which does not require additional information.
+            if (count == null || count > 0) {
+                if (!TextUtils.isEmpty(number)) {
+                    intent.putExtra(TelephonyManager.EXTRA_VOICEMAIL_NUMBER, number);
+                }
+
+                if (pendingIntent != null) {
+                    intent.putExtra(isSettingsIntent
+                            ? TelephonyManager.EXTRA_LAUNCH_VOICEMAIL_SETTINGS_INTENT
+                            : TelephonyManager.EXTRA_CALL_VOICEMAIL_INTENT,
+                            pendingIntent);
+                }
+            }
+
+            mContext.sendBroadcast(intent);
+            return true;
+        }
+
+        return false;
     }
 
     /**
