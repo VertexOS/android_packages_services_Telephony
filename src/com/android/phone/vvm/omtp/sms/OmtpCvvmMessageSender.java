@@ -48,7 +48,7 @@ public class OmtpCvvmMessageSender extends OmtpMessageSender {
     private void sendCvvmMessage(String request, PendingIntent sentIntent) {
         StringBuilder sb = new StringBuilder().append(request);
         sb.append(OmtpConstants.SMS_PREFIX_SEPARATOR);
-        appendField(sb, "dt", "6");
+        appendField(sb, "dt", "15");
         sendSms(sb.toString(), sentIntent);
     }
 }
