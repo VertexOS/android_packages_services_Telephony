@@ -125,6 +125,9 @@
     <string name="reverting_settings" msgid="4752151682666912828">"מאחזר הגדרות הקודמות…"</string>
     <string name="response_error" msgid="6674110501330139405">"תגובה לא צפויה מהרשת."</string>
     <string name="exception_error" msgid="7027667130619518211">"‏שגיאת רשת או שגיאה של כרטיס SIM."</string>
+    <string name="stk_cc_ss_to_dial_error" msgid="2816779198916570502">"‏בקשת SS שונתה לבקשת DIAL."</string>
+    <string name="stk_cc_ss_to_ussd_error" msgid="7490626178582654236">"‏בקשת SS שונתה לבקשת USSD."</string>
+    <string name="stk_cc_ss_to_ss_error" msgid="5057846756489053759">"‏בקשת SS שונתה לבקשת SS חדשה."</string>
     <string name="fdn_check_failure" msgid="18200614306525434">"הגדרת מספרי החיוג הקבועים של אפליקציית הטלפון שלך מופעלת. כתוצאה מכך, חלק מהתכונות הקשורות לשיחות לא פועלות."</string>
     <string name="radio_off_error" msgid="2304459933248513376">"הפעל את הרדיו לפני ההצגה של הגדרות אלה."</string>
     <string name="close_dialog" msgid="2365884406356986917">"אישור"</string>

@@ -125,6 +125,9 @@
     <string name="reverting_settings" msgid="4752151682666912828">"Povrat postavki…"</string>
     <string name="response_error" msgid="6674110501330139405">"Neočekivan mrežni odgovor."</string>
     <string name="exception_error" msgid="7027667130619518211">"Pogreška mreže ili SIM kartice."</string>
+    <string name="stk_cc_ss_to_dial_error" msgid="2816779198916570502">"SS zahtjev izmijenjen je u DIAL zahtjev."</string>
+    <string name="stk_cc_ss_to_ussd_error" msgid="7490626178582654236">"SS zahtjev izmijenjen je u USSD zahtjev."</string>
+    <string name="stk_cc_ss_to_ss_error" msgid="5057846756489053759">"SS zahtjev izmijenjen je u novi SS zahtjev."</string>
     <string name="fdn_check_failure" msgid="18200614306525434">"Uključena je postavka fiksnog biranja u aplikaciji telefona. Zbog toga ne rade neke značajke u vezi s pozivima."</string>
     <string name="radio_off_error" msgid="2304459933248513376">"Uključite radio prije pregleda ovih postavki."</string>
     <string name="close_dialog" msgid="2365884406356986917">"U redu"</string>

@@ -125,6 +125,9 @@
     <string name="reverting_settings" msgid="4752151682666912828">"Notiek iestatījumu atsaukšana..."</string>
     <string name="response_error" msgid="6674110501330139405">"Neparedzēta atbilde no tīkla."</string>
     <string name="exception_error" msgid="7027667130619518211">"Tīkla vai SIM kartes kļūda."</string>
+    <string name="stk_cc_ss_to_dial_error" msgid="2816779198916570502">"SS pieprasījums tika mainīts uz DIAL pieprasījumu."</string>
+    <string name="stk_cc_ss_to_ussd_error" msgid="7490626178582654236">"SS pieprasījums tika mainīts uz USSD pieprasījumu."</string>
+    <string name="stk_cc_ss_to_ss_error" msgid="5057846756489053759">"SS pieprasījums tika mainīts uz jaunu SS pieprasījumu."</string>
     <string name="fdn_check_failure" msgid="18200614306525434">"Jūsu tālrunī ir ieslēgta fiksēto numuru sastādīšanas lietotne. Tādēļ dažas zvanu funkcijas nav pieejamas."</string>
     <string name="radio_off_error" msgid="2304459933248513376">"Pirms šo iestatījumu skatīšanas ieslēdziet radio."</string>
     <string name="close_dialog" msgid="2365884406356986917">"Labi"</string>

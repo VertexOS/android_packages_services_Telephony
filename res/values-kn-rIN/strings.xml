@@ -125,6 +125,9 @@
     <string name="reverting_settings" msgid="4752151682666912828">"ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ಹಿಂತಿರುಗಿಸಲಾಗುತ್ತಿದೆ…"</string>
     <string name="response_error" msgid="6674110501330139405">"ನೆಟ್‌ವರ್ಕ್‌ನಿಂದ ಅನಿರೀಕ್ಷಿತ ಪ್ರತಿಕ್ರಿಯೆ."</string>
     <string name="exception_error" msgid="7027667130619518211">"ನೆಟ್‌ವರ್ಕ್‌ ಅಥವಾ ಸಿಮ್‌ ಕಾರ್ಡ್‌ ದೋಷ."</string>
+    <string name="stk_cc_ss_to_dial_error" msgid="2816779198916570502">"SS ವಿನಂತಿಯನ್ನು DIAL ವಿನಂತಿಗೆ ಮಾರ್ಪಡಿಸಲಾಗಿದೆ."</string>
+    <string name="stk_cc_ss_to_ussd_error" msgid="7490626178582654236">"SS ವಿನಂತಿಯನ್ನು USSD ವಿನಂತಿಗೆ ಮಾರ್ಪಡಿಸಲಾಗಿದೆ."</string>
+    <string name="stk_cc_ss_to_ss_error" msgid="5057846756489053759">"SS ವಿನಂತಿಯನ್ನು ಹೊಸ SS ವಿನಂತಿಗೆ ಮಾರ್ಪಡಿಸಲಾಗಿದೆ."</string>
     <string name="fdn_check_failure" msgid="18200614306525434">"ನಿಮ್ಮ ಫೋನ್‌ ಅಪ್ಲಿಕೇಶನ್‌‌ನ ಸ್ಥಿರ ಡಯಲಿಂಗ್‌‌ ಸಂಖ್ಯೆಗಳ ಸೆಟ್ಟಿಂಗ್‌ ಅನ್ನು ಆನ್‌ ಮಾಡಲಾಗಿದೆ. ಪರಿಣಾಮ, ಕೆಲವು ಕರೆ ಸಂಬಂಧಿತ ವೈಶಿಷ್ಟ್ಯಗಳು ಕಾರ್ಯ ನಿರ್ವಹಿಸುತ್ತಿಲ್ಲ."</string>
     <string name="radio_off_error" msgid="2304459933248513376">"ಈ ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ವೀಕ್ಷಿಸುವ ಮೊದಲು ರೇಡಿಯೋ ಆನ್ ಮಾಡಿ."</string>
     <string name="close_dialog" msgid="2365884406356986917">"ಸರಿ"</string>

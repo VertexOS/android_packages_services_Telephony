@@ -125,6 +125,9 @@
     <string name="reverting_settings" msgid="4752151682666912828">"సెట్టింగ్‌లను తిరిగి మారుస్తోంది…"</string>
     <string name="response_error" msgid="6674110501330139405">"నెట్‌వర్క్ నుండి ఊహించని ప్రతిస్పందన."</string>
     <string name="exception_error" msgid="7027667130619518211">"నెట్‌వర్క్ లేదా SIM కార్డు లోపం."</string>
+    <string name="stk_cc_ss_to_dial_error" msgid="2816779198916570502">"SS అభ్యర్థన డయల్ అభ్యర్థనగా సవరించబడింది."</string>
+    <string name="stk_cc_ss_to_ussd_error" msgid="7490626178582654236">"SS అభ్యర్థన USSD అభ్యర్థనగా సవరించబడింది."</string>
+    <string name="stk_cc_ss_to_ss_error" msgid="5057846756489053759">"SS అభ్యర్థన కొత్త SS అభ్యర్థనగా సవరించబడింది."</string>
     <string name="fdn_check_failure" msgid="18200614306525434">"మీ ఫోన్ అనువర్తనం యొక్క ఫిక్స్‌డ్ డయలింగ్ నంబర్‌ల సెట్టింగ్ ప్రారంభించబడింది. తత్ఫలితంగా, కాల్ సంబంధిత లక్షణాల్లో కొన్ని పని చేయడం లేదు."</string>
     <string name="radio_off_error" msgid="2304459933248513376">"ఈ సెట్టింగ్‌లను వీక్షించడానికి ముందు రేడియోను ప్రారంభించండి."</string>
     <string name="close_dialog" msgid="2365884406356986917">"సరే"</string>

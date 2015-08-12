@@ -125,6 +125,9 @@
     <string name="reverting_settings" msgid="4752151682666912828">"सेटिंग्‍ज परत करत आहे…"</string>
     <string name="response_error" msgid="6674110501330139405">"नेटवर्क वरून अनपेक्षित प्रतिसाद."</string>
     <string name="exception_error" msgid="7027667130619518211">"नेटवर्क किंवा सिम कार्ड त्रुटी."</string>
+    <string name="stk_cc_ss_to_dial_error" msgid="2816779198916570502">"SS विनंती डायल विनंतीवर सुधारित केली."</string>
+    <string name="stk_cc_ss_to_ussd_error" msgid="7490626178582654236">"SS विनंती USSD विनंतीवर सुधारित केली."</string>
+    <string name="stk_cc_ss_to_ss_error" msgid="5057846756489053759">"SS विनंती नवीन SS विनंतीवर सुधारित केली."</string>
     <string name="fdn_check_failure" msgid="18200614306525434">"आपल्‍या फोन अ‍ॅप्‍सचे निश्चित डायलिंग नंबर सेटिंग चालू केले. परिणामी, काही कॉल संबंधित वैशिष्‍ट्ये कार्य करीत नाहीत."</string>
     <string name="radio_off_error" msgid="2304459933248513376">"या सेटिंग्‍ज पाहण्‍यापूर्वी रेडिओ चालू करा."</string>
     <string name="close_dialog" msgid="2365884406356986917">"ठीक"</string>

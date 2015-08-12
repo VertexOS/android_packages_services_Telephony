@@ -125,6 +125,9 @@
     <string name="reverting_settings" msgid="4752151682666912828">"Тохиргоог буцааж байна…"</string>
     <string name="response_error" msgid="6674110501330139405">"Сүлжээний гэнэтийн хариу."</string>
     <string name="exception_error" msgid="7027667130619518211">"Сүлжээ буюу SIM картны алдаа."</string>
+    <string name="stk_cc_ss_to_dial_error" msgid="2816779198916570502">"SS хүсэлтийг DIAL хүсэлт болгон өөрчилсөн."</string>
+    <string name="stk_cc_ss_to_ussd_error" msgid="7490626178582654236">"SS хүсэлтийг USSD хүсэлт болгон өөрчилсөн."</string>
+    <string name="stk_cc_ss_to_ss_error" msgid="5057846756489053759">"SS хүсэлтийг шинэ SS хүсэлт болгон өөрчилсөн."</string>
     <string name="fdn_check_failure" msgid="18200614306525434">"Таны Phone апп-н FDN тохиргоо асаалттай байна. Тус шалтгаанаар дуудлагатай холбоотой зарим функц ажиллахгүй."</string>
     <string name="radio_off_error" msgid="2304459933248513376">"Эдгээр тохиргоог харахын өмнө радиог асаана уу."</string>
     <string name="close_dialog" msgid="2365884406356986917">"Тийм"</string>

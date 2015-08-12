@@ -125,6 +125,9 @@
     <string name="reverting_settings" msgid="4752151682666912828">"Ezarpenak leheneratzen…"</string>
     <string name="response_error" msgid="6674110501330139405">"Ez zen sarearen horrelako erantzunik espero."</string>
     <string name="exception_error" msgid="7027667130619518211">"Sarearen edo SIM txartelaren errorea."</string>
+    <string name="stk_cc_ss_to_dial_error" msgid="2816779198916570502">"SS eskaera DIAL eskaerara aldatu da."</string>
+    <string name="stk_cc_ss_to_ussd_error" msgid="7490626178582654236">"SS eskaera USSD eskaerara aldatu da."</string>
+    <string name="stk_cc_ss_to_ss_error" msgid="5057846756489053759">"SS eskaera SS eskaera berrira aldatu da."</string>
     <string name="fdn_check_failure" msgid="18200614306525434">"Telefonoa aplikazioaren Markatze finkoko zenbakiak ezarpena aktibatuta duzu. Ondorioz, deiekin lotutako eginbide batzuk ez dira funtzionatzen ari."</string>
     <string name="radio_off_error" msgid="2304459933248513376">"Ezarpenak ikusi aurretik, piztu irratia."</string>
     <string name="close_dialog" msgid="2365884406356986917">"Ados"</string>

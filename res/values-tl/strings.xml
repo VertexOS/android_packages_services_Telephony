@@ -125,6 +125,9 @@
     <string name="reverting_settings" msgid="4752151682666912828">"Ibinabalik ang mga setting…"</string>
     <string name="response_error" msgid="6674110501330139405">"Hindi inaasahang tugon mula sa network."</string>
     <string name="exception_error" msgid="7027667130619518211">"Error sa Network o SIM card."</string>
+    <string name="stk_cc_ss_to_dial_error" msgid="2816779198916570502">"Ginawang DIAL request ang SS request."</string>
+    <string name="stk_cc_ss_to_ussd_error" msgid="7490626178582654236">"Ginawang USSD request ang SS request."</string>
+    <string name="stk_cc_ss_to_ss_error" msgid="5057846756489053759">"Ginawang bagong SS request ang SS request."</string>
     <string name="fdn_check_failure" msgid="18200614306525434">"Naka-on ang setting ng mga Fixed Dialing Number ng iyong app ng Telepono. Bilang resulta, hindi gumagana ang ilang tampok na nauugnay sa pagtawag."</string>
     <string name="radio_off_error" msgid="2304459933248513376">"Mangyaring i-on ang radyo bago tingnan ang mga setting na ito."</string>
     <string name="close_dialog" msgid="2365884406356986917">"OK"</string>

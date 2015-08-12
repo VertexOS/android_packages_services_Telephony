@@ -125,6 +125,9 @@
     <string name="reverting_settings" msgid="4752151682666912828">"Revertendo configuración..."</string>
     <string name="response_error" msgid="6674110501330139405">"Resposta inesperada da rede"</string>
     <string name="exception_error" msgid="7027667130619518211">"Erro de rede ou da tarxeta SIM."</string>
+    <string name="stk_cc_ss_to_dial_error" msgid="2816779198916570502">"A solicitude SS transformouse nunha solicitude DIAL."</string>
+    <string name="stk_cc_ss_to_ussd_error" msgid="7490626178582654236">"A solicitude SS transformouse nunha solicitude USSD."</string>
+    <string name="stk_cc_ss_to_ss_error" msgid="5057846756489053759">"A solicitude SS transformouse nunha nova solicitude SS."</string>
     <string name="fdn_check_failure" msgid="18200614306525434">"A configuración de números de marcación fixa da aplicación do teléfono está activada. Como resultado, hai algunhas funcións relacionadas coas chamadas que non funcionan."</string>
     <string name="radio_off_error" msgid="2304459933248513376">"Para ver esta configuración, tes que activar o sinal móbil."</string>
     <string name="close_dialog" msgid="2365884406356986917">"Aceptar"</string>

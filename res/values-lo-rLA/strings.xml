@@ -125,6 +125,9 @@
     <string name="reverting_settings" msgid="4752151682666912828">"ກຳລັງຖອນຄືນການຕັ້ງຄ່າ..."</string>
     <string name="response_error" msgid="6674110501330139405">"ໄດ້ຮັບການຕອບກັບທີ່ບໍ່ຄາດຄິດຈາກເຄືອຂ່າຍ."</string>
     <string name="exception_error" msgid="7027667130619518211">"ເຄືອຂ່າຍ ຫຼື SIM card ຜິດພາດ."</string>
+    <string name="stk_cc_ss_to_dial_error" msgid="2816779198916570502">"ການ​ຂໍ SS ຖືກ​ປ່ຽນ​ແປງ​ເປັນ​ການ​ຂໍ DIAL ແລ້ວ."</string>
+    <string name="stk_cc_ss_to_ussd_error" msgid="7490626178582654236">"ການ​ຂໍ SS ຖືກ​ປ່ຽນແປງ​ເປັນ​ການ​ຂໍ  USSD ແລ້ວ."</string>
+    <string name="stk_cc_ss_to_ss_error" msgid="5057846756489053759">"ການ​ຂໍ SS ຖືກ​ປ່ຽນແປງ​ເປັນ​ການ​ຂໍ SS ໃໝ່​ແລ້ວ."</string>
     <string name="fdn_check_failure" msgid="18200614306525434">"ການຕັ້ງຄ່າແອັບຯໝາຍເລກຈຳກັດການໂທອອກ ຂອງໂທລະສັບທ່ານຖືກເປີດໃຊ້ຢູ່ ເຊິ່ງຈະເຮັດໃຫ້ຄຸນສົມບັດທີ່ກ່ຽວກັບການໂທບາງຢ່າງ ບໍ່ສາມາດໃຊ້ໄດ້."</string>
     <string name="radio_off_error" msgid="2304459933248513376">"ເປີດໃຊ້ວິທະຍຸກ່ອນການເບິ່ງການຕັ້ງຄ່າເຫຼົ່ານີ້."</string>
     <string name="close_dialog" msgid="2365884406356986917">"ຕົກລົງ"</string>

@@ -125,6 +125,9 @@
     <string name="reverting_settings" msgid="4752151682666912828">"ဆက်တင်များကို ပြန်ပြောင်းနေစဉ်…"</string>
     <string name="response_error" msgid="6674110501330139405">"ကွန်ယက်မှ မထင်မှတ်သောတုံ့ပြန်ချက်"</string>
     <string name="exception_error" msgid="7027667130619518211">"ကွန်ရက် သို့မဟုတ် ဆင်းမ်ကဒ်အမှား"</string>
+    <string name="stk_cc_ss_to_dial_error" msgid="2816779198916570502">"SS တောင်းဆိုချက်ကို နံပါတ်လှည့်ရန် တောင်းဆိုချက် အဖြစ် ပြောင်းပေးခဲ့။"</string>
+    <string name="stk_cc_ss_to_ussd_error" msgid="7490626178582654236">"SS တောင်းဆိုချက်ကို USSD တောင်းဆိုချက် အဖြစ် ပြောင်းပေးခဲ့။"</string>
+    <string name="stk_cc_ss_to_ss_error" msgid="5057846756489053759">"SS တောင်းဆိုချက်ကို SS တောင်းဆိုချက် အသစ် အဖြစ် ပြောင်းပေးခဲ့။"</string>
     <string name="fdn_check_failure" msgid="18200614306525434">"သင့်ဖုန်းအပ်ပလီကေးရှင်း ၏ ပုံသေ ခေါ်ဆိုမှု နံပါတ်များ ဖွင့်ထားပါသည်။ ထို့ကြောင့် တချို့ ဖုန်းခေါ်မှု စွမ်းဆောင်ရည်များ အလုပ်မလုပ်ပါ"</string>
     <string name="radio_off_error" msgid="2304459933248513376">"ဤအပြင်အဆင်များကို မကြည့်ခင် ရေဒီယိုကို ဖွင့်ပါ"</string>
     <string name="close_dialog" msgid="2365884406356986917">"ကောင်းပြီ"</string>

@@ -125,6 +125,9 @@
     <string name="reverting_settings" msgid="4752151682666912828">"සැකසුම් ප්‍රතිවර්තනය කරමින්…"</string>
     <string name="response_error" msgid="6674110501330139405">"ජාලයෙන් බලාපොරොත්තු නොවූ ප්‍රතිචාරයක්."</string>
     <string name="exception_error" msgid="7027667130619518211">"ජාලයේ හෝ SIM කාඩ්පතෙහි දෝෂයක්."</string>
+    <string name="stk_cc_ss_to_dial_error" msgid="2816779198916570502">"SS ඉල්ලීම DIAL ඉල්ලීම වෙත විකරණය කරන ලදී."</string>
+    <string name="stk_cc_ss_to_ussd_error" msgid="7490626178582654236">"SS ඉල්ලීම USSD ඉල්ලීම වෙත විකරණය කරන ලදී."</string>
+    <string name="stk_cc_ss_to_ss_error" msgid="5057846756489053759">"SS ඉල්ලීම නව SS ඉල්ලීම වෙත විකරණය කරන ලදී."</string>
     <string name="fdn_check_failure" msgid="18200614306525434">"ඔබගේ දුරකතනයේ යෙදුමෙහි ස්ථිර ඇමතුම් අංක සක්‍රීයයි. ප්‍රතිඑලයක් ලෙස, සමහර ඇමතුම් හා සම්බන්ධ විශේෂාංග ක්‍රියා නොකරයි."</string>
     <string name="radio_off_error" msgid="2304459933248513376">"මෙම සැකසුම් බැලීමට පෙර රේඩියෝව ක්‍රියා කරන්න."</string>
     <string name="close_dialog" msgid="2365884406356986917">"හරි"</string>

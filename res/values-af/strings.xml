@@ -125,6 +125,9 @@
     <string name="reverting_settings" msgid="4752151682666912828">"Stel tans instellings terug…"</string>
     <string name="response_error" msgid="6674110501330139405">"Onverwagte antwoord van netwerk."</string>
     <string name="exception_error" msgid="7027667130619518211">"Netwerk- of SIM-kaartfout."</string>
+    <string name="stk_cc_ss_to_dial_error" msgid="2816779198916570502">"SS-versoek is gewysig tot DIAL-versoek."</string>
+    <string name="stk_cc_ss_to_ussd_error" msgid="7490626178582654236">"SS-versoek is gewysig tot USSD-versoek."</string>
+    <string name="stk_cc_ss_to_ss_error" msgid="5057846756489053759">"SS-versoek is gewysig tot nuwe SS-versoek."</string>
     <string name="fdn_check_failure" msgid="18200614306525434">"Die instelling op jou foonprogram se belperking-nommers is aangeskakel. As gevolg hiervan werk sommige oproepverwante kenmerke nie."</string>
     <string name="radio_off_error" msgid="2304459933248513376">"Skakel die radio aan voordat jy na hierdie instellings kyk."</string>
     <string name="close_dialog" msgid="2365884406356986917">"OK"</string>

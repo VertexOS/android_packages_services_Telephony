@@ -125,6 +125,9 @@
     <string name="reverting_settings" msgid="4752151682666912828">"Einstellungen werden zurückgesetzt..."</string>
     <string name="response_error" msgid="6674110501330139405">"Unerwartete Antwort von Netzwerk"</string>
     <string name="exception_error" msgid="7027667130619518211">"Netzwerk- oder SIM-Kartenfehler"</string>
+    <string name="stk_cc_ss_to_dial_error" msgid="2816779198916570502">"SS-Anfrage wurde in DIAL-Anfrage geändert."</string>
+    <string name="stk_cc_ss_to_ussd_error" msgid="7490626178582654236">"SS-Anfrage wurde in USSD-Anfrage geändert."</string>
+    <string name="stk_cc_ss_to_ss_error" msgid="5057846756489053759">"SS-Anfrage wurde in neue SS-Anfrage geändert."</string>
     <string name="fdn_check_failure" msgid="18200614306525434">"Da die Anrufbegrenzung in Ihrer Telefon-App aktiviert ist, funktionieren nicht alle Anruffunktionen."</string>
     <string name="radio_off_error" msgid="2304459933248513376">"Aktivieren Sie Ihre Mobilfunkverbindung, bevor Sie diese Einstellungen anzeigen."</string>
     <string name="close_dialog" msgid="2365884406356986917">"OK"</string>

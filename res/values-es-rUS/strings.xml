@@ -125,6 +125,9 @@
     <string name="reverting_settings" msgid="4752151682666912828">"Revirtiendo configuraciones..."</string>
     <string name="response_error" msgid="6674110501330139405">"Respuesta inesperada de la red."</string>
     <string name="exception_error" msgid="7027667130619518211">"Error en la red o en la tarjeta SIM."</string>
+    <string name="stk_cc_ss_to_dial_error" msgid="2816779198916570502">"La solicitud SS cambió por una solicitud DIAL."</string>
+    <string name="stk_cc_ss_to_ussd_error" msgid="7490626178582654236">"La solicitud SS cambió por una solicitud USSD."</string>
+    <string name="stk_cc_ss_to_ss_error" msgid="5057846756489053759">"La solicitud SS cambió por una nueva solicitud SS."</string>
     <string name="fdn_check_failure" msgid="18200614306525434">"Está activada la configuración de los números de marcación fija de tu teléfono. Por lo tanto, algunas de las características relacionados con las llamadas no funcionan."</string>
     <string name="radio_off_error" msgid="2304459933248513376">"Enciende la radio antes de ver esta configuración."</string>
     <string name="close_dialog" msgid="2365884406356986917">"Aceptar"</string>
