@@ -118,14 +118,16 @@
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"നിങ്ങളുടെ ഫോൺ പരിധിയ്ക്ക് പുറത്തായിരിക്കുമ്പോൾ കോൾ കൈമാറൽ പ്രവർത്തനരഹിതമാക്കുന്നതിനെ നിങ്ങളുടെ ഓപ്പറേറ്റർ പിന്തുണയ്‌ക്കുന്നില്ല."</string>
     <string name="updating_title" msgid="6146755386174019046">"കോൾ ക്രമീകരണങ്ങൾ"</string>
     <string name="call_settings_primary_user_only" msgid="5679923943740900965">"കോൾ ക്രമീകരണങ്ങൾ, പ്രാഥമിക ഉപയോക്താവിന് മാത്രമെ മാറ്റാനാവൂ."</string>
-    <!-- no translation found for call_settings_with_label (3401177261468593519) -->
-    <skip />
+    <string name="call_settings_with_label" msgid="3401177261468593519">"ക്രമീകരണം (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="error_updating_title" msgid="7970259216988931777">"കോൾ ക്രമീകരണ പിശക്"</string>
     <string name="reading_settings" msgid="1920291699287055284">"ക്രമീകരണങ്ങൾ റീഡുചെയ്യുന്നു.…"</string>
     <string name="updating_settings" msgid="8171225533884883252">"ക്രമീകരണങ്ങൾ അപ്‌ഡേറ്റുചെയ്യുന്നു…"</string>
     <string name="reverting_settings" msgid="4752151682666912828">"ക്രമീകരണങ്ങൾ പഴയപടിയാക്കുന്നു…"</string>
     <string name="response_error" msgid="6674110501330139405">"നെറ്റ്‌വർക്കിൽ നിന്നുള്ള അപ്രതീക്ഷിത പ്രതികരണം."</string>
     <string name="exception_error" msgid="7027667130619518211">"നെറ്റ്‌വർക്ക് അല്ലെങ്കിൽ സിം കാർഡ് പിശക്."</string>
+    <string name="stk_cc_ss_to_dial_error" msgid="2816779198916570502">"SS അഭ്യർത്ഥന, DIAL അഭ്യർത്ഥനയായി പരിഷ്‌ക്കരിച്ചു."</string>
+    <string name="stk_cc_ss_to_ussd_error" msgid="7490626178582654236">"SS അഭ്യർത്ഥന, USSD അഭ്യർത്ഥനയായി പരിഷ്‌ക്കരിച്ചു."</string>
+    <string name="stk_cc_ss_to_ss_error" msgid="5057846756489053759">"SS അഭ്യർത്ഥന, പുതിയ SS അഭ്യർത്ഥനയായി പരിഷ്‌ക്കരിച്ചു."</string>
     <string name="fdn_check_failure" msgid="18200614306525434">"നിങ്ങളുടെ ഫോൺ അപ്ലിക്കേഷന്റെ സ്ഥിര ഡയലിംഗ് നമ്പറുകളുടെ ക്രമീകരണം ഓൺ ചെയ്‌തു. തൽഫലമായി, കോളുമായി ബന്ധപ്പെട്ട ചില സവിശേഷതകൾ പ്രവർത്തിക്കുന്നില്ല."</string>
     <string name="radio_off_error" msgid="2304459933248513376">"ഈ ക്രമീകരണങ്ങൾ കാണുന്നതിന് മുമ്പ് റേഡിയോ ഓൺ ചെയ്യുക."</string>
     <string name="close_dialog" msgid="2365884406356986917">"ശരി"</string>

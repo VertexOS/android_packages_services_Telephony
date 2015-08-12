@@ -125,6 +125,9 @@
     <string name="reverting_settings" msgid="4752151682666912828">"அமைப்புகளை மாற்றியமைக்கிறது…"</string>
     <string name="response_error" msgid="6674110501330139405">"நெட்வொர்க்கிலிருந்து எதிர்பார்த்திராத பதில்."</string>
     <string name="exception_error" msgid="7027667130619518211">"நெட்வொர்க் அல்லது சிம் கார்டு பிழை."</string>
+    <string name="stk_cc_ss_to_dial_error" msgid="2816779198916570502">"SS கோரிக்கையானது DIAL கோரிக்கைக்கு மாற்றப்பட்டது."</string>
+    <string name="stk_cc_ss_to_ussd_error" msgid="7490626178582654236">"SS கோரிக்கையானது USSD கோரிக்கைக்கு மாற்றப்பட்டது."</string>
+    <string name="stk_cc_ss_to_ss_error" msgid="5057846756489053759">"SS கோரிக்கையானது புதிய SS கோரிக்கைக்கு மாற்றப்பட்டது."</string>
     <string name="fdn_check_failure" msgid="18200614306525434">"மொபைல் பயன்பாட்டின் நிலையான அழைப்பு எண்களுக்கான அமைப்பு இயக்கப்பட்டது. இதன் விளைவாக, அழைப்பு தொடர்பான சில அம்சங்கள் செயல்படவில்லை."</string>
     <string name="radio_off_error" msgid="2304459933248513376">"அமைப்புகளைப் பார்ப்பதற்கு முன், ரேடியோவை இயக்கவும்."</string>
     <string name="close_dialog" msgid="2365884406356986917">"சரி"</string>

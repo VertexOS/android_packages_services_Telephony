@@ -125,6 +125,9 @@
     <string name="reverting_settings" msgid="4752151682666912828">"Revertendo configurações…"</string>
     <string name="response_error" msgid="6674110501330139405">"Resposta inesperada da rede."</string>
     <string name="exception_error" msgid="7027667130619518211">"Erro de rede ou do cartão SIM."</string>
+    <string name="stk_cc_ss_to_dial_error" msgid="2816779198916570502">"Solicitação SS modificada para solicitação DIAL."</string>
+    <string name="stk_cc_ss_to_ussd_error" msgid="7490626178582654236">"Solicitação SS modificada para solicitação USSD."</string>
+    <string name="stk_cc_ss_to_ss_error" msgid="5057846756489053759">"Solicitação SS modificada para nova solicitação SS."</string>
     <string name="fdn_check_failure" msgid="18200614306525434">"A configuração \"Números de chamada fixos\" do app de seu telefone está ativada. Por isso, alguns recursos relacionados a chamadas não funcionam."</string>
     <string name="radio_off_error" msgid="2304459933248513376">"Ligue o rádio antes de ver essas configurações."</string>
     <string name="close_dialog" msgid="2365884406356986917">"OK"</string>

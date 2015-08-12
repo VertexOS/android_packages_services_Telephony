@@ -125,6 +125,9 @@
     <string name="reverting_settings" msgid="4752151682666912828">"Cofanie ustawień…"</string>
     <string name="response_error" msgid="6674110501330139405">"Nieoczekiwana odpowiedź z sieci."</string>
     <string name="exception_error" msgid="7027667130619518211">"Błąd sieci lub karty SIM."</string>
+    <string name="stk_cc_ss_to_dial_error" msgid="2816779198916570502">"Żądanie SS zostało zmienione na żądanie DIAL."</string>
+    <string name="stk_cc_ss_to_ussd_error" msgid="7490626178582654236">"Żądanie SS zostało zmienione na żądanie USSD."</string>
+    <string name="stk_cc_ss_to_ss_error" msgid="5057846756489053759">"Żądanie SS zostało zmienione na nowe żądanie SS."</string>
     <string name="fdn_check_failure" msgid="18200614306525434">"W aplikacji Telefon włączone jest ustawienie Numery ustalone. W rezultacie niektóre funkcje związane z połączeniami nie działają."</string>
     <string name="radio_off_error" msgid="2304459933248513376">"Przed wyświetleniem tych ustawień włącz radio."</string>
     <string name="close_dialog" msgid="2365884406356986917">"OK"</string>

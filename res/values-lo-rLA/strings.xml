@@ -118,14 +118,16 @@
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"ຜູ່ໃຫ້ບໍລິການຂອງທ່ານ ບໍ່ຮອງຮັບການປິດການໂອນສາຍ ເມື່ອໂທລະສັບຂອງທ່ານບໍ່ມີສັນຍານ."</string>
     <string name="updating_title" msgid="6146755386174019046">"ການຕັ້ງຄ່າການໂທ"</string>
     <string name="call_settings_primary_user_only" msgid="5679923943740900965">"ມີ​ແຕ່​ຜູ້​ໃຊ້​ຕົ້ນ​ຕໍ​ເທົ່າ​ນັ້ນ​ທີ່​ສາ​ມາດ​ປ່ຽນການ​ຕັ້ງ​ຄ່າ​ການ​ໂທ​ໄດ້."</string>
-    <!-- no translation found for call_settings_with_label (3401177261468593519) -->
-    <skip />
+    <string name="call_settings_with_label" msgid="3401177261468593519">"ການ​ຕັ້ງ​ຄ່າ (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="error_updating_title" msgid="7970259216988931777">"ການຕັ້ງຄ່າການໂທຜິດພາດ"</string>
     <string name="reading_settings" msgid="1920291699287055284">"ກຳລັງອ່ານການຕັ້ງຄ່າ..."</string>
     <string name="updating_settings" msgid="8171225533884883252">"ກຳລັງອັບເດດການຕັ້ງຄ່າ..."</string>
     <string name="reverting_settings" msgid="4752151682666912828">"ກຳລັງຖອນຄືນການຕັ້ງຄ່າ..."</string>
     <string name="response_error" msgid="6674110501330139405">"ໄດ້ຮັບການຕອບກັບທີ່ບໍ່ຄາດຄິດຈາກເຄືອຂ່າຍ."</string>
     <string name="exception_error" msgid="7027667130619518211">"ເຄືອຂ່າຍ ຫຼື SIM card ຜິດພາດ."</string>
+    <string name="stk_cc_ss_to_dial_error" msgid="2816779198916570502">"ການ​ຂໍ SS ຖືກ​ປ່ຽນ​ແປງ​ເປັນ​ການ​ຂໍ DIAL ແລ້ວ."</string>
+    <string name="stk_cc_ss_to_ussd_error" msgid="7490626178582654236">"ການ​ຂໍ SS ຖືກ​ປ່ຽນແປງ​ເປັນ​ການ​ຂໍ  USSD ແລ້ວ."</string>
+    <string name="stk_cc_ss_to_ss_error" msgid="5057846756489053759">"ການ​ຂໍ SS ຖືກ​ປ່ຽນແປງ​ເປັນ​ການ​ຂໍ SS ໃໝ່​ແລ້ວ."</string>
     <string name="fdn_check_failure" msgid="18200614306525434">"ການຕັ້ງຄ່າແອັບຯໝາຍເລກຈຳກັດການໂທອອກ ຂອງໂທລະສັບທ່ານຖືກເປີດໃຊ້ຢູ່ ເຊິ່ງຈະເຮັດໃຫ້ຄຸນສົມບັດທີ່ກ່ຽວກັບການໂທບາງຢ່າງ ບໍ່ສາມາດໃຊ້ໄດ້."</string>
     <string name="radio_off_error" msgid="2304459933248513376">"ເປີດໃຊ້ວິທະຍຸກ່ອນການເບິ່ງການຕັ້ງຄ່າເຫຼົ່ານີ້."</string>
     <string name="close_dialog" msgid="2365884406356986917">"ຕົກລົງ"</string>

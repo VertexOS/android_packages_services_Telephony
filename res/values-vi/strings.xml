@@ -118,14 +118,16 @@
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"Nhà cung cấp dịch vụ của bạn không hỗ trợ vô hiệu hóa chuyển tiếp cuộc gọi khi điện thoại của bạn không thể truy cập được."</string>
     <string name="updating_title" msgid="6146755386174019046">"Cài đặt cuộc gọi"</string>
     <string name="call_settings_primary_user_only" msgid="5679923943740900965">"Chỉ người dùng chính mới có thể thay đổi cài đặt cuộc gọi."</string>
-    <!-- no translation found for call_settings_with_label (3401177261468593519) -->
-    <skip />
+    <string name="call_settings_with_label" msgid="3401177261468593519">"Cài đặt (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="error_updating_title" msgid="7970259216988931777">"Lỗi cài đặt cuộc gọi"</string>
     <string name="reading_settings" msgid="1920291699287055284">"Đang đọc cài đặt…"</string>
     <string name="updating_settings" msgid="8171225533884883252">"Đang cập nhật cài đặt..."</string>
     <string name="reverting_settings" msgid="4752151682666912828">"Đang hoàn nguyên cài đặt…"</string>
     <string name="response_error" msgid="6674110501330139405">"Phản hồi không mong muốn từ mạng."</string>
     <string name="exception_error" msgid="7027667130619518211">"Lỗi mạng hoặc thẻ SIM."</string>
+    <string name="stk_cc_ss_to_dial_error" msgid="2816779198916570502">"Yêu cầu SS được sửa đổi thành yêu cầu DIAL."</string>
+    <string name="stk_cc_ss_to_ussd_error" msgid="7490626178582654236">"Yêu cầu SS được sửa đổi thành yêu cầu USSD."</string>
+    <string name="stk_cc_ss_to_ss_error" msgid="5057846756489053759">"Yêu cầu SS được sửa đổi thành yêu cầu SS mới."</string>
     <string name="fdn_check_failure" msgid="18200614306525434">"Cài đặt Số quay định sẵn trên ứng dụng điện thoại được bật. Do đó, một số tính năng có liên quan đến cuộc gọi không hoạt động."</string>
     <string name="radio_off_error" msgid="2304459933248513376">"Hãy bật radio trước khi xem những cài đặt này."</string>
     <string name="close_dialog" msgid="2365884406356986917">"OK"</string>

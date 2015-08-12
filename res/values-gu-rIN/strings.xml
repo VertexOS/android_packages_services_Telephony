@@ -125,6 +125,9 @@
     <string name="reverting_settings" msgid="4752151682666912828">"સેટિંગ્સ પાછી ફરાવી રહ્યાં છે…"</string>
     <string name="response_error" msgid="6674110501330139405">"નેટવર્ક તરફથી અનપેક્ષિત પ્રતિસાદ."</string>
     <string name="exception_error" msgid="7027667130619518211">"નેટવર્ક અથવા SIM કાર્ડ ભૂલ."</string>
+    <string name="stk_cc_ss_to_dial_error" msgid="2816779198916570502">"SS વિનંતીને DIAL વિનંતી પર સંશોધિત કરી."</string>
+    <string name="stk_cc_ss_to_ussd_error" msgid="7490626178582654236">"SS વિનંતીને USSD વિનંતી પર સંશોધિત કરી."</string>
+    <string name="stk_cc_ss_to_ss_error" msgid="5057846756489053759">"SS વિનંતીને નવી SS વિનંતી પર સંશોધિત કરી."</string>
     <string name="fdn_check_failure" msgid="18200614306525434">"તમારી ફોન એપ્લિકેશનની ફિક્સ્ડ ડાયલિંગ નંબર્સ સેટિંગ ચાલુ છે. પરિણામ રૂપે, કેટલીક કૉલ સંબંધિત સુવિધાઓ કાર્ય કરતી નથી."</string>
     <string name="radio_off_error" msgid="2304459933248513376">"આ સેટિંગ્સ જોતા પહેલાં રેડિઓ ચાલુ કરો."</string>
     <string name="close_dialog" msgid="2365884406356986917">"ઑકે"</string>

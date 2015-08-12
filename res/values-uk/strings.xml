@@ -125,6 +125,9 @@
     <string name="reverting_settings" msgid="4752151682666912828">"Відновл. налашт-нь…"</string>
     <string name="response_error" msgid="6674110501330139405">"Неочікувана відповідь від мережі"</string>
     <string name="exception_error" msgid="7027667130619518211">"Помилка мережі чи SIM-карти."</string>
+    <string name="stk_cc_ss_to_dial_error" msgid="2816779198916570502">"Запит SS перетворено на запит DIAL."</string>
+    <string name="stk_cc_ss_to_ussd_error" msgid="7490626178582654236">"Запит SS перетворено на запит USSD."</string>
+    <string name="stk_cc_ss_to_ss_error" msgid="5057846756489053759">"Запит SS перетворено на новий запит SS."</string>
     <string name="fdn_check_failure" msgid="18200614306525434">"Налаштування номерів фіксованого набору програми \"Телефон\" увімкнено. Унаслідок цього деякі функції, пов’язані з викликами, не працюють."</string>
     <string name="radio_off_error" msgid="2304459933248513376">"Увімкніть радіо, перш ніж переглядати ці налаштування."</string>
     <string name="close_dialog" msgid="2365884406356986917">"OK"</string>

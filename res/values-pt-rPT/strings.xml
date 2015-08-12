@@ -125,6 +125,9 @@
     <string name="reverting_settings" msgid="4752151682666912828">"A reverter as definições…"</string>
     <string name="response_error" msgid="6674110501330139405">"Resposta inesperada da rede."</string>
     <string name="exception_error" msgid="7027667130619518211">"Erro do cartão SIM ou da rede."</string>
+    <string name="stk_cc_ss_to_dial_error" msgid="2816779198916570502">"Pedido SS modificado para um pedido DIAL."</string>
+    <string name="stk_cc_ss_to_ussd_error" msgid="7490626178582654236">"Pedido SS modificado para um pedido USSD."</string>
+    <string name="stk_cc_ss_to_ss_error" msgid="5057846756489053759">"Pedido SS modificado para um novo pedido SS."</string>
     <string name="fdn_check_failure" msgid="18200614306525434">"A definição Números Autorizados da aplicação do seu Telemóvel está ativada. Por conseguinte, algumas funcionalidades relacionadas com chamadas não estão a funcionar."</string>
     <string name="radio_off_error" msgid="2304459933248513376">"Ative o rádio antes de visualizar estas definições."</string>
     <string name="close_dialog" msgid="2365884406356986917">"OK"</string>

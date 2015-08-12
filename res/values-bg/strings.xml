@@ -125,6 +125,9 @@
     <string name="reverting_settings" msgid="4752151682666912828">"Настройките се променят в първоначалното състояние…"</string>
     <string name="response_error" msgid="6674110501330139405">"Неочакван отговор от мрежата."</string>
     <string name="exception_error" msgid="7027667130619518211">"Грешка в мрежата или SIM картата."</string>
+    <string name="stk_cc_ss_to_dial_error" msgid="2816779198916570502">"SS заявката е променена на DIAL заявка."</string>
+    <string name="stk_cc_ss_to_ussd_error" msgid="7490626178582654236">"SS заявката е променена на USSD заявка."</string>
+    <string name="stk_cc_ss_to_ss_error" msgid="5057846756489053759">"SS заявката е променена на нова SS заявка."</string>
     <string name="fdn_check_failure" msgid="18200614306525434">"Настройката „Фиксирани номера за набиране“ на приложението ви Телефон е включена. В резултат на това някои функции, свързани с обажданията, не работят."</string>
     <string name="radio_off_error" msgid="2304459933248513376">"Включете радиото, преди да разгледате тези настройки."</string>
     <string name="close_dialog" msgid="2365884406356986917">"OK"</string>

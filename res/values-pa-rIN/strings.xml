@@ -125,6 +125,9 @@
     <string name="reverting_settings" msgid="4752151682666912828">"ਸੈਟਿੰਗਾਂ ਵਾਪਸ ਲਿਆ ਰਿਹਾ ਹੈ…"</string>
     <string name="response_error" msgid="6674110501330139405">"ਨੈਟਵਰਕ ਤੋਂ ਅਕਲਪਿਤ ਜਵਾਬ"</string>
     <string name="exception_error" msgid="7027667130619518211">"ਨੈਟਵਰਕ ਜਾਂ SIM ਕਾਰਡ ਅਸ਼ੁੱਧੀ।"</string>
+    <string name="stk_cc_ss_to_dial_error" msgid="2816779198916570502">"SS ਬੇਨਤੀ DIAL ਬੇਨਤੀ ਵਿੱਚ ਸੰਸ਼ੋਧਿਤ ਕੀਤੀ ਗਈ।"</string>
+    <string name="stk_cc_ss_to_ussd_error" msgid="7490626178582654236">"SS ਬੇਨਤੀ USSD ਬੇਨਤੀ ਵਿੱਚ ਸੰਸ਼ੋਧਿਤ ਕੀਤੀ ਗਈ।"</string>
+    <string name="stk_cc_ss_to_ss_error" msgid="5057846756489053759">"SS ਬੇਨਤੀ ਨਵੀਂ SS ਵਿੱਚ ਸੰਸ਼ੋਧਿਤ ਕੀਤੀ ਗਈ।"</string>
     <string name="fdn_check_failure" msgid="18200614306525434">"ਤੁਹਾਡੇ ਫੋਨ ਐਪ ਦੀ ਫਿਕਸਡ ਡਾਇਲਿੰਗ ਨੰਬਰ ਸੈਟਿੰਗ ਚਾਲੂ ਕੀਤੀ ਗਈ ਹੈ। ਸਿੱਟੇ ਵਜੋਂ, ਕੁਝ ਕਾਲ-ਸੰਬੰਧਿਤ ਵਿਸ਼ੇਸ਼ਤਾਵਾਂ ਕੰਮ ਨਹੀਂ ਕਰ ਰਹੀਆਂ ਹਨ।"</string>
     <string name="radio_off_error" msgid="2304459933248513376">"ਇਹਨਾਂ ਸੈਟਿੰਗਾਂ ਨੂੰ ਦੇਖਣ ਤੋਂ ਪਹਿਲਾਂ ਰੇਡੀਓ ਚਾਲੂ ਕਰੋ।"</string>
     <string name="close_dialog" msgid="2365884406356986917">"ਠੀਕ"</string>

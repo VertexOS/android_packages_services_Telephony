@@ -118,14 +118,16 @@
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"آپ کا کیریئر آپ کا فون ناقابل رسائی ہونے پر کال آگے منتقل کرنے کو غیر فعال کرنے کا تعاون نہیں کرتا ہے۔"</string>
     <string name="updating_title" msgid="6146755386174019046">"کال کی ترتیبات"</string>
     <string name="call_settings_primary_user_only" msgid="5679923943740900965">"صرف بنیادی صارف ہی کال کی ترتیبات تبدیل کر سکتا ہے۔"</string>
-    <!-- no translation found for call_settings_with_label (3401177261468593519) -->
-    <skip />
+    <string name="call_settings_with_label" msgid="3401177261468593519">"ترتیبات (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="error_updating_title" msgid="7970259216988931777">"کال کی ترتیبات کی خرابی"</string>
     <string name="reading_settings" msgid="1920291699287055284">"ترتیبات کو پڑھ رہا ہے…"</string>
     <string name="updating_settings" msgid="8171225533884883252">"ترتیبات کو اپ ڈیٹ کر رہا ہے…"</string>
     <string name="reverting_settings" msgid="4752151682666912828">"ترتیبات لوٹا رہا ہے…"</string>
     <string name="response_error" msgid="6674110501330139405">"نیٹ ورک سے غیر متوقع جواب۔"</string>
     <string name="exception_error" msgid="7027667130619518211">"‏نیٹ ورک یا SIM کارڈ کی خرابی۔"</string>
+    <string name="stk_cc_ss_to_dial_error" msgid="2816779198916570502">"‏SS درخواست میں ترمیم کر کے DIAL درخواست بنا دی گئی ہے۔"</string>
+    <string name="stk_cc_ss_to_ussd_error" msgid="7490626178582654236">"‏SS درخواست میں ترمیم کر کے USSD درخواست بنا دی گئی ہے۔"</string>
+    <string name="stk_cc_ss_to_ss_error" msgid="5057846756489053759">"‏SS درخواست میں ترمیم کر کے نئی SS درخواست بنا دی گئی ہے۔"</string>
     <string name="fdn_check_failure" msgid="18200614306525434">"آپ کے فون کی ایپ کے فکسڈ ڈائلنگ نمبرز کی ترتیب آن ہے۔ نتیجتاًً، کال سے متعلقہ کچھ خصوصیات کام نہیں کر رہی ہیں۔"</string>
     <string name="radio_off_error" msgid="2304459933248513376">"یہ ترتیبات دیکھنے سے پہلے ریڈیو آن کریں۔"</string>
     <string name="close_dialog" msgid="2365884406356986917">"ٹھیک ہے"</string>

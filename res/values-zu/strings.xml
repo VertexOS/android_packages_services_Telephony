@@ -125,6 +125,9 @@
     <string name="reverting_settings" msgid="4752151682666912828">"Iguqula izilungiselelo."</string>
     <string name="response_error" msgid="6674110501330139405">"Impendulo engalindelekile kwinethiwekhi."</string>
     <string name="exception_error" msgid="7027667130619518211">"Iphutha lenethiwekhi noma lekhadi le-SIM."</string>
+    <string name="stk_cc_ss_to_dial_error" msgid="2816779198916570502">"Isicelo se-SS silungiselwe kusicelo SOKUDAYELA."</string>
+    <string name="stk_cc_ss_to_ussd_error" msgid="7490626178582654236">"Isicelo se-SS silungiselwe kusicelo se-USSD."</string>
+    <string name="stk_cc_ss_to_ss_error" msgid="5057846756489053759">"Isicelo se-SS silungiselwe kusicelo esisha se-SS."</string>
     <string name="fdn_check_failure" msgid="18200614306525434">"Izilungiselelo zezinombolo zokudayila okukhiyiwe kohlelo lokusebenza lwefoni yakho zikhanyisiwe. Njengomphumela, ezinye izici ezihlobene namakholi azisebenzi."</string>
     <string name="radio_off_error" msgid="2304459933248513376">"Sicela uvule umsakazo ngaphambi kokubuka lezi zilungiselelo."</string>
     <string name="close_dialog" msgid="2365884406356986917">"KULUNGILE"</string>
