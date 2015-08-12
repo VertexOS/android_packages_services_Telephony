@@ -113,9 +113,30 @@ public final class SipAccountRegistry {
     }
 
     void setup(Context context) {
+        verifyAndPurgeInvalidPhoneAccounts(context);
         startSipProfilesAsync(context, (String) null, false);
+    }
 
-        // TODO: remove orphaned SIP Accounts
+    /**
+     * Checks the existing SIP phone {@link PhoneAccount}s registered with telecom and deletes any
+     * invalid accounts.
+     *
+     * @param context The context.
+     */
+    void verifyAndPurgeInvalidPhoneAccounts(Context context) {
+        TelecomManager telecomManager = TelecomManager.from(context);
+        SipProfileDb profileDb = new SipProfileDb(context);
+        List<PhoneAccountHandle> accountHandles = telecomManager.getPhoneAccountsSupportingScheme(
+                PhoneAccount.SCHEME_SIP);
+
+        for (PhoneAccountHandle accountHandle : accountHandles) {
+            String profileName = SipUtil.getSipProfileNameFromPhoneAccount(accountHandle);
+            SipProfile profile = profileDb.retrieveSipProfileFromName(profileName);
+            if (profile == null) {
+                log("verifyAndPurgeInvalidPhoneAccounts, deleting account: " + accountHandle);
+                telecomManager.unregisterPhoneAccount(accountHandle);
+            }
+        }
     }
 
     /**
