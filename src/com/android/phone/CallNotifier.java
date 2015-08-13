@@ -206,7 +206,9 @@ public class CallNotifier extends Handler {
 
             case CallStateMonitor.PHONE_DISCONNECT:
                 if (DBG) log("DISCONNECT");
-                onDisconnect((AsyncResult) msg.obj);
+                // Stop any signalInfo tone being played when a call gets ended, the rest of the
+                // disconnect functionality in onDisconnect() is handled in ConnectionService.
+                stopSignalInfoTone();
                 break;
 
             case CallStateMonitor.PHONE_UNKNOWN_CONNECTION_APPEARED:
