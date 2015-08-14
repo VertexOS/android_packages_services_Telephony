@@ -88,7 +88,7 @@ class CallStateMonitor extends Handler {
         //
         //callManager.registerForNewRingingConnection(this, PHONE_NEW_RINGING_CONNECTION, null);
         //callManager.registerForPreciseCallStateChanged(this, PHONE_STATE_CHANGED, null);
-        //callManager.registerForDisconnect(this, PHONE_DISCONNECT, null);
+        callManager.registerForDisconnect(this, PHONE_DISCONNECT, null);
         //callManager.registerForUnknownConnection(this, PHONE_UNKNOWN_CONNECTION_APPEARED, null);
         callManager.registerForCdmaOtaStatusChange(this, EVENT_OTA_PROVISION_CHANGE, null);
         //callManager.registerForCallWaiting(this, PHONE_CDMA_CALL_WAITING, null);
@@ -134,7 +134,7 @@ class CallStateMonitor extends Handler {
         // Unregister all events from the old obsolete phone
         //callManager.unregisterForNewRingingConnection(this);
         //callManager.unregisterForPreciseCallStateChanged(this);
-        //callManager.unregisterForDisconnect(this);
+        callManager.unregisterForDisconnect(this);
         //callManager.unregisterForUnknownConnection(this);
         //callManager.unregisterForCallWaiting(this);
         callManager.unregisterForDisplayInfo(this);
