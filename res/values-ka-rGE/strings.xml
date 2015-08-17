@@ -125,12 +125,9 @@
     <string name="reverting_settings" msgid="4752151682666912828">"პარამეტრების დაბრუნება…"</string>
     <string name="response_error" msgid="6674110501330139405">"მოულოდნელი პასუხი ქსელიდან."</string>
     <string name="exception_error" msgid="7027667130619518211">"ქსელის ან SIM ბარათის შეცდომა."</string>
-    <!-- no translation found for stk_cc_ss_to_dial_error (2816779198916570502) -->
-    <skip />
-    <!-- no translation found for stk_cc_ss_to_ussd_error (7490626178582654236) -->
-    <skip />
-    <!-- no translation found for stk_cc_ss_to_ss_error (5057846756489053759) -->
-    <skip />
+    <string name="stk_cc_ss_to_dial_error" msgid="2816779198916570502">"SS მოთხოვნა შეიცვალა DIAL მოთხოვნით."</string>
+    <string name="stk_cc_ss_to_ussd_error" msgid="7490626178582654236">"SS მოთხოვნა შეიცვალა USSD მოთხოვნით."</string>
+    <string name="stk_cc_ss_to_ss_error" msgid="5057846756489053759">"SS მოთხოვნა შეიცვალა ახალი SS მოთხოვნით."</string>
     <string name="fdn_check_failure" msgid="18200614306525434">"თქვენი ტელეფონის აპის დაშებული ნომრების პარამეტრი ჩართულია. შედეგად, ზართან დაკავშორებული ზოგიერთი ფუნქცია არ მუშაობს."</string>
     <string name="radio_off_error" msgid="2304459933248513376">"ჩართეთ გადამცემი, სანამ ამ პარამეტრებს იხილავდეთ."</string>
     <string name="close_dialog" msgid="2365884406356986917">"კარგი"</string>
