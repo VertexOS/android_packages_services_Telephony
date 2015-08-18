@@ -22,6 +22,10 @@
         android:sharedUserLabel="@string/phoneAppLabel"
 >
 
+    <uses-sdk
+        android:minSdkVersion="23"
+        android:targetSdkVersion="23" />
+
     <original-package android:name="com.android.phone" />
 
     <protected-broadcast android:name="android.intent.action.SERVICE_STATE" />
@@ -50,7 +54,6 @@
     <protected-broadcast android:name= "android.intent.action.stk.session_end" />
     <protected-broadcast android:name= "android.intent.action.stk.icc_status_change" />
     <protected-broadcast android:name= "android.intent.action.stk.alpha_notify" />
-
 
     <uses-permission android:name="android.permission.BROADCAST_STICKY" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
@@ -125,7 +128,6 @@
     <uses-permission android:name="android.permission.LOCAL_MAC_ADDRESS" />
     <uses-permission android:name="android.permission.CHANGE_COMPONENT_ENABLED_STATE" />
     <uses-permission android:name="android.permission.CHANGE_DEVICE_IDLE_TEMP_WHITELIST" />
-
 
     <!-- This tells the activity manager to not delay any of our activity
          start requests, even if they happen immediately after the user
