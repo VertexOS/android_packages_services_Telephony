@@ -259,8 +259,9 @@ public class CarrierConfigLoader extends ICarrierConfigLoader.Stub {
                         newMsg.getData().putBoolean("loaded_from_xml", true);
                         sendMessage(newMsg);
                     } else {
-                        if (bindToConfigPackage(carrierPackageName, phoneId,
-                                EVENT_CONNECTED_TO_CARRIER)) {
+                        if (carrierPackageName != null
+                            && bindToConfigPackage(carrierPackageName, phoneId,
+                                    EVENT_CONNECTED_TO_CARRIER)) {
                             sendMessageDelayed(obtainMessage(EVENT_BIND_CARRIER_TIMEOUT, phoneId, -1),
                                     BIND_TIMEOUT_MILLIS);
                         } else {
