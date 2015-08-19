@@ -71,7 +71,7 @@ public class SyncMessage {
      * @return the number of new messages stored on the voicemail server.
      */
     public int getNewMessageCount() {
-        return mNewMessageCount;
+        return mNewMessageCount != null ? mNewMessageCount : 0;
     }
 
     /**
@@ -101,7 +101,7 @@ public class SyncMessage {
      * {@link com.android.phone.vvm.omtp.OmtpConstants#NEW_MESSAGE}
      */
     public int getLength() {
-        return mMessageLength;
+        return mMessageLength != null ? mMessageLength : 0;
     }
 
     /**
@@ -121,6 +121,6 @@ public class SyncMessage {
      * {@link com.android.phone.vvm.omtp.OmtpConstants#NEW_MESSAGE}
      */
     public long getTimestampMillis() {
-        return mMsgTimeMillis;
+        return mMsgTimeMillis != null ? mMsgTimeMillis : 0;
     }
 }
