@@ -48,7 +48,8 @@ public class VoicemailsQueryHelper {
     public static final int IS_READ = 2;
     public static final int DELETED = 3;
 
-    final static String READ_SELECTION = Voicemails.DIRTY + "=1 AND " + Voicemails.DELETED + "!=1";
+    final static String READ_SELECTION = Voicemails.DIRTY + "=1 AND "
+                + Voicemails.DELETED + "!=1 AND " + Voicemails.IS_READ + "=1";
     final static String DELETED_SELECTION = Voicemails.DELETED + "=1";
 
     private Context mContext;
