@@ -476,6 +476,9 @@ public class TelephonyConnectionService extends ConnectionService {
             returnConnection.setVideoPauseSupported(
                     TelecomAccountRegistry.getInstance(this).isVideoPauseSupported(
                             phoneAccountHandle));
+            returnConnection.setConferenceSupported(
+                    TelecomAccountRegistry.getInstance(this).isMergeCallSupported(
+                            phoneAccountHandle));
         }
         return returnConnection;
     }
