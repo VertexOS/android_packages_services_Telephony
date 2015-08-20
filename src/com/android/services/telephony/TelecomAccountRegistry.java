@@ -18,10 +18,8 @@ package com.android.services.telephony;
 
 import android.content.ComponentName;
 import android.content.Context;
-import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
@@ -69,6 +67,7 @@ final class TelecomAccountRegistry {
         private final PstnPhoneCapabilitiesNotifier mPhoneCapabilitiesNotifier;
         private boolean mIsVideoCapable;
         private boolean mIsVideoPauseSupported;
+        private boolean mIsMergeCallSupported;
 
         AccountEntry(Phone phone, boolean isEmergency, boolean isDummy) {
             mPhone = phone;
@@ -172,6 +171,7 @@ final class TelecomAccountRegistry {
             if (isCarrierInstantLetteringSupported()) {
                 capabilities |= PhoneAccount.CAPABILITY_CALL_SUBJECT;
             }
+            mIsMergeCallSupported = isCarrierMergeCallSupported();
 
             if (icon == null) {
                 // TODO: Switch to using Icon.createWithResource() once that supports tinting.
@@ -235,6 +235,17 @@ final class TelecomAccountRegistry {
         }
 
         /**
+         * Determines from carrier config whether merging calls is supported.
+         *
+         * @return {@code true} if merging calls is supported, {@code false} otherwise.
+         */
+        private boolean isCarrierMergeCallSupported() {
+            PersistableBundle b =
+                    PhoneGlobals.getInstance().getCarrierConfigForSubId(mPhone.getSubId());
+            return b.getBoolean(CarrierConfigManager.KEY_SUPPORT_CONFERENCE_CALL_BOOL);
+        }
+
+        /**
          * Receives callback from {@link PstnPhoneCapabilitiesNotifier} when the video capabilities
          * have changed.
          *
@@ -252,6 +263,14 @@ final class TelecomAccountRegistry {
          */
         public boolean isVideoPauseSupported() {
             return mIsVideoCapable && mIsVideoPauseSupported;
+        }
+
+        /**
+         * Indicates whether this account supports merging calls (i.e. conferencing).
+         * @return {@code true} if the account supports merging calls, {@code false} otherwise.
+         */
+        public boolean isMergeCallSupported() {
+            return mIsMergeCallSupported;
         }
     }
 
@@ -322,6 +341,22 @@ final class TelecomAccountRegistry {
         for (AccountEntry entry : mAccounts) {
             if (entry.getPhoneAccountHandle().equals(handle)) {
                 return entry.isVideoPauseSupported();
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Determines if the {@link AccountEntry} associated with a {@link PhoneAccountHandle} supports
+     * merging calls.
+     *
+     * @param handle The {@link PhoneAccountHandle}.
+     * @return {@code True} if merging calls is supported.
+     */
+    boolean isMergeCallSupported(PhoneAccountHandle handle) {
+        for (AccountEntry entry : mAccounts) {
+            if (entry.getPhoneAccountHandle().equals(handle)) {
+                return entry.isMergeCallSupported();
             }
         }
         return false;
