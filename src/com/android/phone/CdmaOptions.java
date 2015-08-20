@@ -69,7 +69,8 @@ public class CdmaOptions {
         PersistableBundle carrierConfig =
                 PhoneGlobals.getInstance().getCarrierConfigForSubId(mPhone.getSubId());
         // Some CDMA carriers want the APN settings.
-        if (!carrierConfig.getBoolean(CarrierConfigManager.KEY_SHOW_APN_SETTING_CDMA_BOOL)
+        if ((!carrierConfig.getBoolean(CarrierConfigManager.KEY_SHOW_APN_SETTING_CDMA_BOOL)
+                || carrierConfig.getBoolean(CarrierConfigManager.KEY_WORLD_PHONE_BOOL))
                 && mButtonAPNExpand != null) {
             mPrefScreen.removePreference(mButtonAPNExpand);
             removedAPNExpand = true;
