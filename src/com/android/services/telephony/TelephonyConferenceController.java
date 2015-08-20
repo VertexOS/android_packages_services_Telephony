@@ -27,6 +27,7 @@ import java.util.Set;
 import android.net.Uri;
 import android.telecom.Conference;
 import android.telecom.ConferenceParticipant;
+import android.telecom.Conferenceable;
 import android.telecom.Connection;
 import android.telecom.DisconnectCause;
 import android.telecom.PhoneAccountHandle;
@@ -116,13 +117,15 @@ final class TelephonyConferenceController {
         Log.v(this, "recalculateConferenceable : %d", mTelephonyConnections.size());
 
         List<Connection> activeConnections = new ArrayList<>(mTelephonyConnections.size());
-        List<Connection> backgroundConnections = new ArrayList<>(mTelephonyConnections.size());
+        List<Connection> backgroundConnections = new ArrayList<>(
+                mTelephonyConnections.size());
 
         // Loop through and collect all calls which are active or holding
-        for (Connection connection : mTelephonyConnections) {
-            Log.d(this, "recalc - %s %s", connection.getState(), connection);
+        for (TelephonyConnection connection : mTelephonyConnections) {
+            Log.d(this, "recalc - %s %s supportsConf? %s", connection.getState(), connection,
+                    connection.isConferenceSupported());
 
-            if (!participatesInFullConference(connection)) {
+            if (connection.isConferenceSupported() && !participatesInFullConference(connection)) {
                 switch (connection.getState()) {
                     case Connection.STATE_ACTIVE:
                         activeConnections.add(connection);
@@ -158,7 +161,7 @@ final class TelephonyConferenceController {
             List<Connection> nonConferencedConnections =
                     new ArrayList<>(mTelephonyConnections.size());
             for (TelephonyConnection c : mTelephonyConnections) {
-                if (c.getConference() == null) {
+                if (c.isConferenceSupported() && c.getConference() == null) {
                     nonConferencedConnections.add(c);
                 }
             }
