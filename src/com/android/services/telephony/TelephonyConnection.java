@@ -355,6 +355,11 @@ abstract class TelephonyConnection extends Connection {
     private boolean mIsVideoPauseSupported;
 
     /**
+     * Indicates whether this connection supports being a part of a conference..
+     */
+    private boolean mIsConferenceSupported;
+
+    /**
      * Listeners to our TelephonyConnection specific callbacks
      */
     private final Set<TelephonyConnectionListener> mTelephonyListeners = Collections.newSetFromMap(
@@ -1079,6 +1084,22 @@ abstract class TelephonyConnection extends Connection {
      */
     public void setVideoPauseSupported(boolean isVideoPauseSupported) {
         mIsVideoPauseSupported = isVideoPauseSupported;
+    }
+
+    /**
+     * Sets whether this connection supports conference calling.
+     * @param isConferenceSupported {@code true} if conference calling is supported by this
+     *                                         connection, {@code false} otherwise.
+     */
+    public void setConferenceSupported(boolean isConferenceSupported) {
+        mIsConferenceSupported = isConferenceSupported;
+    }
+
+    /**
+     * @return {@code true} if this connection supports merging calls into a conference.
+     */
+    public boolean isConferenceSupported() {
+        return mIsConferenceSupported;
     }
 
     /**

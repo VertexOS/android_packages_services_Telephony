@@ -19,8 +19,6 @@ package com.android.services.telephony;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.net.Uri;
 import android.telecom.Connection;
 import android.telecom.ConnectionRequest;
@@ -30,7 +28,6 @@ import android.telecom.PhoneAccountHandle;
 import android.telephony.CarrierConfigManager;
 import android.telephony.PhoneNumberUtils;
 import android.telephony.ServiceState;
-import android.telephony.SubscriptionInfo;
 import android.telephony.SubscriptionManager;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
@@ -49,7 +46,6 @@ import com.android.phone.R;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.regex.Pattern;
 
 /**
@@ -444,6 +440,9 @@ public class TelephonyConnectionService extends ConnectionService {
             returnConnection.addTelephonyConnectionListener(mTelephonyConnectionListener);
             returnConnection.setVideoPauseSupported(
                     TelecomAccountRegistry.getInstance(this).isVideoPauseSupported(
+                            phoneAccountHandle));
+            returnConnection.setConferenceSupported(
+                    TelecomAccountRegistry.getInstance(this).isMergeCallSupported(
                             phoneAccountHandle));
         }
         return returnConnection;
