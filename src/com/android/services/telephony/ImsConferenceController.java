@@ -18,7 +18,6 @@ package com.android.services.telephony;
 
 import com.android.internal.telephony.imsphone.ImsPhoneConnection;
 
-import android.net.Uri;
 import android.telecom.Conference;
 import android.telecom.Connection;
 import android.telecom.ConnectionService;
@@ -152,9 +151,10 @@ public class ImsConferenceController {
         List<Conferenceable> backgroundConnections = new ArrayList<>(mTelephonyConnections.size());
 
         // Loop through and collect all calls which are active or holding
-        for (Connection connection : mTelephonyConnections) {
+        for (TelephonyConnection connection : mTelephonyConnections) {
             if (Log.DEBUG) {
-                Log.d(this, "recalc - %s %s", connection.getState(), connection);
+                Log.d(this, "recalc - %s %s supportsConf? %s", connection.getState(), connection,
+                        connection.isConferenceSupported());
             }
 
             // If this connection is a member of a conference hosted on another device, it is not
@@ -163,6 +163,12 @@ public class ImsConferenceController {
                 if (Log.VERBOSE) {
                     Log.v(this, "Skipping connection in peer conference: %s", connection);
                 }
+                continue;
+            }
+
+            // If this connection does not support being in a conference call, then it is not
+            // conferenceable with any other connection.
+            if (!connection.isConferenceSupported()) {
                 continue;
             }
 
@@ -239,8 +245,8 @@ public class ImsConferenceController {
 
             List<Connection> nonConferencedConnections =
                 new ArrayList<>(mTelephonyConnections.size());
-            for (Connection c : mTelephonyConnections) {
-                if (c.getConference() == null) {
+            for (TelephonyConnection c : mTelephonyConnections) {
+                if (c.getConference() == null && c.isConferenceSupported()) {
                     nonConferencedConnections.add(c);
                 }
             }
