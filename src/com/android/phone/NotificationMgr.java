@@ -635,8 +635,9 @@ public class NotificationMgr {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK |
                 Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
         // Use NetworkSetting to handle the selection intent
-        intent.setComponent(new ComponentName("com.android.phone",
-                "com.android.phone.NetworkSetting"));
+        intent.setComponent(new ComponentName(
+                mContext.getString(R.string.network_operator_settings_package),
+                mContext.getString(R.string.network_operator_settings_class)));
         intent.putExtra(GsmUmtsOptions.EXTRA_SUB_ID, mPhone.getSubId());
         PendingIntent contentIntent = PendingIntent.getActivity(mContext, 0, intent, 0);
 
