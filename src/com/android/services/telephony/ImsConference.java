@@ -657,6 +657,8 @@ public class ImsConference extends Conference {
             if (mConferenceHost.getPhone().getPhoneType() == PhoneConstants.PHONE_TYPE_GSM) {
                 GsmConnection c = new GsmConnection(originalConnection);
                 c.updateState();
+                // Copy the connect time from the conferenceHost
+                c.setConnectTimeMillis(mConferenceHost.getConnectTimeMillis());
                 mTelephonyConnectionService.addExistingConnection(phoneAccountHandle, c);
                 mTelephonyConnectionService.addConnectionToConferenceController(c);
             } // CDMA case not applicable for SRVCC
