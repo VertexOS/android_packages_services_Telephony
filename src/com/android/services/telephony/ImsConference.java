@@ -39,12 +39,12 @@ import com.android.phone.PhoneUtils;
 import com.android.phone.R;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Represents an IMS conference call.
@@ -207,12 +207,19 @@ public class ImsConference extends Conference {
 
     /**
      * The known conference participant connections.  The HashMap is keyed by endpoint Uri.
-     * A {@link ConcurrentHashMap} is used as there is a possibility for radio events impacting the
-     * available participants to occur at the same time as an access via the connection service.
+     * Access to the hashmap is protected by the {@link #mUpdateSyncRoot}.
      */
-    private final ConcurrentHashMap<Uri, ConferenceParticipantConnection>
-            mConferenceParticipantConnections =
-                    new ConcurrentHashMap<Uri, ConferenceParticipantConnection>(8, 0.9f, 1);
+    private final HashMap<Uri, ConferenceParticipantConnection>
+            mConferenceParticipantConnections = new HashMap<Uri, ConferenceParticipantConnection>();
+
+    /**
+     * Sychronization root used to ensure that updates to the
+     * {@link #mConferenceParticipantConnections} happen atomically are are not interleaved across
+     * threads.  There are some instances where the network will send conference event package
+     * data closely spaced.  If that happens, it is possible that the interleaving of the update
+     * will cause duplicate participant info to be added.
+     */
+    private final Object mUpdateSyncRoot = new Object();
 
     public void updateConferenceParticipantsAfterCreation() {
         if (mConferenceHost != null) {
@@ -536,63 +543,70 @@ public class ImsConference extends Conference {
         if (participants == null) {
             return;
         }
-        boolean newParticipantsAdded = false;
-        boolean oldParticipantsRemoved = false;
-        ArrayList<ConferenceParticipant> newParticipants = new ArrayList<>(participants.size());
-        HashSet<Uri> participantUserEntities = new HashSet<>(participants.size());
 
-        // Add any new participants and update existing.
-        for (ConferenceParticipant participant : participants) {
-            Uri userEntity = participant.getHandle();
+        // Perform the update in a synchronized manner.  It is possible for the IMS framework to
+        // trigger two onConferenceParticipantsChanged callbacks in quick succession.  If the first
+        // update adds new participants, and the second does something like update the status of one
+        // of the participants, we can get into a situation where the participant is added twice.
+        synchronized (mUpdateSyncRoot) {
+            boolean newParticipantsAdded = false;
+            boolean oldParticipantsRemoved = false;
+            ArrayList<ConferenceParticipant> newParticipants = new ArrayList<>(participants.size());
+            HashSet<Uri> participantUserEntities = new HashSet<>(participants.size());
 
-            participantUserEntities.add(userEntity);
-            if (!mConferenceParticipantConnections.containsKey(userEntity)) {
-                // Some carriers will also include the conference host in the CEP.  We will filter
-                // that out here.
-                if (!isParticipantHost(mConferenceHostAddress, participant.getHandle())) {
-                    createConferenceParticipantConnection(parent, participant);
-                    newParticipants.add(participant);
-                    newParticipantsAdded = true;
+            // Add any new participants and update existing.
+            for (ConferenceParticipant participant : participants) {
+                Uri userEntity = participant.getHandle();
+
+                participantUserEntities.add(userEntity);
+                if (!mConferenceParticipantConnections.containsKey(userEntity)) {
+                    // Some carriers will also include the conference host in the CEP.  We will
+                    // filter that out here.
+                    if (!isParticipantHost(mConferenceHostAddress, userEntity)) {
+                        createConferenceParticipantConnection(parent, participant);
+                        newParticipants.add(participant);
+                        newParticipantsAdded = true;
+                    }
+                } else {
+                    ConferenceParticipantConnection connection =
+                            mConferenceParticipantConnections.get(userEntity);
+                    connection.updateState(participant.getState());
                 }
-            } else {
-                ConferenceParticipantConnection connection =
-                        mConferenceParticipantConnections.get(userEntity);
-                connection.updateState(participant.getState());
             }
-        }
 
-        // Set state of new participants.
-        if (newParticipantsAdded) {
-            // Set the state of the new participants at once and add to the conference
-            for (ConferenceParticipant newParticipant : newParticipants) {
-                ConferenceParticipantConnection connection =
-                        mConferenceParticipantConnections.get(newParticipant.getHandle());
-                connection.updateState(newParticipant.getState());
+            // Set state of new participants.
+            if (newParticipantsAdded) {
+                // Set the state of the new participants at once and add to the conference
+                for (ConferenceParticipant newParticipant : newParticipants) {
+                    ConferenceParticipantConnection connection =
+                            mConferenceParticipantConnections.get(newParticipant.getHandle());
+                    connection.updateState(newParticipant.getState());
+                }
             }
-        }
 
-        // Finally, remove any participants from the conference that no longer exist in the
-        // conference event package data.
-        Iterator<Map.Entry<Uri, ConferenceParticipantConnection>> entryIterator =
-                mConferenceParticipantConnections.entrySet().iterator();
-        while (entryIterator.hasNext()) {
-            Map.Entry<Uri, ConferenceParticipantConnection> entry = entryIterator.next();
+            // Finally, remove any participants from the conference that no longer exist in the
+            // conference event package data.
+            Iterator<Map.Entry<Uri, ConferenceParticipantConnection>> entryIterator =
+                    mConferenceParticipantConnections.entrySet().iterator();
+            while (entryIterator.hasNext()) {
+                Map.Entry<Uri, ConferenceParticipantConnection> entry = entryIterator.next();
 
-            if (!participantUserEntities.contains(entry.getKey())) {
-                ConferenceParticipantConnection participant = entry.getValue();
-                participant.setDisconnected(new DisconnectCause(DisconnectCause.CANCELED));
-                participant.removeConnectionListener(mParticipantListener);
-                mTelephonyConnectionService.removeConnection(participant);
-                removeConnection(participant);
-                entryIterator.remove();
-                oldParticipantsRemoved = true;
+                if (!participantUserEntities.contains(entry.getKey())) {
+                    ConferenceParticipantConnection participant = entry.getValue();
+                    participant.setDisconnected(new DisconnectCause(DisconnectCause.CANCELED));
+                    participant.removeConnectionListener(mParticipantListener);
+                    mTelephonyConnectionService.removeConnection(participant);
+                    removeConnection(participant);
+                    entryIterator.remove();
+                    oldParticipantsRemoved = true;
+                }
             }
-        }
 
-        // If new participants were added or old ones were removed, we need to ensure the state of
-        // the manage conference capability is updated.
-        if (newParticipantsAdded || oldParticipantsRemoved) {
-            updateManageConference();
+            // If new participants were added or old ones were removed, we need to ensure the state
+            // of the manage conference capability is updated.
+            if (newParticipantsAdded || oldParticipantsRemoved) {
+                updateManageConference();
+            }
         }
     }
 
@@ -620,7 +634,9 @@ public class ImsConference extends Conference {
             Log.v(this, "createConferenceParticipantConnection: %s", connection);
         }
 
-        mConferenceParticipantConnections.put(participant.getHandle(), connection);
+        synchronized(mUpdateSyncRoot) {
+            mConferenceParticipantConnections.put(participant.getHandle(), connection);
+        }
         mTelephonyConnectionService.addExistingConnection(mConferenceHostPhoneAccountHandle,
                 connection);
         addConnection(connection);
@@ -635,7 +651,9 @@ public class ImsConference extends Conference {
         Log.d(this, "removeConferenceParticipant: %s", participant);
 
         participant.removeConnectionListener(mParticipantListener);
-        mConferenceParticipantConnections.remove(participant.getUserEntity());
+        synchronized(mUpdateSyncRoot) {
+            mConferenceParticipantConnections.remove(participant.getUserEntity());
+        }
         mTelephonyConnectionService.removeConnection(participant);
     }
 
@@ -645,17 +663,19 @@ public class ImsConference extends Conference {
     private void disconnectConferenceParticipants() {
         Log.v(this, "disconnectConferenceParticipants");
 
-        for (ConferenceParticipantConnection connection :
-                mConferenceParticipantConnections.values()) {
+        synchronized(mUpdateSyncRoot) {
+            for (ConferenceParticipantConnection connection :
+                    mConferenceParticipantConnections.values()) {
 
-            connection.removeConnectionListener(mParticipantListener);
-            // Mark disconnect cause as cancelled to ensure that the call is not logged in the
-            // call log.
-            connection.setDisconnected(new DisconnectCause(DisconnectCause.CANCELED));
-            mTelephonyConnectionService.removeConnection(connection);
-            connection.destroy();
+                connection.removeConnectionListener(mParticipantListener);
+                // Mark disconnect cause as cancelled to ensure that the call is not logged in the
+                // call log.
+                connection.setDisconnected(new DisconnectCause(DisconnectCause.CANCELED));
+                mTelephonyConnectionService.removeConnection(connection);
+                connection.destroy();
+            }
+            mConferenceParticipantConnections.clear();
         }
-        mConferenceParticipantConnections.clear();
     }
 
     /**
