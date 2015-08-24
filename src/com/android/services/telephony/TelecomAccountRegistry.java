@@ -363,6 +363,21 @@ final class TelecomAccountRegistry {
     }
 
     /**
+     * Returns the address (e.g. the phone number) associated with a subscription.
+     *
+     * @param handle The phone account handle to find the subscription address for.
+     * @return The address.
+     */
+    Uri getAddress(PhoneAccountHandle handle) {
+        for (AccountEntry entry : mAccounts) {
+            if (entry.getPhoneAccountHandle().equals(handle)) {
+                return entry.mAccount.getAddress();
+            }
+        }
+        return null;
+    }
+
+    /**
      * Sets up all the phone accounts for SIMs on first boot.
      */
     void setupOnBoot() {
