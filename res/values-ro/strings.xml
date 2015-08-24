@@ -365,8 +365,8 @@
     <string name="updating_fdn_contact" msgid="8370929876849803600">"Se actualizează numărul cu apelări restricţionate..."</string>
     <string name="fdn_contact_updated" msgid="5497828782609005017">"Număr cu apelări restricţionate actualizat."</string>
     <string name="delete_fdn_contact" msgid="6668958073074151717">"Ștergeţi numărul cu apelări restricţionate"</string>
-    <string name="deleting_fdn_contact" msgid="5669163206349319969">"Se şterge numărul cu apelări restricţionate..."</string>
-    <string name="fdn_contact_deleted" msgid="7154162327112259569">"Numărul cu apelări restricţionate a fost şters."</string>
+    <string name="deleting_fdn_contact" msgid="5669163206349319969">"Se șterge numărul cu apelări restricţionate..."</string>
+    <string name="fdn_contact_deleted" msgid="7154162327112259569">"Numărul cu apelări restricţionate a fost șters."</string>
     <string name="pin2_invalid" msgid="5470854099230755944">"FDN nu a fost actualizat, deoarece aţi introdus un cod PIN incorect."</string>
     <string name="fdn_invalid_number" msgid="1494755047900009147">"FDN nu a fost actualizat, deoarece numărul nu poate depăşi 20 de cifre."</string>
     <string name="pin2_or_fdn_invalid" msgid="6025144083384701197">"Numărul FDN nu a fost actualizat. Codul PIN2 a fost incorect sau numărul de telefon a fost respins."</string>
