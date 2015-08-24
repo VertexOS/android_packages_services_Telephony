@@ -33,6 +33,7 @@ import com.android.internal.telephony.Call;
 import com.android.internal.telephony.CallStateException;
 import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneConstants;
+import com.android.internal.telephony.imsphone.ImsPhone;
 import com.android.internal.telephony.imsphone.ImsPhoneConnection;
 import com.android.phone.PhoneUtils;
 import com.android.phone.R;
@@ -42,6 +43,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -192,6 +194,16 @@ public class ImsConference extends Conference {
      * The connection to the conference server which is hosting the conference.
      */
     private TelephonyConnection mConferenceHost;
+
+    /**
+     * The PhoneAccountHandle of the conference host.
+     */
+    private PhoneAccountHandle mConferenceHostPhoneAccountHandle;
+
+    /**
+     * The address of the conference host.
+     */
+    private Uri mConferenceHostAddress;
 
     /**
      * The known conference participant connections.  The HashMap is keyed by endpoint Uri.
@@ -491,9 +503,24 @@ public class ImsConference extends Conference {
         }
 
         mConferenceHost = conferenceHost;
+
+        // Attempt to get the conference host's address (e.g. the host's own phone number).
+        // We need to look at the default phone for the ImsPhone when creating the phone account
+        // for the
+        if (mConferenceHost.getPhone() != null &&  mConferenceHost.getPhone() instanceof ImsPhone) {
+            // Look up the conference host's address; we need this later for filtering out the
+            // conference host in conference event package data.
+            ImsPhone imsPhone = (ImsPhone) mConferenceHost.getPhone();
+            mConferenceHostPhoneAccountHandle =
+                    PhoneUtils.makePstnPhoneAccountHandle(imsPhone.getDefaultPhone());
+            mConferenceHostAddress = TelecomAccountRegistry.getInstance(mTelephonyConnectionService)
+                    .getAddress(mConferenceHostPhoneAccountHandle);
+        }
+
         mConferenceHost.addConnectionListener(mConferenceHostListener);
         mConferenceHost.addTelephonyConnectionListener(mTelephonyConnectionListener);
         setState(mConferenceHost.getState());
+
         updateStatusHints();
     }
 
@@ -520,9 +547,13 @@ public class ImsConference extends Conference {
 
             participantUserEntities.add(userEntity);
             if (!mConferenceParticipantConnections.containsKey(userEntity)) {
-                createConferenceParticipantConnection(parent, participant);
-                newParticipants.add(participant);
-                newParticipantsAdded = true;
+                // Some carriers will also include the conference host in the CEP.  We will filter
+                // that out here.
+                if (!isParticipantHost(mConferenceHostAddress, participant.getHandle())) {
+                    createConferenceParticipantConnection(parent, participant);
+                    newParticipants.add(participant);
+                    newParticipantsAdded = true;
+                }
             } else {
                 ConferenceParticipantConnection connection =
                         mConferenceParticipantConnections.get(userEntity);
@@ -590,9 +621,8 @@ public class ImsConference extends Conference {
         }
 
         mConferenceParticipantConnections.put(participant.getHandle(), connection);
-        PhoneAccountHandle phoneAccountHandle =
-                PhoneUtils.makePstnPhoneAccountHandle(parent.getPhone());
-        mTelephonyConnectionService.addExistingConnection(phoneAccountHandle, connection);
+        mTelephonyConnectionService.addExistingConnection(mConferenceHostPhoneAccountHandle,
+                connection);
         addConnection(connection);
     }
 
@@ -626,6 +656,50 @@ public class ImsConference extends Conference {
             connection.destroy();
         }
         mConferenceParticipantConnections.clear();
+    }
+
+    /**
+     * Determines if the passed in participant handle is the same as the conference host's handle.
+     * Starts with a simple equality check.  However, the handles from a conference event package
+     * will be a SIP uri, so we need to pull that apart to look for the participant's phone number.
+     *
+     * @param hostHandle The handle of the connection hosting the conference.
+     * @param handle The handle of the conference participant.
+     * @return {@code true} if the host's handle matches the participant's handle, {@code false}
+     *      otherwise.
+     */
+    private boolean isParticipantHost(Uri hostHandle, Uri handle) {
+        // If host and participant handles are the same, bail early.
+        if (Objects.equals(hostHandle, handle)) {
+            return true;
+        }
+
+        // Conference event package participants are identified using SIP URIs (see RFC3261).
+        // A valid SIP uri has the format: sip:user:password@host:port;uri-parameters?headers
+        // Per RFC3261, the "user" can be a telephone number.
+        // For example: sip:1650555121;phone-context=blah.com@host.com
+        // In this case, the phone number is in the user field of the URI, and the parameters can be
+        // ignored.
+        //
+        // A SIP URI can also specify a phone number in a format similar to:
+        // sip:+1-212-555-1212@something.com;user=phone
+        // In this case, the phone number is again in user field and the parameters can be ignored.
+        // We can get the user field in these instances by splitting the string on the @, ;, or :
+        // and looking at the first found item.
+
+        String number = handle.getSchemeSpecificPart();
+        String numberParts[] = number.split("[@;:]");
+
+        if (numberParts.length == 0) {
+            return false;
+        }
+        number = numberParts[0];
+
+        // The host number will be a tel: uri.  Per RFC3966, the part after tel: is the phone
+        // number.
+        String hostNumber = hostHandle.getSchemeSpecificPart();
+
+        return Objects.equals(hostNumber, number);
     }
 
     /**
