@@ -25,7 +25,6 @@ import android.provider.VoicemailContract;
 import android.provider.VoicemailContract.Voicemails;
 import android.telecom.PhoneAccountHandle;
 import android.telecom.Voicemail;
-import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,19 +33,19 @@ import java.util.List;
  * Construct queries to interact with the voicemails table.
  */
 public class VoicemailsQueryHelper {
-    private static final String TAG = "VoicemailsQueryHelper";
-
     final static String[] PROJECTION = new String[] {
             Voicemails._ID,              // 0
             Voicemails.SOURCE_DATA,      // 1
             Voicemails.IS_READ,          // 2
             Voicemails.DELETED,          // 3
+            Voicemails.TRANSCRIPTION     // 4
     };
 
     public static final int _ID = 0;
     public static final int SOURCE_DATA = 1;
     public static final int IS_READ = 2;
     public static final int DELETED = 3;
+    public static final int TRANSCRIPTION = 4;
 
     final static String READ_SELECTION = Voicemails.DIRTY + "=1 AND "
                 + Voicemails.DELETED + "!=1 AND " + Voicemails.IS_READ + "=1";
@@ -106,9 +105,11 @@ public class VoicemailsQueryHelper {
                 final long id = cursor.getLong(_ID);
                 final String sourceData = cursor.getString(SOURCE_DATA);
                 final boolean isRead = cursor.getInt(IS_READ) == 1;
+                final String transcription = cursor.getString(TRANSCRIPTION);
                 Voicemail voicemail = Voicemail
                         .createForUpdate(id, sourceData)
-                        .setIsRead(isRead).build();
+                        .setIsRead(isRead)
+                        .setTranscription(transcription).build();
                 voicemails.add(voicemail);
             }
             return voicemails;
@@ -177,15 +178,13 @@ public class VoicemailsQueryHelper {
     }
 
     /**
-     * Check if a particular voicemail has already been inserted. If not, insert the new voicemail.
-     * @param voicemail The voicemail to insert.
+     * Utility method to add a transcription to the voicemail.
      */
-    public void insertIfUnique(Voicemail voicemail) {
-        if (isVoicemailUnique(voicemail)) {
-            VoicemailContract.Voicemails.insert(mContext, voicemail);
-        } else {
-            Log.w(TAG, "Voicemail already exists.");
-        }
+    public void updateWithTranscription(Voicemail voicemail, String transcription) {
+        Uri uri = ContentUris.withAppendedId(mSourceUri, voicemail.getId());
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(Voicemails.TRANSCRIPTION, transcription);
+        mContentResolver.update(uri, contentValues, null, null);
     }
 
     /**
@@ -195,7 +194,7 @@ public class VoicemailsQueryHelper {
      * @param voicemail The voicemail to check if it is unique.
      * @return {@code true} if the voicemail is unique, {@code false} otherwise.
      */
-    private boolean isVoicemailUnique(Voicemail voicemail) {
+    public boolean isVoicemailUnique(Voicemail voicemail) {
         Cursor cursor = null;
         PhoneAccountHandle phoneAccount = voicemail.getPhoneAccount();
         if (phoneAccount != null) {
