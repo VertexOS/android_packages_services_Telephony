@@ -175,7 +175,7 @@ public class ImsConference extends Conference {
             Log.d(this, "onCallCapabilitiesChanged: Connection: %s, callCapabilities: %s", c,
                     connectionCapabilities);
             int capabilites = ImsConference.this.getConnectionCapabilities();
-            setConnectionCapabilities(applyVideoCapabilities(capabilites, connectionCapabilities));
+            setConnectionCapabilities(applyHostCapabilities(capabilites, connectionCapabilities));
         }
 
         @Override
@@ -251,13 +251,20 @@ public class ImsConference extends Conference {
 
         int capabilities = Connection.CAPABILITY_SUPPORT_HOLD | Connection.CAPABILITY_HOLD |
                 Connection.CAPABILITY_MUTE | Connection.CAPABILITY_CONFERENCE_HAS_NO_CHILDREN;
-
-        capabilities = applyVideoCapabilities(capabilities, mConferenceHost.getConnectionCapabilities());
+        capabilities = applyHostCapabilities(capabilities,
+                mConferenceHost.getConnectionCapabilities());
         setConnectionCapabilities(capabilities);
 
     }
 
-    private int applyVideoCapabilities(int conferenceCapabilities, int capabilities) {
+    /**
+     * Transfers capabilities from the conference host to the conference itself.
+     *
+     * @param conferenceCapabilities The current conference capabilities.
+     * @param capabilities The new conference host capabilities.
+     * @return The merged capabilities to be applied to the conference.
+     */
+    private int applyHostCapabilities(int conferenceCapabilities, int capabilities) {
         if (can(capabilities, Connection.CAPABILITY_SUPPORTS_VT_LOCAL_BIDIRECTIONAL)) {
             conferenceCapabilities = applyCapability(conferenceCapabilities,
                     Connection.CAPABILITY_SUPPORTS_VT_LOCAL_BIDIRECTIONAL);
@@ -280,6 +287,14 @@ public class ImsConference extends Conference {
         } else {
             conferenceCapabilities = removeCapability(conferenceCapabilities,
                     Connection.CAPABILITY_CAN_UPGRADE_TO_VIDEO);
+        }
+
+        if (can(capabilities, Connection.CAPABILITY_HIGH_DEF_AUDIO)) {
+            conferenceCapabilities = applyCapability(conferenceCapabilities,
+                    Connection.CAPABILITY_HIGH_DEF_AUDIO);
+        } else {
+            conferenceCapabilities = removeCapability(conferenceCapabilities,
+                    Connection.CAPABILITY_HIGH_DEF_AUDIO);
         }
         return conferenceCapabilities;
     }
