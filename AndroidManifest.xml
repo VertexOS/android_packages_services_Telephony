@@ -475,8 +475,9 @@
         </activity>
 
         <!-- Broadcast Receiver that will process BOOT Complete and launch OTA -->
+        <!-- TODO http://b/23526250 Handle OTASP under system user -->
         <receiver android:name="OtaStartupReceiver" android:exported="false"
-                androidprv:primaryUserOnly="true">
+                androidprv:systemUserOnly="true">
             <intent-filter android:priority="100">
                  <action android:name="android.intent.action.BOOT_COMPLETED"/>
             </intent-filter>
