@@ -23,6 +23,7 @@ import android.telecom.Connection;
 import android.telecom.ConferenceParticipant;
 import android.telecom.DisconnectCause;
 import android.telecom.PhoneAccount;
+import android.text.TextUtils;
 
 /**
  * Represents a participant in a conference call.
@@ -150,9 +151,12 @@ public class ConferenceParticipantConnection extends Connection {
      */
     private Uri getParticipantAddress(ConferenceParticipant participant) {
         Uri address = participant.getHandle();
+        if (address == null) {
+            return address;
+        }
 
         // If the participant's address is already a TEL scheme, just return it as is.
-        if (address.getScheme().equals(PhoneAccount.SCHEME_TEL)) {
+        if (PhoneAccount.SCHEME_TEL.equals(address.getScheme())) {
             return address;
         }
 
@@ -169,8 +173,11 @@ public class ConferenceParticipantConnection extends Connection {
         // We can get the user field in these instances by splitting the string on the @, ;, or :
         // and looking at the first found item.
         String number = address.getSchemeSpecificPart();
-        String numberParts[] = number.split("[@;:]");
+        if (TextUtils.isEmpty(number)) {
+            return address;
+        }
 
+        String numberParts[] = number.split("[@;:]");
         if (numberParts.length == 0) {
             return address;
         }
