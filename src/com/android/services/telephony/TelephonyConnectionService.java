@@ -27,6 +27,7 @@ import android.telecom.ConnectionService;
 import android.telecom.PhoneAccount;
 import android.telecom.PhoneAccountHandle;
 import android.telephony.CarrierConfigManager;
+import android.telephony.DisconnectCause;
 import android.telephony.PhoneNumberUtils;
 import android.telephony.ServiceState;
 import android.telephony.SubscriptionManager;
@@ -222,6 +223,26 @@ public class TelephonyConnectionService extends ConnectionService {
             }
         }
         boolean useEmergencyCallHelper = false;
+
+        // If we're dialing a non-emergency number and the phone is in ECM mode, reject the call if
+        // carrier configuration specifies that we cannot make non-emergency calls in ECM mode.
+        if (!isEmergencyNumber && phone.isInEcm()) {
+            boolean allowNonEmergencyCalls = true;
+            CarrierConfigManager cfgManager = (CarrierConfigManager)
+                    phone.getContext().getSystemService(Context.CARRIER_CONFIG_SERVICE);
+            if (cfgManager != null) {
+                allowNonEmergencyCalls = cfgManager.getConfigForSubId(phone.getSubId())
+                        .getBoolean(CarrierConfigManager.KEY_ALLOW_NON_EMERGENCY_CALLS_IN_ECM_BOOL);
+            }
+
+            if (!allowNonEmergencyCalls) {
+                return Connection.createFailedConnection(
+                        DisconnectCauseUtil.toTelecomDisconnectCause(
+                                DisconnectCause.CDMA_NOT_EMERGENCY,
+                                "Cannot make non-emergency call in ECM mode."
+                        ));
+            }
+        }
 
         if (isEmergencyNumber) {
             if (!phone.isRadioOn()) {
