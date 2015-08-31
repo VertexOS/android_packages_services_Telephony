@@ -41,15 +41,14 @@ import android.text.TextWatcher;
 import android.text.method.DialerKeyListener;
 import android.text.style.TtsSpan;
 import android.util.Log;
+import android.view.HapticFeedbackConstants;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
-import android.view.accessibility.AccessibilityManager;
 import android.widget.EditText;
 
-import com.android.phone.common.HapticFeedback;
 import com.android.phone.common.dialpad.DialpadKeyButton;
 import com.android.phone.common.util.ViewUtil;
 
@@ -115,9 +114,6 @@ public class EmergencyDialer extends Activity implements View.OnClickListener,
 
     // determines if we want to playback local DTMF tones.
     private boolean mDTMFToneEnabled;
-
-    // Haptic feedback (vibration) for dialer key presses.
-    private HapticFeedback mHaptic = new HapticFeedback();
 
     private EmergencyActionGroup mEmergencyActionGroup;
 
@@ -244,15 +240,6 @@ public class EmergencyDialer extends Activity implements View.OnClickListener,
         intentFilter.addAction(Intent.ACTION_SCREEN_OFF);
         registerReceiver(mBroadcastReceiver, intentFilter);
 
-        try {
-            mHaptic.init(
-                    this,
-                    carrierConfig.getBoolean(
-                            CarrierConfigManager.KEY_ENABLE_DIALER_KEY_VIBRATION_BOOL));
-        } catch (Resources.NotFoundException nfe) {
-             Log.e(LOG_TAG, "Vibrate control bool missing.", nfe);
-        }
-
         mEmergencyActionGroup = (EmergencyActionGroup) findViewById(R.id.emergency_action_group);
     }
 
@@ -333,7 +320,7 @@ public class EmergencyDialer extends Activity implements View.OnClickListener,
     }
 
     private void keyPressed(int keyCode) {
-        mHaptic.vibrate();
+        mDigits.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
         KeyEvent event = new KeyEvent(KeyEvent.ACTION_DOWN, keyCode);
         mDigits.onKeyDown(keyCode, event);
     }
@@ -370,7 +357,7 @@ public class EmergencyDialer extends Activity implements View.OnClickListener,
                 return;
             }
             case R.id.floating_action_button: {
-                mHaptic.vibrate();  // Vibrate here too, just like we do for the regular keys
+                view.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                 placeCall();
                 return;
             }
@@ -479,9 +466,6 @@ public class EmergencyDialer extends Activity implements View.OnClickListener,
         // retrieve the DTMF tone play back setting.
         mDTMFToneEnabled = Settings.System.getInt(getContentResolver(),
                 Settings.System.DTMF_TONE_WHEN_DIALING, 1) == 1;
-
-        // Retrieve the haptic feedback setting.
-        mHaptic.checkSystemSetting();
 
         // if the mToneGenerator creation fails, just continue without it.  It is
         // a local audio signal, and is not as important as the dtmf tone itself.
