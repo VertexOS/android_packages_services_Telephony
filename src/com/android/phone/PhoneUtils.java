@@ -132,6 +132,8 @@ public class PhoneUtils {
      * the dialog theme correctly.
      */
     private static final int THEME = AlertDialog.THEME_DEVICE_DEFAULT_LIGHT;
+    /** Extra key to identify the service class voice or video */
+    public static final String SERVICE_CLASS = "service_class";
 
     private static class FgRingCalls {
         private Call fgCall;

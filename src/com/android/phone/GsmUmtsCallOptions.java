@@ -63,7 +63,7 @@ public class GsmUmtsCallOptions extends PreferenceActivity {
 
     public static void init(PreferenceScreen prefScreen, SubscriptionInfoHelper subInfoHelper) {
         Preference callForwardingPref = prefScreen.findPreference(CALL_FORWARDING_KEY);
-        callForwardingPref.setIntent(subInfoHelper.getIntent(GsmUmtsCallForwardOptions.class));
+        callForwardingPref.setIntent(subInfoHelper.getIntent(CallForwardType.class));
 
         Preference additionalGsmSettingsPref =
                 prefScreen.findPreference(ADDITIONAL_GSM_SETTINGS_KEY);
