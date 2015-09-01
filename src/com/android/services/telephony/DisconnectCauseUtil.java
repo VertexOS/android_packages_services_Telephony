@@ -289,6 +289,11 @@ public class DisconnectCauseUtil {
                 }
                 break;
 
+            case android.telephony.DisconnectCause.CDMA_NOT_EMERGENCY:
+                // Only emergency calls are allowed when in emergency callback mode.
+                resourceId = R.string.incall_error_ecm_emergency_only;
+                break;
+
             case android.telephony.DisconnectCause.EMERGENCY_ONLY:
                 // Only emergency numbers are allowed, but we tried to dial
                 // a non-emergency number.
