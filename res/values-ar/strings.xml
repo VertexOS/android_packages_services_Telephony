@@ -427,6 +427,7 @@
     <string name="notification_network_selection_text" msgid="2607085729661923269">"الشبكة المحددة (<xliff:g id="OPERATOR_NAME">%s</xliff:g>) غير متاحة"</string>
     <string name="incall_error_power_off" msgid="2947938060513306698">"عليك إيقاف وضع الطائرة لإجراء مكالمة."</string>
     <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"عليك إيقاف وضع الطائرة أو الاتصال بشبكة لاسلكية لإجراء مكالمة."</string>
+    <string name="incall_error_ecm_emergency_only" msgid="738708660612388692">"ينبغي الخروج من وضع معاودة الاتصال بالطوارئ لإجراء مكالمة غير طارئة."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"غير مسجل على الشبكة."</string>
     <string name="incall_error_out_of_service" msgid="4100065333878929223">"شبكة الجوّال غير متاحة."</string>
     <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"شبكة الجوّال ليست متوفرة. اتصل بشبكة لاسلكية لإجراء مكالمة."</string>

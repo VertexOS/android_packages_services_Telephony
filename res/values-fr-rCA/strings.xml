@@ -431,6 +431,7 @@
     <string name="notification_network_selection_text" msgid="2607085729661923269">"Réseau sélectionné (<xliff:g id="OPERATOR_NAME">%s</xliff:g>) non disponible"</string>
     <string name="incall_error_power_off" msgid="2947938060513306698">"Désactivez le mode Avion pour faire un appel."</string>
     <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"Désactivez le mode Avion ou connectez-vous à un réseau Wi-Fi pour faire un appel."</string>
+    <string name="incall_error_ecm_emergency_only" msgid="738708660612388692">"Quittez le mode de rappel d\'urgence pour effectuer un appel non urgent."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"Non enregistré sur le réseau"</string>
     <string name="incall_error_out_of_service" msgid="4100065333878929223">"Réseau cellulaire non disponible."</string>
     <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"Le réseau cellulaire n\'est pas accessible. Connectez-vous à un réseau Wi-Fi pour faire un appel."</string>

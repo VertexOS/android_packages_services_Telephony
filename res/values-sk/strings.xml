@@ -427,6 +427,7 @@
     <string name="notification_network_selection_text" msgid="2607085729661923269">"Vybratá sieť (<xliff:g id="OPERATOR_NAME">%s</xliff:g>) nie je k dispozícii"</string>
     <string name="incall_error_power_off" msgid="2947938060513306698">"Ak chcete volať, vypnite režim v lietadle"</string>
     <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"Ak chcete volať, vypnite režim v lietadle alebo sa pripojte k bezdrôtovej sieti"</string>
+    <string name="incall_error_ecm_emergency_only" msgid="738708660612388692">"Ak chcete volať štandardným spôsobom, ukončite režim tiesňového spätného volania."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"Prihlásenie do siete nebolo úspešné."</string>
     <string name="incall_error_out_of_service" msgid="4100065333878929223">"Mobilná sieť nie je k dispozícii."</string>
     <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"Mobilná sieť nie je k dispozícii. Ak chcete volať, pripojte sa k bezdrôtovej sieti."</string>

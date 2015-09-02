@@ -427,6 +427,7 @@
     <string name="notification_network_selection_text" msgid="2607085729661923269">"Изабрана мрежа (<xliff:g id="OPERATOR_NAME">%s</xliff:g>) није доступна"</string>
     <string name="incall_error_power_off" msgid="2947938060513306698">"Искључите режим рада у авиону да бисте упутили позив."</string>
     <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"Искључите режим рада у авиону или се повежите на бежичну мрежу да бисте упутили позив."</string>
+    <string name="incall_error_ecm_emergency_only" msgid="738708660612388692">"Изађите из режима хитног повратног позива да бисте упутили позив који није хитан."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"Није регистровано на мрежи."</string>
     <string name="incall_error_out_of_service" msgid="4100065333878929223">"Мобилна мрежа није доступна."</string>
     <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"Мобилна мрежа није доступна. Повежите се на бежичну мрежу да бисте упутили позив."</string>

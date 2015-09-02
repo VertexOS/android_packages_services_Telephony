@@ -427,6 +427,7 @@
     <string name="notification_network_selection_text" msgid="2607085729661923269">"Reţeaua selectată (<xliff:g id="OPERATOR_NAME">%s</xliff:g>) nu este disponibilă"</string>
     <string name="incall_error_power_off" msgid="2947938060513306698">"Pentru a apela, dezactivați modul Avion."</string>
     <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"Pentru a apela, dezactivați modul Avion sau conectați-vă la o rețea wireless."</string>
+    <string name="incall_error_ecm_emergency_only" msgid="738708660612388692">"Ieșiți din modul de apelare inversă de urgență pentru a efectua un apel care nu este de urgență."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"Neînregistrat în reţea."</string>
     <string name="incall_error_out_of_service" msgid="4100065333878929223">"Rețeaua mobilă nu este disponibilă"</string>
     <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"Rețeaua mobilă nu este disponibilă. Pentru a apela, conectați-vă la o rețea wireless."</string>

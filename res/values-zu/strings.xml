@@ -431,6 +431,7 @@
     <string name="notification_network_selection_text" msgid="2607085729661923269">"Inethiwekhi ekhethiwe <xliff:g id="OPERATOR_NAME">%s</xliff:g> ayitholakali"</string>
     <string name="incall_error_power_off" msgid="2947938060513306698">"Vala imodi yendiza ukuze wenze ikholi."</string>
     <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"Vala imodi yendiza noma xhumeka kunethiwekhi engenantambo ukuze wenze ikholi."</string>
+    <string name="incall_error_ecm_emergency_only" msgid="738708660612388692">"Phuma kwimodi yokushayela emuva yesiko esiphuthumayo ukuze wenze ikholi yemodi engaphuthumi."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"Ayibhalisiwe kwinethiwekhi."</string>
     <string name="incall_error_out_of_service" msgid="4100065333878929223">"Inethiwekhi yeselula ayitholakali."</string>
     <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"Inethiwekhi yeselula ayitholakali. Xhumeka kunethiwekhi engenantambo ukuze wenze ikholi."</string>

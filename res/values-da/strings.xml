@@ -433,6 +433,7 @@
     <string name="notification_network_selection_text" msgid="2607085729661923269">"Det valgte netværk (<xliff:g id="OPERATOR_NAME">%s</xliff:g>) er ikke tilgængeligt"</string>
     <string name="incall_error_power_off" msgid="2947938060513306698">"Slå flytilstand fra for at foretage et opkald."</string>
     <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"Slå flytilstand fra, eller opret forbindelse til et trådløst netværk for at foretage et opkald."</string>
+    <string name="incall_error_ecm_emergency_only" msgid="738708660612388692">"Afslut nødtilbagekaldstilstand for at foretage et almindeligt opkald."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"Ikke registreret på netværk."</string>
     <string name="incall_error_out_of_service" msgid="4100065333878929223">"Mobilnetværket er ikke tilgængeligt."</string>
     <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"Mobilnetværk er ikke tilgængeligt. Opret forbindelse til et trådløst netværk for at foretage et opkald."</string>

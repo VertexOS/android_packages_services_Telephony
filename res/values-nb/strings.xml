@@ -433,6 +433,7 @@
     <string name="notification_network_selection_text" msgid="2607085729661923269">"Valgt nettverk (<xliff:g id="OPERATOR_NAME">%s</xliff:g>) er ikke tilgjengelig"</string>
     <string name="incall_error_power_off" msgid="2947938060513306698">"Slå av flymodus for å ringe."</string>
     <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"Slå av flymodus eller koble til et trådløst nettverk for å ringe."</string>
+    <string name="incall_error_ecm_emergency_only" msgid="738708660612388692">"Avslutt modusen for nødanrop for å gjøre et vanlig anrop."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"Ikke registrert på nettverket."</string>
     <string name="incall_error_out_of_service" msgid="4100065333878929223">"Mobilnettverket er ikke tilgjengelig."</string>
     <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"Mobilnettverk er ikke tilgjengelig. Koble til et trådløst nettverk for å ringe."</string>

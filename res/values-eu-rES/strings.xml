@@ -433,6 +433,7 @@
     <string name="notification_network_selection_text" msgid="2607085729661923269">"Hautatutako sarea (<xliff:g id="OPERATOR_NAME">%s</xliff:g>) ez dago erabilgarri"</string>
     <string name="incall_error_power_off" msgid="2947938060513306698">"Deia egiteko, desaktibatu hegaldi modua."</string>
     <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"Deia egiteko, desaktibatu hegaldi modua edo konektatu haririk gabeko sare batera."</string>
+    <string name="incall_error_ecm_emergency_only" msgid="738708660612388692">"Larrialdikoak ez diren deiak egiteko, irten larrialdi-deiak soilik jasotzeko modutik."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"Ez dago sarean erregistratuta."</string>
     <string name="incall_error_out_of_service" msgid="4100065333878929223">"Sare mugikorra ez dago erabilgarri."</string>
     <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"Sare mugikorra ez dago erabilgarri. Deia egiteko, konektatu haririk gabeko sare batera."</string>

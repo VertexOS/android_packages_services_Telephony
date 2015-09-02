@@ -427,6 +427,7 @@
     <string name="notification_network_selection_text" msgid="2607085729661923269">"Pasirinktas tinklas (<xliff:g id="OPERATOR_NAME">%s</xliff:g>) negalimas"</string>
     <string name="incall_error_power_off" msgid="2947938060513306698">"Išjunkite lėktuvo režimą, kad galėtumėte skambinti."</string>
     <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"Išjunkite lėktuvo režimą arba prisijunkite prie belaidžio ryšio tinklo, kad galėtumėte skambinti."</string>
+    <string name="incall_error_ecm_emergency_only" msgid="738708660612388692">"Jei norite skambinti ne pagalbos numeriu, išjunkite atgalinio skambinimo pagalbos numeriu režimą."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"Neregistruota tinkle."</string>
     <string name="incall_error_out_of_service" msgid="4100065333878929223">"Korinis tinklas nepasiekiamas"</string>
     <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"Mobiliojo ryšio tinklas nepasiekiamas. Prisijunkite prie belaidžio ryšio tinklo, kad galėtumėte skambinti."</string>

@@ -427,6 +427,7 @@
     <string name="notification_network_selection_text" msgid="2607085729661923269">"Tanlangan tarmoq (<xliff:g id="OPERATOR_NAME">%s</xliff:g>) mavjud emas"</string>
     <string name="incall_error_power_off" msgid="2947938060513306698">"Qo‘ng‘iroq qilish uchun parvoz rejimini o‘chiring"</string>
     <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"Qo‘ng‘iroq qilish uchun parvoz rejimini o‘chiring yoki simsiz tarmoqqa ulaning."</string>
+    <string name="incall_error_ecm_emergency_only" msgid="738708660612388692">"Odatiy qo‘ng‘iroq qilish uchun favqulodda qayta qo‘ng‘iroq rejimidan chiqing."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"Tarmoqda ro‘yxatdan o‘tmagan."</string>
     <string name="incall_error_out_of_service" msgid="4100065333878929223">"Mobil tarmoq mavjud emas."</string>
     <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"Mobil tarmoq mavjud emas. Qo‘ng‘iroq qilish uchun simsiz tarmoqqa ulaning."</string>

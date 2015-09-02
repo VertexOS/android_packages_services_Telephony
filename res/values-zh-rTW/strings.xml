@@ -433,6 +433,7 @@
     <string name="notification_network_selection_text" msgid="2607085729661923269">"您所選取的網路 (<xliff:g id="OPERATOR_NAME">%s</xliff:g>) 無法使用"</string>
     <string name="incall_error_power_off" msgid="2947938060513306698">"關閉飛航模式即可撥打電話。"</string>
     <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"關閉飛航模式或連上無線網路即可撥打電話。"</string>
+    <string name="incall_error_ecm_emergency_only" msgid="738708660612388692">"結束緊急回撥模式，以便撥打非緊急電話。"</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"尚未註冊網路。"</string>
     <string name="incall_error_out_of_service" msgid="4100065333878929223">"無法連線到行動網路。"</string>
     <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"無法使用行動通訊網路。但連上 Wi-Fi 網路即可撥打電話。"</string>

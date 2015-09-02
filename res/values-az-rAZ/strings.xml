@@ -427,6 +427,7 @@
     <string name="notification_network_selection_text" msgid="2607085729661923269">"Seçilmiş (<xliff:g id="OPERATOR_NAME">%s</xliff:g>) şəbəkə əlçatmazdır"</string>
     <string name="incall_error_power_off" msgid="2947938060513306698">"Zəng etmək üçün təyyarə rejimini deaktiv edin."</string>
     <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"Zəng etmək üçün təyyarə rejimini deaktiv edin və ya Wi-Fi şəbəkəsinə qoşulun."</string>
+    <string name="incall_error_ecm_emergency_only" msgid="738708660612388692">"Qeyri-fövqəladə zəng etmək üçün fövqəladə zəng rejimindən çıxın."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"Şəbəkədə qeydə alınmayıb."</string>
     <string name="incall_error_out_of_service" msgid="4100065333878929223">"Mobil şəbəkə əlçatan deyil"</string>
     <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"Mobil şəbəkə əlçatmazdır. Zəng etmək üçün Wi-Fi şəbəkəsinə qoşulun."</string>
