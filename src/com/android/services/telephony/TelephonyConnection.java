@@ -816,13 +816,17 @@ abstract class TelephonyConnection extends Connection {
     }
 
     void updateState() {
+       updateState(false);
+    }
+
+    void updateState(boolean force) {
         if (mOriginalConnection == null) {
             return;
         }
 
         Call.State newState = mOriginalConnection.getState();
         Log.v(this, "Update state from %s to %s for %s", mOriginalConnectionState, newState, this);
-        if (mOriginalConnectionState != newState) {
+        if (mOriginalConnectionState != newState || force) {
             mOriginalConnectionState = newState;
             switch (newState) {
                 case IDLE:
