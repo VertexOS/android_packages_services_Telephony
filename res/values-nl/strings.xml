@@ -427,6 +427,7 @@
     <string name="notification_network_selection_text" msgid="2607085729661923269">"Geselecteerd netwerk (<xliff:g id="OPERATOR_NAME">%s</xliff:g>) niet beschikbaar"</string>
     <string name="incall_error_power_off" msgid="2947938060513306698">"Schakel de vliegtuigmodus uit om te bellen."</string>
     <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"Schakel de vliegtuigmodus uit of maak verbinding met een draadloos netwerk om te bellen."</string>
+    <string name="incall_error_ecm_emergency_only" msgid="738708660612388692">"Sluit de modus voor noodoproepen af om een niet-noodoproep te plaatsen."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"Niet geregistreerd op netwerk."</string>
     <string name="incall_error_out_of_service" msgid="4100065333878929223">"Mobiel netwerk niet beschikbaar."</string>
     <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"Mobiel netwerk is niet beschikbaar. Maak verbinding met een draadloos netwerk om te bellen."</string>

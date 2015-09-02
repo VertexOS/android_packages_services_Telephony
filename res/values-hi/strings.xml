@@ -427,6 +427,7 @@
     <string name="notification_network_selection_text" msgid="2607085729661923269">"चयनित नेटवर्क (<xliff:g id="OPERATOR_NAME">%s</xliff:g>) अनुपलब्ध"</string>
     <string name="incall_error_power_off" msgid="2947938060513306698">"कॉल करने के लिए हवाई जहाज़ मोड बंद करें."</string>
     <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"कॉल करने के लिए हवाई जहाज़ मोड बंद करें या किसी वायरलेस नेटवर्क से कनेक्‍ट करें."</string>
+    <string name="incall_error_ecm_emergency_only" msgid="738708660612388692">"गैर-आपातकालीन कॉल करने के लिए आपातकालीन कॉलबैक मोड से बाहर निकलें."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"नेटवर्क पर पंजीकृत नहीं."</string>
     <string name="incall_error_out_of_service" msgid="4100065333878929223">"सेल्युलर नेटवर्क उपलब्ध नहीं."</string>
     <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"सेल्‍युलर नेटवर्क उपलब्‍ध नहीं है. कॉल करने के लिए किसी वायरलेस नेटवर्क से कनेक्‍ट करें."</string>

@@ -433,6 +433,7 @@
     <string name="notification_network_selection_text" msgid="2607085729661923269">"Ընտրված ցանցը (<xliff:g id="OPERATOR_NAME">%s</xliff:g>) անհասանելի է"</string>
     <string name="incall_error_power_off" msgid="2947938060513306698">"Զանգ կատարելու համար անջատեք ինքնաթիռային ռեժիմը:"</string>
     <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"Զանգ կատարելու համար անջատեք ինքնաթիռային ռեժիմը կամ միացեք անլար ցանցին:"</string>
+    <string name="incall_error_ecm_emergency_only" msgid="738708660612388692">"Սովորական զանգ կատարելու համար դուրս եկեք արտակարգ իրավիճակների հետզանգի ռեժիմից:"</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"Ցանցում գրանցված չէ:"</string>
     <string name="incall_error_out_of_service" msgid="4100065333878929223">"Բջջային ցանցն անհասանելի է:"</string>
     <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"Բջջային ցանցն անհասանելի է: Զանգ կատարելու համար միացեք անլար ցանցին:"</string>

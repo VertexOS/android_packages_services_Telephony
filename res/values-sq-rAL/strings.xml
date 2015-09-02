@@ -427,6 +427,7 @@
     <string name="notification_network_selection_text" msgid="2607085729661923269">"Rrjeti i përzgjedhur (<xliff:g id="OPERATOR_NAME">%s</xliff:g>) nuk mundësohet"</string>
     <string name="incall_error_power_off" msgid="2947938060513306698">"Çaktivizo modalitetin e aeroplanit për të bërë telefonata."</string>
     <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"Çaktivizo modalitetin e aeroplanit ose lidhu me ndonjë rrjet interneti valor për të bërë telefonata."</string>
+    <string name="incall_error_ecm_emergency_only" msgid="738708660612388692">"Dil nga modaliteti i kthimit të telefonatës së urgjencës për të bërë një telefonatë jo urgjente."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"I paregjistruar në rrjet."</string>
     <string name="incall_error_out_of_service" msgid="4100065333878929223">"Rrjeti celular nuk mundësohet."</string>
     <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"Rrjeti celular nuk mundësohet. Lidhu me një rrjet me valë për të bërë një telefonatë."</string>

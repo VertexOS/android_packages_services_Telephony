@@ -427,6 +427,7 @@
     <string name="notification_network_selection_text" msgid="2607085729661923269">"បណ្ដាញ​ដែល​បាន​ជ្រើស ( <xliff:g id="OPERATOR_NAME">%s</xliff:g> ) មិន​អាច​ប្រើ​បាន​ទេ"</string>
     <string name="incall_error_power_off" msgid="2947938060513306698">"បិទរបៀបយន្តហោះដើម្បីធ្វើការហៅ។"</string>
     <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"បិទរបៀបយន្តហោះ ឬភ្ជាប់ទៅបណ្តាញឥតខ្សែដើម្បីធ្វើការហៅ។"</string>
+    <string name="incall_error_ecm_emergency_only" msgid="738708660612388692">"ចាកចេញពីរបៀបហៅទៅវិញពេលមានអាសន្នដើម្បីធ្វើការហៅធម្មតា។"</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"មិន​បាន​ចុះ​ឈ្មោះ​នៅ​លើ​បណ្ដាញ។"</string>
     <string name="incall_error_out_of_service" msgid="4100065333878929223">"បណ្ដាញ​ចល័ត​មិន​អាច​ប្រើ​បាន។"</string>
     <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"មិនមានបណ្តាញទូរស័ព្ទទេ។ ភ្ជាប់ទៅបណ្តាញឥតខ្សែដើម្បីធ្វើការហៅ។"</string>

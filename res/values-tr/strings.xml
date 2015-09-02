@@ -427,6 +427,7 @@
     <string name="notification_network_selection_text" msgid="2607085729661923269">"Seçili ağ (<xliff:g id="OPERATOR_NAME">%s</xliff:g>) kullanılamıyor"</string>
     <string name="incall_error_power_off" msgid="2947938060513306698">"Telefon etmek için uçak modunu kapatın."</string>
     <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"Telefon etmek için uçak modunu kapatın veya kablosuz ağa bağlanın."</string>
+    <string name="incall_error_ecm_emergency_only" msgid="738708660612388692">"Acil durum çağrısı dışında bir çağrı yapmak için acil durumda geri aranma modundan çıkın."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"Ağda kayıtlı değil."</string>
     <string name="incall_error_out_of_service" msgid="4100065333878929223">"Hücresel ağ kullanılamıyor."</string>
     <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"Hücresel ağ kullanılamıyor. Telefon etmek için kablosuz ağa bağlanın."</string>

@@ -427,6 +427,7 @@
     <string name="notification_network_selection_text" msgid="2607085729661923269">"A kiválasztott hálózat (<xliff:g id="OPERATOR_NAME">%s</xliff:g>) nem érhető el"</string>
     <string name="incall_error_power_off" msgid="2947938060513306698">"Repülős üzemmód kikapcsolása hívás indításához."</string>
     <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"Hívás indításához kapcsolja ki a repülős üzemmódot, illetve csatlakozzon egy vezeték nélküli hálózathoz."</string>
+    <string name="incall_error_ecm_emergency_only" msgid="738708660612388692">"Lépjen ki a Segélykérő visszahívása módból nem vészjellegű hívás kezdeményezéséhez."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"Nincs regisztrálva a hálózaton."</string>
     <string name="incall_error_out_of_service" msgid="4100065333878929223">"A mobilhálózat nem érhető el."</string>
     <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"A mobilhálózat nem érhető el. Hívás indításához csatlakozzon egy vezeték nélküli hálózathoz."</string>

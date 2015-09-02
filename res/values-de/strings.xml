@@ -431,6 +431,7 @@
     <string name="notification_network_selection_text" msgid="2607085729661923269">"Ausgewähltes Netzwerk (<xliff:g id="OPERATOR_NAME">%s</xliff:g>) nicht verfügbar"</string>
     <string name="incall_error_power_off" msgid="2947938060513306698">"Deaktivieren Sie zum Telefonieren den Flugmodus."</string>
     <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"Deaktivieren Sie zum Telefonieren den Flugmodus oder stellen Sie eine WLAN-Verbindung her."</string>
+    <string name="incall_error_ecm_emergency_only" msgid="738708660612388692">"Beenden Sie den Notfallrückrufmodus, um einen Anruf zu tätigen, bei dem es sich nicht um einen Notfall handelt."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"Nicht in Netzwerk registriert."</string>
     <string name="incall_error_out_of_service" msgid="4100065333878929223">"Mobilfunknetz nicht verfügbar"</string>
     <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"Es ist kein Mobilfunknetz verfügbar. Stellen Sie zum Telefonieren eine WLAN-Verbindung her."</string>

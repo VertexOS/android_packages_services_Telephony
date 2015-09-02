@@ -427,6 +427,7 @@
     <string name="notification_network_selection_text" msgid="2607085729661923269">"ಆಯ್ಕೆಮಾಡಿದ (<xliff:g id="OPERATOR_NAME">%s</xliff:g>) ನೆಟ್‌ವರ್ಕ್‌ ಲಭ್ಯವಿಲ್ಲ"</string>
     <string name="incall_error_power_off" msgid="2947938060513306698">"ಕರೆ ಮಾಡಲು ಏರ್‌ಪ್ಲೇನ್ ಮೋಡ್ ಆಫ್ ಮಾಡಿ."</string>
     <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"ಏರ್‌ಪ್ಲೇನ್ ಮೋಡ್ ಆಫ್ ಮಾಡಿ ಅಥವಾ ಕರೆ ಮಾಡಲು ವೈರ್‌ಲೆಸ್ ನೆಟ್‌ವರ್ಕ್‌ಗೆ ಸಂಪರ್ಕಪಡಿಸಿ."</string>
+    <string name="incall_error_ecm_emergency_only" msgid="738708660612388692">"ತುರ್ತು ರಹಿತ ಕರೆಯನ್ನು ಮಾಡಲು ತುರ್ತು ಮರು ಕರೆಮಾಡುವಿಕೆ ಮೋಡ್ ಅನ್ನು ನಿರ್ಗಮಿಸಿ."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"ನೆಟ್‌ವರ್ಕ್‌ನಲ್ಲಿ ಇನ್ನೂ ನೋಂದಣಿಯಾಗಿಲ್ಲ."</string>
     <string name="incall_error_out_of_service" msgid="4100065333878929223">"ಸೆಲ್ಯುಲಾರ್ ನೆಟ್‌ವರ್ಕ್‌ ಲಭ್ಯವಿಲ್ಲ."</string>
     <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"ಸೆಲ್ಯುಲಾರ್ ನೆಟ್‌ವರ್ಕ್ ಲಭ್ಯವಿಲ್ಲ. ಕರೆ ಮಾಡಲು ವೈರ್‌ಲೆಸ್ ನೆಟ್‌ವರ್ಕ್‌ಗೆ ಸಂಪರ್ಕಪಡಿಸಿ."</string>

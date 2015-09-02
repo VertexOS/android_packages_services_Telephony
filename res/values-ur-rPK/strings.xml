@@ -427,6 +427,7 @@
     <string name="notification_network_selection_text" msgid="2607085729661923269">"منتخب کردہ نیٹ ورک (<xliff:g id="OPERATOR_NAME">%s</xliff:g>) دستیاب نہیں ہے"</string>
     <string name="incall_error_power_off" msgid="2947938060513306698">"کال کرنے کیلئے ہوائی جہاز وضع آف کریں۔"</string>
     <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"کال کرنے کیلئے ہوائی جہاز وضع آف کریں یا کسی وائرلیس نیٹ ورک سے منسلک ہوں۔"</string>
+    <string name="incall_error_ecm_emergency_only" msgid="738708660612388692">"غیر ہنگامی کال کرنے کیلئے ہنگامی کال بیک موڈ سے اخراج کریں۔"</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"نیٹ ورک پر رجسٹرڈ نہیں ہے۔"</string>
     <string name="incall_error_out_of_service" msgid="4100065333878929223">"سیلولر نیٹ ورک دستیاب نہیں ہے۔"</string>
     <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"سیلولر نیٹ ورک دستیاب نہیں ہے۔ کال کرنے کیلئے کسی وائرلیس نیٹ ورک سے منسلک ہوں۔"</string>

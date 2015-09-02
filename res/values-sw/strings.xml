@@ -427,6 +427,7 @@
     <string name="notification_network_selection_text" msgid="2607085729661923269">"Mtandao uliochaguliwa <xliff:g id="OPERATOR_NAME">%s</xliff:g> haupatikani"</string>
     <string name="incall_error_power_off" msgid="2947938060513306698">"Zima hali ya ndegeni ili upige simu."</string>
     <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"Zima hali ya ndegeni au uunganishe kwenye mtandao pasiwaya ili upige simu."</string>
+    <string name="incall_error_ecm_emergency_only" msgid="738708660612388692">"Ondoka kwenye hali ya kupiga simu za dharura ili upige simu zisizokuwa za dharura."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"Haijasajiliwa kwa mitandao"</string>
     <string name="incall_error_out_of_service" msgid="4100065333878929223">"Mitandao ya simu za mkononi haipatikani"</string>
     <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"Huduma ya mtandao wa simu za mkononi haupatikani. Unganisha kwenye mtandao pasiwaya ili upige simu."</string>

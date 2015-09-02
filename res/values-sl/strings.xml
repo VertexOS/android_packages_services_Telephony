@@ -427,6 +427,7 @@
     <string name="notification_network_selection_text" msgid="2607085729661923269">"Izbrano omrežje (<xliff:g id="OPERATOR_NAME">%s</xliff:g>) ni na voljo"</string>
     <string name="incall_error_power_off" msgid="2947938060513306698">"Izklopite način za letalo, če želite opraviti klic."</string>
     <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"Izklopite način za letalo ali se povežite v omrežje Wi-Fi, če želite opraviti klic."</string>
+    <string name="incall_error_ecm_emergency_only" msgid="738708660612388692">"Če ne gre za klic v sili, zaprite način za povratni klici v sili."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"Ni registrirano v omrežju."</string>
     <string name="incall_error_out_of_service" msgid="4100065333878929223">"Mobilno omrežje ni na voljo."</string>
     <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"Mobilno omrežje ni na voljo. Povežite se v omrežje Wi-Fi, če želite opraviti klic."</string>

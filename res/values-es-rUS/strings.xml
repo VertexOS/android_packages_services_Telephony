@@ -427,6 +427,7 @@
     <string name="notification_network_selection_text" msgid="2607085729661923269">"La red seleccionada (<xliff:g id="OPERATOR_NAME">%s</xliff:g>) no está disponible"</string>
     <string name="incall_error_power_off" msgid="2947938060513306698">"Desactivar modo de avión para hacer una llamada"</string>
     <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"Desactivar el modo de avión o conectarse a una red inalámbrica para hacer una llamada"</string>
+    <string name="incall_error_ecm_emergency_only" msgid="738708660612388692">"Para realizar una llamada que no sea de emergencia, sal del modo de devolución de llamada de emergencia."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"No registrado en la red."</string>
     <string name="incall_error_out_of_service" msgid="4100065333878929223">"Red móvil no disponible"</string>
     <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"La red móvil no está disponible. Conéctate a una red inalámbrica para realizar una llamada."</string>

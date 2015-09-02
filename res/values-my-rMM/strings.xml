@@ -427,6 +427,7 @@
     <string name="notification_network_selection_text" msgid="2607085729661923269">"ရွေးချယ်ထားသော ကွန်ရက် (<xliff:g id="OPERATOR_NAME">%s</xliff:g>) မရရှိနိုင်ပါ"</string>
     <string name="incall_error_power_off" msgid="2947938060513306698">"ဖုန်းခေါ်ရန် လေယာဉ်ပျံမုဒ် ပိတ်ထားပါ။"</string>
     <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"ဖုန်းခေါ်ရန် လေယာဉ်ပျံမုဒ် ပိတ်ပါ သို့မဟုတ် ကြိုးမဲ့ကွန်ယက်သို့ ချိတ်ဆက်ပါ။"</string>
+    <string name="incall_error_ecm_emergency_only" msgid="738708660612388692">"အရေးပေါ် မဟုတ်သည့် ခေါ်ဆိုမှုကို ပြုလုပ်ရန် အရေးပေါ် ဖုန်းခေါ်မှုမှ ထွက်ပါ။"</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"ကွန်ယက်ပေါ်မှာ မှတ်ပုံတင်မှု မပြုလုပ်ထားပါ"</string>
     <string name="incall_error_out_of_service" msgid="4100065333878929223">"ဆယ်လူလာ ကွန်ရက် မရှိပါ။"</string>
     <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"ဆဲလူလာ ကွန်ယက် မရပါ။ ဖုန်းခေါ်ရန် ကြိုးမဲ့ကွန်ယက်သို့ ချိတ်ဆက်ပါ။"</string>

@@ -431,6 +431,7 @@
     <string name="notification_network_selection_text" msgid="2607085729661923269">"Valittu verkko (<xliff:g id="OPERATOR_NAME">%s</xliff:g>) ei käytettävissä."</string>
     <string name="incall_error_power_off" msgid="2947938060513306698">"Poista lentokonetila käytöstä, jos haluat soittaa puhelun."</string>
     <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"Poista lentokonetila käytöstä tai yhdistä langattomaan verkkoon, jos haluat soittaa puhelun."</string>
+    <string name="incall_error_ecm_emergency_only" msgid="738708660612388692">"Poistu hätäpuhelujen takaisinsoittotilasta soittaaksesi muun kuin hätäpuhelun."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"Ei rekisteröity verkkoon."</string>
     <string name="incall_error_out_of_service" msgid="4100065333878929223">"Matkapuhelinverkko ei ole käytettävissä."</string>
     <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"Matkapuhelinverkko ei ole käytettävissä. Yhdistä langattomaan verkkoon, jos haluat soittaa puhelun."</string>

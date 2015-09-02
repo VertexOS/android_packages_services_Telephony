@@ -427,6 +427,7 @@
     <string name="notification_network_selection_text" msgid="2607085729661923269">"ఎంచుకున్న నెట్‌వర్క్ (<xliff:g id="OPERATOR_NAME">%s</xliff:g>) అందుబాటులో లేదు"</string>
     <string name="incall_error_power_off" msgid="2947938060513306698">"కాల్ చేయడానికి ఎయిర్‌ప్లైన్ మోడ్‌ను ఆఫ్ చేయండి."</string>
     <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"కాల్ చేయడానికి ఎయిర్‌ప్లైన్ మోడ్‌ను ఆఫ్ చేయండి లేదా వైర్‌లెస్ నెట్‌వర్క్‌కు కనెక్ట్ చేయండి."</string>
+    <string name="incall_error_ecm_emergency_only" msgid="738708660612388692">"సాధారణ కాల్ చేయడానికి అత్యవసర కాల్‌బ్యాక్ మోడ్ నుండి నిష్క్రమించండి."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"నెట్‌వర్క్‌లో నమోదు కాలేదు."</string>
     <string name="incall_error_out_of_service" msgid="4100065333878929223">"సెల్యులార్ నెట్‌వర్క్ అందుబాటులో లేదు."</string>
     <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"సెల్యులార్ నెట్‌వర్క్ అందుబాటులో లేదు. కాల్ చేయడానికి వైర్‌లెస్ నెట్‌వర్క్‌కి కనెక్ట్ చేయండి."</string>

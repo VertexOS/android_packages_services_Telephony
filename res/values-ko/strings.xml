@@ -427,6 +427,7 @@
     <string name="notification_network_selection_text" msgid="2607085729661923269">"선택한 네트워크(<xliff:g id="OPERATOR_NAME">%s</xliff:g>)를 사용할 수 없음"</string>
     <string name="incall_error_power_off" msgid="2947938060513306698">"전화를 걸려면 비행기 모드를 사용 중지하세요."</string>
     <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"전화를 걸려면 비행기 모드를 사용 중지하거나 무선 네트워크에 연결하세요."</string>
+    <string name="incall_error_ecm_emergency_only" msgid="738708660612388692">"일반 전화를 걸려면 긴급 콜백 모드를 해제하세요."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"네트워크에서 등록되지 않았습니다."</string>
     <string name="incall_error_out_of_service" msgid="4100065333878929223">"사용 가능한 이동통신망이 없습니다."</string>
     <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"모바일 네트워크를 사용할 수 없습니다. 전화를 걸려면 무선 네트워크에 연결하세요."</string>
