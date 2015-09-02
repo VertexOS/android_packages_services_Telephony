@@ -192,7 +192,7 @@ final class CdmaConnection extends TelephonyConnection {
         if (isDialing) {
             setDialing();
         } else {
-            updateState();
+            updateState(true);
         }
     }
 
