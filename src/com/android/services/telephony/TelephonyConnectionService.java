@@ -528,10 +528,15 @@ public class TelephonyConnectionService extends ConnectionService {
             // On GSM phones, null connection means that we dialed an MMI code
             if (phone.getPhoneType() == PhoneConstants.PHONE_TYPE_GSM) {
                 Log.d(this, "dialed MMI code");
+                int subId = phone.getSubId();
+                Log.d(this, "subId: " + subId);
                 telephonyDisconnectCause = android.telephony.DisconnectCause.DIALED_MMI;
                 final Intent intent = new Intent(this, MMIDialogActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK |
                         Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+                if (SubscriptionManager.isValidSubscriptionId(subId)) {
+                    intent.putExtra(PhoneConstants.SUBSCRIPTION_KEY, subId);
+                }
                 startActivity(intent);
             }
             Log.d(this, "placeOutgoingConnection, phone.dial returned null");
