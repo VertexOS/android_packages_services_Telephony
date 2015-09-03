@@ -104,7 +104,7 @@ public class SimChangeReceiver extends BroadcastReceiver {
                         // It may be that the source was not registered to begin with but we want
                         // to run through the steps to remove the source just in case.
                         OmtpVvmSourceManager.getInstance(context).removeSource(phoneAccount);
-                        carrierConfigHelper.startDeactivation();
+                        Log.v(TAG, "Sim change for disabled account.");
                     }
                 }
                 break;
