@@ -138,6 +138,8 @@
     <bool name="config_prefer_2g" translatable="false">true</bool>
     <!-- Show enabled lte option for lte device -->
     <bool name="config_enabled_lte" translatable="false">false</bool>
+    <!-- Show enabled tdscdma option for device -->
+    <bool name="config_support_tdscdma" translatable="false">false</bool>
     <!-- Show cdma auto network mode in (glabal) roaming -->
     <!-- DEPRECATED: Use CarrierConfigManager#KEY_SHOW_CDMA_CHOICES_BOOL -->
     <bool name="config_show_cdma" translatable="false">false</bool>
