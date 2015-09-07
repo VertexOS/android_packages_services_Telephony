@@ -180,6 +180,7 @@
     <string name="preferred_network_mode_lte_wcdma_summary" msgid="9180775701594742750">"Hali ya mtandao inayopendelewa: LTE / WCDMA"</string>
     <string name="preferred_network_mode_lte_gsm_umts_summary" msgid="633315028976225026">"Hali ya mtandao inayopendelewa: LTE / GSM / UMTS"</string>
     <string name="preferred_network_mode_lte_cdma_summary" msgid="3722647806454528426">"Modi pendekezwa ya mtandao:  LTE / CDMA"</string>
+    <string name="preferred_network_mode_tdscdma_summary" msgid="8021016193718678775">"Hali ya mtandao inayopendelewa: TDSCDMA"</string>
   <string-array name="preferred_network_mode_choices">
     <item msgid="7886739962255042385">"LTE / WCDMA"</item>
     <item msgid="577652050447385699">"LTE"</item>
@@ -308,6 +309,7 @@
     <string name="network_lte" msgid="7702681952521375754">"LTE (inapendekezwa)"</string>
     <string name="network_4G" msgid="2723512640529983138">"4G (inapendekezwa)"</string>
     <string name="network_global" msgid="1323190488685355309">"Ulimwenguni Kote"</string>
+    <string name="network_tdscdma" msgid="4713495909689860245">"TDSCDMA Pekee"</string>
     <string name="cdma_system_select_title" msgid="5757657769327732833">"Chagua mfumo"</string>
     <string name="cdma_system_select_summary" msgid="60460043745797517">"Badilisha hali ya urandaji ya CDMA"</string>
     <string name="cdma_system_select_dialogtitle" msgid="6083355415165359075">"Chagua mfumo"</string>
@@ -524,7 +526,7 @@
     <string name="voicemail_settings" msgid="72448049107749316">"Sanidi"</string>
     <string name="voicemail_number_not_set" msgid="6724904736891087856">"&lt;Haijawekwa&gt;"</string>
     <string name="other_settings" msgid="3672912580359716394">"Mipangilio mingine ya simu"</string>
-    <string name="calling_via_template" msgid="4839419581866928142">"Kupiga simu kupitia <xliff:g id="PROVIDER_NAME">%s</xliff:g>"</string>
+    <string name="calling_via_template" msgid="4839419581866928142">"Inapiga kupitia <xliff:g id="PROVIDER_NAME">%s</xliff:g>"</string>
     <string name="contactPhoto" msgid="4713193418046639466">"picha ya anwani"</string>
     <string name="goPrivate" msgid="865837794424530980">"nenda kwa faragha"</string>
     <string name="selectContact" msgid="781975788478987237">"chagua anwani"</string>

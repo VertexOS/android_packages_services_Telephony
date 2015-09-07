@@ -180,6 +180,7 @@
     <string name="preferred_network_mode_lte_wcdma_summary" msgid="9180775701594742750">"Артыкчылыктуу желе тартиби: LTE / WCDMA"</string>
     <string name="preferred_network_mode_lte_gsm_umts_summary" msgid="633315028976225026">"Жактырылган тармак режими: LTE / GSM / UMTS"</string>
     <string name="preferred_network_mode_lte_cdma_summary" msgid="3722647806454528426">"Тандалган тармак режими: LTE / CDMA"</string>
+    <string name="preferred_network_mode_tdscdma_summary" msgid="8021016193718678775">"Тандалган тармак режими: TDSCDMA"</string>
   <string-array name="preferred_network_mode_choices">
     <item msgid="7886739962255042385">"LTE / WCDMA"</item>
     <item msgid="577652050447385699">"LTE"</item>
@@ -308,6 +309,7 @@
     <string name="network_lte" msgid="7702681952521375754">"LTE (сунушталат)"</string>
     <string name="network_4G" msgid="2723512640529983138">"4G (сунушталат)"</string>
     <string name="network_global" msgid="1323190488685355309">"Глобалдуу"</string>
+    <string name="network_tdscdma" msgid="4713495909689860245">"TDSCDMA гана"</string>
     <string name="cdma_system_select_title" msgid="5757657769327732833">"Тутум тандоо"</string>
     <string name="cdma_system_select_summary" msgid="60460043745797517">"CDMA роуминг тартибин алмаштыруу"</string>
     <string name="cdma_system_select_dialogtitle" msgid="6083355415165359075">"Тутум тандоо"</string>
@@ -427,7 +429,7 @@
     <string name="notification_network_selection_text" msgid="2607085729661923269">"Тандалган тармак (<xliff:g id="OPERATOR_NAME">%s</xliff:g>) жеткиликсиз"</string>
     <string name="incall_error_power_off" msgid="2947938060513306698">"Чалуу үчүн учак режимин өчүрүңүз."</string>
     <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"Чалуу үчүн учак режимин өчүрүңүз же зымсыз тармакка туташыңыз."</string>
-    <string name="incall_error_ecm_emergency_only" msgid="738708660612388692">"Кадимкидей чалуу аткаруу үчүн шашылыш кайра чалуу режиминен чыгыңыз"</string>
+    <string name="incall_error_ecm_emergency_only" msgid="738708660612388692">"Кадимки шартта чалуу үчүн шашылыш кайра чалуу режиминен чыгыңыз."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"Тармакта катталган эмес."</string>
     <string name="incall_error_out_of_service" msgid="4100065333878929223">"Уюктук тармак жеткиликтүү эмес."</string>
     <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"Уюлдук тармак жеткиликтүү эмес. Чалуу үчүн зымсыз тармакка туташыңыз."</string>

@@ -180,6 +180,7 @@
     <string name="preferred_network_mode_lte_wcdma_summary" msgid="9180775701594742750">"‏وضع الشبكة المفضل: LTE / WCDMA"</string>
     <string name="preferred_network_mode_lte_gsm_umts_summary" msgid="633315028976225026">"‏وضع الشبكة المفضل: LTE / GSM / UMTS"</string>
     <string name="preferred_network_mode_lte_cdma_summary" msgid="3722647806454528426">"‏وضع الشبكة المفضل: LTE / CDMA"</string>
+    <string name="preferred_network_mode_tdscdma_summary" msgid="8021016193718678775">"‏وضع الشبكة المفضَّل: TDSCDMA"</string>
   <string-array name="preferred_network_mode_choices">
     <item msgid="7886739962255042385">"LTE / WCDMA"</item>
     <item msgid="577652050447385699">"LTE"</item>
@@ -308,6 +309,7 @@
     <string name="network_lte" msgid="7702681952521375754">"‏LTE (مستحسن)"</string>
     <string name="network_4G" msgid="2723512640529983138">"الجيل الرابع (مستحسن)"</string>
     <string name="network_global" msgid="1323190488685355309">"عام"</string>
+    <string name="network_tdscdma" msgid="4713495909689860245">"‏TDSCDMA فقط"</string>
     <string name="cdma_system_select_title" msgid="5757657769327732833">"تحديد النظام"</string>
     <string name="cdma_system_select_summary" msgid="60460043745797517">"‏تغيير وضع التجوال عبر CDMA"</string>
     <string name="cdma_system_select_dialogtitle" msgid="6083355415165359075">"تحديد النظام"</string>

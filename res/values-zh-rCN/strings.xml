@@ -180,6 +180,7 @@
     <string name="preferred_network_mode_lte_wcdma_summary" msgid="9180775701594742750">"首选网络模式：LTE/WCDMA"</string>
     <string name="preferred_network_mode_lte_gsm_umts_summary" msgid="633315028976225026">"首选网络模式：LTE / GSM / UMTS"</string>
     <string name="preferred_network_mode_lte_cdma_summary" msgid="3722647806454528426">"首选网络模式：LTE/CDMA"</string>
+    <string name="preferred_network_mode_tdscdma_summary" msgid="8021016193718678775">"首选网络模式：TDSCDMA"</string>
   <string-array name="preferred_network_mode_choices">
     <item msgid="7886739962255042385">"LTE/WCDMA"</item>
     <item msgid="577652050447385699">"LTE"</item>
@@ -308,6 +309,7 @@
     <string name="network_lte" msgid="7702681952521375754">"LTE（建议）"</string>
     <string name="network_4G" msgid="2723512640529983138">"4G（建议）"</string>
     <string name="network_global" msgid="1323190488685355309">"通用"</string>
+    <string name="network_tdscdma" msgid="4713495909689860245">"仅限 TDSCDMA"</string>
     <string name="cdma_system_select_title" msgid="5757657769327732833">"系统选择"</string>
     <string name="cdma_system_select_summary" msgid="60460043745797517">"更改 CDMA 漫游模式"</string>
     <string name="cdma_system_select_dialogtitle" msgid="6083355415165359075">"系统选择"</string>
@@ -427,8 +429,7 @@
     <string name="notification_network_selection_text" msgid="2607085729661923269">"所选网络（<xliff:g id="OPERATOR_NAME">%s</xliff:g>）不可用"</string>
     <string name="incall_error_power_off" msgid="2947938060513306698">"需关闭飞行模式才能拨打电话。"</string>
     <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"需关闭飞行模式或连接至无线网络才能拨打电话。"</string>
-    <!-- no translation found for incall_error_ecm_emergency_only (738708660612388692) -->
-    <skip />
+    <string name="incall_error_ecm_emergency_only" msgid="738708660612388692">"要拨打非紧急电话，请先退出紧急回拨模式。"</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"尚未注册网络。"</string>
     <string name="incall_error_out_of_service" msgid="4100065333878929223">"无法连接到移动网络。"</string>
     <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"移动网络不可用。需连接至无线网络才能拨打电话。"</string>
