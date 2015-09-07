@@ -180,6 +180,7 @@
     <string name="preferred_network_mode_lte_wcdma_summary" msgid="9180775701594742750">"തിരഞ്ഞെടുത്ത നെറ്റ്‌വർക്ക് മോഡ്: LTE / WCDMA"</string>
     <string name="preferred_network_mode_lte_gsm_umts_summary" msgid="633315028976225026">"തിരഞ്ഞെടുത്ത നെറ്റ്‌വർക്ക് മോഡ്: LTE / GSM / UMTS"</string>
     <string name="preferred_network_mode_lte_cdma_summary" msgid="3722647806454528426">"തിരഞ്ഞെടുത്ത നെറ്റ്‌വർക്ക് മോഡ്: LTE / CDMA"</string>
+    <string name="preferred_network_mode_tdscdma_summary" msgid="8021016193718678775">"നിർദ്ദേശിക്കുന്ന നെറ്റ്‌വർക്ക് മോഡ്: TDSCDMA"</string>
   <string-array name="preferred_network_mode_choices">
     <item msgid="7886739962255042385">"LTE / WCDMA"</item>
     <item msgid="577652050447385699">"LTE"</item>
@@ -308,6 +309,7 @@
     <string name="network_lte" msgid="7702681952521375754">"LTE (ശുപാർശചെയ്‌തത്)"</string>
     <string name="network_4G" msgid="2723512640529983138">"4G (ശുപാർശചെയ്‌തത്)"</string>
     <string name="network_global" msgid="1323190488685355309">"ഗ്ലോബൽ"</string>
+    <string name="network_tdscdma" msgid="4713495909689860245">"TDSCDMA മാത്രം"</string>
     <string name="cdma_system_select_title" msgid="5757657769327732833">"സിസ്റ്റം സെലക്‌ട്"</string>
     <string name="cdma_system_select_summary" msgid="60460043745797517">"CDMA റോമിംഗ് മോഡ് മാറ്റുക"</string>
     <string name="cdma_system_select_dialogtitle" msgid="6083355415165359075">"സിസ്റ്റം സെലക്‌ട്"</string>
@@ -524,7 +526,7 @@
     <string name="voicemail_settings" msgid="72448049107749316">"സജ്ജമാക്കുക"</string>
     <string name="voicemail_number_not_set" msgid="6724904736891087856">"&lt;സജ്ജീകരിച്ചിട്ടില്ല&gt;"</string>
     <string name="other_settings" msgid="3672912580359716394">"മറ്റ് കോൾ ക്രമീകരണങ്ങൾ"</string>
-    <string name="calling_via_template" msgid="4839419581866928142">"<xliff:g id="PROVIDER_NAME">%s</xliff:g> മുഖേന വിളിക്കുന്നു"</string>
+    <string name="calling_via_template" msgid="4839419581866928142">"<xliff:g id="PROVIDER_NAME">%s</xliff:g> വഴി വിളിക്കുന്നു"</string>
     <string name="contactPhoto" msgid="4713193418046639466">"കോൺടാക്റ്റ് ഫോട്ടോ"</string>
     <string name="goPrivate" msgid="865837794424530980">"സ്വകാര്യം എന്നതിലേക്ക് പോകുക"</string>
     <string name="selectContact" msgid="781975788478987237">"കോൺടാക്റ്റ് തിരഞ്ഞെടുക്കുക"</string>

@@ -180,6 +180,7 @@
     <string name="preferred_network_mode_lte_wcdma_summary" msgid="9180775701594742750">"Modaliteti i preferuar i rrjetit: LTE / WCDMA"</string>
     <string name="preferred_network_mode_lte_gsm_umts_summary" msgid="633315028976225026">"Modaliteti i preferuar i rrjetit: LTE / GSM / UMTS"</string>
     <string name="preferred_network_mode_lte_cdma_summary" msgid="3722647806454528426">"Modaliteti i preferuar i rrjetit: LTE / CDMA"</string>
+    <string name="preferred_network_mode_tdscdma_summary" msgid="8021016193718678775">"Modaliteti i preferuar i rrjetit: TDSCDMA"</string>
   <string-array name="preferred_network_mode_choices">
     <item msgid="7886739962255042385">"LTE / WCDMA"</item>
     <item msgid="577652050447385699">"LTE"</item>
@@ -308,6 +309,7 @@
     <string name="network_lte" msgid="7702681952521375754">"LTE (rekomandohet)"</string>
     <string name="network_4G" msgid="2723512640529983138">"4G (rekomandohet)"</string>
     <string name="network_global" msgid="1323190488685355309">"Global"</string>
+    <string name="network_tdscdma" msgid="4713495909689860245">"Vetëm TDSCDMA"</string>
     <string name="cdma_system_select_title" msgid="5757657769327732833">"Përzgjedhje e sistemit"</string>
     <string name="cdma_system_select_summary" msgid="60460043745797517">"Ndrysho modalitetin CDMA të roaming-ut"</string>
     <string name="cdma_system_select_dialogtitle" msgid="6083355415165359075">"Përzgjedhje e sistemit"</string>
@@ -524,7 +526,7 @@
     <string name="voicemail_settings" msgid="72448049107749316">"Konfigurimi"</string>
     <string name="voicemail_number_not_set" msgid="6724904736891087856">"&lt;I pavendosur&gt;"</string>
     <string name="other_settings" msgid="3672912580359716394">"Cilësime të tjera të telefonatës"</string>
-    <string name="calling_via_template" msgid="4839419581866928142">"Po telefonon përmes <xliff:g id="PROVIDER_NAME">%s</xliff:g>"</string>
+    <string name="calling_via_template" msgid="4839419581866928142">"Telefonatë përmes <xliff:g id="PROVIDER_NAME">%s</xliff:g>"</string>
     <string name="contactPhoto" msgid="4713193418046639466">"fotografia e kontaktit"</string>
     <string name="goPrivate" msgid="865837794424530980">"bëje private"</string>
     <string name="selectContact" msgid="781975788478987237">"përzgjidh kontaktin"</string>

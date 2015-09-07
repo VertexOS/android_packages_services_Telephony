@@ -180,6 +180,7 @@
     <string name="preferred_network_mode_lte_wcdma_summary" msgid="9180775701594742750">"Preferovaný režim siete: LTE / WCDMA"</string>
     <string name="preferred_network_mode_lte_gsm_umts_summary" msgid="633315028976225026">"Uprednostňovaný režim siete: LTE / GSM / UMTS"</string>
     <string name="preferred_network_mode_lte_cdma_summary" msgid="3722647806454528426">"Preferovaný režim siete: LTE / CDMA"</string>
+    <string name="preferred_network_mode_tdscdma_summary" msgid="8021016193718678775">"Preferovaný režim siete: TDSCDMA"</string>
   <string-array name="preferred_network_mode_choices">
     <item msgid="7886739962255042385">"LTE / WCDMA"</item>
     <item msgid="577652050447385699">"LTE"</item>
@@ -308,6 +309,7 @@
     <string name="network_lte" msgid="7702681952521375754">"LTE (odporúčané)"</string>
     <string name="network_4G" msgid="2723512640529983138">"4G (odporúčané)"</string>
     <string name="network_global" msgid="1323190488685355309">"Globálne"</string>
+    <string name="network_tdscdma" msgid="4713495909689860245">"Iba TDSCDMA"</string>
     <string name="cdma_system_select_title" msgid="5757657769327732833">"Výber systému"</string>
     <string name="cdma_system_select_summary" msgid="60460043745797517">"Zmeniť režim roamingu CDMA"</string>
     <string name="cdma_system_select_dialogtitle" msgid="6083355415165359075">"Výber systému"</string>
@@ -530,7 +532,7 @@
     <string name="voicemail_settings" msgid="72448049107749316">"Nastavenie"</string>
     <string name="voicemail_number_not_set" msgid="6724904736891087856">"&lt;Nenastavené&gt;"</string>
     <string name="other_settings" msgid="3672912580359716394">"Ďalšie nastavenia hovorov"</string>
-    <string name="calling_via_template" msgid="4839419581866928142">"Voláte prostredníctvom poskytovateľa <xliff:g id="PROVIDER_NAME">%s</xliff:g>"</string>
+    <string name="calling_via_template" msgid="4839419581866928142">"Volanie cez <xliff:g id="PROVIDER_NAME">%s</xliff:g>"</string>
     <string name="contactPhoto" msgid="4713193418046639466">"fotografia kontaktu"</string>
     <string name="goPrivate" msgid="865837794424530980">"prepnúť na súkromné"</string>
     <string name="selectContact" msgid="781975788478987237">"vybrať kontakt"</string>

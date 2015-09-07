@@ -180,6 +180,7 @@
     <string name="preferred_network_mode_lte_wcdma_summary" msgid="9180775701594742750">"পছন্দের নেটওয়ার্ক মোড: LTE / WCDMA"</string>
     <string name="preferred_network_mode_lte_gsm_umts_summary" msgid="633315028976225026">"পছন্দের নেটওয়ার্ক মোড: LTE / GSM / UMTS"</string>
     <string name="preferred_network_mode_lte_cdma_summary" msgid="3722647806454528426">"পছন্দের নেটওয়ার্ক মোড: LTE / CDMA"</string>
+    <string name="preferred_network_mode_tdscdma_summary" msgid="8021016193718678775">"পছন্দের নেটওয়ার্ক মোড: TDSCDMA"</string>
   <string-array name="preferred_network_mode_choices">
     <item msgid="7886739962255042385">"LTE / WCDMA"</item>
     <item msgid="577652050447385699">"LTE"</item>
@@ -308,6 +309,7 @@
     <string name="network_lte" msgid="7702681952521375754">"LTE (প্রস্তাবিত)"</string>
     <string name="network_4G" msgid="2723512640529983138">"4G (প্রস্তাবিত)"</string>
     <string name="network_global" msgid="1323190488685355309">"বিশ্বব্যাপী"</string>
+    <string name="network_tdscdma" msgid="4713495909689860245">"শুধুমাত্র TDSCDMA"</string>
     <string name="cdma_system_select_title" msgid="5757657769327732833">"সিস্টেম নির্বাচন"</string>
     <string name="cdma_system_select_summary" msgid="60460043745797517">"CDMA রোমিং মোডটির পরিবর্তন করুন"</string>
     <string name="cdma_system_select_dialogtitle" msgid="6083355415165359075">"সিস্টেম নির্বাচন"</string>
@@ -427,7 +429,7 @@
     <string name="notification_network_selection_text" msgid="2607085729661923269">"নির্বাচিত নেটওয়ার্ক (<xliff:g id="OPERATOR_NAME">%s</xliff:g>) অনুপলব্ধ"</string>
     <string name="incall_error_power_off" msgid="2947938060513306698">"কল করতে বিমান মোড বন্ধ করুন৷"</string>
     <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"বিমান মোড বন্ধ করুন বা কল করতে কোনো ওয়্যারলেস নেটওয়ার্কে সংযোগ করুন৷"</string>
-    <string name="incall_error_ecm_emergency_only" msgid="738708660612388692">"একটি সাধারণ কল করতে জরুরি কলব্যাক মোড থেকে বেরিয়ে যান৷"</string>
+    <string name="incall_error_ecm_emergency_only" msgid="738708660612388692">"একটি সাধারণ কল করতে জরুরি কলব্যাক মোডের বাইরে আসুন৷"</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"নেটওয়ার্কে নিবন্ধিত নয়৷"</string>
     <string name="incall_error_out_of_service" msgid="4100065333878929223">"সেলুলার নেটওয়ার্ক উপলব্ধ নয়।"</string>
     <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"মোবাইল নেটওয়ার্ক উপলব্ধ নেই৷ একটি কল করতে কোনো ওয়্যারলেস নেটওয়ার্কে সংযোগ করুন৷"</string>
@@ -524,7 +526,7 @@
     <string name="voicemail_settings" msgid="72448049107749316">"সেটআপ"</string>
     <string name="voicemail_number_not_set" msgid="6724904736891087856">"&lt;সেট করা নেই&gt;"</string>
     <string name="other_settings" msgid="3672912580359716394">"অন্যান্য কল সেটিংস"</string>
-    <string name="calling_via_template" msgid="4839419581866928142">"<xliff:g id="PROVIDER_NAME">%s</xliff:g> এর মাধ্যমে কল করা হচ্ছে"</string>
+    <string name="calling_via_template" msgid="4839419581866928142">"<xliff:g id="PROVIDER_NAME">%s</xliff:g> এর দ্বারা কল হচ্ছে"</string>
     <string name="contactPhoto" msgid="4713193418046639466">"পরিচিতির ফটো"</string>
     <string name="goPrivate" msgid="865837794424530980">"ব্যক্তিগতভাবে কাজ করুন"</string>
     <string name="selectContact" msgid="781975788478987237">"পরিচিতি নির্বাচন করুন"</string>
