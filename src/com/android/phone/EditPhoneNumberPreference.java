@@ -25,6 +25,8 @@ import android.content.res.TypedArray;
 import android.preference.EditTextPreference;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.telephony.PhoneNumberUtils;
+import android.text.BidiFormatter;
+import android.text.TextDirectionHeuristics;
 import android.text.TextUtils;
 import android.text.method.ArrowKeyMovementMethod;
 import android.text.method.DialerKeyListener;
@@ -206,7 +208,8 @@ public class EditPhoneNumberPreference extends EditTextPreference {
                     mPhoneNumber = defaultNumber;
                 }
             }
-            editText.setText(mPhoneNumber);
+            editText.setText(BidiFormatter.getInstance().unicodeWrap(
+                    mPhoneNumber, TextDirectionHeuristics.LTR));
             editText.setMovementMethod(ArrowKeyMovementMethod.getInstance());
             editText.setKeyListener(DialerKeyListener.getInstance());
             editText.setOnFocusChangeListener(mDialogFocusChangeListener);
