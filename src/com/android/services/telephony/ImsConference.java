@@ -28,6 +28,7 @@ import android.telecom.Log;
 import android.telecom.PhoneAccountHandle;
 import android.telecom.StatusHints;
 import android.telecom.VideoProfile;
+import android.telephony.PhoneNumberUtils;
 
 import com.android.internal.telephony.Call;
 import com.android.internal.telephony.CallStateException;
@@ -706,7 +707,14 @@ public class ImsConference extends Conference {
     private boolean isParticipantHost(Uri hostHandle, Uri handle) {
         // If host and participant handles are the same, bail early.
         if (Objects.equals(hostHandle, handle)) {
+            Log.v(this, "isParticipantHost(Y) : uris equal");
             return true;
+        }
+
+        // If there is no host handle or not participant handle, bail early.
+        if (hostHandle == null || handle == null) {
+            Log.v(this, "isParticipantHost(N) : host or participant uri null");
+            return false;
         }
 
         // Conference event package participants are identified using SIP URIs (see RFC3261).
@@ -726,6 +734,7 @@ public class ImsConference extends Conference {
         String numberParts[] = number.split("[@;:]");
 
         if (numberParts.length == 0) {
+            Log.v(this, "isParticipantHost(N) : no number in participant handle");
             return false;
         }
         number = numberParts[0];
@@ -734,7 +743,14 @@ public class ImsConference extends Conference {
         // number.
         String hostNumber = hostHandle.getSchemeSpecificPart();
 
-        return Objects.equals(hostNumber, number);
+        // Use a loose comparison of the phone numbers.  This ensures that numbers that differ by
+        // special characters are counted as equal.
+        // E.g. +16505551212 would be the same as 16505551212
+        boolean isHost = PhoneNumberUtils.compare(hostNumber, number);
+
+        Log.v(this, "isParticipantHost(%s) : host: %s, participant %s", (isHost ? "Y" : "N"),
+                Log.pii(hostNumber), Log.pii(number));
+        return isHost;
     }
 
     /**
