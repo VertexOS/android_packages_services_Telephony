@@ -45,7 +45,7 @@
     <string name="no_vm_number" msgid="4164780423805688336">"Voicemailnummer ontbreekt"</string>
     <string name="no_vm_number_msg" msgid="1300729501030053828">"Er is geen voicemailnummer op de SIM-kaart opgeslagen."</string>
     <string name="add_vm_number_str" msgid="4676479471644687453">"Nummer toevoegen"</string>
-    <string name="puk_unlocked" msgid="2284912838477558454">"Uw SIM-kaart is gedeblokkeerd. Uw telefoon wordt ontgrendeld..."</string>
+    <string name="puk_unlocked" msgid="2284912838477558454">"Je SIM-kaart is gedeblokkeerd. Je telefoon wordt ontgrendeld..."</string>
     <string name="label_ndp" msgid="780479633159517250">"Pincode voor ontgrendelen SIM-netwerk"</string>
     <string name="sim_ndp_unlock_text" msgid="683628237760543009">"Ontgrendelen"</string>
     <string name="sim_ndp_dismiss_text" msgid="1604823375752456947">"Negeren"</string>
@@ -105,17 +105,17 @@
     <string name="messageCFB" msgid="3711089705936187129">"Nummer indien in gesprek"</string>
     <string name="sum_cfb_enabled" msgid="5984198104833116690">"Doorschakelen naar <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfb_disabled" msgid="4913145177320506827">"Uit"</string>
-    <string name="disable_cfb_forbidden" msgid="3506984333877998061">"Uw provider biedt geen ondersteuning voor het uitschakelen van oproepdoorschakelingen wanneer uw telefoon bezet is."</string>
+    <string name="disable_cfb_forbidden" msgid="3506984333877998061">"Je provider biedt geen ondersteuning voor het uitschakelen van oproepdoorschakelingen wanneer je telefoon bezet is."</string>
     <string name="labelCFNRy" msgid="1736067178393744351">"Wanneer onbeantwoord"</string>
     <string name="messageCFNRy" msgid="672317899884380374">"Nummer indien onbeantwoord"</string>
     <string name="sum_cfnry_enabled" msgid="6955775691317662910">"Doorschakelen naar <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfnry_disabled" msgid="3884684060443538097">"Uit"</string>
-    <string name="disable_cfnry_forbidden" msgid="4308233959150658058">"Uw provider biedt geen ondersteuning voor het uitschakelen van oproepdoorschakelingen wanneer uw telefoon niet wordt opgenomen."</string>
+    <string name="disable_cfnry_forbidden" msgid="4308233959150658058">"Je provider biedt geen ondersteuning voor het uitschakelen van oproepdoorschakelingen wanneer je telefoon niet wordt opgenomen."</string>
     <string name="labelCFNRc" msgid="2614827454402079766">"Wanneer niet bereikbaar"</string>
     <string name="messageCFNRc" msgid="6380695421020295119">"Nummer indien onbereikbaar"</string>
     <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"Doorschakelen naar <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfnrc_disabled" msgid="7222141261321276464">"Uitgeschakeld"</string>
-    <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"Uw provider biedt geen ondersteuning voor het uitschakelen van oproepdoorschakelingen wanneer uw telefoon niet bereikbaar is."</string>
+    <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"Je provider biedt geen ondersteuning voor het uitschakelen van oproepdoorschakelingen wanneer je telefoon niet bereikbaar is."</string>
     <string name="updating_title" msgid="6146755386174019046">"Oproepinstellingen"</string>
     <string name="call_settings_primary_user_only" msgid="5679923943740900965">"Oproepinstellingen kunnen alleen worden gewijzigd door de primaire gebruiker."</string>
     <string name="call_settings_with_label" msgid="3401177261468593519">"Instellingen (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
@@ -128,8 +128,8 @@
     <string name="stk_cc_ss_to_dial_error" msgid="2816779198916570502">"SS-verzoek is gewijzigd in DIAL-verzoek."</string>
     <string name="stk_cc_ss_to_ussd_error" msgid="7490626178582654236">"SS-verzoek is gewijzigd in USSD-verzoek."</string>
     <string name="stk_cc_ss_to_ss_error" msgid="5057846756489053759">"SS-verzoek is gewijzigd in nieuw SS-verzoek."</string>
-    <string name="fdn_check_failure" msgid="18200614306525434">"De instelling \'Vaste nummers\' in uw app Telefoon is ingeschakeld. Hierdoor werken sommige oproepgerelateerde functies niet."</string>
-    <string name="radio_off_error" msgid="2304459933248513376">"Schakel de radio in voordat u deze instellingen bekijkt."</string>
+    <string name="fdn_check_failure" msgid="18200614306525434">"De instelling \'Vaste nummers\' in je app Telefoon is ingeschakeld. Hierdoor werken sommige oproepgerelateerde functies niet."</string>
+    <string name="radio_off_error" msgid="2304459933248513376">"Schakel de radio in voordat je deze instellingen bekijkt."</string>
     <string name="close_dialog" msgid="2365884406356986917">"OK"</string>
     <string name="enable" msgid="7248657275000173526">"Inschakelen"</string>
     <string name="disable" msgid="4678348128118573672">"Uit"</string>
@@ -140,12 +140,12 @@
     <item msgid="1108394741608734023">"Nummer weergeven"</item>
   </string-array>
     <string name="vm_changed" msgid="380744030726254139">"Voicemailnummer gewijzigd."</string>
-    <string name="vm_change_failed" msgid="3352934863246208918">"Kan het voicemailnummer niet wijzigen.\nNeem contact op met uw provider als dit probleem zich blijft voordoen."</string>
-    <string name="fw_change_failed" msgid="5298103228470214665">"Kan het doorschakelnummer niet wijzigen.\nNeem contact op met uw provider als dit probleem zich blijft voordoen."</string>
+    <string name="vm_change_failed" msgid="3352934863246208918">"Kan het voicemailnummer niet wijzigen.\nNeem contact op met je provider als dit probleem zich blijft voordoen."</string>
+    <string name="fw_change_failed" msgid="5298103228470214665">"Kan het doorschakelnummer niet wijzigen.\nNeem contact op met je provider als dit probleem zich blijft voordoen."</string>
     <string name="fw_get_in_vm_failed" msgid="8862896836093833973">"Kan huidige instellingen voor doorschakelnummer niet ophalen en opslaan.\nToch overschakelen naar de nieuwe provider?"</string>
     <string name="no_change" msgid="3186040086622435212">"Er zijn geen wijzigingen aangebracht."</string>
     <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"Service voor voicemail selecteren"</string>
-    <string name="voicemail_default" msgid="2001233554889016880">"Uw provider"</string>
+    <string name="voicemail_default" msgid="2001233554889016880">"Je provider"</string>
     <string name="mobile_networks" msgid="2843854043339307375">"Instellingen voor mobiele netwerken"</string>
     <string name="label_available" msgid="1181658289009300430">"Beschikbare netwerken"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"Zoeken..."</string>
@@ -153,7 +153,7 @@
     <string name="search_networks" msgid="1601136049300882441">"Netwerken zoeken"</string>
     <string name="network_query_error" msgid="6828516148953325006">"Fout tijdens zoeken naar netwerken."</string>
     <string name="register_on_network" msgid="9055203954040805084">"Registreren op <xliff:g id="NETWORK">%s</xliff:g>…"</string>
-    <string name="not_allowed" msgid="5613353860205691579">"Uw simkaart staat geen verbinding met dit netwerk toe."</string>
+    <string name="not_allowed" msgid="5613353860205691579">"Je simkaart staat geen verbinding met dit netwerk toe."</string>
     <string name="connect_later" msgid="2308119155752343975">"Kan nu geen verbinding maken met dit netwerk. Probeer het later opnieuw."</string>
     <string name="registration_done" msgid="495135664535876612">"Geregistreerd op netwerk."</string>
     <string name="sum_carrier_select" msgid="3494252551249882718">"Een mobiele provider kiezen"</string>
@@ -203,7 +203,7 @@
     <string name="roaming" msgid="8871412572928323707">"Gegevensroaming"</string>
     <string name="roaming_enable" msgid="7331106985174381987">"Verbinding maken met gegevensservices tijdens roaming"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"Verbinding maken met gegevensservices tijdens roaming"</string>
-    <string name="roaming_reenable_message" msgid="8913735676127858115">"De gegevensverbinding is verbroken, omdat u uw thuisnetwerk heeft verlaten terwijl gegevensroaming was uitgeschakeld."</string>
+    <string name="roaming_reenable_message" msgid="8913735676127858115">"De gegevensverbinding is verbroken, omdat je je thuisnetwerk hebt verlaten terwijl gegevensroaming was uitgeschakeld."</string>
     <string name="roaming_warning" msgid="1603164667540144353">"Er kunnen hoge roamingkosten in rekening worden gebracht."</string>
     <string name="roaming_alert_title" msgid="3654815360303826008">"Gegevensroaming toestaan?"</string>
     <string name="gsm_umts_options" msgid="6538311689850981686">"GSM-/UMTS-opties"</string>
@@ -218,7 +218,7 @@
     <string name="throttle_data_rate_reduced_subtext" msgid="7492763592720107737">"Maximum van <xliff:g id="USED_0">%1$s</xliff:g> overschreden\nGegevenssnelheid verlaagd tot <xliff:g id="USED_1">%2$d</xliff:g> kB/s"</string>
     <string name="throttle_time_frame_subtext" msgid="7732763021560399960">" ٪<xliff:g id="USED_0">%1$d</xliff:g>van cyclus verstreken\nDe volgende periode start over <xliff:g id="USED_1">%2$d</xliff:g> dagen (<xliff:g id="USED_2">%3$s</xliff:g>)"</string>
     <string name="throttle_rate_subtext" msgid="2149102656120726855">"Gegevenssnelheid wordt verlaagd tot <xliff:g id="USED">%1$d</xliff:g> kB/s als de limiet voor gegevensgebruik wordt overschreden"</string>
-    <string name="throttle_help_subtext" msgid="3633091498168446044">"Meer informatie over het beleid voor gegevensgebruik van uw mobiele provider"</string>
+    <string name="throttle_help_subtext" msgid="3633091498168446044">"Meer informatie over het beleid voor gegevensgebruik van je mobiele provider"</string>
     <string name="cell_broadcast_sms" msgid="5584192824053625842">"Infodienstbericht"</string>
     <string name="enable_disable_cell_bc_sms" msgid="4851147873691392255">"SMS Infodienstbericht"</string>
     <string name="cell_bc_sms_enable" msgid="6441688565738921084">"SMS Infodienstbericht ingeschakeld"</string>
@@ -369,12 +369,12 @@
     <string name="delete_fdn_contact" msgid="6668958073074151717">"Vast nummer verwijderen"</string>
     <string name="deleting_fdn_contact" msgid="5669163206349319969">"Vast nummer verwijderen..."</string>
     <string name="fdn_contact_deleted" msgid="7154162327112259569">"Vast nummer verwijderd."</string>
-    <string name="pin2_invalid" msgid="5470854099230755944">"FDN is niet bijgewerkt omdat u een onjuiste pincode heeft ingevoerd."</string>
+    <string name="pin2_invalid" msgid="5470854099230755944">"FDN is niet bijgewerkt omdat je een onjuiste pincode hebt ingevoerd."</string>
     <string name="fdn_invalid_number" msgid="1494755047900009147">"FDN is niet bijgewerkt omdat het nummer niet langer kan zijn dan 20 tekens."</string>
     <string name="pin2_or_fdn_invalid" msgid="6025144083384701197">"FDN is niet bijgewerkt. De PIN2 was onjuist of het telefoonnummer is geweigerd."</string>
     <string name="fdn_failed" msgid="540018079008319747">"FDN-bewerking mislukt."</string>
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"Lezen vanaf SIM-kaart..."</string>
-    <string name="simContacts_empty" msgid="5270660846489561932">"Geen contacten op uw SIM-kaart."</string>
+    <string name="simContacts_empty" msgid="5270660846489561932">"Geen contacten op je SIM-kaart."</string>
     <string name="simContacts_title" msgid="1861472842524839921">"Contacten selecteren om te importeren"</string>
     <string name="simContacts_airplaneMode" msgid="5254946758982621072">"Schakel de vliegtuigmodus uit om contacten van de simkaart te importeren."</string>
     <string name="enable_pin" msgid="5422767284133234860">"SIM pincode in-/uitschakelen"</string>
@@ -383,8 +383,8 @@
     <string name="oldPinLabel" msgid="5287773661246368314">"Oude pincode"</string>
     <string name="newPinLabel" msgid="207488227285336897">"Nieuwe pincode"</string>
     <string name="confirmPinLabel" msgid="257597715098070206">"Nieuwe pincode bevestigen"</string>
-    <string name="badPin" msgid="8955102849303984935">"De oude pincode die u heeft ingevoerd, is onjuist. Probeer het opnieuw."</string>
-    <string name="mismatchPin" msgid="5923253370683071889">"De pincodes die u heeft ingevoerd, komen niet overeen. Probeer het opnieuw."</string>
+    <string name="badPin" msgid="8955102849303984935">"De oude pincode die je hebt ingevoerd, is onjuist. Probeer het opnieuw."</string>
+    <string name="mismatchPin" msgid="5923253370683071889">"De pincodes die je hebt ingevoerd, komen niet overeen. Probeer het opnieuw."</string>
     <string name="invalidPin" msgid="5981171102258684792">"Voer een pincode van 4 tot 8 cijfers in."</string>
     <string name="disable_sim_pin" msgid="3419351358300716472">"Pincode voor simkaart wissen"</string>
     <string name="enable_sim_pin" msgid="4845145659651484248">"Pincode voor simkaart instellen"</string>
@@ -408,7 +408,7 @@
     <string name="fdn_enable_puk2_requested" msgid="4991074891459554705">"Wachtwoord onjuist. PIN2 nu geblokkeerd. Wijzig PIN2 om het opnieuw te proberen."</string>
     <string name="puk2_requested" msgid="5831015200030161434">"Wachtwoord onjuist. Simkaart nu vergrendeld. Geef PUK2 op."</string>
     <string name="puk2_blocked" msgid="3150263853077280049">"PUK2-code is definitief geblokkeerd."</string>
-    <string name="pin2_attempts" msgid="720736232885011507">\n"U heeft nog <xliff:g id="NUMBER">%d</xliff:g> pogingen."</string>
+    <string name="pin2_attempts" msgid="720736232885011507">\n"Je hebt nog <xliff:g id="NUMBER">%d</xliff:g> pogingen."</string>
     <string name="pin2_unblocked" msgid="7791600368153469078">"PIN2 niet langer geblokkeerd"</string>
     <string name="pin2_error_exception" msgid="1088689322248996699">"Netwerk- of simkaartfout"</string>
     <string name="doneButton" msgid="2859593360997984240">"Gereed"</string>
@@ -433,7 +433,7 @@
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"Niet geregistreerd op netwerk."</string>
     <string name="incall_error_out_of_service" msgid="4100065333878929223">"Mobiel netwerk niet beschikbaar."</string>
     <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"Mobiel netwerk is niet beschikbaar. Maak verbinding met een draadloos netwerk om te bellen."</string>
-    <string name="incall_error_no_phone_number_supplied" msgid="1150414018684246528">"Als u wilt bellen, moet u een geldig nummer invoeren."</string>
+    <string name="incall_error_no_phone_number_supplied" msgid="1150414018684246528">"Als je wilt bellen, moet je een geldig nummer invoeren."</string>
     <string name="incall_error_call_failed" msgid="6302746943230078197">"Kan niet bellen."</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"MMI-reeks starten..."</string>
     <string name="incall_error_supp_service_unknown" msgid="655570339115407698">"Service wordt niet ondersteund"</string>
@@ -481,22 +481,22 @@
   </string-array>
     <string name="network_info_message" msgid="7738596060242881930">"Netwerkbericht"</string>
     <string name="network_error_message" msgid="3394780436230411413">"Foutmelding"</string>
-    <string name="ota_title_activate" msgid="8616918561356194398">"Uw telefoon activeren"</string>
-    <string name="ota_touch_activate" msgid="6553212803262586244">"U moet een speciale oproep uitvoeren om uw telefoonservice te activeren. \n\nNadat u op \'Activeren\' heeft gedrukt, luistert u naar de instructies om uw telefoon te activeren."</string>
+    <string name="ota_title_activate" msgid="8616918561356194398">"Je telefoon activeren"</string>
+    <string name="ota_touch_activate" msgid="6553212803262586244">"Je moet een speciale oproep uitvoeren om je telefoonservice te activeren. \n\nNadat je op \'Activeren\' hebt gedrukt, luister je naar de instructies om je telefoon te activeren."</string>
     <string name="ota_hfa_activation_title" msgid="2234246934160473981">"Activeren..."</string>
-    <string name="ota_hfa_activation_dialog_message" msgid="8092479227918463415">"De telefoon activeert uw mobiele gegevensservice.\n\nDit kan tot vijf minuten duren."</string>
+    <string name="ota_hfa_activation_dialog_message" msgid="8092479227918463415">"De telefoon activeert je mobiele gegevensservice.\n\nDit kan tot vijf minuten duren."</string>
     <string name="ota_skip_activation_dialog_title" msgid="2943366608272261306">"Activering overslaan?"</string>
-    <string name="ota_skip_activation_dialog_message" msgid="2440770373498870550">"Als u de activering overslaat, kunt u niet bellen of verbinding maken met mobiele gegevensnetwerken (u kunt wel verbinding maken met wifi-netwerken). Tot u de telefoon activeert, wordt u gevraagd deze te activeren telkens wanneer u de telefoon inschakelt."</string>
+    <string name="ota_skip_activation_dialog_message" msgid="2440770373498870550">"Als je de activering overslaat, kun je niet bellen of verbinding maken met mobiele gegevensnetwerken (je kunt wel verbinding maken met wifi-netwerken). Tot je de telefoon activeert, wordt je gevraagd deze te activeren telkens wanneer je de telefoon inschakelt."</string>
     <string name="ota_skip_activation_dialog_skip_label" msgid="3458532775091563208">"Overslaan"</string>
     <string name="ota_activate" msgid="1368528132525626264">"Activeren"</string>
     <string name="ota_title_activate_success" msgid="6570240212263372046">"De telefoon is geactiveerd."</string>
     <string name="ota_title_problem_with_activation" msgid="7095824491970084367">"Probleem met activeren"</string>
-    <string name="ota_listen" msgid="162923839877584937">"Volg de gesproken instructies tot u hoort dat de activering is voltooid."</string>
+    <string name="ota_listen" msgid="162923839877584937">"Volg de gesproken instructies tot je hoort dat de activering is voltooid."</string>
     <string name="ota_speaker" msgid="6904589278542719647">"Luidspreker"</string>
-    <string name="ota_progress" msgid="460876637828044519">"Uw telefoon programmeren…"</string>
-    <string name="ota_failure" msgid="7713756181204620397">"Kan uw telefoon niet programmeren"</string>
-    <string name="ota_successful" msgid="1880780692887077407">"Uw telefoon is nu geactiveerd. Het kan maximaal vijftien minuten duren voordat de service actief is."</string>
-    <string name="ota_unsuccessful" msgid="8072141612635635357">"Uw telefoon is niet geactiveerd. \nZoek een plek waar u betere dekking heeft (in de buurt van een raam of buiten). \n\nProbeer het opnieuw of bel de klantenservice voor meer opties."</string>
+    <string name="ota_progress" msgid="460876637828044519">"Je telefoon programmeren…"</string>
+    <string name="ota_failure" msgid="7713756181204620397">"Kan je telefoon niet programmeren"</string>
+    <string name="ota_successful" msgid="1880780692887077407">"Je telefoon is nu geactiveerd. Het kan maximaal vijftien minuten duren voordat de service actief is."</string>
+    <string name="ota_unsuccessful" msgid="8072141612635635357">"Je telefoon is niet geactiveerd. \nZoek een plek waar je betere dekking hebt (in de buurt van een raam of buiten). \n\nProbeer het opnieuw of bel de klantenservice voor meer opties."</string>
     <string name="ota_spc_failure" msgid="3909983542575030796">"VEEL SPC-FOUTEN"</string>
     <string name="ota_call_end" msgid="4537279738134612388">"Terug"</string>
     <string name="ota_try_again" msgid="7685477206465902290">"Opnieuw proberen"</string>
@@ -510,12 +510,12 @@
       <item quantity="one">Er is al <xliff:g id="COUNT_0">%s</xliff:g> minuut geen gegevensverbinding</item>
     </plurals>
     <plurals name="alert_dialog_exit_ecm" formatted="false" msgid="7179911675595441201">
-      <item quantity="other">De telefoon bevindt zich <xliff:g id="COUNT_1">%s</xliff:g> minuten in de modus voor noodoproepen. In deze modus kunnen geen apps worden gebruikt waarvoor een gegevensverbinding nodig is. Wilt u nu afsluiten?</item>
-      <item quantity="one">De telefoon bevindt zich <xliff:g id="COUNT_0">%s</xliff:g> minuut in de modus voor noodoproepen. In deze modus kunnen geen apps worden gebruikt waarvoor een gegevensverbinding nodig is. Wilt u nu afsluiten?</item>
+      <item quantity="other">De telefoon bevindt zich <xliff:g id="COUNT_1">%s</xliff:g> minuten in de modus voor noodoproepen. In deze modus kunnen geen apps worden gebruikt waarvoor een gegevensverbinding nodig is. Wil je nu afsluiten?</item>
+      <item quantity="one">De telefoon bevindt zich <xliff:g id="COUNT_0">%s</xliff:g> minuut in de modus voor noodoproepen. In deze modus kunnen geen apps worden gebruikt waarvoor een gegevensverbinding nodig is. Wil je nu afsluiten?</item>
     </plurals>
     <plurals name="alert_dialog_not_avaialble_in_ecm" formatted="false" msgid="8042973425225093895">
-      <item quantity="other">De geselecteerde actie is niet beschikbaar in de modus voor noodoproepen. De telefoon bevindt zich <xliff:g id="COUNT_1">%s</xliff:g> minuten in deze modus. Wilt u nu afsluiten?</item>
-      <item quantity="one">De geselecteerde actie is niet beschikbaar in de modus voor noodoproepen. De telefoon bevindt zich <xliff:g id="COUNT_0">%s</xliff:g> minuut in deze modus. Wilt u nu afsluiten?</item>
+      <item quantity="other">De geselecteerde actie is niet beschikbaar in de modus voor noodoproepen. De telefoon bevindt zich <xliff:g id="COUNT_1">%s</xliff:g> minuten in deze modus. Wil je nu afsluiten?</item>
+      <item quantity="one">De geselecteerde actie is niet beschikbaar in de modus voor noodoproepen. De telefoon bevindt zich <xliff:g id="COUNT_0">%s</xliff:g> minuut in deze modus. Wil je nu afsluiten?</item>
     </plurals>
     <string name="alert_dialog_in_ecm_call" msgid="1886723687211887104">"De geselecteerde actie is niet beschikbaar tijdens noodoproepen."</string>
     <string name="progress_dialog_exiting_ecm" msgid="4835734101617817074">"Modus voor noodoproepen verlaten"</string>
@@ -539,7 +539,7 @@
     <string name="preference_category_ringtone" msgid="5197960752529332721">"Beltoon en trillen"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"Ingebouwde simkaarten"</string>
     <string name="enable_video_calling_title" msgid="7237253660669000899">"Videogesprekken inschakelen"</string>
-    <string name="enable_video_calling_dialog_msg" msgid="8948186136957417948">"Als u videogesprekken wilt inschakelen, moet u de geoptimaliseerde 4G LTE-modus inschakelen in de netwerkinstellingen."</string>
+    <string name="enable_video_calling_dialog_msg" msgid="8948186136957417948">"Als je videogesprekken wilt inschakelen, moet je de geoptimaliseerde 4G LTE-modus inschakelen in de netwerkinstellingen."</string>
     <string name="enable_video_calling_dialog_settings" msgid="576528473599603249">"Netwerkinstellingen"</string>
     <string name="enable_video_calling_dialog_close" msgid="7411471282167927991">"Sluiten"</string>
     <string name="sim_label_emergency_calls" msgid="4847699229529306397">"Noodoproepen"</string>
@@ -550,5 +550,5 @@
     <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"Wifi-oproep"</string>
     <string name="emergency_action_launch_hint" msgid="5841511849007540970">"Tik nogmaals om te openen"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"Er is een fout opgetreden tijdens het decoderen van het bericht."</string>
-    <string name="callFailed_cdma_activation" msgid="2307989779233262164">"Een simkaart heeft uw service geactiveerd en heeft de roaming-mogelijkheden van uw telefoon geüpdatet."</string>
+    <string name="callFailed_cdma_activation" msgid="2307989779233262164">"Een simkaart heeft je service geactiveerd en heeft de roaming-mogelijkheden van je telefoon geüpdatet."</string>
 </resources>
