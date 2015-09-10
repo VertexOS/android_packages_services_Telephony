@@ -551,6 +551,23 @@ public class MobileNetworkSettings extends PreferenceActivity
             prefSet.removePreference(mButtonPreferredNetworkMode);
             prefSet.removePreference(mButtonEnabledNetworks);
             prefSet.removePreference(mLteDataServicePref);
+        } else if (carrierConfig.getBoolean(CarrierConfigManager
+                    .KEY_HIDE_PREFERRED_NETWORK_TYPE_BOOL)) {
+            prefSet.removePreference(mButtonPreferredNetworkMode);
+            prefSet.removePreference(mButtonEnabledNetworks);
+
+            final int phoneType = mPhone.getPhoneType();
+            if (phoneType == PhoneConstants.PHONE_TYPE_CDMA) {
+                mCdmaOptions = new CdmaOptions(this, prefSet, mPhone);
+                // In World mode force a refresh of GSM Options.
+                if (isWorldMode()) {
+                    mGsmUmtsOptions = null;
+                }
+            } else if (phoneType == PhoneConstants.PHONE_TYPE_GSM) {
+                mGsmUmtsOptions = new GsmUmtsOptions(this, prefSet, phoneSubId);
+            } else {
+                throw new IllegalStateException("Unexpected phone type: " + phoneType);
+            }
         } else if (carrierConfig.getBoolean(CarrierConfigManager.KEY_WORLD_PHONE_BOOL) == true) {
             prefSet.removePreference(mButtonEnabledNetworks);
             // set the listener for the mButtonPreferredNetworkMode list preference so we can issue
