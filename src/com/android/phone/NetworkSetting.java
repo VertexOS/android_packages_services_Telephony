@@ -204,7 +204,7 @@ public class NetworkSetting extends PreferenceActivity
             Message msg = mHandler.obtainMessage(EVENT_NETWORK_SELECTION_DONE);
             Phone phone = PhoneFactory.getPhone(mPhoneId);
             if (phone != null) {
-                phone.selectNetworkManually(mNetworkMap.get(selectedCarrier), msg);
+                phone.selectNetworkManually(mNetworkMap.get(selectedCarrier), true, msg);
                 displayNetworkSeletionInProgress(networkStr);
                 handled = true;
             } else {
