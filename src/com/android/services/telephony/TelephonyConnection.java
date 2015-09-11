@@ -61,6 +61,7 @@ abstract class TelephonyConnection extends Connection {
     private static final int MSG_MULTIPARTY_STATE_CHANGED = 5;
     private static final int MSG_CONFERENCE_MERGE_FAILED = 6;
     private static final int MSG_SUPP_SERVICE_NOTIFY = 7;
+
     /**
      * Mappings from {@link com.android.internal.telephony.Connection} extras keys to their
      * equivalents defined in {@link android.telecom.Connection}.
@@ -73,6 +74,7 @@ abstract class TelephonyConnection extends Connection {
     private static final int MSG_SET_VIDEO_PROVIDER = 11;
     private static final int MSG_SET_AUDIO_QUALITY = 12;
     private static final int MSG_SET_CONFERENCE_PARTICIPANTS = 13;
+    private static final int MSG_CONNECTION_EXTRAS_CHANGED = 14;
 
     private final Handler mHandler = new Handler() {
         @Override
@@ -147,6 +149,7 @@ abstract class TelephonyConnection extends Connection {
                         }
                     }
                     break;
+
                 case MSG_SET_VIDEO_STATE:
                     int videoState = (int) msg.obj;
                     setVideoState(videoState);
@@ -177,6 +180,11 @@ abstract class TelephonyConnection extends Connection {
                 case MSG_SET_CONFERENCE_PARTICIPANTS:
                     List<ConferenceParticipant> participants = (List<ConferenceParticipant>) msg.obj;
                     updateConferenceParticipants(participants);
+                    break;
+
+                case MSG_CONNECTION_EXTRAS_CHANGED:
+                    final Bundle extras = (Bundle) msg.obj;
+                    updateExtras(extras);
                     break;
             }
         }
@@ -301,6 +309,11 @@ abstract class TelephonyConnection extends Connection {
         @Override
         public void onConferenceMergedFailed() {
             handleConferenceMergeFailed();
+        }
+
+        @Override
+        public void onExtrasChanged(Bundle extras) {
+            mHandler.obtainMessage(MSG_CONNECTION_EXTRAS_CHANGED, extras).sendToTarget();
         }
     };
 
@@ -785,10 +798,8 @@ abstract class TelephonyConnection extends Connection {
         return true;
     }
 
-    protected void updateExtras() {
-        Bundle extras = null;
+    protected void updateExtras(Bundle extras) {
         if (mOriginalConnection != null) {
-            extras = mOriginalConnection.getExtras();
             if (extras != null) {
                 // Check if extras have changed and need updating.
                 if (!areBundlesEqual(mOriginalConnectionExtras, extras)) {
@@ -896,7 +907,6 @@ abstract class TelephonyConnection extends Connection {
         updateConnectionCapabilities();
         updateAddress();
         updateMultiparty();
-        updateExtras();
     }
 
     /**
