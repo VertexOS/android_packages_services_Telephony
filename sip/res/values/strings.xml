@@ -133,6 +133,8 @@
     <!-- Hint to hide the advanced settings section. [CHAR LIMIT=NONE] -->
     <string name="advanced_settings_hide">▽ Touch to hide all</string>
 
+    <!-- Text in an alert dialog telling the user that all input fields can not be left blank. [CHAR LIMIT=NONE] -->
+    <string name="all_empty_alert">Enter details of new SIP account.</string>
     <!-- Text in an alert dialog telling the user that some input field (name of which is also part of the strings being translated above) is required and can not be left blank. [CHAR LIMIT=NONE] -->
     <string name="empty_alert"><xliff:g id="input_field_name" example="Username, Password...">%s</xliff:g> is required and can\'t be left blank.</string>
     <!-- Showing that port number is out of range in an alert dialog. [CHAR LIMIT=NONE] -->
