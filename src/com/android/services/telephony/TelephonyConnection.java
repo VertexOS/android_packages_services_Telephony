@@ -318,8 +318,11 @@ abstract class TelephonyConnection extends Connection {
     };
 
     private com.android.internal.telephony.Connection mOriginalConnection;
-    private Call.State mOriginalConnectionState = Call.State.IDLE;
+    private Call.State mConnectionState = Call.State.IDLE;
     private Bundle mOriginalConnectionExtras = new Bundle();
+    private boolean mIsStateOverridden = false;
+    private Call.State mOriginalConnectionState = Call.State.IDLE;
+    private Call.State mConnectionOverriddenState = Call.State.IDLE;
 
     private boolean mWasImsConnection;
 
@@ -493,7 +496,7 @@ abstract class TelephonyConnection extends Connection {
         Log.v(this, "performHold");
         // TODO: Can dialing calls be put on hold as well since they take up the
         // foreground call slot?
-        if (Call.State.ACTIVE == mOriginalConnectionState) {
+        if (Call.State.ACTIVE == mConnectionState) {
             Log.v(this, "Holding active call");
             try {
                 Phone phone = mOriginalConnection.getCall().getPhone();
@@ -524,7 +527,7 @@ abstract class TelephonyConnection extends Connection {
 
     public void performUnhold() {
         Log.v(this, "performUnhold");
-        if (Call.State.HOLDING == mOriginalConnectionState) {
+        if (Call.State.HOLDING == mConnectionState) {
             try {
                 // Here's the deal--Telephony hold/unhold is weird because whenever there exists
                 // more than one call, one of them must always be active. In other words, if you
@@ -863,19 +866,32 @@ abstract class TelephonyConnection extends Connection {
         return true;
     }
 
-    void updateState() {
-       updateState(false);
+    void setStateOverride(Call.State state) {
+        mIsStateOverridden = true;
+        mConnectionOverriddenState = state;
+        // Need to keep track of the original connection's state before override.
+        mOriginalConnectionState = mOriginalConnection.getState();
+        updateStateInternal();
     }
 
-    void updateState(boolean force) {
-        if (mOriginalConnection == null) {
-            return;
-        }
+    void resetStateOverride() {
+        mIsStateOverridden = false;
+        updateStateInternal();
+    }
 
-        Call.State newState = mOriginalConnection.getState();
-        Log.v(this, "Update state from %s to %s for %s", mOriginalConnectionState, newState, this);
-        if (mOriginalConnectionState != newState || force) {
-            mOriginalConnectionState = newState;
+    void updateStateInternal() {
+        Call.State newState;
+        // If the state is overridden and the state of the original connection hasn't changed since,
+        // then we continue in the overridden state, else we go to the original connection's state.
+        if (mIsStateOverridden && mOriginalConnectionState == mOriginalConnection.getState()) {
+            newState = mConnectionOverriddenState;
+        } else {
+            newState = mOriginalConnection.getState();
+        }
+        Log.v(this, "Update state from %s to %s for %s", mConnectionState, newState, this);
+
+        if (mConnectionState != newState) {
+            mConnectionState = newState;
             switch (newState) {
                 case IDLE:
                     break;
@@ -903,6 +919,14 @@ abstract class TelephonyConnection extends Connection {
                     break;
             }
         }
+    }
+
+    void updateState() {
+        if (mOriginalConnection == null) {
+            return;
+        }
+
+        updateStateInternal();
         updateStatusHints();
         updateConnectionCapabilities();
         updateAddress();
@@ -1075,15 +1099,13 @@ abstract class TelephonyConnection extends Connection {
 
     void resetStateForConference() {
         if (getState() == Connection.STATE_HOLDING) {
-            if (mOriginalConnection.getState() == Call.State.ACTIVE) {
-                setActive();
-            }
+            resetStateOverride();
         }
     }
 
     boolean setHoldingForConference() {
         if (getState() == Connection.STATE_ACTIVE) {
-            setOnHold();
+            setStateOverride(Call.State.HOLDING);
             return true;
         }
         return false;

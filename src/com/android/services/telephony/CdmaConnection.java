@@ -190,9 +190,9 @@ final class CdmaConnection extends TelephonyConnection {
 
     void forceAsDialing(boolean isDialing) {
         if (isDialing) {
-            setDialing();
+            setStateOverride(Call.State.DIALING);
         } else {
-            updateState(true);
+            resetStateOverride();
         }
     }
 
