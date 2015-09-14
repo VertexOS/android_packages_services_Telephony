@@ -246,7 +246,18 @@ final class TelephonyConferenceController {
             } else {
                 if (allConnInService) {
                     mTriggerRecalculate = false;
-                    mTelephonyConference = new TelephonyConference(null);
+
+                    // Get PhoneAccount from one of the conferenced connections and use it to set
+                    // the phone account on the conference.
+                    PhoneAccountHandle phoneAccountHandle = null;
+                    if (!conferencedConnections.isEmpty()) {
+                        TelephonyConnection telephonyConnection =
+                                (TelephonyConnection) conferencedConnections.iterator().next();
+                        phoneAccountHandle = PhoneUtils.makePstnPhoneAccountHandle(
+                                telephonyConnection.getPhone());
+                    }
+
+                    mTelephonyConference = new TelephonyConference(phoneAccountHandle);
                     for (Connection connection : conferencedConnections) {
                         Log.d(this, "Adding a connection to a conference call: %s %s",
                                 mTelephonyConference, connection);
