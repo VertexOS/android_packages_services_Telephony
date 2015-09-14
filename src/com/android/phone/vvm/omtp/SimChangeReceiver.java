@@ -67,9 +67,14 @@ public class SimChangeReceiver extends BroadcastReceiver {
             case CarrierConfigManager.ACTION_CARRIER_CONFIG_CHANGED:
                 int subId = intent.getIntExtra(PhoneConstants.SUBSCRIPTION_KEY,
                         SubscriptionManager.INVALID_SUBSCRIPTION_ID);
+
+                if (subId == SubscriptionManager.INVALID_SUBSCRIPTION_ID) {
+                    Log.i(TAG, "Received SIM change for invalid subscription id.");
+                    return;
+                }
+
                 OmtpVvmCarrierConfigHelper carrierConfigHelper =
                         new OmtpVvmCarrierConfigHelper(context, subId);
-
                 if (carrierConfigHelper.isOmtpVvmType()) {
                     PhoneAccountHandle phoneAccount = PhoneUtils.makePstnPhoneAccountHandle(
                             SubscriptionManager.getPhoneId(subId));
