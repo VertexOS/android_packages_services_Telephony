@@ -170,16 +170,10 @@ public class ADNList extends ListActivity {
         if (DBG) log("displayProgress: " + loading);
 
         mEmptyText.setText(loading ? R.string.simContacts_emptyLoading:
-            (isAirplaneModeOn(this) ? R.string.simContacts_airplaneMode :
-                R.string.simContacts_empty));
+                R.string.simContacts_empty);
         getWindow().setFeatureInt(
                 Window.FEATURE_INDETERMINATE_PROGRESS,
                 loading ? PROGRESS_VISIBILITY_ON : PROGRESS_VISIBILITY_OFF);
-    }
-
-    private static boolean isAirplaneModeOn(Context context) {
-        return Settings.System.getInt(context.getContentResolver(),
-                Settings.System.AIRPLANE_MODE_ON, 0) != 0;
     }
 
     private class QueryHandler extends AsyncQueryHandler {
