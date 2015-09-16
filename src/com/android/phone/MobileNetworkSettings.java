@@ -552,7 +552,8 @@ public class MobileNetworkSettings extends PreferenceActivity
             prefSet.removePreference(mButtonEnabledNetworks);
             prefSet.removePreference(mLteDataServicePref);
         } else if (carrierConfig.getBoolean(CarrierConfigManager
-                    .KEY_HIDE_PREFERRED_NETWORK_TYPE_BOOL)) {
+                    .KEY_HIDE_PREFERRED_NETWORK_TYPE_BOOL)
+                && !mPhone.getServiceState().getRoaming()) {
             prefSet.removePreference(mButtonPreferredNetworkMode);
             prefSet.removePreference(mButtonEnabledNetworks);
 
