@@ -363,6 +363,13 @@ final class TelecomAccountRegistry {
     }
 
     /**
+     * @return Reference to the {@code TelecomAccountRegistry}'s subscription manager.
+     */
+    SubscriptionManager getSubscriptionManager() {
+        return mSubscriptionManager;
+    }
+
+    /**
      * Returns the address (e.g. the phone number) associated with a subscription.
      *
      * @param handle The phone account handle to find the subscription address for.
