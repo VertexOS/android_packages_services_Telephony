@@ -1301,7 +1301,11 @@ public class MobileNetworkSettings extends PreferenceActivity
             apnExpand.setEnabled(isWorldMode() || enable);
         }
         if (operatorSelectionExpand != null) {
-            operatorSelectionExpand.setEnabled(enable);
+            if (enable) {
+                operatorSelectionExpand.setEnabled(true);
+            } else {
+                prefSet.removePreference(operatorSelectionExpand);
+            }
         }
         if (carrierSettings != null) {
             prefSet.removePreference(carrierSettings);
