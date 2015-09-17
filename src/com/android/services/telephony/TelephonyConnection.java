@@ -381,7 +381,9 @@ abstract class TelephonyConnection extends Connection {
     private final Set<TelephonyConnectionListener> mTelephonyListeners = Collections.newSetFromMap(
             new ConcurrentHashMap<TelephonyConnectionListener, Boolean>(8, 0.9f, 1));
 
-    protected TelephonyConnection(com.android.internal.telephony.Connection originalConnection) {
+    protected TelephonyConnection(com.android.internal.telephony.Connection originalConnection,
+            String callId) {
+        setTelecomCallId(callId);
         if (originalConnection != null) {
             setOriginalConnection(originalConnection);
         }
@@ -648,6 +650,7 @@ abstract class TelephonyConnection extends Connection {
         clearOriginalConnection();
         mOriginalConnectionExtras.clear();
         mOriginalConnection = originalConnection;
+        mOriginalConnection.setTelecomCallId(getTelecomCallId());
         getPhone().registerForPreciseCallStateChanged(
                 mHandler, MSG_PRECISE_CALL_STATE_CHANGED, null);
         getPhone().registerForHandoverStateChanged(
@@ -1264,6 +1267,8 @@ abstract class TelephonyConnection extends Connection {
         StringBuilder sb = new StringBuilder();
         sb.append("[TelephonyConnection objId:");
         sb.append(System.identityHashCode(this));
+        sb.append(" telecomCallID:");
+        sb.append(getTelecomCallId());
         sb.append(" type:");
         if (isImsConnection()) {
             sb.append("ims");
