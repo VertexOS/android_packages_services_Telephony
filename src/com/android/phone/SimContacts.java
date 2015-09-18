@@ -20,8 +20,10 @@ import android.accounts.Account;
 import android.app.ActionBar;
 import android.app.ProgressDialog;
 import android.content.ContentProviderOperation;
+import android.content.ContentProviderResult;
 import android.content.ContentResolver;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnCancelListener;
 import android.content.DialogInterface.OnClickListener;
@@ -52,6 +54,7 @@ import android.widget.CursorAdapter;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -132,7 +135,7 @@ public class SimContacts extends ADNList {
         }
     }
 
-    private static void actuallyImportOneSimContact(
+    private static boolean actuallyImportOneSimContact(
             final Cursor cursor, final ContentResolver resolver, Account account) {
         final NamePhoneTypePair namePhoneTypePair =
             new NamePhoneTypePair(cursor.getString(NAME_COLUMN));
@@ -194,20 +197,32 @@ public class SimContacts extends ADNList {
         }
 
         try {
-            resolver.applyBatch(ContactsContract.AUTHORITY, operationList);
+            final ContentProviderResult[] results = resolver.applyBatch(ContactsContract.AUTHORITY,
+                    operationList);
+            return results.length > 0; // Batch operations either all succeed or all fail.
         } catch (RemoteException e) {
             Log.e(LOG_TAG, String.format("%s: %s", e.toString(), e.getMessage()));
         } catch (OperationApplicationException e) {
             Log.e(LOG_TAG, String.format("%s: %s", e.toString(), e.getMessage()));
         }
+        return false;
     }
 
     private void importOneSimContact(int position) {
         final ContentResolver resolver = getContentResolver();
+        final Context context = getApplicationContext();
         if (mCursor.moveToPosition(position)) {
-            actuallyImportOneSimContact(mCursor, resolver, mAccount);
+            if (actuallyImportOneSimContact(mCursor, resolver, mAccount)){
+                Toast.makeText(context, R.string.singleContactImportedMsg, Toast.LENGTH_SHORT)
+                        .show();
+            } else {
+                Toast.makeText(context, R.string.failedToImportSingleContactMsg, Toast.LENGTH_SHORT)
+                        .show();
+            }
         } else {
             Log.e(LOG_TAG, "Failed to move the cursor to the position \"" + position + "\"");
+            Toast.makeText(context, R.string.failedToImportSingleContactMsg, Toast.LENGTH_SHORT)
+                    .show();
         }
     }
 

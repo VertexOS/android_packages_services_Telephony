@@ -1040,6 +1040,11 @@
     <!-- Import a single contact entry from contacts to the SIM card -->
     <string name="importToFDNfromContacts">Import from contacts</string>
 
+    <!-- Message shown when a single contact is imported from SIM card -->
+    <string name="singleContactImportedMsg">Imported contact</string>
+    <!-- Message shown when a single contact could not be imported from SIM card -->
+    <string name="failedToImportSingleContactMsg">Failed to import contact</string>
+
     <!-- Hearing aid settings -->
     <string name="hac_mode_title">Hearing aids</string>
     <string name="hac_mode_summary">Turn on hearing aid compatibility</string>
