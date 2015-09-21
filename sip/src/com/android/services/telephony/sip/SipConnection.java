@@ -145,7 +145,8 @@ final class SipConnection extends Connection {
     public void onUnhold() {
         if (VERBOSE) log("onUnhold");
         try {
-            if (getPhone() != null && getState() == STATE_HOLDING) {
+            if (getPhone() != null && getState() == STATE_HOLDING &&
+                    getPhone().getForegroundCall().getState() != Call.State.DIALING) {
                 getPhone().switchHoldingAndActive();
             }
         } catch (CallStateException e) {
