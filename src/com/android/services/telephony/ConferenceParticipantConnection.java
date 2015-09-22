@@ -16,6 +16,7 @@
 
 package com.android.services.telephony;
 
+import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneConstants;
 
 import android.net.Uri;
@@ -23,6 +24,8 @@ import android.telecom.Connection;
 import android.telecom.ConferenceParticipant;
 import android.telecom.DisconnectCause;
 import android.telecom.PhoneAccount;
+import android.telephony.PhoneNumberUtils;
+import android.telephony.SubscriptionInfo;
 import android.text.TextUtils;
 
 /**
@@ -60,12 +63,14 @@ public class ConferenceParticipantConnection extends Connection {
             ConferenceParticipant participant) {
 
         mParentConnection = parentConnection;
+
         int presentation = getParticipantPresentation(participant);
         Uri address;
         if (presentation != PhoneConstants.PRESENTATION_ALLOWED) {
             address = null;
         } else {
-            address = getParticipantAddress(participant);
+            String countryIso = getCountryIso(parentConnection.getCall().getPhone());
+            address = getParticipantAddress(participant, countryIso);
         }
         setAddress(address, presentation);
         setCallerDisplayName(participant.getDisplayName(), presentation);
@@ -197,9 +202,11 @@ public class ConferenceParticipantConnection extends Connection {
      * format into a typical tel: style URI.
      *
      * @param participant The conference participant.
+     * @param countryIso The country ISO of the current subscription; used when formatting the
+     *                   participant phone number to E.164 format.
      * @return The participant's address URI.
      */
-    private Uri getParticipantAddress(ConferenceParticipant participant) {
+    private Uri getParticipantAddress(ConferenceParticipant participant, String countryIso) {
         Uri address = participant.getHandle();
         if (address == null) {
             return address;
@@ -233,7 +240,44 @@ public class ConferenceParticipantConnection extends Connection {
         }
         number = numberParts[0];
 
-        return Uri.fromParts(PhoneAccount.SCHEME_TEL, number, null);
+        // Attempt to format the number in E.164 format and use that as part of the TEL URI.
+        // RFC2806 recommends to format telephone numbers using E.164 since it is independent of
+        // how the dialing of said numbers takes place.
+        // If conversion to E.164 fails, the returned value is null.  In that case, fallback to the
+        // number which was in the CEP data.
+        String formattedNumber = null;
+        if (!TextUtils.isEmpty(countryIso)) {
+            formattedNumber = PhoneNumberUtils.formatNumberToE164(number, countryIso);
+        }
+
+        return Uri.fromParts(PhoneAccount.SCHEME_TEL,
+                formattedNumber != null ? formattedNumber : number, null);
+    }
+
+    /**
+     * Given a {@link Phone} instance, determines the country ISO associated with the phone's
+     * subscription.
+     *
+     * @param phone The phone instance.
+     * @return The country ISO.
+     */
+    private String getCountryIso(Phone phone) {
+        if (phone == null) {
+            return null;
+        }
+
+        int subId = phone.getSubId();
+
+        SubscriptionInfo subInfo = TelecomAccountRegistry.getInstance(null).
+                getSubscriptionManager().getActiveSubscriptionInfo(subId);
+
+        if (subInfo == null) {
+            return null;
+        }
+        // The SubscriptionInfo reports ISO country codes in lower case.  Convert to upper case,
+        // since ultimately we use this ISO when formatting the CEP phone number, and the phone
+        // number formatting library expects uppercase ISO country codes.
+        return subInfo.getCountryIso().toUpperCase();
     }
 
     /**
