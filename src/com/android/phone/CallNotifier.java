@@ -21,6 +21,7 @@ import com.android.internal.telephony.CallManager;
 import com.android.internal.telephony.Connection;
 import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneConstants;
+import com.android.internal.telephony.SubscriptionController;
 import com.android.internal.telephony.TelephonyCapabilities;
 import com.android.internal.telephony.cdma.CdmaInformationRecords.CdmaDisplayInfoRec;
 import com.android.internal.telephony.cdma.CdmaInformationRecords.CdmaSignalInfoRec;
@@ -30,6 +31,9 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothHeadset;
 import android.bluetooth.BluetoothProfile;
 import android.content.Context;
+import android.content.BroadcastReceiver;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.media.AudioAttributes;
 import android.media.AudioManager;
 import android.media.ToneGenerator;
@@ -71,9 +75,14 @@ public class CallNotifier extends Handler {
     /** The singleton instance. */
     private static CallNotifier sInstance;
 
+    private static final String ACTION_UICC_MANUAL_PROVISION_STATUS_CHANGED =
+            "org.codeaurora.intent.action.ACTION_UICC_MANUAL_PROVISION_STATUS_CHANGED";
+    private static final String EXTRA_NEW_PROVISION_STATE = "newProvisionState";
+    private static final int NOT_PROVISIONED = 0;
+
     private Map<Integer, CallNotifierPhoneStateListener> mPhoneStateListeners =
             new ArrayMap<Integer, CallNotifierPhoneStateListener>();
-
+    private Map<Integer, Boolean> mCFIStatus = new ArrayMap<Integer, Boolean>();
     private PhoneGlobals mApplication;
     private CallManager mCM;
     private BluetoothHeadset mBluetoothHeadset;
@@ -105,6 +114,28 @@ public class CallNotifier extends Handler {
     public static final int INTERNAL_SHOW_MESSAGE_NOTIFICATION_DONE = 22;
     // Other events from call manager
     public static final int EVENT_OTA_PROVISION_CHANGE = 20;
+
+    private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            Log.d(LOG_TAG, "Intent received: " + action);
+            if (ACTION_UICC_MANUAL_PROVISION_STATUS_CHANGED.equals(action)) {
+                int slotId = intent.getIntExtra(PhoneConstants.PHONE_KEY,
+                        SubscriptionManager.INVALID_SIM_SLOT_INDEX);
+                int newProvisionedState = intent.getIntExtra(EXTRA_NEW_PROVISION_STATE,
+                        NOT_PROVISIONED);
+                 Log.d(LOG_TAG, "Received ACTION_UICC_MANUAL_PROVISION_STATUS_CHANGED on slotId: "
+                         + slotId + " new sub state " + newProvisionedState);
+                int subId[] = SubscriptionController.getInstance().getSubIdUsingSlotId(slotId);
+                if (mCFIStatus.containsKey(subId[0]) && (mCFIStatus.get(subId[0]) == true) &&
+                    newProvisionedState == NOT_PROVISIONED) {
+                    Log.d(LOG_TAG, "SubId: " +subId[0]+" "+"NOT_PROVISIONED");
+                    mApplication.notificationMgr.updateCfi(subId[0], false);
+                }
+            }
+        }
+    };
 
     /**
      * Initialize the singleton CallNotifier instance.
@@ -150,6 +181,8 @@ public class CallNotifier extends Handler {
                         updatePhoneStateListeners();
                     }
                 });
+        IntentFilter intentFilter = new IntentFilter(ACTION_UICC_MANUAL_PROVISION_STATUS_CHANGED);
+        mApplication.getApplicationContext().registerReceiver(mReceiver, intentFilter);
     }
 
     private void createSignalInfoToneGenerator() {
@@ -814,6 +847,7 @@ public class CallNotifier extends Handler {
         @Override
         public void onCallForwardingIndicatorChanged(boolean visible) {
             if (VDBG) log("onCallForwardingIndicatorChanged(): " + this.mSubId + " " + visible);
+            mCFIStatus.put(this.mSubId, visible);
             mApplication.notificationMgr.updateCfi(this.mSubId, visible);
         }
     };
