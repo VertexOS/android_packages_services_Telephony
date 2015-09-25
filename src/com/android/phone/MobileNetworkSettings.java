@@ -627,7 +627,7 @@ public class MobileNetworkSettings extends PreferenceActivity
                     mGsmUmtsOptions = null;
                 }
             } else if (phoneType == PhoneConstants.PHONE_TYPE_GSM) {
-                if (getResources().getBoolean(R.bool.config_support_tdscdma)) {
+                if (isSupportTdscdma()) {
                     mButtonEnabledNetworks.setEntries(
                             R.array.enabled_networks_tdscdma_choices);
                     mButtonEnabledNetworks.setEntryValues(
@@ -1167,7 +1167,7 @@ public class MobileNetworkSettings extends PreferenceActivity
             case Phone.NT_MODE_LTE_TDSCDMA_WCDMA:
             case Phone.NT_MODE_LTE_TDSCDMA_CDMA_EVDO_GSM_WCDMA:
             case Phone.NT_MODE_LTE_CDMA_EVDO_GSM_WCDMA:
-                if (getResources().getBoolean(R.bool.config_support_tdscdma)) {
+                if (isSupportTdscdma()) {
                     mButtonEnabledNetworks.setValue(
                             Integer.toString(Phone.NT_MODE_LTE_TDSCDMA_CDMA_EVDO_GSM_WCDMA));
                     mButtonEnabledNetworks.setSummary(R.string.network_lte);
@@ -1313,4 +1313,22 @@ public class MobileNetworkSettings extends PreferenceActivity
         }
     }
 
+    private boolean isSupportTdscdma() {
+        if (getResources().getBoolean(R.bool.config_support_tdscdma)) {
+            return true;
+        }
+
+        String operatorNumeric = mPhone.getServiceState().getOperatorNumeric();
+        String[] numericArray = getResources().getStringArray(
+                R.array.config_support_tdscdma_roaming_on_networks);
+        if (numericArray.length == 0 || operatorNumeric == null) {
+            return false;
+        }
+        for (String numeric : numericArray) {
+            if (operatorNumeric.equals(numeric)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
