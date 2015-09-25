@@ -140,6 +140,9 @@
     <bool name="config_enabled_lte" translatable="false">false</bool>
     <!-- Show enabled tdscdma option for device -->
     <bool name="config_support_tdscdma" translatable="false">false</bool>
+    <!-- Show enabled tdscdma option for device when connect roaming network -->
+    <string-array name="config_support_tdscdma_roaming_on_networks" translatable="false">
+    </string-array>
     <!-- Show cdma auto network mode in (glabal) roaming -->
     <!-- DEPRECATED: Use CarrierConfigManager#KEY_SHOW_CDMA_CHOICES_BOOL -->
     <bool name="config_show_cdma" translatable="false">false</bool>
