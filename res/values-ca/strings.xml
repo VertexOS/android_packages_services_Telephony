@@ -465,6 +465,10 @@
     <string name="importAllSimEntries" msgid="1503181169636198673">"Importa-ho tot"</string>
     <string name="importingSimContacts" msgid="7374056215462575769">"S\'estan important els contactes de la SIM"</string>
     <string name="importToFDNfromContacts" msgid="2130620207013368580">"Importa dels contactes"</string>
+    <!-- no translation found for singleContactImportedMsg (6868483416182599206) -->
+    <skip />
+    <!-- no translation found for failedToImportSingleContactMsg (415399285420353917) -->
+    <skip />
     <string name="hac_mode_title" msgid="8740268574688743289">"Audiòfons"</string>
     <string name="hac_mode_summary" msgid="6833851160514929341">"Activa la compatibilitat amb audiòfons"</string>
   <string-array name="tty_mode_entries">
@@ -502,8 +506,8 @@
     <string name="ota_try_again" msgid="7685477206465902290">"Torna-ho a provar"</string>
     <string name="ota_next" msgid="3904945374358235910">"Següent"</string>
     <string name="ecm_exit_dialog" msgid="4448531867763097533">"EcmExitDialog"</string>
-    <string name="phone_entered_ecm_text" msgid="6266424252578731203">"S\'ha entrat al mode de crida de retorn d\'emergència"</string>
-    <string name="phone_in_ecm_notification_title" msgid="3226896828951687085">"Mode de crida de retorn d\'emergència"</string>
+    <string name="phone_entered_ecm_text" msgid="6266424252578731203">"S\'ha activat al mode de devolució de trucada d\'emergència"</string>
+    <string name="phone_in_ecm_notification_title" msgid="3226896828951687085">"Mode de devolució de trucada d\'emergència"</string>
     <string name="phone_in_ecm_call_notification_text" msgid="4611608947314729773">"Connexió de dades desactivada"</string>
     <plurals name="phone_in_ecm_notification_time" formatted="false" msgid="8308381858502470919">
       <item quantity="other">No hi ha hagut connexió de dades durant <xliff:g id="COUNT_1">%s</xliff:g> minuts</item>

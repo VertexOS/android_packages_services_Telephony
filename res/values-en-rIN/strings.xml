@@ -465,6 +465,8 @@
     <string name="importAllSimEntries" msgid="1503181169636198673">"Import all"</string>
     <string name="importingSimContacts" msgid="7374056215462575769">"Importing SIM contacts"</string>
     <string name="importToFDNfromContacts" msgid="2130620207013368580">"Import from contacts"</string>
+    <string name="singleContactImportedMsg" msgid="6868483416182599206">"Imported contact"</string>
+    <string name="failedToImportSingleContactMsg" msgid="415399285420353917">"Failed to import contact"</string>
     <string name="hac_mode_title" msgid="8740268574688743289">"Hearing aids"</string>
     <string name="hac_mode_summary" msgid="6833851160514929341">"Turn on hearing-aid compatibility"</string>
   <string-array name="tty_mode_entries">

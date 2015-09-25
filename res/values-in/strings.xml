@@ -465,6 +465,8 @@
     <string name="importAllSimEntries" msgid="1503181169636198673">"Impor semua"</string>
     <string name="importingSimContacts" msgid="7374056215462575769">"Mengimpor kontak dari SIM"</string>
     <string name="importToFDNfromContacts" msgid="2130620207013368580">"Impor dari kontak"</string>
+    <string name="singleContactImportedMsg" msgid="6868483416182599206">"Kontak diimpor"</string>
+    <string name="failedToImportSingleContactMsg" msgid="415399285420353917">"Gagal mengimpor kontak"</string>
     <string name="hac_mode_title" msgid="8740268574688743289">"Alat bantu dengar"</string>
     <string name="hac_mode_summary" msgid="6833851160514929341">"Hidupkan kompatibilitas alat bantu dengar"</string>
   <string-array name="tty_mode_entries">

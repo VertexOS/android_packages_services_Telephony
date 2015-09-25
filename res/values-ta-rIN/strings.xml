@@ -465,6 +465,8 @@
     <string name="importAllSimEntries" msgid="1503181169636198673">"எல்லாவற்றையும் இறக்குமதி செய்"</string>
     <string name="importingSimContacts" msgid="7374056215462575769">"சிம் தொடர்புகளிலிருந்து இறக்குமதி செய்கிறது"</string>
     <string name="importToFDNfromContacts" msgid="2130620207013368580">"தொடர்புகளிலிருந்து இறக்குமதி செய்"</string>
+    <string name="singleContactImportedMsg" msgid="6868483416182599206">"தொடர்பு இறக்கப்பட்டது"</string>
+    <string name="failedToImportSingleContactMsg" msgid="415399285420353917">"தொடர்பை இறக்க முடியவில்லை"</string>
     <string name="hac_mode_title" msgid="8740268574688743289">"கேட்பதற்கான சாதனங்கள்"</string>
     <string name="hac_mode_summary" msgid="6833851160514929341">"கேட்கும் சாதனத்தின் இணக்கத்தன்மையை இயக்கு"</string>
   <string-array name="tty_mode_entries">

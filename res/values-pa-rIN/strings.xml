@@ -465,6 +465,10 @@
     <string name="importAllSimEntries" msgid="1503181169636198673">"ਸਾਰੇ ਆਯਾਤ ਕਰੋ"</string>
     <string name="importingSimContacts" msgid="7374056215462575769">"SIM ਸੰਪਰਕ ਆਯਾਤ ਕਰ ਰਿਹਾ ਹੈ"</string>
     <string name="importToFDNfromContacts" msgid="2130620207013368580">"ਸੰਪਰਕਾਂ ਤੋਂ ਆਯਾਤ ਕਰੋ"</string>
+    <!-- no translation found for singleContactImportedMsg (6868483416182599206) -->
+    <skip />
+    <!-- no translation found for failedToImportSingleContactMsg (415399285420353917) -->
+    <skip />
     <string name="hac_mode_title" msgid="8740268574688743289">"ਹੀਅਰਿੰਗ ਏਡਸ"</string>
     <string name="hac_mode_summary" msgid="6833851160514929341">"ਹੀਅਰਿੰਗ ਏਡ ਅਨੁਕੂਲਤਾ ਚਾਲੂ ਕਰੋ"</string>
   <string-array name="tty_mode_entries">

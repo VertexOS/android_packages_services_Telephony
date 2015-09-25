@@ -465,6 +465,8 @@
     <string name="importAllSimEntries" msgid="1503181169636198673">"အားလုံးကို ထည့်သွင်းပါ"</string>
     <string name="importingSimContacts" msgid="7374056215462575769">"ဆင်းမ်ကဒ်မှ လိပ်စာများအား ထည့်ပါ"</string>
     <string name="importToFDNfromContacts" msgid="2130620207013368580">"လိပ်စားများထဲမှ ထည့်ပါ"</string>
+    <string name="singleContactImportedMsg" msgid="6868483416182599206">"တင်သွင်းခဲ့သည့် အဆက်အသွယ်"</string>
+    <string name="failedToImportSingleContactMsg" msgid="415399285420353917">"အဆက်အသွယ်ကို တင်သွင်း မရခဲ့"</string>
     <string name="hac_mode_title" msgid="8740268574688743289">"နားကြပ်"</string>
     <string name="hac_mode_summary" msgid="6833851160514929341">"အကြားအားရုံကိရိယာနှင့် ကိုက်ညီမှုကို ဖွင့်ပါ"</string>
   <string-array name="tty_mode_entries">

@@ -467,6 +467,10 @@
     <string name="importAllSimEntries" msgid="1503181169636198673">"Импортировать все"</string>
     <string name="importingSimContacts" msgid="7374056215462575769">"Импорт контактов с SIM-карты"</string>
     <string name="importToFDNfromContacts" msgid="2130620207013368580">"Импортировать из контактов"</string>
+    <!-- no translation found for singleContactImportedMsg (6868483416182599206) -->
+    <skip />
+    <!-- no translation found for failedToImportSingleContactMsg (415399285420353917) -->
+    <skip />
     <string name="hac_mode_title" msgid="8740268574688743289">"Слуховые аппараты"</string>
     <string name="hac_mode_summary" msgid="6833851160514929341">"Включить слуховой аппарат"</string>
   <string-array name="tty_mode_entries">

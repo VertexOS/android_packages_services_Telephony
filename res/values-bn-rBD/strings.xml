@@ -465,6 +465,8 @@
     <string name="importAllSimEntries" msgid="1503181169636198673">"সবকিছু আমদানি করুন"</string>
     <string name="importingSimContacts" msgid="7374056215462575769">"সিম পরিচিতিগুলি আমদানি করা হচ্ছে"</string>
     <string name="importToFDNfromContacts" msgid="2130620207013368580">"পরিচিতিগুলি থেকে আমদানি করুন"</string>
+    <string name="singleContactImportedMsg" msgid="6868483416182599206">"পরিচিতি আমদানি করা হয়েছে"</string>
+    <string name="failedToImportSingleContactMsg" msgid="415399285420353917">"পরিচিতি আমদানি করতে ব্যর্থ হয়েছে"</string>
     <string name="hac_mode_title" msgid="8740268574688743289">"শ্রবণ যন্ত্রগুলি"</string>
     <string name="hac_mode_summary" msgid="6833851160514929341">"শ্রবণ যন্ত্র উপযুক্ততা চালু করুন"</string>
   <string-array name="tty_mode_entries">

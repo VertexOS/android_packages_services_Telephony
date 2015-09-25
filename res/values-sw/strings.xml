@@ -465,6 +465,8 @@
     <string name="importAllSimEntries" msgid="1503181169636198673">"Leta zote"</string>
     <string name="importingSimContacts" msgid="7374056215462575769">"Inaleta anwani za SIM"</string>
     <string name="importToFDNfromContacts" msgid="2130620207013368580">"Ingiza kutoka kwa anwani"</string>
+    <string name="singleContactImportedMsg" msgid="6868483416182599206">"Imeingiza anwani"</string>
+    <string name="failedToImportSingleContactMsg" msgid="415399285420353917">"Imeshindwa kuingiza anwani"</string>
     <string name="hac_mode_title" msgid="8740268574688743289">"Vifaa vya kusaidia kusikia"</string>
     <string name="hac_mode_summary" msgid="6833851160514929341">"Washa utangamano wa kifaa cha kusaidia kusikia"</string>
   <string-array name="tty_mode_entries">
