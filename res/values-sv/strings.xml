@@ -471,6 +471,8 @@
     <string name="importAllSimEntries" msgid="1503181169636198673">"Importera alla"</string>
     <string name="importingSimContacts" msgid="7374056215462575769">"Importera SIM-kontakter"</string>
     <string name="importToFDNfromContacts" msgid="2130620207013368580">"Importera från Kontakter"</string>
+    <string name="singleContactImportedMsg" msgid="6868483416182599206">"Importerad kontakt"</string>
+    <string name="failedToImportSingleContactMsg" msgid="415399285420353917">"Det gick inte att importera kontakter"</string>
     <string name="hac_mode_title" msgid="8740268574688743289">"Hörapparater"</string>
     <string name="hac_mode_summary" msgid="6833851160514929341">"Aktivera kompatibilitet med hörapparat"</string>
   <string-array name="tty_mode_entries">

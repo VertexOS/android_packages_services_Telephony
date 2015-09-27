@@ -465,6 +465,8 @@
     <string name="importAllSimEntries" msgid="1503181169636198673">"అన్నింటినీ దిగుమతి చేయి"</string>
     <string name="importingSimContacts" msgid="7374056215462575769">"SIM పరిచయాలను దిగుమతి చేస్తోంది"</string>
     <string name="importToFDNfromContacts" msgid="2130620207013368580">"పరిచయాల నుండి దిగుమతి చేయి"</string>
+    <string name="singleContactImportedMsg" msgid="6868483416182599206">"పరిచయం దిగుమతి చేయబడింది"</string>
+    <string name="failedToImportSingleContactMsg" msgid="415399285420353917">"పరిచయాన్ని దిగుమతి చేయడంలో విఫలమైంది"</string>
     <string name="hac_mode_title" msgid="8740268574688743289">"వినికిడి సహాయక సాధనాలు"</string>
     <string name="hac_mode_summary" msgid="6833851160514929341">"వినికిడి సహాయక సాధనం అనుకూలతను ప్రారంభించండి"</string>
   <string-array name="tty_mode_entries">

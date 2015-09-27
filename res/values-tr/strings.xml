@@ -465,6 +465,10 @@
     <string name="importAllSimEntries" msgid="1503181169636198673">"Tümünü içe aktar"</string>
     <string name="importingSimContacts" msgid="7374056215462575769">"SIM kişileri içe aktarılıyor"</string>
     <string name="importToFDNfromContacts" msgid="2130620207013368580">"Kişilerden içe aktar"</string>
+    <!-- no translation found for singleContactImportedMsg (6868483416182599206) -->
+    <skip />
+    <!-- no translation found for failedToImportSingleContactMsg (415399285420353917) -->
+    <skip />
     <string name="hac_mode_title" msgid="8740268574688743289">"İşitme cihazları"</string>
     <string name="hac_mode_summary" msgid="6833851160514929341">"İşitme cihazı uyumluluğunu aç"</string>
   <string-array name="tty_mode_entries">

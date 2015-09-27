@@ -303,9 +303,9 @@
     <string name="enable_disable_technology_news" msgid="3517184627114999149">"ટેક્નોલોજી સમાચાર"</string>
     <string name="technology_news_enable" msgid="7995209394210455181">"તકનીકી સમાચાર સક્ષમ કરેલ છે"</string>
     <string name="technology_news_disable" msgid="5483490380561851946">"તકનીકી સમાચાર અક્ષમ કરેલ છે"</string>
-    <string name="enable_disable_multi_category" msgid="626771003122899280">"બહુ-કેટેગરી"</string>
-    <string name="multi_category_enable" msgid="1179299804641721768">"બહુ-કેટેગરી સક્ષમ કરેલ છે"</string>
-    <string name="multi_category_disable" msgid="880104702904139505">"બહુ-કેટેગરી અક્ષમ કરેલ છે"</string>
+    <string name="enable_disable_multi_category" msgid="626771003122899280">"બહુ-કૅટેગરી"</string>
+    <string name="multi_category_enable" msgid="1179299804641721768">"બહુ-કૅટેગરી સક્ષમ કરેલ છે"</string>
+    <string name="multi_category_disable" msgid="880104702904139505">"બહુ-કૅટેગરી અક્ષમ કરેલ છે"</string>
     <string name="network_lte" msgid="7702681952521375754">"LTE (ભલામણ કરેલ)"</string>
     <string name="network_4G" msgid="2723512640529983138">"4G (ભલામણ કરેલ)"</string>
     <string name="network_global" msgid="1323190488685355309">"વૈશ્વિક"</string>
@@ -465,6 +465,8 @@
     <string name="importAllSimEntries" msgid="1503181169636198673">"બધુ આયાત કરો"</string>
     <string name="importingSimContacts" msgid="7374056215462575769">"SIM સંપર્કો આયાત કરી રહ્યાં છે"</string>
     <string name="importToFDNfromContacts" msgid="2130620207013368580">"સંપર્કોમાંથી આયાત કરો"</string>
+    <string name="singleContactImportedMsg" msgid="6868483416182599206">"સંપર્ક આયાત કર્યો"</string>
+    <string name="failedToImportSingleContactMsg" msgid="415399285420353917">"સંપર્ક આયાત કરવામાં નિષ્ફળ થયાં"</string>
     <string name="hac_mode_title" msgid="8740268574688743289">"સાંભળવામાં સહાયો"</string>
     <string name="hac_mode_summary" msgid="6833851160514929341">"સાંભળવું અને સુસંગતતા ચાલુ કરો"</string>
   <string-array name="tty_mode_entries">
