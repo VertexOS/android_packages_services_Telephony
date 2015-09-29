@@ -17,7 +17,7 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="phoneAppLabel" product="tablet" msgid="1107073389495104784">"داده سلولی"</string>
-    <string name="phoneAppLabel" product="default" msgid="906161039445636857">"گوشی"</string>
+    <string name="phoneAppLabel" product="default" msgid="6790717591729922998">"سرویس‌های تلفن"</string>
     <string name="emergencyDialerIconLabel" msgid="7812140032168171053">"شماره گیری اضطراری"</string>
     <string name="phoneIconLabel" msgid="2331230813161304895">"تلفن"</string>
     <string name="fdnListLabel" msgid="8630418672279521003">"‏لیست FDN"</string>
@@ -68,16 +68,9 @@
     <string name="phone_accounts_selection_header" msgid="1365215726106915865">"حساب‌های تلفن"</string>
     <string name="phone_accounts_add_sip_account" msgid="2023821743341923271">"‏افزودن حساب SIP"</string>
     <string name="phone_accounts_configure_account_settings" msgid="1361715069911607109">"پیکربندی تنظیمات حساب"</string>
+    <string name="phone_accounts_all_calling_accounts" msgid="207619531589278471">"همه حساب‌های تماس"</string>
+    <string name="phone_accounts_all_calling_accounts_summary" msgid="8594186415822657011">"انتخاب حساب‌هایی که می‌توانند تماس بگیرند"</string>
     <string name="wifi_calling" msgid="739018212480165598">"‏تماس از طریق Wi-Fi"</string>
-    <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"‏از تماس از طریق Wi-Fi استفاده نشود"</string>
-    <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"از دستیار تماس استفاده نشود"</string>
-    <string name="wifi_calling_call_assistant_none" msgid="6283702349285593683">"هیچ‌کدام"</string>
-    <string name="wifi_calling_call_assistant" msgid="229102032881680320">"دستیار تماس"</string>
-    <string name="wifi_calling_use_call_assistant" msgid="8460024827012666199">"استفاده از دستیار تماس"</string>
-    <string name="wifi_calling_select_call_assistant" msgid="9296558058772293">"انتخاب دستیار تماس"</string>
-    <string name="wifi_calling_select_call_assistant_summary" msgid="164985727137156474">"مدیریت شبکه‌های مورد استفاده برای تماس‌ با"</string>
-    <string name="wifi_calling_use_call_assistant_summary" msgid="6599987137133339698">"به برنامه‌ها یا سرویس‌ها اجازه داده شود شبکه‌های مورد استفاده برای تماس‌ها را مدیریت کنند"</string>
-    <string name="wifi_calling_call_assistant_configure" msgid="1092639708949670031">"پیکربندی"</string>
     <string name="connection_service_default_label" msgid="1498481943805913754">"سرویس اتصال داخلی"</string>
     <string name="voicemail" msgid="8693759337917898954">"پست صوتی"</string>
     <string name="voicemail_settings_with_label" msgid="152724978380748296">"پست صوتی (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
@@ -144,8 +137,8 @@
     <item msgid="1108394741608734023">"نمایش شماره"</item>
   </string-array>
     <string name="vm_changed" msgid="380744030726254139">"شماره پست صوتی تغییر کرد."</string>
-    <string name="vm_change_failed" msgid="3352934863246208918">"نمی‌توان شماره صندوق صوتی را تغییر داد.\nدر صورتی که این مشکل همچنان ادامه دارد با شرکت مخابراتی خود تماس بگیرید."</string>
-    <string name="fw_change_failed" msgid="5298103228470214665">"نمی‌توان شماره هدایت تماس را تغییر داد.\nدر صورتی که این مشکل همچنان ادامه دارد با شرکت مخابراتی خود تماس بگیرید."</string>
+    <string name="vm_change_failed" msgid="3352934863246208918">"نمی‌توان شماره صندوق صوتی را تغییر داد.\nدرصورتی‌که این مشکل همچنان ادامه دارد با شرکت مخابراتی خود تماس بگیرید."</string>
+    <string name="fw_change_failed" msgid="5298103228470214665">"نمی‌توان شماره هدایت تماس را تغییر داد.\nدرصورتی‌که این مشکل همچنان ادامه دارد با شرکت مخابراتی خود تماس بگیرید."</string>
     <string name="fw_get_in_vm_failed" msgid="8862896836093833973">"نمی‌توان تنظیمات هدایت شماره فعلی را بازیابی و ذخیره کرد.\nبه هر حال به ارائه دهنده جدید تغییر کند؟"</string>
     <string name="no_change" msgid="3186040086622435212">"تغییری انجام نشده است."</string>
     <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"انتخاب سرویس پست صوتی"</string>
@@ -162,7 +155,7 @@
     <string name="registration_done" msgid="495135664535876612">"در شبکه ثبت شد."</string>
     <string name="sum_carrier_select" msgid="3494252551249882718">"انتخاب یک اپراتور شبکه"</string>
     <string name="sum_search_networks" msgid="2921092249873272715">"جستجوی همه شبکه‌های موجود"</string>
-    <string name="select_automatically" msgid="5628402124471810174">"انتخاب به طور خودکار"</string>
+    <string name="select_automatically" msgid="5628402124471810174">"انتخاب به‌طور خودکار"</string>
     <string name="sum_select_automatically" msgid="5614890115123292400">"به صورت خودکار شبکه برگزیده را انتخاب کنید"</string>
     <string name="register_automatically" msgid="6017849844573519637">"ثبت خودکار..."</string>
     <string name="preferred_network_mode_title" msgid="2336624679902659306">"نوع شبکه برگزیده"</string>
@@ -202,7 +195,7 @@
     <string name="enhanced_4g_lte_mode_title" msgid="522191650223239171">"‏حالت پیشرفته 4G LTE"</string>
     <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"‏استفاده از سرویس‌های LTE جهت بهبود ارتباطات صوتی و سایر ارتباطات (توصیه می‌شود)"</string>
     <string name="data_enabled" msgid="5972538663568715366">"داده‌ها فعال شدند"</string>
-    <string name="data_enable_summary" msgid="2382798156640007971">"اجازه استفاده از داده"</string>
+    <string name="data_enable_summary" msgid="2382798156640007971">"استفاده از داده مجاز است"</string>
     <string name="roaming" msgid="8871412572928323707">"رومینگ داده"</string>
     <string name="roaming_enable" msgid="7331106985174381987">"اتصال به سرویس‌های داده هنگام رومینگ"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"اتصال به سرویس‌های داده هنگام رومینگ"</string>
@@ -377,7 +370,7 @@
     <string name="fdn_failed" msgid="540018079008319747">"‏عملیات FDN ناموفق بود."</string>
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"در حال خواندن سیم کارت..."</string>
     <string name="simContacts_empty" msgid="5270660846489561932">"مخاطبی در سیم کارت شما موجود نیست."</string>
-    <string name="simContacts_title" msgid="1861472842524839921">"انتخاب مخاطبین برای ورود"</string>
+    <string name="simContacts_title" msgid="1861472842524839921">"انتخاب مخاطبین برای وارد کردن"</string>
     <string name="simContacts_airplaneMode" msgid="5254946758982621072">"برای وارد کردن مخاطبین از سیم کارت، حالت هواپیما را خاموش کنید."</string>
     <string name="enable_pin" msgid="5422767284133234860">"فعال کردن/غیر فعال کردن پین سیم"</string>
     <string name="change_pin" msgid="9174186126330785343">"تغییر پین سیم"</string>
@@ -412,7 +405,8 @@
     <string name="puk2_blocked" msgid="3150263853077280049">"‏PUK2 به صورت دائمی مسدود شده است."</string>
     <string name="pin2_attempts" msgid="720736232885011507">\n"<xliff:g id="NUMBER">%d</xliff:g> تلاش باقی‌مانده دارید."</string>
     <string name="pin2_unblocked" msgid="7791600368153469078">"‏PIN2 دیگر مسدود نیست"</string>
-    <string name="doneButton" msgid="2859593360997984240">"انجام شد"</string>
+    <string name="pin2_error_exception" msgid="1088689322248996699">"خطای شبکه یا سیم‌کارت"</string>
+    <string name="doneButton" msgid="2859593360997984240">"تمام"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"شماره پست صوتی"</string>
     <string name="card_title_dialing" msgid="5769417478498348054">"شماره گیری"</string>
     <string name="card_title_redialing" msgid="8253487008234167266">"در حال شماره‌گیری مجدد"</string>
@@ -422,23 +416,12 @@
     <string name="card_title_on_hold" msgid="821463117892339942">"در انتظار"</string>
     <string name="card_title_hanging_up" msgid="3999101620995182450">"قطع تماس"</string>
     <string name="card_title_in_call" msgid="6346543933068225205">"در تماس"</string>
-    <string name="notification_dialing" msgid="2107666444937350731">"شماره‌گیری"</string>
-    <string name="notification_missedCallTitle" msgid="7554385905572364535">"تماس بی پاسخ"</string>
-    <string name="notification_missedCallsTitle" msgid="1361677948941502522">"تماس‌های بی پاسخ"</string>
-    <string name="notification_missedCallsMsg" msgid="4575787816055205600">"<xliff:g id="NUM_MISSED_CALLS">%s</xliff:g> تماس بی پاسخ"</string>
-    <string name="notification_missedCallTicker" msgid="504686252427747209">"تماس بی پاسخ از <xliff:g id="MISSED_CALL_FROM">%s</xliff:g>"</string>
-    <string name="notification_ongoing_call" msgid="7068688957273482989">"تماس جاری"</string>
-    <string name="notification_on_hold" msgid="3480694969511790465">"در انتظار"</string>
-    <string name="notification_incoming_call" msgid="2820429205043529642">"تماس ورودی"</string>
     <string name="notification_voicemail_title" msgid="8933468752045550523">"پست صوتی جدید"</string>
     <string name="notification_voicemail_title_count" msgid="4366360747660929916">"پست صوتی جدید (<xliff:g id="COUNT">%d</xliff:g>)"</string>
     <string name="notification_voicemail_text_format" msgid="4447323569453981685">"شماره گیری <xliff:g id="VOICEMAIL_NUMBER">%s</xliff:g>"</string>
     <string name="notification_voicemail_no_vm_number" msgid="760963466895609716">"شماره پست صوتی ناشناس"</string>
     <string name="notification_network_selection_title" msgid="4224455487793492772">"بدون سرویس"</string>
     <string name="notification_network_selection_text" msgid="2607085729661923269">"شبکه انتخابی (<xliff:g id="OPERATOR_NAME">%s</xliff:g>) قابل دسترس نیست"</string>
-    <string name="notification_action_end_call" msgid="6069460915123531620">"قطع تماس"</string>
-    <string name="notification_missedCall_call_back" msgid="2684890353590890187">"پاسخ تماس"</string>
-    <string name="notification_missedCall_message" msgid="3049928912736917988">"پیام"</string>
     <string name="incall_error_power_off" msgid="2947938060513306698">"برای برقراری تماس، حالت پرواز را خاموش کنید."</string>
     <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"برای برقرای تماس، حالت پرواز را خاموش کنید یا به شبکه بی‌سیم وصل شوید."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"در شبکه ثبت نشده است."</string>
@@ -459,7 +442,7 @@
     <string name="emergency_enable_radio_dialog_message" msgid="207613549344420291">"در حال روشن کردن رادیو..."</string>
     <string name="emergency_enable_radio_dialog_retry" msgid="5960061579996526883">"سرویسی در دسترس نیست. دوباره امتحان کنید..."</string>
     <string name="dial_emergency_error" msgid="1509085166367420355">"نمی‌توانید تماس بگیرید. <xliff:g id="NON_EMERGENCY_NUMBER">%s</xliff:g> یک شماره اضطراری نیست."</string>
-    <string name="dial_emergency_empty_error" msgid="9130194953830414638">"نمی توانید تماس بگیرید. یک شماره اضطراری را شماره‌گیری کنید."</string>
+    <string name="dial_emergency_empty_error" msgid="9130194953830414638">"نمی‌ توانید تماس بگیرید. یک شماره اضطراری را شماره‌گیری کنید."</string>
     <string name="dialerKeyboardHintText" msgid="9192914825413747792">"استفاده از صفحه‌کلید برای شماره گیری"</string>
     <string name="onscreenHoldText" msgid="2285258239691145872">"نگهداشت"</string>
     <string name="onscreenEndCallText" msgid="4403855834875398585">"پایان"</string>
@@ -492,7 +475,7 @@
   </string-array>
     <string name="network_info_message" msgid="7738596060242881930">"پیام شبکه"</string>
     <string name="network_error_message" msgid="3394780436230411413">"پیام خطا"</string>
-    <string name="ota_title_activate" msgid="8616918561356194398">"فعال کردن گوشی خود"</string>
+    <string name="ota_title_activate" msgid="8616918561356194398">"فعال کردن تلفن"</string>
     <string name="ota_touch_activate" msgid="6553212803262586244">"برای فعال کردن سرویس گوشی خود، باید یک تماس ویژه برقرار کنید. \n\nبعد از فشردن \"فعال سازی\"، به دستورالعمل‌های ارائه شده جهت فعال کردن گوشی، گوش کنید."</string>
     <string name="ota_hfa_activation_title" msgid="2234246934160473981">"درحال فعال‌سازی…"</string>
     <string name="ota_hfa_activation_dialog_message" msgid="8092479227918463415">"این تلفن در حال فعال کردن خدمات داده دستگاه همراه شما است.\n\nاین کار حداکثر ۵ دقیقه زمان می‌برد."</string>
@@ -516,18 +499,18 @@
     <string name="phone_entered_ecm_text" msgid="6266424252578731203">"حالت پاسخ تماس اضطراری وارد شده"</string>
     <string name="phone_in_ecm_notification_title" msgid="3226896828951687085">"حال پاسخ تماس اضطراری"</string>
     <string name="phone_in_ecm_call_notification_text" msgid="4611608947314729773">"اتصال داده غیر فعال شد"</string>
-    <plurals name="phone_in_ecm_notification_time" formatted="false" msgid="8308381858502470919">
-      <item quantity="one">هیچ اتصال داده‌ای برای <xliff:g id="COUNT_1">%s</xliff:g> دقیقه موجود نیست</item>
-      <item quantity="other">هیچ اتصال داده‌ای برای <xliff:g id="COUNT_1">%s</xliff:g> دقیقه موجود نیست</item>
-    </plurals>
-    <plurals name="alert_dialog_exit_ecm" formatted="false" msgid="7179911675595441201">
-      <item quantity="one">تلفن برای <xliff:g id="COUNT_1">%s</xliff:g> دقیقه در حالت تماس اضطراری خواهد بود. در این حالت برنامه‌ای که از اتصال داده استفاده می‌کند، نمی‌تواند استفاده شود. می‌خواهید اکنون خارج شوید؟</item>
-      <item quantity="other">تلفن برای <xliff:g id="COUNT_1">%s</xliff:g> دقیقه در حالت تماس اضطراری خواهد بود. در این حالت برنامه‌ای که از اتصال داده استفاده می‌کند، نمی‌تواند استفاده شود. می‌خواهید اکنون خارج شوید؟</item>
-    </plurals>
-    <plurals name="alert_dialog_not_avaialble_in_ecm" formatted="false" msgid="8042973425225093895">
-      <item quantity="one">اقدام انتخاب شده در حالت تماس اضطراری در دسترس نیست. این تلفن برای <xliff:g id="COUNT_1">%s</xliff:g> دقیقه در این حالت خواهد بود. می‌خواهید اکنون خارج شوید؟</item>
-      <item quantity="other">اقدام انتخاب شده در حالت تماس اضطراری در دسترس نیست. این تلفن برای <xliff:g id="COUNT_1">%s</xliff:g> دقیقه در این حالت خواهد بود. می‌خواهید اکنون خارج شوید؟</item>
-    </plurals>
+  <plurals name="phone_in_ecm_notification_time">
+    <item quantity="one" msgid="4866221796252472622">"اتصال داده‌ای به مدت <xliff:g id="COUNT">%s</xliff:g> دقیقه موجود نیست"</item>
+    <item quantity="other" msgid="3122217344579273583">"اتصال داده‌ای به مدت <xliff:g id="COUNT">%s</xliff:g> دقیقه موجود نیست"</item>
+  </plurals>
+  <plurals name="alert_dialog_exit_ecm">
+    <item quantity="one" msgid="8060210887681426682">"تلفن به مدت <xliff:g id="COUNT">%s</xliff:g> دقیقه در حالت پاسخ به تماس‌های اضطراری خواهد بود. در این حالت برنامه‌هایی که از اتصال داده استفاده می‌کنند قابل استفاده نیستند. آیا می‌خواهید اکنون خارج شوید؟"</item>
+    <item quantity="other" msgid="8617116564023933114">"تلفلن به مدت <xliff:g id="COUNT">%s</xliff:g> دقیقه در حالت پاسخ به تماس‌های اضطراری خواهد بود. در این حالت برنامه‌هایی که از اتصال داده استفاده می‌کنند قابل استفاده نیستند. آیا می‌خواهید اکنون خارج شوید؟"</item>
+  </plurals>
+  <plurals name="alert_dialog_not_avaialble_in_ecm">
+    <item quantity="one" msgid="2585506997024726599">"عملکرد انتخاب شده در حالت پاسخ به تماس اضطراری در دسترس نیست. تلفن مدت <xliff:g id="COUNT">%s</xliff:g> دقیقه در این حالت است. آیا می‌خواهید اکنون خارج شوید؟"</item>
+    <item quantity="other" msgid="6115622137771382224">"عمل انتخاب شده در حالت پاسخ به تماس اضطراری در دسترس نیست. تلفن مدت <xliff:g id="COUNT">%s</xliff:g> دقیقه در این حالت باقی می‌ماند. آیا می‌خواهید اکنون خارج شوید؟"</item>
+  </plurals>
     <string name="alert_dialog_in_ecm_call" msgid="1886723687211887104">"در حین یک تماس اضطراری، عملکرد انتخابی در دسترس نیست."</string>
     <string name="progress_dialog_exiting_ecm" msgid="4835734101617817074">"خروج از حالت پاسخ تماس اضطراری"</string>
     <string name="alert_dialog_yes" msgid="6674268047820703974">"بله"</string>
@@ -545,8 +528,8 @@
     <string name="description_dial_button" msgid="7459705245418435351">"شماره گیری"</string>
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"لرزش"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"لرزش"</string>
+    <string name="voicemail_visual_voicemail_switch_title" msgid="5012622186976275457">"پست صوتی تصویری"</string>
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"صدا"</string>
-    <string name="dial_pad_autocomplete" msgid="7683489952557536398">"تکمیل خودکار صفحه شماره‌گیری"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"آهنگ‌ زنگ و لرزش"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"سیم‌کارت‌های داخلی"</string>
     <string name="enable_video_calling_title" msgid="7237253660669000899">"روشن کردن تماس ویدیویی"</string>
@@ -561,4 +544,5 @@
     <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"‏تماس Wi-Fi"</string>
     <string name="emergency_action_launch_hint" msgid="5841511849007540970">"لمس دوباره برای باز کردن"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"هنگام رمزگشایی پیام، خطایی روی داد."</string>
+    <string name="callFailed_cdma_activation" msgid="2307989779233262164">"یک سیم‌کارت سرویس شما را فعال کرده است و قابلیت‌های رومینگ تلفنتان را به‌روز کرده است."</string>
 </resources>

@@ -17,7 +17,7 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="phoneAppLabel" product="tablet" msgid="1107073389495104784">"Farsímagögn"</string>
-    <string name="phoneAppLabel" product="default" msgid="906161039445636857">"Sími"</string>
+    <string name="phoneAppLabel" product="default" msgid="6790717591729922998">"Símaþjónusta"</string>
     <string name="emergencyDialerIconLabel" msgid="7812140032168171053">"Neyðarnúmeraval"</string>
     <string name="phoneIconLabel" msgid="2331230813161304895">"Sími"</string>
     <string name="fdnListLabel" msgid="8630418672279521003">"Listi yfir fast númeraval"</string>
@@ -68,16 +68,9 @@
     <string name="phone_accounts_selection_header" msgid="1365215726106915865">"Símareikningar"</string>
     <string name="phone_accounts_add_sip_account" msgid="2023821743341923271">"Bæta við SIP-reikningi"</string>
     <string name="phone_accounts_configure_account_settings" msgid="1361715069911607109">"Velja reikningsstillingar"</string>
+    <string name="phone_accounts_all_calling_accounts" msgid="207619531589278471">"Allir símtalareikningar"</string>
+    <string name="phone_accounts_all_calling_accounts_summary" msgid="8594186415822657011">"Velja hvaða reikningar geta hringt símtöl"</string>
     <string name="wifi_calling" msgid="739018212480165598">"Wi-Fi símtöl"</string>
-    <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"Ekki nota Wi-Fi símtöl"</string>
-    <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"Ekki nota símtalaaðstoð"</string>
-    <string name="wifi_calling_call_assistant_none" msgid="6283702349285593683">"Engin"</string>
-    <string name="wifi_calling_call_assistant" msgid="229102032881680320">"Símtalaaðstoð"</string>
-    <string name="wifi_calling_use_call_assistant" msgid="8460024827012666199">"Nota símtalaaðstoð"</string>
-    <string name="wifi_calling_select_call_assistant" msgid="9296558058772293">"Velja símtalaaðstoð"</string>
-    <string name="wifi_calling_select_call_assistant_summary" msgid="164985727137156474">"Stjórna símkerfum til að nota fyrir símtöl með"</string>
-    <string name="wifi_calling_use_call_assistant_summary" msgid="6599987137133339698">"Láta forrit eða þjónustu stjórna símkerfum sem notuð eru fyrir símtöl"</string>
-    <string name="wifi_calling_call_assistant_configure" msgid="1092639708949670031">"Stilla"</string>
     <string name="connection_service_default_label" msgid="1498481943805913754">"Innbyggð tengingarþjónusta"</string>
     <string name="voicemail" msgid="8693759337917898954">"Talhólf"</string>
     <string name="voicemail_settings_with_label" msgid="152724978380748296">"Talhólf (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
@@ -412,6 +405,7 @@
     <string name="puk2_blocked" msgid="3150263853077280049">"PUK2 er læst fyrir fullt og allt."</string>
     <string name="pin2_attempts" msgid="720736232885011507">\n"<xliff:g id="NUMBER">%d</xliff:g> tilraunir eru eftir."</string>
     <string name="pin2_unblocked" msgid="7791600368153469078">"PIN2-númer ekki lengur læst"</string>
+    <string name="pin2_error_exception" msgid="1088689322248996699">"Villa í símkerfi eða á SIM-korti"</string>
     <string name="doneButton" msgid="2859593360997984240">"Lokið"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"Talhólfsnúmer"</string>
     <string name="card_title_dialing" msgid="5769417478498348054">"Hringir"</string>
@@ -422,23 +416,12 @@
     <string name="card_title_on_hold" msgid="821463117892339942">"Í bið"</string>
     <string name="card_title_hanging_up" msgid="3999101620995182450">"Leggur á"</string>
     <string name="card_title_in_call" msgid="6346543933068225205">"Í símtali"</string>
-    <string name="notification_dialing" msgid="2107666444937350731">"Hringir"</string>
-    <string name="notification_missedCallTitle" msgid="7554385905572364535">"Ósvarað símtal"</string>
-    <string name="notification_missedCallsTitle" msgid="1361677948941502522">"Ósvöruð símtöl"</string>
-    <string name="notification_missedCallsMsg" msgid="4575787816055205600">"<xliff:g id="NUM_MISSED_CALLS">%s</xliff:g> ósvöruð símtöl"</string>
-    <string name="notification_missedCallTicker" msgid="504686252427747209">"Ósvarað símtal frá <xliff:g id="MISSED_CALL_FROM">%s</xliff:g>"</string>
-    <string name="notification_ongoing_call" msgid="7068688957273482989">"Samtal í gangi"</string>
-    <string name="notification_on_hold" msgid="3480694969511790465">"Í bið"</string>
-    <string name="notification_incoming_call" msgid="2820429205043529642">"Símtal berst"</string>
     <string name="notification_voicemail_title" msgid="8933468752045550523">"Ný skilaboð í talhólfinu"</string>
     <string name="notification_voicemail_title_count" msgid="4366360747660929916">"Ný skilaboð í talhólfinu (<xliff:g id="COUNT">%d</xliff:g>)"</string>
     <string name="notification_voicemail_text_format" msgid="4447323569453981685">"Hringja í <xliff:g id="VOICEMAIL_NUMBER">%s</xliff:g>"</string>
     <string name="notification_voicemail_no_vm_number" msgid="760963466895609716">"Talhólfsnúmer ekki þekkt"</string>
     <string name="notification_network_selection_title" msgid="4224455487793492772">"Ekkert símasamband"</string>
     <string name="notification_network_selection_text" msgid="2607085729661923269">"Valið símkerfi (<xliff:g id="OPERATOR_NAME">%s</xliff:g>) er ekki tiltækt"</string>
-    <string name="notification_action_end_call" msgid="6069460915123531620">"Leggja á"</string>
-    <string name="notification_missedCall_call_back" msgid="2684890353590890187">"Hringja til baka"</string>
-    <string name="notification_missedCall_message" msgid="3049928912736917988">"Skilaboð"</string>
     <string name="incall_error_power_off" msgid="2947938060513306698">"Slökktu á flugstillingu til að hringja."</string>
     <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"Slökktu á flugstillingu eða tengstu þráðlausu neti til að hringja."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"Ekki skráð á símkerfi."</string>
@@ -516,18 +499,18 @@
     <string name="phone_entered_ecm_text" msgid="6266424252578731203">"Stilling fyrir svarhringingu neyðarsímtala virk"</string>
     <string name="phone_in_ecm_notification_title" msgid="3226896828951687085">"Stilling fyrir svarhringingu neyðarsímtala"</string>
     <string name="phone_in_ecm_call_notification_text" msgid="4611608947314729773">"Slökkt á gagnatengingu"</string>
-    <plurals name="phone_in_ecm_notification_time" formatted="false" msgid="8308381858502470919">
-      <item quantity="one">Engin gagnatenging í <xliff:g id="COUNT_1">%s</xliff:g> mínútu</item>
-      <item quantity="other">Engin gagnatenging í <xliff:g id="COUNT_1">%s</xliff:g> mínútur</item>
-    </plurals>
-    <plurals name="alert_dialog_exit_ecm" formatted="false" msgid="7179911675595441201">
-      <item quantity="one">Síminn verður í stillingu fyrir svarhringingu neyðarsímtala í <xliff:g id="COUNT_1">%s</xliff:g> mínútu. Þegar hann er í þessari stillingu er ekki hægt að nota nein forrit sem krefjast gagnatengingar. Viltu hætta núna?</item>
-      <item quantity="other">Síminn verður í stillingu fyrir svarhringingu neyðarsímtala í <xliff:g id="COUNT_1">%s</xliff:g> mínútur. Þegar hann er í þessari stillingu er ekki hægt að nota nein forrit sem krefjast gagnatengingar. Viltu hætta núna?</item>
-    </plurals>
-    <plurals name="alert_dialog_not_avaialble_in_ecm" formatted="false" msgid="8042973425225093895">
-      <item quantity="one">Þessi aðgerð er ekki í boði þegar síminn er í stillingu fyrir svarhringingu neyðarsímtala. Síminn verður í þessari stillingu í <xliff:g id="COUNT_1">%s</xliff:g> mínútu. Viltu hætta núna?</item>
-      <item quantity="other">Þessi aðgerð er ekki í boði þegar síminn er í stillingu fyrir svarhringingu neyðarsímtala. Síminn verður í þessari stillingu í <xliff:g id="COUNT_1">%s</xliff:g> mínútur. Viltu hætta núna?</item>
-    </plurals>
+  <plurals name="phone_in_ecm_notification_time">
+    <item quantity="one" msgid="4866221796252472622">"Engin gagnatenging í <xliff:g id="COUNT">%s</xliff:g> mínútu"</item>
+    <item quantity="other" msgid="3122217344579273583">"Engin gagnatenging í <xliff:g id="COUNT">%s</xliff:g> mínútur"</item>
+  </plurals>
+  <plurals name="alert_dialog_exit_ecm">
+    <item quantity="one" msgid="8060210887681426682">"Síminn verður í stillingu fyrir svarhringingu neyðarsímtala í <xliff:g id="COUNT">%s</xliff:g> mínútu. Á meðan stillingin er virk er ekki hægt að nota nein forrit sem þurfa gagnatengingu. Viltu hætta núna?"</item>
+    <item quantity="other" msgid="8617116564023933114">"Síminn verður í stillingu fyrir svarhringingu neyðarsímtala í <xliff:g id="COUNT">%s</xliff:g> mínútur. Á meðan stillingin er virk er ekki hægt að nota nein forrit sem þurfa gagnatengingu. Viltu hætta núna?"</item>
+  </plurals>
+  <plurals name="alert_dialog_not_avaialble_in_ecm">
+    <item quantity="one" msgid="2585506997024726599">"Þessi aðgerð er ekki í boði á meðan stilling fyrir svarhringingu neyðarsímtala er virk. Síminn verður í þessari stillingu í <xliff:g id="COUNT">%s</xliff:g> mínútu. Viltu hætta núna?"</item>
+    <item quantity="other" msgid="6115622137771382224">"Þessi aðgerð er ekki í boði á meðan stilling fyrir svarhringingu neyðarsímtala er virk. Síminn verður í þessari stillingu í <xliff:g id="COUNT">%s</xliff:g> mínútur. Viltu hætta núna?"</item>
+  </plurals>
     <string name="alert_dialog_in_ecm_call" msgid="1886723687211887104">"Þessi aðgerð er ekki í boði í neyðarsímtali."</string>
     <string name="progress_dialog_exiting_ecm" msgid="4835734101617817074">"Fer úr stillingu fyrir svarhringingu neyðarsímtala"</string>
     <string name="alert_dialog_yes" msgid="6674268047820703974">"Já"</string>
@@ -545,8 +528,8 @@
     <string name="description_dial_button" msgid="7459705245418435351">"hringja"</string>
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"Titringur"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"Titringur"</string>
+    <string name="voicemail_visual_voicemail_switch_title" msgid="5012622186976275457">"Myndrænt talhólf"</string>
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"Hljóð"</string>
-    <string name="dial_pad_autocomplete" msgid="7683489952557536398">"Flýtiritun símatakkaborðs"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"Hringitónn og titringur"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"Innbyggð SIM-kort"</string>
     <string name="enable_video_calling_title" msgid="7237253660669000899">"Kveikja á myndsímtölum"</string>
@@ -561,4 +544,5 @@
     <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"Wi-Fi símtal"</string>
     <string name="emergency_action_launch_hint" msgid="5841511849007540970">"Snertu aftur til að opna"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"Villa kom upp við að afkóða skeytið."</string>
+    <string name="callFailed_cdma_activation" msgid="2307989779233262164">"SIM-kort hefur virkjað þjónustuna þína og uppfært reikigetu símans."</string>
 </resources>

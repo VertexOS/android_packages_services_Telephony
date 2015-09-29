@@ -22,7 +22,7 @@
     <string name="sip_receive_calls" msgid="426678617137462173">"Eingehende Anrufe annehmen"</string>
     <string name="sip_receive_calls_summary" msgid="946161517528227523">"Beansprucht den Akku stärker"</string>
     <string name="sip_call_options_title" msgid="8421210494703869806">"SIP-Telefonie nutzen"</string>
-    <string name="sip_call_options_wifi_only_title" msgid="5112579243580893890">"SIP-Telefonie nutzen (nur WLAN)"</string>
+    <string name="sip_call_options_wifi_only_title" msgid="5112579243580893890">"Anrufe über SIP (nur WLAN)"</string>
     <string name="sip_call_options_entry_1" msgid="7217659161237099900">"Für alle Anrufe mit verfügbarem Datennetzwerk"</string>
     <string name="sip_call_options_entry_2" msgid="1815335903940609729">"Nur für SIP-Anrufe"</string>
     <string name="sip_call_options_wifi_only_entry_1" msgid="1358513095551847314">"Für alle Anrufe"</string>

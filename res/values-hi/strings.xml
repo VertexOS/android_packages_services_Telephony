@@ -17,7 +17,7 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="phoneAppLabel" product="tablet" msgid="1107073389495104784">"सेल्युलर डेटा"</string>
-    <string name="phoneAppLabel" product="default" msgid="906161039445636857">"फ़ोन"</string>
+    <string name="phoneAppLabel" product="default" msgid="6790717591729922998">"फ़ोन सेवाएं"</string>
     <string name="emergencyDialerIconLabel" msgid="7812140032168171053">"आपातकालीन डायलर"</string>
     <string name="phoneIconLabel" msgid="2331230813161304895">"फ़ोन"</string>
     <string name="fdnListLabel" msgid="8630418672279521003">"FDN सूची"</string>
@@ -68,16 +68,9 @@
     <string name="phone_accounts_selection_header" msgid="1365215726106915865">"फ़ोन खाते"</string>
     <string name="phone_accounts_add_sip_account" msgid="2023821743341923271">"SIP खाता जोड़ें"</string>
     <string name="phone_accounts_configure_account_settings" msgid="1361715069911607109">"खाता सेटिंग कॉन्‍फ़िगर करें"</string>
+    <string name="phone_accounts_all_calling_accounts" msgid="207619531589278471">"सभी कॉलिंग खाते"</string>
+    <string name="phone_accounts_all_calling_accounts_summary" msgid="8594186415822657011">"चुनें कि कौन से खाते कॉल कर सकते हैं"</string>
     <string name="wifi_calling" msgid="739018212480165598">"वाई-फ़ाई कॉलिंग"</string>
-    <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"वाई-फ़ाई कॉलिंग का उपयोग न करें"</string>
-    <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"कॉल सहायक का उपयोग न करें"</string>
-    <string name="wifi_calling_call_assistant_none" msgid="6283702349285593683">"कोई नहीं"</string>
-    <string name="wifi_calling_call_assistant" msgid="229102032881680320">"कॉल सहायक"</string>
-    <string name="wifi_calling_use_call_assistant" msgid="8460024827012666199">"कॉल सहायक का उपयोग करें"</string>
-    <string name="wifi_calling_select_call_assistant" msgid="9296558058772293">"कॉल सहायक चुनें"</string>
-    <string name="wifi_calling_select_call_assistant_summary" msgid="164985727137156474">"इससे कॉल करने हेतु उपयोग किए जाने वाले नेटवर्क प्रबंधित करें:"</string>
-    <string name="wifi_calling_use_call_assistant_summary" msgid="6599987137133339698">"ऐप्‍स या सेवाओं को कॉल हेतु उपयाेग किए जाने वाले नेटवर्क प्रबंधित करने दें"</string>
-    <string name="wifi_calling_call_assistant_configure" msgid="1092639708949670031">"कॉन्फ़िगर करें"</string>
     <string name="connection_service_default_label" msgid="1498481943805913754">"अंतर्निहित कनेक्शन सेवा"</string>
     <string name="voicemail" msgid="8693759337917898954">"वॉयस मेल"</string>
     <string name="voicemail_settings_with_label" msgid="152724978380748296">"वॉइसमेल (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
@@ -412,6 +405,7 @@
     <string name="puk2_blocked" msgid="3150263853077280049">"PUK2 स्थायी रूप से अवरोधित है."</string>
     <string name="pin2_attempts" msgid="720736232885011507">\n"आपके पास <xliff:g id="NUMBER">%d</xliff:g> प्रयास शेष हैं."</string>
     <string name="pin2_unblocked" msgid="7791600368153469078">"PIN2 अब अवरोधित नहीं है"</string>
+    <string name="pin2_error_exception" msgid="1088689322248996699">"नेटवर्क या SIM कार्ड त्रुटि"</string>
     <string name="doneButton" msgid="2859593360997984240">"पूर्ण"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"ध्‍वनिमेल नबंर"</string>
     <string name="card_title_dialing" msgid="5769417478498348054">"डायल कर रहा है"</string>
@@ -422,23 +416,12 @@
     <string name="card_title_on_hold" msgid="821463117892339942">"होल्ड पर"</string>
     <string name="card_title_hanging_up" msgid="3999101620995182450">"कॉल समाप्त हो रहा है"</string>
     <string name="card_title_in_call" msgid="6346543933068225205">"कॉल में"</string>
-    <string name="notification_dialing" msgid="2107666444937350731">"डायल हो रहा है"</string>
-    <string name="notification_missedCallTitle" msgid="7554385905572364535">"छूटी कॉल"</string>
-    <string name="notification_missedCallsTitle" msgid="1361677948941502522">"छूटी कॉल"</string>
-    <string name="notification_missedCallsMsg" msgid="4575787816055205600">"<xliff:g id="NUM_MISSED_CALLS">%s</xliff:g> छूटी कॉल"</string>
-    <string name="notification_missedCallTicker" msgid="504686252427747209">"<xliff:g id="MISSED_CALL_FROM">%s</xliff:g> की कॉल छूटी"</string>
-    <string name="notification_ongoing_call" msgid="7068688957273482989">"चल रही कॉल"</string>
-    <string name="notification_on_hold" msgid="3480694969511790465">"होल्ड पर"</string>
-    <string name="notification_incoming_call" msgid="2820429205043529642">"इनकमिंग कॉल"</string>
     <string name="notification_voicemail_title" msgid="8933468752045550523">"नया वॉयस मेल"</string>
     <string name="notification_voicemail_title_count" msgid="4366360747660929916">"नई वॉयस मेल (<xliff:g id="COUNT">%d</xliff:g>)"</string>
     <string name="notification_voicemail_text_format" msgid="4447323569453981685">"<xliff:g id="VOICEMAIL_NUMBER">%s</xliff:g> डायल करें"</string>
     <string name="notification_voicemail_no_vm_number" msgid="760963466895609716">"वॉयस मेल नंबर अज्ञात"</string>
     <string name="notification_network_selection_title" msgid="4224455487793492772">"कोई सेवा नहीं"</string>
     <string name="notification_network_selection_text" msgid="2607085729661923269">"चयनित नेटवर्क (<xliff:g id="OPERATOR_NAME">%s</xliff:g>) अनुपलब्ध"</string>
-    <string name="notification_action_end_call" msgid="6069460915123531620">"समाप्त करें"</string>
-    <string name="notification_missedCall_call_back" msgid="2684890353590890187">"वापस कॉल करें"</string>
-    <string name="notification_missedCall_message" msgid="3049928912736917988">"संदेश"</string>
     <string name="incall_error_power_off" msgid="2947938060513306698">"कॉल करने के लिए हवाई जहाज़ मोड बंद करें."</string>
     <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"कॉल करने के लिए हवाई जहाज़ मोड बंद करें या किसी वायरलेस नेटवर्क से कनेक्‍ट करें."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"नेटवर्क पर पंजीकृत नहीं."</string>
@@ -516,18 +499,18 @@
     <string name="phone_entered_ecm_text" msgid="6266424252578731203">"आपातकालीन कॉलबैक मोड में प्रविष्ट हुए"</string>
     <string name="phone_in_ecm_notification_title" msgid="3226896828951687085">"आपातकालीन कॉलबैक मोड"</string>
     <string name="phone_in_ecm_call_notification_text" msgid="4611608947314729773">"डेटा कनेक्शन अक्षम किया गया"</string>
-    <plurals name="phone_in_ecm_notification_time" formatted="false" msgid="8308381858502470919">
-      <item quantity="one"><xliff:g id="COUNT_1">%s</xliff:g> मिनट तक कोई डेटा कनेक्‍शन नहीं</item>
-      <item quantity="other"><xliff:g id="COUNT_1">%s</xliff:g> मिनट तक कोई डेटा कनेक्‍शन नहीं</item>
-    </plurals>
-    <plurals name="alert_dialog_exit_ecm" formatted="false" msgid="7179911675595441201">
-      <item quantity="one">फ़ोन <xliff:g id="COUNT_1">%s</xliff:g> मिनट तक आपातकालीन कॉलबैक मोड में रहेगा. इस मोड में रहने पर डेटा कनेक्‍शन का उपयोग करने वाले किसी भी ऐप्‍लिकेशन का उपयोग नहीं किया जा सकता. क्‍या आप अभी बाहर निकलना चाहते हैं?</item>
-      <item quantity="other">फ़ोन <xliff:g id="COUNT_1">%s</xliff:g> मिनट तक आपातकालीन कॉलबैक मोड में रहेगा. इस मोड में रहने पर डेटा कनेक्‍शन का उपयोग करने वाले किसी भी ऐप्‍लिकेशन का उपयोग नहीं किया जा सकता. क्‍या आप अभी बाहर निकलना चाहते हैं?</item>
-    </plurals>
-    <plurals name="alert_dialog_not_avaialble_in_ecm" formatted="false" msgid="8042973425225093895">
-      <item quantity="one">आपातकालीन कॉलबैक मोड में रहने पर चयनित कार्रवाई उपलब्‍ध नहीं होती. फ़ोन <xliff:g id="COUNT_1">%s</xliff:g> मिनट तक इस मोड में रहेगा. क्‍या आप अभी बाहर निकलना चाहते हैं?</item>
-      <item quantity="other">आपातकालीन कॉलबैक मोड में रहने पर चयनित कार्रवाई उपलब्‍ध नहीं होती. फ़ोन <xliff:g id="COUNT_1">%s</xliff:g> मिनट तक इस मोड में रहेगा. क्‍या आप अभी बाहर निकलना चाहते हैं?</item>
-    </plurals>
+  <plurals name="phone_in_ecm_notification_time">
+    <item quantity="one" msgid="4866221796252472622">"<xliff:g id="COUNT">%s</xliff:g> मिनट के लिए कोई डेटा कनेक्शन नहीं"</item>
+    <item quantity="other" msgid="3122217344579273583">"<xliff:g id="COUNT">%s</xliff:g> मिनट के लिए कोई डेटा कनेक्शन नहीं"</item>
+  </plurals>
+  <plurals name="alert_dialog_exit_ecm">
+    <item quantity="one" msgid="8060210887681426682">"फ़ोन <xliff:g id="COUNT">%s</xliff:g> मिनट के लिए आपातकालीन कॉलबैक मोड में रहेगा. हालांकि, इस मोड में होने पर डेटा कनेक्शन का उपयोग करने वाले किसी ऐप्स  का उपयोग नहीं किया जा सकता. क्या आप अभी बाहर निकलना चाहते हैं?"</item>
+    <item quantity="other" msgid="8617116564023933114">"फ़ोन <xliff:g id="COUNT">%s</xliff:g> मिनट के लिए आपातकालीन कॉलबैक मोड में रहेगा. हालांकि, इस मोड में होने पर डेटा कनेक्शन का उपयोग करने वाले किसी ऐप्स  का उपयोग नहीं किया जा सकता. क्या आप अभी बाहर निकलना चाहते हैं?"</item>
+  </plurals>
+  <plurals name="alert_dialog_not_avaialble_in_ecm">
+    <item quantity="one" msgid="2585506997024726599">"आपातकालीन कॉलबैक मोड के समय चयनित क्रिया उपलब्ध नहीं है. फ़ोन <xliff:g id="COUNT">%s</xliff:g> मिनट तक इस मोड में रहेगा. क्या आप अभी बाहर निकलना चाहते हैं?"</item>
+    <item quantity="other" msgid="6115622137771382224">"आपातकालीन कॉलबैक मोड के समय चयनित क्रिया उपलब्ध नहीं है. फ़ोन <xliff:g id="COUNT">%s</xliff:g> मिनट तक इस मोड में रहेगा. क्या आप अभी बाहर निकलना चाहते हैं?"</item>
+  </plurals>
     <string name="alert_dialog_in_ecm_call" msgid="1886723687211887104">"आपातकालीन कॉल के समय चयनित क्रिया उपलब्ध नहीं होती है."</string>
     <string name="progress_dialog_exiting_ecm" msgid="4835734101617817074">"आपातकालीन कॉलबैक मोड से बाहर निकल रहा है"</string>
     <string name="alert_dialog_yes" msgid="6674268047820703974">"हां"</string>
@@ -537,7 +520,7 @@
     <string name="voicemail_settings" msgid="72448049107749316">"सेटअप"</string>
     <string name="voicemail_number_not_set" msgid="6724904736891087856">"&lt;सेट नहीं है&gt;"</string>
     <string name="other_settings" msgid="3672912580359716394">"अन्य कॉल सेटिंग"</string>
-    <string name="calling_via_template" msgid="4839419581866928142">"<xliff:g id="PROVIDER_NAME">%s</xliff:g> के माध्यम से कॉल किया जा रहा है"</string>
+    <string name="calling_via_template" msgid="4839419581866928142">"कॉल <xliff:g id="PROVIDER_NAME">%s</xliff:g> से जा रही है"</string>
     <string name="contactPhoto" msgid="4713193418046639466">"संपर्क का फ़ोटो"</string>
     <string name="goPrivate" msgid="865837794424530980">"निजी हो जाएं"</string>
     <string name="selectContact" msgid="781975788478987237">"संपर्क को चुनें"</string>
@@ -545,8 +528,8 @@
     <string name="description_dial_button" msgid="7459705245418435351">"डायल करें"</string>
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"कंपन करें"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"कंपन करें"</string>
+    <string name="voicemail_visual_voicemail_switch_title" msgid="5012622186976275457">"विज़ुअल वॉइसमेल"</string>
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"ध्वनि"</string>
-    <string name="dial_pad_autocomplete" msgid="7683489952557536398">"डायलपैड स्‍वत: पूर्ण"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"रिंगटोन और कंपन"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"अंतर्निहित सिम कार्ड"</string>
     <string name="enable_video_calling_title" msgid="7237253660669000899">"वीडियो कॉलिंग चालू करें"</string>
@@ -561,4 +544,5 @@
     <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"वाई-फ़ाई कॉल"</string>
     <string name="emergency_action_launch_hint" msgid="5841511849007540970">"खोलने के लिए पुन: स्पर्श करें"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"संदेश डीकोड करते समय कोई त्रुटि हुई थी."</string>
+    <string name="callFailed_cdma_activation" msgid="2307989779233262164">"सिम कार्ड द्वारा आपकी सेवा को सक्रिय किया गया है और आपके फ़ोन की रोमिंग क्षमताओं को अपडेट किया गया है."</string>
 </resources>

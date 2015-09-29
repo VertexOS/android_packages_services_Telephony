@@ -21,10 +21,10 @@
     <string name="sip_accounts_title" msgid="2082527045326874519">"Kontoer"</string>
     <string name="sip_receive_calls" msgid="426678617137462173">"Motta innkommende anrop"</string>
     <string name="sip_receive_calls_summary" msgid="946161517528227523">"Bruker mer batterilevetid"</string>
-    <string name="sip_call_options_title" msgid="8421210494703869806">"Bruk SIP-oppringing"</string>
-    <string name="sip_call_options_wifi_only_title" msgid="5112579243580893890">"Bruk SIP-oppringing (kun for Wi-Fi)"</string>
+    <string name="sip_call_options_title" msgid="8421210494703869806">"Bruk SIP-anrop"</string>
+    <string name="sip_call_options_wifi_only_title" msgid="5112579243580893890">"Bruk SIP-anrop (kun for Wi-Fi)"</string>
     <string name="sip_call_options_entry_1" msgid="7217659161237099900">"For alle anrop hvor datanettverk er tilgjengelige"</string>
-    <string name="sip_call_options_entry_2" msgid="1815335903940609729">"Kun for SIP-oppringing"</string>
+    <string name="sip_call_options_entry_2" msgid="1815335903940609729">"Kun for SIP-anrop"</string>
     <string name="sip_call_options_wifi_only_entry_1" msgid="1358513095551847314">"Bruk ved alle anrop"</string>
     <string name="add_sip_account" msgid="800843669753980091">"Legg til konto"</string>
     <string name="remove_sip_account" msgid="1367664438506503690">"Fjern kontoen"</string>
@@ -48,8 +48,8 @@
     <string name="registration_status_invalid_credentials" msgid="8406872554323334182">"Kontoregistreringen mislyktes: feil brukernavn eller passord."</string>
     <string name="registration_status_server_unreachable" msgid="7710275557045148634">"Kontoregistreringen mislyktes: sjekk tjenernavnet."</string>
     <string name="third_party_account_summary" msgid="9041060473615403041">"Denne kontoen er for øyeblikket i bruk av appen <xliff:g id="ACCOUNT_OWNER">%s</xliff:g>."</string>
-    <string name="sip_edit_title" msgid="1967247832635750410">"Kontoinnstillinger for SIP"</string>
-    <string name="sip_edit_new_title" msgid="266414118302574305">"Kontoinnstillinger for SIP"</string>
+    <string name="sip_edit_title" msgid="1967247832635750410">"SIP-innstillinger"</string>
+    <string name="sip_edit_new_title" msgid="266414118302574305">"SIP-innstillinger"</string>
     <string name="domain_address_title" msgid="1968479941328225423">"Tjener"</string>
     <string name="username_title" msgid="6770064611005663470">"Brukernavn"</string>
     <string name="password_title" msgid="5289013731515564295">"Passord"</string>
@@ -57,10 +57,10 @@
     <string name="proxy_address_title" msgid="6890163365640631841">"Adresse for utgående proxy-tjener"</string>
     <string name="port_title" msgid="6693965912656593862">"Portnummer"</string>
     <string name="transport_title" msgid="889155457465372527">"Transporttype"</string>
-    <string name="send_keepalive_title" msgid="599627072150501159">"Send hold-aktiv-meldinger"</string>
+    <string name="send_keepalive_title" msgid="599627072150501159">"Send keep-alive-meldinger"</string>
     <string name="advanced_settings" msgid="6622996380747040711">"Valgfrie innstillinger"</string>
     <string name="auth_username_title" msgid="8262491689004708265">"Brukernavn for autentisering"</string>
-    <string name="auth_username_summary" msgid="941160241371436473">"Brukernavn brukes til autentisering"</string>
+    <string name="auth_username_summary" msgid="941160241371436473">"Brukernavn som brukes til autentisering"</string>
     <string name="default_preference_summary" msgid="1979249643719483249">"&lt;Ikke angitt&gt;"</string>
     <string name="display_name_summary" msgid="7155076491675565407">"&lt;Samme som brukernavn&gt;"</string>
     <string name="optional_summary" msgid="2363105560396317624">"&lt;Valgfritt&gt;"</string>
@@ -68,10 +68,10 @@
     <string name="advanced_settings_hide" msgid="3480554978705290228">"▽ Trykk for å skjule alle"</string>
     <string name="empty_alert" msgid="6659484914371384024">"<xliff:g id="INPUT_FIELD_NAME">%s</xliff:g> er obligatorisk. Feltet kan ikke være tomt."</string>
     <string name="not_a_valid_port" msgid="7931422555587011830">"Portnummeret må være mellom 1000 og 65534."</string>
-    <string name="no_internet_available" msgid="5523747991760017298">"For å foreta en SIP-oppringing må du først sjekke internettilkoblingen din."</string>
-    <string name="no_wifi_available" msgid="1955023904229673488">"Du må være koblet til et Wi-Fi-nettverk for å benytte SIP-oppringing (bruk Trådløst og nettverk-innstillingene)."</string>
-    <string name="no_voip" msgid="3038021971231952704">"SIP-oppringing støttes ikke"</string>
+    <string name="no_internet_available" msgid="5523747991760017298">"For å bruke SIP-anrop må du først sjekke internettilkoblingen din."</string>
+    <string name="no_wifi_available" msgid="1955023904229673488">"Du må være koblet til et Wi-Fi-nettverk for å benytte SIP-anrop (bruk Trådløst og nettverk-innstillingene)."</string>
+    <string name="no_voip" msgid="3038021971231952704">"SIP-anrop støttes ikke"</string>
     <string name="sip_system_decide" msgid="5577696249416700671">"Automatisk"</string>
     <string name="sip_always_send_keepalive" msgid="4773022409239823318">"Send alltid"</string>
-    <string name="sip_connection_service_label" msgid="6935325004265884453">"Innebygd SIP-oppringing"</string>
+    <string name="sip_connection_service_label" msgid="6935325004265884453">"Innebygd SIP-anrop"</string>
 </resources>

@@ -19,10 +19,10 @@
     <string name="sip_settings" msgid="3768482698061677257">"Mga setting ng SIP"</string>
     <string name="sip_accounts" msgid="85559497282185405">"Mga SIP account"</string>
     <string name="sip_accounts_title" msgid="2082527045326874519">"Mga Account"</string>
-    <string name="sip_receive_calls" msgid="426678617137462173">"Tumanggap ng mga papasok na tawag"</string>
-    <string name="sip_receive_calls_summary" msgid="946161517528227523">"Gumagamit ng higit na tagal ng baterya"</string>
-    <string name="sip_call_options_title" msgid="8421210494703869806">"Gamitin ang pagtawag sa pamamagitan ng SIP"</string>
-    <string name="sip_call_options_wifi_only_title" msgid="5112579243580893890">"Gamitin ang pagtawag sa pamamagitan ng SIP (Wi-Fi lang)"</string>
+    <string name="sip_receive_calls" msgid="426678617137462173">"Tumanggap ng papasok na tawag"</string>
+    <string name="sip_receive_calls_summary" msgid="946161517528227523">"Gumagamit ng higit na baterya"</string>
+    <string name="sip_call_options_title" msgid="8421210494703869806">"Gamitin ang SIP calling"</string>
+    <string name="sip_call_options_wifi_only_title" msgid="5112579243580893890">"Gamitin ang SIP calling (Wi-Fi lang)"</string>
     <string name="sip_call_options_entry_1" msgid="7217659161237099900">"Para sa lahat ng mga tawag kapag available ang data network"</string>
     <string name="sip_call_options_entry_2" msgid="1815335903940609729">"Para lang sa mga tawag sa pamamagitan ng SIP"</string>
     <string name="sip_call_options_wifi_only_entry_1" msgid="1358513095551847314">"Para sa lahat ng tawag"</string>
@@ -48,8 +48,8 @@
     <string name="registration_status_invalid_credentials" msgid="8406872554323334182">"Hindi matagumpay ang pagpaparehistro ng account: Maling username o password."</string>
     <string name="registration_status_server_unreachable" msgid="7710275557045148634">"Nabigo ang pagpaparehistro ng account: Tingnan ang pangalan ng server."</string>
     <string name="third_party_account_summary" msgid="9041060473615403041">"Kasalukuyang ginagamit ang account na ito ng app ng <xliff:g id="ACCOUNT_OWNER">%s</xliff:g>."</string>
-    <string name="sip_edit_title" msgid="1967247832635750410">"Mga detalye ng SIP account"</string>
-    <string name="sip_edit_new_title" msgid="266414118302574305">"Mga detalye ng SIP account"</string>
+    <string name="sip_edit_title" msgid="1967247832635750410">"Detalye ng SIP account"</string>
+    <string name="sip_edit_new_title" msgid="266414118302574305">"Detalye ng SIP account"</string>
     <string name="domain_address_title" msgid="1968479941328225423">"Server"</string>
     <string name="username_title" msgid="6770064611005663470">"Username"</string>
     <string name="password_title" msgid="5289013731515564295">"Password"</string>
@@ -59,13 +59,13 @@
     <string name="transport_title" msgid="889155457465372527">"Uri ng paglilipat"</string>
     <string name="send_keepalive_title" msgid="599627072150501159">"Magpadala ng keep-alive"</string>
     <string name="advanced_settings" msgid="6622996380747040711">"Mga opsyonal na setting"</string>
-    <string name="auth_username_title" msgid="8262491689004708265">"Username sa pagpapatotoo"</string>
-    <string name="auth_username_summary" msgid="941160241371436473">"Ginamit ang username para sa pagpapatotoo"</string>
+    <string name="auth_username_title" msgid="8262491689004708265">"Username sa pagpapatunay"</string>
+    <string name="auth_username_summary" msgid="941160241371436473">"Ginamit ang username para sa pagpapatunay"</string>
     <string name="default_preference_summary" msgid="1979249643719483249">"&lt;Hindi nakatakda&gt;"</string>
     <string name="display_name_summary" msgid="7155076491675565407">"&lt;Katulad ng username&gt;"</string>
     <string name="optional_summary" msgid="2363105560396317624">"&lt;Opsyonal&gt;"</string>
     <string name="advanced_settings_show" msgid="7838761602853998622">"▷ Pindutin upang ipakita lahat"</string>
-    <string name="advanced_settings_hide" msgid="3480554978705290228">"▽ Pindutin upang itago ang lahat"</string>
+    <string name="advanced_settings_hide" msgid="3480554978705290228">"▽ Pindutin upang itago lahat"</string>
     <string name="empty_alert" msgid="6659484914371384024">"Kinakailangan ang <xliff:g id="INPUT_FIELD_NAME">%s</xliff:g> at hindi maaaring iwanang blangko."</string>
     <string name="not_a_valid_port" msgid="7931422555587011830">"Dapat na nasa pagitan ng 1000 at 65534 ang numero ng port."</string>
     <string name="no_internet_available" msgid="5523747991760017298">"Upang tumawag sa pamamagitan ng SIP, suriin muna ang iyong koneksyon sa Internet."</string>

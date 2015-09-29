@@ -17,7 +17,7 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="phoneAppLabel" product="tablet" msgid="1107073389495104784">"Datos móbiles"</string>
-    <string name="phoneAppLabel" product="default" msgid="906161039445636857">"Teléfono"</string>
+    <string name="phoneAppLabel" product="default" msgid="6790717591729922998">"Servizos de telefonía"</string>
     <string name="emergencyDialerIconLabel" msgid="7812140032168171053">"Marcador de emerxencia"</string>
     <string name="phoneIconLabel" msgid="2331230813161304895">"Teléfono"</string>
     <string name="fdnListLabel" msgid="8630418672279521003">"Lista de FDN"</string>
@@ -68,16 +68,9 @@
     <string name="phone_accounts_selection_header" msgid="1365215726106915865">"Contas do teléfono"</string>
     <string name="phone_accounts_add_sip_account" msgid="2023821743341923271">"Engadir conta SIP"</string>
     <string name="phone_accounts_configure_account_settings" msgid="1361715069911607109">"Determinar configuración da conta"</string>
+    <string name="phone_accounts_all_calling_accounts" msgid="207619531589278471">"Todas as contas de chamadas"</string>
+    <string name="phone_accounts_all_calling_accounts_summary" msgid="8594186415822657011">"Selecciona as contas que poden facer chamadas"</string>
     <string name="wifi_calling" msgid="739018212480165598">"Chamadas por wifi"</string>
-    <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"Non utilizar as chamadas wifi"</string>
-    <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"Non utilizar o asistente de chamadas"</string>
-    <string name="wifi_calling_call_assistant_none" msgid="6283702349285593683">"Ningún"</string>
-    <string name="wifi_calling_call_assistant" msgid="229102032881680320">"Asistente de chamadas"</string>
-    <string name="wifi_calling_use_call_assistant" msgid="8460024827012666199">"Utilizar o asistente de chamadas"</string>
-    <string name="wifi_calling_select_call_assistant" msgid="9296558058772293">"Seleccionar asistente de chamadas"</string>
-    <string name="wifi_calling_select_call_assistant_summary" msgid="164985727137156474">"Xestionar as redes utilizadas para chamadas con"</string>
-    <string name="wifi_calling_use_call_assistant_summary" msgid="6599987137133339698">"Permitir que as aplicacións ou os servizos xestionen as redes que se utilizan para chamar"</string>
-    <string name="wifi_calling_call_assistant_configure" msgid="1092639708949670031">"Configurar"</string>
     <string name="connection_service_default_label" msgid="1498481943805913754">"Servizo de conexión integrado"</string>
     <string name="voicemail" msgid="8693759337917898954">"Correo de voz"</string>
     <string name="voicemail_settings_with_label" msgid="152724978380748296">"Correo de voz (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
@@ -412,6 +405,7 @@
     <string name="puk2_blocked" msgid="3150263853077280049">"O PUK2 está permanentemente bloqueado."</string>
     <string name="pin2_attempts" msgid="720736232885011507">\n"Quédanche <xliff:g id="NUMBER">%d</xliff:g> intentos."</string>
     <string name="pin2_unblocked" msgid="7791600368153469078">"O PIN2 xa non está bloqueado"</string>
+    <string name="pin2_error_exception" msgid="1088689322248996699">"Erro de rede ou de tarxeta SIM"</string>
     <string name="doneButton" msgid="2859593360997984240">"Feito"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"Número de correo de voz"</string>
     <string name="card_title_dialing" msgid="5769417478498348054">"Marcación"</string>
@@ -422,23 +416,12 @@
     <string name="card_title_on_hold" msgid="821463117892339942">"En espera"</string>
     <string name="card_title_hanging_up" msgid="3999101620995182450">"Desconectando"</string>
     <string name="card_title_in_call" msgid="6346543933068225205">"Chamada en curso"</string>
-    <string name="notification_dialing" msgid="2107666444937350731">"Marcación"</string>
-    <string name="notification_missedCallTitle" msgid="7554385905572364535">"Chamada perdida"</string>
-    <string name="notification_missedCallsTitle" msgid="1361677948941502522">"Chamadas perdidas"</string>
-    <string name="notification_missedCallsMsg" msgid="4575787816055205600">"<xliff:g id="NUM_MISSED_CALLS">%s</xliff:g> chamadas perdidas"</string>
-    <string name="notification_missedCallTicker" msgid="504686252427747209">"Chamada perdida de <xliff:g id="MISSED_CALL_FROM">%s</xliff:g>"</string>
-    <string name="notification_ongoing_call" msgid="7068688957273482989">"Chamada en curso"</string>
-    <string name="notification_on_hold" msgid="3480694969511790465">"En espera"</string>
-    <string name="notification_incoming_call" msgid="2820429205043529642">"Chamada entrante"</string>
     <string name="notification_voicemail_title" msgid="8933468752045550523">"Novo correo de voz"</string>
     <string name="notification_voicemail_title_count" msgid="4366360747660929916">"Novo correo de voz (<xliff:g id="COUNT">%d</xliff:g>)"</string>
     <string name="notification_voicemail_text_format" msgid="4447323569453981685">"Marcar o <xliff:g id="VOICEMAIL_NUMBER">%s</xliff:g>"</string>
     <string name="notification_voicemail_no_vm_number" msgid="760963466895609716">"Número de correo de voz descoñecido"</string>
     <string name="notification_network_selection_title" msgid="4224455487793492772">"Sen servizo"</string>
     <string name="notification_network_selection_text" msgid="2607085729661923269">"Rede seleccionada (<xliff:g id="OPERATOR_NAME">%s</xliff:g>) non dispoñible"</string>
-    <string name="notification_action_end_call" msgid="6069460915123531620">"Colgar"</string>
-    <string name="notification_missedCall_call_back" msgid="2684890353590890187">"Devolver chamada"</string>
-    <string name="notification_missedCall_message" msgid="3049928912736917988">"Mensaxe"</string>
     <string name="incall_error_power_off" msgid="2947938060513306698">"Desactiva o modo avión para facer unha chamada."</string>
     <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"Desactiva o modo avión ou conéctate a unha rede sen fíos para facer unha chamada."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"Sen rexistro na rede"</string>
@@ -516,18 +499,18 @@
     <string name="phone_entered_ecm_text" msgid="6266424252578731203">"Accedeuse ao modo de devolución de chamadas de emerxencia"</string>
     <string name="phone_in_ecm_notification_title" msgid="3226896828951687085">"Modo de devolución de chamadas de emerxencia"</string>
     <string name="phone_in_ecm_call_notification_text" msgid="4611608947314729773">"Conexión de datos desactivada"</string>
-    <plurals name="phone_in_ecm_notification_time" formatted="false" msgid="8308381858502470919">
-      <item quantity="other">Non houbo conexión de datos durante <xliff:g id="COUNT_1">%s</xliff:g> minutos</item>
-      <item quantity="one">Non houbo conexión de datos durante <xliff:g id="COUNT_0">%s</xliff:g> minuto</item>
-    </plurals>
-    <plurals name="alert_dialog_exit_ecm" formatted="false" msgid="7179911675595441201">
-      <item quantity="other">O teléfono estará no modo de devolución de chamada de emerxencia durante <xliff:g id="COUNT_1">%s</xliff:g> minutos. Mentres se atope neste modo, non se poderá usar ningunha aplicación que utilice unha conexión de datos. Queres saír agora?</item>
-      <item quantity="one">O teléfono estará no modo de devolución de chamada de emerxencia durante <xliff:g id="COUNT_0">%s</xliff:g> minuto. Mentres se atope neste modo, non se poderá usar ningunha aplicación que utilice unha conexión de datos. Queres saír agora?</item>
-    </plurals>
-    <plurals name="alert_dialog_not_avaialble_in_ecm" formatted="false" msgid="8042973425225093895">
-      <item quantity="other">A acción seleccionada non está dispoñible durante o modo de devolución de chamadas de emerxencia. O teléfono estará neste modo durante <xliff:g id="COUNT_1">%s</xliff:g> minutos. Queres saír agora?</item>
-      <item quantity="one">A acción seleccionada non está dispoñible durante o modo de devolución de chamadas de emerxencia. O teléfono estará neste modo durante <xliff:g id="COUNT_0">%s</xliff:g> minuto. Queres saír agora?</item>
-    </plurals>
+  <plurals name="phone_in_ecm_notification_time">
+    <item quantity="one" msgid="4866221796252472622">"Non houbo conexión de datos durante <xliff:g id="COUNT">%s</xliff:g> minuto"</item>
+    <item quantity="other" msgid="3122217344579273583">"Non houbo conexión de datos durante <xliff:g id="COUNT">%s</xliff:g> minutos"</item>
+  </plurals>
+  <plurals name="alert_dialog_exit_ecm">
+    <item quantity="one" msgid="8060210887681426682">"O teléfono estará en modo de devolución de chamada de emerxencia durante <xliff:g id="COUNT">%s</xliff:g> minuto. Mentres está neste modo, non se poden utilizar aplicacións que usen conexión de datos. Queres saír agora?"</item>
+    <item quantity="other" msgid="8617116564023933114">"O teléfono estará en modo de devolución de chamada de emerxencia durante <xliff:g id="COUNT">%s</xliff:g> minutos. Mentres está neste modo, non se poden utilizar aplicacións que usen conexión de datos. Queres saír agora?"</item>
+  </plurals>
+  <plurals name="alert_dialog_not_avaialble_in_ecm">
+    <item quantity="one" msgid="2585506997024726599">"A acción seleccionada non está dispoñible durante o modo de devolución de chamada de emerxencia. O teléfono estará neste modo durante <xliff:g id="COUNT">%s</xliff:g> minuto. Queres saír agora?"</item>
+    <item quantity="other" msgid="6115622137771382224">"A acción seleccionada non está dispoñible durante o modo de devolución de chamada de emerxencia. O teléfono estará neste modo durante <xliff:g id="COUNT">%s</xliff:g> minutos. Queres saír agora?"</item>
+  </plurals>
     <string name="alert_dialog_in_ecm_call" msgid="1886723687211887104">"A acción seleccionada non está dispoñible durante as chamadas de emerxencia."</string>
     <string name="progress_dialog_exiting_ecm" msgid="4835734101617817074">"Saíndo do modo de devolución de chamadas de emerxencia"</string>
     <string name="alert_dialog_yes" msgid="6674268047820703974">"Si"</string>
@@ -537,7 +520,7 @@
     <string name="voicemail_settings" msgid="72448049107749316">"Configuración"</string>
     <string name="voicemail_number_not_set" msgid="6724904736891087856">"&lt;Sen configurar&gt;"</string>
     <string name="other_settings" msgid="3672912580359716394">"Outras configuracións de chamada"</string>
-    <string name="calling_via_template" msgid="4839419581866928142">"Chamando a través de <xliff:g id="PROVIDER_NAME">%s</xliff:g>"</string>
+    <string name="calling_via_template" msgid="4839419581866928142">"Chamada mediante <xliff:g id="PROVIDER_NAME">%s</xliff:g>"</string>
     <string name="contactPhoto" msgid="4713193418046639466">"foto do contacto"</string>
     <string name="goPrivate" msgid="865837794424530980">"activar o modo privado"</string>
     <string name="selectContact" msgid="781975788478987237">"seleccionar contacto"</string>
@@ -545,8 +528,8 @@
     <string name="description_dial_button" msgid="7459705245418435351">"marcar"</string>
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"Vibrar"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"Vibrar"</string>
+    <string name="voicemail_visual_voicemail_switch_title" msgid="5012622186976275457">"Correo de voz visual"</string>
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"Son"</string>
-    <string name="dial_pad_autocomplete" msgid="7683489952557536398">"Completar teclado de marcación"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"Ton de chamada e vibración"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"Tarxetas SIM integradas"</string>
     <string name="enable_video_calling_title" msgid="7237253660669000899">"Activar videochamadas"</string>
@@ -561,4 +544,5 @@
     <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"Chamada wifi"</string>
     <string name="emergency_action_launch_hint" msgid="5841511849007540970">"Toca outra vez para abrir"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"Produciuse un erro durante a descodificación da mensaxe."</string>
+    <string name="callFailed_cdma_activation" msgid="2307989779233262164">"A tarxeta SIM activou o teu servizo e actualizou as funcións de itinerancia do teléfono."</string>
 </resources>

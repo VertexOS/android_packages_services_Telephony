@@ -17,7 +17,7 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="phoneAppLabel" product="tablet" msgid="1107073389495104784">"Données cellulaires"</string>
-    <string name="phoneAppLabel" product="default" msgid="906161039445636857">"Téléphone"</string>
+    <string name="phoneAppLabel" product="default" msgid="6790717591729922998">"Services téléphoniques"</string>
     <string name="emergencyDialerIconLabel" msgid="7812140032168171053">"Appels d\'urgence"</string>
     <string name="phoneIconLabel" msgid="2331230813161304895">"Téléphone"</string>
     <string name="fdnListLabel" msgid="8630418672279521003">"Liste de numéros autorisés"</string>
@@ -68,16 +68,9 @@
     <string name="phone_accounts_selection_header" msgid="1365215726106915865">"Comptes du téléphone"</string>
     <string name="phone_accounts_add_sip_account" msgid="2023821743341923271">"Ajouter un compte SIP"</string>
     <string name="phone_accounts_configure_account_settings" msgid="1361715069911607109">"Configurer les paramètres du compte"</string>
+    <string name="phone_accounts_all_calling_accounts" msgid="207619531589278471">"Tous les comptes d\'appel"</string>
+    <string name="phone_accounts_all_calling_accounts_summary" msgid="8594186415822657011">"Sélectionner les comptes pour lesquels les appels sont activés"</string>
     <string name="wifi_calling" msgid="739018212480165598">"Appels Wi-Fi"</string>
-    <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"Ne pas utiliser les appels par Wi-Fi"</string>
-    <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"Ne pas utiliser l\'assistant d\'appel"</string>
-    <string name="wifi_calling_call_assistant_none" msgid="6283702349285593683">"Aucun"</string>
-    <string name="wifi_calling_call_assistant" msgid="229102032881680320">"Assistant d\'appel"</string>
-    <string name="wifi_calling_use_call_assistant" msgid="8460024827012666199">"Utiliser un assistant d\'appel"</string>
-    <string name="wifi_calling_select_call_assistant" msgid="9296558058772293">"Sélectionner un assistant d\'appel"</string>
-    <string name="wifi_calling_select_call_assistant_summary" msgid="164985727137156474">"Gérer les réseaux utilisés pour les appels avec"</string>
-    <string name="wifi_calling_use_call_assistant_summary" msgid="6599987137133339698">"Laisser les applications ou les services gérer les réseaux utilisés pour les appels"</string>
-    <string name="wifi_calling_call_assistant_configure" msgid="1092639708949670031">"Configurer"</string>
     <string name="connection_service_default_label" msgid="1498481943805913754">"Service de connexion intégré"</string>
     <string name="voicemail" msgid="8693759337917898954">"Messagerie vocale"</string>
     <string name="voicemail_settings_with_label" msgid="152724978380748296">"Messagerie vocale (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
@@ -416,6 +409,7 @@
     <string name="puk2_blocked" msgid="3150263853077280049">"Le code PUK2 est bloqué définitivement."</string>
     <string name="pin2_attempts" msgid="720736232885011507">\n"Il vous reste <xliff:g id="NUMBER">%d</xliff:g> tentatives."</string>
     <string name="pin2_unblocked" msgid="7791600368153469078">"Le NIP2 n\'est plus bloqué."</string>
+    <string name="pin2_error_exception" msgid="1088689322248996699">"Erreur de réseau ou de carte SIM"</string>
     <string name="doneButton" msgid="2859593360997984240">"Terminé"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"N° messagerie vocale"</string>
     <string name="card_title_dialing" msgid="5769417478498348054">"Numérotation en cours…"</string>
@@ -426,23 +420,12 @@
     <string name="card_title_on_hold" msgid="821463117892339942">"En attente"</string>
     <string name="card_title_hanging_up" msgid="3999101620995182450">"Fin d\'appel"</string>
     <string name="card_title_in_call" msgid="6346543933068225205">"Appel en cours"</string>
-    <string name="notification_dialing" msgid="2107666444937350731">"Numérotation en cours…"</string>
-    <string name="notification_missedCallTitle" msgid="7554385905572364535">"Appel manqué"</string>
-    <string name="notification_missedCallsTitle" msgid="1361677948941502522">"Appels manqués"</string>
-    <string name="notification_missedCallsMsg" msgid="4575787816055205600">"<xliff:g id="NUM_MISSED_CALLS">%s</xliff:g> appels manqués"</string>
-    <string name="notification_missedCallTicker" msgid="504686252427747209">"Appel manqué de <xliff:g id="MISSED_CALL_FROM">%s</xliff:g>"</string>
-    <string name="notification_ongoing_call" msgid="7068688957273482989">"Appel en cours"</string>
-    <string name="notification_on_hold" msgid="3480694969511790465">"En attente"</string>
-    <string name="notification_incoming_call" msgid="2820429205043529642">"Appel entrant"</string>
     <string name="notification_voicemail_title" msgid="8933468752045550523">"Nouveau message vocal"</string>
     <string name="notification_voicemail_title_count" msgid="4366360747660929916">"Nouveaux messages vocaux (<xliff:g id="COUNT">%d</xliff:g>)"</string>
     <string name="notification_voicemail_text_format" msgid="4447323569453981685">"Composer <xliff:g id="VOICEMAIL_NUMBER">%s</xliff:g>"</string>
     <string name="notification_voicemail_no_vm_number" msgid="760963466895609716">"Numéro de messagerie vocale inconnu"</string>
     <string name="notification_network_selection_title" msgid="4224455487793492772">"Aucun service"</string>
     <string name="notification_network_selection_text" msgid="2607085729661923269">"Réseau sélectionné (<xliff:g id="OPERATOR_NAME">%s</xliff:g>) non disponible"</string>
-    <string name="notification_action_end_call" msgid="6069460915123531620">"Raccrocher"</string>
-    <string name="notification_missedCall_call_back" msgid="2684890353590890187">"Rappeler"</string>
-    <string name="notification_missedCall_message" msgid="3049928912736917988">"Message"</string>
     <string name="incall_error_power_off" msgid="2947938060513306698">"Désactivez le mode Avion pour faire un appel."</string>
     <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"Désactivez le mode Avion ou connectez-vous à un réseau Wi-Fi pour faire un appel."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"Non enregistré sur le réseau"</string>
@@ -520,18 +503,18 @@
     <string name="phone_entered_ecm_text" msgid="6266424252578731203">"Mode de rappel d\'urgence activé"</string>
     <string name="phone_in_ecm_notification_title" msgid="3226896828951687085">"Mode de rappel d\'urgence"</string>
     <string name="phone_in_ecm_call_notification_text" msgid="4611608947314729773">"Connexion des données désactivée"</string>
-    <plurals name="phone_in_ecm_notification_time" formatted="false" msgid="8308381858502470919">
-      <item quantity="one">Aucune connexion de données pendant <xliff:g id="COUNT_1">%s</xliff:g> minute</item>
-      <item quantity="other">Aucune connexion de données pendant <xliff:g id="COUNT_1">%s</xliff:g> minutes</item>
-    </plurals>
-    <plurals name="alert_dialog_exit_ecm" formatted="false" msgid="7179911675595441201">
-      <item quantity="one">Le téléphone sera en mode de rappel d\'urgence pendant <xliff:g id="COUNT_1">%s</xliff:g> minute.  Lorsque ce mode est activé, vous ne pouvez pas utiliser d\'applications nécessitant une connexion à Internet. Voulez-vous quitter l\'écran maintenant?</item>
-      <item quantity="other"> Le téléphone sera en mode de rappel d\'urgence pendant <xliff:g id="COUNT_1">%s</xliff:g> minutes. Lorsque ce mode est activé, vous ne pouvez pas utiliser d\'applications nécessitant une connexion à Internet. Voulez-vous quitter l\'écran maintenant?</item>
-    </plurals>
-    <plurals name="alert_dialog_not_avaialble_in_ecm" formatted="false" msgid="8042973425225093895">
-      <item quantity="one">L\'action sélectionnée n\'est pas disponible lorsque le mode de rappel d\'urgence est activé. Ce mode restera activé sur ce téléphone pendant <xliff:g id="COUNT_1">%s</xliff:g> minute. Voulez-vous quitter l\'écran maintenant?</item>
-      <item quantity="other">L\'action sélectionnée n\'est pas disponible lorsque le mode de rappel d\'urgence est activé. Ce mode restera activé sur ce téléphone pendant <xliff:g id="COUNT_1">%s</xliff:g> minutes. Voulez-vous quitter l\'écran maintenant?</item>
-    </plurals>
+  <plurals name="phone_in_ecm_notification_time">
+    <item quantity="one" msgid="4866221796252472622">"Aucune connexion à Internet pendant <xliff:g id="COUNT">%s</xliff:g> minute"</item>
+    <item quantity="other" msgid="3122217344579273583">"Aucune connexion de données pendant <xliff:g id="COUNT">%s</xliff:g> minutes"</item>
+  </plurals>
+  <plurals name="alert_dialog_exit_ecm">
+    <item quantity="one" msgid="8060210887681426682">"Le mode de rappel d\'urgence sera actif sur le téléphone pendant <xliff:g id="COUNT">%s</xliff:g> minute. Tant que ce mode est actif, vous ne pouvez utiliser aucune des applications nécessitant une connexion Internet. Voulez-vous quitter maintenant?"</item>
+    <item quantity="other" msgid="8617116564023933114">"Le mode de rappel d\'urgence sera actif sur le téléphone pendant <xliff:g id="COUNT">%s</xliff:g> minutes. Tant que ce mode est actif, vous ne pouvez utiliser aucune des applications nécessitant une connexion Internet. Voulez-vous quitter maintenant?"</item>
+  </plurals>
+  <plurals name="alert_dialog_not_avaialble_in_ecm">
+    <item quantity="one" msgid="2585506997024726599">"L\'action sélectionnée n\'est pas disponible en mode de rappel d\'urgence. Ce mode sera actif sur le téléphone pendant <xliff:g id="COUNT">%s</xliff:g> minute. Voulez-vous quitter maintenant?"</item>
+    <item quantity="other" msgid="6115622137771382224">"L\'action sélectionnée n\'est pas disponible en mode de rappel d\'urgence. Ce mode sera actif sur le téléphone pendant <xliff:g id="COUNT">%s</xliff:g> minutes. Voulez-vous quitter maintenant?"</item>
+  </plurals>
     <string name="alert_dialog_in_ecm_call" msgid="1886723687211887104">"L\'action sélectionnée n\'est pas disponible pendant un appel d\'urgence."</string>
     <string name="progress_dialog_exiting_ecm" msgid="4835734101617817074">"Sortie du mode de rappel d\'urgence…"</string>
     <string name="alert_dialog_yes" msgid="6674268047820703974">"Oui"</string>
@@ -549,8 +532,8 @@
     <string name="description_dial_button" msgid="7459705245418435351">"composer"</string>
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"Vibreur"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"Vibreur"</string>
+    <string name="voicemail_visual_voicemail_switch_title" msgid="5012622186976275457">"Messagerie vocale visuelle"</string>
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"Son"</string>
-    <string name="dial_pad_autocomplete" msgid="7683489952557536398">"Suggestions automatiques pour le pavé numérique"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"Sonnerie et vibreur"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"Cartes SIM intégrées"</string>
     <string name="enable_video_calling_title" msgid="7237253660669000899">"Activer les appels vidéo"</string>
@@ -565,4 +548,5 @@
     <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"Appel Wi-Fi"</string>
     <string name="emergency_action_launch_hint" msgid="5841511849007540970">"Touchez à nouveau pour ouvrir"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"Une erreur s\'est produite lors du décodage du message."</string>
+    <string name="callFailed_cdma_activation" msgid="2307989779233262164">"Une carte SIM a activé votre service et mis à jour les fonctionnalités d\'itinérance de votre téléphone."</string>
 </resources>
