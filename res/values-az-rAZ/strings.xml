@@ -465,10 +465,8 @@
     <string name="importAllSimEntries" msgid="1503181169636198673">"Hamısını import edin"</string>
     <string name="importingSimContacts" msgid="7374056215462575769">"SIM kontaktlar import edilir"</string>
     <string name="importToFDNfromContacts" msgid="2130620207013368580">"Kontaktlardan import edin"</string>
-    <!-- no translation found for singleContactImportedMsg (6868483416182599206) -->
-    <skip />
-    <!-- no translation found for failedToImportSingleContactMsg (415399285420353917) -->
-    <skip />
+    <string name="singleContactImportedMsg" msgid="6868483416182599206">"Idxal olunmuş kontakt"</string>
+    <string name="failedToImportSingleContactMsg" msgid="415399285420353917">"Kontakt idxalı uğursuz oldu"</string>
     <string name="hac_mode_title" msgid="8740268574688743289">"Eşitmə yardımı"</string>
     <string name="hac_mode_summary" msgid="6833851160514929341">"Eşitmə yardımı uyğunluğunu aktivləşdirin"</string>
   <string-array name="tty_mode_entries">

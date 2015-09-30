@@ -465,10 +465,8 @@
     <string name="importAllSimEntries" msgid="1503181169636198673">"នាំចូល​ទាំងអស់"</string>
     <string name="importingSimContacts" msgid="7374056215462575769">"នាំចូល​ទំនាក់ទំនង​ស៊ីមកាត"</string>
     <string name="importToFDNfromContacts" msgid="2130620207013368580">"នាំចូល​ពី​ទំនាក់ទំនង"</string>
-    <!-- no translation found for singleContactImportedMsg (6868483416182599206) -->
-    <skip />
-    <!-- no translation found for failedToImportSingleContactMsg (415399285420353917) -->
-    <skip />
+    <string name="singleContactImportedMsg" msgid="6868483416182599206">"បាននាំចូលទំនាក់ទំនង"</string>
+    <string name="failedToImportSingleContactMsg" msgid="415399285420353917">"បានបរាជ័យក្នុងការនាំចូលទំនាក់ទំនង"</string>
     <string name="hac_mode_title" msgid="8740268574688743289">"ឧបករណ៍​ជំនួស​ការ​ស្ដាប់"</string>
     <string name="hac_mode_summary" msgid="6833851160514929341">"បើក​ឧបករណ៍​ជំនួស​ការ​ស្ដាប់"</string>
   <string-array name="tty_mode_entries">

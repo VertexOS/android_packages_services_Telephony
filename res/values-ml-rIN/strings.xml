@@ -465,10 +465,8 @@
     <string name="importAllSimEntries" msgid="1503181169636198673">"എല്ലാം ഇമ്പോർട്ടുചെയ്യുക"</string>
     <string name="importingSimContacts" msgid="7374056215462575769">"സിം കോൺടാക്റ്റുകൾ ഇമ്പോർട്ടുചെയ്യുന്നു"</string>
     <string name="importToFDNfromContacts" msgid="2130620207013368580">"കോൺടാക്റ്റുകളിൽ നിന്ന് ഇമ്പോർട്ടുചെയ്യുക"</string>
-    <!-- no translation found for singleContactImportedMsg (6868483416182599206) -->
-    <skip />
-    <!-- no translation found for failedToImportSingleContactMsg (415399285420353917) -->
-    <skip />
+    <string name="singleContactImportedMsg" msgid="6868483416182599206">"കോൺടാക്റ്റ് ഇമ്പോർട്ടുചെയ്തു"</string>
+    <string name="failedToImportSingleContactMsg" msgid="415399285420353917">"കോൺടാക്റ്റ് ഇമ്പോർട്ടുചെയ്യുന്നത് പരാജയപ്പെട്ടു"</string>
     <string name="hac_mode_title" msgid="8740268574688743289">"ശ്രവണ സഹായികൾ"</string>
     <string name="hac_mode_summary" msgid="6833851160514929341">"ശ്രവണസഹായി അനുയോജ്യത ഓൺ ചെയ്യുക"</string>
   <string-array name="tty_mode_entries">

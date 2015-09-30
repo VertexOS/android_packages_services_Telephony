@@ -465,10 +465,8 @@
     <string name="importAllSimEntries" msgid="1503181169636198673">"सबै आयात गर्नुहोस्"</string>
     <string name="importingSimContacts" msgid="7374056215462575769">"SIM सम्पर्कहरू आयात गर्दै"</string>
     <string name="importToFDNfromContacts" msgid="2130620207013368580">"सम्पर्कहरूबाट आयात गर्नुहोस्"</string>
-    <!-- no translation found for singleContactImportedMsg (6868483416182599206) -->
-    <skip />
-    <!-- no translation found for failedToImportSingleContactMsg (415399285420353917) -->
-    <skip />
+    <string name="singleContactImportedMsg" msgid="6868483416182599206">"आयातित सम्पर्क"</string>
+    <string name="failedToImportSingleContactMsg" msgid="415399285420353917">"सम्पर्क आयात गर्न असफल"</string>
     <string name="hac_mode_title" msgid="8740268574688743289">"श्रवण सहयोगी"</string>
     <string name="hac_mode_summary" msgid="6833851160514929341">"श्रवण सहायता अनुकूलता खोल्नुहोस्"</string>
   <string-array name="tty_mode_entries">

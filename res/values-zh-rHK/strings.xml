@@ -471,10 +471,8 @@
     <string name="importAllSimEntries" msgid="1503181169636198673">"全部匯入"</string>
     <string name="importingSimContacts" msgid="7374056215462575769">"正在匯入 SIM 通訊錄"</string>
     <string name="importToFDNfromContacts" msgid="2130620207013368580">"從通訊錄匯入"</string>
-    <!-- no translation found for singleContactImportedMsg (6868483416182599206) -->
-    <skip />
-    <!-- no translation found for failedToImportSingleContactMsg (415399285420353917) -->
-    <skip />
+    <string name="singleContactImportedMsg" msgid="6868483416182599206">"已匯入聯絡人"</string>
+    <string name="failedToImportSingleContactMsg" msgid="415399285420353917">"無法匯入聯絡人"</string>
     <string name="hac_mode_title" msgid="8740268574688743289">"助聽器"</string>
     <string name="hac_mode_summary" msgid="6833851160514929341">"開啟助聽器相容功能"</string>
   <string-array name="tty_mode_entries">
