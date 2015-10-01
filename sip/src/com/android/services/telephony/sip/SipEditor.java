@@ -342,8 +342,11 @@ public class SipEditor extends PreferenceActivity
             }
         }
 
-        if (allEmpty || !mUpdateRequired) {
+        if (!mUpdateRequired) {
             finish();
+            return;
+        } else if (allEmpty) {
+            showAlert(getString(R.string.all_empty_alert));
             return;
         } else if (firstEmptyFieldTitle != null) {
             showAlert(getString(R.string.empty_alert, firstEmptyFieldTitle));
