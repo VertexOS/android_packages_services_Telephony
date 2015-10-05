@@ -66,6 +66,7 @@
     <string name="optional_summary" msgid="2363105560396317624">"‏&lt;اختياري&gt;"</string>
     <string name="advanced_settings_show" msgid="7838761602853998622">"▷ المس لإظهار الكل"</string>
     <string name="advanced_settings_hide" msgid="3480554978705290228">"▽ المس لإخفاء الكل"</string>
+    <string name="all_empty_alert" msgid="4087734950375192387">"‏أدخل تفاصيل حساب SIP الجديد."</string>
     <string name="empty_alert" msgid="6659484914371384024">"<xliff:g id="INPUT_FIELD_NAME">%s</xliff:g> مطلوب ولا يمكن تركه فارغًا."</string>
     <string name="not_a_valid_port" msgid="7931422555587011830">"يجب أن يكون رقم المنفذ ما بين 1000 و65534."</string>
     <string name="no_internet_available" msgid="5523747991760017298">"‏لإجراء اتصال SIP، تحقق من الاتصال بالإنترنت أولاً."</string>

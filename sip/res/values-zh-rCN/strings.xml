@@ -66,6 +66,8 @@
     <string name="optional_summary" msgid="2363105560396317624">"&lt;可选&gt;"</string>
     <string name="advanced_settings_show" msgid="7838761602853998622">"▷ 触摸可全部显示"</string>
     <string name="advanced_settings_hide" msgid="3480554978705290228">"▽ 触摸可全部隐藏"</string>
+    <!-- no translation found for all_empty_alert (4087734950375192387) -->
+    <skip />
     <string name="empty_alert" msgid="6659484914371384024">"“<xliff:g id="INPUT_FIELD_NAME">%s</xliff:g>”属于必填字段，不得留空。"</string>
     <string name="not_a_valid_port" msgid="7931422555587011830">"端口号应在1000与65534之间。"</string>
     <string name="no_internet_available" msgid="5523747991760017298">"要拨打 SIP 电话，请先检查您的互联网连接。"</string>

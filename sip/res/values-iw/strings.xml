@@ -66,6 +66,7 @@
     <string name="optional_summary" msgid="2363105560396317624">"‏&lt;אופציונלי&gt;"</string>
     <string name="advanced_settings_show" msgid="7838761602853998622">"▷ גע כדי להציג את הכל"</string>
     <string name="advanced_settings_hide" msgid="3480554978705290228">"▽ גע כדי להסתיר את הכל"</string>
+    <string name="all_empty_alert" msgid="4087734950375192387">"‏הזן את פרטי חשבון ה-SIP החדש."</string>
     <string name="empty_alert" msgid="6659484914371384024">"<xliff:g id="INPUT_FIELD_NAME">%s</xliff:g> הוא שדה חובה ולא ניתן להשאיר אותו ריק."</string>
     <string name="not_a_valid_port" msgid="7931422555587011830">"מספר היציאה צריך להיות בין 1000 ל-65534."</string>
     <string name="no_internet_available" msgid="5523747991760017298">"‏כדי לבצע שיחת SIP, ראשית בדוק את חיבור האינטרנט שלך."</string>

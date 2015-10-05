@@ -66,6 +66,7 @@
     <string name="optional_summary" msgid="2363105560396317624">"&lt;Tùy chọn&gt;"</string>
     <string name="advanced_settings_show" msgid="7838761602853998622">"▷ Chạm để hiển thị tất cả"</string>
     <string name="advanced_settings_hide" msgid="3480554978705290228">"▽ Chạm để ẩn tất cả"</string>
+    <string name="all_empty_alert" msgid="4087734950375192387">"Nhập chi tiết của tài khoản SIP mới."</string>
     <string name="empty_alert" msgid="6659484914371384024">"<xliff:g id="INPUT_FIELD_NAME">%s</xliff:g> là bắt buộc và không thể để trống."</string>
     <string name="not_a_valid_port" msgid="7931422555587011830">"Số cổng phải trong khoảng từ 1000 đến 65534."</string>
     <string name="no_internet_available" msgid="5523747991760017298">"Để thực hiện cuộc gọi SIP, trước tiên hãy kiểm tra kết nối Internet của bạn."</string>

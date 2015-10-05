@@ -66,6 +66,7 @@
     <string name="optional_summary" msgid="2363105560396317624">"&lt;Pasirenkama&gt;"</string>
     <string name="advanced_settings_show" msgid="7838761602853998622">"▷ Jei norite viską parodyti, palieskite"</string>
     <string name="advanced_settings_hide" msgid="3480554978705290228">"▽ Jei norite viską paslėpti, palieskite"</string>
+    <string name="all_empty_alert" msgid="4087734950375192387">"Įveskite išsamią naujos SIP paskyros informaciją."</string>
     <string name="empty_alert" msgid="6659484914371384024">"Lauke „<xliff:g id="INPUT_FIELD_NAME">%s</xliff:g>“ būtina nurodyti vertę – jis negali likti tuščias."</string>
     <string name="not_a_valid_port" msgid="7931422555587011830">"Prievado numeris turi būti nuo 1 000 iki 65 534."</string>
     <string name="no_internet_available" msgid="5523747991760017298">"Kad atliktumėte SIP skambutį, pirmiausia patikrinkite interneto ryšį."</string>

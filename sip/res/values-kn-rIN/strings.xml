@@ -66,6 +66,7 @@
     <string name="optional_summary" msgid="2363105560396317624">"&lt;ಐಚ್ಛಿಕ&gt;"</string>
     <string name="advanced_settings_show" msgid="7838761602853998622">"▷ ಎಲ್ಲವನ್ನೂ ತೋರಿಸಲು ಸ್ಪರ್ಶಿಸಿ"</string>
     <string name="advanced_settings_hide" msgid="3480554978705290228">"▽ ಎಲ್ಲವನ್ನೂ ಮರೆಮಾಡಲು ಸ್ಪರ್ಶಿಸಿ"</string>
+    <string name="all_empty_alert" msgid="4087734950375192387">"ಹೊಸ SIP ಖಾತೆಯ ವಿವರಗಳನ್ನು ನಮೂದಿಸಿ."</string>
     <string name="empty_alert" msgid="6659484914371384024">"<xliff:g id="INPUT_FIELD_NAME">%s</xliff:g> ಅಗತ್ಯವಿದೆ ಮತ್ತು ಖಾಲಿ ಬಿಡುವಂತಿಲ್ಲ."</string>
     <string name="not_a_valid_port" msgid="7931422555587011830">"ಪೋರ್ಟ್‌ ಸಂಖ್ಯೆಯು 1000 ಮತ್ತು 65534 ರ ವ್ಯಾಪ್ತಿಯೊಳಗಿರಬೇಕು."</string>
     <string name="no_internet_available" msgid="5523747991760017298">"SIP ಕರೆ ಮಾಡಲು, ಮೊದಲು ನಿಮ್ಮ ಇಂಟರ್ನೆಟ್ ಸಂಪರ್ಕವನ್ನು ಪರಿಶೀಲಿಸಿ."</string>

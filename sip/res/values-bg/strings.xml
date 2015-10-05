@@ -66,6 +66,7 @@
     <string name="optional_summary" msgid="2363105560396317624">"&lt;По избор&gt;"</string>
     <string name="advanced_settings_show" msgid="7838761602853998622">"▷ Докоснете за показване на всички"</string>
     <string name="advanced_settings_hide" msgid="3480554978705290228">"▽ Докоснете за скриване на всички"</string>
+    <string name="all_empty_alert" msgid="4087734950375192387">"Въведете подробностите за новия профил за SIP."</string>
     <string name="empty_alert" msgid="6659484914371384024">"Полето „<xliff:g id="INPUT_FIELD_NAME">%s</xliff:g>“ е задължително и трябва да се попълни."</string>
     <string name="not_a_valid_port" msgid="7931422555587011830">"Номерът на порта трябва да е между 1000 и 65534."</string>
     <string name="no_internet_available" msgid="5523747991760017298">"За да осъществите обаждане през SIP, първо проверете връзката си с интернет."</string>

@@ -66,6 +66,7 @@
     <string name="optional_summary" msgid="2363105560396317624">"&lt;விரும்பினால்&gt;"</string>
     <string name="advanced_settings_show" msgid="7838761602853998622">"▷ எல்லாவற்றையும் காட்ட தொடவும்"</string>
     <string name="advanced_settings_hide" msgid="3480554978705290228">"▽ எல்லாவற்றையும் மறைக்கத் தொடவும்"</string>
+    <string name="all_empty_alert" msgid="4087734950375192387">"புதிய SIP கணக்கின் விவரங்களை உள்ளிடவும்."</string>
     <string name="empty_alert" msgid="6659484914371384024">"<xliff:g id="INPUT_FIELD_NAME">%s</xliff:g> அவசியமானது மற்றும் வெறுமையாக விடக்கூடாது."</string>
     <string name="not_a_valid_port" msgid="7931422555587011830">"போர்ட் எண் 1000 இலிருந்து 65534 க்குள் இருக்க வேண்டும்."</string>
     <string name="no_internet_available" msgid="5523747991760017298">"SIP மூலம் அழைக்க, முதலில் இணைய இணைப்பைச் சரிபார்க்கவும்."</string>

@@ -66,6 +66,7 @@
     <string name="optional_summary" msgid="2363105560396317624">"&lt;Ongakukhetha&gt;"</string>
     <string name="advanced_settings_show" msgid="7838761602853998622">"▷ Thinta ukuze ubonise konke"</string>
     <string name="advanced_settings_hide" msgid="3480554978705290228">"▽ Thinta ukuze ufihle konke"</string>
+    <string name="all_empty_alert" msgid="4087734950375192387">"Faka imininingwane ye-akhawunti entsha ye-SIP."</string>
     <string name="empty_alert" msgid="6659484914371384024">"I-<xliff:g id="INPUT_FIELD_NAME">%s</xliff:g> iyadingeka futhi ayikwazi ukungabi nalutho."</string>
     <string name="not_a_valid_port" msgid="7931422555587011830">"Inombolo yembobo kumele ibe phakathi kokungu-1000 nokungu-65534."</string>
     <string name="no_internet_available" msgid="5523747991760017298">"Ukuze wenze ikholi ye-SIP, hlola ukuxhumeka kwe-inthanethi yakho kuqala."</string>

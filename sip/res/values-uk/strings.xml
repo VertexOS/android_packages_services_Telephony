@@ -66,6 +66,7 @@
     <string name="optional_summary" msgid="2363105560396317624">"&lt;Додатково&gt;"</string>
     <string name="advanced_settings_show" msgid="7838761602853998622">"▷ Торкніться, щоб показати все"</string>
     <string name="advanced_settings_hide" msgid="3480554978705290228">"▽ Торкніться, щоб сховати все"</string>
+    <string name="all_empty_alert" msgid="4087734950375192387">"Введіть деталі нового облікового запису SIP."</string>
     <string name="empty_alert" msgid="6659484914371384024">"Поле <xliff:g id="INPUT_FIELD_NAME">%s</xliff:g> обов’язкове. Воно не може бути порожнім."</string>
     <string name="not_a_valid_port" msgid="7931422555587011830">"Введіть номер порту між 1000 та 65534."</string>
     <string name="no_internet_available" msgid="5523747991760017298">"Щоб здійснити виклик SIP, спершу перевірте своє з’єднання з Інтернетом."</string>

@@ -66,6 +66,7 @@
     <string name="optional_summary" msgid="2363105560396317624">"&lt;Valfritt&gt;"</string>
     <string name="advanced_settings_show" msgid="7838761602853998622">"▷ Tryck om du vill visa alla"</string>
     <string name="advanced_settings_hide" msgid="3480554978705290228">"▽ Tryck om du vill dölja alla"</string>
+    <string name="all_empty_alert" msgid="4087734950375192387">"Ange uppgifter för det nya SIP-kontot."</string>
     <string name="empty_alert" msgid="6659484914371384024">"<xliff:g id="INPUT_FIELD_NAME">%s</xliff:g> är ett obligatoriskt fält som måste fyllas i."</string>
     <string name="not_a_valid_port" msgid="7931422555587011830">"Portnumret ska vara mellan 1000 och 65534."</string>
     <string name="no_internet_available" msgid="5523747991760017298">"Om du vill ringa ett SIP-samtal kontrollerar du först att du är ansluten till internet."</string>

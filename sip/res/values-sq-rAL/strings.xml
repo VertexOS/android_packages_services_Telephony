@@ -66,6 +66,7 @@
     <string name="optional_summary" msgid="2363105560396317624">"&lt;Jo e detyrueshme&gt;"</string>
     <string name="advanced_settings_show" msgid="7838761602853998622">"▷ Prek për t\'i shfaqur të gjitha"</string>
     <string name="advanced_settings_hide" msgid="3480554978705290228">"▽ Prek për t\'i fshehur të gjitha"</string>
+    <string name="all_empty_alert" msgid="4087734950375192387">"Fut të dhënat e një llogarie të re SIP."</string>
     <string name="empty_alert" msgid="6659484914371384024">"<xliff:g id="INPUT_FIELD_NAME">%s</xliff:g> është e detyrueshme dhe nuk mund të lihet bosh."</string>
     <string name="not_a_valid_port" msgid="7931422555587011830">"Numri i portës duhet të jetë brenda 1 000 dhe 65 534."</string>
     <string name="no_internet_available" msgid="5523747991760017298">"Për të kryer një telefonatë SIP, kontrollo lidhjen e internetit së pari."</string>

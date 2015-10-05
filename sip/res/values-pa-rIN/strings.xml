@@ -66,6 +66,7 @@
     <string name="optional_summary" msgid="2363105560396317624">"&lt;ਚੋਣਵਾਂ&gt;"</string>
     <string name="advanced_settings_show" msgid="7838761602853998622">"▷ ਸਾਰੇ ਦਿਖਾਉਣ ਲਈ ਛੋਹਵੋ"</string>
     <string name="advanced_settings_hide" msgid="3480554978705290228">"▽ ਸਾਰੇ ਲੁਕਾਉਣ ਲਈ ਛੋਹਵੋ"</string>
+    <string name="all_empty_alert" msgid="4087734950375192387">"ਨਵੇਂ SIP ਖਾਤੇ ਦੇ ਵੇਰਵੇ ਦਾਖ਼ਲ ਕਰੋ।"</string>
     <string name="empty_alert" msgid="6659484914371384024">"<xliff:g id="INPUT_FIELD_NAME">%s</xliff:g> ਲੁੜੀਂਦਾ ਹੈ ਅਤੇ ਇਸਨੂੰ ਖਾਲੀ ਨਹੀਂ ਛੱਡਿਆ ਜਾ ਸਕਦਾ।"</string>
     <string name="not_a_valid_port" msgid="7931422555587011830">"ਪੋਰਟ ਨੰਬਰ 1000 ਅਤੇ 65534 ਵਿਚਕਾਰ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ।"</string>
     <string name="no_internet_available" msgid="5523747991760017298">"ਇੱਕ SIP ਕਾਲ ਕਰਨ ਲਈ, ਪਹਿਲਾਂ ਆਪਣੇ ਇੰਟਰਨੈਟ ਕਨੈਕਸ਼ਨ ਦੀ ਜਾਂਚ ਕਰੋ।"</string>

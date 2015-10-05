@@ -66,6 +66,7 @@
     <string name="optional_summary" msgid="2363105560396317624">"&lt;選擇性&gt;"</string>
     <string name="advanced_settings_show" msgid="7838761602853998622">"▷ 輕觸即可全部顯示"</string>
     <string name="advanced_settings_hide" msgid="3480554978705290228">"▽ 輕觸即可全部隱藏"</string>
+    <string name="all_empty_alert" msgid="4087734950375192387">"請輸入新 SIP 帳戶的詳細資料。"</string>
     <string name="empty_alert" msgid="6659484914371384024">"「<xliff:g id="INPUT_FIELD_NAME">%s</xliff:g>」為必填欄位，不得留空。"</string>
     <string name="not_a_valid_port" msgid="7931422555587011830">"通訊埠號碼必須介於 1000 到 65534 間。"</string>
     <string name="no_internet_available" msgid="5523747991760017298">"如要撥打 SIP 電話，請先檢查您的網際網路連線。"</string>

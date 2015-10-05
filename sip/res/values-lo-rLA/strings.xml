@@ -66,6 +66,7 @@
     <string name="optional_summary" msgid="2363105560396317624">"&lt;ໂຕເລືອກເສີມ&gt;"</string>
     <string name="advanced_settings_show" msgid="7838761602853998622">"▷ ແຕະ​ເພື່ອ​ສະແດງ​ທັງໝົດ"</string>
     <string name="advanced_settings_hide" msgid="3480554978705290228">"▽ ແຕະ​ເພື່ອ​ເຊື່ອງ​ທັງໝົດ"</string>
+    <string name="all_empty_alert" msgid="4087734950375192387">"ປ້ອນ​ລາຍ​ລະ​ອຽດ​ຂອງ​ບັນ​ຊີ SIP ໃໝ່​ເຂົ້າ​ໄປ."</string>
     <string name="empty_alert" msgid="6659484914371384024">"ຕ້ອງ​ລະບຸ <xliff:g id="INPUT_FIELD_NAME">%s</xliff:g> ແລະ​ບໍ່​ສາມາດ​ປ່ອຍ​ຫວ່າງ​ໄດ້."</string>
     <string name="not_a_valid_port" msgid="7931422555587011830">"ໝາຍ​ເລກ​ພອດ​ຄວນ​ຢູ່​ລະຫວ່າງ 1000 ແລະ 65534."</string>
     <string name="no_internet_available" msgid="5523747991760017298">"ເພື່ອ​ໃຊ້​ການ​ໂທ SIP, ກວດ​ເບິ່ງ​ການ​ເຊື່ອມ​ຕໍ່​ອິນ​ເຕີ​ເນັດ​ຂອງ​ທ່ານ​ກ່ອນ."</string>

@@ -66,6 +66,7 @@
     <string name="optional_summary" msgid="2363105560396317624">"&lt;ഓപ്‌ഷണൽ&gt;"</string>
     <string name="advanced_settings_show" msgid="7838761602853998622">"▷ എല്ലാം കാണിക്കാൻ സ്‌പർശിക്കുക"</string>
     <string name="advanced_settings_hide" msgid="3480554978705290228">"▽ എല്ലാം മറയ്‌ക്കാൻ സ്‌പർശിക്കുക"</string>
+    <string name="all_empty_alert" msgid="4087734950375192387">"പുതിയ SIP അക്കൗണ്ട് വിശദാംശങ്ങൾ നൽകുക."</string>
     <string name="empty_alert" msgid="6659484914371384024">"<xliff:g id="INPUT_FIELD_NAME">%s</xliff:g> ആവശ്യമായതിനാൽ ശൂന്യമായിടാനാകില്ല."</string>
     <string name="not_a_valid_port" msgid="7931422555587011830">"പോർട്ട് നമ്പർ 1000, 65534 എന്നിവയ്‌ക്കിടയിലായിരിക്കണം."</string>
     <string name="no_internet_available" msgid="5523747991760017298">"SIP കോൾചെയ്യുന്നതിന്, ആദ്യം നിങ്ങളുടെ ഇന്റർനെറ്റ് കണക്ഷൻ പരിശോധിക്കുക."</string>
