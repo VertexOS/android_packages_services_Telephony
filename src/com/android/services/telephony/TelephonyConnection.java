@@ -315,6 +315,15 @@ abstract class TelephonyConnection extends Connection {
         public void onExtrasChanged(Bundle extras) {
             mHandler.obtainMessage(MSG_CONNECTION_EXTRAS_CHANGED, extras).sendToTarget();
         }
+
+        /**
+         * Handles the phone exiting ECM mode by updating the connection capabilities.  During an
+         * ongoing call, if ECM mode is exited, we will re-enable mute for CDMA calls.
+         */
+        @Override
+        public void onExitedEcmMode() {
+            handleExitedEcmMode();
+        }
     };
 
     private com.android.internal.telephony.Connection mOriginalConnection;
@@ -1239,6 +1248,12 @@ abstract class TelephonyConnection extends Connection {
         }
     }
 
+    /**
+     * Handles exiting ECM mode.
+     */
+    protected void handleExitedEcmMode() {
+        updateConnectionCapabilities();
+    }
 
     /**
      * Provides a mapping from extras keys which may be found in the
