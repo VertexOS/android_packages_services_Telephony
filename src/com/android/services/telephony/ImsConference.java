@@ -823,6 +823,7 @@ public class ImsConference extends Conference {
                             mConferenceHost.getOriginalConnection().getDisconnectCause());
                 }
                 setDisconnected(disconnectCause);
+                disconnectConferenceParticipants();
                 destroy();
                 break;
             case Connection.STATE_ACTIVE:
