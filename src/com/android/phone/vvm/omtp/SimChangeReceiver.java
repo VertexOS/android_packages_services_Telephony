@@ -19,6 +19,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.UserHandle;
+import android.os.UserManager;
 import android.telecom.PhoneAccountHandle;
 import android.telephony.CarrierConfigManager;
 import android.telephony.SubscriptionManager;
@@ -45,8 +46,8 @@ public class SimChangeReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        if (UserHandle.myUserId() != UserHandle.USER_OWNER) {
-            Log.v(TAG, "Received broadcast for user that is not owner.");
+        if (UserHandle.myUserId() != UserHandle.USER_SYSTEM) {
+            Log.v(TAG, "Received broadcast for user that is not system.");
             return;
         }
 

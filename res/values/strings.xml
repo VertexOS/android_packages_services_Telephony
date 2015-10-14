@@ -258,7 +258,7 @@
     <!-- Title of the progress dialog displayed while updating Call settings -->
     <string name="updating_title">Call settings</string>
     <!-- Toast in Call settings when asked to launch settings for a secondary user -->
-    <string name="call_settings_primary_user_only">Call settings can only be changed by the primary user.</string>
+    <string name="call_settings_admin_user_only">Call settings can only be changed by the admin user.</string>
     <!-- Title of the "Call settings" settings screen, with a text label identifying which SIM the settings are for. -->
     <string name="call_settings_with_label">Settings (<xliff:g id="subscriptionlabel" example="Mock Carrier">%s</xliff:g>)</string>
     <!-- Title of the alert dialog displayed if an error occurs while updating Call settings -->

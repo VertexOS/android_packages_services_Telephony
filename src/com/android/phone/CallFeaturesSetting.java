@@ -30,6 +30,7 @@ import android.content.pm.ResolveInfo;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.os.UserHandle;
+import android.os.UserManager;
 import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
@@ -171,9 +172,9 @@ public class CallFeaturesSetting extends PreferenceActivity
         super.onCreate(icicle);
         if (DBG) log("onCreate: Intent is " + getIntent());
 
-        // Make sure we are running as the primary user.
-        if (UserHandle.myUserId() != UserHandle.USER_OWNER) {
-            Toast.makeText(this, R.string.call_settings_primary_user_only,
+        // Make sure we are running as an admin user.
+        if (!UserManager.get(this).isAdminUser()) {
+            Toast.makeText(this, R.string.call_settings_admin_user_only,
                     Toast.LENGTH_SHORT).show();
             finish();
             return;

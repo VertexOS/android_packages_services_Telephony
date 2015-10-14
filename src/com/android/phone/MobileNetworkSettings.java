@@ -35,6 +35,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.content.pm.UserInfo;
 import android.net.Uri;
 import android.os.AsyncResult;
 import android.os.Bundle;
@@ -704,11 +705,10 @@ public class MobileNetworkSettings extends PreferenceActivity
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
-        final boolean isSecondaryUser = UserHandle.myUserId() != UserHandle.USER_OWNER;
         // Enable link to CMAS app settings depending on the value in config.xml.
         final boolean isCellBroadcastAppLinkEnabled = this.getResources().getBoolean(
                 com.android.internal.R.bool.config_cellBroadcastAppLinks);
-        if (isSecondaryUser || !isCellBroadcastAppLinkEnabled
+        if (!mUm.isAdminUser() || !isCellBroadcastAppLinkEnabled
                 || mUm.hasUserRestriction(UserManager.DISALLOW_CONFIG_CELL_BROADCASTS)) {
             PreferenceScreen root = getPreferenceScreen();
             Preference ps = findPreference(BUTTON_CELL_BROADCAST_SETTINGS);

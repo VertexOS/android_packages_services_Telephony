@@ -635,7 +635,7 @@ public class OutgoingCallBroadcaster extends Activity
         // timeout.
         mHandler.sendEmptyMessageDelayed(EVENT_OUTGOING_CALL_TIMEOUT,
                 OUTGOING_CALL_TIMEOUT_THRESHOLD);
-        sendOrderedBroadcastAsUser(broadcastIntent, UserHandle.OWNER,
+        sendOrderedBroadcastAsUser(broadcastIntent, UserHandle.SYSTEM,
                 android.Manifest.permission.PROCESS_OUTGOING_CALLS,
                 AppOpsManager.OP_PROCESS_OUTGOING_CALLS,
                 new OutgoingCallReceiver(),
