@@ -16,13 +16,16 @@
 
 package com.android.services.telephony;
 
+import com.android.internal.telephony.imsphone.ImsPhone;
 import com.android.internal.telephony.imsphone.ImsPhoneConnection;
+import com.android.phone.PhoneUtils;
 
 import android.telecom.Conference;
 import android.telecom.Connection;
 import android.telecom.ConnectionService;
 import android.telecom.DisconnectCause;
 import android.telecom.Conferenceable;
+import android.telecom.PhoneAccountHandle;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -321,8 +324,20 @@ public class ImsConferenceController {
         // from Telecom.  Instead we create a new instance and remove the old one from telecom.
         TelephonyConnection conferenceHostConnection = connection.cloneConnection();
 
-        // Create conference and add to telecom
-        ImsConference conference = new ImsConference(mConnectionService, conferenceHostConnection);
+        PhoneAccountHandle phoneAccountHandle = null;
+
+        // Attempt to determine the phone account associated with the conference host connection.
+        if (connection.getPhone() != null &&
+                connection.getPhone() instanceof ImsPhone) {
+            ImsPhone imsPhone = (ImsPhone) connection.getPhone();
+            // The phone account handle for an ImsPhone is based on the default phone (ie the
+            // base GSM or CDMA phone, not on the ImsPhone itself).
+            phoneAccountHandle =
+                    PhoneUtils.makePstnPhoneAccountHandle(imsPhone.getDefaultPhone());
+        }
+
+        ImsConference conference = new ImsConference(mConnectionService, conferenceHostConnection,
+                phoneAccountHandle);
         conference.setState(conferenceHostConnection.getState());
         conference.addListener(mConferenceListener);
         conference.updateConferenceParticipantsAfterCreation();

@@ -238,14 +238,12 @@ public class ImsConference extends Conference {
      * @param telephonyConnectionService The connection service responsible for adding new
      *                                   conferene participants.
      * @param conferenceHost The telephony connection hosting the conference.
+     * @param phoneAccountHandle The phone account handle associated with the conference.
      */
     public ImsConference(TelephonyConnectionService telephonyConnectionService,
-            TelephonyConnection conferenceHost) {
+            TelephonyConnection conferenceHost, PhoneAccountHandle phoneAccountHandle) {
 
-        super((conferenceHost != null && conferenceHost.getCall() != null &&
-                        conferenceHost.getCall().getPhone() != null) ?
-                PhoneUtils.makePstnPhoneAccountHandle(
-                        conferenceHost.getCall().getPhone()) : null);
+        super(phoneAccountHandle);
 
         // Specify the connection time of the conference to be the connection time of the original
         // connection.
@@ -777,8 +775,16 @@ public class ImsConference extends Conference {
                                 "new connection: %s", originalConnection);
             }
 
-            PhoneAccountHandle phoneAccountHandle =
-                    PhoneUtils.makePstnPhoneAccountHandle(mConferenceHost.getPhone());
+            PhoneAccountHandle phoneAccountHandle = null;
+            if (mConferenceHost.getPhone() != null &&
+                    mConferenceHost.getPhone() instanceof ImsPhone) {
+                ImsPhone imsPhone = (ImsPhone) mConferenceHost.getPhone();
+                // The phone account handle for an ImsPhone is based on the default phone (ie the
+                // base GSM or CDMA phone, not on the ImsPhone itself).
+                phoneAccountHandle =
+                        PhoneUtils.makePstnPhoneAccountHandle(imsPhone.getDefaultPhone());
+            }
+
             if (mConferenceHost.getPhone().getPhoneType() == PhoneConstants.PHONE_TYPE_GSM) {
                 GsmConnection c = new GsmConnection(originalConnection, getTelecomCallId());
                 c.updateState();
