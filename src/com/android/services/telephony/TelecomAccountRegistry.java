@@ -18,6 +18,7 @@ package com.android.services.telephony;
 
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -173,6 +174,12 @@ final class TelecomAccountRegistry {
             }
             mIsMergeCallSupported = isCarrierMergeCallSupported();
 
+            if (isEmergency && mContext.getPackageManager().hasSystemFeature(
+                    PackageManager.FEATURE_WATCH)) {
+                // For Wear, we mark the emergency phone account as emergency calls only.
+                capabilities |= PhoneAccount.CAPABILITY_EMERGENCY_CALLS_ONLY;
+            }
+
             if (icon == null) {
                 // TODO: Switch to using Icon.createWithResource() once that supports tinting.
                 Resources res = mContext.getResources();
@@ -204,6 +211,7 @@ final class TelecomAccountRegistry {
 
             // Register with Telecom and put into the account entry.
             mTelecomManager.registerPhoneAccount(account);
+
             return account;
         }
 
@@ -435,11 +443,18 @@ final class TelecomAccountRegistry {
         // will cause the existing entry to be replaced.
         Phone[] phones = PhoneFactory.getPhones();
         Log.d(this, "Found %d phones.  Attempting to register.", phones.length);
-        for (Phone phone : phones) {
-            long subscriptionId = phone.getSubId();
-            Log.d(this, "Phone with subscription id %d", subscriptionId);
-            if (subscriptionId >= 0) {
-                mAccounts.add(new AccountEntry(phone, false /* emergency */, false /* isDummy */));
+
+        final boolean phoneAccountsEnabled = mContext.getResources().getBoolean(
+                R.bool.config_pstn_phone_accounts_enabled);
+
+        if (phoneAccountsEnabled) {
+            for (Phone phone : phones) {
+                int subscriptionId = phone.getSubId();
+                Log.d(this, "Phone with subscription id %d", subscriptionId);
+                if (subscriptionId >= 0) {
+                    mAccounts.add(new AccountEntry(phone, false /* emergency */,
+                            false /* isDummy */));
+                }
             }
         }
 
