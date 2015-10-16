@@ -152,7 +152,8 @@ final class SipConnection extends Connection {
     public void onUnhold() {
         if (VERBOSE) log("onUnhold");
         try {
-            if (getPhone() != null && getState() == STATE_HOLDING) {
+            if (getPhone() != null && getState() == STATE_HOLDING &&
+                    getPhone().getForegroundCall().getState() != Call.State.DIALING) {
                 // Double check with the internal state since a discrepancy in states could mean
                 // that the transaction is already in progress from a previous request.
                 if (mOriginalConnection != null &&
