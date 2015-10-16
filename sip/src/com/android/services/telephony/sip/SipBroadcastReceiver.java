@@ -58,7 +58,13 @@ public class SipBroadcastReceiver extends BroadcastReceiver {
 
     private void takeCall(Context context, Intent intent) {
         if (VERBOSE) log("takeCall, intent: " + intent);
-        PhoneAccountHandle accountHandle = intent.getParcelableExtra(SipUtil.EXTRA_PHONE_ACCOUNT);
+        PhoneAccountHandle accountHandle = null;
+        try {
+            accountHandle = intent.getParcelableExtra(SipUtil.EXTRA_PHONE_ACCOUNT);
+        } catch (ClassCastException e) {
+            log("takeCall, Bad account handle detected. Bailing!");
+            return;
+        }
         if (accountHandle != null) {
             Bundle extras = new Bundle();
             extras.putParcelable(SipUtil.EXTRA_INCOMING_CALL_INTENT, intent);
