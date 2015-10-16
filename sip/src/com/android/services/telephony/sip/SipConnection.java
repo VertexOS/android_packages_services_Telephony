@@ -134,7 +134,14 @@ final class SipConnection extends Connection {
         try {
             if (getPhone() != null && getState() == STATE_ACTIVE
                     && getPhone().getRingingCall().getState() != Call.State.WAITING) {
-                getPhone().switchHoldingAndActive();
+                // Double check with the internal state since a discrepancy in states could mean
+                // that the transactions is already in progress from a previous request.
+                if (mOriginalConnection != null &&
+                        mOriginalConnection.getState() == Call.State.ACTIVE) {
+                    getPhone().switchHoldingAndActive();
+                } else {
+                    log("skipping switch from onHold due to internal state:");
+                }
             }
         } catch (CallStateException e) {
             log("onHold, exception: " + e);
@@ -146,7 +153,14 @@ final class SipConnection extends Connection {
         if (VERBOSE) log("onUnhold");
         try {
             if (getPhone() != null && getState() == STATE_HOLDING) {
-                getPhone().switchHoldingAndActive();
+                // Double check with the internal state since a discrepancy in states could mean
+                // that the transaction is already in progress from a previous request.
+                if (mOriginalConnection != null &&
+                        mOriginalConnection.getState() == Call.State.HOLDING) {
+                    getPhone().switchHoldingAndActive();
+                } else {
+                    log("skipping switch from onUnHold due to internal state.");
+                }
             }
         } catch (CallStateException e) {
             log("onUnhold, exception: " + e);
