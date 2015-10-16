@@ -569,6 +569,10 @@ public class MobileNetworkSettings extends PreferenceActivity
             } else {
                 throw new IllegalStateException("Unexpected phone type: " + phoneType);
             }
+            // Since pref is being hidden from user, set network mode to default
+            // in case it is currently something else. That is possible if user
+            // changed the setting while roaming and is now back to home network.
+            settingsNetworkMode = preferredNetworkMode;
         } else if (carrierConfig.getBoolean(CarrierConfigManager.KEY_WORLD_PHONE_BOOL) == true) {
             prefSet.removePreference(mButtonEnabledNetworks);
             // set the listener for the mButtonPreferredNetworkMode list preference so we can issue
