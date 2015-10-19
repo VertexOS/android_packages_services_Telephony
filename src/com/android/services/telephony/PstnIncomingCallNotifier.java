@@ -202,6 +202,15 @@ final class PstnIncomingCallNotifier {
         }
         Connection connection = (Connection) asyncResult.result;
         if (connection != null) {
+            // Because there is a handler between telephony and here, it causes this action to be
+            // asynchronous which means that the call can switch to DISCONNECTED by the time it gets
+            // to this code. Check here to ensure we are not adding a disconnected or IDLE call.
+            Call.State state = connection.getState();
+            if (state == Call.State.DISCONNECTED || state == Call.State.IDLE) {
+                Log.i(this, "Skipping new unknown connection because it is idle. " + connection);
+                return;
+            }
+
             Call call = connection.getCall();
             if (call != null && call.getState().isAlive()) {
                 addNewUnknownCall(connection);
@@ -211,6 +220,7 @@ final class PstnIncomingCallNotifier {
 
     private void addNewUnknownCall(Connection connection) {
         Log.i(this, "addNewUnknownCall, connection is: %s", connection);
+
         if (!maybeSwapAnyWithUnknownConnection(connection)) {
             Log.i(this, "determined new connection is: %s", connection);
             Bundle extras = null;
