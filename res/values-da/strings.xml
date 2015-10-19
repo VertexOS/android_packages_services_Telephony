@@ -118,7 +118,7 @@
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"Dit mobilselskab understøtter ikke deaktivering af viderestilling af opkald, når telefonen ikke er tilgængelig."</string>
     <string name="updating_title" msgid="6146755386174019046">"Indstillinger for opkald"</string>
     <string name="call_settings_primary_user_only" msgid="5679923943740900965">"Opkaldsindstillinger kan kun ændres af den primære bruger."</string>
-    <string name="call_settings_with_label" msgid="89359812614544532">"Opkaldsindstillinger (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="call_settings_with_label" msgid="3401177261468593519">"Indstillinger (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="error_updating_title" msgid="7970259216988931777">"Fejl i indstillinger for opkald"</string>
     <string name="reading_settings" msgid="1920291699287055284">"Læser indstillinger ..."</string>
     <string name="updating_settings" msgid="8171225533884883252">"Opdaterer indstillinger ..."</string>
@@ -196,7 +196,7 @@
     <item msgid="1524224863879435516">"Kun GSM"</item>
     <item msgid="3817924849415716259">"GSM/WCDMA foretrækkes"</item>
   </string-array>
-    <string name="enhanced_4g_lte_mode_title" msgid="522191650223239171">"Forbedret 4G LTE-tilstand"</string>
+    <string name="enhanced_4g_lte_mode_title" msgid="522191650223239171">"Udvidet 4G LTE-tilstand"</string>
     <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"Anvend LTE-tjenester til at forbedre tale og anden kommunikation (anbefalet)"</string>
     <string name="data_enabled" msgid="5972538663568715366">"Data aktiveret"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"Tillad dataforbrug"</string>
@@ -353,7 +353,7 @@
     <string name="sum_fdn_change_pin" msgid="6666549734792827932">"Skift pinkode for at få adgang til begrænset opkald."</string>
     <string name="sum_fdn_manage_list" msgid="8431088265332628316">"Administrer liste over telefonnumre"</string>
     <string name="voice_privacy" msgid="3776841382844614716">"Privat talekommunikation"</string>
-    <string name="voice_privacy_summary" msgid="3159383389833516214">"Aktivér øget fortrolighedstilstand"</string>
+    <string name="voice_privacy_summary" msgid="3159383389833516214">"Aktivér udvidet fortrolighedstilstand"</string>
     <string name="tty_mode_option_title" msgid="9033098925144434669">"TTY-tilstand"</string>
     <string name="tty_mode_option_summary" msgid="1073835131534808732">"Angiv TTY-tilstand"</string>
     <string name="auto_retry_mode_title" msgid="4073265511427813322">"Prøv automatisk igen"</string>
@@ -545,7 +545,7 @@
     <string name="preference_category_ringtone" msgid="5197960752529332721">"Ringetone og vibration"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"Indbyggede SIM-kort"</string>
     <string name="enable_video_calling_title" msgid="7237253660669000899">"Slå videoopkald til"</string>
-    <string name="enable_video_calling_dialog_msg" msgid="8948186136957417948">"Før du kan slå videoopkald til, skal du aktivere Forbedret 4G LTE-tilstand i netværksindstillinger."</string>
+    <string name="enable_video_calling_dialog_msg" msgid="8948186136957417948">"Før du kan slå videoopkald til, skal du aktivere Udvidet 4G LTE-tilstand i netværksindstillinger."</string>
     <string name="enable_video_calling_dialog_settings" msgid="576528473599603249">"Netværksindstillinger"</string>
     <string name="enable_video_calling_dialog_close" msgid="7411471282167927991">"Luk"</string>
     <string name="sim_label_emergency_calls" msgid="4847699229529306397">"Nødopkald"</string>

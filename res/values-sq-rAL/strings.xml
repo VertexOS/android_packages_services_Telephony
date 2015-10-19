@@ -118,7 +118,7 @@
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"Operatori yt nuk mbështet çaktivizimin e transferimit të telefonatës kur telefoni është i paarritshëm."</string>
     <string name="updating_title" msgid="6146755386174019046">"Cilësimet e telefonatës"</string>
     <string name="call_settings_primary_user_only" msgid="5679923943740900965">"Cilësimet e telefonatës mund të ndryshohen vetëm nga përdoruesi kryesor."</string>
-    <string name="call_settings_with_label" msgid="89359812614544532">"Cilësimet e telefonatës (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="call_settings_with_label" msgid="3401177261468593519">"Cilësimet (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="error_updating_title" msgid="7970259216988931777">"Gabim në cilësimet e telefonatës"</string>
     <string name="reading_settings" msgid="1920291699287055284">"Po lexon cilësimet…"</string>
     <string name="updating_settings" msgid="8171225533884883252">"Po përditëson cilësimet…"</string>

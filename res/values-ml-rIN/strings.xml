@@ -118,7 +118,7 @@
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"നിങ്ങളുടെ ഫോൺ പരിധിയ്ക്ക് പുറത്തായിരിക്കുമ്പോൾ കോൾ കൈമാറൽ പ്രവർത്തനരഹിതമാക്കുന്നതിനെ നിങ്ങളുടെ ഓപ്പറേറ്റർ പിന്തുണയ്‌ക്കുന്നില്ല."</string>
     <string name="updating_title" msgid="6146755386174019046">"കോൾ ക്രമീകരണങ്ങൾ"</string>
     <string name="call_settings_primary_user_only" msgid="5679923943740900965">"കോൾ ക്രമീകരണങ്ങൾ, പ്രാഥമിക ഉപയോക്താവിന് മാത്രമെ മാറ്റാനാവൂ."</string>
-    <string name="call_settings_with_label" msgid="89359812614544532">"ക്രമീകരണം (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="call_settings_with_label" msgid="3401177261468593519">"ക്രമീകരണം (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="error_updating_title" msgid="7970259216988931777">"കോൾ ക്രമീകരണ പിശക്"</string>
     <string name="reading_settings" msgid="1920291699287055284">"ക്രമീകരണങ്ങൾ റീഡുചെയ്യുന്നു.…"</string>
     <string name="updating_settings" msgid="8171225533884883252">"ക്രമീകരണങ്ങൾ അപ്‌ഡേറ്റുചെയ്യുന്നു…"</string>

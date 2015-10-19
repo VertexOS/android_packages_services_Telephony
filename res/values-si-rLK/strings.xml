@@ -118,7 +118,7 @@
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"ඔබගේ වාහකය ඔබගේ දුරකථනය ළඟා විය නොහැකි විට ඇමතුම් ඉදිරියට ගෙනයාම අබල කිරීමට සහාය නොදක්වයි."</string>
     <string name="updating_title" msgid="6146755386174019046">"ඇමතුම් සැකසීම්"</string>
     <string name="call_settings_primary_user_only" msgid="5679923943740900965">"ඇමතුම් සැකසීම් වෙනස් කළ හැක්කේ ප්‍රධාන පරිශීලකයකු විසින් පමණි."</string>
-    <string name="call_settings_with_label" msgid="89359812614544532">"ඇමතුම් සැකසීම් (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="call_settings_with_label" msgid="3401177261468593519">"සැකසීම් (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="error_updating_title" msgid="7970259216988931777">"ඇමතුම් සැකසුම් දෝෂය"</string>
     <string name="reading_settings" msgid="1920291699287055284">"සැකසුම් කියවමින්…"</string>
     <string name="updating_settings" msgid="8171225533884883252">"සැකසුම් යාවත් කාලින කරමින්…"</string>

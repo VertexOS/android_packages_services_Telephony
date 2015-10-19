@@ -118,7 +118,7 @@
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"Operatören stöder inte inaktivering av vidarebefordran av samtal när det inte går att nå telefonen."</string>
     <string name="updating_title" msgid="6146755386174019046">"Samtalsinställningar"</string>
     <string name="call_settings_primary_user_only" msgid="5679923943740900965">"Det är bara den primära användaren som kan ändra samtalsinställningar."</string>
-    <string name="call_settings_with_label" msgid="89359812614544532">"Samtalsinställningar (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="call_settings_with_label" msgid="3401177261468593519">"Inställningar (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="error_updating_title" msgid="7970259216988931777">"Felaktiga samtalsinställningar"</string>
     <string name="reading_settings" msgid="1920291699287055284">"Läser inställningar…"</string>
     <string name="updating_settings" msgid="8171225533884883252">"Uppdaterar inställningar…"</string>

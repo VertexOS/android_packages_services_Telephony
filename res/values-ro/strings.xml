@@ -24,7 +24,7 @@
     <string name="unknown" msgid="6878797917991465859">"Necunoscut"</string>
     <string name="private_num" msgid="6713286113000232309">"Număr privat"</string>
     <string name="payphone" msgid="4793877574636445118">"Telefon public"</string>
-    <string name="onHold" msgid="9035493194749959955">"În aşteptare"</string>
+    <string name="onHold" msgid="9035493194749959955">"În așteptare"</string>
     <string name="mmiStarted" msgid="6347869857061147003">"Cod MMI pornit"</string>
     <string name="ussdRunning" msgid="485588686340541690">"Se rulează codul USSD..."</string>
     <string name="mmiCancelled" msgid="2771923949751842276">"Cod MMI anulat"</string>
@@ -50,7 +50,7 @@
     <string name="sim_ndp_unlock_text" msgid="683628237760543009">"Deblocaţi"</string>
     <string name="sim_ndp_dismiss_text" msgid="1604823375752456947">"Renunţaţi"</string>
     <string name="requesting_unlock" msgid="6412629401033249351">"Se solicită deblocarea reţelei..."</string>
-    <string name="unlock_failed" msgid="6490531697031504225">"Cererea de deblocare a reţelei a eşuat."</string>
+    <string name="unlock_failed" msgid="6490531697031504225">"Cererea de deblocare a reţelei a eșuat."</string>
     <string name="unlock_success" msgid="6770085622238180152">"Reţeaua a fost deblocată."</string>
     <string name="mobile_network_settings_not_available" msgid="3831911315358856062">"Setările pentru rețeaua mobilă nu sunt disponibile pentru acest utilizator"</string>
     <string name="labelGSMMore" msgid="5930842194056092106">"Setările apelului GSM"</string>
@@ -89,7 +89,7 @@
     <string name="sum_hide_caller_id" msgid="1071407020290873782">"Număr ascuns în apelurile de ieşire"</string>
     <string name="sum_show_caller_id" msgid="6768534125447290401">"Numărul afişat în apelurile de ieşire"</string>
     <string name="sum_default_caller_id" msgid="1954518825510901365">"Utilizaţi setările prestabilite ale operatorului, pentru a vă afişa numărul în apelurile de ieşire"</string>
-    <string name="labelCW" msgid="6120513814915920200">"Apel în aşteptare"</string>
+    <string name="labelCW" msgid="6120513814915920200">"Apel în așteptare"</string>
     <string name="sum_cw_enabled" msgid="8083061901633671397">"Anunță-mă când primesc un apel, inclusiv în timpul unei convorbiri"</string>
     <string name="sum_cw_disabled" msgid="3648693907300104575">"Anunță-mă când primesc un apel, inclusiv în timpul unei convorbiri"</string>
     <string name="call_forwarding_settings" msgid="3378927671091537173">"Setările pentru redirecţionarea de apeluri"</string>
@@ -118,7 +118,7 @@
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"Operatorul dvs. nu acceptă ca redirecţionarea apelurilor să fie dezactivată atunci când telefonul nu este accesibil."</string>
     <string name="updating_title" msgid="6146755386174019046">"Setări apel"</string>
     <string name="call_settings_primary_user_only" msgid="5679923943740900965">"Numai utilizatorul principal poate să modifice setările pentru apeluri."</string>
-    <string name="call_settings_with_label" msgid="89359812614544532">"Setări pentru apeluri (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="call_settings_with_label" msgid="3401177261468593519">"Setări (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="error_updating_title" msgid="7970259216988931777">"Eroare în setările de apel"</string>
     <string name="reading_settings" msgid="1920291699287055284">"Se citesc setările..."</string>
     <string name="updating_settings" msgid="8171225533884883252">"Se actualizează setările..."</string>
@@ -142,7 +142,7 @@
     <string name="vm_changed" msgid="380744030726254139">"Număr mesagerie vocală modificat."</string>
     <string name="vm_change_failed" msgid="3352934863246208918">"Nu s-a putut schimba numărul de mesagerie vocală.\nContactaţi operatorul în cazul în care această problemă persistă."</string>
     <string name="fw_change_failed" msgid="5298103228470214665">"Nu s-a putut schimba numărul de redirecţionare.\nContactaţi operatorul dvs. în cazul în care această problemă persistă."</string>
-    <string name="fw_get_in_vm_failed" msgid="8862896836093833973">"Nu s-au putut prelua și salva setările actuale ale numărului de redirecţionare.\nDoriţi să comutaţi oricum către un nou furnizor de servicii?"</string>
+    <string name="fw_get_in_vm_failed" msgid="8862896836093833973">"Nu s-au putut prelua și salva setările actuale ale numărului de redirecţionare.\nDoriți să comutaţi oricum către un nou furnizor de servicii?"</string>
     <string name="no_change" msgid="3186040086622435212">"Nicio schimbare efectuată."</string>
     <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"Alegeţi serviciul de mesagerie vocală"</string>
     <string name="voicemail_default" msgid="2001233554889016880">"Operatorul dvs."</string>
@@ -418,7 +418,7 @@
     <string name="card_title_conf_call" msgid="1162980346189744501">"Teleconferinţă"</string>
     <string name="card_title_incoming_call" msgid="7364539451234646909">"Apel primit"</string>
     <string name="card_title_call_ended" msgid="5544730338889702298">"Apel încheiat"</string>
-    <string name="card_title_on_hold" msgid="821463117892339942">"În aşteptare"</string>
+    <string name="card_title_on_hold" msgid="821463117892339942">"În așteptare"</string>
     <string name="card_title_hanging_up" msgid="3999101620995182450">"Se închide telefonul"</string>
     <string name="card_title_in_call" msgid="6346543933068225205">"În timpul apelului"</string>
     <string name="notification_voicemail_title" msgid="8933468752045550523">"Mesaj vocal nou"</string>
@@ -482,7 +482,7 @@
     <string name="network_info_message" msgid="7738596060242881930">"Mesaj de rețea"</string>
     <string name="network_error_message" msgid="3394780436230411413">"Mesaj de eroare"</string>
     <string name="ota_title_activate" msgid="8616918561356194398">"Activați-vă telefonul"</string>
-    <string name="ota_touch_activate" msgid="6553212803262586244">"Pentru a vă activa serviciul de telefonie, trebuie să efectuaţi un apel special. \n\nDupă ce apăsaţi „Activați”, ascultaţi instrucţiunile furnizate pentru a vă activa telefonul."</string>
+    <string name="ota_touch_activate" msgid="6553212803262586244">"Pentru a vă activa serviciul de telefonie, trebuie să efectuați un apel special. \n\nDupă ce apăsaţi „Activați”, ascultaţi instrucţiunile furnizate pentru a vă activa telefonul."</string>
     <string name="ota_hfa_activation_title" msgid="2234246934160473981">"Se activează..."</string>
     <string name="ota_hfa_activation_dialog_message" msgid="8092479227918463415">"Serviciul de date mobile este în curs de activare pe telefonul dvs.\n\nAcest proces poate dura până la 5 minute."</string>
     <string name="ota_skip_activation_dialog_title" msgid="2943366608272261306">"Omiteţi activarea?"</string>

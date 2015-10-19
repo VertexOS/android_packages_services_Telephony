@@ -40,7 +40,7 @@
     <string name="pause_prompt_str" msgid="1789964702154314806">"تون‌های ارسالی\n"</string>
     <string name="send_button" msgid="4106860097497818751">"ارسال"</string>
     <string name="pause_prompt_yes" msgid="3564467212025151797">"بله"</string>
-    <string name="pause_prompt_no" msgid="6686238803236884877">"خیر"</string>
+    <string name="pause_prompt_no" msgid="6686238803236884877">"نه"</string>
     <string name="wild_prompt_str" msgid="5543521676355533577">"جایگزینی نویسه عمومی با"</string>
     <string name="no_vm_number" msgid="4164780423805688336">"عدم وجود شماره پست صوتی"</string>
     <string name="no_vm_number_msg" msgid="1300729501030053828">"شماره پست صوتی در سیم کارت ذخیره نشده است."</string>
@@ -118,7 +118,7 @@
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"شرکت مخابراتی شما از غیرفعال کردن هدایت تماس هنگامی که تلفن شما در دسترس نیست پشتیبانی نمی‌کند."</string>
     <string name="updating_title" msgid="6146755386174019046">"تنظیمات تماس"</string>
     <string name="call_settings_primary_user_only" msgid="5679923943740900965">"فقط کاربر اصلی می‌تواند تنظیمات تماس را تغییر دهد."</string>
-    <string name="call_settings_with_label" msgid="89359812614544532">"تنظیمات تماس (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="call_settings_with_label" msgid="3401177261468593519">"تنظیمات (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="error_updating_title" msgid="7970259216988931777">"خطای تنظیمات تماس"</string>
     <string name="reading_settings" msgid="1920291699287055284">"در حال خواندن تنظیمات..."</string>
     <string name="updating_settings" msgid="8171225533884883252">"در حال به‌روزرسانی تنظیمات..."</string>
@@ -520,7 +520,7 @@
     <string name="alert_dialog_in_ecm_call" msgid="1886723687211887104">"در حین یک تماس اضطراری، عملکرد انتخابی در دسترس نیست."</string>
     <string name="progress_dialog_exiting_ecm" msgid="4835734101617817074">"خروج از حالت پاسخ تماس اضطراری"</string>
     <string name="alert_dialog_yes" msgid="6674268047820703974">"بله"</string>
-    <string name="alert_dialog_no" msgid="1476091437797628703">"خیر"</string>
+    <string name="alert_dialog_no" msgid="1476091437797628703">"نه"</string>
     <string name="alert_dialog_dismiss" msgid="2491494287075907171">"رد کردن"</string>
     <string name="voicemail_provider" msgid="5135942703327136909">"سرویس"</string>
     <string name="voicemail_settings" msgid="72448049107749316">"تنظیم"</string>
