@@ -623,11 +623,8 @@ abstract class TelephonyConnection extends Connection {
         mOriginalConnection.addPostDialListener(mPostDialListener);
         mOriginalConnection.addListener(mOriginalConnectionListener);
 
-        updateAddress();
-
         // Set video state and capabilities
         setVideoState(mOriginalConnection.getVideoState());
-        updateState();
         setConnectionCapability(mOriginalConnection.getConnectionCapabilities());
         setWifi(mOriginalConnection.isWifi());
         setVideoProvider(mOriginalConnection.getVideoProvider());
@@ -637,6 +634,14 @@ abstract class TelephonyConnection extends Connection {
             mWasImsConnection = true;
         }
         mIsMultiParty = mOriginalConnection.isMultiparty();
+
+        // updateState can set mOriginalConnection to null if its state is DISCONNECTED, so this
+        // should be executed *after* the above setters have run.
+        updateState();
+        if (mOriginalConnection == null) {
+            Log.w(this, "original Connection was nulled out as part of setOriginalConnection. " +
+                    originalConnection);
+        }
 
         fireOnOriginalConnectionConfigured();
     }
