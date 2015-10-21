@@ -26,6 +26,7 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.Icon;
 import android.net.Uri;
+import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.telecom.PhoneAccount;
 import android.telecom.PhoneAccountHandle;
@@ -169,8 +170,10 @@ final class TelecomAccountRegistry {
                 capabilities |= PhoneAccount.CAPABILITY_VIDEO_CALLING;
             }
             mIsVideoPauseSupported = isCarrierVideoPauseSupported();
+            Bundle instantLetteringExtras = null;
             if (isCarrierInstantLetteringSupported()) {
                 capabilities |= PhoneAccount.CAPABILITY_CALL_SUBJECT;
+                instantLetteringExtras = getPhoneAccountExtras();
             }
             mIsMergeCallSupported = isCarrierMergeCallSupported();
 
@@ -207,6 +210,7 @@ final class TelecomAccountRegistry {
                     .setShortDescription(description)
                     .setSupportedUriSchemes(Arrays.asList(
                             PhoneAccount.SCHEME_TEL, PhoneAccount.SCHEME_VOICEMAIL))
+                    .setExtras(instantLetteringExtras)
                     .build();
 
             // Register with Telecom and put into the account entry.
@@ -251,6 +255,26 @@ final class TelecomAccountRegistry {
             PersistableBundle b =
                     PhoneGlobals.getInstance().getCarrierConfigForSubId(mPhone.getSubId());
             return b.getBoolean(CarrierConfigManager.KEY_SUPPORT_CONFERENCE_CALL_BOOL);
+        }
+
+        /**
+         * @return The {@linke PhoneAccount} extras associated with the current subscription.
+         */
+        private Bundle getPhoneAccountExtras() {
+            PersistableBundle b =
+                    PhoneGlobals.getInstance().getCarrierConfigForSubId(mPhone.getSubId());
+
+            int instantLetteringMaxLength = b.getInt(
+                    CarrierConfigManager.KEY_CARRIER_INSTANT_LETTERING_LENGTH_LIMIT_INT);
+            String instantLetteringEncoding = b.getString(
+                    CarrierConfigManager.KEY_CARRIER_INSTANT_LETTERING_ENCODING_STRING);
+
+            Bundle phoneAccountExtras = new Bundle();
+            phoneAccountExtras.putInt(PhoneAccount.EXTRA_CALL_SUBJECT_MAX_LENGTH,
+                    instantLetteringMaxLength);
+            phoneAccountExtras.putString(PhoneAccount.EXTRA_CALL_SUBJECT_CHARACTER_ENCODING,
+                    instantLetteringEncoding);
+            return phoneAccountExtras;
         }
 
         /**
