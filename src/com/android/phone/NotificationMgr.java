@@ -557,7 +557,7 @@ public class NotificationMgr {
                     continue;
                 }
                 UserHandle userHandle = user.getUserHandle();
-                builder.setContentIntent(userHandle.isOwner() ? contentIntent : null);
+                builder.setContentIntent(user.isAdmin() ? contentIntent : null);
                 mNotificationManager.notifyAsUser(
                         Integer.toString(subId) /* tag */,
                         CALL_FORWARD_NOTIFICATION,
@@ -599,7 +599,7 @@ public class NotificationMgr {
                 continue;
             }
             UserHandle userHandle = user.getUserHandle();
-            builder.setContentIntent(userHandle.isOwner() ? contentIntent : null);
+            builder.setContentIntent(user.isAdmin() ? contentIntent : null);
             final Notification notif =
                     new Notification.BigTextStyle(builder).bigText(contentText).build();
             mNotificationManager.notifyAsUser(
@@ -648,7 +648,7 @@ public class NotificationMgr {
                 continue;
             }
             UserHandle userHandle = user.getUserHandle();
-            builder.setContentIntent(userHandle.isOwner() ? contentIntent : null);
+            builder.setContentIntent(user.isAdmin() ? contentIntent : null);
             mNotificationManager.notifyAsUser(
                     null /* tag */,
                     SELECTED_OPERATOR_FAIL_NOTIFICATION,
