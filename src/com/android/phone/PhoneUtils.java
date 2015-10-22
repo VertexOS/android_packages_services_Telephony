@@ -863,7 +863,7 @@ public class PhoneUtils {
             if (DBG) log("running USSD code, displaying indeterminate progress.");
 
             // create the indeterminate progress dialog and display it.
-            ProgressDialog pd = new ProgressDialog(context);
+            ProgressDialog pd = new ProgressDialog(context, THEME);
             pd.setMessage(context.getText(R.string.ussdRunning));
             pd.setCancelable(false);
             pd.setIndeterminate(true);
@@ -934,7 +934,7 @@ public class PhoneUtils {
 
             // create the progress dialog, make sure the flags and type are
             // set correctly.
-            ProgressDialog pd = new ProgressDialog(app);
+            ProgressDialog pd = new ProgressDialog(app, THEME);
             pd.setTitle(title);
             pd.setMessage(text);
             pd.setCancelable(false);
