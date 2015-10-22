@@ -40,7 +40,7 @@ public class CdmaSubscriptionListPreference extends ListPreference {
 
     //preferredSubscriptionMode  0 - RUIM/SIM, preferred
     //                           1 - NV
-    static final int preferredSubscriptionMode = CDMA_SUBSCRIPTION_NV;
+    static final int preferredSubscriptionMode = CDMA_SUBSCRIPTION_RUIM_SIM;
 
     private Phone mPhone;
     private CdmaSubscriptionButtonHandler mHandler;
