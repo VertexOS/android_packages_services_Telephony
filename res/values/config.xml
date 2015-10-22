@@ -212,4 +212,7 @@
 
     <!-- Flag indicating whether to allow pstn phone accounts [DO NOT TRANSLATE] -->
     <bool name="config_pstn_phone_accounts_enabled">true</bool>
+
+    <!-- Flag indicating whether the the emergency phone account should be emergency calls only -->
+    <bool name="config_emergency_account_emergency_calls_only">false</bool>
 </resources>

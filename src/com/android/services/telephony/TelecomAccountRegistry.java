@@ -177,9 +177,8 @@ final class TelecomAccountRegistry {
             }
             mIsMergeCallSupported = isCarrierMergeCallSupported();
 
-            if (isEmergency && mContext.getPackageManager().hasSystemFeature(
-                    PackageManager.FEATURE_WATCH)) {
-                // For Wear, we mark the emergency phone account as emergency calls only.
+            if (isEmergency && mContext.getResources().getBoolean(
+                    R.bool.config_emergency_account_emergency_calls_only)) {
                 capabilities |= PhoneAccount.CAPABILITY_EMERGENCY_CALLS_ONLY;
             }
 
@@ -458,8 +457,14 @@ final class TelecomAccountRegistry {
     private void cleanupPhoneAccounts() {
         ComponentName telephonyComponentName =
                 new ComponentName(mContext, TelephonyConnectionService.class);
-        List<PhoneAccountHandle> accountHandles =
-                mTelecomManager.getCallCapablePhoneAccounts(true /* includeDisabled */);
+        // This config indicates whether the emergency account was flagged as emergency calls only
+        // in which case we need to consider all phone accounts, not just the call capable ones.
+        final boolean emergencyCallsOnlyEmergencyAccount = mContext.getResources().getBoolean(
+                R.bool.config_emergency_account_emergency_calls_only);
+        List<PhoneAccountHandle> accountHandles = emergencyCallsOnlyEmergencyAccount
+                ? mTelecomManager.getAllPhoneAccountHandles()
+                : mTelecomManager.getCallCapablePhoneAccounts(true /* includeDisabled */);
+
         for (PhoneAccountHandle handle : accountHandles) {
             if (telephonyComponentName.equals(handle.getComponentName()) &&
                     !hasAccountEntryForPhoneAccount(handle)) {
