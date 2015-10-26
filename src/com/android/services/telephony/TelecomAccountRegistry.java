@@ -161,8 +161,11 @@ final class TelecomAccountRegistry {
             // By default all SIM phone accounts can place emergency calls.
             int capabilities = PhoneAccount.CAPABILITY_SIM_SUBSCRIPTION |
                     PhoneAccount.CAPABILITY_CALL_PROVIDER |
-                    PhoneAccount.CAPABILITY_PLACE_EMERGENCY_CALLS |
                     PhoneAccount.CAPABILITY_MULTI_USER;
+
+            if (mContext.getResources().getBoolean(R.bool.config_pstnCanPlaceEmergencyCalls)) {
+                capabilities |= PhoneAccount.CAPABILITY_PLACE_EMERGENCY_CALLS;
+            }
 
             mIsVideoCapable = mPhone.isVideoEnabled();
             if (mIsVideoCapable) {
