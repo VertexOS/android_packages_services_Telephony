@@ -215,4 +215,7 @@
 
     <!-- Flag indicating whether the the emergency phone account should be emergency calls only -->
     <bool name="config_emergency_account_emergency_calls_only">false</bool>
+
+    <!-- Whether the emergency only account can make emergency calls -->
+    <bool name="config_pstnCanPlaceEmergencyCalls">true</bool>
 </resources>
