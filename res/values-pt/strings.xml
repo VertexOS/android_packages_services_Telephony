@@ -352,7 +352,7 @@
     <string name="tty_mode_option_summary" msgid="1073835131534808732">"Definir modo TTD"</string>
     <string name="auto_retry_mode_title" msgid="4073265511427813322">"Repetir automaticamente"</string>
     <string name="auto_retry_mode_summary" msgid="4973886004067532288">"Ativar modo Repetir automaticamente"</string>
-    <string name="tty_mode_not_allowed_video_call" msgid="3795846787901909176">"Não é permitida a alteração do modo TTD durante uma vídeo chamada"</string>
+    <string name="tty_mode_not_allowed_video_call" msgid="3795846787901909176">"Não é permitida a alteração do modo TTD durante uma videochamada"</string>
     <string name="menu_add" msgid="1882023737425114762">"Adicionar contato"</string>
     <string name="menu_edit" msgid="7143003705504672374">"Editar contato"</string>
     <string name="menu_delete" msgid="3977150783449642851">"Excluir contato"</string>
@@ -539,7 +539,7 @@
     <string name="preference_category_ringtone" msgid="5197960752529332721">"Toque e vibração"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"Cartões SIM integrados"</string>
     <string name="enable_video_calling_title" msgid="7237253660669000899">"Ativar chamadas de vídeo"</string>
-    <string name="enable_video_calling_dialog_msg" msgid="8948186136957417948">"Para ativar a chamada de vídeo, ative o modo 4G LTE avançado nas configurações de rede."</string>
+    <string name="enable_video_calling_dialog_msg" msgid="8948186136957417948">"Para ativar a videochamada, ative o modo 4G LTE avançado nas configurações de rede."</string>
     <string name="enable_video_calling_dialog_settings" msgid="576528473599603249">"Configurações de rede"</string>
     <string name="enable_video_calling_dialog_close" msgid="7411471282167927991">"Fechar"</string>
     <string name="sim_label_emergency_calls" msgid="4847699229529306397">"Chamadas de emergência"</string>
