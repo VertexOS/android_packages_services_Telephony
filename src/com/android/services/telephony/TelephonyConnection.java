@@ -677,6 +677,7 @@ abstract class TelephonyConnection extends Connection {
         setWifi(mOriginalConnection.isWifi());
         setVideoProvider(mOriginalConnection.getVideoProvider());
         setAudioQuality(mOriginalConnection.getAudioQuality());
+        updateExtras(mOriginalConnection.getConnectionExtras());
 
         if (isImsConnection()) {
             mWasImsConnection = true;
