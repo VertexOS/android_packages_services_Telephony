@@ -344,7 +344,7 @@
     <string name="enable_fdn_ok" msgid="7215588870329688132">"Fix hívószám letiltása"</string>
     <string name="disable_fdn_ok" msgid="5727046928930740173">"Fix hívószám engedélyezése"</string>
     <string name="sum_fdn" msgid="1959399454900272878">"Fix hívószámok kezelése"</string>
-    <string name="sum_fdn_change_pin" msgid="6666549734792827932">"A fix hívószámok eléréséhez szükséges PIN kód módosítása"</string>
+    <string name="sum_fdn_change_pin" msgid="6666549734792827932">"A fix hívószámok eléréséhez szükséges PIN-kód módosítása"</string>
     <string name="sum_fdn_manage_list" msgid="8431088265332628316">"Telefonszámok listájának kezelése"</string>
     <string name="voice_privacy" msgid="3776841382844614716">"Adatvédelem"</string>
     <string name="voice_privacy_summary" msgid="3159383389833516214">"Fokozott adatvédelmi mód engedélyezése"</string>
@@ -383,17 +383,17 @@
     <string name="oldPinLabel" msgid="5287773661246368314">"Régi PIN-kód"</string>
     <string name="newPinLabel" msgid="207488227285336897">"Új PIN-kód"</string>
     <string name="confirmPinLabel" msgid="257597715098070206">"Erősítse meg az új PIN-kódot"</string>
-    <string name="badPin" msgid="8955102849303984935">"A megadott régi PIN kód helytelen. Próbálja újra."</string>
+    <string name="badPin" msgid="8955102849303984935">"A megadott régi PIN-kód helytelen. Próbálja újra."</string>
     <string name="mismatchPin" msgid="5923253370683071889">"A beírt PIN kódok nem egyeznek. Próbálja újra."</string>
     <string name="invalidPin" msgid="5981171102258684792">"Írjon be egy 4-8 számjegyű PIN-kódot."</string>
     <string name="disable_sim_pin" msgid="3419351358300716472">"SIM kártya PIN kódjának törlése"</string>
     <string name="enable_sim_pin" msgid="4845145659651484248">"SIM kártya PIN kódjának beállítása"</string>
-    <string name="enable_in_progress" msgid="3417917024688497010">"PIN kód beállítása…"</string>
-    <string name="enable_pin_ok" msgid="2918545971413270063">"PIN kód beállítva"</string>
-    <string name="disable_pin_ok" msgid="2109571368635883688">"PIN kód törölve"</string>
-    <string name="pin_failed" msgid="5644377896213584760">"A PIN kód helytelen"</string>
-    <string name="pin_changed" msgid="4455736268023261662">"PIN kód frissítve"</string>
-    <string name="puk_requested" msgid="5921393215789090200">"A jelszó helytelen. PIN kód letiltva. Adja meg a PUK kódot."</string>
+    <string name="enable_in_progress" msgid="3417917024688497010">"PIN-kód beállítása…"</string>
+    <string name="enable_pin_ok" msgid="2918545971413270063">"PIN-kód beállítva"</string>
+    <string name="disable_pin_ok" msgid="2109571368635883688">"PIN-kód törölve"</string>
+    <string name="pin_failed" msgid="5644377896213584760">"A PIN-kód helytelen"</string>
+    <string name="pin_changed" msgid="4455736268023261662">"PIN-kód frissítve"</string>
+    <string name="puk_requested" msgid="5921393215789090200">"A jelszó helytelen. PIN-kód letiltva. Adja meg a PUK kódot."</string>
     <string name="enter_pin2_text" msgid="8339444124477720345">"PIN2"</string>
     <string name="oldPin2Label" msgid="8559146795026261502">"Régi PIN2 kód"</string>
     <string name="newPin2Label" msgid="4573956902204349054">"Új PIN2 kód"</string>

@@ -58,7 +58,7 @@
     <string name="labelCDMAMore" msgid="1630676740428229339">"Setările apelului CDMA"</string>
     <string name="labelCdmaMore_with_label" msgid="6333588719319970399">"Setări pentru apeluri CDMA (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="apn_settings" msgid="9043423184895642077">"Numele punctelor de acces"</string>
-    <string name="settings_label" msgid="3876743539816984008">"Setări de reţea"</string>
+    <string name="settings_label" msgid="3876743539816984008">"Setări de rețea"</string>
     <string name="phone_accounts" msgid="6376603393888116364">"Conturi pentru apelare"</string>
     <string name="phone_accounts_make_calls_with" msgid="1969188078933152231">"Apelați cu"</string>
     <string name="phone_accounts_make_sip_calls_with" msgid="4677789312053828493">"Dați apeluri SIP cu"</string>
@@ -75,7 +75,7 @@
     <string name="voicemail" msgid="8693759337917898954">"Mesaj vocal"</string>
     <string name="voicemail_settings_with_label" msgid="152724978380748296">"Mesagerie vocală (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="voicemail_abbreviated" msgid="2215592488517217448">"MV:"</string>
-    <string name="networks" msgid="8873030692174541976">"Operatori de reţea"</string>
+    <string name="networks" msgid="8873030692174541976">"Operatori de rețea"</string>
     <string name="cell_broadcast_settings" msgid="8740238216690502563">"Transmisiuni de urgență"</string>
     <string name="call_settings" msgid="6112441768261754562">"Setări apel"</string>
     <string name="additional_gsm_call_settings" msgid="1391795981938800617">"Setări suplimentare"</string>
@@ -83,7 +83,7 @@
     <string name="sum_gsm_call_settings" msgid="4076647190996778012">"Setări suplimentare doar pentru apelurile GSM"</string>
     <string name="additional_cdma_call_settings" msgid="8628958775721886909">"Setări suplimentare pentru apelurile CDMA"</string>
     <string name="sum_cdma_call_settings" msgid="284753265979035549">"Setări suplimentare numai pentru apelurile CDMA"</string>
-    <string name="labelNwService" msgid="4699970172021870983">"Setările serviciului de reţea"</string>
+    <string name="labelNwService" msgid="4699970172021870983">"Setările serviciului de rețea"</string>
     <string name="labelCallerId" msgid="3888899447379069198">"ID apelant"</string>
     <string name="sum_loading_settings" msgid="1826692909391168620">"Se încarcă setările…"</string>
     <string name="sum_hide_caller_id" msgid="1071407020290873782">"Număr ascuns în apelurile de ieşire"</string>
@@ -123,8 +123,8 @@
     <string name="reading_settings" msgid="1920291699287055284">"Se citesc setările..."</string>
     <string name="updating_settings" msgid="8171225533884883252">"Se actualizează setările..."</string>
     <string name="reverting_settings" msgid="4752151682666912828">"Se revine la setări..."</string>
-    <string name="response_error" msgid="6674110501330139405">"Răspuns neaşteptat de la reţea."</string>
-    <string name="exception_error" msgid="7027667130619518211">"Eroare de reţea sau de card SIM."</string>
+    <string name="response_error" msgid="6674110501330139405">"Răspuns neaşteptat de la rețea."</string>
+    <string name="exception_error" msgid="7027667130619518211">"Eroare de rețea sau de card SIM."</string>
     <string name="stk_cc_ss_to_dial_error" msgid="2816779198916570502">"Solicitarea SS a fost transformată în solicitare DIAL."</string>
     <string name="stk_cc_ss_to_ussd_error" msgid="7490626178582654236">"Solicitarea SS a fost transformată în solicitare USSD."</string>
     <string name="stk_cc_ss_to_ss_error" msgid="5057846756489053759">"Solicitarea SS a fost transformată în solicitare SS nouă."</string>
@@ -149,14 +149,14 @@
     <string name="mobile_networks" msgid="2843854043339307375">"Setările pentru rețeaua mobilă"</string>
     <string name="label_available" msgid="1181658289009300430">"Reţele disponibile"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"Se caută…"</string>
-    <string name="empty_networks_list" msgid="4249426905018815316">"Nicio reţea găsită."</string>
-    <string name="search_networks" msgid="1601136049300882441">"Căutaţi reţele"</string>
+    <string name="empty_networks_list" msgid="4249426905018815316">"Nicio rețea găsită."</string>
+    <string name="search_networks" msgid="1601136049300882441">"Căutaţi rețele"</string>
     <string name="network_query_error" msgid="6828516148953325006">"Eroare la căutarea reţelelor."</string>
     <string name="register_on_network" msgid="9055203954040805084">"Se înregistrează pe <xliff:g id="NETWORK">%s</xliff:g>..."</string>
-    <string name="not_allowed" msgid="5613353860205691579">"Cardul dvs. SIM nu permite conexiunea la această reţea."</string>
-    <string name="connect_later" msgid="2308119155752343975">"Nu se poate efectua conectarea la această reţea chiar acum. Încercați din nou mai târziu."</string>
-    <string name="registration_done" msgid="495135664535876612">"Înregistrat în reţea."</string>
-    <string name="sum_carrier_select" msgid="3494252551249882718">"Alegeţi un operator de reţea"</string>
+    <string name="not_allowed" msgid="5613353860205691579">"Cardul dvs. SIM nu permite conexiunea la această rețea."</string>
+    <string name="connect_later" msgid="2308119155752343975">"Nu se poate efectua conectarea la această rețea chiar acum. Încercați din nou mai târziu."</string>
+    <string name="registration_done" msgid="495135664535876612">"Înregistrat în rețea."</string>
+    <string name="sum_carrier_select" msgid="3494252551249882718">"Alegeţi un operator de rețea"</string>
     <string name="sum_search_networks" msgid="2921092249873272715">"Căutaţi toate reţelele disponibile"</string>
     <string name="select_automatically" msgid="5628402124471810174">"Selectaţi în mod automat"</string>
     <string name="sum_select_automatically" msgid="5614890115123292400">"Selectaţi în mod automat reţeaua preferată"</string>
@@ -164,14 +164,14 @@
     <string name="preferred_network_mode_title" msgid="2336624679902659306">"Tipul de rețea preferat"</string>
     <string name="preferred_network_mode_summary" msgid="1434820673166126609">"Schimbaţi modul de operare a reţelei"</string>
     <string name="preferred_network_mode_dialogtitle" msgid="4048082093347807230">"Tipul de rețea preferat"</string>
-    <string name="preferred_network_mode_wcdma_perf_summary" msgid="8521677230113533809">"Mod de reţea preferat: de preferat WCDMA"</string>
-    <string name="preferred_network_mode_gsm_only_summary" msgid="3352445413437453511">"Mod de reţea preferat: numai GSM"</string>
-    <string name="preferred_network_mode_wcdma_only_summary" msgid="2836897236221063413">"Mod de reţea preferat: numai WCDMA"</string>
-    <string name="preferred_network_mode_gsm_wcdma_summary" msgid="3161255745326408587">"Mod de reţea preferat: GSM/WCDMA"</string>
-    <string name="preferred_network_mode_cdma_summary" msgid="3175690187294334241">"Mod de reţea preferat: CDMA"</string>
-    <string name="preferred_network_mode_cdma_evdo_summary" msgid="8332063064712726618">"Mod de reţea preferat: CDMA/EvDo"</string>
-    <string name="preferred_network_mode_cdma_only_summary" msgid="1309770926198634150">"Mod de reţea preferat: numai CDMA"</string>
-    <string name="preferred_network_mode_evdo_only_summary" msgid="8472220691721269155">"Mod de reţea preferat: numai EvDo"</string>
+    <string name="preferred_network_mode_wcdma_perf_summary" msgid="8521677230113533809">"Mod de rețea preferat: de preferat WCDMA"</string>
+    <string name="preferred_network_mode_gsm_only_summary" msgid="3352445413437453511">"Mod de rețea preferat: numai GSM"</string>
+    <string name="preferred_network_mode_wcdma_only_summary" msgid="2836897236221063413">"Mod de rețea preferat: numai WCDMA"</string>
+    <string name="preferred_network_mode_gsm_wcdma_summary" msgid="3161255745326408587">"Mod de rețea preferat: GSM/WCDMA"</string>
+    <string name="preferred_network_mode_cdma_summary" msgid="3175690187294334241">"Mod de rețea preferat: CDMA"</string>
+    <string name="preferred_network_mode_cdma_evdo_summary" msgid="8332063064712726618">"Mod de rețea preferat: CDMA/EvDo"</string>
+    <string name="preferred_network_mode_cdma_only_summary" msgid="1309770926198634150">"Mod de rețea preferat: numai CDMA"</string>
+    <string name="preferred_network_mode_evdo_only_summary" msgid="8472220691721269155">"Mod de rețea preferat: numai EvDo"</string>
     <string name="preferred_network_mode_cdma_evdo_gsm_wcdma_summary" msgid="4726682079415227330">"Mod de rețea preferat: CDMA/EvDo/GSM/WCDMA"</string>
     <string name="preferred_network_mode_lte_summary" msgid="574752287596469136">"Mod de rețea preferat: LTE"</string>
     <string name="preferred_network_mode_lte_gsm_wcdma_summary" msgid="8455358514068283935">"Mod de rețea preferat: GSM/WCDMA/LTE"</string>
@@ -179,7 +179,7 @@
     <string name="preferred_network_mode_global_summary" msgid="1633134285545730364">"Mod de rețea preferat: Global"</string>
     <string name="preferred_network_mode_lte_wcdma_summary" msgid="9180775701594742750">"Mod de rețea preferat: LTE/WCDMA"</string>
     <string name="preferred_network_mode_lte_gsm_umts_summary" msgid="633315028976225026">"Mod de rețea preferat: LTE/GSM/UMTS"</string>
-    <string name="preferred_network_mode_lte_cdma_summary" msgid="3722647806454528426">"Mod de reţea preferat: LTE/CDMA"</string>
+    <string name="preferred_network_mode_lte_cdma_summary" msgid="3722647806454528426">"Mod de rețea preferat: LTE/CDMA"</string>
     <string name="preferred_network_mode_tdscdma_summary" msgid="8021016193718678775">"Mod de rețea preferat: TDSCDMA"</string>
   <string-array name="preferred_network_mode_choices">
     <item msgid="7886739962255042385">"LTE/WCDMA"</item>
@@ -430,7 +430,7 @@
     <string name="incall_error_power_off" msgid="2947938060513306698">"Pentru a apela, dezactivați modul Avion."</string>
     <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"Pentru a apela, dezactivați modul Avion sau conectați-vă la o rețea wireless."</string>
     <string name="incall_error_ecm_emergency_only" msgid="738708660612388692">"Ieșiți din modul de apelare inversă de urgență pentru a efectua un apel care nu este de urgență."</string>
-    <string name="incall_error_emergency_only" msgid="4678640422710818317">"Neînregistrat în reţea."</string>
+    <string name="incall_error_emergency_only" msgid="4678640422710818317">"Neînregistrat în rețea."</string>
     <string name="incall_error_out_of_service" msgid="4100065333878929223">"Rețeaua mobilă nu este disponibilă"</string>
     <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"Rețeaua mobilă nu este disponibilă. Pentru a apela, conectați-vă la o rețea wireless."</string>
     <string name="incall_error_no_phone_number_supplied" msgid="1150414018684246528">"Pentru a apela, introduceți un număr valid."</string>
@@ -440,7 +440,7 @@
     <string name="incall_error_supp_service_switch" msgid="5237002176899962862">"Apelurile nu pot fi comutate."</string>
     <string name="incall_error_supp_service_separate" msgid="7224393405134545246">"Apelul nu poate fi separat."</string>
     <string name="incall_error_supp_service_transfer" msgid="7235952238189391438">"Nu se poate transfera."</string>
-    <string name="incall_error_supp_service_conference" msgid="2505727299596357312">"Teleconferinţa nu se poate efectua."</string>
+    <string name="incall_error_supp_service_conference" msgid="2505727299596357312">"Teleconferința nu se poate efectua."</string>
     <string name="incall_error_supp_service_reject" msgid="8998568661508655638">"Apelul nu poate fi respins."</string>
     <string name="incall_error_supp_service_hangup" msgid="7434513517153834426">"Apelurile nu pot fi eliberate."</string>
     <string name="incall_error_wfc_only_no_wireless_network" msgid="1782466780452640089">"Pentru a apela, conectați-vă la o rețea wireless."</string>
@@ -486,12 +486,12 @@
     <string name="ota_hfa_activation_title" msgid="2234246934160473981">"Se activează..."</string>
     <string name="ota_hfa_activation_dialog_message" msgid="8092479227918463415">"Serviciul de date mobile este în curs de activare pe telefonul dvs.\n\nAcest proces poate dura până la 5 minute."</string>
     <string name="ota_skip_activation_dialog_title" msgid="2943366608272261306">"Omiteţi activarea?"</string>
-    <string name="ota_skip_activation_dialog_message" msgid="2440770373498870550">"Dacă omiteţi activarea, nu puteţi efectua apeluri și nici nu vă puteţi conecta la o reţea de date mobilă (deși vă puteţi conecta la reţele Wi-Fi). Până veţi activa telefonul, vi se va solicita să-l activați de fiecare dată când îl porniţi."</string>
+    <string name="ota_skip_activation_dialog_message" msgid="2440770373498870550">"Dacă omiteți activarea, nu puteţi efectua apeluri și nici nu vă puteţi conecta la o rețea de date mobilă (deși vă puteţi conecta la rețele Wi-Fi). Până veți activa telefonul, vi se va solicita să-l activați de fiecare dată când îl porniți."</string>
     <string name="ota_skip_activation_dialog_skip_label" msgid="3458532775091563208">"Omiteţi"</string>
     <string name="ota_activate" msgid="1368528132525626264">"Activați"</string>
     <string name="ota_title_activate_success" msgid="6570240212263372046">"Telefonul este activat."</string>
     <string name="ota_title_problem_with_activation" msgid="7095824491970084367">"Problemă de activare"</string>
-    <string name="ota_listen" msgid="162923839877584937">"Urmăriţi instrucţiunile rostite până când veţi auzi că activarea este finalizată."</string>
+    <string name="ota_listen" msgid="162923839877584937">"Urmăriţi instrucţiunile rostite până când veți auzi că activarea este finalizată."</string>
     <string name="ota_speaker" msgid="6904589278542719647">"Difuzor"</string>
     <string name="ota_progress" msgid="460876637828044519">"Se programează telefonul…"</string>
     <string name="ota_failure" msgid="7713756181204620397">"Telefonul nu a putut fi programat"</string>
@@ -543,7 +543,7 @@
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"Carduri SIM încorporate"</string>
     <string name="enable_video_calling_title" msgid="7237253660669000899">"Activați apelurile video"</string>
     <string name="enable_video_calling_dialog_msg" msgid="8948186136957417948">"Pentru a activa apelarea video, trebuie să activați Modul 4G LTE îmbunătățit în setările pentru rețea."</string>
-    <string name="enable_video_calling_dialog_settings" msgid="576528473599603249">"Setări de reţea"</string>
+    <string name="enable_video_calling_dialog_settings" msgid="576528473599603249">"Setări de rețea"</string>
     <string name="enable_video_calling_dialog_close" msgid="7411471282167927991">"Închideți"</string>
     <string name="sim_label_emergency_calls" msgid="4847699229529306397">"Apeluri de urgență"</string>
     <string name="sim_description_emergency_calls" msgid="7535215397212301562">"Numai apeluri de urgență"</string>
