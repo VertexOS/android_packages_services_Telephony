@@ -21,7 +21,7 @@
     <string name="sip_accounts_title" msgid="2082527045326874519">"Профили"</string>
     <string name="sip_receive_calls" msgid="426678617137462173">"Получаване на входящи обаждания"</string>
     <string name="sip_receive_calls_summary" msgid="946161517528227523">"Изразходва повече от батерията"</string>
-    <string name="sip_call_options_title" msgid="8421210494703869806">"Използване на услуга за обаждане през SIP"</string>
+    <string name="sip_call_options_title" msgid="8421210494703869806">"Използване на обаждане през SIP"</string>
     <string name="sip_call_options_wifi_only_title" msgid="5112579243580893890">"Използване на услуга за обаждане през SIP (само при Wi-Fi)"</string>
     <string name="sip_call_options_entry_1" msgid="7217659161237099900">"За всички обаждания, когато е налице мрежа за данни"</string>
     <string name="sip_call_options_entry_2" msgid="1815335903940609729">"Само за обаждания през SIP"</string>
@@ -59,7 +59,7 @@
     <string name="transport_title" msgid="889155457465372527">"Тип транспорт"</string>
     <string name="send_keepalive_title" msgid="599627072150501159">"Изпращане на съобщение за проверка на връзката"</string>
     <string name="advanced_settings" msgid="6622996380747040711">"Незадължителни настройки"</string>
-    <string name="auth_username_title" msgid="8262491689004708265">"Потребителско име за удостоверяване"</string>
+    <string name="auth_username_title" msgid="8262491689004708265">"Потребит. име за удостоверяване"</string>
     <string name="auth_username_summary" msgid="941160241371436473">"Потребителско име, използвано за удостоверяване"</string>
     <string name="default_preference_summary" msgid="1979249643719483249">"&lt;Не е зададено&gt;"</string>
     <string name="display_name_summary" msgid="7155076491675565407">"&lt;Същото като потребителското име&gt;"</string>

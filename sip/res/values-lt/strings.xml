@@ -19,7 +19,7 @@
     <string name="sip_settings" msgid="3768482698061677257">"SIP nustatymai"</string>
     <string name="sip_accounts" msgid="85559497282185405">"SIP paskyros"</string>
     <string name="sip_accounts_title" msgid="2082527045326874519">"Paskyros"</string>
-    <string name="sip_receive_calls" msgid="426678617137462173">"Gauti gaunamus skambučius"</string>
+    <string name="sip_receive_calls" msgid="426678617137462173">"Gauti gaunamuosius skambučius"</string>
     <string name="sip_receive_calls_summary" msgid="946161517528227523">"Eikvojama daugiau akumuliatoriaus energijos"</string>
     <string name="sip_call_options_title" msgid="8421210494703869806">"Naudoti SIP skambinimą"</string>
     <string name="sip_call_options_wifi_only_title" msgid="5112579243580893890">"Naudoti SIP skambinimą (tik „Wi-Fi“)"</string>
@@ -32,7 +32,7 @@
     <string name="saving_account" msgid="5336529880235177448">"Išsaugoma paskyra..."</string>
     <string name="removing_account" msgid="5537351356808985756">"Pašalinama paskyra..."</string>
     <string name="sip_menu_save" msgid="7882219814563869225">"Išsaugoti"</string>
-    <string name="sip_menu_discard" msgid="2350421645423888438">"Išmesti"</string>
+    <string name="sip_menu_discard" msgid="2350421645423888438">"Atmesti"</string>
     <string name="alert_dialog_close" msgid="1326011828713435134">"Uždaryti profilį"</string>
     <string name="alert_dialog_ok" msgid="4752048404605388940">"Gerai"</string>
     <string name="close_profile" msgid="3122414058856309881">"Uždaryti"</string>

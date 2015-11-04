@@ -19,12 +19,12 @@
     <string name="sip_settings" msgid="3768482698061677257">"Ustawienia SIP"</string>
     <string name="sip_accounts" msgid="85559497282185405">"Konta SIP"</string>
     <string name="sip_accounts_title" msgid="2082527045326874519">"Konta"</string>
-    <string name="sip_receive_calls" msgid="426678617137462173">"Odbieraj połączenia przychodzące"</string>
-    <string name="sip_receive_calls_summary" msgid="946161517528227523">"Zużywa więcej energii baterii"</string>
+    <string name="sip_receive_calls" msgid="426678617137462173">"Odbieraj przychodzące"</string>
+    <string name="sip_receive_calls_summary" msgid="946161517528227523">"Skraca czas pracy baterii"</string>
     <string name="sip_call_options_title" msgid="8421210494703869806">"Użyj połączenia SIP"</string>
     <string name="sip_call_options_wifi_only_title" msgid="5112579243580893890">"Użyj połączenia SIP (tylko przez Wi-Fi)"</string>
     <string name="sip_call_options_entry_1" msgid="7217659161237099900">"Przy wszystkich połączeniach, gdy sieć transmisji danych jest dostępna"</string>
-    <string name="sip_call_options_entry_2" msgid="1815335903940609729">"Tylko do połączeń SIP"</string>
+    <string name="sip_call_options_entry_2" msgid="1815335903940609729">"Tylko połączenia SIP"</string>
     <string name="sip_call_options_wifi_only_entry_1" msgid="1358513095551847314">"Wszystkie połączenia"</string>
     <string name="add_sip_account" msgid="800843669753980091">"Dodaj konto"</string>
     <string name="remove_sip_account" msgid="1367664438506503690">"Usuń konto"</string>
@@ -48,8 +48,8 @@
     <string name="registration_status_invalid_credentials" msgid="8406872554323334182">"Rejestracja konta nie powiodła się: nieprawidłowa nazwa użytkownika lub hasło."</string>
     <string name="registration_status_server_unreachable" msgid="7710275557045148634">"Rejestracja konta nie powiodła się: sprawdź nazwę serwera."</string>
     <string name="third_party_account_summary" msgid="9041060473615403041">"To konto jest obecnie używane przez aplikację <xliff:g id="ACCOUNT_OWNER">%s</xliff:g>."</string>
-    <string name="sip_edit_title" msgid="1967247832635750410">"Szczegóły konta SIP"</string>
-    <string name="sip_edit_new_title" msgid="266414118302574305">"Szczegóły konta SIP"</string>
+    <string name="sip_edit_title" msgid="1967247832635750410">"Dane konta SIP"</string>
+    <string name="sip_edit_new_title" msgid="266414118302574305">"Dane konta SIP"</string>
     <string name="domain_address_title" msgid="1968479941328225423">"Serwer"</string>
     <string name="username_title" msgid="6770064611005663470">"Nazwa użytkownika"</string>
     <string name="password_title" msgid="5289013731515564295">"Hasło"</string>

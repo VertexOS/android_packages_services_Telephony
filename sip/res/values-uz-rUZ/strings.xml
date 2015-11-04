@@ -19,14 +19,14 @@
     <string name="sip_settings" msgid="3768482698061677257">"SIP sozlamalari"</string>
     <string name="sip_accounts" msgid="85559497282185405">"SIP hisoblari"</string>
     <string name="sip_accounts_title" msgid="2082527045326874519">"Hisoblar"</string>
-    <string name="sip_receive_calls" msgid="426678617137462173">"Kiruvchi qo‘ng‘iroqlarni qabul qilish"</string>
+    <string name="sip_receive_calls" msgid="426678617137462173">"Kiruvchilarni qabul qilish"</string>
     <string name="sip_receive_calls_summary" msgid="946161517528227523">"Batareya quvvatini ko‘p sarflaydi"</string>
-    <string name="sip_call_options_title" msgid="8421210494703869806">"SIP qo‘ng‘iroqlaridan foydalanish"</string>
-    <string name="sip_call_options_wifi_only_title" msgid="5112579243580893890">"SIP qo‘ng‘iroqlaridan foydalanish (faqat Wi-Fi)"</string>
+    <string name="sip_call_options_title" msgid="8421210494703869806">"SIP-qo‘ng‘iroq"</string>
+    <string name="sip_call_options_wifi_only_title" msgid="5112579243580893890">"SIP-qo‘ng‘iroq (faqat Wi-Fi)"</string>
     <string name="sip_call_options_entry_1" msgid="7217659161237099900">"Tarmoq trafigi mavjud bo‘lganda barcha qo‘ng‘iroqlar uchun"</string>
-    <string name="sip_call_options_entry_2" msgid="1815335903940609729">"Faqat SIP qo‘ng‘iroqlari uchun"</string>
+    <string name="sip_call_options_entry_2" msgid="1815335903940609729">"Faqat SIP-qo‘ng‘iroqlar uchun"</string>
     <string name="sip_call_options_wifi_only_entry_1" msgid="1358513095551847314">"Barcha qo‘ng‘iroqlar uchun"</string>
-    <string name="add_sip_account" msgid="800843669753980091">"Yangi hisob qo‘shish"</string>
+    <string name="add_sip_account" msgid="800843669753980091">"Hisob qo‘shish"</string>
     <string name="remove_sip_account" msgid="1367664438506503690">"Hisobni o‘chirish"</string>
     <string name="sip_account_list" msgid="5610858485304821480">"SIP hisoblari"</string>
     <string name="saving_account" msgid="5336529880235177448">"Hisob saqlanmoqda…"</string>
@@ -48,24 +48,24 @@
     <string name="registration_status_invalid_credentials" msgid="8406872554323334182">"Hisobni ro‘yxatdan o‘tkazish amalga oshmadi: foydalanuvchi nomi yoki parol xato."</string>
     <string name="registration_status_server_unreachable" msgid="7710275557045148634">"Hisobni ro‘yxatdan o‘tkazish muvaffaqiyatsiz tugadi: server nomini tekshirib ko‘ring."</string>
     <string name="third_party_account_summary" msgid="9041060473615403041">"Ushbu hisob <xliff:g id="ACCOUNT_OWNER">%s</xliff:g> ilovasi tomonidan hozirda foydalanilmoqda."</string>
-    <string name="sip_edit_title" msgid="1967247832635750410">"SIP hisobi ma’lumotlari"</string>
-    <string name="sip_edit_new_title" msgid="266414118302574305">"SIP hisobi ma’lumotlari"</string>
+    <string name="sip_edit_title" msgid="1967247832635750410">"SIP hisobi"</string>
+    <string name="sip_edit_new_title" msgid="266414118302574305">"SIP hisobi"</string>
     <string name="domain_address_title" msgid="1968479941328225423">"Server"</string>
     <string name="username_title" msgid="6770064611005663470">"Foydalanuvchi nomi"</string>
     <string name="password_title" msgid="5289013731515564295">"Parol"</string>
-    <string name="display_name_title" msgid="579241787583079773">"Nomini ko‘rsatish"</string>
-    <string name="proxy_address_title" msgid="6890163365640631841">"Chiquvchi proksi manzili"</string>
+    <string name="display_name_title" msgid="579241787583079773">"Ko‘rsatiladigan nom"</string>
+    <string name="proxy_address_title" msgid="6890163365640631841">"Proksi-server manzili"</string>
     <string name="port_title" msgid="6693965912656593862">"Port raqami"</string>
-    <string name="transport_title" msgid="889155457465372527">"Transport turi"</string>
-    <string name="send_keepalive_title" msgid="599627072150501159">"Faollikni saqlash tanlovini jo‘natish"</string>
-    <string name="advanced_settings" msgid="6622996380747040711">"Ixtiyoriy sozlamalar"</string>
-    <string name="auth_username_title" msgid="8262491689004708265">"Foydalanuvchi nomini tasdiqdan o‘tkazish"</string>
-    <string name="auth_username_summary" msgid="941160241371436473">"Foydalanuvchi nomi tasdiqdan o‘tish uchun foydalaniladi"</string>
-    <string name="default_preference_summary" msgid="1979249643719483249">"&lt;O‘rnatilmagan&gt;"</string>
+    <string name="transport_title" msgid="889155457465372527">"Protokol"</string>
+    <string name="send_keepalive_title" msgid="599627072150501159">"Keep-alive elementini yuborish"</string>
+    <string name="advanced_settings" msgid="6622996380747040711">"Qo‘shimcha sozlamalar"</string>
+    <string name="auth_username_title" msgid="8262491689004708265">"Foydalanuvchi nomi"</string>
+    <string name="auth_username_summary" msgid="941160241371436473">"Haqiqiylikni tekshirish uchun foydalanuvchi nomi"</string>
+    <string name="default_preference_summary" msgid="1979249643719483249">"&lt;Ko‘rsatilmagan&gt;"</string>
     <string name="display_name_summary" msgid="7155076491675565407">"&lt;Foydalanuvchi nomi bilan bir xil&gt;"</string>
     <string name="optional_summary" msgid="2363105560396317624">"&lt;Ixtiyoriy&gt;"</string>
     <string name="advanced_settings_show" msgid="7838761602853998622">"▷ Barchasini ko‘rsatish uchun bosing"</string>
-    <string name="advanced_settings_hide" msgid="3480554978705290228">"▽ Barchasini yashirish uchun bosing"</string>
+    <string name="advanced_settings_hide" msgid="3480554978705290228">"▽ Berkitish uchun bu yerga bosing"</string>
     <string name="empty_alert" msgid="6659484914371384024">"<xliff:g id="INPUT_FIELD_NAME">%s</xliff:g>ni to‘ldirish shart, u bo‘sh qolmasligi kerak."</string>
     <string name="not_a_valid_port" msgid="7931422555587011830">"Port raqami 1000 va 65534 oralig‘ida bo‘lishi kerak."</string>
     <string name="no_internet_available" msgid="5523747991760017298">"SIP qo‘ng‘irog‘ini amalga oshirish uchun avval internetga ulanishni tekshiring."</string>

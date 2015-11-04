@@ -17,7 +17,7 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="phoneAppLabel" product="tablet" msgid="1107073389495104784">"Mobilni podaci"</string>
-    <string name="phoneAppLabel" product="default" msgid="906161039445636857">"Telefon"</string>
+    <string name="phoneAppLabel" product="default" msgid="6790717591729922998">"Telefonske usluge"</string>
     <string name="emergencyDialerIconLabel" msgid="7812140032168171053">"Birač hitnih poziva"</string>
     <string name="phoneIconLabel" msgid="2331230813161304895">"Telefon"</string>
     <string name="fdnListLabel" msgid="8630418672279521003">"Popis FDN-a"</string>
@@ -68,16 +68,9 @@
     <string name="phone_accounts_selection_header" msgid="1365215726106915865">"Telefonski računi"</string>
     <string name="phone_accounts_add_sip_account" msgid="2023821743341923271">"Dodaj SIP račun"</string>
     <string name="phone_accounts_configure_account_settings" msgid="1361715069911607109">"Konfiguriranje postavki računa"</string>
+    <string name="phone_accounts_all_calling_accounts" msgid="207619531589278471">"Svi računi za pozivanje"</string>
+    <string name="phone_accounts_all_calling_accounts_summary" msgid="8594186415822657011">"Odaberite račune koji mogu upućivati pozive"</string>
     <string name="wifi_calling" msgid="739018212480165598">"Wi-Fi pozivi"</string>
-    <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"Ne upotrebljavaj Wi-Fi pozive"</string>
-    <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"Ne upotrebljavaj pomoćnik za pozive"</string>
-    <string name="wifi_calling_call_assistant_none" msgid="6283702349285593683">"Ništa"</string>
-    <string name="wifi_calling_call_assistant" msgid="229102032881680320">"Pomoćnik za pozive"</string>
-    <string name="wifi_calling_use_call_assistant" msgid="8460024827012666199">"Upotrebljavaj pomoćnik za pozive"</string>
-    <string name="wifi_calling_select_call_assistant" msgid="9296558058772293">"Odabir pomoćnika za pozive"</string>
-    <string name="wifi_calling_select_call_assistant_summary" msgid="164985727137156474">"Upravljanje mrežama koje se upotrebljavaju za pozive putem"</string>
-    <string name="wifi_calling_use_call_assistant_summary" msgid="6599987137133339698">"Neka aplikacije ili usluge upravljaju mrežama koje se upotrebljavaju za pozive"</string>
-    <string name="wifi_calling_call_assistant_configure" msgid="1092639708949670031">"Konfiguriraj"</string>
     <string name="connection_service_default_label" msgid="1498481943805913754">"Ugrađena usluga povezivanja"</string>
     <string name="voicemail" msgid="8693759337917898954">"Govorna pošta"</string>
     <string name="voicemail_settings_with_label" msgid="152724978380748296">"Govorna pošta (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
@@ -100,7 +93,7 @@
     <string name="sum_cw_enabled" msgid="8083061901633671397">"Obavijesti me tijekom poziva o dolaznim pozivima"</string>
     <string name="sum_cw_disabled" msgid="3648693907300104575">"Obavijesti me tijekom poziva o dolaznim pozivima"</string>
     <string name="call_forwarding_settings" msgid="3378927671091537173">"Postavke preusmjeravanja poziva"</string>
-    <string name="call_forwarding_settings_with_label" msgid="8569489414006897127">"Postavke prosljeđivanja poziva (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="call_forwarding_settings_with_label" msgid="8569489414006897127">"Prosljeđivanje poziva (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="labelCF" msgid="2574386948026924737">"Preusmjeravanje poziva"</string>
     <string name="labelCFU" msgid="8147177368148660600">"Uvijek preusmjeri"</string>
     <string name="messageCFU" msgid="3560082430662923687">"Uvijek koristi ovaj broj"</string>
@@ -108,7 +101,7 @@
     <string name="sum_cfu_enabled" msgid="2450052502198827927">"Preusmjeravanje poziva na <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfu_enabled_no_number" msgid="6591985777096823616">"Broj je nedostupan"</string>
     <string name="sum_cfu_disabled" msgid="8384177689501334080">"Isključeno"</string>
-    <string name="labelCFB" msgid="6139853033106283172">"Kad je zauzeto"</string>
+    <string name="labelCFB" msgid="6139853033106283172">"Kad je broj zauzet"</string>
     <string name="messageCFB" msgid="3711089705936187129">"Broj u slučaju zauzeća"</string>
     <string name="sum_cfb_enabled" msgid="5984198104833116690">"Preusmjeravanje na <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfb_disabled" msgid="4913145177320506827">"Isključeno"</string>
@@ -118,20 +111,23 @@
     <string name="sum_cfnry_enabled" msgid="6955775691317662910">"Preusmjeravanje na <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfnry_disabled" msgid="3884684060443538097">"Isključeno"</string>
     <string name="disable_cfnry_forbidden" msgid="4308233959150658058">"Vaš mobilni operater ne podržava onemogućavanje preusmjeravanja poziva ako se na vaš telefon nitko ne javi."</string>
-    <string name="labelCFNRc" msgid="2614827454402079766">"Kad je nedostupno"</string>
+    <string name="labelCFNRc" msgid="2614827454402079766">"Kad je broj nedostupan"</string>
     <string name="messageCFNRc" msgid="6380695421020295119">"Broj u slučaju nedostupnosti"</string>
     <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"Preusmjeravanje na <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfnrc_disabled" msgid="7222141261321276464">"Onemogućeno"</string>
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"Vaš mobilni operater ne podržava onemogućavanje preusmjeravanja poziva ako je vaš telefon nedostupan."</string>
     <string name="updating_title" msgid="6146755386174019046">"Postavke poziva"</string>
     <string name="call_settings_primary_user_only" msgid="5679923943740900965">"Postavke može mijenjati samo primarni korisnik."</string>
-    <string name="call_settings_with_label" msgid="89359812614544532">"Postavke poziva (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="call_settings_with_label" msgid="3401177261468593519">"Postavke (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="error_updating_title" msgid="7970259216988931777">"Pogreška postavki poziva"</string>
-    <string name="reading_settings" msgid="1920291699287055284">"Postavke čitanja..."</string>
+    <string name="reading_settings" msgid="1920291699287055284">"Čitanje postavki..."</string>
     <string name="updating_settings" msgid="8171225533884883252">"Ažuriranje postavki..."</string>
     <string name="reverting_settings" msgid="4752151682666912828">"Povrat postavki…"</string>
     <string name="response_error" msgid="6674110501330139405">"Neočekivan mrežni odgovor."</string>
     <string name="exception_error" msgid="7027667130619518211">"Pogreška mreže ili SIM kartice."</string>
+    <string name="stk_cc_ss_to_dial_error" msgid="2816779198916570502">"SS zahtjev izmijenjen je u DIAL zahtjev."</string>
+    <string name="stk_cc_ss_to_ussd_error" msgid="7490626178582654236">"SS zahtjev izmijenjen je u USSD zahtjev."</string>
+    <string name="stk_cc_ss_to_ss_error" msgid="5057846756489053759">"SS zahtjev izmijenjen je u novi SS zahtjev."</string>
     <string name="fdn_check_failure" msgid="18200614306525434">"Uključena je postavka fiksnog biranja u aplikaciji telefona. Zbog toga ne rade neke značajke u vezi s pozivima."</string>
     <string name="radio_off_error" msgid="2304459933248513376">"Uključite radio prije pregleda ovih postavki."</string>
     <string name="close_dialog" msgid="2365884406356986917">"U redu"</string>
@@ -139,7 +135,7 @@
     <string name="disable" msgid="4678348128118573672">"Isključi"</string>
     <string name="change_num" msgid="239476305819844391">"Ažuriraj"</string>
   <string-array name="clir_display_values">
-    <item msgid="5560134294467334594">"Zdana postavka mreže"</item>
+    <item msgid="5560134294467334594">"Zadana postavka mreže"</item>
     <item msgid="7876195870037833661">"Sakrij broj"</item>
     <item msgid="1108394741608734023">"Prikaži broj"</item>
   </string-array>
@@ -184,6 +180,7 @@
     <string name="preferred_network_mode_lte_wcdma_summary" msgid="9180775701594742750">"Preferirani mrežni način: LTE/WCDMA"</string>
     <string name="preferred_network_mode_lte_gsm_umts_summary" msgid="633315028976225026">"Preferirani način mreže: LTE/GSM/UMTS"</string>
     <string name="preferred_network_mode_lte_cdma_summary" msgid="3722647806454528426">"Način željene mreže: LTE/CDMA"</string>
+    <string name="preferred_network_mode_tdscdma_summary" msgid="8021016193718678775">"Preferirani mrežni način: TDSCDMA"</string>
   <string-array name="preferred_network_mode_choices">
     <item msgid="7886739962255042385">"LTE/WCDMA"</item>
     <item msgid="577652050447385699">"LTE"</item>
@@ -312,6 +309,7 @@
     <string name="network_lte" msgid="7702681952521375754">"LTE (preporučeno)"</string>
     <string name="network_4G" msgid="2723512640529983138">"4G (preporučeno)"</string>
     <string name="network_global" msgid="1323190488685355309">"Globalno"</string>
+    <string name="network_tdscdma" msgid="4713495909689860245">"Samo TDSCDMA"</string>
     <string name="cdma_system_select_title" msgid="5757657769327732833">"Odabir sustava"</string>
     <string name="cdma_system_select_summary" msgid="60460043745797517">"Promijeni način rada CDMA roaminga"</string>
     <string name="cdma_system_select_dialogtitle" msgid="6083355415165359075">"Odabir sustava"</string>
@@ -334,12 +332,12 @@
     <string name="cdma_lte_data_service" msgid="4255018217292548962">"Postavljanje podatkovne usluge"</string>
     <string name="carrier_settings_title" msgid="9028166176523012300">"Postavke mobil. operatera"</string>
     <string name="fdn" msgid="7878832555095183202">"Brojevi za fiksno biranje"</string>
-    <string name="fdn_with_label" msgid="187084204115493366">"Brojevi fiksnog biranja (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="fdn_with_label" msgid="187084204115493366">"Fiksno biranje (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="manage_fdn_list" msgid="8777755791892122369">"Popis FDN-a"</string>
     <string name="fdn_list_with_label" msgid="7437232552210469217">"FDN popis (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="fdn_activation" msgid="2156479741307463576">"Aktivacija FDN-a"</string>
     <string name="fdn_enabled" msgid="5238109009915521240">"Brojevi za fiksno biranje su omogućeni"</string>
-    <string name="fdn_disabled" msgid="4700049736675368279">"Brojevi za fiksno biranje su onemogućeni"</string>
+    <string name="fdn_disabled" msgid="4700049736675368279">"Brojevi za fiksno biranje onemogućeni su"</string>
     <string name="enable_fdn" msgid="3740191529180493851">"Omogući FDN"</string>
     <string name="disable_fdn" msgid="7944020890722540616">"Onemogući FDN"</string>
     <string name="change_pin2" msgid="2153563695382176676">"Promijeni PIN2"</string>
@@ -377,7 +375,7 @@
     <string name="fdn_failed" msgid="540018079008319747">"Operacija FDN nije uspjela."</string>
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"Čitanje sa SIM kartice…"</string>
     <string name="simContacts_empty" msgid="5270660846489561932">"Nema kontakata na vašoj SIM kartici."</string>
-    <string name="simContacts_title" msgid="1861472842524839921">"Odaberite kontakte za uvoz"</string>
+    <string name="simContacts_title" msgid="1861472842524839921">"Odabir kontakata za uvoz"</string>
     <string name="simContacts_airplaneMode" msgid="5254946758982621072">"Isključite način rada u zrakoplovu da biste uvezli kontakte sa SIM kartice."</string>
     <string name="enable_pin" msgid="5422767284133234860">"Omogući/onemogući PIN za SIM"</string>
     <string name="change_pin" msgid="9174186126330785343">"Promijeni PIN za SIM"</string>
@@ -412,6 +410,7 @@
     <string name="puk2_blocked" msgid="3150263853077280049">"PUK2 je trajno blokiran."</string>
     <string name="pin2_attempts" msgid="720736232885011507">\n"Imate još <xliff:g id="NUMBER">%d</xliff:g> pokušaja."</string>
     <string name="pin2_unblocked" msgid="7791600368153469078">"PIN2 više nije blokiran"</string>
+    <string name="pin2_error_exception" msgid="1088689322248996699">"Pogreška mreže ili SIM kartice"</string>
     <string name="doneButton" msgid="2859593360997984240">"Gotovo"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"Broj govorne pošte"</string>
     <string name="card_title_dialing" msgid="5769417478498348054">"Biranje broja"</string>
@@ -422,25 +421,15 @@
     <string name="card_title_on_hold" msgid="821463117892339942">"Na čekanju"</string>
     <string name="card_title_hanging_up" msgid="3999101620995182450">"Prekidanje veze"</string>
     <string name="card_title_in_call" msgid="6346543933068225205">"Poziv u tijeku"</string>
-    <string name="notification_dialing" msgid="2107666444937350731">"Biranje broja"</string>
-    <string name="notification_missedCallTitle" msgid="7554385905572364535">"Propušteni poziv"</string>
-    <string name="notification_missedCallsTitle" msgid="1361677948941502522">"Propušteni pozivi"</string>
-    <string name="notification_missedCallsMsg" msgid="4575787816055205600">"Broj propuštenih poziva: <xliff:g id="NUM_MISSED_CALLS">%s</xliff:g>"</string>
-    <string name="notification_missedCallTicker" msgid="504686252427747209">"Propušten poziv kontakta <xliff:g id="MISSED_CALL_FROM">%s</xliff:g>"</string>
-    <string name="notification_ongoing_call" msgid="7068688957273482989">"Poziv u tijeku"</string>
-    <string name="notification_on_hold" msgid="3480694969511790465">"Na čekanju"</string>
-    <string name="notification_incoming_call" msgid="2820429205043529642">"Dolazni poziv"</string>
     <string name="notification_voicemail_title" msgid="8933468752045550523">"Nova govorna pošta"</string>
     <string name="notification_voicemail_title_count" msgid="4366360747660929916">"Nova govorna pošta (<xliff:g id="COUNT">%d</xliff:g>)"</string>
     <string name="notification_voicemail_text_format" msgid="4447323569453981685">"Biraj <xliff:g id="VOICEMAIL_NUMBER">%s</xliff:g>"</string>
     <string name="notification_voicemail_no_vm_number" msgid="760963466895609716">"Nepoznat je broj govorne pošte"</string>
     <string name="notification_network_selection_title" msgid="4224455487793492772">"Nema usluge"</string>
     <string name="notification_network_selection_text" msgid="2607085729661923269">"Odabrana mreža (<xliff:g id="OPERATOR_NAME">%s</xliff:g>) je onemogućena"</string>
-    <string name="notification_action_end_call" msgid="6069460915123531620">"Prekini vezu"</string>
-    <string name="notification_missedCall_call_back" msgid="2684890353590890187">"Povratni poziv"</string>
-    <string name="notification_missedCall_message" msgid="3049928912736917988">"Poruka"</string>
     <string name="incall_error_power_off" msgid="2947938060513306698">"Isključite način rada u zrakoplovu da biste uputili poziv."</string>
     <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"Isključite način rada u zrakoplovu ili se povežite s bežičnom mrežom da biste uputili poziv."</string>
+    <string name="incall_error_ecm_emergency_only" msgid="738708660612388692">"Isključite način hitnih poziva da biste uputili poziv koji nije hitan."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"Nije registrirano na mreži."</string>
     <string name="incall_error_out_of_service" msgid="4100065333878929223">"Mobilna mreža nije dostupna."</string>
     <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"Mobilna mreža nije dostupna. Povežite se s bežičnom mrežom da biste uputili poziv."</string>
@@ -516,21 +505,18 @@
     <string name="phone_entered_ecm_text" msgid="6266424252578731203">"Unijet je način hitnog povratnog poziva"</string>
     <string name="phone_in_ecm_notification_title" msgid="3226896828951687085">"Način hitnog povratnog poziva"</string>
     <string name="phone_in_ecm_call_notification_text" msgid="4611608947314729773">"Onemogućena je podatkovna mreža"</string>
-    <plurals name="phone_in_ecm_notification_time" formatted="false" msgid="8308381858502470919">
-      <item quantity="one">Podatkovne veze neće biti <xliff:g id="COUNT_1">%s</xliff:g> minutu</item>
-      <item quantity="few">Podatkovne veze neće biti <xliff:g id="COUNT_1">%s</xliff:g> minute</item>
-      <item quantity="other">Podatkovne veze neće biti <xliff:g id="COUNT_1">%s</xliff:g> minuta</item>
-    </plurals>
-    <plurals name="alert_dialog_exit_ecm" formatted="false" msgid="7179911675595441201">
-      <item quantity="one">Telefon će biti u načinu hitnog povratnog poziva <xliff:g id="COUNT_1">%s</xliff:g> minutu. U tom se načinu ne mogu upotrebljavati aplikacije koje upotrebljavaju podatkovnu vezu. Želite li odmah zatvoriti taj način?</item>
-      <item quantity="few">Telefon će biti u načinu hitnog povratnog poziva <xliff:g id="COUNT_1">%s</xliff:g> minute. U tom se načinu ne mogu upotrebljavati aplikacije koje upotrebljavaju podatkovnu vezu. Želite li odmah zatvoriti taj način?</item>
-      <item quantity="other">Telefon će biti u načinu hitnog povratnog poziva <xliff:g id="COUNT_1">%s</xliff:g> minuta. U tom se načinu ne mogu upotrebljavati aplikacije koje upotrebljavaju podatkovnu vezu. Želite li odmah zatvoriti taj način?</item>
-    </plurals>
-    <plurals name="alert_dialog_not_avaialble_in_ecm" formatted="false" msgid="8042973425225093895">
-      <item quantity="one">Odabrana radnja nije dostupna u načinu hitnog povratnog poziva. Telefon će u tom načinu biti <xliff:g id="COUNT_1">%s</xliff:g> minutu. Želite li odmah zatvoriti taj način?</item>
-      <item quantity="few">Odabrana radnja nije dostupna u načinu hitnog povratnog poziva. Telefon će u tom načinu biti <xliff:g id="COUNT_1">%s</xliff:g> minute. Želite li odmah zatvoriti taj način?</item>
-      <item quantity="other">Odabrana radnja nije dostupna u načinu hitnog povratnog poziva. Telefon će u tom načinu biti <xliff:g id="COUNT_1">%s</xliff:g> minuta. Želite li odmah zatvoriti taj način?</item>
-    </plurals>
+  <plurals name="phone_in_ecm_notification_time">
+    <item quantity="one" msgid="4866221796252472622">"Nema podatkovne veze <xliff:g id="COUNT">%s</xliff:g> min"</item>
+    <item quantity="other" msgid="3122217344579273583">"Nema podatkovne veze <xliff:g id="COUNT">%s</xliff:g> min"</item>
+  </plurals>
+  <plurals name="alert_dialog_exit_ecm">
+    <item quantity="one" msgid="8060210887681426682">"Telefon će biti u načinu rada hitnog povratnog poziva <xliff:g id="COUNT">%s</xliff:g> min. Za to se vrijeme ne može upotrebljavati nijedna aplikacija kojoj je potrebna podatkovna veza. Želite li izaći sada?"</item>
+    <item quantity="other" msgid="8617116564023933114">"Telefon će biti u načinu rada hitnog povratnog poziva <xliff:g id="COUNT">%s</xliff:g> min. Za to se vrijeme ne može upotrebljavati nijedna aplikacija kojoj je potrebna podatkovna veza. Želite li izaći sada?"</item>
+  </plurals>
+  <plurals name="alert_dialog_not_avaialble_in_ecm">
+    <item quantity="one" msgid="2585506997024726599">"Odabrana radnja nije dostupna u načinu rada hitnog povratnog poziva. Telefon će biti u tom načinu rada <xliff:g id="COUNT">%s</xliff:g> min. Želite li izaći sada?"</item>
+    <item quantity="other" msgid="6115622137771382224">"Odabrana radnja nije dostupna u načinu rada hitnog povratnog poziva. Telefon će biti u tom načinu rada <xliff:g id="COUNT">%s</xliff:g> min. Želite li izaći sada?"</item>
+  </plurals>
     <string name="alert_dialog_in_ecm_call" msgid="1886723687211887104">"Odabrana radnja nije dostupna tijekom hitnog poziva."</string>
     <string name="progress_dialog_exiting_ecm" msgid="4835734101617817074">"Izlaz iz načina hitnog povratnog poziva"</string>
     <string name="alert_dialog_yes" msgid="6674268047820703974">"Da"</string>
@@ -540,7 +526,7 @@
     <string name="voicemail_settings" msgid="72448049107749316">"Postavljanje"</string>
     <string name="voicemail_number_not_set" msgid="6724904736891087856">"&lt;Nije postavljeno&gt;"</string>
     <string name="other_settings" msgid="3672912580359716394">"Ostale postavke poziva"</string>
-    <string name="calling_via_template" msgid="4839419581866928142">"Pozivanje putem operatera <xliff:g id="PROVIDER_NAME">%s</xliff:g>"</string>
+    <string name="calling_via_template" msgid="4839419581866928142">"Poziv preko <xliff:g id="PROVIDER_NAME">%s</xliff:g>"</string>
     <string name="contactPhoto" msgid="4713193418046639466">"kontakt fotografija"</string>
     <string name="goPrivate" msgid="865837794424530980">"na privatno"</string>
     <string name="selectContact" msgid="781975788478987237">"odabir kontakta"</string>
@@ -548,8 +534,8 @@
     <string name="description_dial_button" msgid="7459705245418435351">"biraj"</string>
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"Vibracija"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"Vibracija"</string>
+    <string name="voicemail_visual_voicemail_switch_title" msgid="5012622186976275457">"Vizualna govorna pošta"</string>
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"Zvuk"</string>
-    <string name="dial_pad_autocomplete" msgid="7683489952557536398">"Samodovr. povr. za biranje br."</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"Melodija zvona i vibracija"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"Ugrađene SIM kartice"</string>
     <string name="enable_video_calling_title" msgid="7237253660669000899">"Uključivanje videopoziva"</string>
@@ -564,4 +550,5 @@
     <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"Wi-Fi poziv"</string>
     <string name="emergency_action_launch_hint" msgid="5841511849007540970">"Dodirnite ponovo da biste otvorili"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"Došlo je do pogreške prilikom dekodiranja poruke."</string>
+    <string name="callFailed_cdma_activation" msgid="2307989779233262164">"SIM kartica aktivirala je vašu uslugu i ažurirala mogućnosti telefona za roaming."</string>
 </resources>

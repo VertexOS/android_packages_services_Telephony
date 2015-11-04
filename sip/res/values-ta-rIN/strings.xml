@@ -60,7 +60,7 @@
     <string name="send_keepalive_title" msgid="599627072150501159">"எப்போதும் விழிப்புடன் அனுப்பு"</string>
     <string name="advanced_settings" msgid="6622996380747040711">"விருப்ப அமைப்பு"</string>
     <string name="auth_username_title" msgid="8262491689004708265">"அங்கீகாரப் பயனர்பெயர்"</string>
-    <string name="auth_username_summary" msgid="941160241371436473">"அங்கீகரிப்பிற்குப் பயனர்பெயர் பயன்படுத்தப்பட்டது"</string>
+    <string name="auth_username_summary" msgid="941160241371436473">"அங்கீகரிப்பிற்குப் பயன்படுத்தப்படும் பயனர்பெயர்"</string>
     <string name="default_preference_summary" msgid="1979249643719483249">"&lt;அமைக்கப்படவில்லை&gt;"</string>
     <string name="display_name_summary" msgid="7155076491675565407">"&lt;பயனர்பெயர் போன்றது&gt;"</string>
     <string name="optional_summary" msgid="2363105560396317624">"&lt;விரும்பினால்&gt;"</string>
