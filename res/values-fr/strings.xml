@@ -117,7 +117,7 @@
     <string name="sum_cfnrc_disabled" msgid="7222141261321276464">"Désactivé"</string>
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"Votre opérateur ne permet pas la désactivation du transfert d\'appel lorsque votre téléphone n\'est pas joignable."</string>
     <string name="updating_title" msgid="6146755386174019046">"Paramètres d\'appel"</string>
-    <string name="call_settings_primary_user_only" msgid="5679923943740900965">"Seul l\'utilisateur principal peut modifier les paramètres d\'appel."</string>
+    <string name="call_settings_admin_user_only" msgid="4526094783818216374">"Seul l\'administrateur peut modifier les paramètres d\'appel."</string>
     <string name="call_settings_with_label" msgid="3401177261468593519">"Paramètres (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="error_updating_title" msgid="7970259216988931777">"Erreur des paramètres d\'appel"</string>
     <string name="reading_settings" msgid="1920291699287055284">"Lecture des paramètres..."</string>

@@ -117,7 +117,7 @@
     <string name="sum_cfnrc_disabled" msgid="7222141261321276464">"Онемогућено"</string>
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"Мобилни оператер не подржава онемогућавање преусмеравања позива када је телефон недоступан."</string>
     <string name="updating_title" msgid="6146755386174019046">"Подешавања позива"</string>
-    <string name="call_settings_primary_user_only" msgid="5679923943740900965">"Само примарни корисник може да мења подешавања позива."</string>
+    <string name="call_settings_admin_user_only" msgid="4526094783818216374">"Само кориснику са администраторским правима је дозвољено да мења подешавања позива."</string>
     <string name="call_settings_with_label" msgid="3401177261468593519">"Подешавања (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="error_updating_title" msgid="7970259216988931777">"Грешка у подешавањима позива"</string>
     <string name="reading_settings" msgid="1920291699287055284">"Подешавања се учитавају…"</string>

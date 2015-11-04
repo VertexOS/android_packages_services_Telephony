@@ -117,7 +117,7 @@
     <string name="sum_cfnrc_disabled" msgid="7222141261321276464">"Vypnuté"</string>
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"Váš operátor neumožňuje zakázanie presmerovaní, keď je telefón nedostupný."</string>
     <string name="updating_title" msgid="6146755386174019046">"Nastavenia hovorov"</string>
-    <string name="call_settings_primary_user_only" msgid="5679923943740900965">"Nastavenia hovorov môže zmeniť iba hlavný používateľ."</string>
+    <string name="call_settings_admin_user_only" msgid="4526094783818216374">"Nastavenia hovorov môže zmeniť iba používateľ s povoleniami správcu."</string>
     <string name="call_settings_with_label" msgid="3401177261468593519">"Nastavenia (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="error_updating_title" msgid="7970259216988931777">"Chyba nastavení hovorov"</string>
     <string name="reading_settings" msgid="1920291699287055284">"Nastavenia sa načítajú…"</string>

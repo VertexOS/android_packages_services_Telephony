@@ -117,7 +117,7 @@
     <string name="sum_cfnrc_disabled" msgid="7222141261321276464">"غیر فعال شد"</string>
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"شرکت مخابراتی شما از غیرفعال کردن هدایت تماس هنگامی که تلفن شما در دسترس نیست پشتیبانی نمی‌کند."</string>
     <string name="updating_title" msgid="6146755386174019046">"تنظیمات تماس"</string>
-    <string name="call_settings_primary_user_only" msgid="5679923943740900965">"فقط کاربر اصلی می‌تواند تنظیمات تماس را تغییر دهد."</string>
+    <string name="call_settings_admin_user_only" msgid="4526094783818216374">"فقط کاربر سرپرست می‌تواند تنظیمات تماس را تغییر دهد."</string>
     <string name="call_settings_with_label" msgid="3401177261468593519">"تنظیمات (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="error_updating_title" msgid="7970259216988931777">"خطای تنظیمات تماس"</string>
     <string name="reading_settings" msgid="1920291699287055284">"در حال خواندن تنظیمات..."</string>

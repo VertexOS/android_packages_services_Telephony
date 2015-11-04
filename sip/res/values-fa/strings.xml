@@ -40,7 +40,7 @@
     <string name="registration_status_registering" msgid="2677183977796278749">"در حال ثبت..."</string>
     <string name="registration_status_still_trying" msgid="7648151061205513458">"هنوز در حال تلاش..."</string>
     <string name="registration_status_not_receiving" msgid="7620333886153361090">"تماس‌های دریافتی موجود نیست."</string>
-    <string name="registration_status_no_data" msgid="2541999976218192413">"ثبت حساب به دلیل عدم وجود اتصال اینترنتی متوقف شد."</string>
+    <string name="registration_status_no_data" msgid="2541999976218192413">"ثبت حساب متوقف شد چون اتصال اینترنتی ندارید"</string>
     <string name="registration_status_no_wifi_data" msgid="9154717387473039546">"‏ثبت حساب به دلیل عدم وجود اتصال Wi-Fi متوقف شد."</string>
     <string name="registration_status_not_running" msgid="514205414303796800">"ثبت حساب ناموفق بود."</string>
     <string name="registration_status_done" msgid="3264961069247314253">"در حال دریافت تماس‌ها."</string>

@@ -117,7 +117,7 @@
     <string name="sum_cfnrc_disabled" msgid="7222141261321276464">"Deaktiveret"</string>
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"Dit mobilselskab understøtter ikke deaktivering af viderestilling af opkald, når telefonen ikke er tilgængelig."</string>
     <string name="updating_title" msgid="6146755386174019046">"Indstillinger for opkald"</string>
-    <string name="call_settings_primary_user_only" msgid="5679923943740900965">"Opkaldsindstillinger kan kun ændres af den primære bruger."</string>
+    <string name="call_settings_admin_user_only" msgid="4526094783818216374">"Opkaldsindstillingerne kan kun ændres af administratorbrugeren."</string>
     <string name="call_settings_with_label" msgid="3401177261468593519">"Indstillinger (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="error_updating_title" msgid="7970259216988931777">"Fejl i indstillinger for opkald"</string>
     <string name="reading_settings" msgid="1920291699287055284">"Læser indstillinger ..."</string>

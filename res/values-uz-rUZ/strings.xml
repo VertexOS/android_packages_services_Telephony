@@ -117,7 +117,7 @@
     <string name="sum_cfnrc_disabled" msgid="7222141261321276464">"O‘chiq"</string>
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"Telefoningiz o‘chiq bo‘lganida qo‘ng‘iroqlarni boshqa raqamga yo‘naltirishni o‘chirish xususiyati tarmoq operatoringizda yo‘q."</string>
     <string name="updating_title" msgid="6146755386174019046">"Qo‘ng‘iroq sozlamalari"</string>
-    <string name="call_settings_primary_user_only" msgid="5679923943740900965">"Faqat asosiy foydalanuvchi qo‘ng‘iroq sozlamalarini o‘zgartirishi mumkin."</string>
+    <string name="call_settings_admin_user_only" msgid="4526094783818216374">"Faqat administrator qo‘ng‘iroq sozlamalarini o‘zgartirishi mumkin."</string>
     <string name="call_settings_with_label" msgid="3401177261468593519">"Sozlamalar (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="error_updating_title" msgid="7970259216988931777">"Qo‘ng‘iroq sozlamalarida xato"</string>
     <string name="reading_settings" msgid="1920291699287055284">"Sozlamalar o‘qilmoqda…"</string>
