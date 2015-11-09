@@ -80,12 +80,9 @@ import static com.android.internal.telephony.PhoneConstants.SUBSCRIPTION_KEY;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Objects;
 
 /**
  * Implementation of the ITelephony interface.
@@ -2887,5 +2884,24 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     @Override
     public ModemActivityInfo getModemActivityInfo() {
         return (ModemActivityInfo) sendRequest(CMD_GET_MODEM_ACTIVITY_INFO, null);
+    }
+
+    /**
+     * {@hide}
+     * Returns the service state information on specified subscription.
+     */
+    @Override
+    public ServiceState getServiceStateForSubscriber(int subId, String callingPackage) {
+
+        if (!canReadPhoneState(callingPackage, "getServiceStateForSubscriber")) {
+            return null;
+        }
+
+        final Phone phone = getPhone(subId);
+        if (phone == null) {
+            return null;
+        }
+
+        return phone.getServiceState();
     }
 }
