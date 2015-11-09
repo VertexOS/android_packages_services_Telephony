@@ -44,14 +44,14 @@
     <string name="wild_prompt_str" msgid="5543521676355533577">"Înlocuiţi metacaracterul cu"</string>
     <string name="no_vm_number" msgid="4164780423805688336">"Lipseşte numărul mesageriei vocale"</string>
     <string name="no_vm_number_msg" msgid="1300729501030053828">"Niciun număr de mesagerie vocală nu este stocat pe cardul SIM."</string>
-    <string name="add_vm_number_str" msgid="4676479471644687453">"Adăugaţi numărul"</string>
+    <string name="add_vm_number_str" msgid="4676479471644687453">"Adăugați numărul"</string>
     <string name="puk_unlocked" msgid="2284912838477558454">"Cardul dvs. SIM a fost deblocat. Telefonul dvs. se deblochează..."</string>
     <string name="label_ndp" msgid="780479633159517250">"Codul PIN de deblocare a reţelei SIM"</string>
     <string name="sim_ndp_unlock_text" msgid="683628237760543009">"Deblocaţi"</string>
     <string name="sim_ndp_dismiss_text" msgid="1604823375752456947">"Renunţaţi"</string>
     <string name="requesting_unlock" msgid="6412629401033249351">"Se solicită deblocarea reţelei..."</string>
     <string name="unlock_failed" msgid="6490531697031504225">"Cererea de deblocare a reţelei a eșuat."</string>
-    <string name="unlock_success" msgid="6770085622238180152">"Reţeaua a fost deblocată."</string>
+    <string name="unlock_success" msgid="6770085622238180152">"Rețeaua a fost deblocată."</string>
     <string name="mobile_network_settings_not_available" msgid="3831911315358856062">"Setările pentru rețeaua mobilă nu sunt disponibile pentru acest utilizator"</string>
     <string name="labelGSMMore" msgid="5930842194056092106">"Setările apelului GSM"</string>
     <string name="labelGsmMore_with_label" msgid="2674012918829238901">"Setări pentru apeluri GSM (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
@@ -92,9 +92,9 @@
     <string name="labelCW" msgid="6120513814915920200">"Apel în așteptare"</string>
     <string name="sum_cw_enabled" msgid="8083061901633671397">"Anunță-mă când primesc un apel, inclusiv în timpul unei convorbiri"</string>
     <string name="sum_cw_disabled" msgid="3648693907300104575">"Anunță-mă când primesc un apel, inclusiv în timpul unei convorbiri"</string>
-    <string name="call_forwarding_settings" msgid="3378927671091537173">"Setările pentru redirecţionarea de apeluri"</string>
+    <string name="call_forwarding_settings" msgid="3378927671091537173">"Setările pentru redirecționarea de apeluri"</string>
     <string name="call_forwarding_settings_with_label" msgid="8569489414006897127">"Setări de redirecționare a apelurilor (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
-    <string name="labelCF" msgid="2574386948026924737">"Redirecţionarea apelurilor"</string>
+    <string name="labelCF" msgid="2574386948026924737">"Redirecționarea apelurilor"</string>
     <string name="labelCFU" msgid="8147177368148660600">"Redirecționează întotdeauna"</string>
     <string name="messageCFU" msgid="3560082430662923687">"Folosește mereu acest număr"</string>
     <string name="sum_cfu_enabled_indicator" msgid="4014187342724130197">"Se redirecţionează toate apelurile"</string>
@@ -105,17 +105,17 @@
     <string name="messageCFB" msgid="3711089705936187129">"Număr pentru redirecţionare dacă este ocupat"</string>
     <string name="sum_cfb_enabled" msgid="5984198104833116690">"Se redirecționează la <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfb_disabled" msgid="4913145177320506827">"Dezactivat"</string>
-    <string name="disable_cfb_forbidden" msgid="3506984333877998061">"Operatorul dvs. nu acceptă ca redirecţionarea apelurilor să fie dezactivată atunci când telefonul dvs. este ocupat."</string>
+    <string name="disable_cfb_forbidden" msgid="3506984333877998061">"Operatorul dvs. nu acceptă ca redirecționarea apelurilor să fie dezactivată atunci când telefonul dvs. este ocupat."</string>
     <string name="labelCFNRy" msgid="1736067178393744351">"Când nu se răspunde"</string>
     <string name="messageCFNRy" msgid="672317899884380374">"Număr pentru redirecţionare dacă nu se răspunde"</string>
     <string name="sum_cfnry_enabled" msgid="6955775691317662910">"Se redirecționează la <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfnry_disabled" msgid="3884684060443538097">"Dezactivat"</string>
-    <string name="disable_cfnry_forbidden" msgid="4308233959150658058">"Operatorul dvs. nu acceptă ca redirecţionarea apelurilor să fie dezactivată atunci când telefonul dvs. nu răspunde."</string>
+    <string name="disable_cfnry_forbidden" msgid="4308233959150658058">"Operatorul dvs. nu acceptă ca redirecționarea apelurilor să fie dezactivată atunci când telefonul dvs. nu răspunde."</string>
     <string name="labelCFNRc" msgid="2614827454402079766">"Când nu este accesibil"</string>
     <string name="messageCFNRc" msgid="6380695421020295119">"Număr de redirecţionare dacă telefonul nu este accesibil"</string>
     <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"Se redirecționează la <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfnrc_disabled" msgid="7222141261321276464">"Dezactivat"</string>
-    <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"Operatorul dvs. nu acceptă ca redirecţionarea apelurilor să fie dezactivată atunci când telefonul nu este accesibil."</string>
+    <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"Operatorul dvs. nu acceptă ca redirecționarea apelurilor să fie dezactivată atunci când telefonul nu este accesibil."</string>
     <string name="updating_title" msgid="6146755386174019046">"Setări apel"</string>
     <string name="call_settings_primary_user_only" msgid="5679923943740900965">"Numai utilizatorul principal poate să modifice setările pentru apeluri."</string>
     <string name="call_settings_with_label" msgid="3401177261468593519">"Setări (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
@@ -128,12 +128,12 @@
     <string name="stk_cc_ss_to_dial_error" msgid="2816779198916570502">"Solicitarea SS a fost transformată în solicitare DIAL."</string>
     <string name="stk_cc_ss_to_ussd_error" msgid="7490626178582654236">"Solicitarea SS a fost transformată în solicitare USSD."</string>
     <string name="stk_cc_ss_to_ss_error" msgid="5057846756489053759">"Solicitarea SS a fost transformată în solicitare SS nouă."</string>
-    <string name="fdn_check_failure" msgid="18200614306525434">"Setarea Numere cu apelări restricţionate din aplicația Telefon este activată. Ca rezultat, unele funcţii legate de apelare nu pot fi utilizate."</string>
+    <string name="fdn_check_failure" msgid="18200614306525434">"Setarea Numere cu apelări restricţionate din aplicația Telefon este activată. Ca rezultat, unele funcții legate de apelare nu pot fi utilizate."</string>
     <string name="radio_off_error" msgid="2304459933248513376">"Activați semnalul radio, înainte de a vizualiza aceste setări."</string>
     <string name="close_dialog" msgid="2365884406356986917">"OK"</string>
     <string name="enable" msgid="7248657275000173526">"Activați"</string>
     <string name="disable" msgid="4678348128118573672">"Dezactivați"</string>
-    <string name="change_num" msgid="239476305819844391">"Actualizaţi"</string>
+    <string name="change_num" msgid="239476305819844391">"Actualizați"</string>
   <string-array name="clir_display_values">
     <item msgid="5560134294467334594">"Reţea prestabilită"</item>
     <item msgid="7876195870037833661">"Ascundeţi numărul"</item>
@@ -144,7 +144,7 @@
     <string name="fw_change_failed" msgid="5298103228470214665">"Nu s-a putut schimba numărul de redirecţionare.\nContactaţi operatorul dvs. în cazul în care această problemă persistă."</string>
     <string name="fw_get_in_vm_failed" msgid="8862896836093833973">"Nu s-au putut prelua și salva setările actuale ale numărului de redirecţionare.\nDoriți să comutaţi oricum către un nou furnizor de servicii?"</string>
     <string name="no_change" msgid="3186040086622435212">"Nicio schimbare efectuată."</string>
-    <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"Alegeţi serviciul de mesagerie vocală"</string>
+    <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"Alegeți serviciul de mesagerie vocală"</string>
     <string name="voicemail_default" msgid="2001233554889016880">"Operatorul dvs."</string>
     <string name="mobile_networks" msgid="2843854043339307375">"Setările pentru rețeaua mobilă"</string>
     <string name="label_available" msgid="1181658289009300430">"Reţele disponibile"</string>
@@ -156,7 +156,7 @@
     <string name="not_allowed" msgid="5613353860205691579">"Cardul dvs. SIM nu permite conexiunea la această rețea."</string>
     <string name="connect_later" msgid="2308119155752343975">"Nu se poate efectua conectarea la această rețea chiar acum. Încercați din nou mai târziu."</string>
     <string name="registration_done" msgid="495135664535876612">"Înregistrat în rețea."</string>
-    <string name="sum_carrier_select" msgid="3494252551249882718">"Alegeţi un operator de rețea"</string>
+    <string name="sum_carrier_select" msgid="3494252551249882718">"Alegeți un operator de rețea"</string>
     <string name="sum_search_networks" msgid="2921092249873272715">"Căutaţi toate reţelele disponibile"</string>
     <string name="select_automatically" msgid="5628402124471810174">"Selectaţi în mod automat"</string>
     <string name="sum_select_automatically" msgid="5614890115123292400">"Selectaţi în mod automat reţeaua preferată"</string>
@@ -273,9 +273,9 @@
     <string name="enable_disable_local_weather" msgid="986967454867219114">"Previziuni meteo locale"</string>
     <string name="local_weather_enable" msgid="6199315114382448922">"Previziuni meteo locale activate"</string>
     <string name="local_weather_disable" msgid="2510158089142626480">"Previziuni meteo locale dezactivate"</string>
-    <string name="enable_disable_atr" msgid="8339572391278872343">"Informaţii locale de trafic"</string>
-    <string name="atr_enable" msgid="5541757457789181799">"Informaţii locale de trafic activate"</string>
-    <string name="atr_disable" msgid="7085558154727596455">"Informaţii locale de trafic dezactivate"</string>
+    <string name="enable_disable_atr" msgid="8339572391278872343">"Informații locale de trafic"</string>
+    <string name="atr_enable" msgid="5541757457789181799">"Informații locale de trafic activate"</string>
+    <string name="atr_disable" msgid="7085558154727596455">"Informații locale de trafic dezactivate"</string>
     <string name="enable_disable_lafs" msgid="668189073721277199">"Orarele de zbor ale aeroportului local"</string>
     <string name="lafs_enable" msgid="2791978667205137052">"Orarele de zbor ale aeroportului local sunt activate"</string>
     <string name="lafs_disable" msgid="2391212397725495350">"Orarele de zbor ale aeroportului local sunt dezactivate"</string>
@@ -329,7 +329,7 @@
     <item msgid="6043847456049107742">"1"</item>
   </string-array>
     <string name="cdma_activate_device" msgid="3793805892364814518">"Activați dispozitivul"</string>
-    <string name="cdma_lte_data_service" msgid="4255018217292548962">"Configuraţi serviciul de date"</string>
+    <string name="cdma_lte_data_service" msgid="4255018217292548962">"Configurați serviciul de date"</string>
     <string name="carrier_settings_title" msgid="9028166176523012300">"Setări operator"</string>
     <string name="fdn" msgid="7878832555095183202">"Numere cu apelări restricţionate"</string>
     <string name="fdn_with_label" msgid="187084204115493366">"Numere fixe de apelare (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
@@ -353,14 +353,14 @@
     <string name="auto_retry_mode_title" msgid="4073265511427813322">"Reîncercare automată"</string>
     <string name="auto_retry_mode_summary" msgid="4973886004067532288">"Activați modul Reîncercare automată"</string>
     <string name="tty_mode_not_allowed_video_call" msgid="3795846787901909176">"Schimbarea modului TTY nu este permisă în timpul unui apel video"</string>
-    <string name="menu_add" msgid="1882023737425114762">"Adăugaţi o persoană în agendă"</string>
-    <string name="menu_edit" msgid="7143003705504672374">"Modificaţi informaţiile despre persoana din agendă"</string>
+    <string name="menu_add" msgid="1882023737425114762">"Adăugați o persoană în agendă"</string>
+    <string name="menu_edit" msgid="7143003705504672374">"Modificaţi informațiile despre persoana din agendă"</string>
     <string name="menu_delete" msgid="3977150783449642851">"Ștergeţi persoana din agendă"</string>
     <string name="get_pin2" msgid="8204677063922225311">"Introduceţi codul PIN2"</string>
     <string name="name" msgid="7329028332786872378">"Nume"</string>
     <string name="number" msgid="7905950798349903858">"Număr"</string>
-    <string name="save" msgid="4094274636321939086">"Salvaţi"</string>
-    <string name="add_fdn_contact" msgid="2481915899633353976">"Adăugaţi un număr cu apelări restricţionate"</string>
+    <string name="save" msgid="4094274636321939086">"Salvați"</string>
+    <string name="add_fdn_contact" msgid="2481915899633353976">"Adăugați un număr cu apelări restricţionate"</string>
     <string name="adding_fdn_contact" msgid="7627379633721940991">"Se adaugă numărul cu apelări restricţionate..."</string>
     <string name="fdn_contact_added" msgid="7458335758501736665">"Număr cu apelări restricţionate adăugat."</string>
     <string name="edit_fdn_contact" msgid="7976936035587081480">"Modificaţi numărul cu apelări restricţionate"</string>
@@ -382,7 +382,7 @@
     <string name="enter_pin_text" msgid="8532615714751931951">"Codul PIN pentru cardul SIM:"</string>
     <string name="oldPinLabel" msgid="5287773661246368314">"Codul PIN vechi"</string>
     <string name="newPinLabel" msgid="207488227285336897">"Cod PIN nou"</string>
-    <string name="confirmPinLabel" msgid="257597715098070206">"Confirmaţi noul cod PIN"</string>
+    <string name="confirmPinLabel" msgid="257597715098070206">"Confirmați noul cod PIN"</string>
     <string name="badPin" msgid="8955102849303984935">"Codul PIN vechi pe care l-aţi introdus nu este corect. Încercați din nou."</string>
     <string name="mismatchPin" msgid="5923253370683071889">"Codurile PIN introduse nu se potrivesc. Încercați din nou."</string>
     <string name="invalidPin" msgid="5981171102258684792">"Introduceţi un cod PIN alcătuit din 4 până la 8 cifre."</string>
@@ -397,7 +397,7 @@
     <string name="enter_pin2_text" msgid="8339444124477720345">"PIN2"</string>
     <string name="oldPin2Label" msgid="8559146795026261502">"Codul PIN2 vechi"</string>
     <string name="newPin2Label" msgid="4573956902204349054">"Cod PIN2 nou"</string>
-    <string name="confirmPin2Label" msgid="8100319484454787708">"Confirmaţi noul cod PIN2"</string>
+    <string name="confirmPin2Label" msgid="8100319484454787708">"Confirmați noul cod PIN2"</string>
     <string name="badPuk2" msgid="7910064009531541708">"Codul PUK2 nu este corect. Încercați din nou."</string>
     <string name="badPin2" msgid="6646896629970023109">"Vechiul cod PIN2 nu este corect. Încercați din nou."</string>
     <string name="mismatchPin2" msgid="4177967478551851117">"Codurile PIN2 nu se potrivesc. Încercați din nou."</string>
@@ -426,7 +426,7 @@
     <string name="notification_voicemail_text_format" msgid="4447323569453981685">"Apelați <xliff:g id="VOICEMAIL_NUMBER">%s</xliff:g>"</string>
     <string name="notification_voicemail_no_vm_number" msgid="760963466895609716">"Număr mesagerie vocală necunoscut"</string>
     <string name="notification_network_selection_title" msgid="4224455487793492772">"Fără serviciu"</string>
-    <string name="notification_network_selection_text" msgid="2607085729661923269">"Reţeaua selectată (<xliff:g id="OPERATOR_NAME">%s</xliff:g>) nu este disponibilă"</string>
+    <string name="notification_network_selection_text" msgid="2607085729661923269">"Rețeaua selectată (<xliff:g id="OPERATOR_NAME">%s</xliff:g>) nu este disponibilă"</string>
     <string name="incall_error_power_off" msgid="2947938060513306698">"Pentru a apela, dezactivați modul Avion."</string>
     <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"Pentru a apela, dezactivați modul Avion sau conectați-vă la o rețea wireless."</string>
     <string name="incall_error_ecm_emergency_only" msgid="738708660612388692">"Ieșiți din modul de apelare inversă de urgență pentru a efectua un apel care nu este de urgență."</string>
@@ -454,7 +454,7 @@
     <string name="onscreenEndCallText" msgid="4403855834875398585">"Terminat"</string>
     <string name="onscreenShowDialpadText" msgid="8561805492659639893">"Tastatură numerică"</string>
     <string name="onscreenMuteText" msgid="5011369181754261374">"Dezactivați sunetul"</string>
-    <string name="onscreenAddCallText" msgid="5140385634712287403">"Adăugaţi un apel"</string>
+    <string name="onscreenAddCallText" msgid="5140385634712287403">"Adăugați un apel"</string>
     <string name="onscreenMergeCallsText" msgid="6640195098064538950">"Îmbinaţi apelurile"</string>
     <string name="onscreenSwapCallsText" msgid="1602990689244030047">"Schimbaţi"</string>
     <string name="onscreenManageCallsText" msgid="5473231160123254154">"Gestionați apelurile"</string>
@@ -465,7 +465,7 @@
     <string name="importAllSimEntries" msgid="1503181169636198673">"Importaţi-le pe toate"</string>
     <string name="importingSimContacts" msgid="7374056215462575769">"Se importă persoanele din agenda de pe cardul SIM"</string>
     <string name="importToFDNfromContacts" msgid="2130620207013368580">"Importaţi din Agendă"</string>
-    <string name="hac_mode_title" msgid="8740268574688743289">"Asistenţă auditivă"</string>
+    <string name="hac_mode_title" msgid="8740268574688743289">"Asistență auditivă"</string>
     <string name="hac_mode_summary" msgid="6833851160514929341">"Activați compatibilitatea cu asistenţa auditivă"</string>
   <string-array name="tty_mode_entries">
     <item msgid="512950011423868021">"Mod TTY dezactivat"</item>
@@ -496,7 +496,7 @@
     <string name="ota_progress" msgid="460876637828044519">"Se programează telefonul…"</string>
     <string name="ota_failure" msgid="7713756181204620397">"Telefonul nu a putut fi programat"</string>
     <string name="ota_successful" msgid="1880780692887077407">"Telefonul dvs. este acum activat. Poate să dureze până la 15 minute până la pornirea serviciului."</string>
-    <string name="ota_unsuccessful" msgid="8072141612635635357">"Telefonul dvs. nu s-a activat. \nVă recomandăm să găsiţi o zonă cu acoperire mai bună (lângă fereastră sau afară). \n\nPentru mai multe opţiuni, încercaţi din nou sau apelaţi serviciul pentru clienţi."</string>
+    <string name="ota_unsuccessful" msgid="8072141612635635357">"Telefonul dvs. nu s-a activat. \nVă recomandăm să găsiţi o zonă cu acoperire mai bună (lângă fereastră sau afară). \n\nPentru mai multe opțiuni, încercaţi din nou sau apelaţi serviciul pentru clienţi."</string>
     <string name="ota_spc_failure" msgid="3909983542575030796">"ERORI DE DEPĂȘIRE SPC"</string>
     <string name="ota_call_end" msgid="4537279738134612388">"Înapoi"</string>
     <string name="ota_try_again" msgid="7685477206465902290">"Încercați din nou"</string>

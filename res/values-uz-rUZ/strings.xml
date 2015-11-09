@@ -377,16 +377,16 @@
     <string name="simContacts_empty" msgid="5270660846489561932">"SIM-kartada hech qanday kontakt yo‘q."</string>
     <string name="simContacts_title" msgid="1861472842524839921">"Import u-n kontaktlarni tanlang"</string>
     <string name="simContacts_airplaneMode" msgid="5254946758982621072">"SIM kartadan kontaktlarni import qilish uchun parvoz rejimini o‘chiring"</string>
-    <string name="enable_pin" msgid="5422767284133234860">"SIM-karta uchun PIN-kod so‘rovini yoqish/o‘chirish"</string>
+    <string name="enable_pin" msgid="5422767284133234860">"SIM karta uchun PIN-kod so‘rovini yoqish/o‘chirish"</string>
     <string name="change_pin" msgid="9174186126330785343">"SIM-kartaning PIN-kodini o‘zgartirish"</string>
-    <string name="enter_pin_text" msgid="8532615714751931951">"SIM-karta PIN kodi:"</string>
+    <string name="enter_pin_text" msgid="8532615714751931951">"SIM karta PIN kodi:"</string>
     <string name="oldPinLabel" msgid="5287773661246368314">"Yangi PIN-kod"</string>
     <string name="newPinLabel" msgid="207488227285336897">"Yangi PIN-kod"</string>
     <string name="confirmPinLabel" msgid="257597715098070206">"Yangi PIN kodni tasdiqlash"</string>
     <string name="badPin" msgid="8955102849303984935">"Siz kiritgan eski PIN-kod xato. Yana urinib ko‘ring."</string>
     <string name="mismatchPin" msgid="5923253370683071889">"Siz yozgan PIN kodlar bir xil emas. Yana urinib ko‘ring."</string>
     <string name="invalidPin" msgid="5981171102258684792">"PIN-kod raqamini 4 tadan 8 tagacha bo‘lgan miqdorda kiriting."</string>
-    <string name="disable_sim_pin" msgid="3419351358300716472">"SIM-karta uchun PIN-kod so‘rovini o‘chirish"</string>
+    <string name="disable_sim_pin" msgid="3419351358300716472">"SIM karta uchun PIN-kod so‘rovini o‘chirish"</string>
     <string name="enable_sim_pin" msgid="4845145659651484248">"SIM kartaga PIN-kod o‘rnatish"</string>
     <string name="enable_in_progress" msgid="3417917024688497010">"PIN-kod o‘rnatilmoqda…"</string>
     <string name="enable_pin_ok" msgid="2918545971413270063">"PIN-kod o‘rnatildi"</string>
@@ -406,7 +406,7 @@
     <string name="pin2_changed" msgid="3724522579945610956">"PIN2 kodi yangilandi"</string>
     <string name="label_puk2_code" msgid="4688069961795341948">"PUK2 kodini kiriting"</string>
     <string name="fdn_enable_puk2_requested" msgid="4991074891459554705">"Parol noto‘g‘ri. PIN2 kodi bloklandi. Qaytadan urinish uchun PIN2 kodini o‘zgartiring."</string>
-    <string name="puk2_requested" msgid="5831015200030161434">"Parol noto‘g‘ri. SIM-karta qulflandi. PUK2 kodini kiriting."</string>
+    <string name="puk2_requested" msgid="5831015200030161434">"Parol noto‘g‘ri. SIM karta qulflandi. PUK2 kodini kiriting."</string>
     <string name="puk2_blocked" msgid="3150263853077280049">"PUK2 kod butunlay to‘sib qo‘yildi."</string>
     <string name="pin2_attempts" msgid="720736232885011507">\n"Sizda <xliff:g id="NUMBER">%d</xliff:g> ta urinish qoldi."</string>
     <string name="pin2_unblocked" msgid="7791600368153469078">"PIN2 kodi blokdan chiqarildi"</string>
@@ -463,7 +463,7 @@
     <string name="onscreenVideoCallText" msgid="4800924186056115442">"Video qo‘ng‘iroq"</string>
     <string name="importSimEntry" msgid="6614358325359736031">"Import qilish"</string>
     <string name="importAllSimEntries" msgid="1503181169636198673">"Barchasini import qilish"</string>
-    <string name="importingSimContacts" msgid="7374056215462575769">"SIM-karta kontaktlarini import qilish"</string>
+    <string name="importingSimContacts" msgid="7374056215462575769">"SIM karta kontaktlarini import qilish"</string>
     <string name="importToFDNfromContacts" msgid="2130620207013368580">"Kontaktlardan import qilish"</string>
     <string name="hac_mode_title" msgid="8740268574688743289">"Eshitish qurilmalari"</string>
     <string name="hac_mode_summary" msgid="6833851160514929341">"Eshitish qurilmalari bilan ishlash xusisiyatini yoqish"</string>
@@ -544,11 +544,11 @@
     <string name="enable_video_calling_dialog_close" msgid="7411471282167927991">"Yopish"</string>
     <string name="sim_label_emergency_calls" msgid="4847699229529306397">"Favqulodda qo‘ng‘iroqlar"</string>
     <string name="sim_description_emergency_calls" msgid="7535215397212301562">"Faqat favqulodda qo‘ng‘iroqlar"</string>
-    <string name="sim_description_default" msgid="4778679519938775515">"SIM-karta, teshik: <xliff:g id="SLOT_ID">%s</xliff:g>"</string>
+    <string name="sim_description_default" msgid="4778679519938775515">"SIM karta, teshik: <xliff:g id="SLOT_ID">%s</xliff:g>"</string>
     <string name="accessibility_settings_activity_title" msgid="8562004288733103868">"Maxsus imkoniyatlar"</string>
     <string name="status_hint_label_incoming_wifi_call" msgid="8772915926382037499">"Kiruvchi Wi-Fi qo‘ng‘irog‘i"</string>
     <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"Wi-Fi qo‘ng‘irog‘i"</string>
     <string name="emergency_action_launch_hint" msgid="5841511849007540970">"Ochish uchun yana bosing"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"Xabarni kodsizlashda xatolik yuz berdi."</string>
-    <string name="callFailed_cdma_activation" msgid="2307989779233262164">"Telefoningizda rouming xizmati sozlangan va SIM-karta faollashtirilgan."</string>
+    <string name="callFailed_cdma_activation" msgid="2307989779233262164">"Telefoningizda rouming xizmati sozlangan va SIM karta faollashtirilgan."</string>
 </resources>

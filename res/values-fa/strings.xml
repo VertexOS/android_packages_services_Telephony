@@ -528,7 +528,7 @@
     <string name="other_settings" msgid="3672912580359716394">"سایر تنظیمات تماس"</string>
     <string name="calling_via_template" msgid="4839419581866928142">"تماس از طریق <xliff:g id="PROVIDER_NAME">%s</xliff:g>"</string>
     <string name="contactPhoto" msgid="4713193418046639466">"عکس مخاطب"</string>
-    <string name="goPrivate" msgid="865837794424530980">"برو به خصوصی"</string>
+    <string name="goPrivate" msgid="865837794424530980">"رفتن به خصوصی"</string>
     <string name="selectContact" msgid="781975788478987237">"انتخاب حساب"</string>
     <string name="not_voice_capable" msgid="2739898841461577811">"تماس صوتی پشتیبانی نمی‌شود"</string>
     <string name="description_dial_button" msgid="7459705245418435351">"شماره گیری"</string>
