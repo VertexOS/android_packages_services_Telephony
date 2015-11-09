@@ -28,8 +28,8 @@ import android.telecom.PhoneAccountHandle;
 import android.telecom.TelecomManager;
 
 import com.android.internal.telephony.Phone;
+import com.android.internal.telephony.PhoneBase;
 import com.android.internal.telephony.PhoneConstants;
-import com.android.internal.telephony.PhoneProxy;
 import com.android.internal.telephony.TelephonyIntents;
 import com.android.internal.util.Preconditions;
 import com.android.phone.PhoneUtils;
@@ -48,9 +48,8 @@ final class PstnPhoneCapabilitiesNotifier {
         public void onVideoCapabilitiesChanged(boolean isVideoCapable);
     }
 
-    private final PhoneProxy mPhoneProxy;
+    private final PhoneBase mPhone;
     private final Listener mListener;
-    private Phone mPhoneBase;
 
     private final Handler mHandler = new Handler() {
         @Override
@@ -65,57 +64,33 @@ final class PstnPhoneCapabilitiesNotifier {
         }
     };
 
-    private final BroadcastReceiver mRatReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            String action = intent.getAction();
-            if (TelephonyIntents.ACTION_RADIO_TECHNOLOGY_CHANGED.equals(action)) {
-                String newPhone = intent.getStringExtra(PhoneConstants.PHONE_NAME_KEY);
-                Log.d(this, "Radio technology switched. Now %s is active.", newPhone);
-
-                registerForNotifications();
-            }
-        }
-    };
-
     /*package*/
-    PstnPhoneCapabilitiesNotifier(PhoneProxy phoneProxy, Listener listener) {
-        Preconditions.checkNotNull(phoneProxy);
+    PstnPhoneCapabilitiesNotifier(PhoneBase phone, Listener listener) {
+        Preconditions.checkNotNull(phone);
 
-        mPhoneProxy = phoneProxy;
+        mPhone = phone;
         mListener = listener;
 
         registerForNotifications();
-
-        IntentFilter intentFilter =
-                new IntentFilter(TelephonyIntents.ACTION_RADIO_TECHNOLOGY_CHANGED);
-        mPhoneProxy.getContext().registerReceiver(mRatReceiver, intentFilter);
     }
 
     /*package*/
     void teardown() {
         unregisterForNotifications();
-        mPhoneProxy.getContext().unregisterReceiver(mRatReceiver);
     }
 
     private void registerForNotifications() {
-        Phone newPhone = mPhoneProxy.getActivePhone();
-        if (newPhone != mPhoneBase) {
-            unregisterForNotifications();
-
-            if (newPhone != null) {
-                Log.d(this, "Registering: " + newPhone);
-                mPhoneBase = newPhone;
-                mPhoneBase.registerForVideoCapabilityChanged(
-                        mHandler, EVENT_VIDEO_CAPABILITIES_CHANGED, null);
-            }
+        if (mPhone != null) {
+            Log.d(this, "Registering: " + mPhone);
+            mPhone.registerForVideoCapabilityChanged(mHandler, EVENT_VIDEO_CAPABILITIES_CHANGED,
+                    null);
         }
     }
 
     private void unregisterForNotifications() {
-        if (mPhoneBase != null) {
-            Log.d(this, "Unregistering: " + mPhoneBase);
-            mPhoneBase.unregisterForVideoCapabilityChanged(mHandler);
+        if (mPhone != null) {
+            Log.d(this, "Unregistering: " + mPhone);
+            mPhone.unregisterForVideoCapabilityChanged(mHandler);
         }
     }
 
@@ -124,9 +99,9 @@ final class PstnPhoneCapabilitiesNotifier {
             boolean isVideoCapable = (Boolean) ar.result;
             Log.d(this, "handleVideoCapabilitesChanged. Video capability - " + isVideoCapable);
             PhoneAccountHandle accountHandle =
-                    PhoneUtils.makePstnPhoneAccountHandle(mPhoneProxy);
+                    PhoneUtils.makePstnPhoneAccountHandle(mPhone);
 
-            TelecomManager telecomMgr = TelecomManager.from(mPhoneProxy.getContext());
+            TelecomManager telecomMgr = TelecomManager.from(mPhone.getContext());
             PhoneAccount oldPhoneAccount = telecomMgr.getPhoneAccount(accountHandle);
             PhoneAccount.Builder builder = new PhoneAccount.Builder(oldPhoneAccount);
 

@@ -34,8 +34,6 @@ import android.telecom.PhoneAccountHandle;
 import com.android.phone.PhoneUtils;
 
 import com.android.internal.telephony.Call;
-import com.android.internal.telephony.gsm.GsmConnection;
-import com.android.internal.telephony.imsphone.ImsPhoneConnection;
 
 /**
  * Maintains a list of all the known TelephonyConnections connections and controls GSM and

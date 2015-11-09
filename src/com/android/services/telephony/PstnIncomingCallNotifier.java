@@ -27,14 +27,13 @@ import android.os.Handler;
 import android.os.Message;
 import android.telecom.PhoneAccount;
 import android.telecom.TelecomManager;
-import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 
 import com.android.internal.telephony.Call;
 import com.android.internal.telephony.Connection;
 import com.android.internal.telephony.Phone;
+import com.android.internal.telephony.PhoneBase;
 import com.android.internal.telephony.PhoneConstants;
-import com.android.internal.telephony.PhoneProxy;
 import com.android.internal.telephony.TelephonyIntents;
 import com.android.internal.telephony.cdma.CdmaCallWaitingNotification;
 import com.android.phone.PhoneUtils;
@@ -53,8 +52,8 @@ final class PstnIncomingCallNotifier {
     private static final int EVENT_CDMA_CALL_WAITING = 101;
     private static final int EVENT_UNKNOWN_CONNECTION = 102;
 
-    /** The phone proxy object to listen to. */
-    private final PhoneProxy mPhoneProxy;
+    /** The phone object to listen to. */
+    private final PhoneBase mPhone;
 
     /**
      * The base phone implementation behind phone proxy. The underlying phone implementation can
@@ -105,23 +104,23 @@ final class PstnIncomingCallNotifier {
     /**
      * Persists the specified parameters and starts listening to phone events.
      *
-     * @param phoneProxy The phone object for listening to incoming calls.
+     * @param phone The phone object for listening to incoming calls.
      */
-    PstnIncomingCallNotifier(PhoneProxy phoneProxy) {
-        Preconditions.checkNotNull(phoneProxy);
+    PstnIncomingCallNotifier(PhoneBase phone) {
+        Preconditions.checkNotNull(phone);
 
-        mPhoneProxy = phoneProxy;
+        mPhone = phone;
 
         registerForNotifications();
 
         IntentFilter intentFilter =
                 new IntentFilter(TelephonyIntents.ACTION_RADIO_TECHNOLOGY_CHANGED);
-        mPhoneProxy.getContext().registerReceiver(mRATReceiver, intentFilter);
+        mPhone.getContext().registerReceiver(mRATReceiver, intentFilter);
     }
 
     void teardown() {
         unregisterForNotifications();
-        mPhoneProxy.getContext().unregisterReceiver(mRATReceiver);
+        mPhone.getContext().unregisterReceiver(mRATReceiver);
     }
 
     /**
@@ -135,7 +134,7 @@ final class PstnIncomingCallNotifier {
      * change in opt/telephony code.
      */
     private void registerForNotifications() {
-        Phone newPhone = mPhoneProxy.getActivePhone();
+        Phone newPhone = mPhone;
         if (newPhone != mPhoneBase) {
             unregisterForNotifications();
 
@@ -230,8 +229,8 @@ final class PstnIncomingCallNotifier {
                 Uri uri = Uri.fromParts(PhoneAccount.SCHEME_TEL, connection.getAddress(), null);
                 extras.putParcelable(TelecomManager.EXTRA_UNKNOWN_CALL_HANDLE, uri);
             }
-            TelecomManager.from(mPhoneProxy.getContext()).addNewUnknownCall(
-                    PhoneUtils.makePstnPhoneAccountHandle(mPhoneProxy), extras);
+            TelecomManager.from(mPhone.getContext()).addNewUnknownCall(
+                    PhoneUtils.makePstnPhoneAccountHandle(mPhone), extras);
         } else {
             Log.i(this, "swapped an old connection, new one is: %s", connection);
         }
@@ -248,8 +247,8 @@ final class PstnIncomingCallNotifier {
             Uri uri = Uri.fromParts(PhoneAccount.SCHEME_TEL, connection.getAddress(), null);
             extras.putParcelable(TelecomManager.EXTRA_INCOMING_CALL_ADDRESS, uri);
         }
-        TelecomManager.from(mPhoneProxy.getContext()).addNewIncomingCall(
-                PhoneUtils.makePstnPhoneAccountHandle(mPhoneProxy), extras);
+        TelecomManager.from(mPhone.getContext()).addNewIncomingCall(
+                PhoneUtils.makePstnPhoneAccountHandle(mPhone), extras);
     }
 
     /**
