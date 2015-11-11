@@ -623,7 +623,11 @@ abstract class TelephonyConnection extends Connection {
         setWifi(mOriginalConnection.isWifi());
         setVideoProvider(mOriginalConnection.getVideoProvider());
         setAudioQuality(mOriginalConnection.getAudioQuality());
-        updateExtras(mOriginalConnection.getConnectionExtras());
+
+        // Post update of extras to the handler; extras are updated via the handler to ensure thread
+        // safety.
+        mHandler.obtainMessage(MSG_CONNECTION_EXTRAS_CHANGED,
+                mOriginalConnection.getConnectionExtras()).sendToTarget();
 
         if (isImsConnection()) {
             mWasImsConnection = true;
