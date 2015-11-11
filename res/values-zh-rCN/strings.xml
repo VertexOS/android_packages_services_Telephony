@@ -59,17 +59,17 @@
     <string name="labelCdmaMore_with_label" msgid="6333588719319970399">"CDMA 通话设置（<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>）"</string>
     <string name="apn_settings" msgid="9043423184895642077">"接入点名称 (APN)"</string>
     <string name="settings_label" msgid="3876743539816984008">"网络设置"</string>
-    <string name="phone_accounts" msgid="6376603393888116364">"通话帐户"</string>
-    <string name="phone_accounts_make_calls_with" msgid="1969188078933152231">"选择通话帐户"</string>
-    <string name="phone_accounts_make_sip_calls_with" msgid="4677789312053828493">"选择 SIP 通话帐户"</string>
+    <string name="phone_accounts" msgid="6376603393888116364">"通话帐号"</string>
+    <string name="phone_accounts_make_calls_with" msgid="1969188078933152231">"选择通话帐号"</string>
+    <string name="phone_accounts_make_sip_calls_with" msgid="4677789312053828493">"选择 SIP 通话帐号"</string>
     <string name="phone_accounts_ask_every_time" msgid="4346499067149985702">"先询问"</string>
     <string name="phone_accounts_settings_header" msgid="4141710640883261094">"设置"</string>
-    <string name="phone_accounts_choose_accounts" msgid="5232948804226424002">"选择帐户"</string>
-    <string name="phone_accounts_selection_header" msgid="1365215726106915865">"电话帐户"</string>
-    <string name="phone_accounts_add_sip_account" msgid="2023821743341923271">"添加 SIP 帐户"</string>
-    <string name="phone_accounts_configure_account_settings" msgid="1361715069911607109">"配置帐户设置"</string>
-    <string name="phone_accounts_all_calling_accounts" msgid="207619531589278471">"所有通话帐户"</string>
-    <string name="phone_accounts_all_calling_accounts_summary" msgid="8594186415822657011">"选择可用于拨打电话的帐户"</string>
+    <string name="phone_accounts_choose_accounts" msgid="5232948804226424002">"选择帐号"</string>
+    <string name="phone_accounts_selection_header" msgid="1365215726106915865">"电话帐号"</string>
+    <string name="phone_accounts_add_sip_account" msgid="2023821743341923271">"添加 SIP 帐号"</string>
+    <string name="phone_accounts_configure_account_settings" msgid="1361715069911607109">"配置帐号设置"</string>
+    <string name="phone_accounts_all_calling_accounts" msgid="207619531589278471">"所有通话帐号"</string>
+    <string name="phone_accounts_all_calling_accounts_summary" msgid="8594186415822657011">"选择可用于拨打电话的帐号"</string>
     <string name="wifi_calling" msgid="739018212480165598">"WLAN 通话"</string>
     <string name="connection_service_default_label" msgid="1498481943805913754">"内置网络连接服务"</string>
     <string name="voicemail" msgid="8693759337917898954">"语音信箱"</string>
