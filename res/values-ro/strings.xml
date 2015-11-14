@@ -462,7 +462,7 @@
     <string name="onscreenAudioText" msgid="1710087112800041743">"Audio"</string>
     <string name="onscreenVideoCallText" msgid="4800924186056115442">"Apel video"</string>
     <string name="importSimEntry" msgid="6614358325359736031">"Importaţi"</string>
-    <string name="importAllSimEntries" msgid="1503181169636198673">"Importaţi-le pe toate"</string>
+    <string name="importAllSimEntries" msgid="1503181169636198673">"Importați-le pe toate"</string>
     <string name="importingSimContacts" msgid="7374056215462575769">"Se importă persoanele din agenda de pe cardul SIM"</string>
     <string name="importToFDNfromContacts" msgid="2130620207013368580">"Importaţi din Agendă"</string>
     <string name="singleContactImportedMsg" msgid="6868483416182599206">"Persoana de contact a fost importată"</string>
