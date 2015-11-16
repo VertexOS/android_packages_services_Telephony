@@ -60,9 +60,11 @@ final class GsmConnection extends TelephonyConnection {
     protected int buildConnectionCapabilities() {
         int capabilities = super.buildConnectionCapabilities();
         capabilities |= CAPABILITY_MUTE;
-        capabilities |= CAPABILITY_SUPPORT_HOLD;
-        if (getState() == STATE_ACTIVE || getState() == STATE_HOLDING) {
-            capabilities |= CAPABILITY_HOLD;
+        if (!shouldTreatAsEmergencyCall()) {
+            capabilities |= CAPABILITY_SUPPORT_HOLD;
+            if (getState() == STATE_ACTIVE || getState() == STATE_HOLDING) {
+                capabilities |= CAPABILITY_HOLD;
+            }
         }
         return capabilities;
     }

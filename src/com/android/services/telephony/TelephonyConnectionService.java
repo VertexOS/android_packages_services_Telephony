@@ -279,7 +279,7 @@ public class TelephonyConnectionService extends ConnectionService {
 
         final TelephonyConnection connection =
                 createConnectionFor(phone, null, true /* isOutgoing */, request.getAccountHandle(),
-                        request.getTelecomCallId());
+                        request.getTelecomCallId(), request.getAddress());
         if (connection == null) {
             return Connection.createFailedConnection(
                     DisconnectCauseUtil.toTelecomDisconnectCause(
@@ -354,7 +354,8 @@ public class TelephonyConnectionService extends ConnectionService {
 
         Connection connection =
                 createConnectionFor(phone, originalConnection, false /* isOutgoing */,
-                        request.getAccountHandle(), request.getTelecomCallId());
+                        request.getAccountHandle(), request.getTelecomCallId(),
+                        request.getAddress());
         if (connection == null) {
             return Connection.createCanceledConnection();
         } else {
@@ -420,7 +421,8 @@ public class TelephonyConnectionService extends ConnectionService {
         TelephonyConnection connection =
                 createConnectionFor(phone, unknownConnection,
                         !unknownConnection.isIncoming() /* isOutgoing */,
-                        request.getAccountHandle(), request.getTelecomCallId());
+                        request.getAccountHandle(), request.getTelecomCallId(),
+                        request.getAddress());
 
         if (connection == null) {
             return Connection.createCanceledConnection();
@@ -483,7 +485,8 @@ public class TelephonyConnectionService extends ConnectionService {
             com.android.internal.telephony.Connection originalConnection,
             boolean isOutgoing,
             PhoneAccountHandle phoneAccountHandle,
-            String telecomCallId) {
+            String telecomCallId,
+            Uri address) {
         TelephonyConnection returnConnection = null;
         int phoneType = phone.getPhoneType();
         if (phoneType == TelephonyManager.PHONE_TYPE_GSM) {
@@ -499,8 +502,10 @@ public class TelephonyConnectionService extends ConnectionService {
             returnConnection.setVideoPauseSupported(
                     TelecomAccountRegistry.getInstance(this).isVideoPauseSupported(
                             phoneAccountHandle));
-            returnConnection.setConferenceSupported(
-                    TelecomAccountRegistry.getInstance(this).isMergeCallSupported(
+            boolean isEmergencyCall = (address != null && PhoneNumberUtils.isEmergencyNumber(
+                    address.getSchemeSpecificPart()));
+            returnConnection.setConferenceSupported(!isEmergencyCall
+                    && TelecomAccountRegistry.getInstance(this).isMergeCallSupported(
                             phoneAccountHandle));
         }
         return returnConnection;

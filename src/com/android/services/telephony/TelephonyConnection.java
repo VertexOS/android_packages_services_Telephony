@@ -28,6 +28,7 @@ import android.telecom.ConferenceParticipant;
 import android.telecom.Connection;
 import android.telecom.PhoneAccount;
 import android.telecom.StatusHints;
+import android.telephony.PhoneNumberUtils;
 
 import com.android.ims.ImsCallProfile;
 import com.android.internal.telephony.Call;
@@ -326,7 +327,7 @@ abstract class TelephonyConnection extends Connection {
         }
     };
 
-    private com.android.internal.telephony.Connection mOriginalConnection;
+    protected com.android.internal.telephony.Connection mOriginalConnection;
     private Call.State mConnectionState = Call.State.IDLE;
     private Bundle mOriginalConnectionExtras = new Bundle();
     private boolean mIsStateOverridden = false;
@@ -372,6 +373,13 @@ abstract class TelephonyConnection extends Connection {
      * indicate whether a call has the {@link Connection#CAPABILITY_HIGH_DEF_AUDIO} capability.
      */
     private boolean mHasHighDefAudio;
+
+    /**
+     * Indicates that the connection should be treated as an emergency call because the
+     * number dialed matches an internal list of emergency numbers. Does not guarantee whether
+     * the network will treat the call as an emergency call.
+     */
+    private boolean mTreatAsEmergencyCall;
 
     /**
      * For video calls, indicates whether the outgoing video for the call can be paused using
@@ -594,9 +602,11 @@ abstract class TelephonyConnection extends Connection {
             if (mOriginalConnection.isIncoming()) {
                 callCapabilities |= CAPABILITY_SPEED_UP_MT_AUDIO;
             }
-            callCapabilities |= CAPABILITY_SUPPORT_HOLD;
-            if (getState() == STATE_ACTIVE || getState() == STATE_HOLDING) {
-                callCapabilities |= CAPABILITY_HOLD;
+            if (!shouldTreatAsEmergencyCall()) {
+                callCapabilities |= CAPABILITY_SUPPORT_HOLD;
+                if (getState() == STATE_ACTIVE || getState() == STATE_HOLDING) {
+                    callCapabilities |= CAPABILITY_HOLD;
+                }
             }
         }
 
@@ -647,6 +657,10 @@ abstract class TelephonyConnection extends Connection {
                 Log.v(this, "updateAddress, caller display name changed");
                 setCallerDisplayName(name, namePresentation);
             }
+
+            if (PhoneNumberUtils.isEmergencyNumber(mOriginalConnection.getAddress())) {
+                mTreatAsEmergencyCall = true;
+            }
         }
     }
 
@@ -679,6 +693,10 @@ abstract class TelephonyConnection extends Connection {
         setAudioQuality(mOriginalConnection.getAudioQuality());
         updateExtras(mOriginalConnection.getConnectionExtras());
 
+        if (PhoneNumberUtils.isEmergencyNumber(mOriginalConnection.getAddress())) {
+            mTreatAsEmergencyCall = true;
+        }
+
         if (isImsConnection()) {
             mWasImsConnection = true;
         }
@@ -693,6 +711,15 @@ abstract class TelephonyConnection extends Connection {
         }
 
         fireOnOriginalConnectionConfigured();
+    }
+
+    /**
+     * Whether the connection should be treated as an emergency.
+     * @return {@code true} if the connection should be treated as an emergency call based
+     * on the number dialed, {@code false} otherwise.
+     */
+    protected boolean shouldTreatAsEmergencyCall() {
+        return mTreatAsEmergencyCall;
     }
 
     /**
