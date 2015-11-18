@@ -135,18 +135,21 @@
     <uses-permission android:name="android.permission.STOP_APP_SWITCHES" />
 
     <application android:name="PhoneApp"
-                 android:persistent="true"
-                 android:label="@string/phoneAppLabel"
-                 android:icon="@mipmap/ic_launcher_phone"
-                 android:allowBackup="false"
-                 android:supportsRtl="true"
-                 android:usesCleartextTraffic="true">
-            <provider android:name="IccProvider"
-                      android:authorities="icc"
-                      android:multiprocess="true"
-                      android:exported="true"
-                      android:readPermission="android.permission.READ_CONTACTS"
-                      android:writePermission="android.permission.WRITE_CONTACTS" />
+            android:persistent="true"
+            android:label="@string/phoneAppLabel"
+            android:icon="@mipmap/ic_launcher_phone"
+            android:allowBackup="false"
+            android:supportsRtl="true"
+            android:usesCleartextTraffic="true"
+            android:forceDeviceEncrypted="true"
+            android:encryptionAware="true">
+
+        <provider android:name="IccProvider"
+                android:authorities="icc"
+                android:multiprocess="true"
+                android:exported="true"
+                android:readPermission="android.permission.READ_CONTACTS"
+                android:writePermission="android.permission.WRITE_CONTACTS" />
 
         <!-- Dialer UI that only allows emergency calls -->
         <activity android:name="EmergencyDialer"
