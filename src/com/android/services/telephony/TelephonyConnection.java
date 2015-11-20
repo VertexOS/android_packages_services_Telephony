@@ -28,6 +28,7 @@ import android.telecom.ConferenceParticipant;
 import android.telecom.Connection;
 import android.telecom.PhoneAccount;
 import android.telecom.StatusHints;
+import android.telecom.TelecomManager;
 import android.telephony.PhoneNumberUtils;
 
 import com.android.ims.ImsCallProfile;
@@ -691,6 +692,7 @@ abstract class TelephonyConnection extends Connection {
         setWifi(mOriginalConnection.isWifi());
         setVideoProvider(mOriginalConnection.getVideoProvider());
         setAudioQuality(mOriginalConnection.getAudioQuality());
+        setTechnologyTypeExtra();
 
         // Post update of extras to the handler; extras are updated via the handler to ensure thread
         // safety.
@@ -715,6 +717,22 @@ abstract class TelephonyConnection extends Connection {
         }
 
         fireOnOriginalConnectionConfigured();
+    }
+
+    /**
+     * Sets the EXTRA_CALL_TECHNOLOGY_TYPE extra on the connection to report back to Telecom.
+     */
+    private void setTechnologyTypeExtra() {
+        if (getPhone() != null) {
+            if (mOriginalConnection.getConnectionExtras() == null) {
+                Bundle b = new Bundle();
+                b.putInt(TelecomManager.EXTRA_CALL_TECHNOLOGY_TYPE, getPhone().getPhoneType());
+                mOriginalConnection.setConnectionExtras(b);
+            } else {
+                mOriginalConnection.getConnectionExtras().putInt(
+                        TelecomManager.EXTRA_CALL_TECHNOLOGY_TYPE, getPhone().getPhoneType());
+            }
+        }
     }
 
     /**
