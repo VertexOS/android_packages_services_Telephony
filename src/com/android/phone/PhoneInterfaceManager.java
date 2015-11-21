@@ -2457,14 +2457,20 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     public String getLine1NumberForDisplay(int subId, String callingPackage) {
         // This is open to apps with WRITE_SMS.
         if (!canReadPhoneNumber(callingPackage, "getLine1NumberForDisplay")) {
+            if (DBG_MERGE) log("getLine1NumberForDisplay returning null due to permission");
             return null;
         }
 
         String iccId = getIccId(subId);
         if (iccId != null) {
             String numberPrefKey = PREF_CARRIERS_NUMBER_PREFIX + iccId;
+            if (DBG_MERGE) {
+                log("getLine1NumberForDisplay returning " +
+                        mTelephonySharedPreferences.getString(numberPrefKey, null));
+            }
             return mTelephonySharedPreferences.getString(numberPrefKey, null);
         }
+        if (DBG_MERGE) log("getLine1NumberForDisplay returning null as iccId is null");
         return null;
     }
 

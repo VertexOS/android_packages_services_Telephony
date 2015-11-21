@@ -41,8 +41,8 @@ import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 
 import com.android.internal.telephony.Phone;
+import com.android.internal.telephony.PhoneBase;
 import com.android.internal.telephony.PhoneFactory;
-import com.android.internal.telephony.PhoneProxy;
 import com.android.phone.PhoneGlobals;
 import com.android.phone.PhoneUtils;
 import com.android.phone.R;
@@ -76,8 +76,8 @@ final class TelecomAccountRegistry {
             mAccount = registerPstnPhoneAccount(isEmergency, isDummy);
             Log.i(this, "Registered phoneAccount: %s with handle: %s",
                     mAccount, mAccount.getAccountHandle());
-            mIncomingCallNotifier = new PstnIncomingCallNotifier((PhoneProxy) mPhone);
-            mPhoneCapabilitiesNotifier = new PstnPhoneCapabilitiesNotifier((PhoneProxy) mPhone,
+            mIncomingCallNotifier = new PstnIncomingCallNotifier((PhoneBase) mPhone);
+            mPhoneCapabilitiesNotifier = new PstnPhoneCapabilitiesNotifier((PhoneBase) mPhone,
                     this);
         }
 

@@ -41,9 +41,7 @@ import com.android.internal.telephony.IccCardConstants;
 import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneConstants;
 import com.android.internal.telephony.PhoneFactory;
-import com.android.internal.telephony.PhoneProxy;
 import com.android.internal.telephony.SubscriptionController;
-import com.android.internal.telephony.cdma.CDMAPhone;
 import com.android.phone.MMIDialogActivity;
 import com.android.phone.PhoneUtils;
 import com.android.phone.R;
@@ -585,12 +583,8 @@ public class TelephonyConnectionService extends ConnectionService {
         // For CDMA phones, check if we are in Emergency Callback Mode (ECM).  Mute is disallowed
         // in ECM mode.
         if (phone.getPhoneType() == TelephonyManager.PHONE_TYPE_CDMA) {
-            PhoneProxy phoneProxy = (PhoneProxy)phone;
-            CDMAPhone cdmaPhone = (CDMAPhone)phoneProxy.getActivePhone();
-            if (cdmaPhone != null) {
-                if (cdmaPhone.isInEcm()) {
-                    return false;
-                }
+            if (phone.isInEcm()) {
+                return false;
             }
         }
 
