@@ -16,10 +16,6 @@
 
 package com.android.services.telephony;
 
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.AsyncResult;
 import android.os.Handler;
 import android.os.Message;
@@ -28,9 +24,6 @@ import android.telecom.PhoneAccountHandle;
 import android.telecom.TelecomManager;
 
 import com.android.internal.telephony.Phone;
-import com.android.internal.telephony.PhoneBase;
-import com.android.internal.telephony.PhoneConstants;
-import com.android.internal.telephony.TelephonyIntents;
 import com.android.internal.util.Preconditions;
 import com.android.phone.PhoneUtils;
 
@@ -48,7 +41,7 @@ final class PstnPhoneCapabilitiesNotifier {
         public void onVideoCapabilitiesChanged(boolean isVideoCapable);
     }
 
-    private final PhoneBase mPhone;
+    private final Phone mPhone;
     private final Listener mListener;
 
     private final Handler mHandler = new Handler() {
@@ -65,7 +58,7 @@ final class PstnPhoneCapabilitiesNotifier {
     };
 
     /*package*/
-    PstnPhoneCapabilitiesNotifier(PhoneBase phone, Listener listener) {
+    PstnPhoneCapabilitiesNotifier(Phone phone, Listener listener) {
         Preconditions.checkNotNull(phone);
 
         mPhone = phone;

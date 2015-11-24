@@ -1013,7 +1013,7 @@ abstract class TelephonyConnection extends Connection {
      * Note: We post this to the mHandler to ensure that if a conference must be created as a
      * result of the multiparty state change, the conference creation happens on the correct
      * thread.  This ensures that the thread check in
-     * {@link com.android.internal.telephony.PhoneBase#checkCorrectThread(android.os.Handler)}
+     * {@link com.android.internal.telephony.Phone#checkCorrectThread(android.os.Handler)}
      * does not fire.
      *
      * @param isMultiParty {@code true} if this connection is multiparty, {@code false} otherwise.

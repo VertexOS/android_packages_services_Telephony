@@ -33,7 +33,6 @@ import android.os.UserHandle;
 import android.os.UserManager;
 import android.preference.PreferenceManager;
 import android.provider.ContactsContract.PhoneLookup;
-import android.provider.Settings;
 import android.telecom.PhoneAccount;
 import android.telecom.PhoneAccountHandle;
 import android.telecom.TelecomManager;
@@ -49,16 +48,13 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.android.internal.telephony.Phone;
-import com.android.internal.telephony.PhoneBase;
 import com.android.internal.telephony.TelephonyCapabilities;
 import com.android.phone.settings.VoicemailSettingsActivity;
 import com.android.phone.vvm.omtp.sync.VoicemailStatusQueryHelper;
 import com.android.phone.settings.VoicemailNotificationSettingsUtil;
-import com.android.phone.settings.VoicemailProviderSettingsUtil;
 
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 /**
@@ -681,10 +677,10 @@ public class NotificationMgr {
                 SharedPreferences sp =
                         PreferenceManager.getDefaultSharedPreferences(mContext);
                 String networkSelection =
-                        sp.getString(PhoneBase.NETWORK_SELECTION_NAME_KEY + subId, "");
+                        sp.getString(Phone.NETWORK_SELECTION_NAME_KEY + subId, "");
                 if (TextUtils.isEmpty(networkSelection)) {
                     networkSelection =
-                            sp.getString(PhoneBase.NETWORK_SELECTION_KEY + subId, "");
+                            sp.getString(Phone.NETWORK_SELECTION_KEY + subId, "");
                 }
 
                 if (DBG) log("updateNetworkSelection()..." + "state = " +

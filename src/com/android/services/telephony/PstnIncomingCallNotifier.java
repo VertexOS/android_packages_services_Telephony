@@ -32,7 +32,6 @@ import android.text.TextUtils;
 import com.android.internal.telephony.Call;
 import com.android.internal.telephony.Connection;
 import com.android.internal.telephony.Phone;
-import com.android.internal.telephony.PhoneBase;
 import com.android.internal.telephony.PhoneConstants;
 import com.android.internal.telephony.TelephonyIntents;
 import com.android.internal.telephony.cdma.CdmaCallWaitingNotification;
@@ -53,7 +52,7 @@ final class PstnIncomingCallNotifier {
     private static final int EVENT_UNKNOWN_CONNECTION = 102;
 
     /** The phone object to listen to. */
-    private final PhoneBase mPhone;
+    private final Phone mPhone;
 
     /**
      * The base phone implementation behind phone proxy. The underlying phone implementation can
@@ -106,7 +105,7 @@ final class PstnIncomingCallNotifier {
      *
      * @param phone The phone object for listening to incoming calls.
      */
-    PstnIncomingCallNotifier(PhoneBase phone) {
+    PstnIncomingCallNotifier(Phone phone) {
         Preconditions.checkNotNull(phone);
 
         mPhone = phone;
