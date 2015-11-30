@@ -208,7 +208,7 @@
     <string name="roaming_alert_title" msgid="3654815360303826008">"Gegevensroaming toestaan?"</string>
     <string name="gsm_umts_options" msgid="6538311689850981686">"GSM-/UMTS-opties"</string>
     <string name="cdma_options" msgid="4016822858172249884">"CDMA-opties"</string>
-    <string name="throttle_data_usage" msgid="3715677828160555808">"Gegevensgebruik"</string>
+    <string name="throttle_data_usage" msgid="3715677828160555808">"Datagebruik"</string>
     <string name="throttle_current_usage" msgid="8762280193043815361">"Gegevensgebruik in huidige periode"</string>
     <string name="throttle_time_frame" msgid="1915198770363734685">"Periode voor gegevensgebruik"</string>
     <string name="throttle_rate" msgid="4710388992676803508">"Beleid voor gegevenssnelheid"</string>
