@@ -1469,12 +1469,6 @@
     <string name="callFailed_cdma_call_limit">
         There are too many active calls. Please end or merge existing calls before placing a new one.
     </string>
-     <!-- Smart Divert Settings -->
-     <!-- Title for the Smart Divert Feature displayed in Call Settings -->
-     <string name="smart_divert_title" translatable="false">Smart-Divert</string>
-     <!-- Summary for the Smart Divert Feature displayed in Call Settings -->
-     <string name="smart_divert_summary">CFNRc Settings</string>
-     <string name="no_mobile_data">Mobile data is not available</string>
 
     <!-- The title for the change voicemail PIN activity -->
     <string name="change_pin_title">Change Voicemail PIN</string>
