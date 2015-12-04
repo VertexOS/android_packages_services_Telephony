@@ -693,8 +693,9 @@ public class MobileNetworkSettings extends PreferenceActivity
         }
 
         // Enable enhanced 4G LTE mode settings depending on whether exists on platform
+        // or in multi-sim cases, depending on whether ImsPhone exists for that subscription
         if (!(ImsManager.isVolteEnabledByPlatform(this)
-                && ImsManager.isVolteProvisionedOnDevice(this))) {
+                && ImsManager.isVolteProvisionedOnDevice(this)) || (mPhone.getImsPhone() == null)) {
             Preference pref = prefSet.findPreference(BUTTON_4G_LTE_KEY);
             if (pref != null) {
                 prefSet.removePreference(pref);
