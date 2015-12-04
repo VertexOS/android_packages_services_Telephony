@@ -109,8 +109,7 @@ public class PhoneGlobals extends ContextWrapper {
     private static final int EVENT_DATA_ROAMING_DISCONNECTED = 10;
     private static final int EVENT_DATA_ROAMING_OK = 11;
     private static final int EVENT_UNSOL_CDMA_INFO_RECORD = 12;
-    private static final int EVENT_DOCK_STATE_CHANGED = 13;
-    private static final int EVENT_START_SIP_SERVICE = 14;
+    private static final int EVENT_START_SIP_SERVICE = 13;
 
     // The MMI codes are also used by the InCallScreen.
     public static final int MMI_INITIATE = 51;
@@ -152,11 +151,9 @@ public class PhoneGlobals extends ContextWrapper {
     public SimActivationManager simActivationManager;
     CarrierConfigLoader configLoader;
 
-    private BluetoothManager bluetoothManager;
     private CallGatewayManager callGatewayManager;
     private CallStateMonitor callStateMonitor;
 
-    static int mDockState = Intent.EXTRA_DOCK_STATE_UNDOCKED;
     static boolean sVoiceCapable = true;
 
     // TODO: Remove, no longer used.
@@ -292,23 +289,6 @@ public class PhoneGlobals extends ContextWrapper {
                 case EVENT_UNSOL_CDMA_INFO_RECORD:
                     //TODO: handle message here;
                     break;
-
-                case EVENT_DOCK_STATE_CHANGED:
-                    // If the phone is docked/undocked during a call, and no wired or BT headset
-                    // is connected: turn on/off the speaker accordingly.
-                    boolean inDockMode = false;
-                    if (mDockState != Intent.EXTRA_DOCK_STATE_UNDOCKED) {
-                        inDockMode = true;
-                    }
-                    if (VDBG) Log.d(LOG_TAG, "received EVENT_DOCK_STATE_CHANGED. Phone inDock = "
-                            + inDockMode);
-
-                    phoneState = mCM.getState();
-                    if (phoneState == PhoneConstants.State.OFFHOOK &&
-                            !bluetoothManager.isBluetoothHeadsetAudioOn()) {
-                        PhoneUtils.turnOnSpeaker(getApplicationContext(), inDockMode, true);
-                    }
-                    break;
             }
         }
     };
@@ -394,9 +374,6 @@ public class PhoneGlobals extends ContextWrapper {
             // Monitors call activity from the telephony layer
             callStateMonitor = new CallStateMonitor(mCM);
 
-            // Bluetooth manager
-            bluetoothManager = new BluetoothManager();
-
             phoneMgr = PhoneInterfaceManager.init(this, PhoneFactory.getDefaultPhone());
 
             configLoader = CarrierConfigLoader.init(this);
@@ -405,7 +382,7 @@ public class PhoneGlobals extends ContextWrapper {
             // asynchronous events from the telephony layer (like
             // launching the incoming-call UI when an incoming call comes
             // in.)
-            notifier = CallNotifier.init(this, callLogger, callStateMonitor, bluetoothManager);
+            notifier = CallNotifier.init(this, callLogger, callStateMonitor);
 
             PhoneUtils.registerIccStatus(mHandler, EVENT_SIM_NETWORK_LOCKED);
 
@@ -419,7 +396,6 @@ public class PhoneGlobals extends ContextWrapper {
             IntentFilter intentFilter =
                     new IntentFilter(Intent.ACTION_AIRPLANE_MODE_CHANGED);
             intentFilter.addAction(TelephonyIntents.ACTION_ANY_DATA_CONNECTION_STATE_CHANGED);
-            intentFilter.addAction(Intent.ACTION_DOCK_EVENT);
             intentFilter.addAction(TelephonyIntents.ACTION_SIM_STATE_CHANGED);
             intentFilter.addAction(TelephonyIntents.ACTION_RADIO_TECHNOLOGY_CHANGED);
             intentFilter.addAction(TelephonyIntents.ACTION_SERVICE_STATE_CHANGED);
@@ -495,10 +471,6 @@ public class PhoneGlobals extends ContextWrapper {
 
     public static Phone getPhone(int subId) {
         return PhoneFactory.getPhone(SubscriptionManager.getPhoneId(subId));
-    }
-
-    /* package */ BluetoothManager getBluetoothManager() {
-        return bluetoothManager;
     }
 
     /* package */ CallManager getCallManager() {
@@ -863,11 +835,6 @@ public class PhoneGlobals extends ContextWrapper {
                             + "but ECM isn't supported for phone: "
                             + mCM.getFgPhone().getPhoneName());
                 }
-            } else if (action.equals(Intent.ACTION_DOCK_EVENT)) {
-                mDockState = intent.getIntExtra(Intent.EXTRA_DOCK_STATE,
-                        Intent.EXTRA_DOCK_STATE_UNDOCKED);
-                if (VDBG) Log.d(LOG_TAG, "ACTION_DOCK_EVENT -> mDockState = " + mDockState);
-                mHandler.sendMessage(mHandler.obtainMessage(EVENT_DOCK_STATE_CHANGED, 0));
             }
         }
     }
