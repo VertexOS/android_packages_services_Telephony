@@ -596,7 +596,6 @@
     <string name="network_2G" translatable="false">2G</string>
     <string name="network_1x" translatable="false">1x</string>
     <string name="network_global">Global</string>
-    <string name="network_tdscdma">TDSCDMA Only</string>
 
     <string-array name="enabled_networks_except_gsm_choices" translatable="false">
         <item>@string/network_lte</item>
@@ -678,13 +677,11 @@
         <item>@string/network_lte</item>
         <item>@string/network_3G</item>
         <item>@string/network_2G</item>
-        <item>@string/network_tdscdma</item>
     </string-array>
     <string-array name="enabled_networks_tdscdma_values" translatable="false">
         <item>"22"</item>
         <item>"18"</item>
         <item>"1"</item>
-        <item>"13"</item>
     </string-array>
 
     <!-- CDMA System select strings -->

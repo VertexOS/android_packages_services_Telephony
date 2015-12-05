@@ -1163,7 +1163,7 @@ public class MobileNetworkSettings extends PreferenceActivity
             case Phone.NT_MODE_TDSCDMA_ONLY:
                 mButtonEnabledNetworks.setValue(
                         Integer.toString(Phone.NT_MODE_TDSCDMA_ONLY));
-                mButtonEnabledNetworks.setSummary(R.string.network_tdscdma);
+                mButtonEnabledNetworks.setSummary(R.string.network_3G);
                 break;
             case Phone.NT_MODE_LTE_TDSCDMA_GSM:
             case Phone.NT_MODE_LTE_TDSCDMA_GSM_WCDMA:
