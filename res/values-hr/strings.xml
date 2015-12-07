@@ -309,7 +309,6 @@
     <string name="network_lte" msgid="7702681952521375754">"LTE (preporučeno)"</string>
     <string name="network_4G" msgid="2723512640529983138">"4G (preporučeno)"</string>
     <string name="network_global" msgid="1323190488685355309">"Globalno"</string>
-    <string name="network_tdscdma" msgid="4713495909689860245">"Samo TDSCDMA"</string>
     <string name="cdma_system_select_title" msgid="5757657769327732833">"Odabir sustava"</string>
     <string name="cdma_system_select_summary" msgid="60460043745797517">"Promijeni način rada CDMA roaminga"</string>
     <string name="cdma_system_select_dialogtitle" msgid="6083355415165359075">"Odabir sustava"</string>

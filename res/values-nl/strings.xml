@@ -309,7 +309,6 @@
     <string name="network_lte" msgid="7702681952521375754">"LTE (aanbevolen)"</string>
     <string name="network_4G" msgid="2723512640529983138">"4G (aanbevolen)"</string>
     <string name="network_global" msgid="1323190488685355309">"Algemeen"</string>
-    <string name="network_tdscdma" msgid="4713495909689860245">"Alleen TDSCDMA"</string>
     <string name="cdma_system_select_title" msgid="5757657769327732833">"Systeem selecteren"</string>
     <string name="cdma_system_select_summary" msgid="60460043745797517">"De CDMA-roamingmodus wijzigen"</string>
     <string name="cdma_system_select_dialogtitle" msgid="6083355415165359075">"Systeem selecteren"</string>

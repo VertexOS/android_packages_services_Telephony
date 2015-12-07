@@ -17,9 +17,9 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="phoneAppLabel" product="tablet" msgid="1107073389495104784">"Mobildata"</string>
-    <string name="phoneAppLabel" product="default" msgid="6790717591729922998">"Telefontjenester"</string>
+    <string name="phoneAppLabel" product="default" msgid="6790717591729922998">"Opkaldstjenester"</string>
     <string name="emergencyDialerIconLabel" msgid="7812140032168171053">"Nødopkald"</string>
-    <string name="phoneIconLabel" msgid="2331230813161304895">"Telefon"</string>
+    <string name="phoneIconLabel" msgid="2331230813161304895">"Opkald"</string>
     <string name="fdnListLabel" msgid="8630418672279521003">"Liste over numre til begrænset opkald"</string>
     <string name="unknown" msgid="6878797917991465859">"Ukendt"</string>
     <string name="private_num" msgid="6713286113000232309">"Privat nummer"</string>
@@ -128,7 +128,7 @@
     <string name="stk_cc_ss_to_dial_error" msgid="2816779198916570502">"SS-anmodningen blev ændret til en DIAL-anmodning."</string>
     <string name="stk_cc_ss_to_ussd_error" msgid="7490626178582654236">"SS-anmodningen blev ændret til en USSD-anmodning."</string>
     <string name="stk_cc_ss_to_ss_error" msgid="5057846756489053759">"SS-anmodningen blev ændret til en ny SS-anmodning."</string>
-    <string name="fdn_check_failure" msgid="18200614306525434">"Indstillingen Begrænset opkald i appen Telefon er aktiveret. Derfor fungerer nogle opkaldsfunktioner ikke."</string>
+    <string name="fdn_check_failure" msgid="18200614306525434">"Indstillingen Begrænset opkald i appen Opkald er aktiveret. Derfor fungerer nogle opkaldsfunktioner ikke."</string>
     <string name="radio_off_error" msgid="2304459933248513376">"Tænd radioen, inden du får vist disse indstillinger."</string>
     <string name="close_dialog" msgid="2365884406356986917">"OK"</string>
     <string name="enable" msgid="7248657275000173526">"Aktivér"</string>
@@ -315,7 +315,6 @@
     <string name="network_lte" msgid="7702681952521375754">"LTE (anbefales)"</string>
     <string name="network_4G" msgid="2723512640529983138">"4G (anbefales)"</string>
     <string name="network_global" msgid="1323190488685355309">"Global"</string>
-    <string name="network_tdscdma" msgid="4713495909689860245">"Kun TDSCDMA"</string>
     <string name="cdma_system_select_title" msgid="5757657769327732833">"Vælg system"</string>
     <string name="cdma_system_select_summary" msgid="60460043745797517">"Skift CDMA-roamingtilstand"</string>
     <string name="cdma_system_select_dialogtitle" msgid="6083355415165359075">"Vælg system"</string>

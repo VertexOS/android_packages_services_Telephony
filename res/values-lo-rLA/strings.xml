@@ -309,7 +309,6 @@
     <string name="network_lte" msgid="7702681952521375754">"LTE (ແນະ​ນໍາ​)"</string>
     <string name="network_4G" msgid="2723512640529983138">"4G (ແນະ​ນໍາ​)"</string>
     <string name="network_global" msgid="1323190488685355309">"ທົ່ວໂລກ"</string>
-    <string name="network_tdscdma" msgid="4713495909689860245">"TDSCDMA ເທົ່າ​ນັ້ນ"</string>
     <string name="cdma_system_select_title" msgid="5757657769327732833">"ການເລືອກລະບົບ"</string>
     <string name="cdma_system_select_summary" msgid="60460043745797517">"ປ່ຽນຮູບແບບການໂຣມມິງ CDMA"</string>
     <string name="cdma_system_select_dialogtitle" msgid="6083355415165359075">"ການເລືອກລະບົບ"</string>

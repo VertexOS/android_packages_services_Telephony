@@ -315,7 +315,6 @@
     <string name="network_lte" msgid="7702681952521375754">"LTE (anbefales)"</string>
     <string name="network_4G" msgid="2723512640529983138">"4G (anbefales)"</string>
     <string name="network_global" msgid="1323190488685355309">"Global"</string>
-    <string name="network_tdscdma" msgid="4713495909689860245">"Bare TDSCDMA"</string>
     <string name="cdma_system_select_title" msgid="5757657769327732833">"Systemvalg"</string>
     <string name="cdma_system_select_summary" msgid="60460043745797517">"Velg roamingmodus for CDMA"</string>
     <string name="cdma_system_select_dialogtitle" msgid="6083355415165359075">"Systemvalg"</string>

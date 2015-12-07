@@ -309,7 +309,6 @@
     <string name="network_lte" msgid="7702681952521375754">"LTE (প্রস্তাবিত)"</string>
     <string name="network_4G" msgid="2723512640529983138">"4G (প্রস্তাবিত)"</string>
     <string name="network_global" msgid="1323190488685355309">"বিশ্বব্যাপী"</string>
-    <string name="network_tdscdma" msgid="4713495909689860245">"শুধুমাত্র TDSCDMA"</string>
     <string name="cdma_system_select_title" msgid="5757657769327732833">"সিস্টেম নির্বাচন"</string>
     <string name="cdma_system_select_summary" msgid="60460043745797517">"CDMA রোমিং মোডটির পরিবর্তন করুন"</string>
     <string name="cdma_system_select_dialogtitle" msgid="6083355415165359075">"সিস্টেম নির্বাচন"</string>

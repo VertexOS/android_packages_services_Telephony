@@ -313,7 +313,6 @@
     <string name="network_lte" msgid="7702681952521375754">"LTE (empfohlen)"</string>
     <string name="network_4G" msgid="2723512640529983138">"4G (empfohlen)"</string>
     <string name="network_global" msgid="1323190488685355309">"Global"</string>
-    <string name="network_tdscdma" msgid="4713495909689860245">"Nur TD-SCDMA"</string>
     <string name="cdma_system_select_title" msgid="5757657769327732833">"Systemauswahl"</string>
     <string name="cdma_system_select_summary" msgid="60460043745797517">"CDMA-Roamingmodus ändern"</string>
     <string name="cdma_system_select_dialogtitle" msgid="6083355415165359075">"Systemauswahl"</string>
