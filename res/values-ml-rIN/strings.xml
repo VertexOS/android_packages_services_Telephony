@@ -17,7 +17,7 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="phoneAppLabel" product="tablet" msgid="1107073389495104784">"സെല്ലുലാർ ഡാറ്റ"</string>
-    <string name="phoneAppLabel" product="default" msgid="906161039445636857">"ഫോണ്‍"</string>
+    <string name="phoneAppLabel" product="default" msgid="6790717591729922998">"ഫോൺ സേവനങ്ങൾ"</string>
     <string name="emergencyDialerIconLabel" msgid="7812140032168171053">"അടിയന്തര ഡയലർ"</string>
     <string name="phoneIconLabel" msgid="2331230813161304895">"ഫോണ്‍"</string>
     <string name="fdnListLabel" msgid="8630418672279521003">"FDN ലിസ്റ്റ്"</string>
@@ -59,7 +59,7 @@
     <string name="labelCdmaMore_with_label" msgid="6333588719319970399">"CDMA കോൾ ക്രമീകരണം (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="apn_settings" msgid="9043423184895642077">"ആക്‌സസ്സ് പോയിന്റ് പേരുകൾ"</string>
     <string name="settings_label" msgid="3876743539816984008">"നെറ്റ്‌വർക്ക് ക്രമീകരണങ്ങൾ"</string>
-    <string name="phone_accounts" msgid="6376603393888116364">"കോളുചെയ്യാനുള്ള അക്കൗണ്ട്"</string>
+    <string name="phone_accounts" msgid="6376603393888116364">"കോളിംഗ് അക്കൗണ്ട്"</string>
     <string name="phone_accounts_make_calls_with" msgid="1969188078933152231">"ഇത് ഉപയോഗിച്ച് കോളുചെയ്യുക"</string>
     <string name="phone_accounts_make_sip_calls_with" msgid="4677789312053828493">"ഇതുപയോഗിച്ച് SIP കോളുചെയ്യുക"</string>
     <string name="phone_accounts_ask_every_time" msgid="4346499067149985702">"ആദ്യതവണ ചോദിക്കുക"</string>
@@ -68,25 +68,18 @@
     <string name="phone_accounts_selection_header" msgid="1365215726106915865">"ഫോൺ അക്കൗണ്ടുകൾ"</string>
     <string name="phone_accounts_add_sip_account" msgid="2023821743341923271">"SIP അക്കൗണ്ട് ചേർക്കുക"</string>
     <string name="phone_accounts_configure_account_settings" msgid="1361715069911607109">"അക്കൗണ്ട് ക്രമീകരണങ്ങൾ കോൺഫിഗർചെയ്യുക"</string>
-    <string name="wifi_calling" msgid="739018212480165598">"Wi-Fi കോളിംഗ്"</string>
-    <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"Wi-Fi കോൾ ചെയ്യൽ ഉപയോഗിക്കരുത്"</string>
-    <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"കോൾ സഹായി ഉപയോഗിക്കരുത്"</string>
-    <string name="wifi_calling_call_assistant_none" msgid="6283702349285593683">"ഒന്നുമില്ല"</string>
-    <string name="wifi_calling_call_assistant" msgid="229102032881680320">"കോൾ സഹായി"</string>
-    <string name="wifi_calling_use_call_assistant" msgid="8460024827012666199">"കോൾ സഹായി ഉപയോഗിക്കുക"</string>
-    <string name="wifi_calling_select_call_assistant" msgid="9296558058772293">"കോൾ സഹായി തിരഞ്ഞെടുക്കുക"</string>
-    <string name="wifi_calling_select_call_assistant_summary" msgid="164985727137156474">"കോളുകൾക്കായി ഉപയോഗിക്കുന്ന നെറ്റ്‌വർക്കുകൾ നിയന്ത്രിക്കുക"</string>
-    <string name="wifi_calling_use_call_assistant_summary" msgid="6599987137133339698">"കോളുകൾക്കായി ഉപയോഗിച്ച നെറ്റ്‌വർക്കുകൾ നിയന്ത്രിക്കുന്നതിന് അപ്ലിക്കേഷനുകളെയോ സേവനങ്ങളെയോ അനുവദിക്കുക"</string>
-    <string name="wifi_calling_call_assistant_configure" msgid="1092639708949670031">"കോൺഫിഗർ ചെയ്യുക"</string>
+    <string name="phone_accounts_all_calling_accounts" msgid="207619531589278471">"എല്ലാ കോളിംഗ് അക്കൗണ്ടുകളും"</string>
+    <string name="phone_accounts_all_calling_accounts_summary" msgid="8594186415822657011">"ഫോൺ വിളിക്കാനാകുന്ന അക്കൗണ്ടുകൾ തിരഞ്ഞെടുക്കുക"</string>
+    <string name="wifi_calling" msgid="739018212480165598">"വൈഫൈ കോളിംഗ്"</string>
     <string name="connection_service_default_label" msgid="1498481943805913754">"അന്തർ നിർമ്മിത കണക്ഷൻ സേവനം"</string>
     <string name="voicemail" msgid="8693759337917898954">"വോയ്സ് മെയില്‍"</string>
-    <string name="voicemail_settings_with_label" msgid="152724978380748296">"വോയ്‌സ്‌മെയിൽ (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="voicemail_settings_with_label" msgid="152724978380748296">"ശബ്ദമെയിൽ(<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="voicemail_abbreviated" msgid="2215592488517217448">"VM:"</string>
     <string name="networks" msgid="8873030692174541976">"നെറ്റ്‌വർക്ക് ഓപ്പറേറ്റർമാർ"</string>
     <string name="cell_broadcast_settings" msgid="8740238216690502563">"അടിയന്തര പ്രക്ഷേപണങ്ങൾ"</string>
     <string name="call_settings" msgid="6112441768261754562">"കോൾ ക്രമീകരണങ്ങൾ"</string>
     <string name="additional_gsm_call_settings" msgid="1391795981938800617">"അധിക ക്രമീകരണങ്ങൾ"</string>
-    <string name="additional_gsm_call_settings_with_label" msgid="1385241520708457376">"കൂടുതൽ ക്രമീകരണങ്ങൾ (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="additional_gsm_call_settings_with_label" msgid="1385241520708457376">"കൂടുതൽ ക്രമീകരണം (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="sum_gsm_call_settings" msgid="4076647190996778012">"GSM-ന് മാത്രമുള്ള അധിക കോൾ ക്രമീകരണങ്ങൾ"</string>
     <string name="additional_cdma_call_settings" msgid="8628958775721886909">"അധിക CDMA കോൾ ക്രമീകരണങ്ങൾ"</string>
     <string name="sum_cdma_call_settings" msgid="284753265979035549">"CDMA-യ്‌ക്ക് മാത്രമുള്ള അധിക കോൾ ക്രമീകരണങ്ങൾ"</string>
@@ -99,8 +92,8 @@
     <string name="labelCW" msgid="6120513814915920200">"കോൾ വെയ്‌റ്റിംഗ്"</string>
     <string name="sum_cw_enabled" msgid="8083061901633671397">"ഒരു കോളിനിടയിൽ, ഇൻകമിംഗ് കോളുകളെക്കുറിച്ച് എന്നെ അറിയിക്കുക"</string>
     <string name="sum_cw_disabled" msgid="3648693907300104575">"ഒരു കോളിനിടയിൽ, ഇൻകമിംഗ് കോളുകളെക്കുറിച്ച് എന്നെ അറിയിക്കുക"</string>
-    <string name="call_forwarding_settings" msgid="3378927671091537173">"കോൾ കൈമാറൽ ക്രമീകരണങ്ങൾ"</string>
-    <string name="call_forwarding_settings_with_label" msgid="8569489414006897127">"കോൾ ഫോർവാഡുചെയ്യൽ ക്രമീകരണങ്ങൾ (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="call_forwarding_settings" msgid="3378927671091537173">"കോൾകൈമാറൽ ക്രമീകരണം"</string>
+    <string name="call_forwarding_settings_with_label" msgid="8569489414006897127">"കോൾകൈമാറൽ ക്രമീകരണം (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="labelCF" msgid="2574386948026924737">"കോൾ കൈമാറൽ"</string>
     <string name="labelCFU" msgid="8147177368148660600">"എല്ലായ്പ്പോഴും കൈമാറുക"</string>
     <string name="messageCFU" msgid="3560082430662923687">"എല്ലായ്പ്പോഴും ഈ നമ്പർ ഉപയോഗിക്കുക"</string>
@@ -108,36 +101,39 @@
     <string name="sum_cfu_enabled" msgid="2450052502198827927">"എല്ലാ കോളുകളും <xliff:g id="PHONENUMBER">{0}</xliff:g> എന്നതിലേക്ക് കൈമാറുന്നു"</string>
     <string name="sum_cfu_enabled_no_number" msgid="6591985777096823616">"നമ്പർ ലഭ്യമല്ല"</string>
     <string name="sum_cfu_disabled" msgid="8384177689501334080">"ഓഫാണ്"</string>
-    <string name="labelCFB" msgid="6139853033106283172">"തിരക്കിലായിരിക്കുമ്പോൾ"</string>
-    <string name="messageCFB" msgid="3711089705936187129">"തിരക്കിലായിരിക്കുന്ന നമ്പർ"</string>
+    <string name="labelCFB" msgid="6139853033106283172">"തിരക്കിലാകുമ്പോൾ"</string>
+    <string name="messageCFB" msgid="3711089705936187129">"തിരക്കിലായിരിക്കുമ്പോഴുള്ള നമ്പർ"</string>
     <string name="sum_cfb_enabled" msgid="5984198104833116690">"<xliff:g id="PHONENUMBER">{0}</xliff:g> എന്നതിലേക്ക് കൈമാറുന്നു"</string>
     <string name="sum_cfb_disabled" msgid="4913145177320506827">"ഓഫാണ്"</string>
     <string name="disable_cfb_forbidden" msgid="3506984333877998061">"നിങ്ങളുടെ ഫോൺ തിരക്കിലായിരിക്കുമ്പോൾ കോൾ കൈമാറൽ പ്രവർത്തനരഹിതമാക്കുന്നതിനെ നിങ്ങളുടെ ഓപ്പറേറ്റർ പിന്തുണയ്‌ക്കുന്നില്ല."</string>
-    <string name="labelCFNRy" msgid="1736067178393744351">"പ്രതികരണമില്ലാതിരിക്കുമ്പോൾ"</string>
-    <string name="messageCFNRy" msgid="672317899884380374">"മറുപടി നൽകാത്ത നമ്പർ"</string>
+    <string name="labelCFNRy" msgid="1736067178393744351">"മറുപടിയില്ലാത്തപ്പോൾ"</string>
+    <string name="messageCFNRy" msgid="672317899884380374">"മറുപടിനൽകാത്തപ്പോഴുള്ള നമ്പർ"</string>
     <string name="sum_cfnry_enabled" msgid="6955775691317662910">"<xliff:g id="PHONENUMBER">{0}</xliff:g> എന്നതിലേക്ക് കൈമാറുന്നു"</string>
     <string name="sum_cfnry_disabled" msgid="3884684060443538097">"ഓഫാണ്"</string>
     <string name="disable_cfnry_forbidden" msgid="4308233959150658058">"നിങ്ങളുടെ ഫോൺ മറുപടി നൽകാതിരിക്കുമ്പോൾ കോൾ കൈമാറൽ പ്രവർത്തനരഹിതമാക്കുന്നതിനെ നിങ്ങളുടെ ഓപ്പറേറ്റർ പിന്തുണയ്‌ക്കുന്നില്ല."</string>
     <string name="labelCFNRc" msgid="2614827454402079766">"ലഭ്യമല്ലാതിരിക്കുമ്പോൾ"</string>
-    <string name="messageCFNRc" msgid="6380695421020295119">"പരിധിയ്‌ക്ക് പുറത്തുള്ള നമ്പർ"</string>
+    <string name="messageCFNRc" msgid="6380695421020295119">"പരിധിയ്‌ക്ക് പുറത്തായിരിക്കുമ്പോൾ"</string>
     <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"<xliff:g id="PHONENUMBER">{0}</xliff:g> എന്നതിലേക്ക് കൈമാറുന്നു"</string>
     <string name="sum_cfnrc_disabled" msgid="7222141261321276464">"പ്രവർത്തനരഹിതമാക്കി"</string>
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"നിങ്ങളുടെ ഫോൺ പരിധിയ്ക്ക് പുറത്തായിരിക്കുമ്പോൾ കോൾ കൈമാറൽ പ്രവർത്തനരഹിതമാക്കുന്നതിനെ നിങ്ങളുടെ ഓപ്പറേറ്റർ പിന്തുണയ്‌ക്കുന്നില്ല."</string>
     <string name="updating_title" msgid="6146755386174019046">"കോൾ ക്രമീകരണങ്ങൾ"</string>
     <string name="call_settings_primary_user_only" msgid="5679923943740900965">"കോൾ ക്രമീകരണങ്ങൾ, പ്രാഥമിക ഉപയോക്താവിന് മാത്രമെ മാറ്റാനാവൂ."</string>
-    <string name="call_settings_with_label" msgid="89359812614544532">"കോൾ ക്രമീകരണങ്ങൾ (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="call_settings_with_label" msgid="3401177261468593519">"ക്രമീകരണം (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="error_updating_title" msgid="7970259216988931777">"കോൾ ക്രമീകരണ പിശക്"</string>
     <string name="reading_settings" msgid="1920291699287055284">"ക്രമീകരണങ്ങൾ റീഡുചെയ്യുന്നു.…"</string>
     <string name="updating_settings" msgid="8171225533884883252">"ക്രമീകരണങ്ങൾ അപ്‌ഡേറ്റുചെയ്യുന്നു…"</string>
     <string name="reverting_settings" msgid="4752151682666912828">"ക്രമീകരണങ്ങൾ പഴയപടിയാക്കുന്നു…"</string>
     <string name="response_error" msgid="6674110501330139405">"നെറ്റ്‌വർക്കിൽ നിന്നുള്ള അപ്രതീക്ഷിത പ്രതികരണം."</string>
     <string name="exception_error" msgid="7027667130619518211">"നെറ്റ്‌വർക്ക് അല്ലെങ്കിൽ സിം കാർഡ് പിശക്."</string>
+    <string name="stk_cc_ss_to_dial_error" msgid="2816779198916570502">"SS അഭ്യർത്ഥന, DIAL അഭ്യർത്ഥനയായി പരിഷ്‌ക്കരിച്ചു."</string>
+    <string name="stk_cc_ss_to_ussd_error" msgid="7490626178582654236">"SS അഭ്യർത്ഥന, USSD അഭ്യർത്ഥനയായി പരിഷ്‌ക്കരിച്ചു."</string>
+    <string name="stk_cc_ss_to_ss_error" msgid="5057846756489053759">"SS അഭ്യർത്ഥന, പുതിയ SS അഭ്യർത്ഥനയായി പരിഷ്‌ക്കരിച്ചു."</string>
     <string name="fdn_check_failure" msgid="18200614306525434">"നിങ്ങളുടെ ഫോൺ അപ്ലിക്കേഷന്റെ സ്ഥിര ഡയലിംഗ് നമ്പറുകളുടെ ക്രമീകരണം ഓൺ ചെയ്‌തു. തൽഫലമായി, കോളുമായി ബന്ധപ്പെട്ട ചില സവിശേഷതകൾ പ്രവർത്തിക്കുന്നില്ല."</string>
     <string name="radio_off_error" msgid="2304459933248513376">"ഈ ക്രമീകരണങ്ങൾ കാണുന്നതിന് മുമ്പ് റേഡിയോ ഓൺ ചെയ്യുക."</string>
     <string name="close_dialog" msgid="2365884406356986917">"ശരി"</string>
     <string name="enable" msgid="7248657275000173526">"ഓണാക്കുക"</string>
-    <string name="disable" msgid="4678348128118573672">"ഓഫുചെയ്യുക"</string>
-    <string name="change_num" msgid="239476305819844391">"അപ്‌ഡേറ്റ്  ചെയ്യുക"</string>
+    <string name="disable" msgid="4678348128118573672">"ഓഫ്"</string>
+    <string name="change_num" msgid="239476305819844391">"അപ്‌ഡേറ്റുചെയ്യുക"</string>
   <string-array name="clir_display_values">
     <item msgid="5560134294467334594">"സ്ഥിര നെറ്റ്‌വർക്ക്"</item>
     <item msgid="7876195870037833661">"നമ്പർ മറയ്‌ക്കുക"</item>
@@ -162,8 +158,8 @@
     <string name="registration_done" msgid="495135664535876612">"ഒരു നെറ്റ്‌വർക്കിൽ രജിസ്റ്റർ ചെയ്‌തു."</string>
     <string name="sum_carrier_select" msgid="3494252551249882718">"ഒരു നെ‌റ്റ്‌വർക്ക് ഓപ്പറേറ്ററെ തിരഞ്ഞെടുക്കുക"</string>
     <string name="sum_search_networks" msgid="2921092249873272715">"ലഭ്യമായ എല്ലാ നെറ്റ്‌വർക്കുകൾക്കായും തിരയുക"</string>
-    <string name="select_automatically" msgid="5628402124471810174">"യാന്ത്രികമായി തിരഞ്ഞെടുക്കുക"</string>
-    <string name="sum_select_automatically" msgid="5614890115123292400">"താൽപ്പര്യമുള്ള നെറ്റ്‌വർക്ക് യാന്ത്രികമായി തിരഞ്ഞെടുക്കുക"</string>
+    <string name="select_automatically" msgid="5628402124471810174">"സ്വയമേവ തിരഞ്ഞെടുക്കൂ"</string>
+    <string name="sum_select_automatically" msgid="5614890115123292400">"താൽപ്പര്യമുള്ള നെറ്റ്‌വർക്ക് സ്വയമേവ തിരഞ്ഞെടുക്കൂ"</string>
     <string name="register_automatically" msgid="6017849844573519637">"യാന്ത്രിക രജിസ്‌ട്രേഷൻ…"</string>
     <string name="preferred_network_mode_title" msgid="2336624679902659306">"തിരഞ്ഞെടുത്ത നെറ്റ്‌വർക്ക് തരം"</string>
     <string name="preferred_network_mode_summary" msgid="1434820673166126609">"നെറ്റ്‌വർക്ക് ഓപ്പറേറ്റുചെയ്യൽ മോഡ് മാറ്റുക"</string>
@@ -184,6 +180,7 @@
     <string name="preferred_network_mode_lte_wcdma_summary" msgid="9180775701594742750">"തിരഞ്ഞെടുത്ത നെറ്റ്‌വർക്ക് മോഡ്: LTE / WCDMA"</string>
     <string name="preferred_network_mode_lte_gsm_umts_summary" msgid="633315028976225026">"തിരഞ്ഞെടുത്ത നെറ്റ്‌വർക്ക് മോഡ്: LTE / GSM / UMTS"</string>
     <string name="preferred_network_mode_lte_cdma_summary" msgid="3722647806454528426">"തിരഞ്ഞെടുത്ത നെറ്റ്‌വർക്ക് മോഡ്: LTE / CDMA"</string>
+    <string name="preferred_network_mode_tdscdma_summary" msgid="8021016193718678775">"നിർദ്ദേശിക്കുന്ന നെറ്റ്‌വർക്ക് മോഡ്: TDSCDMA"</string>
   <string-array name="preferred_network_mode_choices">
     <item msgid="7886739962255042385">"LTE / WCDMA"</item>
     <item msgid="577652050447385699">"LTE"</item>
@@ -334,7 +331,7 @@
     <string name="cdma_lte_data_service" msgid="4255018217292548962">"ഡാറ്റ സേവനം സജ്ജീകരിക്കുക"</string>
     <string name="carrier_settings_title" msgid="9028166176523012300">"കാരിയർ ക്രമീകരണങ്ങൾ"</string>
     <string name="fdn" msgid="7878832555095183202">"സ്ഥിര ഡയലിംഗ് നമ്പറുകൾ"</string>
-    <string name="fdn_with_label" msgid="187084204115493366">"സ്ഥിരമായി ഡയൽചെയ്യുന്ന നമ്പറുകൾ (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="fdn_with_label" msgid="187084204115493366">"സ്ഥിര ഡയലിംഗ് നമ്പറുകൾ (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="manage_fdn_list" msgid="8777755791892122369">"FDN ലിസ്റ്റ്"</string>
     <string name="fdn_list_with_label" msgid="7437232552210469217">"FDN ലിസ്‌റ്റ് (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="fdn_activation" msgid="2156479741307463576">"FDN സജീവമാക്കൽ"</string>
@@ -356,7 +353,7 @@
     <string name="auto_retry_mode_summary" msgid="4973886004067532288">"യാന്ത്രികമായി വീണ്ടും ശ്രമിക്കൽ മോഡ് പ്രവർത്തനക്ഷമമാക്കുക"</string>
     <string name="tty_mode_not_allowed_video_call" msgid="3795846787901909176">"വീഡിയോ കോൾ സമയത്ത് TTY മോഡ് മാറ്റം അനുവദനീയമല്ല"</string>
     <string name="menu_add" msgid="1882023737425114762">"കോൺടാക്റ്റ് ചേർക്കുക"</string>
-    <string name="menu_edit" msgid="7143003705504672374">"കോൺടാക്റ്റ് എഡിറ്റുചെയ്യുക"</string>
+    <string name="menu_edit" msgid="7143003705504672374">"കോൺടാ‌ക്‌റ്റ് തിരുത്തുക"</string>
     <string name="menu_delete" msgid="3977150783449642851">"കോണ്‍‌ടാക്റ്റ് ഇല്ലാതാക്കുക"</string>
     <string name="get_pin2" msgid="8204677063922225311">"PIN2 ടൈപ്പുചെയ്യുക"</string>
     <string name="name" msgid="7329028332786872378">"പേര്"</string>
@@ -377,7 +374,7 @@
     <string name="fdn_failed" msgid="540018079008319747">"FDN പ്രവർത്തനം പരാജയപ്പെട്ടു."</string>
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"സിം കാർഡിൽ നിന്നും റീഡുചെയ്യുന്നു…"</string>
     <string name="simContacts_empty" msgid="5270660846489561932">"നിങ്ങളുടെ സിം കാർഡിൽ കോൺടാക്റ്റുകളൊന്നുമില്ല."</string>
-    <string name="simContacts_title" msgid="1861472842524839921">"ഇമ്പോർറ്റുചെയ്യാനുള്ള കോൺടാക്റ്റുകൾ തിരഞ്ഞെടുക്കുക"</string>
+    <string name="simContacts_title" msgid="1861472842524839921">"ഇമ്പോർട്ടുചെയ്യാനുള്ളവ തിരഞ്ഞെടുക്കൂ"</string>
     <string name="simContacts_airplaneMode" msgid="5254946758982621072">"SIM കാർഡിൽ നിന്ന് കോൺടാക്റ്റുകൾ ഇമ്പോർട്ടുചെയ്യാൻ വിമാന മോഡ് ഓഫാക്കുക."</string>
     <string name="enable_pin" msgid="5422767284133234860">"സിം പിൻ പ്രവർത്തനക്ഷമമാക്കുക/പ്രവർത്തനരഹിതമാക്കുക"</string>
     <string name="change_pin" msgid="9174186126330785343">"സിം പിൻ മാറ്റുക"</string>
@@ -412,6 +409,7 @@
     <string name="puk2_blocked" msgid="3150263853077280049">"PUK2 ശാശ്വതമായി തടഞ്ഞിരിക്കുന്നു."</string>
     <string name="pin2_attempts" msgid="720736232885011507">\n"നിങ്ങൾക്ക് <xliff:g id="NUMBER">%d</xliff:g> ശ്രമങ്ങൾ ശേഷിക്കുന്നു."</string>
     <string name="pin2_unblocked" msgid="7791600368153469078">"PIN2 ഇനി തടയില്ല"</string>
+    <string name="pin2_error_exception" msgid="1088689322248996699">"നെറ്റ്‌വർക്ക് അല്ലെങ്കിൽ സിം കാർഡ് പിശക്"</string>
     <string name="doneButton" msgid="2859593360997984240">"പൂർത്തിയായി"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"വോയ്‌സ്‌മെയിൽ നമ്പർ"</string>
     <string name="card_title_dialing" msgid="5769417478498348054">"ഡയൽ ചെയ്യുന്നു"</string>
@@ -422,25 +420,15 @@
     <string name="card_title_on_hold" msgid="821463117892339942">"ഹോള്‍ഡിലാണ്"</string>
     <string name="card_title_hanging_up" msgid="3999101620995182450">"ഹാംഗിംഗ് അപ്പ്"</string>
     <string name="card_title_in_call" msgid="6346543933068225205">"കോളിലാണ്"</string>
-    <string name="notification_dialing" msgid="2107666444937350731">"ഡയൽ ചെയ്യുന്നു"</string>
-    <string name="notification_missedCallTitle" msgid="7554385905572364535">"മിസ്‌ഡ് കോൾ"</string>
-    <string name="notification_missedCallsTitle" msgid="1361677948941502522">"മിസ്‌ഡ് കോളുകൾ"</string>
-    <string name="notification_missedCallsMsg" msgid="4575787816055205600">"<xliff:g id="NUM_MISSED_CALLS">%s</xliff:g> മിസ്‌ഡ് കോളുകൾ"</string>
-    <string name="notification_missedCallTicker" msgid="504686252427747209">"<xliff:g id="MISSED_CALL_FROM">%s</xliff:g> എന്നതിൽ നിന്നുള്ള മിസ്‌ഡ് കോൾ"</string>
-    <string name="notification_ongoing_call" msgid="7068688957273482989">"കോൾ സജീവമാണ്"</string>
-    <string name="notification_on_hold" msgid="3480694969511790465">"ഹോള്‍ഡിലാണ്"</string>
-    <string name="notification_incoming_call" msgid="2820429205043529642">"ഇന്‍കമിംഗ് കോള്‍"</string>
     <string name="notification_voicemail_title" msgid="8933468752045550523">"പുതിയ വോയ്‌സ്‌മെയിൽ"</string>
     <string name="notification_voicemail_title_count" msgid="4366360747660929916">"പുതിയ വോയ്‌സ്‌മെയിൽ (<xliff:g id="COUNT">%d</xliff:g>)"</string>
     <string name="notification_voicemail_text_format" msgid="4447323569453981685">"<xliff:g id="VOICEMAIL_NUMBER">%s</xliff:g> ഡയൽ ചെയ്യുക"</string>
     <string name="notification_voicemail_no_vm_number" msgid="760963466895609716">"വോയ്‌സ്‌മെയിൽ നമ്പർ അജ്ഞാതമാണ്"</string>
     <string name="notification_network_selection_title" msgid="4224455487793492772">"സേവനമില്ല"</string>
     <string name="notification_network_selection_text" msgid="2607085729661923269">"തിരഞ്ഞെടുത്ത നെറ്റ്‌വർക്ക് (<xliff:g id="OPERATOR_NAME">%s</xliff:g>) ലഭ്യമല്ല"</string>
-    <string name="notification_action_end_call" msgid="6069460915123531620">"ഹാംഗ് അപ്പ് ചെയ്യുക"</string>
-    <string name="notification_missedCall_call_back" msgid="2684890353590890187">"കോൾബാക്ക്"</string>
-    <string name="notification_missedCall_message" msgid="3049928912736917988">"സന്ദേശം"</string>
     <string name="incall_error_power_off" msgid="2947938060513306698">"ഒരു കോൾ വിളിക്കാൻ വിമാന മോഡ് ഓഫാക്കുക."</string>
     <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"ഒരു കോൾ വിളിക്കാൻ വിമാന മോഡ് ഓഫാക്കുക അല്ലെങ്കിൽ വയർലെസ്സ് നെറ്റ്‌വർക്കിലേക്ക് കണക്റ്റുചെയ്യുക."</string>
+    <string name="incall_error_ecm_emergency_only" msgid="738708660612388692">"അടിയന്തിരമല്ലാത്ത കോൾ ചെയ്യാൻ അടിയന്തിര കോൾബാക്ക് മോഡിൽ നിന്ന് പുറത്തുകടക്കുക."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"നെറ്റ്‌വർക്കിൽ രജിസ്റ്റർ ചെയ്‌തിട്ടില്ല."</string>
     <string name="incall_error_out_of_service" msgid="4100065333878929223">"സെല്ലുലാർ നെറ്റ്‌വർക്ക് ലഭ്യമല്ല."</string>
     <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"സെല്ലുലാർ നെറ്റ്‌വർക്ക് ലഭ്യമല്ല. കോൾ വിളിക്കാൻ വയർലെസ്സ് നെറ്റ്‌വർക്കിലേക്ക് കണക്റ്റുചെയ്യുക."</string>
@@ -497,7 +485,7 @@
     <string name="ota_hfa_activation_title" msgid="2234246934160473981">"സജീവമാക്കുന്നു..."</string>
     <string name="ota_hfa_activation_dialog_message" msgid="8092479227918463415">"ഫോൺ നിങ്ങളുടെ മൊബൈൽ ഡാറ്റ സേവനം സജീവമാക്കുന്നു.\n\nഇതിന് 5 മിനിറ്റ് വരെയെടുക്കാം."</string>
     <string name="ota_skip_activation_dialog_title" msgid="2943366608272261306">"സജീവമാക്കൽ ഒഴിവാക്കണോ?"</string>
-    <string name="ota_skip_activation_dialog_message" msgid="2440770373498870550">"നിങ്ങൾ സജീവമാക്കൽ ഒഴിവാക്കുകയാണെങ്കിൽ, നിങ്ങൾക്ക് കോളുകൾ വിളിക്കാനോ മൊബൈൽ ഡാറ്റ നെറ്റ്‌വർക്കുകളിൽ കണക്റ്റുചെയ്യാനോ കഴിയില്ല (എങ്കിലും നിങ്ങൾക്ക് Wi-Fi നെറ്റ്‌വർക്കുകളിൽ കണക്റ്റുചെയ്യാം). നിങ്ങളുടെ ഫോൺ സജീവമാക്കുന്നതുവരെ, അത് ഓൺ ചെയ്യുമ്പോഴെല്ലാം സജീവമാക്കാൻ നിങ്ങളോട് ആവശ്യപ്പെടും."</string>
+    <string name="ota_skip_activation_dialog_message" msgid="2440770373498870550">"നിങ്ങൾ സജീവമാക്കൽ ഒഴിവാക്കുകയാണെങ്കിൽ, നിങ്ങൾക്ക് കോളുകൾ വിളിക്കാനോ മൊബൈൽ ഡാറ്റ നെറ്റ്‌വർക്കുകളിൽ കണക്റ്റുചെയ്യാനോ കഴിയില്ല (എങ്കിലും നിങ്ങൾക്ക് വൈഫൈ നെറ്റ്‌വർക്കുകളിൽ കണക്റ്റുചെയ്യാം). നിങ്ങളുടെ ഫോൺ സജീവമാക്കുന്നതുവരെ, അത് ഓൺ ചെയ്യുമ്പോഴെല്ലാം സജീവമാക്കാൻ നിങ്ങളോട് ആവശ്യപ്പെടും."</string>
     <string name="ota_skip_activation_dialog_skip_label" msgid="3458532775091563208">"ഒഴിവാക്കുക"</string>
     <string name="ota_activate" msgid="1368528132525626264">"സജീവമാക്കുക"</string>
     <string name="ota_title_activate_success" msgid="6570240212263372046">"ഫോൺ സജീവമാക്കി."</string>
@@ -537,7 +525,7 @@
     <string name="voicemail_settings" msgid="72448049107749316">"സജ്ജമാക്കുക"</string>
     <string name="voicemail_number_not_set" msgid="6724904736891087856">"&lt;സജ്ജീകരിച്ചിട്ടില്ല&gt;"</string>
     <string name="other_settings" msgid="3672912580359716394">"മറ്റ് കോൾ ക്രമീകരണങ്ങൾ"</string>
-    <string name="calling_via_template" msgid="4839419581866928142">"<xliff:g id="PROVIDER_NAME">%s</xliff:g> മുഖേന വിളിക്കുന്നു"</string>
+    <string name="calling_via_template" msgid="4839419581866928142">"<xliff:g id="PROVIDER_NAME">%s</xliff:g> വഴി വിളിക്കുന്നു"</string>
     <string name="contactPhoto" msgid="4713193418046639466">"കോൺടാക്റ്റ് ഫോട്ടോ"</string>
     <string name="goPrivate" msgid="865837794424530980">"സ്വകാര്യം എന്നതിലേക്ക് പോകുക"</string>
     <string name="selectContact" msgid="781975788478987237">"കോൺടാക്റ്റ് തിരഞ്ഞെടുക്കുക"</string>
@@ -545,8 +533,8 @@
     <string name="description_dial_button" msgid="7459705245418435351">"ഡയൽ ചെയ്യുക"</string>
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"വൈബ്രേറ്റുചെയ്യുക"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"വൈബ്രേറ്റുചെയ്യുക"</string>
+    <string name="voicemail_visual_voicemail_switch_title" msgid="5012622186976275457">"വിഷ്വൽ വോയ്‌സ്‌മെയിൽ"</string>
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"ശബ്‌ദം"</string>
-    <string name="dial_pad_autocomplete" msgid="7683489952557536398">"ഡയൽപാഡ് സ്വയംപൂർത്തിയാക്കൽ"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"റിംഗ്ടോണും വൈബ്രേറ്റുചെയ്യലും"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"അന്തർ നിർമ്മിത സിം കാർഡുകൾ"</string>
     <string name="enable_video_calling_title" msgid="7237253660669000899">"വീഡിയോ കോളുചെയ്യൽ ഓണാക്കുക"</string>
@@ -557,8 +545,9 @@
     <string name="sim_description_emergency_calls" msgid="7535215397212301562">"അടിയന്തിര കോൾചെയ്യൽ മാത്രം"</string>
     <string name="sim_description_default" msgid="4778679519938775515">"SIM കാർഡ്, സ്ലോട്ട്: <xliff:g id="SLOT_ID">%s</xliff:g>"</string>
     <string name="accessibility_settings_activity_title" msgid="8562004288733103868">"പ്രവേശനക്ഷമത"</string>
-    <string name="status_hint_label_incoming_wifi_call" msgid="8772915926382037499">"ഇൻകമിംഗ് Wi-Fi കോൾ"</string>
-    <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"Wi-Fi കോൾ"</string>
+    <string name="status_hint_label_incoming_wifi_call" msgid="8772915926382037499">"ഇൻകമിംഗ് വൈഫൈ കോൾ"</string>
+    <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"വൈഫൈ കോൾ"</string>
     <string name="emergency_action_launch_hint" msgid="5841511849007540970">"തുറക്കുന്നതിന് വീണ്ടും സ്‌പർശിക്കുക"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"സന്ദേശം ഡീകോഡുചെയ്യുമ്പോൾ ഒരു പിശകുണ്ടായി."</string>
+    <string name="callFailed_cdma_activation" msgid="2307989779233262164">"ഒരു SIM കാർഡ് നിങ്ങളുടെ സേവനം സജീവമാക്കി, ഫോണിന്റെ റോമിംഗ് ശേഷികൾ അപ്‌ഡേറ്റ് ചെയ്തു."</string>
 </resources>

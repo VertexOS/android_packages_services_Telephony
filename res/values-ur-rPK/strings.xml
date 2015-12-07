@@ -17,7 +17,7 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="phoneAppLabel" product="tablet" msgid="1107073389495104784">"سیلولر ڈیٹا"</string>
-    <string name="phoneAppLabel" product="default" msgid="906161039445636857">"فون"</string>
+    <string name="phoneAppLabel" product="default" msgid="6790717591729922998">"فون سروسز"</string>
     <string name="emergencyDialerIconLabel" msgid="7812140032168171053">"ہنگامی ڈائلر"</string>
     <string name="phoneIconLabel" msgid="2331230813161304895">"فون"</string>
     <string name="fdnListLabel" msgid="8630418672279521003">"‏FDN کی فہرست"</string>
@@ -68,16 +68,9 @@
     <string name="phone_accounts_selection_header" msgid="1365215726106915865">"فون اکاؤنٹس"</string>
     <string name="phone_accounts_add_sip_account" msgid="2023821743341923271">"‏SIP اکاؤنٹ شامل کریں"</string>
     <string name="phone_accounts_configure_account_settings" msgid="1361715069911607109">"اکاؤنٹ کی ترتیبات کنفیگر کریں"</string>
+    <string name="phone_accounts_all_calling_accounts" msgid="207619531589278471">"سبھی کالنگ اکاؤنٹس"</string>
+    <string name="phone_accounts_all_calling_accounts_summary" msgid="8594186415822657011">"منتخب کریں کہ کون سے اکاؤنٹس کالز کر سکتے ہیں"</string>
     <string name="wifi_calling" msgid="739018212480165598">"‏Wi-Fi کالنگ"</string>
-    <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"‏Wi-Fi کالنگ کا استعمال نہ کریں"</string>
-    <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"کال اسسٹنٹ کا استعمال نہ کریں"</string>
-    <string name="wifi_calling_call_assistant_none" msgid="6283702349285593683">"کوئی نہیں"</string>
-    <string name="wifi_calling_call_assistant" msgid="229102032881680320">"کال اسسٹنٹ"</string>
-    <string name="wifi_calling_use_call_assistant" msgid="8460024827012666199">"کال اسسٹنٹ استعمال کریں"</string>
-    <string name="wifi_calling_select_call_assistant" msgid="9296558058772293">"کال اسسٹنٹ کو منتخب کریں"</string>
-    <string name="wifi_calling_select_call_assistant_summary" msgid="164985727137156474">"ان کے ساتھ کالز کیلئے استعمال کردہ نیٹ ورکس کا نظم کریں"</string>
-    <string name="wifi_calling_use_call_assistant_summary" msgid="6599987137133339698">"ایپس یا سروسز کو کالز کیلئے استعمال کردہ نیٹ ورکس کا نظم کرنے دیں"</string>
-    <string name="wifi_calling_call_assistant_configure" msgid="1092639708949670031">"کنفیگر کریں"</string>
     <string name="connection_service_default_label" msgid="1498481943805913754">"پہلے سے شامل کنکشن سروس"</string>
     <string name="voicemail" msgid="8693759337917898954">"صوتی میل"</string>
     <string name="voicemail_settings_with_label" msgid="152724978380748296">"صوتی میل (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
@@ -125,13 +118,16 @@
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"آپ کا کیریئر آپ کا فون ناقابل رسائی ہونے پر کال آگے منتقل کرنے کو غیر فعال کرنے کا تعاون نہیں کرتا ہے۔"</string>
     <string name="updating_title" msgid="6146755386174019046">"کال کی ترتیبات"</string>
     <string name="call_settings_primary_user_only" msgid="5679923943740900965">"صرف بنیادی صارف ہی کال کی ترتیبات تبدیل کر سکتا ہے۔"</string>
-    <string name="call_settings_with_label" msgid="89359812614544532">"کال کی ترتیبات (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="call_settings_with_label" msgid="3401177261468593519">"ترتیبات (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="error_updating_title" msgid="7970259216988931777">"کال کی ترتیبات کی خرابی"</string>
     <string name="reading_settings" msgid="1920291699287055284">"ترتیبات کو پڑھ رہا ہے…"</string>
     <string name="updating_settings" msgid="8171225533884883252">"ترتیبات کو اپ ڈیٹ کر رہا ہے…"</string>
     <string name="reverting_settings" msgid="4752151682666912828">"ترتیبات لوٹا رہا ہے…"</string>
     <string name="response_error" msgid="6674110501330139405">"نیٹ ورک سے غیر متوقع جواب۔"</string>
     <string name="exception_error" msgid="7027667130619518211">"‏نیٹ ورک یا SIM کارڈ کی خرابی۔"</string>
+    <string name="stk_cc_ss_to_dial_error" msgid="2816779198916570502">"‏SS درخواست میں ترمیم کر کے DIAL درخواست بنا دی گئی ہے۔"</string>
+    <string name="stk_cc_ss_to_ussd_error" msgid="7490626178582654236">"‏SS درخواست میں ترمیم کر کے USSD درخواست بنا دی گئی ہے۔"</string>
+    <string name="stk_cc_ss_to_ss_error" msgid="5057846756489053759">"‏SS درخواست میں ترمیم کر کے نئی SS درخواست بنا دی گئی ہے۔"</string>
     <string name="fdn_check_failure" msgid="18200614306525434">"آپ کے فون کی ایپ کے فکسڈ ڈائلنگ نمبرز کی ترتیب آن ہے۔ نتیجتاًً، کال سے متعلقہ کچھ خصوصیات کام نہیں کر رہی ہیں۔"</string>
     <string name="radio_off_error" msgid="2304459933248513376">"یہ ترتیبات دیکھنے سے پہلے ریڈیو آن کریں۔"</string>
     <string name="close_dialog" msgid="2365884406356986917">"ٹھیک ہے"</string>
@@ -184,6 +180,7 @@
     <string name="preferred_network_mode_lte_wcdma_summary" msgid="9180775701594742750">"‏ترجیحی نیٹ ورک طرز: LTE / WCDMA"</string>
     <string name="preferred_network_mode_lte_gsm_umts_summary" msgid="633315028976225026">"‏ترجیحی نیٹ ورک وضع: LTE / GSM / UMTS"</string>
     <string name="preferred_network_mode_lte_cdma_summary" msgid="3722647806454528426">"‏ترجیحی نیٹ ورک وضع: LTE / CDMA"</string>
+    <string name="preferred_network_mode_tdscdma_summary" msgid="8021016193718678775">"‏ترجیحی نیٹ ورک موڈ: TDSCDMA"</string>
   <string-array name="preferred_network_mode_choices">
     <item msgid="7886739962255042385">"LTE / WCDMA"</item>
     <item msgid="577652050447385699">"LTE"</item>
@@ -339,7 +336,7 @@
     <string name="fdn_list_with_label" msgid="7437232552210469217">"‏FDN فہرست (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="fdn_activation" msgid="2156479741307463576">"‏FDN کو فعال کرنا"</string>
     <string name="fdn_enabled" msgid="5238109009915521240">"فکسڈ ڈائلنگ نمبرز فعال ہیں"</string>
-    <string name="fdn_disabled" msgid="4700049736675368279">"فکسڈ ڈائلنگ نمبرز غیر فعال ہوگئے ہیں"</string>
+    <string name="fdn_disabled" msgid="4700049736675368279">"فکسڈ ڈائلنگ نمبرز غیر فعال ہیں"</string>
     <string name="enable_fdn" msgid="3740191529180493851">"‏FDN فعال کریں"</string>
     <string name="disable_fdn" msgid="7944020890722540616">"‏FDN غیر فعال کریں"</string>
     <string name="change_pin2" msgid="2153563695382176676">"‏PIN2 تبدیل کریں"</string>
@@ -377,7 +374,7 @@
     <string name="fdn_failed" msgid="540018079008319747">"‏FDN کا عمل ناکام ہوگیا۔"</string>
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"‏SIM کارڈ سے پڑھ رہا ہے…"</string>
     <string name="simContacts_empty" msgid="5270660846489561932">"‏آپ کے SIM کارڈ پر کوئی رابطے نہیں ہیں۔"</string>
-    <string name="simContacts_title" msgid="1861472842524839921">"درآمد کرنے کیلئے رابطے منتخب کریں"</string>
+    <string name="simContacts_title" msgid="1861472842524839921">"درآمد کیلئے رابطے چنیں"</string>
     <string name="simContacts_airplaneMode" msgid="5254946758982621072">"‏SIM کارڈ سے رابطے درآمد کرنے کیلئے ہوائی جہاز وضع آف کریں۔"</string>
     <string name="enable_pin" msgid="5422767284133234860">"‏SIM کا PIN فعال/غیر فعال کریں"</string>
     <string name="change_pin" msgid="9174186126330785343">"‏SIM کا PIN تبدیل کریں"</string>
@@ -412,6 +409,7 @@
     <string name="puk2_blocked" msgid="3150263853077280049">"‏PUK2 مستقل طور پر مسدود ہے۔"</string>
     <string name="pin2_attempts" msgid="720736232885011507">\n"آپ کے پاس <xliff:g id="NUMBER">%d</xliff:g> کوششیں بچی ہیں۔"</string>
     <string name="pin2_unblocked" msgid="7791600368153469078">"‏PIN2 اب مسدود نہیں ہے"</string>
+    <string name="pin2_error_exception" msgid="1088689322248996699">"‏نیٹ ورک یا SIM کارڈ کی خرابی"</string>
     <string name="doneButton" msgid="2859593360997984240">"ہوگیا"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"صوتی میل نمبر"</string>
     <string name="card_title_dialing" msgid="5769417478498348054">"ڈائل ہو رہا ہے"</string>
@@ -422,25 +420,15 @@
     <string name="card_title_on_hold" msgid="821463117892339942">"ہولڈ پر"</string>
     <string name="card_title_hanging_up" msgid="3999101620995182450">"کال منقطع ہو رہی ہے"</string>
     <string name="card_title_in_call" msgid="6346543933068225205">"کال میں"</string>
-    <string name="notification_dialing" msgid="2107666444937350731">"ڈائل ہو رہا ہے"</string>
-    <string name="notification_missedCallTitle" msgid="7554385905572364535">"چھوٹی ہوئی کال"</string>
-    <string name="notification_missedCallsTitle" msgid="1361677948941502522">"چھوٹی ہوئی کالیں"</string>
-    <string name="notification_missedCallsMsg" msgid="4575787816055205600">"<xliff:g id="NUM_MISSED_CALLS">%s</xliff:g> چھوٹی ہوئی کالیں"</string>
-    <string name="notification_missedCallTicker" msgid="504686252427747209">"<xliff:g id="MISSED_CALL_FROM">%s</xliff:g> کی جانب سے چھوٹی ہوئی کال"</string>
-    <string name="notification_ongoing_call" msgid="7068688957273482989">"جاری کال"</string>
-    <string name="notification_on_hold" msgid="3480694969511790465">"ہولڈ پر"</string>
-    <string name="notification_incoming_call" msgid="2820429205043529642">"آنے والی کال"</string>
     <string name="notification_voicemail_title" msgid="8933468752045550523">"نیا صوتی میل"</string>
     <string name="notification_voicemail_title_count" msgid="4366360747660929916">"نیا صوتی میل (<xliff:g id="COUNT">%d</xliff:g>)"</string>
     <string name="notification_voicemail_text_format" msgid="4447323569453981685">"<xliff:g id="VOICEMAIL_NUMBER">%s</xliff:g> ڈائل کریں"</string>
     <string name="notification_voicemail_no_vm_number" msgid="760963466895609716">"صوتی میل نمبر نامعلوم ہے"</string>
     <string name="notification_network_selection_title" msgid="4224455487793492772">"کوئی سروس نہیں ہے"</string>
     <string name="notification_network_selection_text" msgid="2607085729661923269">"منتخب کردہ نیٹ ورک (<xliff:g id="OPERATOR_NAME">%s</xliff:g>) دستیاب نہیں ہے"</string>
-    <string name="notification_action_end_call" msgid="6069460915123531620">"کال منقطع کریں"</string>
-    <string name="notification_missedCall_call_back" msgid="2684890353590890187">"واپس کال کریں"</string>
-    <string name="notification_missedCall_message" msgid="3049928912736917988">"پیغام"</string>
     <string name="incall_error_power_off" msgid="2947938060513306698">"کال کرنے کیلئے ہوائی جہاز وضع آف کریں۔"</string>
     <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"کال کرنے کیلئے ہوائی جہاز وضع آف کریں یا کسی وائرلیس نیٹ ورک سے منسلک ہوں۔"</string>
+    <string name="incall_error_ecm_emergency_only" msgid="738708660612388692">"غیر ہنگامی کال کرنے کیلئے ہنگامی کال بیک موڈ سے اخراج کریں۔"</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"نیٹ ورک پر رجسٹرڈ نہیں ہے۔"</string>
     <string name="incall_error_out_of_service" msgid="4100065333878929223">"سیلولر نیٹ ورک دستیاب نہیں ہے۔"</string>
     <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"سیلولر نیٹ ورک دستیاب نہیں ہے۔ کال کرنے کیلئے کسی وائرلیس نیٹ ورک سے منسلک ہوں۔"</string>
@@ -479,8 +467,8 @@
     <string name="hac_mode_title" msgid="8740268574688743289">"سماعتی آلات"</string>
     <string name="hac_mode_summary" msgid="6833851160514929341">"سماعتی آلہ کی ہم آہنگی آن کریں"</string>
   <string-array name="tty_mode_entries">
-    <item msgid="512950011423868021">"‏TTY آف ہے"</item>
-    <item msgid="3971695875449640648">"‏TTY پورا ہے"</item>
+    <item msgid="512950011423868021">"‏TTY آف"</item>
+    <item msgid="3971695875449640648">"‏TTY مکمل"</item>
     <item msgid="1937509904407445684">"TTY HCO"</item>
     <item msgid="5644925873488772224">"TTY VCO"</item>
   </string-array>
@@ -535,9 +523,9 @@
     <string name="alert_dialog_dismiss" msgid="2491494287075907171">"کالعدم کریں"</string>
     <string name="voicemail_provider" msgid="5135942703327136909">"سروس"</string>
     <string name="voicemail_settings" msgid="72448049107749316">"سیٹ اپ"</string>
-    <string name="voicemail_number_not_set" msgid="6724904736891087856">"‏&lt;متعین نہیں ہے&gt;"</string>
+    <string name="voicemail_number_not_set" msgid="6724904736891087856">"‏&lt;سیٹ نہیں ہے&gt;"</string>
     <string name="other_settings" msgid="3672912580359716394">"دیگر کال کی ترتیبات"</string>
-    <string name="calling_via_template" msgid="4839419581866928142">"<xliff:g id="PROVIDER_NAME">%s</xliff:g> کی معرفت کال ہو رہی ہے"</string>
+    <string name="calling_via_template" msgid="4839419581866928142">"کالنگ بذریعہ <xliff:g id="PROVIDER_NAME">%s</xliff:g>"</string>
     <string name="contactPhoto" msgid="4713193418046639466">"رابطہ کی تصویر"</string>
     <string name="goPrivate" msgid="865837794424530980">"نجی ہوجائیں"</string>
     <string name="selectContact" msgid="781975788478987237">"رابطہ منتخب کریں"</string>
@@ -545,8 +533,8 @@
     <string name="description_dial_button" msgid="7459705245418435351">"ڈائل کریں"</string>
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"وائبریٹ"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"وائبریٹ"</string>
+    <string name="voicemail_visual_voicemail_switch_title" msgid="5012622186976275457">"بصری صوتی میل"</string>
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"آواز"</string>
-    <string name="dial_pad_autocomplete" msgid="7683489952557536398">"ڈائل پیڈ کی خودکار تکمیل"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"رنگ ٹون اور وائبریٹ"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"‏پہلے سے شامل SIM کارڈز"</string>
     <string name="enable_video_calling_title" msgid="7237253660669000899">"ویڈیو کالنگ کو آن کریں"</string>
@@ -561,4 +549,5 @@
     <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"‏Wi-Fi کال"</string>
     <string name="emergency_action_launch_hint" msgid="5841511849007540970">"کھولنے کیلئے دوبارہ ٹچ کریں"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"پیغام کو ڈیکوڈ کرتے وقت ایک خرابی پیش آ گئی۔"</string>
+    <string name="callFailed_cdma_activation" msgid="2307989779233262164">"‏ایک SIM کارڈ نے آپ کی سروس فعال کر دی ہے اور آپ کے فون کی رومنگ اہلیتیں اپ ڈیٹ کر دی ہیں۔"</string>
 </resources>
