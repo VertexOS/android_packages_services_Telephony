@@ -62,6 +62,9 @@ public class OmtpVvmSyncService extends IntentService {
     /** The voicemail to fetch. */
     public static final String EXTRA_VOICEMAIL = "voicemail";
 
+    // Minimum time allowed between full syncs
+    private static final int MINIMUM_FULL_SYNC_INTERVAL_MILLIS = 60 * 1000;
+
     private VoicemailsQueryHelper mQueryHelper;
 
     public OmtpVvmSyncService() {
@@ -170,6 +173,20 @@ public class OmtpVvmSyncService extends IntentService {
         if (!VisualVoicemailSettingsUtil.isVisualVoicemailEnabled(this, phoneAccount)) {
             Log.v(TAG, "Sync requested for disabled account");
             return;
+        }
+
+        if (SYNC_FULL_SYNC.equals(action)) {
+            long lastSyncTime = VisualVoicemailSettingsUtil.getVisualVoicemailLastFullSyncTime(
+                    this, phoneAccount);
+            long currentTime = System.currentTimeMillis();
+            if (currentTime - lastSyncTime < MINIMUM_FULL_SYNC_INTERVAL_MILLIS) {
+                // If it's been less than a minute since the last sync, bail.
+                Log.v(TAG, "Avoiding duplicate full sync: synced recently for "
+                        + phoneAccount.getId());
+                return;
+            }
+            VisualVoicemailSettingsUtil.setVisualVoicemailLastFullSyncTime(
+                    this, phoneAccount, currentTime);
         }
 
         int subId = PhoneUtils.getSubIdForPhoneAccountHandle(phoneAccount);
