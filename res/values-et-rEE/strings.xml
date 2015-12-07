@@ -17,7 +17,7 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="phoneAppLabel" product="tablet" msgid="1107073389495104784">"Mobiilne andmeside"</string>
-    <string name="phoneAppLabel" product="default" msgid="906161039445636857">"Telefon"</string>
+    <string name="phoneAppLabel" product="default" msgid="6790717591729922998">"Telefoniteenused"</string>
     <string name="emergencyDialerIconLabel" msgid="7812140032168171053">"Hädaabikõne valija"</string>
     <string name="phoneIconLabel" msgid="2331230813161304895">"Telefon"</string>
     <string name="fdnListLabel" msgid="8630418672279521003">"FDN-i loend"</string>
@@ -68,16 +68,9 @@
     <string name="phone_accounts_selection_header" msgid="1365215726106915865">"Telefoni kontod"</string>
     <string name="phone_accounts_add_sip_account" msgid="2023821743341923271">"SIP-konto lisamine"</string>
     <string name="phone_accounts_configure_account_settings" msgid="1361715069911607109">"Konto seadete seadistamine"</string>
+    <string name="phone_accounts_all_calling_accounts" msgid="207619531589278471">"Kõik kõnekontod"</string>
+    <string name="phone_accounts_all_calling_accounts_summary" msgid="8594186415822657011">"Valige, milliste kontodega saab helistada"</string>
     <string name="wifi_calling" msgid="739018212480165598">"WiFi-kõned"</string>
-    <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"Ärge kasutage WiFi-kõnesid"</string>
-    <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"Ärge kasutage kõneabi"</string>
-    <string name="wifi_calling_call_assistant_none" msgid="6283702349285593683">"Puudub"</string>
-    <string name="wifi_calling_call_assistant" msgid="229102032881680320">"Kõneabi"</string>
-    <string name="wifi_calling_use_call_assistant" msgid="8460024827012666199">"Kasutage kõneabi"</string>
-    <string name="wifi_calling_select_call_assistant" msgid="9296558058772293">"Valige kõneabi"</string>
-    <string name="wifi_calling_select_call_assistant_summary" msgid="164985727137156474">"Helistamiseks kasutatavate võrkude haldamine:"</string>
-    <string name="wifi_calling_use_call_assistant_summary" msgid="6599987137133339698">"Laske rakendustel või teenustel kõnede tegemiseks kasutatavaid võrke hallata"</string>
-    <string name="wifi_calling_call_assistant_configure" msgid="1092639708949670031">"Seadistamine"</string>
     <string name="connection_service_default_label" msgid="1498481943805913754">"Sisseehitatud ühendusteenus"</string>
     <string name="voicemail" msgid="8693759337917898954">"Kõnepost"</string>
     <string name="voicemail_settings_with_label" msgid="152724978380748296">"Kõnepost (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
@@ -125,13 +118,16 @@
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"Teie operaator ei toeta kõneedastuse keelamist, kui teie telefon on levist väljas."</string>
     <string name="updating_title" msgid="6146755386174019046">"Kõneseaded"</string>
     <string name="call_settings_primary_user_only" msgid="5679923943740900965">"Kõne seadeid saab muuta ainult peamine kasutaja."</string>
-    <string name="call_settings_with_label" msgid="89359812614544532">"Kõne seaded (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="call_settings_with_label" msgid="3401177261468593519">"Seaded (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="error_updating_title" msgid="7970259216988931777">"Kõneseadete viga"</string>
     <string name="reading_settings" msgid="1920291699287055284">"Seadete lugemine ..."</string>
     <string name="updating_settings" msgid="8171225533884883252">"Seadete värskendamine ..."</string>
     <string name="reverting_settings" msgid="4752151682666912828">"Seadete ennistamine…"</string>
     <string name="response_error" msgid="6674110501330139405">"Ootamatu vastus võrgust."</string>
     <string name="exception_error" msgid="7027667130619518211">"Võrgu või SIM-kaardi viga."</string>
+    <string name="stk_cc_ss_to_dial_error" msgid="2816779198916570502">"SS-taotlus muudeti DIAL-taotluseks."</string>
+    <string name="stk_cc_ss_to_ussd_error" msgid="7490626178582654236">"SS-taotlus muudeti USSD-taotluseks."</string>
+    <string name="stk_cc_ss_to_ss_error" msgid="5057846756489053759">"SS-taotlus muudeti uueks SS-taotluseks."</string>
     <string name="fdn_check_failure" msgid="18200614306525434">"Telefoni rakenduse Fikseeritud numbrite valimine seaded on sisse lülitatud. Selle tulemusena ei tööta kõik kõnega seotud funktsioonid."</string>
     <string name="radio_off_error" msgid="2304459933248513376">"Enne nende seadete vaatamist lülitage raadio sisse."</string>
     <string name="close_dialog" msgid="2365884406356986917">"OK"</string>
@@ -184,6 +180,7 @@
     <string name="preferred_network_mode_lte_wcdma_summary" msgid="9180775701594742750">"Eelistatud võrgurežiim: LTE / WCDMA"</string>
     <string name="preferred_network_mode_lte_gsm_umts_summary" msgid="633315028976225026">"Eelistatud võrgurežiim: LTE/GSM/UMTS"</string>
     <string name="preferred_network_mode_lte_cdma_summary" msgid="3722647806454528426">"Eelistatud võrgurežiim: LTE/CDMA"</string>
+    <string name="preferred_network_mode_tdscdma_summary" msgid="8021016193718678775">"Eelistatud võrgurežiim: TDSCDMA"</string>
   <string-array name="preferred_network_mode_choices">
     <item msgid="7886739962255042385">"LTE/WCDMA"</item>
     <item msgid="577652050447385699">"LTE"</item>
@@ -412,6 +409,7 @@
     <string name="puk2_blocked" msgid="3150263853077280049">"PUK2 on püsivalt blokeeritud."</string>
     <string name="pin2_attempts" msgid="720736232885011507">\n"Teil on veel <xliff:g id="NUMBER">%d</xliff:g> katset."</string>
     <string name="pin2_unblocked" msgid="7791600368153469078">"PIN-kood 2 ei ole enam blokeeritud"</string>
+    <string name="pin2_error_exception" msgid="1088689322248996699">"Võrgu või SIM-kaardi viga"</string>
     <string name="doneButton" msgid="2859593360997984240">"Valmis"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"Kõnepostinumber"</string>
     <string name="card_title_dialing" msgid="5769417478498348054">"Valimine"</string>
@@ -422,25 +420,15 @@
     <string name="card_title_on_hold" msgid="821463117892339942">"Ootel"</string>
     <string name="card_title_hanging_up" msgid="3999101620995182450">"Lõpetamisel"</string>
     <string name="card_title_in_call" msgid="6346543933068225205">"Kõne"</string>
-    <string name="notification_dialing" msgid="2107666444937350731">"Valimine"</string>
-    <string name="notification_missedCallTitle" msgid="7554385905572364535">"Vastamata kõne"</string>
-    <string name="notification_missedCallsTitle" msgid="1361677948941502522">"Vastamata kõned"</string>
-    <string name="notification_missedCallsMsg" msgid="4575787816055205600">"<xliff:g id="NUM_MISSED_CALLS">%s</xliff:g> vastamata kõnet"</string>
-    <string name="notification_missedCallTicker" msgid="504686252427747209">"Vastamata kõne helistajalt <xliff:g id="MISSED_CALL_FROM">%s</xliff:g>"</string>
-    <string name="notification_ongoing_call" msgid="7068688957273482989">"Käimasolev kõne"</string>
-    <string name="notification_on_hold" msgid="3480694969511790465">"Ootel"</string>
-    <string name="notification_incoming_call" msgid="2820429205043529642">"Sissetulev kõne"</string>
     <string name="notification_voicemail_title" msgid="8933468752045550523">"Uus kõnepost"</string>
     <string name="notification_voicemail_title_count" msgid="4366360747660929916">"Uus kõnepost (<xliff:g id="COUNT">%d</xliff:g>)"</string>
     <string name="notification_voicemail_text_format" msgid="4447323569453981685">"Valige <xliff:g id="VOICEMAIL_NUMBER">%s</xliff:g>"</string>
     <string name="notification_voicemail_no_vm_number" msgid="760963466895609716">"Kõneposti number teadmata"</string>
     <string name="notification_network_selection_title" msgid="4224455487793492772">"Teenus puudub"</string>
     <string name="notification_network_selection_text" msgid="2607085729661923269">"Valitud võrk (<xliff:g id="OPERATOR_NAME">%s</xliff:g>) pole saadaval"</string>
-    <string name="notification_action_end_call" msgid="6069460915123531620">"Lõpeta kõne"</string>
-    <string name="notification_missedCall_call_back" msgid="2684890353590890187">"Helista tagasi"</string>
-    <string name="notification_missedCall_message" msgid="3049928912736917988">"Sõnum"</string>
     <string name="incall_error_power_off" msgid="2947938060513306698">"Helistamiseks lülitage lennukirežiim välja."</string>
     <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"Helistamiseks lülitage lennukirežiim välja või looge ühendus traadita võrguga."</string>
+    <string name="incall_error_ecm_emergency_only" msgid="738708660612388692">"Muude kui hädaabikõne tegemiseks väljuge hädaabikõnede režiimist."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"Ei ole võrku registreeritud."</string>
     <string name="incall_error_out_of_service" msgid="4100065333878929223">"Mobiilsidevõrk pole saadaval."</string>
     <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"Mobiilivõrk pole saadaval. Helistamiseks looge ühendus traadita võrguga."</string>
@@ -545,8 +533,8 @@
     <string name="description_dial_button" msgid="7459705245418435351">"helista"</string>
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"Vibreerimine"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"Vibreerimine"</string>
+    <string name="voicemail_visual_voicemail_switch_title" msgid="5012622186976275457">"Visuaalne kõnepost"</string>
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"Heli"</string>
-    <string name="dial_pad_autocomplete" msgid="7683489952557536398">"Valimisklahv. autom. täitmine"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"Helin ja vibratsioon"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"Sisseehitatud SIM-kaardid"</string>
     <string name="enable_video_calling_title" msgid="7237253660669000899">"Videokõnede sisselülitamine"</string>
@@ -561,4 +549,5 @@
     <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"WiFi-kõne"</string>
     <string name="emergency_action_launch_hint" msgid="5841511849007540970">"Avamiseks puudutage uuesti"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"Sõnumi dekodeerimisel ilmnes viga."</string>
+    <string name="callFailed_cdma_activation" msgid="2307989779233262164">"SIM-kaart aktiveeris teenuse ja värskendas telefoni rändlusvõimeid."</string>
 </resources>

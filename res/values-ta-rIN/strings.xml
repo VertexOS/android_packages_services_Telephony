@@ -17,7 +17,7 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="phoneAppLabel" product="tablet" msgid="1107073389495104784">"செல்லுலார் தரவு"</string>
-    <string name="phoneAppLabel" product="default" msgid="906161039445636857">"ஃபோன்"</string>
+    <string name="phoneAppLabel" product="default" msgid="6790717591729922998">"ஃபோன் சேவைகள்"</string>
     <string name="emergencyDialerIconLabel" msgid="7812140032168171053">"அவசரகால டயலர்"</string>
     <string name="phoneIconLabel" msgid="2331230813161304895">"மொபைல்"</string>
     <string name="fdnListLabel" msgid="8630418672279521003">"FDN பட்டியல்"</string>
@@ -68,16 +68,9 @@
     <string name="phone_accounts_selection_header" msgid="1365215726106915865">"ஃபோன் கணக்குகள்"</string>
     <string name="phone_accounts_add_sip_account" msgid="2023821743341923271">"SIP கணக்கைச் சேர்"</string>
     <string name="phone_accounts_configure_account_settings" msgid="1361715069911607109">"கணக்கு அமைப்புகளை உள்ளமைக்கவும்"</string>
+    <string name="phone_accounts_all_calling_accounts" msgid="207619531589278471">"எல்லா அழைப்புக் கணக்குகளும்"</string>
+    <string name="phone_accounts_all_calling_accounts_summary" msgid="8594186415822657011">"அழைப்புகள் செய்வதற்கான கணக்குகளைத் தேர்ந்தெடுக்கவும்"</string>
     <string name="wifi_calling" msgid="739018212480165598">"வைஃபை அழைப்பு"</string>
-    <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"வைஃபை அழைப்பைப் பயன்படுத்தாதே"</string>
-    <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"அழைப்பு உதவியைப் பயன்படுத்தாதே"</string>
-    <string name="wifi_calling_call_assistant_none" msgid="6283702349285593683">"ஏதுமில்லை"</string>
-    <string name="wifi_calling_call_assistant" msgid="229102032881680320">"அழைப்பு உதவி"</string>
-    <string name="wifi_calling_use_call_assistant" msgid="8460024827012666199">"அழைப்பு உதவியைப் பயன்படுத்து"</string>
-    <string name="wifi_calling_select_call_assistant" msgid="9296558058772293">"அழைப்பு உதவியைத் தேர்வுசெய்க"</string>
-    <string name="wifi_calling_select_call_assistant_summary" msgid="164985727137156474">"அழைப்புகளுக்காகப் பயன்படுத்தப்படும் நெட்வொர்க்குகளை நிர்வகிக்கும்"</string>
-    <string name="wifi_calling_use_call_assistant_summary" msgid="6599987137133339698">"அழைப்புகளுக்குப் பயன்படுத்தப்படும் நெட்வொர்க்குகளை நிர்வகிக்க, பயன்பாடுகள் அல்லது சேவைகளை அனுமதிக்கும்"</string>
-    <string name="wifi_calling_call_assistant_configure" msgid="1092639708949670031">"உள்ளமை"</string>
     <string name="connection_service_default_label" msgid="1498481943805913754">"உள்ளமைக்கப்பட்ட இணைப்பு சேவை"</string>
     <string name="voicemail" msgid="8693759337917898954">"குரலஞ்சல்"</string>
     <string name="voicemail_settings_with_label" msgid="152724978380748296">"குரலஞ்சல் (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
@@ -107,31 +100,34 @@
     <string name="sum_cfu_enabled_indicator" msgid="4014187342724130197">"எல்லா அழைப்புகளையும் பகிர்"</string>
     <string name="sum_cfu_enabled" msgid="2450052502198827927">"<xliff:g id="PHONENUMBER">{0}</xliff:g> க்கு எல்லா அழைப்புகளையும் பகிர்"</string>
     <string name="sum_cfu_enabled_no_number" msgid="6591985777096823616">"எண் கிடைக்கவில்லை"</string>
-    <string name="sum_cfu_disabled" msgid="8384177689501334080">"முடக்கு"</string>
+    <string name="sum_cfu_disabled" msgid="8384177689501334080">"முடக்கத்தில்"</string>
     <string name="labelCFB" msgid="6139853033106283172">"பிஸியாக இருக்கும்போது"</string>
-    <string name="messageCFB" msgid="3711089705936187129">"பிஸியாக இருக்கும்போது இதில்"</string>
+    <string name="messageCFB" msgid="3711089705936187129">"பிஸியாக இருக்கும்போது:"</string>
     <string name="sum_cfb_enabled" msgid="5984198104833116690">"<xliff:g id="PHONENUMBER">{0}</xliff:g> க்குப் பகிர்"</string>
-    <string name="sum_cfb_disabled" msgid="4913145177320506827">"முடக்கு"</string>
+    <string name="sum_cfb_disabled" msgid="4913145177320506827">"முடக்கத்தில்"</string>
     <string name="disable_cfb_forbidden" msgid="3506984333877998061">"மொபைல் பிஸியாக இருக்கும்போது, அழைப்பு பகிர்தலை முடக்குவதை ஆபரேட்டர் ஆதரிக்கவில்லை."</string>
     <string name="labelCFNRy" msgid="1736067178393744351">"பதிலளிக்காமல் இருக்கும்போது"</string>
-    <string name="messageCFNRy" msgid="672317899884380374">"பதிலளிக்காதபோது இதில்"</string>
+    <string name="messageCFNRy" msgid="672317899884380374">"பதிலளிக்காதபோது:"</string>
     <string name="sum_cfnry_enabled" msgid="6955775691317662910">"<xliff:g id="PHONENUMBER">{0}</xliff:g> க்குப் பகிர்"</string>
-    <string name="sum_cfnry_disabled" msgid="3884684060443538097">"முடக்கு"</string>
+    <string name="sum_cfnry_disabled" msgid="3884684060443538097">"முடக்கத்தில்"</string>
     <string name="disable_cfnry_forbidden" msgid="4308233959150658058">"பதிலளிக்காமல் இருக்கும்போது, அழைப்பு பகிர்தலை முடக்குவதை ஆபரேட்டர் ஆதரிக்கவில்லை."</string>
     <string name="labelCFNRc" msgid="2614827454402079766">"தொடர்புகொள்ள முடியாமல் இருக்கும்போது"</string>
-    <string name="messageCFNRc" msgid="6380695421020295119">"தொடர்பு கிடைக்காதபோது இதில்"</string>
+    <string name="messageCFNRc" msgid="6380695421020295119">"தொடர்பு கிடைக்காதபோது:"</string>
     <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"<xliff:g id="PHONENUMBER">{0}</xliff:g> க்குப் பகிர்"</string>
     <string name="sum_cfnrc_disabled" msgid="7222141261321276464">"முடக்கப்பட்டது"</string>
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"மொபைல் தொடர்புகொள்ள முடியாத இடத்தில் இருக்கும்போது, அழைப்பு பகிர்தலை முடக்குவதை ஆபரேட்டர் ஆதரிக்கவில்லை."</string>
     <string name="updating_title" msgid="6146755386174019046">"அழைப்பு அமைப்பு"</string>
     <string name="call_settings_primary_user_only" msgid="5679923943740900965">"முதன்மை பயனர் மட்டுமே அழைப்பிற்கான அமைப்புகளை மாற்ற முடியும்."</string>
-    <string name="call_settings_with_label" msgid="89359812614544532">"அழைப்பு அமைப்புகள் (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="call_settings_with_label" msgid="3401177261468593519">"அமைப்புகள் (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="error_updating_title" msgid="7970259216988931777">"அழைப்பு அமைப்புகளில் பிழை"</string>
     <string name="reading_settings" msgid="1920291699287055284">"அமைப்புகளைப் படிக்கிறது…"</string>
     <string name="updating_settings" msgid="8171225533884883252">"அமைப்புகளைப் புதுப்பிக்கிறது…"</string>
     <string name="reverting_settings" msgid="4752151682666912828">"அமைப்புகளை மாற்றியமைக்கிறது…"</string>
     <string name="response_error" msgid="6674110501330139405">"நெட்வொர்க்கிலிருந்து எதிர்பார்த்திராத பதில்."</string>
     <string name="exception_error" msgid="7027667130619518211">"நெட்வொர்க் அல்லது சிம் கார்டு பிழை."</string>
+    <string name="stk_cc_ss_to_dial_error" msgid="2816779198916570502">"SS கோரிக்கையானது DIAL கோரிக்கைக்கு மாற்றப்பட்டது."</string>
+    <string name="stk_cc_ss_to_ussd_error" msgid="7490626178582654236">"SS கோரிக்கையானது USSD கோரிக்கைக்கு மாற்றப்பட்டது."</string>
+    <string name="stk_cc_ss_to_ss_error" msgid="5057846756489053759">"SS கோரிக்கையானது புதிய SS கோரிக்கைக்கு மாற்றப்பட்டது."</string>
     <string name="fdn_check_failure" msgid="18200614306525434">"மொபைல் பயன்பாட்டின் நிலையான அழைப்பு எண்களுக்கான அமைப்பு இயக்கப்பட்டது. இதன் விளைவாக, அழைப்பு தொடர்பான சில அம்சங்கள் செயல்படவில்லை."</string>
     <string name="radio_off_error" msgid="2304459933248513376">"அமைப்புகளைப் பார்ப்பதற்கு முன், ரேடியோவை இயக்கவும்."</string>
     <string name="close_dialog" msgid="2365884406356986917">"சரி"</string>
@@ -139,7 +135,7 @@
     <string name="disable" msgid="4678348128118573672">"முடக்கு"</string>
     <string name="change_num" msgid="239476305819844391">"புதுப்பி"</string>
   <string-array name="clir_display_values">
-    <item msgid="5560134294467334594">"இயல்பு நெட்வொர்க்"</item>
+    <item msgid="5560134294467334594">"நெட்வொர்க் பொருத்து"</item>
     <item msgid="7876195870037833661">"எண்ணை மறை"</item>
     <item msgid="1108394741608734023">"எண்ணைக் காட்டு"</item>
   </string-array>
@@ -184,6 +180,7 @@
     <string name="preferred_network_mode_lte_wcdma_summary" msgid="9180775701594742750">"தேர்ந்தெடுத்த நெட்வொர்க் பயன்முறை: LTE / WCDMA"</string>
     <string name="preferred_network_mode_lte_gsm_umts_summary" msgid="633315028976225026">"விருப்பமான நெட்வொர்க் முறை: LTE / GSM / UMTS"</string>
     <string name="preferred_network_mode_lte_cdma_summary" msgid="3722647806454528426">"பரிந்துரைக்கப்பட்ட நெட்வொர்க் பயன்முறை: LTE / CDMA"</string>
+    <string name="preferred_network_mode_tdscdma_summary" msgid="8021016193718678775">"விரும்பப்படும் நெட்வொர்க் பயன்முறை: TDSCDMA"</string>
   <string-array name="preferred_network_mode_choices">
     <item msgid="7886739962255042385">"LTE / WCDMA"</item>
     <item msgid="577652050447385699">"LTE"</item>
@@ -377,7 +374,7 @@
     <string name="fdn_failed" msgid="540018079008319747">"FDN செயல்பாடு தோல்வி."</string>
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"சிம் கார்டில் இருப்பதைப் படிக்கிறது…"</string>
     <string name="simContacts_empty" msgid="5270660846489561932">"சிம் கார்டில் தொடர்புகள் இல்லை."</string>
-    <string name="simContacts_title" msgid="1861472842524839921">"இறக்குமதிக்கு தொடர்புகளைத் தேர்ந்தெடுக்கவும்"</string>
+    <string name="simContacts_title" msgid="1861472842524839921">"ஏற்ற தொடர்புகளைத் தேர்ந்தெடு"</string>
     <string name="simContacts_airplaneMode" msgid="5254946758982621072">"SIM கார்டிலிருந்து தொடர்புகளை இறக்க, விமானப் பயன்முறையை முடக்கவும்."</string>
     <string name="enable_pin" msgid="5422767284133234860">"சிம்மின் பின்னை இயக்கு/முடக்கு"</string>
     <string name="change_pin" msgid="9174186126330785343">"சிம்மின் பின்னை மாற்று"</string>
@@ -386,7 +383,7 @@
     <string name="newPinLabel" msgid="207488227285336897">"புதிய பின்"</string>
     <string name="confirmPinLabel" msgid="257597715098070206">"புதிய பின்னை உறுதிப்படுத்தவும்"</string>
     <string name="badPin" msgid="8955102849303984935">"உள்ளிட்ட பழைய பின் தவறானது. மீண்டும் முயற்சிக்கவும்."</string>
-    <string name="mismatchPin" msgid="5923253370683071889">"உள்ளிட்ட PINகள் பொருந்தவில்லை. மீண்டும் முயற்சிக்கவும்."</string>
+    <string name="mismatchPin" msgid="5923253370683071889">"உள்ளிட்ட பின்கள் பொருந்தவில்லை. மீண்டும் முயற்சிக்கவும்."</string>
     <string name="invalidPin" msgid="5981171102258684792">"4 இலிருந்து 8 எண்கள் வரையுள்ள பின்னை உள்ளிடவும்."</string>
     <string name="disable_sim_pin" msgid="3419351358300716472">"சிம் பின்னை அழி"</string>
     <string name="enable_sim_pin" msgid="4845145659651484248">"சிம் பின்னை அமை"</string>
@@ -412,6 +409,7 @@
     <string name="puk2_blocked" msgid="3150263853077280049">"PUK2 தற்காலிகமாகத் தடுக்கப்பட்டது."</string>
     <string name="pin2_attempts" msgid="720736232885011507">\n"நீங்கள் <xliff:g id="NUMBER">%d</xliff:g> முறை முயற்சிக்கலாம்."</string>
     <string name="pin2_unblocked" msgid="7791600368153469078">"PIN2 இனி தடுக்கப்படாது"</string>
+    <string name="pin2_error_exception" msgid="1088689322248996699">"நெட்வொர்க் அல்லது சிம் கார்டு பிழை"</string>
     <string name="doneButton" msgid="2859593360997984240">"முடிந்தது"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"குரலஞ்சல் எண்"</string>
     <string name="card_title_dialing" msgid="5769417478498348054">"டயல் செய்கிறது"</string>
@@ -422,25 +420,15 @@
     <string name="card_title_on_hold" msgid="821463117892339942">"காத்திருப்பில்"</string>
     <string name="card_title_hanging_up" msgid="3999101620995182450">"துண்டிக்கிறது"</string>
     <string name="card_title_in_call" msgid="6346543933068225205">"அழைப்பில்"</string>
-    <string name="notification_dialing" msgid="2107666444937350731">"அழைக்கிறது"</string>
-    <string name="notification_missedCallTitle" msgid="7554385905572364535">"தவறிய அழைப்பு"</string>
-    <string name="notification_missedCallsTitle" msgid="1361677948941502522">"தவறிய அழைப்புகள்"</string>
-    <string name="notification_missedCallsMsg" msgid="4575787816055205600">"<xliff:g id="NUM_MISSED_CALLS">%s</xliff:g> தவறிய அழைப்புகள்"</string>
-    <string name="notification_missedCallTicker" msgid="504686252427747209">"<xliff:g id="MISSED_CALL_FROM">%s</xliff:g> இடமிருந்து தவறிய அழைப்பு"</string>
-    <string name="notification_ongoing_call" msgid="7068688957273482989">"செயலில் இருக்கும் அழைப்பு"</string>
-    <string name="notification_on_hold" msgid="3480694969511790465">"காத்திருப்பில்"</string>
-    <string name="notification_incoming_call" msgid="2820429205043529642">"உள்வரும் அழைப்பு"</string>
     <string name="notification_voicemail_title" msgid="8933468752045550523">"புதிய குரலஞ்சல்"</string>
     <string name="notification_voicemail_title_count" msgid="4366360747660929916">"புதிய குரலஞ்சல் (<xliff:g id="COUNT">%d</xliff:g>)"</string>
     <string name="notification_voicemail_text_format" msgid="4447323569453981685">"<xliff:g id="VOICEMAIL_NUMBER">%s</xliff:g> ஐ அழை"</string>
     <string name="notification_voicemail_no_vm_number" msgid="760963466895609716">"குரலஞ்சல் எண் அறியப்படவில்லை"</string>
     <string name="notification_network_selection_title" msgid="4224455487793492772">"சேவை இல்லை"</string>
     <string name="notification_network_selection_text" msgid="2607085729661923269">"தேர்ந்தெடுத்த நெட்வொர்க் (<xliff:g id="OPERATOR_NAME">%s</xliff:g>) கிடைக்கவில்லை"</string>
-    <string name="notification_action_end_call" msgid="6069460915123531620">"துண்டி"</string>
-    <string name="notification_missedCall_call_back" msgid="2684890353590890187">"திருப்பி அழை"</string>
-    <string name="notification_missedCall_message" msgid="3049928912736917988">"செய்தி"</string>
     <string name="incall_error_power_off" msgid="2947938060513306698">"அழைக்க, விமானப் பயன்முறையை முடக்கவும்."</string>
     <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"அழைக்க, விமானப் பயன்முறையை முடக்கவும் அல்லது வயர்லெஸ் நெட்வொர்க்குடன் இணைக்கவும்."</string>
+    <string name="incall_error_ecm_emergency_only" msgid="738708660612388692">"வழக்கமான அழைப்பிற்கு, அவசரகாலத் திரும்ப அழைக்கும் பயன்முறையிலிருந்து வெளியேறவும்."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"நெட்வொர்க்கில் பதிவுசெய்யப்படவில்லை."</string>
     <string name="incall_error_out_of_service" msgid="4100065333878929223">"செல்லுலார் நெட்வொர்க் கிடைக்கவில்லை."</string>
     <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"செல்லுலார் நெட்வொர்க் கிடைக்கவில்லை. அழைக்க, வயர்லெஸ் நெட்வொர்க்குடன் இணைக்கவும்."</string>
@@ -545,8 +533,8 @@
     <string name="description_dial_button" msgid="7459705245418435351">"டயல்"</string>
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"அதிர்வு"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"அதிர்வு"</string>
+    <string name="voicemail_visual_voicemail_switch_title" msgid="5012622186976275457">"விஷூவல் குரலஞ்சல்"</string>
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"ஒலி"</string>
-    <string name="dial_pad_autocomplete" msgid="7683489952557536398">"டயல்பேட் தன்னிரப்பி"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"ரிங்டோன் &amp; அதிர்வு"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"உள்ளமைந்த சிம் கார்டுகள்"</string>
     <string name="enable_video_calling_title" msgid="7237253660669000899">"வீடியோ அழைப்பை இயக்கு"</string>
@@ -561,4 +549,5 @@
     <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"வைஃபை அழைப்பு"</string>
     <string name="emergency_action_launch_hint" msgid="5841511849007540970">"திறக்க, மீண்டும் தட்டவும்"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"செய்தியைக் குறிவிலக்கும்போது பிழை ஏற்பட்டது."</string>
+    <string name="callFailed_cdma_activation" msgid="2307989779233262164">"ஏற்கனவே சிம் கார்டைப் பயன்படுத்தி சேவை இயக்கப்பட்டது மற்றும் மொபைலின் ரோமிங் செயல்திறன்கள் புதுப்பிக்கப்பட்டன."</string>
 </resources>

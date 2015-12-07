@@ -17,7 +17,7 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="phoneAppLabel" product="tablet" msgid="1107073389495104784">"Мобильные данные"</string>
-    <string name="phoneAppLabel" product="default" msgid="906161039445636857">"Телефон"</string>
+    <string name="phoneAppLabel" product="default" msgid="6790717591729922998">"Телефон – сервисы"</string>
     <string name="emergencyDialerIconLabel" msgid="7812140032168171053">"Экстренный вызов"</string>
     <string name="phoneIconLabel" msgid="2331230813161304895">"Телефон"</string>
     <string name="fdnListLabel" msgid="8630418672279521003">"Разрешенные номера"</string>
@@ -68,16 +68,9 @@
     <string name="phone_accounts_selection_header" msgid="1365215726106915865">"Аккаунты для звонков"</string>
     <string name="phone_accounts_add_sip_account" msgid="2023821743341923271">"Добавить SIP-аккаунт"</string>
     <string name="phone_accounts_configure_account_settings" msgid="1361715069911607109">"Задать настройки аккаунта"</string>
+    <string name="phone_accounts_all_calling_accounts" msgid="207619531589278471">"Все аккаунты для звонков"</string>
+    <string name="phone_accounts_all_calling_accounts_summary" msgid="8594186415822657011">"Выберите аккаунты, в которых можно совершать вызовы"</string>
     <string name="wifi_calling" msgid="739018212480165598">"Звонки по Wi-Fi"</string>
-    <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"Не использовать Wi-Fi для звонков"</string>
-    <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"Не использовать ассистент"</string>
-    <string name="wifi_calling_call_assistant_none" msgid="6283702349285593683">"Не использовать"</string>
-    <string name="wifi_calling_call_assistant" msgid="229102032881680320">"Ассистент для звонков"</string>
-    <string name="wifi_calling_use_call_assistant" msgid="8460024827012666199">"Использовать ассистент"</string>
-    <string name="wifi_calling_select_call_assistant" msgid="9296558058772293">"Выбрать ассистент для звонков"</string>
-    <string name="wifi_calling_select_call_assistant_summary" msgid="164985727137156474">"Настройка сети для звонков"</string>
-    <string name="wifi_calling_use_call_assistant_summary" msgid="6599987137133339698">"Разрешить приложениям или сервисам управлять сетями, которые используются для звонков"</string>
-    <string name="wifi_calling_call_assistant_configure" msgid="1092639708949670031">"Настроить"</string>
     <string name="connection_service_default_label" msgid="1498481943805913754">"Встроенная служба подключения"</string>
     <string name="voicemail" msgid="8693759337917898954">"Голосовая почта"</string>
     <string name="voicemail_settings_with_label" msgid="152724978380748296">"Голосовая почта (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
@@ -95,10 +88,10 @@
     <string name="sum_loading_settings" msgid="1826692909391168620">"Загрузка настроек…"</string>
     <string name="sum_hide_caller_id" msgid="1071407020290873782">"Скрывать номер при исходящих вызовах"</string>
     <string name="sum_show_caller_id" msgid="6768534125447290401">"Номер, отображающийся при исходящих вызовах"</string>
-    <string name="sum_default_caller_id" msgid="1954518825510901365">"Использовать стандартные настройки оператора для показа моего номера при исходящих вызовах"</string>
+    <string name="sum_default_caller_id" msgid="1954518825510901365">"Использовать стандартные настройки оператора для показа моего номера при исходящих вызовах."</string>
     <string name="labelCW" msgid="6120513814915920200">"Параллельный вызов"</string>
-    <string name="sum_cw_enabled" msgid="8083061901633671397">"Извещать меня о входящих вызовах во время разговора"</string>
-    <string name="sum_cw_disabled" msgid="3648693907300104575">"Извещать меня о входящих вызовах во время разговора"</string>
+    <string name="sum_cw_enabled" msgid="8083061901633671397">"Извещать меня о входящих вызовах во время разговора."</string>
+    <string name="sum_cw_disabled" msgid="3648693907300104575">"Извещать меня о входящих вызовах во время разговора."</string>
     <string name="call_forwarding_settings" msgid="3378927671091537173">"Переадресация"</string>
     <string name="call_forwarding_settings_with_label" msgid="8569489414006897127">"Переадресация (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="labelCF" msgid="2574386948026924737">"Переадресация вызовов"</string>
@@ -125,13 +118,16 @@
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"Ваш оператор не позволяет отключать переадресацию вызовов, если телефон находится вне зоны доступа."</string>
     <string name="updating_title" msgid="6146755386174019046">"Настройки вызовов"</string>
     <string name="call_settings_primary_user_only" msgid="5679923943740900965">"Настройки вызовов может изменить только основной пользователь."</string>
-    <string name="call_settings_with_label" msgid="89359812614544532">"Настройки (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="call_settings_with_label" msgid="3401177261468593519">"Настройки (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="error_updating_title" msgid="7970259216988931777">"Ошибка настройки вызовов"</string>
     <string name="reading_settings" msgid="1920291699287055284">"Чтение настроек…"</string>
     <string name="updating_settings" msgid="8171225533884883252">"Обновление настроек…"</string>
     <string name="reverting_settings" msgid="4752151682666912828">"Возврат к предыдущим настройкам…"</string>
     <string name="response_error" msgid="6674110501330139405">"Неожиданный отклик сети."</string>
     <string name="exception_error" msgid="7027667130619518211">"Ошибка сети или SIM-карты."</string>
+    <string name="stk_cc_ss_to_dial_error" msgid="2816779198916570502">"SS-запрос преобразован в DIAL-запрос."</string>
+    <string name="stk_cc_ss_to_ussd_error" msgid="7490626178582654236">"SS-запрос преобразован в USSD-запрос."</string>
+    <string name="stk_cc_ss_to_ss_error" msgid="5057846756489053759">"SS-запрос преобразован в новый SS-запрос."</string>
     <string name="fdn_check_failure" msgid="18200614306525434">"Разрешенные номера в приложении \"Телефон\" включены. В результате некоторые функции вызовов недоступны."</string>
     <string name="radio_off_error" msgid="2304459933248513376">"Чтобы увидеть настройки, включите приемопередатчик."</string>
     <string name="close_dialog" msgid="2365884406356986917">"ОК"</string>
@@ -184,6 +180,7 @@
     <string name="preferred_network_mode_lte_wcdma_summary" msgid="9180775701594742750">"Предпочтительный режим: LTE/WCDMA"</string>
     <string name="preferred_network_mode_lte_gsm_umts_summary" msgid="633315028976225026">"Предпочтительный режим: LTE/GSM/UMTS"</string>
     <string name="preferred_network_mode_lte_cdma_summary" msgid="3722647806454528426">"Предпочтительная сеть: LTE или CDMA"</string>
+    <string name="preferred_network_mode_tdscdma_summary" msgid="8021016193718678775">"Рекомендованный сетевой режим: TDSCDMA"</string>
   <string-array name="preferred_network_mode_choices">
     <item msgid="7886739962255042385">"LTE/WCDMA"</item>
     <item msgid="577652050447385699">"LTE"</item>
@@ -414,6 +411,7 @@
     <string name="puk2_blocked" msgid="3150263853077280049">"Код PUK2 заблокирован навсегда"</string>
     <string name="pin2_attempts" msgid="720736232885011507">\n"Осталось попыток: <xliff:g id="NUMBER">%d</xliff:g>."</string>
     <string name="pin2_unblocked" msgid="7791600368153469078">"Код PIN2 разблокирован"</string>
+    <string name="pin2_error_exception" msgid="1088689322248996699">"Ошибка сети или SIM-карты"</string>
     <string name="doneButton" msgid="2859593360997984240">"Готово"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"Номер голосовой почты"</string>
     <string name="card_title_dialing" msgid="5769417478498348054">"Набор номера"</string>
@@ -424,25 +422,15 @@
     <string name="card_title_on_hold" msgid="821463117892339942">"Ждет ответа"</string>
     <string name="card_title_hanging_up" msgid="3999101620995182450">"Завершение разговора"</string>
     <string name="card_title_in_call" msgid="6346543933068225205">"Поступающий вызов"</string>
-    <string name="notification_dialing" msgid="2107666444937350731">"Набор номера"</string>
-    <string name="notification_missedCallTitle" msgid="7554385905572364535">"Пропущенный вызов"</string>
-    <string name="notification_missedCallsTitle" msgid="1361677948941502522">"Пропущенные вызовы"</string>
-    <string name="notification_missedCallsMsg" msgid="4575787816055205600">"Пропущенных вызовов: <xliff:g id="NUM_MISSED_CALLS">%s</xliff:g>"</string>
-    <string name="notification_missedCallTicker" msgid="504686252427747209">"Пропущенные вызовы от абонента <xliff:g id="MISSED_CALL_FROM">%s</xliff:g>"</string>
-    <string name="notification_ongoing_call" msgid="7068688957273482989">"Текущий вызов"</string>
-    <string name="notification_on_hold" msgid="3480694969511790465">"На удержании"</string>
-    <string name="notification_incoming_call" msgid="2820429205043529642">"Входящий вызов"</string>
     <string name="notification_voicemail_title" msgid="8933468752045550523">"Новое сообщение голосовой почты"</string>
     <string name="notification_voicemail_title_count" msgid="4366360747660929916">"Новое сообщение голосовой почты (<xliff:g id="COUNT">%d</xliff:g>)"</string>
     <string name="notification_voicemail_text_format" msgid="4447323569453981685">"Позвонить <xliff:g id="VOICEMAIL_NUMBER">%s</xliff:g>"</string>
     <string name="notification_voicemail_no_vm_number" msgid="760963466895609716">"Номер голосовой почты неизвестен"</string>
     <string name="notification_network_selection_title" msgid="4224455487793492772">"Сеть не найдена"</string>
     <string name="notification_network_selection_text" msgid="2607085729661923269">"Выбранная сеть (<xliff:g id="OPERATOR_NAME">%s</xliff:g>) недоступна."</string>
-    <string name="notification_action_end_call" msgid="6069460915123531620">"Завершить разговор"</string>
-    <string name="notification_missedCall_call_back" msgid="2684890353590890187">"Позвонить"</string>
-    <string name="notification_missedCall_message" msgid="3049928912736917988">"Написать"</string>
     <string name="incall_error_power_off" msgid="2947938060513306698">"Чтобы позвонить, отключите режим полета."</string>
     <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"Чтобы позвонить, отключите режим полета и подключитесь к Wi-Fi."</string>
+    <string name="incall_error_ecm_emergency_only" msgid="738708660612388692">"Чтобы сделать обычный звонок, выйдите из режима экстренных обратных вызовов."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"Нет регистрации в сети."</string>
     <string name="incall_error_out_of_service" msgid="4100065333878929223">"Мобильная сеть недоступна."</string>
     <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"Мобильная сеть недоступна. Чтобы позвонить, подключитесь к Wi-Fi."</string>
@@ -467,7 +455,7 @@
     <string name="onscreenEndCallText" msgid="4403855834875398585">"Завершить"</string>
     <string name="onscreenShowDialpadText" msgid="8561805492659639893">"Кнопки"</string>
     <string name="onscreenMuteText" msgid="5011369181754261374">"Откл. звук"</string>
-    <string name="onscreenAddCallText" msgid="5140385634712287403">"+ вызов"</string>
+    <string name="onscreenAddCallText" msgid="5140385634712287403">"Добавить вызов"</string>
     <string name="onscreenMergeCallsText" msgid="6640195098064538950">"Соединить"</string>
     <string name="onscreenSwapCallsText" msgid="1602990689244030047">"Перевод звонка"</string>
     <string name="onscreenManageCallsText" msgid="5473231160123254154">"Управление вызовами"</string>
@@ -553,8 +541,8 @@
     <string name="description_dial_button" msgid="7459705245418435351">"набор номера"</string>
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"Вибросигнал"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"Вибросигнал"</string>
+    <string name="voicemail_visual_voicemail_switch_title" msgid="5012622186976275457">"Визуальная голосовая почта"</string>
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"Звук"</string>
-    <string name="dial_pad_autocomplete" msgid="7683489952557536398">"Автозаполнение номера"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"Рингтон и вибросигнал"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"Встроенные SIM-карты"</string>
     <string name="enable_video_calling_title" msgid="7237253660669000899">"Включить видеовстречи"</string>
@@ -563,10 +551,11 @@
     <string name="enable_video_calling_dialog_close" msgid="7411471282167927991">"Закрыть"</string>
     <string name="sim_label_emergency_calls" msgid="4847699229529306397">"Экстренные вызовы"</string>
     <string name="sim_description_emergency_calls" msgid="7535215397212301562">"Только экстренные вызовы"</string>
-    <string name="sim_description_default" msgid="4778679519938775515">"SIM-карта, разъем: <xliff:g id="SLOT_ID">%s</xliff:g>"</string>
+    <string name="sim_description_default" msgid="4778679519938775515">"SIM-карта, слот: <xliff:g id="SLOT_ID">%s</xliff:g>"</string>
     <string name="accessibility_settings_activity_title" msgid="8562004288733103868">"Специальные возможности"</string>
     <string name="status_hint_label_incoming_wifi_call" msgid="8772915926382037499">"Входящий Wi-Fi-звонок"</string>
     <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"Wi-Fi-звонок"</string>
     <string name="emergency_action_launch_hint" msgid="5841511849007540970">"Нажмите ещё раз, чтобы открыть"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"При расшифровке сообщения произошла ошибка."</string>
+    <string name="callFailed_cdma_activation" msgid="2307989779233262164">"В вашем телефоне уже настроен роуминг и активирована SIM-карта."</string>
 </resources>

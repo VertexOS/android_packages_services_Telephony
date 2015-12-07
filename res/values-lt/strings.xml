@@ -17,10 +17,10 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="phoneAppLabel" product="tablet" msgid="1107073389495104784">"Korinio ryšio duomenys"</string>
-    <string name="phoneAppLabel" product="default" msgid="906161039445636857">"Telefonas"</string>
+    <string name="phoneAppLabel" product="default" msgid="6790717591729922998">"Telefono paslaugos"</string>
     <string name="emergencyDialerIconLabel" msgid="7812140032168171053">"Pagalbos numerio rinkiklis"</string>
     <string name="phoneIconLabel" msgid="2331230813161304895">"Telefonas"</string>
-    <string name="fdnListLabel" msgid="8630418672279521003">"FDN sąrašas"</string>
+    <string name="fdnListLabel" msgid="8630418672279521003">"FRN sąrašas"</string>
     <string name="unknown" msgid="6878797917991465859">"Nežinomas"</string>
     <string name="private_num" msgid="6713286113000232309">"Privatus numeris"</string>
     <string name="payphone" msgid="4793877574636445118">"Taksofonas"</string>
@@ -68,16 +68,9 @@
     <string name="phone_accounts_selection_header" msgid="1365215726106915865">"Telefono paskyros"</string>
     <string name="phone_accounts_add_sip_account" msgid="2023821743341923271">"Pridėti SIP paskyrą"</string>
     <string name="phone_accounts_configure_account_settings" msgid="1361715069911607109">"Paskyros nustatymų konfigūravimas"</string>
+    <string name="phone_accounts_all_calling_accounts" msgid="207619531589278471">"Visos skambinimo paskyros"</string>
+    <string name="phone_accounts_all_calling_accounts_summary" msgid="8594186415822657011">"Pasirinkti, iš kurių paskyrų galima skambinti"</string>
     <string name="wifi_calling" msgid="739018212480165598">"„Wi-Fi“ skambinimas"</string>
-    <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"Nenaudoti „Wi-Fi“ skambinimo"</string>
-    <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"Nenaudoti skambučių pagelbiklio"</string>
-    <string name="wifi_calling_call_assistant_none" msgid="6283702349285593683">"Nėra"</string>
-    <string name="wifi_calling_call_assistant" msgid="229102032881680320">"Skambučių pagelbiklis"</string>
-    <string name="wifi_calling_use_call_assistant" msgid="8460024827012666199">"Naudoti skambučių pagelbiklį"</string>
-    <string name="wifi_calling_select_call_assistant" msgid="9296558058772293">"Pasirinkti skambučių pagelbiklį"</string>
-    <string name="wifi_calling_select_call_assistant_summary" msgid="164985727137156474">"Tvarkyti tinklus, naudojamus skambučiams atlikti"</string>
-    <string name="wifi_calling_use_call_assistant_summary" msgid="6599987137133339698">"Leisti programoms ar paslaugoms tvarkyti skambučiams naudojamus tinklus"</string>
-    <string name="wifi_calling_call_assistant_configure" msgid="1092639708949670031">"Konfigūruoti"</string>
     <string name="connection_service_default_label" msgid="1498481943805913754">"Įtaisytosios ryšio paslaugos"</string>
     <string name="voicemail" msgid="8693759337917898954">"Balso paštas"</string>
     <string name="voicemail_settings_with_label" msgid="152724978380748296">"Balso paštas (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
@@ -114,7 +107,7 @@
     <string name="sum_cfb_disabled" msgid="4913145177320506827">"Išjungta"</string>
     <string name="disable_cfb_forbidden" msgid="3506984333877998061">"Operatorius nepalaiko skambučių peradresavimo išjungimo, kai telefonas užimtas."</string>
     <string name="labelCFNRy" msgid="1736067178393744351">"Kai neatsako"</string>
-    <string name="messageCFNRy" msgid="672317899884380374">"Numeris kai neatsiliepiama"</string>
+    <string name="messageCFNRy" msgid="672317899884380374">"Numeris, kai neatsiliepiama"</string>
     <string name="sum_cfnry_enabled" msgid="6955775691317662910">"Peradresuojama į <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfnry_disabled" msgid="3884684060443538097">"Išjungta"</string>
     <string name="disable_cfnry_forbidden" msgid="4308233959150658058">"Operatorius nepalaiko skambučių peradresavimo išjungimo, kai neatsiliepiama."</string>
@@ -125,19 +118,22 @@
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"Operatorius nepalaiko skambučių peradresavimo išjungimo, kai telefonas nepasiekiamas."</string>
     <string name="updating_title" msgid="6146755386174019046">"Skambinimo nustatymai"</string>
     <string name="call_settings_primary_user_only" msgid="5679923943740900965">"Skambučių nustatymus gali keisti tik pagrindinis naudotojas."</string>
-    <string name="call_settings_with_label" msgid="89359812614544532">"Skambučių nustatymai (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="call_settings_with_label" msgid="3401177261468593519">"Nustatymai (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="error_updating_title" msgid="7970259216988931777">"Skambinimo nustatymų klaida"</string>
     <string name="reading_settings" msgid="1920291699287055284">"Skaitomi nustatymai..."</string>
     <string name="updating_settings" msgid="8171225533884883252">"Atnaujinami nustatymai..."</string>
     <string name="reverting_settings" msgid="4752151682666912828">"Grąžinami nustatymai…"</string>
     <string name="response_error" msgid="6674110501330139405">"Netikėtas atsakas iš tinklo."</string>
     <string name="exception_error" msgid="7027667130619518211">"Tinklo ar SIM kortelės klaida."</string>
+    <string name="stk_cc_ss_to_dial_error" msgid="2816779198916570502">"SS užklausa pakeista į DIAL užklausą."</string>
+    <string name="stk_cc_ss_to_ussd_error" msgid="7490626178582654236">"SS užklausa pakeista į USSD užklausą."</string>
+    <string name="stk_cc_ss_to_ss_error" msgid="5057846756489053759">"SS užklausa pakeista į naują SS užklausą."</string>
     <string name="fdn_check_failure" msgid="18200614306525434">"Įjungtas jūsų telefono programos fiksuotojo rinkimo numerių nustatymas. Todėl neveikia kai kurios su skambinimu susijusios funkcijos."</string>
     <string name="radio_off_error" msgid="2304459933248513376">"Prieš žiūrėdami šiuos nustatymus, įjunkite radiją."</string>
     <string name="close_dialog" msgid="2365884406356986917">"Gerai"</string>
     <string name="enable" msgid="7248657275000173526">"Įjungti"</string>
     <string name="disable" msgid="4678348128118573672">"Išjungti"</string>
-    <string name="change_num" msgid="239476305819844391">"Naujinimas"</string>
+    <string name="change_num" msgid="239476305819844391">"Naujinti"</string>
   <string-array name="clir_display_values">
     <item msgid="5560134294467334594">"Numatytieji tinklo nustatymai"</item>
     <item msgid="7876195870037833661">"Slėpti numerį"</item>
@@ -184,6 +180,7 @@
     <string name="preferred_network_mode_lte_wcdma_summary" msgid="9180775701594742750">"Pageidaujamas tinklo režimas: LTE / WCDMA"</string>
     <string name="preferred_network_mode_lte_gsm_umts_summary" msgid="633315028976225026">"Pageidautinas tinklo režimas: LTE / GSM / UMTS"</string>
     <string name="preferred_network_mode_lte_cdma_summary" msgid="3722647806454528426">"Pageidaujamas tinklo režimas: LTE / CDMA"</string>
+    <string name="preferred_network_mode_tdscdma_summary" msgid="8021016193718678775">"Pageidaujamas tinklo režimas: TDSCDMA"</string>
   <string-array name="preferred_network_mode_choices">
     <item msgid="7886739962255042385">"LTE / WCDMA"</item>
     <item msgid="577652050447385699">"LTE"</item>
@@ -335,18 +332,18 @@
     <string name="carrier_settings_title" msgid="9028166176523012300">"Operatoriaus nustatymai"</string>
     <string name="fdn" msgid="7878832555095183202">"Fiksuoto rinkimo numeriai"</string>
     <string name="fdn_with_label" msgid="187084204115493366">"Fiksuotojo rinkimo numeriai (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
-    <string name="manage_fdn_list" msgid="8777755791892122369">"FDN sąrašas"</string>
-    <string name="fdn_list_with_label" msgid="7437232552210469217">"Fiksuotojo rinkimo numerių sąrašas (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="manage_fdn_list" msgid="8777755791892122369">"FRN sąrašas"</string>
+    <string name="fdn_list_with_label" msgid="7437232552210469217">"FRN sąrašas (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="fdn_activation" msgid="2156479741307463576">"FDN aktyvinimas"</string>
     <string name="fdn_enabled" msgid="5238109009915521240">"Įgalinti fiksuoto rinkimo numeriai"</string>
     <string name="fdn_disabled" msgid="4700049736675368279">"Fiksuoto rinkimo numeriai išjungti"</string>
-    <string name="enable_fdn" msgid="3740191529180493851">"Įgalinti FDN"</string>
+    <string name="enable_fdn" msgid="3740191529180493851">"Įgalinti FRN"</string>
     <string name="disable_fdn" msgid="7944020890722540616">"Išjungti FDN"</string>
     <string name="change_pin2" msgid="2153563695382176676">"Pakeisti PIN2"</string>
     <string name="enable_fdn_ok" msgid="7215588870329688132">"Išjungti FDN"</string>
-    <string name="disable_fdn_ok" msgid="5727046928930740173">"Įgalinti FDN"</string>
+    <string name="disable_fdn_ok" msgid="5727046928930740173">"Įgalinti FRN"</string>
     <string name="sum_fdn" msgid="1959399454900272878">"Valdyti fiksuoto rinkimo numerius"</string>
-    <string name="sum_fdn_change_pin" msgid="6666549734792827932">"Pakeisti PIN kodą FDN prieigai"</string>
+    <string name="sum_fdn_change_pin" msgid="6666549734792827932">"Pakeisti PIN kodą FRN prieigai"</string>
     <string name="sum_fdn_manage_list" msgid="8431088265332628316">"Valdyti telefono numerių sąrašą"</string>
     <string name="voice_privacy" msgid="3776841382844614716">"Balso privatumas"</string>
     <string name="voice_privacy_summary" msgid="3159383389833516214">"Įgalinti patobulintą privatumo režimą"</string>
@@ -376,7 +373,7 @@
     <string name="pin2_or_fdn_invalid" msgid="6025144083384701197">"FDN nebuvo atnaujintas. Įvestas PIN2 kodas buvo netinkamas arba telefono numeris buvo atmestas."</string>
     <string name="fdn_failed" msgid="540018079008319747">"Nepavyko atlikti FDN operacijos."</string>
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"Skaitoma iš SIM kortelės..."</string>
-    <string name="simContacts_empty" msgid="5270660846489561932">"SIM kortelėje adresatų nėra."</string>
+    <string name="simContacts_empty" msgid="5270660846489561932">"SIM kortelėje kontaktų nėra."</string>
     <string name="simContacts_title" msgid="1861472842524839921">"Pasirinkti importuojamus adresatus"</string>
     <string name="simContacts_airplaneMode" msgid="5254946758982621072">"Išjunkite lėktuvo režimą, kad galėtumėte importuoti kontaktus iš SIM kortelės."</string>
     <string name="enable_pin" msgid="5422767284133234860">"Įgalinti / išjungti SIM kortelės PIN"</string>
@@ -412,6 +409,7 @@
     <string name="puk2_blocked" msgid="3150263853077280049">"PUK2 kodas visam laikui užblokuotas."</string>
     <string name="pin2_attempts" msgid="720736232885011507">\n"Liko <xliff:g id="NUMBER">%d</xliff:g> bandym."</string>
     <string name="pin2_unblocked" msgid="7791600368153469078">"PIN2 kodas atblokuotas"</string>
+    <string name="pin2_error_exception" msgid="1088689322248996699">"Tinklo ar SIM kortelės klaida"</string>
     <string name="doneButton" msgid="2859593360997984240">"Atlikta"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"Balso pašto numeris"</string>
     <string name="card_title_dialing" msgid="5769417478498348054">"Renkamas numeris"</string>
@@ -422,25 +420,15 @@
     <string name="card_title_on_hold" msgid="821463117892339942">"Sulaikyta"</string>
     <string name="card_title_hanging_up" msgid="3999101620995182450">"Baigiamas pokalbis"</string>
     <string name="card_title_in_call" msgid="6346543933068225205">"Skambinant"</string>
-    <string name="notification_dialing" msgid="2107666444937350731">"Renkamas numeris"</string>
-    <string name="notification_missedCallTitle" msgid="7554385905572364535">"Praleistas skambutis"</string>
-    <string name="notification_missedCallsTitle" msgid="1361677948941502522">"Praleisti skambučiai"</string>
-    <string name="notification_missedCallsMsg" msgid="4575787816055205600">"<xliff:g id="NUM_MISSED_CALLS">%s</xliff:g> praleisti (-ų) skambučiai (-ų)"</string>
-    <string name="notification_missedCallTicker" msgid="504686252427747209">"praleistas skambutis nuo <xliff:g id="MISSED_CALL_FROM">%s</xliff:g>"</string>
-    <string name="notification_ongoing_call" msgid="7068688957273482989">"Vykstantis pokalbis"</string>
-    <string name="notification_on_hold" msgid="3480694969511790465">"Sulaikyta"</string>
-    <string name="notification_incoming_call" msgid="2820429205043529642">"Skambina"</string>
     <string name="notification_voicemail_title" msgid="8933468752045550523">"Naujas balso pašto pranešimas"</string>
     <string name="notification_voicemail_title_count" msgid="4366360747660929916">"Naujas balso pašto pranešimas (<xliff:g id="COUNT">%d</xliff:g>)"</string>
     <string name="notification_voicemail_text_format" msgid="4447323569453981685">"Rinkti <xliff:g id="VOICEMAIL_NUMBER">%s</xliff:g>"</string>
     <string name="notification_voicemail_no_vm_number" msgid="760963466895609716">"Nežinomas balso pašto numeris"</string>
     <string name="notification_network_selection_title" msgid="4224455487793492772">"Nėra paslaugos"</string>
     <string name="notification_network_selection_text" msgid="2607085729661923269">"Pasirinktas tinklas (<xliff:g id="OPERATOR_NAME">%s</xliff:g>) negalimas"</string>
-    <string name="notification_action_end_call" msgid="6069460915123531620">"Padėti ragelį"</string>
-    <string name="notification_missedCall_call_back" msgid="2684890353590890187">"Perskambinti"</string>
-    <string name="notification_missedCall_message" msgid="3049928912736917988">"Pranešimas"</string>
     <string name="incall_error_power_off" msgid="2947938060513306698">"Išjunkite lėktuvo režimą, kad galėtumėte skambinti."</string>
     <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"Išjunkite lėktuvo režimą arba prisijunkite prie belaidžio ryšio tinklo, kad galėtumėte skambinti."</string>
+    <string name="incall_error_ecm_emergency_only" msgid="738708660612388692">"Jei norite skambinti ne pagalbos numeriu, išjunkite atgalinio skambinimo pagalbos numeriu režimą."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"Neregistruota tinkle."</string>
     <string name="incall_error_out_of_service" msgid="4100065333878929223">"Korinis tinklas nepasiekiamas"</string>
     <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"Mobiliojo ryšio tinklas nepasiekiamas. Prisijunkite prie belaidžio ryšio tinklo, kad galėtumėte skambinti."</string>
@@ -543,7 +531,7 @@
     <string name="voicemail_settings" msgid="72448049107749316">"Sąranka"</string>
     <string name="voicemail_number_not_set" msgid="6724904736891087856">"&lt;Nenustatyta&gt;"</string>
     <string name="other_settings" msgid="3672912580359716394">"Kiti skambučio nustatymai"</string>
-    <string name="calling_via_template" msgid="4839419581866928142">"Skambinama naudojantis „<xliff:g id="PROVIDER_NAME">%s</xliff:g>“ paslaugomis"</string>
+    <string name="calling_via_template" msgid="4839419581866928142">"Skam. naudojant „<xliff:g id="PROVIDER_NAME">%s</xliff:g>“"</string>
     <string name="contactPhoto" msgid="4713193418046639466">"kontakto nuotrauka"</string>
     <string name="goPrivate" msgid="865837794424530980">"naudoti privatų režimą"</string>
     <string name="selectContact" msgid="781975788478987237">"pasirinkti kontaktą"</string>
@@ -551,8 +539,8 @@
     <string name="description_dial_button" msgid="7459705245418435351">"rinkti numerį"</string>
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"Vibruoti"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"Vibruoti"</string>
+    <string name="voicemail_visual_voicemail_switch_title" msgid="5012622186976275457">"Vaizdinis balso paštas"</string>
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"Garsas"</string>
-    <string name="dial_pad_autocomplete" msgid="7683489952557536398">"Autom. skamb. skyd. užbaig."</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"Skambėjimo tonas ir vibracija"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"Įtaisytosios SIM kortelės"</string>
     <string name="enable_video_calling_title" msgid="7237253660669000899">"Įjungti vaizdo skambutį"</string>
@@ -567,4 +555,5 @@
     <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"„Wi-Fi“ skambutis"</string>
     <string name="emergency_action_launch_hint" msgid="5841511849007540970">"Palieskite dar kartą, kad atidarytumėte"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"Iškoduojant pranešimą įvyko klaida."</string>
+    <string name="callFailed_cdma_activation" msgid="2307989779233262164">"SIM kortelė suaktyvino paslaugą ir atnaujino telefono tarptinklinio duomenų ryšio funkcijas."</string>
 </resources>

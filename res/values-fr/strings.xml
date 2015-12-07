@@ -17,7 +17,7 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="phoneAppLabel" product="tablet" msgid="1107073389495104784">"Données mobiles"</string>
-    <string name="phoneAppLabel" product="default" msgid="906161039445636857">"Téléphone"</string>
+    <string name="phoneAppLabel" product="default" msgid="6790717591729922998">"Services téléphoniques"</string>
     <string name="emergencyDialerIconLabel" msgid="7812140032168171053">"Appels d\'urgence"</string>
     <string name="phoneIconLabel" msgid="2331230813161304895">"Téléphone"</string>
     <string name="fdnListLabel" msgid="8630418672279521003">"Liste de numéros autorisés"</string>
@@ -68,25 +68,18 @@
     <string name="phone_accounts_selection_header" msgid="1365215726106915865">"Comptes téléphone"</string>
     <string name="phone_accounts_add_sip_account" msgid="2023821743341923271">"Ajouter un compte SIP"</string>
     <string name="phone_accounts_configure_account_settings" msgid="1361715069911607109">"Configurer les paramètres du compte"</string>
+    <string name="phone_accounts_all_calling_accounts" msgid="207619531589278471">"Tous les comptes téléphoniques"</string>
+    <string name="phone_accounts_all_calling_accounts_summary" msgid="8594186415822657011">"Sélectionner les comptes pour lesquels les appels sont activés"</string>
     <string name="wifi_calling" msgid="739018212480165598">"Appels Wi-Fi"</string>
-    <string name="wifi_calling_do_not_use" msgid="7491443219113013323">"Ne pas utiliser les appels Wi-Fi"</string>
-    <string name="wifi_calling_do_not_use_call_assistant" msgid="5420257095556091770">"Ne pas utiliser l\'assistant d\'appel"</string>
-    <string name="wifi_calling_call_assistant_none" msgid="6283702349285593683">"Aucun"</string>
-    <string name="wifi_calling_call_assistant" msgid="229102032881680320">"Assistant d\'appel"</string>
-    <string name="wifi_calling_use_call_assistant" msgid="8460024827012666199">"Utiliser un assistant d\'appel"</string>
-    <string name="wifi_calling_select_call_assistant" msgid="9296558058772293">"Sélectionner un assistant d\'appel"</string>
-    <string name="wifi_calling_select_call_assistant_summary" msgid="164985727137156474">"Gérer les réseaux utilisés pour les appels avec"</string>
-    <string name="wifi_calling_use_call_assistant_summary" msgid="6599987137133339698">"Laisser les applications ou les services gérer les réseaux utilisés pour les appels"</string>
-    <string name="wifi_calling_call_assistant_configure" msgid="1092639708949670031">"Configurer"</string>
     <string name="connection_service_default_label" msgid="1498481943805913754">"Service de connexion intégré"</string>
     <string name="voicemail" msgid="8693759337917898954">"Messagerie vocale"</string>
-    <string name="voicemail_settings_with_label" msgid="152724978380748296">"Messagerie vocale (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="voicemail_settings_with_label" msgid="152724978380748296">"Mess. vocale (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="voicemail_abbreviated" msgid="2215592488517217448">"MV :"</string>
     <string name="networks" msgid="8873030692174541976">"Opérateurs de réseau"</string>
     <string name="cell_broadcast_settings" msgid="8740238216690502563">"Messages d\'urgence"</string>
     <string name="call_settings" msgid="6112441768261754562">"Paramètres d\'appel"</string>
     <string name="additional_gsm_call_settings" msgid="1391795981938800617">"Autres paramètres"</string>
-    <string name="additional_gsm_call_settings_with_label" msgid="1385241520708457376">"Paramètres supplémentaires (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="additional_gsm_call_settings_with_label" msgid="1385241520708457376">"Param. suppl. (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="sum_gsm_call_settings" msgid="4076647190996778012">"Autres paramètres d\'appel \"GSM uniquement\""</string>
     <string name="additional_cdma_call_settings" msgid="8628958775721886909">"Autres paramètres d\'appel CDMA"</string>
     <string name="sum_cdma_call_settings" msgid="284753265979035549">"Autres paramètres d\'appel \"CDMA uniquement\""</string>
@@ -100,7 +93,7 @@
     <string name="sum_cw_enabled" msgid="8083061901633671397">"Me signaler les appels entrants lorsque je suis en communication"</string>
     <string name="sum_cw_disabled" msgid="3648693907300104575">"Me signaler les appels entrants lorsque je suis en communication"</string>
     <string name="call_forwarding_settings" msgid="3378927671091537173">"Paramètres de transfert d\'appel"</string>
-    <string name="call_forwarding_settings_with_label" msgid="8569489414006897127">"Paramètres du transfert d\'appel (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="call_forwarding_settings_with_label" msgid="8569489414006897127">"Transfert d\'appel (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="labelCF" msgid="2574386948026924737">"Transfert d\'appel"</string>
     <string name="labelCFU" msgid="8147177368148660600">"Toujours transférer"</string>
     <string name="messageCFU" msgid="3560082430662923687">"Toujours utiliser ce numéro"</string>
@@ -125,13 +118,16 @@
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"Votre opérateur ne permet pas la désactivation du transfert d\'appel lorsque votre téléphone n\'est pas joignable."</string>
     <string name="updating_title" msgid="6146755386174019046">"Paramètres d\'appel"</string>
     <string name="call_settings_primary_user_only" msgid="5679923943740900965">"Seul l\'utilisateur principal peut modifier les paramètres d\'appel."</string>
-    <string name="call_settings_with_label" msgid="89359812614544532">"Paramètres d\'appel (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="call_settings_with_label" msgid="3401177261468593519">"Paramètres (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="error_updating_title" msgid="7970259216988931777">"Erreur des paramètres d\'appel"</string>
     <string name="reading_settings" msgid="1920291699287055284">"Lecture des paramètres..."</string>
     <string name="updating_settings" msgid="8171225533884883252">"Mise à jour des paramètres..."</string>
     <string name="reverting_settings" msgid="4752151682666912828">"Rétablissement des paramètres…"</string>
     <string name="response_error" msgid="6674110501330139405">"Réponse inattendue du réseau"</string>
     <string name="exception_error" msgid="7027667130619518211">"Erreur de réseau ou de carte SIM."</string>
+    <string name="stk_cc_ss_to_dial_error" msgid="2816779198916570502">"La requête SS a été remplacée par une requête DIAL."</string>
+    <string name="stk_cc_ss_to_ussd_error" msgid="7490626178582654236">"La requête SS a été remplacée par une requête USSD."</string>
+    <string name="stk_cc_ss_to_ss_error" msgid="5057846756489053759">"La requête SS a été remplacée par une autre requête SS."</string>
     <string name="fdn_check_failure" msgid="18200614306525434">"Les numéros autorisés sont activés dans l\'application de votre téléphone. Par conséquent, certaines fonctionnalités d\'appel ne fonctionnent pas."</string>
     <string name="radio_off_error" msgid="2304459933248513376">"Activez le signal radio avant d\'afficher ces paramètres."</string>
     <string name="close_dialog" msgid="2365884406356986917">"OK"</string>
@@ -150,7 +146,7 @@
     <string name="no_change" msgid="3186040086622435212">"Aucune modification n\'a été apportée."</string>
     <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"Choisissez un service de messagerie vocale."</string>
     <string name="voicemail_default" msgid="2001233554889016880">"Votre opérateur"</string>
-    <string name="mobile_networks" msgid="2843854043339307375">"Paramètres du réseau mobile"</string>
+    <string name="mobile_networks" msgid="2843854043339307375">"Paramètres réseau mobile"</string>
     <string name="label_available" msgid="1181658289009300430">"Réseaux disponibles"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"Recherche..."</string>
     <string name="empty_networks_list" msgid="4249426905018815316">"Aucun réseau trouvé."</string>
@@ -184,6 +180,7 @@
     <string name="preferred_network_mode_lte_wcdma_summary" msgid="9180775701594742750">"Mode réseau préféré : LTE / WCDMA"</string>
     <string name="preferred_network_mode_lte_gsm_umts_summary" msgid="633315028976225026">"Mode réseau préféré : LTE/GSM/UMTS"</string>
     <string name="preferred_network_mode_lte_cdma_summary" msgid="3722647806454528426">"Mode réseau préféré : LTE/CDMA"</string>
+    <string name="preferred_network_mode_tdscdma_summary" msgid="8021016193718678775">"Mode réseau préféré : TDSCDMA"</string>
   <string-array name="preferred_network_mode_choices">
     <item msgid="7886739962255042385">"LTE/WCDMA"</item>
     <item msgid="577652050447385699">"LTE"</item>
@@ -334,9 +331,9 @@
     <string name="cdma_lte_data_service" msgid="4255018217292548962">"Configurer service données"</string>
     <string name="carrier_settings_title" msgid="9028166176523012300">"Paramètres de l\'opérateur"</string>
     <string name="fdn" msgid="7878832555095183202">"Numéros autorisés"</string>
-    <string name="fdn_with_label" msgid="187084204115493366">"Numéros autorisés (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="fdn_with_label" msgid="187084204115493366">"Num. autorisés (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="manage_fdn_list" msgid="8777755791892122369">"Liste de numéros autorisés"</string>
-    <string name="fdn_list_with_label" msgid="7437232552210469217">"Liste de numéros autorisés (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="fdn_list_with_label" msgid="7437232552210469217">"Liste num. aut. (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="fdn_activation" msgid="2156479741307463576">"Activation des numéros autorisés"</string>
     <string name="fdn_enabled" msgid="5238109009915521240">"La liste de numéros autorisés est activée."</string>
     <string name="fdn_disabled" msgid="4700049736675368279">"Liste de numéros autorisés désactivée"</string>
@@ -377,7 +374,7 @@
     <string name="fdn_failed" msgid="540018079008319747">"Échec de l\'opération liée aux numéros autorisés."</string>
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"Lecture de la carte SIM…"</string>
     <string name="simContacts_empty" msgid="5270660846489561932">"Aucun contact n\'a été trouvé sur votre carte SIM."</string>
-    <string name="simContacts_title" msgid="1861472842524839921">"Sélection des contacts à importer"</string>
+    <string name="simContacts_title" msgid="1861472842524839921">"Sélection des contacts"</string>
     <string name="simContacts_airplaneMode" msgid="5254946758982621072">"Désactivez le mode Avion pour importer des contacts depuis la carte SIM."</string>
     <string name="enable_pin" msgid="5422767284133234860">"Activer/désactiver le code PIN de la carte SIM"</string>
     <string name="change_pin" msgid="9174186126330785343">"Modifier le code PIN de la carte SIM"</string>
@@ -412,6 +409,7 @@
     <string name="puk2_blocked" msgid="3150263853077280049">"La clé PUK2 est bloquée de manière définitive."</string>
     <string name="pin2_attempts" msgid="720736232885011507">\n"Il vous reste <xliff:g id="NUMBER">%d</xliff:g> tentatives."</string>
     <string name="pin2_unblocked" msgid="7791600368153469078">"Le code PIN2 n\'est plus bloqué."</string>
+    <string name="pin2_error_exception" msgid="1088689322248996699">"Erreur de réseau ou de carte SIM."</string>
     <string name="doneButton" msgid="2859593360997984240">"OK"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"N° messagerie vocale"</string>
     <string name="card_title_dialing" msgid="5769417478498348054">"Appel en cours…"</string>
@@ -422,25 +420,15 @@
     <string name="card_title_on_hold" msgid="821463117892339942">"En attente"</string>
     <string name="card_title_hanging_up" msgid="3999101620995182450">"Fin de l\'appel.."</string>
     <string name="card_title_in_call" msgid="6346543933068225205">"Appel en cours"</string>
-    <string name="notification_dialing" msgid="2107666444937350731">"Numérotation en cours…"</string>
-    <string name="notification_missedCallTitle" msgid="7554385905572364535">"Appel manqué"</string>
-    <string name="notification_missedCallsTitle" msgid="1361677948941502522">"Appels manqués"</string>
-    <string name="notification_missedCallsMsg" msgid="4575787816055205600">"<xliff:g id="NUM_MISSED_CALLS">%s</xliff:g> appels manqués"</string>
-    <string name="notification_missedCallTicker" msgid="504686252427747209">"Appel manqué de <xliff:g id="MISSED_CALL_FROM">%s</xliff:g>"</string>
-    <string name="notification_ongoing_call" msgid="7068688957273482989">"Appel en cours"</string>
-    <string name="notification_on_hold" msgid="3480694969511790465">"En attente"</string>
-    <string name="notification_incoming_call" msgid="2820429205043529642">"Appel entrant"</string>
     <string name="notification_voicemail_title" msgid="8933468752045550523">"Nouveau message vocal"</string>
     <string name="notification_voicemail_title_count" msgid="4366360747660929916">"Nouveaux messages vocaux (<xliff:g id="COUNT">%d</xliff:g>)"</string>
     <string name="notification_voicemail_text_format" msgid="4447323569453981685">"Composer le <xliff:g id="VOICEMAIL_NUMBER">%s</xliff:g>"</string>
     <string name="notification_voicemail_no_vm_number" msgid="760963466895609716">"Numéro de messagerie vocale inconnu"</string>
     <string name="notification_network_selection_title" msgid="4224455487793492772">"Aucun service"</string>
     <string name="notification_network_selection_text" msgid="2607085729661923269">"Réseau sélectionné (<xliff:g id="OPERATOR_NAME">%s</xliff:g>) non disponible"</string>
-    <string name="notification_action_end_call" msgid="6069460915123531620">"Raccrocher"</string>
-    <string name="notification_missedCall_call_back" msgid="2684890353590890187">"Rappeler"</string>
-    <string name="notification_missedCall_message" msgid="3049928912736917988">"Message"</string>
     <string name="incall_error_power_off" msgid="2947938060513306698">"Désactivez le mode Avion pour passer un appel."</string>
     <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"Désactivez le mode Avion ou connectez-vous à un réseau sans fil pour passer un appel."</string>
+    <string name="incall_error_ecm_emergency_only" msgid="738708660612388692">"Veuillez quitter le mode de rappel d\'urgence pour passer un appel standard."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"Non enregistré sur le réseau."</string>
     <string name="incall_error_out_of_service" msgid="4100065333878929223">"Réseau mobile non disponible."</string>
     <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"Le réseau mobile n\'est pas disponible. Connectez-vous à un réseau sans fil pour passer un appel."</string>
@@ -545,8 +533,8 @@
     <string name="description_dial_button" msgid="7459705245418435351">"composer"</string>
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"Vibreur"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"Vibreur"</string>
+    <string name="voicemail_visual_voicemail_switch_title" msgid="5012622186976275457">"Messagerie vocale visuelle"</string>
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"Sonnerie"</string>
-    <string name="dial_pad_autocomplete" msgid="7683489952557536398">"Clavier à saisie semi-automatique"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"Sonnerie et vibreur"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"Cartes SIM intégrées"</string>
     <string name="enable_video_calling_title" msgid="7237253660669000899">"Activer les appels vidéo"</string>
@@ -561,4 +549,5 @@
     <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"Appel Wi-Fi"</string>
     <string name="emergency_action_launch_hint" msgid="5841511849007540970">"Appuyer à nouveau pour ouvrir"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"Une erreur s\'est produite lors du décodage du message."</string>
+    <string name="callFailed_cdma_activation" msgid="2307989779233262164">"Votre service a été activé et les fonctionnalités d\'itinérance de votre téléphone ont été mises à jour via une carte SIM."</string>
 </resources>
