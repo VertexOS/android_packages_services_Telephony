@@ -145,6 +145,10 @@ public class PhoneUtils {
     private static AlertDialog sUssdDialog = null;
     private static StringBuilder sUssdMsg = new StringBuilder();
 
+    private static final ComponentName PSTN_CONNECTION_SERVICE_COMPONENT =
+            new ComponentName("com.android.phone",
+                    "com.android.services.telephony.TelephonyConnectionService");
+
     /**
      * Handler that tracks the connections and updates the value of the
      * Mute settings for each connection as needed.
@@ -2511,7 +2515,7 @@ public class PhoneUtils {
     }
 
     private static ComponentName getPstnConnectionServiceName() {
-        return new ComponentName(PhoneGlobals.getInstance(), TelephonyConnectionService.class);
+        return PSTN_CONNECTION_SERVICE_COMPONENT;
     }
 
     private static Phone getPhoneFromIccId(String iccId) {

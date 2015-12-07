@@ -7,6 +7,7 @@ import android.content.pm.ResolveInfo;
 import android.graphics.drawable.Icon;
 import android.net.sip.SipManager;
 import android.os.Bundle;
+import android.os.UserManager;
 import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
@@ -150,7 +151,7 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
             getPreferenceScreen().removePreference(mAccountList);
         }
 
-        if (SipUtil.isVoipSupported(getActivity())) {
+        if (isPrimaryUser() && SipUtil.isVoipSupported(getActivity())) {
             mSipSharedPreferences = new SipSharedPreferences(getActivity());
 
             mUseSipCalling = (ListPreference)
@@ -449,5 +450,14 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
         }
 
         return intent;
+    }
+
+    /**
+     * @return Whether the current user is the primary user.
+     */
+    private boolean isPrimaryUser() {
+        final UserManager userManager = (UserManager) getActivity()
+                .getSystemService(Context.USER_SERVICE);
+        return userManager.isPrimaryUser();
     }
 }
