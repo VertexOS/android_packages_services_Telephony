@@ -252,26 +252,6 @@ public class PhoneUtils {
                 answered = true;
 
                 setAudioMode();
-
-                // Check is phone in any dock, and turn on speaker accordingly
-                final boolean speakerActivated = activateSpeakerIfDocked(phone);
-
-                final BluetoothManager btManager = app.getBluetoothManager();
-
-                // When answering a phone call, the user will move the phone near to her/his ear
-                // and start conversation, without checking its speaker status. If some other
-                // application turned on the speaker mode before the call and didn't turn it off,
-                // Phone app would need to be responsible for the speaker phone.
-                // Here, we turn off the speaker if
-                // - the phone call is the first in-coming call,
-                // - we did not activate speaker by ourselves during the process above, and
-                // - Bluetooth headset is not in use.
-                if (isRealIncomingCall && !speakerActivated && isSpeakerOn(app)
-                        && !btManager.isBluetoothHeadsetAudioOn()) {
-                    // This is not an error but might cause users' confusion. Add log just in case.
-                    Log.i(LOG_TAG, "Forcing speaker off due to new incoming call...");
-                    turnOnSpeaker(app, false, true);
-                }
             } catch (CallStateException ex) {
                 Log.w(LOG_TAG, "answerCall: caught " + ex, ex);
 
@@ -669,20 +649,6 @@ public class PhoneUtils {
             startGetCallerInfo(context, connection, null, null, gatewayInfo);
 
             setAudioMode();
-
-            if (DBG) log("about to activate speaker");
-            // Check is phone in any dock, and turn on speaker accordingly
-            final boolean speakerActivated = activateSpeakerIfDocked(phone);
-
-            final BluetoothManager btManager = app.getBluetoothManager();
-
-            // See also similar logic in answerCall().
-            if (initiallyIdle && !speakerActivated && isSpeakerOn(app)
-                    && !btManager.isBluetoothHeadsetAudioOn()) {
-                // This is not an error but might cause users' confusion. Add log just in case.
-                Log.i(LOG_TAG, "Forcing speaker off when initiating a new outgoing call...");
-                PhoneUtils.turnOnSpeaker(app, false, true);
-            }
         }
 
         return status;
@@ -2195,35 +2161,6 @@ public class PhoneUtils {
         number = PhoneNumberUtils.extractNetworkPortion(number);
         return PhoneNumberUtils.isGlobalPhoneNumber(number);
     }
-
-   /**
-    * This function is called when phone answers or places a call.
-    * Check if the phone is in a car dock or desk dock.
-    * If yes, turn on the speaker, when no wired or BT headsets are connected.
-    * Otherwise do nothing.
-    * @return true if activated
-    */
-    private static boolean activateSpeakerIfDocked(Phone phone) {
-        if (DBG) log("activateSpeakerIfDocked()...");
-
-        boolean activated = false;
-        if (PhoneGlobals.mDockState != Intent.EXTRA_DOCK_STATE_UNDOCKED) {
-            if (DBG) log("activateSpeakerIfDocked(): In a dock -> may need to turn on speaker.");
-            final PhoneGlobals app = PhoneGlobals.getInstance();
-
-            // TODO: This function should move to AudioRouter
-            final BluetoothManager btManager = app.getBluetoothManager();
-            //final WiredHeadsetManager wiredHeadset = app.getWiredHeadsetManager();
-            //final AudioRouter audioRouter = app.getAudioRouter();
-
-            /*if (!wiredHeadset.isHeadsetPlugged() && !btManager.isBluetoothHeadsetAudioOn()) {
-                //audioRouter.setSpeaker(true);
-                activated = true;
-            }*/
-        }
-        return activated;
-    }
-
 
     /**
      * Returns whether the phone is in ECM ("Emergency Callback Mode") or not.
