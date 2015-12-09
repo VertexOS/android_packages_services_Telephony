@@ -22,7 +22,6 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.Network;
-import android.net.NetworkCapabilities;
 import android.net.NetworkRequest;
 import android.net.Uri;
 import android.provider.VoicemailContract;
@@ -36,16 +35,18 @@ import com.android.phone.PhoneUtils;
 import com.android.phone.vvm.omtp.OmtpVvmCarrierConfigHelper;
 import com.android.phone.vvm.omtp.imap.ImapHelper;
 import com.android.phone.vvm.omtp.sync.OmtpVvmSourceManager;
+import com.android.phone.vvm.omtp.sync.VvmNetworkRequestCallback;
 
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 public class FetchVoicemailReceiver extends BroadcastReceiver {
+
     private static final String TAG = "FetchVoicemailReceiver";
 
     final static String[] PROJECTION = new String[] {
-        Voicemails.SOURCE_DATA,      // 0
-        Voicemails.PHONE_ACCOUNT_ID, // 1
+            Voicemails.SOURCE_DATA,      // 0
+            Voicemails.PHONE_ACCOUNT_ID, // 1
     };
 
     public static final int SOURCE_DATA = 0;
@@ -60,7 +61,7 @@ public class FetchVoicemailReceiver extends BroadcastReceiver {
     private ContentResolver mContentResolver;
     private Uri mUri;
     private NetworkRequest mNetworkRequest;
-    private OmtpVvmNetworkRequestCallback mNetworkCallback;
+    private VvmNetworkRequestCallback mNetworkCallback;
     private Context mContext;
     private String mUid;
     private ConnectivityManager mConnectivityManager;
@@ -115,18 +116,9 @@ public class FetchVoicemailReceiver extends BroadcastReceiver {
                     OmtpVvmCarrierConfigHelper carrierConfigHelper =
                             new OmtpVvmCarrierConfigHelper(context, subId);
 
-                    if (TelephonyManager.VVM_TYPE_CVVM.equals(carrierConfigHelper.getVvmType())) {
-                        fetchVoicemail(null);
-                    } else {
-                        mNetworkRequest = new NetworkRequest.Builder()
-                                .addTransportType(NetworkCapabilities.TRANSPORT_CELLULAR)
-                                .addCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
-                                .setNetworkSpecifier(Integer.toString(subId))
-                                .build();
-
-                        mNetworkCallback = new OmtpVvmNetworkRequestCallback();
-                        requestNetwork();
-                    }
+                    mNetworkCallback = new fetchVoicemailNetworkRequestCallback(context,
+                            mPhoneAccount);
+                    mNetworkCallback.requestNetwork();
                 }
             } finally {
                 cursor.close();
@@ -134,20 +126,17 @@ public class FetchVoicemailReceiver extends BroadcastReceiver {
         }
     }
 
-    private class OmtpVvmNetworkRequestCallback extends ConnectivityManager.NetworkCallback {
+    private class fetchVoicemailNetworkRequestCallback extends VvmNetworkRequestCallback {
+
+        public fetchVoicemailNetworkRequestCallback(Context context,
+                PhoneAccountHandle phoneAccount) {
+            super(context, phoneAccount);
+        }
+
         @Override
         public void onAvailable(final Network network) {
+            super.onAvailable(network);
             fetchVoicemail(network);
-        }
-
-        @Override
-        public void onLost(Network network) {
-            releaseNetwork();
-        }
-
-        @Override
-        public void onUnavailable() {
-            releaseNetwork();
         }
     }
 
@@ -156,44 +145,28 @@ public class FetchVoicemailReceiver extends BroadcastReceiver {
         executor.execute(new Runnable() {
             @Override
             public void run() {
-                while (mRetryCount > 0) {
-                    ImapHelper imapHelper = new ImapHelper(mContext, mPhoneAccount, network);
-                    if (!imapHelper.isSuccessfullyInitialized()) {
-                        Log.w(TAG, "Can't retrieve Imap credentials.");
-                        // releaseNetwork() will check if the network callback exists
-                        releaseNetwork();
-                        return;
-                    }
+                try {
+                    while (mRetryCount > 0) {
+                        ImapHelper imapHelper = new ImapHelper(mContext, mPhoneAccount, network);
+                        if (!imapHelper.isSuccessfullyInitialized()) {
+                            Log.w(TAG, "Can't retrieve Imap credentials.");
+                            return;
+                        }
 
-                    boolean success = imapHelper.fetchVoicemailPayload(
-                            new VoicemailFetchedCallback(mContext, mUri), mUid);
-                    if (!success && mRetryCount > 0) {
-                        mRetryCount--;
-                    } else {
-                        releaseNetwork();
-                        return;
+                        boolean success = imapHelper.fetchVoicemailPayload(
+                                new VoicemailFetchedCallback(mContext, mUri), mUid);
+                        if (!success && mRetryCount > 0) {
+                            mRetryCount--;
+                        } else {
+                            return;
+                        }
+                    }
+                } finally {
+                    if (mNetworkCallback != null) {
+                        mNetworkCallback.releaseNetwork();
                     }
                 }
             }
         });
-    }
-
-    private void requestNetwork() {
-        getConnectivityManager().requestNetwork(
-                mNetworkRequest, mNetworkCallback, NETWORK_REQUEST_TIMEOUT_MILLIS);
-    }
-
-    private void releaseNetwork() {
-        if (mNetworkCallback != null) {
-            getConnectivityManager().unregisterNetworkCallback(mNetworkCallback);
-        }
-    }
-
-    private ConnectivityManager getConnectivityManager() {
-        if (mConnectivityManager == null) {
-            mConnectivityManager = (ConnectivityManager) mContext.getSystemService(
-                    Context.CONNECTIVITY_SERVICE);
-        }
-        return mConnectivityManager;
     }
 }
