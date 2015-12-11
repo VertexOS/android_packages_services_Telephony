@@ -276,6 +276,15 @@ abstract class TelephonyConnection extends Connection {
         public void onExtrasChanged(Bundle extras) {
             mHandler.obtainMessage(MSG_CONNECTION_EXTRAS_CHANGED, extras).sendToTarget();
         }
+
+        /**
+         * Handles the phone exiting ECM mode by updating the connection capabilities.  During an
+         * ongoing call, if ECM mode is exited, we will re-enable mute for CDMA calls.
+         */
+        @Override
+        public void onExitedEcmMode() {
+            handleExitedEcmMode();
+        }
     };
 
     private com.android.internal.telephony.Connection mOriginalConnection;
@@ -339,7 +348,9 @@ abstract class TelephonyConnection extends Connection {
     private final Set<TelephonyConnectionListener> mTelephonyListeners = Collections.newSetFromMap(
             new ConcurrentHashMap<TelephonyConnectionListener, Boolean>(8, 0.9f, 1));
 
-    protected TelephonyConnection(com.android.internal.telephony.Connection originalConnection) {
+    protected TelephonyConnection(com.android.internal.telephony.Connection originalConnection,
+            String callId) {
+        setTelecomCallId(callId);
         if (originalConnection != null) {
             setOriginalConnection(originalConnection);
         }
@@ -606,6 +617,7 @@ abstract class TelephonyConnection extends Connection {
         clearOriginalConnection();
         mOriginalConnectionExtras.clear();
         mOriginalConnection = originalConnection;
+        mOriginalConnection.setTelecomCallId(getTelecomCallId());
         getPhone().registerForPreciseCallStateChanged(
                 mHandler, MSG_PRECISE_CALL_STATE_CHANGED, null);
         getPhone().registerForHandoverStateChanged(
@@ -911,7 +923,7 @@ abstract class TelephonyConnection extends Connection {
      * Note: We post this to the mHandler to ensure that if a conference must be created as a
      * result of the multiparty state change, the conference creation happens on the correct
      * thread.  This ensures that the thread check in
-     * {@link com.android.internal.telephony.PhoneBase#checkCorrectThread(android.os.Handler)}
+     * {@link com.android.internal.telephony.Phone#checkCorrectThread(android.os.Handler)}
      * does not fire.
      *
      * @param isMultiParty {@code true} if this connection is multiparty, {@code false} otherwise.
@@ -1182,6 +1194,12 @@ abstract class TelephonyConnection extends Connection {
         }
     }
 
+    /**
+     * Handles exiting ECM mode.
+     */
+    protected void handleExitedEcmMode() {
+        updateConnectionCapabilities();
+    }
 
     /**
      * Provides a mapping from extras keys which may be found in the
@@ -1210,6 +1228,8 @@ abstract class TelephonyConnection extends Connection {
         StringBuilder sb = new StringBuilder();
         sb.append("[TelephonyConnection objId:");
         sb.append(System.identityHashCode(this));
+        sb.append(" telecomCallID:");
+        sb.append(getTelecomCallId());
         sb.append(" type:");
         if (isImsConnection()) {
             sb.append("ims");

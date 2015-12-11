@@ -41,9 +41,7 @@ import com.android.internal.telephony.IccCardConstants;
 import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneConstants;
 import com.android.internal.telephony.PhoneFactory;
-import com.android.internal.telephony.PhoneProxy;
 import com.android.internal.telephony.SubscriptionController;
-import com.android.internal.telephony.cdma.CDMAPhone;
 import com.android.phone.MMIDialogActivity;
 import com.android.phone.PhoneUtils;
 import com.android.phone.R;
@@ -278,7 +276,8 @@ public class TelephonyConnectionService extends ConnectionService {
         }
 
         final TelephonyConnection connection =
-                createConnectionFor(phone, null, true /* isOutgoing */, request.getAccountHandle());
+                createConnectionFor(phone, null, true /* isOutgoing */, request.getAccountHandle(),
+                        request.getTelecomCallId());
         if (connection == null) {
             return Connection.createFailedConnection(
                     DisconnectCauseUtil.toTelecomDisconnectCause(
@@ -353,7 +352,7 @@ public class TelephonyConnectionService extends ConnectionService {
 
         Connection connection =
                 createConnectionFor(phone, originalConnection, false /* isOutgoing */,
-                        request.getAccountHandle());
+                        request.getAccountHandle(), request.getTelecomCallId());
         if (connection == null) {
             return Connection.createCanceledConnection();
         } else {
@@ -419,7 +418,7 @@ public class TelephonyConnectionService extends ConnectionService {
         TelephonyConnection connection =
                 createConnectionFor(phone, unknownConnection,
                         !unknownConnection.isIncoming() /* isOutgoing */,
-                        request.getAccountHandle());
+                        request.getAccountHandle(), request.getTelecomCallId());
 
         if (connection == null) {
             return Connection.createCanceledConnection();
@@ -481,15 +480,16 @@ public class TelephonyConnectionService extends ConnectionService {
             Phone phone,
             com.android.internal.telephony.Connection originalConnection,
             boolean isOutgoing,
-            PhoneAccountHandle phoneAccountHandle) {
+            PhoneAccountHandle phoneAccountHandle,
+            String telecomCallId) {
         TelephonyConnection returnConnection = null;
         int phoneType = phone.getPhoneType();
         if (phoneType == TelephonyManager.PHONE_TYPE_GSM) {
-            returnConnection = new GsmConnection(originalConnection);
+            returnConnection = new GsmConnection(originalConnection, telecomCallId);
         } else if (phoneType == TelephonyManager.PHONE_TYPE_CDMA) {
             boolean allowMute = allowMute(phone);
             returnConnection = new CdmaConnection(
-                    originalConnection, mEmergencyTonePlayer, allowMute, isOutgoing);
+                    originalConnection, mEmergencyTonePlayer, allowMute, isOutgoing, telecomCallId);
         }
         if (returnConnection != null) {
             // Listen to Telephony specific callbacks from the connection
@@ -578,12 +578,8 @@ public class TelephonyConnectionService extends ConnectionService {
         // For CDMA phones, check if we are in Emergency Callback Mode (ECM).  Mute is disallowed
         // in ECM mode.
         if (phone.getPhoneType() == TelephonyManager.PHONE_TYPE_CDMA) {
-            PhoneProxy phoneProxy = (PhoneProxy)phone;
-            CDMAPhone cdmaPhone = (CDMAPhone)phoneProxy.getActivePhone();
-            if (cdmaPhone != null) {
-                if (cdmaPhone.isInEcm()) {
-                    return false;
-                }
+            if (phone.isInEcm()) {
+                return false;
             }
         }
 

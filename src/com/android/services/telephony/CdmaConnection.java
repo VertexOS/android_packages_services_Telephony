@@ -63,7 +63,7 @@ final class CdmaConnection extends TelephonyConnection {
     /**
      * {@code True} if the CDMA connection should allow mute.
      */
-    private final boolean mAllowMute;
+    private boolean mAllowMute;
     private final boolean mIsOutgoing;
     // Queue of pending short-DTMF characters.
     private final Queue<Character> mDtmfQueue = new LinkedList<>();
@@ -77,8 +77,9 @@ final class CdmaConnection extends TelephonyConnection {
             Connection connection,
             EmergencyTonePlayer emergencyTonePlayer,
             boolean allowMute,
-            boolean isOutgoing) {
-        super(connection);
+            boolean isOutgoing,
+            String telecomCallId) {
+        super(connection, telecomCallId);
         mEmergencyTonePlayer = emergencyTonePlayer;
         mAllowMute = allowMute;
         mIsOutgoing = isOutgoing;
@@ -145,7 +146,7 @@ final class CdmaConnection extends TelephonyConnection {
     @Override
     public TelephonyConnection cloneConnection() {
         CdmaConnection cdmaConnection = new CdmaConnection(getOriginalConnection(),
-                mEmergencyTonePlayer, mAllowMute, mIsOutgoing);
+                mEmergencyTonePlayer, mAllowMute, mIsOutgoing, getTelecomCallId());
         return cdmaConnection;
     }
 
@@ -284,5 +285,16 @@ final class CdmaConnection extends TelephonyConnection {
         return phone != null &&
                 PhoneNumberUtils.isLocalEmergencyNumber(
                     phone.getContext(), getAddress().getSchemeSpecificPart());
+    }
+
+    /**
+     * Called when ECM mode is exited; set the connection to allow mute and update the connection
+     * capabilities.
+     */
+    @Override
+    protected void handleExitedEcmMode() {
+        // We allow mute upon existing ECM mode and rebuild the capabilities.
+        mAllowMute = true;
+        super.handleExitedEcmMode();
     }
 }

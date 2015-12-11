@@ -80,12 +80,9 @@ import static com.android.internal.telephony.PhoneConstants.SUBSCRIPTION_KEY;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Objects;
 
 /**
  * Implementation of the ITelephony interface.
@@ -2460,14 +2457,20 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     public String getLine1NumberForDisplay(int subId, String callingPackage) {
         // This is open to apps with WRITE_SMS.
         if (!canReadPhoneNumber(callingPackage, "getLine1NumberForDisplay")) {
+            if (DBG_MERGE) log("getLine1NumberForDisplay returning null due to permission");
             return null;
         }
 
         String iccId = getIccId(subId);
         if (iccId != null) {
             String numberPrefKey = PREF_CARRIERS_NUMBER_PREFIX + iccId;
+            if (DBG_MERGE) {
+                log("getLine1NumberForDisplay returning " +
+                        mTelephonySharedPreferences.getString(numberPrefKey, null));
+            }
             return mTelephonySharedPreferences.getString(numberPrefKey, null);
         }
+        if (DBG_MERGE) log("getLine1NumberForDisplay returning null as iccId is null");
         return null;
     }
 
@@ -2748,7 +2751,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     }
 
     /**
-     * Besides READ_PHONE_STATE, WRITE_SMS also allows apps to get phone numbers.
+     * Besides READ_PHONE_STATE, WRITE_SMS and READ_SMS also allow apps to get phone numbers.
      */
     private boolean canReadPhoneNumber(String callingPackage, String message) {
         // Default SMS app can always read it.
@@ -2758,11 +2761,19 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         }
         try {
             return canReadPhoneState(callingPackage, message);
-        } catch (SecurityException e) {
-            // Can be read with READ_SMS too.
-            mApp.enforceCallingOrSelfPermission(android.Manifest.permission.READ_SMS, message);
-            return mAppOps.noteOp(AppOpsManager.OP_READ_SMS,
-                    Binder.getCallingUid(), callingPackage) == AppOpsManager.MODE_ALLOWED;
+        } catch (SecurityException readPhoneStateSecurityException) {
+            try {
+                // Can be read with READ_SMS too.
+                mApp.enforceCallingOrSelfPermission(android.Manifest.permission.READ_SMS, message);
+                return mAppOps.noteOp(AppOpsManager.OP_READ_SMS,
+                        Binder.getCallingUid(), callingPackage) == AppOpsManager.MODE_ALLOWED;
+            } catch (SecurityException readSmsSecurityException) {
+                // Throw exception with message including both READ_PHONE_STATE and READ_SMS
+                // permissions
+                throw new SecurityException(message + ": Neither user " + Binder.getCallingUid() +
+                        " nor current process has " + android.Manifest.permission.READ_PHONE_STATE +
+                        " or " + android.Manifest.permission.READ_SMS + ".");
+            }
         }
     }
 
@@ -2879,5 +2890,24 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     @Override
     public ModemActivityInfo getModemActivityInfo() {
         return (ModemActivityInfo) sendRequest(CMD_GET_MODEM_ACTIVITY_INFO, null);
+    }
+
+    /**
+     * {@hide}
+     * Returns the service state information on specified subscription.
+     */
+    @Override
+    public ServiceState getServiceStateForSubscriber(int subId, String callingPackage) {
+
+        if (!canReadPhoneState(callingPackage, "getServiceStateForSubscriber")) {
+            return null;
+        }
+
+        final Phone phone = getPhone(subId);
+        if (phone == null) {
+            return null;
+        }
+
+        return phone.getServiceState();
     }
 }

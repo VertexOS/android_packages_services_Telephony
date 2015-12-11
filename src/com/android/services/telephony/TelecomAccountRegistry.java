@@ -18,7 +18,6 @@ package com.android.services.telephony;
 
 import android.content.ComponentName;
 import android.content.Context;
-import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -41,7 +40,6 @@ import android.text.TextUtils;
 
 import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneFactory;
-import com.android.internal.telephony.PhoneProxy;
 import com.android.phone.PhoneGlobals;
 import com.android.phone.PhoneUtils;
 import com.android.phone.R;
@@ -75,8 +73,8 @@ final class TelecomAccountRegistry {
             mAccount = registerPstnPhoneAccount(isEmergency, isDummy);
             Log.i(this, "Registered phoneAccount: %s with handle: %s",
                     mAccount, mAccount.getAccountHandle());
-            mIncomingCallNotifier = new PstnIncomingCallNotifier((PhoneProxy) mPhone);
-            mPhoneCapabilitiesNotifier = new PstnPhoneCapabilitiesNotifier((PhoneProxy) mPhone,
+            mIncomingCallNotifier = new PstnIncomingCallNotifier((Phone) mPhone);
+            mPhoneCapabilitiesNotifier = new PstnPhoneCapabilitiesNotifier((Phone) mPhone,
                     this);
         }
 

@@ -35,7 +35,6 @@ import android.os.Message;
 import android.os.SystemProperties;
 import android.util.Log;
 
-import com.android.internal.telephony.cdma.CDMAPhone;
 import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneConstants;
 import com.android.internal.telephony.PhoneFactory;

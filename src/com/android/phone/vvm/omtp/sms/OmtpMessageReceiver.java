@@ -62,6 +62,12 @@ public class OmtpMessageReceiver extends BroadcastReceiver {
         }
 
         SmsMessage[] messages = Telephony.Sms.Intents.getMessagesFromIntent(intent);
+
+        if (messages == null) {
+            Log.w(TAG, "Message does not exist in the intent.");
+            return;
+        }
+
         StringBuilder messageBody = new StringBuilder();
 
         for (int i = 0; i < messages.length; i++) {

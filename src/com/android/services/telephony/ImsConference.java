@@ -780,7 +780,7 @@ public class ImsConference extends Conference {
             PhoneAccountHandle phoneAccountHandle =
                     PhoneUtils.makePstnPhoneAccountHandle(mConferenceHost.getPhone());
             if (mConferenceHost.getPhone().getPhoneType() == PhoneConstants.PHONE_TYPE_GSM) {
-                GsmConnection c = new GsmConnection(originalConnection);
+                GsmConnection c = new GsmConnection(originalConnection, getTelecomCallId());
                 c.updateState();
                 // Copy the connect time from the conferenceHost
                 c.setConnectTimeMillis(mConferenceHost.getConnectTimeMillis());
@@ -867,6 +867,8 @@ public class ImsConference extends Conference {
         StringBuilder sb = new StringBuilder();
         sb.append("[ImsConference objId:");
         sb.append(System.identityHashCode(this));
+        sb.append(" telecomCallID:");
+        sb.append(getTelecomCallId());
         sb.append(" state:");
         sb.append(Connection.stateToString(getState()));
         sb.append(" hostConnection:");
