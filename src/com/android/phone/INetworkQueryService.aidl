@@ -21,8 +21,7 @@ import com.android.phone.INetworkQueryServiceCallback;
 /**
  * Service interface to handle queries for available networks.  The
  * Phone application lets this service interface handle carrier 
- * availability queries instead of making direct calls to the 
- * GSMPhone layer.
+ * availability queries instead of making direct calls to the Phone layer.
  */
 oneway interface INetworkQueryService {
  

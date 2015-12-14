@@ -34,8 +34,6 @@ import com.android.internal.telephony.Call;
 import com.android.internal.telephony.CallStateException;
 import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneConstants;
-import com.android.internal.telephony.imsphone.ImsPhone;
-import com.android.internal.telephony.imsphone.ImsPhoneConnection;
 import com.android.phone.PhoneUtils;
 import com.android.phone.R;
 
@@ -478,12 +476,8 @@ public class ImsConference extends Conference {
         }
         com.android.internal.telephony.Connection originalConnection =
                 mConferenceHost.getOriginalConnection();
-        if (!(originalConnection instanceof ImsPhoneConnection)) {
-            return false;
-        }
 
-        ImsPhoneConnection imsPhoneConnection = (ImsPhoneConnection) originalConnection;
-        return imsPhoneConnection.isMultiparty() && imsPhoneConnection.isConferenceHost();
+        return originalConnection.isMultiparty() && originalConnection.isConferenceHost();
     }
 
     /**
@@ -530,10 +524,11 @@ public class ImsConference extends Conference {
         // Attempt to get the conference host's address (e.g. the host's own phone number).
         // We need to look at the default phone for the ImsPhone when creating the phone account
         // for the
-        if (mConferenceHost.getPhone() != null &&  mConferenceHost.getPhone() instanceof ImsPhone) {
+        if (mConferenceHost.getPhone() != null &&
+                mConferenceHost.getPhone().getPhoneType() == PhoneConstants.PHONE_TYPE_IMS) {
             // Look up the conference host's address; we need this later for filtering out the
             // conference host in conference event package data.
-            ImsPhone imsPhone = (ImsPhone) mConferenceHost.getPhone();
+            Phone imsPhone = mConferenceHost.getPhone();
             mConferenceHostPhoneAccountHandle =
                     PhoneUtils.makePstnPhoneAccountHandle(imsPhone.getDefaultPhone());
             mConferenceHostAddress = TelecomAccountRegistry.getInstance(mTelephonyConnectionService)
@@ -770,7 +765,7 @@ public class ImsConference extends Conference {
         com.android.internal.telephony.Connection originalConnection =
                 mConferenceHost.getOriginalConnection();
 
-        if (!(originalConnection instanceof ImsPhoneConnection)) {
+        if (originalConnection.getPhoneType() != PhoneConstants.PHONE_TYPE_IMS) {
             if (Log.VERBOSE) {
                 Log.v(this,
                         "Original connection for conference host is no longer an IMS connection; " +

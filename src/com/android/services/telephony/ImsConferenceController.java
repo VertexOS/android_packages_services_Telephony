@@ -16,7 +16,9 @@
 
 package com.android.services.telephony;
 
-import com.android.internal.telephony.imsphone.ImsPhoneConnection;
+import com.android.internal.telephony.Phone;
+import com.android.internal.telephony.PhoneConstants;
+import com.android.phone.PhoneUtils;
 
 import android.telecom.Conference;
 import android.telecom.Connection;
@@ -270,12 +272,8 @@ public class ImsConferenceController {
         TelephonyConnection telephonyConnection = (TelephonyConnection) connection;
         com.android.internal.telephony.Connection originalConnection =
                 telephonyConnection.getOriginalConnection();
-        if (!(originalConnection instanceof ImsPhoneConnection)) {
-            return false;
-        }
 
-        ImsPhoneConnection imsPhoneConnection = (ImsPhoneConnection) originalConnection;
-        return imsPhoneConnection.isMultiparty() && !imsPhoneConnection.isConferenceHost();
+        return originalConnection.isMultiparty() && originalConnection.isMemberOfPeerConference();
     }
 
     /**

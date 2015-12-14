@@ -1927,7 +1927,7 @@ public class PhoneUtils {
      *
      * @return true if we find a connection that is disconnected, and
      * pending removal via
-     * {@link com.android.internal.telephony.gsm.GsmCall#clearDisconnected()}.
+     * {@link com.android.internal.telephony.Call#clearDisconnected()}.
      */
     private static final boolean hasDisconnectedConnections(Call call) {
         // look through all connections for non-active ones.

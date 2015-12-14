@@ -33,10 +33,10 @@ import com.android.ims.ImsCallProfile;
 import com.android.internal.telephony.Call;
 import com.android.internal.telephony.CallStateException;
 import com.android.internal.telephony.Connection.PostDialListener;
+import com.android.internal.telephony.PhoneConstants;
 import com.android.internal.telephony.gsm.SuppServiceNotification;
 
 import com.android.internal.telephony.Phone;
-import com.android.internal.telephony.imsphone.ImsPhoneConnection;
 import com.android.phone.R;
 
 import java.lang.Override;
@@ -1103,7 +1103,7 @@ abstract class TelephonyConnection extends Connection {
      *     otherwise.
      */
     protected boolean isImsConnection() {
-        return getOriginalConnection() instanceof ImsPhoneConnection;
+        return getOriginalConnection().getPhoneType() == PhoneConstants.PHONE_TYPE_IMS;
     }
 
     /**
