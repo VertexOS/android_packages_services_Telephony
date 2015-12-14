@@ -98,14 +98,16 @@ public class EmergencyCallbackModeService extends Service {
 
     @Override
     public void onDestroy() {
-        // Unregister receiver
-        unregisterReceiver(mEcmReceiver);
-        // Unregister ECM timer reset notification
-        mPhone.unregisterForEcmTimerReset(mHandler);
+        if (mPhone != null) {
+            // Unregister receiver
+            unregisterReceiver(mEcmReceiver);
+            // Unregister ECM timer reset notification
+            mPhone.unregisterForEcmTimerReset(mHandler);
 
-        // Cancel the notification and timer
-        mNotificationManager.cancel(R.string.phone_in_ecm_notification_title);
-        mTimer.cancel();
+            // Cancel the notification and timer
+            mNotificationManager.cancel(R.string.phone_in_ecm_notification_title);
+            mTimer.cancel();
+        }
     }
 
     /**
