@@ -16,8 +16,8 @@
 
 package com.android.services.telephony;
 
-import com.android.internal.telephony.imsphone.ImsPhone;
-import com.android.internal.telephony.imsphone.ImsPhoneConnection;
+import com.android.internal.telephony.Phone;
+import com.android.internal.telephony.PhoneConstants;
 import com.android.phone.PhoneUtils;
 
 import android.telecom.Conference;
@@ -273,12 +273,8 @@ public class ImsConferenceController {
         TelephonyConnection telephonyConnection = (TelephonyConnection) connection;
         com.android.internal.telephony.Connection originalConnection =
                 telephonyConnection.getOriginalConnection();
-        if (!(originalConnection instanceof ImsPhoneConnection)) {
-            return false;
-        }
 
-        ImsPhoneConnection imsPhoneConnection = (ImsPhoneConnection) originalConnection;
-        return imsPhoneConnection.isMultiparty() && !imsPhoneConnection.isConferenceHost();
+        return originalConnection.isMultiparty() && originalConnection.isMemberOfPeerConference();
     }
 
     /**
@@ -328,8 +324,8 @@ public class ImsConferenceController {
 
         // Attempt to determine the phone account associated with the conference host connection.
         if (connection.getPhone() != null &&
-                connection.getPhone() instanceof ImsPhone) {
-            ImsPhone imsPhone = (ImsPhone) connection.getPhone();
+                connection.getPhone().getPhoneType() == PhoneConstants.PHONE_TYPE_IMS) {
+            Phone imsPhone = connection.getPhone();
             // The phone account handle for an ImsPhone is based on the default phone (ie the
             // base GSM or CDMA phone, not on the ImsPhone itself).
             phoneAccountHandle =
