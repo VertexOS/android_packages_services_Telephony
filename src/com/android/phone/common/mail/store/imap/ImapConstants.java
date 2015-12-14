@@ -97,6 +97,14 @@ public final class ImapConstants {
     public static final String APPENDUID = "APPENDUID";
     public static final String NIL = "NIL";
 
+    /**
+     * extensions
+     */
+    public static final String GETQUOTA = "GETQUOTA";
+    public static final String GETQUOTAROOT = "GETQUOTAROOT";
+    public static final String QUOTAROOT = "QUOTAROOT";
+    public static final String QUOTA = "QUOTA";
+
     /** response codes within IMAP responses */
     public static final String EXPIRED = "EXPIRED";
     public static final String AUTHENTICATIONFAILED = "AUTHENTICATIONFAILED";

@@ -19,11 +19,10 @@ package com.android.phone.common.mail.store;
 import android.content.Context;
 import android.net.Network;
 
-import com.android.phone.common.mail.internet.MimeMessage;
 import com.android.phone.common.mail.MailTransport;
 import com.android.phone.common.mail.Message;
 import com.android.phone.common.mail.MessagingException;
-import com.android.phone.common.mail.store.ImapFolder;
+import com.android.phone.common.mail.internet.MimeMessage;
 
 import java.io.IOException;
 import java.io.InputStream;

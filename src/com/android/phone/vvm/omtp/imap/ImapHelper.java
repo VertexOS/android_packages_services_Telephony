@@ -16,11 +16,15 @@
 package com.android.phone.vvm.omtp.imap;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Network;
+import android.preference.PreferenceManager;
+import android.provider.VoicemailContract;
 import android.telecom.PhoneAccountHandle;
 import android.telecom.Voicemail;
 import android.telephony.TelephonyManager;
 import android.util.Base64;
+import android.util.Log;
 
 import com.android.phone.PhoneUtils;
 import com.android.phone.common.mail.Address;
@@ -63,6 +67,13 @@ public class ImapHelper {
     private Context mContext;
     private PhoneAccountHandle mPhoneAccount;
 
+    SharedPreferences mPrefs;
+    private static final String PREF_KEY_QUOTA_OCCUPIED = "quota_occupied_";
+    private static final String PREF_KEY_QUOTA_TOTAL = "quota_total_";
+
+    private int mQuotaOccupied;
+    private int mQuotaTotal;
+
     public ImapHelper(Context context, PhoneAccountHandle phoneAccount, Network network) {
         try {
             mContext = context;
@@ -93,6 +104,14 @@ public class ImapHelper {
         } catch (NumberFormatException e) {
             LogUtils.w(TAG, "Could not parse port number");
         }
+
+        mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
+        mQuotaOccupied = mPrefs.getInt(getSharedPrefsKey(PREF_KEY_QUOTA_OCCUPIED),
+                VoicemailContract.Status.QUOTA_UNAVAILABLE);
+        mQuotaTotal = mPrefs.getInt(getSharedPrefsKey(PREF_KEY_QUOTA_TOTAL),
+                VoicemailContract.Status.QUOTA_UNAVAILABLE);
+
+        Log.v(TAG, "Quota:" + mQuotaOccupied + "/" + mQuotaTotal);
     }
 
     /**
@@ -165,7 +184,6 @@ public class ImapHelper {
                     result.add(getVoicemailFromMessageStructure(messageStructureWrapper));
                 }
             }
-
             return result;
         } catch (MessagingException e) {
             LogUtils.e(TAG, e, "Messaging Exception");
@@ -323,6 +341,39 @@ public class ImapHelper {
         }
     }
 
+    public void updateQuota() {
+        try {
+            mFolder = openImapFolder(ImapFolder.MODE_READ_WRITE);
+            updateQuota(mFolder);
+        } catch (MessagingException e) {
+            LogUtils.e(TAG, e, "Messaging Exception");
+        } finally {
+            closeImapFolder();
+        }
+    }
+
+    private void updateQuota(ImapFolder folder) throws MessagingException {
+        setQuota(folder.getQuota());
+    }
+
+    private void setQuota(ImapFolder.Quota quota) {
+        if (quota == null) {
+            return;
+        }
+        if (quota.occupied == mQuotaOccupied && quota.total == mQuotaTotal) {
+            Log.v(TAG, "Quota hasn't changed");
+            return;
+        }
+        mQuotaOccupied = quota.occupied;
+        mQuotaTotal = quota.total;
+        VoicemailContract.Status
+                .setQuota(mContext, mPhoneAccount, mQuotaOccupied, mQuotaTotal);
+        mPrefs.edit()
+                .putInt(getSharedPrefsKey(PREF_KEY_QUOTA_OCCUPIED), mQuotaOccupied)
+                .putInt(getSharedPrefsKey(PREF_KEY_QUOTA_TOTAL), mQuotaTotal)
+                .apply();
+        Log.v(TAG, "Quota changed to " + mQuotaOccupied + "/" + mQuotaTotal);
+    }
     /**
      * A wrapper to hold a message with its header details and the structure for transcriptions
      * (so they can be fetched in the future).
@@ -510,5 +561,9 @@ public class ImapHelper {
             IoUtils.closeQuietly(bufferedOut);
             IoUtils.closeQuietly(out);
         }
+    }
+
+    private String getSharedPrefsKey(String key) {
+        return VisualVoicemailSettingsUtil.getVisualVoicemailSharedPrefsKey(key, mPhoneAccount);
     }
 }
