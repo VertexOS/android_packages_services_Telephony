@@ -16,10 +16,6 @@
 
 package com.android.services.telephony;
 
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.AsyncResult;
 import android.os.Bundle;
@@ -32,8 +28,6 @@ import android.text.TextUtils;
 import com.android.internal.telephony.Call;
 import com.android.internal.telephony.Connection;
 import com.android.internal.telephony.Phone;
-import com.android.internal.telephony.PhoneConstants;
-import com.android.internal.telephony.TelephonyIntents;
 import com.android.internal.telephony.cdma.CdmaCallWaitingNotification;
 import com.android.phone.PhoneUtils;
 
@@ -55,15 +49,7 @@ final class PstnIncomingCallNotifier {
     private final Phone mPhone;
 
     /**
-     * The base phone implementation behind phone proxy. The underlying phone implementation can
-     * change underneath when the radio technology changes. We listen for these events and update
-     * the base phone in this variable. We save it so that when the change happens, we can
-     * unregister from the events we were listening to.
-     */
-    private Phone mPhoneBase;
-
-    /**
-     * Used to listen to events from {@link #mPhoneBase}.
+     * Used to listen to events from {@link #mPhone}.
      */
     private final Handler mHandler = new Handler() {
         @Override
@@ -85,22 +71,6 @@ final class PstnIncomingCallNotifier {
     };
 
     /**
-     * Receiver to listen for radio technology change events.
-     */
-    private final BroadcastReceiver mRATReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            String action = intent.getAction();
-            if (TelephonyIntents.ACTION_RADIO_TECHNOLOGY_CHANGED.equals(action)) {
-                String newPhone = intent.getStringExtra(PhoneConstants.PHONE_NAME_KEY);
-                Log.d(this, "Radio technology switched. Now %s is active.", newPhone);
-
-                registerForNotifications();
-            }
-        }
-    };
-
-    /**
      * Persists the specified parameters and starts listening to phone events.
      *
      * @param phone The phone object for listening to incoming calls.
@@ -111,51 +81,30 @@ final class PstnIncomingCallNotifier {
         mPhone = phone;
 
         registerForNotifications();
-
-        IntentFilter intentFilter =
-                new IntentFilter(TelephonyIntents.ACTION_RADIO_TECHNOLOGY_CHANGED);
-        mPhone.getContext().registerReceiver(mRATReceiver, intentFilter);
     }
 
     void teardown() {
         unregisterForNotifications();
-        mPhone.getContext().unregisterReceiver(mRATReceiver);
     }
 
     /**
      * Register for notifications from the base phone.
-     * TODO: We should only need to interact with the phoneproxy directly. However,
-     * since the phoneproxy only interacts directly with CallManager we either listen to callmanager
-     * or we have to poke into the proxy like this.  Neither is desirable. It would be better if
-     * this class and callManager could register generically with the phone proxy instead and get
-     * radio techonology changes directly.  Or better yet, just register for the notifications
-     * directly with phone proxy and never worry about the technology changes. This requires a
-     * change in opt/telephony code.
      */
     private void registerForNotifications() {
-        Phone newPhone = mPhone;
-        if (newPhone != mPhoneBase) {
-            unregisterForNotifications();
-
-            if (newPhone != null) {
-                Log.i(this, "Registering: %s", newPhone);
-                mPhoneBase = newPhone;
-                mPhoneBase.registerForNewRingingConnection(
-                        mHandler, EVENT_NEW_RINGING_CONNECTION, null);
-                mPhoneBase.registerForCallWaiting(
-                        mHandler, EVENT_CDMA_CALL_WAITING, null);
-                mPhoneBase.registerForUnknownConnection(mHandler, EVENT_UNKNOWN_CONNECTION,
-                        null);
-            }
+        if (mPhone != null) {
+            Log.i(this, "Registering: %s", mPhone);
+            mPhone.registerForNewRingingConnection(mHandler, EVENT_NEW_RINGING_CONNECTION, null);
+            mPhone.registerForCallWaiting(mHandler, EVENT_CDMA_CALL_WAITING, null);
+            mPhone.registerForUnknownConnection(mHandler, EVENT_UNKNOWN_CONNECTION, null);
         }
     }
 
     private void unregisterForNotifications() {
-        if (mPhoneBase != null) {
-            Log.i(this, "Unregistering: %s", mPhoneBase);
-            mPhoneBase.unregisterForNewRingingConnection(mHandler);
-            mPhoneBase.unregisterForCallWaiting(mHandler);
-            mPhoneBase.unregisterForUnknownConnection(mHandler);
+        if (mPhone != null) {
+            Log.i(this, "Unregistering: %s", mPhone);
+            mPhone.unregisterForNewRingingConnection(mHandler);
+            mPhone.unregisterForCallWaiting(mHandler);
+            mPhone.unregisterForUnknownConnection(mHandler);
         }
     }
 
@@ -180,7 +129,7 @@ final class PstnIncomingCallNotifier {
     private void handleCdmaCallWaiting(AsyncResult asyncResult) {
         Log.d(this, "handleCdmaCallWaiting");
         CdmaCallWaitingNotification ccwi = (CdmaCallWaitingNotification) asyncResult.result;
-        Call call = mPhoneBase.getRingingCall();
+        Call call = mPhone.getRingingCall();
         if (call.getState() == Call.State.WAITING) {
             Connection connection = call.getLatestConnection();
             if (connection != null) {
