@@ -1103,7 +1103,9 @@ abstract class TelephonyConnection extends Connection {
      *     otherwise.
      */
     protected boolean isImsConnection() {
-        return getOriginalConnection().getPhoneType() == PhoneConstants.PHONE_TYPE_IMS;
+        com.android.internal.telephony.Connection originalConnection = getOriginalConnection();
+        return originalConnection != null &&
+                originalConnection.getPhoneType() == PhoneConstants.PHONE_TYPE_IMS;
     }
 
     /**
