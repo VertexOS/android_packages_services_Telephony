@@ -477,7 +477,8 @@ public class ImsConference extends Conference {
         com.android.internal.telephony.Connection originalConnection =
                 mConferenceHost.getOriginalConnection();
 
-        return originalConnection.isMultiparty() && originalConnection.isConferenceHost();
+        return originalConnection != null && originalConnection.isMultiparty() &&
+                originalConnection.isConferenceHost();
     }
 
     /**
@@ -765,7 +766,8 @@ public class ImsConference extends Conference {
         com.android.internal.telephony.Connection originalConnection =
                 mConferenceHost.getOriginalConnection();
 
-        if (originalConnection.getPhoneType() != PhoneConstants.PHONE_TYPE_IMS) {
+        if (originalConnection != null &&
+                originalConnection.getPhoneType() != PhoneConstants.PHONE_TYPE_IMS) {
             if (Log.VERBOSE) {
                 Log.v(this,
                         "Original connection for conference host is no longer an IMS connection; " +

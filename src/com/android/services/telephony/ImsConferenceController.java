@@ -273,7 +273,8 @@ public class ImsConferenceController {
         com.android.internal.telephony.Connection originalConnection =
                 telephonyConnection.getOriginalConnection();
 
-        return originalConnection.isMultiparty() && originalConnection.isMemberOfPeerConference();
+        return originalConnection != null && originalConnection.isMultiparty() &&
+                originalConnection.isMemberOfPeerConference();
     }
 
     /**
