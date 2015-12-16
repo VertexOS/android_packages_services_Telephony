@@ -779,16 +779,6 @@ public class PhoneGlobals extends ContextWrapper {
         }
 
         notifier.updateCallNotifierRegistrationsAfterRadioTechnologyChange();
-        callStateMonitor.updateAfterRadioTechnologyChange();
-
-        // Update registration for ICC status after radio technology change
-        IccCard sim = phone == null ? null : phone.getIccCard();
-        if (sim != null) {
-            if (DBG) Log.d(LOG_TAG, "Update registration for ICC status...");
-
-            //Register all events new to the new active phone
-            sim.registerForNetworkLocked(mHandler, EVENT_SIM_NETWORK_LOCKED, null);
-        }
     }
 
     /**

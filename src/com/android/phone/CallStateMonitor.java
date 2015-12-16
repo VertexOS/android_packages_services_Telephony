@@ -123,32 +123,4 @@ class CallStateMonitor extends Handler {
             handler.handleMessage(msg);
         }
     }
-
-    /**
-     * When radio technology changes, we need to to reregister for all the events which are
-     * all tied to the old radio.
-     */
-    public void updateAfterRadioTechnologyChange() {
-        if (DBG) Log.d(LOG_TAG, "updateCallNotifierRegistrationsAfterRadioTechnologyChange...");
-
-        // Unregister all events from the old obsolete phone
-        //callManager.unregisterForNewRingingConnection(this);
-        //callManager.unregisterForPreciseCallStateChanged(this);
-        callManager.unregisterForDisconnect(this);
-        //callManager.unregisterForUnknownConnection(this);
-        //callManager.unregisterForCallWaiting(this);
-        callManager.unregisterForDisplayInfo(this);
-        callManager.unregisterForSignalInfo(this);
-        callManager.unregisterForCdmaOtaStatusChange(this);
-        //callManager.unregisterForRingbackTone(this);
-        //callManager.unregisterForResendIncallMute(this);
-        callManager.unregisterForInCallVoicePrivacyOn(this);
-        callManager.unregisterForInCallVoicePrivacyOff(this);
-        //callManager.unregisterForPostDialCharacter(this);
-        callManager.unregisterForSuppServiceFailed(this);
-        callManager.unregisterForTtyModeReceived(this);
-
-        registerForNotifications();
-    }
-
 }
