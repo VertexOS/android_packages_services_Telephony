@@ -27,6 +27,7 @@ import android.graphics.drawable.Icon;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.os.ServiceManager;
 import android.telecom.PhoneAccount;
 import android.telecom.PhoneAccountHandle;
 import android.telecom.TelecomManager;
@@ -39,6 +40,7 @@ import android.telephony.SubscriptionManager.OnSubscriptionsChangedListener;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 
+import com.android.internal.telephony.IPhoneSubInfo;
 import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneFactory;
 import com.android.phone.PhoneGlobals;
@@ -103,8 +105,7 @@ final class TelecomAccountRegistry {
             if (line1Number == null) {
                 line1Number = "";
             }
-            String subNumber = mPhone.getPhoneSubInfo().getLine1Number(
-                    mPhone.getContext().getOpPackageName());
+            String subNumber = mPhone.getLine1Number();
             if (subNumber == null) {
                 subNumber = "";
             }
