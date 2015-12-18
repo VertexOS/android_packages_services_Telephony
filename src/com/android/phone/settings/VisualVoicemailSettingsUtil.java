@@ -164,7 +164,7 @@ public class VisualVoicemailSettingsUtil {
                 NO_PRIOR_FULL_SYNC);
     }
 
-    private static String getVisualVoicemailSharedPrefsKey(String key,
+    public static String getVisualVoicemailSharedPrefsKey(String key,
             PhoneAccountHandle phoneAccount) {
         return VISUAL_VOICEMAIL_SHARED_PREFS_KEY_PREFIX + key + "_" + phoneAccount.getId();
     }

@@ -107,11 +107,18 @@ public abstract class ImapString extends ImapElement {
     }
 
     /**
-     * @return value parsed as a number.
+     * @return value parsed as a number, or 0 if the string is not a number.
      */
     public final int getNumberOrZero() {
+        return getNumber(0);
+    }
+
+    /**
+     * @return value parsed as a number, or {@code defaultValue} if the string is not a number.
+     */
+    public final int getNumber(int defaultValue) {
         if (!isNumber()) {
-            return 0;
+            return defaultValue;
         }
         return mParsedInteger;
     }

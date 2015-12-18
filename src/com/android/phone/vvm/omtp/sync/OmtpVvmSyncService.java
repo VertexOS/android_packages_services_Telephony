@@ -146,7 +146,6 @@ public class OmtpVvmSyncService extends IntentService {
             Log.d(TAG, "onHandleIntent: could not handle null intent");
             return;
         }
-
         String action = intent.getAction();
         PhoneAccountHandle phoneAccount = intent.getParcelableExtra(EXTRA_PHONE_ACCOUNT);
         LocalLogHelper.log(TAG, "Sync requested: " + action +
@@ -212,6 +211,7 @@ public class OmtpVvmSyncService extends IntentService {
                 } else {
                     success = syncOne(imapHelper, voicemail);
                 }
+                imapHelper.updateQuota();
 
                 // Need to check again for whether visual voicemail is enabled because it could have
                 // been disabled while waiting for the response from the network.
