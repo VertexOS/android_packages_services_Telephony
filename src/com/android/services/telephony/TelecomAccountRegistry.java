@@ -66,6 +66,7 @@ final class TelecomAccountRegistry {
         private final PstnIncomingCallNotifier mIncomingCallNotifier;
         private final PstnPhoneCapabilitiesNotifier mPhoneCapabilitiesNotifier;
         private boolean mIsVideoCapable;
+        private boolean mIsVideoPresenceSupported;
         private boolean mIsVideoPauseSupported;
         private boolean mIsMergeCallSupported;
 
@@ -170,6 +171,12 @@ final class TelecomAccountRegistry {
             if (mIsVideoCapable) {
                 capabilities |= PhoneAccount.CAPABILITY_VIDEO_CALLING;
             }
+
+            mIsVideoPresenceSupported = isCarrierVideoPresenceSupported();
+            if (mIsVideoCapable && mIsVideoPresenceSupported) {
+                capabilities |= PhoneAccount.CAPABILITY_VIDEO_CALLING_RELIES_ON_PRESENCE;
+            }
+
             mIsVideoPauseSupported = isCarrierVideoPauseSupported();
             Bundle instantLetteringExtras = null;
             if (isCarrierInstantLetteringSupported()) {
@@ -233,6 +240,18 @@ final class TelecomAccountRegistry {
             PersistableBundle b =
                     PhoneGlobals.getInstance().getCarrierConfigForSubId(mPhone.getSubId());
             return b.getBoolean(CarrierConfigManager.KEY_SUPPORT_PAUSE_IMS_VIDEO_CALLS_BOOL);
+        }
+
+        /**
+         * Determines from carrier configuration whether RCS presence indication for video calls is
+         * supported.
+         *
+         * @return {@code true} if RCS presence indication for video calls is supported.
+         */
+        private boolean isCarrierVideoPresenceSupported() {
+            PersistableBundle b =
+                    PhoneGlobals.getInstance().getCarrierConfigForSubId(mPhone.getSubId());
+            return b.getBoolean(CarrierConfigManager.KEY_USE_RCS_PRESENCE_BOOL);
         }
 
         /**
