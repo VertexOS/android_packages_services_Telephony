@@ -344,6 +344,10 @@ public class ImapHelper {
     public void updateQuota() {
         try {
             mFolder = openImapFolder(ImapFolder.MODE_READ_WRITE);
+            if (mFolder == null) {
+                // This means we were unable to successfully open the folder.
+                return;
+            }
             updateQuota(mFolder);
         } catch (MessagingException e) {
             LogUtils.e(TAG, e, "Messaging Exception");
