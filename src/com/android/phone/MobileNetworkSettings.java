@@ -256,6 +256,26 @@ public class MobileNetworkSettings extends PreferenceActivity
         }
     }
 
+    private List<SubscriptionInfo> determineSubscriptionsToUse() {
+        int slotIndex = getIntent().getIntExtra(PhoneConstants.SLOT_KEY,
+                SubscriptionManager.INVALID_SIM_SLOT_INDEX);
+        int subId = getIntent().getIntExtra(PhoneConstants.SUBSCRIPTION_KEY,
+                SubscriptionManager.INVALID_SUBSCRIPTION_ID);
+        if (subId != SubscriptionManager.INVALID_SUBSCRIPTION_ID) {
+            setTitle(getString(R.string.msim_mobile_network_settings_title, slotIndex + 1));
+            SubscriptionInfo sir = mSubscriptionManager.getActiveSubscriptionInfo(subId);
+            ActionBar actionBar = getActionBar();
+            if (actionBar != null && sir != null) {
+                actionBar.setSubtitle(sir.getDisplayName());
+            }
+
+            List<SubscriptionInfo> infos = new ArrayList<SubscriptionInfo>();
+            infos.add(sir);
+            return infos;
+        }
+        return mSubscriptionManager.getActiveSubscriptionInfoList();
+    }
+
     private final SubscriptionManager.OnSubscriptionsChangedListener mOnSubscriptionsChangeListener
             = new SubscriptionManager.OnSubscriptionsChangedListener() {
         @Override
@@ -274,7 +294,7 @@ public class MobileNetworkSettings extends PreferenceActivity
 
         // Before updating the the active subscription list check
         // if tab updating is needed as the list is changing.
-        List<SubscriptionInfo> sil = mSubscriptionManager.getActiveSubscriptionInfoList();
+        List<SubscriptionInfo> sil = determineSubscriptionsToUse();
         TabState state = isUpdateTabsNeeded(sil);
 
         // Update to the active subscription list
