@@ -37,6 +37,7 @@ import android.os.UserManager;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.telecom.PhoneAccount;
+import android.telecom.PhoneAccountHandle;
 import android.telecom.TelecomManager;
 import android.telephony.CarrierConfigManager;
 import android.telephony.CellInfo;
@@ -75,6 +76,7 @@ import com.android.internal.telephony.uicc.IccUtils;
 import com.android.internal.telephony.uicc.UiccCard;
 import com.android.internal.telephony.uicc.UiccController;
 import com.android.internal.util.HexDump;
+import com.android.phone.settings.VoicemailNotificationSettingsUtil;
 
 import static com.android.internal.telephony.PhoneConstants.SUBSCRIPTION_KEY;
 
@@ -2907,4 +2909,40 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
 
         return phone.getServiceState();
     }
+
+    /**
+     * Returns the URI for the per-account voicemail ringtone set in Phone settings.
+     *
+     * @param accountHandle The handle for the {@link PhoneAccount} for which to retrieve the
+     * voicemail ringtone.
+     * @return The URI for the ringtone to play when receiving a voicemail from a specific
+     * PhoneAccount.
+     */
+    @Override
+    public Uri getVoicemailRingtoneUri(PhoneAccountHandle accountHandle) {
+        final Phone phone = PhoneUtils.getPhoneForPhoneAccountHandle(accountHandle);
+        if (phone == null) {
+            return null;
+        }
+
+        return VoicemailNotificationSettingsUtil.getRingtoneUri(phone);
+    }
+
+    /**
+     * Returns whether vibration is set for voicemail notification in Phone settings.
+     *
+     * @param accountHandle The handle for the {@link PhoneAccount} for which to retrieve the
+     * voicemail vibration setting.
+     * @return {@code true} if the vibration is set for this PhoneAccount, {@code false} otherwise.
+     */
+    @Override
+    public boolean isVoicemailVibrationEnabled(PhoneAccountHandle accountHandle) {
+        final Phone phone = PhoneUtils.getPhoneForPhoneAccountHandle(accountHandle);
+        if (phone == null) {
+            return false;
+        }
+
+        return VoicemailNotificationSettingsUtil.isVibrationEnabled(phone);
+    }
+
 }
