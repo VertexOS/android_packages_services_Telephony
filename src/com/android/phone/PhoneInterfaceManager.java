@@ -604,7 +604,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
                     if (ar.exception == null && ar.result != null) {
                         request.result = ar.result;     // Integer
                     } else {
-                        request.result = -1;
+                        request.result = null;
                         if (ar.result == null) {
                             loge("getPreferredNetworkType: Empty response");
                         } else if (ar.exception instanceof CommandException) {
