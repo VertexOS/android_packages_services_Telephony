@@ -2429,14 +2429,20 @@ public class PhoneUtils {
     }
 
     public static int getSubIdForPhoneAccountHandle(PhoneAccountHandle handle) {
-        if (handle != null && handle.getComponentName().equals(getPstnConnectionServiceName())) {
-            Phone phone = getPhoneFromIccId(handle.getId());
-            if (phone != null) {
-                return phone.getSubId();
-            }
+        Phone phone = getPhoneForPhoneAccountHandle(handle);
+        if (phone != null) {
+            return phone.getSubId();
         }
         return SubscriptionManager.INVALID_SUBSCRIPTION_ID;
     }
+
+    static Phone getPhoneForPhoneAccountHandle(PhoneAccountHandle handle) {
+        if (handle != null && handle.getComponentName().equals(getPstnConnectionServiceName())) {
+            return getPhoneFromIccId(handle.getId());
+        }
+        return null;
+    }
+
 
     /**
      * Determine if a given phone account corresponds to an active SIM
