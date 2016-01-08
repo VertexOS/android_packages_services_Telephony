@@ -97,8 +97,6 @@ public class NotificationMgr {
     private TelecomManager mTelecomManager;
     private TelephonyManager mTelephonyManager;
 
-    public StatusBarHelper statusBarHelper;
-
     // used to track the notification of selected network unavailable
     private boolean mSelectedUnavailableNotify = false;
 
@@ -118,7 +116,6 @@ public class NotificationMgr {
                 (StatusBarManager) app.getSystemService(Context.STATUS_BAR_SERVICE);
         mUserManager = (UserManager) app.getSystemService(Context.USER_SERVICE);
         mPhone = app.mCM.getDefaultPhone();
-        statusBarHelper = new StatusBarHelper();
         mSubscriptionManager = SubscriptionManager.from(mContext);
         mTelecomManager = TelecomManager.from(mContext);
         mTelephonyManager = (TelephonyManager) app.getSystemService(Context.TELEPHONY_SERVICE);
@@ -146,101 +143,6 @@ public class NotificationMgr {
                 Log.wtf(LOG_TAG, "init() called multiple times!  sInstance = " + sInstance);
             }
             return sInstance;
-        }
-    }
-
-    /**
-     * Helper class that's a wrapper around the framework's
-     * StatusBarManager.disable() API.
-     *
-     * This class is used to control features like:
-     *
-     *   - Disabling the status bar "notification windowshade"
-     *     while the in-call UI is up
-     *
-     *   - Disabling notification alerts (audible or vibrating)
-     *     while a phone call is active
-     *
-     *   - Disabling navigation via the system bar (the "soft buttons" at
-     *     the bottom of the screen on devices with no hard buttons)
-     *
-     * We control these features through a single point of control to make
-     * sure that the various StatusBarManager.disable() calls don't
-     * interfere with each other.
-     */
-    public class StatusBarHelper {
-        // Current desired state of status bar / system bar behavior
-        private boolean mIsNotificationEnabled = true;
-        private boolean mIsExpandedViewEnabled = true;
-        private boolean mIsSystemBarNavigationEnabled = true;
-
-        private StatusBarHelper() {
-        }
-
-        /**
-         * Enables or disables auditory / vibrational alerts.
-         *
-         * (We disable these any time a voice call is active, regardless
-         * of whether or not the in-call UI is visible.)
-         */
-        public void enableNotificationAlerts(boolean enable) {
-            if (mIsNotificationEnabled != enable) {
-                mIsNotificationEnabled = enable;
-                updateStatusBar();
-            }
-        }
-
-        /**
-         * Enables or disables the expanded view of the status bar
-         * (i.e. the ability to pull down the "notification windowshade").
-         *
-         * (This feature is disabled by the InCallScreen while the in-call
-         * UI is active.)
-         */
-        public void enableExpandedView(boolean enable) {
-            if (mIsExpandedViewEnabled != enable) {
-                mIsExpandedViewEnabled = enable;
-                updateStatusBar();
-            }
-        }
-
-        /**
-         * Enables or disables the navigation via the system bar (the
-         * "soft buttons" at the bottom of the screen)
-         *
-         * (This feature is disabled while an incoming call is ringing,
-         * because it's easy to accidentally touch the system bar while
-         * pulling the phone out of your pocket.)
-         */
-        public void enableSystemBarNavigation(boolean enable) {
-            if (mIsSystemBarNavigationEnabled != enable) {
-                mIsSystemBarNavigationEnabled = enable;
-                updateStatusBar();
-            }
-        }
-
-        /**
-         * Updates the status bar to reflect the current desired state.
-         */
-        private void updateStatusBar() {
-            int state = StatusBarManager.DISABLE_NONE;
-
-            if (!mIsExpandedViewEnabled) {
-                state |= StatusBarManager.DISABLE_EXPAND;
-            }
-            if (!mIsNotificationEnabled) {
-                state |= StatusBarManager.DISABLE_NOTIFICATION_ALERTS;
-            }
-            if (!mIsSystemBarNavigationEnabled) {
-                // Disable *all* possible navigation via the system bar.
-                state |= StatusBarManager.DISABLE_HOME;
-                state |= StatusBarManager.DISABLE_RECENT;
-                state |= StatusBarManager.DISABLE_BACK;
-                state |= StatusBarManager.DISABLE_SEARCH;
-            }
-
-            if (DBG) log("updateStatusBar: state = 0x" + Integer.toHexString(state));
-            mStatusBarManager.disable(state);
         }
     }
 

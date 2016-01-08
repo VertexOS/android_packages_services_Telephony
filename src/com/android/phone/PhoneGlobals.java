@@ -130,14 +130,6 @@ public class PhoneGlobals extends ContextWrapper {
         FULL
     }
 
-    /**
-     * Intent Action used for hanging up the current call from Notification bar. This will
-     * choose first ringing call, first active call, or first background call (typically in
-     * HOLDING state).
-     */
-    public static final String ACTION_HANG_UP_ONGOING_CALL =
-            "com.android.phone.ACTION_HANG_UP_ONGOING_CALL";
-
     private static PhoneGlobals sMe;
 
     // A few important fields we expose to the rest of the package
@@ -152,7 +144,6 @@ public class PhoneGlobals extends ContextWrapper {
     CarrierConfigLoader configLoader;
 
     private CallGatewayManager callGatewayManager;
-    private CallStateMonitor callStateMonitor;
 
     static boolean sVoiceCapable = true;
 
@@ -166,20 +157,11 @@ public class PhoneGlobals extends ContextWrapper {
     private Activity mPUKEntryActivity;
     private ProgressDialog mPUKEntryProgressDialog;
 
-    private boolean mIsSimPinEnabled;
-    private String mCachedSimPin;
-
-    // True if we are beginning a call, but the phone state has not changed yet
-    private boolean mBeginningCall;
     private boolean mDataDisconnectedDueToRoaming = false;
-
-    // Last phone state seen by updatePhoneState()
-    private PhoneConstants.State mLastPhoneState = PhoneConstants.State.IDLE;
 
     private WakeState mWakeState = WakeState.SLEEP;
 
     private PowerManager mPowerManager;
-    private IPowerManager mPowerManagerService;
     private PowerManager.WakeLock mWakeLock;
     private PowerManager.WakeLock mPartialWakeLock;
     private KeyguardManager mKeyguardManager;
@@ -188,9 +170,6 @@ public class PhoneGlobals extends ContextWrapper {
 
     // Broadcast receiver for various intent broadcasts (see onCreate())
     private final BroadcastReceiver mReceiver = new PhoneAppBroadcastReceiver();
-
-    /** boolean indicating restoring mute state on InCallScreen.onResume() */
-    private boolean mShouldRestoreMuteOnInCallResume;
 
     /**
      * The singleton OtaUtils instance used for OTASP calls.
@@ -211,14 +190,6 @@ public class PhoneGlobals extends ContextWrapper {
     public OtaUtils.CdmaOtaConfigData cdmaOtaConfigData;
     public OtaUtils.CdmaOtaScreenState cdmaOtaScreenState;
     public OtaUtils.CdmaOtaInCallScreenUiState cdmaOtaInCallScreenUiState;
-
-    /**
-     * Set the restore mute state flag. Used when we are setting the mute state
-     * OUTSIDE of user interaction {@link PhoneUtils#startNewCall(Phone)}
-     */
-    /*package*/void setRestoreMuteOnInCallResume (boolean mode) {
-        mShouldRestoreMuteOnInCallResume = mode;
-    }
 
     Handler mHandler = new Handler() {
         @Override
@@ -345,11 +316,6 @@ public class PhoneGlobals extends ContextWrapper {
 
             mKeyguardManager = (KeyguardManager) getSystemService(Context.KEYGUARD_SERVICE);
 
-            // get a handle to the service so that we can use it later when we
-            // want to set the poke lock.
-            mPowerManagerService = IPowerManager.Stub.asInterface(
-                    ServiceManager.getService("power"));
-
             // Get UpdateLock to suppress system-update related events (e.g. dialog show-up)
             // during phone calls.
             mUpdateLock = new UpdateLock("phone");
@@ -371,9 +337,6 @@ public class PhoneGlobals extends ContextWrapper {
             // The asynchronous caching will start just after this call.
             callerInfoCache = CallerInfoCache.init(this);
 
-            // Monitors call activity from the telephony layer
-            callStateMonitor = new CallStateMonitor(mCM);
-
             phoneMgr = PhoneInterfaceManager.init(this, PhoneFactory.getDefaultPhone());
 
             configLoader = CarrierConfigLoader.init(this);
@@ -382,7 +345,7 @@ public class PhoneGlobals extends ContextWrapper {
             // asynchronous events from the telephony layer (like
             // launching the incoming-call UI when an incoming call comes
             // in.)
-            notifier = CallNotifier.init(this, callLogger, callStateMonitor);
+            notifier = CallNotifier.init(this);
 
             PhoneUtils.registerIccStatus(mHandler, EVENT_SIM_NETWORK_LOCKED);
 
@@ -422,9 +385,6 @@ public class PhoneGlobals extends ContextWrapper {
 
         // XXX pre-load the SimProvider so that it's ready
         resolver.getType(Uri.parse("content://icc/adn"));
-
-        // start with the default value to set the mute state.
-        mShouldRestoreMuteOnInCallResume = false;
 
         // TODO: Register for Cdma Information Records
         // phone.registerCdmaInformationRecord(mHandler, EVENT_UNSOL_CDMA_INFO_RECORD, null);
@@ -483,28 +443,6 @@ public class PhoneGlobals extends ContextWrapper {
 
     public PersistableBundle getCarrierConfigForSubId(int subId) {
         return configLoader.getConfigForSubId(subId);
-    }
-
-    /**
-     * Returns PendingIntent for hanging up ongoing phone call. This will typically be used from
-     * Notification context.
-     */
-    /* package */ static PendingIntent createHangUpOngoingCallPendingIntent(Context context) {
-        Intent intent = new Intent(PhoneGlobals.ACTION_HANG_UP_ONGOING_CALL, null,
-                context, NotificationBroadcastReceiver.class);
-        return PendingIntent.getBroadcast(context, 0, intent, 0);
-    }
-
-    boolean isSimPinEnabled() {
-        return mIsSimPinEnabled;
-    }
-
-    boolean authenticateAgainstCachedSimPin(String pin) {
-        return (mCachedSimPin != null && mCachedSimPin.equals(pin));
-    }
-
-    void setCachedSimPin(String pin) {
-        mCachedSimPin = pin;
     }
 
     /**
@@ -575,10 +513,6 @@ public class PhoneGlobals extends ContextWrapper {
      */
     void setPukEntryProgressDialog(ProgressDialog dialog) {
         mPUKEntryProgressDialog = dialog;
-    }
-
-    ProgressDialog getPUKEntryProgressDialog() {
-        return mPUKEntryProgressDialog;
     }
 
     /**
@@ -686,51 +620,6 @@ public class PhoneGlobals extends ContextWrapper {
         requestWakeState(keepScreenOn ? WakeState.FULL : WakeState.SLEEP);
     }
 
-    /**
-     * Manually pokes the PowerManager's userActivity method.  Since we
-     * set the {@link WindowManager.LayoutParams#INPUT_FEATURE_DISABLE_USER_ACTIVITY}
-     * flag while the InCallScreen is active when there is no proximity sensor,
-     * we need to do this for touch events that really do count as user activity
-     * (like pressing any onscreen UI elements.)
-     */
-    /* package */ void pokeUserActivity() {
-        if (VDBG) Log.d(LOG_TAG, "pokeUserActivity()...");
-        mPowerManager.userActivity(SystemClock.uptimeMillis(), false);
-    }
-
-    /**
-     * Notifies the phone app when the phone state changes.
-     *
-     * This method will updates various states inside Phone app (e.g. update-lock state, etc.)
-     */
-    /* package */ void updatePhoneState(PhoneConstants.State state) {
-        if (state != mLastPhoneState) {
-            mLastPhoneState = state;
-
-            // Try to acquire or release UpdateLock.
-            //
-            // Watch out: we don't release the lock here when the screen is still in foreground.
-            // At that time InCallScreen will release it on onPause().
-            if (state != PhoneConstants.State.IDLE) {
-                // UpdateLock is a recursive lock, while we may get "acquire" request twice and
-                // "release" request once for a single call (RINGING + OFFHOOK and IDLE).
-                // We need to manually ensure the lock is just acquired once for each (and this
-                // will prevent other possible buggy situations too).
-                if (!mUpdateLock.isHeld()) {
-                    mUpdateLock.acquire();
-                }
-            } else {
-                if (mUpdateLock.isHeld()) {
-                    mUpdateLock.release();
-                }
-            }
-        }
-    }
-
-    /* package */ PhoneConstants.State getPhoneState() {
-        return mLastPhoneState;
-    }
-
     KeyguardManager getKeyguardManager() {
         return mKeyguardManager;
     }
@@ -829,29 +718,6 @@ public class PhoneGlobals extends ContextWrapper {
         }
     }
 
-    /**
-     * Accepts broadcast Intents which will be prepared by {@link NotificationMgr} and thus
-     * sent from framework's notification mechanism (which is outside Phone context).
-     * This should be visible from outside, but shouldn't be in "exported" state.
-     *
-     * TODO: If possible merge this into PhoneAppBroadcastReceiver.
-     */
-    public static class NotificationBroadcastReceiver extends BroadcastReceiver {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            String action = intent.getAction();
-            // TODO: use "if (VDBG)" here.
-            Log.d(LOG_TAG, "Broadcast from Notification: " + action);
-
-            if (action.equals(ACTION_HANG_UP_ONGOING_CALL)) {
-                PhoneUtils.hangup(PhoneGlobals.getInstance().mCM);
-            } else {
-                Log.w(LOG_TAG, "Received hang-up request from notification,"
-                        + " but there's no call the system can hang up.");
-            }
-        }
-    }
-
     private void handleServiceStateChanged(Intent intent) {
         /**
          * This used to handle updating EriTextWidgetProvider this routine
@@ -869,18 +735,6 @@ public class PhoneGlobals extends ContextWrapper {
                 notificationMgr.updateNetworkSelection(state);
             }
         }
-    }
-
-    public boolean isOtaCallInActiveState() {
-        boolean otaCallActive = false;
-        if (VDBG) Log.d(LOG_TAG, "- isOtaCallInActiveState " + otaCallActive);
-        return otaCallActive;
-    }
-
-    public boolean isOtaCallInEndState() {
-        boolean otaCallEnded = false;
-        if (VDBG) Log.d(LOG_TAG, "- isOtaCallInEndState " + otaCallEnded);
-        return otaCallEnded;
     }
 
     // it is safe to call clearOtaState() even if the InCallScreen isn't active
@@ -918,22 +772,4 @@ public class PhoneGlobals extends ContextWrapper {
     public void clearMwiIndicator(int subId) {
         notificationMgr.updateMwi(subId, false);
     }
-
-    /**
-     * "Call origin" may be used by Contacts app to specify where the phone call comes from.
-     * Currently, the only permitted value for this extra is {@link #ALLOWED_EXTRA_CALL_ORIGIN}.
-     * Any other value will be ignored, to make sure that malicious apps can't trick the in-call
-     * UI into launching some random other app after a call ends.
-     *
-     * TODO: make this more generic. Note that we should let the "origin" specify its package
-     * while we are now assuming it is "com.android.contacts"
-     */
-    public static final String EXTRA_CALL_ORIGIN = "com.android.phone.CALL_ORIGIN";
-    private static final String DEFAULT_CALL_ORIGIN_PACKAGE = "com.android.dialer";
-    private static final String ALLOWED_EXTRA_CALL_ORIGIN =
-            "com.android.dialer.DialtactsActivity";
-    /**
-     * Used to determine if the preserved call origin is fresh enough.
-     */
-    private static final long CALL_ORIGIN_EXPIRATION_MILLIS = 30 * 1000;
 }
