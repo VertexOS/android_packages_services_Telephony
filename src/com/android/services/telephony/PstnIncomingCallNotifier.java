@@ -269,10 +269,12 @@ final class PstnIncomingCallNotifier {
                 if (service != null) {
                     for (android.telecom.Connection telephonyConnection : service
                             .getAllConnections()) {
-                        if (maybeSwapWithUnknownConnection(
-                                (TelephonyConnection) telephonyConnection,
-                                unknown)) {
-                            return true;
+                        if (telephonyConnection instanceof TelephonyConnection) {
+                            if (maybeSwapWithUnknownConnection(
+                                    (TelephonyConnection) telephonyConnection,
+                                    unknown)) {
+                                return true;
+                            }
                         }
                     }
                 }
