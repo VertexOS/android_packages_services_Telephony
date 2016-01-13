@@ -17,7 +17,7 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="phoneAppLabel" product="tablet" msgid="1107073389495104784">"Korinio ryšio duomenys"</string>
-    <string name="phoneAppLabel" product="default" msgid="906161039445636857">"Telefonas"</string>
+    <string name="phoneAppLabel" product="default" msgid="6790717591729922998">"Telefono paslaugos"</string>
     <string name="emergencyDialerIconLabel" msgid="7812140032168171053">"Pagalbos numerio rinkiklis"</string>
     <string name="phoneIconLabel" msgid="2331230813161304895">"Telefonas"</string>
     <string name="fdnListLabel" msgid="8630418672279521003">"FRN sąrašas"</string>
@@ -526,7 +526,7 @@
     <string name="voicemail_settings" msgid="72448049107749316">"Sąranka"</string>
     <string name="voicemail_number_not_set" msgid="6724904736891087856">"&lt;Nenustatyta&gt;"</string>
     <string name="other_settings" msgid="3672912580359716394">"Kiti skambučio nustatymai"</string>
-    <string name="calling_via_template" msgid="4839419581866928142">"Skambinama naudojantis „<xliff:g id="PROVIDER_NAME">%s</xliff:g>“ paslaugomis"</string>
+    <string name="calling_via_template" msgid="4839419581866928142">"Skam. naudojant „<xliff:g id="PROVIDER_NAME">%s</xliff:g>“"</string>
     <string name="contactPhoto" msgid="4713193418046639466">"kontakto nuotrauka"</string>
     <string name="goPrivate" msgid="865837794424530980">"naudoti privatų režimą"</string>
     <string name="selectContact" msgid="781975788478987237">"pasirinkti kontaktą"</string>

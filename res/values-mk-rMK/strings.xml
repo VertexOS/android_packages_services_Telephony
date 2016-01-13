@@ -17,7 +17,7 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="phoneAppLabel" product="tablet" msgid="1107073389495104784">"Мобилни податоци"</string>
-    <string name="phoneAppLabel" product="default" msgid="906161039445636857">"Телефон"</string>
+    <string name="phoneAppLabel" product="default" msgid="6790717591729922998">"Телефонски услуги"</string>
     <string name="emergencyDialerIconLabel" msgid="7812140032168171053">"Бирач за итни случаи"</string>
     <string name="phoneIconLabel" msgid="2331230813161304895">"Телефон"</string>
     <string name="fdnListLabel" msgid="8630418672279521003">"FDN список"</string>
@@ -58,7 +58,7 @@
     <string name="labelCDMAMore" msgid="1630676740428229339">"CDMA подесувања на повик"</string>
     <string name="labelCdmaMore_with_label" msgid="6333588719319970399">"Поставки за повик преку CDMA (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="apn_settings" msgid="9043423184895642077">"Имиња на точка на пристап"</string>
-    <string name="settings_label" msgid="3876743539816984008">"Подесувања на мрежа"</string>
+    <string name="settings_label" msgid="3876743539816984008">"Поставки на мрежа"</string>
     <string name="phone_accounts" msgid="6376603393888116364">"Сметки за повикување"</string>
     <string name="phone_accounts_make_calls_with" msgid="1969188078933152231">"Повикувајте со"</string>
     <string name="phone_accounts_make_sip_calls_with" msgid="4677789312053828493">"Повикувајте со СИП со"</string>
@@ -77,13 +77,13 @@
     <string name="voicemail_abbreviated" msgid="2215592488517217448">"ГП:"</string>
     <string name="networks" msgid="8873030692174541976">"Оператори на мрежа"</string>
     <string name="cell_broadcast_settings" msgid="8740238216690502563">"Итни емитувања"</string>
-    <string name="call_settings" msgid="6112441768261754562">"Подесувања на повик"</string>
+    <string name="call_settings" msgid="6112441768261754562">"Поставки на повик"</string>
     <string name="additional_gsm_call_settings" msgid="1391795981938800617">"Дополнителни подесувања"</string>
     <string name="additional_gsm_call_settings_with_label" msgid="1385241520708457376">"Дополнителни поставки (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="sum_gsm_call_settings" msgid="4076647190996778012">"Дополнителни подесувања на повик само за GSM"</string>
     <string name="additional_cdma_call_settings" msgid="8628958775721886909">"Дополнителни CDMA подесувања на повик"</string>
     <string name="sum_cdma_call_settings" msgid="284753265979035549">"Дополнителни подесувања на повик само за CDMA"</string>
-    <string name="labelNwService" msgid="4699970172021870983">"Подесувања на мрежна услуга"</string>
+    <string name="labelNwService" msgid="4699970172021870983">"Поставки на мрежна услуга"</string>
     <string name="labelCallerId" msgid="3888899447379069198">"ИД на повикувач"</string>
     <string name="sum_loading_settings" msgid="1826692909391168620">"Вчитување на подесувањата..."</string>
     <string name="sum_hide_caller_id" msgid="1071407020290873782">"Број скриен при појдовни повици"</string>
@@ -92,7 +92,7 @@
     <string name="labelCW" msgid="6120513814915920200">"Повик на чекање"</string>
     <string name="sum_cw_enabled" msgid="8083061901633671397">"За време на повик, извести ме за дојдовни повици"</string>
     <string name="sum_cw_disabled" msgid="3648693907300104575">"За време на повик, извести ме за дојдовни повици"</string>
-    <string name="call_forwarding_settings" msgid="3378927671091537173">"Подесувања за проследување повик"</string>
+    <string name="call_forwarding_settings" msgid="3378927671091537173">"Поставки за проследување повик"</string>
     <string name="call_forwarding_settings_with_label" msgid="8569489414006897127">"Поставки за проследување повик (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="labelCF" msgid="2574386948026924737">"Препраќање повик"</string>
     <string name="labelCFU" msgid="8147177368148660600">"Секогаш препраќај"</string>
@@ -116,7 +116,7 @@
     <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"Препраќање на <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfnrc_disabled" msgid="7222141261321276464">"Оневозможено"</string>
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"Вашиот оператор не поддржува оневозможување проследување повик кога вашиот телефон е недостапен."</string>
-    <string name="updating_title" msgid="6146755386174019046">"Подесувања на повик"</string>
+    <string name="updating_title" msgid="6146755386174019046">"Поставки на повик"</string>
     <string name="call_settings_primary_user_only" msgid="5679923943740900965">"Поставките за повик може да ги промени само главниот корисник."</string>
     <string name="call_settings_with_label" msgid="89359812614544532">"Поставки за повик (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="error_updating_title" msgid="7970259216988931777">"Грешка со подесување повици"</string>
@@ -331,7 +331,7 @@
   </string-array>
     <string name="cdma_activate_device" msgid="3793805892364814518">"Активирај уред"</string>
     <string name="cdma_lte_data_service" msgid="4255018217292548962">"Подеси услуга на податоци"</string>
-    <string name="carrier_settings_title" msgid="9028166176523012300">"Подесувања на оператор"</string>
+    <string name="carrier_settings_title" msgid="9028166176523012300">"Поставки на оператор"</string>
     <string name="fdn" msgid="7878832555095183202">"Броеви на фиксно бирање"</string>
     <string name="fdn_with_label" msgid="187084204115493366">"Броеви за фиксно бирање (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="manage_fdn_list" msgid="8777755791892122369">"FDN список"</string>

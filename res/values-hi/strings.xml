@@ -17,7 +17,7 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="phoneAppLabel" product="tablet" msgid="1107073389495104784">"सेल्युलर डेटा"</string>
-    <string name="phoneAppLabel" product="default" msgid="906161039445636857">"फ़ोन"</string>
+    <string name="phoneAppLabel" product="default" msgid="6790717591729922998">"फ़ोन सेवाएं"</string>
     <string name="emergencyDialerIconLabel" msgid="7812140032168171053">"आपातकालीन डायलर"</string>
     <string name="phoneIconLabel" msgid="2331230813161304895">"फ़ोन"</string>
     <string name="fdnListLabel" msgid="8630418672279521003">"FDN सूची"</string>
@@ -520,7 +520,7 @@
     <string name="voicemail_settings" msgid="72448049107749316">"सेटअप"</string>
     <string name="voicemail_number_not_set" msgid="6724904736891087856">"&lt;सेट नहीं है&gt;"</string>
     <string name="other_settings" msgid="3672912580359716394">"अन्य कॉल सेटिंग"</string>
-    <string name="calling_via_template" msgid="4839419581866928142">"<xliff:g id="PROVIDER_NAME">%s</xliff:g> के माध्यम से कॉल किया जा रहा है"</string>
+    <string name="calling_via_template" msgid="4839419581866928142">"कॉल <xliff:g id="PROVIDER_NAME">%s</xliff:g> से जा रही है"</string>
     <string name="contactPhoto" msgid="4713193418046639466">"संपर्क का फ़ोटो"</string>
     <string name="goPrivate" msgid="865837794424530980">"निजी हो जाएं"</string>
     <string name="selectContact" msgid="781975788478987237">"संपर्क को चुनें"</string>

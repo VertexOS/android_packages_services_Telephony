@@ -17,7 +17,7 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="phoneAppLabel" product="tablet" msgid="1107073389495104784">"സെല്ലുലാർ ഡാറ്റ"</string>
-    <string name="phoneAppLabel" product="default" msgid="906161039445636857">"ഫോണ്‍"</string>
+    <string name="phoneAppLabel" product="default" msgid="6790717591729922998">"ഫോൺ സേവനങ്ങൾ"</string>
     <string name="emergencyDialerIconLabel" msgid="7812140032168171053">"അടിയന്തര ഡയലർ"</string>
     <string name="phoneIconLabel" msgid="2331230813161304895">"ഫോണ്‍"</string>
     <string name="fdnListLabel" msgid="8630418672279521003">"FDN ലിസ്റ്റ്"</string>
@@ -349,7 +349,7 @@
     <string name="auto_retry_mode_summary" msgid="4973886004067532288">"യാന്ത്രികമായി വീണ്ടും ശ്രമിക്കൽ മോഡ് പ്രവർത്തനക്ഷമമാക്കുക"</string>
     <string name="tty_mode_not_allowed_video_call" msgid="3795846787901909176">"വീഡിയോ കോൾ സമയത്ത് TTY മോഡ് മാറ്റം അനുവദനീയമല്ല"</string>
     <string name="menu_add" msgid="1882023737425114762">"കോൺടാക്റ്റ് ചേർക്കുക"</string>
-    <string name="menu_edit" msgid="7143003705504672374">"കോൺടാക്റ്റ് എഡിറ്റുചെയ്യുക"</string>
+    <string name="menu_edit" msgid="7143003705504672374">"കോൺടാ‌ക്‌റ്റ് തിരുത്തുക"</string>
     <string name="menu_delete" msgid="3977150783449642851">"കോണ്‍‌ടാക്റ്റ് ഇല്ലാതാക്കുക"</string>
     <string name="get_pin2" msgid="8204677063922225311">"PIN2 ടൈപ്പുചെയ്യുക"</string>
     <string name="name" msgid="7329028332786872378">"പേര്"</string>
@@ -520,7 +520,7 @@
     <string name="voicemail_settings" msgid="72448049107749316">"സജ്ജമാക്കുക"</string>
     <string name="voicemail_number_not_set" msgid="6724904736891087856">"&lt;സജ്ജീകരിച്ചിട്ടില്ല&gt;"</string>
     <string name="other_settings" msgid="3672912580359716394">"മറ്റ് കോൾ ക്രമീകരണങ്ങൾ"</string>
-    <string name="calling_via_template" msgid="4839419581866928142">"<xliff:g id="PROVIDER_NAME">%s</xliff:g> മുഖേന വിളിക്കുന്നു"</string>
+    <string name="calling_via_template" msgid="4839419581866928142">"<xliff:g id="PROVIDER_NAME">%s</xliff:g> വഴി വിളിക്കുന്നു"</string>
     <string name="contactPhoto" msgid="4713193418046639466">"കോൺടാക്റ്റ് ഫോട്ടോ"</string>
     <string name="goPrivate" msgid="865837794424530980">"സ്വകാര്യം എന്നതിലേക്ക് പോകുക"</string>
     <string name="selectContact" msgid="781975788478987237">"കോൺടാക്റ്റ് തിരഞ്ഞെടുക്കുക"</string>

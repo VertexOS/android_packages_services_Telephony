@@ -17,7 +17,7 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="phoneAppLabel" product="tablet" msgid="1107073389495104784">"Data ya Simu za Mkononi"</string>
-    <string name="phoneAppLabel" product="default" msgid="906161039445636857">"Simu"</string>
+    <string name="phoneAppLabel" product="default" msgid="6790717591729922998">"Huduma za Simu"</string>
     <string name="emergencyDialerIconLabel" msgid="7812140032168171053">"Kipigaji cha Dhararu"</string>
     <string name="phoneIconLabel" msgid="2331230813161304895">"Simu"</string>
     <string name="fdnListLabel" msgid="8630418672279521003">"Orodha ya FDN"</string>
@@ -520,7 +520,7 @@
     <string name="voicemail_settings" msgid="72448049107749316">"Sanidi"</string>
     <string name="voicemail_number_not_set" msgid="6724904736891087856">"&lt;Haijawekwa&gt;"</string>
     <string name="other_settings" msgid="3672912580359716394">"Mipangilio mingine ya simu"</string>
-    <string name="calling_via_template" msgid="4839419581866928142">"Kupiga simu kupitia <xliff:g id="PROVIDER_NAME">%s</xliff:g>"</string>
+    <string name="calling_via_template" msgid="4839419581866928142">"Inapiga kupitia <xliff:g id="PROVIDER_NAME">%s</xliff:g>"</string>
     <string name="contactPhoto" msgid="4713193418046639466">"picha ya anwani"</string>
     <string name="goPrivate" msgid="865837794424530980">"nenda kwa faragha"</string>
     <string name="selectContact" msgid="781975788478987237">"chagua anwani"</string>

@@ -17,7 +17,7 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="phoneAppLabel" product="tablet" msgid="1107073389495104784">"Dades mòbils"</string>
-    <string name="phoneAppLabel" product="default" msgid="906161039445636857">"Telèfon"</string>
+    <string name="phoneAppLabel" product="default" msgid="6790717591729922998">"Serveis del telèfon"</string>
     <string name="emergencyDialerIconLabel" msgid="7812140032168171053">"Marcador d\'emergència"</string>
     <string name="phoneIconLabel" msgid="2331230813161304895">"Telèfon"</string>
     <string name="fdnListLabel" msgid="8630418672279521003">"Llista FDN"</string>
@@ -496,8 +496,8 @@
     <string name="ota_try_again" msgid="7685477206465902290">"Torna-ho a provar"</string>
     <string name="ota_next" msgid="3904945374358235910">"Següent"</string>
     <string name="ecm_exit_dialog" msgid="4448531867763097533">"EcmExitDialog"</string>
-    <string name="phone_entered_ecm_text" msgid="6266424252578731203">"S\'ha entrat al mode de crida de retorn d\'emergència"</string>
-    <string name="phone_in_ecm_notification_title" msgid="3226896828951687085">"Mode de crida de retorn d\'emergència"</string>
+    <string name="phone_entered_ecm_text" msgid="6266424252578731203">"S\'ha activat al mode de devolució de trucada d\'emergència"</string>
+    <string name="phone_in_ecm_notification_title" msgid="3226896828951687085">"Mode de devolució de trucada d\'emergència"</string>
     <string name="phone_in_ecm_call_notification_text" msgid="4611608947314729773">"Connexió de dades desactivada"</string>
     <plurals name="phone_in_ecm_notification_time" formatted="false" msgid="8308381858502470919">
       <item quantity="other">No hi ha hagut connexió de dades durant <xliff:g id="COUNT_1">%s</xliff:g> minuts</item>
@@ -520,7 +520,7 @@
     <string name="voicemail_settings" msgid="72448049107749316">"Configuració"</string>
     <string name="voicemail_number_not_set" msgid="6724904736891087856">"&lt;No definit&gt;"</string>
     <string name="other_settings" msgid="3672912580359716394">"Altres opcions de trucades"</string>
-    <string name="calling_via_template" msgid="4839419581866928142">"Trucada mitjançant <xliff:g id="PROVIDER_NAME">%s</xliff:g>"</string>
+    <string name="calling_via_template" msgid="4839419581866928142">"Trucada amb <xliff:g id="PROVIDER_NAME">%s</xliff:g>"</string>
     <string name="contactPhoto" msgid="4713193418046639466">"foto de contacte"</string>
     <string name="goPrivate" msgid="865837794424530980">"passa a privat"</string>
     <string name="selectContact" msgid="781975788478987237">"selecciona el contacte"</string>

@@ -17,7 +17,7 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="phoneAppLabel" product="tablet" msgid="1107073389495104784">"સેલ્યુલર ડેટા"</string>
-    <string name="phoneAppLabel" product="default" msgid="906161039445636857">"ફોન"</string>
+    <string name="phoneAppLabel" product="default" msgid="6790717591729922998">"ફોન સેવાઓ"</string>
     <string name="emergencyDialerIconLabel" msgid="7812140032168171053">"કટોકટીનું ડાયલર"</string>
     <string name="phoneIconLabel" msgid="2331230813161304895">"ફોન"</string>
     <string name="fdnListLabel" msgid="8630418672279521003">"FDN સૂચિ"</string>
@@ -299,9 +299,9 @@
     <string name="enable_disable_technology_news" msgid="3517184627114999149">"ટેક્નોલોજી સમાચાર"</string>
     <string name="technology_news_enable" msgid="7995209394210455181">"તકનીકી સમાચાર સક્ષમ કરેલ છે"</string>
     <string name="technology_news_disable" msgid="5483490380561851946">"તકનીકી સમાચાર અક્ષમ કરેલ છે"</string>
-    <string name="enable_disable_multi_category" msgid="626771003122899280">"બહુ-કેટેગરી"</string>
-    <string name="multi_category_enable" msgid="1179299804641721768">"બહુ-કેટેગરી સક્ષમ કરેલ છે"</string>
-    <string name="multi_category_disable" msgid="880104702904139505">"બહુ-કેટેગરી અક્ષમ કરેલ છે"</string>
+    <string name="enable_disable_multi_category" msgid="626771003122899280">"બહુ-કૅટેગરી"</string>
+    <string name="multi_category_enable" msgid="1179299804641721768">"બહુ-કૅટેગરી સક્ષમ કરેલ છે"</string>
+    <string name="multi_category_disable" msgid="880104702904139505">"બહુ-કૅટેગરી અક્ષમ કરેલ છે"</string>
     <string name="network_lte" msgid="7702681952521375754">"LTE (ભલામણ કરેલ)"</string>
     <string name="network_4G" msgid="2723512640529983138">"4G (ભલામણ કરેલ)"</string>
     <string name="network_global" msgid="1323190488685355309">"વૈશ્વિક"</string>

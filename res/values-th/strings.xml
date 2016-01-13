@@ -17,7 +17,7 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="phoneAppLabel" product="tablet" msgid="1107073389495104784">"ข้อมูลมือถือ"</string>
-    <string name="phoneAppLabel" product="default" msgid="906161039445636857">"โทรศัพท์"</string>
+    <string name="phoneAppLabel" product="default" msgid="6790717591729922998">"บริการโทรศัพท์"</string>
     <string name="emergencyDialerIconLabel" msgid="7812140032168171053">"โปรแกรมโทรออกฉุกเฉิน"</string>
     <string name="phoneIconLabel" msgid="2331230813161304895">"โทรศัพท์"</string>
     <string name="fdnListLabel" msgid="8630418672279521003">"รายการ FDN"</string>

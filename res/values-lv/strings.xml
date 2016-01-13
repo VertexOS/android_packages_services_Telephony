@@ -17,7 +17,7 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="phoneAppLabel" product="tablet" msgid="1107073389495104784">"Mobilie dati"</string>
-    <string name="phoneAppLabel" product="default" msgid="906161039445636857">"Tālrunis"</string>
+    <string name="phoneAppLabel" product="default" msgid="6790717591729922998">"Tālruņa pakalpojumi"</string>
     <string name="emergencyDialerIconLabel" msgid="7812140032168171053">"Ārkārtas numuru sastādītājs"</string>
     <string name="phoneIconLabel" msgid="2331230813161304895">"Tālrunis"</string>
     <string name="fdnListLabel" msgid="8630418672279521003">"IZSN saraksts"</string>
@@ -525,7 +525,7 @@
     <string name="voicemail_settings" msgid="72448049107749316">"Iestatīšana"</string>
     <string name="voicemail_number_not_set" msgid="6724904736891087856">"&lt;Nav iestatīts&gt;"</string>
     <string name="other_settings" msgid="3672912580359716394">"Citi zvanu iestatījumi"</string>
-    <string name="calling_via_template" msgid="4839419581866928142">"Zvans, ko nodrošina <xliff:g id="PROVIDER_NAME">%s</xliff:g>"</string>
+    <string name="calling_via_template" msgid="4839419581866928142">"Zvanu nodrošina <xliff:g id="PROVIDER_NAME">%s</xliff:g>"</string>
     <string name="contactPhoto" msgid="4713193418046639466">"kontaktpersonas fotoattēls"</string>
     <string name="goPrivate" msgid="865837794424530980">"pārslēgt uz privāto režīmu"</string>
     <string name="selectContact" msgid="781975788478987237">"atlasīt kontaktpersonu"</string>

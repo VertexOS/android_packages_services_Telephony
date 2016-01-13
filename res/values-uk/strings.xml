@@ -17,7 +17,7 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="phoneAppLabel" product="tablet" msgid="1107073389495104784">"Мобільні дані"</string>
-    <string name="phoneAppLabel" product="default" msgid="906161039445636857">"Телефон"</string>
+    <string name="phoneAppLabel" product="default" msgid="6790717591729922998">"Телефонні служби"</string>
     <string name="emergencyDialerIconLabel" msgid="7812140032168171053">"Аварійний телефон"</string>
     <string name="phoneIconLabel" msgid="2331230813161304895">"Телефон"</string>
     <string name="fdnListLabel" msgid="8630418672279521003">"Список FDN"</string>
@@ -526,7 +526,7 @@
     <string name="voicemail_settings" msgid="72448049107749316">"Налаштування"</string>
     <string name="voicemail_number_not_set" msgid="6724904736891087856">"&lt;Не встановлено&gt;"</string>
     <string name="other_settings" msgid="3672912580359716394">"Інші налаштування виклику"</string>
-    <string name="calling_via_template" msgid="4839419581866928142">"Виклик здійснюється за допомогою <xliff:g id="PROVIDER_NAME">%s</xliff:g>"</string>
+    <string name="calling_via_template" msgid="4839419581866928142">"Виклик через <xliff:g id="PROVIDER_NAME">%s</xliff:g>"</string>
     <string name="contactPhoto" msgid="4713193418046639466">"фото контакта"</string>
     <string name="goPrivate" msgid="865837794424530980">"конфіденц."</string>
     <string name="selectContact" msgid="781975788478987237">"вибрати контакт"</string>

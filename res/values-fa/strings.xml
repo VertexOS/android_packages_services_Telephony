@@ -17,7 +17,7 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="phoneAppLabel" product="tablet" msgid="1107073389495104784">"داده سلولی"</string>
-    <string name="phoneAppLabel" product="default" msgid="906161039445636857">"گوشی"</string>
+    <string name="phoneAppLabel" product="default" msgid="6790717591729922998">"سرویس‌های تلفن"</string>
     <string name="emergencyDialerIconLabel" msgid="7812140032168171053">"شماره گیری اضطراری"</string>
     <string name="phoneIconLabel" msgid="2331230813161304895">"تلفن"</string>
     <string name="fdnListLabel" msgid="8630418672279521003">"‏لیست FDN"</string>
@@ -40,7 +40,7 @@
     <string name="pause_prompt_str" msgid="1789964702154314806">"تون‌های ارسالی\n"</string>
     <string name="send_button" msgid="4106860097497818751">"ارسال"</string>
     <string name="pause_prompt_yes" msgid="3564467212025151797">"بله"</string>
-    <string name="pause_prompt_no" msgid="6686238803236884877">"خیر"</string>
+    <string name="pause_prompt_no" msgid="6686238803236884877">"نه"</string>
     <string name="wild_prompt_str" msgid="5543521676355533577">"جایگزینی نویسه عمومی با"</string>
     <string name="no_vm_number" msgid="4164780423805688336">"عدم وجود شماره پست صوتی"</string>
     <string name="no_vm_number_msg" msgid="1300729501030053828">"شماره پست صوتی در سیم کارت ذخیره نشده است."</string>
@@ -137,8 +137,8 @@
     <item msgid="1108394741608734023">"نمایش شماره"</item>
   </string-array>
     <string name="vm_changed" msgid="380744030726254139">"شماره پست صوتی تغییر کرد."</string>
-    <string name="vm_change_failed" msgid="3352934863246208918">"نمی‌توان شماره صندوق صوتی را تغییر داد.\nدر صورتی که این مشکل همچنان ادامه دارد با شرکت مخابراتی خود تماس بگیرید."</string>
-    <string name="fw_change_failed" msgid="5298103228470214665">"نمی‌توان شماره هدایت تماس را تغییر داد.\nدر صورتی که این مشکل همچنان ادامه دارد با شرکت مخابراتی خود تماس بگیرید."</string>
+    <string name="vm_change_failed" msgid="3352934863246208918">"نمی‌توان شماره صندوق صوتی را تغییر داد.\nدرصورتی‌که این مشکل همچنان ادامه دارد با شرکت مخابراتی خود تماس بگیرید."</string>
+    <string name="fw_change_failed" msgid="5298103228470214665">"نمی‌توان شماره هدایت تماس را تغییر داد.\nدرصورتی‌که این مشکل همچنان ادامه دارد با شرکت مخابراتی خود تماس بگیرید."</string>
     <string name="fw_get_in_vm_failed" msgid="8862896836093833973">"نمی‌توان تنظیمات هدایت شماره فعلی را بازیابی و ذخیره کرد.\nبه هر حال به ارائه دهنده جدید تغییر کند؟"</string>
     <string name="no_change" msgid="3186040086622435212">"تغییری انجام نشده است."</string>
     <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"انتخاب سرویس پست صوتی"</string>
@@ -155,7 +155,7 @@
     <string name="registration_done" msgid="495135664535876612">"در شبکه ثبت شد."</string>
     <string name="sum_carrier_select" msgid="3494252551249882718">"انتخاب یک اپراتور شبکه"</string>
     <string name="sum_search_networks" msgid="2921092249873272715">"جستجوی همه شبکه‌های موجود"</string>
-    <string name="select_automatically" msgid="5628402124471810174">"انتخاب به طور خودکار"</string>
+    <string name="select_automatically" msgid="5628402124471810174">"انتخاب به‌طور خودکار"</string>
     <string name="sum_select_automatically" msgid="5614890115123292400">"به صورت خودکار شبکه برگزیده را انتخاب کنید"</string>
     <string name="register_automatically" msgid="6017849844573519637">"ثبت خودکار..."</string>
     <string name="preferred_network_mode_title" msgid="2336624679902659306">"نوع شبکه برگزیده"</string>
@@ -406,7 +406,7 @@
     <string name="pin2_attempts" msgid="720736232885011507">\n"<xliff:g id="NUMBER">%d</xliff:g> تلاش باقی‌مانده دارید."</string>
     <string name="pin2_unblocked" msgid="7791600368153469078">"‏PIN2 دیگر مسدود نیست"</string>
     <string name="pin2_error_exception" msgid="1088689322248996699">"خطای شبکه یا سیم‌کارت"</string>
-    <string name="doneButton" msgid="2859593360997984240">"انجام شد"</string>
+    <string name="doneButton" msgid="2859593360997984240">"تمام"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"شماره پست صوتی"</string>
     <string name="card_title_dialing" msgid="5769417478498348054">"شماره گیری"</string>
     <string name="card_title_redialing" msgid="8253487008234167266">"در حال شماره‌گیری مجدد"</string>
@@ -442,7 +442,7 @@
     <string name="emergency_enable_radio_dialog_message" msgid="207613549344420291">"در حال روشن کردن رادیو..."</string>
     <string name="emergency_enable_radio_dialog_retry" msgid="5960061579996526883">"سرویسی در دسترس نیست. دوباره امتحان کنید..."</string>
     <string name="dial_emergency_error" msgid="1509085166367420355">"نمی‌توانید تماس بگیرید. <xliff:g id="NON_EMERGENCY_NUMBER">%s</xliff:g> یک شماره اضطراری نیست."</string>
-    <string name="dial_emergency_empty_error" msgid="9130194953830414638">"نمی توانید تماس بگیرید. یک شماره اضطراری را شماره‌گیری کنید."</string>
+    <string name="dial_emergency_empty_error" msgid="9130194953830414638">"نمی‌ توانید تماس بگیرید. یک شماره اضطراری را شماره‌گیری کنید."</string>
     <string name="dialerKeyboardHintText" msgid="9192914825413747792">"استفاده از صفحه‌کلید برای شماره گیری"</string>
     <string name="onscreenHoldText" msgid="2285258239691145872">"نگهداشت"</string>
     <string name="onscreenEndCallText" msgid="4403855834875398585">"پایان"</string>
@@ -514,7 +514,7 @@
     <string name="alert_dialog_in_ecm_call" msgid="1886723687211887104">"در حین یک تماس اضطراری، عملکرد انتخابی در دسترس نیست."</string>
     <string name="progress_dialog_exiting_ecm" msgid="4835734101617817074">"خروج از حالت پاسخ تماس اضطراری"</string>
     <string name="alert_dialog_yes" msgid="6674268047820703974">"بله"</string>
-    <string name="alert_dialog_no" msgid="1476091437797628703">"خیر"</string>
+    <string name="alert_dialog_no" msgid="1476091437797628703">"نه"</string>
     <string name="alert_dialog_dismiss" msgid="2491494287075907171">"رد کردن"</string>
     <string name="voicemail_provider" msgid="5135942703327136909">"سرویس"</string>
     <string name="voicemail_settings" msgid="72448049107749316">"تنظیم"</string>
@@ -522,7 +522,7 @@
     <string name="other_settings" msgid="3672912580359716394">"سایر تنظیمات تماس"</string>
     <string name="calling_via_template" msgid="4839419581866928142">"تماس از طریق <xliff:g id="PROVIDER_NAME">%s</xliff:g>"</string>
     <string name="contactPhoto" msgid="4713193418046639466">"عکس مخاطب"</string>
-    <string name="goPrivate" msgid="865837794424530980">"برو به خصوصی"</string>
+    <string name="goPrivate" msgid="865837794424530980">"رفتن به خصوصی"</string>
     <string name="selectContact" msgid="781975788478987237">"انتخاب حساب"</string>
     <string name="not_voice_capable" msgid="2739898841461577811">"تماس صوتی پشتیبانی نمی‌شود"</string>
     <string name="description_dial_button" msgid="7459705245418435351">"شماره گیری"</string>
