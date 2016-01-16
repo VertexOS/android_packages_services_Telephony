@@ -68,30 +68,15 @@ public class CallNotifier extends Handler {
     // Time to display the message from the underlying phone layers.
     private static final int SHOW_MESSAGE_NOTIFICATION_TIME = 3000; // msec
 
-    private static final AudioAttributes VIBRATION_ATTRIBUTES = new AudioAttributes.Builder()
-            .setContentType(AudioAttributes.CONTENT_TYPE_SPEECH)
-            .setUsage(AudioAttributes.USAGE_VOICE_COMMUNICATION)
-            .build();
-
     /** The singleton instance. */
     private static CallNotifier sInstance;
 
-    // values used to track the query state
-    private static final int CALLERINFO_QUERY_READY = 0;
-    private static final int CALLERINFO_QUERYING = -1;
-
-    // the state of the CallerInfo Query.
-    private int mCallerInfoQueryState;
-
-    // object used to synchronize access to mCallerInfoQueryState
-    private Object mCallerInfoQueryStateGuard = new Object();
     private Map<Integer, CallNotifierPhoneStateListener> mPhoneStateListeners =
             new ArrayMap<Integer, CallNotifierPhoneStateListener>();
 
     private PhoneGlobals mApplication;
     private CallManager mCM;
     private BluetoothHeadset mBluetoothHeadset;
-    private CallLogger mCallLogger;
 
     // ToneGenerator instance for playing SignalInfo tones
     private ToneGenerator mSignalInfoToneGenerator;
@@ -99,26 +84,37 @@ public class CallNotifier extends Handler {
     // The tone volume relative to other sounds in the stream SignalInfo
     private static final int TONE_RELATIVE_VOLUME_SIGNALINFO = 80;
 
-    private Call.State mPreviousCdmaCallState;
     private boolean mVoicePrivacyState = false;
-    private boolean mIsCdmaRedialCall = false;
 
     // Cached AudioManager
     private AudioManager mAudioManager;
     private SubscriptionManager mSubscriptionManager;
     private TelephonyManager mTelephonyManager;
 
+    // Events from the Phone object:
+    public static final int PHONE_DISCONNECT = 3;
+    public static final int PHONE_STATE_DISPLAYINFO = 6;
+    public static final int PHONE_STATE_SIGNALINFO = 7;
+    public static final int PHONE_ENHANCED_VP_ON = 9;
+    public static final int PHONE_ENHANCED_VP_OFF = 10;
+    public static final int PHONE_SUPP_SERVICE_FAILED = 14;
+    public static final int PHONE_TTY_MODE_RECEIVED = 15;
+    // Events generated internally.
+    // We should store all the possible event type values in one place to make sure that
+    // they don't step on each others' toes.
+    public static final int INTERNAL_SHOW_MESSAGE_NOTIFICATION_DONE = 22;
+    // Other events from call manager
+    public static final int EVENT_OTA_PROVISION_CHANGE = 20;
+
     /**
      * Initialize the singleton CallNotifier instance.
      * This is only done once, at startup, from PhoneApp.onCreate().
      */
     /* package */ static CallNotifier init(
-            PhoneGlobals app,
-            CallLogger callLogger,
-            CallStateMonitor callStateMonitor) {
+            PhoneGlobals app) {
         synchronized (CallNotifier.class) {
             if (sInstance == null) {
-                sInstance = new CallNotifier(app, callLogger, callStateMonitor);
+                sInstance = new CallNotifier(app);
             } else {
                 Log.wtf(LOG_TAG, "init() called multiple times!  sInstance = " + sInstance);
             }
@@ -128,12 +124,9 @@ public class CallNotifier extends Handler {
 
     /** Private constructor; @see init() */
     private CallNotifier(
-            PhoneGlobals app,
-            CallLogger callLogger,
-            CallStateMonitor callStateMonitor) {
+            PhoneGlobals app) {
         mApplication = app;
         mCM = app.mCM;
-        mCallLogger = callLogger;
 
         mAudioManager = (AudioManager) mApplication.getSystemService(Context.AUDIO_SERVICE);
         mTelephonyManager =
@@ -141,7 +134,7 @@ public class CallNotifier extends Handler {
         mSubscriptionManager = (SubscriptionManager) mApplication.getSystemService(
                 Context.TELEPHONY_SUBSCRIPTION_SERVICE);
 
-        callStateMonitor.addListener(this);
+        registerForNotifications();
 
         BluetoothAdapter adapter = BluetoothAdapter.getDefaultAdapter();
         if (adapter != null) {
@@ -179,50 +172,54 @@ public class CallNotifier extends Handler {
         }
     }
 
+    /**
+     * Register for call state notifications with the CallManager.
+     */
+    private void registerForNotifications() {
+        mCM.registerForDisconnect(this, PHONE_DISCONNECT, null);
+        mCM.registerForCdmaOtaStatusChange(this, EVENT_OTA_PROVISION_CHANGE, null);
+        mCM.registerForDisplayInfo(this, PHONE_STATE_DISPLAYINFO, null);
+        mCM.registerForSignalInfo(this, PHONE_STATE_SIGNALINFO, null);
+        mCM.registerForInCallVoicePrivacyOn(this, PHONE_ENHANCED_VP_ON, null);
+        mCM.registerForInCallVoicePrivacyOff(this, PHONE_ENHANCED_VP_OFF, null);
+        mCM.registerForSuppServiceFailed(this, PHONE_SUPP_SERVICE_FAILED, null);
+        mCM.registerForTtyModeReceived(this, PHONE_TTY_MODE_RECEIVED, null);
+    }
+
     @Override
     public void handleMessage(Message msg) {
+        if (DBG) {
+            Log.d(LOG_TAG, "handleMessage(" + msg.what + ")");
+        }
         switch (msg.what) {
-            case CallStateMonitor.PHONE_NEW_RINGING_CONNECTION:
-                log("RINGING... (new)");
-                onNewRingingConnection((AsyncResult) msg.obj);
-                break;
-
-            case CallStateMonitor.PHONE_STATE_CHANGED:
-                onPhoneStateChanged((AsyncResult) msg.obj);
-                break;
-
-            case CallStateMonitor.PHONE_DISCONNECT:
+            case PHONE_DISCONNECT:
                 if (DBG) log("DISCONNECT");
                 // Stop any signalInfo tone being played when a call gets ended, the rest of the
                 // disconnect functionality in onDisconnect() is handled in ConnectionService.
                 stopSignalInfoTone();
                 break;
 
-            case CallStateMonitor.PHONE_UNKNOWN_CONNECTION_APPEARED:
-                onUnknownConnectionAppeared((AsyncResult) msg.obj);
-                break;
-
-            case CallStateMonitor.PHONE_STATE_DISPLAYINFO:
+            case PHONE_STATE_DISPLAYINFO:
                 if (DBG) log("Received PHONE_STATE_DISPLAYINFO event");
                 onDisplayInfo((AsyncResult) msg.obj);
                 break;
 
-            case CallStateMonitor.PHONE_STATE_SIGNALINFO:
+            case PHONE_STATE_SIGNALINFO:
                 if (DBG) log("Received PHONE_STATE_SIGNALINFO event");
                 onSignalInfo((AsyncResult) msg.obj);
                 break;
 
-            case CallStateMonitor.INTERNAL_SHOW_MESSAGE_NOTIFICATION_DONE:
+            case INTERNAL_SHOW_MESSAGE_NOTIFICATION_DONE:
                 if (DBG) log("Received Display Info notification done event ...");
                 PhoneDisplayMessage.dismissMessage();
                 break;
 
-            case CallStateMonitor.EVENT_OTA_PROVISION_CHANGE:
+            case EVENT_OTA_PROVISION_CHANGE:
                 if (DBG) log("EVENT_OTA_PROVISION_CHANGE...");
                 mApplication.handleOtaspEvent(msg);
                 break;
 
-            case CallStateMonitor.PHONE_ENHANCED_VP_ON:
+            case PHONE_ENHANCED_VP_ON:
                 if (DBG) log("PHONE_ENHANCED_VP_ON...");
                 if (!mVoicePrivacyState) {
                     int toneToPlay = InCallTonePlayer.TONE_VOICE_PRIVACY;
@@ -231,7 +228,7 @@ public class CallNotifier extends Handler {
                 }
                 break;
 
-            case CallStateMonitor.PHONE_ENHANCED_VP_OFF:
+            case PHONE_ENHANCED_VP_OFF:
                 if (DBG) log("PHONE_ENHANCED_VP_OFF...");
                 if (mVoicePrivacyState) {
                     int toneToPlay = InCallTonePlayer.TONE_VOICE_PRIVACY;
@@ -240,12 +237,12 @@ public class CallNotifier extends Handler {
                 }
                 break;
 
-            case CallStateMonitor.PHONE_SUPP_SERVICE_FAILED:
+            case PHONE_SUPP_SERVICE_FAILED:
                 if (DBG) log("PHONE_SUPP_SERVICE_FAILED...");
                 onSuppServiceFailed((AsyncResult) msg.obj);
                 break;
 
-            case CallStateMonitor.PHONE_TTY_MODE_RECEIVED:
+            case PHONE_TTY_MODE_RECEIVED:
                 if (DBG) log("Received PHONE_TTY_MODE_RECEIVED event");
                 onTtyModeReceived((AsyncResult) msg.obj);
                 break;
@@ -255,335 +252,11 @@ public class CallNotifier extends Handler {
         }
     }
 
-    /**
-     * Handles a "new ringing connection" event from the telephony layer.
-     */
-    private void onNewRingingConnection(AsyncResult r) {
-        Connection c = (Connection) r.result;
-        log("onNewRingingConnection(): state = " + mCM.getState() + ", conn = { " + c + " }");
-        Call ringing = c.getCall();
-        Phone phone = ringing.getPhone();
-
-        // Check for a few cases where we totally ignore incoming calls.
-        if (ignoreAllIncomingCalls(phone)) {
-            // Immediately reject the call, without even indicating to the user
-            // that an incoming call occurred.  (This will generally send the
-            // caller straight to voicemail, just as if we *had* shown the
-            // incoming-call UI and the user had declined the call.)
-            PhoneUtils.hangupRingingCall(ringing);
-            return;
-        }
-
-        if (!c.isRinging()) {
-            Log.i(LOG_TAG, "CallNotifier.onNewRingingConnection(): connection not ringing!");
-            // This is a very strange case: an incoming call that stopped
-            // ringing almost instantly after the onNewRingingConnection()
-            // event.  There's nothing we can do here, so just bail out
-            // without doing anything.  (But presumably we'll log it in
-            // the call log when the disconnect event comes in...)
-            return;
-        }
-
-        // Stop any signalInfo tone being played on receiving a Call
-        stopSignalInfoTone();
-
-        Call.State state = c.getState();
-        // State will be either INCOMING or WAITING.
-        if (VDBG) log("- connection is ringing!  state = " + state);
-        // if (DBG) PhoneUtils.dumpCallState(mPhone);
-
-        // No need to do any service state checks here (like for
-        // "emergency mode"), since in those states the SIM won't let
-        // us get incoming connections in the first place.
-
-        // TODO: Consider sending out a serialized broadcast Intent here
-        // (maybe "ACTION_NEW_INCOMING_CALL"), *before* starting the
-        // ringer and going to the in-call UI.  The intent should contain
-        // the caller-id info for the current connection, and say whether
-        // it would be a "call waiting" call or a regular ringing call.
-        // If anybody consumed the broadcast, we'd bail out without
-        // ringing or bringing up the in-call UI.
-        //
-        // This would give 3rd party apps a chance to listen for (and
-        // intercept) new ringing connections.  An app could reject the
-        // incoming call by consuming the broadcast and doing nothing, or
-        // it could "pick up" the call (without any action by the user!)
-        // via some future TelephonyManager API.
-        //
-        // See bug 1312336 for more details.
-        // We'd need to protect this with a new "intercept incoming calls"
-        // system permission.
-
-        // Obtain a partial wake lock to make sure the CPU doesn't go to
-        // sleep before we finish bringing up the InCallScreen.
-        // (This will be upgraded soon to a full wake lock; see
-        // showIncomingCall().)
-        if (VDBG) log("Holding wake lock on new incoming connection.");
-        mApplication.requestWakeState(PhoneGlobals.WakeState.PARTIAL);
-
-        // Note we *don't* post a status bar notification here, since
-        // we're not necessarily ready to actually show the incoming call
-        // to the user.  (For calls in the INCOMING state, at least, we
-        // still need to run a caller-id query, and we may not even ring
-        // at all if the "send directly to voicemail" flag is set.)
-        //
-        // Instead, we update the notification (and potentially launch the
-        // InCallScreen) from the showIncomingCall() method, which runs
-        // when the caller-id query completes or times out.
-
-        if (VDBG) log("- onNewRingingConnection() done.");
-    }
-
-    /**
-     * Determines whether or not we're allowed to present incoming calls to the
-     * user, based on the capabilities and/or current state of the device.
-     *
-     * If this method returns true, that means we should immediately reject the
-     * current incoming call, without even indicating to the user that an
-     * incoming call occurred.
-     *
-     * (We only reject incoming calls in a few cases, like during an OTASP call
-     * when we can't interrupt the user, or if the device hasn't completed the
-     * SetupWizard yet.  We also don't allow incoming calls on non-voice-capable
-     * devices.  But note that we *always* allow incoming calls while in ECM.)
-     *
-     * @return true if we're *not* allowed to present an incoming call to
-     * the user.
-     */
-    private boolean ignoreAllIncomingCalls(Phone phone) {
-        // Incoming calls are totally ignored on non-voice-capable devices.
-        if (!PhoneGlobals.sVoiceCapable) {
-            // ...but still log a warning, since we shouldn't have gotten this
-            // event in the first place!  (Incoming calls *should* be blocked at
-            // the telephony layer on non-voice-capable capable devices.)
-            Log.w(LOG_TAG, "Got onNewRingingConnection() on non-voice-capable device! Ignoring...");
-            return true;
-        }
-
-        // In ECM (emergency callback mode), we ALWAYS allow incoming calls
-        // to get through to the user.  (Note that ECM is applicable only to
-        // voice-capable CDMA devices).
-        if (PhoneUtils.isPhoneInEcm(phone)) {
-            if (DBG) log("Incoming call while in ECM: always allow...");
-            return false;
-        }
-
-        // Incoming calls are totally ignored if the device isn't provisioned yet.
-        boolean provisioned = Settings.Global.getInt(mApplication.getContentResolver(),
-            Settings.Global.DEVICE_PROVISIONED, 0) != 0;
-        if (!provisioned) {
-            Log.i(LOG_TAG, "Ignoring incoming call: not provisioned");
-            return true;
-        }
-
-        // Incoming calls are totally ignored if an OTASP call is active.
-        if (TelephonyCapabilities.supportsOtasp(phone)) {
-            boolean activateState = (mApplication.cdmaOtaScreenState.otaScreenState
-                    == OtaUtils.CdmaOtaScreenState.OtaScreenState.OTA_STATUS_ACTIVATION);
-            boolean dialogState = (mApplication.cdmaOtaScreenState.otaScreenState
-                    == OtaUtils.CdmaOtaScreenState.OtaScreenState.OTA_STATUS_SUCCESS_FAILURE_DLG);
-            boolean spcState = mApplication.cdmaOtaProvisionData.inOtaSpcState;
-
-            if (spcState) {
-                Log.i(LOG_TAG, "Ignoring incoming call: OTA call is active");
-                return true;
-            } else if (activateState || dialogState) {
-                // We *are* allowed to receive incoming calls at this point.
-                // But clear out any residual OTASP UI first.
-                // TODO: It's an MVC violation to twiddle the OTA UI state here;
-                // we should instead provide a higher-level API via OtaUtils.
-                if (dialogState) mApplication.dismissOtaDialogs();
-                mApplication.clearOtaState();
-                return false;
-            }
-        }
-
-        // Normal case: allow this call to be presented to the user.
-        return false;
-    }
-
-    private void onUnknownConnectionAppeared(AsyncResult r) {
-        PhoneConstants.State state = mCM.getState();
-
-        if (state == PhoneConstants.State.OFFHOOK) {
-            if (DBG) log("unknown connection appeared...");
-
-            onPhoneStateChanged(r);
-        }
-    }
-
-    /**
-     * Updates the phone UI in response to phone state changes.
-     *
-     * Watch out: certain state changes are actually handled by their own
-     * specific methods:
-     *   - see onNewRingingConnection() for new incoming calls
-     *   - see onDisconnect() for calls being hung up or disconnected
-     */
-    private void onPhoneStateChanged(AsyncResult r) {
-        PhoneConstants.State state = mCM.getState();
-        if (VDBG) log("onPhoneStateChanged: state = " + state);
-
-        // Turn status bar notifications on or off depending upon the state
-        // of the phone.  Notification Alerts (audible or vibrating) should
-        // be on if and only if the phone is IDLE.
-        mApplication.notificationMgr.statusBarHelper
-                .enableNotificationAlerts(state == PhoneConstants.State.IDLE);
-
-        Phone fgPhone = mCM.getFgPhone();
-        if (fgPhone.getPhoneType() == PhoneConstants.PHONE_TYPE_CDMA) {
-            if ((fgPhone.getForegroundCall().getState() == Call.State.ACTIVE)
-                    && ((mPreviousCdmaCallState == Call.State.DIALING)
-                    ||  (mPreviousCdmaCallState == Call.State.ALERTING))) {
-                if (mIsCdmaRedialCall) {
-                    int toneToPlay = InCallTonePlayer.TONE_REDIAL;
-                    new InCallTonePlayer(toneToPlay).start();
-                }
-                // Stop any signal info tone when call moves to ACTIVE state
-                stopSignalInfoTone();
-            }
-            mPreviousCdmaCallState = fgPhone.getForegroundCall().getState();
-        }
-
-        // Update the phone state and other sensor/lock.
-        mApplication.updatePhoneState(state);
-
-        if (state == PhoneConstants.State.OFFHOOK) {
-
-            if (VDBG) log("onPhoneStateChanged: OFF HOOK");
-            // make sure audio is in in-call mode now
-            PhoneUtils.setAudioMode(mCM);
-        }
-    }
-
     void updateCallNotifierRegistrationsAfterRadioTechnologyChange() {
         if (DBG) Log.d(LOG_TAG, "updateCallNotifierRegistrationsAfterRadioTechnologyChange...");
 
         // Instantiate mSignalInfoToneGenerator
         createSignalInfoToneGenerator();
-    }
-
-    private void onDisconnect(AsyncResult r) {
-        if (VDBG) log("onDisconnect()...  CallManager state: " + mCM.getState());
-
-        mVoicePrivacyState = false;
-        Connection c = (Connection) r.result;
-        if (c != null) {
-            log("onDisconnect: cause = " + DisconnectCause.toString(c.getDisconnectCause())
-                  + ", incoming = " + c.isIncoming()
-                  + ", date = " + c.getCreateTime());
-        } else {
-            Log.w(LOG_TAG, "onDisconnect: null connection");
-        }
-
-        int autoretrySetting = 0;
-        if ((c != null) &&
-                (c.getCall().getPhone().getPhoneType() == PhoneConstants.PHONE_TYPE_CDMA)) {
-            autoretrySetting = android.provider.Settings.Global.getInt(mApplication.
-                    getContentResolver(),android.provider.Settings.Global.CALL_AUTO_RETRY, 0);
-        }
-
-        // Stop any signalInfo tone being played when a call gets ended
-        stopSignalInfoTone();
-
-        if ((c != null) &&
-                (c.getCall().getPhone().getPhoneType() == PhoneConstants.PHONE_TYPE_CDMA)) {
-            // Resetting the CdmaPhoneCallState members
-            mApplication.cdmaPhoneCallState.resetCdmaPhoneCallState();
-        }
-
-        // If this is the end of an OTASP call, pass it on to the PhoneApp.
-        if (c != null && TelephonyCapabilities.supportsOtasp(c.getCall().getPhone())) {
-            final String number = c.getAddress();
-            if (c.getCall().getPhone().isOtaSpNumber(number)) {
-                if (DBG) log("onDisconnect: this was an OTASP call!");
-                mApplication.handleOtaspDisconnect();
-            }
-        }
-
-        // Check for the various tones we might need to play (thru the
-        // earpiece) after a call disconnects.
-        int toneToPlay = InCallTonePlayer.TONE_NONE;
-
-        // If we don't need to play BUSY or CONGESTION, then play the
-        // "call ended" tone if this was a "regular disconnect" (i.e. a
-        // normal call where one end or the other hung up) *and* this
-        // disconnect event caused the phone to become idle.  (In other
-        // words, we *don't* play the sound if one call hangs up but
-        // there's still an active call on the other line.)
-        // TODO: We may eventually want to disable this via a preference.
-        if ((toneToPlay == InCallTonePlayer.TONE_NONE)
-            && (mCM.getState() == PhoneConstants.State.IDLE)
-            && (c != null)) {
-            int cause = c.getDisconnectCause();
-            if ((cause == DisconnectCause.NORMAL)  // remote hangup
-                || (cause == DisconnectCause.LOCAL)) {  // local hangup
-                if (VDBG) log("- need to play CALL_ENDED tone!");
-                toneToPlay = InCallTonePlayer.TONE_CALL_ENDED;
-                mIsCdmaRedialCall = false;
-            }
-        }
-
-        // All phone calls are disconnected.
-        if (mCM.getState() == PhoneConstants.State.IDLE) {
-            // Don't reset the audio mode or bluetooth/speakerphone state
-            // if we still need to let the user hear a tone through the earpiece.
-            if (toneToPlay == InCallTonePlayer.TONE_NONE) {
-                resetAudioStateAfterDisconnect();
-            }
-        }
-
-        if (c != null) {
-            mCallLogger.logCall(c);
-
-            final String number = c.getAddress();
-            final Phone phone = c.getCall().getPhone();
-            final boolean isEmergencyNumber =
-                    PhoneNumberUtils.isLocalEmergencyNumber(mApplication, number);
-
-            // Possibly play a "post-disconnect tone" thru the earpiece.
-            // We do this here, rather than from the InCallScreen
-            // activity, since we need to do this even if you're not in
-            // the Phone UI at the moment the connection ends.
-            if (toneToPlay != InCallTonePlayer.TONE_NONE) {
-                if (VDBG) log("- starting post-disconnect tone (" + toneToPlay + ")...");
-                new InCallTonePlayer(toneToPlay).start();
-
-                // TODO: alternatively, we could start an InCallTonePlayer
-                // here with an "unlimited" tone length,
-                // and manually stop it later when this connection truly goes
-                // away.  (The real connection over the network was closed as soon
-                // as we got the BUSY message.  But our telephony layer keeps the
-                // connection open for a few extra seconds so we can show the
-                // "busy" indication to the user.  We could stop the busy tone
-                // when *that* connection's "disconnect" event comes in.)
-            }
-
-            final int cause = c.getDisconnectCause();
-            if (((mPreviousCdmaCallState == Call.State.DIALING)
-                    || (mPreviousCdmaCallState == Call.State.ALERTING))
-                    && (!isEmergencyNumber)
-                    && (cause != DisconnectCause.INCOMING_MISSED )
-                    && (cause != DisconnectCause.NORMAL)
-                    && (cause != DisconnectCause.LOCAL)
-                    && (cause != DisconnectCause.INCOMING_REJECTED)) {
-                if (!mIsCdmaRedialCall) {
-                    if (autoretrySetting == InCallScreen.AUTO_RETRY_ON) {
-                        // TODO: (Moto): The contact reference data may need to be stored and use
-                        // here when redialing a call. For now, pass in NULL as the URI parameter.
-                        final int status =
-                                PhoneUtils.placeCall(mApplication, phone, number, null, false);
-                        if (status != PhoneUtils.CALL_STATUS_FAILED) {
-                            mIsCdmaRedialCall = true;
-                        }
-                    } else {
-                        mIsCdmaRedialCall = false;
-                    }
-                } else {
-                    mIsCdmaRedialCall = false;
-                }
-            }
-        }
     }
 
     /**
@@ -857,15 +530,6 @@ public class CallNotifier extends Handler {
                 resetAudioStateAfterDisconnect();
             }
         }
-
-        public void stopTone() {
-            synchronized (this) {
-                if (mState == TONE_ON) {
-                    notify();
-                }
-                mState = TONE_STOPPED;
-            }
-        }
     }
 
     /**
@@ -881,7 +545,7 @@ public class CallNotifier extends Handler {
             PhoneDisplayMessage.displayNetworkMessage(mApplication, displayInfo);
 
             // start a timer that kills the dialog
-            sendEmptyMessageDelayed(CallStateMonitor.INTERNAL_SHOW_MESSAGE_NOTIFICATION_DONE,
+            sendEmptyMessageDelayed(INTERNAL_SHOW_MESSAGE_NOTIFICATION_DONE,
                     SHOW_MESSAGE_NOTIFICATION_TIME);
         }
     }
@@ -910,7 +574,7 @@ public class CallNotifier extends Handler {
         PhoneDisplayMessage.displayErrorMessage(mApplication, mergeFailedString);
 
         // start a timer that kills the dialog
-        sendEmptyMessageDelayed(CallStateMonitor.INTERNAL_SHOW_MESSAGE_NOTIFICATION_DONE,
+        sendEmptyMessageDelayed(INTERNAL_SHOW_MESSAGE_NOTIFICATION_DONE,
                 SHOW_MESSAGE_NOTIFICATION_TIME);
     }
 
@@ -996,8 +660,7 @@ public class CallNotifier extends Handler {
                     mApplication.getResources().getString(resId));
 
             // start a timer that kills the dialog
-            sendEmptyMessageDelayed(
-                    CallStateMonitor.INTERNAL_SHOW_MESSAGE_NOTIFICATION_DONE,
+            sendEmptyMessageDelayed(INTERNAL_SHOW_MESSAGE_NOTIFICATION_DONE,
                     SHOW_MESSAGE_NOTIFICATION_TIME);
         }
     }
@@ -1079,27 +742,6 @@ public class CallNotifier extends Handler {
     /* package */ void stopSignalInfoTone() {
         if (DBG) log("stopSignalInfoTone: Stopping SignalInfo tone player");
         new SignalInfoTonePlayer(ToneGenerator.TONE_CDMA_SIGNAL_OFF).start();
-    }
-
-    /**
-     * Return the private variable mPreviousCdmaCallState.
-     */
-    /* package */ Call.State getPreviousCdmaCallState() {
-        return mPreviousCdmaCallState;
-    }
-
-    /**
-     * Return the private variable mVoicePrivacyState.
-     */
-    /* package */ boolean getVoicePrivacyState() {
-        return mVoicePrivacyState;
-    }
-
-    /**
-     * Return the private variable mIsCdmaRedialCall.
-     */
-    /* package */ boolean getIsCdmaRedialCall() {
-        return mIsCdmaRedialCall;
     }
 
     private BluetoothProfile.ServiceListener mBluetoothProfileServiceListener =

@@ -1072,14 +1072,6 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         }
     }
 
-    public boolean isSimPinEnabled(String callingPackage) {
-        if (!canReadPhoneState(callingPackage, "isSimPinEnabled")) {
-            return false;
-        }
-
-        return (PhoneGlobals.getInstance().isSimPinEnabled());
-    }
-
     public boolean supplyPin(String pin) {
         return supplyPinForSubscriber(getDefaultSubscription(), pin);
     }

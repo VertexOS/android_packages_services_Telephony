@@ -234,16 +234,6 @@ public class CallController extends Handler {
             checkForOtaspCall(intent);
         }
 
-        // Clear out the "restore mute state" flag since we're
-        // initiating a brand-new call.
-        //
-        // (This call to setRestoreMuteOnInCallResume(false) informs the
-        // phone app that we're dealing with a new connection
-        // (i.e. placing an outgoing call, and NOT handling an aborted
-        // "Add Call" request), so we should let the mute state be handled
-        // by the PhoneUtils phone state change handler.)
-        mApp.setRestoreMuteOnInCallResume(false);
-
         CallStatusCode status = placeCallInternal(intent);
 
         switch (status) {
