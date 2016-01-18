@@ -45,7 +45,7 @@
     <string name="no_vm_number" msgid="4164780423805688336">"Fehlende Mailbox-Nummer"</string>
     <string name="no_vm_number_msg" msgid="1300729501030053828">"Auf der SIM-Karte ist keine Mailbox-Nummer gespeichert."</string>
     <string name="add_vm_number_str" msgid="4676479471644687453">"Nummer hinzufügen"</string>
-    <string name="puk_unlocked" msgid="2284912838477558454">"Ihre SIM-Karte wurde entsperrt. Ihr Telefon wird nun entsperrt..."</string>
+    <string name="puk_unlocked" msgid="2284912838477558454">"Deine SIM-Karte wurde entsperrt. Dein Telefon wird nun entsperrt..."</string>
     <string name="label_ndp" msgid="780479633159517250">"PIN zur Entsperrung des SIM-Netzwerks"</string>
     <string name="sim_ndp_unlock_text" msgid="683628237760543009">"Entsperren"</string>
     <string name="sim_ndp_dismiss_text" msgid="1604823375752456947">"Verwerfen"</string>
@@ -105,17 +105,17 @@
     <string name="messageCFB" msgid="3711089705936187129">"Nummer falls besetzt"</string>
     <string name="sum_cfb_enabled" msgid="5984198104833116690">"Weiterleitung an <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfb_disabled" msgid="4913145177320506827">"Aus"</string>
-    <string name="disable_cfb_forbidden" msgid="3506984333877998061">"Ihr Mobilfunkanbieter unterstützt die Deaktivierung der Anrufweiterleitung bei besetzter Leitung nicht."</string>
+    <string name="disable_cfb_forbidden" msgid="3506984333877998061">"Dein Mobilfunkanbieter unterstützt die Deaktivierung der Anrufweiterleitung bei besetzter Leitung nicht."</string>
     <string name="labelCFNRy" msgid="1736067178393744351">"Wenn keine Antwort"</string>
     <string name="messageCFNRy" msgid="672317899884380374">"Nummer falls keine Antwort"</string>
     <string name="sum_cfnry_enabled" msgid="6955775691317662910">"Weiterleitung an <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfnry_disabled" msgid="3884684060443538097">"Aus"</string>
-    <string name="disable_cfnry_forbidden" msgid="4308233959150658058">"Ihr Mobilfunkanbieter unterstützt die Deaktivierung der Anrufweiterleitung bei Nichtbeantwortung nicht."</string>
+    <string name="disable_cfnry_forbidden" msgid="4308233959150658058">"Dein Mobilfunkanbieter unterstützt die Deaktivierung der Anrufweiterleitung bei Nichtbeantwortung nicht."</string>
     <string name="labelCFNRc" msgid="2614827454402079766">"Wenn nicht erreichbar"</string>
     <string name="messageCFNRc" msgid="6380695421020295119">"Nummer falls nicht erreichbar"</string>
     <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"Weiterleitung an <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfnrc_disabled" msgid="7222141261321276464">"Deaktiviert"</string>
-    <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"Ihr Mobilfunkanbieter unterstützt die Deaktivierung der Anrufweiterleitung bei Nichterreichbarkeit nicht."</string>
+    <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"Dein Mobilfunkanbieter unterstützt die Deaktivierung der Anrufweiterleitung bei Nichterreichbarkeit nicht."</string>
     <string name="updating_title" msgid="6146755386174019046">"Anrufeinstellungen"</string>
     <string name="call_settings_admin_user_only" msgid="4526094783818216374">"Anrufeinstellungen können nur vom Administrator geändert werden."</string>
     <string name="call_settings_with_label" msgid="3401177261468593519">"Einstellungen (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
@@ -486,7 +486,7 @@
   </string-array>
     <string name="network_info_message" msgid="7738596060242881930">"Netzwerknachricht"</string>
     <string name="network_error_message" msgid="3394780436230411413">"Fehlermeldung"</string>
-    <string name="ota_title_activate" msgid="8616918561356194398">"Ihr Telefon aktivieren"</string>
+    <string name="ota_title_activate" msgid="8616918561356194398">"Dein Telefon aktivieren"</string>
     <string name="ota_touch_activate" msgid="6553212803262586244">"Zur Aktivierung deines Telefondienstes muss ein spezieller Anruf getätigt werden. \n\nWähle \"Aktivieren\" und befolge die Anleitung zur Aktivierung deines Telefons."</string>
     <string name="ota_hfa_activation_title" msgid="2234246934160473981">"Wird aktiviert..."</string>
     <string name="ota_hfa_activation_dialog_message" msgid="8092479227918463415">"Der mobile Datendienst wird jetzt auf Ihrem Telefon aktiviert.\n\nDies kann bis zu 5 Minuten dauern."</string>
@@ -500,7 +500,7 @@
     <string name="ota_speaker" msgid="6904589278542719647">"Lautspr."</string>
     <string name="ota_progress" msgid="460876637828044519">"Telefon wird programmiert…"</string>
     <string name="ota_failure" msgid="7713756181204620397">"Telefon konnte nicht programmiert werden."</string>
-    <string name="ota_successful" msgid="1880780692887077407">"Ihr Telefon ist jetzt aktiviert. Es kann bis zu 15 Minuten dauern, bis der Dienst gestartet wird."</string>
+    <string name="ota_successful" msgid="1880780692887077407">"Dein Telefon ist jetzt aktiviert. Es kann bis zu 15 Minuten dauern, bis der Dienst gestartet wird."</string>
     <string name="ota_unsuccessful" msgid="8072141612635635357">"Dein Telefon wurde nicht aktiviert. \nSuche einen Bereich auf, in dem du besseren Empfang hast, zum Beispiel in der Nähe eines Fensters oder unter freiem Himmel. \n\nVersuche es bitte noch einmal oder rufe den Kundenservice an."</string>
     <string name="ota_spc_failure" msgid="3909983542575030796">"ZU VIELE SPC-FEHLER"</string>
     <string name="ota_call_end" msgid="4537279738134612388">"Zurück"</string>
