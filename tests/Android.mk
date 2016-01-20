@@ -27,4 +27,8 @@ LOCAL_MODULE_TAGS := tests
 
 LOCAL_INSTRUMENTATION_FOR := TeleService
 
+LOCAL_STATIC_JAVA_LIBRARIES := \
+        android-support-test \
+        mockito-target
+
 include $(BUILD_PACKAGE)

@@ -18,19 +18,9 @@ package com.android.phone.common.mail;
 import android.content.Context;
 import android.net.Network;
 
+import com.android.internal.annotations.VisibleForTesting;
 import com.android.phone.common.mail.store.ImapStore;
 import com.android.phone.common.mail.utils.LogUtils;
-
-import java.net.SocketAddress;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.net.ssl.HostnameVerifier;
-import javax.net.ssl.HttpsURLConnection;
-import javax.net.ssl.SSLException;
-import javax.net.ssl.SSLPeerUnverifiedException;
-import javax.net.ssl.SSLSession;
-import javax.net.ssl.SSLSocket;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -40,6 +30,15 @@ import java.io.OutputStream;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLException;
+import javax.net.ssl.SSLPeerUnverifiedException;
+import javax.net.ssl.SSLSession;
+import javax.net.ssl.SSLSocket;
 
 /**
  * Make connection and perform operations on mail server by reading and writing lines.
@@ -62,6 +61,7 @@ public class MailTransport {
     private BufferedInputStream mIn;
     private BufferedOutputStream mOut;
     private int mFlags;
+    private SocketCreator mSocketCreator;
 
     public MailTransport(Context context, Network network, String address, int port, int flags) {
         mContext = context;
@@ -92,44 +92,57 @@ public class MailTransport {
      * Attempts to open a connection using the Uri supplied for connection parameters.  Will attempt
      * an SSL connection if indicated.
      */
-    public void open() throws MessagingException, CertificateValidationException {
+    public void open() throws MessagingException {
         LogUtils.d(TAG, "*** IMAP open " + mHost + ":" + String.valueOf(mPort));
 
-        List<SocketAddress> socketAddresses = new ArrayList<SocketAddress>();
-        try {
-            if (canTrySslSecurity()) {
-                mSocket = HttpsURLConnection.getDefaultSSLSocketFactory().createSocket();
-                socketAddresses.add(new InetSocketAddress(mHost, mPort));
-            } else {
-                if (mNetwork == null) {
-                    mSocket = new Socket();
-                    socketAddresses.add(new InetSocketAddress(mHost, mPort));
-                } else {
-                    InetAddress[] inetAddresses = mNetwork.getAllByName(mHost);
-                    for (int i = 0; i < inetAddresses.length; i++) {
-                        socketAddresses.add(new InetSocketAddress(inetAddresses[i], mPort));
-                    }
-                    mSocket = mNetwork.getSocketFactory().createSocket();
+        List<InetSocketAddress> socketAddresses = new ArrayList<InetSocketAddress>();
+
+        if (mNetwork == null) {
+            socketAddresses.add(new InetSocketAddress(mHost, mPort));
+        } else {
+            try {
+                InetAddress[] inetAddresses = mNetwork.getAllByName(mHost);
+                if (inetAddresses.length == 0) {
+                    throw new MessagingException(MessagingException.IOERROR,
+                            "Host name " + mHost + "cannot be resolved on designated network");
                 }
+                for (int i = 0; i < inetAddresses.length; i++) {
+                    socketAddresses.add(new InetSocketAddress(inetAddresses[i], mPort));
+                }
+            } catch (IOException ioe) {
+                LogUtils.d(TAG, ioe.toString());
+                throw new MessagingException(MessagingException.IOERROR, ioe.toString());
             }
-        } catch (IOException ioe) {
-            LogUtils.d(TAG, ioe.toString());
-            throw new MessagingException(MessagingException.IOERROR, ioe.toString());
         }
 
+        boolean success = false;
         while (socketAddresses.size() > 0) {
+            mSocket = createSocket();
             try {
-                mSocket.connect(socketAddresses.remove(0), SOCKET_CONNECT_TIMEOUT);
+                InetSocketAddress address = socketAddresses.remove(0);
+                mSocket.connect(address, SOCKET_CONNECT_TIMEOUT);
 
-                // After the socket connects to an SSL server, confirm that the hostname is as
-                // expected
-                if (canTrySslSecurity() && !canTrustAllCertificates()) {
-                    verifyHostname(mSocket, mHost);
+                if (canTrySslSecurity()) {
+                    /**
+                     * {@link SSLSocket} must connect in its constructor, or create through a
+                     * already connected socket. Since we need to use
+                     * {@link Socket#connect(SocketAddress, int) } to set timeout, we can only
+                     * create it here.
+                     */
+                    LogUtils.d(TAG, "open: converting to SSL socket");
+                    mSocket = HttpsURLConnection.getDefaultSSLSocketFactory()
+                            .createSocket(mSocket, address.getHostName(), address.getPort(), true);
+                    // After the socket connects to an SSL server, confirm that the hostname is as
+                    // expected
+                    if (!canTrustAllCertificates()) {
+                        verifyHostname(mSocket, mHost);
+                    }
                 }
 
                 mIn = new BufferedInputStream(mSocket.getInputStream(), 1024);
                 mOut = new BufferedOutputStream(mSocket.getOutputStream(), 512);
                 mSocket.setSoTimeout(SOCKET_READ_TIMEOUT);
+                success = true;
                 return;
             } catch (IOException ioe) {
                 LogUtils.d(TAG, ioe.toString());
@@ -137,7 +150,47 @@ public class MailTransport {
                     // Only throw an error when there are no more sockets to try.
                     throw new MessagingException(MessagingException.IOERROR, ioe.toString());
                 }
+            } finally {
+                if (!success) {
+                    try {
+                        mSocket.close();
+                        mSocket = null;
+                    } catch (IOException ioe) {
+                        throw new MessagingException(MessagingException.IOERROR, ioe.toString());
+                    }
+
+                }
             }
+        }
+    }
+
+    // For testing. We need something that can replace the behavior of "new Socket()"
+    @VisibleForTesting
+    interface SocketCreator {
+        Socket createSocket() throws MessagingException;
+    }
+
+    @VisibleForTesting
+    void setSocketCreator(SocketCreator creator) {
+        mSocketCreator = creator;
+    }
+
+    protected Socket createSocket() throws MessagingException {
+        if (mSocketCreator != null) {
+            return mSocketCreator.createSocket();
+        }
+
+        if (mNetwork == null) {
+            LogUtils.v(TAG, "createSocket: network not specified");
+            return new Socket();
+        }
+
+        try {
+            LogUtils.v(TAG, "createSocket: network specified");
+            return mNetwork.getSocketFactory().createSocket();
+        } catch (IOException ioe) {
+            LogUtils.d(TAG, ioe.toString());
+            throw new MessagingException(MessagingException.IOERROR, ioe.toString());
         }
     }
 
@@ -173,8 +226,8 @@ public class MailTransport {
         // in the verifier code and is not available in the verifier API, and extracting the
         // CN & alts is beyond the scope of this patch.
         if (!HOSTNAME_VERIFIER.verify(hostname, session)) {
-            throw new SSLPeerUnverifiedException(
-                    "Certificate hostname not useable for server: " + hostname);
+            throw new SSLPeerUnverifiedException("Certificate hostname not useable for server: "
+                    + session.getPeerPrincipal());
         }
     }
 
