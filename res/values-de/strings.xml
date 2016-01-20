@@ -128,7 +128,7 @@
     <string name="stk_cc_ss_to_dial_error" msgid="2816779198916570502">"SS-Anfrage wurde in DIAL-Anfrage geändert."</string>
     <string name="stk_cc_ss_to_ussd_error" msgid="7490626178582654236">"SS-Anfrage wurde in USSD-Anfrage geändert."</string>
     <string name="stk_cc_ss_to_ss_error" msgid="5057846756489053759">"SS-Anfrage wurde in neue SS-Anfrage geändert."</string>
-    <string name="fdn_check_failure" msgid="18200614306525434">"Da die Anrufbegrenzung in Ihrer Telefon-App aktiviert ist, funktionieren nicht alle Anruffunktionen."</string>
+    <string name="fdn_check_failure" msgid="18200614306525434">"Da die Anrufbegrenzung in deiner Telefon-App aktiviert ist, funktionieren nicht alle Anruffunktionen."</string>
     <string name="radio_off_error" msgid="2304459933248513376">"Aktiviere deine Mobilfunkverbindung, bevor du diese Einstellungen anzeigst."</string>
     <string name="close_dialog" msgid="2365884406356986917">"OK"</string>
     <string name="enable" msgid="7248657275000173526">"Aktivieren"</string>
@@ -153,7 +153,7 @@
     <string name="search_networks" msgid="1601136049300882441">"Netzwerke suchen"</string>
     <string name="network_query_error" msgid="6828516148953325006">"Fehler bei der Netzwerksuche"</string>
     <string name="register_on_network" msgid="9055203954040805084">"Registrierung in <xliff:g id="NETWORK">%s</xliff:g> läuft..."</string>
-    <string name="not_allowed" msgid="5613353860205691579">"Ihre SIM-Karte unterstützt keine Verbindung mit diesem Netzwerk."</string>
+    <string name="not_allowed" msgid="5613353860205691579">"Deine SIM-Karte unterstützt keine Verbindung mit diesem Netzwerk."</string>
     <string name="connect_later" msgid="2308119155752343975">"Momentan kann keine Verbindung zu diesem Netzwerk aufgebaut werden. Bitte versuche es später erneut."</string>
     <string name="registration_done" msgid="495135664535876612">"In Netzwerk registriert."</string>
     <string name="sum_carrier_select" msgid="3494252551249882718">"Mobilfunkanbieter auswählen"</string>
@@ -222,7 +222,7 @@
     <string name="throttle_data_rate_reduced_subtext" msgid="7492763592720107737">"Maximum von <xliff:g id="USED_0">%1$s</xliff:g> wurde überschritten.\nDatenrate wurde auf <xliff:g id="USED_1">%2$d</xliff:g> kbit/s reduziert."</string>
     <string name="throttle_time_frame_subtext" msgid="7732763021560399960">"<xliff:g id="USED_0">%1$d</xliff:g> % des Zyklus sind verstrichen. \nDer nächste Zeitraum beginnt in <xliff:g id="USED_1">%2$d</xliff:g> Tagen (<xliff:g id="USED_2">%3$s</xliff:g>)."</string>
     <string name="throttle_rate_subtext" msgid="2149102656120726855">"Datenrate wird auf <xliff:g id="USED">%1$d</xliff:g> kbit/s reduziert, wenn Datennutzungslimit überschritten wird."</string>
-    <string name="throttle_help_subtext" msgid="3633091498168446044">"Weitere Informationen zu den Richtlinien Ihres Mobilfunkanbieters zur Nutzung der Mobilfunkdaten"</string>
+    <string name="throttle_help_subtext" msgid="3633091498168446044">"Weitere Informationen zu den Richtlinien deines Mobilfunkanbieters zur Nutzung der Mobilfunkdaten"</string>
     <string name="cell_broadcast_sms" msgid="5584192824053625842">"Cell Broadcast SMS"</string>
     <string name="enable_disable_cell_bc_sms" msgid="4851147873691392255">"Cell Broadcast SMS"</string>
     <string name="cell_bc_sms_enable" msgid="6441688565738921084">"Cell Broadcast SMS aktiviert"</string>
@@ -489,7 +489,7 @@
     <string name="ota_title_activate" msgid="8616918561356194398">"Dein Telefon aktivieren"</string>
     <string name="ota_touch_activate" msgid="6553212803262586244">"Zur Aktivierung deines Telefondienstes muss ein spezieller Anruf getätigt werden. \n\nWähle \"Aktivieren\" und befolge die Anleitung zur Aktivierung deines Telefons."</string>
     <string name="ota_hfa_activation_title" msgid="2234246934160473981">"Wird aktiviert..."</string>
-    <string name="ota_hfa_activation_dialog_message" msgid="8092479227918463415">"Der mobile Datendienst wird jetzt auf Ihrem Telefon aktiviert.\n\nDies kann bis zu 5 Minuten dauern."</string>
+    <string name="ota_hfa_activation_dialog_message" msgid="8092479227918463415">"Der mobile Datendienst wird jetzt auf deinem Telefon aktiviert.\n\nDies kann bis zu 5 Minuten dauern."</string>
     <string name="ota_skip_activation_dialog_title" msgid="2943366608272261306">"Aktivierung überspringen?"</string>
     <string name="ota_skip_activation_dialog_message" msgid="2440770373498870550">"Wenn du die Aktivierung überspringst, kannst du keine Anrufe tätigen oder dich mit mobilen Datennetzwerken verbinden (du kannst dich allerdings mit WLAN-Netzwerken verbinden). Bis du dein Telefon aktivierst, wirst du bei jedem Einschalten zur Aktivierung aufgefordert."</string>
     <string name="ota_skip_activation_dialog_skip_label" msgid="3458532775091563208">"Überspringen"</string>
@@ -555,5 +555,5 @@
     <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"WLAN-Anruf"</string>
     <string name="emergency_action_launch_hint" msgid="5841511849007540970">"Zum Öffnen erneut berühren"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"Beim Entschlüsseln der Nachricht ist ein Fehler aufgetreten."</string>
-    <string name="callFailed_cdma_activation" msgid="2307989779233262164">"Eine SIM-Karte hat Ihren Dienst aktiviert und die Roamingfunktionen Ihres Smartphones aktualisiert."</string>
+    <string name="callFailed_cdma_activation" msgid="2307989779233262164">"Eine SIM-Karte hat deinen Dienst aktiviert und die Roamingfunktionen deines Smartphones aktualisiert."</string>
 </resources>
