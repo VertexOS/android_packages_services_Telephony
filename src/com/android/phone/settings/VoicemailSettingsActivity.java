@@ -223,6 +223,7 @@ public class VoicemailSettingsActivity extends PreferenceActivity
         mPhone = mSubscriptionInfoHelper.getPhone();
         mOmtpVvmCarrierConfigHelper = new OmtpVvmCarrierConfigHelper(
                 mPhone.getContext(), mPhone.getSubId());
+        addPreferencesFromResource(R.xml.voicemail_settings);
     }
 
     @Override
@@ -230,18 +231,13 @@ public class VoicemailSettingsActivity extends PreferenceActivity
         super.onResume();
         mForeground = true;
 
-        PreferenceScreen preferenceScreen = getPreferenceScreen();
-        if (preferenceScreen != null) {
-            preferenceScreen.removeAll();
-        }
-
-        addPreferencesFromResource(R.xml.voicemail_settings);
-
         PreferenceScreen prefSet = getPreferenceScreen();
         mSubMenuVoicemailSettings = (EditPhoneNumberPreference) findPreference(BUTTON_VOICEMAIL_KEY);
-        mSubMenuVoicemailSettings.setParentActivity(this, VOICEMAIL_PREF_ID, this);
-        mSubMenuVoicemailSettings.setDialogOnClosedListener(this);
-        mSubMenuVoicemailSettings.setDialogTitle(R.string.voicemail_settings_number_label);
+        if (mSubMenuVoicemailSettings != null) {
+            mSubMenuVoicemailSettings.setParentActivity(this, VOICEMAIL_PREF_ID, this);
+            mSubMenuVoicemailSettings.setDialogOnClosedListener(this);
+            mSubMenuVoicemailSettings.setDialogTitle(R.string.voicemail_settings_number_label);
+        }
 
         mVoicemailProviders = (VoicemailProviderListPreference) findPreference(
                 BUTTON_VOICEMAIL_PROVIDER_KEY);
@@ -261,15 +257,17 @@ public class VoicemailSettingsActivity extends PreferenceActivity
 
         mVoicemailVisualVoicemail = (SwitchPreference) findPreference(
                 getResources().getString(R.string.voicemail_visual_voicemail_key));
-        if (TelephonyManager.VVM_TYPE_OMTP.equals(mOmtpVvmCarrierConfigHelper.getVvmType()) ||
-                TelephonyManager.VVM_TYPE_CVVM.equals(mOmtpVvmCarrierConfigHelper.getVvmType())) {
-            mVoicemailVisualVoicemail.setOnPreferenceChangeListener(this);
-            mVoicemailVisualVoicemail.setChecked(
-                    VisualVoicemailSettingsUtil.isVisualVoicemailEnabled(mPhone));
-        } else {
-            prefSet.removePreference(mVoicemailVisualVoicemail);
+        if (mVoicemailVisualVoicemail != null) {
+            if (TelephonyManager.VVM_TYPE_OMTP.equals(mOmtpVvmCarrierConfigHelper.getVvmType()) ||
+                    TelephonyManager.VVM_TYPE_CVVM.equals
+                            (mOmtpVvmCarrierConfigHelper.getVvmType())) {
+                mVoicemailVisualVoicemail.setOnPreferenceChangeListener(this);
+                mVoicemailVisualVoicemail.setChecked(
+                        VisualVoicemailSettingsUtil.isVisualVoicemailEnabled(mPhone));
+            } else {
+                prefSet.removePreference(mVoicemailVisualVoicemail);
+            }
         }
-
         updateVMPreferenceWidgets(mVoicemailProviders.getValue());
 
         // check the intent that started this activity and pop up the voicemail
