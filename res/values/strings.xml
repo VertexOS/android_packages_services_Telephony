@@ -1300,7 +1300,7 @@
     <string name="wifi_calling_settings_key">button_wifi_calling_settings_key</string>
 
     <!-- Hint appearing below a selected action on the emergency dialer telling user to tap again to execute the action [CHAR LIMIT=NONE] -->
-    <string name="emergency_action_launch_hint">Touch again to open</string>
+    <string name="emergency_action_launch_hint">Tap again to open</string>
 
     <!-- Strings for IMAP -->
 
