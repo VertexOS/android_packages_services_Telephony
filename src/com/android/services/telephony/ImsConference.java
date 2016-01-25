@@ -171,8 +171,8 @@ public class ImsConference extends Conference {
 
         @Override
         public void onConnectionCapabilitiesChanged(Connection c, int connectionCapabilities) {
-            Log.d(this, "onCallCapabilitiesChanged: Connection: %s, callCapabilities: %s", c,
-                    connectionCapabilities);
+            Log.d(this, "onConnectionCapabilitiesChanged: Connection: %s," +
+                    " connectionCapabilities: %s", c, connectionCapabilities);
             int capabilites = ImsConference.this.getConnectionCapabilities();
             setConnectionCapabilities(applyHostCapabilities(capabilites, connectionCapabilities));
         }
@@ -269,37 +269,26 @@ public class ImsConference extends Conference {
      * @return The merged capabilities to be applied to the conference.
      */
     private int applyHostCapabilities(int conferenceCapabilities, int capabilities) {
-        if (can(capabilities, Connection.CAPABILITY_SUPPORTS_VT_LOCAL_BIDIRECTIONAL)) {
-            conferenceCapabilities = applyCapability(conferenceCapabilities,
-                    Connection.CAPABILITY_SUPPORTS_VT_LOCAL_BIDIRECTIONAL);
-        } else {
-            conferenceCapabilities = removeCapability(conferenceCapabilities,
-                    Connection.CAPABILITY_SUPPORTS_VT_LOCAL_BIDIRECTIONAL);
-        }
+        conferenceCapabilities = changeCapability(conferenceCapabilities,
+                    Connection.CAPABILITY_SUPPORTS_VT_LOCAL_BIDIRECTIONAL,
+                    can(capabilities, Connection.CAPABILITY_SUPPORTS_VT_LOCAL_BIDIRECTIONAL));
 
-        if (can(capabilities, Connection.CAPABILITY_SUPPORTS_VT_REMOTE_BIDIRECTIONAL)) {
-            conferenceCapabilities = applyCapability(conferenceCapabilities,
-                    Connection.CAPABILITY_SUPPORTS_VT_REMOTE_BIDIRECTIONAL);
-        } else {
-            conferenceCapabilities = removeCapability(conferenceCapabilities,
-                    Connection.CAPABILITY_SUPPORTS_VT_REMOTE_BIDIRECTIONAL);
-        }
+        conferenceCapabilities = changeCapability(conferenceCapabilities,
+                    Connection.CAPABILITY_SUPPORTS_VT_REMOTE_BIDIRECTIONAL,
+                    can(capabilities, Connection.CAPABILITY_SUPPORTS_VT_REMOTE_BIDIRECTIONAL));
 
-        if (can(capabilities, Connection.CAPABILITY_CAN_UPGRADE_TO_VIDEO)) {
-            conferenceCapabilities = applyCapability(conferenceCapabilities,
-                    Connection.CAPABILITY_CAN_UPGRADE_TO_VIDEO);
-        } else {
-            conferenceCapabilities = removeCapability(conferenceCapabilities,
-                    Connection.CAPABILITY_CAN_UPGRADE_TO_VIDEO);
-        }
+        conferenceCapabilities = changeCapability(conferenceCapabilities,
+                    Connection.CAPABILITY_CANNOT_DOWNGRADE_VIDEO_TO_AUDIO,
+                    can(capabilities, Connection.CAPABILITY_CANNOT_DOWNGRADE_VIDEO_TO_AUDIO));
 
-        if (can(capabilities, Connection.CAPABILITY_HIGH_DEF_AUDIO)) {
-            conferenceCapabilities = applyCapability(conferenceCapabilities,
-                    Connection.CAPABILITY_HIGH_DEF_AUDIO);
-        } else {
-            conferenceCapabilities = removeCapability(conferenceCapabilities,
-                    Connection.CAPABILITY_HIGH_DEF_AUDIO);
-        }
+        conferenceCapabilities = changeCapability(conferenceCapabilities,
+                    Connection.CAPABILITY_CAN_UPGRADE_TO_VIDEO,
+                    can(capabilities, Connection.CAPABILITY_CAN_UPGRADE_TO_VIDEO));
+
+        conferenceCapabilities = changeCapability(conferenceCapabilities,
+                    Connection.CAPABILITY_HIGH_DEF_AUDIO,
+                    can(capabilities, Connection.CAPABILITY_HIGH_DEF_AUDIO));
+
         return conferenceCapabilities;
     }
 
@@ -452,14 +441,20 @@ public class ImsConference extends Conference {
         // No-op
     }
 
-    private int applyCapability(int capabilities, int capability) {
-        int newCapabilities = capabilities | capability;
-        return newCapabilities;
-    }
-
-    private int removeCapability(int capabilities, int capability) {
-        int newCapabilities = capabilities & ~capability;
-        return newCapabilities;
+    /**
+     * Changes a capabilities bit-mask to add or remove a capability.
+     *
+     * @param capabilities The capabilities bit-mask.
+     * @param capability The capability to change.
+     * @param enabled Whether the capability should be set or removed.
+     * @return The capabilities bit-mask with the capability changed.
+     */
+    private int changeCapability(int capabilities, int capability, boolean enabled) {
+        if (enabled) {
+            return capabilities | capability;
+        } else {
+            return capabilities & ~capability;
+        }
     }
 
     /**
