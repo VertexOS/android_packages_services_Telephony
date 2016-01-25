@@ -32,6 +32,7 @@ import android.telecom.StatusHints;
 import com.android.ims.ImsCallProfile;
 import com.android.internal.telephony.Call;
 import com.android.internal.telephony.CallStateException;
+import com.android.internal.telephony.Connection.Capability;
 import com.android.internal.telephony.Connection.PostDialListener;
 import com.android.internal.telephony.PhoneConstants;
 import com.android.internal.telephony.gsm.SuppServiceNotification;
@@ -62,7 +63,8 @@ abstract class TelephonyConnection extends Connection {
     private static final int MSG_CONFERENCE_MERGE_FAILED = 6;
     private static final int MSG_SUPP_SERVICE_NOTIFY = 7;
     private static final int MSG_CONNECTION_EXTRAS_CHANGED = 8;
-
+    private static final int MSG_SET_ORIGNAL_CONNECTION_CAPABILITIES = 9;
+ 
     /**
      * Mappings from {@link com.android.internal.telephony.Connection} extras keys to their
      * equivalents defined in {@link android.telecom.Connection}.
@@ -147,6 +149,10 @@ abstract class TelephonyConnection extends Connection {
                     final Bundle extras = (Bundle) msg.obj;
                     updateExtras(extras);
                     break;
+
+                case MSG_SET_ORIGNAL_CONNECTION_CAPABILITIES:
+                    setOriginalConnectionCapabilities(msg.arg1);
+                    break;
             }
         }
     };
@@ -188,26 +194,15 @@ abstract class TelephonyConnection extends Connection {
             setVideoState(videoState);
         }
 
-        /**
-         * The {@link com.android.internal.telephony.Connection} has reported a change in local
-         * video capability.
-         *
-         * @param capable True if capable.
+        /*
+         * The {@link com.android.internal.telephony.Connection} has reported a change in
+         * connection capability.
+         * @param capabilities bit mask containing voice or video or both capabilities.
          */
         @Override
-        public void onLocalVideoCapabilityChanged(boolean capable) {
-            setLocalVideoCapable(capable);
-        }
-
-        /**
-         * The {@link com.android.internal.telephony.Connection} has reported a change in remote
-         * video capability.
-         *
-         * @param capable True if capable.
-         */
-        @Override
-        public void onRemoteVideoCapabilityChanged(boolean capable) {
-            setRemoteVideoCapable(capable);
+        public void onConnectionCapabilitiesChanged(int capabilities) {
+            mHandler.obtainMessage(MSG_SET_ORIGNAL_CONNECTION_CAPABILITIES,
+                    capabilities, 0).sendToTarget();
         }
 
         /**
@@ -299,23 +294,10 @@ abstract class TelephonyConnection extends Connection {
     private boolean mIsMultiParty = false;
 
     /**
-     * Determines if the {@link TelephonyConnection} has local video capabilities.
-     * This is used when {@link TelephonyConnection#updateConnectionCapabilities()}} is called,
-     * ensuring the appropriate capabilities are set.  Since capabilities
-     * can be rebuilt at any time it is necessary to track the video capabilities between rebuild.
-     * The capabilities (including video capabilities) are communicated to the telecom
-     * layer.
+     * The {@link com.android.internal.telephony.Connection} capabilities associated with the
+     * current {@link #mOriginalConnection}.
      */
-    private boolean mLocalVideoCapable;
-
-    /**
-     * Determines if the {@link TelephonyConnection} has remote video capabilities.
-     * This is used when {@link TelephonyConnection#updateConnectionCapabilities()}} is called,
-     * ensuring the appropriate capabilities are set.  Since capabilities can be rebuilt at any time
-     * it is necessary to track the video capabilities between rebuild. The capabilities (including
-     * video capabilities) are communicated to the telecom layer.
-     */
-    private boolean mRemoteVideoCapable;
+    private int mOriginalConnectionCapabilities;
 
     /**
      * Determines if the {@link TelephonyConnection} is using wifi.
@@ -543,7 +525,7 @@ abstract class TelephonyConnection extends Connection {
     }
 
     /**
-     * Builds call capabilities common to all TelephonyConnections. Namely, apply IMS-based
+     * Builds connection capabilities common to all TelephonyConnections. Namely, apply IMS-based
      * capabilities.
      */
     protected int buildConnectionCapabilities() {
@@ -570,16 +552,12 @@ abstract class TelephonyConnection extends Connection {
     protected final void updateConnectionCapabilities() {
         int newCapabilities = buildConnectionCapabilities();
 
-        newCapabilities = changeCapability(newCapabilities,
-                CAPABILITY_SUPPORTS_VT_REMOTE_BIDIRECTIONAL, mRemoteVideoCapable);
-        newCapabilities = changeCapability(newCapabilities,
-                CAPABILITY_SUPPORTS_VT_LOCAL_BIDIRECTIONAL, mLocalVideoCapable);
+        newCapabilities = applyOriginalConnectionCapabilities(newCapabilities);
         newCapabilities = changeCapability(newCapabilities,
                 CAPABILITY_HIGH_DEF_AUDIO, mHasHighDefAudio);
         newCapabilities = changeCapability(newCapabilities, CAPABILITY_WIFI, mIsWifi);
         newCapabilities = changeCapability(newCapabilities, CAPABILITY_CAN_PAUSE_VIDEO,
-                mIsVideoPauseSupported && mRemoteVideoCapable && mLocalVideoCapable);
-
+                mIsVideoPauseSupported && isVideoCapable());
         newCapabilities = applyConferenceTerminationCapabilities(newCapabilities);
 
         if (getConnectionCapabilities() != newCapabilities) {
@@ -632,8 +610,7 @@ abstract class TelephonyConnection extends Connection {
 
         // Set video state and capabilities
         setVideoState(mOriginalConnection.getVideoState());
-        setLocalVideoCapable(mOriginalConnection.isLocalVideoCapable());
-        setRemoteVideoCapable(mOriginalConnection.isRemoteVideoCapable());
+        setOriginalConnectionCapabilities(mOriginalConnection.getConnectionCapabilities());
         setWifi(mOriginalConnection.isWifi());
         setVideoProvider(mOriginalConnection.getVideoProvider());
         setAudioQuality(mOriginalConnection.getAudioQuality());
@@ -967,10 +944,24 @@ abstract class TelephonyConnection extends Connection {
     }
 
     /**
-     * Applies capabilities specific to conferences termination to the
-     * {@code CallCapabilities} bit-mask.
+     * Determines if the current connection is video capable.
      *
-     * @param capabilities The {@code CallCapabilities} bit-mask.
+     * A connection is deemed to be video capable if the original connection capabilities state that
+     * both local and remote video is supported.
+     *
+     * @return {@code true} if the connection is video capable, {@code false} otherwise.
+     */
+    private boolean isVideoCapable() {
+        return can(mOriginalConnectionCapabilities, Capability.SUPPORTS_VT_LOCAL_BIDIRECTIONAL)
+                && can(mOriginalConnectionCapabilities,
+                Capability.SUPPORTS_VT_REMOTE_BIDIRECTIONAL);
+    }
+
+    /**
+     * Applies capabilities specific to conferences termination to the
+     * {@code ConnectionCapabilities} bit-mask.
+     *
+     * @param capabilities The {@code ConnectionCapabilities} bit-mask.
      * @return The capabilities with the IMS conference capabilities applied.
      */
     private int applyConferenceTerminationCapabilities(int capabilities) {
@@ -987,43 +978,42 @@ abstract class TelephonyConnection extends Connection {
     }
 
     /**
-     * Returns the local video capability state for the connection.
+     * Stores the new original connection capabilities, and applies them to the current connection,
+     * notifying any listeners as necessary.
      *
-     * @return {@code True} if the connection has local video capabilities.
+     * @param connectionCapabilities The original connection capabilties.
      */
-    public boolean isLocalVideoCapable() {
-        return mLocalVideoCapable;
-    }
-
-    /**
-     * Returns the remote video capability state for the connection.
-     *
-     * @return {@code True} if the connection has remote video capabilities.
-     */
-    public boolean isRemoteVideoCapable() {
-        return mRemoteVideoCapable;
-    }
-
-    /**
-     * Sets whether video capability is present locally.  Used during rebuild of the
-     * capabilities to set the video call capabilities.
-     *
-     * @param capable {@code True} if video capable.
-     */
-    public void setLocalVideoCapable(boolean capable) {
-        mLocalVideoCapable = capable;
+    public void setOriginalConnectionCapabilities(int connectionCapabilities) {
+        mOriginalConnectionCapabilities = connectionCapabilities;
         updateConnectionCapabilities();
     }
 
     /**
-     * Sets whether video capability is present remotely.  Used during rebuild of the
-     * capabilities to set the video call capabilities.
+     * Called to apply the capabilities present in the {@link #mOriginalConnection} to this
+     * {@link Connection}.  Provides a mapping between the capabilities present in the original
+     * connection (see {@link com.android.internal.telephony.Connection.Capability}) and those in
+     * this {@link Connection}.
      *
-     * @param capable {@code True} if video capable.
+     * @param capabilities The capabilities bitmask from the {@link Connection}.
+     * @return the capabilities bitmask with the original connection capabilities remapped and
+     *      applied.
      */
-    public void setRemoteVideoCapable(boolean capable) {
-        mRemoteVideoCapable = capable;
-        updateConnectionCapabilities();
+    public int applyOriginalConnectionCapabilities(int capabilities) {
+        // We only support downgrading to audio if both the remote and local side support
+        // downgrading to audio.
+        boolean supportsDowngradeToAudio = can(mOriginalConnectionCapabilities,
+                Capability.SUPPORTS_DOWNGRADE_TO_VOICE_LOCAL |
+                        Capability.SUPPORTS_DOWNGRADE_TO_VOICE_REMOTE);
+        capabilities = changeCapability(capabilities,
+                CAPABILITY_CANNOT_DOWNGRADE_VIDEO_TO_AUDIO, !supportsDowngradeToAudio);
+
+        capabilities = changeCapability(capabilities, CAPABILITY_SUPPORTS_VT_REMOTE_BIDIRECTIONAL,
+                can(mOriginalConnectionCapabilities, Capability.SUPPORTS_VT_REMOTE_BIDIRECTIONAL));
+
+        capabilities = changeCapability(capabilities, CAPABILITY_SUPPORTS_VT_LOCAL_BIDIRECTIONAL,
+                can(mOriginalConnectionCapabilities, Capability.SUPPORTS_VT_LOCAL_BIDIRECTIONAL));
+
+        return capabilities;
     }
 
     /**
