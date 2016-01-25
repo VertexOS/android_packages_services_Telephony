@@ -100,7 +100,7 @@ final class TelecomAccountRegistry {
             int subId = mPhone.getSubId();
             int color = PhoneAccount.NO_HIGHLIGHT_COLOR;
             int slotId = SubscriptionManager.INVALID_SIM_SLOT_INDEX;
-            String line1Number = mTelephonyManager.getLine1NumberForSubscriber(subId);
+            String line1Number = mTelephonyManager.getLine1Number(subId);
             if (line1Number == null) {
                 line1Number = "";
             }
