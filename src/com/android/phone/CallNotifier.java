@@ -570,6 +570,9 @@ public class CallNotifier extends Handler {
             if (DBG) log("onSuppServiceFailed: displaying merge failure message");
             mergeFailedString = mApplication.getResources().getString(
                     R.string.incall_error_supp_service_switch);
+        } else if (r.result == Phone.SuppService.HOLD) {
+            mergeFailedString = mApplication.getResources().getString(
+                    R.string.incall_error_supp_service_hold);
         }
         PhoneDisplayMessage.displayErrorMessage(mApplication, mergeFailedString);
 
