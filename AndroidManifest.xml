@@ -663,6 +663,13 @@
                    android:mimeType="vnd.android.cursor.item/voicemail" />
           </intent-filter>
        </receiver>
+        <receiver
+            android:name="com.android.phone.vvm.omtp.sync.OmtpVvmSyncReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.SYNC_VOICEMAIL"/>
+            </intent-filter>
+        </receiver>
        <receiver
            android:name="com.android.phone.vvm.omtp.sync.VoicemailProviderChangeReceiver"
            android:exported="true">
