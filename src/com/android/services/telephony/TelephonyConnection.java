@@ -30,6 +30,7 @@ import android.telecom.PhoneAccount;
 import android.telecom.StatusHints;
 import android.telecom.TelecomManager;
 import android.telephony.PhoneNumberUtils;
+import android.util.Pair;
 
 import com.android.ims.ImsCallProfile;
 import com.android.internal.telephony.Call;
@@ -77,6 +78,7 @@ abstract class TelephonyConnection extends Connection {
     private static final int MSG_SET_CONFERENCE_PARTICIPANTS = 11;
     private static final int MSG_CONNECTION_EXTRAS_CHANGED = 12;
     private static final int MSG_SET_ORIGNAL_CONNECTION_CAPABILITIES = 13;
+    private static final int MSG_ON_HOLD_TONE = 14;
 
     private final Handler mHandler = new Handler() {
         @Override
@@ -179,6 +181,31 @@ abstract class TelephonyConnection extends Connection {
 
                 case MSG_SET_ORIGNAL_CONNECTION_CAPABILITIES:
                     setOriginalConnectionCapabilities(msg.arg1);
+                    break;
+
+                case MSG_ON_HOLD_TONE:
+                    AsyncResult asyncResult = (AsyncResult) msg.obj;
+                    Pair<com.android.internal.telephony.Connection, Boolean> heldInfo =
+                            (Pair<com.android.internal.telephony.Connection, Boolean>)
+                                    asyncResult.result;
+
+                    // Determines if the hold tone is starting or stopping.
+                    boolean playTone = ((Boolean) (heldInfo.second)).booleanValue();
+
+                    // Determine which connection the hold tone is stopping or starting for
+                    com.android.internal.telephony.Connection heldConnection = heldInfo.first;
+
+                    // Only start or stop the hold tone if this is the connection which is starting
+                    // or stopping the hold tone.
+                    if (heldConnection == mOriginalConnection) {
+                        // If starting the hold tone, send a connection event to Telecom which will
+                        // cause it to play the on hold tone.
+                        if (playTone) {
+                            sendConnectionEvent(EVENT_ON_HOLD_TONE_START);
+                        } else {
+                            sendConnectionEvent(EVENT_ON_HOLD_TONE_END);
+                        }
+                    }
                     break;
             }
         }
@@ -646,6 +673,7 @@ abstract class TelephonyConnection extends Connection {
         getPhone().registerForRingbackTone(mHandler, MSG_RINGBACK_TONE, null);
         getPhone().registerForDisconnect(mHandler, MSG_DISCONNECT, null);
         getPhone().registerForSuppServiceNotification(mHandler, MSG_SUPP_SERVICE_NOTIFY, null);
+        getPhone().registerForOnHoldTone(mHandler, MSG_ON_HOLD_TONE, null);
         mOriginalConnection.addPostDialListener(mPostDialListener);
         mOriginalConnection.addListener(mOriginalConnectionListener);
 
@@ -718,6 +746,7 @@ abstract class TelephonyConnection extends Connection {
                 getPhone().unregisterForHandoverStateChanged(mHandler);
                 getPhone().unregisterForDisconnect(mHandler);
                 getPhone().unregisterForSuppServiceNotification(mHandler);
+                getPhone().unregisterForOnHoldTone(mHandler);
             }
             mOriginalConnection.removePostDialListener(mPostDialListener);
             mOriginalConnection.removeListener(mOriginalConnectionListener);
