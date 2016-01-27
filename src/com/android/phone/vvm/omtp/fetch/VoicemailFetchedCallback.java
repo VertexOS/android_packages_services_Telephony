@@ -39,7 +39,7 @@ public class VoicemailFetchedCallback {
     private ContentResolver mContentResolver;
     private Uri mUri;
 
-    VoicemailFetchedCallback(Context context, Uri uri) {
+    public VoicemailFetchedCallback(Context context, Uri uri) {
         mContentResolver = context.getContentResolver();
         mUri = uri;
     }

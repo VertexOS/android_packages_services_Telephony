@@ -22,6 +22,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Network;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.provider.VoicemailContract;
 import android.telecom.PhoneAccountHandle;
 import android.telecom.Voicemail;
@@ -30,6 +31,7 @@ import android.util.Log;
 
 import com.android.phone.settings.VisualVoicemailSettingsUtil;
 import com.android.phone.vvm.omtp.LocalLogHelper;
+import com.android.phone.vvm.omtp.fetch.VoicemailFetchedCallback;
 import com.android.phone.vvm.omtp.imap.ImapHelper;
 
 import java.util.HashMap;
@@ -207,9 +209,9 @@ public class OmtpVvmSyncService extends IntentService {
 
                 boolean success = true;
                 if (voicemail == null) {
-                    success = syncAll(action, imapHelper);
+                    success = syncAll(action, imapHelper, phoneAccount);
                 } else {
-                    success = syncOne(imapHelper, voicemail);
+                    success = syncOne(imapHelper, voicemail, phoneAccount);
                 }
                 imapHelper.updateQuota();
 
@@ -233,7 +235,7 @@ public class OmtpVvmSyncService extends IntentService {
         }
     }
 
-    private boolean syncAll(String action, ImapHelper imapHelper) {
+    private boolean syncAll(String action, ImapHelper imapHelper, PhoneAccountHandle account) {
         boolean uploadSuccess = true;
         boolean downloadSuccess = true;
 
@@ -241,7 +243,7 @@ public class OmtpVvmSyncService extends IntentService {
             uploadSuccess = upload(imapHelper);
         }
         if (SYNC_FULL_SYNC.equals(action) || SYNC_DOWNLOAD_ONLY.equals(action)) {
-            downloadSuccess = download(imapHelper);
+            downloadSuccess = download(imapHelper, account);
         }
 
         Log.v(TAG, "upload succeeded: [" + String.valueOf(uploadSuccess)
@@ -259,7 +261,17 @@ public class OmtpVvmSyncService extends IntentService {
         return success;
     }
 
-    private boolean syncOne(ImapHelper imapHelper, Voicemail voicemail) {
+    private boolean syncOne(ImapHelper imapHelper, Voicemail voicemail,
+            PhoneAccountHandle account) {
+        OmtpVvmCarrierConfigHelper carrierConfigHelper =
+                new OmtpVvmCarrierConfigHelper(
+                        this, PhoneUtils.getSubIdForPhoneAccountHandle(account));
+        if (carrierConfigHelper.isPrefetchEnabled()) {
+            VoicemailFetchedCallback callback = new VoicemailFetchedCallback(this,
+                    voicemail.getUri());
+            imapHelper.fetchVoicemailPayload(callback, voicemail.getSourceData());
+        }
+
         return imapHelper.fetchTranscription(
                 new TranscriptionFetchedCallback(this, voicemail),
                 voicemail.getSourceData());
@@ -314,7 +326,7 @@ public class OmtpVvmSyncService extends IntentService {
         return success;
     }
 
-    private boolean download(ImapHelper imapHelper) {
+    private boolean download(ImapHelper imapHelper, PhoneAccountHandle account) {
         List<Voicemail> serverVoicemails = imapHelper.fetchAllVoicemails();
         List<Voicemail> localVoicemails = mQueryHelper.getAllVoicemails();
 
@@ -349,8 +361,16 @@ public class OmtpVvmSyncService extends IntentService {
         }
 
         // The leftover messages are messages that exist on the server but not locally.
+        OmtpVvmCarrierConfigHelper carrierConfigHelper =
+                new OmtpVvmCarrierConfigHelper(
+                        this, PhoneUtils.getSubIdForPhoneAccountHandle(account));
+        boolean prefetchEnabled = carrierConfigHelper.isPrefetchEnabled();
         for (Voicemail remoteVoicemail : remoteMap.values()) {
-            VoicemailContract.Voicemails.insert(this, remoteVoicemail);
+            Uri uri = VoicemailContract.Voicemails.insert(this, remoteVoicemail);
+            if (prefetchEnabled) {
+                VoicemailFetchedCallback fetchedCallback = new VoicemailFetchedCallback(this, uri);
+                imapHelper.fetchVoicemailPayload(fetchedCallback, remoteVoicemail.getSourceData());
+            }
         }
 
         return true;

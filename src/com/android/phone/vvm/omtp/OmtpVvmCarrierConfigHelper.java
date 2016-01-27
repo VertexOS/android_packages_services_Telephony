@@ -96,6 +96,14 @@ public class OmtpVvmCarrierConfigHelper {
                 .getBoolean(CarrierConfigManager.KEY_VVM_CELLULAR_DATA_REQUIRED_BOOLEAN);
     }
 
+    public boolean isPrefetchEnabled() {
+        if (mCarrierConfig == null) {
+            return false;
+        }
+        return mCarrierConfig
+                .getBoolean(CarrierConfigManager.KEY_VVM_PREFETCH_BOOLEAN);
+    }
+
     public void startActivation() {
         OmtpMessageSender messageSender = getMessageSender();
         if (messageSender != null) {
