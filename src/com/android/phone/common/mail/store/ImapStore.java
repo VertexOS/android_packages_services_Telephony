@@ -23,6 +23,7 @@ import com.android.phone.common.mail.MailTransport;
 import com.android.phone.common.mail.Message;
 import com.android.phone.common.mail.MessagingException;
 import com.android.phone.common.mail.internet.MimeMessage;
+import com.android.phone.vvm.omtp.imap.ImapHelper;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -33,10 +34,11 @@ public class ImapStore {
      * should be returned on FetchProfile.Item.BODY_SANE requests. We'll use 125k now.
      */
     public static final int FETCH_BODY_SANE_SUGGESTED_SIZE = (125 * 1024);
-    private Context mContext;
-    private String mUsername;
-    private String mPassword;
-    private MailTransport mTransport;
+    private final Context mContext;
+    private final ImapHelper mHelper;
+    private final String mUsername;
+    private final String mPassword;
+    private final MailTransport mTransport;
     private ImapConnection mConnection;
 
     public static final int FLAG_NONE         = 0x00;    // No flags
@@ -49,16 +51,22 @@ public class ImapStore {
     /**
      * Contains all the information necessary to log into an imap server
      */
-    public ImapStore(Context context, String username, String password, int port,
+    public ImapStore(Context context, ImapHelper helper, String username, String password, int port,
             String serverName, int flags, Network network) {
         mContext = context;
+        mHelper = helper;
         mUsername = username;
         mPassword = password;
-        mTransport = new MailTransport(context, network, serverName, port, flags);
+        mTransport = new MailTransport(context, this.getImapHelper(),
+                network, serverName, port, flags);
     }
 
     public Context getContext() {
         return mContext;
+    }
+
+    public ImapHelper getImapHelper() {
+        return mHelper;
     }
 
     public String getUsername() {
