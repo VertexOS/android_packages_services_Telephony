@@ -30,9 +30,11 @@ import android.telecom.Voicemail;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.android.phone.PhoneUtils;
 import com.android.phone.VoicemailUtils;
 import com.android.phone.settings.VisualVoicemailSettingsUtil;
 import com.android.phone.vvm.omtp.LocalLogHelper;
+import com.android.phone.vvm.omtp.OmtpVvmCarrierConfigHelper;
 import com.android.phone.vvm.omtp.fetch.VoicemailFetchedCallback;
 import com.android.phone.vvm.omtp.imap.ImapHelper;
 
