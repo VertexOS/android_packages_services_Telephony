@@ -15,6 +15,7 @@
  */
 package com.android.phone.common.mail.store;
 
+import android.provider.VoicemailContract.Status;
 import android.text.TextUtils;
 
 import com.android.phone.common.mail.AuthenticationFailedException;
@@ -105,9 +106,12 @@ public class ImapConnection {
             doLogin();
         } catch (SSLException e) {
             LogUtils.d(TAG, "SSLException ", e);
+            mImapStore.getImapHelper().setDataChannelState(Status.DATA_CHANNEL_STATE_SERVER_ERROR);
             throw new CertificateValidationException(e.getMessage(), e);
         } catch (IOException ioe) {
             LogUtils.d(TAG, "IOException", ioe);
+            mImapStore.getImapHelper()
+                    .setDataChannelState(Status.DATA_CHANNEL_STATE_COMMUNICATION_ERROR);
             throw ioe;
         } finally {
             destroyResponses();
@@ -144,6 +148,8 @@ public class ImapConnection {
             if (ImapConstants.AUTHENTICATIONFAILED.equals(code) ||
                     ImapConstants.EXPIRED.equals(code) ||
                     (ImapConstants.NO.equals(status) && TextUtils.isEmpty(code))) {
+                mImapStore.getImapHelper()
+                        .setDataChannelState(Status.DATA_CHANNEL_STATE_BAD_CONFIGURATION);
                 throw new AuthenticationFailedException(alertText, ie);
             }
 
@@ -233,12 +239,12 @@ public class ImapConnection {
             final String alert = response.getAlertTextOrEmpty().getString();
             final String responseCode = response.getResponseCodeOrEmpty().getString();
             destroyResponses();
-
+            mImapStore.getImapHelper().setDataChannelState(Status.DATA_CHANNEL_STATE_SERVER_ERROR);
             // if the response code indicates an error occurred within the server, indicate that
             if (ImapConstants.UNAVAILABLE.equals(responseCode)) {
+
                 throw new MessagingException(MessagingException.SERVER_ERROR, alert);
             }
-
             throw new ImapException(toString, status, alert, responseCode);
         }
         return responses;

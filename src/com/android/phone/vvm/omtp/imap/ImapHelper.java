@@ -20,6 +20,7 @@ import android.content.SharedPreferences;
 import android.net.Network;
 import android.preference.PreferenceManager;
 import android.provider.VoicemailContract;
+import android.provider.VoicemailContract.Status;
 import android.telecom.PhoneAccountHandle;
 import android.telecom.Voicemail;
 import android.telephony.TelephonyManager;
@@ -27,6 +28,7 @@ import android.util.Base64;
 import android.util.Log;
 
 import com.android.phone.PhoneUtils;
+import com.android.phone.VoicemailUtils;
 import com.android.phone.common.mail.Address;
 import com.android.phone.common.mail.Body;
 import com.android.phone.common.mail.BodyPart;
@@ -100,8 +102,10 @@ public class ImapHelper {
             }
 
             mImapStore = new ImapStore(
-                    context, username, password, port, serverName, auth, network);
+                    context, this, username, password, port, serverName, auth, network);
         } catch (NumberFormatException e) {
+            VoicemailUtils.setDataChannelState(
+                    mContext, mPhoneAccount, Status.DATA_CHANNEL_STATE_BAD_CONFIGURATION);
             LogUtils.w(TAG, "Could not parse port number");
         }
 
@@ -131,6 +135,10 @@ public class ImapHelper {
     /** The caller thread will block until the method returns. */
     public boolean markMessagesAsDeleted(List<Voicemail> voicemails) {
         return setFlags(voicemails, Flag.DELETED);
+    }
+
+    public void setDataChannelState(int dataChannelState) {
+        VoicemailUtils.setDataChannelState(mContext, mPhoneAccount, dataChannelState);
     }
 
     /**

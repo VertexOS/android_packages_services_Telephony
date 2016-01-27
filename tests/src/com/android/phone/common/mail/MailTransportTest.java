@@ -26,12 +26,15 @@ import android.test.AndroidTestCase;
 import com.android.phone.MockitoHelper;
 import com.android.phone.common.mail.MailTransport.SocketCreator;
 import com.android.phone.common.mail.store.ImapStore;
+import com.android.phone.vvm.omtp.imap.ImapHelper;
 
 import junit.framework.AssertionFailedError;
 
 import org.mockito.MockitoAnnotations;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.Socket;
@@ -71,7 +74,8 @@ public class MailTransportTest extends AndroidTestCase {
     public void testCreateSocket_anyNetwork() throws MessagingException {
         // With no network, Socket#Socket() should be called.
         MailTransport transport =
-                new MailTransport(getContext(), null, HOST_ADDRESS, HOST_PORT, HOST_FLAGS);
+                new MailTransport(getContext(), createMockImapHelper(), null, HOST_ADDRESS,
+                        HOST_PORT, HOST_FLAGS);
         Socket socket = transport.createSocket();
         assertTrue(socket != null);
     }
@@ -80,7 +84,8 @@ public class MailTransportTest extends AndroidTestCase {
         // Network#getSocketFactory should be used to create socket.
         Network mockNetwork = createMockNetwork();
         MailTransport transport =
-                new MailTransport(getContext(), mockNetwork, HOST_ADDRESS, HOST_PORT, HOST_FLAGS);
+                new MailTransport(getContext(), createMockImapHelper(), mockNetwork, HOST_ADDRESS,
+                        HOST_PORT, HOST_FLAGS);
         Socket socket = transport.createSocket();
         assertTrue(socket != null);
         verify(mockNetwork).getSocketFactory();
@@ -99,7 +104,8 @@ public class MailTransportTest extends AndroidTestCase {
         };
 
         MailTransport transport = new
-                MailTransport(getContext(), null, HOST_ADDRESS, HOST_PORT, HOST_FLAGS);
+                MailTransport(getContext(), createMockImapHelper(), null, HOST_ADDRESS, HOST_PORT,
+                HOST_FLAGS);
 
         transport.setSocketCreator(socketCreator);
 
@@ -108,7 +114,8 @@ public class MailTransportTest extends AndroidTestCase {
     }
 
     public void testOpen() throws MessagingException {
-        MailTransport transport = new MailTransport(getContext(), null, HOST_ADDRESS,
+        MailTransport transport = new MailTransport(getContext(), createMockImapHelper(), null,
+                HOST_ADDRESS,
                 HOST_PORT, HOST_FLAGS);
         transport.setSocketCreator(new TestSocketCreator());
         transport.open();
@@ -118,8 +125,8 @@ public class MailTransportTest extends AndroidTestCase {
 
     public void testOpen_Ssl() throws MessagingException {
         //opening with ssl support.
-        MailTransport transport = new MailTransport(getContext(), null, HOST_ADDRESS,
-                HOST_PORT, HOST_FLAGS_SSL);
+        MailTransport transport = new MailTransport(getContext(), createMockImapHelper(), null,
+                HOST_ADDRESS, HOST_PORT, HOST_FLAGS_SSL);
         transport.setSocketCreator(new TestSocketCreator());
         transport.open();
         assertTrue(transport.isOpen());
@@ -129,7 +136,8 @@ public class MailTransportTest extends AndroidTestCase {
     public void testOpen_MultiIp() throws MessagingException {
         //In case of round robin DNS, try all resolved address until one succeeded.
         Network network = createMultiIpMockNetwork();
-        MailTransport transport = new MailTransport(getContext(), network, HOST_ADDRESS,
+        MailTransport transport = new MailTransport(getContext(), createMockImapHelper(), network,
+                HOST_ADDRESS,
                 HOST_PORT, HOST_FLAGS);
         transport.setSocketCreator(new TestSocketCreator());
         transport.open();
@@ -139,7 +147,8 @@ public class MailTransportTest extends AndroidTestCase {
     public void testOpen_MultiIp_SSL() throws MessagingException {
         Network network = createMultiIpMockNetwork();
 
-        MailTransport transport = new MailTransport(getContext(), network, HOST_ADDRESS,
+        MailTransport transport = new MailTransport(getContext(), createMockImapHelper(), network,
+                HOST_ADDRESS,
                 HOST_PORT, HOST_FLAGS_SSL);
         transport.setSocketCreator(new TestSocketCreator());
         transport.open();
@@ -156,7 +165,8 @@ public class MailTransportTest extends AndroidTestCase {
             //ignored
         }
 
-        MailTransport transport = new MailTransport(getContext(), network, HOST_ADDRESS,
+        MailTransport transport = new MailTransport(getContext(), createMockImapHelper(), network,
+                HOST_ADDRESS,
                 HOST_PORT, HOST_FLAGS);
         try {
             transport.open();
@@ -169,7 +179,8 @@ public class MailTransportTest extends AndroidTestCase {
 
     public void testOpen_createSocketFailed() {
         // Unable to create socket. Open() should fail.
-        MailTransport transport = new MailTransport(getContext(), null, HOST_ADDRESS,
+        MailTransport transport = new MailTransport(getContext(), createMockImapHelper(), null,
+                HOST_ADDRESS,
                 HOST_PORT, HOST_FLAGS);
         transport.setSocketCreator(new SocketCreator() {
             @Override
@@ -199,8 +210,8 @@ public class MailTransportTest extends AndroidTestCase {
         }
         when(network.getSocketFactory()).thenReturn(mockSocketFactory);
 
-        MailTransport transport = new MailTransport(getContext(), network, HOST_ADDRESS,
-                HOST_PORT, HOST_FLAGS);
+        MailTransport transport = new MailTransport(getContext(), createMockImapHelper(), network,
+                HOST_ADDRESS, HOST_PORT, HOST_FLAGS);
 
         try {
             transport.open();
@@ -214,8 +225,8 @@ public class MailTransportTest extends AndroidTestCase {
     public void testOpen_connectFailed_one() {
         // There is only one IP for this host, and we failed to connect to it. Open() should fail.
 
-        MailTransport transport = new MailTransport(getContext(), null, HOST_ADDRESS,
-                HOST_PORT, HOST_FLAGS);
+        MailTransport transport = new MailTransport(getContext(), createMockImapHelper(), null,
+                HOST_ADDRESS, HOST_PORT, HOST_FLAGS);
         transport.setSocketCreator(new SocketCreator() {
             @Override
             public Socket createSocket() throws MessagingException {
@@ -239,9 +250,8 @@ public class MailTransportTest extends AndroidTestCase {
     public void testOpen_connectFailed_multi() {
         // There are multiple IP for this host, and we failed to connect to any of it.
         // Open() should fail.
-        MailTransport transport = new MailTransport(getContext(), createMultiIpMockNetwork(),
-                HOST_ADDRESS,
-                HOST_PORT, HOST_FLAGS);
+        MailTransport transport = new MailTransport(getContext(), createMockImapHelper(),
+                createMultiIpMockNetwork(), HOST_ADDRESS, HOST_PORT, HOST_FLAGS);
         transport.setSocketCreator(new SocketCreator() {
             @Override
             public Socket createSocket() throws MessagingException {
@@ -305,6 +315,16 @@ public class MailTransportTest extends AndroidTestCase {
         }
 
         @Override
+        public InputStream getInputStream() {
+            return null;
+        }
+
+        @Override
+        public OutputStream getOutputStream() {
+            return null;
+        }
+
+        @Override
         public boolean isConnected() {
             return mConnected;
         }
@@ -320,6 +340,10 @@ public class MailTransportTest extends AndroidTestCase {
             return socket;
         }
 
+    }
+
+    private ImapHelper createMockImapHelper() {
+        return mock(ImapHelper.class);
     }
 
     /**

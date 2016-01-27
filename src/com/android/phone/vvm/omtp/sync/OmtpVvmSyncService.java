@@ -22,12 +22,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Network;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.provider.VoicemailContract;
+import android.provider.VoicemailContract.Status;
 import android.telecom.PhoneAccountHandle;
 import android.telecom.Voicemail;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.android.phone.VoicemailUtils;
 import com.android.phone.settings.VisualVoicemailSettingsUtil;
 import com.android.phone.vvm.omtp.LocalLogHelper;
 import com.android.phone.vvm.omtp.imap.ImapHelper;
@@ -223,6 +226,8 @@ public class OmtpVvmSyncService extends IntentService {
                     // Nothing more to do here, just exit.
                     VisualVoicemailSettingsUtil.resetVisualVoicemailRetryInterval(this,
                             phoneAccount);
+                    VoicemailUtils.setDataChannelState(
+                            this, phoneAccount, Status.DATA_CHANNEL_STATE_OK);
                     return;
                 }
             }

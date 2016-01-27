@@ -17,10 +17,12 @@ package com.android.phone.common.mail;
 
 import android.content.Context;
 import android.net.Network;
+import android.provider.VoicemailContract.Status;
 
 import com.android.internal.annotations.VisibleForTesting;
 import com.android.phone.common.mail.store.ImapStore;
 import com.android.phone.common.mail.utils.LogUtils;
+import com.android.phone.vvm.omtp.imap.ImapHelper;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -30,6 +32,7 @@ import java.io.OutputStream;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.net.SocketAddress;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,18 +56,21 @@ public class MailTransport {
     private static final HostnameVerifier HOSTNAME_VERIFIER =
             HttpsURLConnection.getDefaultHostnameVerifier();
 
-    private Context mContext;
-    private Network mNetwork;
-    private String mHost;
-    private int mPort;
+    private final Context mContext;
+    private final ImapHelper mImapHelper;
+    private final Network mNetwork;
+    private final String mHost;
+    private final int mPort;
     private Socket mSocket;
     private BufferedInputStream mIn;
     private BufferedOutputStream mOut;
-    private int mFlags;
+    private final int mFlags;
     private SocketCreator mSocketCreator;
 
-    public MailTransport(Context context, Network network, String address, int port, int flags) {
+    public MailTransport(Context context, ImapHelper imapHelper, Network network, String address,
+            int port, int flags) {
         mContext = context;
+        mImapHelper = imapHelper;
         mNetwork = network;
         mHost = address;
         mPort = port;
@@ -77,7 +83,7 @@ public class MailTransport {
      */
     @Override
     public MailTransport clone() {
-        return new MailTransport(mContext, mNetwork, mHost, mPort, mFlags);
+        return new MailTransport(mContext, mImapHelper, mNetwork, mHost, mPort, mFlags);
     }
 
     public boolean canTrySslSecurity() {
@@ -111,6 +117,7 @@ public class MailTransport {
                 }
             } catch (IOException ioe) {
                 LogUtils.d(TAG, ioe.toString());
+                mImapHelper.setDataChannelState(Status.DATA_CHANNEL_STATE_SERVER_CONNECTION_ERROR);
                 throw new MessagingException(MessagingException.IOERROR, ioe.toString());
             }
         }
@@ -148,6 +155,8 @@ public class MailTransport {
                 LogUtils.d(TAG, ioe.toString());
                 if (socketAddresses.size() == 0) {
                     // Only throw an error when there are no more sockets to try.
+                    mImapHelper
+                            .setDataChannelState(Status.DATA_CHANNEL_STATE_SERVER_CONNECTION_ERROR);
                     throw new MessagingException(MessagingException.IOERROR, ioe.toString());
                 }
             } finally {
@@ -167,6 +176,7 @@ public class MailTransport {
     // For testing. We need something that can replace the behavior of "new Socket()"
     @VisibleForTesting
     interface SocketCreator {
+
         Socket createSocket() throws MessagingException;
     }
 
@@ -211,7 +221,7 @@ public class MailTransport {
      * @throws IOException if something goes wrong handshaking with the server
      * @throws SSLPeerUnverifiedException if the server cannot prove its identity
       */
-    private static void verifyHostname(Socket socket, String hostname) throws IOException {
+    private void verifyHostname(Socket socket, String hostname) throws IOException {
         // The code at the start of OpenSSLSocketImpl.startHandshake()
         // ensures that the call is idempotent, so we can safely call it.
         SSLSocket ssl = (SSLSocket) socket;
@@ -219,6 +229,7 @@ public class MailTransport {
 
         SSLSession session = ssl.getSession();
         if (session == null) {
+            mImapHelper.setDataChannelState(Status.DATA_CHANNEL_STATE_COMMUNICATION_ERROR);
             throw new SSLException("Cannot verify SSL socket without session");
         }
         // TODO: Instead of reporting the name of the server we think we're connecting to,
@@ -226,6 +237,7 @@ public class MailTransport {
         // in the verifier code and is not available in the verifier API, and extracting the
         // CN & alts is beyond the scope of this patch.
         if (!HOSTNAME_VERIFIER.verify(hostname, session)) {
+            mImapHelper.setDataChannelState(Status.DATA_CHANNEL_STATE_COMMUNICATION_ERROR);
             throw new SSLPeerUnverifiedException("Certificate hostname not useable for server: "
                     + session.getPeerPrincipal());
         }

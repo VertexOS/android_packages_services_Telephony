@@ -19,6 +19,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.provider.VoicemailContract;
+import android.provider.VoicemailContract.Status;
+import android.telecom.Voicemail;
 import android.text.TextUtils;
 import android.util.Base64DataException;
 import android.util.Log;
@@ -727,6 +729,7 @@ public class ImapFolder {
                     mMode = MODE_READ_WRITE;
                 }
             } else if (response.isTagged()) { // Not OK
+                mStore.getImapHelper().setDataChannelState(Status.DATA_CHANNEL_STATE_SERVER_ERROR);
                 throw new MessagingException("Can't open mailbox: "
                         + response.getStatusResponseTextOrEmpty());
             }
@@ -789,6 +792,7 @@ public class ImapFolder {
             mConnection = null; // To prevent close() from returning the connection to the pool.
             close(false);
         }
+        mStore.getImapHelper().setDataChannelState(Status.DATA_CHANNEL_STATE_COMMUNICATION_ERROR);
         return new MessagingException(MessagingException.IOERROR, "IO Error", ioe);
     }
 

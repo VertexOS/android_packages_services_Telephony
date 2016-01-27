@@ -23,10 +23,13 @@ import android.net.NetworkCapabilities;
 import android.net.NetworkRequest;
 import android.os.Handler;
 import android.os.Looper;
+import android.provider.VoicemailContract;
+import android.provider.VoicemailContract.Status;
 import android.telecom.PhoneAccountHandle;
 import android.util.Log;
 
 import com.android.phone.PhoneUtils;
+import com.android.phone.VoicemailUtils;
 import com.android.phone.vvm.omtp.OmtpVvmCarrierConfigHelper;
 
 /**
@@ -47,32 +50,32 @@ public abstract class VvmNetworkRequestCallback extends ConnectivityManager.Netw
     protected PhoneAccountHandle mPhoneAccount;
     protected NetworkRequest mNetworkRequest;
     private ConnectivityManager mConnectivityManager;
-
+    private final OmtpVvmCarrierConfigHelper mCarrierConfigHelper;
+    private final int mSubId;
     private boolean mRequestSent = false;
     private boolean mResultReceived = false;
 
     public VvmNetworkRequestCallback(Context context, PhoneAccountHandle phoneAccount) {
         mContext = context;
         mPhoneAccount = phoneAccount;
-        mNetworkRequest = getNetworkRequest(context, phoneAccount);
+        mSubId = PhoneUtils.getSubIdForPhoneAccountHandle(phoneAccount);
+        mCarrierConfigHelper = new OmtpVvmCarrierConfigHelper(context, mSubId);
+        mNetworkRequest = createNetworkRequest();
     }
 
     /**
      * @return NetworkRequest for a proper transport type. Use only cellular network if the carrier
      * requires it. Otherwise use whatever available.
      */
-    private NetworkRequest getNetworkRequest(Context context, PhoneAccountHandle phoneAccount) {
-        int subId = PhoneUtils.getSubIdForPhoneAccountHandle(phoneAccount);
-        OmtpVvmCarrierConfigHelper carrierConfigHelper =
-                new OmtpVvmCarrierConfigHelper(context, subId);
+    private NetworkRequest createNetworkRequest() {
 
         NetworkRequest.Builder builder = new NetworkRequest.Builder()
                 .addCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET);
 
-        if (carrierConfigHelper.isCellularDataRequired()) {
+        if (mCarrierConfigHelper.isCellularDataRequired()) {
             Log.d(TAG, "Transport type: CELLULAR");
             builder.addTransportType(NetworkCapabilities.TRANSPORT_CELLULAR)
-                    .setNetworkSpecifier(Integer.toString(subId));
+                    .setNetworkSpecifier(Integer.toString(mSubId));
         } else {
             Log.d(TAG, "Transport type: ANY");
         }
@@ -143,7 +146,14 @@ public abstract class VvmNetworkRequestCallback extends ConnectivityManager.Netw
     @CallSuper
     public void onFailed(String reason) {
         Log.d(TAG, "onFailed: " + reason);
-        // TODO: Notify the user sync has failed?
+        if (mCarrierConfigHelper.isCellularDataRequired()) {
+            VoicemailUtils.setDataChannelState(
+                    mContext, mPhoneAccount,
+                    Status.DATA_CHANNEL_STATE_NO_CONNECTION_CELLULAR_REQUIRED);
+        } else {
+            VoicemailUtils.setDataChannelState(
+                    mContext, mPhoneAccount, Status.DATA_CHANNEL_STATE_NO_CONNECTION);
+        }
         releaseNetwork();
     }
 }
