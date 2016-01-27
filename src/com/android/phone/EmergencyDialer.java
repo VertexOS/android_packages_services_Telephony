@@ -202,7 +202,7 @@ public class EmergencyDialer extends Activity implements View.OnClickListener,
         CarrierConfigManager configMgr =
                 (CarrierConfigManager) getSystemService(Context.CARRIER_CONFIG_SERVICE);
         PersistableBundle carrierConfig =
-                configMgr.getConfigForSubId(SubscriptionManager.getDefaultVoiceSubId());
+                configMgr.getConfigForSubId(SubscriptionManager.getDefaultVoiceSubscriptionId());
         if (carrierConfig.getBoolean(CarrierConfigManager.KEY_SHOW_ONSCREEN_DIAL_BUTTON_BOOL)) {
             mDialButton.setOnClickListener(this);
         } else {

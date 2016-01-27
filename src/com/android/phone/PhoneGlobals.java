@@ -438,7 +438,7 @@ public class PhoneGlobals extends ContextWrapper {
     }
 
     public PersistableBundle getCarrierConfig() {
-        return getCarrierConfigForSubId(SubscriptionManager.getDefaultSubId());
+        return getCarrierConfigForSubId(SubscriptionManager.getDefaultSubscriptionId());
     }
 
     public PersistableBundle getCarrierConfigForSubId(int subId) {
