@@ -18,7 +18,6 @@ package com.android.services.telephony.sip;
 
 import android.app.AlertDialog;
 import android.content.Intent;
-import android.net.sip.SipManager;
 import android.net.sip.SipProfile;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -58,7 +57,7 @@ public class SipEditor extends PreferenceActivity
     private static final int NA = 0;
 
     private AdvancedSettings mAdvancedSettings;
-    private SipSharedPreferences mSharedPreferences;
+    private SipPreferences mSipPreferences;
     private boolean mDisplayNameSet;
     private boolean mHomeButtonClicked;
     private boolean mUpdateRequired;
@@ -151,7 +150,7 @@ public class SipEditor extends PreferenceActivity
         if (VERBOSE) log("onCreate, start profile editor");
         super.onCreate(savedInstanceState);
 
-        mSharedPreferences = new SipSharedPreferences(this);
+        mSipPreferences = new SipPreferences(this);
         mProfileDb = new SipProfileDb(this);
         mSipAccountRegistry = SipAccountRegistry.getInstance();
 
@@ -404,7 +403,7 @@ public class SipEditor extends PreferenceActivity
                 .setPort(Integer.parseInt(PreferenceKey.Port.getValue()))
                 .setSendKeepAlive(isAlwaysSendKeepAlive())
                 .setAutoRegistration(
-                        mSharedPreferences.isReceivingCallsEnabled())
+                        mSipPreferences.isReceivingCallsEnabled())
                 .setAuthUserName(PreferenceKey.AuthUserName.getValue())
                 .build();
     }

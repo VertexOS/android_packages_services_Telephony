@@ -27,7 +27,6 @@ import android.net.sip.SipManager;
 import android.net.sip.SipProfile;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.ResultReceiver;
 import android.telecom.Connection;
 import android.telecom.ConnectionRequest;
 import android.telecom.ConnectionService;

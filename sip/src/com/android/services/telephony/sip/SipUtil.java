@@ -33,6 +33,7 @@ import android.util.Log;
 
 import com.android.phone.R;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -133,13 +134,49 @@ public class SipUtil {
     }
 
     /**
+     * Upon migration from M->N, the SIP Profile database will be moved into DE storage. This will
+     * not be a problem for non-FBE enabled devices, since DE and CE storage is available at the
+     * same time. This will be a problem for backup/restore, however if the SIP Profile DB is
+     * restored onto a new FBE enabled device.
+     *
+     * Checks if the Sip Db is in DE storage. If it is, the Db is moved to CE storage and
+     * deleted.
+     */
+    public static void possiblyMigrateSipDb(Context context) {
+        SipProfileDb dbDeStorage = new SipProfileDb(context);
+        dbDeStorage.accessDEStorageForMigration();
+        List<SipProfile> profilesDeStorage = dbDeStorage.retrieveSipProfileList();
+        if(profilesDeStorage.size() != 0) {
+            Log.i(LOG_TAG, "Migrating SIP Profiles over!");
+            SipProfileDb dbCeStorage = new SipProfileDb(context);
+            //Perform Profile Migration
+            for (SipProfile profileToMove : profilesDeStorage) {
+                if (dbCeStorage.retrieveSipProfileFromName(
+                        profileToMove.getProfileName()) == null) {
+                    try {
+                        dbCeStorage.saveProfile(profileToMove);
+                    } catch (IOException e) {
+                        Log.w(LOG_TAG, "Error Migrating file to CE: " +
+                                profileToMove.getProfileName(), e);
+                    }
+                }
+                Log.i(LOG_TAG, "(Migration) Deleting SIP profile: " +
+                        profileToMove.getProfileName());
+                dbDeStorage.deleteProfile(profileToMove);
+            }
+        }
+        // Delete supporting structures if they exist
+        dbDeStorage.cleanupUponMigration();
+    }
+
+    /**
      * Determines if the user has chosen to use SIP for PSTN calls as well as SIP calls.
      * @param context The context.
      * @return {@code True} if SIP should be used for PSTN calls.
      */
     private static boolean useSipForPstnCalls(Context context) {
-        final SipSharedPreferences sipSharedPreferences = new SipSharedPreferences(context);
-        return sipSharedPreferences.getSipCallOption().equals(Settings.System.SIP_ALWAYS);
+        final SipPreferences sipPreferences = new SipPreferences(context);
+        return sipPreferences.getSipCallOption().equals(Settings.System.SIP_ALWAYS);
     }
 
     /**

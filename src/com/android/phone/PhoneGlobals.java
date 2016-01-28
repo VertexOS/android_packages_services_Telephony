@@ -18,61 +18,43 @@ package com.android.phone;
 
 import android.app.Activity;
 import android.app.KeyguardManager;
-import android.app.PendingIntent;
 import android.app.ProgressDialog;
-import android.app.TaskStackBuilder;
-import android.bluetooth.BluetoothAdapter;
-import android.bluetooth.IBluetoothHeadsetPhone;
 import android.content.BroadcastReceiver;
-import android.content.ComponentName;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.ServiceConnection;
 import android.media.AudioManager;
 import android.net.Uri;
 import android.os.AsyncResult;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.IBinder;
-import android.os.IPowerManager;
 import android.os.Message;
 import android.os.PersistableBundle;
 import android.os.PowerManager;
-import android.os.RemoteException;
-import android.os.ServiceManager;
 import android.os.SystemClock;
 import android.os.SystemProperties;
 import android.os.UpdateLock;
-import android.os.UserHandle;
 import android.preference.PreferenceManager;
 import android.provider.Settings.System;
 import android.telephony.CarrierConfigManager;
 import android.telephony.ServiceState;
-import android.telephony.SubscriptionInfo;
 import android.telephony.SubscriptionManager;
 import android.util.Log;
 
 import com.android.internal.telephony.Call;
 import com.android.internal.telephony.CallManager;
-import com.android.internal.telephony.IccCard;
 import com.android.internal.telephony.IccCardConstants;
 import com.android.internal.telephony.MmiCode;
 import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneConstants;
 import com.android.internal.telephony.PhoneFactory;
-import com.android.internal.telephony.SubscriptionController;
 import com.android.internal.telephony.TelephonyCapabilities;
 import com.android.internal.telephony.TelephonyIntents;
 import com.android.phone.common.CallLogAsync;
 import com.android.phone.settings.SettingsConstants;
-import com.android.server.sip.SipService;
 import com.android.services.telephony.activation.SimActivationManager;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Global state for the telephony subsystem when running in the primary
@@ -109,7 +91,6 @@ public class PhoneGlobals extends ContextWrapper {
     private static final int EVENT_DATA_ROAMING_DISCONNECTED = 10;
     private static final int EVENT_DATA_ROAMING_OK = 11;
     private static final int EVENT_UNSOL_CDMA_INFO_RECORD = 12;
-    private static final int EVENT_START_SIP_SERVICE = 13;
 
     // The MMI codes are also used by the InCallScreen.
     public static final int MMI_INITIATE = 51;
@@ -196,15 +177,6 @@ public class PhoneGlobals extends ContextWrapper {
         public void handleMessage(Message msg) {
             PhoneConstants.State phoneState;
             switch (msg.what) {
-                // Starts the SIP service. It's a no-op if SIP API is not supported
-                // on the deivce.
-                // TODO: Having the phone process host the SIP service is only
-                // temporary. Will move it to a persistent communication process
-                // later.
-                case EVENT_START_SIP_SERVICE:
-                    SipService.start(getApplicationContext());
-                    break;
-
                 // TODO: This event should be handled by the lock screen, just
                 // like the "SIM missing" and "Sim locked" cases (bug 1804111).
                 case EVENT_SIM_NETWORK_LOCKED:
@@ -300,8 +272,6 @@ public class PhoneGlobals extends ContextWrapper {
             // Create the NotificationMgr singleton, which is used to display
             // status bar icons and control other status bar behavior.
             notificationMgr = NotificationMgr.init(this);
-
-            mHandler.sendEmptyMessage(EVENT_START_SIP_SERVICE);
 
             // Create an instance of CdmaPhoneCallState and initialize it to IDLE
             cdmaPhoneCallState = new CdmaPhoneCallState();

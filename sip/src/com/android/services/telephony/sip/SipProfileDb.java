@@ -24,7 +24,6 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -45,20 +44,32 @@ class SipProfileDb {
 
     private static final String SCHEME_PREFIX = "sip:";
 
+    private Context mContext;
     private String mProfilesDirectory;
-    private SipSharedPreferences mSipSharedPreferences;
+    private SipPreferences mSipPreferences;
     private int mProfilesCount = -1;
 
     public SipProfileDb(Context context) {
-        mProfilesDirectory = context.getFilesDir().getAbsolutePath() + PROFILES_DIR;
-        mSipSharedPreferences = new SipSharedPreferences(context);
+        // Sip Profile Db should always reference CE storage.
+        mContext = context.createCredentialEncryptedStorageContext();
+        setupDatabase();
+    }
+
+    // Only should be used during migration from M->N to move database
+    public void accessDEStorageForMigration() {
+        mContext = mContext.createDeviceEncryptedStorageContext();
+        setupDatabase();
+    }
+
+    private void setupDatabase() {
+        mProfilesDirectory = mContext.getFilesDir().getAbsolutePath() + PROFILES_DIR;
+        mSipPreferences = new SipPreferences(mContext);
     }
 
     public void deleteProfile(SipProfile p) {
         synchronized(SipProfileDb.class) {
             deleteProfile(new File(mProfilesDirectory + p.getProfileName()));
             if (mProfilesCount < 0) retrieveSipProfileListInternal();
-            mSipSharedPreferences.setProfilesCount(--mProfilesCount);
         }
     }
 
@@ -67,6 +78,16 @@ class SipProfileDb {
             for (File child : file.listFiles()) deleteProfile(child);
         }
         file.delete();
+    }
+
+    public void cleanupUponMigration() {
+        // Remove empty .../profiles/ directory
+        File dbDir = new File(mProfilesDirectory);
+        if(dbDir.isDirectory()) {
+            dbDir.delete();
+        }
+        // Remove SharedPreferences file as well
+        mSipPreferences.clearSharedPreferences();
     }
 
     public void saveProfile(SipProfile p) throws IOException {
@@ -82,7 +103,6 @@ class SipProfileDb {
                 oos = new ObjectOutputStream(fos);
                 oos.writeObject(p);
                 oos.flush();
-                mSipSharedPreferences.setProfilesCount(++mProfilesCount);
                 atomicFile.finishWrite(fos);
             } catch (IOException e) {
                 atomicFile.failWrite(fos);
@@ -91,10 +111,6 @@ class SipProfileDb {
                 if (oos != null) oos.close();
             }
         }
-    }
-
-    public int getProfilesCount() {
-        return (mProfilesCount < 0) ?  mSipSharedPreferences.getProfilesCount() : mProfilesCount;
     }
 
     public List<SipProfile> retrieveSipProfileList() {
@@ -116,7 +132,6 @@ class SipProfileDb {
             sipProfileList.add(p);
         }
         mProfilesCount = sipProfileList.size();
-        mSipSharedPreferences.setProfilesCount(mProfilesCount);
         return sipProfileList;
     }
 
