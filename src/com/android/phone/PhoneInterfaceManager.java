@@ -739,6 +739,10 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
                             loge("queryModemActivityInfo: Unknown exception");
                         }
                     }
+                    // Result cannot be null. Return ModemActivityInfo with all fields set to 0.
+                    if (request.result == null) {
+                        request.result = new ModemActivityInfo(0, 0, 0, null, 0, 0);
+                    }
                     synchronized (request) {
                         request.notifyAll();
                     }
