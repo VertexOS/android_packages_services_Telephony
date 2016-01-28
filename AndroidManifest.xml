@@ -497,7 +497,12 @@
         </service>
 
         <!-- service to dump telephony information -->
-        <service android:name="TelephonyDebugService" />
+        <service android:name="com.android.phone.TelephonyDebugService"
+                 android:permission="android.permission.DUMP">
+            <intent-filter>
+                <action android:name="com.android.phone.TelephonyDebugService" />
+            </intent-filter>
+        </service>
 
         <activity android:name="EmergencyCallbackModeExitDialog"
             android:excludeFromRecents="true"
