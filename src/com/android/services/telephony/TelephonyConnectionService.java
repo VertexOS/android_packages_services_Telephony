@@ -26,6 +26,8 @@ import android.telecom.ConnectionRequest;
 import android.telecom.ConnectionService;
 import android.telecom.PhoneAccount;
 import android.telecom.PhoneAccountHandle;
+import android.telecom.TelecomManager;
+import android.telecom.VideoProfile;
 import android.telephony.CarrierConfigManager;
 import android.telephony.DisconnectCause;
 import android.telephony.PhoneNumberUtils;
@@ -273,6 +275,14 @@ public class TelephonyConnectionService extends ConnectionService {
                                     android.telephony.DisconnectCause.OUTGOING_FAILURE,
                                     "Unknown service state " + state));
             }
+        }
+
+        final Context context = getApplicationContext();
+        if (VideoProfile.isVideo(request.getVideoState()) && isTtyModeEnabled(context) &&
+                !isEmergencyNumber) {
+            return Connection.createFailedConnection(
+                    DisconnectCauseUtil.toTelecomDisconnectCause(
+                            DisconnectCause.VIDEO_CALL_NOT_ALLOWED_WHILE_TTY_ENABLED));
         }
 
         final TelephonyConnection connection =
@@ -622,5 +632,12 @@ public class TelephonyConnectionService extends ConnectionService {
             Log.d(this, "Removing connection from IMS conference controller: " + connection);
             mImsConferenceController.remove(connection);
         }
+    }
+
+    private boolean isTtyModeEnabled(Context context) {
+        return (android.provider.Settings.Secure.getInt(
+                context.getContentResolver(),
+                android.provider.Settings.Secure.PREFERRED_TTY_MODE,
+                TelecomManager.TTY_MODE_OFF) != TelecomManager.TTY_MODE_OFF);
     }
 }

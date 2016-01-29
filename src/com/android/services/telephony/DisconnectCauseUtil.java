@@ -92,6 +92,7 @@ public class DisconnectCauseUtil {
             case android.telephony.DisconnectCause.EMERGENCY_ONLY:
             case android.telephony.DisconnectCause.FDN_BLOCKED:
             case android.telephony.DisconnectCause.LIMIT_EXCEEDED:
+            case android.telephony.DisconnectCause.VIDEO_CALL_NOT_ALLOWED_WHILE_TTY_ENABLED:
                 return DisconnectCause.RESTRICTED;
 
             case android.telephony.DisconnectCause.CDMA_ACCESS_FAILURE:
@@ -324,6 +325,10 @@ public class DisconnectCauseUtil {
                 resourceId = R.string.incall_error_missing_voicemail_number;
                 break;
 
+            case android.telephony.DisconnectCause.VIDEO_CALL_NOT_ALLOWED_WHILE_TTY_ENABLED:
+                resourceId = R.string.callFailed_video_call_tty_enabled;
+                break;
+
             case android.telephony.DisconnectCause.OUTGOING_CANCELED:
                 // We don't want to show any dialog for the canceled case since the call was
                 // either canceled by the user explicitly (end-call button pushed immediately)
@@ -371,6 +376,7 @@ public class DisconnectCauseUtil {
             case android.telephony.DisconnectCause.ERROR_UNSPECIFIED:
             case android.telephony.DisconnectCause.LOCAL:
             case android.telephony.DisconnectCause.NORMAL:
+            case android.telephony.DisconnectCause.VIDEO_CALL_NOT_ALLOWED_WHILE_TTY_ENABLED:
                 return ToneGenerator.TONE_PROP_PROMPT;
 
             case android.telephony.DisconnectCause.IMS_MERGED_SUCCESSFULLY:
