@@ -47,7 +47,7 @@
     <string name="registration_status_failed_try_later" msgid="2199970021756384317">"ಖಾತೆ ನೋಂದಣಿಯು ಯಶಸ್ವಿಯಾಗಿಲ್ಲ: (<xliff:g id="REGISTRATION_ERROR_MESSAGE">%s</xliff:g>); ನಂತರ ಪ್ರಯತ್ನಿಸುತ್ತೇನೆ"</string>
     <string name="registration_status_invalid_credentials" msgid="8406872554323334182">"ಖಾತೆ ನೋಂದಣಿಯು ಯಶಸ್ವಿಯಾಗಲಿಲ್ಲ: ಬಳಕೆದಾರರ ಹೆಸರು ಅಥವಾ ಪಾಸ್‌ವರ್ಡ್‌ ತಪ್ಪಾಗಿದೆ."</string>
     <string name="registration_status_server_unreachable" msgid="7710275557045148634">"ಖಾತೆ ನೋಂದಣಿಯು ಯಶಸ್ವಿಯಾಗಲಿಲ್ಲ: ಸರ್ವರ್‌ ಹೆಸರನ್ನು ಪರಿಶೀಲಿಸಿ."</string>
-    <string name="third_party_account_summary" msgid="9041060473615403041">"ಈ ಖಾತೆಯನ್ನು ಪ್ರಸ್ತುತವಾಗಿ <xliff:g id="ACCOUNT_OWNER">%s</xliff:g> ಅಪ್ಲಿಕೇಶನ್‌ ಬಳಸುತ್ತಿದೆ."</string>
+    <string name="third_party_account_summary" msgid="9041060473615403041">"ಈ ಖಾತೆಯನ್ನು ಪ್ರಸ್ತುತ <xliff:g id="ACCOUNT_OWNER">%s</xliff:g> ಅಪ್ಲಿಕೇಶನ್‌ ಬಳಸುತ್ತಿದೆ."</string>
     <string name="sip_edit_title" msgid="1967247832635750410">"SIP ಖಾತೆ ವಿವರಗಳು"</string>
     <string name="sip_edit_new_title" msgid="266414118302574305">"SIP ಖಾತೆ ವಿವರಗಳು"</string>
     <string name="domain_address_title" msgid="1968479941328225423">"ಸರ್ವರ್"</string>

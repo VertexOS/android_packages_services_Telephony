@@ -20,7 +20,7 @@
     <string name="sip_accounts" msgid="85559497282185405">"SIPアカウント"</string>
     <string name="sip_accounts_title" msgid="2082527045326874519">"アカウント"</string>
     <string name="sip_receive_calls" msgid="426678617137462173">"着信を受ける"</string>
-    <string name="sip_receive_calls_summary" msgid="946161517528227523">"電池の使用量が増えます"</string>
+    <string name="sip_receive_calls_summary" msgid="946161517528227523">"電池の使用量が増加"</string>
     <string name="sip_call_options_title" msgid="8421210494703869806">"SIP通話の使用"</string>
     <string name="sip_call_options_wifi_only_title" msgid="5112579243580893890">"SIP通話の使用（Wi-Fiのみ）"</string>
     <string name="sip_call_options_entry_1" msgid="7217659161237099900">"データネットワーク接続時はすべての通話"</string>
@@ -33,7 +33,7 @@
     <string name="removing_account" msgid="5537351356808985756">"アカウントを削除しています…"</string>
     <string name="sip_menu_save" msgid="7882219814563869225">"保存"</string>
     <string name="sip_menu_discard" msgid="2350421645423888438">"破棄"</string>
-    <string name="alert_dialog_close" msgid="1326011828713435134">"プロフィールを閉じる"</string>
+    <string name="alert_dialog_close" msgid="1326011828713435134">"プロファイルを閉じる"</string>
     <string name="alert_dialog_ok" msgid="4752048404605388940">"OK"</string>
     <string name="close_profile" msgid="3122414058856309881">"閉じる"</string>
     <string name="registration_status_checking_status" msgid="6136793741862200337">"ステータスを確認しています..."</string>
