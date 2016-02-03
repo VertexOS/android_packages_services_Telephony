@@ -24,8 +24,8 @@
     <string name="sip_call_options_title" msgid="8421210494703869806">"Sử dụng tính năng gọi điện SIP"</string>
     <string name="sip_call_options_wifi_only_title" msgid="5112579243580893890">"Sử dụng tính năng gọi điện SIP (chỉ Wi-Fi)"</string>
     <string name="sip_call_options_entry_1" msgid="7217659161237099900">"Dành cho tất cả các cuộc gọi khi mạng dữ liệu sẵn có"</string>
-    <string name="sip_call_options_entry_2" msgid="1815335903940609729">"Chỉ dành cho cuộc gọi SIP"</string>
-    <string name="sip_call_options_wifi_only_entry_1" msgid="1358513095551847314">"Dành cho tất cả các cuộc gọi"</string>
+    <string name="sip_call_options_entry_2" msgid="1815335903940609729">"Chỉ cho cuộc gọi SIP"</string>
+    <string name="sip_call_options_wifi_only_entry_1" msgid="1358513095551847314">"Cho tất cả cuộc gọi"</string>
     <string name="add_sip_account" msgid="800843669753980091">"Thêm tài khoản"</string>
     <string name="remove_sip_account" msgid="1367664438506503690">"Xóa tài khoản"</string>
     <string name="sip_account_list" msgid="5610858485304821480">"Tài khoản SIP"</string>
@@ -60,8 +60,8 @@
     <string name="send_keepalive_title" msgid="599627072150501159">"Gửi giữ kết nối"</string>
     <string name="advanced_settings" msgid="6622996380747040711">"Cài đặt tùy chọn"</string>
     <string name="auth_username_title" msgid="8262491689004708265">"Tên người dùng xác thực"</string>
-    <string name="auth_username_summary" msgid="941160241371436473">"Tên người dùng được sử dụng để xác thực"</string>
-    <string name="default_preference_summary" msgid="1979249643719483249">"&lt;Chưa được đặt&gt;"</string>
+    <string name="auth_username_summary" msgid="941160241371436473">"Tên người dùng để xác thực"</string>
+    <string name="default_preference_summary" msgid="1979249643719483249">"&lt;Chưa đặt&gt;"</string>
     <string name="display_name_summary" msgid="7155076491675565407">"&lt;Giống như tên người dùng&gt;"</string>
     <string name="optional_summary" msgid="2363105560396317624">"&lt;Tùy chọn&gt;"</string>
     <string name="advanced_settings_show" msgid="7838761602853998622">"▷ Chạm để hiển thị tất cả"</string>
