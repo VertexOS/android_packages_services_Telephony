@@ -22,7 +22,7 @@
     <string name="sip_receive_calls" msgid="426678617137462173">"Eingehende Anrufe annehmen"</string>
     <string name="sip_receive_calls_summary" msgid="946161517528227523">"Beansprucht den Akku stärker"</string>
     <string name="sip_call_options_title" msgid="8421210494703869806">"SIP-Telefonie nutzen"</string>
-    <string name="sip_call_options_wifi_only_title" msgid="5112579243580893890">"SIP-Telefonie nutzen (nur WLAN)"</string>
+    <string name="sip_call_options_wifi_only_title" msgid="5112579243580893890">"Anrufe über SIP (nur WLAN)"</string>
     <string name="sip_call_options_entry_1" msgid="7217659161237099900">"Für alle Anrufe mit verfügbarem Datennetzwerk"</string>
     <string name="sip_call_options_entry_2" msgid="1815335903940609729">"Nur für SIP-Anrufe"</string>
     <string name="sip_call_options_wifi_only_entry_1" msgid="1358513095551847314">"Für alle Anrufe"</string>
@@ -46,7 +46,7 @@
     <string name="registration_status_done" msgid="3264961069247314253">"Eingehende Anrufe aktiviert"</string>
     <string name="registration_status_failed_try_later" msgid="2199970021756384317">"Fehler bei der Kontoregistrierung: <xliff:g id="REGISTRATION_ERROR_MESSAGE">%s</xliff:g>. Erneuter Versuch zu einem späteren Zeitpunkt."</string>
     <string name="registration_status_invalid_credentials" msgid="8406872554323334182">"Fehler bei der Kontoregistrierung: Nutzername oder Passwort ist falsch."</string>
-    <string name="registration_status_server_unreachable" msgid="7710275557045148634">"Fehler bei der Kontoregistrierung. Bitte überprüfen Sie den Servernamen."</string>
+    <string name="registration_status_server_unreachable" msgid="7710275557045148634">"Fehler bei der Kontoregistrierung. Bitte überprüfe den Servernamen."</string>
     <string name="third_party_account_summary" msgid="9041060473615403041">"Dieses Konto wird momentan von der <xliff:g id="ACCOUNT_OWNER">%s</xliff:g> App verwendet."</string>
     <string name="sip_edit_title" msgid="1967247832635750410">"SIP-Kontodetails"</string>
     <string name="sip_edit_new_title" msgid="266414118302574305">"SIP-Kontodetails"</string>
@@ -68,8 +68,8 @@
     <string name="advanced_settings_hide" msgid="3480554978705290228">"▽ Tippen, um alle auszublenden"</string>
     <string name="empty_alert" msgid="6659484914371384024">"<xliff:g id="INPUT_FIELD_NAME">%s</xliff:g> ist ein Pflichtfeld. Es darf nicht leer bleiben."</string>
     <string name="not_a_valid_port" msgid="7931422555587011830">"Portnummer muss zwischen 1000 und 65534 liegen."</string>
-    <string name="no_internet_available" msgid="5523747991760017298">"Überprüfen Sie zunächst Ihre Internetverbindung, um einen SIP-Anruf zu tätigen."</string>
-    <string name="no_wifi_available" msgid="1955023904229673488">"Für SIP-Anrufe ist eine WLAN-Verbindung erforderlich. Wählen Sie die entsprechenden Einstellungen unter \"Drahtlos &amp; Netzwerke\" aus."</string>
+    <string name="no_internet_available" msgid="5523747991760017298">"Überprüfe zunächst deine Internetverbindung, um einen SIP-Anruf zu tätigen."</string>
+    <string name="no_wifi_available" msgid="1955023904229673488">"Für SIP-Anrufe ist eine WLAN-Verbindung erforderlich. Wähle die entsprechenden Einstellungen unter \"Drahtlos &amp; Netzwerke\" aus."</string>
     <string name="no_voip" msgid="3038021971231952704">"SIP-Anrufe werden nicht unterstützt."</string>
     <string name="sip_system_decide" msgid="5577696249416700671">"Automatisch"</string>
     <string name="sip_always_send_keepalive" msgid="4773022409239823318">"Immer senden"</string>

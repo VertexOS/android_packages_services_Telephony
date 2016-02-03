@@ -21,13 +21,13 @@
     <string name="sip_accounts_title" msgid="2082527045326874519">"Cuentas"</string>
     <string name="sip_receive_calls" msgid="426678617137462173">"Recibir llamadas"</string>
     <string name="sip_receive_calls_summary" msgid="946161517528227523">"Consume más batería"</string>
-    <string name="sip_call_options_title" msgid="8421210494703869806">"Usar llamadas SIP"</string>
+    <string name="sip_call_options_title" msgid="8421210494703869806">"Usar SIP"</string>
     <string name="sip_call_options_wifi_only_title" msgid="5112579243580893890">"Usar llamadas SIP (solo con Wi-Fi)"</string>
     <string name="sip_call_options_entry_1" msgid="7217659161237099900">"Para todas las llamadas cuando haya redes de datos disponibles"</string>
     <string name="sip_call_options_entry_2" msgid="1815335903940609729">"Solo para llamadas SIP"</string>
     <string name="sip_call_options_wifi_only_entry_1" msgid="1358513095551847314">"En todas las llamadas"</string>
     <string name="add_sip_account" msgid="800843669753980091">"Añadir cuenta"</string>
-    <string name="remove_sip_account" msgid="1367664438506503690">"Eliminar cuenta"</string>
+    <string name="remove_sip_account" msgid="1367664438506503690">"Quitar cuenta"</string>
     <string name="sip_account_list" msgid="5610858485304821480">"Cuentas SIP"</string>
     <string name="saving_account" msgid="5336529880235177448">"Guardando la cuenta..."</string>
     <string name="removing_account" msgid="5537351356808985756">"Eliminando la cuenta..."</string>
@@ -57,7 +57,7 @@
     <string name="proxy_address_title" msgid="6890163365640631841">"Dirección de servidor proxy saliente"</string>
     <string name="port_title" msgid="6693965912656593862">"Número de puerto"</string>
     <string name="transport_title" msgid="889155457465372527">"Tipo de transporte"</string>
-    <string name="send_keepalive_title" msgid="599627072150501159">"Enviar mensajes de mantenimiento de la conexión"</string>
+    <string name="send_keepalive_title" msgid="599627072150501159">"Mantener conexión"</string>
     <string name="advanced_settings" msgid="6622996380747040711">"Ajustes opcionales"</string>
     <string name="auth_username_title" msgid="8262491689004708265">"Nombre de usuario de autenticación"</string>
     <string name="auth_username_summary" msgid="941160241371436473">"Nombre de usuario utilizado para la autenticación"</string>
@@ -65,7 +65,7 @@
     <string name="display_name_summary" msgid="7155076491675565407">"&lt;Igual que el nombre de usuario&gt;"</string>
     <string name="optional_summary" msgid="2363105560396317624">"&lt;Opcional&gt;"</string>
     <string name="advanced_settings_show" msgid="7838761602853998622">"▷ Tocar para mostrar todo"</string>
-    <string name="advanced_settings_hide" msgid="3480554978705290228">"▽ Tocar para ocultar todo"</string>
+    <string name="advanced_settings_hide" msgid="3480554978705290228">"▽ Toca para ocultar todo"</string>
     <string name="empty_alert" msgid="6659484914371384024">"El campo <xliff:g id="INPUT_FIELD_NAME">%s</xliff:g> es obligatorio y no se puede dejar en blanco."</string>
     <string name="not_a_valid_port" msgid="7931422555587011830">"El número de puerto debe estar comprendido entre 1.000 y 65.534."</string>
     <string name="no_internet_available" msgid="5523747991760017298">"Antes de realizar una llamada SIP, comprueba tu conexión a Internet."</string>
