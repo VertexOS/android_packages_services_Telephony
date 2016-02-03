@@ -32,6 +32,7 @@ public class OmtpVvmSyncReceiver extends BroadcastReceiver {
             Log.v(TAG, "Sync intent received");
             Intent syncIntent = OmtpVvmSyncService
                     .getSyncIntent(context, OmtpVvmSyncService.SYNC_FULL_SYNC, null, true);
+            intent.putExtra(OmtpVvmSyncService.EXTRA_IS_MANUAL_SYNC, true);
             context.startService(syncIntent);
         }
     }

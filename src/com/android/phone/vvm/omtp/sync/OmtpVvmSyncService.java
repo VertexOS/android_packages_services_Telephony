@@ -66,9 +66,13 @@ public class OmtpVvmSyncService extends IntentService {
     public static final String EXTRA_PHONE_ACCOUNT = "phone_account";
     /** The voicemail to fetch. */
     public static final String EXTRA_VOICEMAIL = "voicemail";
-
+    /** The sync request is initiated by the user, should allow shorter sync interval. */
+    public static final String EXTRA_IS_MANUAL_SYNC = "is_manual_sync";
     // Minimum time allowed between full syncs
     private static final int MINIMUM_FULL_SYNC_INTERVAL_MILLIS = 60 * 1000;
+
+    // Minimum time allowed between manual syncs
+    private static final int MINIMUM_MANUAL_SYNC_INTERVAL_MILLIS = 3 * 1000;
 
     private VoicemailsQueryHelper mQueryHelper;
 
@@ -157,23 +161,24 @@ public class OmtpVvmSyncService extends IntentService {
         LocalLogHelper.log(TAG, "Sync requested: " + action +
                 " for all accounts: " + String.valueOf(phoneAccount == null));
 
+        boolean isManualSync = intent.getBooleanExtra(EXTRA_IS_MANUAL_SYNC, false);
         Voicemail voicemail = intent.getParcelableExtra(EXTRA_VOICEMAIL);
         if (phoneAccount != null) {
             Log.v(TAG, "Sync requested: " + action + " - for account: " + phoneAccount);
-            setupAndSendRequest(phoneAccount, voicemail, action);
+            setupAndSendRequest(phoneAccount, voicemail, action, isManualSync);
         } else {
             Log.v(TAG, "Sync requested: " + action + " - for all accounts");
             OmtpVvmSourceManager vvmSourceManager =
                     OmtpVvmSourceManager.getInstance(this);
             Set<PhoneAccountHandle> sources = vvmSourceManager.getOmtpVvmSources();
             for (PhoneAccountHandle source : sources) {
-                setupAndSendRequest(source, null, action);
+                setupAndSendRequest(source, null, action, isManualSync);
             }
         }
     }
 
     private void setupAndSendRequest(PhoneAccountHandle phoneAccount, Voicemail voicemail,
-            String action) {
+            String action, boolean isManualSync) {
         if (!VisualVoicemailSettingsUtil.isVisualVoicemailEnabled(this, phoneAccount)) {
             Log.v(TAG, "Sync requested for disabled account");
             return;
@@ -183,10 +188,25 @@ public class OmtpVvmSyncService extends IntentService {
             long lastSyncTime = VisualVoicemailSettingsUtil.getVisualVoicemailLastFullSyncTime(
                     this, phoneAccount);
             long currentTime = System.currentTimeMillis();
-            if (currentTime - lastSyncTime < MINIMUM_FULL_SYNC_INTERVAL_MILLIS) {
+            int minimumInterval = isManualSync ? MINIMUM_MANUAL_SYNC_INTERVAL_MILLIS
+                    : MINIMUM_MANUAL_SYNC_INTERVAL_MILLIS;
+            if (currentTime - lastSyncTime < minimumInterval) {
                 // If it's been less than a minute since the last sync, bail.
                 Log.v(TAG, "Avoiding duplicate full sync: synced recently for "
                         + phoneAccount.getId());
+
+                /**
+                 *  Perform a NOOP change to the database so the sender can observe the sync is
+                 *  completed.
+                 *  TODO: Instead of this hack, refactor the sync to be synchronous so the sender
+                 *  can use sendOrderedBroadcast() to register a callback once all syncs are
+                 *  finished
+                 *  b/26937720
+                 */
+                Status.setStatus(this, phoneAccount,
+                        Status.CONFIGURATION_STATE_IGNORE,
+                        Status.DATA_CHANNEL_STATE_IGNORE,
+                        Status.NOTIFICATION_CHANNEL_STATE_IGNORE);
                 return;
             }
             VisualVoicemailSettingsUtil.setVisualVoicemailLastFullSyncTime(
