@@ -23,6 +23,7 @@ import android.content.IntentFilter;
 import android.os.AsyncResult;
 import android.os.Handler;
 import android.os.Message;
+import android.provider.Settings;
 import android.telecom.TelecomManager;
 
 import com.android.internal.telephony.Phone;
@@ -83,6 +84,9 @@ final class TtyManager {
             ttyMode = telecomManager.getCurrentTtyMode();
         }
         updateTtyMode(ttyMode);
+        //Get preferred TTY mode from data base as UI Tty mode is always user preferred Tty mode.
+        ttyMode = Settings.Secure.getInt(context.getContentResolver(),
+                Settings.Secure.PREFERRED_TTY_MODE, TelecomManager.TTY_MODE_OFF);
         updateUiTtyMode(ttyMode);
     }
 
