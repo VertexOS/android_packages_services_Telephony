@@ -32,6 +32,8 @@ LOCAL_PRIVILEGED_MODULE := true
 
 LOCAL_PROGUARD_FLAG_FILES := proguard.flags sip/proguard.flags
 
+include frameworks/base/packages/SettingsLib/common.mk
+
 include $(BUILD_PACKAGE)
 
 # Build the test package
