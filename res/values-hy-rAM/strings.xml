@@ -448,6 +448,8 @@
     <string name="incall_error_supp_service_conference" msgid="2505727299596357312">"Կոնֆերանս զանգը հնարավոր չէ:"</string>
     <string name="incall_error_supp_service_reject" msgid="8998568661508655638">"Հնարավոր չէ մերժել զանգը:"</string>
     <string name="incall_error_supp_service_hangup" msgid="7434513517153834426">"Հնարավոր չէ անջատել զանգ(եր)ը:"</string>
+    <!-- no translation found for incall_error_supp_service_hold (7967020511232222078) -->
+    <skip />
     <string name="incall_error_wfc_only_no_wireless_network" msgid="1782466780452640089">"Զանգ կատարելու համար միացեք անլար ցանցին:"</string>
     <string name="emergency_enable_radio_dialog_title" msgid="4627849966634578257">"Արտակարգ իրավիճակների զանգ"</string>
     <string name="emergency_enable_radio_dialog_message" msgid="207613549344420291">"Ռադիոն միացվում է..."</string>
@@ -555,7 +557,8 @@
     <string name="accessibility_settings_activity_title" msgid="8562004288733103868">"Մատչելիություն"</string>
     <string name="status_hint_label_incoming_wifi_call" msgid="8772915926382037499">"Մուտքային Wi-Fi զանգ"</string>
     <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"Զանգ Wi-Fi-ի միջոցով"</string>
-    <string name="emergency_action_launch_hint" msgid="5841511849007540970">"Կրկին հպեք՝ բացելու համար"</string>
+    <!-- no translation found for emergency_action_launch_hint (4906759256275562674) -->
+    <skip />
     <string name="message_decode_error" msgid="3456481534066924855">"Հաղորդագրությունն ապակոդավորելիս սխալ առաջացավ:"</string>
     <string name="callFailed_cdma_activation" msgid="2307989779233262164">"SIM քարտն ակտիվացրել է ծառայությունը և թարմացրել ձեր հեռախոսի ռոումինգի հնարավորությունները:"</string>
 </resources>

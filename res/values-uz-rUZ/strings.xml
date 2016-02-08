@@ -418,7 +418,7 @@
     <string name="card_title_incoming_call" msgid="7364539451234646909">"Kiruvchi qo‘ng‘iroq"</string>
     <string name="card_title_call_ended" msgid="5544730338889702298">"Qo‘ng‘iroq tugadi"</string>
     <string name="card_title_on_hold" msgid="821463117892339942">"Kutish holatida"</string>
-    <string name="card_title_hanging_up" msgid="3999101620995182450">"Go‘shak qo‘yilmoqda"</string>
+    <string name="card_title_hanging_up" msgid="3999101620995182450">"Suhbat tugatilmoqda"</string>
     <string name="card_title_in_call" msgid="6346543933068225205">"Qo‘ng‘iroqda"</string>
     <string name="notification_voicemail_title" msgid="8933468752045550523">"Yangi ovozli xabar"</string>
     <string name="notification_voicemail_title_count" msgid="4366360747660929916">"Yangi ovozli xabar (<xliff:g id="COUNT">%d</xliff:g>)"</string>
@@ -442,6 +442,8 @@
     <string name="incall_error_supp_service_conference" msgid="2505727299596357312">"Konferensiya qo‘ng‘iroqlarini amalga oshirib bo‘lmaydi."</string>
     <string name="incall_error_supp_service_reject" msgid="8998568661508655638">"Qo‘ng‘iroqni rad qilib bo‘lmadi."</string>
     <string name="incall_error_supp_service_hangup" msgid="7434513517153834426">"Qo‘ng‘iroq(lar)ni chiqarib bo‘lmadi."</string>
+    <!-- no translation found for incall_error_supp_service_hold (7967020511232222078) -->
+    <skip />
     <string name="incall_error_wfc_only_no_wireless_network" msgid="1782466780452640089">"Qo‘ng‘iroq qilish uchun simsiz tarmoqqa ulaning"</string>
     <string name="emergency_enable_radio_dialog_title" msgid="4627849966634578257">"Favqulodda qo‘ng‘iroq"</string>
     <string name="emergency_enable_radio_dialog_message" msgid="207613549344420291">"Radio yoqilmoqda…"</string>
@@ -549,7 +551,8 @@
     <string name="accessibility_settings_activity_title" msgid="8562004288733103868">"Maxsus imkoniyatlar"</string>
     <string name="status_hint_label_incoming_wifi_call" msgid="8772915926382037499">"Kiruvchi Wi-Fi qo‘ng‘irog‘i"</string>
     <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"Wi-Fi qo‘ng‘irog‘i"</string>
-    <string name="emergency_action_launch_hint" msgid="5841511849007540970">"Ochish uchun yana bosing"</string>
+    <!-- no translation found for emergency_action_launch_hint (4906759256275562674) -->
+    <skip />
     <string name="message_decode_error" msgid="3456481534066924855">"Xabarni kodsizlashda xatolik yuz berdi."</string>
     <string name="callFailed_cdma_activation" msgid="2307989779233262164">"Telefoningizda rouming xizmati sozlangan va SIM karta faollashtirilgan."</string>
 </resources>

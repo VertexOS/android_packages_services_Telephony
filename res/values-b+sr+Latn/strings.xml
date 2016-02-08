@@ -442,6 +442,8 @@
     <string name="incall_error_supp_service_conference" msgid="2505727299596357312">"Konferencijski pozivi nisu mogući."</string>
     <string name="incall_error_supp_service_reject" msgid="8998568661508655638">"Odbijanje poziva nije uspelo."</string>
     <string name="incall_error_supp_service_hangup" msgid="7434513517153834426">"Uspostavljanje poziva nije uspelo."</string>
+    <!-- no translation found for incall_error_supp_service_hold (7967020511232222078) -->
+    <skip />
     <string name="incall_error_wfc_only_no_wireless_network" msgid="1782466780452640089">"Povežite se na bežičnu mrežu da biste uputili poziv."</string>
     <string name="emergency_enable_radio_dialog_title" msgid="4627849966634578257">"Hitan poziv"</string>
     <string name="emergency_enable_radio_dialog_message" msgid="207613549344420291">"Uključivanje radija…"</string>
@@ -552,7 +554,8 @@
     <string name="accessibility_settings_activity_title" msgid="8562004288733103868">"Pristupačnost"</string>
     <string name="status_hint_label_incoming_wifi_call" msgid="8772915926382037499">"Dolazni Wi-Fi poziv"</string>
     <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"Wi-Fi poziv"</string>
-    <string name="emergency_action_launch_hint" msgid="5841511849007540970">"Dodirnite ponovo da biste otvorili"</string>
+    <!-- no translation found for emergency_action_launch_hint (4906759256275562674) -->
+    <skip />
     <string name="message_decode_error" msgid="3456481534066924855">"Došlo je do greške pri dekodiranju poruke."</string>
     <string name="callFailed_cdma_activation" msgid="2307989779233262164">"SIM kartica je aktivirala uslugu i ažurirala funkcije rominga na telefonu."</string>
 </resources>
