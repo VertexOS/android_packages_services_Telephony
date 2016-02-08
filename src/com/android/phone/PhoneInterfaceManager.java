@@ -194,8 +194,9 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         public Object argument;
         /** The result of the request that is run on the main thread */
         public Object result;
-        /** The subscriber id that this request applies to. Null if default. */
-        public Integer subId;
+        // The subscriber id that this request applies to. Defaults to
+        // SubscriptionManager.INVALID_SUBSCRIPTION_ID
+        public Integer subId = SubscriptionManager.INVALID_SUBSCRIPTION_ID;
 
         public MainThreadRequest(Object argument) {
             this.argument = argument;
@@ -203,7 +204,9 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
 
         public MainThreadRequest(Object argument, Integer subId) {
             this.argument = argument;
-            this.subId = subId;
+            if (subId != null) {
+                this.subId = subId;
+            }
         }
     }
 
@@ -779,7 +782,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
      * @see #sendRequestAsync
      */
     private Object sendRequest(int command, Object argument) {
-        return sendRequest(command, argument, null);
+        return sendRequest(command, argument, SubscriptionManager.INVALID_SUBSCRIPTION_ID);
     }
 
     /**
@@ -866,7 +869,8 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     }
 
     private Phone getPhoneFromRequest(MainThreadRequest request) {
-        return (request.subId == null) ? mPhone : getPhone(request.subId);
+        return (request.subId == SubscriptionManager.INVALID_SUBSCRIPTION_ID)
+                ? mPhone : getPhone(request.subId);
     }
 
     // returns phone associated with the subId.
@@ -1507,7 +1511,8 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
 
             try {
                 cells = (ArrayList<NeighboringCellInfo>) sendRequest(
-                        CMD_HANDLE_NEIGHBORING_CELL, null, null);
+                        CMD_HANDLE_NEIGHBORING_CELL, null,
+                        SubscriptionManager.INVALID_SUBSCRIPTION_ID);
             } catch (RuntimeException e) {
                 Log.e(LOG_TAG, "getNeighboringCellInfo " + e);
             }
