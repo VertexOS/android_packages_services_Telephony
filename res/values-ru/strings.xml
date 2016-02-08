@@ -444,8 +444,7 @@
     <string name="incall_error_supp_service_conference" msgid="2505727299596357312">"Не удается создать конференц-вызов."</string>
     <string name="incall_error_supp_service_reject" msgid="8998568661508655638">"Не удалось отклонить вызов."</string>
     <string name="incall_error_supp_service_hangup" msgid="7434513517153834426">"Не удалось разъединить."</string>
-    <!-- no translation found for incall_error_supp_service_hold (7967020511232222078) -->
-    <skip />
+    <string name="incall_error_supp_service_hold" msgid="7967020511232222078">"Звонки недоступны."</string>
     <string name="incall_error_wfc_only_no_wireless_network" msgid="1782466780452640089">"Чтобы позвонить, подключитесь к Wi-Fi."</string>
     <string name="emergency_enable_radio_dialog_title" msgid="4627849966634578257">"Экстренный вызов"</string>
     <string name="emergency_enable_radio_dialog_message" msgid="207613549344420291">"Включение радио…"</string>
@@ -559,8 +558,7 @@
     <string name="accessibility_settings_activity_title" msgid="8562004288733103868">"Специальные возможности"</string>
     <string name="status_hint_label_incoming_wifi_call" msgid="8772915926382037499">"Входящий Wi-Fi-звонок"</string>
     <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"Wi-Fi-звонок"</string>
-    <!-- no translation found for emergency_action_launch_hint (4906759256275562674) -->
-    <skip />
+    <string name="emergency_action_launch_hint" msgid="4906759256275562674">"Чтобы открыть, нажмите ещё раз"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"При расшифровке сообщения произошла ошибка."</string>
     <string name="callFailed_cdma_activation" msgid="2307989779233262164">"В вашем телефоне уже настроен роуминг и активирована SIM-карта."</string>
 </resources>

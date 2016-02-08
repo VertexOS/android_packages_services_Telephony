@@ -442,8 +442,7 @@
     <string name="incall_error_supp_service_conference" msgid="2505727299596357312">"کانفرنس کالیں کرنے سے قاصر ہے۔"</string>
     <string name="incall_error_supp_service_reject" msgid="8998568661508655638">"کال مسترد نہیں کی جا سکتی۔"</string>
     <string name="incall_error_supp_service_hangup" msgid="7434513517153834426">"کال(ز) ریلیز نہیں کر سکتے۔"</string>
-    <!-- no translation found for incall_error_supp_service_hold (7967020511232222078) -->
-    <skip />
+    <string name="incall_error_supp_service_hold" msgid="7967020511232222078">"کالز کو ہولڈ نہیں کیا جا سکتا۔"</string>
     <string name="incall_error_wfc_only_no_wireless_network" msgid="1782466780452640089">"کال کرنے کیلئے کسی وائرلیس نیٹ ورک سے منسلک ہوں۔"</string>
     <string name="emergency_enable_radio_dialog_title" msgid="4627849966634578257">"ہنگامی کال"</string>
     <string name="emergency_enable_radio_dialog_message" msgid="207613549344420291">"ریڈیو آن کر رہا ہے…"</string>
@@ -551,8 +550,7 @@
     <string name="accessibility_settings_activity_title" msgid="8562004288733103868">"Accessibility"</string>
     <string name="status_hint_label_incoming_wifi_call" msgid="8772915926382037499">"‏آنے والی Wi-Fi کال"</string>
     <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"‏Wi-Fi کال"</string>
-    <!-- no translation found for emergency_action_launch_hint (4906759256275562674) -->
-    <skip />
+    <string name="emergency_action_launch_hint" msgid="4906759256275562674">"کھولنے کیلئے دوبارہ تھپتھپائیں"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"پیغام کو ڈیکوڈ کرتے وقت ایک خرابی پیش آ گئی۔"</string>
     <string name="callFailed_cdma_activation" msgid="2307989779233262164">"‏ایک SIM کارڈ نے آپ کی سروس فعال کر دی ہے اور آپ کے فون کی رومنگ اہلیتیں اپ ڈیٹ کر دی ہیں۔"</string>
 </resources>
