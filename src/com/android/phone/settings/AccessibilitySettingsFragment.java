@@ -31,9 +31,13 @@ import android.telephony.TelephonyManager;
 import android.util.Log;
 
 import com.android.ims.ImsManager;
+import com.android.internal.telephony.Phone;
+import com.android.internal.telephony.PhoneFactory;
 import com.android.phone.PhoneGlobals;
 import com.android.phone.R;
 import com.android.phone.settings.TtyModeListPreference;
+
+import java.util.List;
 
 public class AccessibilitySettingsFragment extends PreferenceFragment {
     private static final String LOG_TAG = AccessibilitySettingsFragment.class.getSimpleName();
@@ -54,7 +58,10 @@ public class AccessibilitySettingsFragment extends PreferenceFragment {
             if (DBG) Log.d(LOG_TAG, "PhoneStateListener.onCallStateChanged: state=" + state);
             Preference pref = getPreferenceScreen().findPreference(BUTTON_TTY_KEY);
             if (pref != null) {
-                pref.setEnabled(state == TelephonyManager.CALL_STATE_IDLE);
+                final boolean isVolteTtySupported = ImsManager.isVolteEnabledByPlatform(mContext)
+                        && getVolteTtySupported();
+                pref.setEnabled((isVolteTtySupported && !isVideoCallInProgress()) ||
+                        (state == TelephonyManager.CALL_STATE_IDLE));
             }
         }
     };
@@ -98,23 +105,17 @@ public class AccessibilitySettingsFragment extends PreferenceFragment {
     @Override
     public void onResume() {
         super.onResume();
-
-        if (ImsManager.isVolteEnabledByPlatform(mContext) && !getVolteTtySupported()) {
-            TelephonyManager tm =
-                    (TelephonyManager) mContext.getSystemService(Context.TELEPHONY_SERVICE);
-            tm.listen(mPhoneStateListener, PhoneStateListener.LISTEN_CALL_STATE);
-        }
+        TelephonyManager tm =
+                (TelephonyManager) mContext.getSystemService(Context.TELEPHONY_SERVICE);
+        tm.listen(mPhoneStateListener, PhoneStateListener.LISTEN_CALL_STATE);
     }
 
     @Override
     public void onPause() {
         super.onPause();
-
-        if (ImsManager.isVolteEnabledByPlatform(mContext) && !getVolteTtySupported()) {
-            TelephonyManager tm =
-                    (TelephonyManager) mContext.getSystemService(Context.TELEPHONY_SERVICE);
-            tm.listen(mPhoneStateListener, PhoneStateListener.LISTEN_NONE);
-        }
+        TelephonyManager tm =
+                (TelephonyManager) mContext.getSystemService(Context.TELEPHONY_SERVICE);
+        tm.listen(mPhoneStateListener, PhoneStateListener.LISTEN_NONE);
     }
 
     @Override
@@ -141,5 +142,20 @@ public class AccessibilitySettingsFragment extends PreferenceFragment {
                 (CarrierConfigManager) mContext.getSystemService(Context.CARRIER_CONFIG_SERVICE);
         return configManager.getConfig().getBoolean(
                 CarrierConfigManager.KEY_CARRIER_VOLTE_TTY_SUPPORTED_BOOL);
+    }
+
+    private boolean isVideoCallInProgress() {
+        final Phone[] phones = PhoneFactory.getPhones();
+        if (phones == null) {
+            if (DBG) Log.d(LOG_TAG, "isVideoCallInProgress: No phones found. Return false");
+            return false;
+        }
+
+        for (Phone phone : phones) {
+            if (phone.isVideoCallPresent()) {
+                return true;
+            }
+        }
+        return false;
     }
 }
