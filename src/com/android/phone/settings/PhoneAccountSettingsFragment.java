@@ -27,7 +27,7 @@ import com.android.phone.PhoneUtils;
 import com.android.phone.R;
 import com.android.phone.SubscriptionInfoHelper;
 import com.android.services.telephony.sip.SipAccountRegistry;
-import com.android.services.telephony.sip.SipSharedPreferences;
+import com.android.services.telephony.sip.SipPreferences;
 import com.android.services.telephony.sip.SipUtil;
 
 import java.util.ArrayList;
@@ -74,7 +74,7 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
 
     private ListPreference mUseSipCalling;
     private CheckBoxPreference mSipReceiveCallsPreference;
-    private SipSharedPreferences mSipSharedPreferences;
+    private SipPreferences mSipPreferences;
 
     @Override
     public void onCreate(Bundle icicle) {
@@ -152,7 +152,7 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
         }
 
         if (isPrimaryUser() && SipUtil.isVoipSupported(getActivity())) {
-            mSipSharedPreferences = new SipSharedPreferences(getActivity());
+            mSipPreferences = new SipPreferences(getActivity());
 
             mUseSipCalling = (ListPreference)
                     getPreferenceScreen().findPreference(USE_SIP_PREF_KEY);
@@ -162,13 +162,13 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
             mUseSipCalling.setOnPreferenceChangeListener(this);
 
             int optionsValueIndex =
-                    mUseSipCalling.findIndexOfValue(mSipSharedPreferences.getSipCallOption());
+                    mUseSipCalling.findIndexOfValue(mSipPreferences.getSipCallOption());
             if (optionsValueIndex == -1) {
                 // If the option is invalid (eg. deprecated value), default to SIP_ADDRESS_ONLY.
-                mSipSharedPreferences.setSipCallOption(
+                mSipPreferences.setSipCallOption(
                         getResources().getString(R.string.sip_address_only));
                 optionsValueIndex =
-                        mUseSipCalling.findIndexOfValue(mSipSharedPreferences.getSipCallOption());
+                        mUseSipCalling.findIndexOfValue(mSipPreferences.getSipCallOption());
             }
             mUseSipCalling.setValueIndex(optionsValueIndex);
             mUseSipCalling.setSummary(mUseSipCalling.getEntry());
@@ -177,7 +177,7 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
                     getPreferenceScreen().findPreference(SIP_RECEIVE_CALLS_PREF_KEY);
             mSipReceiveCallsPreference.setEnabled(SipUtil.isPhoneIdle(getActivity()));
             mSipReceiveCallsPreference.setChecked(
-                    mSipSharedPreferences.isReceivingCallsEnabled());
+                    mSipPreferences.isReceivingCallsEnabled());
             mSipReceiveCallsPreference.setOnPreferenceChangeListener(this);
         } else {
             getPreferenceScreen().removePreference(
@@ -196,7 +196,7 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
     public boolean onPreferenceChange(Preference pref, Object objValue) {
         if (pref == mUseSipCalling) {
             String option = objValue.toString();
-            mSipSharedPreferences.setSipCallOption(option);
+            mSipPreferences.setSipCallOption(option);
             mUseSipCalling.setValueIndex(mUseSipCalling.findIndexOfValue(option));
             mUseSipCalling.setSummary(mUseSipCalling.getEntry());
             return true;
@@ -250,7 +250,7 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
             return;
         }
 
-        mSipSharedPreferences.setReceivingCallsEnabled(isEnabled);
+        mSipPreferences.setReceivingCallsEnabled(isEnabled);
 
         SipUtil.useSipToReceiveIncomingCalls(context, isEnabled);
 

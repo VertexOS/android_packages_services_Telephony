@@ -23,7 +23,6 @@ import android.net.sip.SipProfile;
 import android.telecom.PhoneAccount;
 import android.telecom.PhoneAccountHandle;
 import android.telecom.TelecomManager;
-import android.text.TextUtils;
 import android.util.Log;
 
 import java.util.List;
@@ -231,9 +230,8 @@ public final class SipAccountRegistry {
      * @param enableProfile Sip account should be enabled.
      */
     private void startSipProfiles(Context context, String sipProfileName, boolean enableProfile) {
-        final SipSharedPreferences sipSharedPreferences = new SipSharedPreferences(context);
-        boolean isReceivingCalls = sipSharedPreferences.isReceivingCallsEnabled();
-        String primaryProfile = sipSharedPreferences.getPrimaryAccount();
+        final SipPreferences sipPreferences = new SipPreferences(context);
+        boolean isReceivingCalls = sipPreferences.isReceivingCallsEnabled();
         TelecomManager telecomManager = TelecomManager.from(context);
         SipManager sipManager = SipManager.newInstance(context);
         SipProfileDb profileDb = new SipProfileDb(context);
@@ -250,12 +248,6 @@ public final class SipAccountRegistry {
                 }
                 startSipServiceForProfile(profile, sipManager, context, isReceivingCalls);
             }
-        }
-
-        if (primaryProfile != null) {
-            // Remove the primary account shared preference, ensuring the migration does not
-            // occur again in the future.
-            sipSharedPreferences.cleanupPrimaryAccountSetting();
         }
     }
 

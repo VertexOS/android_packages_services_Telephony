@@ -18,55 +18,25 @@ package com.android.services.telephony.sip;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.net.sip.SipManager;
 import android.provider.Settings;
 import android.provider.Settings.SettingNotFoundException;
 import android.util.Log;
 
 /**
- * Wrapper for SIP's shared preferences.
+ * Wrapper for SIP's preferences.
  */
-public class SipSharedPreferences {
-    private static final String PREFIX = "[SipSharedPreferences] ";
+public class SipPreferences {
+    private static final String PREFIX = "[SipPreferences] ";
     private static final boolean VERBOSE = false; /* STOP SHIP if true */
 
+    // Used to clear out old SharedPreferences file during SipProfile Database Migration
     private static final String SIP_SHARED_PREFERENCES = "SIP_PREFERENCES";
 
-    /**
-     * @deprecated Primary account selection for SIP accounts is no longer relevant.
-     */
-    @Deprecated
-    private static final String KEY_PRIMARY_ACCOUNT = "primary";
-
-    private static final String KEY_NUMBER_OF_PROFILES = "profiles";
-
-    private SharedPreferences mPreferences;
     private Context mContext;
 
-    public SipSharedPreferences(Context context) {
-        mPreferences = context.getSharedPreferences(
-                SIP_SHARED_PREFERENCES, Context.MODE_WORLD_READABLE);
+    public SipPreferences(Context context) {
         mContext = context;
-    }
-
-    /**
-     * Returns the primary account URI or null if it does not exist.
-     * @deprecated The primary account setting is no longer used.
-     */
-    @Deprecated
-    public String getPrimaryAccount() {
-        return mPreferences.getString(KEY_PRIMARY_ACCOUNT, null);
-    }
-
-    public void setProfilesCount(int number) {
-        SharedPreferences.Editor editor = mPreferences.edit();
-        editor.putInt(KEY_NUMBER_OF_PROFILES, number);
-        editor.apply();
-    }
-
-    public int getProfilesCount() {
-        return mPreferences.getInt(KEY_NUMBER_OF_PROFILES, 0);
     }
 
     public void setSipCallOption(String option) {
@@ -103,15 +73,10 @@ public class SipSharedPreferences {
     }
 
     /**
-     * Performs cleanup of the shared preferences, removing the deprecated primary account key if
-     * it exists.
+     * Remove obsolete SharedPreferences File upon upgrade from M->N.
      */
-    public void cleanupPrimaryAccountSetting() {
-        if (mPreferences.contains(KEY_PRIMARY_ACCOUNT)) {
-            SharedPreferences.Editor editor = mPreferences.edit();
-            editor.remove(KEY_PRIMARY_ACCOUNT);
-            editor.apply();
-        }
+    public void clearSharedPreferences() {
+        mContext.deleteSharedPreferences(SIP_SHARED_PREFERENCES);
     }
 
     // TODO: back up to Android Backup

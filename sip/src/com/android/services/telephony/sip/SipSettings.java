@@ -16,9 +16,6 @@
 
 package com.android.services.telephony.sip;
 
-import com.android.internal.telephony.Phone;
-import com.android.internal.telephony.PhoneConstants;
-
 import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -34,13 +31,9 @@ import android.net.sip.SipRegistrationListener;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.os.Process;
-import android.preference.CheckBoxPreference;
 import android.preference.Preference;
-import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceCategory;
-import android.telecom.PhoneAccount;
-import android.telecom.TelecomManager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
@@ -76,7 +69,7 @@ public class SipSettings extends PreferenceActivity {
     private PreferenceCategory mSipListContainer;
     private Map<String, SipPreference> mSipPreferenceMap;
     private List<SipProfile> mSipProfileList;
-    private SipSharedPreferences mSipSharedPreferences;
+    private SipPreferences mSipPreferences;
     private int mUid = Process.myUid();
 
     private class SipPreference extends Preference {
@@ -93,7 +86,7 @@ public class SipSettings extends PreferenceActivity {
         void setProfile(SipProfile p) {
             mProfile = p;
             setTitle(getProfileName(p));
-            updateSummary(mSipSharedPreferences.isReceivingCallsEnabled()
+            updateSummary(mSipPreferences.isReceivingCallsEnabled()
                     ? getString(R.string.registration_status_checking_status)
                     : getString(R.string.registration_status_not_receiving));
         }
@@ -133,7 +126,7 @@ public class SipSettings extends PreferenceActivity {
         super.onCreate(savedInstanceState);
 
         mSipManager = SipManager.newInstance(this);
-        mSipSharedPreferences = new SipSharedPreferences(this);
+        mSipPreferences = new SipPreferences(this);
         mProfileDb = new SipProfileDb(this);
 
         mPackageManager = getPackageManager();
@@ -231,7 +224,7 @@ public class SipSettings extends PreferenceActivity {
             }
         }
 
-        if (!mSipSharedPreferences.isReceivingCallsEnabled()) return;
+        if (!mSipPreferences.isReceivingCallsEnabled()) return;
         for (SipProfile p : mSipProfileList) {
             if (mUid == p.getCallingUid()) {
                 try {
