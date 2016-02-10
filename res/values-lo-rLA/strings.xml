@@ -442,7 +442,7 @@
     <string name="incall_error_supp_service_conference" msgid="2505727299596357312">"ບໍ່ສາມາດປະຊຸມສາຍໄດ້."</string>
     <string name="incall_error_supp_service_reject" msgid="8998568661508655638">"ບໍ່​ສາ​ມາດ​ປະ​ຕິ​ເສດ​ສາຍ​ໂທ​ໄດ້."</string>
     <string name="incall_error_supp_service_hangup" msgid="7434513517153834426">"ບໍ່​ສາ​ມາດ​ປ່ອຍ​ສາຍ​ໂທ​ໄດ້."</string>
-    <string name="incall_error_supp_service_hold" msgid="7967020511232222078">"ບໍ່ສາມາດຖືສາຍລໍຖ້າໄດ້."</string>
+    <string name="incall_error_supp_service_hold" msgid="7967020511232222078">"ບໍ່ສາມາດພັກສາຍໄດ້."</string>
     <string name="incall_error_wfc_only_no_wireless_network" msgid="1782466780452640089">"ເຊື່ອມຕໍ່ກັບເຄືອຂ່າຍໄຮ້ສາຍເພື່ອເຮັດການໂທ."</string>
     <string name="emergency_enable_radio_dialog_title" msgid="4627849966634578257">"ໂທສຸກເສີນ"</string>
     <string name="emergency_enable_radio_dialog_message" msgid="207613549344420291">"ກຳລັງເປີດໃຊ້ວິທະຍຸ..."</string>
@@ -550,7 +550,7 @@
     <string name="accessibility_settings_activity_title" msgid="8562004288733103868">"​ການ​ຊ່ວຍ​ເຂົ້າ​ເຖິງ"</string>
     <string name="status_hint_label_incoming_wifi_call" msgid="8772915926382037499">"ສາຍໂທເຂົ້າ Wi-Fi"</string>
     <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"ການ​ໂທ Wi-Fi"</string>
-    <string name="emergency_action_launch_hint" msgid="4906759256275562674">"ແຕະ​ອີກ​ຄັ້ງ​ເພື່ອ​ເປີດ"</string>
+    <string name="emergency_action_launch_hint" msgid="4906759256275562674">"ແຕະອີກຄັ້ງເພື່ອເປີດ"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"ມີຂໍ້ຜິດພາດໃນລະຫວ່າງຖອດລະຫັດຂໍ້ຄວາມດັ່ງກ່າວ."</string>
     <string name="callFailed_cdma_activation" msgid="2307989779233262164">"ແຜ່ນ SIM ໄດ້ເປີດໃຊ້ງານການບໍລິການຂອງທ່ານ ແລະອັບເດດຄວາມສາມາດໃຊ້ງານຂ້າມເຂດຂອງໂທລະສັບຂອງທ່ານແລ້ວ."</string>
 </resources>
