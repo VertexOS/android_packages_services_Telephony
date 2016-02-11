@@ -17,33 +17,25 @@
 package com.android.phone;
 
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.UserManager;
 import android.preference.PreferenceScreen;
 import android.preference.SwitchPreference;
-import android.provider.Settings;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.TextView;
 
+import com.android.settingslib.RestrictedLockUtils;
+import com.android.settingslib.RestrictedLockUtils.EnforcedAdmin;
+
 public class RestrictedSwitchPreference extends SwitchPreference {
     private final Context mContext;
-    private final Drawable mRestrictedPadlock;
-    private final int mRestrictedPadlockPadding;
     private boolean mDisabledByAdmin;
+    private EnforcedAdmin mEnforcedAdmin;
 
-    public RestrictedSwitchPreference(Context context, AttributeSet attrs,
-            int defStyleAttr, int defStyleRes) {
+    public RestrictedSwitchPreference(Context context, AttributeSet attrs, int defStyleAttr,
+            int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         mContext = context;
-        mRestrictedPadlock = mContext
-                .getDrawable(R.drawable.ic_settings_lock_outline);
-        final int iconSize = mContext.getResources().getDimensionPixelSize(
-                R.dimen.restricted_lock_icon_size);
-        mRestrictedPadlock.setBounds(0, 0, iconSize, iconSize);
-        mRestrictedPadlockPadding = mContext.getResources()
-                .getDimensionPixelSize(R.dimen.restricted_lock_icon_padding);
     }
 
     public RestrictedSwitchPreference(Context context, AttributeSet attrs, int defStyleAttr) {
@@ -63,31 +55,40 @@ public class RestrictedSwitchPreference extends SwitchPreference {
         super.onBindView(view);
         final TextView titleView = (TextView) view.findViewById(com.android.internal.R.id.title);
         if (titleView != null) {
+            RestrictedLockUtils.setTextViewPadlock(mContext, titleView, mDisabledByAdmin);
             if (mDisabledByAdmin) {
                 view.setEnabled(true);
-                titleView.setCompoundDrawablesRelative(null, null, mRestrictedPadlock, null);
-                titleView.setCompoundDrawablePadding(mRestrictedPadlockPadding);
-            } else {
-                titleView.setCompoundDrawablesRelative(null, null, null, null);
             }
         }
     }
 
     public void checkRestrictionAndSetDisabled(String userRestriction) {
-        final UserManager mUm = (UserManager) mContext.getSystemService(Context.USER_SERVICE);
-        if (mUm.hasUserRestriction(userRestriction)) {
-            mDisabledByAdmin = true;
-            setEnabled(false);
+        setDisabledByAdmin(RestrictedLockUtils.checkIfRestrictionEnforced(mContext, userRestriction,
+                UserManager.get(mContext).getUserHandle()));
+    }
+
+    @Override
+    public void setEnabled(boolean enabled) {
+        if (enabled && mDisabledByAdmin) {
+            setDisabledByAdmin(null);
         } else {
-            mDisabledByAdmin = false;
+            super.setEnabled(enabled);
+        }
+    }
+
+    public void setDisabledByAdmin(EnforcedAdmin admin) {
+        final boolean disabled = (admin != null ? true : false);
+        mEnforcedAdmin = admin;
+        if (mDisabledByAdmin != disabled) {
+            mDisabledByAdmin = disabled;
+            setEnabled(!disabled);
         }
     }
 
     @Override
     public void performClick(PreferenceScreen preferenceScreen) {
         if (mDisabledByAdmin) {
-            Intent intent = new Intent(Settings.ACTION_SHOW_ADMIN_SUPPORT_DETAILS);
-            mContext.startActivity(intent);
+            RestrictedLockUtils.sendShowAdminSupportDetailsIntent(mContext, mEnforcedAdmin);
         } else {
             super.performClick(preferenceScreen);
         }
