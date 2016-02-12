@@ -21,6 +21,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.sip.SipManager;
 import android.os.Bundle;
+import android.os.UserHandle;
 import android.telecom.PhoneAccountHandle;
 import android.telecom.TelecomManager;
 import android.util.Log;
@@ -38,6 +39,11 @@ public class SipBroadcastReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, final Intent intent) {
         String action = intent.getAction();
+
+        if (!isRunningInSystemUser()) {
+            if (VERBOSE) log("SipBroadcastReceiver only run in system user, ignore " + action);
+            return;
+        }
 
         if (!SipUtil.isVoipSupported(context)) {
             if (VERBOSE) log("SIP VOIP not supported: " + action);
@@ -79,6 +85,10 @@ public class SipBroadcastReceiver extends BroadcastReceiver {
             extras.putParcelable(SipUtil.EXTRA_INCOMING_CALL_INTENT, intent);
             TelecomManager.from(context).addNewIncomingCall(accountHandle, extras);
         }
+    }
+
+    private boolean isRunningInSystemUser() {
+        return UserHandle.myUserId() == UserHandle.USER_SYSTEM;
     }
 
     private static void log(String msg) {
