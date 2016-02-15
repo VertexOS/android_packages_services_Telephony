@@ -26,7 +26,7 @@
     <string name="payphone" msgid="4793877574636445118">"Taksofon"</string>
     <string name="onHold" msgid="9035493194749959955">"Kutmoqda"</string>
     <string name="mmiStarted" msgid="6347869857061147003">"MMI kodi ishga tushirildi"</string>
-    <string name="ussdRunning" msgid="485588686340541690">"USSD kod bajarilmoqda…"</string>
+    <string name="ussdRunning" msgid="485588686340541690">"USSD so‘rov bajarilmoqda…"</string>
     <string name="mmiCancelled" msgid="2771923949751842276">"MMI kodi bekor qilindi"</string>
     <string name="cancel" msgid="5044513931633602634">"Bekor qilish"</string>
     <string name="enter_input" msgid="1810529547726803893">"USSD xabari <xliff:g id="MIN_LEN">%d</xliff:g>dan <xliff:g id="MAX_LEN">%d</xliff:g>tagacha belgi bo‘lishi kerak. Yana urinib ko‘ring."</string>
