@@ -21,15 +21,16 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.telecom.Conference;
 import android.telecom.Connection;
 import android.telecom.ConnectionRequest;
 import android.telecom.ConnectionService;
+import android.telecom.DisconnectCause;
 import android.telecom.PhoneAccount;
 import android.telecom.PhoneAccountHandle;
 import android.telecom.TelecomManager;
 import android.telecom.VideoProfile;
 import android.telephony.CarrierConfigManager;
-import android.telephony.DisconnectCause;
 import android.telephony.PhoneNumberUtils;
 import android.telephony.ServiceState;
 import android.telephony.SubscriptionManager;
@@ -238,7 +239,7 @@ public class TelephonyConnectionService extends ConnectionService {
             if (!allowNonEmergencyCalls) {
                 return Connection.createFailedConnection(
                         DisconnectCauseUtil.toTelecomDisconnectCause(
-                                DisconnectCause.CDMA_NOT_EMERGENCY,
+                                android.telephony.DisconnectCause.CDMA_NOT_EMERGENCY,
                                 "Cannot make non-emergency call in ECM mode."
                         ));
             }
@@ -280,9 +281,14 @@ public class TelephonyConnectionService extends ConnectionService {
         final Context context = getApplicationContext();
         if (VideoProfile.isVideo(request.getVideoState()) && isTtyModeEnabled(context) &&
                 !isEmergencyNumber) {
-            return Connection.createFailedConnection(
-                    DisconnectCauseUtil.toTelecomDisconnectCause(
-                            DisconnectCause.VIDEO_CALL_NOT_ALLOWED_WHILE_TTY_ENABLED));
+            return Connection.createFailedConnection(DisconnectCauseUtil.toTelecomDisconnectCause(
+                    android.telephony.DisconnectCause.VIDEO_CALL_NOT_ALLOWED_WHILE_TTY_ENABLED));
+        }
+
+        // Check for additional limits on CDMA phones.
+        final Connection failedConnection = checkAdditionalOutgoingCallLimits(phone);
+        if (failedConnection != null) {
+            return failedConnection;
         }
 
         final TelephonyConnection connection =
@@ -500,9 +506,9 @@ public class TelephonyConnectionService extends ConnectionService {
         if (phoneType == TelephonyManager.PHONE_TYPE_GSM) {
             returnConnection = new GsmConnection(originalConnection, telecomCallId);
         } else if (phoneType == TelephonyManager.PHONE_TYPE_CDMA) {
-            boolean allowMute = allowMute(phone);
-            returnConnection = new CdmaConnection(
-                    originalConnection, mEmergencyTonePlayer, allowMute, isOutgoing, telecomCallId);
+            boolean allowsMute = allowsMute(phone);
+            returnConnection = new CdmaConnection(originalConnection, mEmergencyTonePlayer,
+                    allowsMute, isOutgoing, telecomCallId);
         }
         if (returnConnection != null) {
             // Listen to Telephony specific callbacks from the connection
@@ -589,7 +595,7 @@ public class TelephonyConnectionService extends ConnectionService {
      * @param phone The current phone.
      * @return {@code True} if the connection should allow mute.
      */
-    private boolean allowMute(Phone phone) {
+    private boolean allowsMute(Phone phone) {
         // For CDMA phones, check if we are in Emergency Callback Mode (ECM).  Mute is disallowed
         // in ECM mode.
         if (phone.getPhoneType() == TelephonyManager.PHONE_TYPE_CDMA) {
@@ -637,6 +643,38 @@ public class TelephonyConnectionService extends ConnectionService {
             Log.d(this, "Removing connection from IMS conference controller: " + connection);
             mImsConferenceController.remove(connection);
         }
+    }
+
+    /**
+     * Create a new CDMA connection. CDMA connections have additional limitations when creating
+     * additional calls which are handled in this method.  Specifically, CDMA has a "FLASH" command
+     * that can be used for three purposes: merging a call, swapping unmerged calls, and adding
+     * a new outgoing call. The function of the flash command depends on the context of the current
+     * set of calls. This method will prevent an outgoing call from being made if it is not within
+     * the right circumstances to support adding a call.
+     */
+    private Connection checkAdditionalOutgoingCallLimits(Phone phone) {
+        if (phone.getPhoneType() == TelephonyManager.PHONE_TYPE_CDMA) {
+            // Check to see if any CDMA conference calls exist, and if they do, check them for
+            // limitations.
+            for (Conference conference : getAllConferences()) {
+                if (conference instanceof CdmaConference) {
+                    CdmaConference cdmaConf = (CdmaConference) conference;
+
+                    // If the CDMA conference has not been merged, add-call will not work, so fail
+                    // this request to add a call.
+                    if (cdmaConf.can(Connection.CAPABILITY_MERGE_CONFERENCE)) {
+                        return Connection.createFailedConnection(new DisconnectCause(
+                                    DisconnectCause.RESTRICTED,
+                                    null,
+                                    getResources().getString(R.string.callFailed_cdma_call_limit),
+                                    "merge-capable call exists, prevent flash command."));
+                    }
+                }
+            }
+        }
+
+        return null; // null means nothing went wrong, and call should continue.
     }
 
     private boolean isTtyModeEnabled(Context context) {
