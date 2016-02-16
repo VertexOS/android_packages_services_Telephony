@@ -590,10 +590,8 @@ public class NotificationMgr {
 
                 if (serviceState == ServiceState.STATE_OUT_OF_SERVICE
                         && !TextUtils.isEmpty(networkSelection)) {
-                    if (!mSelectedUnavailableNotify) {
-                        showNetworkSelection(networkSelection);
-                        mSelectedUnavailableNotify = true;
-                    }
+                    showNetworkSelection(networkSelection);
+                    mSelectedUnavailableNotify = true;
                 } else {
                     if (mSelectedUnavailableNotify) {
                         cancelNetworkSelection();

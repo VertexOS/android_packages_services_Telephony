@@ -34,6 +34,8 @@ import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceGroup;
 import android.preference.PreferenceScreen;
+import android.telephony.ServiceState;
+import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.telephony.SubscriptionManager;
@@ -388,6 +390,15 @@ public class NetworkSetting extends PreferenceActivity
         final PhoneGlobals app = PhoneGlobals.getInstance();
         app.notificationMgr.postTransientNotification(
                 NotificationMgr.NETWORK_SELECTION_NOTIFICATION, status);
+
+        TelephonyManager tm = (TelephonyManager) app.getSystemService(Context.TELEPHONY_SERVICE);
+        Phone phone = PhoneFactory.getPhone(mPhoneId);
+        if (phone != null) {
+            ServiceState ss = tm.getServiceStateForSubscriber(phone.getSubId());
+            if (ss != null) {
+                app.notificationMgr.updateNetworkSelection(ss.getState());
+            }
+        }
     }
 
     private void displayNetworkSelectionSucceeded() {
