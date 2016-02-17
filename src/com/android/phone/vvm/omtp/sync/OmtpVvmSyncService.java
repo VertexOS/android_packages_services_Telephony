@@ -319,7 +319,7 @@ public class OmtpVvmSyncService extends IntentService {
         public void onAvailable(Network network) {
             super.onAvailable(network);
             NetworkInfo info = getConnectivityManager().getNetworkInfo(network);
-            Log.d(TAG, "Network Type: " + info.getTypeName());
+            Log.d(TAG, "Network Type: " + info == null ? "Unknown" : info.getTypeName());
             doSync(network, this, mPhoneAccount, mVoicemail, mAction);
         }
 
