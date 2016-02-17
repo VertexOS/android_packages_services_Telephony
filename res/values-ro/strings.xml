@@ -97,8 +97,8 @@
     <string name="labelCF" msgid="2574386948026924737">"Redirecționarea apelurilor"</string>
     <string name="labelCFU" msgid="8147177368148660600">"Redirecționează întotdeauna"</string>
     <string name="messageCFU" msgid="3560082430662923687">"Folosește mereu acest număr"</string>
-    <string name="sum_cfu_enabled_indicator" msgid="4014187342724130197">"Se redirecţionează toate apelurile"</string>
-    <string name="sum_cfu_enabled" msgid="2450052502198827927">"Se redirecţionează toate apelurile către <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
+    <string name="sum_cfu_enabled_indicator" msgid="4014187342724130197">"Se redirecționează toate apelurile"</string>
+    <string name="sum_cfu_enabled" msgid="2450052502198827927">"Se redirecționează toate apelurile către <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfu_enabled_no_number" msgid="6591985777096823616">"Numărul nu este disponibil"</string>
     <string name="sum_cfu_disabled" msgid="8384177689501334080">"Dezactivat"</string>
     <string name="labelCFB" msgid="6139853033106283172">"Când este ocupat"</string>
@@ -137,7 +137,7 @@
   <string-array name="clir_display_values">
     <item msgid="5560134294467334594">"Rețea prestabilită"</item>
     <item msgid="7876195870037833661">"Ascundeți numărul"</item>
-    <item msgid="1108394741608734023">"Afişaţi numărul"</item>
+    <item msgid="1108394741608734023">"Afișați numărul"</item>
   </string-array>
     <string name="vm_changed" msgid="380744030726254139">"Număr mesagerie vocală modificat."</string>
     <string name="vm_change_failed" msgid="3352934863246208918">"Nu s-a putut schimba numărul de mesagerie vocală.\nContactaţi operatorul în cazul în care această problemă persistă."</string>
@@ -243,10 +243,10 @@
     <string name="enable_disable_regional" msgid="4905652414535565872">"Regional"</string>
     <string name="regional_enable" msgid="4434680415437834759">"Știri locale activate"</string>
     <string name="regional_disable" msgid="5359325527213850077">"Știri regionale dezactivate"</string>
-    <string name="enable_disable_national" msgid="236278090206880734">"Naţional"</string>
+    <string name="enable_disable_national" msgid="236278090206880734">"Național"</string>
     <string name="national_enable" msgid="1172443648912246952">"Știri naționale activate"</string>
     <string name="national_disable" msgid="326018148178601166">"Știri naționale dezactivate"</string>
-    <string name="enable_disable_international" msgid="7535348799604565592">"Internaţional"</string>
+    <string name="enable_disable_international" msgid="7535348799604565592">"Internațional"</string>
     <string name="international_enable" msgid="5855356769925044927">"Știri internaţionale activate"</string>
     <string name="international_disable" msgid="2850648591041088931">"Știri internaţionale dezactivate"</string>
     <string name="list_language_title" msgid="2841683501919760043">"Limbă"</string>
@@ -346,7 +346,7 @@
     <string name="sum_fdn_change_pin" msgid="6666549734792827932">"Schimbaţi codul PIN pentru accesul FDN"</string>
     <string name="sum_fdn_manage_list" msgid="8431088265332628316">"Gestionați lista numerelor de telefon"</string>
     <string name="voice_privacy" msgid="3776841382844614716">"Confidenţialitate voce"</string>
-    <string name="voice_privacy_summary" msgid="3159383389833516214">"Activați modul avansat de confidenţialitate"</string>
+    <string name="voice_privacy_summary" msgid="3159383389833516214">"Activați modul avansat de confidențialitate"</string>
     <string name="tty_mode_option_title" msgid="9033098925144434669">"Mod TTY"</string>
     <string name="tty_mode_option_summary" msgid="1073835131534808732">"Setaţi modul TTY"</string>
     <string name="auto_retry_mode_title" msgid="4073265511427813322">"Reîncercare automată"</string>
@@ -498,7 +498,7 @@
     <string name="ota_progress" msgid="460876637828044519">"Se programează telefonul…"</string>
     <string name="ota_failure" msgid="7713756181204620397">"Telefonul nu a putut fi programat"</string>
     <string name="ota_successful" msgid="1880780692887077407">"Telefonul dvs. este acum activat. Poate să dureze până la 15 minute până la pornirea serviciului."</string>
-    <string name="ota_unsuccessful" msgid="8072141612635635357">"Telefonul dvs. nu s-a activat. \nVă recomandăm să găsiți o zonă cu acoperire mai bună (lângă fereastră sau afară). \n\nPentru mai multe opțiuni, încercaţi din nou sau apelaţi serviciul pentru clienți."</string>
+    <string name="ota_unsuccessful" msgid="8072141612635635357">"Telefonul dvs. nu s-a activat. \nVă recomandăm să găsiți o zonă cu acoperire mai bună (lângă fereastră sau afară). \n\nPentru mai multe opțiuni, încercați din nou sau apelați serviciul pentru clienți."</string>
     <string name="ota_spc_failure" msgid="3909983542575030796">"ERORI DE DEPĂȘIRE SPC"</string>
     <string name="ota_call_end" msgid="4537279738134612388">"Înapoi"</string>
     <string name="ota_try_again" msgid="7685477206465902290">"Încercați din nou"</string>
