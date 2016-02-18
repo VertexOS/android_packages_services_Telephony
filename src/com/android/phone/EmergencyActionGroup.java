@@ -165,11 +165,9 @@ public class EmergencyActionGroup extends FrameLayout implements View.OnClickLis
                 } catch (PackageManager.NameNotFoundException e) {
                     continue;
                 }
-                // Get earliest installed app, but prioritize system apps.
-                if (bestMatch == null
-                        || !isSystemApp(bestMatch) && isSystemApp(packageInfo)
-                        || isSystemApp(bestMatch) == isSystemApp(packageInfo)
-                                && bestMatch.firstInstallTime > packageInfo.firstInstallTime) {
+                // Get earliest installed system app.
+                if (isSystemApp(packageInfo) && (bestMatch == null ||
+                        bestMatch.firstInstallTime > packageInfo.firstInstallTime)) {
                     bestMatch = packageInfo;
                 }
             }
