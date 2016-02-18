@@ -533,17 +533,25 @@ public class TelephonyConnectionService extends ConnectionService {
     }
 
     private Phone getPhoneForAccount(PhoneAccountHandle accountHandle, boolean isEmergency) {
-        if (isEmergency) {
-            return PhoneFactory.getDefaultPhone();
-        }
-
+        Phone chosenPhone = null;
         int subId = PhoneUtils.getSubIdForPhoneAccountHandle(accountHandle);
         if (subId != SubscriptionManager.INVALID_SUBSCRIPTION_ID) {
             int phoneId = SubscriptionController.getInstance().getPhoneId(subId);
-            return PhoneFactory.getPhone(phoneId);
+            chosenPhone = PhoneFactory.getPhone(phoneId);
         }
 
-        return null;
+        // If this is an emergency call and the phone we originally planned to make this call
+        // with is not in service or was invalid, try to find one that is in service, using the
+        // default as a last chance backup.
+        if (isEmergency && (chosenPhone == null || ServiceState.STATE_IN_SERVICE != chosenPhone
+                .getServiceState().getState())) {
+            Log.d(this, "getPhoneForAccount: phone for phone acct handle %s is out of service "
+                    + "or invalid for emergency call.", accountHandle);
+            chosenPhone = getFirstPhoneForEmergencyCall();
+            Log.d(this, "getPhoneForAccount: using subId: " +
+                    (chosenPhone == null ? "null" : chosenPhone.getSubId()));
+        }
+        return chosenPhone;
     }
 
     private Phone getFirstPhoneForEmergencyCall() {
@@ -560,23 +568,23 @@ public class TelephonyConnectionService extends ConnectionService {
 
             if (ServiceState.STATE_IN_SERVICE == phone.getServiceState().getState()) {
                 // the slot is radio on & state is in service
-                Log.d(this, "pickBestPhoneForEmergencyCall, radio on & in service, slotId:" + i);
+                Log.d(this, "getFirstPhoneForEmergencyCall, radio on & in service, slotId:" + i);
                 return phone;
             } else if (ServiceState.STATE_POWER_OFF != phone.getServiceState().getState()) {
                 // the slot is radio on & with SIM card inserted.
                 if (TelephonyManager.getDefault().hasIccCard(i)) {
-                    Log.d(this, "pickBestPhoneForEmergencyCall," +
+                    Log.d(this, "getFirstPhoneForEmergencyCall," +
                             "radio on and SIM card inserted, slotId:" + i);
                     selectPhone = phone;
                 } else if (selectPhone == null) {
-                    Log.d(this, "pickBestPhoneForEmergencyCall, radio on, slotId:" + i);
+                    Log.d(this, "getFirstPhoneForEmergencyCall, radio on, slotId:" + i);
                     selectPhone = phone;
                 }
             }
         }
 
         if (selectPhone == null) {
-            Log.d(this, "pickBestPhoneForEmergencyCall, return default phone");
+            Log.d(this, "getFirstPhoneForEmergencyCall, return default phone");
             selectPhone = PhoneFactory.getDefaultPhone();
         }
 
