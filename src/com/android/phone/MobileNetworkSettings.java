@@ -22,6 +22,7 @@ import com.android.internal.telephony.PhoneConstants;
 import com.android.internal.telephony.PhoneFactory;
 import com.android.internal.telephony.TelephonyIntents;
 import com.android.internal.telephony.TelephonyProperties;
+import com.android.settingslib.RestrictedLockUtils;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -42,6 +43,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.os.PersistableBundle;
 import android.os.SystemProperties;
+import android.os.UserHandle;
 import android.os.UserManager;
 import android.preference.ListPreference;
 import android.preference.Preference;
@@ -740,9 +742,15 @@ public class MobileNetworkSettings extends PreferenceActivity
         boolean canChange4glte = (tm.getCallState() == TelephonyManager.CALL_STATE_IDLE) &&
                 ImsManager.isNonTtyOrTtyOnVolteEnabled(getApplicationContext()) &&
                 carrierConfig.getBoolean(CarrierConfigManager.KEY_EDITABLE_ENHANCED_4G_LTE_BOOL);
+        mButtonDataRoam.setDisabledByAdmin(null);
         mButtonDataRoam.setEnabled(hasActiveSubscriptions);
         if (mButtonDataRoam.isEnabled()) {
-            mButtonDataRoam.checkRestrictionAndSetDisabled(UserManager.DISALLOW_DATA_ROAMING);
+            if (RestrictedLockUtils.hasBaseUserRestriction(context,
+                    UserManager.DISALLOW_DATA_ROAMING, UserHandle.myUserId())) {
+                mButtonDataRoam.setEnabled(false);
+            } else {
+                mButtonDataRoam.checkRestrictionAndSetDisabled(UserManager.DISALLOW_DATA_ROAMING);
+            }
         }
         mButtonPreferredNetworkMode.setEnabled(hasActiveSubscriptions);
         mButtonEnabledNetworks.setEnabled(hasActiveSubscriptions);
