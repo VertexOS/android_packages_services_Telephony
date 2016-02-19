@@ -67,7 +67,7 @@ public final class SipAccountRegistry {
                     sipManager.open(
                             mProfile,
                             SipUtil.createIncomingCallPendingIntent(context,
-                                    mProfile.getUriString()),
+                                    mProfile.getProfileName()),
                             null);
                 } else {
                     sipManager.open(mProfile);
