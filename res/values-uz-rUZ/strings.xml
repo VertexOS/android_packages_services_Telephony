@@ -38,7 +38,7 @@
     <string name="audio_mode_bluetooth" msgid="3047641300848211128">"Bluetooth"</string>
     <string name="wait_prompt_str" msgid="7601815427707856238">"Ushbu tovushlar jo‘natilsinmi?\n"</string>
     <string name="pause_prompt_str" msgid="1789964702154314806">"Tovushlar jo‘natilmoqda\n"</string>
-    <string name="send_button" msgid="4106860097497818751">"Jo‘natish"</string>
+    <string name="send_button" msgid="4106860097497818751">"Yuborish"</string>
     <string name="pause_prompt_yes" msgid="3564467212025151797">"Ha"</string>
     <string name="pause_prompt_no" msgid="6686238803236884877">"Yo‘q"</string>
     <string name="wild_prompt_str" msgid="5543521676355533577">"Belgilarni quyidagilar bilan almashtiring:"</string>
