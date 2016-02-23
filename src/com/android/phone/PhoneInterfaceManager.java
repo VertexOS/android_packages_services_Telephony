@@ -2310,10 +2310,10 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     public void setDataEnabled(int subId, boolean enable) {
         enforceModifyPermission();
         int phoneId = mSubscriptionController.getPhoneId(subId);
-        log("getDataEnabled: subId=" + subId + " phoneId=" + phoneId);
+        if (DBG) log("getDataEnabled: subId=" + subId + " phoneId=" + phoneId);
         Phone phone = PhoneFactory.getPhone(phoneId);
         if (phone != null) {
-            log("setDataEnabled: subId=" + subId + " enable=" + enable);
+            if (DBG) log("setDataEnabled: subId=" + subId + " enable=" + enable);
             phone.setDataEnabled(enable);
         } else {
             loge("setDataEnabled: no phone for subId=" + subId);
@@ -2339,14 +2339,14 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
                     null);
         }
         int phoneId = mSubscriptionController.getPhoneId(subId);
-        log("getDataEnabled: subId=" + subId + " phoneId=" + phoneId);
+        if (DBG) log("getDataEnabled: subId=" + subId + " phoneId=" + phoneId);
         Phone phone = PhoneFactory.getPhone(phoneId);
         if (phone != null) {
             boolean retVal = phone.getDataEnabled();
-            log("getDataEnabled: subId=" + subId + " retVal=" + retVal);
+            if (DBG) log("getDataEnabled: subId=" + subId + " retVal=" + retVal);
             return retVal;
         } else {
-            loge("getDataEnabled: no phone subId=" + subId + " retVal=false");
+            if (DBG) loge("getDataEnabled: no phone subId=" + subId + " retVal=false");
             return false;
         }
     }
