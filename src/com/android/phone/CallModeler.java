@@ -20,6 +20,7 @@ import android.os.AsyncResult;
 import android.os.Handler;
 import android.os.Message;
 import android.os.SystemProperties;
+import android.provider.Settings;
 import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
 import android.util.Log;
@@ -658,7 +659,7 @@ public class CallModeler extends Handler {
             canSwapCall = PhoneUtils.okToSwapCalls(mCallManager);
         }
 
-        canAddCall = PhoneUtils.okToAddCall(mCallManager);
+        canAddCall = PhoneUtils.okToAddCall(mCallManager) && passedSetupWizard();
 
         // "Mute": only enabled when the foreground call is ACTIVE.
         // (It's meaningless while on hold, or while DIALING/ALERTING.)
@@ -896,6 +897,13 @@ public class CallModeler extends Handler {
         } while (!mNextCallId.compareAndSet(callId, newNextCallId));
 
         return new Call(callId);
+    }
+
+    private boolean passedSetupWizard() {
+        // Incoming calls are totally ignored if the device isn't provisioned yet.
+        return Settings.Global.getInt(
+                PhoneGlobals.getInstance().getContentResolver(),
+                Settings.Global.DEVICE_PROVISIONED, 0) != 0;
     }
 
     /**
