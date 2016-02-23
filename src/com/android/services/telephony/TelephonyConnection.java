@@ -29,6 +29,7 @@ import android.telecom.ConferenceParticipant;
 import android.telecom.Connection;
 import android.telecom.PhoneAccount;
 import android.telecom.StatusHints;
+import android.telecom.PhoneAccountHandle;
 import android.telecom.TelecomManager;
 import android.telecom.VideoProfile;
 import android.telephony.PhoneNumberUtils;
@@ -36,6 +37,8 @@ import android.telephony.SubscriptionInfo;
 import android.telephony.SubscriptionManager;
 import android.telephony.TelephonyManager;
 import android.util.Pair;
+import android.telephony.TelephonyManager;
+import android.telephony.SubscriptionManager;
 
 import com.android.ims.ImsCallProfile;
 import com.android.internal.telephony.Call;
@@ -46,6 +49,8 @@ import com.android.internal.telephony.PhoneConstants;
 import com.android.internal.telephony.gsm.SuppServiceNotification;
 
 import com.android.internal.telephony.Phone;
+import com.android.phone.PhoneUtils;
+import com.android.internal.telephony.SubscriptionController;
 import com.android.phone.R;
 
 import java.lang.Override;
@@ -88,6 +93,11 @@ abstract class TelephonyConnection extends Connection {
     private static final int MSG_PHONE_VP_OFF = 16;
 
     private boolean mIsVoicePrivacyOn = false;
+    private boolean[] mIsPermDiscCauseReceived = new
+            boolean[TelephonyManager.getDefault().getPhoneCount()];
+
+    private static final Object mLock = new Object();
+    boolean mHangupByUser = false;
 
     private SuppServiceNotification mSsNotification = null;
     private String[] mSubName = {"SIM1", "SIM2", "SIM3"};
@@ -440,6 +450,8 @@ abstract class TelephonyConnection extends Connection {
      */
     public abstract static class TelephonyConnectionListener {
         public void onOriginalConnectionConfigured(TelephonyConnection c) {}
+        public void onEmergencyRedial(TelephonyConnection c, PhoneAccountHandle pHandle,
+                int phoneId) {}
     }
 
     private final PostDialListener mPostDialListener = new PostDialListener() {
@@ -913,7 +925,7 @@ abstract class TelephonyConnection extends Connection {
                 setCallerDisplayName(name, namePresentation);
             }
 
-            if (PhoneNumberUtils.isEmergencyNumber(mOriginalConnection.getAddress())) {
+            if (PhoneUtils.isEmergencyNumber(mOriginalConnection.getAddress())) {
                 mTreatAsEmergencyCall = true;
             }
         }
@@ -957,7 +969,7 @@ abstract class TelephonyConnection extends Connection {
             mHandler.obtainMessage(MSG_CONNECTION_EXTRAS_CHANGED, connExtras == null ? null :
                     new Bundle(connExtras)).sendToTarget();
 
-        if (PhoneNumberUtils.isEmergencyNumber(mOriginalConnection.getAddress())) {
+        if (PhoneUtils.isEmergencyNumber(mOriginalConnection.getAddress())) {
             mTreatAsEmergencyCall = true;
         }
 
@@ -1017,27 +1029,30 @@ abstract class TelephonyConnection extends Connection {
     }
 
     protected void hangup(int telephonyDisconnectCode) {
-        if (mOriginalConnection != null) {
-            try {
-                // Hanging up a ringing call requires that we invoke call.hangup() as opposed to
-                // connection.hangup(). Without this change, the party originating the call will not
-                // get sent to voicemail if the user opts to reject the call.
-                if (isValidRingingCall()) {
-                    Call call = getCall();
-                    if (call != null) {
-                        call.hangup();
+        synchronized (mLock) {
+            if (mOriginalConnection != null) {
+                try {
+                    // Hanging up a ringing call requires that we invoke call.hangup() as opposed
+                    // to connection.hangup(). Without this change, the party originating the call
+                    // will not get sent to voicemail if the user opts to reject the call.
+                    if (isValidRingingCall()) {
+                        Call call = getCall();
+                        if (call != null) {
+                            call.hangup();
+                        } else {
+                            Log.w(this, "Attempting to hangup a connection without backing call.");
+                        }
                     } else {
-                        Log.w(this, "Attempting to hangup a connection without backing call.");
+                        // We still prefer to call connection.hangup() for non-ringing calls in
+                        // order to support hanging-up specific calls within a conference call. If
+                        // we invoked call.hangup() while in a conference, we would end up hanging
+                        // up the entire conference call instead of the specific connection.
+                        mOriginalConnection.hangup();
                     }
-                } else {
-                    // We still prefer to call connection.hangup() for non-ringing calls in order
-                    // to support hanging-up specific calls within a conference call. If we invoked
-                    // call.hangup() while in a conference, we would end up hanging up the entire
-                    // conference call instead of the specific connection.
-                    mOriginalConnection.hangup();
+                } catch (CallStateException e) {
+                    Log.e(this, e, "Call to Connection.hangup failed with exception");
+                    mHangupByUser = false;
                 }
-            } catch (CallStateException e) {
-                Log.e(this, e, "Call to Connection.hangup failed with exception");
             }
         }
     }
@@ -1213,8 +1228,14 @@ abstract class TelephonyConnection extends Connection {
         }
         Log.v(this, "Update state from %s to %s for %s", mConnectionState, newState, this);
 
-        if (mConnectionState != newState) {
-            mConnectionState = newState;
+        final String number = mOriginalConnection.getAddress();
+        final Phone phone = mOriginalConnection.getCall().getPhone();
+        int cause = mOriginalConnection.getDisconnectCause();
+        final boolean isEmergencyNumber = PhoneUtils.isLocalEmergencyNumber(number);
+
+        Log.v(this, "Update state from %s to %s for %s", mOriginalConnectionState, newState, this);
+        if (mOriginalConnectionState != newState) {
+            mOriginalConnectionState = newState;
             switch (newState) {
                 case IDLE:
                     break;
@@ -1233,20 +1254,34 @@ abstract class TelephonyConnection extends Connection {
                     setRinging();
                     break;
                 case DISCONNECTED:
-                    if (mSsNotification != null) {
-                        setDisconnected(DisconnectCauseUtil.toTelecomDisconnectCause(
-                                mOriginalConnection.getDisconnectCause(),
-                                mOriginalConnection.getVendorDisconnectCause(),
-                                mSsNotification.notificationType,
-                                mSsNotification.code));
-                        mSsNotification = null;
-                        DisconnectCauseUtil.mNotificationCode = 0xFF;
-                        DisconnectCauseUtil.mNotificationType = 0xFF;
-                    } else {
-                        setDisconnected(DisconnectCauseUtil.toTelecomDisconnectCause(
+                    synchronized (mLock) {
+                        if(isEmergencyNumber && !mHangupByUser &&
+                                (TelephonyManager.getDefault().getPhoneCount() > 1) &&
+                                ((cause == android.telephony.DisconnectCause.EMERGENCY_TEMP_FAILURE)
+                                || (cause == android.telephony.DisconnectCause.
+                                EMERGENCY_PERM_FAILURE))) {
+                            // If emergency call failure is received with cause codes
+                            // EMERGENCY_TEMP_FAILURE & EMERGENCY_PERM_FAILURE, then redial
+                            // on other sub.
+                            emergencyRedial(cause, phone);
+                            break;
+                        } else if (mSsNotification != null) {
+                            setDisconnected(DisconnectCauseUtil.toTelecomDisconnectCause(
+                                    mOriginalConnection.getDisconnectCause(),
+                                    mOriginalConnection.getVendorDisconnectCause(),
+                                    mSsNotification.notificationType,
+                                    mSsNotification.code));
+                            mSsNotification = null;
+                            DisconnectCauseUtil.mNotificationCode = 0xFF;
+                            DisconnectCauseUtil.mNotificationType = 0xFF;
+                        } else {
+                            setDisconnected(DisconnectCauseUtil.toTelecomDisconnectCause(
                                 mOriginalConnection.getDisconnectCause(),
                                 mOriginalConnection.getVendorDisconnectCause()));
+                        }
                     }
+                    mHangupByUser = false;
+                    resetDisconnectCause();
                     close();
                     break;
                 case DISCONNECTING:
@@ -1310,6 +1345,67 @@ abstract class TelephonyConnection extends Connection {
     private void handleMultipartyStateChange(boolean isMultiParty) {
         Log.i(this, "Update multiparty state to %s", isMultiParty ? "Y" : "N");
         mHandler.obtainMessage(MSG_MULTIPARTY_STATE_CHANGED, isMultiParty).sendToTarget();
+    }
+
+    private void emergencyRedial(int cause, Phone phone) {
+        int PhoneIdToCall = phone.getPhoneId();
+        if (cause == android.telephony.DisconnectCause.EMERGENCY_PERM_FAILURE) {
+            Log.d(this,"EMERGENCY_PERM_FAILURE received on sub:" + PhoneIdToCall);
+            // update mIsPermDiscCauseReceived so that next redial doesn't occur
+            // on this sub
+            mIsPermDiscCauseReceived[phone.getPhoneId()] = true;
+            PhoneIdToCall = SubscriptionManager.INVALID_PHONE_INDEX;
+        }
+        // Check for any subscription on which EMERGENCY_PERM_FAILURE is received
+        // if no such sub, then redial should be stopped.
+        for (int i = getNextPhoneId(phone.getPhoneId()); i != phone.getPhoneId();
+                i = getNextPhoneId(i)) {
+            if (mIsPermDiscCauseReceived[i] == false) {
+                PhoneIdToCall = i;
+                break;
+            }
+        }
+
+        long subId = SubscriptionController.getInstance().getSubIdUsingPhoneId(PhoneIdToCall);
+        if (PhoneIdToCall == SubscriptionManager.INVALID_PHONE_INDEX) {
+            Log.d(this,"EMERGENCY_PERM_FAILURE received on all subs, abort redial");
+            setDisconnected(DisconnectCauseUtil.toTelecomDisconnectCause(
+                    mOriginalConnection.getDisconnectCause(),
+                    mOriginalConnection.getVendorDisconnectCause()));
+            resetDisconnectCause();
+            close();
+        } else {
+            Log.d(this,"Redial emergency call on subscription " + PhoneIdToCall);
+            TelecomManager telecommMgr = (TelecomManager)
+            getPhone().getContext().getSystemService(Context.TELECOM_SERVICE);
+            if (telecommMgr != null) {
+                List<PhoneAccountHandle> phoneAccountHandles =
+                        telecommMgr.getCallCapablePhoneAccounts();
+                for (PhoneAccountHandle handle : phoneAccountHandles) {
+                    String sub = handle.getId();
+                    if (Long.toString(subId).equals(sub)){
+                        Log.d(this,"EMERGENCY REDIAL");
+                        for (TelephonyConnectionListener l : mTelephonyListeners) {
+                            l.onEmergencyRedial(this, handle, PhoneIdToCall);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private int getNextPhoneId(int curId) {
+        int nextId =  curId + 1;
+        if (nextId >= TelephonyManager.getDefault().getPhoneCount()) {
+            nextId = 0;
+        }
+        return nextId;
+    }
+
+    private void resetDisconnectCause() {
+        for (int i = 0; i < TelephonyManager.getDefault().getPhoneCount(); i++) {
+            mIsPermDiscCauseReceived[i] = false;
+        }
     }
 
     private void setActiveInternal() {

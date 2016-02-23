@@ -515,7 +515,7 @@ public class EmergencyDialer extends Activity implements View.OnClickListener,
      */
     private void placeCall() {
         mLastNumber = mDigits.getText().toString();
-        if (PhoneNumberUtils.isLocalEmergencyNumber(this, mLastNumber)) {
+        if (PhoneUtils.isLocalEmergencyNumber(mLastNumber)) {
             if (DBG) Log.d(LOG_TAG, "placing call to " + mLastNumber);
 
             // place the call if it is a valid number

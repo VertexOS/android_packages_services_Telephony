@@ -346,9 +346,8 @@ public class CallController extends Handler {
         // (This is just a sanity-check; this policy *should* really be
         // enforced in OutgoingCallBroadcaster.onCreate(), which is the
         // main entry point for the CALL and CALL_* intents.)
-        boolean isEmergencyNumber = PhoneNumberUtils.isLocalEmergencyNumber(mApp, number);
-        boolean isPotentialEmergencyNumber =
-                PhoneNumberUtils.isPotentialLocalEmergencyNumber(mApp, number);
+        boolean isEmergencyNumber = PhoneUtils.isLocalEmergencyNumber(number);
+        boolean isPotentialEmergencyNumber = PhoneUtils.isPotentialLocalEmergencyNumber(number);
         boolean isEmergencyIntent = Intent.ACTION_CALL_EMERGENCY.equals(intent.getAction());
 
         if (isPotentialEmergencyNumber && !isEmergencyIntent) {
