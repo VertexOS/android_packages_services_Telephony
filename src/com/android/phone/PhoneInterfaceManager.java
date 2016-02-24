@@ -22,6 +22,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.AsyncResult;
@@ -2409,6 +2410,38 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         }
         return card.getCarrierPackageNamesForIntent(
                 mPhone.getContext().getPackageManager(), intent);
+    }
+
+    @Override
+    public List<String> getPackagesWithCarrierPrivileges() {
+        PackageManager pm = mPhone.getContext().getPackageManager();
+        List<String> privilegedPackages = new ArrayList<>();
+        List<PackageInfo> packages = null;
+        for (int i = 0; i < TelephonyManager.getDefault().getPhoneCount(); i++) {
+            UiccCard card = UiccController.getInstance().getUiccCard(i);
+            if (card == null) {
+                // No UICC in that slot.
+                continue;
+            }
+            if (card.hasCarrierPrivilegeRules()) {
+                if (packages == null) {
+                    // Only check packages in user 0 for now
+                    packages = pm.getInstalledPackagesAsUser(
+                            PackageManager.MATCH_DISABLED_COMPONENTS
+                            | PackageManager.MATCH_DISABLED_UNTIL_USED_COMPONENTS
+                            | PackageManager.GET_SIGNATURES, UserHandle.USER_SYSTEM);
+                }
+                for (int p = packages.size() - 1; p >= 0; p--) {
+                    PackageInfo pkgInfo = packages.get(p);
+                    if (pkgInfo != null && pkgInfo.packageName != null
+                            && card.getCarrierPrivilegeStatus(pkgInfo)
+                                == TelephonyManager.CARRIER_PRIVILEGE_STATUS_HAS_ACCESS) {
+                        privilegedPackages.add(pkgInfo.packageName);
+                    }
+                }
+            }
+        }
+        return privilegedPackages;
     }
 
     private String getIccId(int subId) {
