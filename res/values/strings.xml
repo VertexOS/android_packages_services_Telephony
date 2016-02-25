@@ -1315,4 +1315,9 @@
         A SIM card has activated your service and updated your phone\'s roaming capabilities.
     </string>
 
+    <!-- Call failure reason: Cannot add a call because there are already too many active calls. -->
+    <string name="callFailed_cdma_call_limit">
+        There are too many active calls. Please end or merge existing calls before placing a new one.
+    </string>
+
 </resources>
