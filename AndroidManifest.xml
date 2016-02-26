@@ -129,7 +129,10 @@
     <uses-permission android:name="android.permission.LOCAL_MAC_ADDRESS" />
     <uses-permission android:name="android.permission.CHANGE_COMPONENT_ENABLED_STATE" />
     <uses-permission android:name="android.permission.CHANGE_DEVICE_IDLE_TEMP_WHITELIST" />
+    <!-- Needed to block messages. -->
     <uses-permission android:name="android.permission.READ_BLOCKED_NUMBERS" />
+    <!-- Needed for emergency contact notification. -->
+    <uses-permission android:name="android.permission.WRITE_BLOCKED_NUMBERS" />
 
     <!-- Needed for passing extras with intent ACTION_SHOW_ADMIN_SUPPORT_DETAILS -->
     <uses-permission android:name="android.permission.MANAGE_DEVICE_ADMINS" />
