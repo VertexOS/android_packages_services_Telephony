@@ -553,4 +553,5 @@
     <string name="emergency_action_launch_hint" msgid="4906759256275562674">"برای باز کردن دوباره ضربه بزنید"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"هنگام رمزگشایی پیام، خطایی روی داد."</string>
     <string name="callFailed_cdma_activation" msgid="2307989779233262164">"یک سیم‌کارت سرویس شما را فعال کرده است و قابلیت‌های رومینگ تلفنتان را به‌روز کرده است."</string>
+    <string name="callFailed_cdma_call_limit" msgid="1556916577171457086">"تعداد زیادی تماس فعال وجود دارد. قبل از برقراری تماس جدید، لطفاً به تماس‌های موجود پایان دهید یا آنها را ادغام کنید."</string>
 </resources>

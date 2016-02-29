@@ -557,4 +557,5 @@
     <string name="emergency_action_launch_hint" msgid="4906759256275562674">"Zum Öffnen erneut tippen"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"Beim Entschlüsseln der Nachricht ist ein Fehler aufgetreten."</string>
     <string name="callFailed_cdma_activation" msgid="2307989779233262164">"Eine SIM-Karte hat deinen Dienst aktiviert und die Roamingfunktionen deines Smartphones aktualisiert."</string>
+    <string name="callFailed_cdma_call_limit" msgid="1556916577171457086">"Zu viele aktive Anrufe. Beende aktive Anrufe oder führe sie zusammen, bevor du einen neuen Anruf tätigst."</string>
 </resources>

@@ -559,4 +559,5 @@
     <string name="emergency_action_launch_hint" msgid="4906759256275562674">"Irekitzeko, sakatu berriro"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"Errore bat gertatu mezua deskodetzean."</string>
     <string name="callFailed_cdma_activation" msgid="2307989779233262164">"SIM txartel batek zerbitzua aktibatu du eta telefonoaren ibiltaritza-gaitasunak aldatu ditu."</string>
+    <string name="callFailed_cdma_call_limit" msgid="1556916577171457086">"Dei gehiegi daude aktibo. Amaitu edo bateratu abian diren deiak beste bat egin aurretik."</string>
 </resources>

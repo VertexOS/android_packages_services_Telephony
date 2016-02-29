@@ -553,4 +553,5 @@
     <string name="emergency_action_launch_hint" msgid="4906759256275562674">"ਖੋਲ੍ਹਣ ਲਈ ਦੁਬਾਰਾ ਟੈਪ ਕਰੋ"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"ਸੁਨੇਹਾ ਡੀਕੋਡ ਕਰਦੇ ਸਮੇਂ ਇੱਕ ਅਸ਼ੁੱਧੀ ਹੋਈ ਸੀ।"</string>
     <string name="callFailed_cdma_activation" msgid="2307989779233262164">"ਇੱਕ SIM ਕਾਰਡ ਨੇ ਤੁਹਾਡੀ ਸੇਵਾ ਸਕਿਰਿਆ ਕੀਤੀ ਹੈ ਅਤੇ ਤੁਹਾਡੇ ਫੋਨ ਦੀਆਂ ਰੋਮਿੰਗ ਸਮਰੱਥਤਾਵਾਂ ਅਪਡੇਟ ਕੀਤੀਆਂ ਹਨ।"</string>
+    <string name="callFailed_cdma_call_limit" msgid="1556916577171457086">"ਇੱਥੇ ਬਹੁਤ ਸਾਰੀਆਂ ਕਿਰਿਆਸ਼ੀਲ ਕਾਲਾਂ ਹਨ। ਕਿਰਪਾ ਕਰਕੇ ਇੱਕ ਨਵੀਂ ਕਾਲ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਮੌਜੂਦਾ ਕਾਲਾਂ ਨੂੰ ਸਮਾਪਤ ਜਾਂ ਮਿਲਾਓ।"</string>
 </resources>

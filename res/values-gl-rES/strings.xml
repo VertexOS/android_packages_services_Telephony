@@ -553,4 +553,5 @@
     <string name="emergency_action_launch_hint" msgid="4906759256275562674">"Toca de novo para abrir"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"Produciuse un erro durante a descodificación da mensaxe."</string>
     <string name="callFailed_cdma_activation" msgid="2307989779233262164">"A tarxeta SIM activou o teu servizo e actualizou as funcións de itinerancia do teléfono."</string>
+    <string name="callFailed_cdma_call_limit" msgid="1556916577171457086">"Hai moitas chamadas activas. Finaliza as chamadas existentes ou combínaas antes de facer unha nova."</string>
 </resources>

@@ -559,4 +559,5 @@
     <string name="emergency_action_launch_hint" msgid="4906759256275562674">"再次輕按即可開啟"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"為訊息解碼時發生錯誤。"</string>
     <string name="callFailed_cdma_activation" msgid="2307989779233262164">"SIM 卡已啟動您的服務，並更新了您的手機漫遊功能。"</string>
+    <string name="callFailed_cdma_call_limit" msgid="1556916577171457086">"進行中的通話過多。請先結束或合併現有通話，再重新撥打。"</string>
 </resources>

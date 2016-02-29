@@ -556,4 +556,5 @@
     <string name="emergency_action_launch_hint" msgid="4906759256275562674">"Додирните поново да бисте отворили"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"Дошло је до грешке при декодирању поруке."</string>
     <string name="callFailed_cdma_activation" msgid="2307989779233262164">"SIM картица је активирала услугу и ажурирала функције роминга на телефону."</string>
+    <string name="callFailed_cdma_call_limit" msgid="1556916577171457086">"Има превише активних позива. Завршите или обједините постојеће позиве пре него што упутите нови."</string>
 </resources>

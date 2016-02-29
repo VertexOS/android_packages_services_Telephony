@@ -559,4 +559,5 @@
     <string name="emergency_action_launch_hint" msgid="4906759256275562674">"Tryck igen för att öppna"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"Ett fel inträffade när meddelandet avkodades."</string>
     <string name="callFailed_cdma_activation" msgid="2307989779233262164">"Ett SIM-kort har använts för att aktivera tjänsten och uppdatera roamingfunktionerna i mobilen."</string>
+    <string name="callFailed_cdma_call_limit" msgid="1556916577171457086">"Det finns för många aktiva samtal. Avsluta eller slå samman pågående samtal innan du ringer ett nytt."</string>
 </resources>

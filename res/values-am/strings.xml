@@ -553,4 +553,5 @@
     <string name="emergency_action_launch_hint" msgid="4906759256275562674">"ለመክፈት ዳግም ነካ ያድርጉ"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"መልዕክቱን በማመሳጠር ላይ ስህተት ነበር።"</string>
     <string name="callFailed_cdma_activation" msgid="2307989779233262164">"አንድ ሲም ካርድ አገልግሎትዎን ገቢር አድርጎታል፣ እንዲሁም የስልክዎን የማስተላለፍ ችሎታዎችን አዘምኗል።"</string>
+    <string name="callFailed_cdma_call_limit" msgid="1556916577171457086">"እጅግ በጣም ብዙ ንቁ ጥሪዎች አሉ። እባክዎ አዲስ ከማስቀመጥዎ በፊት ያሉትን ጥሪዎች ይጨርሱ ወይም ያዋህዱ።"</string>
 </resources>

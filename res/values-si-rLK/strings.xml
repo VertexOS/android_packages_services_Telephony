@@ -553,4 +553,5 @@
     <string name="emergency_action_launch_hint" msgid="4906759256275562674">"විවෘත කිරීමට නැවත තට්ටු කරන්න"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"පණිවිඩය විකේතනය කරන අතරතුර දෝෂයක් සිදු විය."</string>
     <string name="callFailed_cdma_activation" msgid="2307989779233262164">"SIM කාඩ්පතක් ඔබේ සේවාව සක්‍රිය කර ඔබේ දුරකථනයේ රෝමිං හැකියා යාවත්කාලීන කර තිබේ."</string>
+    <string name="callFailed_cdma_call_limit" msgid="1556916577171457086">"සක්‍රිය ඇමතුම් ඉතා විශාල ගණනක් ඇත. කරුණාකර නව ඇමතුමක් ගැනීමට පෙර පවතින ඇමතුම් අවසන් හෝ ඒකාබද්ධ කරන්න."</string>
 </resources>

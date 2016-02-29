@@ -553,4 +553,5 @@
     <string name="emergency_action_launch_hint" msgid="4906759256275562674">"തുറക്കുന്നതിന് വീണ്ടും ടാപ്പുചെയ്യുക"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"സന്ദേശം ഡീകോഡുചെയ്യുമ്പോൾ ഒരു പിശകുണ്ടായി."</string>
     <string name="callFailed_cdma_activation" msgid="2307989779233262164">"ഒരു SIM കാർഡ് നിങ്ങളുടെ സേവനം സജീവമാക്കി, ഫോണിന്റെ റോമിംഗ് ശേഷികൾ അപ്‌ഡേറ്റ് ചെയ്തു."</string>
+    <string name="callFailed_cdma_call_limit" msgid="1556916577171457086">"നിരവധി കോളുകൾ സജീവമാണ്. പുതിയ കോൾ വിളിക്കുന്നതിനുമുമ്പ് നിലവിലുള്ള കോളുകൾ അവസാനിപ്പിക്കുകയോ ലയിപ്പിക്കുകയോ ചെയ്യുക."</string>
 </resources>

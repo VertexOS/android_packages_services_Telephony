@@ -553,4 +553,5 @@
     <string name="emergency_action_launch_hint" msgid="4906759256275562674">"Нээхийн тулд дахин дарна уу"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"Зурвасын кодыг тайлах явцад алдаа гарсан."</string>
     <string name="callFailed_cdma_activation" msgid="2307989779233262164">"SIM карт таны үйлчилгээг идэвхжүүлж, утасны роаминг багтаамжийг шинэчиллээ."</string>
+    <string name="callFailed_cdma_call_limit" msgid="1556916577171457086">"Хэт олон идэвхтэй дуудлага байна. Шинэ дуудлага хийхийн өмнө одоогийн дуудлагуудыг таслах буюу нэгтгэнэ үү."</string>
 </resources>

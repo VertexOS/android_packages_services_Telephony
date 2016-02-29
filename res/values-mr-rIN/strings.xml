@@ -553,4 +553,5 @@
     <string name="emergency_action_launch_hint" msgid="4906759256275562674">"उघडण्यासाठी पुन्हा टॅप करा"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"संदेश डीकोड करताना एक त्रुटी आली."</string>
     <string name="callFailed_cdma_activation" msgid="2307989779233262164">"सिम कार्डने आपली सेवा सक्रिय केली आहे आणि आपल्या फोनच्या रोमिंग क्षमता अद्यतनित केल्या."</string>
+    <string name="callFailed_cdma_call_limit" msgid="1556916577171457086">"बरेच सक्रिय कॉल आहेत. कृपया नवीन एक कॉल करण्यापूर्वी विद्यमान कॉल समाप्त करा किंवा विलीन करा."</string>
 </resources>

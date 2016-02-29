@@ -559,4 +559,5 @@
     <string name="emergency_action_launch_hint" msgid="4906759256275562674">"Tryk igen for at åbne"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"Der opstod en fejl under afkodning af beskeden."</string>
     <string name="callFailed_cdma_activation" msgid="2307989779233262164">"Et SIM-kort har aktiveret din tjeneste og opdateret telefonens roamingmuligheder."</string>
+    <string name="callFailed_cdma_call_limit" msgid="1556916577171457086">"Der er for mange aktive opkald. Afslut et opkald, eller flet eksisterende opkald, inden du foretager et nyt."</string>
 </resources>

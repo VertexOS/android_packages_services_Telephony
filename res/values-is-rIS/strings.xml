@@ -553,4 +553,5 @@
     <string name="emergency_action_launch_hint" msgid="4906759256275562674">"Ýttu aftur til að opna"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"Villa kom upp við að afkóða skeytið."</string>
     <string name="callFailed_cdma_activation" msgid="2307989779233262164">"SIM-kort hefur virkjað þjónustuna þína og uppfært reikigetu símans."</string>
+    <string name="callFailed_cdma_call_limit" msgid="1556916577171457086">"Of mörg símtöl eru virk. Ljúktu eða sameinaðu fyrirliggjandi símtöl áður en þú hringir nýtt."</string>
 </resources>

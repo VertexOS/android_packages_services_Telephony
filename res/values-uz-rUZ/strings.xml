@@ -553,4 +553,5 @@
     <string name="emergency_action_launch_hint" msgid="4906759256275562674">"Ochish uchun yana bosing"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"Xabarni kodsizlashda xatolik yuz berdi."</string>
     <string name="callFailed_cdma_activation" msgid="2307989779233262164">"Telefoningizda rouming xizmati sozlangan va SIM karta faollashtirilgan."</string>
+    <string name="callFailed_cdma_call_limit" msgid="1556916577171457086">"Hozir bir nechta qo‘ng‘iroqlar amalda. Boshqa abonentga qo‘ng‘iroq qilishdan avval, amaldagi qo‘ng‘iroqlarni tugating yoki ularni konferens-aloqaga birlashtiring."</string>
 </resources>

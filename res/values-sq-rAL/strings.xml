@@ -553,4 +553,5 @@
     <string name="emergency_action_launch_hint" msgid="4906759256275562674">"Trokit përsëri për ta hapur"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"Ndodhi një gabim gjatë dekodimit të mesazhit."</string>
     <string name="callFailed_cdma_activation" msgid="2307989779233262164">"Një kartë SIM ka aktivizuar shërbimin tënd dhe ka përditësuar aftësitë e roaming-ut të telefonit tënd."</string>
+    <string name="callFailed_cdma_call_limit" msgid="1556916577171457086">"Ka shumë thirrje aktive. Përfundo ose të bashko thirrjet ekzistuese para kryerjes së një thirrjeje të re."</string>
 </resources>

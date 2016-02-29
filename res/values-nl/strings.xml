@@ -553,4 +553,5 @@
     <string name="emergency_action_launch_hint" msgid="4906759256275562674">"Tik nogmaals om te openen"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"Er is een fout opgetreden tijdens het decoderen van het bericht."</string>
     <string name="callFailed_cdma_activation" msgid="2307989779233262164">"Een simkaart heeft je service geactiveerd en heeft de roaming-mogelijkheden van je telefoon geüpdatet."</string>
+    <string name="callFailed_cdma_call_limit" msgid="1556916577171457086">"Er zijn te veel actieve oproepen. Beëindig bestaande oproepen of voeg ze samen voordat je een nieuwe oproep start."</string>
 </resources>

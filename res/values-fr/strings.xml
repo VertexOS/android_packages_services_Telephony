@@ -553,4 +553,5 @@
     <string name="emergency_action_launch_hint" msgid="4906759256275562674">"Appuyez à nouveau pour ouvrir."</string>
     <string name="message_decode_error" msgid="3456481534066924855">"Une erreur s\'est produite lors du décodage du message."</string>
     <string name="callFailed_cdma_activation" msgid="2307989779233262164">"Votre service a été activé et les fonctionnalités d\'itinérance de votre téléphone ont été mises à jour via une carte SIM."</string>
+    <string name="callFailed_cdma_call_limit" msgid="1556916577171457086">"Il y a trop d\'appels actifs. Pour passer un autre appel, vous devez mettre fin aux appels existants ou fusionner ces derniers."</string>
 </resources>

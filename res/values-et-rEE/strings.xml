@@ -553,4 +553,5 @@
     <string name="emergency_action_launch_hint" msgid="4906759256275562674">"Avamiseks puudutage uuesti"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"Sõnumi dekodeerimisel ilmnes viga."</string>
     <string name="callFailed_cdma_activation" msgid="2307989779233262164">"SIM-kaart aktiveeris teenuse ja värskendas telefoni rändlusvõimeid."</string>
+    <string name="callFailed_cdma_call_limit" msgid="1556916577171457086">"Liiga palju aktiivseid kõnesid. Enne uue kõne tegemist lõpetage mõni olemasolev kõne või ühendage mitu kõnet omavahel."</string>
 </resources>

@@ -559,4 +559,5 @@
     <string name="emergency_action_launch_hint" msgid="4906759256275562674">"Akci provedete opětovným klepnutím"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"Při dekódování zprávy došlo k chybě."</string>
     <string name="callFailed_cdma_activation" msgid="2307989779233262164">"SIM karta aktivovala vaši službu a byly aktualizovány roamingové možnosti telefonu."</string>
+    <string name="callFailed_cdma_call_limit" msgid="1556916577171457086">"Máte příliš mnoho aktivních hovorů. Ukončete nebo spojte stávající hovory, než zahájíte nový."</string>
 </resources>

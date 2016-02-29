@@ -553,4 +553,5 @@
     <string name="emergency_action_launch_hint" msgid="4906759256275562674">"Nhấn lại để mở"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"Đã xảy ra lỗi khi giải mã tin nhắn."</string>
     <string name="callFailed_cdma_activation" msgid="2307989779233262164">"Thẻ SIM đã kích hoạt dịch vụ của bạn và đã cập nhật chức năng chuyển vùng của điện thoại."</string>
+    <string name="callFailed_cdma_call_limit" msgid="1556916577171457086">"Có quá nhiều cuộc gọi hiện hoạt. Vui lòng kết thúc hoặc hợp nhất các cuộc gọi hiện có trước khi thực hiện cuộc gọi mới."</string>
 </resources>

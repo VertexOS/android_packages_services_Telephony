@@ -553,4 +553,5 @@
     <string name="emergency_action_launch_hint" msgid="4906759256275562674">"ತೆರೆಯಲು ಮತ್ತೆ ಟ್ಯಾಪ್‌ ಮಾಡಿ"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"ಸಂದೇಶವನ್ನು ಡೀಕೋಡ್ ಮಾಡುವಾಗ ದೋಷವುಂಟಾಗಿದೆ."</string>
     <string name="callFailed_cdma_activation" msgid="2307989779233262164">"ನಿಮ್ಮ ಸೇವೆಯನ್ನು ಸಿಮ್‌ ಕಾರ್ಡ್‌ ಸಕ್ರಿಯಗೊಳಿಸಿದೆ ಮತ್ತು ನಿಮ್ಮ ಫೋನ್‌ನ ರೋಮಿಂಗ್ ಸಾಮರ್ಥ್ಯವನ್ನು ಅಪ್‌ಡೇಟ್‌ ಮಾಡಲಾಗಿದೆ."</string>
+    <string name="callFailed_cdma_call_limit" msgid="1556916577171457086">"ಹಲವಾರು ಸಕ್ರಿಯ ಕರೆಗಳು. ಹೊಸ ಕರೆ ಮಾಡುವ ಮೊದಲು ಅಸ್ತಿತ್ವದಲ್ಲಿರುವ ಕರೆಗಳನ್ನು ಅಂತ್ಯಗೊಳಿಸಿ ಅಥವಾ ವಿಲೀನಗೊಳಿಸಿ."</string>
 </resources>

@@ -553,4 +553,5 @@
     <string name="emergency_action_launch_hint" msgid="4906759256275562674">"తెరవడానికి మళ్లీ నొక్కండి"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"సందేశాన్ని డీకోడ్ చేస్తున్నప్పుడు లోపం సంభవించింది."</string>
     <string name="callFailed_cdma_activation" msgid="2307989779233262164">"SIM కార్డ్ మీ సేవను సక్రియం చేసింది మరియు మీ ఫోన్ రోమింగ్ సామర్థ్యాలను నవీకరించింది."</string>
+    <string name="callFailed_cdma_call_limit" msgid="1556916577171457086">"చాలా ఎక్కువ కాల్‌లు సక్రియంగా ఉన్నాయి. దయచేసి మరొక కొత్త కాల్ చేసే ముందు ఇప్పటికే ఉన్న కాల్‌లను ముగించండి లేదా విలీనం చేయండి."</string>
 </resources>

@@ -559,4 +559,5 @@
     <string name="emergency_action_launch_hint" msgid="4906759256275562674">"Trykk på nytt for å åpne"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"Det oppsto en feil under dekoding av meldingen."</string>
     <string name="callFailed_cdma_activation" msgid="2307989779233262164">"Et SIM-kort har aktivert tjenesten din og oppdatert roamingfunksjonene for telefonen din."</string>
+    <string name="callFailed_cdma_call_limit" msgid="1556916577171457086">"Du har for mange aktive samtaler. Avslutt eller slå sammen eksisterende samtaler før du starter en ny samtale."</string>
 </resources>

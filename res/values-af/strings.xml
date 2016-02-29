@@ -557,4 +557,5 @@
     <string name="emergency_action_launch_hint" msgid="4906759256275562674">"Tik weer om oop te maak"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"Kon nie die boodskap dekodeer nie."</string>
     <string name="callFailed_cdma_activation" msgid="2307989779233262164">"\'n SIM-kaart het jou diens geaktiveer en jou foon se swerwingvermoëns opgedateer."</string>
+    <string name="callFailed_cdma_call_limit" msgid="1556916577171457086">"Daar is te veel aktiewe oproepe. Beëindig of voeg asseblief bestaande oproepe saam voordat jy \'n nuwe een maak."</string>
 </resources>
