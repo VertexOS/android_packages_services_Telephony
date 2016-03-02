@@ -36,6 +36,8 @@ import android.telephony.CarrierConfigManager;
 import android.telephony.PhoneNumberUtils;
 import android.telephony.SubscriptionManager;
 import android.text.Editable;
+import android.text.Spannable;
+import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.text.method.DialerKeyListener;
@@ -572,7 +574,12 @@ public class EmergencyDialer extends Activity implements View.OnClickListener,
 
     private CharSequence createErrorMessage(String number) {
         if (!TextUtils.isEmpty(number)) {
-            return getString(R.string.dial_emergency_error, mLastNumber);
+            String errorString = getString(R.string.dial_emergency_error, number);
+            int startingPosition = errorString.indexOf(number);
+            int endingPosition = startingPosition + number.length();
+            Spannable result = new SpannableString(errorString);
+            PhoneNumberUtils.addTtsSpan(result, startingPosition, endingPosition);
+            return result;
         } else {
             return getText(R.string.dial_emergency_empty_error).toString();
         }
