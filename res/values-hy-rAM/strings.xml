@@ -559,5 +559,5 @@
     <string name="emergency_action_launch_hint" msgid="4906759256275562674">"Կրկին հպեք՝ բացելու համար"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"Հաղորդագրությունն ապակոդավորելիս սխալ առաջացավ:"</string>
     <string name="callFailed_cdma_activation" msgid="2307989779233262164">"SIM քարտն ակտիվացրել է ծառայությունը և թարմացրել ձեր հեռախոսի ռոումինգի հնարավորությունները:"</string>
-    <string name="callFailed_cdma_call_limit" msgid="1556916577171457086">"Չափազանց շատ ակտիվ զանգեր կան: Ավարտեք կամ միավորեք առկա զանգերը՝ նախքան նորն ավելացնելը:"</string>
+    <string name="callFailed_cdma_call_limit" msgid="1556916577171457086">"Չափազանց շատ ընթացիկ զանգեր կան: Ավարտեք կամ միավորեք առկա զանգերը՝ նախքան նորն զանգ կատարելը:"</string>
 </resources>

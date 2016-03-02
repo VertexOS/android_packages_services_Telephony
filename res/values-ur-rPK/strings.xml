@@ -553,5 +553,5 @@
     <string name="emergency_action_launch_hint" msgid="4906759256275562674">"کھولنے کیلئے دوبارہ تھپتھپائیں"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"پیغام کو ڈیکوڈ کرتے وقت ایک خرابی پیش آ گئی۔"</string>
     <string name="callFailed_cdma_activation" msgid="2307989779233262164">"‏ایک SIM کارڈ نے آپ کی سروس فعال کر دی ہے اور آپ کے فون کی رومنگ اہلیتیں اپ ڈیٹ کر دی ہیں۔"</string>
-    <string name="callFailed_cdma_call_limit" msgid="1556916577171457086">"بہت زیادہ فعال کالیں ہیں۔ براہ کرم نئی کال کرنے سے پہلے موجود کو ضم کریں یا ختم کریں۔"</string>
+    <string name="callFailed_cdma_call_limit" msgid="1556916577171457086">"بہت زیادہ فعال کالیں ہیں۔ براہ کرم نئی کال کرنے سے پہلے موجودہ کالوں کو ضم کریں یا ختم کریں۔"</string>
 </resources>

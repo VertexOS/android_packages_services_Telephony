@@ -553,5 +553,5 @@
     <string name="emergency_action_launch_hint" msgid="4906759256275562674">"খোলার জন্য আবার আলতো চাপুন"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"বার্তাটি ডিকোড করার সময় একটি ত্রুটি ঘটেছে৷"</string>
     <string name="callFailed_cdma_activation" msgid="2307989779233262164">"একটি SIM কার্ড আপনার পরিষেবা সক্রিয় করেছে এবং আপনার ফোনের রোমিং ক্ষমতা আপডেট করা হয়েছে৷"</string>
-    <string name="callFailed_cdma_call_limit" msgid="1556916577171457086">"অনেকগুলি কল সক্রিয় রয়েছে। অনুগ্রহ করে একটি নতুন কল করার আগে বিদ্যমান কলগুলি কেটে দিন বা এটিকে সেগুলিতে অন্তর্ভুক্ত করুন।"</string>
+    <string name="callFailed_cdma_call_limit" msgid="1556916577171457086">"অনেকগুলি কল সক্রিয় রয়েছে। অনুগ্রহ করে একটি নতুন কল করার আগে বিদ্যমান কলগুলি কেটে দিন বা এটিকে সেই কলগুলিতে অন্তর্ভুক্ত করুন।"</string>
 </resources>
