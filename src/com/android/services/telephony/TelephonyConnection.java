@@ -1548,9 +1548,7 @@ abstract class TelephonyConnection extends Connection {
      */
     private int applyAddParticipantCapabilities(int callCapabilities) {
         int currentCapabilities = callCapabilities;
-        if (getPhone() != null &&
-                 getPhone().getPhoneType() == PhoneConstants.PHONE_TYPE_IMS &&
-                 !mIsEmergencyNumber) {
+        if (isAddParticipantCapable()) {
             currentCapabilities = applyCapability(currentCapabilities,
                     Connection.CAPABILITY_ADD_PARTICIPANT);
         } else {
@@ -1559,6 +1557,13 @@ abstract class TelephonyConnection extends Connection {
         }
 
         return currentCapabilities;
+    }
+
+    private boolean isAddParticipantCapable() {
+        return getPhone() != null &&
+               (getPhone().getPhoneType() == PhoneConstants.PHONE_TYPE_IMS) &&
+               !mIsEmergencyNumber && (mOriginalConnectionState == Call.State.ACTIVE
+               || mOriginalConnectionState == Call.State.HOLDING);
     }
 
     private int applyCapability(int capabilities, int capability) {
