@@ -31,10 +31,12 @@ public class RestrictedSwitchPreference extends SwitchPreference {
     private final Context mContext;
     private boolean mDisabledByAdmin;
     private EnforcedAdmin mEnforcedAdmin;
+    private final int mSwitchWidgetResId;
 
     public RestrictedSwitchPreference(Context context, AttributeSet attrs, int defStyleAttr,
             int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
+        mSwitchWidgetResId = getWidgetLayoutResource();
         mContext = context;
     }
 
@@ -53,12 +55,14 @@ public class RestrictedSwitchPreference extends SwitchPreference {
     @Override
     public void onBindView(View view) {
         super.onBindView(view);
-        final TextView titleView = (TextView) view.findViewById(com.android.internal.R.id.title);
-        if (titleView != null) {
-            RestrictedLockUtils.setTextViewPadlock(mContext, titleView, mDisabledByAdmin);
-            if (mDisabledByAdmin) {
-                view.setEnabled(true);
-            }
+        if (mDisabledByAdmin) {
+            view.setEnabled(true);
+        }
+        final TextView summaryView = (TextView) view.findViewById(android.R.id.summary);
+        if (summaryView != null && mDisabledByAdmin) {
+            summaryView.setText(
+                    isChecked() ? R.string.enabled_by_admin : R.string.disabled_by_admin);
+            summaryView.setVisibility(View.VISIBLE);
         }
     }
 
@@ -81,6 +85,7 @@ public class RestrictedSwitchPreference extends SwitchPreference {
         mEnforcedAdmin = admin;
         if (mDisabledByAdmin != disabled) {
             mDisabledByAdmin = disabled;
+            setWidgetLayoutResource(disabled ? R.layout.restricted_icon : mSwitchWidgetResId);
             setEnabled(!disabled);
         }
     }
