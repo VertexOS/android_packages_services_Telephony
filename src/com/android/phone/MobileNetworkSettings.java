@@ -266,6 +266,9 @@ public class MobileNetworkSettings extends PreferenceActivity
     };
 
     private void initializeSubscriptions() {
+        if (isDestroyed()) { // Process preferences in activity only if its not destroyed
+            return;
+        }
         int currentTab = 0;
         if (DBG) log("initializeSubscriptions:+");
 
@@ -950,6 +953,10 @@ public class MobileNetworkSettings extends PreferenceActivity
         }
 
         private void handleSetPreferredNetworkTypeResponse(Message msg) {
+            if (isDestroyed()) { // Access preferences of activity only if it is not destroyed
+                return;
+            }
+
             AsyncResult ar = (AsyncResult) msg.obj;
             final int phoneSubId = mPhone.getSubId();
 
