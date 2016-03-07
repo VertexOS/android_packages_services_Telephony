@@ -17,15 +17,18 @@
 package com.android.services.telephony.sip;
 
 import android.net.Uri;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.telecom.AudioState;
 import android.telecom.Connection;
 import android.telecom.PhoneAccount;
+import android.telecom.TelecomManager;
 import android.util.Log;
 
 import com.android.internal.telephony.Call;
 import com.android.internal.telephony.CallStateException;
+import com.android.internal.telephony.PhoneConstants;
 import com.android.internal.telephony.sip.SipPhone;
 import com.android.services.telephony.DisconnectCauseUtil;
 
@@ -64,6 +67,7 @@ final class SipConnection extends Connection {
                     null);
         }
         updateAddress();
+        setTechnologyTypeExtra();
         setInitialized();
     }
 
@@ -306,6 +310,17 @@ final class SipConnection extends Connection {
                         .v(this, "updateAddress, caller display name changed");
                 setCallerDisplayName(name, namePresentation);
             }
+        }
+    }
+
+    private void setTechnologyTypeExtra() {
+        int phoneType = PhoneConstants.PHONE_TYPE_SIP;
+        if (getExtras() == null) {
+            Bundle b = new Bundle();
+            b.putInt(TelecomManager.EXTRA_CALL_TECHNOLOGY_TYPE, phoneType);
+            setExtras(b);
+        } else {
+            getExtras().putInt(TelecomManager.EXTRA_CALL_TECHNOLOGY_TYPE, phoneType);
         }
     }
 
