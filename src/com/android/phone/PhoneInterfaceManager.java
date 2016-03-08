@@ -2368,6 +2368,8 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
 
     @Override
     public int checkCarrierPrivilegesForPackage(String pkgName) {
+        if (TextUtils.isEmpty(pkgName))
+            return TelephonyManager.CARRIER_PRIVILEGE_STATUS_NO_ACCESS;
         UiccCard card = UiccController.getInstance().getUiccCard(mPhone.getPhoneId());
         if (card == null) {
             loge("checkCarrierPrivilegesForPackage: No UICC");
@@ -2378,6 +2380,8 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
 
     @Override
     public int checkCarrierPrivilegesForPackageAnyPhone(String pkgName) {
+        if (TextUtils.isEmpty(pkgName))
+            return TelephonyManager.CARRIER_PRIVILEGE_STATUS_NO_ACCESS;
         int result = TelephonyManager.CARRIER_PRIVILEGE_STATUS_RULES_NOT_LOADED;
         for (int i = 0; i < TelephonyManager.getDefault().getPhoneCount(); i++) {
             UiccCard card = UiccController.getInstance().getUiccCard(i);
