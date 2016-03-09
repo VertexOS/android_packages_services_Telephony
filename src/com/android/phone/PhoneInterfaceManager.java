@@ -1442,7 +1442,8 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
             return null;
         }
 
-        if (checkIfCallerIsSelfOrForegroundUser()) {
+        if (checkIfCallerIsSelfOrForegroundUser() ||
+                checkCallerInteractAcrossUsersFull()) {
             if (DBG_LOC) log("getCellLocation: is active user");
             Bundle data = new Bundle();
             Phone phone = getPhone(mSubscriptionController.getDefaultDataSubId());
@@ -1517,7 +1518,8 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
             return null;
         }
 
-        if (checkIfCallerIsSelfOrForegroundUser()) {
+        if (checkIfCallerIsSelfOrForegroundUser() ||
+                checkCallerInteractAcrossUsersFull()) {
             if (DBG_LOC) log("getNeighboringCellInfo: is active user");
 
             ArrayList<NeighboringCellInfo> cells = null;
@@ -1547,7 +1549,8 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
             return null;
         }
 
-        if (checkIfCallerIsSelfOrForegroundUser()) {
+        if (checkIfCallerIsSelfOrForegroundUser() ||
+                checkCallerInteractAcrossUsersFull()) {
             if (DBG_LOC) log("getAllCellInfo: is active user");
             List<CellInfo> cellInfos = new ArrayList<CellInfo>();
             for (Phone phone : PhoneFactory.getPhones()) {
@@ -1569,6 +1572,15 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     //
     // Internal helper methods.
     //
+
+    /**
+     * Returns true if the caller holds INTERACT_ACROSS_USERS_FULL.
+     */
+    private boolean checkCallerInteractAcrossUsersFull() {
+        return mPhone.getContext().checkCallingOrSelfPermission(
+                android.Manifest.permission.INTERACT_ACROSS_USERS_FULL)
+                == PackageManager.PERMISSION_GRANTED;
+    }
 
     private static boolean checkIfCallerIsSelfOrForegroundUser() {
         boolean ok;
