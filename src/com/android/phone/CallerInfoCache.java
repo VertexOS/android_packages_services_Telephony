@@ -20,6 +20,7 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.PowerManager;
@@ -30,6 +31,7 @@ import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.Data;
 import android.telephony.PhoneNumberUtils;
 import android.util.Log;
+import android.Manifest.permission;
 
 import java.util.HashMap;
 import java.util.Map.Entry;
@@ -184,6 +186,10 @@ public class CallerInfoCache {
         // it keeps older one as much as it can, and replaces it with newer one inside a very small
         // synchronized block.
 
+        if (!(mContext != null && (mContext.checkSelfPermission(permission.READ_CONTACTS)
+                == PackageManager.PERMISSION_GRANTED))) {
+            return; // If there is no contacts permission, don't query.
+        }
         Cursor cursor = null;
         try {
             cursor = mContext.getContentResolver().query(Callable.CONTENT_URI,
