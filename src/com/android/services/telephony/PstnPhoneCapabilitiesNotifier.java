@@ -98,8 +98,15 @@ final class PstnPhoneCapabilitiesNotifier {
             PhoneAccount oldPhoneAccount = telecomMgr.getPhoneAccount(accountHandle);
             PhoneAccount.Builder builder = new PhoneAccount.Builder(oldPhoneAccount);
 
+            int oldCapabilities = oldPhoneAccount.getCapabilities();
+            boolean wasVideoPresenceSupported =
+                    (oldCapabilities & PhoneAccount.CAPABILITY_VIDEO_CALLING_RELIES_ON_PRESENCE)
+                            != 0;
             int capabilites = newCapabilities(oldPhoneAccount.getCapabilities(),
                     PhoneAccount.CAPABILITY_VIDEO_CALLING, isVideoCapable);
+            if (wasVideoPresenceSupported && isVideoCapable) {
+                capabilites |= PhoneAccount.CAPABILITY_VIDEO_CALLING_RELIES_ON_PRESENCE;
+            }
 
             builder.setCapabilities(capabilites);
             telecomMgr.registerPhoneAccount(builder.build());
