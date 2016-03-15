@@ -966,7 +966,7 @@
     <!-- In-call screen: call failure message displayed in an error dialog -->
     <string name="incall_error_no_phone_number_supplied">To place a call, enter a valid number.</string>
     <!-- In-call screen: call failure message displayed in an error dialog -->
-    <string name="incall_error_call_failed">Can\'t call.</string>
+    <string name="incall_error_call_failed">Call failed.</string>
     <!-- In-call screen: status message displayed in a dialog when starting an MMI -->
     <string name="incall_status_dialed_mmi">Starting MMI sequence\u2026</string>
     <!-- In-call screen: message displayed in an error dialog -->
