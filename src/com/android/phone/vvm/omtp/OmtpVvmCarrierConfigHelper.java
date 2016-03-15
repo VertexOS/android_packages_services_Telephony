@@ -34,7 +34,8 @@ import com.android.phone.vvm.omtp.sms.OmtpStandardMessageSender;
  * retrieve carrier vvm configuration details before sending the appropriate texts.
  */
 public class OmtpVvmCarrierConfigHelper {
-    private static final String TAG = "OmtpVvmCarrierConfigHelper";
+
+    private static final String TAG = "OmtpVvmCarrierCfgHlpr";
     private Context mContext;
     private int mSubId;
     private PersistableBundle mCarrierConfig;
