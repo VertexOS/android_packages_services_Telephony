@@ -201,9 +201,9 @@ abstract class TelephonyConnection extends Connection {
                         // If starting the hold tone, send a connection event to Telecom which will
                         // cause it to play the on hold tone.
                         if (playTone) {
-                            sendConnectionEvent(EVENT_ON_HOLD_TONE_START);
+                            sendConnectionEvent(EVENT_ON_HOLD_TONE_START, null);
                         } else {
-                            sendConnectionEvent(EVENT_ON_HOLD_TONE_END);
+                            sendConnectionEvent(EVENT_ON_HOLD_TONE_END, null);
                         }
                     }
                     break;
