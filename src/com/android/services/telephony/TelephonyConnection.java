@@ -940,6 +940,9 @@ abstract class TelephonyConnection extends Connection {
     }
 
     void updateStateInternal() {
+        if (mOriginalConnection == null) {
+            return;
+        }
         Call.State newState;
         // If the state is overridden and the state of the original connection hasn't changed since,
         // then we continue in the overridden state, else we go to the original connection's state.
