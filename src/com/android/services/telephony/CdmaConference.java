@@ -17,7 +17,6 @@
 package com.android.services.telephony;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.os.PersistableBundle;
 import android.telecom.Conference;
 import android.telecom.Connection;
@@ -36,14 +35,18 @@ import java.util.List;
  */
 public class CdmaConference extends Conference {
     private int mCapabilities;
+    private int mProperties;
 
     public CdmaConference(PhoneAccountHandle phoneAccount) {
         super(phoneAccount);
         setActive();
+
+        mProperties = Connection.PROPERTY_GENERIC_CONFERENCE;
+        setConnectionProperties(mProperties);
     }
 
     public void updateCapabilities(int capabilities) {
-        capabilities |= Connection.CAPABILITY_MUTE | Connection.CAPABILITY_GENERIC_CONFERENCE;
+        capabilities |= Connection.CAPABILITY_MUTE;
         setConnectionCapabilities(capabilities);
     }
 

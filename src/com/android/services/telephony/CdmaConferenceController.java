@@ -35,7 +35,7 @@ import java.util.List;
  *    indication given to us as to what state they are in.
  *
  * To make life easier on the user we do the following: Whenever there exist 2 or more calls, we
- * say that we are in a conference call with {@link Connection#CAPABILITY_GENERIC_CONFERENCE}.
+ * say that we are in a conference call with {@link Connection#PROPERTY_GENERIC_CONFERENCE}.
  * Generic indicates that this is a simple conference that doesn't support conference management.
  * The conference call will also support "MERGE" to begin with and stop supporting it the first time
  * we are asked to actually execute a merge. I emphasize when "we are asked" because we get no

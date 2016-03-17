@@ -357,15 +357,15 @@ abstract class TelephonyConnection extends Connection {
 
     /**
      * Determines if the {@link TelephonyConnection} is using wifi.
-     * This is used when {@link TelephonyConnection#updateConnectionCapabilities} is called to
-     * indicate wheter a call has the {@link Connection#CAPABILITY_WIFI} capability.
+     * This is used when {@link TelephonyConnection#updateConnectionProperties()} is called to
+     * indicate whether a call has the {@link Connection#PROPERTY_WIFI} property.
      */
     private boolean mIsWifi;
 
     /**
      * Determines the audio quality is high for the {@link TelephonyConnection}.
-     * This is used when {@link TelephonyConnection#updateConnectionCapabilities}} is called to
-     * indicate whether a call has the {@link Connection#CAPABILITY_HIGH_DEF_AUDIO} capability.
+     * This is used when {@link TelephonyConnection#updateConnectionProperties}} is called to
+     * indicate whether a call has the {@link Connection#PROPERTY_HIGH_DEF_AUDIO} property.
      */
     private boolean mHasHighDefAudio;
 
@@ -605,12 +605,6 @@ abstract class TelephonyConnection extends Connection {
             }
         }
 
-        // If the phone is in ECM mode, mark the call to indicate that the callback number should be
-        // shown.
-        Phone phone = getPhone();
-        if (phone != null && phone.isInEcm()) {
-            callCapabilities |= CAPABILITY_SHOW_CALLBACK_NUMBER;
-        }
         return callCapabilities;
     }
 
@@ -618,10 +612,7 @@ abstract class TelephonyConnection extends Connection {
         int newCapabilities = buildConnectionCapabilities();
 
         newCapabilities = applyOriginalConnectionCapabilities(newCapabilities);
-        newCapabilities = changeCapability(newCapabilities,
-                CAPABILITY_HIGH_DEF_AUDIO, mHasHighDefAudio);
-        newCapabilities = changeCapability(newCapabilities, CAPABILITY_WIFI, mIsWifi);
-        newCapabilities = changeCapability(newCapabilities, CAPABILITY_CAN_PAUSE_VIDEO,
+        newCapabilities = changeBitmask(newCapabilities, CAPABILITY_CAN_PAUSE_VIDEO,
                 mIsVideoPauseSupported && isVideoCapable());
         newCapabilities = applyConferenceTerminationCapabilities(newCapabilities);
 
@@ -630,8 +621,36 @@ abstract class TelephonyConnection extends Connection {
         }
     }
 
+    protected int buildConnectionProperties() {
+        int connectionProperties = 0;
+
+        // If the phone is in ECM mode, mark the call to indicate that the callback number should be
+        // shown.
+        Phone phone = getPhone();
+        if (phone != null && phone.isInEcm()) {
+            connectionProperties |= PROPERTY_SHOW_CALLBACK_NUMBER;
+        }
+
+        return connectionProperties;
+    }
+
+    /**
+     * Updates the properties of the connection.
+     */
+    protected final void updateConnectionProperties() {
+        int newProperties = buildConnectionProperties();
+
+        newProperties = changeBitmask(newProperties, PROPERTY_HIGH_DEF_AUDIO, mHasHighDefAudio);
+        newProperties = changeBitmask(newProperties, PROPERTY_WIFI, mIsWifi);
+
+        if (getConnectionProperties() != newProperties) {
+            setConnectionProperties(newProperties);
+        }
+    }
+
     protected final void updateAddress() {
         updateConnectionCapabilities();
+        updateConnectionProperties();
         if (mOriginalConnection != null) {
             Uri address = getAddressFromNumber(mOriginalConnection.getAddress());
             int presentation = mOriginalConnection.getNumberPresentation();
@@ -986,6 +1005,7 @@ abstract class TelephonyConnection extends Connection {
         updateStateInternal();
         updateStatusHints();
         updateConnectionCapabilities();
+        updateConnectionProperties();
         updateAddress();
         updateMultiparty();
     }
@@ -1108,6 +1128,7 @@ abstract class TelephonyConnection extends Connection {
     public void setOriginalConnectionCapabilities(int connectionCapabilities) {
         mOriginalConnectionCapabilities = connectionCapabilities;
         updateConnectionCapabilities();
+        updateConnectionProperties();
     }
 
     /**
@@ -1126,13 +1147,13 @@ abstract class TelephonyConnection extends Connection {
         boolean supportsDowngradeToAudio = can(mOriginalConnectionCapabilities,
                 Capability.SUPPORTS_DOWNGRADE_TO_VOICE_LOCAL |
                         Capability.SUPPORTS_DOWNGRADE_TO_VOICE_REMOTE);
-        capabilities = changeCapability(capabilities,
+        capabilities = changeBitmask(capabilities,
                 CAPABILITY_CANNOT_DOWNGRADE_VIDEO_TO_AUDIO, !supportsDowngradeToAudio);
 
-        capabilities = changeCapability(capabilities, CAPABILITY_SUPPORTS_VT_REMOTE_BIDIRECTIONAL,
+        capabilities = changeBitmask(capabilities, CAPABILITY_SUPPORTS_VT_REMOTE_BIDIRECTIONAL,
                 can(mOriginalConnectionCapabilities, Capability.SUPPORTS_VT_REMOTE_BIDIRECTIONAL));
 
-        capabilities = changeCapability(capabilities, CAPABILITY_SUPPORTS_VT_LOCAL_BIDIRECTIONAL,
+        capabilities = changeBitmask(capabilities, CAPABILITY_SUPPORTS_VT_LOCAL_BIDIRECTIONAL,
                 can(mOriginalConnectionCapabilities, Capability.SUPPORTS_VT_LOCAL_BIDIRECTIONAL));
 
         return capabilities;
@@ -1140,11 +1161,11 @@ abstract class TelephonyConnection extends Connection {
 
     /**
      * Sets whether the call is using wifi. Used when rebuilding the capabilities to set or unset
-     * the {@link Connection#CAPABILITY_WIFI} capability.
+     * the {@link Connection#PROPERTY_WIFI} property.
      */
     public void setWifi(boolean isWifi) {
         mIsWifi = isWifi;
-        updateConnectionCapabilities();
+        updateConnectionProperties();
         updateStatusHints();
     }
 
@@ -1156,15 +1177,15 @@ abstract class TelephonyConnection extends Connection {
     }
 
     /**
-     * Sets the current call audio quality. Used during rebuild of the capabilities
-     * to set or unset the {@link Connection#CAPABILITY_HIGH_DEF_AUDIO} capability.
+     * Sets the current call audio quality. Used during rebuild of the properties
+     * to set or unset the {@link Connection#PROPERTY_HIGH_DEF_AUDIO} property.
      *
      * @param audioQuality The audio quality.
      */
     public void setAudioQuality(int audioQuality) {
         mHasHighDefAudio = audioQuality ==
                 com.android.internal.telephony.Connection.AUDIO_QUALITY_HIGH_DEFINITION;
-        updateConnectionCapabilities();
+        updateConnectionProperties();
     }
 
     void resetStateForConference() {
@@ -1238,16 +1259,16 @@ abstract class TelephonyConnection extends Connection {
     /**
      * Changes a capabilities bit-mask to add or remove a capability.
      *
-     * @param capabilities The capabilities bit-mask.
-     * @param capability The capability to change.
-     * @param enabled Whether the capability should be set or removed.
-     * @return The capabilities bit-mask with the capability changed.
+     * @param bitmask The bit-mask.
+     * @param bitfield The bit-field to change.
+     * @param enabled Whether the bit-field should be set or removed.
+     * @return The bit-mask with the bit-field changed.
      */
-    private int changeCapability(int capabilities, int capability, boolean enabled) {
+    private int changeBitmask(int bitmask, int bitfield, boolean enabled) {
         if (enabled) {
-            return capabilities | capability;
+            return bitmask | bitfield;
         } else {
-            return capabilities & ~capability;
+            return bitmask & ~bitfield;
         }
     }
 
@@ -1312,7 +1333,7 @@ abstract class TelephonyConnection extends Connection {
      * Handles exiting ECM mode.
      */
     protected void handleExitedEcmMode() {
-        updateConnectionCapabilities();
+        updateConnectionProperties();
     }
 
     /**
@@ -1356,6 +1377,8 @@ abstract class TelephonyConnection extends Connection {
         sb.append(Connection.stateToString(getState()));
         sb.append(" capabilities:");
         sb.append(capabilitiesToString(getConnectionCapabilities()));
+        sb.append(" properties:");
+        sb.append(propertiesToString(getConnectionProperties()));
         sb.append(" address:");
         sb.append(Log.pii(getAddress()));
         sb.append(" originalConnection:");

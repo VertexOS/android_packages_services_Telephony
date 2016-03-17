@@ -179,6 +179,14 @@ public class ImsConference extends Conference {
         }
 
         @Override
+        public void onConnectionPropertiesChanged(Connection c, int connectionProperties) {
+            Log.d(this, "onConnectionPropertiesChanged: Connection: %s," +
+                    " connectionProperties: %s", c, connectionProperties);
+            int properties = ImsConference.this.getConnectionProperties();
+            setConnectionProperties(applyHostProperties(properties, connectionProperties));
+        }
+
+        @Override
         public void onStatusHintsChanged(Connection c, StatusHints statusHints) {
             Log.v(this, "onStatusHintsChanged");
             updateStatusHints();
@@ -282,27 +290,46 @@ public class ImsConference extends Conference {
      * @return The merged capabilities to be applied to the conference.
      */
     private int applyHostCapabilities(int conferenceCapabilities, int capabilities) {
-        conferenceCapabilities = changeCapability(conferenceCapabilities,
+        conferenceCapabilities = changeBitmask(conferenceCapabilities,
                     Connection.CAPABILITY_SUPPORTS_VT_LOCAL_BIDIRECTIONAL,
                     can(capabilities, Connection.CAPABILITY_SUPPORTS_VT_LOCAL_BIDIRECTIONAL));
 
-        conferenceCapabilities = changeCapability(conferenceCapabilities,
+        conferenceCapabilities = changeBitmask(conferenceCapabilities,
                     Connection.CAPABILITY_SUPPORTS_VT_REMOTE_BIDIRECTIONAL,
                     can(capabilities, Connection.CAPABILITY_SUPPORTS_VT_REMOTE_BIDIRECTIONAL));
 
-        conferenceCapabilities = changeCapability(conferenceCapabilities,
+        conferenceCapabilities = changeBitmask(conferenceCapabilities,
                     Connection.CAPABILITY_CANNOT_DOWNGRADE_VIDEO_TO_AUDIO,
                     can(capabilities, Connection.CAPABILITY_CANNOT_DOWNGRADE_VIDEO_TO_AUDIO));
 
-        conferenceCapabilities = changeCapability(conferenceCapabilities,
+        conferenceCapabilities = changeBitmask(conferenceCapabilities,
                     Connection.CAPABILITY_CAN_UPGRADE_TO_VIDEO,
                     can(capabilities, Connection.CAPABILITY_CAN_UPGRADE_TO_VIDEO));
 
-        conferenceCapabilities = changeCapability(conferenceCapabilities,
-                    Connection.CAPABILITY_HIGH_DEF_AUDIO,
-                    can(capabilities, Connection.CAPABILITY_HIGH_DEF_AUDIO));
-
         return conferenceCapabilities;
+    }
+
+    /**
+     * Transfers properties from the conference host to the conference itself.
+     *
+     * @param conferenceProperties The current conference properties.
+     * @param properties The new conference host properties.
+     * @return The merged properties to be applied to the conference.
+     */
+    private int applyHostProperties(int conferenceProperties, int properties) {
+        conferenceProperties = changeBitmask(conferenceProperties,
+                Connection.PROPERTY_HIGH_DEF_AUDIO,
+                can(properties, Connection.PROPERTY_HIGH_DEF_AUDIO));
+
+        conferenceProperties = changeBitmask(conferenceProperties,
+                Connection.PROPERTY_WIFI,
+                can(properties, Connection.PROPERTY_WIFI));
+
+        conferenceProperties = changeBitmask(conferenceProperties,
+                Connection.PROPERTY_IS_EXTERNAL_CALL,
+                can(properties, Connection.PROPERTY_IS_EXTERNAL_CALL));
+
+        return conferenceProperties;
     }
 
     /**
@@ -455,18 +482,18 @@ public class ImsConference extends Conference {
     }
 
     /**
-     * Changes a capabilities bit-mask to add or remove a capability.
+     * Changes a bit-mask to add or remove a bit-field.
      *
-     * @param capabilities The capabilities bit-mask.
-     * @param capability The capability to change.
-     * @param enabled Whether the capability should be set or removed.
-     * @return The capabilities bit-mask with the capability changed.
+     * @param bitmask The bit-mask.
+     * @param bitfield The bit-field to change.
+     * @param enabled Whether the bit-field should be set or removed.
+     * @return The bit-mask with the bit-field changed.
      */
-    private int changeCapability(int capabilities, int capability, boolean enabled) {
+    private int changeBitmask(int bitmask, int bitfield, boolean enabled) {
         if (enabled) {
-            return capabilities | capability;
+            return bitmask | bitfield;
         } else {
-            return capabilities & ~capability;
+            return bitmask & ~bitfield;
         }
     }
 
