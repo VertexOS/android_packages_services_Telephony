@@ -435,6 +435,8 @@
     <string name="data_enabled">Data enabled</string>
     <!-- Mobile network settings screen, setting summary text when check box is not selected (explains what selecting it would do) [CHAR LIMITS=40] -->
     <string name="data_enable_summary">Allow data usage</string>
+    <!-- Mobile network settings screen, title for alert dialog -->
+    <string name="dialog_alert_title">Attention</string>
     <!-- Mobile network settings screen, setting check box name -->
     <string name="roaming">Data roaming</string>
     <!-- Mobile network settings screen, setting summary text when check box is selected -->

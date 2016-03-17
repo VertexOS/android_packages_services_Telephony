@@ -459,8 +459,9 @@
                 android:label="@string/delete_fdn_contact">
         </activity>
 
-        <activity android:name="DataRoamingReenable" android:label="@string/android:dialog_alert_title"
-            android:theme="@android:style/Theme.Holo.Dialog">
+        <activity android:name="DataRoamingReenable"
+                android:label="@string/dialog_alert_title"
+                android:theme="@android:style/Theme.Holo.Dialog">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
