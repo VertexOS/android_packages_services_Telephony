@@ -152,8 +152,8 @@
             android:allowBackup="false"
             android:supportsRtl="true"
             android:usesCleartextTraffic="true"
-            android:forceDeviceEncrypted="true"
-            android:encryptionAware="true">
+            android:defaultToDeviceProtectedStorage="true"
+            android:directBootAware="true">
 
         <provider android:name="IccProvider"
                 android:authorities="icc"

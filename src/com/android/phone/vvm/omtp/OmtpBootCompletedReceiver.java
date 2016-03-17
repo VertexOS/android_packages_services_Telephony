@@ -106,6 +106,6 @@ public class OmtpBootCompletedReceiver extends BroadcastReceiver {
 
     private static SharedPreferences getSubIdSharedPreference(Context context) {
         return PreferenceManager
-                .getDefaultSharedPreferences(context.createDeviceEncryptedStorageContext());
+                .getDefaultSharedPreferences(context.createDeviceProtectedStorageContext());
     }
 }

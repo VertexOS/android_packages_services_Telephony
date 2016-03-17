@@ -35,7 +35,7 @@ public class OmtpBootCompletedReceiverTests extends AndroidTestCase {
     @Override
     public void tearDown() {
         PreferenceManager
-                .getDefaultSharedPreferences(getContext().createDeviceEncryptedStorageContext())
+                .getDefaultSharedPreferences(getContext().createDeviceProtectedStorageContext())
                 .edit().clear().apply();
     }
 

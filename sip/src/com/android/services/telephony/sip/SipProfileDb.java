@@ -51,13 +51,13 @@ class SipProfileDb {
 
     public SipProfileDb(Context context) {
         // Sip Profile Db should always reference CE storage.
-        mContext = context.createCredentialEncryptedStorageContext();
+        mContext = context.createCredentialProtectedStorageContext();
         setupDatabase();
     }
 
     // Only should be used during migration from M->N to move database
     public void accessDEStorageForMigration() {
-        mContext = mContext.createDeviceEncryptedStorageContext();
+        mContext = mContext.createDeviceProtectedStorageContext();
         setupDatabase();
     }
 
