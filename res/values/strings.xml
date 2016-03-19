@@ -139,6 +139,8 @@
     <string name="phone_accounts_make_sip_calls_with">Make SIP calls with</string>
     <!-- Entry in dialog to "ask first" for accounts when making a call -->
     <string name="phone_accounts_ask_every_time">Ask first</string>
+    <!-- Account label for when a SIM account has no service (i.e. airplane mode) -->
+    <string name="phone_accounts_default_account_label">No network available</string>
 
     <!-- Label for heading of the per-account settings section in the phone accounts settings
          screen. -->

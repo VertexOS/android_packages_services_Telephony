@@ -26,8 +26,10 @@ import android.content.pm.PackageManager;
 import android.os.UserHandle;
 import android.preference.ListPreference;
 import android.preference.Preference;
+import android.telecom.PhoneAccount;
 import android.telecom.PhoneAccountHandle;
 import android.telecom.TelecomManager;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 
 import java.util.List;
@@ -82,11 +84,16 @@ public class AccountSelectionPreference extends ListPreference implements
         int selectedIndex = mAccounts.length;  // Points to nullSelectionString by default
         int i = 0;
         for ( ; i < mAccounts.length; i++) {
-            CharSequence label = telecomManager.getPhoneAccount(mAccounts[i]).getLabel();
+            PhoneAccount account = telecomManager.getPhoneAccount(mAccounts[i]);
+            CharSequence label = account.getLabel();
             if (label != null) {
                 label = pm.getUserBadgedLabel(label, mAccounts[i].getUserHandle());
             }
-            mEntries[i] = label == null ? null : label.toString();
+            boolean isSimAccount =
+                    account.hasCapabilities(PhoneAccount.CAPABILITY_SIM_SUBSCRIPTION);
+            mEntries[i] = (TextUtils.isEmpty(label) && isSimAccount)
+                    ? mContext.getString(R.string.phone_accounts_default_account_label)
+                    : String.valueOf(label);
             mEntryValues[i] = Integer.toString(i);
             if (Objects.equals(currentSelection, mAccounts[i])) {
                 selectedIndex = i;
