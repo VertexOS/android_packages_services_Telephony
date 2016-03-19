@@ -200,6 +200,7 @@
     <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"Ползване на LTE услуги за подобряване на гласовите и др. комуникации (препоръч.)"</string>
     <string name="data_enabled" msgid="5972538663568715366">"Данните са активирани"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"Разрешаване на преноса на данни"</string>
+    <string name="dialog_alert_title" msgid="6751344986194435476">"Внимание"</string>
     <string name="roaming" msgid="8871412572928323707">"Роуминг на данни"</string>
     <string name="roaming_enable" msgid="7331106985174381987">"Свързване с услуги за данни при роуминг"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"Свързване с услуги за данни при роуминг"</string>
@@ -433,7 +434,7 @@
     <string name="incall_error_out_of_service" msgid="4100065333878929223">"Няма достъп до клетъчната мрежа."</string>
     <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"Не е налице клетъчна мрежа. Свържете се с безжична, за да осъществите обаждане."</string>
     <string name="incall_error_no_phone_number_supplied" msgid="1150414018684246528">"За да извършите обаждане, въведете валиден номер."</string>
-    <string name="incall_error_call_failed" msgid="6302746943230078197">"Не може да се извърши обаждане."</string>
+    <string name="incall_error_call_failed" msgid="5891978320269774095">"Обаждането не бе успешно."</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"Стартира се последователността MMI…"</string>
     <string name="incall_error_supp_service_unknown" msgid="655570339115407698">"Услугата не се поддържа"</string>
     <string name="incall_error_supp_service_switch" msgid="5237002176899962862">"Обажданията не могат да се превключат."</string>

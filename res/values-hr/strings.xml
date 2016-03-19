@@ -200,6 +200,8 @@
     <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"Upotreba LTE usluga za poboljšanje glasovne i drugih komunikacija (preporučeno)"</string>
     <string name="data_enabled" msgid="5972538663568715366">"Podaci su omogućeni"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"Dopusti upotrebu podataka"</string>
+    <!-- no translation found for dialog_alert_title (6751344986194435476) -->
+    <skip />
     <string name="roaming" msgid="8871412572928323707">"Roaming podataka"</string>
     <string name="roaming_enable" msgid="7331106985174381987">"Poveži se s podatkovnim uslugama u roamingu"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"Poveži se s podatkovnim uslugama u roamingu"</string>
@@ -433,7 +435,7 @@
     <string name="incall_error_out_of_service" msgid="4100065333878929223">"Mobilna mreža nije dostupna."</string>
     <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"Mobilna mreža nije dostupna. Povežite se s bežičnom mrežom da biste uputili poziv."</string>
     <string name="incall_error_no_phone_number_supplied" msgid="1150414018684246528">"Unesite važeći broj da biste uspostavili poziv."</string>
-    <string name="incall_error_call_failed" msgid="6302746943230078197">"Pozivanje nije moguće."</string>
+    <string name="incall_error_call_failed" msgid="5891978320269774095">"Poziv nije uspio."</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"Pokretanje MMI sekvence…"</string>
     <string name="incall_error_supp_service_unknown" msgid="655570339115407698">"Usluga nije podržana"</string>
     <string name="incall_error_supp_service_switch" msgid="5237002176899962862">"Prebacivanje poziva nije moguće."</string>

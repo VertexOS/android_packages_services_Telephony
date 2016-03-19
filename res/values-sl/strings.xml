@@ -200,6 +200,7 @@
     <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"Uporaba storitev LTE za izboljšanje glas. in drugih komunikacij (priporočeno)"</string>
     <string name="data_enabled" msgid="5972538663568715366">"Podatki omogočeni"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"Dovoli prenos podatkov"</string>
+    <string name="dialog_alert_title" msgid="6751344986194435476">"Opozorilo"</string>
     <string name="roaming" msgid="8871412572928323707">"Podatkovno gostovanje"</string>
     <string name="roaming_enable" msgid="7331106985174381987">"Med gostovanjem vzpostavi povezavo s podatkovnimi storitvami"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"Med gostovanjem vzpostavi povezavo s podatkovnimi storitvami"</string>
@@ -433,7 +434,7 @@
     <string name="incall_error_out_of_service" msgid="4100065333878929223">"Mobilno omrežje ni na voljo."</string>
     <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"Mobilno omrežje ni na voljo. Povežite se v omrežje Wi-Fi, če želite opraviti klic."</string>
     <string name="incall_error_no_phone_number_supplied" msgid="1150414018684246528">"Če želite opraviti klic, vnesite veljavno številko."</string>
-    <string name="incall_error_call_failed" msgid="6302746943230078197">"Klicanje ni mogoče."</string>
+    <string name="incall_error_call_failed" msgid="5891978320269774095">"Klic ni uspel."</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"Začetek zaporedja MMI ..."</string>
     <string name="incall_error_supp_service_unknown" msgid="655570339115407698">"Storitev ni podprta"</string>
     <string name="incall_error_supp_service_switch" msgid="5237002176899962862">"Preklop med klici ni mogoč."</string>

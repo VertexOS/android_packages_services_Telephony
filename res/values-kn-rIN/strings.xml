@@ -200,6 +200,7 @@
     <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"ಧ್ವನಿ ಮತ್ತು ಇತರ ಸಂವಹನಗಳನ್ನು ಸುಧಾರಿಸಲು LTE ಸೇವೆಗಳನ್ನು ಬಳಸಿ (ಶಿಫಾರಸು ಮಾಡಲಾಗಿದೆ)"</string>
     <string name="data_enabled" msgid="5972538663568715366">"ಡೇಟಾ ಸಕ್ರಿಯಗೊಂಡಿದೆ"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"ಡೇಟಾ ಬಳಕೆಯನ್ನು ಅನುಮತಿಸಿ"</string>
+    <string name="dialog_alert_title" msgid="6751344986194435476">"ಎಚ್ಚರಿಕೆ"</string>
     <string name="roaming" msgid="8871412572928323707">"ಡೇಟಾ ರೋಮಿಂಗ್"</string>
     <string name="roaming_enable" msgid="7331106985174381987">"ರೋಮಿಂಗ್‌ನಲ್ಲಿರುವಾಗ ಡೇಟಾ ಸೇವೆಗಳಿಗೆ ಸಂಪರ್ಕಿಸು"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"ರೋಮಿಂಗ್‌ನಲ್ಲಿರುವಾಗ ಡೇಟಾ ಸೇವೆಗಳಿಗೆ ಸಂಪರ್ಕಿಸು"</string>
@@ -433,7 +434,7 @@
     <string name="incall_error_out_of_service" msgid="4100065333878929223">"ಸೆಲ್ಯುಲಾರ್ ನೆಟ್‌ವರ್ಕ್‌ ಲಭ್ಯವಿಲ್ಲ."</string>
     <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"ಸೆಲ್ಯುಲಾರ್ ನೆಟ್‌ವರ್ಕ್ ಲಭ್ಯವಿಲ್ಲ. ಕರೆ ಮಾಡಲು ವೈರ್‌ಲೆಸ್ ನೆಟ್‌ವರ್ಕ್‌ಗೆ ಸಂಪರ್ಕಪಡಿಸಿ."</string>
     <string name="incall_error_no_phone_number_supplied" msgid="1150414018684246528">"ಕರೆಯನ್ನು ಮಾಡಲು, ಮಾನ್ಯವಾದ ಸಂಖ್ಯೆಯನ್ನು ನಮೂದಿಸಿ."</string>
-    <string name="incall_error_call_failed" msgid="6302746943230078197">"ಕರೆ ಮಾಡಲು ಸಾಧ್ಯವಿಲ್ಲ."</string>
+    <string name="incall_error_call_failed" msgid="5891978320269774095">"ಕರೆ ವಿಫಲವಾಗಿದೆ."</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"MMI ಅನುಕ್ರಮ ಪ್ರಾರಂಭವಾಗುತ್ತಿದೆ…"</string>
     <string name="incall_error_supp_service_unknown" msgid="655570339115407698">"ಸೇವೆಯು ಬೆಂಬಲಿತವಾಗಿಲ್ಲ"</string>
     <string name="incall_error_supp_service_switch" msgid="5237002176899962862">"ಕರೆಗಳನ್ನು ಬದಲಾಯಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ."</string>

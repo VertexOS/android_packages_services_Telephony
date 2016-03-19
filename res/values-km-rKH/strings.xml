@@ -200,6 +200,7 @@
     <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"ប្រើសេវាកម្ម LTE ដើម្បីធ្វើឲ្យសម្លេង និងការទំនាក់ទំនងផ្សេងទៀតប្រសើរឡើង (បានណែនាំ)"</string>
     <string name="data_enabled" msgid="5972538663568715366">"បាន​បើក​ទិន្នន័យ"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"អនុញ្ញាត​​ឲ្យ​​ប្រើ​ប្រាស់​ទិន្នន័យ"</string>
+    <string name="dialog_alert_title" msgid="6751344986194435476">"ប្រយ័ត្ន"</string>
     <string name="roaming" msgid="8871412572928323707">"រ៉ូមីង​​ទិន្នន័យ"</string>
     <string name="roaming_enable" msgid="7331106985174381987">"តភ្ជាប់​ទៅ​កាន់​សេវា​កម្ម​ទិន្នន័យ​នៅ​ពេល​ដែល​រ៉ូ​មីង"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"តភ្ជាប់​ទៅ​កាន់​សេវា​កម្ម​ទិន្នន័យ​នៅ​ពេល​ដែល​រ៉ូ​មីង"</string>
@@ -433,7 +434,7 @@
     <string name="incall_error_out_of_service" msgid="4100065333878929223">"បណ្ដាញ​ចល័ត​មិន​អាច​ប្រើ​បាន។"</string>
     <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"មិនមានបណ្តាញទូរស័ព្ទទេ។ ភ្ជាប់ទៅបណ្តាញឥតខ្សែដើម្បីធ្វើការហៅ។"</string>
     <string name="incall_error_no_phone_number_supplied" msgid="1150414018684246528">"ដើម្បីធ្វើការហៅ បញ្ចូលលេខដែលមានសុពលភាព។"</string>
-    <string name="incall_error_call_failed" msgid="6302746943230078197">"មិនអាចហៅបានទេ។"</string>
+    <string name="incall_error_call_failed" msgid="5891978320269774095">"បាន​បរាជ័យ​ការ​ហៅ។"</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"កំពុង​ចាប់ផ្ដើម​លំដាប់ MMI ..."</string>
     <string name="incall_error_supp_service_unknown" msgid="655570339115407698">"សេវាកម្មមិនត្រូវបានគាំទ្រទេ។"</string>
     <string name="incall_error_supp_service_switch" msgid="5237002176899962862">"មិនអាចឆ្លាស់ការហៅបានទេ។"</string>

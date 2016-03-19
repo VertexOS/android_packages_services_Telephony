@@ -200,6 +200,8 @@
     <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"Usa i servizi LTE per migliorare la voce e le altre comunicazioni (consigliato)"</string>
     <string name="data_enabled" msgid="5972538663568715366">"Dati attivati"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"Consenti l\'utilizzo dei dati"</string>
+    <!-- no translation found for dialog_alert_title (6751344986194435476) -->
+    <skip />
     <string name="roaming" msgid="8871412572928323707">"Roaming dati"</string>
     <string name="roaming_enable" msgid="7331106985174381987">"Connessione a servizi di dati in caso di roaming"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"Connessione a servizi di dati in roaming"</string>
@@ -437,7 +439,7 @@
     <string name="incall_error_out_of_service" msgid="4100065333878929223">"Rete cellulare non disponibile."</string>
     <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"La rete cellulare non è disponibile. Connettiti a una rete wireless per effettuare una chiamata."</string>
     <string name="incall_error_no_phone_number_supplied" msgid="1150414018684246528">"Per effettuare una chiamata, inserisci un numero valido."</string>
-    <string name="incall_error_call_failed" msgid="6302746943230078197">"Impossibile chiamare."</string>
+    <string name="incall_error_call_failed" msgid="5891978320269774095">"Chiamata non riuscita."</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"Inizio sequenza MMI..."</string>
     <string name="incall_error_supp_service_unknown" msgid="655570339115407698">"Servizio non supportato"</string>
     <string name="incall_error_supp_service_switch" msgid="5237002176899962862">"Impossibile cambiare chiamata."</string>

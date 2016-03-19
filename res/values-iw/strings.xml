@@ -200,6 +200,7 @@
     <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"‏השתמש בשירותי LTE כדי לשפר את הקול ודרכי תקשורת אחרות (מומלץ)"</string>
     <string name="data_enabled" msgid="5972538663568715366">"נתונים מופעלים"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"התר שימוש בנתונים"</string>
+    <string name="dialog_alert_title" msgid="6751344986194435476">"זהירות"</string>
     <string name="roaming" msgid="8871412572928323707">"נדידת נתונים"</string>
     <string name="roaming_enable" msgid="7331106985174381987">"התחבר לשירותי נתונים בעת נדידה"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"התחבר לשירותי נתונים בעת נדידה"</string>
@@ -433,7 +434,7 @@
     <string name="incall_error_out_of_service" msgid="4100065333878929223">"רשת סלולרית אינה זמינה."</string>
     <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"רשת סלולרית אינה זמינה. התחבר לרשת אלחוטית כדי לבצע שיחה."</string>
     <string name="incall_error_no_phone_number_supplied" msgid="1150414018684246528">"כדי להתקשר, הזן מספר טלפון חוקי."</string>
-    <string name="incall_error_call_failed" msgid="6302746943230078197">"לא ניתן להתקשר."</string>
+    <string name="incall_error_call_failed" msgid="5891978320269774095">"השיחה נכשלה."</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"‏מתחיל רצף MMI…"</string>
     <string name="incall_error_supp_service_unknown" msgid="655570339115407698">"שירות לא נתמך"</string>
     <string name="incall_error_supp_service_switch" msgid="5237002176899962862">"לא ניתן לעבור בין שיחות."</string>

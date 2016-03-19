@@ -200,6 +200,7 @@
     <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"Utilitza els serveis LTE per millorar la veu i la comunicació (opció recomanada)"</string>
     <string name="data_enabled" msgid="5972538663568715366">"Dades activades"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"Permet l\'ús de dades"</string>
+    <string name="dialog_alert_title" msgid="6751344986194435476">"Atenció"</string>
     <string name="roaming" msgid="8871412572928323707">"Itinerància de dades"</string>
     <string name="roaming_enable" msgid="7331106985174381987">"Estableix connexió amb serveis de dades en itinerància"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"Estableix connexió amb serveis de dades en itinerància"</string>
@@ -433,7 +434,7 @@
     <string name="incall_error_out_of_service" msgid="4100065333878929223">"La xarxa mòbil no està disponible."</string>
     <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"La xarxa mòbil no està disponible. Per fer una trucada, connecta amb una xarxa sense fil."</string>
     <string name="incall_error_no_phone_number_supplied" msgid="1150414018684246528">"Per realitzar una trucada, introdueix un número vàlid."</string>
-    <string name="incall_error_call_failed" msgid="6302746943230078197">"No es pot trucar."</string>
+    <string name="incall_error_call_failed" msgid="5891978320269774095">"No s\'ha pogut fer la trucada."</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"S\'està iniciant la seqüència MMI..."</string>
     <string name="incall_error_supp_service_unknown" msgid="655570339115407698">"El servei no és compatible."</string>
     <string name="incall_error_supp_service_switch" msgid="5237002176899962862">"No es pot canviar de trucada."</string>

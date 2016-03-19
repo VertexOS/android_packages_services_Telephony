@@ -200,6 +200,7 @@
     <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"Zur Verbesserung von Sprache und Kommunikation LTE-Dienste verwenden (empfohlen)"</string>
     <string name="data_enabled" msgid="5972538663568715366">"Daten aktiviert"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"Datennutzung zulassen"</string>
+    <string name="dialog_alert_title" msgid="6751344986194435476">"Achtung"</string>
     <string name="roaming" msgid="8871412572928323707">"Daten-Roaming"</string>
     <string name="roaming_enable" msgid="7331106985174381987">"Bei Roaming mit Datendienst verbinden"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"Bei Roaming mit Datendienst verbinden"</string>
@@ -437,7 +438,7 @@
     <string name="incall_error_out_of_service" msgid="4100065333878929223">"Mobilfunknetz nicht verfügbar"</string>
     <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"Es ist kein Mobilfunknetz verfügbar. Stelle zum Telefonieren eine WLAN-Verbindung her."</string>
     <string name="incall_error_no_phone_number_supplied" msgid="1150414018684246528">"Gib eine gültige Nummer ein."</string>
-    <string name="incall_error_call_failed" msgid="6302746943230078197">"Anruf nicht möglich."</string>
+    <string name="incall_error_call_failed" msgid="5891978320269774095">"Fehler beim Anruf."</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"MMI-Sequenz wird gestartet..."</string>
     <string name="incall_error_supp_service_unknown" msgid="655570339115407698">"Dienst wird nicht unterstützt"</string>
     <string name="incall_error_supp_service_switch" msgid="5237002176899962862">"Anruf kann nicht gewechselt werden."</string>

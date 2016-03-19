@@ -200,6 +200,7 @@
     <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"ध्‍वनि और अन्‍य संचारों को बेहतर बनाने हेतु LTE सेवाओं का उपयोग करें (अनुशंसित)"</string>
     <string name="data_enabled" msgid="5972538663568715366">"डेटा सक्षम किया गया"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"डेटा उपयोग करने दें"</string>
+    <string name="dialog_alert_title" msgid="6751344986194435476">"ध्यान दें"</string>
     <string name="roaming" msgid="8871412572928323707">"रोमिंग डेटा"</string>
     <string name="roaming_enable" msgid="7331106985174381987">"रोमिंग के समय डेटा सेवाएं कनेक्ट करें"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"रोमिंग के समय डेटा सेवाएं कनेक्ट करें"</string>
@@ -433,7 +434,7 @@
     <string name="incall_error_out_of_service" msgid="4100065333878929223">"सेल्युलर नेटवर्क उपलब्ध नहीं."</string>
     <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"सेल्‍युलर नेटवर्क उपलब्‍ध नहीं है. कॉल करने के लिए किसी वायरलेस नेटवर्क से कनेक्‍ट करें."</string>
     <string name="incall_error_no_phone_number_supplied" msgid="1150414018684246528">"कॉल करने के लिए, मान्‍य नंबर डालें."</string>
-    <string name="incall_error_call_failed" msgid="6302746943230078197">"कॉल नहीं किया जा सकता."</string>
+    <string name="incall_error_call_failed" msgid="5891978320269774095">"कॉल विफल."</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"MMI अनुक्रम प्रारंभ हो रहा है…"</string>
     <string name="incall_error_supp_service_unknown" msgid="655570339115407698">"सेवा समर्थित नहीं है"</string>
     <string name="incall_error_supp_service_switch" msgid="5237002176899962862">"कॉल स्‍विच नहीं किए जा सकते."</string>

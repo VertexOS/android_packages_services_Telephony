@@ -200,6 +200,8 @@
     <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"Ovozli va boshqa aloqalarni yaxshilash uchun LTE xizmatlaridan foydalaning"</string>
     <string name="data_enabled" msgid="5972538663568715366">"Internet yoqildi"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"Mobil internetdan foydalanishga ruxsat"</string>
+    <!-- no translation found for dialog_alert_title (6751344986194435476) -->
+    <skip />
     <string name="roaming" msgid="8871412572928323707">"Internet-rouming"</string>
     <string name="roaming_enable" msgid="7331106985174381987">"Rouming vaqtida mobil internetga ulanish"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"Rouming vaqtida mobil internetga ulanish"</string>
@@ -433,7 +435,7 @@
     <string name="incall_error_out_of_service" msgid="4100065333878929223">"Mobil tarmoq mavjud emas."</string>
     <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"Mobil tarmoq mavjud emas. Qo‘ng‘iroq qilish uchun simsiz tarmoqqa ulaning."</string>
     <string name="incall_error_no_phone_number_supplied" msgid="1150414018684246528">"Qo‘ng‘iroq qilish uchun raqamni to‘g‘ri kiriting."</string>
-    <string name="incall_error_call_failed" msgid="6302746943230078197">"Qo‘ng‘iroq qilib bo‘lmadi."</string>
+    <string name="incall_error_call_failed" msgid="5891978320269774095">"Qo‘ng‘iroq amalga oshmadi."</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"MMI tartibi ishga tushmoqda..."</string>
     <string name="incall_error_supp_service_unknown" msgid="655570339115407698">"Bu xizmat qo‘llab-quvvatlanmaydi"</string>
     <string name="incall_error_supp_service_switch" msgid="5237002176899962862">"Qo‘ng‘iroqlarni almashtirib bo‘lmadi."</string>

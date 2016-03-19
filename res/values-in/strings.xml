@@ -200,6 +200,8 @@
     <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"Gunakan layanan LTE untuk menyempurnakan suara dan komunikasi lainnya (disarankan)"</string>
     <string name="data_enabled" msgid="5972538663568715366">"Data diaktifkan"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"Izinkan penggunaan data"</string>
+    <!-- no translation found for dialog_alert_title (6751344986194435476) -->
+    <skip />
     <string name="roaming" msgid="8871412572928323707">"Roaming data"</string>
     <string name="roaming_enable" msgid="7331106985174381987">"Sambungkan ke layanan data ketika roaming"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"Sambungkan ke layanan data ketika roaming"</string>
@@ -433,7 +435,7 @@
     <string name="incall_error_out_of_service" msgid="4100065333878929223">"Jaringan seluler tidak tersedia."</string>
     <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"Jaringan selular tidak tersedia. Sambungkan ke jaringan nirkabel untuk melakukan panggilan."</string>
     <string name="incall_error_no_phone_number_supplied" msgid="1150414018684246528">"Untuk melakukan panggilan telepon, masukkan nomor yang valid."</string>
-    <string name="incall_error_call_failed" msgid="6302746943230078197">"Tidak dapat menelepon."</string>
+    <string name="incall_error_call_failed" msgid="5891978320269774095">"Telepon gagal."</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"Memulai urutan MMI..."</string>
     <string name="incall_error_supp_service_unknown" msgid="655570339115407698">"Layanan tidak didukung"</string>
     <string name="incall_error_supp_service_switch" msgid="5237002176899962862">"Tidak dapat berganti panggilan telepon."</string>

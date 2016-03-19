@@ -200,6 +200,7 @@
     <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"ໃຊ້​ການ​ບໍ​ລິ​ການ LTE ເພື່ອ​ປັບ​ປຸງ​ສຽງ ແລະ​ການ​ບໍ​ລິ​ການ​ອື່ນໆ (ແນະ​ນຳ)"</string>
     <string name="data_enabled" msgid="5972538663568715366">"ເປີດໃຊ້ເດຕາ"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"​ອະ​ນຸ​ຍາດ​ໃຫ້​ໃຊ້​ຂໍ້​ມູນ"</string>
+    <string name="dialog_alert_title" msgid="6751344986194435476">"ກະລຸນາຮັບຊາບ"</string>
     <string name="roaming" msgid="8871412572928323707">"ການໂຣມມິງຂໍ້ມູນ"</string>
     <string name="roaming_enable" msgid="7331106985174381987">"ເຊື່ອມຕໍ່ບໍລິການຂໍ້ມູນເມື່ອໂຣມມິງ"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"ເຊື່ອມຕໍ່ບໍລິການຂໍ້ມູນເມື່ອໂຣມມິງ"</string>
@@ -433,7 +434,7 @@
     <string name="incall_error_out_of_service" msgid="4100065333878929223">"ບໍ່​ມີ​ເຄືອ​ຂ່າຍ​ມື​ຖື​ທີ່​ສາ​ມາດ​ໃຊ້​ໄດ້."</string>
     <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"ເຄືອຂ່າຍເຊລລູລາບໍ່ພ້ອມໃຊ້ງານ. ໃຫ້ເຊື່ອມຕໍ່ກັບເຄືອຂ່າຍໄຮ້ສາຍເພື່ອເຮັດການໂທ."</string>
     <string name="incall_error_no_phone_number_supplied" msgid="1150414018684246528">"ເພື່ອ​ທີ່​ຈະ​ໂທ, ປ້ອນ​ເບີ​ໂທ​ທີ່​ໃຊ້​ໄດ້​ເຂົ້າ​ໄປ."</string>
-    <string name="incall_error_call_failed" msgid="6302746943230078197">"ບໍ່​ສາ​ມາດ​ໂທ​ໄດ້."</string>
+    <string name="incall_error_call_failed" msgid="5891978320269774095">"ໂທບໍ່ສຳເລັດ."</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"ກຳລັງເລີ່ມຕົ້ນລຳດັບ MMI..."</string>
     <string name="incall_error_supp_service_unknown" msgid="655570339115407698">"ການ​ບໍ​ລິ​ການ​ບໍ່​ຮອງ​ຮັບ"</string>
     <string name="incall_error_supp_service_switch" msgid="5237002176899962862">"ບໍ່​ສາ​ມາດ​ສະ​ຫຼັບ​ສາ​ຍ​ໂທ​ໄດ້."</string>

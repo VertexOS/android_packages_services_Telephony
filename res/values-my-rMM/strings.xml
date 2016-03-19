@@ -200,6 +200,8 @@
     <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"အသံခေါ်ဆိုမှုနှင့် အခြားဆက်သွယ်ရေးများ တိုးတက်စေရန် LTE ဝန်ဆောင်မှုများ ကိုအသုံးပြုမည် (အကြံပြုထား)"</string>
     <string name="data_enabled" msgid="5972538663568715366">"ဒေတာ ဖွင့်ထားပြီး"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"ဒေတာ သုံးစွဲမှု ခွင့်ပြုရန်"</string>
+    <!-- no translation found for dialog_alert_title (6751344986194435476) -->
+    <skip />
     <string name="roaming" msgid="8871412572928323707">"ဒေတာရုန်းမင်း"</string>
     <string name="roaming_enable" msgid="7331106985174381987">"ရုန်းမင်းပြုလုပ်နေစဉ် ဒေတာဝန်ဆောင်မှုများကို ဆက်သွယ်ခြင်း"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"ရုန်းမင်းပြုလုပ်နေစဉ် ဒေတာဝန်ဆောင်မှုများကို ဆက်သွယ်ခြင်း"</string>
@@ -433,7 +435,7 @@
     <string name="incall_error_out_of_service" msgid="4100065333878929223">"ဆယ်လူလာ ကွန်ရက် မရှိပါ။"</string>
     <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"ဆဲလူလာ ကွန်ယက် မရပါ။ ဖုန်းခေါ်ရန် ကြိုးမဲ့ကွန်ယက်သို့ ချိတ်ဆက်ပါ။"</string>
     <string name="incall_error_no_phone_number_supplied" msgid="1150414018684246528">"ဖုန်းခေါ်ရန်အတွက်၊ သင့်လျော်သည့်နံပါတ် ရိုက်ထည့်ပါ။"</string>
-    <string name="incall_error_call_failed" msgid="6302746943230078197">"မခေါ်ဆိုနိုင်ပါ။"</string>
+    <string name="incall_error_call_failed" msgid="5891978320269774095">"ခေါ်ဆို၍ မရပါ။"</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"MMI အမှတ်စဉ်ကို စတင်နေပါသည်…"</string>
     <string name="incall_error_supp_service_unknown" msgid="655570339115407698">"ဤဝန်ဆောင်မှုအား မပံ့ပိုးပါ။"</string>
     <string name="incall_error_supp_service_switch" msgid="5237002176899962862">"ဖုန်းခေါ်ခြင်းများကြား မကူးပ​ြောင်းနိုင်ပါ။"</string>

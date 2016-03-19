@@ -200,6 +200,8 @@
     <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"Käytä LTE-palveluita puheviestinnän ja muiden viestintätapojen parantamiseen (suositeltu)"</string>
     <string name="data_enabled" msgid="5972538663568715366">"Datayhteys käytössä"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"Salli tiedonsiirto"</string>
+    <!-- no translation found for dialog_alert_title (6751344986194435476) -->
+    <skip />
     <string name="roaming" msgid="8871412572928323707">"Verkkoyhteys roaming-tilassa"</string>
     <string name="roaming_enable" msgid="7331106985174381987">"Yhdistä verkkoon roaming-tilassa"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"Yhdistä verkkoon roaming-tilassa"</string>
@@ -437,7 +439,7 @@
     <string name="incall_error_out_of_service" msgid="4100065333878929223">"Matkapuhelinverkko ei ole käytettävissä."</string>
     <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"Matkapuhelinverkko ei ole käytettävissä. Yhdistä langattomaan verkkoon, jos haluat soittaa puhelun."</string>
     <string name="incall_error_no_phone_number_supplied" msgid="1150414018684246528">"Soita antamalla kelvollinen numero."</string>
-    <string name="incall_error_call_failed" msgid="6302746943230078197">"Puhelua ei voi soittaa."</string>
+    <string name="incall_error_call_failed" msgid="5891978320269774095">"Puhelu epäonnistui."</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"Aloitetaan MMI-koodisekvenssiä..."</string>
     <string name="incall_error_supp_service_unknown" msgid="655570339115407698">"Palvelua ei tueta"</string>
     <string name="incall_error_supp_service_switch" msgid="5237002176899962862">"Puhelua ei voi vaihtaa."</string>

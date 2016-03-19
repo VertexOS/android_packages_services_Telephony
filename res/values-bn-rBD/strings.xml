@@ -200,6 +200,7 @@
     <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"ভয়েস এবং অন্যান্য যোগাযোগব্যবস্থা উন্নত করতে LTE পরিষেবা ব্যবহার করুন (প্রস্তাবিত)"</string>
     <string name="data_enabled" msgid="5972538663568715366">"ডেটা সক্ষম করা হয়েছে"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"ডেটা ব্যবহারের অনুমতি দিন"</string>
+    <string name="dialog_alert_title" msgid="6751344986194435476">"খেয়াল করুন"</string>
     <string name="roaming" msgid="8871412572928323707">"রোমিং ডেটা"</string>
     <string name="roaming_enable" msgid="7331106985174381987">"রোমিংয়ে থাকাকালীন ডেটা পরিষেবাগুলির সাথে সংযোগ স্থাপন করুন"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"রোমিংয়ে থাকাকালীন ডেটা পরিষেবাগুলির সাথে সংযোগ স্থাপন করুন"</string>
@@ -433,7 +434,7 @@
     <string name="incall_error_out_of_service" msgid="4100065333878929223">"সেলুলার নেটওয়ার্ক উপলব্ধ নয়।"</string>
     <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"মোবাইল নেটওয়ার্ক উপলব্ধ নেই৷ একটি কল করতে কোনো ওয়্যারলেস নেটওয়ার্কে সংযোগ করুন৷"</string>
     <string name="incall_error_no_phone_number_supplied" msgid="1150414018684246528">"কোনো কল স্থাপন করতে, একটি বৈধ নম্বর লিখুন৷"</string>
-    <string name="incall_error_call_failed" msgid="6302746943230078197">"কল করা যাবে না৷"</string>
+    <string name="incall_error_call_failed" msgid="5891978320269774095">"কল ব্যর্থ হয়েছে৷"</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"MMI ক্রম চালু হচ্ছে…"</string>
     <string name="incall_error_supp_service_unknown" msgid="655570339115407698">"পরিষেবা সমর্থিত নয়"</string>
     <string name="incall_error_supp_service_switch" msgid="5237002176899962862">"কলগুলি স্যুইচ করা যাবে না৷"</string>

@@ -200,6 +200,7 @@
     <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"Använd LTE-tjänster för att förbättra bl.a. röstkommunikation (rekommenderas)"</string>
     <string name="data_enabled" msgid="5972538663568715366">"Data är aktiverat"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"Tillåt dataanvändning"</string>
+    <string name="dialog_alert_title" msgid="6751344986194435476">"Obs!"</string>
     <string name="roaming" msgid="8871412572928323707">"Dataroaming"</string>
     <string name="roaming_enable" msgid="7331106985174381987">"Anslut till datatjänster vid roaming"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"Anslut till datatjänster vid roaming"</string>
@@ -439,7 +440,7 @@
     <string name="incall_error_out_of_service" msgid="4100065333878929223">"Det finns inget mobilnät tillgängligt."</string>
     <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"Det finns inga tillgängliga mobilnätverk. Anslut till ett trådlöst nätverk om du vill ringa."</string>
     <string name="incall_error_no_phone_number_supplied" msgid="1150414018684246528">"Ange ett giltigt nummer om du vill ringa ett samtal."</string>
-    <string name="incall_error_call_failed" msgid="6302746943230078197">"Det gick inte att ringa."</string>
+    <string name="incall_error_call_failed" msgid="5891978320269774095">"Det gick inte att koppla samtalet."</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"Startar sekvens för MMI-kod…"</string>
     <string name="incall_error_supp_service_unknown" msgid="655570339115407698">"Tjänsten stöds inte"</string>
     <string name="incall_error_supp_service_switch" msgid="5237002176899962862">"Det gick inte att växla mellan samtal."</string>
