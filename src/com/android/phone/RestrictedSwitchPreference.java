@@ -17,6 +17,7 @@
 package com.android.phone;
 
 import android.content.Context;
+import android.os.UserHandle;
 import android.os.UserManager;
 import android.preference.PreferenceScreen;
 import android.preference.SwitchPreference;
@@ -30,7 +31,6 @@ import com.android.settingslib.RestrictedLockUtils.EnforcedAdmin;
 public class RestrictedSwitchPreference extends SwitchPreference {
     private final Context mContext;
     private boolean mDisabledByAdmin;
-    private EnforcedAdmin mEnforcedAdmin;
     private final int mSwitchWidgetResId;
 
     public RestrictedSwitchPreference(Context context, AttributeSet attrs, int defStyleAttr,
@@ -67,22 +67,23 @@ public class RestrictedSwitchPreference extends SwitchPreference {
     }
 
     public void checkRestrictionAndSetDisabled(String userRestriction) {
-        setDisabledByAdmin(RestrictedLockUtils.checkIfRestrictionEnforced(mContext, userRestriction,
-                UserManager.get(mContext).getUserHandle()));
+        UserManager um = UserManager.get(mContext);
+        UserHandle user = UserHandle.of(um.getUserHandle());
+        boolean disabledByAdmin = um.hasUserRestriction(userRestriction, user)
+                && !um.hasBaseUserRestriction(userRestriction, user);
+        setDisabledByAdmin(disabledByAdmin);
     }
 
     @Override
     public void setEnabled(boolean enabled) {
         if (enabled && mDisabledByAdmin) {
-            setDisabledByAdmin(null);
+            setDisabledByAdmin(false);
         } else {
             super.setEnabled(enabled);
         }
     }
 
-    public void setDisabledByAdmin(EnforcedAdmin admin) {
-        final boolean disabled = (admin != null ? true : false);
-        mEnforcedAdmin = admin;
+    public void setDisabledByAdmin(boolean disabled) {
         if (mDisabledByAdmin != disabled) {
             mDisabledByAdmin = disabled;
             setWidgetLayoutResource(disabled ? R.layout.restricted_icon : mSwitchWidgetResId);
@@ -93,7 +94,8 @@ public class RestrictedSwitchPreference extends SwitchPreference {
     @Override
     public void performClick(PreferenceScreen preferenceScreen) {
         if (mDisabledByAdmin) {
-            RestrictedLockUtils.sendShowAdminSupportDetailsIntent(mContext, mEnforcedAdmin);
+            RestrictedLockUtils.sendShowAdminSupportDetailsIntent(mContext,
+                    new EnforcedAdmin());
         } else {
             super.performClick(preferenceScreen);
         }
