@@ -142,14 +142,13 @@ abstract class TelephonyConnection extends Connection {
                         mSsNotification =
                                 (SuppServiceNotification)((AsyncResult) msg.obj).result;
                         if (mOriginalConnection != null && mSsNotification.history != null) {
-                            Bundle extras = getExtras();
-                            if (extras != null) {
-                                Log.v(TelephonyConnection.this,
-                                        "Updating call history info in extras.");
-                                extras.putStringArrayList(Connection.EXTRA_LAST_FORWARDED_NUMBER,
-                                        new ArrayList(Arrays.asList(mSsNotification.history)));
-                                setExtras(extras);
-                            }
+                            Bundle lastForwardedNumber = new Bundle();
+                            Log.v(TelephonyConnection.this,
+                                    "Updating call history info in extras.");
+                            lastForwardedNumber.putStringArrayList(
+                                Connection.EXTRA_LAST_FORWARDED_NUMBER,
+                                new ArrayList(Arrays.asList(mSsNotification.history)));
+                            putExtras(lastForwardedNumber);
                         }
                     }
                     break;
@@ -890,12 +889,7 @@ abstract class TelephonyConnection extends Connection {
                     }
 
                     // Ensure extras are propagated to Telecom.
-                    Bundle connectionExtras = getExtras();
-                    if (connectionExtras == null) {
-                        connectionExtras = new Bundle();
-                    }
-                    connectionExtras.putAll(mOriginalConnectionExtras);
-                    setExtras(connectionExtras);
+                    putExtras(mOriginalConnectionExtras);
                 } else {
                     Log.d(this, "Extras update not required");
                 }

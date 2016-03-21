@@ -187,7 +187,13 @@ public class ImsConference extends Conference {
         @Override
         public void onExtrasChanged(Connection c, Bundle extras) {
             Log.v(this, "onExtrasChanged: c=" + c + " Extras=" + extras);
-            setExtras(extras);
+            putExtras(extras);
+        }
+
+        @Override
+        public void onExtrasRemoved(Connection c, List<String> keys) {
+            Log.v(this, "onExtrasRemoved: c=" + c + " key=" + keys);
+            removeExtras(keys);
         }
     };
 
