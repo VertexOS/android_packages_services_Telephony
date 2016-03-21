@@ -200,8 +200,7 @@
     <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"आवाज र अन्य सञ्चार सुधार गर्न LTE सेवाहरूको प्रयोग गर्नुहोस् (सिफारिस गरिएको)"</string>
     <string name="data_enabled" msgid="5972538663568715366">"डेटा सक्षम भयो"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"डेटा उपयोगलाई अनुमति दिनुहोस्"</string>
-    <!-- no translation found for dialog_alert_title (6751344986194435476) -->
-    <skip />
+    <string name="dialog_alert_title" msgid="6751344986194435476">"ध्यानाकर्षण"</string>
     <string name="roaming" msgid="8871412572928323707">"डेटा रोमिङ"</string>
     <string name="roaming_enable" msgid="7331106985174381987">"रोमिङको समयमा डेटा सेवामा जडान गर्नुहोस्"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"रोमिङको समयमा डेटा सेवा जडान गर्नुहोस्"</string>

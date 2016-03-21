@@ -200,8 +200,7 @@
     <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"Erabili LTE zerbitzuak ahotsa eta bestelako komunikazioak hobetzeko (gomendatua)"</string>
     <string name="data_enabled" msgid="5972538663568715366">"Datuak gaituta"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"Onartu datuak erabiltzea"</string>
-    <!-- no translation found for dialog_alert_title (6751344986194435476) -->
-    <skip />
+    <string name="dialog_alert_title" msgid="6751344986194435476">"Erne"</string>
     <string name="roaming" msgid="8871412572928323707">"Ibiltaritzako datuak"</string>
     <string name="roaming_enable" msgid="7331106985174381987">"Konektatu datu-zerbitzuetara ibiltaritzan"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"Konektatu datu-zerbitzuetara ibiltaritzan"</string>

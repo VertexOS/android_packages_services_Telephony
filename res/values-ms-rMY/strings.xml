@@ -200,8 +200,7 @@
     <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"Gunakan perkhidmatan LTE untuk memperbaik suara dan komunikasi lain (disyorkan)"</string>
     <string name="data_enabled" msgid="5972538663568715366">"Data didayakan"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"Benarkan penggunaan data"</string>
-    <!-- no translation found for dialog_alert_title (6751344986194435476) -->
-    <skip />
+    <string name="dialog_alert_title" msgid="6751344986194435476">"Perhatian"</string>
     <string name="roaming" msgid="8871412572928323707">"Perayauan data"</string>
     <string name="roaming_enable" msgid="7331106985174381987">"Sambung ke perkhidmatan data semasa perayauan"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"Sambung ke perkhidmatan data semasa perayauan"</string>

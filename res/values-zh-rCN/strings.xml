@@ -200,8 +200,7 @@
     <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"使用 LTE 服务改进语音和其他通信功能（推荐）"</string>
     <string name="data_enabled" msgid="5972538663568715366">"启用移动数据网络"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"允许使用数据流量"</string>
-    <!-- no translation found for dialog_alert_title (6751344986194435476) -->
-    <skip />
+    <string name="dialog_alert_title" msgid="6751344986194435476">"注意"</string>
     <string name="roaming" msgid="8871412572928323707">"移动数据网络漫游"</string>
     <string name="roaming_enable" msgid="7331106985174381987">"漫游时连接到移动数据网络服务"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"漫游时连接到移动数据网络服务"</string>

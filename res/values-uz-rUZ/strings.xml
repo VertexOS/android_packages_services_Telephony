@@ -200,8 +200,7 @@
     <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"Ovozli va boshqa aloqalarni yaxshilash uchun LTE xizmatlaridan foydalaning"</string>
     <string name="data_enabled" msgid="5972538663568715366">"Internet yoqildi"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"Mobil internetdan foydalanishga ruxsat"</string>
-    <!-- no translation found for dialog_alert_title (6751344986194435476) -->
-    <skip />
+    <string name="dialog_alert_title" msgid="6751344986194435476">"Diqqat"</string>
     <string name="roaming" msgid="8871412572928323707">"Internet-rouming"</string>
     <string name="roaming_enable" msgid="7331106985174381987">"Rouming vaqtida mobil internetga ulanish"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"Rouming vaqtida mobil internetga ulanish"</string>
