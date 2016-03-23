@@ -745,7 +745,7 @@ public class MobileNetworkSettings extends PreferenceActivity
         boolean canChange4glte = (tm.getCallState() == TelephonyManager.CALL_STATE_IDLE) &&
                 ImsManager.isNonTtyOrTtyOnVolteEnabled(getApplicationContext()) &&
                 carrierConfig.getBoolean(CarrierConfigManager.KEY_EDITABLE_ENHANCED_4G_LTE_BOOL);
-        mButtonDataRoam.setDisabledByAdmin(null);
+        mButtonDataRoam.setDisabledByAdmin(false);
         mButtonDataRoam.setEnabled(hasActiveSubscriptions);
         if (mButtonDataRoam.isEnabled()) {
             if (RestrictedLockUtils.hasBaseUserRestriction(context,

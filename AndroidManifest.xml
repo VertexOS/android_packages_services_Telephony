@@ -134,12 +134,6 @@
     <!-- Needed for emergency contact notification. -->
     <uses-permission android:name="android.permission.WRITE_BLOCKED_NUMBERS" />
 
-    <!-- Needed for passing extras with intent ACTION_SHOW_ADMIN_SUPPORT_DETAILS -->
-    <uses-permission android:name="android.permission.MANAGE_DEVICE_ADMINS" />
-
-    <!-- Needed for calling DPM.getUserRestrictions() -->
-    <uses-permission android:name="android.permission.MANAGE_PROFILE_AND_DEVICE_OWNERS" />
-
     <!-- This tells the activity manager to not delay any of our activity
          start requests, even if they happen immediately after the user
          presses home. -->
