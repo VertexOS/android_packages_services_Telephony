@@ -120,7 +120,7 @@ public class CarrierConfigLoader extends ICarrierConfigLoader.Stub {
     // Check if the system fingerprint has changed.
     private static final int EVENT_CHECK_SYSTEM_UPDATE = 12;
 
-    private static final int BIND_TIMEOUT_MILLIS = 10000;
+    private static final int BIND_TIMEOUT_MILLIS = 30000;
 
     // Tags used for saving and restoring XML documents.
     private static final String TAG_DOCUMENT = "carrier_config";
