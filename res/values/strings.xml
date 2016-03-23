@@ -994,6 +994,8 @@
     <string name="emergency_enable_radio_dialog_message">Turning on radio\u2026</string>
     <!-- Status message for the "radio enable" UI for emergency calls -->
     <string name="emergency_enable_radio_dialog_retry">No service. Trying again\u2026</string>
+    <!-- Toast message shown when user tries to turn on airplane mode while in an emergency call -->
+    <string name="radio_off_during_emergency_call">Cannot enter airplane mode during an emergency call.</string>
 
     <!-- Dialer text on Emergency Dialer -->
     <!-- Emergency dialer: message displayed in an error dialog -->
