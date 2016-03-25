@@ -93,8 +93,10 @@ public class CarrierConfigLoader extends ICarrierConfigLoader.Stub {
     // Service connection for binding to config app.
     private CarrierServiceConnection[] mServiceConnection;
 
+    // Broadcast receiver for Boot intents, register intent filter in construtor.
+    private final BroadcastReceiver mBootReceiver = new ConfigLoaderBroadcastReceiver();
     // Broadcast receiver for SIM and pkg intents, register intent filter in constructor.
-    private final BroadcastReceiver mReceiver = new ConfigLoaderBroadcastReceiver();
+    private final BroadcastReceiver mPackageReceiver = new ConfigLoaderBroadcastReceiver();
 
     // Message codes; see mHandler below.
     // Request from SubscriptionInfoUpdater when SIM becomes absent or error.
@@ -119,6 +121,8 @@ public class CarrierConfigLoader extends ICarrierConfigLoader.Stub {
     private static final int EVENT_BIND_CARRIER_TIMEOUT = 11;
     // Check if the system fingerprint has changed.
     private static final int EVENT_CHECK_SYSTEM_UPDATE = 12;
+    // Rerun carrier config binding after system is unlocked.
+    private static final int EVENT_SYSTEM_UNLOCKED = 13;
 
     private static final int BIND_TIMEOUT_MILLIS = 30000;
 
@@ -166,6 +170,12 @@ public class CarrierConfigLoader extends ICarrierConfigLoader.Stub {
                     mConfigFromCarrierApp[phoneId] = null;
                     mServiceConnection[phoneId] = null;
                     broadcastConfigChangedIntent(phoneId);
+                    break;
+
+                case EVENT_SYSTEM_UNLOCKED:
+                    for (int i = 0; i < TelephonyManager.from(mContext).getPhoneCount(); ++i) {
+                        updateConfigForPhoneId(i);
+                    }
                     break;
 
                 case EVENT_PACKAGE_CHANGED:
@@ -334,6 +344,10 @@ public class CarrierConfigLoader extends ICarrierConfigLoader.Stub {
     private CarrierConfigLoader(Context context) {
         mContext = context;
 
+        IntentFilter bootFilter = new IntentFilter();
+        bootFilter.addAction(Intent.ACTION_BOOT_COMPLETED);
+        context.registerReceiver(mBootReceiver, bootFilter);
+
         // Register for package updates. Update app or uninstall app update will have all 3 intents,
         // in the order or removed, added, replaced, all with extra_replace set to true.
         IntentFilter pkgFilter = new IntentFilter();
@@ -341,7 +355,7 @@ public class CarrierConfigLoader extends ICarrierConfigLoader.Stub {
         pkgFilter.addAction(Intent.ACTION_PACKAGE_REMOVED);
         pkgFilter.addAction(Intent.ACTION_PACKAGE_REPLACED);
         pkgFilter.addDataScheme("package");
-        context.registerReceiverAsUser(mReceiver, UserHandle.ALL, pkgFilter, null, null);
+        context.registerReceiverAsUser(mPackageReceiver, UserHandle.ALL, pkgFilter, null, null);
 
         int numPhones = TelephonyManager.from(context).getPhoneCount();
         mConfigFromDefaultApp = new PersistableBundle[numPhones];
@@ -732,6 +746,10 @@ public class CarrierConfigLoader extends ICarrierConfigLoader.Stub {
                 return;
 
             switch (action) {
+                case Intent.ACTION_BOOT_COMPLETED:
+                    mHandler.sendMessage(mHandler.obtainMessage(EVENT_SYSTEM_UNLOCKED, null));
+                    break;
+
                 case Intent.ACTION_PACKAGE_ADDED:
                 case Intent.ACTION_PACKAGE_REMOVED:
                 case Intent.ACTION_PACKAGE_REPLACED:
