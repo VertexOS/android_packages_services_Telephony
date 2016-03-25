@@ -21,6 +21,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.telecom.Conference;
 import android.telecom.Connection;
 import android.telecom.ConnectionRequest;
@@ -45,6 +46,8 @@ import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneConstants;
 import com.android.internal.telephony.PhoneFactory;
 import com.android.internal.telephony.SubscriptionController;
+import com.android.internal.telephony.imsphone.ImsExternalCallTracker;
+import com.android.internal.telephony.imsphone.ImsPhone;
 import com.android.phone.MMIDialogActivity;
 import com.android.phone.PhoneUtils;
 import com.android.phone.R;
@@ -396,26 +399,51 @@ public class TelephonyConnectionService extends ConnectionService {
                             android.telephony.DisconnectCause.ERROR_UNSPECIFIED,
                             "Phone is null"));
         }
+        Bundle extras = request.getExtras();
 
         final List<com.android.internal.telephony.Connection> allConnections = new ArrayList<>();
-        final Call ringingCall = phone.getRingingCall();
-        if (ringingCall.hasConnections()) {
-            allConnections.addAll(ringingCall.getConnections());
-        }
-        final Call foregroundCall = phone.getForegroundCall();
-        if ((foregroundCall.getState() != Call.State.DISCONNECTED)
-                && (foregroundCall.hasConnections())) {
-            allConnections.addAll(foregroundCall.getConnections());
-        }
-        if (phone.getImsPhone() != null) {
-            final Call imsFgCall = phone.getImsPhone().getForegroundCall();
-            if ((imsFgCall.getState() != Call.State.DISCONNECTED) && imsFgCall.hasConnections()) {
-                allConnections.addAll(imsFgCall.getConnections());
+
+        // Handle the case where an unknown connection has an IMS external call ID specified; we can
+        // skip the rest of the guesswork and just grad that unknown call now.
+        if (phone.getImsPhone() != null && extras != null &&
+                extras.containsKey(ImsExternalCallTracker.EXTRA_IMS_EXTERNAL_CALL_ID)) {
+
+            ImsPhone imsPhone = (ImsPhone) phone.getImsPhone();
+            ImsExternalCallTracker externalCallTracker = imsPhone.getExternalCallTracker();
+            int externalCallId = extras.getInt(ImsExternalCallTracker.EXTRA_IMS_EXTERNAL_CALL_ID,
+                    -1);
+
+            if (externalCallTracker != null) {
+                com.android.internal.telephony.Connection connection =
+                        externalCallTracker.getConnectionById(externalCallId);
+
+                if (connection != null) {
+                    allConnections.add(connection);
+                }
             }
         }
-        final Call backgroundCall = phone.getBackgroundCall();
-        if (backgroundCall.hasConnections()) {
-            allConnections.addAll(phone.getBackgroundCall().getConnections());
+
+        if (allConnections.isEmpty()) {
+            final Call ringingCall = phone.getRingingCall();
+            if (ringingCall.hasConnections()) {
+                allConnections.addAll(ringingCall.getConnections());
+            }
+            final Call foregroundCall = phone.getForegroundCall();
+            if ((foregroundCall.getState() != Call.State.DISCONNECTED)
+                    && (foregroundCall.hasConnections())) {
+                allConnections.addAll(foregroundCall.getConnections());
+            }
+            if (phone.getImsPhone() != null) {
+                final Call imsFgCall = phone.getImsPhone().getForegroundCall();
+                if ((imsFgCall.getState() != Call.State.DISCONNECTED) && imsFgCall
+                        .hasConnections()) {
+                    allConnections.addAll(imsFgCall.getConnections());
+                }
+            }
+            final Call backgroundCall = phone.getBackgroundCall();
+            if (backgroundCall.hasConnections()) {
+                allConnections.addAll(phone.getBackgroundCall().getConnections());
+            }
         }
 
         com.android.internal.telephony.Connection unknownConnection = null;
