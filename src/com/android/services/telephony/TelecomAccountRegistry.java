@@ -48,6 +48,7 @@ import java.util.List;
  */
 final class TelecomAccountRegistry {
     private static final boolean DBG = false; /* STOP SHIP if true */
+    public static final String EMERGENCY_ACCOUNT_HANDLE_ID = "E";
 
     // Slot IDs are zero based indices but the numbered icons represent the first, second,
     // etc... SIM in the device. So that means that index 0 is SIM 1, index 1 is SIM 2 and so on.
@@ -250,13 +251,14 @@ final class TelecomAccountRegistry {
         return makePstnPhoneAccountHandleWithPrefix(phone, "", false);
     }
 
-    private static PhoneAccountHandle makePstnPhoneAccountHandleWithPrefix(
+    static PhoneAccountHandle makePstnPhoneAccountHandleWithPrefix(
             Phone phone, String prefix, boolean isEmergency) {
         ComponentName pstnConnectionServiceName =
                 new ComponentName(phone.getContext(), TelephonyConnectionService.class);
         // TODO: Should use some sort of special hidden flag to decorate this account as
         // an emergency-only account
-        String id = isEmergency ? "E" : prefix + String.valueOf(phone.getSubId());
+        String id = isEmergency ? EMERGENCY_ACCOUNT_HANDLE_ID : prefix +
+                String.valueOf(phone.getSubId());
         return new PhoneAccountHandle(pstnConnectionServiceName, id);
     }
 
@@ -267,7 +269,7 @@ final class TelecomAccountRegistry {
      * @param handle The {@link PhoneAccountHandle}.
      * @return {@code True} if an entry exists.
      */
-    private boolean hasAccountEntryForPhoneAccount(PhoneAccountHandle handle) {
+    boolean hasAccountEntryForPhoneAccount(PhoneAccountHandle handle) {
         for (AccountEntry entry : mAccounts) {
             if (entry.getPhoneAccountHandle().equals(handle)) {
                 return true;

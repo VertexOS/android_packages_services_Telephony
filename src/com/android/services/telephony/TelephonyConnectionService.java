@@ -212,7 +212,16 @@ public class TelephonyConnectionService extends ConnectionService {
             ConnectionRequest request) {
         Log.i(this, "onCreateIncomingConnection, request: " + request);
 
-        Phone phone = getPhoneForAccount(request.getAccountHandle(), false);
+        // Check if Incoming Emergency Call is being placed on the Telephony Emergency PhoneAccount
+        PhoneAccountHandle accountHandle = request.getAccountHandle();
+        boolean isEmergency = false;
+        if (accountHandle != null && TelecomAccountRegistry.EMERGENCY_ACCOUNT_HANDLE_ID.equals(
+                accountHandle.getId())) {
+            Log.i(this, "Emergency PhoneAccountHandle is being used for incoming call... " +
+                    "Treat as an Emergency Call.");
+            isEmergency = true;
+        }
+        Phone phone = getPhoneForAccount(accountHandle, isEmergency);
         if (phone == null) {
             return Connection.createFailedConnection(
                     DisconnectCauseUtil.toTelecomDisconnectCause(
@@ -250,8 +259,16 @@ public class TelephonyConnectionService extends ConnectionService {
     public Connection onCreateUnknownConnection(PhoneAccountHandle connectionManagerPhoneAccount,
             ConnectionRequest request) {
         Log.i(this, "onCreateUnknownConnection, request: " + request);
-
-        Phone phone = getPhoneForAccount(request.getAccountHandle(), false);
+        // Check if Unknown Call is being placed on the Telephony Emergency PhoneAccount
+        PhoneAccountHandle accountHandle = request.getAccountHandle();
+        boolean isEmergency = false;
+        if (accountHandle != null && TelecomAccountRegistry.EMERGENCY_ACCOUNT_HANDLE_ID.equals(
+                accountHandle.getId())) {
+            Log.i(this, "Emergency PhoneAccountHandle is being used for unknown call... " +
+                    "Treat as an Emergency Call.");
+            isEmergency = true;
+        }
+        Phone phone = getPhoneForAccount(accountHandle, isEmergency);
         if (phone == null) {
             return Connection.createFailedConnection(
                     DisconnectCauseUtil.toTelecomDisconnectCause(
