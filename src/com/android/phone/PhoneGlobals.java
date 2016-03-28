@@ -26,6 +26,7 @@ import android.content.ContextWrapper;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.media.AudioManager;
+import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.AsyncResult;
 import android.os.Bundle;
@@ -42,6 +43,7 @@ import android.telephony.CarrierConfigManager;
 import android.telephony.ServiceState;
 import android.telephony.SubscriptionManager;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.android.internal.telephony.Call;
 import com.android.internal.telephony.CallManager;
@@ -98,6 +100,9 @@ public class PhoneGlobals extends ContextWrapper {
     public static final int MMI_CANCEL = 53;
     // Don't use message codes larger than 99 here; those are reserved for
     // the individual Activities of the Phone UI.
+
+    public static final int AIRPLANE_ON = 1;
+    public static final int AIRPLANE_OFF = 0;
 
     /**
      * Allowable values for the wake lock code.
@@ -612,6 +617,26 @@ public class PhoneGlobals extends ContextWrapper {
         notifier.updateCallNotifierRegistrationsAfterRadioTechnologyChange();
     }
 
+    private void handleAirplaneModeChange(int newMode) {
+        if (newMode == AIRPLANE_ON) {
+            // If we are trying to turn off the radio, make sure there are no active
+            // emergency calls.  If there are, switch airplane mode back to off.
+            if (PhoneUtils.isInEmergencyCall(mCM)) {
+                // Switch airplane mode back to off.
+                ConnectivityManager.from(this).setAirplaneMode(false);
+                Toast.makeText(this, R.string.radio_off_during_emergency_call, Toast.LENGTH_LONG)
+                        .show();
+                Log.i(LOG_TAG, "Ignoring airplane mode: emergency call. Turning airplane off");
+            } else {
+                Log.i(LOG_TAG, "Turning radio off - airplane");
+                PhoneUtils.setRadioPower(false);
+            }
+        } else {
+            Log.i(LOG_TAG, "Turning radio on - airplane");
+            PhoneUtils.setRadioPower(true);
+        }
+    }
+
     /**
      * Receiver for misc intent broadcasts the Phone app cares about.
      */
@@ -620,9 +645,13 @@ public class PhoneGlobals extends ContextWrapper {
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
             if (action.equals(Intent.ACTION_AIRPLANE_MODE_CHANGED)) {
-                boolean enabled = Settings.Global.getInt(getContentResolver(),
-                        Settings.Global.AIRPLANE_MODE_ON, 0) == 0;
-                PhoneUtils.setRadioPower(enabled);
+                int airplaneMode = Settings.Global.getInt(getContentResolver(),
+                        Settings.Global.AIRPLANE_MODE_ON, AIRPLANE_OFF);
+                // Treat any non-OFF values as ON.
+                if (airplaneMode != AIRPLANE_OFF) {
+                    airplaneMode = AIRPLANE_ON;
+                }
+                handleAirplaneModeChange(airplaneMode);
             } else if (action.equals(TelephonyIntents.ACTION_ANY_DATA_CONNECTION_STATE_CHANGED)) {
                 int subId = intent.getIntExtra(PhoneConstants.SUBSCRIPTION_KEY,
                         SubscriptionManager.INVALID_SUBSCRIPTION_ID);
