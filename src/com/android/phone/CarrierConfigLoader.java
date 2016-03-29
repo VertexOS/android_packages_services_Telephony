@@ -219,7 +219,8 @@ public class CarrierConfigLoader extends ICarrierConfigLoader.Stub {
                         saveConfigToXml(DEFAULT_CARRIER_CONFIG_PACKAGE, iccid, config);
                         mConfigFromDefaultApp[phoneId] = config;
                         sendMessage(obtainMessage(EVENT_LOADED_FROM_DEFAULT, phoneId, -1));
-                    } catch (RemoteException ex) {
+                    } catch (Exception ex) {
+                        // The bound app could throw exceptions that binder will pass to us.
                         loge("Failed to get carrier config: " + ex.toString());
                     } finally {
                         mContext.unbindService(mServiceConnection[phoneId]);
@@ -290,7 +291,8 @@ public class CarrierConfigLoader extends ICarrierConfigLoader.Stub {
                         saveConfigToXml(carrierPackageName, iccid, config);
                         mConfigFromCarrierApp[phoneId] = config;
                         sendMessage(obtainMessage(EVENT_LOADED_FROM_CARRIER, phoneId, -1));
-                    } catch (RemoteException ex) {
+                    } catch (Exception ex) {
+                        // The bound app could throw exceptions that binder will pass to us.
                         loge("Failed to get carrier config: " + ex.toString());
                     } finally {
                         mContext.unbindService(mServiceConnection[phoneId]);
