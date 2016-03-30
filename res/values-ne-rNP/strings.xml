@@ -448,6 +448,8 @@
     <string name="emergency_enable_radio_dialog_title" msgid="4627849966634578257">"आपतकालीन कल"</string>
     <string name="emergency_enable_radio_dialog_message" msgid="207613549344420291">"रेडियो खोल्दै..."</string>
     <string name="emergency_enable_radio_dialog_retry" msgid="5960061579996526883">"कुनै सेवा छैन। फेरि प्रयास गर्दै ..."</string>
+    <!-- no translation found for radio_off_during_emergency_call (2535800034010306830) -->
+    <skip />
     <string name="dial_emergency_error" msgid="1509085166367420355">"कल गर्न सकिँदैन। <xliff:g id="NON_EMERGENCY_NUMBER">%s</xliff:g> आपतकालीन नम्बर होइन।"</string>
     <string name="dial_emergency_empty_error" msgid="9130194953830414638">"कल गर्न सकिँदैन। आपतकालीन नम्बर डायल गर्नुहोस्।"</string>
     <string name="dialerKeyboardHintText" msgid="9192914825413747792">"डायल गर्न किबोर्ड प्रयोग गर्नुहोस्"</string>

@@ -448,6 +448,8 @@
     <string name="emergency_enable_radio_dialog_title" msgid="4627849966634578257">"Κλήσεις επείγουσας ανάγκης"</string>
     <string name="emergency_enable_radio_dialog_message" msgid="207613549344420291">"Ενεργοποίηση πομπού..."</string>
     <string name="emergency_enable_radio_dialog_retry" msgid="5960061579996526883">"Δεν υπάρχει υπηρεσία. Νέα προσπάθεια…"</string>
+    <!-- no translation found for radio_off_during_emergency_call (2535800034010306830) -->
+    <skip />
     <string name="dial_emergency_error" msgid="1509085166367420355">"Δεν είναι δυνατή η κλήση. Το <xliff:g id="NON_EMERGENCY_NUMBER">%s</xliff:g> δεν είναι αριθμός έκτακτης ανάγκης."</string>
     <string name="dial_emergency_empty_error" msgid="9130194953830414638">"Δεν είναι δυνατή η κλήση. Πληκτρολογήστε έναν αριθμό έκτακτης ανάγκης."</string>
     <string name="dialerKeyboardHintText" msgid="9192914825413747792">"Χρησιμοποιήστε το πληκτρολόγιο για να πραγματοποιήσετε καλέσετε έναν αριθμό"</string>

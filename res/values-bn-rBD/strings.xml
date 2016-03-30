@@ -448,6 +448,8 @@
     <string name="emergency_enable_radio_dialog_title" msgid="4627849966634578257">"জরুরি কল"</string>
     <string name="emergency_enable_radio_dialog_message" msgid="207613549344420291">"রেডিও চালু করা হচ্ছে…"</string>
     <string name="emergency_enable_radio_dialog_retry" msgid="5960061579996526883">"কোন পরিষেবা নেই৷ আবার চেষ্টা করা হচ্ছে..."</string>
+    <!-- no translation found for radio_off_during_emergency_call (2535800034010306830) -->
+    <skip />
     <string name="dial_emergency_error" msgid="1509085166367420355">"কল করা যাবে না৷ <xliff:g id="NON_EMERGENCY_NUMBER">%s</xliff:g> কোনো জরুরী নম্বর নয়৷"</string>
     <string name="dial_emergency_empty_error" msgid="9130194953830414638">"কল করা যাবে না৷ কোনো জরুরী নম্বর ডায়াল করুন৷"</string>
     <string name="dialerKeyboardHintText" msgid="9192914825413747792">"ডায়াল করতে কীবোর্ড ব্যবহার করুন"</string>

@@ -454,6 +454,8 @@
     <string name="emergency_enable_radio_dialog_title" msgid="4627849966634578257">"Larrialdi-deia"</string>
     <string name="emergency_enable_radio_dialog_message" msgid="207613549344420291">"Irratia pizten…"</string>
     <string name="emergency_enable_radio_dialog_retry" msgid="5960061579996526883">"Ez dago zerbitzurik. Berriro saiatzen…"</string>
+    <!-- no translation found for radio_off_during_emergency_call (2535800034010306830) -->
+    <skip />
     <string name="dial_emergency_error" msgid="1509085166367420355">"Ezin da deitu. <xliff:g id="NON_EMERGENCY_NUMBER">%s</xliff:g> ez da larrialdietarako zenbakia."</string>
     <string name="dial_emergency_empty_error" msgid="9130194953830414638">"Ezin da deitu. Markatu larrialdietarako zenbakia."</string>
     <string name="dialerKeyboardHintText" msgid="9192914825413747792">"Erabili teklatua markatzeko"</string>

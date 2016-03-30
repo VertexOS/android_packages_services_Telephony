@@ -448,6 +448,8 @@
     <string name="emergency_enable_radio_dialog_title" msgid="4627849966634578257">"అత్యవసర కాల్"</string>
     <string name="emergency_enable_radio_dialog_message" msgid="207613549344420291">"రేడియోను ప్రారంభిస్తోంది…"</string>
     <string name="emergency_enable_radio_dialog_retry" msgid="5960061579996526883">"సేవ లేదు. మళ్లీ ప్రయత్నిస్తోంది…"</string>
+    <!-- no translation found for radio_off_during_emergency_call (2535800034010306830) -->
+    <skip />
     <string name="dial_emergency_error" msgid="1509085166367420355">"కాల్ చేయలేరు. <xliff:g id="NON_EMERGENCY_NUMBER">%s</xliff:g> అత్యవసర నంబర్ కాదు."</string>
     <string name="dial_emergency_empty_error" msgid="9130194953830414638">"కాల్ చేయలేరు. అత్యవసర నంబర్‌ను డయల్ చేయండి."</string>
     <string name="dialerKeyboardHintText" msgid="9192914825413747792">"డయల్ చేయడానికి కీబోర్డ్‌ను ఉపయోగించండి"</string>

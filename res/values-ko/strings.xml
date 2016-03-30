@@ -448,6 +448,8 @@
     <string name="emergency_enable_radio_dialog_title" msgid="4627849966634578257">"긴급 전화"</string>
     <string name="emergency_enable_radio_dialog_message" msgid="207613549344420291">"무선을 켜는 중..."</string>
     <string name="emergency_enable_radio_dialog_retry" msgid="5960061579996526883">"서비스를 사용할 수 없습니다. 다시 시도 중..."</string>
+    <!-- no translation found for radio_off_during_emergency_call (2535800034010306830) -->
+    <skip />
     <string name="dial_emergency_error" msgid="1509085166367420355">"전화를 걸 수 없습니다. <xliff:g id="NON_EMERGENCY_NUMBER">%s</xliff:g>은(는) 긴급 번호가 아닙니다."</string>
     <string name="dial_emergency_empty_error" msgid="9130194953830414638">"전화를 걸 수 없습니다. 긴급 번호를 사용하세요."</string>
     <string name="dialerKeyboardHintText" msgid="9192914825413747792">"키보드를 사용하여 전화걸기"</string>

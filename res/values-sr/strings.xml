@@ -448,6 +448,8 @@
     <string name="emergency_enable_radio_dialog_title" msgid="4627849966634578257">"Хитан позив"</string>
     <string name="emergency_enable_radio_dialog_message" msgid="207613549344420291">"Укључивање радија…"</string>
     <string name="emergency_enable_radio_dialog_retry" msgid="5960061579996526883">"Нема мреже. Поновни покушај…"</string>
+    <!-- no translation found for radio_off_during_emergency_call (2535800034010306830) -->
+    <skip />
     <string name="dial_emergency_error" msgid="1509085166367420355">"Позив није успео. <xliff:g id="NON_EMERGENCY_NUMBER">%s</xliff:g> није број за хитне случајеве."</string>
     <string name="dial_emergency_empty_error" msgid="9130194953830414638">"Позив није успео. Позовите број за хитне случајеве."</string>
     <string name="dialerKeyboardHintText" msgid="9192914825413747792">"Користите тастатуру за позивање"</string>

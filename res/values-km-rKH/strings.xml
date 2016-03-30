@@ -448,6 +448,8 @@
     <string name="emergency_enable_radio_dialog_title" msgid="4627849966634578257">"ការ​ហៅ​នៅ​ពេល​មាន​អាសន្ន"</string>
     <string name="emergency_enable_radio_dialog_message" msgid="207613549344420291">"កំពុង​បើក​វិទ្យុ…"</string>
     <string name="emergency_enable_radio_dialog_retry" msgid="5960061579996526883">"គ្មានសេវាទេ។ ព្យាយាមម្តង…"</string>
+    <!-- no translation found for radio_off_during_emergency_call (2535800034010306830) -->
+    <skip />
     <string name="dial_emergency_error" msgid="1509085166367420355">"មិនអាចហៅបានទេ។ <xliff:g id="NON_EMERGENCY_NUMBER">%s</xliff:g> មិនមានជាលេខអាសន្នទេ។"</string>
     <string name="dial_emergency_empty_error" msgid="9130194953830414638">"មិនអាចហៅបានទេ។ ចុចហៅលេខអាសន្ន។"</string>
     <string name="dialerKeyboardHintText" msgid="9192914825413747792">"ប្រើ​​ក្ដារចុច​ដើម្បី​ចុច​លេខ"</string>

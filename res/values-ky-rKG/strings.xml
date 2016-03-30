@@ -448,6 +448,8 @@
     <string name="emergency_enable_radio_dialog_title" msgid="4627849966634578257">"Шашылыш чалуу"</string>
     <string name="emergency_enable_radio_dialog_message" msgid="207613549344420291">"Радио күйгүзүлүүдө…"</string>
     <string name="emergency_enable_radio_dialog_retry" msgid="5960061579996526883">"Кызмат жок. Кайра аракет кылууда…"</string>
+    <!-- no translation found for radio_off_during_emergency_call (2535800034010306830) -->
+    <skip />
     <string name="dial_emergency_error" msgid="1509085166367420355">"Чалынбай жатат. <xliff:g id="NON_EMERGENCY_NUMBER">%s</xliff:g> өзгөчө кырдаал номери эмес."</string>
     <string name="dial_emergency_empty_error" msgid="9130194953830414638">"Чалынбай жатат. Өзгөчө кырдаал номерин териңиз."</string>
     <string name="dialerKeyboardHintText" msgid="9192914825413747792">"Баскычтоп менен териңиз"</string>

@@ -448,6 +448,8 @@
     <string name="emergency_enable_radio_dialog_title" msgid="4627849966634578257">"ತುರ್ತು ಕರೆಗಳು"</string>
     <string name="emergency_enable_radio_dialog_message" msgid="207613549344420291">"ರೇಡಿಯೋ ಆನ್‌ ಮಾಡಲಾಗುತ್ತಿದೆ…"</string>
     <string name="emergency_enable_radio_dialog_retry" msgid="5960061579996526883">"ಯಾವುದೇ ಸೇವೆ ಇಲ್ಲ. ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಲಾಗುತ್ತಿದೆ..."</string>
+    <!-- no translation found for radio_off_during_emergency_call (2535800034010306830) -->
+    <skip />
     <string name="dial_emergency_error" msgid="1509085166367420355">"ಕರೆ ಮಾಡಲು ಸಾಧ್ಯವಿಲ್ಲ. <xliff:g id="NON_EMERGENCY_NUMBER">%s</xliff:g> ಇದು ತುರ್ತು ಸಂಖ್ಯೆಯಲ್ಲ."</string>
     <string name="dial_emergency_empty_error" msgid="9130194953830414638">"ಕರೆ ಮಾಡಲು ಸಾಧ್ಯವಿಲ್ಲ. ತುರ್ತು ಸಂಖ್ಯೆಯನ್ನು ಡಯಲ್ ಮಾಡಿ."</string>
     <string name="dialerKeyboardHintText" msgid="9192914825413747792">"ಡಯಲ್‌ ಮಾಡಲು ಕೀಬೋರ್ಡ್‌ ಬಳಸಿ"</string>

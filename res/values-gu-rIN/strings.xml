@@ -448,6 +448,8 @@
     <string name="emergency_enable_radio_dialog_title" msgid="4627849966634578257">"કટોકટીનો કૉલ"</string>
     <string name="emergency_enable_radio_dialog_message" msgid="207613549344420291">"રેડિઓ ચાલુ કરી રહ્યાં છે…"</string>
     <string name="emergency_enable_radio_dialog_retry" msgid="5960061579996526883">"કોઈ સેવા નથી. ફરી પ્રયાસ કરી રહ્યાં છે…"</string>
+    <!-- no translation found for radio_off_during_emergency_call (2535800034010306830) -->
+    <skip />
     <string name="dial_emergency_error" msgid="1509085166367420355">"કૉલ કરી શકાતો નથી. <xliff:g id="NON_EMERGENCY_NUMBER">%s</xliff:g> એ કટોકટીનો નંબર નથી."</string>
     <string name="dial_emergency_empty_error" msgid="9130194953830414638">"કૉલ કરી શકાતો નથી. કટોકટીનો નંબર ડાયલ કરો!"</string>
     <string name="dialerKeyboardHintText" msgid="9192914825413747792">"ડાયલ કરવા માટે કીબોર્ડનો ઉપયોગ કરો"</string>

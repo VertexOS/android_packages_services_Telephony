@@ -448,6 +448,8 @@
     <string name="emergency_enable_radio_dialog_title" msgid="4627849966634578257">"مكالمة الطوارئ"</string>
     <string name="emergency_enable_radio_dialog_message" msgid="207613549344420291">"جارٍ تشغيل اللاسلكي..."</string>
     <string name="emergency_enable_radio_dialog_retry" msgid="5960061579996526883">"لا تتوفر خدمة. جارٍ إعادة المحاولة…"</string>
+    <!-- no translation found for radio_off_during_emergency_call (2535800034010306830) -->
+    <skip />
     <string name="dial_emergency_error" msgid="1509085166367420355">"يتعذر الاتصال. لا يعد <xliff:g id="NON_EMERGENCY_NUMBER">%s</xliff:g> رقم طوارئ."</string>
     <string name="dial_emergency_empty_error" msgid="9130194953830414638">"يتعذر الاتصال. يمكنك طلب رقم طوارئ."</string>
     <string name="dialerKeyboardHintText" msgid="9192914825413747792">"استخدام لوحة المفاتيح للطلب"</string>
