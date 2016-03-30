@@ -76,13 +76,20 @@ public class EmergencyActionGroup extends FrameLayout implements View.OnClickLis
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
-        setupAssistActions();
 
         mSelectedContainer = (ViewGroup) findViewById(R.id.selected_container);
         mSelectedContainer.setOnClickListener(this);
         mSelectedLabel = (TextView) findViewById(R.id.selected_label);
         mRippleView = findViewById(R.id.ripple_view);
         mLaunchHint = findViewById(R.id.launch_hint);
+    }
+
+    @Override
+    protected void onWindowVisibilityChanged(int visibility) {
+        super.onWindowVisibilityChanged(visibility);
+        if (visibility == View.VISIBLE) {
+            setupAssistActions();
+        }
     }
 
     /**
