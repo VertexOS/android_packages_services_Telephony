@@ -448,6 +448,8 @@
     <string name="emergency_enable_radio_dialog_title" msgid="4627849966634578257">"שיחת חירום"</string>
     <string name="emergency_enable_radio_dialog_message" msgid="207613549344420291">"מפעיל את הרדיו…"</string>
     <string name="emergency_enable_radio_dialog_retry" msgid="5960061579996526883">"אין שירות. מנסה שוב..."</string>
+    <!-- no translation found for radio_off_during_emergency_call (2535800034010306830) -->
+    <skip />
     <string name="dial_emergency_error" msgid="1509085166367420355">"לא ניתן להתקשר. <xliff:g id="NON_EMERGENCY_NUMBER">%s</xliff:g> אינו מספר חירום."</string>
     <string name="dial_emergency_empty_error" msgid="9130194953830414638">"לא ניתן להתקשר. חייג למספר חירום."</string>
     <string name="dialerKeyboardHintText" msgid="9192914825413747792">"השתמש במקלדת כדי לחייג"</string>
