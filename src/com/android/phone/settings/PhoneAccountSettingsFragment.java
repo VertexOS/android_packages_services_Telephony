@@ -357,7 +357,11 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
 
             // Create the preference & add the label
             Preference accountPreference = new Preference(getActivity());
-            accountPreference.setTitle(account.getLabel());
+            CharSequence accountLabel = account.getLabel();
+            boolean isSimAccount =
+                    account.hasCapabilities(PhoneAccount.CAPABILITY_SIM_SUBSCRIPTION);
+            accountPreference.setTitle((TextUtils.isEmpty(accountLabel) && isSimAccount)
+                    ? getString(R.string.phone_accounts_default_account_label) : accountLabel);
 
             // Add an icon.
             Icon icon = account.getIcon();
