@@ -178,6 +178,10 @@ final class TelecomAccountRegistry {
                 capabilities |= PhoneAccount.CAPABILITY_VIDEO_CALLING_RELIES_ON_PRESENCE;
             }
 
+            if (mIsVideoCapable && isCarrierEmergencyVideoCallsAllowed()) {
+                capabilities |= PhoneAccount.CAPABILITY_EMERGENCY_VIDEO_CALLING;
+            }
+
             mIsVideoPauseSupported = isCarrierVideoPauseSupported();
             Bundle instantLetteringExtras = null;
             if (isCarrierInstantLetteringSupported()) {
@@ -275,6 +279,17 @@ final class TelecomAccountRegistry {
             PersistableBundle b =
                     PhoneGlobals.getInstance().getCarrierConfigForSubId(mPhone.getSubId());
             return b.getBoolean(CarrierConfigManager.KEY_SUPPORT_CONFERENCE_CALL_BOOL);
+        }
+
+        /**
+         * Determines from carrier config whether emergency video calls are supported.
+         *
+         * @return {@code true} if emergency video calls are allowed, {@code false} otherwise.
+         */
+        private boolean isCarrierEmergencyVideoCallsAllowed() {
+            PersistableBundle b =
+                    PhoneGlobals.getInstance().getCarrierConfigForSubId(mPhone.getSubId());
+            return b.getBoolean(CarrierConfigManager.KEY_ALLOW_EMERGENCY_VIDEO_CALLS_BOOL);
         }
 
         /**
