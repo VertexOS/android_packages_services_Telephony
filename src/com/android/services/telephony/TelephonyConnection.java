@@ -614,6 +614,8 @@ abstract class TelephonyConnection extends Connection {
         newCapabilities = applyOriginalConnectionCapabilities(newCapabilities);
         newCapabilities = changeBitmask(newCapabilities, CAPABILITY_CAN_PAUSE_VIDEO,
                 mIsVideoPauseSupported && isVideoCapable());
+        newCapabilities = changeBitmask(newCapabilities, CAPABILITY_CAN_PULL_CALL,
+                isExternalConnection() && isPullable());
         newCapabilities = applyConferenceTerminationCapabilities(newCapabilities);
 
         if (getConnectionCapabilities() != newCapabilities) {
@@ -642,6 +644,8 @@ abstract class TelephonyConnection extends Connection {
 
         newProperties = changeBitmask(newProperties, PROPERTY_HIGH_DEF_AUDIO, mHasHighDefAudio);
         newProperties = changeBitmask(newProperties, PROPERTY_WIFI, mIsWifi);
+        newProperties = changeBitmask(newProperties, PROPERTY_IS_EXTERNAL_CALL,
+                isExternalConnection());
 
         if (getConnectionProperties() != newProperties) {
             setConnectionProperties(newProperties);
@@ -1097,6 +1101,33 @@ abstract class TelephonyConnection extends Connection {
         return can(mOriginalConnectionCapabilities, Capability.SUPPORTS_VT_LOCAL_BIDIRECTIONAL)
                 && can(mOriginalConnectionCapabilities,
                 Capability.SUPPORTS_VT_REMOTE_BIDIRECTIONAL);
+    }
+
+    /**
+     * Determines if the current connection is an external connection.
+     *
+     * A connection is deemed to be external if the original connection capabilities state that it
+     * is.
+     *
+     * @return {@code true} if the connection is external, {@code false} otherwise.
+     */
+    private boolean isExternalConnection() {
+        return can(mOriginalConnectionCapabilities, Capability.IS_EXTERNAL_CONNECTION)
+                && can(mOriginalConnectionCapabilities,
+                Capability.IS_EXTERNAL_CONNECTION);
+    }
+
+    /**
+     * Determines if the current connection is pullable.
+     *
+     * A connection is deemed to be pullable if the original connection capabilities state that it
+     * is.
+     *
+     * @return {@code true} if the connection is pullable, {@code false} otherwise.
+     */
+    private boolean isPullable() {
+        return can(mOriginalConnectionCapabilities, Capability.IS_EXTERNAL_CONNECTION)
+                && can(mOriginalConnectionCapabilities, Capability.IS_PULLABLE);
     }
 
     /**

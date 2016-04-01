@@ -29,6 +29,8 @@ import com.android.internal.telephony.Call;
 import com.android.internal.telephony.Connection;
 import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.cdma.CdmaCallWaitingNotification;
+import com.android.internal.telephony.imsphone.ImsExternalCallTracker;
+import com.android.internal.telephony.imsphone.ImsExternalConnection;
 import com.android.phone.PhoneUtils;
 
 import com.google.common.base.Preconditions;
@@ -176,6 +178,18 @@ final class PstnIncomingCallNotifier {
                 extras = new Bundle();
                 Uri uri = Uri.fromParts(PhoneAccount.SCHEME_TEL, connection.getAddress(), null);
                 extras.putParcelable(TelecomManager.EXTRA_UNKNOWN_CALL_HANDLE, uri);
+            }
+            // ImsExternalConnections are keyed by a unique mCallId; include this as an extra on
+            // the call to addNewUknownCall in Telecom.  This way when the request comes back to the
+            // TelephonyConnectionService, we will be able to determine which unknown connection is
+            // being added.
+            if (connection instanceof ImsExternalConnection) {
+                if (extras == null) {
+                    extras = new Bundle();
+                }
+                ImsExternalConnection externalConnection = (ImsExternalConnection) connection;
+                extras.putInt(ImsExternalCallTracker.EXTRA_IMS_EXTERNAL_CALL_ID,
+                        externalConnection.getCallId());
             }
             TelecomManager.from(mPhone.getContext()).addNewUnknownCall(
                     PhoneUtils.makePstnPhoneAccountHandle(mPhone), extras);
