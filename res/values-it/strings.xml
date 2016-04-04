@@ -63,6 +63,7 @@
     <string name="phone_accounts_make_calls_with" msgid="1969188078933152231">"Effettua chiamate con"</string>
     <string name="phone_accounts_make_sip_calls_with" msgid="4677789312053828493">"Effettua chiamate SIP con"</string>
     <string name="phone_accounts_ask_every_time" msgid="4346499067149985702">"Chiedi prima"</string>
+    <string name="phone_accounts_default_account_label" msgid="4183772241814460014">"Nessuna rete disponibile"</string>
     <string name="phone_accounts_settings_header" msgid="4141710640883261094">"Impostazioni"</string>
     <string name="phone_accounts_choose_accounts" msgid="5232948804226424002">"Seleziona account"</string>
     <string name="phone_accounts_selection_header" msgid="1365215726106915865">"Account telefono"</string>
@@ -452,8 +453,7 @@
     <string name="emergency_enable_radio_dialog_title" msgid="4627849966634578257">"Chiamata di emergenza"</string>
     <string name="emergency_enable_radio_dialog_message" msgid="207613549344420291">"Attivazione segnale cellulare..."</string>
     <string name="emergency_enable_radio_dialog_retry" msgid="5960061579996526883">"Nessun servizio. Nuovo tentativo…"</string>
-    <!-- no translation found for radio_off_during_emergency_call (2535800034010306830) -->
-    <skip />
+    <string name="radio_off_during_emergency_call" msgid="2535800034010306830">"Impossibile attivare la modalità aereo durante una chiamata di emergenza."</string>
     <string name="dial_emergency_error" msgid="1509085166367420355">"Impossibile chiamare. <xliff:g id="NON_EMERGENCY_NUMBER">%s</xliff:g> non è un numero di emergenza."</string>
     <string name="dial_emergency_empty_error" msgid="9130194953830414638">"Impossibile chiamare. Componi un numero di emergenza."</string>
     <string name="dialerKeyboardHintText" msgid="9192914825413747792">"Usa tastiera"</string>

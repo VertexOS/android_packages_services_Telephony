@@ -63,6 +63,7 @@
     <string name="phone_accounts_make_calls_with" msgid="1969188078933152231">"Piga simu kutumia"</string>
     <string name="phone_accounts_make_sip_calls_with" msgid="4677789312053828493">"Piga simu za SIP kwa"</string>
     <string name="phone_accounts_ask_every_time" msgid="4346499067149985702">"Uliza kwanza"</string>
+    <string name="phone_accounts_default_account_label" msgid="4183772241814460014">"Hakuna mtandao unaopatikana"</string>
     <string name="phone_accounts_settings_header" msgid="4141710640883261094">"Mipangilio"</string>
     <string name="phone_accounts_choose_accounts" msgid="5232948804226424002">"Chagua akaunti"</string>
     <string name="phone_accounts_selection_header" msgid="1365215726106915865">"Akaunti za simu"</string>
@@ -448,8 +449,7 @@
     <string name="emergency_enable_radio_dialog_title" msgid="4627849966634578257">"Simu ya dharura"</string>
     <string name="emergency_enable_radio_dialog_message" msgid="207613549344420291">"Inawasha redio..."</string>
     <string name="emergency_enable_radio_dialog_retry" msgid="5960061579996526883">"Hakuna huduma. Inajaribu tena..."</string>
-    <!-- no translation found for radio_off_during_emergency_call (2535800034010306830) -->
-    <skip />
+    <string name="radio_off_during_emergency_call" msgid="2535800034010306830">"Huwezi kuingia katika hali ya ndegeni huku simu ya dharura inaendelea."</string>
     <string name="dial_emergency_error" msgid="1509085166367420355">"Haiwezi kupiga simu. <xliff:g id="NON_EMERGENCY_NUMBER">%s</xliff:g> si nambari ya dharura."</string>
     <string name="dial_emergency_empty_error" msgid="9130194953830414638">"Haiwezi kupiga simu. Piga simu nambari ya dharura."</string>
     <string name="dialerKeyboardHintText" msgid="9192914825413747792">"Tumia kibodi kubonyeza"</string>

@@ -63,6 +63,7 @@
     <string name="phone_accounts_make_calls_with" msgid="1969188078933152231">"ഇത് ഉപയോഗിച്ച് കോളുചെയ്യുക"</string>
     <string name="phone_accounts_make_sip_calls_with" msgid="4677789312053828493">"ഇതുപയോഗിച്ച് SIP കോളുചെയ്യുക"</string>
     <string name="phone_accounts_ask_every_time" msgid="4346499067149985702">"ആദ്യതവണ ചോദിക്കുക"</string>
+    <string name="phone_accounts_default_account_label" msgid="4183772241814460014">"നെറ്റ്‌വർക്കൊന്നും ലഭ്യമല്ല"</string>
     <string name="phone_accounts_settings_header" msgid="4141710640883261094">"ക്രമീകരണങ്ങൾ"</string>
     <string name="phone_accounts_choose_accounts" msgid="5232948804226424002">"അക്കൗണ്ടുകൾ തിരഞ്ഞെടുക്കുക"</string>
     <string name="phone_accounts_selection_header" msgid="1365215726106915865">"ഫോൺ അക്കൗണ്ടുകൾ"</string>
@@ -270,7 +271,7 @@
     <item msgid="5884448729274543324">"6"</item>
     <item msgid="5511864807618312598">"7"</item>
   </string-array>
-    <string name="list_language_dtitle" msgid="5442908726538951934">"ഭാഷകള്‍‌"</string>
+    <string name="list_language_dtitle" msgid="5442908726538951934">"ഭാഷകൾ"</string>
     <string name="enable_disable_local_weather" msgid="986967454867219114">"പ്രാദേശിക കാലാവസ്ഥ"</string>
     <string name="local_weather_enable" msgid="6199315114382448922">"പ്രാദേശിക കാലാവസ്ഥ പ്രവർത്തനക്ഷമമാക്കി"</string>
     <string name="local_weather_disable" msgid="2510158089142626480">"പ്രാദേശിക കാലാവസ്ഥ പ്രവർത്തനരഹിതമാക്കി"</string>
@@ -448,8 +449,7 @@
     <string name="emergency_enable_radio_dialog_title" msgid="4627849966634578257">"അടിയന്തര കോൾ"</string>
     <string name="emergency_enable_radio_dialog_message" msgid="207613549344420291">"റേഡിയോ ഓൺ ചെയ്യുന്നു…"</string>
     <string name="emergency_enable_radio_dialog_retry" msgid="5960061579996526883">"സേവനമൊന്നുമില്ല. വീണ്ടും ശ്രമിക്കുന്നു…"</string>
-    <!-- no translation found for radio_off_during_emergency_call (2535800034010306830) -->
-    <skip />
+    <string name="radio_off_during_emergency_call" msgid="2535800034010306830">"അടിയന്തര കോളിലായിരിക്കുമ്പോൾ, ഫ്ലൈറ്റ് മോഡ് ഓണാക്കാനാകില്ല."</string>
     <string name="dial_emergency_error" msgid="1509085166367420355">"കോൾ ചെയ്യാനാവില്ല. <xliff:g id="NON_EMERGENCY_NUMBER">%s</xliff:g> എന്നത് ഒരു അടിയന്തിര നമ്പരല്ല."</string>
     <string name="dial_emergency_empty_error" msgid="9130194953830414638">"കോൾ ചെയ്യാനാവില്ല. ഒരു അടിയന്തിര കോൾ നമ്പർ ഡയൽചെയ്യുക."</string>
     <string name="dialerKeyboardHintText" msgid="9192914825413747792">"ഡയൽ ചെയ്യാൻ കീബോർഡ് ഉപയോഗിക്കുക"</string>

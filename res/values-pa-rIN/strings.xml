@@ -63,6 +63,7 @@
     <string name="phone_accounts_make_calls_with" msgid="1969188078933152231">"ਇਸ ਨਾਲ ਕਾਲਾਂ ਕਰੋ"</string>
     <string name="phone_accounts_make_sip_calls_with" msgid="4677789312053828493">"ਇਸ ਨਾਲ SIP ਕਾਲਾਂ ਕਰੋ"</string>
     <string name="phone_accounts_ask_every_time" msgid="4346499067149985702">"ਪਹਿਲਾਂ ਪੁੱਛੋ"</string>
+    <string name="phone_accounts_default_account_label" msgid="4183772241814460014">"ਕੋਈ ਨੈੱਟਵਰਕ ਉਪਲਬਧ ਨਹੀਂ"</string>
     <string name="phone_accounts_settings_header" msgid="4141710640883261094">"ਸੈਟਿੰਗਾਂ"</string>
     <string name="phone_accounts_choose_accounts" msgid="5232948804226424002">"ਖਾਤੇ ਚੁਣੋ"</string>
     <string name="phone_accounts_selection_header" msgid="1365215726106915865">"ਫੋਨ ਖਾਤੇ"</string>
@@ -448,8 +449,7 @@
     <string name="emergency_enable_radio_dialog_title" msgid="4627849966634578257">"ਐਮਰਜੈਂਸੀ ਕਾਲ"</string>
     <string name="emergency_enable_radio_dialog_message" msgid="207613549344420291">"ਰੇਡੀਓ ਚਾਲੂ ਕਰ ਰਿਹਾ ਹੈ…"</string>
     <string name="emergency_enable_radio_dialog_retry" msgid="5960061579996526883">"ਕੋਈ ਸੇਵਾ ਨਹੀਂ। ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰ ਰਿਹਾ ਹੈ…"</string>
-    <!-- no translation found for radio_off_during_emergency_call (2535800034010306830) -->
-    <skip />
+    <string name="radio_off_during_emergency_call" msgid="2535800034010306830">"ਕਿਸੇ ਐਮਰਜੈਂਸੀ ਕਾਲ ਦੌਰਾਨ ਜਹਾਜ਼ ਮੋਡ ਵਿੱਚ ਦਾਖਲ ਨਹੀਂ ਹੋਇਆ ਜਾ ਸਕਦਾ।"</string>
     <string name="dial_emergency_error" msgid="1509085166367420355">"ਕਾਲ ਨਹੀਂ ਕਰ ਸਕਦਾ। <xliff:g id="NON_EMERGENCY_NUMBER">%s</xliff:g> ਇੱਕ ਐਮਰਜੈਂਸੀ ਨੰਬਰ ਨਹੀਂ ਹੈ।"</string>
     <string name="dial_emergency_empty_error" msgid="9130194953830414638">"ਕਾਲ ਨਹੀਂ ਕਰ ਸਕਦਾ। ਇੱਕ ਐਮਰਜੈਂਸੀ ਨੰਬਰ ਡਾਇਲ ਕਰੋ।"</string>
     <string name="dialerKeyboardHintText" msgid="9192914825413747792">"ਡਾਇਲ ਕਰਨ ਲਈ ਕੀਬੋਰਡ ਵਰਤੋ"</string>

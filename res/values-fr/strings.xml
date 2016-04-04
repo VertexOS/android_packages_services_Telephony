@@ -63,6 +63,7 @@
     <string name="phone_accounts_make_calls_with" msgid="1969188078933152231">"Passer les appels avec"</string>
     <string name="phone_accounts_make_sip_calls_with" msgid="4677789312053828493">"Passer les appels SIP avec"</string>
     <string name="phone_accounts_ask_every_time" msgid="4346499067149985702">"Demander d\'abord"</string>
+    <string name="phone_accounts_default_account_label" msgid="4183772241814460014">"Aucun réseau disponible"</string>
     <string name="phone_accounts_settings_header" msgid="4141710640883261094">"Paramètres"</string>
     <string name="phone_accounts_choose_accounts" msgid="5232948804226424002">"Sélectionner des comptes"</string>
     <string name="phone_accounts_selection_header" msgid="1365215726106915865">"Comptes téléphone"</string>
@@ -448,8 +449,7 @@
     <string name="emergency_enable_radio_dialog_title" msgid="4627849966634578257">"Appel d\'urgence"</string>
     <string name="emergency_enable_radio_dialog_message" msgid="207613549344420291">"Activation du signal radio..."</string>
     <string name="emergency_enable_radio_dialog_retry" msgid="5960061579996526883">"Aucun service disponible. Nouvelle tentative en cours…"</string>
-    <!-- no translation found for radio_off_during_emergency_call (2535800034010306830) -->
-    <skip />
+    <string name="radio_off_during_emergency_call" msgid="2535800034010306830">"Vous ne pouvez pas activer le mode Avion au cours d\'un appel d\'urgence."</string>
     <string name="dial_emergency_error" msgid="1509085166367420355">"Impossible d\'émettre l\'appel. <xliff:g id="NON_EMERGENCY_NUMBER">%s</xliff:g> n\'est pas un numéro d\'urgence."</string>
     <string name="dial_emergency_empty_error" msgid="9130194953830414638">"Impossible d\'émettre l\'appel. Veuillez composer un numéro d\'urgence."</string>
     <string name="dialerKeyboardHintText" msgid="9192914825413747792">"Utilisez le clavier pour composer un numéro."</string>

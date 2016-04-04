@@ -63,6 +63,7 @@
     <string name="phone_accounts_make_calls_with" msgid="1969188078933152231">"选择通话帐号"</string>
     <string name="phone_accounts_make_sip_calls_with" msgid="4677789312053828493">"选择 SIP 通话帐号"</string>
     <string name="phone_accounts_ask_every_time" msgid="4346499067149985702">"先询问"</string>
+    <string name="phone_accounts_default_account_label" msgid="4183772241814460014">"无可用网络"</string>
     <string name="phone_accounts_settings_header" msgid="4141710640883261094">"设置"</string>
     <string name="phone_accounts_choose_accounts" msgid="5232948804226424002">"选择帐号"</string>
     <string name="phone_accounts_selection_header" msgid="1365215726106915865">"电话帐号"</string>
@@ -448,8 +449,7 @@
     <string name="emergency_enable_radio_dialog_title" msgid="4627849966634578257">"紧急呼救"</string>
     <string name="emergency_enable_radio_dialog_message" msgid="207613549344420291">"正在打开天线..."</string>
     <string name="emergency_enable_radio_dialog_retry" msgid="5960061579996526883">"无服务，正在重试…"</string>
-    <!-- no translation found for radio_off_during_emergency_call (2535800034010306830) -->
-    <skip />
+    <string name="radio_off_during_emergency_call" msgid="2535800034010306830">"正在进行紧急呼救通话，无法开启飞行模式。"</string>
     <string name="dial_emergency_error" msgid="1509085166367420355">"无法拨打该电话。<xliff:g id="NON_EMERGENCY_NUMBER">%s</xliff:g> 不是紧急呼救号码。"</string>
     <string name="dial_emergency_empty_error" msgid="9130194953830414638">"无法拨打该电话。请拨打紧急呼救电话。"</string>
     <string name="dialerKeyboardHintText" msgid="9192914825413747792">"使用键盘拨号"</string>

@@ -63,6 +63,7 @@
     <string name="phone_accounts_make_calls_with" msgid="1969188078933152231">"Ընտրել հաշիվ զանգերի համար"</string>
     <string name="phone_accounts_make_sip_calls_with" msgid="4677789312053828493">"Ընտրել հաշիվ SIP-ի միջոցով զանգերի համար"</string>
     <string name="phone_accounts_ask_every_time" msgid="4346499067149985702">"Նախ հարցնել"</string>
+    <string name="phone_accounts_default_account_label" msgid="4183772241814460014">"Հասանելի ցանց չկա"</string>
     <string name="phone_accounts_settings_header" msgid="4141710640883261094">"Կարգավորումներ"</string>
     <string name="phone_accounts_choose_accounts" msgid="5232948804226424002">"Ընտրել հաշիվներ"</string>
     <string name="phone_accounts_selection_header" msgid="1365215726106915865">"Հաշիվներ զանգերի համար"</string>
@@ -454,8 +455,7 @@
     <string name="emergency_enable_radio_dialog_title" msgid="4627849966634578257">"Արտակարգ իրավիճակների զանգ"</string>
     <string name="emergency_enable_radio_dialog_message" msgid="207613549344420291">"Ռադիոն միացվում է..."</string>
     <string name="emergency_enable_radio_dialog_retry" msgid="5960061579996526883">"Ծառայությունը մատչելի չէ: Նորից փորձեք…"</string>
-    <!-- no translation found for radio_off_during_emergency_call (2535800034010306830) -->
-    <skip />
+    <string name="radio_off_during_emergency_call" msgid="2535800034010306830">"Արտակարգ իրավիճակների զանգի ժամանակ հնարավոր չէ մտնել ինքնաթիռային ռեժիմ:"</string>
     <string name="dial_emergency_error" msgid="1509085166367420355">"Հնարավոր չէ զանգել: <xliff:g id="NON_EMERGENCY_NUMBER">%s</xliff:g> համարը արտակարգ իրավիճակի համար չէ:"</string>
     <string name="dial_emergency_empty_error" msgid="9130194953830414638">"Հնարավոր չէ զանգել: Հավաքեք արտակարգ իրավիճակի որևէ համար:"</string>
     <string name="dialerKeyboardHintText" msgid="9192914825413747792">"Օգտագործեք ստեղնաշարը՝ համարհավաքման համար"</string>

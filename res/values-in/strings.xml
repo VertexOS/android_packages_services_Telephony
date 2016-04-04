@@ -63,6 +63,7 @@
     <string name="phone_accounts_make_calls_with" msgid="1969188078933152231">"Lakukan panggilan dengan"</string>
     <string name="phone_accounts_make_sip_calls_with" msgid="4677789312053828493">"Lakukan panggilan SIP dengan"</string>
     <string name="phone_accounts_ask_every_time" msgid="4346499067149985702">"Tanyakan terlebih dahulu"</string>
+    <string name="phone_accounts_default_account_label" msgid="4183772241814460014">"Jaringan tidak tersedia"</string>
     <string name="phone_accounts_settings_header" msgid="4141710640883261094">"Setelan"</string>
     <string name="phone_accounts_choose_accounts" msgid="5232948804226424002">"Pilih akun"</string>
     <string name="phone_accounts_selection_header" msgid="1365215726106915865">"Akun ponsel"</string>
@@ -448,8 +449,7 @@
     <string name="emergency_enable_radio_dialog_title" msgid="4627849966634578257">"Panggilan darurat"</string>
     <string name="emergency_enable_radio_dialog_message" msgid="207613549344420291">"Menghidupkan radio..."</string>
     <string name="emergency_enable_radio_dialog_retry" msgid="5960061579996526883">"Tidak ada layanan. Mencoba lagi…"</string>
-    <!-- no translation found for radio_off_during_emergency_call (2535800034010306830) -->
-    <skip />
+    <string name="radio_off_during_emergency_call" msgid="2535800034010306830">"Tidak dapat masuk ke mode pesawat selama panggilan darurat."</string>
     <string name="dial_emergency_error" msgid="1509085166367420355">"Tidak dapat menelepon. <xliff:g id="NON_EMERGENCY_NUMBER">%s</xliff:g> bukan nomor darurat."</string>
     <string name="dial_emergency_empty_error" msgid="9130194953830414638">"Tidak dapat menelepon. Panggil nomor darurat."</string>
     <string name="dialerKeyboardHintText" msgid="9192914825413747792">"Gunakan keyboard untuk memanggil"</string>
