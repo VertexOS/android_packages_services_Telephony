@@ -2918,6 +2918,32 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
 
     /*
      * {@hide}
+     * Returns the Voice over Wifi Calling Status
+     */
+    public boolean isVoWifiCallingAvailableForSubscriber(int subId) {
+        final Phone phone = getPhone(subId);
+
+        if (phone != null) {
+            return phone.isWifiCallingEnabled();
+        }
+        return false;
+    }
+
+    /*
+     * {@hide}
+     * Returns the Video telephony WifiCalling Status
+     */
+    public boolean isVideoTelephonyWifiCallingAvailableForSubscriber(int subId) {
+        final Phone phone = getPhone(subId);
+
+        if (phone != null) {
+            return phone.isVideoWifiCallingEnabled();
+        }
+        return false;
+    }
+
+    /*
+     * {@hide}
      * Returns the IMS Registration Status
      */
     public boolean isVolteAvailable() {
