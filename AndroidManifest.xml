@@ -675,7 +675,8 @@
         </receiver>
        <receiver
            android:name="com.android.phone.vvm.omtp.fetch.FetchVoicemailReceiver"
-           android:exported="true">
+           android:exported="true"
+           android:permission="com.android.voicemail.permission.READ_VOICEMAIL">
            <intent-filter>
               <action android:name="android.intent.action.FETCH_VOICEMAIL" />
                <data
@@ -686,7 +687,8 @@
        </receiver>
         <receiver
             android:name="com.android.phone.vvm.omtp.sync.OmtpVvmSyncReceiver"
-            android:exported="true">
+            android:exported="true"
+            android:permission="com.android.voicemail.permission.READ_VOICEMAIL">
             <intent-filter>
                 <action android:name="android.intent.action.SYNC_VOICEMAIL"/>
             </intent-filter>
