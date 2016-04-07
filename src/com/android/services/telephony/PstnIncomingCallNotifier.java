@@ -16,18 +16,30 @@
 
 package com.android.services.telephony;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.AsyncResult;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.telecom.PhoneAccount;
+import android.telecom.PhoneAccountHandle;
 import android.telecom.TelecomManager;
 import android.text.TextUtils;
 
 import com.android.internal.telephony.Call;
+import com.android.internal.telephony.CallStateException;
 import com.android.internal.telephony.Connection;
+import com.android.internal.telephony.DriverCall;
+import com.android.internal.telephony.GsmCdmaCallTracker;
+import com.android.internal.telephony.GsmCdmaConnection;
+import com.android.internal.telephony.GsmCdmaPhone;
 import com.android.internal.telephony.Phone;
+import com.android.internal.telephony.TelephonyComponentFactory;
+import com.android.internal.telephony.TelephonyIntents;
 import com.android.internal.telephony.cdma.CdmaCallWaitingNotification;
 import com.android.internal.telephony.imsphone.ImsExternalCallTracker;
 import com.android.internal.telephony.imsphone.ImsExternalConnection;
@@ -191,8 +203,16 @@ final class PstnIncomingCallNotifier {
                 extras.putInt(ImsExternalCallTracker.EXTRA_IMS_EXTERNAL_CALL_ID,
                         externalConnection.getCallId());
             }
-            TelecomManager.from(mPhone.getContext()).addNewUnknownCall(
-                    PhoneUtils.makePstnPhoneAccountHandle(mPhone), extras);
+            PhoneAccountHandle handle = findCorrectPhoneAccountHandle();
+            if (handle == null) {
+                try {
+                    connection.hangup();
+                } catch (CallStateException e) {
+                    // connection already disconnected. Do nothing
+                }
+            } else {
+                TelecomManager.from(mPhone.getContext()).addNewUnknownCall(handle, extras);
+            }
         } else {
             Log.i(this, "swapped an old connection, new one is: %s", connection);
         }
@@ -209,8 +229,44 @@ final class PstnIncomingCallNotifier {
             Uri uri = Uri.fromParts(PhoneAccount.SCHEME_TEL, connection.getAddress(), null);
             extras.putParcelable(TelecomManager.EXTRA_INCOMING_CALL_ADDRESS, uri);
         }
-        TelecomManager.from(mPhone.getContext()).addNewIncomingCall(
-                PhoneUtils.makePstnPhoneAccountHandle(mPhone), extras);
+        PhoneAccountHandle handle = findCorrectPhoneAccountHandle();
+        if (handle == null) {
+            try {
+                connection.hangup();
+            } catch (CallStateException e) {
+                // connection already disconnected. Do nothing
+            }
+        } else {
+            TelecomManager.from(mPhone.getContext()).addNewIncomingCall(handle, extras);
+        }
+    }
+
+    /**
+     * Returns the PhoneAccount associated with this {@code PstnIncomingCallNotifier}'s phone. On a
+     * device with No SIM or in airplane mode, it can return an Emergency-only PhoneAccount. If no
+     * PhoneAccount is registered with telecom, return null.
+     * @return A valid PhoneAccountHandle that is registered to Telecom or null if there is none
+     * registered.
+     */
+    private PhoneAccountHandle findCorrectPhoneAccountHandle() {
+        TelecomAccountRegistry telecomAccountRegistry = TelecomAccountRegistry.getInstance(null);
+        // Check to see if a the SIM PhoneAccountHandle Exists for the Call.
+        PhoneAccountHandle handle = PhoneUtils.makePstnPhoneAccountHandle(mPhone);
+        if (telecomAccountRegistry.hasAccountEntryForPhoneAccount(handle)) {
+            return handle;
+        }
+        // The PhoneAccountHandle does not match any PhoneAccount registered in Telecom.
+        // This is only known to happen if there is no SIM card in the device and the device
+        // receives an MT call while in ECM. Use the Emergency PhoneAccount to receive the account
+        // if it exists.
+        PhoneAccountHandle emergencyHandle =
+                PhoneUtils.makePstnPhoneAccountHandleWithPrefix(mPhone, "", true);
+        if(telecomAccountRegistry.hasAccountEntryForPhoneAccount(emergencyHandle)) {
+            Log.i(this, "Receiving MT call in ECM. Using Emergency PhoneAccount Instead.");
+            return emergencyHandle;
+        }
+        Log.w(this, "PhoneAccount not found.");
+        return null;
     }
 
     /**

@@ -343,8 +343,17 @@ public class TelephonyConnectionService extends ConnectionService {
             PhoneAccountHandle connectionManagerPhoneAccount,
             ConnectionRequest request) {
         Log.i(this, "onCreateIncomingConnection, request: " + request);
-
-        Phone phone = getPhoneForAccount(request.getAccountHandle(), false);
+        // If there is an incoming emergency CDMA Call (while the phone is in ECBM w/ No SIM),
+        // make sure the PhoneAccount lookup retrieves the default Emergency Phone.
+        PhoneAccountHandle accountHandle = request.getAccountHandle();
+        boolean isEmergency = false;
+        if (accountHandle != null && PhoneUtils.EMERGENCY_ACCOUNT_HANDLE_ID.equals(
+                accountHandle.getId())) {
+            Log.i(this, "Emergency PhoneAccountHandle is being used for incoming call... " +
+                    "Treat as an Emergency Call.");
+            isEmergency = true;
+        }
+        Phone phone = getPhoneForAccount(accountHandle, isEmergency);
         if (phone == null) {
             return Connection.createFailedConnection(
                     DisconnectCauseUtil.toTelecomDisconnectCause(
@@ -391,8 +400,17 @@ public class TelephonyConnectionService extends ConnectionService {
     public Connection onCreateUnknownConnection(PhoneAccountHandle connectionManagerPhoneAccount,
             ConnectionRequest request) {
         Log.i(this, "onCreateUnknownConnection, request: " + request);
-
-        Phone phone = getPhoneForAccount(request.getAccountHandle(), false);
+        // Use the registered emergency Phone if the PhoneAccountHandle is set to Telephony's
+        // Emergency PhoneAccount
+        PhoneAccountHandle accountHandle = request.getAccountHandle();
+        boolean isEmergency = false;
+        if (accountHandle != null && PhoneUtils.EMERGENCY_ACCOUNT_HANDLE_ID.equals(
+                accountHandle.getId())) {
+            Log.i(this, "Emergency PhoneAccountHandle is being used for unknown call... " +
+                    "Treat as an Emergency Call.");
+            isEmergency = true;
+        }
+        Phone phone = getPhoneForAccount(accountHandle, isEmergency);
         if (phone == null) {
             return Connection.createFailedConnection(
                     DisconnectCauseUtil.toTelecomDisconnectCause(
@@ -573,7 +591,6 @@ public class TelephonyConnectionService extends ConnectionService {
             int phoneId = SubscriptionController.getInstance().getPhoneId(subId);
             chosenPhone = PhoneFactory.getPhone(phoneId);
         }
-
         // If this is an emergency call and the phone we originally planned to make this call
         // with is not in service or was invalid, try to find one that is in service, using the
         // default as a last chance backup.
