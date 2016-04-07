@@ -737,14 +737,7 @@ abstract class TelephonyConnection extends Connection {
      */
     private void setTechnologyTypeExtra() {
         if (getPhone() != null) {
-            if (mOriginalConnection.getConnectionExtras() == null) {
-                Bundle b = new Bundle();
-                b.putInt(TelecomManager.EXTRA_CALL_TECHNOLOGY_TYPE, getPhone().getPhoneType());
-                mOriginalConnection.setConnectionExtras(b);
-            } else {
-                mOriginalConnection.getConnectionExtras().putInt(
-                        TelecomManager.EXTRA_CALL_TECHNOLOGY_TYPE, getPhone().getPhoneType());
-            }
+            putExtra(TelecomManager.EXTRA_CALL_TECHNOLOGY_TYPE, getPhone().getPhoneType());
         }
     }
 
