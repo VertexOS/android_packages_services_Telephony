@@ -21,6 +21,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.sip.SipManager;
 import android.os.Bundle;
+import android.telecom.PhoneAccount;
 import android.telecom.PhoneAccountHandle;
 import android.telecom.TelecomManager;
 import android.util.Log;
@@ -68,7 +69,13 @@ public class SipBroadcastReceiver extends BroadcastReceiver {
         if (accountHandle != null) {
             Bundle extras = new Bundle();
             extras.putParcelable(SipUtil.EXTRA_INCOMING_CALL_INTENT, intent);
-            TelecomManager.from(context).addNewIncomingCall(accountHandle, extras);
+            TelecomManager tm = TelecomManager.from(context);
+            PhoneAccount phoneAccount = tm.getPhoneAccount(accountHandle);
+            if (phoneAccount != null && phoneAccount.isEnabled()) {
+                tm.addNewIncomingCall(accountHandle, extras);
+            } else {
+                log("takeCall, PhoneAccount is disabled. Not accepting incoming call...");
+            }
         }
     }
 
