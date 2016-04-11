@@ -32,6 +32,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.os.Process;
+import android.os.ResultReceiver;
 import android.os.ServiceManager;
 import android.os.UserHandle;
 import android.os.UserManager;
@@ -51,7 +52,6 @@ import android.telephony.SubscriptionManager;
 import android.telephony.TelephonyManager;
 import android.telephony.ModemActivityInfo;
 import android.text.TextUtils;
-import android.util.ArrayMap;
 import android.util.ArraySet;
 import android.util.Log;
 import android.util.Pair;
@@ -2979,12 +2979,20 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     }
 
     /**
-     * {@hide}
-     * Returns the modem stats
+     * Responds to the ResultReceiver with the {@link android.telephony.ModemActivityInfo} object
+     * representing the state of the modem.
+     *
+     * NOTE: This clears the modem state, so there should only every be one caller.
+     * @hide
      */
     @Override
-    public ModemActivityInfo getModemActivityInfo() {
-        return (ModemActivityInfo) sendRequest(CMD_GET_MODEM_ACTIVITY_INFO, null);
+    public void requestModemActivityInfo(ResultReceiver result) {
+        enforceModifyPermission();
+
+        ModemActivityInfo info = (ModemActivityInfo) sendRequest(CMD_GET_MODEM_ACTIVITY_INFO, null);
+        Bundle bundle = new Bundle();
+        bundle.putParcelable(TelephonyManager.MODEM_ACTIVITY_RESULT_KEY, info);
+        result.send(0, bundle);
     }
 
     /**
