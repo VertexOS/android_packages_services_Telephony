@@ -34,9 +34,12 @@ import android.os.Handler;
 import android.os.Message;
 import android.os.PersistableBundle;
 import android.os.PowerManager;
+import android.os.ServiceManager;
 import android.os.SystemClock;
 import android.os.SystemProperties;
+import android.os.SystemService;
 import android.os.UpdateLock;
+import android.os.UserManager;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.telephony.CarrierConfigManager;
@@ -56,7 +59,9 @@ import com.android.internal.telephony.TelephonyCapabilities;
 import com.android.internal.telephony.TelephonyIntents;
 import com.android.phone.common.CallLogAsync;
 import com.android.phone.settings.SettingsConstants;
+import com.android.server.sip.SipService;
 import com.android.services.telephony.activation.SimActivationManager;
+import com.android.services.telephony.sip.SipUtil;
 
 /**
  * Global state for the telephony subsystem when running in the primary
@@ -93,6 +98,7 @@ public class PhoneGlobals extends ContextWrapper {
     private static final int EVENT_DATA_ROAMING_DISCONNECTED = 10;
     private static final int EVENT_DATA_ROAMING_OK = 11;
     private static final int EVENT_UNSOL_CDMA_INFO_RECORD = 12;
+    private static final int EVENT_RESTART_SIP = 13;
 
     // The MMI codes are also used by the InCallScreen.
     public static final int MMI_INITIATE = 51;
@@ -237,6 +243,16 @@ public class PhoneGlobals extends ContextWrapper {
                 case EVENT_UNSOL_CDMA_INFO_RECORD:
                     //TODO: handle message here;
                     break;
+                case EVENT_RESTART_SIP:
+                    // This should only run if the Phone process crashed and was restarted. We do
+                    // not want this running if the device is still in the FBE encrypted state.
+                    // This is the same procedure that is triggered in the SipBroadcastReceiver
+                    // upon BOOT_COMPLETED.
+                    UserManager userManager = UserManager.get(sMe);
+                    if (userManager != null && userManager.isUserUnlocked()) {
+                        SipUtil.startSipService();
+                    }
+                    break;
             }
         }
     };
@@ -277,6 +293,9 @@ public class PhoneGlobals extends ContextWrapper {
             // Create the NotificationMgr singleton, which is used to display
             // status bar icons and control other status bar behavior.
             notificationMgr = NotificationMgr.init(this);
+
+            // If PhoneGlobals has crashed and is being restarted, then restart.
+            mHandler.sendEmptyMessage(EVENT_RESTART_SIP);
 
             // Create an instance of CdmaPhoneCallState and initialize it to IDLE
             cdmaPhoneCallState = new CdmaPhoneCallState();
