@@ -923,7 +923,7 @@ public class ImsConference extends Conference {
                 c.setConferenceSupported(true);
                 c.updateState();
                 // Copy the connect time from the conferenceHost
-                c.setConnectTimeMillis(mConferenceHost.getConnectTimeMillis());
+                c.setConnectTimeMillis(originalConnection.getConnectTime());
                 mTelephonyConnectionService.addExistingConnection(phoneAccountHandle, c);
                 mTelephonyConnectionService.addConnectionToConferenceController(c);
             } // CDMA case not applicable for SRVCC
