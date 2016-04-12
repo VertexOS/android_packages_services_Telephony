@@ -17,7 +17,9 @@ package com.android.phone.vvm.omtp.imap;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
 import android.net.Network;
+import android.net.NetworkInfo;
 import android.preference.PreferenceManager;
 import android.provider.VoicemailContract;
 import android.provider.VoicemailContract.Status;
@@ -66,8 +68,10 @@ public class ImapHelper {
 
     private ImapFolder mFolder;
     private ImapStore mImapStore;
-    private Context mContext;
-    private PhoneAccountHandle mPhoneAccount;
+
+    private final Context mContext;
+    private final PhoneAccountHandle mPhoneAccount;
+    private final Network mNetwork;
 
     SharedPreferences mPrefs;
     private static final String PREF_KEY_QUOTA_OCCUPIED = "quota_occupied_";
@@ -77,9 +81,10 @@ public class ImapHelper {
     private int mQuotaTotal;
 
     public ImapHelper(Context context, PhoneAccountHandle phoneAccount, Network network) {
+        mContext = context;
+        mPhoneAccount = phoneAccount;
+        mNetwork = network;
         try {
-            mContext = context;
-            mPhoneAccount = phoneAccount;
             TempDirectory.setTempDirectory(context);
 
             String username = VisualVoicemailSettingsUtil.getVisualVoicemailCredentials(context,
@@ -125,6 +130,16 @@ public class ImapHelper {
      */
     public boolean isSuccessfullyInitialized() {
         return mImapStore != null;
+    }
+
+    public boolean isRoaming(){
+        ConnectivityManager connectivityManager = (ConnectivityManager) mContext.getSystemService(
+                Context.CONNECTIVITY_SERVICE);
+        NetworkInfo info = connectivityManager.getNetworkInfo(mNetwork);
+        if(info == null){
+            return false;
+        }
+        return info.isRoaming();
     }
 
     /** The caller thread will block until the method returns. */

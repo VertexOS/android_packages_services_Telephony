@@ -53,20 +53,34 @@ public class OmtpVvmSyncService extends IntentService {
     // Number of retries
     private static final int NETWORK_RETRY_COUNT = 3;
 
-    /** Signifies a sync with both uploading to the server and downloading from the server. */
+    /**
+     * Signifies a sync with both uploading to the server and downloading from the server.
+     */
     public static final String SYNC_FULL_SYNC = "full_sync";
-    /** Only upload to the server. */
+    /**
+     * Only upload to the server.
+     */
     public static final String SYNC_UPLOAD_ONLY = "upload_only";
-    /** Only download from the server. */
+    /**
+     * Only download from the server.
+     */
     public static final String SYNC_DOWNLOAD_ONLY = "download_only";
-    /** Only download single voicemail transcription. */
+    /**
+     * Only download single voicemail transcription.
+     */
     public static final String SYNC_DOWNLOAD_ONE_TRANSCRIPTION =
             "download_one_transcription";
-    /** The account to sync. */
+    /**
+     * The account to sync.
+     */
     public static final String EXTRA_PHONE_ACCOUNT = "phone_account";
-    /** The voicemail to fetch. */
+    /**
+     * The voicemail to fetch.
+     */
     public static final String EXTRA_VOICEMAIL = "voicemail";
-    /** The sync request is initiated by the user, should allow shorter sync interval. */
+    /**
+     * The sync request is initiated by the user, should allow shorter sync interval.
+     */
     public static final String EXTRA_IS_MANUAL_SYNC = "is_manual_sync";
     // Minimum time allowed between full syncs
     private static final int MINIMUM_FULL_SYNC_INTERVAL_MILLIS = 60 * 1000;
@@ -116,6 +130,7 @@ public class OmtpVvmSyncService extends IntentService {
 
     /**
      * Cancel all retry syncs for an account.
+     *
      * @param context The context the service runs in.
      * @param phoneAccount The phone account for which to cancel syncs.
      */
@@ -127,6 +142,7 @@ public class OmtpVvmSyncService extends IntentService {
     /**
      * A helper method to cancel all pending alarms for intents that would be identical to the given
      * intent.
+     *
      * @param context The context the service runs in.
      * @param intent The intent to search and cancel.
      */
@@ -289,10 +305,7 @@ public class OmtpVvmSyncService extends IntentService {
 
     private boolean syncOne(ImapHelper imapHelper, Voicemail voicemail,
             PhoneAccountHandle account) {
-        OmtpVvmCarrierConfigHelper carrierConfigHelper =
-                new OmtpVvmCarrierConfigHelper(
-                        this, PhoneUtils.getSubIdForPhoneAccountHandle(account));
-        if (carrierConfigHelper.isPrefetchEnabled()) {
+        if (shouldPerformPrefetch(account, imapHelper)) {
             VoicemailFetchedCallback callback = new VoicemailFetchedCallback(this,
                     voicemail.getUri());
             imapHelper.fetchVoicemailPayload(callback, voicemail.getSourceData());
@@ -392,10 +405,7 @@ public class OmtpVvmSyncService extends IntentService {
         }
 
         // The leftover messages are messages that exist on the server but not locally.
-        OmtpVvmCarrierConfigHelper carrierConfigHelper =
-                new OmtpVvmCarrierConfigHelper(
-                        this, PhoneUtils.getSubIdForPhoneAccountHandle(account));
-        boolean prefetchEnabled = carrierConfigHelper.isPrefetchEnabled();
+        boolean prefetchEnabled = shouldPerformPrefetch(account, imapHelper);
         for (Voicemail remoteVoicemail : remoteMap.values()) {
             Uri uri = VoicemailContract.Voicemails.insert(this, remoteVoicemail);
             if (prefetchEnabled) {
@@ -405,6 +415,12 @@ public class OmtpVvmSyncService extends IntentService {
         }
 
         return true;
+    }
+
+    private boolean shouldPerformPrefetch(PhoneAccountHandle account, ImapHelper imapHelper) {
+        OmtpVvmCarrierConfigHelper carrierConfigHelper = new OmtpVvmCarrierConfigHelper(
+                this, PhoneUtils.getSubIdForPhoneAccountHandle(account));
+        return carrierConfigHelper.isPrefetchEnabled() && !imapHelper.isRoaming();
     }
 
     protected void setRetryAlarm(PhoneAccountHandle phoneAccount, String action) {
