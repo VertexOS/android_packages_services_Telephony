@@ -1398,11 +1398,13 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     }
 
     public int getCallState() {
-        return getCallStateForSubscriber(getDefaultSubscription());
+        return getCallStateForSlot(getSlotForDefaultSubscription());
     }
 
-    public int getCallStateForSubscriber(int subId) {
-        return DefaultPhoneNotifier.convertCallState(getPhone(subId).getState());
+    public int getCallStateForSlot(int slotId) {
+        Phone phone = PhoneFactory.getPhone(slotId);
+        return phone == null ? TelephonyManager.CALL_STATE_IDLE :
+            DefaultPhoneNotifier.convertCallState(phone.getState());
     }
 
     @Override
@@ -1563,6 +1565,24 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         mPhone.setCellInfoListRate(rateInMillis);
     }
 
+    @Override
+    public String getImeiForSlot(int slotId, String callingPackage) {
+      if (!canReadPhoneState(callingPackage, "getImeiForSlot")) {
+          return null;
+      }
+      Phone phone = PhoneFactory.getPhone(slotId);
+      return phone == null ? null : phone.getImei();
+    }
+
+    @Override
+    public String getDeviceSoftwareVersionForSlot(int slotId, String callingPackage) {
+      if (!canReadPhoneState(callingPackage, "getDeviceSoftwareVersionForSlot")) {
+          return null;
+      }
+      Phone phone = PhoneFactory.getPhone(slotId);
+      return phone == null ? null : phone.getDeviceSvn();
+    }
+
     //
     // Internal helper methods.
     //
@@ -1683,16 +1703,16 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
 
     @Override
     public int getActivePhoneType() {
-        return getActivePhoneTypeForSubscriber(getDefaultSubscription());
+        return getActivePhoneTypeForSlot(getSlotForDefaultSubscription());
     }
 
     @Override
-    public int getActivePhoneTypeForSubscriber(int subId) {
-        final Phone phone = getPhone(subId);
+    public int getActivePhoneTypeForSlot(int slotId) {
+        final Phone phone = PhoneFactory.getPhone(slotId);
         if (phone == null) {
             return PhoneConstants.PHONE_TYPE_NONE;
         } else {
-            return getPhone(subId).getPhoneType();
+            return phone.getPhoneType();
         }
     }
 
@@ -1962,6 +1982,10 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
      */
     private int getDefaultSubscription() {
         return mSubscriptionController.getDefaultSubId();
+    }
+
+    private int getSlotForDefaultSubscription() {
+        return mSubscriptionController.getPhoneId(getDefaultSubscription());
     }
 
     private int getPreferredVoiceSubscription() {
