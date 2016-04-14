@@ -15,6 +15,7 @@
  */
 package com.android.phone.common.mail.store;
 
+import android.annotation.Nullable;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
@@ -213,7 +214,7 @@ public class ImapFolder {
         }
     }
 
-
+    @Nullable
     public Message getMessage(String uid) throws MessagingException {
         checkOpen();
 
@@ -223,6 +224,7 @@ public class ImapFolder {
                 return new ImapMessage(uid, this);
             }
         }
+        LogUtils.e(TAG, "UID " + uid + " not found on server");
         return null;
     }
 
