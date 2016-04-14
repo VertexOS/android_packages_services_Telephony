@@ -506,6 +506,22 @@ abstract class TelephonyConnection extends Connection {
         }
     }
 
+    /**
+     * Handles requests to pull an external call.
+     */
+    @Override
+    public void onPullExternalCall() {
+        if ((getConnectionProperties() & Connection.PROPERTY_IS_EXTERNAL_CALL) !=
+                Connection.PROPERTY_IS_EXTERNAL_CALL) {
+            Log.w(this, "onPullExternalCall - cannot pull non-external call");
+            return;
+        }
+
+        if (mOriginalConnection != null) {
+            mOriginalConnection.pullExternalCall();
+        }
+    }
+
     public void performHold() {
         Log.v(this, "performHold");
         // TODO: Can dialing calls be put on hold as well since they take up the
