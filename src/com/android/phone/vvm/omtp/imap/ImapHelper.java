@@ -291,14 +291,16 @@ public class ImapHelper {
     }
 
     public boolean fetchVoicemailPayload(VoicemailFetchedCallback callback, final String uid) {
-        Message message;
         try {
             mFolder = openImapFolder(ImapFolder.MODE_READ_WRITE);
             if (mFolder == null) {
                 // This means we were unable to successfully open the folder.
                 return false;
             }
-            message = mFolder.getMessage(uid);
+            Message message = mFolder.getMessage(uid);
+            if (message == null) {
+                return false;
+            }
             VoicemailPayload voicemailPayload = fetchVoicemailPayload(message);
 
             if (voicemailPayload == null) {
@@ -341,6 +343,9 @@ public class ImapHelper {
             }
 
             Message message = mFolder.getMessage(uid);
+            if (message == null) {
+                return false;
+            }
 
             MessageStructureWrapper messageStructureWrapper = fetchMessageStructure(message);
             if (messageStructureWrapper != null) {
