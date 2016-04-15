@@ -20,7 +20,7 @@
     <string name="phoneAppLabel" product="default" msgid="6790717591729922998">"سرویس‌های تلفن"</string>
     <string name="emergencyDialerIconLabel" msgid="7812140032168171053">"شماره گیری اضطراری"</string>
     <string name="phoneIconLabel" msgid="2331230813161304895">"تلفن"</string>
-    <string name="fdnListLabel" msgid="8630418672279521003">"‏لیست FDN"</string>
+    <string name="fdnListLabel" msgid="8630418672279521003">"‏فهرست FDN"</string>
     <string name="unknown" msgid="6878797917991465859">"ناشناس"</string>
     <string name="private_num" msgid="6713286113000232309">"شماره خصوصی"</string>
     <string name="payphone" msgid="4793877574636445118">"تلفن عمومی"</string>
@@ -334,8 +334,8 @@
     <string name="carrier_settings_title" msgid="9028166176523012300">"تنظیمات شرکت مخابراتی"</string>
     <string name="fdn" msgid="7878832555095183202">"شماره‌های شماره گیری ثابت"</string>
     <string name="fdn_with_label" msgid="187084204115493366">"شماره‌های شماره‌گیری ثابت (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
-    <string name="manage_fdn_list" msgid="8777755791892122369">"‏لیست FDN"</string>
-    <string name="fdn_list_with_label" msgid="7437232552210469217">"‏لیست FDN (‏<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="manage_fdn_list" msgid="8777755791892122369">"‏فهرست FDN"</string>
+    <string name="fdn_list_with_label" msgid="7437232552210469217">"‏فهرست FDN (‏<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="fdn_activation" msgid="2156479741307463576">"‏فعال کردن FDN"</string>
     <string name="fdn_enabled" msgid="5238109009915521240">"شماره‌های شماره گیری ثابت فعال هستند"</string>
     <string name="fdn_disabled" msgid="4700049736675368279">"شماره‌های شماره گیری ثابت غیر فعال هستند"</string>
@@ -346,7 +346,7 @@
     <string name="disable_fdn_ok" msgid="5727046928930740173">"‏فعال کردن FDN"</string>
     <string name="sum_fdn" msgid="1959399454900272878">"مدیریت شماره‌های شماره گیری ثابت"</string>
     <string name="sum_fdn_change_pin" msgid="6666549734792827932">"‏تغییر پین برای دسترسی FDN"</string>
-    <string name="sum_fdn_manage_list" msgid="8431088265332628316">"مدیریت لیست شماره تلفن"</string>
+    <string name="sum_fdn_manage_list" msgid="8431088265332628316">"مدیریت فهرست شماره تلفن"</string>
     <string name="voice_privacy" msgid="3776841382844614716">"حریم خصوصی صوتی"</string>
     <string name="voice_privacy_summary" msgid="3159383389833516214">"فعال کردن حالت رازداری پیشرفته"</string>
     <string name="tty_mode_option_title" msgid="9033098925144434669">"‏حالت TTY"</string>
