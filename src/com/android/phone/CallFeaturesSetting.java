@@ -288,9 +288,15 @@ public class CallFeaturesSetting extends PreferenceActivity
             Intent intent = PhoneAccountSettingsFragment.buildPhoneAccountConfigureIntent(
                     this, simCallManager);
             if (intent != null) {
-                wifiCallingSettings.setTitle(R.string.wifi_calling);
-                wifiCallingSettings.setSummary(null);
-                wifiCallingSettings.setIntent(intent);
+                PackageManager pm = mPhone.getContext().getPackageManager();
+                List<ResolveInfo> resolutions = pm.queryIntentActivities(intent, 0);
+                if (!resolutions.isEmpty()) {
+                    wifiCallingSettings.setTitle(resolutions.get(0).loadLabel(pm));
+                    wifiCallingSettings.setSummary(null);
+                    wifiCallingSettings.setIntent(intent);
+                } else {
+                    prefSet.removePreference(wifiCallingSettings);
+                }
             } else {
                 prefSet.removePreference(wifiCallingSettings);
             }
