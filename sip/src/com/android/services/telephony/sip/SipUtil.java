@@ -31,7 +31,9 @@ import android.telecom.TelecomManager;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.android.phone.PhoneGlobals;
 import com.android.phone.R;
+import com.android.server.sip.SipService;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -142,7 +144,7 @@ public class SipUtil {
      * Checks if the Sip Db is in DE storage. If it is, the Db is moved to CE storage and
      * deleted.
      */
-    public static void possiblyMigrateSipDb(Context context) {
+    private static void possiblyMigrateSipDb(Context context) {
         SipProfileDb dbDeStorage = new SipProfileDb(context);
         dbDeStorage.accessDEStorageForMigration();
         List<SipProfile> profilesDeStorage = dbDeStorage.retrieveSipProfileList();
@@ -167,6 +169,17 @@ public class SipUtil {
         }
         // Delete supporting structures if they exist
         dbDeStorage.cleanupUponMigration();
+    }
+
+    /**
+     * Migrates the DB files over from CE->DE storage and starts the SipService.
+     */
+    public static void startSipService() {
+        Context phoneGlobalsContext = PhoneGlobals.getInstance();
+        // Migrate SIP database from DE->CE storage if the device has just upgraded.
+        possiblyMigrateSipDb(phoneGlobalsContext);
+        // Wait until boot complete to start SIP so that it has access to CE storage.
+        SipService.start(phoneGlobalsContext);
     }
 
     /**
