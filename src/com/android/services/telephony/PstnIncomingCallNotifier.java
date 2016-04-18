@@ -25,6 +25,7 @@ import android.os.AsyncResult;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.os.SystemClock;
 import android.telecom.PhoneAccount;
 import android.telecom.PhoneAccountHandle;
 import android.telecom.TelecomManager;
@@ -184,10 +185,9 @@ final class PstnIncomingCallNotifier {
 
         if (!maybeSwapAnyWithUnknownConnection(connection)) {
             Log.i(this, "determined new connection is: %s", connection);
-            Bundle extras = null;
+            Bundle extras = new Bundle();
             if (connection.getNumberPresentation() == TelecomManager.PRESENTATION_ALLOWED &&
                     !TextUtils.isEmpty(connection.getAddress())) {
-                extras = new Bundle();
                 Uri uri = Uri.fromParts(PhoneAccount.SCHEME_TEL, connection.getAddress(), null);
                 extras.putParcelable(TelecomManager.EXTRA_UNKNOWN_CALL_HANDLE, uri);
             }
@@ -196,13 +196,15 @@ final class PstnIncomingCallNotifier {
             // TelephonyConnectionService, we will be able to determine which unknown connection is
             // being added.
             if (connection instanceof ImsExternalConnection) {
-                if (extras == null) {
-                    extras = new Bundle();
-                }
                 ImsExternalConnection externalConnection = (ImsExternalConnection) connection;
                 extras.putInt(ImsExternalCallTracker.EXTRA_IMS_EXTERNAL_CALL_ID,
                         externalConnection.getCallId());
             }
+
+            // Specifies the time the call was added. This is used by the dialer for analytics.
+            extras.putLong(TelecomManager.EXTRA_CALL_CREATED_TIME_MILLIS,
+                    SystemClock.elapsedRealtime());
+
             PhoneAccountHandle handle = findCorrectPhoneAccountHandle();
             if (handle == null) {
                 try {
@@ -222,13 +224,17 @@ final class PstnIncomingCallNotifier {
      * Sends the incoming call intent to telecom.
      */
     private void sendIncomingCallIntent(Connection connection) {
-        Bundle extras = null;
+        Bundle extras = new Bundle();
         if (connection.getNumberPresentation() == TelecomManager.PRESENTATION_ALLOWED &&
                 !TextUtils.isEmpty(connection.getAddress())) {
-            extras = new Bundle();
             Uri uri = Uri.fromParts(PhoneAccount.SCHEME_TEL, connection.getAddress(), null);
             extras.putParcelable(TelecomManager.EXTRA_INCOMING_CALL_ADDRESS, uri);
         }
+
+        // Specifies the time the call was added. This is used by the dialer for analytics.
+        extras.putLong(TelecomManager.EXTRA_CALL_CREATED_TIME_MILLIS,
+                SystemClock.elapsedRealtime());
+
         PhoneAccountHandle handle = findCorrectPhoneAccountHandle();
         if (handle == null) {
             try {
