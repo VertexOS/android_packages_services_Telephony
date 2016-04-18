@@ -53,11 +53,7 @@ public class SipBroadcastReceiver extends BroadcastReceiver {
 
         SipAccountRegistry sipAccountRegistry = SipAccountRegistry.getInstance();
         if (action.equals(Intent.ACTION_BOOT_COMPLETED)) {
-            Context phoneGlobalsContext = PhoneGlobals.getInstance();
-            // Migrate SIP database from DE->CE storage if the device has just upgraded.
-            SipUtil.possiblyMigrateSipDb(phoneGlobalsContext);
-            // Wait until boot complete to start SIP so that it has access to CE storage.
-            SipService.start(phoneGlobalsContext);
+            SipUtil.startSipService();
         } else if (action.equals(SipManager.ACTION_SIP_INCOMING_CALL)) {
             takeCall(context, intent);
         } else if (action.equals(SipManager.ACTION_SIP_SERVICE_UP) ||
