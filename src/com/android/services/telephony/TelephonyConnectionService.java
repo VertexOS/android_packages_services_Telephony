@@ -606,7 +606,7 @@ public class TelephonyConnectionService extends ConnectionService {
     }
 
     private Phone getFirstPhoneForEmergencyCall() {
-        Phone selectPhone = null;
+        Phone firstPhoneWithSim = null;
         for (int i = 0; i < TelephonyManager.getDefault().getSimCount(); i++) {
             int[] subIds = SubscriptionController.getInstance().getSubIdUsingSlotId(i);
             if (subIds.length == 0)
@@ -618,28 +618,28 @@ public class TelephonyConnectionService extends ConnectionService {
                 continue;
 
             if (ServiceState.STATE_IN_SERVICE == phone.getServiceState().getState()) {
-                // the slot is radio on & state is in service
+                // the slot has the radio on & state is in service. This will be quicker,
+                // so just shortcut and use this option.
                 Log.d(this, "getFirstPhoneForEmergencyCall, radio on & in service, slotId:" + i);
                 return phone;
-            } else if (ServiceState.STATE_POWER_OFF != phone.getServiceState().getState()) {
-                // the slot is radio on & with SIM card inserted.
-                if (TelephonyManager.getDefault().hasIccCard(i)) {
-                    Log.d(this, "getFirstPhoneForEmergencyCall," +
-                            "radio on and SIM card inserted, slotId:" + i);
-                    selectPhone = phone;
-                } else if (selectPhone == null) {
-                    Log.d(this, "getFirstPhoneForEmergencyCall, radio on, slotId:" + i);
-                    selectPhone = phone;
-                }
+            }
+
+            if (firstPhoneWithSim == null && TelephonyManager.getDefault().hasIccCard(i)) {
+                // The slot has a SIM card inserted, but is not in service, so keep track of this
+                // Phone. Do not return because we want to make sure that none of the other Phones
+                // are in service (because that is always faster).
+                Log.d(this, "getFirstPhoneForEmergencyCall, SIM card inserted, slotId:" + i);
+                firstPhoneWithSim = phone;
             }
         }
 
-        if (selectPhone == null) {
+        if (firstPhoneWithSim == null) {
+            // No SIMs inserted, get the default.
             Log.d(this, "getFirstPhoneForEmergencyCall, return default phone");
-            selectPhone = PhoneFactory.getDefaultPhone();
+            return PhoneFactory.getDefaultPhone();
+        } else {
+            return firstPhoneWithSim;
         }
-
-        return selectPhone;
     }
 
     /**
