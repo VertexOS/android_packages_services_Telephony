@@ -51,8 +51,7 @@ public class TtyModeListPreference extends ListPreference
     @Override
     public boolean onPreferenceChange(Preference preference, Object objValue) {
         if (preference == this) {
-            int buttonTtyMode;
-            buttonTtyMode = Integer.valueOf((String) objValue).intValue();
+            int buttonTtyMode = Integer.parseInt((String) objValue);
             int settingsTtyMode = android.provider.Settings.Secure.getInt(
                     getContext().getContentResolver(),
                     Settings.Secure.PREFERRED_TTY_MODE,
