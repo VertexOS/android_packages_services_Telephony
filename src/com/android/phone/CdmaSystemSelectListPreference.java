@@ -67,7 +67,7 @@ public class CdmaSystemSelectListPreference extends ListPreference {
         super.onDialogClosed(positiveResult);
 
         if (positiveResult && (getValue() != null)) {
-            int buttonCdmaRoamingMode = Integer.valueOf(getValue()).intValue();
+            int buttonCdmaRoamingMode = Integer.parseInt(getValue());
             int settingsCdmaRoamingMode =
                     Settings.Global.getInt(mPhone.getContext().getContentResolver(),
                     Settings.Global.CDMA_ROAMING_MODE, Phone.CDMA_RM_HOME);
@@ -147,7 +147,7 @@ public class CdmaSystemSelectListPreference extends ListPreference {
             AsyncResult ar = (AsyncResult) msg.obj;
 
             if ((ar.exception == null) && (getValue() != null)) {
-                int cdmaRoamingMode = Integer.valueOf(getValue()).intValue();
+                int cdmaRoamingMode = Integer.parseInt(getValue());
                 Settings.Global.putInt(mPhone.getContext().getContentResolver(),
                         Settings.Global.CDMA_ROAMING_MODE,
                         cdmaRoamingMode );

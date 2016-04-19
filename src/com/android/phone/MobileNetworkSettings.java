@@ -814,7 +814,7 @@ public class MobileNetworkSettings extends PreferenceActivity
             //Check if the button value is changed from the System.Setting
             mButtonPreferredNetworkMode.setValue((String) objValue);
             int buttonNetworkMode;
-            buttonNetworkMode = Integer.valueOf((String) objValue).intValue();
+            buttonNetworkMode = Integer.parseInt((String) objValue);
             int settingsNetworkMode = android.provider.Settings.Global.getInt(
                     mPhone.getContext().getContentResolver(),
                     android.provider.Settings.Global.PREFERRED_NETWORK_MODE + phoneSubId,
@@ -864,7 +864,7 @@ public class MobileNetworkSettings extends PreferenceActivity
         } else if (preference == mButtonEnabledNetworks) {
             mButtonEnabledNetworks.setValue((String) objValue);
             int buttonNetworkMode;
-            buttonNetworkMode = Integer.valueOf((String) objValue).intValue();
+            buttonNetworkMode = Integer.parseInt((String) objValue);
             if (DBG) log("buttonNetworkMode: " + buttonNetworkMode);
             int settingsNetworkMode = android.provider.Settings.Global.getInt(
                     mPhone.getContext().getContentResolver(),
@@ -963,15 +963,13 @@ public class MobileNetworkSettings extends PreferenceActivity
             if (ar.exception == null) {
                 int networkMode;
                 if (getPreferenceScreen().findPreference(BUTTON_PREFERED_NETWORK_MODE) != null)  {
-                    networkMode =  Integer.valueOf(
-                            mButtonPreferredNetworkMode.getValue()).intValue();
+                    networkMode =  Integer.parseInt(mButtonPreferredNetworkMode.getValue());
                     android.provider.Settings.Global.putInt(mPhone.getContext().getContentResolver(),
                             android.provider.Settings.Global.PREFERRED_NETWORK_MODE + phoneSubId,
                             networkMode );
                 }
                 if (getPreferenceScreen().findPreference(BUTTON_ENABLED_NETWORKS_KEY) != null)  {
-                    networkMode = Integer.valueOf(
-                            mButtonEnabledNetworks.getValue()).intValue();
+                    networkMode = Integer.parseInt(mButtonEnabledNetworks.getValue());
                     android.provider.Settings.Global.putInt(mPhone.getContext().getContentResolver(),
                             android.provider.Settings.Global.PREFERRED_NETWORK_MODE + phoneSubId,
                             networkMode );

@@ -79,7 +79,7 @@ public class CdmaSubscriptionListPreference extends ListPreference {
             return;
         }
 
-        int buttonCdmaSubscriptionMode = Integer.valueOf(getValue()).intValue();
+        int buttonCdmaSubscriptionMode = Integer.parseInt(getValue());
         Log.d(LOG_TAG, "Setting new value " + buttonCdmaSubscriptionMode);
         int statusCdmaSubscriptionMode;
         switch(buttonCdmaSubscriptionMode) {
@@ -120,7 +120,7 @@ public class CdmaSubscriptionListPreference extends ListPreference {
 
             if (ar.exception == null) {
                 // Get the original string entered by the user
-                int cdmaSubscriptionMode = Integer.valueOf((String) ar.userObj).intValue();
+                int cdmaSubscriptionMode = Integer.parseInt((String) ar.userObj);
                 Settings.Global.putInt(mPhone.getContext().getContentResolver(),
                         Settings.Global.CDMA_SUBSCRIPTION_MODE,
                         cdmaSubscriptionMode );
