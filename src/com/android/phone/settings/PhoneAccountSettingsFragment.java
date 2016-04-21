@@ -306,6 +306,14 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
                     retval = isSim1 ? -1 : 1;
                 }
 
+                int subId1 = PhoneUtils.getSubIdForPhoneAccount(account1);
+                int subId2 = PhoneUtils.getSubIdForPhoneAccount(account2);
+                if (subId1 != SubscriptionManager.INVALID_SUBSCRIPTION_ID &&
+                        subId2 != SubscriptionManager.INVALID_SUBSCRIPTION_ID) {
+                    retval = (mSubscriptionManager.getSlotId(subId1) <
+                        mSubscriptionManager.getSlotId(subId2)) ? -1 : 1;
+                }
+
                 // Then order by package
                 if (retval == 0) {
                     String pkg1 = account1.getAccountHandle().getComponentName().getPackageName();
