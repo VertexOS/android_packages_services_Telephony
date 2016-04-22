@@ -94,7 +94,7 @@ public class OmtpVvmCarrierConfigHelper {
             return false;
         }
         return mCarrierConfig
-                .getBoolean(CarrierConfigManager.KEY_VVM_CELLULAR_DATA_REQUIRED_BOOLEAN);
+                .getBoolean(CarrierConfigManager.KEY_VVM_CELLULAR_DATA_REQUIRED_BOOL);
     }
 
     public boolean isPrefetchEnabled() {
@@ -102,7 +102,7 @@ public class OmtpVvmCarrierConfigHelper {
             return false;
         }
         return mCarrierConfig
-                .getBoolean(CarrierConfigManager.KEY_VVM_PREFETCH_BOOLEAN);
+                .getBoolean(CarrierConfigManager.KEY_VVM_PREFETCH_BOOL);
     }
 
     public void startActivation() {
