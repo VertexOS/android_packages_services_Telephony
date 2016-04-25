@@ -617,7 +617,8 @@ public class TelephonyConnectionService extends ConnectionService {
             if (phone == null)
                 continue;
 
-            if (ServiceState.STATE_IN_SERVICE == phone.getServiceState().getState()) {
+            if (ServiceState.STATE_IN_SERVICE == phone.getServiceState().getState() ||
+                    phone.getServiceState().isEmergencyOnly()) {
                 // the slot has the radio on & state is in service. This will be quicker,
                 // so just shortcut and use this option.
                 Log.d(this, "getFirstPhoneForEmergencyCall, radio on & in service, slotId:" + i);
