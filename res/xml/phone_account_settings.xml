@@ -59,6 +59,14 @@
             android:summaryOff="@string/duration_disable_summary"
             android:order="1100" />
 
+        <CheckBoxPreference
+            android:key="button_vibrate_after_connected"
+            android:title="@string/vibrate_after_connected_title"
+            android:persistent="false"
+            android:defaultValue="true"
+            android:summary="@string/vibrate_after_connected_summary"
+            android:order="1200" />
+
     </PreferenceCategory>
 
     <PreferenceCategory

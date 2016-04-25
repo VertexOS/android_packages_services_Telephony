@@ -37,4 +37,7 @@
     <string name="preferred_duration_title">Display duration</string>
     <string name="duration_enable_summary">Display duration is ON</string>
     <string name="duration_disable_summary">Display duration is OFF</string>
+    <!-- Setting option name to enable or disable vibration after connected -->
+    <string name="vibrate_after_connected_title">Vibrating after connected</string>
+    <string name="vibrate_after_connected_summary">Vibrate when answers</string>
 </resources>
