@@ -559,7 +559,7 @@
     <string name="accessibility_settings_activity_title" msgid="8562004288733103868">"協助工具"</string>
     <string name="status_hint_label_incoming_wifi_call" msgid="8772915926382037499">"Wi-Fi 來電"</string>
     <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"Wi-Fi 通話"</string>
-    <string name="emergency_action_launch_hint" msgid="4906759256275562674">"再次輕按即可開啟"</string>
+    <string name="emergency_action_launch_hint" msgid="4906759256275562674">"再次輕觸即可開啟"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"為郵件解碼時發生錯誤。"</string>
     <string name="callFailed_cdma_activation" msgid="2307989779233262164">"SIM 卡已啟用您的服務並更新了手機的漫遊功能。"</string>
     <string name="callFailed_cdma_call_limit" msgid="1556916577171457086">"進行中的通話過多。請先結束或合併現有通話，再撥打新的電話。"</string>
