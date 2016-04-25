@@ -109,4 +109,9 @@ public final class ImapConstants {
     public static final String EXPIRED = "EXPIRED";
     public static final String AUTHENTICATIONFAILED = "AUTHENTICATIONFAILED";
     public static final String UNAVAILABLE = "UNAVAILABLE";
+
+    /**
+     * capabilities
+     */
+    public static final String CAPABILITY_STARTTLS = "STARTTLS";
 }

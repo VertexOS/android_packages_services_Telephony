@@ -17,21 +17,23 @@ package com.android.phone.common.mail.store;
 
 import android.provider.VoicemailContract.Status;
 import android.text.TextUtils;
+import android.util.ArraySet;
 
 import com.android.phone.common.mail.AuthenticationFailedException;
 import com.android.phone.common.mail.CertificateValidationException;
 import com.android.phone.common.mail.MailTransport;
 import com.android.phone.common.mail.MessagingException;
+import com.android.phone.common.mail.store.ImapStore.ImapException;
 import com.android.phone.common.mail.store.imap.ImapConstants;
 import com.android.phone.common.mail.store.imap.ImapResponse;
 import com.android.phone.common.mail.store.imap.ImapResponseParser;
 import com.android.phone.common.mail.store.imap.ImapUtility;
 import com.android.phone.common.mail.utils.LogUtils;
-import com.android.phone.common.mail.store.ImapStore.ImapException;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.net.ssl.SSLException;
@@ -46,6 +48,7 @@ public class ImapConnection {
     private ImapStore mImapStore;
     private MailTransport mTransport;
     private ImapResponseParser mParser;
+    private Set<String> mCapabilities = new ArraySet<>();
 
     static final String IMAP_REDACTED_LOG = "[IMAP command redacted]";
 
@@ -102,6 +105,22 @@ public class ImapConnection {
 
             createParser();
 
+            // The server should greet us with something like
+            // * OK IMAP4rev1 Server
+            // consume the response before doing anything else.
+            ImapResponse response = mParser.readResponse();
+            if (!response.isOk()) {
+                mImapStore.getImapHelper()
+                        .setDataChannelState(Status.DATA_CHANNEL_STATE_SERVER_ERROR);
+                throw new MessagingException(
+                        MessagingException.AUTHENTICATION_FAILED_OR_SERVER_ERROR,
+                        "Invalid server initial response");
+            }
+
+            queryCapability();
+
+            maybeDoStartTls();
+
             // LOGIN
             doLogin();
         } catch (SSLException e) {
@@ -133,6 +152,21 @@ public class ImapConnection {
     }
 
     /**
+     * Attempts to convert the connection into secure connection.
+     */
+    private void maybeDoStartTls() throws IOException, MessagingException {
+        // STARTTLS is required in the OMTP standard but not every implementation support it.
+        // Make sure the server does have this capability
+        if (hasCapability(ImapConstants.CAPABILITY_STARTTLS)) {
+            executeSimpleCommand(ImapConstants.STARTTLS);
+            mTransport.reopenTls();
+            createParser();
+            // The cached capabilities should be refreshed after TLS is established.
+            queryCapability();
+        }
+    }
+
+    /**
      * Logs into the IMAP server
      */
     private void doLogin() throws IOException, MessagingException, AuthenticationFailedException {
@@ -157,6 +191,24 @@ public class ImapConnection {
         }
     }
 
+    private void queryCapability() throws IOException, MessagingException {
+        List<ImapResponse> responses = executeSimpleCommand(ImapConstants.CAPABILITY);
+        mCapabilities.clear();
+        for (ImapResponse response : responses) {
+            if (response.isTagged()) {
+                continue;
+            }
+            for (int i = 0; i < response.size(); i++) {
+                mCapabilities.add(response.getStringOrEmpty(i).getString());
+            }
+        }
+
+        LogUtils.d(TAG, "Capabilities: " + mCapabilities.toString());
+    }
+
+    private boolean hasCapability(String capability) {
+        return mCapabilities.contains(capability);
+    }
     /**
      * Create an {@link ImapResponseParser} from {@code mTransport.getInputStream()} and
      * set it to {@link #mParser}.

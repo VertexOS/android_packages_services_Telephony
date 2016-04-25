@@ -32,7 +32,6 @@ import java.io.OutputStream;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.Socket;
-import java.net.SocketAddress;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -66,6 +65,7 @@ public class MailTransport {
     private BufferedOutputStream mOut;
     private final int mFlags;
     private SocketCreator mSocketCreator;
+    private InetSocketAddress mAddress;
 
     public MailTransport(Context context, ImapHelper imapHelper, Network network, String address,
             int port, int flags) {
@@ -126,29 +126,21 @@ public class MailTransport {
         while (socketAddresses.size() > 0) {
             mSocket = createSocket();
             try {
-                InetSocketAddress address = socketAddresses.remove(0);
-                mSocket.connect(address, SOCKET_CONNECT_TIMEOUT);
+                mAddress = socketAddresses.remove(0);
+                mSocket.connect(mAddress, SOCKET_CONNECT_TIMEOUT);
 
                 if (canTrySslSecurity()) {
-                    /**
-                     * {@link SSLSocket} must connect in its constructor, or create through a
-                     * already connected socket. Since we need to use
-                     * {@link Socket#connect(SocketAddress, int) } to set timeout, we can only
-                     * create it here.
+                    /*
+                    SSLSocket cannot be created with a connection timeout, so instead of doing a
+                    direct SSL connection, we connect with a normal connection and upgrade it into
+                    SSL
                      */
-                    LogUtils.d(TAG, "open: converting to SSL socket");
-                    mSocket = HttpsURLConnection.getDefaultSSLSocketFactory()
-                            .createSocket(mSocket, address.getHostName(), address.getPort(), true);
-                    // After the socket connects to an SSL server, confirm that the hostname is as
-                    // expected
-                    if (!canTrustAllCertificates()) {
-                        verifyHostname(mSocket, mHost);
-                    }
+                    reopenTls();
+                } else {
+                    mIn = new BufferedInputStream(mSocket.getInputStream(), 1024);
+                    mOut = new BufferedOutputStream(mSocket.getOutputStream(), 512);
+                    mSocket.setSoTimeout(SOCKET_READ_TIMEOUT);
                 }
-
-                mIn = new BufferedInputStream(mSocket.getInputStream(), 1024);
-                mOut = new BufferedOutputStream(mSocket.getOutputStream(), 512);
-                mSocket.setSoTimeout(SOCKET_READ_TIMEOUT);
                 success = true;
                 return;
             } catch (IOException ioe) {
@@ -198,6 +190,32 @@ public class MailTransport {
         try {
             LogUtils.v(TAG, "createSocket: network specified");
             return mNetwork.getSocketFactory().createSocket();
+        } catch (IOException ioe) {
+            LogUtils.d(TAG, ioe.toString());
+            throw new MessagingException(MessagingException.IOERROR, ioe.toString());
+        }
+    }
+
+    /**
+     * Attempts to reopen a normal connection into a TLS connection.
+     */
+    public void reopenTls() throws MessagingException {
+        try {
+            LogUtils.d(TAG, "open: converting to TLS socket");
+            mSocket = HttpsURLConnection.getDefaultSSLSocketFactory()
+                    .createSocket(mSocket, mAddress.getHostName(), mAddress.getPort(), true);
+            // After the socket connects to an SSL server, confirm that the hostname is as
+            // expected
+            if (!canTrustAllCertificates()) {
+                verifyHostname(mSocket, mHost);
+            }
+            mSocket.setSoTimeout(SOCKET_READ_TIMEOUT);
+            mIn = new BufferedInputStream(mSocket.getInputStream(), 1024);
+            mOut = new BufferedOutputStream(mSocket.getOutputStream(), 512);
+
+        } catch (SSLException e) {
+            LogUtils.d(TAG, e.toString());
+            throw new CertificateValidationException(e.getMessage(), e);
         } catch (IOException ioe) {
             LogUtils.d(TAG, ioe.toString());
             throw new MessagingException(MessagingException.IOERROR, ioe.toString());
