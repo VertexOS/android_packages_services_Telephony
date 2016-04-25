@@ -1853,10 +1853,14 @@ public class PhoneUtils {
     }
 
     static boolean isInEmergencyCall(CallManager cm) {
-        for (Connection cn : cm.getActiveFgCall().getConnections()) {
-            if (PhoneNumberUtils.isLocalEmergencyNumber(PhoneGlobals.getInstance(),
-                    cn.getAddress())) {
-                return true;
+        Call fgCall = cm.getActiveFgCall();
+        // isIdle includes checks for the DISCONNECTING/DISCONNECTED state.
+        if(!fgCall.isIdle()) {
+            for (Connection cn : fgCall.getConnections()) {
+                if (PhoneNumberUtils.isLocalEmergencyNumber(PhoneGlobals.getInstance(),
+                        cn.getAddress())) {
+                    return true;
+                }
             }
         }
         return false;
