@@ -5,18 +5,28 @@ import com.android.internal.telephony.CommandsInterface;
 import com.android.internal.telephony.Phone;
 
 import android.app.ActionBar;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.preference.Preference;
 import android.preference.PreferenceScreen;
+import android.telephony.ServiceState;
+import android.telephony.CarrierConfigManager;
 import android.util.Log;
 import android.view.MenuItem;
 
 import java.util.ArrayList;
+import android.telephony.SubscriptionManager;
 
-
-public class GsmUmtsCallForwardOptions extends TimeConsumingPreferenceActivity {
+public class GsmUmtsCallForwardOptions extends TimeConsumingPreferenceActivity
+        implements DialogInterface.OnClickListener, DialogInterface.OnCancelListener {
     private static final String LOG_TAG = "GsmUmtsCallForwardOptions";
     private final boolean DBG = (PhoneGlobals.DBG_LEVEL >= 2);
 
@@ -51,12 +61,50 @@ public class GsmUmtsCallForwardOptions extends TimeConsumingPreferenceActivity {
     protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
 
+        mSubscriptionInfoHelper = new SubscriptionInfoHelper(this, getIntent());
+        mPhone = mSubscriptionInfoHelper.getPhone();
+        final SubscriptionManager subscriptionManager = SubscriptionManager.from(this);
+        // check the active data sub.
+        int sub = mSubscriptionInfoHelper.getSubId();
+        int defaultDataSub = subscriptionManager.getDefaultDataSubscriptionId();
+        CarrierConfigManager configManager = (CarrierConfigManager)mPhone.
+                getContext().getSystemService(Context.CARRIER_CONFIG_SERVICE);
+        PersistableBundle pb = configManager.getConfig(mPhone.getSubId());
+        boolean checkData = pb.getBoolean("check_mobile_data_for_cf");
+        if (mPhone != null && mPhone.isUtEnabled() && checkData) {
+            int activeNetworkType = getActiveNetworkType();
+            boolean isDataRoaming = mPhone.getServiceState().getDataRoaming();
+            boolean isDataRoamingEnabled = mPhone.getDataRoamingEnabled();
+            boolean promptForDataRoaming = isDataRoaming && !isDataRoamingEnabled;
+            Log.d(LOG_TAG, "activeNetworkType = " + getActiveNetworkType() + ", sub = " + sub +
+                    ", defaultDataSub = " + defaultDataSub + ", isDataRoaming = " +
+                    isDataRoaming + ", isDataRoamingEnabled= " + isDataRoamingEnabled);
+            if ((activeNetworkType != ConnectivityManager.TYPE_MOBILE
+                    || sub != defaultDataSub)
+                    && !(activeNetworkType == ConnectivityManager.TYPE_NONE
+                    && promptForDataRoaming)) {
+                   if (DBG) Log.d(LOG_TAG, "please open mobile network for UT settings!");
+                   String title = (String)this.getResources().getText(R.string.no_mobile_data);
+                   String message = (String)this.getResources()
+                           .getText(R.string.cf_setting_mobile_data_alert);
+                   showAlertDialog(title, message);
+                   return;
+            }
+            if (promptForDataRoaming) {
+                   if (DBG) Log.d(LOG_TAG, "please open data roaming for UT settings!");
+                   String title = (String)this.getResources()
+                           .getText(R.string.no_mobile_data_roaming);
+                   String message = (String)this.getResources()
+                           .getText(R.string.cf_setting_mobile_data_roaming_alert);
+                   showAlertDialog(title, message);
+                   return;
+            }
+        }
+
         addPreferencesFromResource(R.xml.callforward_options);
 
-        mSubscriptionInfoHelper = new SubscriptionInfoHelper(this, getIntent());
         mSubscriptionInfoHelper.setActionBarTitle(
                 getActionBar(), getResources(), R.string.call_forwarding_settings_with_label);
-        mPhone = mSubscriptionInfoHelper.getPhone();
 
         PreferenceScreen prefSet = getPreferenceScreen();
         mButtonCFU = (CallForwardEditPreference) prefSet.findPreference(BUTTON_CFU_KEY);
@@ -86,6 +134,30 @@ public class GsmUmtsCallForwardOptions extends TimeConsumingPreferenceActivity {
             // android.R.id.home will be triggered in onOptionsItemSelected()
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
+    }
+
+    @Override
+    public void onClick(DialogInterface dialog, int id) {
+        if (id == DialogInterface.BUTTON_POSITIVE) {
+            Intent newIntent = new Intent("android.settings.SETTINGS");
+            newIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(newIntent);
+        }
+        finish();
+        return;
+    }
+
+    private int getActiveNetworkType() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(
+                Context.CONNECTIVITY_SERVICE);
+        if (cm != null) {
+            NetworkInfo ni = cm.getActiveNetworkInfo();
+            if ((ni == null) || !ni.isConnected()){
+                return ConnectivityManager.TYPE_NONE;
+            }
+            return ni.getType();
+        }
+        return ConnectivityManager.TYPE_NONE;
     }
 
     @Override
@@ -186,5 +258,17 @@ public class GsmUmtsCallForwardOptions extends TimeConsumingPreferenceActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void showAlertDialog(String title, String message) {
+        Dialog dialog = new AlertDialog.Builder(this)
+                .setTitle(title)
+                .setMessage(message)
+                .setIconAttribute(android.R.attr.alertDialogIcon)
+                .setPositiveButton(android.R.string.ok, this)
+                .setNegativeButton(android.R.string.cancel, this)
+                .setOnCancelListener(this)
+                .create();
+        dialog.show();
     }
 }

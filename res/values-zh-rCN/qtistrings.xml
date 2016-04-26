@@ -37,4 +37,8 @@
     <string name="duration_disable_summary">挂机显示通话时长已关闭</string>
     <string name="vibrate_after_connected_title">"接通振动提示"</string>
     <string name="vibrate_after_connected_summary">"对方接通时振动"</string>
+    <string name="cf_setting_mobile_data_alert">请开启手机数据连接，并确保WLAN已关闭</string>
+    <string name="no_mobile_data">移动数据连接不可用</string>
+    <string name="cf_setting_mobile_data_alert_roaming">请开启数据漫游</string>
+    <string name="no_mobile_data_roaming">数据漫游不可用</string>
 </resources>

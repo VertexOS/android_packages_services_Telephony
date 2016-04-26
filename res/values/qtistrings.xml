@@ -40,4 +40,9 @@
     <!-- Setting option name to enable or disable vibration after connected -->
     <string name="vibrate_after_connected_title">Vibrating after connected</string>
     <string name="vibrate_after_connected_summary">Vibrate when answers</string>
+
+    <string name="cf_setting_mobile_data_alert">Please turn on mobile data and make sure that WLAN is off</string>
+    <string name="cf_setting_mobile_data_roaming_alert">Please turn on data roaming</string>
+    <string name="no_mobile_data">Mobile data is not available</string>
+    <string name="no_mobile_data_roaming">Data roaming is not available</string>
 </resources>
