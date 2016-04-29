@@ -218,4 +218,10 @@
 
     <!-- Whether the emergency only account can make emergency calls -->
     <bool name="config_pstnCanPlaceEmergencyCalls">true</bool>
+
+    <!-- To disable/enable CallForwardUnconditional Timer -->
+    <bool name="config_enable_cfu_time">false</bool>
+
+    <!-- enable network checking for ut interface-->
+    <bool name="check_mobile_data_for_cf">false</bool>
 </resources>

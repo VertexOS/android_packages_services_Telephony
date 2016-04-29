@@ -11,7 +11,8 @@ res_dirs := res $(phone_common_dir)/res sip/res
 
 LOCAL_JAVA_LIBRARIES := telephony-common voip-common ims-common telephony-ext
 LOCAL_STATIC_JAVA_LIBRARIES := \
-        guava
+        guava \
+        ims-ext-common
 
 LOCAL_SRC_FILES := $(call all-java-files-under, $(src_dirs))
 LOCAL_SRC_FILES += \

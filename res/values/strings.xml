@@ -222,7 +222,22 @@
     <!-- Call forwarding settings screen, Always forward is enabled but the number is unavailable -->
     <string name="sum_cfu_enabled_no_number">Number is unavailable</string>
     <!-- Call forwarding settings screen, setting summary text when Always forward is disabled -->
-    <string name="sum_cfu_disabled">Off</string>
+    <string name="sum_cfu_disabled">Disabled</string>
+
+    <!-- Call forwarding settings screen, setting timer info for cfut case -->
+    <string name="set_time_period">Set time period</string>
+    <string name="all_day">All day</string>
+    <string name="time_interval_char">: </string>
+    <string name="time_start">From</string>
+    <string name="time_start_hour">time start hour</string>
+    <string name="time_start_minute">time start minute</string>
+    <string name="time_end">To</string>
+    <string name="time_end_hour">time end hour</string>
+    <string name="time_end_minute">time end minute</string>
+    <string name="time_formate_am">AM</string>
+    <string name="time_formate_pm">PM</string>
+    <string name="cf_setting_mobile_data_alert">Please turn on mobile data and make sure that WLAN is off</string>
+    <string name="cf_setting_mobile_data_roaming_alert">Please turn on data roaming</string>
 
     <!-- Call forwarding settings screen, setting option name -->
     <string name="labelCFB">When busy</string>
@@ -1369,5 +1384,5 @@
      <string name="smart_divert_title">Smart-Divert</string>
      <!-- Summary for the Smart Divert Feature displayed in Call Settings -->
      <string name="smart_divert_summary">CFNRc Settings</string>
-
+     <string name="no_mobile_data">Mobile data is not available</string>
 </resources>

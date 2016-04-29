@@ -557,4 +557,6 @@
     <string name="message_decode_error" msgid="3456481534066924855">"对邮件解码时出错。"</string>
     <string name="callFailed_cdma_activation" msgid="2307989779233262164">"SIM 卡已启用您的服务，并更新了您手机的漫游功能。"</string>
     <string name="callFailed_cdma_call_limit" msgid="1556916577171457086">"进行中的通话过多。请结束现有通话或将其合并，然后再拨打新的电话。"</string>
+    <string name="cf_setting_mobile_data_alert">请开启手机数据连接，并确保WLAN已关闭</string>
+    <string name="no_mobile_data">移动数据连接不可用</string>
 </resources>
