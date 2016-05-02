@@ -2412,7 +2412,7 @@ public class PhoneUtils {
         // TODO: Should use some sort of special hidden flag to decorate this account as
         // an emergency-only account
         String id = isEmergency ? EMERGENCY_ACCOUNT_HANDLE_ID : prefix +
-                String.valueOf(phone.getIccSerialNumber());
+                String.valueOf(phone.getFullIccSerialNumber());
         return makePstnPhoneAccountHandleWithPrefix(id, prefix, isEmergency);
     }
 
@@ -2466,7 +2466,7 @@ public class PhoneUtils {
     private static Phone getPhoneFromIccId(String iccId) {
         if (!TextUtils.isEmpty(iccId)) {
             for (Phone phone : PhoneFactory.getPhones()) {
-                String phoneIccId = phone.getIccSerialNumber();
+                String phoneIccId = phone.getFullIccSerialNumber();
                 if (iccId.equals(phoneIccId)) {
                     return phone;
                 }
