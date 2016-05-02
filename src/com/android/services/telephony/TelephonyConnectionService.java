@@ -296,7 +296,7 @@ public class TelephonyConnectionService extends ConnectionService {
 
         final TelephonyConnection connection =
                 createConnectionFor(phone, null, true /* isOutgoing */, request.getAccountHandle(),
-                        request.getTelecomCallId(), request.getAddress());
+                        request.getTelecomCallId(), request.getAddress(), request.getVideoState());
         if (connection == null) {
             return Connection.createFailedConnection(
                     DisconnectCauseUtil.toTelecomDisconnectCause(
@@ -378,10 +378,15 @@ public class TelephonyConnectionService extends ConnectionService {
             return Connection.createCanceledConnection();
         }
 
+        // We should rely on the originalConnection to get the video state.  The request coming
+        // from Telecom does not know the video state of the incoming call.
+        int videoState = originalConnection != null ? originalConnection.getVideoState() :
+                VideoProfile.STATE_AUDIO_ONLY;
+
         Connection connection =
                 createConnectionFor(phone, originalConnection, false /* isOutgoing */,
                         request.getAccountHandle(), request.getTelecomCallId(),
-                        request.getAddress());
+                        request.getAddress(), videoState);
         if (connection == null) {
             return Connection.createCanceledConnection();
         } else {
@@ -478,11 +483,16 @@ public class TelephonyConnectionService extends ConnectionService {
             return Connection.createCanceledConnection();
         }
 
+        // We should rely on the originalConnection to get the video state.  The request coming
+        // from Telecom does not know the video state of the unknown call.
+        int videoState = unknownConnection != null ? unknownConnection.getVideoState() :
+                VideoProfile.STATE_AUDIO_ONLY;
+
         TelephonyConnection connection =
                 createConnectionFor(phone, unknownConnection,
                         !unknownConnection.isIncoming() /* isOutgoing */,
                         request.getAccountHandle(), request.getTelecomCallId(),
-                        request.getAddress());
+                        request.getAddress(), videoState);
 
         if (connection == null) {
             return Connection.createCanceledConnection();
@@ -546,7 +556,8 @@ public class TelephonyConnectionService extends ConnectionService {
             boolean isOutgoing,
             PhoneAccountHandle phoneAccountHandle,
             String telecomCallId,
-            Uri address) {
+            Uri address,
+            int videoState) {
         TelephonyConnection returnConnection = null;
         int phoneType = phone.getPhoneType();
         if (phoneType == TelephonyManager.PHONE_TYPE_GSM) {
@@ -564,9 +575,13 @@ public class TelephonyConnectionService extends ConnectionService {
                             phoneAccountHandle));
             boolean isEmergencyCall = (address != null && PhoneNumberUtils.isEmergencyNumber(
                     address.getSchemeSpecificPart()));
-            returnConnection.setConferenceSupported(!isEmergencyCall
-                    && TelecomAccountRegistry.getInstance(this).isMergeCallSupported(
-                            phoneAccountHandle));
+            boolean isVideoCall = VideoProfile.isVideo(videoState);
+            boolean isConferencingSupported = TelecomAccountRegistry.getInstance(this)
+                    .isMergeCallSupported(phoneAccountHandle);
+            boolean isVideoConferencingSupported = TelecomAccountRegistry.getInstance(this)
+                    .isVideoConferencingSupported(phoneAccountHandle);
+            returnConnection.setConferenceSupported(!isEmergencyCall && isConferencingSupported
+                    && (!isVideoCall || (isVideoCall && isVideoConferencingSupported)));
         }
         return returnConnection;
     }
