@@ -3049,4 +3049,39 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         return VoicemailNotificationSettingsUtil.isVibrationEnabled(phone);
     }
 
+
+    /**
+     * Make sure either called from same process as self (phone) or IPC caller has read privilege.
+     *
+     * @throws SecurityException if the caller does not have the required permission
+     */
+    private void enforceReadPrivilegedPermission() {
+        mApp.enforceCallingOrSelfPermission(android.Manifest.permission.READ_PRIVILEGED_PHONE_STATE,
+                null);
+    }
+
+    /**
+     * Return the application ID for the app type.
+     *
+     * @param subId the subscription ID that this request applies to.
+     * @param appType the uicc app type.
+     * @return Application ID for specificied app type, or null if no uicc.
+     */
+    @Override
+    public String getAidForAppType(int subId, int appType) {
+        enforceReadPrivilegedPermission();
+        Phone phone = getPhone(subId);
+        if (phone == null) {
+            return null;
+        }
+        String aid = null;
+        try {
+            aid = UiccController.getInstance().getUiccCard(phone.getPhoneId())
+                    .getApplicationByType(appType).getAid();
+        } catch (Exception e) {
+            Log.e(LOG_TAG, "Not getting aid. Exception ex=" + e);
+        }
+        return aid;
+    }
+
 }
