@@ -52,7 +52,10 @@ public class VvmPackageInstallReceiver extends BroadcastReceiver {
 
             OmtpVvmCarrierConfigHelper carrierConfigHelper = new OmtpVvmCarrierConfigHelper(
                     context, PhoneUtils.getSubIdForPhoneAccountHandle(phoneAccount));
-            if (packageName.equals(carrierConfigHelper.getCarrierVvmPackageName())) {
+            if (carrierConfigHelper.getCarrierVvmPackageNames() == null) {
+                continue;
+            }
+            if (carrierConfigHelper.getCarrierVvmPackageNames().contains(packageName)) {
                 VisualVoicemailSettingsUtil.setVisualVoicemailEnabled(
                         context, phoneAccount, false, false);
                 OmtpVvmSourceManager.getInstance(context).removeSource(phoneAccount);

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2016 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<list name="carrier_config_list">
+  <pbundle_as_map>
+    <!-- Orange France -->
+    <string-array name="mccmnc">
+      <item value="20801"/>
+      <item value="20802"/>
+    </string-array>
+
+    <int name="vvm_port_number_int" value="20481"/>
+    <string name="vvm_destination_number_string" value="21101"/>
+    <string-array name="carrier_vvm_package_name_string_array">
+      <item value="com.orange.vvm"/>
+    </string-array>
+    <string name="vvm_type_string" value="vvm_type_omtp"/>
+    <boolean name="vvm_cellular_data_required_bool" value="true"/>
+  </pbundle_as_map>
+
+  <pbundle_as_map>
+    <!-- Orange UK -->
+    <string-array name="mccmnc">
+      <item value="23433"/>
+      <item value="23434"/>
+    </string-array>
+
+    <int name="vvm_port_number_int" value="20481"/>
+    <string name="vvm_destination_number_string" value="881"/>
+    <string name="vvm_type_string" value="vvm_type_omtp"/>
+  </pbundle_as_map>
+
+  <pbundle_as_map>
+    <!-- T-Mobile USA-->
+    <string-array name="mccmnc">
+      <item value="310160"/>
+      <item value="310200"/>
+      <item value="310210"/>
+      <item value="310220"/>
+      <item value="310230"/>
+      <item value="310240"/>
+      <item value="310250"/>
+      <item value="310260"/>
+      <item value="310270"/>
+      <item value="310300"/>
+      <item value="310310"/>
+      <item value="310490"/>
+      <item value="310530"/>
+      <item value="310590"/>
+      <item value="310640"/>
+      <item value="310660"/>
+      <item value="310800"/>
+    </string-array>
+
+    <int name="vvm_port_number_int" value="1808"/>
+    <string name="vvm_destination_number_string" value="122"/>
+    <string-array name="carrier_vvm_package_name_string_array">
+      <item value="com.tmobile.vvm.application"/>
+    </string-array>
+    <string name="vvm_type_string" value="vvm_type_cvvm"/>
+  </pbundle_as_map>
+</list>
