@@ -16,6 +16,8 @@
 
 package com.android.phone;
 
+import android.content.Context;
+
 import com.android.services.telephony.Log;
 
 /**
@@ -24,6 +26,7 @@ import com.android.services.telephony.Log;
 public final class MockitoHelper {
 
     private static final String TAG = "MockitoHelper";
+    private static final String DEXCACHE = "dexmaker.dexcache";
 
     private ClassLoader mOriginalClassLoader;
     private Thread mContextThread;
@@ -34,7 +37,7 @@ public final class MockitoHelper {
      *
      * @param packageClass test case class
      */
-    public void setUp(Class<?> packageClass) throws Exception {
+    public void setUp(Context context, Class<?> packageClass) throws Exception {
         // makes a copy of the context classloader
         mContextThread = Thread.currentThread();
         mOriginalClassLoader = mContextThread.getContextClassLoader();
@@ -42,6 +45,9 @@ public final class MockitoHelper {
         Log.v(TAG, "Changing context classloader from " + mOriginalClassLoader
                 + " to " + newClassLoader);
         mContextThread.setContextClassLoader(newClassLoader);
+        String dexCache = context.getCacheDir().toString();
+        Log.v(this, "Setting property %s to %s", DEXCACHE, dexCache);
+        System.setProperty(DEXCACHE, dexCache);
     }
 
     /**
@@ -50,5 +56,6 @@ public final class MockitoHelper {
     public void tearDown() throws Exception {
         Log.v(TAG, "Restoring context classloader to " + mOriginalClassLoader);
         mContextThread.setContextClassLoader(mOriginalClassLoader);
+        System.clearProperty(DEXCACHE);
     }
 }
