@@ -40,6 +40,7 @@ import android.os.UserHandle;
 import android.os.UserManager;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
+import android.service.carrier.CarrierIdentifier;
 import android.telecom.PhoneAccount;
 import android.telecom.PhoneAccountHandle;
 import android.telecom.TelecomManager;
@@ -142,6 +143,10 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     private static final int EVENT_PERFORM_NETWORK_SCAN_DONE = 40;
     private static final int CMD_SET_NETWORK_SELECTION_MODE_MANUAL = 41;
     private static final int EVENT_SET_NETWORK_SELECTION_MODE_MANUAL_DONE = 42;
+    private static final int CMD_SET_ALLOWED_CARRIERS = 43;
+    private static final int EVENT_SET_ALLOWED_CARRIERS_DONE = 44;
+    private static final int CMD_GET_ALLOWED_CARRIERS = 45;
+    private static final int EVENT_GET_ALLOWED_CARRIERS_DONE = 46;
 
     /** The singleton instance. */
     private static PhoneInterfaceManager sInstance;
@@ -758,6 +763,68 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
                     // Result cannot be null. Return ModemActivityInfo with all fields set to 0.
                     if (request.result == null) {
                         request.result = new ModemActivityInfo(0, 0, 0, null, 0, 0);
+                    }
+                    synchronized (request) {
+                        request.notifyAll();
+                    }
+                    break;
+
+                case CMD_SET_ALLOWED_CARRIERS:
+                    request = (MainThreadRequest) msg.obj;
+                    onCompleted = obtainMessage(EVENT_SET_ALLOWED_CARRIERS_DONE, request);
+                    mPhone.setAllowedCarriers(
+                            (List<CarrierIdentifier>) request.argument,
+                            onCompleted);
+                    break;
+
+                case EVENT_SET_ALLOWED_CARRIERS_DONE:
+                    ar = (AsyncResult) msg.obj;
+                    request = (MainThreadRequest) ar.userObj;
+                    if (ar.exception == null && ar.result != null) {
+                        request.result = ar.result;
+                    } else {
+                        if (ar.result == null) {
+                            loge("setAllowedCarriers: Empty response");
+                        } else if (ar.exception instanceof CommandException) {
+                            loge("setAllowedCarriers: CommandException: " +
+                                    ar.exception);
+                        } else {
+                            loge("setAllowedCarriers: Unknown exception");
+                        }
+                    }
+                    // Result cannot be null. Return -1 on error.
+                    if (request.result == null) {
+                        request.result = new int[]{-1};
+                    }
+                    synchronized (request) {
+                        request.notifyAll();
+                    }
+                    break;
+
+                case CMD_GET_ALLOWED_CARRIERS:
+                    request = (MainThreadRequest) msg.obj;
+                    onCompleted = obtainMessage(EVENT_GET_ALLOWED_CARRIERS_DONE, request);
+                    mPhone.getAllowedCarriers(onCompleted);
+                    break;
+
+                case EVENT_GET_ALLOWED_CARRIERS_DONE:
+                    ar = (AsyncResult) msg.obj;
+                    request = (MainThreadRequest) ar.userObj;
+                    if (ar.exception == null && ar.result != null) {
+                        request.result = ar.result;
+                    } else {
+                        if (ar.result == null) {
+                            loge("getAllowedCarriers: Empty response");
+                        } else if (ar.exception instanceof CommandException) {
+                            loge("getAllowedCarriers: CommandException: " +
+                                    ar.exception);
+                        } else {
+                            loge("getAllowedCarriers: Unknown exception");
+                        }
+                    }
+                    // Result cannot be null. Return empty list of CarrierIdentifier.
+                    if (request.result == null) {
+                        request.result = new ArrayList<CarrierIdentifier>(0);
                     }
                     synchronized (request) {
                         request.notifyAll();
@@ -3137,7 +3204,6 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         return aid;
     }
 
-
     /**
      * Return the Electronic Serial Number.
      *
@@ -3170,4 +3236,35 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         enforceModifyPermissionOrCarrierPrivilege(getDefaultSubscription());
         return RIL.getTelephonyRILTimingHistograms();
     }
+
+    /**
+     * {@hide}
+     * Set the allowed carrier list for slotId
+     * Require system privileges. In the future we may add this to carrier APIs.
+     *
+     * @return The number of carriers set successfully, should match length of carriers
+     */
+    @Override
+    public int setAllowedCarriers(int slotId, List<CarrierIdentifier> carriers) {
+        enforceModifyPermission();
+        int subId = SubscriptionManager.getSubId(slotId)[0];
+        int[] retVal = (int[]) sendRequest(CMD_SET_ALLOWED_CARRIERS, carriers, subId);
+        return retVal[0];
+    }
+
+    /**
+     * {@hide}
+     * Get the allowed carrier list for slotId.
+     * Require system privileges. In the future we may add this to carrier APIs.
+     *
+     * @return List of {@link android.service.telephony.CarrierIdentifier}; empty list
+     * means all carriers are allowed.
+     */
+    @Override
+    public List<CarrierIdentifier> getAllowedCarriers(int slotId) {
+        enforceReadPrivilegedPermission();
+        int subId = SubscriptionManager.getSubId(slotId)[0];
+        return (List<CarrierIdentifier>) sendRequest(CMD_GET_ALLOWED_CARRIERS, null, subId);
+    }
+
 }
