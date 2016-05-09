@@ -26,6 +26,7 @@ import com.android.internal.annotations.VisibleForTesting;
 import com.android.internal.os.SomeArgs;
 import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneConstants;
+import com.android.internal.telephony.SubscriptionController;
 
 /**
  * Helper class that listens to a Phone's radio state and sends a callback when the radio state of
@@ -141,7 +142,8 @@ public class EmergencyCallStateListener {
      * finally come up. In that case, it's now safe to actually place the emergency call.
      */
     private void onServiceStateChanged(ServiceState state) {
-        Log.d(this, "onServiceStateChanged(), new state = %s, Phone ", state);
+        Log.d(this, "onServiceStateChanged(), new state = %s, Phone = %s", state,
+                mPhone.getPhoneId());
 
         // Possible service states:
         // - STATE_IN_SERVICE        // Normal operation
