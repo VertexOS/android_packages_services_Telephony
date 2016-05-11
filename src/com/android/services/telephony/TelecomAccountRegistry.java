@@ -71,6 +71,7 @@ final class TelecomAccountRegistry {
         private boolean mIsVideoPresenceSupported;
         private boolean mIsVideoPauseSupported;
         private boolean mIsMergeCallSupported;
+        private boolean mIsVideoConferencingSupported;
 
         AccountEntry(Phone phone, boolean isEmergency, boolean isDummy) {
             mPhone = phone;
@@ -189,6 +190,7 @@ final class TelecomAccountRegistry {
                 instantLetteringExtras = getPhoneAccountExtras();
             }
             mIsMergeCallSupported = isCarrierMergeCallSupported();
+            mIsVideoConferencingSupported = isCarrierVideoConferencingSupported();
 
             if (isEmergency && mContext.getResources().getBoolean(
                     R.bool.config_emergency_account_emergency_calls_only)) {
@@ -244,7 +246,8 @@ final class TelecomAccountRegistry {
             // Check if IMS video pause is supported.
             PersistableBundle b =
                     PhoneGlobals.getInstance().getCarrierConfigForSubId(mPhone.getSubId());
-            return b.getBoolean(CarrierConfigManager.KEY_SUPPORT_PAUSE_IMS_VIDEO_CALLS_BOOL);
+            return b != null &&
+                    b.getBoolean(CarrierConfigManager.KEY_SUPPORT_PAUSE_IMS_VIDEO_CALLS_BOOL);
         }
 
         /**
@@ -256,7 +259,8 @@ final class TelecomAccountRegistry {
         private boolean isCarrierVideoPresenceSupported() {
             PersistableBundle b =
                     PhoneGlobals.getInstance().getCarrierConfigForSubId(mPhone.getSubId());
-            return b.getBoolean(CarrierConfigManager.KEY_USE_RCS_PRESENCE_BOOL);
+            return b != null &&
+                    b.getBoolean(CarrierConfigManager.KEY_USE_RCS_PRESENCE_BOOL);
         }
 
         /**
@@ -267,7 +271,8 @@ final class TelecomAccountRegistry {
         private boolean isCarrierInstantLetteringSupported() {
             PersistableBundle b =
                     PhoneGlobals.getInstance().getCarrierConfigForSubId(mPhone.getSubId());
-            return b.getBoolean(CarrierConfigManager.KEY_CARRIER_INSTANT_LETTERING_AVAILABLE_BOOL);
+            return b != null &&
+                    b.getBoolean(CarrierConfigManager.KEY_CARRIER_INSTANT_LETTERING_AVAILABLE_BOOL);
         }
 
         /**
@@ -278,7 +283,8 @@ final class TelecomAccountRegistry {
         private boolean isCarrierMergeCallSupported() {
             PersistableBundle b =
                     PhoneGlobals.getInstance().getCarrierConfigForSubId(mPhone.getSubId());
-            return b.getBoolean(CarrierConfigManager.KEY_SUPPORT_CONFERENCE_CALL_BOOL);
+            return b != null &&
+                    b.getBoolean(CarrierConfigManager.KEY_SUPPORT_CONFERENCE_CALL_BOOL);
         }
 
         /**
@@ -289,7 +295,20 @@ final class TelecomAccountRegistry {
         private boolean isCarrierEmergencyVideoCallsAllowed() {
             PersistableBundle b =
                     PhoneGlobals.getInstance().getCarrierConfigForSubId(mPhone.getSubId());
-            return b.getBoolean(CarrierConfigManager.KEY_ALLOW_EMERGENCY_VIDEO_CALLS_BOOL);
+            return b != null &&
+                    b.getBoolean(CarrierConfigManager.KEY_ALLOW_EMERGENCY_VIDEO_CALLS_BOOL);
+        }
+
+        /**
+         * Determines from carrier config whether video conferencing is supported.
+         *
+         * @return {@code true} if video conferencing is supported, {@code false} otherwise.
+         */
+        private boolean isCarrierVideoConferencingSupported() {
+            PersistableBundle b =
+                    PhoneGlobals.getInstance().getCarrierConfigForSubId(mPhone.getSubId());
+            return b != null &&
+                    b.getBoolean(CarrierConfigManager.KEY_SUPPORT_VIDEO_CONFERENCE_CALL_BOOL);
         }
 
         /**
@@ -338,6 +357,14 @@ final class TelecomAccountRegistry {
          */
         public boolean isMergeCallSupported() {
             return mIsMergeCallSupported;
+        }
+
+        /**
+         * Indicates whether this account supports video conferencing.
+         * @return {@code true} if the account supports video conferencing, {@code false} otherwise.
+         */
+        public boolean isVideoConferencingSupported() {
+            return mIsVideoConferencingSupported;
         }
     }
 
@@ -424,6 +451,22 @@ final class TelecomAccountRegistry {
         for (AccountEntry entry : mAccounts) {
             if (entry.getPhoneAccountHandle().equals(handle)) {
                 return entry.isMergeCallSupported();
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Determines if the {@link AccountEntry} associated with a {@link PhoneAccountHandle} supports
+     * video conferencing.
+     *
+     * @param handle The {@link PhoneAccountHandle}.
+     * @return {@code True} if video conferencing is supported.
+     */
+    boolean isVideoConferencingSupported(PhoneAccountHandle handle) {
+        for (AccountEntry entry : mAccounts) {
+            if (entry.getPhoneAccountHandle().equals(handle)) {
+                return entry.isVideoConferencingSupported();
             }
         }
         return false;
