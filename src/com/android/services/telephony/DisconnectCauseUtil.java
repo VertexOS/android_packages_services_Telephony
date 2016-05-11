@@ -137,6 +137,9 @@ public class DisconnectCauseUtil {
             case android.telephony.DisconnectCause.NOT_DISCONNECTED:
                 return DisconnectCause.UNKNOWN;
 
+            case android.telephony.DisconnectCause.CALL_PULLED:
+                return DisconnectCause.CALL_PULLED;
+
             default:
                 Log.w("DisconnectCauseUtil.toTelecomDisconnectCauseCode",
                         "Unrecognized Telephony DisconnectCause "
@@ -213,6 +216,9 @@ public class DisconnectCauseUtil {
             case android.telephony.DisconnectCause.UNOBTAINABLE_NUMBER:
                 resourceId = R.string.callFailed_unobtainable_number;
                 break;
+
+            case android.telephony.DisconnectCause.CALL_PULLED:
+                resourceId = R.string.callEnded_pulled;
 
             default:
                 break;
@@ -327,6 +333,10 @@ public class DisconnectCauseUtil {
 
             case android.telephony.DisconnectCause.VIDEO_CALL_NOT_ALLOWED_WHILE_TTY_ENABLED:
                 resourceId = R.string.callFailed_video_call_tty_enabled;
+                break;
+
+            case android.telephony.DisconnectCause.CALL_PULLED:
+                resourceId = R.string.callEnded_pulled;
                 break;
 
             case android.telephony.DisconnectCause.OUTGOING_CANCELED:
