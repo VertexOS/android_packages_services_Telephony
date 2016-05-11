@@ -3084,4 +3084,27 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         return aid;
     }
 
+
+    /**
+     * Return the Electronic Serial Number.
+     *
+     * @param subId the subscription ID that this request applies to.
+     * @return ESN or null if error.
+     */
+    @Override
+    public String getEsn(int subId) {
+        enforceReadPrivilegedPermission();
+        Phone phone = getPhone(subId);
+        if (phone == null) {
+            return null;
+        }
+        String esn = null;
+        try {
+            esn = phone.getEsn();
+        } catch (Exception e) {
+            Log.e(LOG_TAG, "Not getting ESN. Exception ex=" + e);
+        }
+        return esn;
+    }
+
 }
