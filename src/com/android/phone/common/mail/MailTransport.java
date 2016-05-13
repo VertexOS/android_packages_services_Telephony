@@ -290,6 +290,10 @@ public class MailTransport {
         mSocket = null;
     }
 
+    public String getHost() {
+        return mHost;
+    }
+
     public InputStream getInputStream() {
         return mIn;
     }

@@ -18,12 +18,14 @@ package com.android.phone.common.mail.store;
 import android.provider.VoicemailContract.Status;
 import android.text.TextUtils;
 import android.util.ArraySet;
+import android.util.Base64;
 
 import com.android.phone.common.mail.AuthenticationFailedException;
 import com.android.phone.common.mail.CertificateValidationException;
 import com.android.phone.common.mail.MailTransport;
 import com.android.phone.common.mail.MessagingException;
 import com.android.phone.common.mail.store.ImapStore.ImapException;
+import com.android.phone.common.mail.store.imap.DigestMd5Utils;
 import com.android.phone.common.mail.store.imap.ImapConstants;
 import com.android.phone.common.mail.store.imap.ImapResponse;
 import com.android.phone.common.mail.store.imap.ImapResponseParser;
@@ -33,6 +35,7 @@ import com.android.phone.common.mail.utils.LogUtils;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -171,7 +174,11 @@ public class ImapConnection {
      */
     private void doLogin() throws IOException, MessagingException, AuthenticationFailedException {
         try {
-            executeSimpleCommand(getLoginPhrase(), true);
+            if (mCapabilities.contains(ImapConstants.CAPABILITY_AUTH_DIGEST_MD5)) {
+                doDigestMd5Auth();
+            } else {
+                executeSimpleCommand(getLoginPhrase(), true);
+            }
         } catch (ImapException ie) {
             LogUtils.d(TAG, "ImapException", ie);
             final String status = ie.getStatus();
@@ -191,15 +198,71 @@ public class ImapConnection {
         }
     }
 
+    private void doDigestMd5Auth() throws IOException, MessagingException {
+
+        //  Initiate the authentication.
+        //  The server will issue us a challenge, asking to run MD5 on the nonce with our password
+        //  and other data, including the cnonce we randomly generated.
+        //
+        //  C: a AUTHENTICATE DIGEST-MD5
+        //  S: (BASE64) realm="elwood.innosoft.com",nonce="OA6MG9tEQGm2hh",qop="auth",
+        //             algorithm=md5-sess,charset=utf-8
+        List<ImapResponse> responses = executeSimpleCommand(
+            ImapConstants.AUTHENTICATE + " " + ImapConstants.AUTH_DIGEST_MD5);
+        String decodedChallenge = decodeBase64(responses.get(0).getStringOrEmpty(0).getString());
+
+        Map<String, String> challenge = DigestMd5Utils.parseDigestMessage(decodedChallenge);
+        DigestMd5Utils.Data data = new DigestMd5Utils.Data(mImapStore, mTransport, challenge);
+
+        String response = data.createResponse();
+        //  Respond to the challenge. If the server accepts it, it will reply a response-auth which
+        //  is the MD5 of our password and the cnonce we've provided, to prove the server does know
+        //  the password.
+        //
+        //  C: (BASE64) charset=utf-8,username="chris",realm="elwood.innosoft.com",
+        //              nonce="OA6MG9tEQGm2hh",nc=00000001,cnonce="OA6MHXh6VqTrRk",
+        //              digest-uri="imap/elwood.innosoft.com",
+        //              response=d388dad90d4bbd760a152321f2143af7,qop=auth
+        //  S: (BASE64) rspauth=ea40f60335c427b5527b84dbabcdfffd
+
+        responses = executeContinuationResponse(encodeBase64(response), true);
+
+        // Verify response-auth.
+        // If failed verifyResponseAuth() will throw a MessagingException, terminating the
+        // connection
+        String decodedResponseAuth = decodeBase64(responses.get(0).getStringOrEmpty(0).getString());
+        data.verifyResponseAuth(decodedResponseAuth);
+
+        //  Send a empty response to indicate we've accepted the response-auth
+        //
+        //  C: (empty)
+        //  S: a OK User logged in
+        executeContinuationResponse("", false);
+
+    }
+
+    private static String decodeBase64(String string) {
+        return new String(Base64.decode(string, Base64.DEFAULT));
+    }
+
+    private static String encodeBase64(String string) {
+        return Base64.encodeToString(string.getBytes(), Base64.NO_WRAP);
+    }
+
     private void queryCapability() throws IOException, MessagingException {
         List<ImapResponse> responses = executeSimpleCommand(ImapConstants.CAPABILITY);
         mCapabilities.clear();
+        Set<String> disabledCapabilities = mImapStore.getImapHelper().getConfig()
+                .getDisabledCapabilities();
         for (ImapResponse response : responses) {
             if (response.isTagged()) {
                 continue;
             }
             for (int i = 0; i < response.size(); i++) {
-                mCapabilities.add(response.getStringOrEmpty(i).getString());
+                String capability = response.getStringOrEmpty(i).getString();
+                if (disabledCapabilities != null && !disabledCapabilities.contains(capability)) {
+                    mCapabilities.add(capability);
+                }
             }
         }
 
@@ -270,6 +333,12 @@ public class ImapConnection {
         return tag;
     }
 
+    List<ImapResponse> executeContinuationResponse(String response, boolean sensitive)
+            throws IOException, MessagingException {
+        mTransport.writeLine(response, (sensitive ? IMAP_REDACTED_LOG : response));
+        return getCommandResponses();
+    }
+
     /**
      * Read and return all of the responses from the most recent command sent to the server
      *
@@ -283,9 +352,9 @@ public class ImapConnection {
         do {
             response = mParser.readResponse();
             responses.add(response);
-        } while (!response.isTagged());
+        } while (!(response.isTagged() || response.isContinuationRequest()));
 
-        if (!response.isOk()) {
+        if (!(response.isOk() || response.isContinuationRequest())) {
             final String toString = response.toString();
             final String status = response.getStatusOrEmpty().getString();
             final String alert = response.getAlertTextOrEmpty().getString();

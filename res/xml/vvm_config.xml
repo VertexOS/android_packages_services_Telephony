@@ -85,6 +85,7 @@
     </string-array>
     <string name="vvm_type_string">vvm_type_cvvm</string>>
     <string-array name="vvm_disabled_capabilities_string_array">
+      <!-- b/28717550 -->
       <item value="AUTH=DIGEST-MD5"/>
     </string-array>
   </pbundle_as_map>

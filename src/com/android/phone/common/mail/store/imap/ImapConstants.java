@@ -113,5 +113,11 @@ public final class ImapConstants {
     /**
      * capabilities
      */
+    public static final String CAPABILITY_AUTH_DIGEST_MD5 = "AUTH=DIGEST-MD5";
     public static final String CAPABILITY_STARTTLS = "STARTTLS";
+
+    /**
+     * authentication
+     */
+    public static final String AUTH_DIGEST_MD5 = "DIGEST-MD5";
 }

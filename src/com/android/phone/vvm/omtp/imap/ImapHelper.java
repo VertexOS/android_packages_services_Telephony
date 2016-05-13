@@ -25,7 +25,6 @@ import android.provider.VoicemailContract;
 import android.provider.VoicemailContract.Status;
 import android.telecom.PhoneAccountHandle;
 import android.telecom.Voicemail;
-import android.telephony.TelephonyManager;
 import android.util.Base64;
 import android.util.Log;
 
@@ -80,10 +79,14 @@ public class ImapHelper {
     private int mQuotaOccupied;
     private int mQuotaTotal;
 
+    private final OmtpVvmCarrierConfigHelper mConfig;
+
     public ImapHelper(Context context, PhoneAccountHandle phoneAccount, Network network) {
         mContext = context;
         mPhoneAccount = phoneAccount;
         mNetwork = network;
+        mConfig = new OmtpVvmCarrierConfigHelper(context,
+                PhoneUtils.getSubIdForPhoneAccountHandle(phoneAccount));
         try {
             TempDirectory.setTempDirectory(context);
 
@@ -98,11 +101,9 @@ public class ImapHelper {
                             OmtpConstants.IMAP_PORT, phoneAccount));
             int auth = ImapStore.FLAG_NONE;
 
-            OmtpVvmCarrierConfigHelper carrierConfigHelper = new OmtpVvmCarrierConfigHelper(context,
-                    PhoneUtils.getSubIdForPhoneAccountHandle(phoneAccount));
-            if (TelephonyManager.VVM_TYPE_CVVM.equals(carrierConfigHelper.getVvmType())) {
-                // TODO: move these into the carrier config app
-                port = 993;
+            int sslPort = mConfig.getSslPort();
+            if (sslPort != 0) {
+                port = sslPort;
                 auth = ImapStore.FLAG_SSL;
             }
 
@@ -140,6 +141,10 @@ public class ImapHelper {
             return false;
         }
         return info.isRoaming();
+    }
+
+    public OmtpVvmCarrierConfigHelper getConfig() {
+        return mConfig;
     }
 
     /** The caller thread will block until the method returns. */

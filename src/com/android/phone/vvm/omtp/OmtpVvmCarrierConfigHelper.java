@@ -65,8 +65,19 @@ public class OmtpVvmCarrierConfigHelper {
             CarrierConfigManager.KEY_VVM_PREFETCH_BOOL;
     static final String KEY_VVM_CELLULAR_DATA_REQUIRED_BOOL =
             CarrierConfigManager.KEY_VVM_CELLULAR_DATA_REQUIRED_BOOL;
+
+    /**
+     * @see #getSslPort()
+     */
     static final String KEY_VVM_SSL_PORT_NUMBER_INT =
             "vvm_ssl_port_number_int";
+
+    /**
+     * Ban a capability reported by the server from being used. The array of string should be a
+     * subset of the capabilities returned IMAP CAPABILITY command.
+     *
+     * @see #getDisabledCapabilities()
+     */
     static final String KEY_VVM_DISABLED_CAPABILITIES_STRING_ARRAY =
             "vvm_disabled_capabilities_string_array";
     static final String KEY_VVM_CLIENT_PREFIX_STRING =
@@ -188,7 +199,6 @@ public class OmtpVvmCarrierConfigHelper {
      *
      * TODO: make config public and add to CarrierConfigManager
      */
-    @VisibleForTesting // TODO: remove after method used.
     public int getSslPort() {
         Integer port = (Integer) getValue(KEY_VVM_SSL_PORT_NUMBER_INT);
         if (port != null) {
@@ -200,10 +210,13 @@ public class OmtpVvmCarrierConfigHelper {
     /**
      * Hidden Config.
      *
+     * <p>Sometimes the server states it supports a certain feature but we found they have bug on
+     * the server side. For example, in b/28717550 the server reported AUTH=DIGEST-MD5 capability
+     * but using it to login will cause subsequent response to be erroneous.
+     *
      * @return A set of capabilities that is reported by the IMAP CAPABILITY command, but determined
      * to have issues and should not be used.
      */
-    @VisibleForTesting // TODO: remove after method used.
     @Nullable
     public Set<String> getDisabledCapabilities() {
         Set<String> disabledCapabilities = getDisabledCapabilities(mCarrierConfig);
