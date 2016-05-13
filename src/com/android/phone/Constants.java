@@ -124,6 +124,11 @@ public class Constants {
         EXITED_ECM
     }
 
+    /**
+        * display duration info after end call. 0 = Off 1 = On
+        */
+    public static final String SETTINGS_SHOW_CALL_DURATION = "show_call_duration";
+
     //
     // TODO: Move all the various EXTRA_* and intent action constants here too.
     // (Currently they're all over the place: InCallScreen,

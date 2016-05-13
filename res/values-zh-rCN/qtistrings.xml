@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
   ~ Copyright (c) 2015, The Linux Foundation. All rights reserved.
   ~
@@ -28,13 +28,11 @@
   ~ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   ~
   -->
-
 <!-- The xml contains Qti specific resource strings neede for any value added features. -->
-<resources>
-    <!-- IMS settings related strings -->
-    <!-- Title displayed IMS account settings in the sip settings category. [CHAR LIMIT=NONE] -->
-    <string name="ims_settings">IMS Settings</string>
-    <string name="preferred_duration_title">Display duration</string>
-    <string name="duration_enable_summary">Display duration is ON</string>
-    <string name="duration_disable_summary">Display duration is OFF</string>
+
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="preferred_duration_title">挂机显示通话时长</string>
+    <string name="duration_enable_summary">挂机显示通话时长已开启</string>
+    <string name="duration_disable_summary">挂机显示通话时长已关闭</string>
 </resources>
