@@ -28,9 +28,8 @@ public class OmtpConstants {
     public static final String SMS_KEY_VALUE_SEPARATOR = "=";
     public static final String SMS_PREFIX_SEPARATOR = ":";
 
-    public static final String CLIENT_PREFIX = "//VVM";
-    public static final String SYNC_SMS_PREFIX = CLIENT_PREFIX + ":SYNC:";
-    public static final String STATUS_SMS_PREFIX = CLIENT_PREFIX + ":STATUS:";
+    public static final String SYNC_SMS_PREFIX = "SYNC";
+    public static final String STATUS_SMS_PREFIX = "STATUS";
 
     // This is the format designated by the OMTP spec.
     public static final String DATE_TIME_FORMAT = "dd/MM/yyyy HH:mm Z";

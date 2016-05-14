@@ -40,6 +40,8 @@ public class TelephonyVvmConfigManager {
 
     private static final String TAG = "TelephonyVvmCfgMgr";
 
+    private static final boolean USE_DEBUG_CONFIG = false; //STOPSHIP if true
+
     private static final String TAG_PERSISTABLEMAP = "pbundle_as_map";
 
     static final String KEY_MCCMNC = "mccmnc";
@@ -62,6 +64,9 @@ public class TelephonyVvmConfigManager {
 
     @Nullable
     public PersistableBundle getConfig(String mccMnc) {
+        if (USE_DEBUG_CONFIG) {
+            return mConfigs.get("TEST");
+        }
         return mConfigs.get(mccMnc);
     }
 

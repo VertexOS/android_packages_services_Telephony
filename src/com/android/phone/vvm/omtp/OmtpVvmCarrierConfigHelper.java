@@ -69,6 +69,8 @@ public class OmtpVvmCarrierConfigHelper {
             "vvm_ssl_port_number_int";
     static final String KEY_VVM_DISABLED_CAPABILITIES_STRING_ARRAY =
             "vvm_disabled_capabilities_string_array";
+    static final String KEY_VVM_CLIENT_PREFIX_STRING =
+            "vvm_client_prefix_string";
 
     private final Context mContext;
     private final int mSubId;
@@ -142,7 +144,11 @@ public class OmtpVvmCarrierConfigHelper {
      * so by checking if the carrier's voicemail app is installed.
      */
     public boolean isEnabledByDefault() {
-        for (String packageName : getCarrierVvmPackageNames()) {
+        Set<String> carrierPackages = getCarrierVvmPackageNames();
+        if (carrierPackages == null) {
+            return true;
+        }
+        for (String packageName : carrierPackages) {
             try {
                 mContext.getPackageManager().getPackageInfo(packageName, 0);
                 return false;
@@ -221,7 +227,19 @@ public class OmtpVvmCarrierConfigHelper {
         return result;
     }
 
+    public String getClientPrefix() {
+        String prefix = (String) getValue(KEY_VVM_CLIENT_PREFIX_STRING);
+        if (prefix != null) {
+            return prefix;
+        }
+        return "//VVM";
+    }
+
     public void startActivation() {
+        TelephonyManager telephonyManager = mContext.getSystemService(TelephonyManager.class);
+        telephonyManager.setVisualVoicemailSmsFilterEnabled(mSubId, true);
+        telephonyManager.setVisualVoicemailSmsFilterClientPrefix(mSubId, getClientPrefix());
+
         OmtpMessageSender messageSender = getMessageSender();
         if (messageSender != null) {
             Log.i(TAG, "Requesting VVM activation for subId: " + mSubId);
@@ -230,6 +248,8 @@ public class OmtpVvmCarrierConfigHelper {
     }
 
     public void startDeactivation() {
+        mContext.getSystemService(TelephonyManager.class)
+                .setVisualVoicemailSmsFilterEnabled(mSubId, false);
         OmtpMessageSender messageSender = getMessageSender();
         if (messageSender != null) {
             Log.i(TAG, "Requesting VVM deactivation for subId: " + mSubId);

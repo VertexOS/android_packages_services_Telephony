@@ -20,15 +20,14 @@ import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.os.UserManager;
-import android.provider.Telephony;
 import android.provider.VoicemailContract;
 import android.telecom.PhoneAccountHandle;
 import android.telecom.Voicemail;
-import android.telephony.SmsMessage;
+import android.telephony.SubscriptionManager;
 import android.util.Log;
 
-import com.android.internal.telephony.PhoneConstants;
 import com.android.phone.PhoneGlobals;
 import com.android.phone.PhoneUtils;
 import com.android.phone.settings.VisualVoicemailSettingsUtil;
@@ -57,7 +56,8 @@ public class OmtpMessageReceiver extends BroadcastReceiver {
 
         mContext = context;
         mPhoneAccount = PhoneUtils.makePstnPhoneAccountHandle(
-                intent.getExtras().getInt(PhoneConstants.PHONE_KEY));
+                SubscriptionManager.getPhoneId(
+                        intent.getExtras().getInt(VoicemailContract.EXTRA_VOICEMAIL_SMS_SUBID)));
 
         if (mPhoneAccount == null) {
             Log.w(TAG, "Received message for null phone account");
@@ -69,41 +69,26 @@ public class OmtpMessageReceiver extends BroadcastReceiver {
             return;
         }
 
-        SmsMessage[] messages = Telephony.Sms.Intents.getMessagesFromIntent(intent);
+        String eventType = intent.getExtras()
+                .getString(VoicemailContract.EXTRA_VOICEMAIL_SMS_PREFIX);
+        Bundle data = intent.getExtras().getBundle(VoicemailContract.EXTRA_VOICEMAIL_SMS_FIELDS);
 
-        if (messages == null) {
-            Log.w(TAG, "Message does not exist in the intent.");
-            return;
+        if (eventType.equals(OmtpConstants.SYNC_SMS_PREFIX)) {
+            SyncMessage message = new SyncMessage(data);
+
+            Log.v(TAG, "Received SYNC sms for " + mPhoneAccount.getId() +
+                    " with event " + message.getSyncTriggerEvent());
+            LocalLogHelper.log(TAG, "Received SYNC sms for " + mPhoneAccount.getId() +
+                    " with event " + message.getSyncTriggerEvent());
+            processSync(message);
+        } else if (eventType.equals(OmtpConstants.STATUS_SMS_PREFIX)) {
+            Log.v(TAG, "Received STATUS sms for " + mPhoneAccount.getId());
+            LocalLogHelper.log(TAG, "Received Status sms for " + mPhoneAccount.getId());
+            StatusMessage message = new StatusMessage(data);
+            updateSource(message);
+        } else {
+            Log.e(TAG, "Unknown prefix: " + eventType);
         }
-
-        StringBuilder messageBody = new StringBuilder();
-
-        for (int i = 0; i < messages.length; i++) {
-            if (messages[i].mWrappedSmsMessage != null) {
-                messageBody.append(messages[i].getMessageBody());
-            }
-        }
-
-        WrappedMessageData messageData = OmtpSmsParser.parse(messageBody.toString());
-        if (messageData != null) {
-            if (messageData.getPrefix() == OmtpConstants.SYNC_SMS_PREFIX) {
-                SyncMessage message = new SyncMessage(messageData);
-
-                Log.v(TAG, "Received SYNC sms for " + mPhoneAccount.getId() +
-                        " with event " + message.getSyncTriggerEvent());
-                LocalLogHelper.log(TAG, "Received SYNC sms for " + mPhoneAccount.getId() +
-                        " with event " + message.getSyncTriggerEvent());
-                processSync(message);
-            } else if (messageData.getPrefix() == OmtpConstants.STATUS_SMS_PREFIX) {
-                Log.v(TAG, "Received STATUS sms for " + mPhoneAccount.getId());
-                LocalLogHelper.log(TAG, "Received Status sms for " + mPhoneAccount.getId());
-                StatusMessage message = new StatusMessage(messageData);
-                updateSource(message);
-            } else {
-                Log.e(TAG, "This should never have happened");
-            }
-        }
-        // Let this fall through: this is not a message we're interested in.
     }
 
     /**

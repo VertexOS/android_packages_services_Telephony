@@ -655,8 +655,7 @@
         <receiver android:name="com.android.phone.vvm.omtp.sms.OmtpMessageReceiver"
             android:exported="true">
             <intent-filter>
-                <action android:name="android.intent.action.DATA_SMS_RECEIVED" />
-                <data android:scheme="sms" />
+                <action android:name="android.intent.action.VOICEMAIL_SMS_RECEIVED"/>
             </intent-filter>
         </receiver>
         <receiver

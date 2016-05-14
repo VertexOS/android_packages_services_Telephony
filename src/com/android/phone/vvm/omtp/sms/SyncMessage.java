@@ -15,7 +15,13 @@
  */
 package com.android.phone.vvm.omtp.sms;
 
+import android.os.Bundle;
+
 import com.android.phone.vvm.omtp.OmtpConstants;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 
 /**
  * Structured data representation of an OMTP SYNC message.
@@ -49,16 +55,25 @@ public class SyncMessage {
                 + ", mMsgTimeMillis=" + mMsgTimeMillis + "]";
     }
 
-    public SyncMessage(WrappedMessageData wrappedData) {
-        mSyncTriggerEvent = wrappedData.extractString(OmtpConstants.SYNC_TRIGGER_EVENT);
-        mMessageId = wrappedData.extractString(OmtpConstants.MESSAGE_UID);
-        mMessageLength = wrappedData.extractInteger(OmtpConstants.MESSAGE_LENGTH);
-        mContentType = wrappedData.extractString(OmtpConstants.CONTENT_TYPE);
-        mSender = wrappedData.extractString(OmtpConstants.SENDER);
-        mNewMessageCount = wrappedData.extractInteger(OmtpConstants.NUM_MESSAGE_COUNT);
-        mMsgTimeMillis = wrappedData.extractTime(OmtpConstants.TIME);
+    public SyncMessage(Bundle wrappedData) {
+        mSyncTriggerEvent = wrappedData.getString(OmtpConstants.SYNC_TRIGGER_EVENT);
+        mMessageId = wrappedData.getString(OmtpConstants.MESSAGE_UID);
+        mMessageLength = Integer.parseInt(wrappedData.getString(OmtpConstants.MESSAGE_LENGTH));
+        mContentType = wrappedData.getString(OmtpConstants.CONTENT_TYPE);
+        mSender = wrappedData.getString(OmtpConstants.SENDER);
+        mNewMessageCount = Integer.parseInt(wrappedData.getString(OmtpConstants.NUM_MESSAGE_COUNT));
+        mMsgTimeMillis = parseTime(wrappedData.getString(OmtpConstants.TIME));
     }
 
+    static Long parseTime(String value) {
+        try {
+            return new SimpleDateFormat(
+                    OmtpConstants.DATE_TIME_FORMAT, Locale.US)
+                    .parse(value).getTime();
+        } catch (ParseException e) {
+            return 0L;
+        }
+    }
     /**
      * @return the event that triggered the sync message. This is a mandatory field and must always
      * be set.

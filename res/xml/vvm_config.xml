@@ -16,6 +16,18 @@
 
 <list name="carrier_config_list">
   <pbundle_as_map>
+    <!-- Test -->
+    <string-array name="mccmnc">
+      <item value="TEST"/>
+    </string-array>
+
+    <int name="vvm_port_number_int" value="20481"/>
+    <string name="vvm_destination_number_string">887</string>
+    <string name="vvm_type_string">vvm_type_omtp</string>
+    <boolean name="vvm_cellular_data_required_bool" value="true"/>
+  </pbundle_as_map>
+
+  <pbundle_as_map>
     <!-- Orange France -->
     <string-array name="mccmnc">
       <item value="20801"/>
@@ -23,11 +35,11 @@
     </string-array>
 
     <int name="vvm_port_number_int" value="20481"/>
-    <string name="vvm_destination_number_string" value="21101"/>
+    <string name="vvm_destination_number_string">21101</string>
     <string-array name="carrier_vvm_package_name_string_array">
       <item value="com.orange.vvm"/>
     </string-array>
-    <string name="vvm_type_string" value="vvm_type_omtp"/>
+    <string name="vvm_type_string">vvm_type_omtp</string>
     <boolean name="vvm_cellular_data_required_bool" value="true"/>
   </pbundle_as_map>
 
@@ -39,8 +51,8 @@
     </string-array>
 
     <int name="vvm_port_number_int" value="20481"/>
-    <string name="vvm_destination_number_string" value="881"/>
-    <string name="vvm_type_string" value="vvm_type_omtp"/>
+    <string name="vvm_destination_number_string">881</string>
+    <string name="vvm_type_string">vvm_type_omtp</string>
   </pbundle_as_map>
 
   <pbundle_as_map>
@@ -66,10 +78,14 @@
     </string-array>
 
     <int name="vvm_port_number_int" value="1808"/>
-    <string name="vvm_destination_number_string" value="122"/>
+    <int name="vvm_ssl_port_number_int" value="993"/>
+    <string name="vvm_destination_number_string">122</string>
     <string-array name="carrier_vvm_package_name_string_array">
       <item value="com.tmobile.vvm.application"/>
     </string-array>
-    <string name="vvm_type_string" value="vvm_type_cvvm"/>
+    <string name="vvm_type_string">vvm_type_cvvm</string>>
+    <string-array name="vvm_disabled_capabilities_string_array">
+      <item value="AUTH=DIGEST-MD5"/>
+    </string-array>
   </pbundle_as_map>
 </list>

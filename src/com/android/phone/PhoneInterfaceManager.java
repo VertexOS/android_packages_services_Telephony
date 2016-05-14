@@ -16,6 +16,8 @@
 
 package com.android.phone;
 
+import static com.android.internal.telephony.PhoneConstants.SUBSCRIPTION_KEY;
+
 import android.app.ActivityManager;
 import android.app.AppOpsManager;
 import android.content.ComponentName;
@@ -44,13 +46,13 @@ import android.telecom.TelecomManager;
 import android.telephony.CarrierConfigManager;
 import android.telephony.CellInfo;
 import android.telephony.IccOpenLogicalChannelResponse;
+import android.telephony.ModemActivityInfo;
 import android.telephony.NeighboringCellInfo;
 import android.telephony.RadioAccessFamily;
 import android.telephony.ServiceState;
 import android.telephony.SubscriptionInfo;
 import android.telephony.SubscriptionManager;
 import android.telephony.TelephonyManager;
-import android.telephony.ModemActivityInfo;
 import android.text.TextUtils;
 import android.util.ArraySet;
 import android.util.Log;
@@ -67,9 +69,9 @@ import com.android.internal.telephony.IccCard;
 import com.android.internal.telephony.MccTable;
 import com.android.internal.telephony.OperatorInfo;
 import com.android.internal.telephony.Phone;
+import com.android.internal.telephony.PhoneConstants;
 import com.android.internal.telephony.PhoneFactory;
 import com.android.internal.telephony.ProxyController;
-import com.android.internal.telephony.PhoneConstants;
 import com.android.internal.telephony.RILConstants;
 import com.android.internal.telephony.SubscriptionController;
 import com.android.internal.telephony.uicc.IccIoResult;
@@ -78,8 +80,6 @@ import com.android.internal.telephony.uicc.UiccCard;
 import com.android.internal.telephony.uicc.UiccController;
 import com.android.internal.util.HexDump;
 import com.android.phone.settings.VoicemailNotificationSettingsUtil;
-
-import static com.android.internal.telephony.PhoneConstants.SUBSCRIPTION_KEY;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -1825,6 +1825,56 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         Boolean success = (Boolean) sendRequest(CMD_SET_VOICEMAIL_NUMBER,
                 new Pair<String, String>(alphaTag, number), new Integer(subId));
         return success;
+    }
+
+    @Override
+    public void setVisualVoicemailSmsFilterEnabled(int subId, boolean value) {
+        VisualVoicemailSmsFilterConfig
+                .setVisualVoicemailSmsFilterEnabled(mPhone.getContext(), subId, value);
+    }
+
+    @Override
+    public boolean isVisualVoicemailSmsFilterEnabled(String packageName, int subId) {
+        return VisualVoicemailSmsFilterConfig
+                .isVisualVoicemailSmsFilterEnabled(mPhone.getContext(), packageName, subId);
+    }
+
+    @Override
+    public void setVisualVoicemailSmsFilterClientPrefix(int subId, String prefix) {
+        VisualVoicemailSmsFilterConfig
+                .setVisualVoicemailSmsFilterClientPrefix(mPhone.getContext(), subId, prefix);
+    }
+
+    @Override
+    public String getVisualVoicemailSmsFilterClientPrefix(String packageName, int subId) {
+        return VisualVoicemailSmsFilterConfig
+                .getVisualVoicemailSmsFilterClientPrefix(mPhone.getContext(), packageName, subId);
+    }
+
+    @Override
+    public void setVisualVoicemailSmsFilterOriginatingNumbers(int subId, String[] numbers) {
+        VisualVoicemailSmsFilterConfig
+                .setVisualVoicemailSmsFilterOriginatingNumbers(mPhone.getContext(), subId, numbers);
+    }
+
+    @Override
+    public String[] getVisualVoicemailSmsFilterOriginatingNumbers(String packageName, int subId) {
+        return VisualVoicemailSmsFilterConfig
+                .getVisualVoicemailSmsFilterOriginatingNumbers(mPhone.getContext(), packageName,
+                        subId);
+    }
+
+    @Override
+    public void setVisualVoicemailSmsFilterDestinationPort(int subId, int port) {
+        VisualVoicemailSmsFilterConfig
+                .setVisualVoicemailSmsFilterDestinationPort(mPhone.getContext(), subId, port);
+    }
+
+    @Override
+    public int getVisualVoicemailSmsFilterDestinationPort(String packageName, int subId) {
+        return VisualVoicemailSmsFilterConfig
+                .getVisualVoicemailSmsFilterDestinationPort(mPhone.getContext(), packageName,
+                        subId);
     }
 
     /**

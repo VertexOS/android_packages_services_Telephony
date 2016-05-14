@@ -15,6 +15,7 @@
  */
 package com.android.phone.vvm.omtp.sms;
 
+import android.os.Bundle;
 import android.telecom.Log;
 
 import com.android.phone.vvm.omtp.OmtpConstants;
@@ -59,20 +60,20 @@ public class StatusMessage {
                 + ", mSmtpPassword=" + Log.pii(mSmtpPassword) + "]";
     }
 
-    public StatusMessage(WrappedMessageData wrappedData) {
-        mProvisioningStatus = wrappedData.extractString(OmtpConstants.PROVISIONING_STATUS);
-        mStatusReturnCode = wrappedData.extractString(OmtpConstants.RETURN_CODE);
-        mSubscriptionUrl = wrappedData.extractString(OmtpConstants.SUBSCRIPTION_URL);
-        mServerAddress = wrappedData.extractString(OmtpConstants.SERVER_ADDRESS);
-        mTuiAccessNumber = wrappedData.extractString(OmtpConstants.TUI_ACCESS_NUMBER);
-        mClientSmsDestinationNumber = wrappedData.extractString(
+    public StatusMessage(Bundle wrappedData) {
+        mProvisioningStatus = wrappedData.getString(OmtpConstants.PROVISIONING_STATUS);
+        mStatusReturnCode = wrappedData.getString(OmtpConstants.RETURN_CODE);
+        mSubscriptionUrl = wrappedData.getString(OmtpConstants.SUBSCRIPTION_URL);
+        mServerAddress = wrappedData.getString(OmtpConstants.SERVER_ADDRESS);
+        mTuiAccessNumber = wrappedData.getString(OmtpConstants.TUI_ACCESS_NUMBER);
+        mClientSmsDestinationNumber = wrappedData.getString(
                 OmtpConstants.CLIENT_SMS_DESTINATION_NUMBER);
-        mImapPort = wrappedData.extractString(OmtpConstants.IMAP_PORT);
-        mImapUserName = wrappedData.extractString(OmtpConstants.IMAP_USER_NAME);
-        mImapPassword = wrappedData.extractString(OmtpConstants.IMAP_PASSWORD);
-        mSmtpPort = wrappedData.extractString(OmtpConstants.SMTP_PORT);
-        mSmtpUserName = wrappedData.extractString(OmtpConstants.SMTP_USER_NAME);
-        mSmtpPassword = wrappedData.extractString(OmtpConstants.SMTP_PASSWORD);
+        mImapPort = wrappedData.getString(OmtpConstants.IMAP_PORT);
+        mImapUserName = wrappedData.getString(OmtpConstants.IMAP_USER_NAME);
+        mImapPassword = wrappedData.getString(OmtpConstants.IMAP_PASSWORD);
+        mSmtpPort = wrappedData.getString(OmtpConstants.SMTP_PORT);
+        mSmtpUserName = wrappedData.getString(OmtpConstants.SMTP_USER_NAME);
+        mSmtpPassword = wrappedData.getString(OmtpConstants.SMTP_PASSWORD);
     }
 
     /**
