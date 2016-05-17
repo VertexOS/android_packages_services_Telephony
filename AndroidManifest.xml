@@ -692,7 +692,7 @@
             android:exported="true"
             android:permission="com.android.voicemail.permission.READ_VOICEMAIL">
             <intent-filter>
-                <action android:name="android.intent.action.SYNC_VOICEMAIL"/>
+                <action android:name="android.provider.action.SYNC_VOICEMAIL"/>
             </intent-filter>
         </receiver>
        <receiver
