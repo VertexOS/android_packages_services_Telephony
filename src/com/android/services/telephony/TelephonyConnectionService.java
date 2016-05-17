@@ -620,35 +620,46 @@ public class TelephonyConnectionService extends ConnectionService {
         return chosenPhone;
     }
 
+    /**
+     * Retrieves the most sensible Phone to use for an emergency call using the following Priority
+     *  list (for multi-SIM devices):
+     *  1) The User's SIM preference for Voice calling
+     *  2) The First Phone that is currently IN_SERVICE or is available for emergency calling
+     *  3) The First Phone that has a SIM card in it (Starting from Slot 0...N)
+     *  4) The Default Phone (Currently set as Slot 0)
+     */
     private Phone getFirstPhoneForEmergencyCall() {
         Phone firstPhoneWithSim = null;
-        for (int i = 0; i < TelephonyManager.getDefault().getSimCount(); i++) {
-            int[] subIds = SubscriptionController.getInstance().getSubIdUsingSlotId(i);
-            if (subIds.length == 0)
-                continue;
 
-            int phoneId = SubscriptionController.getInstance().getPhoneId(subIds[0]);
-            Phone phone = PhoneFactory.getPhone(phoneId);
+        // 1)
+        int phoneId = SubscriptionManager.getDefaultVoicePhoneId();
+        if (phoneId != SubscriptionManager.INVALID_PHONE_INDEX) {
+            Phone defaultPhone = PhoneFactory.getPhone(phoneId);
+            if (defaultPhone != null && isAvailableForEmergencyCalls(defaultPhone)) {
+                return defaultPhone;
+            }
+        }
+
+        for (int i = 0; i < TelephonyManager.getDefault().getPhoneCount(); i++) {
+            Phone phone = PhoneFactory.getPhone(i);
             if (phone == null)
                 continue;
-
-            if (ServiceState.STATE_IN_SERVICE == phone.getServiceState().getState() ||
-                    phone.getServiceState().isEmergencyOnly()) {
-                // the slot has the radio on & state is in service. This will be quicker,
-                // so just shortcut and use this option.
-                Log.d(this, "getFirstPhoneForEmergencyCall, radio on & in service, slotId:" + i);
+            // 2)
+            if (isAvailableForEmergencyCalls(phone)) {
+                // the slot has the radio on & state is in service.
+                Log.d(this, "getFirstPhoneForEmergencyCall, radio on & in service, Phone Id:" + i);
                 return phone;
             }
-
+            // 3)
             if (firstPhoneWithSim == null && TelephonyManager.getDefault().hasIccCard(i)) {
                 // The slot has a SIM card inserted, but is not in service, so keep track of this
                 // Phone. Do not return because we want to make sure that none of the other Phones
                 // are in service (because that is always faster).
-                Log.d(this, "getFirstPhoneForEmergencyCall, SIM card inserted, slotId:" + i);
+                Log.d(this, "getFirstPhoneForEmergencyCall, SIM card inserted, Phone Id:" + i);
                 firstPhoneWithSim = phone;
             }
         }
-
+        // 4)
         if (firstPhoneWithSim == null) {
             // No SIMs inserted, get the default.
             Log.d(this, "getFirstPhoneForEmergencyCall, return default phone");
@@ -656,6 +667,14 @@ public class TelephonyConnectionService extends ConnectionService {
         } else {
             return firstPhoneWithSim;
         }
+    }
+
+    /**
+     * Returns true if the state of the Phone is IN_SERVICE or available for emergency calling only.
+     */
+    private boolean isAvailableForEmergencyCalls(Phone phone) {
+        return ServiceState.STATE_IN_SERVICE == phone.getServiceState().getState() ||
+                phone.getServiceState().isEmergencyOnly();
     }
 
     /**
