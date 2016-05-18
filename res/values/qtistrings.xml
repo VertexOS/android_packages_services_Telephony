@@ -47,4 +47,6 @@
     <string name="no_mobile_data_roaming">Data roaming is not available</string>
 
     <string name="call_barring">Call barring</string>
+    <string name="srvcc_video_message">"Video call has been downgraded to 2G/3G voice call, because the 4G network is not available."</string>
+    <string name="srvcc_message">"4G voice call has been downgraded to 2G/3G voice call, because the 4G network is not available."</string>
 </resources>

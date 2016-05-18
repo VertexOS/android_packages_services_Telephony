@@ -17,4 +17,6 @@
 <resources>
     <!-- Show enabled tdscdma option for device -->
     <bool name="config_support_tdscdma" translatable="false">true</bool>
+    <!-- Config to show/hide toast for ims srvcc -->
+    <bool name="config_show_srvcc_toast">true</bool>
 </resources>

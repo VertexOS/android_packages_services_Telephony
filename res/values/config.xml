@@ -224,4 +224,6 @@
 
     <!-- enable network checking for ut interface-->
     <bool name="check_mobile_data_for_cf">false</bool>
+    <!-- Config to show/hide toast for ims srvcc -->
+    <bool name="config_show_srvcc_toast">false</bool>
 </resources>

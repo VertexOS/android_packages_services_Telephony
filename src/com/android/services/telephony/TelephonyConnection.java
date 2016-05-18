@@ -30,6 +30,7 @@ import android.telecom.Connection;
 import android.telecom.PhoneAccount;
 import android.telecom.StatusHints;
 import android.telecom.TelecomManager;
+import android.telecom.VideoProfile;
 import android.telephony.PhoneNumberUtils;
 import android.telephony.SubscriptionInfo;
 import android.telephony.SubscriptionManager;
@@ -114,6 +115,15 @@ abstract class TelephonyConnection extends Connection {
                             Log.d(TelephonyConnection.this,
                                     "SettingOriginalConnection " + mOriginalConnection.toString()
                                             + " with " + connection.toString());
+                            boolean isShowToast = getPhone().getContext().getResources()
+                                    .getBoolean(R.bool.config_show_srvcc_toast);
+                            if (isShowToast && !shouldTreatAsEmergencyCall()) {
+                                int srvccMessageRes = VideoProfile.isVideo(
+                                        mOriginalConnection.getVideoState()) ?
+                                        R.string.srvcc_video_message : R.string.srvcc_message;
+                                Toast.makeText(getPhone().getContext(),
+                                        srvccMessageRes, Toast.LENGTH_LONG).show();
+                            }
                             setOriginalConnection(connection);
                             mWasImsConnection = false;
                         }
