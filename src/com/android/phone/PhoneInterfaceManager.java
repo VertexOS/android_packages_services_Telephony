@@ -53,6 +53,8 @@ import android.telephony.ServiceState;
 import android.telephony.SubscriptionInfo;
 import android.telephony.SubscriptionManager;
 import android.telephony.TelephonyManager;
+import android.telephony.ModemActivityInfo;
+import android.telephony.TelephonyHistogram;
 import android.text.TextUtils;
 import android.util.ArraySet;
 import android.util.Log;
@@ -72,6 +74,8 @@ import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneConstants;
 import com.android.internal.telephony.PhoneFactory;
 import com.android.internal.telephony.ProxyController;
+import com.android.internal.telephony.PhoneConstants;
+import com.android.internal.telephony.RIL;
 import com.android.internal.telephony.RILConstants;
 import com.android.internal.telephony.SubscriptionController;
 import com.android.internal.telephony.uicc.IccIoResult;
@@ -3099,7 +3103,6 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         return VoicemailNotificationSettingsUtil.isVibrationEnabled(phone);
     }
 
-
     /**
      * Make sure either called from same process as self (phone) or IPC caller has read privilege.
      *
@@ -3157,4 +3160,14 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         return esn;
     }
 
+    /**
+     * Get snapshot of Telephony histograms
+     * @return List of Telephony histograms
+     * @hide
+     */
+    @Override
+    public List<TelephonyHistogram> getTelephonyHistograms() {
+        enforceModifyPermissionOrCarrierPrivilege(getDefaultSubscription());
+        return RIL.getTelephonyRILTimingHistograms();
+    }
 }
