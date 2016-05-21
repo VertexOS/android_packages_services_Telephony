@@ -147,7 +147,7 @@
     <string name="no_change" msgid="3186040086622435212">"Aucune modification n\'a été apportée."</string>
     <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"Choisissez un service de messagerie vocale."</string>
     <string name="voicemail_default" msgid="2001233554889016880">"Votre fournisseur de services"</string>
-    <string name="mobile_networks" msgid="2843854043339307375">"Paramètres des réseaux cellulaires"</string>
+    <string name="mobile_networks" msgid="2843854043339307375">"Paramètres réseaux cellulaires"</string>
     <string name="label_available" msgid="1181658289009300430">"Réseaux disponibles"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"Recherche en cours…"</string>
     <string name="empty_networks_list" msgid="4249426905018815316">"Aucun réseau trouvé"</string>
@@ -480,7 +480,7 @@
     <item msgid="512950011423868021">"Mode TTY désactivé"</item>
     <item msgid="3971695875449640648">"TTY complet"</item>
     <item msgid="1937509904407445684">"TTY HCO"</item>
-    <item msgid="5644925873488772224">"Mode TTY VCO"</item>
+    <item msgid="5644925873488772224">"TTY VCO"</item>
   </string-array>
     <string name="dtmf_tones_title" msgid="5163153771291340803">"Tonalités DTMF"</string>
     <string name="dtmf_tones_summary" msgid="3351820372864020331">"Définir la durée des tonalités DTMF"</string>

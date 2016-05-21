@@ -20,7 +20,7 @@
     <string name="sip_accounts" msgid="85559497282185405">"SIP ఖాతాలు"</string>
     <string name="sip_accounts_title" msgid="2082527045326874519">"ఖాతాలు"</string>
     <string name="sip_receive_calls" msgid="426678617137462173">"ఇన్‌కమింగ్ కాల్‌లను స్వీకరించు"</string>
-    <string name="sip_receive_calls_summary" msgid="946161517528227523">"ఎక్కువ బ్యాటరీ జీవితకాలాన్ని ఉపయోగిస్తుంది"</string>
+    <string name="sip_receive_calls_summary" msgid="946161517528227523">"ఎక్కువ బ్యాటరీని ఉపయోగిస్తుంది"</string>
     <string name="sip_call_options_title" msgid="8421210494703869806">"SIP కాలింగ్‌ను ఉపయోగించండి"</string>
     <string name="sip_call_options_wifi_only_title" msgid="5112579243580893890">"SIP కాలింగ్‌ను (Wi-Fi మాత్రమే) ఉపయోగించండి"</string>
     <string name="sip_call_options_entry_1" msgid="7217659161237099900">"డేటా నెట్‌వర్క్ అందుబాటులో ఉన్నప్పుడు అన్ని కాల్‌ల కోసం"</string>

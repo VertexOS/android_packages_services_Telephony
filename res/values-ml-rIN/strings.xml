@@ -64,7 +64,7 @@
     <string name="phone_accounts_make_sip_calls_with" msgid="4677789312053828493">"ഇതുപയോഗിച്ച് SIP കോളുചെയ്യുക"</string>
     <string name="phone_accounts_ask_every_time" msgid="4346499067149985702">"ആദ്യതവണ ചോദിക്കുക"</string>
     <string name="phone_accounts_default_account_label" msgid="4183772241814460014">"നെറ്റ്‌വർക്കൊന്നും ലഭ്യമല്ല"</string>
-    <string name="phone_accounts_settings_header" msgid="4141710640883261094">"ക്രമീകരണങ്ങൾ"</string>
+    <string name="phone_accounts_settings_header" msgid="4141710640883261094">"ക്രമീകരണം"</string>
     <string name="phone_accounts_choose_accounts" msgid="5232948804226424002">"അക്കൗണ്ടുകൾ തിരഞ്ഞെടുക്കുക"</string>
     <string name="phone_accounts_selection_header" msgid="1365215726106915865">"ഫോൺ അക്കൗണ്ടുകൾ"</string>
     <string name="phone_accounts_add_sip_account" msgid="2023821743341923271">"SIP അക്കൗണ്ട് ചേർക്കുക"</string>
@@ -93,9 +93,9 @@
     <string name="labelCW" msgid="6120513814915920200">"കോൾ വെയ്‌റ്റിംഗ്"</string>
     <string name="sum_cw_enabled" msgid="8083061901633671397">"ഒരു കോളിനിടയിൽ, ഇൻകമിംഗ് കോളുകളെക്കുറിച്ച് എന്നെ അറിയിക്കുക"</string>
     <string name="sum_cw_disabled" msgid="3648693907300104575">"ഒരു കോളിനിടയിൽ, ഇൻകമിംഗ് കോളുകളെക്കുറിച്ച് എന്നെ അറിയിക്കുക"</string>
-    <string name="call_forwarding_settings" msgid="3378927671091537173">"കോൾകൈമാറൽ ക്രമീകരണം"</string>
-    <string name="call_forwarding_settings_with_label" msgid="8569489414006897127">"കോൾകൈമാറൽ ക്രമീകരണം (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
-    <string name="labelCF" msgid="2574386948026924737">"കോൾ കൈമാറൽ"</string>
+    <string name="call_forwarding_settings" msgid="3378927671091537173">"കോൾഫോർവേഡിംഗ് ക്രമീകരണം"</string>
+    <string name="call_forwarding_settings_with_label" msgid="8569489414006897127">"കോൾഫോർവേഡിംഗ് ക്രമീകരണം (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="labelCF" msgid="2574386948026924737">"കോൾ ഫോർവേഡിംഗ്"</string>
     <string name="labelCFU" msgid="8147177368148660600">"എല്ലായ്പ്പോഴും കൈമാറുക"</string>
     <string name="messageCFU" msgid="3560082430662923687">"എല്ലായ്പ്പോഴും ഈ നമ്പർ ഉപയോഗിക്കുക"</string>
     <string name="sum_cfu_enabled_indicator" msgid="4014187342724130197">"എല്ലാ കോളുകളും കൈമാറുന്നു"</string>
@@ -106,17 +106,17 @@
     <string name="messageCFB" msgid="3711089705936187129">"തിരക്കിലായിരിക്കുമ്പോഴുള്ള നമ്പർ"</string>
     <string name="sum_cfb_enabled" msgid="5984198104833116690">"<xliff:g id="PHONENUMBER">{0}</xliff:g> എന്നതിലേക്ക് കൈമാറുന്നു"</string>
     <string name="sum_cfb_disabled" msgid="4913145177320506827">"ഓഫാണ്"</string>
-    <string name="disable_cfb_forbidden" msgid="3506984333877998061">"നിങ്ങളുടെ ഫോൺ തിരക്കിലായിരിക്കുമ്പോൾ കോൾ കൈമാറൽ പ്രവർത്തനരഹിതമാക്കുന്നതിനെ നിങ്ങളുടെ ഓപ്പറേറ്റർ പിന്തുണയ്‌ക്കുന്നില്ല."</string>
+    <string name="disable_cfb_forbidden" msgid="3506984333877998061">"നിങ്ങളുടെ ഫോൺ തിരക്കിലായിരിക്കുമ്പോൾ കോൾ ഫോർവേഡിംഗ്  പ്രവർത്തനരഹിതമാക്കുന്നതിനെ നിങ്ങളുടെ ഓപ്പറേറ്റർ പിന്തുണയ്‌ക്കുന്നില്ല."</string>
     <string name="labelCFNRy" msgid="1736067178393744351">"മറുപടിയില്ലാത്തപ്പോൾ"</string>
     <string name="messageCFNRy" msgid="672317899884380374">"മറുപടിനൽകാത്തപ്പോഴുള്ള നമ്പർ"</string>
     <string name="sum_cfnry_enabled" msgid="6955775691317662910">"<xliff:g id="PHONENUMBER">{0}</xliff:g> എന്നതിലേക്ക് കൈമാറുന്നു"</string>
     <string name="sum_cfnry_disabled" msgid="3884684060443538097">"ഓഫാണ്"</string>
-    <string name="disable_cfnry_forbidden" msgid="4308233959150658058">"നിങ്ങളുടെ ഫോൺ മറുപടി നൽകാതിരിക്കുമ്പോൾ കോൾ കൈമാറൽ പ്രവർത്തനരഹിതമാക്കുന്നതിനെ നിങ്ങളുടെ ഓപ്പറേറ്റർ പിന്തുണയ്‌ക്കുന്നില്ല."</string>
+    <string name="disable_cfnry_forbidden" msgid="4308233959150658058">"നിങ്ങളുടെ ഫോൺ മറുപടി നൽകാതിരിക്കുമ്പോൾ കോൾ ഫോർവേഡിംഗ് പ്രവർത്തനരഹിതമാക്കുന്നതിനെ നിങ്ങളുടെ ഓപ്പറേറ്റർ പിന്തുണയ്‌ക്കുന്നില്ല."</string>
     <string name="labelCFNRc" msgid="2614827454402079766">"ലഭ്യമല്ലാതിരിക്കുമ്പോൾ"</string>
     <string name="messageCFNRc" msgid="6380695421020295119">"പരിധിയ്‌ക്ക് പുറത്തായിരിക്കുമ്പോൾ"</string>
     <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"<xliff:g id="PHONENUMBER">{0}</xliff:g> എന്നതിലേക്ക് കൈമാറുന്നു"</string>
     <string name="sum_cfnrc_disabled" msgid="7222141261321276464">"പ്രവർത്തനരഹിതമാക്കി"</string>
-    <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"നിങ്ങളുടെ ഫോൺ പരിധിയ്ക്ക് പുറത്തായിരിക്കുമ്പോൾ കോൾ കൈമാറൽ പ്രവർത്തനരഹിതമാക്കുന്നതിനെ നിങ്ങളുടെ ഓപ്പറേറ്റർ പിന്തുണയ്‌ക്കുന്നില്ല."</string>
+    <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"നിങ്ങളുടെ ഫോൺ പരിധിയ്ക്ക് പുറത്തായിരിക്കുമ്പോൾ കോൾ ഫോർവേഡിംഗ്  പ്രവർത്തനരഹിതമാക്കുന്നതിനെ നിങ്ങളുടെ ഓപ്പറേറ്റർ പിന്തുണയ്‌ക്കുന്നില്ല."</string>
     <string name="updating_title" msgid="6146755386174019046">"കോൾ ക്രമീകരണങ്ങൾ"</string>
     <string name="call_settings_admin_user_only" msgid="4526094783818216374">"അഡ്മിൻ ഉപയോക്താവിന് മാത്രമേ കോൾ ക്രമീകരണം മാറ്റാൻ കഴിയൂ."</string>
     <string name="call_settings_with_label" msgid="3401177261468593519">"ക്രമീകരണം (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
@@ -316,7 +316,7 @@
     <string name="cdma_system_select_dialogtitle" msgid="6083355415165359075">"സിസ്റ്റം സെലക്‌ട്"</string>
   <string-array name="cdma_system_select_choices">
     <item msgid="176474317493999285">"സേവനദാതാവിന്റെ മാത്രം"</item>
-    <item msgid="1205664026446156265">"യാന്ത്രികമായി"</item>
+    <item msgid="1205664026446156265">"സ്വയമേവ"</item>
   </string-array>
     <string name="cdma_subscription_title" msgid="1162564010076763284">"CDMA സബ്‌സ്‌ക്രിപ്‌ഷൻ"</string>
     <string name="cdma_subscription_summary" msgid="2530890766115781140">"RUIM/സിം-നും NV-യ്‌ക്കും ഇടയിലുള്ള മാറ്റം"</string>
@@ -351,8 +351,8 @@
     <string name="voice_privacy_summary" msgid="3159383389833516214">"മെച്ചപ്പെടുത്തിയ സ്വകാര്യതാ മോഡ് പ്രവർത്തനക്ഷമമാക്കി"</string>
     <string name="tty_mode_option_title" msgid="9033098925144434669">"TTY മോഡ്"</string>
     <string name="tty_mode_option_summary" msgid="1073835131534808732">"TTY മോഡ് സജ്ജമാക്കുക"</string>
-    <string name="auto_retry_mode_title" msgid="4073265511427813322">"യാന്ത്രികമായി വീണ്ടും ശ്രമിക്കുക"</string>
-    <string name="auto_retry_mode_summary" msgid="4973886004067532288">"യാന്ത്രികമായി വീണ്ടും ശ്രമിക്കൽ മോഡ് പ്രവർത്തനക്ഷമമാക്കുക"</string>
+    <string name="auto_retry_mode_title" msgid="4073265511427813322">"സ്വയമേവ വീണ്ടും ശ്രമിക്കുക"</string>
+    <string name="auto_retry_mode_summary" msgid="4973886004067532288">"സ്വയമേവ വീണ്ടും ശ്രമിക്കൽ മോഡ് പ്രവർത്തനക്ഷമമാക്കുക"</string>
     <string name="tty_mode_not_allowed_video_call" msgid="3795846787901909176">"വീഡിയോ കോൾ സമയത്ത് TTY മോഡ് മാറ്റം അനുവദനീയമല്ല"</string>
     <string name="menu_add" msgid="1882023737425114762">"കോൺടാക്റ്റ് ചേർക്കുക"</string>
     <string name="menu_edit" msgid="7143003705504672374">"കോൺടാ‌ക്‌റ്റ് തിരുത്തുക"</string>

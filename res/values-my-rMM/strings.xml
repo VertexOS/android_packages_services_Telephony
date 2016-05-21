@@ -28,10 +28,10 @@
     <string name="mmiStarted" msgid="6347869857061147003">"MMIကုတ်နံပါတ်ကို စတင်ပြီးပါပြီ"</string>
     <string name="ussdRunning" msgid="485588686340541690">"USSD ကုဒ် လုပ်ဆောင်နေပါသည်…"</string>
     <string name="mmiCancelled" msgid="2771923949751842276">"MMIကုတ်နံပါတ်ကို ပယ်ဖျက်ပြီးပါပြီ"</string>
-    <string name="cancel" msgid="5044513931633602634">"ထားတော့"</string>
+    <string name="cancel" msgid="5044513931633602634">"ဖျက်သိမ်းရန်"</string>
     <string name="enter_input" msgid="1810529547726803893">"USSD စာများဟာ စာလုံးရေ <xliff:g id="MIN_LEN">%d</xliff:g> မှ<xliff:g id="MAX_LEN">%d</xliff:g> အတွင်း ဖြစ်ရပါမည်။ နောက်တစ်ခေါက်ကြိုးစားပါ"</string>
     <string name="manageConferenceLabel" msgid="4691922394301969053">"ကွန်းဖရင့် ခေါ်ဆိုမှုကို ထိန်းချုပ်သည်"</string>
-    <string name="ok" msgid="3811371167865772377">"ကောင်းပြီ"</string>
+    <string name="ok" msgid="3811371167865772377">"အိုကေ"</string>
     <string name="audio_mode_speaker" msgid="27649582100085266">"စပီကာ"</string>
     <string name="audio_mode_earpiece" msgid="4156527186373869107">"လက်ကိုင်တယ်လီဖုန်းနားခွက်"</string>
     <string name="audio_mode_wired_headset" msgid="1465350758489175975">"ကြိုးတပ် မိုက်ခွက်ပါနားကြပ်"</string>
@@ -71,7 +71,7 @@
     <string name="phone_accounts_configure_account_settings" msgid="1361715069911607109">"အကောင့် ချိန်ညှိချက်များ ပြုပြင်မည်"</string>
     <string name="phone_accounts_all_calling_accounts" msgid="207619531589278471">"ခေါ်ဆိုနေသော အကောင့်များ အားလုံး"</string>
     <string name="phone_accounts_all_calling_accounts_summary" msgid="8594186415822657011">"ဖုန်းခေါ်ဆိုနိုင်သည့် အကောင့်များအား ရွေးရန်"</string>
-    <string name="wifi_calling" msgid="739018212480165598">"ဝိုင်ဖိုင် ခေါ်ဆိုမှု"</string>
+    <string name="wifi_calling" msgid="739018212480165598">"Wi-Fi  ခေါ်ဆိုမှု"</string>
     <string name="connection_service_default_label" msgid="1498481943805913754">"တပ်ဆင်ပြီး ချိတ်ဆက်ရေး ဝန်ဆောင်မှု"</string>
     <string name="voicemail" msgid="8693759337917898954">"အသံစာပို့စနစ်"</string>
     <string name="voicemail_settings_with_label" msgid="152724978380748296">"အသံစာပို့စနစ် ( <xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g> )"</string>
@@ -131,7 +131,7 @@
     <string name="stk_cc_ss_to_ss_error" msgid="5057846756489053759">"SS တောင်းဆိုချက်ကို SS တောင်းဆိုချက် အသစ် အဖြစ် ပြောင်းပေးခဲ့။"</string>
     <string name="fdn_check_failure" msgid="18200614306525434">"သင့်ဖုန်းအပ်ပလီကေးရှင်း ၏ ပုံသေ ခေါ်ဆိုမှု နံပါတ်များ ဖွင့်ထားပါသည်။ ထို့ကြောင့် တချို့ ဖုန်းခေါ်မှု စွမ်းဆောင်ရည်များ အလုပ်မလုပ်ပါ"</string>
     <string name="radio_off_error" msgid="2304459933248513376">"ဤအပြင်အဆင်များကို မကြည့်ခင် ရေဒီယိုကို ဖွင့်ပါ"</string>
-    <string name="close_dialog" msgid="2365884406356986917">"ကောင်းပြီ"</string>
+    <string name="close_dialog" msgid="2365884406356986917">"အိုကေ"</string>
     <string name="enable" msgid="7248657275000173526">"ဖွင့်ထားရန်"</string>
     <string name="disable" msgid="4678348128118573672">"ပိတ်မည်"</string>
     <string name="change_num" msgid="239476305819844391">"အဆင်မြှင့်ခြင်း"</string>
@@ -433,7 +433,7 @@
     <string name="incall_error_ecm_emergency_only" msgid="738708660612388692">"အရေးပေါ် မဟုတ်သည့် ခေါ်ဆိုမှုကို ပြုလုပ်ရန် အရေးပေါ် ဖုန်းခေါ်မှုမှ ထွက်ပါ။"</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"ကွန်ယက်ပေါ်မှာ မှတ်ပုံတင်မှု မပြုလုပ်ထားပါ"</string>
     <string name="incall_error_out_of_service" msgid="4100065333878929223">"ဆယ်လူလာ ကွန်ရက် မရှိပါ။"</string>
-    <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"ဆဲလူလာ ကွန်ယက် မရပါ။ ဖုန်းခေါ်ရန် ကြိုးမဲ့ကွန်ယက်သို့ ချိတ်ဆက်ပါ။"</string>
+    <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"ဆဲလူလာ ကွန်ရက် မရပါ။ ဖုန်းခေါ်ရန် ကြိုးမဲ့ကွန်ရက်သို့ ချိတ်ဆက်ပါ။"</string>
     <string name="incall_error_no_phone_number_supplied" msgid="1150414018684246528">"ဖုန်းခေါ်ရန်အတွက်၊ သင့်လျော်သည့်နံပါတ် ရိုက်ထည့်ပါ။"</string>
     <string name="incall_error_call_failed" msgid="5891978320269774095">"ခေါ်ဆို၍ မရပါ။"</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"MMI အမှတ်စဉ်ကို စတင်နေပါသည်…"</string>

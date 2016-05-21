@@ -73,7 +73,7 @@
     <string name="phone_accounts_all_calling_accounts_summary" msgid="8594186415822657011">"Chagua akaunti ambazo zinaweza kupiga simu"</string>
     <string name="wifi_calling" msgid="739018212480165598">"Upigaji simu kwa Wi-Fi"</string>
     <string name="connection_service_default_label" msgid="1498481943805913754">"Huduma ya muunganisho iliyojengewa ndani"</string>
-    <string name="voicemail" msgid="8693759337917898954">"Barua ya sauti"</string>
+    <string name="voicemail" msgid="8693759337917898954">"Ujumbe wa sauti"</string>
     <string name="voicemail_settings_with_label" msgid="152724978380748296">"Ujumbe wa sauti (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="voicemail_abbreviated" msgid="2215592488517217448">"VM:"</string>
     <string name="networks" msgid="8873030692174541976">"Kampuni zinazotoa huduma"</string>
@@ -147,7 +147,7 @@
     <string name="no_change" msgid="3186040086622435212">"Hakuna mabadiliko yaliyofanywa"</string>
     <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"Chagua huduma ya barua ya sauti"</string>
     <string name="voicemail_default" msgid="2001233554889016880">"Mtoa huduma wako"</string>
-    <string name="mobile_networks" msgid="2843854043339307375">"Mipangilio ya mitandao ya simu za mkononi"</string>
+    <string name="mobile_networks" msgid="2843854043339307375">"Mipangilio ya mitandao ya simu"</string>
     <string name="label_available" msgid="1181658289009300430">"Mitandao inayopatikana"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"Inatafuta…"</string>
     <string name="empty_networks_list" msgid="4249426905018815316">"Hakuna mitandao iliyopatikana."</string>
@@ -162,9 +162,9 @@
     <string name="select_automatically" msgid="5628402124471810174">"Chagua kiotomatiki"</string>
     <string name="sum_select_automatically" msgid="5614890115123292400">"Chagua mtandao unaoupendelea kiotomatiki"</string>
     <string name="register_automatically" msgid="6017849844573519637">"Usajili otomatiki..."</string>
-    <string name="preferred_network_mode_title" msgid="2336624679902659306">"Aina ya mtandao unaopendelewa"</string>
+    <string name="preferred_network_mode_title" msgid="2336624679902659306">"Aina ya mtandao unaoupendelea"</string>
     <string name="preferred_network_mode_summary" msgid="1434820673166126609">"Badilisha gumzo ya utendaji wa mtandao"</string>
-    <string name="preferred_network_mode_dialogtitle" msgid="4048082093347807230">"Aina ya mtandao unaopendelewa"</string>
+    <string name="preferred_network_mode_dialogtitle" msgid="4048082093347807230">"Aina ya mtandao unaoupendelea"</string>
     <string name="preferred_network_mode_wcdma_perf_summary" msgid="8521677230113533809">"Modi pendekezwa ya mtandao: WCDMA pendekezwa"</string>
     <string name="preferred_network_mode_gsm_only_summary" msgid="3352445413437453511">"Modi pendekezwa ya mtandao: GSM  pekee"</string>
     <string name="preferred_network_mode_wcdma_only_summary" msgid="2836897236221063413">"Modi pendekezwa ya mtandao: WCDMA pekee"</string>
@@ -202,7 +202,7 @@
     <string name="data_enabled" msgid="5972538663568715366">"Data imewashwa"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"Ruhusu matumizi ya data"</string>
     <string name="dialog_alert_title" msgid="6751344986194435476">"Ilani"</string>
-    <string name="roaming" msgid="8871412572928323707">"Utumiaji data nje ya mtandao wako wa kawaida"</string>
+    <string name="roaming" msgid="8871412572928323707">"Utumiaji data nje ya mtandao wako"</string>
     <string name="roaming_enable" msgid="7331106985174381987">"Unganisha huduma ya data wakati niko nje ya mtandao wangu wa kawaida"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"Unganisha huduma ya data wakati niko nje ya mtandao wangu wa kawaida"</string>
     <string name="roaming_reenable_message" msgid="8913735676127858115">"Umepoteza muunganisho wa data kwa sababu uliondoka kwenye mtandao wako wa kawaida ukiwa umezima utumiaji data nje ya mtandao wa kawaida."</string>
@@ -312,7 +312,7 @@
     <string name="network_4G" msgid="2723512640529983138">"4G (inapendekezwa)"</string>
     <string name="network_global" msgid="1323190488685355309">"Ulimwenguni Kote"</string>
     <string name="cdma_system_select_title" msgid="5757657769327732833">"Chagua mfumo"</string>
-    <string name="cdma_system_select_summary" msgid="60460043745797517">"Badilisha hali ya urandaji ya CDMA"</string>
+    <string name="cdma_system_select_summary" msgid="60460043745797517">"Badilisha mipangilio ya kupiga simu kwa kutumia CDMA"</string>
     <string name="cdma_system_select_dialogtitle" msgid="6083355415165359075">"Chagua mfumo"</string>
   <string-array name="cdma_system_select_choices">
     <item msgid="176474317493999285">"Nyumbani tu"</item>

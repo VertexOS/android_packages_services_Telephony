@@ -46,28 +46,28 @@
     <string name="no_vm_number_msg" msgid="1300729501030053828">"Нема мемориран број на говорна пошта на СИМ картичката."</string>
     <string name="add_vm_number_str" msgid="4676479471644687453">"Додај број"</string>
     <string name="puk_unlocked" msgid="2284912838477558454">"Вашата СИМ картичка е одблокирана. Вашиот телефон се отклучува..."</string>
-    <string name="label_ndp" msgid="780479633159517250">"ПИН за отклучување мрежа на СИМ"</string>
+    <string name="label_ndp" msgid="780479633159517250">"PIN за отклучување мрежа на СИМ"</string>
     <string name="sim_ndp_unlock_text" msgid="683628237760543009">"Отклучи"</string>
     <string name="sim_ndp_dismiss_text" msgid="1604823375752456947">"Отфрли"</string>
     <string name="requesting_unlock" msgid="6412629401033249351">"Барање за отклучување мрежа..."</string>
     <string name="unlock_failed" msgid="6490531697031504225">"Барањето за отклучување мрежа е неуспешно."</string>
     <string name="unlock_success" msgid="6770085622238180152">"Отклучувањето мрежа е успешно."</string>
     <string name="mobile_network_settings_not_available" msgid="3831911315358856062">"Поставките за мобилна мрежа не се достапни за овој корисник"</string>
-    <string name="labelGSMMore" msgid="5930842194056092106">"GSM подесувања на повик"</string>
+    <string name="labelGSMMore" msgid="5930842194056092106">"GSM поставки на повик"</string>
     <string name="labelGsmMore_with_label" msgid="2674012918829238901">"Поставки за повик преку GSM (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
-    <string name="labelCDMAMore" msgid="1630676740428229339">"CDMA подесувања на повик"</string>
+    <string name="labelCDMAMore" msgid="1630676740428229339">"CDMA поставки на повик"</string>
     <string name="labelCdmaMore_with_label" msgid="6333588719319970399">"Поставки за повик преку CDMA (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="apn_settings" msgid="9043423184895642077">"Имиња на точка на пристап"</string>
     <string name="settings_label" msgid="3876743539816984008">"Поставки на мрежа"</string>
     <string name="phone_accounts" msgid="6376603393888116364">"Сметки за повикување"</string>
     <string name="phone_accounts_make_calls_with" msgid="1969188078933152231">"Повикувајте со"</string>
-    <string name="phone_accounts_make_sip_calls_with" msgid="4677789312053828493">"Повикувајте со СИП со"</string>
+    <string name="phone_accounts_make_sip_calls_with" msgid="4677789312053828493">"Повикувајте со SIP со"</string>
     <string name="phone_accounts_ask_every_time" msgid="4346499067149985702">"Прво прашај"</string>
     <string name="phone_accounts_default_account_label" msgid="4183772241814460014">"Нема достапна мрежа"</string>
     <string name="phone_accounts_settings_header" msgid="4141710640883261094">"Поставки"</string>
     <string name="phone_accounts_choose_accounts" msgid="5232948804226424002">"Изберете сметки"</string>
     <string name="phone_accounts_selection_header" msgid="1365215726106915865">"Телефонски сметки"</string>
-    <string name="phone_accounts_add_sip_account" msgid="2023821743341923271">"Додајте сметка на СИП"</string>
+    <string name="phone_accounts_add_sip_account" msgid="2023821743341923271">"Додајте сметка за SIP"</string>
     <string name="phone_accounts_configure_account_settings" msgid="1361715069911607109">"Конфигурирајте ги поставките на сметка"</string>
     <string name="phone_accounts_all_calling_accounts" msgid="207619531589278471">"Сите сметки за повици"</string>
     <string name="phone_accounts_all_calling_accounts_summary" msgid="8594186415822657011">"Изберете кои сметки може да повикуваат"</string>
@@ -79,58 +79,58 @@
     <string name="networks" msgid="8873030692174541976">"Оператори на мрежа"</string>
     <string name="cell_broadcast_settings" msgid="8740238216690502563">"Итни емитувања"</string>
     <string name="call_settings" msgid="6112441768261754562">"Поставки на повик"</string>
-    <string name="additional_gsm_call_settings" msgid="1391795981938800617">"Дополнителни подесувања"</string>
+    <string name="additional_gsm_call_settings" msgid="1391795981938800617">"Дополнителни поставки"</string>
     <string name="additional_gsm_call_settings_with_label" msgid="1385241520708457376">"Дополнителни поставки (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
-    <string name="sum_gsm_call_settings" msgid="4076647190996778012">"Дополнителни подесувања на повик само за GSM"</string>
-    <string name="additional_cdma_call_settings" msgid="8628958775721886909">"Дополнителни CDMA подесувања на повик"</string>
-    <string name="sum_cdma_call_settings" msgid="284753265979035549">"Дополнителни подесувања на повик само за CDMA"</string>
+    <string name="sum_gsm_call_settings" msgid="4076647190996778012">"Дополнителни поставки на повик само за GSM"</string>
+    <string name="additional_cdma_call_settings" msgid="8628958775721886909">"Дополнителни CDMA поставки на повик"</string>
+    <string name="sum_cdma_call_settings" msgid="284753265979035549">"Дополнителни поставки на повик само за CDMA"</string>
     <string name="labelNwService" msgid="4699970172021870983">"Поставки на мрежна услуга"</string>
-    <string name="labelCallerId" msgid="3888899447379069198">"ИД на повикувач"</string>
-    <string name="sum_loading_settings" msgid="1826692909391168620">"Вчитување на подесувањата..."</string>
+    <string name="labelCallerId" msgid="3888899447379069198">"ID на повикувач"</string>
+    <string name="sum_loading_settings" msgid="1826692909391168620">"Вчитување на поставките..."</string>
     <string name="sum_hide_caller_id" msgid="1071407020290873782">"Број скриен при појдовни повици"</string>
     <string name="sum_show_caller_id" msgid="6768534125447290401">"Број прикажан при појдовни повици"</string>
-    <string name="sum_default_caller_id" msgid="1954518825510901365">"Користи стандардни подесувања на оператор за да се прикаже мојот број при појдовни повици"</string>
+    <string name="sum_default_caller_id" msgid="1954518825510901365">"Користи стандардни поставки на оператор за да се прикаже мојот број при појдовни повици"</string>
     <string name="labelCW" msgid="6120513814915920200">"Повик на чекање"</string>
     <string name="sum_cw_enabled" msgid="8083061901633671397">"За време на повик, извести ме за дојдовни повици"</string>
     <string name="sum_cw_disabled" msgid="3648693907300104575">"За време на повик, извести ме за дојдовни повици"</string>
-    <string name="call_forwarding_settings" msgid="3378927671091537173">"Поставки за проследување повик"</string>
+    <string name="call_forwarding_settings" msgid="3378927671091537173">"Проследување повик"</string>
     <string name="call_forwarding_settings_with_label" msgid="8569489414006897127">"Поставки за проследување повик (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
-    <string name="labelCF" msgid="2574386948026924737">"Препраќање повик"</string>
-    <string name="labelCFU" msgid="8147177368148660600">"Секогаш препраќај"</string>
+    <string name="labelCF" msgid="2574386948026924737">"Проследување повик"</string>
+    <string name="labelCFU" msgid="8147177368148660600">"Секогаш проследувај"</string>
     <string name="messageCFU" msgid="3560082430662923687">"Секогаш користи го овој број"</string>
-    <string name="sum_cfu_enabled_indicator" msgid="4014187342724130197">"Препраќање на сите повици"</string>
-    <string name="sum_cfu_enabled" msgid="2450052502198827927">"Препраќање на сите повици на <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
+    <string name="sum_cfu_enabled_indicator" msgid="4014187342724130197">"Проследување на сите повици"</string>
+    <string name="sum_cfu_enabled" msgid="2450052502198827927">"Проследување на сите повици на <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfu_enabled_no_number" msgid="6591985777096823616">"Бројот е недостапен"</string>
     <string name="sum_cfu_disabled" msgid="8384177689501334080">"Исклучено"</string>
     <string name="labelCFB" msgid="6139853033106283172">"Кога е зафатено"</string>
     <string name="messageCFB" msgid="3711089705936187129">"Број кога е зафатено"</string>
-    <string name="sum_cfb_enabled" msgid="5984198104833116690">"Препраќање на <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
+    <string name="sum_cfb_enabled" msgid="5984198104833116690">"Проследување на <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfb_disabled" msgid="4913145177320506827">"Исклучено"</string>
     <string name="disable_cfb_forbidden" msgid="3506984333877998061">"Вашиот оператор не поддржува оневозможување проследување повик кога вашиот телефон е зафатен."</string>
     <string name="labelCFNRy" msgid="1736067178393744351">"Кога е неодговорено"</string>
     <string name="messageCFNRy" msgid="672317899884380374">"Број кога нема одговор"</string>
-    <string name="sum_cfnry_enabled" msgid="6955775691317662910">"Препраќање на <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
+    <string name="sum_cfnry_enabled" msgid="6955775691317662910">"Проследување на <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfnry_disabled" msgid="3884684060443538097">"Исклучено"</string>
     <string name="disable_cfnry_forbidden" msgid="4308233959150658058">"Вашиот оператор не поддржува оневозможување проследување повик кога нема да одговорите на вашиот телефон."</string>
     <string name="labelCFNRc" msgid="2614827454402079766">"Кога е недостапно"</string>
     <string name="messageCFNRc" msgid="6380695421020295119">"Број кога е недостапно"</string>
-    <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"Препраќање на <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
+    <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"Проследување на <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfnrc_disabled" msgid="7222141261321276464">"Оневозможено"</string>
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"Вашиот оператор не поддржува оневозможување проследување повик кога вашиот телефон е недостапен."</string>
     <string name="updating_title" msgid="6146755386174019046">"Поставки на повик"</string>
     <string name="call_settings_admin_user_only" msgid="4526094783818216374">"Поставките за повик може да ги измени само администраторскиот корисник."</string>
     <string name="call_settings_with_label" msgid="3401177261468593519">"Поставки (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
-    <string name="error_updating_title" msgid="7970259216988931777">"Грешка со подесување повици"</string>
-    <string name="reading_settings" msgid="1920291699287055284">"Подесувања за читање..."</string>
-    <string name="updating_settings" msgid="8171225533884883252">"Ажурирање подесувања..."</string>
-    <string name="reverting_settings" msgid="4752151682666912828">"Враќање подесувања..."</string>
+    <string name="error_updating_title" msgid="7970259216988931777">"Грешка со поставки на повици"</string>
+    <string name="reading_settings" msgid="1920291699287055284">"Поставки за читање..."</string>
+    <string name="updating_settings" msgid="8171225533884883252">"Ажурирање поставки..."</string>
+    <string name="reverting_settings" msgid="4752151682666912828">"Враќање поставки..."</string>
     <string name="response_error" msgid="6674110501330139405">"Неочекуван одговор од мрежата."</string>
     <string name="exception_error" msgid="7027667130619518211">"Грешка со мрежа или СИМ картичка."</string>
     <string name="stk_cc_ss_to_dial_error" msgid="2816779198916570502">"Барањето SS е изменето во барање DIAL."</string>
     <string name="stk_cc_ss_to_ussd_error" msgid="7490626178582654236">"Барањето SS е изменето во барање USSD."</string>
     <string name="stk_cc_ss_to_ss_error" msgid="5057846756489053759">"Барањето SS е изменето во ново барање SS."</string>
     <string name="fdn_check_failure" msgid="18200614306525434">"Апликацијата на вашиот телефон за броеви на фиксно бирање е вклучена. Како резултат на тоа, некои функции поврзани со повици не работат."</string>
-    <string name="radio_off_error" msgid="2304459933248513376">"Вклучете го радиото пред да ги видите овие подесувања."</string>
+    <string name="radio_off_error" msgid="2304459933248513376">"Вклучете го радиото пред да ги гледате овие поставки."</string>
     <string name="close_dialog" msgid="2365884406356986917">"Во ред"</string>
     <string name="enable" msgid="7248657275000173526">"Вклучи"</string>
     <string name="disable" msgid="4678348128118573672">"Исклучи"</string>
@@ -143,7 +143,7 @@
     <string name="vm_changed" msgid="380744030726254139">"Бројот на говорна пошта е променет."</string>
     <string name="vm_change_failed" msgid="3352934863246208918">"Не може да се промени бројот на говорна пошта.\nКонтактирајте со вашиот оператор ако проблемот продолжи."</string>
     <string name="fw_change_failed" msgid="5298103228470214665">"Не може да се промени бројот на проследување.\nКонтактирајте со вашиот оператор ако проблемот продолжи."</string>
-    <string name="fw_get_in_vm_failed" msgid="8862896836093833973">"Не може да се повратат и да се зачуваат моменталните подесувања на бројот на проследување.\nСепак сакате да се префрлите на новиот оператор?"</string>
+    <string name="fw_get_in_vm_failed" msgid="8862896836093833973">"Не може да се повратат и да се зачуваат моменталните поставки на бројот за проследување.\nСепак сакате да се префрлите на новиот оператор?"</string>
     <string name="no_change" msgid="3186040086622435212">"Не беа направени промени."</string>
     <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"Избери услуга на говорна пошта"</string>
     <string name="voicemail_default" msgid="2001233554889016880">"Вашиот оператор"</string>
@@ -200,7 +200,7 @@
     <string name="enhanced_4g_lte_mode_title" msgid="522191650223239171">"Режим на подобрени 4G LTE"</string>
     <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"Користете ги услугите на LTE за да ја подобрите гласовната и другите видови комуникација (препорачано)"</string>
     <string name="data_enabled" msgid="5972538663568715366">"Податоците се овозможени"</string>
-    <string name="data_enable_summary" msgid="2382798156640007971">"Дозволи користење податоци"</string>
+    <string name="data_enable_summary" msgid="2382798156640007971">"Дозволи користење интернет"</string>
     <string name="dialog_alert_title" msgid="6751344986194435476">"Внимание"</string>
     <string name="roaming" msgid="8871412572928323707">"Роаминг на податоци"</string>
     <string name="roaming_enable" msgid="7331106985174381987">"Поврзи се со податочни услуги во роаминг"</string>
@@ -210,9 +210,9 @@
     <string name="roaming_alert_title" msgid="3654815360303826008">"Дозволи роаминг на податоци?"</string>
     <string name="gsm_umts_options" msgid="6538311689850981686">"Опции за GSM/UMTS"</string>
     <string name="cdma_options" msgid="4016822858172249884">"Опции на CDMA"</string>
-    <string name="throttle_data_usage" msgid="3715677828160555808">"Користење податоци"</string>
+    <string name="throttle_data_usage" msgid="3715677828160555808">"Потрошен интернет"</string>
     <string name="throttle_current_usage" msgid="8762280193043815361">"Податоци кои се користат во тековниот период"</string>
-    <string name="throttle_time_frame" msgid="1915198770363734685">"Период на користење податоци"</string>
+    <string name="throttle_time_frame" msgid="1915198770363734685">"Период на потрошен интернет"</string>
     <string name="throttle_rate" msgid="4710388992676803508">"Политика на стапка на податоци"</string>
     <string name="throttle_help" msgid="243651091785169900">"Дознај повеќе"</string>
     <!-- String.format failed for translation -->
@@ -225,13 +225,13 @@
     <!-- String.format failed for translation -->
     <!-- no translation found for throttle_time_frame_subtext (7732763021560399960) -->
     <skip />
-    <string name="throttle_rate_subtext" msgid="2149102656120726855">"Стапката на податоци се сведува на <xliff:g id="USED">%1$d</xliff:g> кб/с ако се надмине границата на користење податоци"</string>
+    <string name="throttle_rate_subtext" msgid="2149102656120726855">"Преносот на податоци се сведува на <xliff:g id="USED">%1$d</xliff:g> кб/с ако се надмине границата на потрошен интернет"</string>
     <string name="throttle_help_subtext" msgid="3633091498168446044">"Повеќе информации за политиката на користање податоци на мобилната мрежа на вашиот оператор"</string>
-    <string name="cell_broadcast_sms" msgid="5584192824053625842">"СМС за емитување од мобилен"</string>
-    <string name="enable_disable_cell_bc_sms" msgid="4851147873691392255">"СМС за емитување од мобилен"</string>
-    <string name="cell_bc_sms_enable" msgid="6441688565738921084">"СМС за емитување од мобилен е овозможено"</string>
-    <string name="cell_bc_sms_disable" msgid="3398365088309408749">"СМС за емитување од мобилен е оневозможено"</string>
-    <string name="cb_sms_settings" msgid="651715019785107312">"Подесувања на СМС за емитување од мобилен"</string>
+    <string name="cell_broadcast_sms" msgid="5584192824053625842">"SMS за емитување од мобилен"</string>
+    <string name="enable_disable_cell_bc_sms" msgid="4851147873691392255">"SMS за емитување од мобилен"</string>
+    <string name="cell_bc_sms_enable" msgid="6441688565738921084">"SMS за емитување од мобилен е овозможено"</string>
+    <string name="cell_bc_sms_disable" msgid="3398365088309408749">"SMS за емитување од мобилен е оневозможено"</string>
+    <string name="cb_sms_settings" msgid="651715019785107312">"Поставки на SMS за емитување од мобилен"</string>
     <string name="enable_disable_emergency_broadcast" msgid="2157014609041245335">"Итно објавување"</string>
     <string name="emergency_broadcast_enable" msgid="2645980025414010211">"Итното објавување е овозможено"</string>
     <string name="emergency_broadcast_disable" msgid="3665199821267569426">"Итното објавување е оневозможено"</string>
@@ -325,7 +325,7 @@
     <item msgid="1205664026446156265">"Автоматски"</item>
   </string-array>
     <string name="cdma_subscription_title" msgid="1162564010076763284">"CDMA претплата"</string>
-    <string name="cdma_subscription_summary" msgid="2530890766115781140">"Промена помеѓу RUIM/СМС и NV"</string>
+    <string name="cdma_subscription_summary" msgid="2530890766115781140">"Промена помеѓу RUIM/SMS и NV"</string>
     <string name="cdma_subscription_dialogtitle" msgid="2699527950523333110">"претплата"</string>
   <string-array name="cdma_subscription_choices">
     <item msgid="2258014151300708431">"RUIM/СИМ"</item>
@@ -336,7 +336,7 @@
     <item msgid="6043847456049107742">"1"</item>
   </string-array>
     <string name="cdma_activate_device" msgid="3793805892364814518">"Активирај уред"</string>
-    <string name="cdma_lte_data_service" msgid="4255018217292548962">"Подеси услуга на податоци"</string>
+    <string name="cdma_lte_data_service" msgid="4255018217292548962">"Постави услуга на податоци"</string>
     <string name="carrier_settings_title" msgid="9028166176523012300">"Поставки на оператор"</string>
     <string name="fdn" msgid="7878832555095183202">"Броеви на фиксно бирање"</string>
     <string name="fdn_with_label" msgid="187084204115493366">"Броеви за фиксно бирање (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
@@ -351,12 +351,12 @@
     <string name="enable_fdn_ok" msgid="7215588870329688132">"Оневозможи FDN"</string>
     <string name="disable_fdn_ok" msgid="5727046928930740173">"Овозможи FDN"</string>
     <string name="sum_fdn" msgid="1959399454900272878">"Управувај со броеви за фиксно бирање"</string>
-    <string name="sum_fdn_change_pin" msgid="6666549734792827932">"Смени ПИН за FDN пристап"</string>
+    <string name="sum_fdn_change_pin" msgid="6666549734792827932">"Смени PIN за FDN пристап"</string>
     <string name="sum_fdn_manage_list" msgid="8431088265332628316">"Управувај со список на телефонски броеви"</string>
     <string name="voice_privacy" msgid="3776841382844614716">"Приватност на глас"</string>
     <string name="voice_privacy_summary" msgid="3159383389833516214">"Овозможи подобрен режим на приватност"</string>
     <string name="tty_mode_option_title" msgid="9033098925144434669">"Режим TTY"</string>
-    <string name="tty_mode_option_summary" msgid="1073835131534808732">"Подеси режим TTY"</string>
+    <string name="tty_mode_option_summary" msgid="1073835131534808732">"Постави режим TTY"</string>
     <string name="auto_retry_mode_title" msgid="4073265511427813322">"Автоматски повторен обид"</string>
     <string name="auto_retry_mode_summary" msgid="4973886004067532288">"Овозможи режим на автоматски повторен обид"</string>
     <string name="tty_mode_not_allowed_video_call" msgid="3795846787901909176">"Промена на режим TTY не е дозволена за време на видеоповик"</string>
@@ -376,7 +376,7 @@
     <string name="delete_fdn_contact" msgid="6668958073074151717">"Избриши број на фиксно бирање"</string>
     <string name="deleting_fdn_contact" msgid="5669163206349319969">"Бришење број на фиксно бирање..."</string>
     <string name="fdn_contact_deleted" msgid="7154162327112259569">"Бројот на фиксно бирање е избришан."</string>
-    <string name="pin2_invalid" msgid="5470854099230755944">"FDN не се ажурираше зашто внесовте погрешен ПИН."</string>
+    <string name="pin2_invalid" msgid="5470854099230755944">"FDN не се ажурираше зашто внесовте погрешен PIN."</string>
     <string name="fdn_invalid_number" msgid="1494755047900009147">"FDN не е ажуриран зашто бројот не може да надмине 20 цифри."</string>
     <string name="pin2_or_fdn_invalid" msgid="6025144083384701197">"FDN не се ажурираше. ПИН2 кодот беше неточен или телефонски број беше одбиен."</string>
     <string name="fdn_failed" msgid="540018079008319747">"Операцијата со FDN не успеа."</string>
@@ -384,23 +384,23 @@
     <string name="simContacts_empty" msgid="5270660846489561932">"Нема контакти на вашата СИМ картичка."</string>
     <string name="simContacts_title" msgid="1861472842524839921">"Избери контакти за увоз"</string>
     <string name="simContacts_airplaneMode" msgid="5254946758982621072">"Исклучете го авионскиот режим за да ги увезете контактите од СИМ-картичката."</string>
-    <string name="enable_pin" msgid="5422767284133234860">"Овозможи/оневозможи ПИН на СИМ"</string>
-    <string name="change_pin" msgid="9174186126330785343">"Промени ПИН на СИМ"</string>
-    <string name="enter_pin_text" msgid="8532615714751931951">"ПИН на СИМ:"</string>
-    <string name="oldPinLabel" msgid="5287773661246368314">"Стар ПИН"</string>
-    <string name="newPinLabel" msgid="207488227285336897">"Нов ПИН"</string>
-    <string name="confirmPinLabel" msgid="257597715098070206">"Потврди нов ПИН"</string>
-    <string name="badPin" msgid="8955102849303984935">"Стариот ПИН што го впишавте не е точен. Обидете се повторно."</string>
-    <string name="mismatchPin" msgid="5923253370683071889">"ПИН кодовите што ги внесовте не се совпаѓаат. Обидете се повторно."</string>
-    <string name="invalidPin" msgid="5981171102258684792">"Внеси ПИН од 4 до 8 броеви."</string>
-    <string name="disable_sim_pin" msgid="3419351358300716472">"Исчисти ПИН на СИМ"</string>
-    <string name="enable_sim_pin" msgid="4845145659651484248">"Поставете ПИН на СИМ"</string>
-    <string name="enable_in_progress" msgid="3417917024688497010">"ПИН-кодот се поставува…"</string>
-    <string name="enable_pin_ok" msgid="2918545971413270063">"ПИН-кодот е поставен"</string>
-    <string name="disable_pin_ok" msgid="2109571368635883688">"ПИН-кодот е исчистен"</string>
-    <string name="pin_failed" msgid="5644377896213584760">"ПИН-кодот е неточен"</string>
-    <string name="pin_changed" msgid="4455736268023261662">"ПИН-кодот е ажуриран"</string>
-    <string name="puk_requested" msgid="5921393215789090200">"Лозинката е неточна. ПИН-кодот е сега блокиран. Се бара ПУК."</string>
+    <string name="enable_pin" msgid="5422767284133234860">"Овозможи/оневозможи PIN на СИМ"</string>
+    <string name="change_pin" msgid="9174186126330785343">"Промени PIN на СИМ"</string>
+    <string name="enter_pin_text" msgid="8532615714751931951">"PIN на СИМ:"</string>
+    <string name="oldPinLabel" msgid="5287773661246368314">"Стар PIN"</string>
+    <string name="newPinLabel" msgid="207488227285336897">"Нов PIN"</string>
+    <string name="confirmPinLabel" msgid="257597715098070206">"Потврди нов PIN"</string>
+    <string name="badPin" msgid="8955102849303984935">"Стариот PIN што го впишавте не е точен. Обидете се повторно."</string>
+    <string name="mismatchPin" msgid="5923253370683071889">"PIN кодовите што ги внесовте не се совпаѓаат. Обидете се повторно."</string>
+    <string name="invalidPin" msgid="5981171102258684792">"Внеси PIN од 4 до 8 броеви."</string>
+    <string name="disable_sim_pin" msgid="3419351358300716472">"Исчисти PIN на СИМ"</string>
+    <string name="enable_sim_pin" msgid="4845145659651484248">"Поставете PIN на СИМ"</string>
+    <string name="enable_in_progress" msgid="3417917024688497010">"PIN-кодот се поставува…"</string>
+    <string name="enable_pin_ok" msgid="2918545971413270063">"PIN-кодот е поставен"</string>
+    <string name="disable_pin_ok" msgid="2109571368635883688">"PIN-кодот е исчистен"</string>
+    <string name="pin_failed" msgid="5644377896213584760">"PIN-кодот е неточен"</string>
+    <string name="pin_changed" msgid="4455736268023261662">"PIN-кодот е ажуриран"</string>
+    <string name="puk_requested" msgid="5921393215789090200">"Лозинката е неточна. PIN-кодот е сега блокиран. Се бара ПУК."</string>
     <string name="enter_pin2_text" msgid="8339444124477720345">"ПИН2"</string>
     <string name="oldPin2Label" msgid="8559146795026261502">"Стар ПИН2"</string>
     <string name="newPin2Label" msgid="4573956902204349054">"Нов ПИН2"</string>
@@ -485,7 +485,7 @@
     <item msgid="5644925873488772224">"TTY VCO"</item>
   </string-array>
     <string name="dtmf_tones_title" msgid="5163153771291340803">"DTMF тонови"</string>
-    <string name="dtmf_tones_summary" msgid="3351820372864020331">"Подеси ја должината на DTMF тоновите"</string>
+    <string name="dtmf_tones_summary" msgid="3351820372864020331">"Постави ја должината на DTMF тоновите"</string>
   <string-array name="dtmf_tone_entries">
     <item msgid="899650777817315681">"Нормални"</item>
     <item msgid="2883365539347850535">"Долги"</item>
@@ -534,9 +534,9 @@
     <string name="alert_dialog_no" msgid="1476091437797628703">"Не"</string>
     <string name="alert_dialog_dismiss" msgid="2491494287075907171">"Отфрли"</string>
     <string name="voicemail_provider" msgid="5135942703327136909">"Услуга"</string>
-    <string name="voicemail_settings" msgid="72448049107749316">"Подесување"</string>
-    <string name="voicemail_number_not_set" msgid="6724904736891087856">"&lt;Не е подесен&gt;"</string>
-    <string name="other_settings" msgid="3672912580359716394">"Други подесувања на повик"</string>
+    <string name="voicemail_settings" msgid="72448049107749316">"Поставување"</string>
+    <string name="voicemail_number_not_set" msgid="6724904736891087856">"&lt;Нема поставка&gt;"</string>
+    <string name="other_settings" msgid="3672912580359716394">"Други поставки на повици"</string>
     <string name="calling_via_template" msgid="4839419581866928142">"Повикување преку <xliff:g id="PROVIDER_NAME">%s</xliff:g>"</string>
     <string name="contactPhoto" msgid="4713193418046639466">"фотографија за контакт"</string>
     <string name="goPrivate" msgid="865837794424530980">"префли на приватно"</string>

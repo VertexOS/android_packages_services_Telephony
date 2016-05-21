@@ -93,10 +93,10 @@
     <string name="labelCW" msgid="6120513814915920200">"அழைப்பு காத்திருப்பு"</string>
     <string name="sum_cw_enabled" msgid="8083061901633671397">"அழைப்பில் இருக்கும்போது, உள்வரும் அழைப்புகளை எனக்குத் தெரிவி"</string>
     <string name="sum_cw_disabled" msgid="3648693907300104575">"அழைப்பில் இருக்கும்போதும் உள்வரும் அழைப்புகளைப் பற்றி எனக்குத் தெரிவி"</string>
-    <string name="call_forwarding_settings" msgid="3378927671091537173">"அழைப்பு பகிர்தலுக்கான அமைப்பு"</string>
-    <string name="call_forwarding_settings_with_label" msgid="8569489414006897127">"அழைப்பு பகிர்விற்கான அமைப்புகள் (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="call_forwarding_settings" msgid="3378927671091537173">"அழைப்பைத் திருப்பிவிடுதல்"</string>
+    <string name="call_forwarding_settings_with_label" msgid="8569489414006897127">"அழைப்பைத் திருப்பிவிடுதல் (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="labelCF" msgid="2574386948026924737">"அழைப்புப் பகிர்வு"</string>
-    <string name="labelCFU" msgid="8147177368148660600">"எப்போதும் பகிர்"</string>
+    <string name="labelCFU" msgid="8147177368148660600">"எப்போதும் திருப்பிவிடு"</string>
     <string name="messageCFU" msgid="3560082430662923687">"எப்போதும் இதைப் பயன்படுத்து"</string>
     <string name="sum_cfu_enabled_indicator" msgid="4014187342724130197">"எல்லா அழைப்புகளையும் பகிர்"</string>
     <string name="sum_cfu_enabled" msgid="2450052502198827927">"<xliff:g id="PHONENUMBER">{0}</xliff:g> க்கு எல்லா அழைப்புகளையும் பகிர்"</string>
@@ -332,7 +332,7 @@
     <string name="cdma_activate_device" msgid="3793805892364814518">"சாதனத்தைச் செயல்படுத்தவும்"</string>
     <string name="cdma_lte_data_service" msgid="4255018217292548962">"தரவு சேவையை அமை"</string>
     <string name="carrier_settings_title" msgid="9028166176523012300">"மொபைல் நிறுவன அமைப்பு"</string>
-    <string name="fdn" msgid="7878832555095183202">"நிலையான அழைப்பிற்கான எண்கள்"</string>
+    <string name="fdn" msgid="7878832555095183202">"நிலையான அழைப்பு எண்கள்"</string>
     <string name="fdn_with_label" msgid="187084204115493366">"நிலையான அழைப்பு எண்கள் (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="manage_fdn_list" msgid="8777755791892122369">"FDN பட்டியல்"</string>
     <string name="fdn_list_with_label" msgid="7437232552210469217">"FDN பட்டியல் (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>

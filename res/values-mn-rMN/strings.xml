@@ -31,7 +31,7 @@
     <string name="cancel" msgid="5044513931633602634">"Цуцлах"</string>
     <string name="enter_input" msgid="1810529547726803893">"USSD зурвасын үсгийн тоо <xliff:g id="MIN_LEN">%d</xliff:g> болон <xliff:g id="MAX_LEN">%d</xliff:g> хооронд байх шаардлагатай. Дахин оролдоно уу."</string>
     <string name="manageConferenceLabel" msgid="4691922394301969053">"Утсан хурлыг удирдах"</string>
-    <string name="ok" msgid="3811371167865772377">"Тийм"</string>
+    <string name="ok" msgid="3811371167865772377">"OK"</string>
     <string name="audio_mode_speaker" msgid="27649582100085266">"Чанга яригч"</string>
     <string name="audio_mode_earpiece" msgid="4156527186373869107">"Утасны чихэвч"</string>
     <string name="audio_mode_wired_headset" msgid="1465350758489175975">"Утастай чихэвч"</string>
@@ -131,7 +131,7 @@
     <string name="stk_cc_ss_to_ss_error" msgid="5057846756489053759">"SS хүсэлтийг шинэ SS хүсэлт болгон өөрчилсөн."</string>
     <string name="fdn_check_failure" msgid="18200614306525434">"Таны Phone апп-н FDN тохиргоо асаалттай байна. Тус шалтгаанаар дуудлагатай холбоотой зарим функц ажиллахгүй."</string>
     <string name="radio_off_error" msgid="2304459933248513376">"Эдгээр тохиргоог харахын өмнө радиог асаана уу."</string>
-    <string name="close_dialog" msgid="2365884406356986917">"Тийм"</string>
+    <string name="close_dialog" msgid="2365884406356986917">"OK"</string>
     <string name="enable" msgid="7248657275000173526">"Асаах"</string>
     <string name="disable" msgid="4678348128118573672">"Унтраах"</string>
     <string name="change_num" msgid="239476305819844391">"Шинэчлэх"</string>
@@ -473,7 +473,7 @@
     <string name="hac_mode_title" msgid="8740268574688743289">"Сонсголын төхөөрөмж"</string>
     <string name="hac_mode_summary" msgid="6833851160514929341">"Сонсголын төхөөрөмж тааруулагчийг асаана уу"</string>
   <string-array name="tty_mode_entries">
-    <item msgid="512950011423868021">"TTY Үгүй"</item>
+    <item msgid="512950011423868021">"TTY Унтраасан"</item>
     <item msgid="3971695875449640648">"TTY Дүүрэн"</item>
     <item msgid="1937509904407445684">"TTY HCO"</item>
     <item msgid="5644925873488772224">"TTY VCO"</item>

@@ -31,7 +31,7 @@
     <string name="cancel" msgid="5044513931633602634">"રદ કરો"</string>
     <string name="enter_input" msgid="1810529547726803893">"USSD સંદેશ <xliff:g id="MIN_LEN">%d</xliff:g> અને <xliff:g id="MAX_LEN">%d</xliff:g> વર્ણ વચ્ચેનો હોવો આવશ્યક છે. કૃપા કરીને ફરી પ્રયાસ કરો."</string>
     <string name="manageConferenceLabel" msgid="4691922394301969053">"કોન્ફરન્સ કૉલ સંચાલિત કરો"</string>
-    <string name="ok" msgid="3811371167865772377">"ઑકે"</string>
+    <string name="ok" msgid="3811371167865772377">"ઓકે"</string>
     <string name="audio_mode_speaker" msgid="27649582100085266">"સ્પીકર્સ"</string>
     <string name="audio_mode_earpiece" msgid="4156527186373869107">"હેન્ડસેટ ઇઅરપીસ"</string>
     <string name="audio_mode_wired_headset" msgid="1465350758489175975">"વાયર્ડ હેડસેટ"</string>
@@ -131,7 +131,7 @@
     <string name="stk_cc_ss_to_ss_error" msgid="5057846756489053759">"SS વિનંતીને નવી SS વિનંતી પર સંશોધિત કરી."</string>
     <string name="fdn_check_failure" msgid="18200614306525434">"તમારી ફોન એપ્લિકેશનની ફિક્સ્ડ ડાયલિંગ નંબર્સ સેટિંગ ચાલુ છે. પરિણામ રૂપે, કેટલીક કૉલ સંબંધિત સુવિધાઓ કાર્ય કરતી નથી."</string>
     <string name="radio_off_error" msgid="2304459933248513376">"આ સેટિંગ્સ જોતા પહેલાં રેડિઓ ચાલુ કરો."</string>
-    <string name="close_dialog" msgid="2365884406356986917">"ઑકે"</string>
+    <string name="close_dialog" msgid="2365884406356986917">"ઓકે"</string>
     <string name="enable" msgid="7248657275000173526">"ચાલુ કરો"</string>
     <string name="disable" msgid="4678348128118573672">"બંધ કરો"</string>
     <string name="change_num" msgid="239476305819844391">"અપડેટ"</string>
@@ -470,8 +470,8 @@
     <string name="importToFDNfromContacts" msgid="2130620207013368580">"સંપર્કોમાંથી આયાત કરો"</string>
     <string name="singleContactImportedMsg" msgid="6868483416182599206">"સંપર્ક આયાત કર્યો"</string>
     <string name="failedToImportSingleContactMsg" msgid="415399285420353917">"સંપર્ક આયાત કરવામાં નિષ્ફળ થયાં"</string>
-    <string name="hac_mode_title" msgid="8740268574688743289">"સાંભળવામાં સહાયો"</string>
-    <string name="hac_mode_summary" msgid="6833851160514929341">"સાંભળવું અને સુસંગતતા ચાલુ કરો"</string>
+    <string name="hac_mode_title" msgid="8740268574688743289">"સાંભળવામાં સહાયતા"</string>
+    <string name="hac_mode_summary" msgid="6833851160514929341">"સાંભળવામાં સહાયતા સુસંગતતા ચાલુ કરો"</string>
   <string-array name="tty_mode_entries">
     <item msgid="512950011423868021">"TTY બંધ"</item>
     <item msgid="3971695875449640648">"TTY સંપૂર્ણ"</item>

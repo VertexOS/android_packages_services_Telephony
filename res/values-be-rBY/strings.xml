@@ -147,7 +147,7 @@
     <string name="no_change" msgid="3186040086622435212">"Змены не выкананы."</string>
     <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"Выберыце службу галасавой пошты"</string>
     <string name="voicemail_default" msgid="2001233554889016880">"Ваш аператар"</string>
-    <string name="mobile_networks" msgid="2843854043339307375">"Налады мабільнай сеткі"</string>
+    <string name="mobile_networks" msgid="2843854043339307375">"Налады сотавай сеткі"</string>
     <string name="label_available" msgid="1181658289009300430">"Даступныя сеткі"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"Пошук..."</string>
     <string name="empty_networks_list" msgid="4249426905018815316">"Сеткі не знойдзены."</string>
@@ -162,9 +162,9 @@
     <string name="select_automatically" msgid="5628402124471810174">"Выбраць аўтаматычна"</string>
     <string name="sum_select_automatically" msgid="5614890115123292400">"Аўтаматычна выбраць прыярытэтную сетку"</string>
     <string name="register_automatically" msgid="6017849844573519637">"Аўтаматычная рэгістрацыя..."</string>
-    <string name="preferred_network_mode_title" msgid="2336624679902659306">"Пажаданы тып сеткі"</string>
+    <string name="preferred_network_mode_title" msgid="2336624679902659306">"Прыярытэтны тып сеткі"</string>
     <string name="preferred_network_mode_summary" msgid="1434820673166126609">"Змяніць рэжым работы сеткі"</string>
-    <string name="preferred_network_mode_dialogtitle" msgid="4048082093347807230">"Пажаданы тып сеткі"</string>
+    <string name="preferred_network_mode_dialogtitle" msgid="4048082093347807230">"Прыярытэтны тып сеткі"</string>
     <string name="preferred_network_mode_wcdma_perf_summary" msgid="8521677230113533809">"Пераважны рэжым сеткі: пераважна WCDMA"</string>
     <string name="preferred_network_mode_gsm_only_summary" msgid="3352445413437453511">"Пераважны рэжым сеткі: толькі GSM"</string>
     <string name="preferred_network_mode_wcdma_only_summary" msgid="2836897236221063413">"Пераважны рэжым сеткі: толькі WCDMA"</string>
@@ -202,7 +202,7 @@
     <string name="data_enabled" msgid="5972538663568715366">"Дадзеныя ўключаныя"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"Дазволіць выкарыстанне даных"</string>
     <string name="dialog_alert_title" msgid="6751344986194435476">"Увага"</string>
-    <string name="roaming" msgid="8871412572928323707">"Перадача дадзеных у роўмінгу"</string>
+    <string name="roaming" msgid="8871412572928323707">"Перадача даных у роўмінгу"</string>
     <string name="roaming_enable" msgid="7331106985174381987">"Злучацца з паслугамі перадачы дадзеных ў роўмінгу"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"Злучацца з паслугамі перадачы дадзеных у роўмінгу"</string>
     <string name="roaming_reenable_message" msgid="8913735676127858115">"Падлучэнне для перадачы дадзеных страчана, таму што вы выйшлі з зоны пакрыцця сваёй сеткі, а перадача дадзеных у роўмінгу адключана."</string>
@@ -349,7 +349,7 @@
     <string name="sum_fdn_manage_list" msgid="8431088265332628316">"Кіраванне спісам тэлефонных нумароў"</string>
     <string name="voice_privacy" msgid="3776841382844614716">"Палiтыка прыватнасцi Voice"</string>
     <string name="voice_privacy_summary" msgid="3159383389833516214">"Уключыць пашыраны рэжым прыватнасці"</string>
-    <string name="tty_mode_option_title" msgid="9033098925144434669">"TTY рэжым"</string>
+    <string name="tty_mode_option_title" msgid="9033098925144434669">"Рэжым TTY"</string>
     <string name="tty_mode_option_summary" msgid="1073835131534808732">"Задаць рэжым TTY"</string>
     <string name="auto_retry_mode_title" msgid="4073265511427813322">"Аўтаматычны паўтор"</string>
     <string name="auto_retry_mode_summary" msgid="4973886004067532288">"Уключыць рэжым аўтаматычнага паўтору"</string>
@@ -533,8 +533,8 @@
     <string name="alert_dialog_yes" msgid="6674268047820703974">"Так"</string>
     <string name="alert_dialog_no" msgid="1476091437797628703">"Не"</string>
     <string name="alert_dialog_dismiss" msgid="2491494287075907171">"Скасаваць"</string>
-    <string name="voicemail_provider" msgid="5135942703327136909">"Служба"</string>
-    <string name="voicemail_settings" msgid="72448049107749316">"Налады"</string>
+    <string name="voicemail_provider" msgid="5135942703327136909">"Сэрвіс"</string>
+    <string name="voicemail_settings" msgid="72448049107749316">"Наладка"</string>
     <string name="voicemail_number_not_set" msgid="6724904736891087856">"&lt;Не заданы&gt;"</string>
     <string name="other_settings" msgid="3672912580359716394">"Іншыя налады выкліку"</string>
     <string name="calling_via_template" msgid="4839419581866928142">"Званкі праз правайдара <xliff:g id="PROVIDER_NAME">%s</xliff:g>"</string>

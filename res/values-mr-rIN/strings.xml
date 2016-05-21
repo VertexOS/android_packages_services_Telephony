@@ -107,7 +107,7 @@
     <string name="sum_cfb_enabled" msgid="5984198104833116690">"<xliff:g id="PHONENUMBER">{0}</xliff:g> वर अग्रेषित करीत आहे"</string>
     <string name="sum_cfb_disabled" msgid="4913145177320506827">"बंद"</string>
     <string name="disable_cfb_forbidden" msgid="3506984333877998061">"आपला फोन व्‍यस्‍त असताना आपला ऑपरेटर कॉल अग्रेषण करणे अक्षम करण्‍यास समर्थन करीत नाही."</string>
-    <string name="labelCFNRy" msgid="1736067178393744351">"अनुत्तरीत असताना"</string>
+    <string name="labelCFNRy" msgid="1736067178393744351">"उत्तर न दिल्यास"</string>
     <string name="messageCFNRy" msgid="672317899884380374">"नंबर अनुत्तरित असताना"</string>
     <string name="sum_cfnry_enabled" msgid="6955775691317662910">"<xliff:g id="PHONENUMBER">{0}</xliff:g> वर अग्रेषित करीत आहे"</string>
     <string name="sum_cfnry_disabled" msgid="3884684060443538097">"बंद"</string>

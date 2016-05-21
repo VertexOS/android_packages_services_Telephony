@@ -553,7 +553,7 @@
     <string name="accessibility_settings_activity_title" msgid="8562004288733103868">"Erişilebilirlik"</string>
     <string name="status_hint_label_incoming_wifi_call" msgid="8772915926382037499">"Gelen kablosuz çağrı"</string>
     <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"Kablosuz çağrı"</string>
-    <string name="emergency_action_launch_hint" msgid="4906759256275562674">"Açmak için tekrar hafifçe dokunun"</string>
+    <string name="emergency_action_launch_hint" msgid="4906759256275562674">"Açmak için tekrar dokunun"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"İletinin kodu çözülürken bir hata oluştu."</string>
     <string name="callFailed_cdma_activation" msgid="2307989779233262164">"Bir SIM kart, hizmetinizi etkinleştirdi ve telefonunuzun dolaşım özelliklerini güncelledi."</string>
     <string name="callFailed_cdma_call_limit" msgid="1556916577171457086">"Etkin çağrıların sayısı çok fazla. Yeni bir çağrı yapmadan önce lütfen mevcut çağrıları sonlandırın veya birleştirin."</string>

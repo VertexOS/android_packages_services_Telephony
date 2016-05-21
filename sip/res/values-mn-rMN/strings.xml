@@ -21,8 +21,8 @@
     <string name="sip_accounts_title" msgid="2082527045326874519">"Акаунт"</string>
     <string name="sip_receive_calls" msgid="426678617137462173">"Ирж буй дуудлага хүлээж авах"</string>
     <string name="sip_receive_calls_summary" msgid="946161517528227523">"Илүү их цэнэг хэрэглэдэг"</string>
-    <string name="sip_call_options_title" msgid="8421210494703869806">"SIP дуудлагыг ашигла"</string>
-    <string name="sip_call_options_wifi_only_title" msgid="5112579243580893890">"SIP дуудлагыг ашигла (зөвхөн Wi-Fi)"</string>
+    <string name="sip_call_options_title" msgid="8421210494703869806">"SIP дуудлага ашиглах"</string>
+    <string name="sip_call_options_wifi_only_title" msgid="5112579243580893890">"SIP дуудлага ашиглах (зөвхөн Wi-Fi)"</string>
     <string name="sip_call_options_entry_1" msgid="7217659161237099900">"Дата сүлжээтэй үед бүх дуудлагад"</string>
     <string name="sip_call_options_entry_2" msgid="1815335903940609729">"SIP дуудлага хийхэд зориулагдсан"</string>
     <string name="sip_call_options_wifi_only_entry_1" msgid="1358513095551847314">"Бүх дуудлагад"</string>
@@ -34,7 +34,7 @@
     <string name="sip_menu_save" msgid="7882219814563869225">"Хадгалах"</string>
     <string name="sip_menu_discard" msgid="2350421645423888438">"Устг"</string>
     <string name="alert_dialog_close" msgid="1326011828713435134">"Профайлыг хаана уу"</string>
-    <string name="alert_dialog_ok" msgid="4752048404605388940">"Тийм"</string>
+    <string name="alert_dialog_ok" msgid="4752048404605388940">"OK"</string>
     <string name="close_profile" msgid="3122414058856309881">"Хаах"</string>
     <string name="registration_status_checking_status" msgid="6136793741862200337">"Статусыг шалгаж байна..."</string>
     <string name="registration_status_registering" msgid="2677183977796278749">"Бүртгэж байна…"</string>

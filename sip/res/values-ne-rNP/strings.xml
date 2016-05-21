@@ -20,7 +20,7 @@
     <string name="sip_accounts" msgid="85559497282185405">"SIP खाताहरू"</string>
     <string name="sip_accounts_title" msgid="2082527045326874519">"खाताहरू"</string>
     <string name="sip_receive_calls" msgid="426678617137462173">"आगमन कलहरू प्राप्त गर्नुहोस्"</string>
-    <string name="sip_receive_calls_summary" msgid="946161517528227523">"बढि ब्याट्री आयु खपत गर्छ"</string>
+    <string name="sip_receive_calls_summary" msgid="946161517528227523">"बढी ब्याट्री आयु खपत गर्छ"</string>
     <string name="sip_call_options_title" msgid="8421210494703869806">"SIP कल प्रयोग गर्नुहोस्"</string>
     <string name="sip_call_options_wifi_only_title" msgid="5112579243580893890">"SIP कल प्रयोग गर्नुहोस् (Wi-Fi मात्र)"</string>
     <string name="sip_call_options_entry_1" msgid="7217659161237099900">"डेटा नेटवर्क उपलब्ध हुँदा सबै कलहरूको लागि"</string>
@@ -59,7 +59,7 @@
     <string name="transport_title" msgid="889155457465372527">"यातायात प्रकार"</string>
     <string name="send_keepalive_title" msgid="599627072150501159">"चालु राख्नको लागि पठाउनुहोस्"</string>
     <string name="advanced_settings" msgid="6622996380747040711">"वैकल्पिक सेटिङहरू"</string>
-    <string name="auth_username_title" msgid="8262491689004708265">"प्रमाणीकरण प्रयोगकर्ता नाम"</string>
+    <string name="auth_username_title" msgid="8262491689004708265">"प्रमाणीकरणको प्रयोगकर्ता नाम"</string>
     <string name="auth_username_summary" msgid="941160241371436473">"प्रमाणीकरणको लागि प्रयोगकर्ता नाम प्रयोग भएको"</string>
     <string name="default_preference_summary" msgid="1979249643719483249">"&lt;सेट गरिएको छैन&gt;"</string>
     <string name="display_name_summary" msgid="7155076491675565407">"&lt;प्रयोगकर्ता नाम जस्तै&gt;"</string>

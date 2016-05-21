@@ -107,8 +107,8 @@
     <string name="sum_cfb_enabled" msgid="5984198104833116690">"Prosleđuje se na <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfb_disabled" msgid="4913145177320506827">"Isključeno"</string>
     <string name="disable_cfb_forbidden" msgid="3506984333877998061">"Operater ne podržava onemogućavanje preusmeravanja poziva kada je telefon zauzet."</string>
-    <string name="labelCFNRy" msgid="1736067178393744351">"Kad se ne javite"</string>
-    <string name="messageCFNRy" msgid="672317899884380374">"Broj kad se ne javite"</string>
+    <string name="labelCFNRy" msgid="1736067178393744351">"Kad se ne javim"</string>
+    <string name="messageCFNRy" msgid="672317899884380374">"Broj kad se ne javim"</string>
     <string name="sum_cfnry_enabled" msgid="6955775691317662910">"Prosleđuje se na <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfnry_disabled" msgid="3884684060443538097">"Isključeno"</string>
     <string name="disable_cfnry_forbidden" msgid="4308233959150658058">"Operater ne podržava onemogućavanje preusmeravanja poziva kada se na poziv ne odgovori."</string>
@@ -332,19 +332,19 @@
     <string name="cdma_activate_device" msgid="3793805892364814518">"Aktiviranje uređaja"</string>
     <string name="cdma_lte_data_service" msgid="4255018217292548962">"Podesite usl. prenosa podataka"</string>
     <string name="carrier_settings_title" msgid="9028166176523012300">"Podešavanja operatera"</string>
-    <string name="fdn" msgid="7878832555095183202">"Fiksni birani brojevi"</string>
+    <string name="fdn" msgid="7878832555095183202">"Brojevi za fiksno biranje"</string>
     <string name="fdn_with_label" msgid="187084204115493366">"Brojevi za fiksno biranje (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="manage_fdn_list" msgid="8777755791892122369">"Lista brojeva za fiksno biranje"</string>
     <string name="fdn_list_with_label" msgid="7437232552210469217">"Lista brojeva za fiksno biranje (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="fdn_activation" msgid="2156479741307463576">"FDN aktivacija"</string>
-    <string name="fdn_enabled" msgid="5238109009915521240">"Omogućeni su fiksni birani brojevi"</string>
-    <string name="fdn_disabled" msgid="4700049736675368279">"Onemogućeni su fiksni birani brojevi"</string>
+    <string name="fdn_enabled" msgid="5238109009915521240">"Omogućeni su brojevi za fiksno biranje"</string>
+    <string name="fdn_disabled" msgid="4700049736675368279">"Onemogućeni su brojevi za fiksno biranje"</string>
     <string name="enable_fdn" msgid="3740191529180493851">"Omogući broj za fiksno biranje"</string>
     <string name="disable_fdn" msgid="7944020890722540616">"Onemogući broj za fiksno biranje"</string>
     <string name="change_pin2" msgid="2153563695382176676">"Promeni PIN2"</string>
     <string name="enable_fdn_ok" msgid="7215588870329688132">"Onemogući broj za fiksno biranje"</string>
     <string name="disable_fdn_ok" msgid="5727046928930740173">"Omogući broj za fiksno biranje"</string>
-    <string name="sum_fdn" msgid="1959399454900272878">"Upravljanje fiksnim biranim brojevima"</string>
+    <string name="sum_fdn" msgid="1959399454900272878">"Upravljanje brojevima za fiksno biranje"</string>
     <string name="sum_fdn_change_pin" msgid="6666549734792827932">"Promeni PIN za pristup broju za fiksno biranje"</string>
     <string name="sum_fdn_manage_list" msgid="8431088265332628316">"Upravljanje listom telefonskih brojeva"</string>
     <string name="voice_privacy" msgid="3776841382844614716">"Privatnost glasa"</string>
@@ -473,7 +473,7 @@
     <string name="hac_mode_title" msgid="8740268574688743289">"Slušni aparat"</string>
     <string name="hac_mode_summary" msgid="6833851160514929341">"Uključi kompatibilnost sa slušnim aparatom"</string>
   <string-array name="tty_mode_entries">
-    <item msgid="512950011423868021">"TTY isključeno"</item>
+    <item msgid="512950011423868021">"TTY je isključen"</item>
     <item msgid="3971695875449640648">"TTY je pun"</item>
     <item msgid="1937509904407445684">"TTY HCO"</item>
     <item msgid="5644925873488772224">"TTY VCO"</item>

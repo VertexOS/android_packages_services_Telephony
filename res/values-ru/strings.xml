@@ -340,7 +340,7 @@
     <string name="fdn_list_with_label" msgid="7437232552210469217">"Список разрешенных номеров (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="fdn_activation" msgid="2156479741307463576">"Активация разреш. номеров"</string>
     <string name="fdn_enabled" msgid="5238109009915521240">"Разрешенные номера включены"</string>
-    <string name="fdn_disabled" msgid="4700049736675368279">"Разрешенные номера отключены"</string>
+    <string name="fdn_disabled" msgid="4700049736675368279">"Разрешенные номера не используются"</string>
     <string name="enable_fdn" msgid="3740191529180493851">"Вкл. разрешенные номера"</string>
     <string name="disable_fdn" msgid="7944020890722540616">"Откл. разреш. номера"</string>
     <string name="change_pin2" msgid="2153563695382176676">"Изменить PIN2"</string>
@@ -473,7 +473,7 @@
     <string name="singleContactImportedMsg" msgid="6868483416182599206">"Контакт импортирован"</string>
     <string name="failedToImportSingleContactMsg" msgid="415399285420353917">"Не удалось импортировать контакт"</string>
     <string name="hac_mode_title" msgid="8740268574688743289">"Слуховые аппараты"</string>
-    <string name="hac_mode_summary" msgid="6833851160514929341">"Включить слуховой аппарат"</string>
+    <string name="hac_mode_summary" msgid="6833851160514929341">"Включить поддержку слухового аппарата"</string>
   <string-array name="tty_mode_entries">
     <item msgid="512950011423868021">"Телетайп выключен"</item>
     <item msgid="3971695875449640648">"Полнофункциональный телетайп"</item>

@@ -20,7 +20,7 @@
     <string name="sip_accounts" msgid="85559497282185405">"SIP ಖಾತೆಗಳು"</string>
     <string name="sip_accounts_title" msgid="2082527045326874519">"ಖಾತೆಗಳು"</string>
     <string name="sip_receive_calls" msgid="426678617137462173">"ಒಳಬರುವ ಕರೆಗಳನ್ನು ಸ್ವೀಕರಿಸು"</string>
-    <string name="sip_receive_calls_summary" msgid="946161517528227523">"ಹೆಚ್ಚು ಬ್ಯಾಟರಿ ಬಾಳಿಕೆಯನ್ನು ಬಳಸುತ್ತದೆ"</string>
+    <string name="sip_receive_calls_summary" msgid="946161517528227523">"ಹೆಚ್ಚು ಬ್ಯಾಟರಿಯನ್ನು ಬಳಸುತ್ತದೆ"</string>
     <string name="sip_call_options_title" msgid="8421210494703869806">"SIP ಕರೆ ಮಾಡುವಿಕೆಯನ್ನು ಬಳಸಿ"</string>
     <string name="sip_call_options_wifi_only_title" msgid="5112579243580893890">"SIP ಕರೆ ಮಾಡುವಿಕೆಯನ್ನು ಬಳಸಿ (Wi-Fi ಮಾತ್ರ)"</string>
     <string name="sip_call_options_entry_1" msgid="7217659161237099900">"ಡೇಟಾ ನೆಟ್‌ವರ್ಕ್‌ ಲಭ್ಯವಿರುವಾಗ ಎಲ್ಲ ಕರೆಗಳಿಗಾಗಿ"</string>

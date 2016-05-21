@@ -35,7 +35,7 @@
     <string name="audio_mode_speaker" msgid="27649582100085266">"স্পিকার"</string>
     <string name="audio_mode_earpiece" msgid="4156527186373869107">"হ্যান্ডসেট ইয়ারপিস"</string>
     <string name="audio_mode_wired_headset" msgid="1465350758489175975">"তারযুক্ত হেডসেট"</string>
-    <string name="audio_mode_bluetooth" msgid="3047641300848211128">"Bluetooth"</string>
+    <string name="audio_mode_bluetooth" msgid="3047641300848211128">"ব্লুটুথ"</string>
     <string name="wait_prompt_str" msgid="7601815427707856238">"নিম্নলিখিত টোনগুলি পাঠাবেন?\n"</string>
     <string name="pause_prompt_str" msgid="1789964702154314806">"টোনগুলি পাঠানো হচ্ছে\n"</string>
     <string name="send_button" msgid="4106860097497818751">"পাঠান"</string>
@@ -71,7 +71,7 @@
     <string name="phone_accounts_configure_account_settings" msgid="1361715069911607109">"অ্যাকাউন্ট সেটিংস কনফিগার করুন"</string>
     <string name="phone_accounts_all_calling_accounts" msgid="207619531589278471">"সমস্ত কলিং অ্যাকাউন্ট"</string>
     <string name="phone_accounts_all_calling_accounts_summary" msgid="8594186415822657011">"কোন অ্যাকাউন্টগুলি কল করতে পারবে তা নির্বাচন করুন"</string>
-    <string name="wifi_calling" msgid="739018212480165598">"Wi-Fi কলিং"</string>
+    <string name="wifi_calling" msgid="739018212480165598">"ওয়াই-ফাই কলিং"</string>
     <string name="connection_service_default_label" msgid="1498481943805913754">"বিল্ট-ইন সংযোগ পরিষেবা"</string>
     <string name="voicemail" msgid="8693759337917898954">"ভয়েসমেল"</string>
     <string name="voicemail_settings_with_label" msgid="152724978380748296">"ভয়েসমেল (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
@@ -145,7 +145,7 @@
     <string name="fw_change_failed" msgid="5298103228470214665">"ফরওয়ার্ড করার নম্বর পরিবর্তন করা যায়নি৷\nযদি এই সমস্যা থেকেই যায় তাহলে আপনার ক্যারিয়ারের সাথে যোগাযোগ করুন৷"</string>
     <string name="fw_get_in_vm_failed" msgid="8862896836093833973">"বর্তমান ফরওয়ার্ড করার নম্বরের সেটিংস পুনরুদ্ধার এবং সংরক্ষণ করা যায়নি৷\nযেকোনো উপায়ে নতুন পরিষেবা প্রদানকারীর সাহায্য নিতে চান?"</string>
     <string name="no_change" msgid="3186040086622435212">"কোনো পরিবর্তন করা হয়নি৷"</string>
-    <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"ভয়েসমেল পরিষেবা চয়ন করুন"</string>
+    <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"ভয়েসমেল পরিষেবা বেছে নিন"</string>
     <string name="voicemail_default" msgid="2001233554889016880">"আপনার পরিষেবা প্রদানকারী"</string>
     <string name="mobile_networks" msgid="2843854043339307375">"সেলুলার নেটওয়ার্ক সেটিংস"</string>
     <string name="label_available" msgid="1181658289009300430">"উপলব্ধ নেটওয়ার্কগুলি"</string>
@@ -157,9 +157,9 @@
     <string name="not_allowed" msgid="5613353860205691579">"আপনার সিম কার্ড এই নেটওয়ার্কে সংযোগ স্থাপনের অনুমতি দেয় না৷"</string>
     <string name="connect_later" msgid="2308119155752343975">"এই মুহূর্তে এই নেটওয়ার্কের সাথে সংযোগ স্থাপন করা যাচ্ছে না৷ পরে আবার চেষ্টা করুন৷"</string>
     <string name="registration_done" msgid="495135664535876612">"নেটওয়ার্কে নিবন্ধিত করা হয়েছে৷"</string>
-    <string name="sum_carrier_select" msgid="3494252551249882718">"একটি নেটওয়ার্ক অপারেটর চয়ন করুন"</string>
+    <string name="sum_carrier_select" msgid="3494252551249882718">"একটি নেটওয়ার্ক অপারেটর বেছে নিন"</string>
     <string name="sum_search_networks" msgid="2921092249873272715">"সমস্ত উপলব্ধ নেটওয়ার্কের জন্য অনুসন্ধান করুন"</string>
-    <string name="select_automatically" msgid="5628402124471810174">"স্বয়ংক্রিয়ভাবে চয়ন করুন"</string>
+    <string name="select_automatically" msgid="5628402124471810174">"স্বয়ংক্রিয়ভাবে বেছে নিন"</string>
     <string name="sum_select_automatically" msgid="5614890115123292400">"স্বয়ংক্রিয়ভাবে পছন্দের নেটওয়ার্ক চয়ন করুন"</string>
     <string name="register_automatically" msgid="6017849844573519637">"স্বয়ংক্রিয় নিবন্ধীকরণ..."</string>
     <string name="preferred_network_mode_title" msgid="2336624679902659306">"পছন্দের নেটওয়ার্ক প্রকার"</string>
@@ -491,7 +491,7 @@
     <string name="ota_hfa_activation_title" msgid="2234246934160473981">"সক্রিয় হচ্ছে..."</string>
     <string name="ota_hfa_activation_dialog_message" msgid="8092479227918463415">"ফোনটি আপনার মোবাইল ডেটা পরিষেবা সক্রিয় করছে৷\n\nএটি ৫ মিনিট পর্যন্ত সময় নিতে পারে৷"</string>
     <string name="ota_skip_activation_dialog_title" msgid="2943366608272261306">"সক্রিয়করণ এড়িয়ে যেতে চান?"</string>
-    <string name="ota_skip_activation_dialog_message" msgid="2440770373498870550">"যদি আপনি সক্রিয়করণকে উপেক্ষা করেন, তাহলে আপনি কল করতে অথবা মোবাইল ডেটা নেটওয়ার্কগুলির সাথে সংযোগ স্থাপন করতে পারবেন না (যদিও আপনি Wi-Fi নেটওয়ার্কগুলির সাথে সংযুক্ত হতে পারছেন)৷ যতক্ষণ না আপনি আপনার ফোন সক্রিয় করছেন, ততক্ষণ যখনই আপনি এটি চালু করবেন তখনই আপনাকে এটি সক্রিয় করতে বলা হবে৷"</string>
+    <string name="ota_skip_activation_dialog_message" msgid="2440770373498870550">"যদি আপনি সক্রিয়করণকে উপেক্ষা করেন, তাহলে আপনি কল করতে অথবা মোবাইল ডেটা নেটওয়ার্কগুলির সাথে সংযোগ স্থাপন করতে পারবেন না (যদিও আপনি ওয়াই-ফাই নেটওয়ার্কগুলির সাথে সংযুক্ত হতে পারছেন)৷ যতক্ষণ না আপনি আপনার ফোন সক্রিয় করছেন, ততক্ষণ যখনই আপনি এটি চালু করবেন তখনই আপনাকে এটি সক্রিয় করতে বলা হবে৷"</string>
     <string name="ota_skip_activation_dialog_skip_label" msgid="3458532775091563208">"এড়িয়ে যান"</string>
     <string name="ota_activate" msgid="1368528132525626264">"সক্রিয় করুন"</string>
     <string name="ota_title_activate_success" msgid="6570240212263372046">"ফোন সক্রিয় করা হয়েছে৷"</string>
@@ -551,8 +551,8 @@
     <string name="sim_description_emergency_calls" msgid="7535215397212301562">"শুধুমাত্র জরুরী কলিং"</string>
     <string name="sim_description_default" msgid="4778679519938775515">"SIM কার্ড, স্লট: <xliff:g id="SLOT_ID">%s</xliff:g>"</string>
     <string name="accessibility_settings_activity_title" msgid="8562004288733103868">"অ্যাক্সেসযোগ্যতা"</string>
-    <string name="status_hint_label_incoming_wifi_call" msgid="8772915926382037499">"আগত Wi-Fi কল"</string>
-    <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"Wi-Fi কল"</string>
+    <string name="status_hint_label_incoming_wifi_call" msgid="8772915926382037499">"আগত ওয়াই-ফাই কল"</string>
+    <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"ওয়াই-ফাই কল"</string>
     <string name="emergency_action_launch_hint" msgid="4906759256275562674">"খোলার জন্য আবার আলতো চাপুন"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"বার্তাটি ডিকোড করার সময় একটি ত্রুটি ঘটেছে৷"</string>
     <string name="callFailed_cdma_activation" msgid="2307989779233262164">"একটি SIM কার্ড আপনার পরিষেবা সক্রিয় করেছে এবং আপনার ফোনের রোমিং ক্ষমতা আপডেট করা হয়েছে৷"</string>

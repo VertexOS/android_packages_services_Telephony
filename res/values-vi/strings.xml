@@ -375,7 +375,7 @@
     <string name="pin2_or_fdn_invalid" msgid="6025144083384701197">"FDN không được cập nhật. Mã PIN2 không đúng hoặc số điện thoại đã bị từ chối."</string>
     <string name="fdn_failed" msgid="540018079008319747">"Thao tác FDN không thành công."</string>
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"Đang đọc từ thẻ SIM…"</string>
-    <string name="simContacts_empty" msgid="5270660846489561932">"Không có danh bạ trên thẻ SIM của bạn."</string>
+    <string name="simContacts_empty" msgid="5270660846489561932">"Không có liên hệ nào trên thẻ SIM của bạn."</string>
     <string name="simContacts_title" msgid="1861472842524839921">"Chọn danh bạ để nhập"</string>
     <string name="simContacts_airplaneMode" msgid="5254946758982621072">"Tắt chế độ trên máy bay để nhập danh bạ từ thẻ SIM."</string>
     <string name="enable_pin" msgid="5422767284133234860">"Bật/vô hiệu hóa mã PIN của SIM"</string>

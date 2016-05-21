@@ -375,7 +375,7 @@
     <string name="pin2_or_fdn_invalid" msgid="6025144083384701197">"FDN yangilanmadi. PIN2 kodi xato yoki telefon raqami rad qilingan."</string>
     <string name="fdn_failed" msgid="540018079008319747">"FDN jarayoni amalga oshmadi."</string>
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"SIM-kartadan o‘qilmoqda…"</string>
-    <string name="simContacts_empty" msgid="5270660846489561932">"SIM-kartada hech qanday kontakt yo‘q."</string>
+    <string name="simContacts_empty" msgid="5270660846489561932">"SIM kartada hech qanday kontakt yo‘q."</string>
     <string name="simContacts_title" msgid="1861472842524839921">"Import u-n kontaktlarni tanlang"</string>
     <string name="simContacts_airplaneMode" msgid="5254946758982621072">"SIM kartadan kontaktlarni import qilish uchun parvoz rejimini o‘chiring"</string>
     <string name="enable_pin" msgid="5422767284133234860">"SIM karta uchun PIN-kod so‘rovini yoqish/o‘chirish"</string>

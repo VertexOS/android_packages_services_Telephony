@@ -96,13 +96,13 @@
     <string name="call_forwarding_settings" msgid="3378927671091537173">"來電轉接設定"</string>
     <string name="call_forwarding_settings_with_label" msgid="8569489414006897127">"來電轉駁設定 (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="labelCF" msgid="2574386948026924737">"來電轉接"</string>
-    <string name="labelCFU" msgid="8147177368148660600">"一律轉接"</string>
+    <string name="labelCFU" msgid="8147177368148660600">"轉接全部來電"</string>
     <string name="messageCFU" msgid="3560082430662923687">"永遠使用這個號碼"</string>
     <string name="sum_cfu_enabled_indicator" msgid="4014187342724130197">"轉接所有通話"</string>
     <string name="sum_cfu_enabled" msgid="2450052502198827927">"將所有來電轉接至 <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfu_enabled_no_number" msgid="6591985777096823616">"號碼無法使用"</string>
     <string name="sum_cfu_disabled" msgid="8384177689501334080">"關閉"</string>
-    <string name="labelCFB" msgid="6139853033106283172">"忙線時"</string>
+    <string name="labelCFB" msgid="6139853033106283172">"線路繁忙時"</string>
     <string name="messageCFB" msgid="3711089705936187129">"忙線號碼"</string>
     <string name="sum_cfb_enabled" msgid="5984198104833116690">"轉接至 <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfb_disabled" msgid="4913145177320506827">"關閉"</string>
@@ -344,14 +344,14 @@
     <string name="fdn_list_with_label" msgid="7437232552210469217">"FDN 清單 (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="fdn_activation" msgid="2156479741307463576">"FDN 啟用"</string>
     <string name="fdn_enabled" msgid="5238109009915521240">"已啟用固定撥號"</string>
-    <string name="fdn_disabled" msgid="4700049736675368279">"已停用固定撥號"</string>
+    <string name="fdn_disabled" msgid="4700049736675368279">"固定撥號號碼已停用"</string>
     <string name="enable_fdn" msgid="3740191529180493851">"啟用 FDN"</string>
     <string name="disable_fdn" msgid="7944020890722540616">"停用 FDN"</string>
-    <string name="change_pin2" msgid="2153563695382176676">"更改 PIN2"</string>
+    <string name="change_pin2" msgid="2153563695382176676">"變更 PIN2"</string>
     <string name="enable_fdn_ok" msgid="7215588870329688132">"停用 FDN"</string>
     <string name="disable_fdn_ok" msgid="5727046928930740173">"啟用 FDN"</string>
     <string name="sum_fdn" msgid="1959399454900272878">"管理固定撥號"</string>
-    <string name="sum_fdn_change_pin" msgid="6666549734792827932">"更改固定撥號功能存取 PIN"</string>
+    <string name="sum_fdn_change_pin" msgid="6666549734792827932">"變更 FDN 存取 PIN"</string>
     <string name="sum_fdn_manage_list" msgid="8431088265332628316">"管理電話號碼清單"</string>
     <string name="voice_privacy" msgid="3776841382844614716">"語音加密保護"</string>
     <string name="voice_privacy_summary" msgid="3159383389833516214">"已啟用加強型私隱保護模式"</string>

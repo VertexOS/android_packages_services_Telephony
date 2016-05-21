@@ -315,9 +315,9 @@
     <string name="network_lte" msgid="7702681952521375754">"LTE (recomendado)"</string>
     <string name="network_4G" msgid="2723512640529983138">"4G (recomendado)"</string>
     <string name="network_global" msgid="1323190488685355309">"Mundial"</string>
-    <string name="cdma_system_select_title" msgid="5757657769327732833">"Selección de sistema"</string>
+    <string name="cdma_system_select_title" msgid="5757657769327732833">"Selección del sistema"</string>
     <string name="cdma_system_select_summary" msgid="60460043745797517">"Cambiar modo de itinerancia CDMA"</string>
-    <string name="cdma_system_select_dialogtitle" msgid="6083355415165359075">"Selección de sistema"</string>
+    <string name="cdma_system_select_dialogtitle" msgid="6083355415165359075">"Selección del sistema"</string>
   <string-array name="cdma_system_select_choices">
     <item msgid="176474317493999285">"Solo sistema doméstico"</item>
     <item msgid="1205664026446156265">"Automático"</item>
@@ -475,10 +475,10 @@
     <string name="singleContactImportedMsg" msgid="6868483416182599206">"Contacto importado"</string>
     <string name="failedToImportSingleContactMsg" msgid="415399285420353917">"Error al importar contactos"</string>
     <string name="hac_mode_title" msgid="8740268574688743289">"Audífonos"</string>
-    <string name="hac_mode_summary" msgid="6833851160514929341">"Activar compatibilidad con audífono"</string>
+    <string name="hac_mode_summary" msgid="6833851160514929341">"Activar compatibilidad con audífonos"</string>
   <string-array name="tty_mode_entries">
     <item msgid="512950011423868021">"TTY desactivado"</item>
-    <item msgid="3971695875449640648">"Modo TTY completo"</item>
+    <item msgid="3971695875449640648">"TTY completo"</item>
     <item msgid="1937509904407445684">"TTY HCO"</item>
     <item msgid="5644925873488772224">"TTY VCO"</item>
   </string-array>

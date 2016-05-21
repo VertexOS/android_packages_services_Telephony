@@ -146,7 +146,7 @@
     <string name="fw_get_in_vm_failed" msgid="8862896836093833973">"No s\'ha pogut recuperar ni desar la configuració actual del número de desviació.\nVols canviar al proveïdor nou igualment?"</string>
     <string name="no_change" msgid="3186040086622435212">"No s\'ha fet cap canvi."</string>
     <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"Trieu un servei de bústia de veu"</string>
-    <string name="voicemail_default" msgid="2001233554889016880">"Operador"</string>
+    <string name="voicemail_default" msgid="2001233554889016880">"EL teu operador"</string>
     <string name="mobile_networks" msgid="2843854043339307375">"Configuració de la xarxa mòbil"</string>
     <string name="label_available" msgid="1181658289009300430">"Xarxes disponibles"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"S\'està cercant…"</string>
@@ -474,7 +474,7 @@
     <string name="hac_mode_summary" msgid="6833851160514929341">"Activa la compatibilitat amb audiòfons"</string>
   <string-array name="tty_mode_entries">
     <item msgid="512950011423868021">"TTY desactivat"</item>
-    <item msgid="3971695875449640648">"TTY ple"</item>
+    <item msgid="3971695875449640648">"TTY complet"</item>
     <item msgid="1937509904407445684">"TTY HCO"</item>
     <item msgid="5644925873488772224">"TTY VCO"</item>
   </string-array>

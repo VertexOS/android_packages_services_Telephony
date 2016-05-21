@@ -93,8 +93,8 @@
     <string name="labelCW" msgid="6120513814915920200">"Chamada en espera"</string>
     <string name="sum_cw_enabled" msgid="8083061901633671397">"Durante unha chamada, avisarme das chamadas entrantes"</string>
     <string name="sum_cw_disabled" msgid="3648693907300104575">"Durante unha chamada, avisarme das chamadas entrantes"</string>
-    <string name="call_forwarding_settings" msgid="3378927671091537173">"Configuración de desvío de chamadas"</string>
-    <string name="call_forwarding_settings_with_label" msgid="8569489414006897127">"Configuración de desvío de chamadas (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="call_forwarding_settings" msgid="3378927671091537173">"Config. desvío de chamadas"</string>
+    <string name="call_forwarding_settings_with_label" msgid="8569489414006897127">"Config. desvío de chamadas (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="labelCF" msgid="2574386948026924737">"Desvío de chamadas"</string>
     <string name="labelCFU" msgid="8147177368148660600">"Desviar sempre"</string>
     <string name="messageCFU" msgid="3560082430662923687">"Utilizar sempre este número"</string>

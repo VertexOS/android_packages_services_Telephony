@@ -77,7 +77,7 @@
     <string name="voicemail_settings_with_label" msgid="152724978380748296">"भ्वाइस मेल (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="voicemail_abbreviated" msgid="2215592488517217448">"VM:"</string>
     <string name="networks" msgid="8873030692174541976">"नेटवर्क संचालकहरू"</string>
-    <string name="cell_broadcast_settings" msgid="8740238216690502563">"आकस्मिक प्रसारणहरू"</string>
+    <string name="cell_broadcast_settings" msgid="8740238216690502563">"आपतकालीन प्रसारणहरू"</string>
     <string name="call_settings" msgid="6112441768261754562">"कल सेटिङहरू"</string>
     <string name="additional_gsm_call_settings" msgid="1391795981938800617">"अतिरिक्त सेटिङहरू"</string>
     <string name="additional_gsm_call_settings_with_label" msgid="1385241520708457376">"अतिरिक्त सेटिङ ( <xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g> )"</string>
@@ -102,17 +102,17 @@
     <string name="sum_cfu_enabled" msgid="2450052502198827927">"सम्पूर्ण कलहरू <xliff:g id="PHONENUMBER">{0}</xliff:g>मा फर्वार्ड गरिदै"</string>
     <string name="sum_cfu_enabled_no_number" msgid="6591985777096823616">"नम्बर उपलब्ध छैन"</string>
     <string name="sum_cfu_disabled" msgid="8384177689501334080">"निस्कृय"</string>
-    <string name="labelCFB" msgid="6139853033106283172">"जब व्यस्त"</string>
+    <string name="labelCFB" msgid="6139853033106283172">"व्यस्त हुँदा"</string>
     <string name="messageCFB" msgid="3711089705936187129">"व्यस्त हुँदा नम्बर"</string>
     <string name="sum_cfb_enabled" msgid="5984198104833116690">"<xliff:g id="PHONENUMBER">{0}</xliff:g> मा फर्वाड गर्दै"</string>
     <string name="sum_cfb_disabled" msgid="4913145177320506827">"निस्कृय"</string>
     <string name="disable_cfb_forbidden" msgid="3506984333877998061">"तपाईंको फोन व्यस्त रहँदा तपाईंको अपरेटरले कल-फर्वार्डिङ असक्षम बनाउँदा समर्थन गर्दैन।"</string>
-    <string name="labelCFNRy" msgid="1736067178393744351">"जब अनुत्तरित"</string>
+    <string name="labelCFNRy" msgid="1736067178393744351">"उत्तर नआउँदा"</string>
     <string name="messageCFNRy" msgid="672317899884380374">"अनुत्तरित हुँदाको नम्बर"</string>
     <string name="sum_cfnry_enabled" msgid="6955775691317662910">"<xliff:g id="PHONENUMBER">{0}</xliff:g> मा फर्वाड गर्दै"</string>
     <string name="sum_cfnry_disabled" msgid="3884684060443538097">"निस्कृय"</string>
     <string name="disable_cfnry_forbidden" msgid="4308233959150658058">"तपाईंको फोनले जवाफ नदिँदा तपाईंको अपरेटरले कल-फर्वार्डिङ असक्षम बनाउँदा समर्थन गर्दैन।"</string>
-    <string name="labelCFNRc" msgid="2614827454402079766">"जब पहुँचअयोग्य"</string>
+    <string name="labelCFNRc" msgid="2614827454402079766">"पहुँचयोग्य नहुँदा"</string>
     <string name="messageCFNRc" msgid="6380695421020295119">"पहुँचयोग्य हुँदाको नम्बर"</string>
     <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"<xliff:g id="PHONENUMBER">{0}</xliff:g> मा फर्वाड गर्दै"</string>
     <string name="sum_cfnrc_disabled" msgid="7222141261321276464">"असक्षम पारियो"</string>
@@ -120,7 +120,7 @@
     <string name="updating_title" msgid="6146755386174019046">"कल सेटिङहरू"</string>
     <string name="call_settings_admin_user_only" msgid="4526094783818216374">"कल सेटिङहरू केवल प्रशासकीय प्रयोगकर्ताद्वारा परिवर्तन गर्न सकिन्छ।"</string>
     <string name="call_settings_with_label" msgid="3401177261468593519">"सेटिङहरू (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
-    <string name="error_updating_title" msgid="7970259216988931777">"कल सेटिङ त्रुटि"</string>
+    <string name="error_updating_title" msgid="7970259216988931777">"कल सेटिङमा त्रुटि"</string>
     <string name="reading_settings" msgid="1920291699287055284">"सेटिङहरू पढ्दै..."</string>
     <string name="updating_settings" msgid="8171225533884883252">"सेटिङहरू अद्यावधिक गर्दै..."</string>
     <string name="reverting_settings" msgid="4752151682666912828">"सेटिङहरू उल्टाउँदै..."</string>
@@ -470,7 +470,7 @@
     <string name="importToFDNfromContacts" msgid="2130620207013368580">"सम्पर्कहरूबाट आयात गर्नुहोस्"</string>
     <string name="singleContactImportedMsg" msgid="6868483416182599206">"आयातित सम्पर्क"</string>
     <string name="failedToImportSingleContactMsg" msgid="415399285420353917">"सम्पर्क आयात गर्न असफल"</string>
-    <string name="hac_mode_title" msgid="8740268574688743289">"श्रवण सहयोगी"</string>
+    <string name="hac_mode_title" msgid="8740268574688743289">"श्रवणका लागि सहयोगी यन्त्रहरू"</string>
     <string name="hac_mode_summary" msgid="6833851160514929341">"श्रवण सहायता अनुकूलता खोल्नुहोस्"</string>
   <string-array name="tty_mode_entries">
     <item msgid="512950011423868021">"TTY बन्द"</item>

@@ -480,7 +480,7 @@
     <string name="hac_mode_summary" msgid="6833851160514929341">"Միացնել լսողական օգնականի համատեղելիությունը"</string>
   <string-array name="tty_mode_entries">
     <item msgid="512950011423868021">"TTY-ն անջատված է"</item>
-    <item msgid="3971695875449640648">"TTY-ն լցված է"</item>
+    <item msgid="3971695875449640648">"TTY Full"</item>
     <item msgid="1937509904407445684">"TTY HCO"</item>
     <item msgid="5644925873488772224">"TTY VCO"</item>
   </string-array>

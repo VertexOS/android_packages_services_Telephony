@@ -203,8 +203,8 @@
     <string name="data_enable_summary" msgid="2382798156640007971">"Salli tiedonsiirto"</string>
     <string name="dialog_alert_title" msgid="6751344986194435476">"Huomio"</string>
     <string name="roaming" msgid="8871412572928323707">"Verkkoyhteys roaming-tilassa"</string>
-    <string name="roaming_enable" msgid="7331106985174381987">"Yhdistä verkkoon roaming-tilassa"</string>
-    <string name="roaming_disable" msgid="1843417228755568110">"Yhdistä verkkoon roaming-tilassa"</string>
+    <string name="roaming_enable" msgid="7331106985174381987">"Yhdistä verkkoon roaming-tilassa."</string>
+    <string name="roaming_disable" msgid="1843417228755568110">"Yhdistä verkkoon roaming-tilassa."</string>
     <string name="roaming_reenable_message" msgid="8913735676127858115">"Menetit verkkoyhteyden, koska poistuit kotiverkkosi alueelta eikä tiedonsiirron roaming-tila ole käytössä."</string>
     <string name="roaming_warning" msgid="1603164667540144353">"Siitä voi aiheutua huomattavia kuluja."</string>
     <string name="roaming_alert_title" msgid="3654815360303826008">"Sallitaanko tiedonsiirto roaming-tilassa?"</string>
@@ -316,7 +316,7 @@
     <string name="network_4G" msgid="2723512640529983138">"4G (suositus)"</string>
     <string name="network_global" msgid="1323190488685355309">"Maailmanlaajuinen"</string>
     <string name="cdma_system_select_title" msgid="5757657769327732833">"Valitse järjestelmä"</string>
-    <string name="cdma_system_select_summary" msgid="60460043745797517">"Vaihda CDMA-roaming-tila"</string>
+    <string name="cdma_system_select_summary" msgid="60460043745797517">"Vaihda CDMA-roaming-tila."</string>
     <string name="cdma_system_select_dialogtitle" msgid="6083355415165359075">"Valitse järjestelmä"</string>
   <string-array name="cdma_system_select_choices">
     <item msgid="176474317493999285">"Vain kotipuhelin"</item>

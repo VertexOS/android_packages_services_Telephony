@@ -147,7 +147,7 @@
     <string name="no_change" msgid="3186040086622435212">"Narejena ni bila nobena sprememba."</string>
     <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"Izberite storitev glasovne pošte"</string>
     <string name="voicemail_default" msgid="2001233554889016880">"Vaš operater"</string>
-    <string name="mobile_networks" msgid="2843854043339307375">"Nastavitve mob. omrežja"</string>
+    <string name="mobile_networks" msgid="2843854043339307375">"Nastavitve mobilnega omrežja"</string>
     <string name="label_available" msgid="1181658289009300430">"Razpoložljiva omrežja"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"Iskanje ..."</string>
     <string name="empty_networks_list" msgid="4249426905018815316">"Najdeno ni bilo nobeno omrežje."</string>
@@ -471,7 +471,7 @@
     <string name="singleContactImportedMsg" msgid="6868483416182599206">"Uvožen je bil stik"</string>
     <string name="failedToImportSingleContactMsg" msgid="415399285420353917">"Uvoz stika ni uspel"</string>
     <string name="hac_mode_title" msgid="8740268574688743289">"Slušni pripomočki"</string>
-    <string name="hac_mode_summary" msgid="6833851160514929341">"Vključi združljivost slušnega pripomočka"</string>
+    <string name="hac_mode_summary" msgid="6833851160514929341">"Vključi združljivost s slušnim pripomočkom"</string>
   <string-array name="tty_mode_entries">
     <item msgid="512950011423868021">"Način TTY izklopljen"</item>
     <item msgid="3971695875449640648">"TTY poln"</item>
