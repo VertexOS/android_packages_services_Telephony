@@ -32,6 +32,7 @@ public class GsmUmtsCallOptions extends PreferenceActivity {
 
     private static final String CALL_FORWARDING_KEY = "call_forwarding_key";
     private static final String ADDITIONAL_GSM_SETTINGS_KEY = "additional_gsm_call_settings_key";
+    private static final String BUTTON_CB_EXPAND_KEY = "button_callbarring_expand_key";
 
     @Override
     protected void onCreate(Bundle icicle) {
@@ -68,5 +69,8 @@ public class GsmUmtsCallOptions extends PreferenceActivity {
                 prefScreen.findPreference(ADDITIONAL_GSM_SETTINGS_KEY);
         additionalGsmSettingsPref.setIntent(
                 subInfoHelper.getIntent(GsmUmtsAdditionalCallOptions.class));
+        Preference callBarringPref = prefScreen.findPreference(BUTTON_CB_EXPAND_KEY);
+        callBarringPref.getIntent().putExtra(PhoneConstants.SUBSCRIPTION_KEY,
+                subInfoHelper.getSubId());
     }
 }

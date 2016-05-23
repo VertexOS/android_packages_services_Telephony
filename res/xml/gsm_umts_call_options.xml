@@ -14,4 +14,12 @@
         android:title="@string/additional_gsm_call_settings"
         android:persistent="false" />
 
+    <PreferenceScreen
+        android:key="button_callbarring_expand_key"
+        android:title="@string/call_barring"
+        android:persistent="false">
+        <intent android:action="android.intent.action.MAIN"
+            android:targetPackage="com.qualcomm.qti.phonefeature"
+            android:targetClass="com.qualcomm.qti.phonefeature.callbarring.CallBarring"/>
+    </PreferenceScreen>
 </PreferenceScreen>
