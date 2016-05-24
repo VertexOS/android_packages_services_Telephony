@@ -33,6 +33,7 @@ import com.android.phone.PhoneUtils;
 import com.android.phone.settings.VisualVoicemailSettingsUtil;
 import com.android.phone.vvm.omtp.LocalLogHelper;
 import com.android.phone.vvm.omtp.OmtpConstants;
+import com.android.phone.vvm.omtp.OmtpVvmCarrierConfigHelper;
 import com.android.phone.vvm.omtp.sync.OmtpVvmSourceManager;
 import com.android.phone.vvm.omtp.sync.OmtpVvmSyncService;
 import com.android.phone.vvm.omtp.sync.VoicemailsQueryHelper;
@@ -44,7 +45,6 @@ public class OmtpMessageReceiver extends BroadcastReceiver {
     private static final String TAG = "OmtpMessageReceiver";
 
     private Context mContext;
-    private PhoneAccountHandle mPhoneAccount;
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -55,17 +55,17 @@ public class OmtpMessageReceiver extends BroadcastReceiver {
         }
 
         mContext = context;
-        mPhoneAccount = PhoneUtils.makePstnPhoneAccountHandle(
+        PhoneAccountHandle phone = PhoneUtils.makePstnPhoneAccountHandle(
                 SubscriptionManager.getPhoneId(
                         intent.getExtras().getInt(VoicemailContract.EXTRA_VOICEMAIL_SMS_SUBID)));
 
-        if (mPhoneAccount == null) {
-            Log.w(TAG, "Received message for null phone account");
+        if (phone == null) {
+            Log.i(TAG, "Received message for null phone account");
             return;
         }
 
-        if (!VisualVoicemailSettingsUtil.isVisualVoicemailEnabled(mContext, mPhoneAccount)) {
-            Log.v(TAG, "Received vvm message for disabled vvm source.");
+        if (!VisualVoicemailSettingsUtil.isVisualVoicemailEnabled(mContext, phone)) {
+            Log.i(TAG, "Received vvm message for disabled vvm source.");
             return;
         }
 
@@ -76,19 +76,30 @@ public class OmtpMessageReceiver extends BroadcastReceiver {
         if (eventType.equals(OmtpConstants.SYNC_SMS_PREFIX)) {
             SyncMessage message = new SyncMessage(data);
 
-            Log.v(TAG, "Received SYNC sms for " + mPhoneAccount.getId() +
+            Log.v(TAG, "Received SYNC sms for " + phone.getId() +
                     " with event " + message.getSyncTriggerEvent());
-            LocalLogHelper.log(TAG, "Received SYNC sms for " + mPhoneAccount.getId() +
+            LocalLogHelper.log(TAG, "Received SYNC sms for " + phone.getId() +
                     " with event " + message.getSyncTriggerEvent());
-            processSync(message);
+            processSync(phone, message);
         } else if (eventType.equals(OmtpConstants.STATUS_SMS_PREFIX)) {
-            Log.v(TAG, "Received STATUS sms for " + mPhoneAccount.getId());
-            LocalLogHelper.log(TAG, "Received Status sms for " + mPhoneAccount.getId());
+            Log.v(TAG, "Received STATUS sms for " + phone.getId());
+            LocalLogHelper.log(TAG, "Received Status sms for " + phone.getId());
             StatusMessage message = new StatusMessage(data);
-            updateSource(message);
+            if (message.getProvisioningStatus().equals(OmtpConstants.SUBSCRIBER_READY)) {
+                updateSource(phone, message);
+            } else {
+                Log.v(TAG, "Subscriber not ready, start provisioning");
+                startProvisioning(phone, data);
+            }
         } else {
             Log.e(TAG, "Unknown prefix: " + eventType);
         }
+    }
+
+    private void startProvisioning(PhoneAccountHandle phone, Bundle data) {
+        OmtpVvmCarrierConfigHelper helper = new OmtpVvmCarrierConfigHelper(mContext,
+                PhoneUtils.getSubIdForPhoneAccountHandle(phone));
+        helper.startProvisioning(data);
     }
 
     /**
@@ -99,13 +110,13 @@ public class OmtpMessageReceiver extends BroadcastReceiver {
      *
      * @param message The sync message to extract data from.
      */
-    private void processSync(SyncMessage message) {
+    private void processSync(PhoneAccountHandle phone, SyncMessage message) {
         Intent serviceIntent = null;
         switch (message.getSyncTriggerEvent()) {
             case OmtpConstants.NEW_MESSAGE:
                 Voicemail.Builder builder = Voicemail.createForInsertion(
                         message.getTimestampMillis(), message.getSender())
-                        .setPhoneAccount(mPhoneAccount)
+                        .setPhoneAccount(phone)
                         .setSourceData(message.getId())
                         .setDuration(message.getLength())
                         .setSourcePackage(mContext.getPackageName());
@@ -116,13 +127,13 @@ public class OmtpMessageReceiver extends BroadcastReceiver {
                     Uri uri = VoicemailContract.Voicemails.insert(mContext, voicemail);
                     voicemail = builder.setId(ContentUris.parseId(uri)).setUri(uri).build();
                     serviceIntent = OmtpVvmSyncService.getSyncIntent(mContext,
-                            OmtpVvmSyncService.SYNC_DOWNLOAD_ONE_TRANSCRIPTION, mPhoneAccount,
+                            OmtpVvmSyncService.SYNC_DOWNLOAD_ONE_TRANSCRIPTION, phone,
                             voicemail, true /* firstAttempt */);
                 }
                 break;
             case OmtpConstants.MAILBOX_UPDATE:
                 serviceIntent = OmtpVvmSyncService.getSyncIntent(
-                        mContext, OmtpVvmSyncService.SYNC_DOWNLOAD_ONLY, mPhoneAccount,
+                        mContext, OmtpVvmSyncService.SYNC_DOWNLOAD_ONLY, phone,
                         true /* firstAttempt */);
                 break;
             case OmtpConstants.GREETINGS_UPDATE:
@@ -138,12 +149,12 @@ public class OmtpMessageReceiver extends BroadcastReceiver {
         }
     }
 
-    private void updateSource(StatusMessage message) {
+    private void updateSource(PhoneAccountHandle phone, StatusMessage message) {
         OmtpVvmSourceManager vvmSourceManager =
                 OmtpVvmSourceManager.getInstance(mContext);
 
         if (OmtpConstants.SUCCESS.equals(message.getReturnCode())) {
-            VoicemailContract.Status.setStatus(mContext, mPhoneAccount,
+            VoicemailContract.Status.setStatus(mContext, phone,
                     VoicemailContract.Status.CONFIGURATION_STATE_OK,
                     VoicemailContract.Status.DATA_CHANNEL_STATE_OK,
                     VoicemailContract.Status.NOTIFICATION_CHANNEL_STATE_OK);
@@ -151,24 +162,24 @@ public class OmtpMessageReceiver extends BroadcastReceiver {
             // Save the IMAP credentials in preferences so they are persistent and can be retrieved.
             VisualVoicemailSettingsUtil.setVisualVoicemailCredentialsFromStatusMessage(
                     mContext,
-                    mPhoneAccount,
+                    phone,
                     message);
 
             // Add the source to indicate that it is active.
-            vvmSourceManager.addSource(mPhoneAccount);
+            vvmSourceManager.addSource(phone);
 
             Intent serviceIntent = OmtpVvmSyncService.getSyncIntent(
-                    mContext, OmtpVvmSyncService.SYNC_FULL_SYNC, mPhoneAccount,
+                    mContext, OmtpVvmSyncService.SYNC_FULL_SYNC, phone,
                     true /* firstAttempt */);
             mContext.startService(serviceIntent);
 
             PhoneGlobals.getInstance().clearMwiIndicator(
-                    PhoneUtils.getSubIdForPhoneAccountHandle(mPhoneAccount));
+                    PhoneUtils.getSubIdForPhoneAccountHandle(phone));
         } else {
             Log.w(TAG, "Visual voicemail not available for subscriber.");
             // Override default isEnabled setting to false since visual voicemail is unable to
             // be accessed for some reason.
-            VisualVoicemailSettingsUtil.setVisualVoicemailEnabled(mContext, mPhoneAccount,
+            VisualVoicemailSettingsUtil.setVisualVoicemailEnabled(mContext, phone,
                     /* isEnabled */ false, /* isUserSet */ true);
         }
     }

@@ -260,7 +260,11 @@ public class ImapConnection {
             }
             for (int i = 0; i < response.size(); i++) {
                 String capability = response.getStringOrEmpty(i).getString();
-                if (disabledCapabilities != null && !disabledCapabilities.contains(capability)) {
+                if (disabledCapabilities != null) {
+                    if (!disabledCapabilities.contains(capability)) {
+                        mCapabilities.add(capability);
+                    }
+                } else {
                     mCapabilities.add(capability);
                 }
             }

@@ -61,7 +61,7 @@ public class StatusMessage {
     }
 
     public StatusMessage(Bundle wrappedData) {
-        mProvisioningStatus = wrappedData.getString(OmtpConstants.PROVISIONING_STATUS);
+        mProvisioningStatus = unquote(wrappedData.getString(OmtpConstants.PROVISIONING_STATUS));
         mStatusReturnCode = wrappedData.getString(OmtpConstants.RETURN_CODE);
         mSubscriptionUrl = wrappedData.getString(OmtpConstants.SUBSCRIPTION_URL);
         mServerAddress = wrappedData.getString(OmtpConstants.SERVER_ADDRESS);
@@ -74,6 +74,16 @@ public class StatusMessage {
         mSmtpPort = wrappedData.getString(OmtpConstants.SMTP_PORT);
         mSmtpUserName = wrappedData.getString(OmtpConstants.SMTP_USER_NAME);
         mSmtpPassword = wrappedData.getString(OmtpConstants.SMTP_PASSWORD);
+    }
+
+    private static String unquote(String string) {
+        if (string.length() < 2) {
+            return string;
+        }
+        if (string.startsWith("\"") && string.endsWith("\"")) {
+            return string.substring(1, string.length() - 1);
+        }
+        return string;
     }
 
     /**

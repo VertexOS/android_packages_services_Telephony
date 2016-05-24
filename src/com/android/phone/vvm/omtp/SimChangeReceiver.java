@@ -87,7 +87,7 @@ public class SimChangeReceiver extends BroadcastReceiver {
     public static void processSubId(Context context, int subId) {
         OmtpVvmCarrierConfigHelper carrierConfigHelper =
                 new OmtpVvmCarrierConfigHelper(context, subId);
-        if (carrierConfigHelper.isOmtpVvmType()) {
+        if (carrierConfigHelper.isValid()) {
             PhoneAccountHandle phoneAccount = PhoneUtils.makePstnPhoneAccountHandle(
                     SubscriptionManager.getPhoneId(subId));
 

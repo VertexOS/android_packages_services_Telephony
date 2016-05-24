@@ -20,11 +20,6 @@
     <string-array name="mccmnc">
       <item value="TEST"/>
     </string-array>
-
-    <int name="vvm_port_number_int" value="20481"/>
-    <string name="vvm_destination_number_string">887</string>
-    <string name="vvm_type_string">vvm_type_omtp</string>
-    <boolean name="vvm_cellular_data_required_bool" value="true"/>
   </pbundle_as_map>
 
   <pbundle_as_map>
@@ -88,5 +83,56 @@
       <!-- b/28717550 -->
       <item value="AUTH=DIGEST-MD5"/>
     </string-array>
+  </pbundle_as_map>
+
+  <pbundle_as_map>
+    <!-- Verizon USA -->
+    <string-array name="mccmnc">
+      <item value="310004"/>
+      <item value="310010"/>
+      <item value="310012"/>
+      <item value="310013"/>
+      <item value="310590"/>
+      <item value="310890"/>
+      <item value="310910"/>
+      <item value="311110"/>
+      <item value="311270"/>
+      <item value="311271"/>
+      <item value="311272"/>
+      <item value="311273"/>
+      <item value="311274"/>
+      <item value="311275"/>
+      <item value="311276"/>
+      <item value="311277"/>
+      <item value="311278"/>
+      <item value="311279"/>
+      <item value="311280"/>
+      <item value="311281"/>
+      <item value="311282"/>
+      <item value="311283"/>
+      <item value="311284"/>
+      <item value="311285"/>
+      <item value="311286"/>
+      <item value="311287"/>
+      <item value="311288"/>
+      <item value="311289"/>
+      <item value="311390"/>
+      <item value="311480"/>
+      <item value="311481"/>
+      <item value="311482"/>
+      <item value="311483"/>
+      <item value="311484"/>
+      <item value="311485"/>
+      <item value="311486"/>
+      <item value="311487"/>
+      <item value="311488"/>
+      <item value="311489"/>
+    </string-array>
+
+    <int name="vvm_port_number_int" value="0"/>
+    <string name="vvm_destination_number_string">900080006200</string>
+    <string name="vvm_type_string">vvm_type_vvm3</string>
+    <string name="vvm_client_prefix_string">//VZWVVM</string>
+    <boolean name="vvm_cellular_data_required_bool" value="true"/>
   </pbundle_as_map>
 </list>

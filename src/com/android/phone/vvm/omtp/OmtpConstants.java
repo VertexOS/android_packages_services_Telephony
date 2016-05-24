@@ -136,8 +136,6 @@ public class OmtpConstants {
      * <p>
      * Referred by {@link OmtpConstants#PROVISIONING_STATUS}.
      */
-    // TODO: As per the spec the code could be either be with or w/o quotes  = "N"/N). Currently
-    // this only handles the w/o quotes values.
     public static final String SUBSCRIBER_NEW = "N";
     public static final String SUBSCRIBER_READY = "R";
     public static final String SUBSCRIBER_PROVISIONED = "P";

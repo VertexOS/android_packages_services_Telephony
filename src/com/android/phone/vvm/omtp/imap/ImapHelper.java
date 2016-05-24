@@ -120,8 +120,6 @@ public class ImapHelper {
                 VoicemailContract.Status.QUOTA_UNAVAILABLE);
         mQuotaTotal = mPrefs.getInt(getSharedPrefsKey(PREF_KEY_QUOTA_TOTAL),
                 VoicemailContract.Status.QUOTA_UNAVAILABLE);
-
-        Log.v(TAG, "Quota:" + mQuotaOccupied + "/" + mQuotaTotal);
     }
 
     /**

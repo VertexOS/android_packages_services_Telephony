@@ -30,7 +30,6 @@ import android.preference.PreferenceActivity;
 import android.preference.PreferenceScreen;
 import android.preference.SwitchPreference;
 import android.provider.ContactsContract.CommonDataKinds;
-import android.telephony.TelephonyManager;
 import android.text.BidiFormatter;
 import android.text.TextDirectionHeuristics;
 import android.text.TextUtils;
@@ -41,10 +40,9 @@ import android.widget.ListAdapter;
 import com.android.internal.telephony.CallForwardInfo;
 import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneConstants;
-import com.android.phone.R;
 import com.android.phone.EditPhoneNumberPreference;
 import com.android.phone.PhoneGlobals;
-import com.android.phone.PhoneUtils;
+import com.android.phone.R;
 import com.android.phone.SubscriptionInfoHelper;
 import com.android.phone.vvm.omtp.OmtpVvmCarrierConfigHelper;
 import com.android.phone.vvm.omtp.sync.OmtpVvmSourceManager;
@@ -261,8 +259,7 @@ public class VoicemailSettingsActivity extends PreferenceActivity
 
         mVoicemailVisualVoicemail = (SwitchPreference) findPreference(
                 getResources().getString(R.string.voicemail_visual_voicemail_key));
-        if (TelephonyManager.VVM_TYPE_OMTP.equals(mOmtpVvmCarrierConfigHelper.getVvmType()) ||
-                TelephonyManager.VVM_TYPE_CVVM.equals(mOmtpVvmCarrierConfigHelper.getVvmType())) {
+        if (mOmtpVvmCarrierConfigHelper.isValid()) {
             mVoicemailVisualVoicemail.setOnPreferenceChangeListener(this);
             mVoicemailVisualVoicemail.setChecked(
                     VisualVoicemailSettingsUtil.isVisualVoicemailEnabled(mPhone));
