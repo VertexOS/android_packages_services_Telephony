@@ -17,8 +17,13 @@ import com.android.phone.common.util.SettingsUtil;
  * it is created or updated.
  */
 public class VoicemailRingtonePreference extends RingtonePreference {
+    public interface VoicemailRingtoneNameChangeListener {
+        void onVoicemailRingtoneNameChanged(CharSequence name);
+    }
+
     private static final int MSG_UPDATE_VOICEMAIL_RINGTONE_SUMMARY = 1;
 
+    private VoicemailRingtoneNameChangeListener mVoicemailRingtoneNameChangeListener;
     private Runnable mVoicemailRingtoneLookupRunnable;
     private Handler mVoicemailRingtoneLookupComplete;
 
@@ -32,6 +37,10 @@ public class VoicemailRingtonePreference extends RingtonePreference {
             public void handleMessage(Message msg) {
                 switch (msg.what) {
                     case MSG_UPDATE_VOICEMAIL_RINGTONE_SUMMARY:
+                        if (mVoicemailRingtoneNameChangeListener != null) {
+                            mVoicemailRingtoneNameChangeListener.onVoicemailRingtoneNameChanged(
+                                    (CharSequence) msg.obj);
+                        }
                         setSummary((CharSequence) msg.obj);
                         break;
                 }
@@ -39,7 +48,7 @@ public class VoicemailRingtonePreference extends RingtonePreference {
         };
     }
 
-    public void init(Phone phone) {
+    public void init(Phone phone, CharSequence oldRingtoneName) {
         mPhone = phone;
 
         // Requesting the ringtone will trigger migration if necessary.
@@ -48,6 +57,7 @@ public class VoicemailRingtonePreference extends RingtonePreference {
         final Preference preference = this;
         final String preferenceKey =
                 VoicemailNotificationSettingsUtil.getVoicemailRingtoneSharedPrefsKey(mPhone);
+        setSummary(oldRingtoneName);
         mVoicemailRingtoneLookupRunnable = new Runnable() {
             @Override
             public void run() {
@@ -61,6 +71,10 @@ public class VoicemailRingtonePreference extends RingtonePreference {
         };
 
         updateRingtoneName();
+    }
+
+    public void setVoicemailRingtoneNameChangeListener(VoicemailRingtoneNameChangeListener l) {
+        mVoicemailRingtoneNameChangeListener = l;
     }
 
     @Override

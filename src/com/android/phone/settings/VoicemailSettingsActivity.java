@@ -58,7 +58,8 @@ public class VoicemailSettingsActivity extends PreferenceActivity
         implements DialogInterface.OnClickListener,
                 Preference.OnPreferenceChangeListener,
                 EditPhoneNumberPreference.OnDialogClosedListener,
-                EditPhoneNumberPreference.GetDefaultNumberListener {
+                EditPhoneNumberPreference.GetDefaultNumberListener,
+                VoicemailRingtonePreference.VoicemailRingtoneNameChangeListener {
     private static final String LOG_TAG = VoicemailSettingsActivity.class.getSimpleName();
     private static final boolean DBG = (PhoneGlobals.DBG_LEVEL >= 2);
 
@@ -185,6 +186,8 @@ public class VoicemailSettingsActivity extends PreferenceActivity
     private CallForwardInfo[] mNewFwdSettings;
     private String mNewVMNumber;
 
+    private CharSequence mOldVmRingtoneName = "";
+
     /**
      * Used to indicate that the voicemail preference should be shown.
      */
@@ -252,7 +255,8 @@ public class VoicemailSettingsActivity extends PreferenceActivity
 
         mVoicemailNotificationRingtone = (VoicemailRingtonePreference) findPreference(
                 getResources().getString(R.string.voicemail_notification_ringtone_key));
-        mVoicemailNotificationRingtone.init(mPhone);
+        mVoicemailNotificationRingtone.setVoicemailRingtoneNameChangeListener(this);
+        mVoicemailNotificationRingtone.init(mPhone, mOldVmRingtoneName);
 
         mVoicemailNotificationVibrate = (CheckBoxPreference) findPreference(
                 getResources().getString(R.string.voicemail_notification_vibrate_key));
@@ -536,6 +540,11 @@ public class VoicemailSettingsActivity extends PreferenceActivity
         }
 
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
+    public void onVoicemailRingtoneNameChanged(CharSequence name) {
+        mOldVmRingtoneName = name;
     }
 
     /**
