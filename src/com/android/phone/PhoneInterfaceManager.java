@@ -53,9 +53,9 @@ import android.telephony.RadioAccessFamily;
 import android.telephony.ServiceState;
 import android.telephony.SubscriptionInfo;
 import android.telephony.SubscriptionManager;
-import android.telephony.TelephonyManager;
-import android.telephony.ModemActivityInfo;
 import android.telephony.TelephonyHistogram;
+import android.telephony.TelephonyManager;
+import android.telephony.VisualVoicemailSmsFilterSettings;
 import android.text.TextUtils;
 import android.util.ArraySet;
 import android.util.Log;
@@ -75,7 +75,6 @@ import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneConstants;
 import com.android.internal.telephony.PhoneFactory;
 import com.android.internal.telephony.ProxyController;
-import com.android.internal.telephony.PhoneConstants;
 import com.android.internal.telephony.RIL;
 import com.android.internal.telephony.RILConstants;
 import com.android.internal.telephony.SubscriptionController;
@@ -1899,55 +1898,36 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     }
 
     @Override
-    public void setVisualVoicemailSmsFilterEnabled(int subId, boolean value) {
+    public void enableVisualVoicemailSmsFilter(String callingPackage, int subId,
+            VisualVoicemailSmsFilterSettings settings) {
+        mAppOps.checkPackage(Binder.getCallingUid(), callingPackage);
         VisualVoicemailSmsFilterConfig
-                .setVisualVoicemailSmsFilterEnabled(mPhone.getContext(), subId, value);
+                .enableVisualVoicemailSmsFilter(mPhone.getContext(), callingPackage, subId,
+                        settings);
     }
 
     @Override
-    public boolean isVisualVoicemailSmsFilterEnabled(String packageName, int subId) {
-        return VisualVoicemailSmsFilterConfig
-                .isVisualVoicemailSmsFilterEnabled(mPhone.getContext(), packageName, subId);
-    }
-
-    @Override
-    public void setVisualVoicemailSmsFilterClientPrefix(int subId, String prefix) {
+    public void disableVisualVoicemailSmsFilter(String callingPackage, int subId) {
+        mAppOps.checkPackage(Binder.getCallingUid(), callingPackage);
         VisualVoicemailSmsFilterConfig
-                .setVisualVoicemailSmsFilterClientPrefix(mPhone.getContext(), subId, prefix);
+                .disableVisualVoicemailSmsFilter(mPhone.getContext(), callingPackage, subId);
     }
 
     @Override
-    public String getVisualVoicemailSmsFilterClientPrefix(String packageName, int subId) {
+    public VisualVoicemailSmsFilterSettings getVisualVoicemailSmsFilterSettings(
+            String callingPackage, int subId) {
+        mAppOps.checkPackage(Binder.getCallingUid(), callingPackage);
         return VisualVoicemailSmsFilterConfig
-                .getVisualVoicemailSmsFilterClientPrefix(mPhone.getContext(), packageName, subId);
+                .getVisualVoicemailSmsFilterSettings(mPhone.getContext(), callingPackage, subId);
     }
 
     @Override
-    public void setVisualVoicemailSmsFilterOriginatingNumbers(int subId, String[] numbers) {
-        VisualVoicemailSmsFilterConfig
-                .setVisualVoicemailSmsFilterOriginatingNumbers(mPhone.getContext(), subId, numbers);
-    }
-
-    @Override
-    public String[] getVisualVoicemailSmsFilterOriginatingNumbers(String packageName, int subId) {
+    public VisualVoicemailSmsFilterSettings getSystemVisualVoicemailSmsFilterSettings(
+            String packageName, int subId) {
+        enforceReadPrivilegedPermission();
         return VisualVoicemailSmsFilterConfig
-                .getVisualVoicemailSmsFilterOriginatingNumbers(mPhone.getContext(), packageName,
-                        subId);
+                .getVisualVoicemailSmsFilterSettings(mPhone.getContext(), packageName, subId);
     }
-
-    @Override
-    public void setVisualVoicemailSmsFilterDestinationPort(int subId, int port) {
-        VisualVoicemailSmsFilterConfig
-                .setVisualVoicemailSmsFilterDestinationPort(mPhone.getContext(), subId, port);
-    }
-
-    @Override
-    public int getVisualVoicemailSmsFilterDestinationPort(String packageName, int subId) {
-        return VisualVoicemailSmsFilterConfig
-                .getVisualVoicemailSmsFilterDestinationPort(mPhone.getContext(), packageName,
-                        subId);
-    }
-
     /**
      * Returns the unread count of voicemails
      */

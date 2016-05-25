@@ -15,13 +15,15 @@
  */
 package com.android.phone;
 
+import android.annotation.Nullable;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.telephony.TelephonyManager;
+import android.telephony.VisualVoicemailSmsFilterSettings;
 import android.util.ArraySet;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -38,104 +40,126 @@ public class VisualVoicemailSmsFilterConfig {
     private static final String ORIGINATING_NUMBERS_KEY = "_originating_numbers";
     private static final String DESTINATION_PORT_KEY = "_destination_port";
 
-    public static void setVisualVoicemailSmsFilterEnabled(Context context, int subId,
-            boolean value) {
-        setBoolean(context, subId, ENABLED_KEY, value);
+    public static void enableVisualVoicemailSmsFilter(Context context, String callingPackage,
+            int subId,
+            VisualVoicemailSmsFilterSettings settings) {
+        new Editor(context, callingPackage, subId)
+                .setBoolean(ENABLED_KEY, true)
+                .setString(PREFIX_KEY, settings.clientPrefix)
+                .setStringList(ORIGINATING_NUMBERS_KEY, settings.originatingNumbers)
+                .setInt(DESTINATION_PORT_KEY, settings.destinationPort)
+                .apply();
     }
 
-    public static boolean isVisualVoicemailSmsFilterEnabled(Context context, String packageName,
+    public static void disableVisualVoicemailSmsFilter(Context context, String callingPackage,
             int subId) {
-        return getBoolean(context, packageName, subId, ENABLED_KEY);
+        new Editor(context, callingPackage, subId)
+                .setBoolean(ENABLED_KEY, false)
+                .apply();
     }
 
-    public static void setVisualVoicemailSmsFilterClientPrefix(Context context, int subId,
-            String prefix) {
-        setString(context, subId, PREFIX_KEY, prefix);
-    }
-
-    public static String getVisualVoicemailSmsFilterClientPrefix(Context context,
+    @Nullable
+    public static VisualVoicemailSmsFilterSettings getVisualVoicemailSmsFilterSettings(
+            Context context,
             String packageName, int subId) {
-        return getString(context, packageName, subId, PREFIX_KEY);
+        Reader reader = new Reader(context, packageName, subId);
+        if (!reader.getBoolean(ENABLED_KEY, false)) {
+            return null;
+        }
+        return new VisualVoicemailSmsFilterSettings.Builder()
+                .setClientPrefix(reader.getString(PREFIX_KEY,
+                        VisualVoicemailSmsFilterSettings.DEFAULT_CLIENT_PREFIX))
+                .setOriginatingNumbers(reader.getStringSet(ORIGINATING_NUMBERS_KEY,
+                        VisualVoicemailSmsFilterSettings.DEFAULT_ORIGINATING_NUMBERS))
+                .setDestinationPort(reader.getInt(DESTINATION_PORT_KEY,
+                        VisualVoicemailSmsFilterSettings.DEFAULT_DESTINATION_PORT))
+                .build();
     }
-
-    public static void setVisualVoicemailSmsFilterOriginatingNumbers(Context context, int subId,
-            String[] numbers) {
-        ArraySet<String> set = new ArraySet<>();
-        set.addAll(Arrays.asList(numbers));
-        setStringSet(context, subId, ORIGINATING_NUMBERS_KEY, set);
-    }
-
-    public static String[] getVisualVoicemailSmsFilterOriginatingNumbers(Context context,
-            String packageName, int subId) {
-        Set<String> numbers = getStringSet(context, packageName, subId, ORIGINATING_NUMBERS_KEY);
-        return numbers.toArray(new String[numbers.size()]);
-    }
-
-    public static void setVisualVoicemailSmsFilterDestinationPort(Context context, int subId,
-            int port) {
-        setInt(context, subId, DESTINATION_PORT_KEY, port);
-    }
-
-    public static int getVisualVoicemailSmsFilterDestinationPort(Context context,
-            String packageName, int subId) {
-        return getInt(context, packageName, subId, DESTINATION_PORT_KEY,
-                TelephonyManager.VVM_SMS_FILTER_DESTINATION_PORT_ANY);
-    }
-
-    private static int getInt(Context context, String packageName, int subId, String key,
-            int defaultValue) {
-        SharedPreferences prefs = getSharedPreferences(context);
-        return prefs.getInt(makePerPhoneAccountKey(packageName, subId, key), defaultValue);
-    }
-
-    private static void setInt(Context context, int subId, String key, int value) {
-        SharedPreferences.Editor editor = getSharedPreferences(context).edit();
-        editor.putInt(makePerPhoneAccountKey(context.getOpPackageName(), subId, key), value);
-        editor.apply();
-    }
-
-    private static boolean getBoolean(Context context, String packageName, int subId, String key) {
-        SharedPreferences prefs = getSharedPreferences(context);
-        return prefs.getBoolean(makePerPhoneAccountKey(packageName, subId, key), false);
-    }
-
-    private static void setBoolean(Context context, int subId, String key, boolean value) {
-        SharedPreferences.Editor editor = getSharedPreferences(context).edit();
-        editor.putBoolean(makePerPhoneAccountKey(context.getOpPackageName(), subId, key), value);
-        editor.apply();
-    }
-
-    private static String getString(Context context, String packageName, int subId, String key) {
-        SharedPreferences prefs = getSharedPreferences(context);
-        return prefs.getString(makePerPhoneAccountKey(packageName, subId, key), null);
-    }
-
-    private static void setString(Context context, int subId, String key, String value) {
-        SharedPreferences.Editor editor = getSharedPreferences(context).edit();
-        editor.putString(makePerPhoneAccountKey(context.getOpPackageName(), subId, key), value);
-        editor.apply();
-    }
-
-    private static Set<String> getStringSet(Context context, String packageName, int subId,
-            String key) {
-        return getSharedPreferences(context)
-                .getStringSet(makePerPhoneAccountKey(packageName, subId, key), null);
-    }
-
-    private static void setStringSet(Context context, int subId, String key, Set<String> value) {
-        SharedPreferences.Editor editor = getSharedPreferences(context).edit();
-        editor.putStringSet(makePerPhoneAccountKey(context.getOpPackageName(), subId, key), value);
-        editor.apply();
-    }
-
     private static SharedPreferences getSharedPreferences(Context context) {
         return PreferenceManager
                 .getDefaultSharedPreferences(context.createDeviceProtectedStorageContext());
     }
 
-    private static String makePerPhoneAccountKey(String packageName, int subId, String key) {
-        // TODO: make sure subId is persistent enough to serve as a key
+    private static String makePerPhoneAccountKeyPrefix(String packageName, int subId) {
+        // subId is persistent across reboot and upgrade, but not across devices.
+        // ICC id is better as a key but it involves more trouble to get one as subId is more
+        // commonly passed around.
         return VVM_SMS_FILTER_COFIG_SHARED_PREFS_KEY_PREFIX + packageName + "_"
-                + subId + key;
+                + subId;
+    }
+
+    private static class Editor {
+
+        private final SharedPreferences.Editor mPrefsEditor;
+        private final String mKeyPrefix;
+
+        public Editor(Context context, String packageName, int subId) {
+            mPrefsEditor = getSharedPreferences(context).edit();
+            mKeyPrefix = makePerPhoneAccountKeyPrefix(packageName, subId);
+        }
+
+        private Editor setInt(String key, int value) {
+            mPrefsEditor.putInt(makeKey(key), value);
+            return this;
+        }
+
+        private Editor setString(String key, String value) {
+            mPrefsEditor.putString(makeKey(key), value);
+            return this;
+        }
+
+        private Editor setBoolean(String key, boolean value) {
+            mPrefsEditor.putBoolean(makeKey(key), value);
+            return this;
+        }
+
+        private Editor setStringList(String key, List<String> value) {
+            mPrefsEditor.putStringSet(makeKey(key), new ArraySet(value));
+            return this;
+        }
+
+        public void apply() {
+            mPrefsEditor.apply();
+        }
+
+        private String makeKey(String key) {
+            return mKeyPrefix + key;
+        }
+    }
+
+
+    private static class Reader {
+
+        private final SharedPreferences mPrefs;
+        private final String mKeyPrefix;
+
+        public Reader(Context context, String packageName, int subId) {
+            mPrefs = getSharedPreferences(context);
+            mKeyPrefix = makePerPhoneAccountKeyPrefix(packageName, subId);
+        }
+
+        private int getInt(String key, int defaultValue) {
+            return mPrefs.getInt(makeKey(key), defaultValue);
+        }
+
+        private String getString(String key, String defaultValue) {
+            return mPrefs.getString(makeKey(key), defaultValue);
+        }
+
+        private boolean getBoolean(String key, boolean defaultValue) {
+            return mPrefs.getBoolean(makeKey(key), defaultValue);
+        }
+
+        private List<String> getStringSet(String key, List<String> defaultValue) {
+            Set<String> result = mPrefs.getStringSet(makeKey(key), null);
+            if (result == null) {
+                return defaultValue;
+            }
+            return new ArrayList<>(result);
+        }
+
+        private String makeKey(String key) {
+            return mKeyPrefix + key;
+        }
     }
 }

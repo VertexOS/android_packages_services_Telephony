@@ -23,6 +23,7 @@ import android.telephony.CarrierConfigManager;
 import android.telephony.SmsManager;
 import android.telephony.SubscriptionManager;
 import android.telephony.TelephonyManager;
+import android.telephony.VisualVoicemailSmsFilterSettings;
 import android.text.TextUtils;
 import android.util.ArraySet;
 import android.util.Log;
@@ -250,8 +251,9 @@ public class OmtpVvmCarrierConfigHelper {
 
     public void startActivation() {
         TelephonyManager telephonyManager = mContext.getSystemService(TelephonyManager.class);
-        telephonyManager.setVisualVoicemailSmsFilterEnabled(mSubId, true);
-        telephonyManager.setVisualVoicemailSmsFilterClientPrefix(mSubId, getClientPrefix());
+        telephonyManager.enableVisualVoicemailSmsFilter(mSubId,
+                new VisualVoicemailSmsFilterSettings.Builder().setClientPrefix(getClientPrefix())
+                        .build());
 
         OmtpMessageSender messageSender = getMessageSender();
         if (messageSender != null) {
@@ -262,7 +264,7 @@ public class OmtpVvmCarrierConfigHelper {
 
     public void startDeactivation() {
         mContext.getSystemService(TelephonyManager.class)
-                .setVisualVoicemailSmsFilterEnabled(mSubId, false);
+                .disableVisualVoicemailSmsFilter(mSubId);
         OmtpMessageSender messageSender = getMessageSender();
         if (messageSender != null) {
             Log.i(TAG, "Requesting VVM deactivation for subId: " + mSubId);
