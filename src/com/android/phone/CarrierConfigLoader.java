@@ -689,6 +689,7 @@ public class CarrierConfigLoader extends ICarrierConfigLoader.Stub {
         switch (simState) {
             case IccCardConstants.INTENT_VALUE_ICC_ABSENT:
             case IccCardConstants.INTENT_VALUE_ICC_CARD_IO_ERROR:
+            case IccCardConstants.INTENT_VALUE_ICC_CARD_RESTRICTED:
             case IccCardConstants.INTENT_VALUE_ICC_UNKNOWN:
                 mHandler.sendMessage(mHandler.obtainMessage(EVENT_CLEAR_CONFIG, phoneId, -1));
                 break;
