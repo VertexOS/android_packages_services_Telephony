@@ -29,6 +29,7 @@ import android.util.ArraySet;
 import android.util.Log;
 
 import com.android.internal.annotations.VisibleForTesting;
+import com.android.phone.VoicemailStatus;
 import com.android.phone.vvm.omtp.protocol.VisualVoicemailProtocol;
 import com.android.phone.vvm.omtp.protocol.VisualVoicemailProtocolFactory;
 
@@ -254,6 +255,10 @@ public class OmtpVvmCarrierConfigHelper {
     }
 
     public void startActivation() {
+        VoicemailStatus.edit(mContext, mSubId)
+                .setType(getVvmType())
+                .apply();
+
         TelephonyManager telephonyManager = mContext.getSystemService(TelephonyManager.class);
         telephonyManager.enableVisualVoicemailSmsFilter(mSubId,
                 new VisualVoicemailSmsFilterSettings.Builder().setClientPrefix(getClientPrefix())

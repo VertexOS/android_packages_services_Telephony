@@ -23,6 +23,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.UserManager;
 import android.provider.VoicemailContract;
+import android.provider.VoicemailContract.Status;
 import android.telecom.PhoneAccountHandle;
 import android.telecom.Voicemail;
 import android.telephony.SubscriptionManager;
@@ -30,6 +31,7 @@ import android.util.Log;
 
 import com.android.phone.PhoneGlobals;
 import com.android.phone.PhoneUtils;
+import com.android.phone.VoicemailStatus;
 import com.android.phone.settings.VisualVoicemailSettingsUtil;
 import com.android.phone.vvm.omtp.LocalLogHelper;
 import com.android.phone.vvm.omtp.OmtpConstants;
@@ -154,10 +156,10 @@ public class OmtpMessageReceiver extends BroadcastReceiver {
                 OmtpVvmSourceManager.getInstance(mContext);
 
         if (OmtpConstants.SUCCESS.equals(message.getReturnCode())) {
-            VoicemailContract.Status.setStatus(mContext, phone,
-                    VoicemailContract.Status.CONFIGURATION_STATE_OK,
-                    VoicemailContract.Status.DATA_CHANNEL_STATE_OK,
-                    VoicemailContract.Status.NOTIFICATION_CHANNEL_STATE_OK);
+            VoicemailStatus.edit(mContext, phone)
+                    .setConfigurationState(VoicemailContract.Status.CONFIGURATION_STATE_OK)
+                    .setNotificationChannelState(Status.NOTIFICATION_CHANNEL_STATE_OK)
+                    .apply();
 
             // Save the IMAP credentials in preferences so they are persistent and can be retrieved.
             VisualVoicemailSettingsUtil.setVisualVoicemailCredentialsFromStatusMessage(

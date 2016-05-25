@@ -25,6 +25,7 @@ import android.util.Log;
 
 import com.android.phone.PhoneGlobals;
 import com.android.phone.PhoneUtils;
+import com.android.phone.VoicemailStatus;
 import com.android.phone.vvm.omtp.sync.OmtpVvmSourceManager;
 import com.android.phone.vvm.omtp.sync.OmtpVvmSyncService;
 import com.android.phone.vvm.omtp.sync.VoicemailStatusQueryHelper;
@@ -62,10 +63,10 @@ public class VvmPhoneStateListener extends PhoneStateListener {
             if (voicemailStatusQueryHelper.isVoicemailSourceConfigured(mPhoneAccount)) {
                 if (!voicemailStatusQueryHelper.isNotificationsChannelActive(mPhoneAccount)) {
                     Log.v(TAG, "Notifications channel is active for " + mPhoneAccount.getId());
-                    VoicemailContract.Status.setStatus(mContext, mPhoneAccount,
-                            VoicemailContract.Status.CONFIGURATION_STATE_OK,
-                            VoicemailContract.Status.DATA_CHANNEL_STATE_OK,
-                            VoicemailContract.Status.NOTIFICATION_CHANNEL_STATE_OK);
+                    VoicemailStatus.edit(mContext, mPhoneAccount)
+                            .setNotificationChannelState(
+                                    VoicemailContract.Status.NOTIFICATION_CHANNEL_STATE_OK)
+                            .apply();
                     PhoneGlobals.getInstance().clearMwiIndicator(
                             PhoneUtils.getSubIdForPhoneAccountHandle(mPhoneAccount));
                 }
@@ -102,10 +103,10 @@ public class VvmPhoneStateListener extends PhoneStateListener {
                 return;
             }
 
-            VoicemailContract.Status.setStatus(mContext, mPhoneAccount,
-                    VoicemailContract.Status.CONFIGURATION_STATE_OK,
-                    VoicemailContract.Status.DATA_CHANNEL_STATE_NO_CONNECTION,
-                    VoicemailContract.Status.NOTIFICATION_CHANNEL_STATE_NO_CONNECTION);
+            VoicemailStatus.edit(mContext, mPhoneAccount)
+                    .setNotificationChannelState(
+                            VoicemailContract.Status.NOTIFICATION_CHANNEL_STATE_NO_CONNECTION)
+                    .apply();
         }
         mPreviousState = state;
     }
