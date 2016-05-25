@@ -3247,4 +3247,46 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         return (List<CarrierIdentifier>) sendRequest(CMD_GET_ALLOWED_CARRIERS, null, subId);
     }
 
+    /**
+     * Action set from carrier signalling broadcast receivers to enable/disable metered apns
+     * @param subId the subscription ID that this action applies to.
+     * @param enabled control enable or disable metered apns.
+     * {@hide}
+     */
+    @Override
+    public void carrierActionSetMeteredApnsEnabled(int subId, boolean enabled) {
+        enforceModifyPermission();
+        final Phone phone = getPhone(subId);
+        if (phone == null) {
+            loge("carrierAction: SetMeteredApnsEnabled fails with invalid subId: " + subId);
+            return;
+        }
+        try {
+            phone.carrierActionSetMeteredApnsEnabled(enabled);
+        } catch (Exception e) {
+            Log.e(LOG_TAG, "carrierAction: SetMeteredApnsEnabled fails. Exception ex=" + e);
+        }
+    }
+
+    /**
+     * Action set from carrier signalling broadcast receivers to enable/disable radio
+     * @param subId the subscription ID that this action applies to.
+     * @param enabled control enable or disable radio.
+     * {@hide}
+     */
+    @Override
+    public void carrierActionSetRadioEnabled(int subId, boolean enabled) {
+        enforceModifyPermission();
+        final Phone phone = getPhone(subId);
+        if (phone == null) {
+            loge("carrierAction: SetRadioEnabled fails with invalid sibId: " + subId);
+            return;
+        }
+        try {
+            phone.carrierActionSetRadioEnabled(enabled);
+        } catch (Exception e) {
+            Log.e(LOG_TAG, "carrierAction: SetRadioEnabled fails. Exception ex=" + e);
+        }
+    }
+
 }
