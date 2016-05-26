@@ -726,8 +726,9 @@ abstract class TelephonyConnection extends Connection {
         // Post update of extras to the handler; extras are updated via the handler to ensure thread
         // safety. The Extras Bundle is cloned in case the original extras are modified while they
         // are being added to mOriginalConnectionExtras in updateExtras.
-        mHandler.obtainMessage(MSG_CONNECTION_EXTRAS_CHANGED,
-                new Bundle(mOriginalConnection.getConnectionExtras())).sendToTarget();
+        Bundle connExtras = mOriginalConnection.getConnectionExtras();
+            mHandler.obtainMessage(MSG_CONNECTION_EXTRAS_CHANGED, connExtras == null ? null :
+                    new Bundle(connExtras)).sendToTarget();
 
         if (PhoneNumberUtils.isEmergencyNumber(mOriginalConnection.getAddress())) {
             mTreatAsEmergencyCall = true;
