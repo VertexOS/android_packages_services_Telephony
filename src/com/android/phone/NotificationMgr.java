@@ -324,12 +324,12 @@ public class NotificationMgr {
             Uri ringtoneUri = null;
 
             if (enableNotificationSound) {
-                ringtoneUri = VoicemailNotificationSettingsUtil.getRingtoneUri(mPhone);
+                ringtoneUri = VoicemailNotificationSettingsUtil.getRingtoneUri(phone);
             }
 
             Resources res = mContext.getResources();
             PersistableBundle carrierConfig = PhoneGlobals.getInstance().getCarrierConfigForSubId(
-                    mPhone.getSubId());
+                    subId);
             Notification.Builder builder = new Notification.Builder(mContext);
             builder.setSmallIcon(resId)
                     .setWhen(System.currentTimeMillis())
