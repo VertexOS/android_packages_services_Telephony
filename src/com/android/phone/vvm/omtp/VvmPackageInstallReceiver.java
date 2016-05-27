@@ -59,6 +59,7 @@ public class VvmPackageInstallReceiver extends BroadcastReceiver {
                 VisualVoicemailSettingsUtil.setVisualVoicemailEnabled(
                         context, phoneAccount, false, false);
                 OmtpVvmSourceManager.getInstance(context).removeSource(phoneAccount);
+                carrierConfigHelper.startDeactivation();
             }
         }
     }
