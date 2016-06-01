@@ -31,7 +31,7 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.android.phone.PhoneUtils;
-import com.android.phone.VoicemailUtils;
+import com.android.phone.VoicemailStatus;
 import com.android.phone.settings.VisualVoicemailSettingsUtil;
 import com.android.phone.vvm.omtp.LocalLogHelper;
 import com.android.phone.vvm.omtp.OmtpVvmCarrierConfigHelper;
@@ -219,10 +219,7 @@ public class OmtpVvmSyncService extends IntentService {
                  *  finished
                  *  b/26937720
                  */
-                Status.setStatus(this, phoneAccount,
-                        Status.CONFIGURATION_STATE_IGNORE,
-                        Status.DATA_CHANNEL_STATE_IGNORE,
-                        Status.NOTIFICATION_CHANNEL_STATE_IGNORE);
+                VoicemailStatus.edit(this, phoneAccount).apply();
                 return;
             }
             VisualVoicemailSettingsUtil.setVisualVoicemailLastFullSyncTime(
@@ -265,8 +262,10 @@ public class OmtpVvmSyncService extends IntentService {
                     // Nothing more to do here, just exit.
                     VisualVoicemailSettingsUtil.resetVisualVoicemailRetryInterval(this,
                             phoneAccount);
-                    VoicemailUtils.setDataChannelState(
-                            this, phoneAccount, Status.DATA_CHANNEL_STATE_OK);
+
+                    VoicemailStatus.edit(this, phoneAccount)
+                            .setDataChannelState(Status.DATA_CHANNEL_STATE_OK)
+                            .apply();
                     return;
                 }
             }

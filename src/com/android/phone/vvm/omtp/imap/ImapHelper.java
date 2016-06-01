@@ -29,7 +29,7 @@ import android.util.Base64;
 import android.util.Log;
 
 import com.android.phone.PhoneUtils;
-import com.android.phone.VoicemailUtils;
+import com.android.phone.VoicemailStatus;
 import com.android.phone.common.mail.Address;
 import com.android.phone.common.mail.Body;
 import com.android.phone.common.mail.BodyPart;
@@ -110,8 +110,9 @@ public class ImapHelper {
             mImapStore = new ImapStore(
                     context, this, username, password, port, serverName, auth, network);
         } catch (NumberFormatException e) {
-            VoicemailUtils.setDataChannelState(
-                    mContext, mPhoneAccount, Status.DATA_CHANNEL_STATE_BAD_CONFIGURATION);
+            VoicemailStatus.edit(mContext, mPhoneAccount)
+                    .setDataChannelState(Status.DATA_CHANNEL_STATE_BAD_CONFIGURATION)
+                    .apply();
             LogUtils.w(TAG, "Could not parse port number");
         }
 
@@ -156,7 +157,9 @@ public class ImapHelper {
     }
 
     public void setDataChannelState(int dataChannelState) {
-        VoicemailUtils.setDataChannelState(mContext, mPhoneAccount, dataChannelState);
+        VoicemailStatus.edit(mContext, mPhoneAccount)
+                .setDataChannelState(dataChannelState)
+                .apply();
     }
 
     /**
@@ -401,8 +404,9 @@ public class ImapHelper {
         }
         mQuotaOccupied = quota.occupied;
         mQuotaTotal = quota.total;
-        VoicemailContract.Status
-                .setQuota(mContext, mPhoneAccount, mQuotaOccupied, mQuotaTotal);
+        VoicemailStatus.edit(mContext, mPhoneAccount)
+                .setQuota(mQuotaOccupied, mQuotaTotal)
+                .apply();
         mPrefs.edit()
                 .putInt(getSharedPrefsKey(PREF_KEY_QUOTA_OCCUPIED), mQuotaOccupied)
                 .putInt(getSharedPrefsKey(PREF_KEY_QUOTA_TOTAL), mQuotaTotal)

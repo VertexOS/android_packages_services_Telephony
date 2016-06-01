@@ -16,7 +16,7 @@
 package com.android.phone.vvm.omtp.sync;
 
 import android.content.Context;
-import android.provider.VoicemailContract;
+import android.provider.VoicemailContract.Status;
 import android.telecom.PhoneAccountHandle;
 import android.telephony.PhoneStateListener;
 import android.telephony.SubscriptionManager;
@@ -24,6 +24,7 @@ import android.telephony.TelephonyManager;
 
 import com.android.internal.telephony.Phone;
 import com.android.phone.PhoneUtils;
+import com.android.phone.VoicemailStatus;
 import com.android.phone.vvm.omtp.VvmPhoneStateListener;
 
 import java.util.Collections;
@@ -105,10 +106,11 @@ public class OmtpVvmSourceManager {
     }
 
     public void removeSource(PhoneAccountHandle phoneAccount) {
-        VoicemailContract.Status.setStatus(mContext, phoneAccount,
-                VoicemailContract.Status.CONFIGURATION_STATE_NOT_CONFIGURED,
-                VoicemailContract.Status.DATA_CHANNEL_STATE_NO_CONNECTION,
-                VoicemailContract.Status.NOTIFICATION_CHANNEL_STATE_NO_CONNECTION);
+        VoicemailStatus.edit(mContext, phoneAccount)
+                .setConfigurationState(Status.CONFIGURATION_STATE_NOT_CONFIGURED)
+                .setDataChannelState(Status.DATA_CHANNEL_STATE_NO_CONNECTION)
+                .setNotificationChannelState(Status.NOTIFICATION_CHANNEL_STATE_NO_CONNECTION)
+                .apply();
         removePhoneStateListener(phoneAccount);
         mActiveVvmSources.remove(phoneAccount);
         OmtpVvmSyncService.cancelAllRetries(mContext, phoneAccount);
