@@ -36,6 +36,7 @@ import android.telephony.CarrierConfigManager;
 import android.telephony.PhoneNumberUtils;
 import android.telephony.SubscriptionManager;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.TextUtils;
@@ -184,6 +185,7 @@ public class EmergencyDialer extends Activity implements View.OnClickListener,
         mDigits.setOnClickListener(this);
         mDigits.setOnKeyListener(this);
         mDigits.setLongClickable(false);
+        mDigits.setInputType(InputType.TYPE_NULL);
         maybeAddNumberFormatting();
 
         // Check for the presence of the keypad
