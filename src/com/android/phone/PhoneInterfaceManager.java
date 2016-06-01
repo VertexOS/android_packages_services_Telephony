@@ -2860,7 +2860,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         TelecomManager telecomManager = TelecomManager.from(mPhone.getContext());
         TelephonyManager telephonyManager =
                 (TelephonyManager) mPhone.getContext().getSystemService(Context.TELEPHONY_SERVICE);
-        return !telephonyManager.isMultiSimEnabled() && telecomManager.isTtySupported();
+        return telecomManager.isTtySupported();
     }
 
     @Override
