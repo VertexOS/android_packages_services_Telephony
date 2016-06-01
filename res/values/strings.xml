@@ -330,6 +330,26 @@
     <!-- Call settings screen, "Voicemail" screen, default option - Your Carrier -->
     <string name="voicemail_default">Your carrier</string>
 
+    <!-- Hint for the old PIN field in the change vociemail PIN dialog -->
+    <string name="vm_change_pin_old_pin">Old PIN</string>
+    <!-- Hint for the new PIN field in the change vociemail PIN dialog -->
+    <string name="vm_change_pin_new_pin">New PIN</string>
+
+    <!-- Message on the dialog when PIN changing is in progress -->
+    <string name="vm_change_pin_progress_message">Changing PIN</string>
+    <!-- Error message for the voicemail PIN change if the PIN is too short -->
+    <string name="vm_change_pin_error_too_short">The new PIN is too short.</string>
+    <!-- Error message for the voicemail PIN change if the PIN is too long -->
+    <string name="vm_change_pin_error_too_long">The new PIN is too long.</string>
+    <!-- Error message for the voicemail PIN change if the PIN is too weak -->
+    <string name="vm_change_pin_error_too_weak">The new PIN is too weak. A strong password should not have continuous sequence or repeated digits.</string>
+    <!-- Error message for the voicemail PIN change if the old PIN entered doesn't match  -->
+    <string name="vm_change_pin_error_mismatch">The old PIN does not match.</string>
+    <!-- Error message for the voicemail PIN change if the new PIN contains invalid character -->
+    <string name="vm_change_pin_error_invalid">The new PIN contains invalid characters.</string>
+    <!-- Error message for the voicemail PIN change if operation has failed -->
+    <string name="vm_change_pin_error_system_error">Unable to change PIN</string>
+
     <!-- networks setting strings --><skip/>
     <!-- Mobile network settings screen title -->
     <string name="mobile_networks">Cellular network settings</string>
@@ -1235,6 +1255,9 @@
     <!-- Visual voicemail on/off title [CHAR LIMIT=40] -->
     <string name="voicemail_visual_voicemail_switch_title">Visual Voicemail</string>
 
+    <!-- Voicemail change PIN dialog title [CHAR LIMIT=40] -->
+    <string name="voicemail_change_pin_dialog_title">Change PIN</string>
+
     <!-- Voicemail ringtone title. The user clicks on this preference to select
          which sound to play when a voicemail notification is received.
          [CHAR LIMIT=30] -->
@@ -1302,6 +1325,8 @@
     <string name="voicemail_notification_vibrate_key">voicemail_notification_vibrate_key</string>
     <!-- DO NOT TRANSLATE. Internal key for a visual voicemail preference. -->
     <string name="voicemail_visual_voicemail_key">voicemail_visual_voicemail_key</string>
+    <!-- DO NOT TRANSLATE. Internal key for a voicemail change pin preference. -->
+    <string name="voicemail_change_pin_key">voicemail_change_pin_key</string>
     <!-- DO NOT TRANSLATE. Internal key for tty mode preference. -->
     <string name="tty_mode_key">button_tty_mode_key</string>
     <!-- DO NOT TRANSLATE. Internal key for a voicemail notification preference. -->

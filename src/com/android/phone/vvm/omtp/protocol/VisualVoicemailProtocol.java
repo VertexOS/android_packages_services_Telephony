@@ -51,4 +51,16 @@ public abstract class VisualVoicemailProtocol {
 
     public abstract OmtpMessageSender createMessageSender(SmsManager smsManager,
             short applicationPort, String destinationNumber);
+
+    /**
+     * Translate an OMTP IMAP command to the protocol specific one. For example, changing the TUI
+     * password on OMTP is XCHANGE_TUI_PWD, but on CVVM and VVM3 it is CHANGE_TUI_PWD.
+     *
+     * @param command A String command in {@link com.android.phone.vvm.omtp.OmtpConstants}, the exact
+     * instance should be used instead of its' value.
+     * @returns Translated command, or {@code null} if not available in this protocol
+     */
+    public String getCommand(String command) {
+        return command;
+    }
 }

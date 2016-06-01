@@ -20,16 +20,21 @@ import android.os.Bundle;
 import android.telephony.SmsManager;
 import android.util.Log;
 
+import com.android.phone.vvm.omtp.OmtpConstants;
 import com.android.phone.vvm.omtp.OmtpVvmCarrierConfigHelper;
 import com.android.phone.vvm.omtp.sms.OmtpMessageSender;
 import com.android.phone.vvm.omtp.sms.Vvm3MessageSender;
 
 /**
  * A flavor of OMTP protocol with a different provisioning process
+ *
+ * Used by carriers such as Verizon Wireless
  */
 public class Vvm3Protocol extends VisualVoicemailProtocol {
 
     private static String TAG = "Vvm3Protocol";
+
+    private static String IMAP_CHANGE_TUI_PWD_FORMAT = "CHANGE_TUI_PWD PWD=%1s OLD_PWD=%2s";
 
     public Vvm3Protocol() {
         Log.d(TAG, "Vvm3Protocol created");
@@ -59,5 +64,13 @@ public class Vvm3Protocol extends VisualVoicemailProtocol {
     public OmtpMessageSender createMessageSender(SmsManager smsManager, short applicationPort,
             String destinationNumber) {
         return new Vvm3MessageSender(smsManager, applicationPort, destinationNumber);
+    }
+
+    @Override
+    public String getCommand(String command) {
+        if (command == OmtpConstants.IMAP_CHANGE_TUI_PWD_FORMAT) {
+            return IMAP_CHANGE_TUI_PWD_FORMAT;
+        }
+        return super.getCommand(command);
     }
 }

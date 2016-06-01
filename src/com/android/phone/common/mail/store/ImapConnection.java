@@ -289,17 +289,17 @@ public class ImapConnection {
     }
 
 
-    void destroyResponses() {
+    public void destroyResponses() {
         if (mParser != null) {
             mParser.destroyResponses();
         }
     }
 
-    ImapResponse readResponse() throws IOException, MessagingException {
+    public ImapResponse readResponse() throws IOException, MessagingException {
         return mParser.readResponse();
     }
 
-    List<ImapResponse> executeSimpleCommand(String command)
+    public List<ImapResponse> executeSimpleCommand(String command)
             throws IOException, MessagingException{
         return executeSimpleCommand(command, false);
     }
@@ -324,7 +324,8 @@ public class ImapConnection {
         return getCommandResponses();
     }
 
-    String sendCommand(String command, boolean sensitive) throws IOException, MessagingException {
+    public String sendCommand(String command, boolean sensitive)
+            throws IOException, MessagingException {
         open();
 
         if (mTransport == null) {

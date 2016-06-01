@@ -15,13 +15,16 @@
  */
 package com.android.phone.vvm.omtp;
 
+import android.annotation.IntDef;
+
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Wrapper class to hold relevant OMTP constants as defined in the OMTP spec.
- * <p>
- * In essence this is a programmatic representation of the relevant portions of OMTP spec.
+ * Wrapper class to hold relevant OMTP constants as defined in the OMTP spec. <p> In essence this is
+ * a programmatic representation of the relevant portions of OMTP spec.
  */
 public class OmtpConstants {
     public static final String SMS_FIELD_SEPARATOR = ";";
@@ -184,6 +187,43 @@ public class OmtpConstants {
         put(PROVISIONING_STATUS, PROVISIONING_STATUS_VALUES);
         put(RETURN_CODE, RETURN_CODE_VALUES);
     }};
+
+    /**
+     * IMAP command extensions
+     */
+
+    /**
+     * OMTP spec v1.3 2.3.1 Change password request syntax
+     */
+    public static final String IMAP_CHANGE_TUI_PWD_FORMAT = "XCHANGE_TUI_PWD PWD=%1s OLD_PWD=%2s";
+
+    /**
+     * Possible NO responses for CHANGE_TUI_PWD
+     */
+
+    public static final String RESPONSE_CHANGE_PIN_TOO_SHORT = "password too short";
+    public static final String RESPONSE_CHANGE_PIN_TOO_LONG = "password too long";
+    public static final String RESPONSE_CHANGE_PIN_TOO_WEAK = "password too weak";
+    public static final String RESPONSE_CHANGE_PIN_MISMATCH = "old password mismatch";
+    public static final String RESPONSE_CHANGE_PIN_INVALID_CHARACTER =
+            "password contains invalid characters";
+
+    @Retention(RetentionPolicy.SOURCE)
+    @IntDef(value = {CHANGE_PIN_SUCCESS, CHANGE_PIN_TOO_SHORT, CHANGE_PIN_TOO_LONG,
+            CHANGE_PIN_TOO_WEAK, CHANGE_PIN_MISMATCH, CHANGE_PIN_INVALID_CHARACTER,
+            CHANGE_PIN_SYSTEM_ERROR})
+
+    public @interface ChangePinResult {
+
+    }
+
+    public static final int CHANGE_PIN_SUCCESS = 0;
+    public static final int CHANGE_PIN_TOO_SHORT = 1;
+    public static final int CHANGE_PIN_TOO_LONG = 2;
+    public static final int CHANGE_PIN_TOO_WEAK = 3;
+    public static final int CHANGE_PIN_MISMATCH = 4;
+    public static final int CHANGE_PIN_INVALID_CHARACTER = 5;
+    public static final int CHANGE_PIN_SYSTEM_ERROR = 6;
 
     /** Indicates the client is Google visual voicemail version 1.0. */
     public static final String CLIENT_TYPE_GOOGLE_10 = "google.vvm.10";

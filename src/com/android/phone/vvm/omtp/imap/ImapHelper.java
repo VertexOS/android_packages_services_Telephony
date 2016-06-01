@@ -40,12 +40,15 @@ import com.android.phone.common.mail.MessagingException;
 import com.android.phone.common.mail.Multipart;
 import com.android.phone.common.mail.TempDirectory;
 import com.android.phone.common.mail.internet.MimeMessage;
+import com.android.phone.common.mail.store.ImapConnection;
 import com.android.phone.common.mail.store.ImapFolder;
 import com.android.phone.common.mail.store.ImapStore;
 import com.android.phone.common.mail.store.imap.ImapConstants;
+import com.android.phone.common.mail.store.imap.ImapResponse;
 import com.android.phone.common.mail.utils.LogUtils;
 import com.android.phone.settings.VisualVoicemailSettingsUtil;
 import com.android.phone.vvm.omtp.OmtpConstants;
+import com.android.phone.vvm.omtp.OmtpConstants.ChangePinResult;
 import com.android.phone.vvm.omtp.OmtpVvmCarrierConfigHelper;
 import com.android.phone.vvm.omtp.fetch.VoicemailFetchedCallback;
 import com.android.phone.vvm.omtp.sync.OmtpVvmSyncService.TranscriptionFetchedCallback;
@@ -58,12 +61,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * A helper interface to abstract commands sent across IMAP interface for a given account.
  */
 public class ImapHelper {
-    private final String TAG = "ImapHelper";
+
+    private static final String TAG = "ImapHelper";
 
     private ImapFolder mFolder;
     private ImapStore mImapStore;
@@ -373,6 +378,55 @@ public class ImapHelper {
         } finally {
             closeImapFolder();
         }
+    }
+
+
+    @ChangePinResult
+    public int changePin(String oldPin, String newPin)
+            throws MessagingException {
+        ImapConnection connection = mImapStore.getConnection();
+        try {
+            String command = getConfig().getProtocol()
+                    .getCommand(OmtpConstants.IMAP_CHANGE_TUI_PWD_FORMAT);
+            connection.sendCommand(
+                    String.format(Locale.US, command, newPin, oldPin), true);
+            return getChangePinResultFromImapResponse(connection.readResponse());
+        } catch (IOException ioe) {
+            return OmtpConstants.CHANGE_PIN_SYSTEM_ERROR;
+        } finally {
+            connection.destroyResponses();
+        }
+    }
+
+    @ChangePinResult
+    private static int getChangePinResultFromImapResponse(ImapResponse response)
+            throws MessagingException {
+        if (!response.isTagged()) {
+            throw new MessagingException(MessagingException.SERVER_ERROR,
+                    "tagged response expected");
+        }
+        if (!response.isOk()) {
+            String message = response.getStringOrEmpty(1).getString();
+            LogUtils.d(TAG, "change PIN failed: " + message);
+            if (OmtpConstants.RESPONSE_CHANGE_PIN_TOO_SHORT.equals(message)) {
+                return OmtpConstants.CHANGE_PIN_TOO_SHORT;
+            }
+            if (OmtpConstants.RESPONSE_CHANGE_PIN_TOO_LONG.equals(message)) {
+                return OmtpConstants.CHANGE_PIN_TOO_LONG;
+            }
+            if (OmtpConstants.RESPONSE_CHANGE_PIN_TOO_WEAK.equals(message)) {
+                return OmtpConstants.CHANGE_PIN_TOO_WEAK;
+            }
+            if (OmtpConstants.RESPONSE_CHANGE_PIN_MISMATCH.equals(message)) {
+                return OmtpConstants.CHANGE_PIN_MISMATCH;
+            }
+            if (OmtpConstants.RESPONSE_CHANGE_PIN_INVALID_CHARACTER.equals(message)) {
+                return OmtpConstants.CHANGE_PIN_INVALID_CHARACTER;
+            }
+            return OmtpConstants.CHANGE_PIN_SYSTEM_ERROR;
+        }
+        LogUtils.d(TAG, "change PIN succeeded");
+        return OmtpConstants.CHANGE_PIN_SUCCESS;
     }
 
     public void updateQuota() {

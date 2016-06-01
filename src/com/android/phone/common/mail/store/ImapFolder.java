@@ -17,14 +17,9 @@ package com.android.phone.common.mail.store;
 
 import android.annotation.Nullable;
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
-import android.provider.VoicemailContract;
 import android.provider.VoicemailContract.Status;
-import android.telecom.Voicemail;
 import android.text.TextUtils;
 import android.util.Base64DataException;
-import android.util.Log;
 
 import com.android.internal.annotations.VisibleForTesting;
 import com.android.phone.common.R;

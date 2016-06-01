@@ -138,6 +138,11 @@ public class OmtpVvmCarrierConfigHelper {
     }
 
     @Nullable
+    public VisualVoicemailProtocol getProtocol() {
+        return mProtocol;
+    }
+
+    @Nullable
     public Set<String> getCarrierVvmPackageNames() {
         Set<String> names = getCarrierVvmPackageNames(mCarrierConfig);
         if (names != null) {

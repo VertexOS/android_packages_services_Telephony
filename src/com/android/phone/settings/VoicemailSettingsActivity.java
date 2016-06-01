@@ -42,6 +42,7 @@ import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneConstants;
 import com.android.phone.EditPhoneNumberPreference;
 import com.android.phone.PhoneGlobals;
+import com.android.phone.PhoneUtils;
 import com.android.phone.R;
 import com.android.phone.SubscriptionInfoHelper;
 import com.android.phone.vvm.omtp.OmtpVvmCarrierConfigHelper;
@@ -200,7 +201,7 @@ public class VoicemailSettingsActivity extends PreferenceActivity
     private VoicemailRingtonePreference mVoicemailNotificationRingtone;
     private CheckBoxPreference mVoicemailNotificationVibrate;
     private SwitchPreference mVoicemailVisualVoicemail;
-
+    private VoicemailChangePinDialogPreference mVoicemailChangePinPreference;
 
     //*********************************************************************************************
     // Preference Activity Methods
@@ -259,12 +260,19 @@ public class VoicemailSettingsActivity extends PreferenceActivity
 
         mVoicemailVisualVoicemail = (SwitchPreference) findPreference(
                 getResources().getString(R.string.voicemail_visual_voicemail_key));
+
+        mVoicemailChangePinPreference = (VoicemailChangePinDialogPreference) findPreference(
+                getResources().getString(R.string.voicemail_change_pin_key));
         if (mOmtpVvmCarrierConfigHelper.isValid()) {
             mVoicemailVisualVoicemail.setOnPreferenceChangeListener(this);
             mVoicemailVisualVoicemail.setChecked(
                     VisualVoicemailSettingsUtil.isVisualVoicemailEnabled(mPhone));
+
+            mVoicemailChangePinPreference
+                    .setPhoneAccountHandle(PhoneUtils.makePstnPhoneAccountHandle(mPhone));
         } else {
             prefSet.removePreference(mVoicemailVisualVoicemail);
+            prefSet.removePreference(mVoicemailChangePinPreference);
         }
 
         updateVMPreferenceWidgets(mVoicemailProviders.getValue());
@@ -388,12 +396,15 @@ public class VoicemailSettingsActivity extends PreferenceActivity
         } else if (preference.getKey().equals(mVoicemailVisualVoicemail.getKey())) {
             boolean isEnabled = (Boolean) objValue;
             VisualVoicemailSettingsUtil.setVisualVoicemailEnabled(mPhone, isEnabled, true);
+            PreferenceScreen prefSet = getPreferenceScreen();
             if (isEnabled) {
                 OmtpVvmSourceManager.getInstance(mPhone.getContext()).addPhoneStateListener(mPhone);
                 mOmtpVvmCarrierConfigHelper.startActivation();
+                prefSet.addPreference(mVoicemailChangePinPreference);
             } else {
                 OmtpVvmSourceManager.getInstance(mPhone.getContext()).removeSource(mPhone);
                 mOmtpVvmCarrierConfigHelper.startDeactivation();
+                prefSet.removePreference(mVoicemailChangePinPreference);
             }
         }
 

@@ -18,17 +18,30 @@ package com.android.phone.vvm.omtp.protocol;
 
 import android.telephony.SmsManager;
 
+import com.android.phone.vvm.omtp.OmtpConstants;
 import com.android.phone.vvm.omtp.sms.OmtpCvvmMessageSender;
 import com.android.phone.vvm.omtp.sms.OmtpMessageSender;
 
 /**
  * A flavor of OMTP protocol with a different mobile originated (MO) format
+ *
+ * Used by carriers such as T-Mobile
  */
 public class CvvmProtocol extends VisualVoicemailProtocol {
+
+    private static String IMAP_CHANGE_TUI_PWD_FORMAT = "CHANGE_TUI_PWD PWD=%1s OLD_PWD=%2s";
 
     @Override
     public OmtpMessageSender createMessageSender(SmsManager smsManager, short applicationPort,
             String destinationNumber) {
         return new OmtpCvvmMessageSender(smsManager, applicationPort, destinationNumber);
+    }
+
+    @Override
+    public String getCommand(String command) {
+        if (command == OmtpConstants.IMAP_CHANGE_TUI_PWD_FORMAT) {
+            return IMAP_CHANGE_TUI_PWD_FORMAT;
+        }
+        return super.getCommand(command);
     }
 }
