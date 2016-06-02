@@ -29,7 +29,9 @@ import com.android.phone.vvm.omtp.sms.OmtpMessageSender;
  */
 public class CvvmProtocol extends VisualVoicemailProtocol {
 
-    private static String IMAP_CHANGE_TUI_PWD_FORMAT = "CHANGE_TUI_PWD PWD=%1s OLD_PWD=%2s";
+    private static String IMAP_CHANGE_TUI_PWD_FORMAT = "CHANGE_TUI_PWD PWD=%1$s OLD_PWD=%2$s";
+    private static String IMAP_CHANGE_VM_LANG_FORMAT = "CHANGE_VM_LANG Lang=%1$s";
+    private static String IMAP_CLOSE_NUT = "CLOSE_NUT";
 
     @Override
     public OmtpMessageSender createMessageSender(SmsManager smsManager, short applicationPort,
@@ -41,6 +43,12 @@ public class CvvmProtocol extends VisualVoicemailProtocol {
     public String getCommand(String command) {
         if (command == OmtpConstants.IMAP_CHANGE_TUI_PWD_FORMAT) {
             return IMAP_CHANGE_TUI_PWD_FORMAT;
+        }
+        if (command == OmtpConstants.IMAP_CLOSE_NUT) {
+            return IMAP_CLOSE_NUT;
+        }
+        if (command == OmtpConstants.IMAP_CHANGE_VM_LANG_FORMAT) {
+            return IMAP_CHANGE_VM_LANG_FORMAT;
         }
         return super.getCommand(command);
     }

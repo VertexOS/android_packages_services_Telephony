@@ -18,12 +18,14 @@ package com.android.phone.vvm.omtp.protocol;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.telecom.PhoneAccountHandle;
 import android.telephony.SmsManager;
 
 import com.android.phone.vvm.omtp.DefaultOmtpEventHandler;
 import com.android.phone.vvm.omtp.OmtpEvents;
 import com.android.phone.vvm.omtp.OmtpVvmCarrierConfigHelper;
 import com.android.phone.vvm.omtp.sms.OmtpMessageSender;
+import com.android.phone.vvm.omtp.sms.StatusMessage;
 
 public abstract class VisualVoicemailProtocol {
 
@@ -41,7 +43,8 @@ public abstract class VisualVoicemailProtocol {
         }
     }
 
-    public void startProvisioning(OmtpVvmCarrierConfigHelper config, Bundle data) {
+    public void startProvisioning(PhoneAccountHandle handle, OmtpVvmCarrierConfigHelper config,
+            StatusMessage message, Bundle data) {
         // Do nothing
     }
 

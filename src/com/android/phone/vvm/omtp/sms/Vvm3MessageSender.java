@@ -52,5 +52,4 @@ public class Vvm3MessageSender extends OmtpMessageSender {
         StringBuilder sb = new StringBuilder().append("STATUS");
         sendSms(sb.toString(), sentIntent);
     }
-
 }

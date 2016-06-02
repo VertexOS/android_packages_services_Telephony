@@ -21,13 +21,13 @@
   android:padding="?android:attr/dialogPreferredPadding">
 
     <TextView
+      android:id="@+id/vm_old_pin_label"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:text="@string/vm_change_pin_old_pin"
       android:labelFor="@+id/vm_old_pin"/>
 
     <EditText android:id="@id/vm_old_pin"
-
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:textColor="?android:attr/textColorSecondary"

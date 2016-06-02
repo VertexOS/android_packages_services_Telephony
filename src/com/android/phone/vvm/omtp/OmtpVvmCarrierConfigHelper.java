@@ -20,6 +20,7 @@ import android.content.Context;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.telecom.PhoneAccountHandle;
 import android.telephony.CarrierConfigManager;
 import android.telephony.SubscriptionManager;
 import android.telephony.TelephonyManager;
@@ -32,6 +33,7 @@ import com.android.internal.annotations.VisibleForTesting;
 import com.android.phone.VoicemailStatus;
 import com.android.phone.vvm.omtp.protocol.VisualVoicemailProtocol;
 import com.android.phone.vvm.omtp.protocol.VisualVoicemailProtocolFactory;
+import com.android.phone.vvm.omtp.sms.StatusMessage;
 
 import java.util.Arrays;
 import java.util.Set;
@@ -280,9 +282,9 @@ public class OmtpVvmCarrierConfigHelper {
         }
     }
 
-    public void startProvisioning(Bundle data) {
+    public void startProvisioning(PhoneAccountHandle phone, StatusMessage message, Bundle data) {
         if (mProtocol != null) {
-            mProtocol.startProvisioning(this, data);
+            mProtocol.startProvisioning(phone, this, message, data);
         }
     }
 

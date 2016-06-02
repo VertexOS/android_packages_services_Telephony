@@ -61,6 +61,15 @@ public abstract class VvmNetworkRequestCallback extends ConnectivityManager.Netw
         mNetworkRequest = createNetworkRequest();
     }
 
+    public VvmNetworkRequestCallback(OmtpVvmCarrierConfigHelper config,
+            PhoneAccountHandle phoneAccount) {
+        mContext = config.getContext();
+        mPhoneAccount = phoneAccount;
+        mSubId = config.getSubId();
+        mCarrierConfigHelper = config;
+        mNetworkRequest = createNetworkRequest();
+    }
+
     /**
      * @return NetworkRequest for a proper transport type. Use only cellular network if the carrier
      * requires it. Otherwise use whatever available.
