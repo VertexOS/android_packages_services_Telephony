@@ -28,10 +28,10 @@ import android.util.Log;
 import com.android.internal.telephony.IccCardConstants;
 import com.android.internal.telephony.PhoneConstants;
 import com.android.internal.telephony.TelephonyIntents;
-import com.android.phone.PhoneUtils;
 import com.android.phone.R;
 import com.android.phone.settings.VisualVoicemailSettingsUtil;
 import com.android.phone.vvm.omtp.sync.OmtpVvmSourceManager;
+import com.android.phone.vvm.omtp.utils.PhoneAccountHandleConverter;
 
 /**
  * This class listens to the {@link CarrierConfigManager#ACTION_CARRIER_CONFIG_CHANGED} and {@link
@@ -88,8 +88,7 @@ public class SimChangeReceiver extends BroadcastReceiver {
         OmtpVvmCarrierConfigHelper carrierConfigHelper =
                 new OmtpVvmCarrierConfigHelper(context, subId);
         if (carrierConfigHelper.isValid()) {
-            PhoneAccountHandle phoneAccount = PhoneUtils.makePstnPhoneAccountHandle(
-                    SubscriptionManager.getPhoneId(subId));
+            PhoneAccountHandle phoneAccount = PhoneAccountHandleConverter.fromSubId(subId);
 
             boolean isUserSet = VisualVoicemailSettingsUtil.isVisualVoicemailUserSet(
                     context, phoneAccount);

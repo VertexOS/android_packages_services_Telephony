@@ -37,17 +37,15 @@ import java.util.Arrays;
 import java.util.Set;
 
 /**
- * Manages carrier dependent visual voicemail configuration values.
- * The primary source is the value retrieved from CarrierConfigManager. If CarrierConfigManager does
- * not provide the config (KEY_VVM_TYPE_STRING is empty, or "hidden" configs), then the value
- * hardcoded in telephony will be used (in res/xml/vvm_config.xml)
+ * Manages carrier dependent visual voicemail configuration values. The primary source is the value
+ * retrieved from CarrierConfigManager. If CarrierConfigManager does not provide the config
+ * (KEY_VVM_TYPE_STRING is empty, or "hidden" configs), then the value hardcoded in telephony will
+ * be used (in res/xml/vvm_config.xml)
  *
  * Hidden configs are new configs that are planned for future APIs, or miscellaneous settings that
  * may clutter CarrierConfigManager too much.
  *
- * The current hidden configs are:
- * {@link #getSslPort()}
- * {@link #getDisabledCapabilities()}
+ * The current hidden configs are: {@link #getSslPort()} {@link #getDisabledCapabilities()}
  */
 public class OmtpVvmCarrierConfigHelper {
 
@@ -291,6 +289,12 @@ public class OmtpVvmCarrierConfigHelper {
     public void requestStatus() {
         if (mProtocol != null) {
             mProtocol.requestStatus(this);
+        }
+    }
+
+    public void handleEvent(OmtpEvents event) {
+        if (mProtocol != null) {
+            mProtocol.handleEvent(mContext, mSubId, event);
         }
     }
 

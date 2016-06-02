@@ -15,7 +15,6 @@
  */
 package com.android.phone.common.mail.store;
 
-import android.provider.VoicemailContract.Status;
 import android.text.TextUtils;
 import android.util.ArraySet;
 import android.util.Base64;
@@ -31,6 +30,7 @@ import com.android.phone.common.mail.store.imap.ImapResponse;
 import com.android.phone.common.mail.store.imap.ImapResponseParser;
 import com.android.phone.common.mail.store.imap.ImapUtility;
 import com.android.phone.common.mail.utils.LogUtils;
+import com.android.phone.vvm.omtp.OmtpEvents;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -114,7 +114,7 @@ public class ImapConnection {
             ImapResponse response = mParser.readResponse();
             if (!response.isOk()) {
                 mImapStore.getImapHelper()
-                        .setDataChannelState(Status.DATA_CHANNEL_STATE_SERVER_ERROR);
+                        .handleEvent(OmtpEvents.DATA_INVALID_INITIAL_SERVER_RESPONSE);
                 throw new MessagingException(
                         MessagingException.AUTHENTICATION_FAILED_OR_SERVER_ERROR,
                         "Invalid server initial response");
@@ -128,12 +128,11 @@ public class ImapConnection {
             doLogin();
         } catch (SSLException e) {
             LogUtils.d(TAG, "SSLException ", e);
-            mImapStore.getImapHelper().setDataChannelState(Status.DATA_CHANNEL_STATE_SERVER_ERROR);
+            mImapStore.getImapHelper().handleEvent(OmtpEvents.DATA_SSL_EXCEPTION);
             throw new CertificateValidationException(e.getMessage(), e);
         } catch (IOException ioe) {
             LogUtils.d(TAG, "IOException", ioe);
-            mImapStore.getImapHelper()
-                    .setDataChannelState(Status.DATA_CHANNEL_STATE_COMMUNICATION_ERROR);
+            mImapStore.getImapHelper().handleEvent(OmtpEvents.DATA_IOE_ON_OPEN);
             throw ioe;
         } finally {
             destroyResponses();
@@ -189,8 +188,7 @@ public class ImapConnection {
             if (ImapConstants.AUTHENTICATIONFAILED.equals(code) ||
                     ImapConstants.EXPIRED.equals(code) ||
                     (ImapConstants.NO.equals(status) && TextUtils.isEmpty(code))) {
-                mImapStore.getImapHelper()
-                        .setDataChannelState(Status.DATA_CHANNEL_STATE_BAD_CONFIGURATION);
+                mImapStore.getImapHelper().handleEvent(OmtpEvents.DATA_BAD_IMAP_CREDENTIAL);
                 throw new AuthenticationFailedException(alertText, ie);
             }
 
@@ -365,7 +363,7 @@ public class ImapConnection {
             final String alert = response.getAlertTextOrEmpty().getString();
             final String responseCode = response.getResponseCodeOrEmpty().getString();
             destroyResponses();
-            mImapStore.getImapHelper().setDataChannelState(Status.DATA_CHANNEL_STATE_SERVER_ERROR);
+            mImapStore.getImapHelper().handleEvent(OmtpEvents.DATA_REJECTED_SERVER_RESPONSE);
             // if the response code indicates an error occurred within the server, indicate that
             if (ImapConstants.UNAVAILABLE.equals(responseCode)) {
 

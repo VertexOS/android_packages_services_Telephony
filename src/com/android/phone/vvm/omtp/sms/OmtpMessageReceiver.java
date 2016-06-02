@@ -23,22 +23,21 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.UserManager;
 import android.provider.VoicemailContract;
-import android.provider.VoicemailContract.Status;
 import android.telecom.PhoneAccountHandle;
 import android.telecom.Voicemail;
-import android.telephony.SubscriptionManager;
 import android.util.Log;
 
 import com.android.phone.PhoneGlobals;
 import com.android.phone.PhoneUtils;
-import com.android.phone.VoicemailStatus;
 import com.android.phone.settings.VisualVoicemailSettingsUtil;
 import com.android.phone.vvm.omtp.LocalLogHelper;
 import com.android.phone.vvm.omtp.OmtpConstants;
+import com.android.phone.vvm.omtp.OmtpEvents;
 import com.android.phone.vvm.omtp.OmtpVvmCarrierConfigHelper;
 import com.android.phone.vvm.omtp.sync.OmtpVvmSourceManager;
 import com.android.phone.vvm.omtp.sync.OmtpVvmSyncService;
 import com.android.phone.vvm.omtp.sync.VoicemailsQueryHelper;
+import com.android.phone.vvm.omtp.utils.PhoneAccountHandleConverter;
 
 /**
  * Receive SMS messages and send for processing by the OMTP visual voicemail source.
@@ -57,9 +56,8 @@ public class OmtpMessageReceiver extends BroadcastReceiver {
         }
 
         mContext = context;
-        PhoneAccountHandle phone = PhoneUtils.makePstnPhoneAccountHandle(
-                SubscriptionManager.getPhoneId(
-                        intent.getExtras().getInt(VoicemailContract.EXTRA_VOICEMAIL_SMS_SUBID)));
+        int subId = intent.getExtras().getInt(VoicemailContract.EXTRA_VOICEMAIL_SMS_SUBID);
+        PhoneAccountHandle phone = PhoneAccountHandleConverter.fromSubId(subId);
 
         if (phone == null) {
             Log.i(TAG, "Received message for null phone account");
@@ -88,7 +86,7 @@ public class OmtpMessageReceiver extends BroadcastReceiver {
             LocalLogHelper.log(TAG, "Received Status sms for " + phone.getId());
             StatusMessage message = new StatusMessage(data);
             if (message.getProvisioningStatus().equals(OmtpConstants.SUBSCRIBER_READY)) {
-                updateSource(phone, message);
+                updateSource(phone, subId, message);
             } else {
                 Log.v(TAG, "Subscriber not ready, start provisioning");
                 startProvisioning(phone, data);
@@ -151,15 +149,13 @@ public class OmtpMessageReceiver extends BroadcastReceiver {
         }
     }
 
-    private void updateSource(PhoneAccountHandle phone, StatusMessage message) {
+    private void updateSource(PhoneAccountHandle phone, int subId, StatusMessage message) {
         OmtpVvmSourceManager vvmSourceManager =
                 OmtpVvmSourceManager.getInstance(mContext);
 
         if (OmtpConstants.SUCCESS.equals(message.getReturnCode())) {
-            VoicemailStatus.edit(mContext, phone)
-                    .setConfigurationState(VoicemailContract.Status.CONFIGURATION_STATE_OK)
-                    .setNotificationChannelState(Status.NOTIFICATION_CHANNEL_STATE_OK)
-                    .apply();
+            OmtpVvmCarrierConfigHelper helper = new OmtpVvmCarrierConfigHelper(mContext, subId);
+            helper.handleEvent(OmtpEvents.CONFIG_REQUEST_STATUS_SUCCESS);
 
             // Save the IMAP credentials in preferences so they are persistent and can be retrieved.
             VisualVoicemailSettingsUtil.setVisualVoicemailCredentialsFromStatusMessage(
@@ -175,8 +171,7 @@ public class OmtpMessageReceiver extends BroadcastReceiver {
                     true /* firstAttempt */);
             mContext.startService(serviceIntent);
 
-            PhoneGlobals.getInstance().clearMwiIndicator(
-                    PhoneUtils.getSubIdForPhoneAccountHandle(phone));
+            PhoneGlobals.getInstance().clearMwiIndicator(subId);
         } else {
             Log.w(TAG, "Visual voicemail not available for subscriber.");
             // Override default isEnabled setting to false since visual voicemail is unable to

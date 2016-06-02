@@ -17,7 +17,6 @@ package com.android.phone.common.mail.store;
 
 import android.annotation.Nullable;
 import android.content.Context;
-import android.provider.VoicemailContract.Status;
 import android.text.TextUtils;
 import android.util.Base64DataException;
 
@@ -44,6 +43,7 @@ import com.android.phone.common.mail.store.imap.ImapResponse;
 import com.android.phone.common.mail.store.imap.ImapString;
 import com.android.phone.common.mail.utils.LogUtils;
 import com.android.phone.common.mail.utils.Utility;
+import com.android.phone.vvm.omtp.OmtpEvents;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -102,6 +102,7 @@ public class ImapFolder {
                         return;
 
                     } catch (IOException ioe) {
+                        mStore.getImapHelper().handleEvent(OmtpEvents.DATA_GENERIC_IMAP_IOE);
                         ioExceptionHandler(mConnection, ioe);
                     } finally {
                         destroyResponses();
@@ -202,6 +203,7 @@ public class ImapFolder {
                 return Utility.EMPTY_STRINGS; // Not found
             } catch (IOException ioe) {
                 LogUtils.d(TAG, "IOException in search: " + searchCriteria, ioe);
+                mStore.getImapHelper().handleEvent(OmtpEvents.DATA_GENERIC_IMAP_IOE);
                 throw ioExceptionHandler(mConnection, ioe);
             }
         } finally {
@@ -427,6 +429,7 @@ public class ImapFolder {
                 }
             } while (!response.isTagged());
         } catch (IOException ioe) {
+            mStore.getImapHelper().handleEvent(OmtpEvents.DATA_GENERIC_IMAP_IOE);
             throw ioExceptionHandler(mConnection, ioe);
         }
     }
@@ -662,6 +665,7 @@ public class ImapFolder {
         try {
             handleUntaggedResponses(mConnection.executeSimpleCommand(ImapConstants.EXPUNGE));
         } catch (IOException ioe) {
+            mStore.getImapHelper().handleEvent(OmtpEvents.DATA_GENERIC_IMAP_IOE);
             throw ioExceptionHandler(mConnection, ioe);
         } finally {
             destroyResponses();
@@ -698,6 +702,7 @@ public class ImapFolder {
                     allFlags));
 
         } catch (IOException ioe) {
+            mStore.getImapHelper().handleEvent(OmtpEvents.DATA_GENERIC_IMAP_IOE);
             throw ioExceptionHandler(mConnection, ioe);
         } finally {
             destroyResponses();
@@ -726,7 +731,7 @@ public class ImapFolder {
                     mMode = MODE_READ_WRITE;
                 }
             } else if (response.isTagged()) { // Not OK
-                mStore.getImapHelper().setDataChannelState(Status.DATA_CHANNEL_STATE_SERVER_ERROR);
+                mStore.getImapHelper().handleEvent(OmtpEvents.DATA_MAILBOX_OPEN_FAILED);
                 throw new MessagingException("Can't open mailbox: "
                         + response.getStatusResponseTextOrEmpty());
             }
@@ -769,6 +774,7 @@ public class ImapFolder {
                 }
             }
         } catch (IOException ioe) {
+            mStore.getImapHelper().handleEvent(OmtpEvents.DATA_GENERIC_IMAP_IOE);
             throw ioExceptionHandler(mConnection, ioe);
         } finally {
             destroyResponses();
@@ -789,7 +795,6 @@ public class ImapFolder {
             mConnection = null; // To prevent close() from returning the connection to the pool.
             close(false);
         }
-        mStore.getImapHelper().setDataChannelState(Status.DATA_CHANNEL_STATE_COMMUNICATION_ERROR);
         return new MessagingException(MessagingException.IOERROR, "IO Error", ioe);
     }
 

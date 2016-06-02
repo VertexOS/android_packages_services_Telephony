@@ -16,6 +16,7 @@
 package com.android.phone.vvm.omtp.fetch;
 
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
@@ -47,10 +48,12 @@ public class FetchVoicemailReceiver extends BroadcastReceiver {
     final static String[] PROJECTION = new String[] {
             Voicemails.SOURCE_DATA,      // 0
             Voicemails.PHONE_ACCOUNT_ID, // 1
+            Voicemails.PHONE_ACCOUNT_COMPONENT_NAME, // 2
     };
 
     public static final int SOURCE_DATA = 0;
     public static final int PHONE_ACCOUNT_ID = 1;
+    public static final int PHONE_ACCOUNT_COMPONENT_NAME = 2;
 
     // Timeout used to call ConnectivityManager.requestNetwork
     private static final int NETWORK_REQUEST_TIMEOUT_MILLIS = 60 * 1000;
@@ -105,7 +108,10 @@ public class FetchVoicemailReceiver extends BroadcastReceiver {
                         }
                     }
 
-                    mPhoneAccount = PhoneUtils.makePstnPhoneAccountHandle(accountId);
+                    mPhoneAccount = new PhoneAccountHandle(
+                            ComponentName.unflattenFromString(
+                                    cursor.getString(PHONE_ACCOUNT_COMPONENT_NAME)),
+                            cursor.getString(PHONE_ACCOUNT_ID));
                     if (!OmtpVvmSourceManager.getInstance(context)
                             .isVvmSourceRegistered(mPhoneAccount)) {
                         Log.w(TAG, "Account not registered - cannot retrieve message.");

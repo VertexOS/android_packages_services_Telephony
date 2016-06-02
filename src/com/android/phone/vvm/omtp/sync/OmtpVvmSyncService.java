@@ -24,7 +24,6 @@ import android.net.Network;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.provider.VoicemailContract;
-import android.provider.VoicemailContract.Status;
 import android.telecom.PhoneAccountHandle;
 import android.telecom.Voicemail;
 import android.text.TextUtils;
@@ -34,6 +33,7 @@ import com.android.phone.PhoneUtils;
 import com.android.phone.VoicemailStatus;
 import com.android.phone.settings.VisualVoicemailSettingsUtil;
 import com.android.phone.vvm.omtp.LocalLogHelper;
+import com.android.phone.vvm.omtp.OmtpEvents;
 import com.android.phone.vvm.omtp.OmtpVvmCarrierConfigHelper;
 import com.android.phone.vvm.omtp.fetch.VoicemailFetchedCallback;
 import com.android.phone.vvm.omtp.imap.ImapHelper;
@@ -263,9 +263,7 @@ public class OmtpVvmSyncService extends IntentService {
                     VisualVoicemailSettingsUtil.resetVisualVoicemailRetryInterval(this,
                             phoneAccount);
 
-                    VoicemailStatus.edit(this, phoneAccount)
-                            .setDataChannelState(Status.DATA_CHANNEL_STATE_OK)
-                            .apply();
+                    imapHelper.handleEvent(OmtpEvents.DATA_IMAP_OPERATION_COMPLETED);
                     return;
                 }
             }

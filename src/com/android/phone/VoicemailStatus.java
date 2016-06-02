@@ -23,7 +23,8 @@ import android.net.Uri;
 import android.provider.VoicemailContract;
 import android.provider.VoicemailContract.Status;
 import android.telecom.PhoneAccountHandle;
-import android.telephony.SubscriptionManager;
+
+import com.android.phone.vvm.omtp.utils.PhoneAccountHandleConverter;
 
 public class VoicemailStatus {
 
@@ -86,8 +87,6 @@ public class VoicemailStatus {
     }
 
     public static Editor edit(Context context, int subId) {
-        PhoneAccountHandle phone = PhoneUtils.makePstnPhoneAccountHandle(
-                SubscriptionManager.getPhoneId(subId));
-        return new Editor(context, phone);
+        return new Editor(context, PhoneAccountHandleConverter.fromSubId(subId));
     }
 }

@@ -16,9 +16,12 @@
 
 package com.android.phone.vvm.omtp.protocol;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.telephony.SmsManager;
 
+import com.android.phone.vvm.omtp.DefaultOmtpEventHandler;
+import com.android.phone.vvm.omtp.OmtpEvents;
 import com.android.phone.vvm.omtp.OmtpVvmCarrierConfigHelper;
 import com.android.phone.vvm.omtp.sms.OmtpMessageSender;
 
@@ -62,5 +65,9 @@ public abstract class VisualVoicemailProtocol {
      */
     public String getCommand(String command) {
         return command;
+    }
+
+    public void handleEvent(Context context, int subId, OmtpEvents event) {
+        DefaultOmtpEventHandler.handleEvent(context, subId, event);
     }
 }

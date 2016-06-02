@@ -22,7 +22,6 @@ import android.net.Network;
 import android.net.NetworkInfo;
 import android.preference.PreferenceManager;
 import android.provider.VoicemailContract;
-import android.provider.VoicemailContract.Status;
 import android.telecom.PhoneAccountHandle;
 import android.telecom.Voicemail;
 import android.util.Base64;
@@ -49,6 +48,7 @@ import com.android.phone.common.mail.utils.LogUtils;
 import com.android.phone.settings.VisualVoicemailSettingsUtil;
 import com.android.phone.vvm.omtp.OmtpConstants;
 import com.android.phone.vvm.omtp.OmtpConstants.ChangePinResult;
+import com.android.phone.vvm.omtp.OmtpEvents;
 import com.android.phone.vvm.omtp.OmtpVvmCarrierConfigHelper;
 import com.android.phone.vvm.omtp.fetch.VoicemailFetchedCallback;
 import com.android.phone.vvm.omtp.sync.OmtpVvmSyncService.TranscriptionFetchedCallback;
@@ -115,9 +115,7 @@ public class ImapHelper {
             mImapStore = new ImapStore(
                     context, this, username, password, port, serverName, auth, network);
         } catch (NumberFormatException e) {
-            VoicemailStatus.edit(mContext, mPhoneAccount)
-                    .setDataChannelState(Status.DATA_CHANNEL_STATE_BAD_CONFIGURATION)
-                    .apply();
+            mConfig.handleEvent(OmtpEvents.DATA_INVALID_PORT);
             LogUtils.w(TAG, "Could not parse port number");
         }
 
@@ -161,10 +159,8 @@ public class ImapHelper {
         return setFlags(voicemails, Flag.DELETED);
     }
 
-    public void setDataChannelState(int dataChannelState) {
-        VoicemailStatus.edit(mContext, mPhoneAccount)
-                .setDataChannelState(dataChannelState)
-                .apply();
+    public void handleEvent(OmtpEvents event) {
+        mConfig.handleEvent(event);
     }
 
     /**

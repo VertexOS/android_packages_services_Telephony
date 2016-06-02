@@ -17,11 +17,11 @@ package com.android.phone.common.mail;
 
 import android.content.Context;
 import android.net.Network;
-import android.provider.VoicemailContract.Status;
 
 import com.android.internal.annotations.VisibleForTesting;
 import com.android.phone.common.mail.store.ImapStore;
 import com.android.phone.common.mail.utils.LogUtils;
+import com.android.phone.vvm.omtp.OmtpEvents;
 import com.android.phone.vvm.omtp.imap.ImapHelper;
 
 import java.io.BufferedInputStream;
@@ -117,7 +117,7 @@ public class MailTransport {
                 }
             } catch (IOException ioe) {
                 LogUtils.d(TAG, ioe.toString());
-                mImapHelper.setDataChannelState(Status.DATA_CHANNEL_STATE_SERVER_CONNECTION_ERROR);
+                mImapHelper.handleEvent(OmtpEvents.DATA_CANNOT_RESOLVE_HOST_ON_NETWORK);
                 throw new MessagingException(MessagingException.IOERROR, ioe.toString());
             }
         }
@@ -147,8 +147,7 @@ public class MailTransport {
                 LogUtils.d(TAG, ioe.toString());
                 if (socketAddresses.size() == 0) {
                     // Only throw an error when there are no more sockets to try.
-                    mImapHelper
-                            .setDataChannelState(Status.DATA_CHANNEL_STATE_SERVER_CONNECTION_ERROR);
+                    mImapHelper.handleEvent(OmtpEvents.DATA_ALL_SOCKET_CONNECTION_FAILED);
                     throw new MessagingException(MessagingException.IOERROR, ioe.toString());
                 }
             } finally {
@@ -247,7 +246,7 @@ public class MailTransport {
 
         SSLSession session = ssl.getSession();
         if (session == null) {
-            mImapHelper.setDataChannelState(Status.DATA_CHANNEL_STATE_COMMUNICATION_ERROR);
+            mImapHelper.handleEvent(OmtpEvents.DATA_CANNOT_ESTABLISH_SSL_SESSION);
             throw new SSLException("Cannot verify SSL socket without session");
         }
         // TODO: Instead of reporting the name of the server we think we're connecting to,
@@ -255,7 +254,7 @@ public class MailTransport {
         // in the verifier code and is not available in the verifier API, and extracting the
         // CN & alts is beyond the scope of this patch.
         if (!HOSTNAME_VERIFIER.verify(hostname, session)) {
-            mImapHelper.setDataChannelState(Status.DATA_CHANNEL_STATE_COMMUNICATION_ERROR);
+            mImapHelper.handleEvent(OmtpEvents.DATA_SSL_INVALID_HOST_NAME);
             throw new SSLPeerUnverifiedException("Certificate hostname not useable for server: "
                     + session.getPeerPrincipal());
         }

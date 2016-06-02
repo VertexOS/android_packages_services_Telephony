@@ -23,12 +23,11 @@ import android.net.NetworkCapabilities;
 import android.net.NetworkRequest;
 import android.os.Handler;
 import android.os.Looper;
-import android.provider.VoicemailContract.Status;
 import android.telecom.PhoneAccountHandle;
 import android.util.Log;
 
 import com.android.phone.PhoneUtils;
-import com.android.phone.VoicemailStatus;
+import com.android.phone.vvm.omtp.OmtpEvents;
 import com.android.phone.vvm.omtp.OmtpVvmCarrierConfigHelper;
 
 /**
@@ -146,13 +145,9 @@ public abstract class VvmNetworkRequestCallback extends ConnectivityManager.Netw
     public void onFailed(String reason) {
         Log.d(TAG, "onFailed: " + reason);
         if (mCarrierConfigHelper.isCellularDataRequired()) {
-            VoicemailStatus.edit(mContext, mPhoneAccount)
-                    .setDataChannelState(Status.DATA_CHANNEL_STATE_NO_CONNECTION_CELLULAR_REQUIRED)
-                    .apply();
+            mCarrierConfigHelper.handleEvent(OmtpEvents.DATA_NO_CONNECTION_CELLULAR_REQUIRED);
         } else {
-            VoicemailStatus.edit(mContext, mPhoneAccount)
-                    .setDataChannelState(Status.DATA_CHANNEL_STATE_NO_CONNECTION)
-                    .apply();
+            mCarrierConfigHelper.handleEvent(OmtpEvents.DATA_NO_CONNECTION);
         }
         releaseNetwork();
     }
