@@ -57,6 +57,7 @@
     <protected-broadcast android:name= "android.intent.action.stk.alpha_notify" />
     <protected-broadcast android:name= "android.intent.action.REDIRECTION_DETECTED" />
     <protected-broadcast android:name= "android.intent.action.REQUEST_NETWORK_FAILED" />
+    <protected-broadcast android:name= "com.android.intent.isim_refresh" />
 
     <uses-permission android:name="android.permission.BROADCAST_STICKY" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
