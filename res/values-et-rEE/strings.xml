@@ -413,7 +413,7 @@
     <string name="pin2_unblocked" msgid="7791600368153469078">"PIN-kood 2 ei ole enam blokeeritud"</string>
     <string name="pin2_error_exception" msgid="1088689322248996699">"Võrgu või SIM-kaardi viga"</string>
     <string name="doneButton" msgid="2859593360997984240">"Valmis"</string>
-    <string name="voicemail_settings_number_label" msgid="8524164258691887790">"Kõnepostinumber"</string>
+    <string name="voicemail_settings_number_label" msgid="8524164258691887790">"Kõneposti number"</string>
     <string name="card_title_dialing" msgid="5769417478498348054">"Valimine"</string>
     <string name="card_title_redialing" msgid="8253487008234167266">"Uuestivalimine"</string>
     <string name="card_title_conf_call" msgid="1162980346189744501">"Konverentskõne"</string>

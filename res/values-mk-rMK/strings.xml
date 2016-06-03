@@ -16,7 +16,7 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="phoneAppLabel" product="tablet" msgid="1107073389495104784">"Мобилни податоци"</string>
+    <string name="phoneAppLabel" product="tablet" msgid="1107073389495104784">"Мобилен интернет"</string>
     <string name="phoneAppLabel" product="default" msgid="6790717591729922998">"Телефонски услуги"</string>
     <string name="emergencyDialerIconLabel" msgid="7812140032168171053">"Бирач за итни случаи"</string>
     <string name="phoneIconLabel" msgid="2331230813161304895">"Телефон"</string>
@@ -347,7 +347,7 @@
     <string name="fdn_disabled" msgid="4700049736675368279">"Броевите на фиксно бирање се оневозможени"</string>
     <string name="enable_fdn" msgid="3740191529180493851">"Овозможи FDN"</string>
     <string name="disable_fdn" msgid="7944020890722540616">"Оневозможи FDN"</string>
-    <string name="change_pin2" msgid="2153563695382176676">"Промени ПИН2"</string>
+    <string name="change_pin2" msgid="2153563695382176676">"Промени PIN2"</string>
     <string name="enable_fdn_ok" msgid="7215588870329688132">"Оневозможи FDN"</string>
     <string name="disable_fdn_ok" msgid="5727046928930740173">"Овозможи FDN"</string>
     <string name="sum_fdn" msgid="1959399454900272878">"Управувај со броеви за фиксно бирање"</string>
@@ -363,7 +363,7 @@
     <string name="menu_add" msgid="1882023737425114762">"Додај контакт"</string>
     <string name="menu_edit" msgid="7143003705504672374">"Уреди контакт"</string>
     <string name="menu_delete" msgid="3977150783449642851">"Избриши контакт"</string>
-    <string name="get_pin2" msgid="8204677063922225311">"Впише ПИН2"</string>
+    <string name="get_pin2" msgid="8204677063922225311">"Внеси PIN2"</string>
     <string name="name" msgid="7329028332786872378">"Име"</string>
     <string name="number" msgid="7905950798349903858">"Број"</string>
     <string name="save" msgid="4094274636321939086">"Зачувај"</string>
@@ -378,7 +378,7 @@
     <string name="fdn_contact_deleted" msgid="7154162327112259569">"Бројот на фиксно бирање е избришан."</string>
     <string name="pin2_invalid" msgid="5470854099230755944">"FDN не се ажурираше зашто внесовте погрешен PIN."</string>
     <string name="fdn_invalid_number" msgid="1494755047900009147">"FDN не е ажуриран зашто бројот не може да надмине 20 цифри."</string>
-    <string name="pin2_or_fdn_invalid" msgid="6025144083384701197">"FDN не се ажурираше. ПИН2 кодот беше неточен или телефонски број беше одбиен."</string>
+    <string name="pin2_or_fdn_invalid" msgid="6025144083384701197">"FDN не се ажурираше. PIN2 кодот е неточен или телефонскиот број е одбиен."</string>
     <string name="fdn_failed" msgid="540018079008319747">"Операцијата со FDN не успеа."</string>
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"Се чита од СИМ картичка..."</string>
     <string name="simContacts_empty" msgid="5270660846489561932">"Нема контакти на вашата СИМ картичка."</string>
@@ -401,22 +401,22 @@
     <string name="pin_failed" msgid="5644377896213584760">"PIN-кодот е неточен"</string>
     <string name="pin_changed" msgid="4455736268023261662">"PIN-кодот е ажуриран"</string>
     <string name="puk_requested" msgid="5921393215789090200">"Лозинката е неточна. PIN-кодот е сега блокиран. Се бара ПУК."</string>
-    <string name="enter_pin2_text" msgid="8339444124477720345">"ПИН2"</string>
-    <string name="oldPin2Label" msgid="8559146795026261502">"Стар ПИН2"</string>
-    <string name="newPin2Label" msgid="4573956902204349054">"Нов ПИН2"</string>
-    <string name="confirmPin2Label" msgid="8100319484454787708">"Потврди нов ПИН2"</string>
+    <string name="enter_pin2_text" msgid="8339444124477720345">"PIN2"</string>
+    <string name="oldPin2Label" msgid="8559146795026261502">"Стар PIN2"</string>
+    <string name="newPin2Label" msgid="4573956902204349054">"Нов PIN2"</string>
+    <string name="confirmPin2Label" msgid="8100319484454787708">"Потврди нов PIN2"</string>
     <string name="badPuk2" msgid="7910064009531541708">"ПУК2 е неточен. Обидете се повторно."</string>
-    <string name="badPin2" msgid="6646896629970023109">"Стариот ПИН2 е неточен. Обидете се повторно."</string>
+    <string name="badPin2" msgid="6646896629970023109">"Стариот PIN2 е неточен. Обидете се повторно."</string>
     <string name="mismatchPin2" msgid="4177967478551851117">"ПУК2-кодовите не се совпаѓаат. Обидете се повторно."</string>
-    <string name="invalidPin2" msgid="1757045131429105595">"Внесете ПИН2 кој содржи од 4 до 8 броеви."</string>
+    <string name="invalidPin2" msgid="1757045131429105595">"Внесете PIN2 кој содржи од 4 до 8 цифри."</string>
     <string name="invalidPuk2" msgid="7059081153334815973">"Внесете ПУК2 кој содржи 8 броеви."</string>
-    <string name="pin2_changed" msgid="3724522579945610956">"ПИН2-кодот е ажуриран"</string>
+    <string name="pin2_changed" msgid="3724522579945610956">"PIN2-кодот е ажуриран"</string>
     <string name="label_puk2_code" msgid="4688069961795341948">"Внесете го ПУК2-кодот"</string>
-    <string name="fdn_enable_puk2_requested" msgid="4991074891459554705">"Лозинката е неточна. ПИН2-кодот е сега блокиран. За да се обидете повторно, променете го ПИН2-кодот."</string>
+    <string name="fdn_enable_puk2_requested" msgid="4991074891459554705">"Лозинката е неточна. PIN2-кодот сега е блокиран. За да се обидете повторно, променете го PIN2-кодот."</string>
     <string name="puk2_requested" msgid="5831015200030161434">"Лозинката е неточна. СИМ-картичката е сега заклучена. Внесете го ПУК2-кодот."</string>
     <string name="puk2_blocked" msgid="3150263853077280049">"ПУК2 кодот е трајно блокиран."</string>
     <string name="pin2_attempts" msgid="720736232885011507">\n"Имате уште <xliff:g id="NUMBER">%d</xliff:g> обиди."</string>
-    <string name="pin2_unblocked" msgid="7791600368153469078">"ПИН2-кодот веќе не е блокиран"</string>
+    <string name="pin2_unblocked" msgid="7791600368153469078">"PIN2-кодот веќе не е блокиран"</string>
     <string name="pin2_error_exception" msgid="1088689322248996699">"Грешка со мрежа или СИМ картичка"</string>
     <string name="doneButton" msgid="2859593360997984240">"Готово"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"Број на говорна пошта"</string>

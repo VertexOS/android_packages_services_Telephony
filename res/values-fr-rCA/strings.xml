@@ -477,7 +477,7 @@
     <string name="hac_mode_title" msgid="8740268574688743289">"Assistance auditive"</string>
     <string name="hac_mode_summary" msgid="6833851160514929341">"Activer la compatibilité du service d\'assistance auditive"</string>
   <string-array name="tty_mode_entries">
-    <item msgid="512950011423868021">"Mode TTY désactivé"</item>
+    <item msgid="512950011423868021">"TTY désactivé"</item>
     <item msgid="3971695875449640648">"TTY complet"</item>
     <item msgid="1937509904407445684">"TTY HCO"</item>
     <item msgid="5644925873488772224">"TTY VCO"</item>

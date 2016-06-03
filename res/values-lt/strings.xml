@@ -91,8 +91,8 @@
     <string name="sum_show_caller_id" msgid="6768534125447290401">"Numeris pateikiamas išeinančiuose skambučiuose"</string>
     <string name="sum_default_caller_id" msgid="1954518825510901365">"Naudoti numatytuosius nustatymus, kad išeinančiuose skambučiuose būtų pateikiamas mano numeris"</string>
     <string name="labelCW" msgid="6120513814915920200">"Laukiantis skambutis"</string>
-    <string name="sum_cw_enabled" msgid="8083061901633671397">"Skambučio metu praneškite man apie gaunamuosius skambučius"</string>
-    <string name="sum_cw_disabled" msgid="3648693907300104575">"Skambučio metu praneškite man apie gaunamuosius skambučius"</string>
+    <string name="sum_cw_enabled" msgid="8083061901633671397">"Skambučio metu pranešti man apie gaunamuosius skambučius"</string>
+    <string name="sum_cw_disabled" msgid="3648693907300104575">"Skambučio metu pranešti man apie gaunamuosius skambučius"</string>
     <string name="call_forwarding_settings" msgid="3378927671091537173">"Skambučio peradresavimo nustatymai"</string>
     <string name="call_forwarding_settings_with_label" msgid="8569489414006897127">"Skambučių peradresavimo nustatymai (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="labelCF" msgid="2574386948026924737">"Skambučio peradresavimas"</string>

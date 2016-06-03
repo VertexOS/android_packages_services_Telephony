@@ -91,8 +91,8 @@
     <string name="sum_show_caller_id" msgid="6768534125447290401">"Номер, отображающийся при исходящих вызовах"</string>
     <string name="sum_default_caller_id" msgid="1954518825510901365">"Использовать стандартные настройки оператора для показа моего номера при исходящих вызовах."</string>
     <string name="labelCW" msgid="6120513814915920200">"Параллельный вызов"</string>
-    <string name="sum_cw_enabled" msgid="8083061901633671397">"Извещать меня о входящих вызовах во время разговора."</string>
-    <string name="sum_cw_disabled" msgid="3648693907300104575">"Извещать меня о входящих вызовах во время разговора."</string>
+    <string name="sum_cw_enabled" msgid="8083061901633671397">"Извещать меня о входящих вызовах во время разговора"</string>
+    <string name="sum_cw_disabled" msgid="3648693907300104575">"Извещать меня о входящих вызовах во время разговора"</string>
     <string name="call_forwarding_settings" msgid="3378927671091537173">"Переадресация"</string>
     <string name="call_forwarding_settings_with_label" msgid="8569489414006897127">"Переадресация (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="labelCF" msgid="2574386948026924737">"Переадресация вызовов"</string>
@@ -377,7 +377,7 @@
     <string name="pin2_or_fdn_invalid" msgid="6025144083384701197">"Список разрешенных номеров не обновлен. Указан неверный PIN2 или номер телефона."</string>
     <string name="fdn_failed" msgid="540018079008319747">"Не удалось включить FDN"</string>
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"Считывание с SIM-карты…"</string>
-    <string name="simContacts_empty" msgid="5270660846489561932">"На SIM-карте нет контактов."</string>
+    <string name="simContacts_empty" msgid="5270660846489561932">"На SIM-карте нет контактов"</string>
     <string name="simContacts_title" msgid="1861472842524839921">"Выберите контакты для импорта"</string>
     <string name="simContacts_airplaneMode" msgid="5254946758982621072">"Чтобы импортировать контакты с SIM-карты, отключите режим полета."</string>
     <string name="enable_pin" msgid="5422767284133234860">"Включить/отключить запрос PIN SIM-карты"</string>

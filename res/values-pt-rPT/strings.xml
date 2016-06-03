@@ -20,7 +20,7 @@
     <string name="phoneAppLabel" product="default" msgid="6790717591729922998">"Serviços de telemóvel"</string>
     <string name="emergencyDialerIconLabel" msgid="7812140032168171053">"Marcador de emergência"</string>
     <string name="phoneIconLabel" msgid="2331230813161304895">"Telefone"</string>
-    <string name="fdnListLabel" msgid="8630418672279521003">"Lista de números de marcação fixa (FDN)"</string>
+    <string name="fdnListLabel" msgid="8630418672279521003">"Lista de FDN"</string>
     <string name="unknown" msgid="6878797917991465859">"Desconhecido"</string>
     <string name="private_num" msgid="6713286113000232309">"Número particular"</string>
     <string name="payphone" msgid="4793877574636445118">"Telefone público"</string>
@@ -93,16 +93,16 @@
     <string name="labelCW" msgid="6120513814915920200">"Chamada em espera"</string>
     <string name="sum_cw_enabled" msgid="8083061901633671397">"Notificar-me de chamadas a receber durante uma chamada"</string>
     <string name="sum_cw_disabled" msgid="3648693907300104575">"Notificar-me de chamadas a receber durante uma chamada"</string>
-    <string name="call_forwarding_settings" msgid="3378927671091537173">"Definições do reencaminhamento de chamadas"</string>
-    <string name="call_forwarding_settings_with_label" msgid="8569489414006897127">"Definições de reencaminhamento de chamadas (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
-    <string name="labelCF" msgid="2574386948026924737">"Reencaminhamento de chamadas"</string>
+    <string name="call_forwarding_settings" msgid="3378927671091537173">"Definições do encaminhamento de chamadas"</string>
+    <string name="call_forwarding_settings_with_label" msgid="8569489414006897127">"Definições de encaminhamento de chamadas (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="labelCF" msgid="2574386948026924737">"Encaminhamento de chamadas"</string>
     <string name="labelCFU" msgid="8147177368148660600">"Encaminhar sempre"</string>
     <string name="messageCFU" msgid="3560082430662923687">"Utilizar sempre este número"</string>
     <string name="sum_cfu_enabled_indicator" msgid="4014187342724130197">"A reencaminhar todas as chamadas"</string>
     <string name="sum_cfu_enabled" msgid="2450052502198827927">"A encaminhar todas as chamadas para <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfu_enabled_no_number" msgid="6591985777096823616">"O número está indisponível"</string>
     <string name="sum_cfu_disabled" msgid="8384177689501334080">"Desativado"</string>
-    <string name="labelCFB" msgid="6139853033106283172">"Quando estiver ocupado(a)"</string>
+    <string name="labelCFB" msgid="6139853033106283172">"Quando estiver ocupado"</string>
     <string name="messageCFB" msgid="3711089705936187129">"Número no caso de estar ocupado"</string>
     <string name="sum_cfb_enabled" msgid="5984198104833116690">"A encaminhar para <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfb_disabled" msgid="4913145177320506827">"Desativado"</string>

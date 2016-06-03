@@ -473,8 +473,8 @@
     <string name="hac_mode_title" msgid="8740268574688743289">"Hearing aids"</string>
     <string name="hac_mode_summary" msgid="6833851160514929341">"Turn on hearing-aid compatibility"</string>
   <string-array name="tty_mode_entries">
-    <item msgid="512950011423868021">"TTY Off"</item>
-    <item msgid="3971695875449640648">"TTY Full"</item>
+    <item msgid="512950011423868021">"TTY off"</item>
+    <item msgid="3971695875449640648">"TTY full"</item>
     <item msgid="1937509904407445684">"TTY HCO"</item>
     <item msgid="5644925873488772224">"TTY VCO"</item>
   </string-array>

@@ -254,7 +254,7 @@
     <string name="list_language_title" msgid="2841683501919760043">"Wika"</string>
     <string name="list_language_summary" msgid="8109546531071241601">"Piliin ang wika ng balita"</string>
   <string-array name="list_language_entries">
-    <item msgid="6137851079727305485">"Ingles"</item>
+    <item msgid="6137851079727305485">"English"</item>
     <item msgid="1151988412809572526">"French"</item>
     <item msgid="577840534704312665">"Spanish"</item>
     <item msgid="8385712091143148180">"Japanese"</item>

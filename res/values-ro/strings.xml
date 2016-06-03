@@ -73,7 +73,7 @@
     <string name="phone_accounts_all_calling_accounts_summary" msgid="8594186415822657011">"Selectați conturile care pot da apeluri"</string>
     <string name="wifi_calling" msgid="739018212480165598">"Apelare prin Wi-Fi"</string>
     <string name="connection_service_default_label" msgid="1498481943805913754">"Serviciu de conectare încorporat"</string>
-    <string name="voicemail" msgid="8693759337917898954">"Mesaj vocal"</string>
+    <string name="voicemail" msgid="8693759337917898954">"Mesagerie vocală"</string>
     <string name="voicemail_settings_with_label" msgid="152724978380748296">"Mesagerie vocală (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="voicemail_abbreviated" msgid="2215592488517217448">"MV:"</string>
     <string name="networks" msgid="8873030692174541976">"Operatori de rețea"</string>
@@ -354,7 +354,7 @@
     <string name="auto_retry_mode_title" msgid="4073265511427813322">"Reîncercare automată"</string>
     <string name="auto_retry_mode_summary" msgid="4973886004067532288">"Activați modul Reîncercare automată"</string>
     <string name="tty_mode_not_allowed_video_call" msgid="3795846787901909176">"Schimbarea modului TTY nu este permisă în timpul unui apel video"</string>
-    <string name="menu_add" msgid="1882023737425114762">"Adăugați o persoană în agendă"</string>
+    <string name="menu_add" msgid="1882023737425114762">"Adăugați o persoană"</string>
     <string name="menu_edit" msgid="7143003705504672374">"Modificați informațiile despre persoana din agendă"</string>
     <string name="menu_delete" msgid="3977150783449642851">"Ștergeți persoana din agendă"</string>
     <string name="get_pin2" msgid="8204677063922225311">"Introduceți codul PIN2"</string>
@@ -375,7 +375,7 @@
     <string name="pin2_or_fdn_invalid" msgid="6025144083384701197">"NAR nu a fost actualizat. Codul PIN2 a fost incorect sau numărul de telefon a fost respins."</string>
     <string name="fdn_failed" msgid="540018079008319747">"Operațiunea NAR nu a reușit."</string>
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"Se citește de pe cardul SIM..."</string>
-    <string name="simContacts_empty" msgid="5270660846489561932">"Nicio persoană în agenda de pe cardul dvs. SIM."</string>
+    <string name="simContacts_empty" msgid="5270660846489561932">"Nicio persoană pe cardul SIM."</string>
     <string name="simContacts_title" msgid="1861472842524839921">"Selectați pentru import"</string>
     <string name="simContacts_airplaneMode" msgid="5254946758982621072">"Pentru a importa persoane de contact de pe cardul SIM, dezactivați modul Avion."</string>
     <string name="enable_pin" msgid="5422767284133234860">"Activați/dezactivați codul PIN al cardului SIM"</string>
@@ -470,8 +470,8 @@
     <string name="importToFDNfromContacts" msgid="2130620207013368580">"Importați din Agendă"</string>
     <string name="singleContactImportedMsg" msgid="6868483416182599206">"Persoana de contact a fost importată"</string>
     <string name="failedToImportSingleContactMsg" msgid="415399285420353917">"Persoana de contact nu a fost importată"</string>
-    <string name="hac_mode_title" msgid="8740268574688743289">"Asistență auditivă"</string>
-    <string name="hac_mode_summary" msgid="6833851160514929341">"Activați compatibilitatea cu asistența auditivă"</string>
+    <string name="hac_mode_title" msgid="8740268574688743289">"Aparate auditive"</string>
+    <string name="hac_mode_summary" msgid="6833851160514929341">"Activați compatibilitatea cu aparatele auditive"</string>
   <string-array name="tty_mode_entries">
     <item msgid="512950011423868021">"TTY dezactivat"</item>
     <item msgid="3971695875449640648">"TTY integral"</item>

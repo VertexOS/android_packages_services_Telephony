@@ -59,7 +59,7 @@
     <string name="labelCdmaMore_with_label" msgid="6333588719319970399">"CDMA қоңырау параметрлері (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="apn_settings" msgid="9043423184895642077">"Қол жетімділік нүктесінің атаулары"</string>
     <string name="settings_label" msgid="3876743539816984008">"Желі параметрлері"</string>
-    <string name="phone_accounts" msgid="6376603393888116364">"Есептік жазбаларға қоңыр. шалу"</string>
+    <string name="phone_accounts" msgid="6376603393888116364">"Қоңырау шалу есептік жазбалары"</string>
     <string name="phone_accounts_make_calls_with" msgid="1969188078933152231">"Келесінің көмегімен қоңыраулар шалу"</string>
     <string name="phone_accounts_make_sip_calls_with" msgid="4677789312053828493">"Келесінің көмегімен SIP қоңырауларын шалу"</string>
     <string name="phone_accounts_ask_every_time" msgid="4346499067149985702">"Алдымен сұрау"</string>
@@ -202,8 +202,8 @@
     <string name="data_enabled" msgid="5972538663568715366">"Дерекқор қосылған"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"Деректерді пайдалануға рұқсат ету"</string>
     <string name="dialog_alert_title" msgid="6751344986194435476">"Назар аударыңыз"</string>
-    <string name="roaming" msgid="8871412572928323707">"Дерекқор роумингі"</string>
-    <string name="roaming_enable" msgid="7331106985174381987">"Роуминг кезінде дерекқор қызметтеріне қосу"</string>
+    <string name="roaming" msgid="8871412572928323707">"Деректер роумингі"</string>
+    <string name="roaming_enable" msgid="7331106985174381987">"Роуминг кезінде дерек қызметтеріне қосу"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"Роуминг кезінде дерекқор қызметтеріне қосу"</string>
     <string name="roaming_reenable_message" msgid="8913735676127858115">"Дерекқор байланысын жоғалтып алдыңыз, себебі үйдегі желінің дерекқор роумингін өшірілген күйінде қалдырғансыз."</string>
     <string name="roaming_warning" msgid="1603164667540144353">"Сізден елеулі ақылар алынуы мүмкін."</string>
@@ -348,7 +348,7 @@
     <string name="sum_fdn_change_pin" msgid="6666549734792827932">"ТТН қол жетімділігі үшін PIN кодты өзгерту"</string>
     <string name="sum_fdn_manage_list" msgid="8431088265332628316">"Телефон нөмірлері тізімін басқару"</string>
     <string name="voice_privacy" msgid="3776841382844614716">"Дауыс құпиялығы"</string>
-    <string name="voice_privacy_summary" msgid="3159383389833516214">"Жетілдірілген құпиялық режимін қосу"</string>
+    <string name="voice_privacy_summary" msgid="3159383389833516214">"Жетілдірілген құпиялылық режимін қосу"</string>
     <string name="tty_mode_option_title" msgid="9033098925144434669">"Tелетайп режимі"</string>
     <string name="tty_mode_option_summary" msgid="1073835131534808732">"Телетайп режиміне реттеу"</string>
     <string name="auto_retry_mode_title" msgid="4073265511427813322">"Қайта авто әрекеттену"</string>
@@ -470,13 +470,13 @@
     <string name="importToFDNfromContacts" msgid="2130620207013368580">"Контактілерден импорттау"</string>
     <string name="singleContactImportedMsg" msgid="6868483416182599206">"Контакт импортталды"</string>
     <string name="failedToImportSingleContactMsg" msgid="415399285420353917">"Контактіні импорттау сәтсіз аяқталды"</string>
-    <string name="hac_mode_title" msgid="8740268574688743289">"Есту көмектері"</string>
-    <string name="hac_mode_summary" msgid="6833851160514929341">"Есту көмегінің үйлесімділігін қосу"</string>
+    <string name="hac_mode_title" msgid="8740268574688743289">"Есту аппараттары"</string>
+    <string name="hac_mode_summary" msgid="6833851160514929341">"Есту аппаратының қолдауын қосу"</string>
   <string-array name="tty_mode_entries">
-    <item msgid="512950011423868021">"Tеле тайп өшірулі"</item>
-    <item msgid="3971695875449640648">"Tелетайп Толық"</item>
-    <item msgid="1937509904407445684">"Tелетайп HCO (есту арқылы тасымалдау)"</item>
-    <item msgid="5644925873488772224">"Tелетайп VCO (дауыс арқылы тасымалдау)"</item>
+    <item msgid="512950011423868021">"Tелетайп өшірулі"</item>
+    <item msgid="3971695875449640648">"Tелетайп толық функциялы"</item>
+    <item msgid="1937509904407445684">"Tелетайп HCO (есту мүмкіндігімен)"</item>
+    <item msgid="5644925873488772224">"Tелетайп VCO (сөйлеу мүмкіндігімен)"</item>
   </string-array>
     <string name="dtmf_tones_title" msgid="5163153771291340803">"Әуенді сигнал әуендері"</string>
     <string name="dtmf_tones_summary" msgid="3351820372864020331">"Әуенді сигнал ұзақтығын реттеу"</string>

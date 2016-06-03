@@ -24,7 +24,7 @@
     <string name="sip_call_options_title" msgid="8421210494703869806">"SIP დარეკვის გამოყენება"</string>
     <string name="sip_call_options_wifi_only_title" msgid="5112579243580893890">"SIP დარეკვის გამოყენება (მხოლოდ Wi-Fi)"</string>
     <string name="sip_call_options_entry_1" msgid="7217659161237099900">"ყველა ზარზე, როდესაც მონაცემთა ქსელი ხელმისაწვდომია"</string>
-    <string name="sip_call_options_entry_2" msgid="1815335903940609729">"მხოლოდ SIP ზარებისათვის"</string>
+    <string name="sip_call_options_entry_2" msgid="1815335903940609729">"მხოლოდ SIP ზარებზე"</string>
     <string name="sip_call_options_wifi_only_entry_1" msgid="1358513095551847314">"ყველა ზარზე"</string>
     <string name="add_sip_account" msgid="800843669753980091">"ანგარიშის დამატება"</string>
     <string name="remove_sip_account" msgid="1367664438506503690">"ანგარიშის წაშლა"</string>

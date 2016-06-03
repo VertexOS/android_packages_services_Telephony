@@ -467,7 +467,7 @@
     <string name="importSimEntry" msgid="6614358325359736031">"ນຳເຂົ້າ"</string>
     <string name="importAllSimEntries" msgid="1503181169636198673">"ນຳເຂົ້າທັງໝົດ"</string>
     <string name="importingSimContacts" msgid="7374056215462575769">"ກຳລັງນຳເຂົ້າລາຍຊື່ຜູ່ຕິດຕໍ່ຈາກ SIM"</string>
-    <string name="importToFDNfromContacts" msgid="2130620207013368580">"ນຳເຂົ້າຈາກລາຍຊື່ຜູ່ຕິດຕໍ່"</string>
+    <string name="importToFDNfromContacts" msgid="2130620207013368580">"ນຳເຂົ້າຈາກລາຍຊື່ຜູ້ຕິດຕໍ່"</string>
     <string name="singleContactImportedMsg" msgid="6868483416182599206">"ລາຍ​ຊື່​ຕິດ​ຕໍ່​ນຳ​ເຂົ້າ​ແລ້ວ"</string>
     <string name="failedToImportSingleContactMsg" msgid="415399285420353917">"ນຳ​ລາຍ​ຊື່​ຕິດ​ຕໍ່​ເຂົ້າ​ບໍ່​ສຳ​ເລັດ"</string>
     <string name="hac_mode_title" msgid="8740268574688743289">"ການຊ່ວຍໄດ້ຍິນ"</string>

@@ -112,7 +112,7 @@
     <string name="sum_cfnry_enabled" msgid="6955775691317662910">"Прослеђује се на <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfnry_disabled" msgid="3884684060443538097">"Искључено"</string>
     <string name="disable_cfnry_forbidden" msgid="4308233959150658058">"Оператер не подржава онемогућавање преусмеравања позива када се на позив не одговори."</string>
-    <string name="labelCFNRc" msgid="2614827454402079766">"Када је недоступно"</string>
+    <string name="labelCFNRc" msgid="2614827454402079766">"Кад сам недоступан/а"</string>
     <string name="messageCFNRc" msgid="6380695421020295119">"Број кад је недоступно"</string>
     <string name="sum_cfnrc_enabled" msgid="7010898346095497421">"Прослеђује се на <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfnrc_disabled" msgid="7222141261321276464">"Онемогућено"</string>

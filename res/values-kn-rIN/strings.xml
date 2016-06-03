@@ -71,7 +71,7 @@
     <string name="phone_accounts_configure_account_settings" msgid="1361715069911607109">"ಖಾತೆ ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ಕಾನ್ಫಿಗರ್ ಮಾಡಿ"</string>
     <string name="phone_accounts_all_calling_accounts" msgid="207619531589278471">"ಎಲ್ಲಾ ಕರೆ ಮಾಡುವ ಖಾತೆಗಳು"</string>
     <string name="phone_accounts_all_calling_accounts_summary" msgid="8594186415822657011">"ಯಾವ ಖಾತೆಗಳು ಕರೆಗಳನ್ನು ಮಾಡಬಹುದು ಎಂಬುದನ್ನು ಆಯ್ಕೆಮಾಡಿ"</string>
-    <string name="wifi_calling" msgid="739018212480165598">"Wi-Fi ಕರೆ ಮಾಡುವಿಕೆ"</string>
+    <string name="wifi_calling" msgid="739018212480165598">"ವೈ-ಫೈ ಕರೆ ಮಾಡುವಿಕೆ"</string>
     <string name="connection_service_default_label" msgid="1498481943805913754">"ಅಂತರ್ನಿರ್ಮಿತ ಸಂಪರ್ಕ ಸೇವೆ"</string>
     <string name="voicemail" msgid="8693759337917898954">"ಧ್ವನಿಮೇಲ್"</string>
     <string name="voicemail_settings_with_label" msgid="152724978380748296">"ಧ್ವನಿಮೇಲ್ (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
@@ -136,7 +136,7 @@
     <string name="disable" msgid="4678348128118573672">"ಆಫ್ ಮಾಡು"</string>
     <string name="change_num" msgid="239476305819844391">"ಅಪ್‌ಡೇಟ್‌ ಮಾಡು"</string>
   <string-array name="clir_display_values">
-    <item msgid="5560134294467334594">"ನೆಟ್‌ವರ್ಕ್ ಡೀಫಾಲ್ಟ್"</item>
+    <item msgid="5560134294467334594">"ನೆಟ್‌ವರ್ಕ್ ಡಿಫಾಲ್ಟ್"</item>
     <item msgid="7876195870037833661">"ಸಂಖ್ಯೆಯನ್ನು ಮರೆಮಾಡು"</item>
     <item msgid="1108394741608734023">"ಸಂಖ್ಯೆಯನ್ನು ತೋರಿಸು"</item>
   </string-array>
@@ -491,7 +491,7 @@
     <string name="ota_hfa_activation_title" msgid="2234246934160473981">"ಸಕ್ರಿಯಗೊಳಿಸಲಾಗುತ್ತಿದೆ..."</string>
     <string name="ota_hfa_activation_dialog_message" msgid="8092479227918463415">"ನಿಮ್ಮ ಮೊಬೈಲ್‌‌ ಡೇಟಾ ಸೇವೆಯನ್ನು ಫೋನ್‌ ಸಕ್ರಿಯಗೊಳಿಸುತ್ತಿದೆ.\n\nಇದು ಸುಮಾರು 5 ನಿಮಿಷಗಳ ಕಾಲಾವಕಾಶ ತೆಗೆದುಕೊಳ್ಳಬಹುದು."</string>
     <string name="ota_skip_activation_dialog_title" msgid="2943366608272261306">"ಸಕ್ರಿಯಗೊಳಿಸುವುದನ್ನು ಸ್ಕಿಪ್‌ ಮಾಡುವುದೇ?"</string>
-    <string name="ota_skip_activation_dialog_message" msgid="2440770373498870550">"ನೀವು ಸಕ್ರಿಯಗೊಳಿಸುವುದನ್ನು ಸ್ಕಿಪ್‌ ಮಾಡಿದರೆ, ನೀವು ಕರೆಗಳನ್ನು ಮಾಡಲು ಅಥವಾ ಮೊಬೈಲ್‌ ಡೇಟಾ ನೆಟ್‌ವರ್ಕ್‌ಗಳಿಗೆ ಸಂಪರ್ಕಗೊಳಿಸಲು ಸಾಧ್ಯವಾಗುವುದಿಲ್ಲ (ಆದರೂ ನೀವು Wi-Fi ನೆಟ್‌ವರ್ಕ್‌ಗಳಿಗೆ ಸಂಪರ್ಕಗೊಳಿಸಬಹುದು). ನಿಮ್ಮ ಫೋನ್ ಅನ್ನು ನೀವು ಸಕ್ರಿಯಗೊಳಿಸುವವರೆಗೂ, ನೀವು ಅದನ್ನು ಪ್ರತಿಬಾರಿ ಆನ್‌ ಮಾಡಿದಾಗಲೆಲ್ಲಾ ಅದನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಲು ನಿಮಗೆ ತಿಳಿಸಲಾಗುತ್ತದೆ."</string>
+    <string name="ota_skip_activation_dialog_message" msgid="2440770373498870550">"ನೀವು ಸಕ್ರಿಯಗೊಳಿಸುವುದನ್ನು ಸ್ಕಿಪ್‌ ಮಾಡಿದರೆ, ನೀವು ಕರೆಗಳನ್ನು ಮಾಡಲು ಅಥವಾ ಮೊಬೈಲ್‌ ಡೇಟಾ ನೆಟ್‌ವರ್ಕ್‌ಗಳಿಗೆ ಸಂಪರ್ಕಗೊಳಿಸಲು ಸಾಧ್ಯವಾಗುವುದಿಲ್ಲ (ಆದರೂ ನೀವು ವೈ-ಫೈ ನೆಟ್‌ವರ್ಕ್‌ಗಳಿಗೆ ಸಂಪರ್ಕಗೊಳಿಸಬಹುದು). ನಿಮ್ಮ ಫೋನ್ ಅನ್ನು ನೀವು ಸಕ್ರಿಯಗೊಳಿಸುವವರೆಗೂ, ನೀವು ಅದನ್ನು ಪ್ರತಿಬಾರಿ ಆನ್‌ ಮಾಡಿದಾಗಲೆಲ್ಲಾ ಅದನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಲು ನಿಮಗೆ ತಿಳಿಸಲಾಗುತ್ತದೆ."</string>
     <string name="ota_skip_activation_dialog_skip_label" msgid="3458532775091563208">"ಸ್ಕಿಪ್"</string>
     <string name="ota_activate" msgid="1368528132525626264">"ಸಕ್ರಿಯಗೊಳಿಸು"</string>
     <string name="ota_title_activate_success" msgid="6570240212263372046">"ಫೋನ್‌ ಸಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ."</string>
@@ -504,7 +504,7 @@
     <string name="ota_unsuccessful" msgid="8072141612635635357">"ನಿಮ್ಮ ಫೋನ್‌ ಸಕ್ರಿಯಗೊಳ್ಳಲಿಲ್ಲ. \n ಅತ್ಯುತ್ತಮ ಪ್ರಸಾರವ್ಯಾಪ್ತಿ ಹೊಂದಿರುವ ಪ್ರದೇಶವನ್ನು ಹುಡುಕಬೇಕಾಗಬಹುದು (ಕಿಟಕಿ ಹತ್ತಿರ ಅಥವಾ ಹೊರಗಡೆ). \n\nಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ ಅಥವಾ ಇನ್ನಷ್ಟು ಆಯ್ಕೆಗಳಿಗಾಗಿ ಗ್ರಾಹಕ ಸೇವೆಗೆ ಕರೆ ಮಾಡಿ."</string>
     <string name="ota_spc_failure" msgid="3909983542575030796">"ಮಿತಿಮೀರಿದ SPC ವೈಫಲ್ಯಗಳು"</string>
     <string name="ota_call_end" msgid="4537279738134612388">"ಹಿಂದೆ"</string>
-    <string name="ota_try_again" msgid="7685477206465902290">"ಮತ್ತೆ ಪ್ರಯತ್ನಿಸು"</string>
+    <string name="ota_try_again" msgid="7685477206465902290">"ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ"</string>
     <string name="ota_next" msgid="3904945374358235910">"ಮುಂದಿನದು"</string>
     <string name="ecm_exit_dialog" msgid="4448531867763097533">"EcmExitDialog"</string>
     <string name="phone_entered_ecm_text" msgid="6266424252578731203">"ತುರ್ತು ಕಾಲ್‌ಬ್ಯಾಕ್‌ ಮೋಡ್‌ ನಮೂದಿಸಲಾಗಿದೆ"</string>
@@ -551,7 +551,7 @@
     <string name="sim_description_emergency_calls" msgid="7535215397212301562">"ತುರ್ತು ಕರೆ ಮಾಡುವಿಕೆ ಮಾತ್ರ"</string>
     <string name="sim_description_default" msgid="4778679519938775515">"SIM ಕಾರ್ಡ್, ಸ್ಲಾಟ್: <xliff:g id="SLOT_ID">%s</xliff:g>"</string>
     <string name="accessibility_settings_activity_title" msgid="8562004288733103868">"ಪ್ರವೇಶಿಸುವಿಕೆ"</string>
-    <string name="status_hint_label_incoming_wifi_call" msgid="8772915926382037499">"ಒಳಬರುವ Wi-Fi ಕರೆ"</string>
+    <string name="status_hint_label_incoming_wifi_call" msgid="8772915926382037499">"ಒಳಬರುವ ವೈ-ಫೈ ಕರೆ"</string>
     <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"ವೈ-ಫೈ ಕರೆ"</string>
     <string name="emergency_action_launch_hint" msgid="4906759256275562674">"ತೆರೆಯಲು ಮತ್ತೆ ಟ್ಯಾಪ್‌ ಮಾಡಿ"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"ಸಂದೇಶವನ್ನು ಡೀಕೋಡ್ ಮಾಡುವಾಗ ದೋಷವುಂಟಾಗಿದೆ."</string>

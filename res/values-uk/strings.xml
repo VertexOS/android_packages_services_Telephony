@@ -475,7 +475,7 @@
   <string-array name="tty_mode_entries">
     <item msgid="512950011423868021">"TTY вимк."</item>
     <item msgid="3971695875449640648">"TTY повн."</item>
-    <item msgid="1937509904407445684">"HCO TTY"</item>
+    <item msgid="1937509904407445684">"TTY HCO"</item>
     <item msgid="5644925873488772224">"TTY VCO"</item>
   </string-array>
     <string name="dtmf_tones_title" msgid="5163153771291340803">"Сигнали DTMF"</string>

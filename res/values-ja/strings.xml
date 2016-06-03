@@ -33,7 +33,7 @@
     <string name="manageConferenceLabel" msgid="4691922394301969053">"グループ通話オプション"</string>
     <string name="ok" msgid="3811371167865772377">"OK"</string>
     <string name="audio_mode_speaker" msgid="27649582100085266">"スピーカー"</string>
-    <string name="audio_mode_earpiece" msgid="4156527186373869107">"携帯端末のイヤホン"</string>
+    <string name="audio_mode_earpiece" msgid="4156527186373869107">"モバイル端末のイヤホン"</string>
     <string name="audio_mode_wired_headset" msgid="1465350758489175975">"有線ヘッドセット"</string>
     <string name="audio_mode_bluetooth" msgid="3047641300848211128">"Bluetooth"</string>
     <string name="wait_prompt_str" msgid="7601815427707856238">"次の番号を送信しますか？\n"</string>
@@ -66,7 +66,7 @@
     <string name="phone_accounts_default_account_label" msgid="4183772241814460014">"利用できるネットワークなし"</string>
     <string name="phone_accounts_settings_header" msgid="4141710640883261094">"設定"</string>
     <string name="phone_accounts_choose_accounts" msgid="5232948804226424002">"アカウントを選択"</string>
-    <string name="phone_accounts_selection_header" msgid="1365215726106915865">"携帯端末アカウント"</string>
+    <string name="phone_accounts_selection_header" msgid="1365215726106915865">"モバイル端末アカウント"</string>
     <string name="phone_accounts_add_sip_account" msgid="2023821743341923271">"SIPアカウントを追加"</string>
     <string name="phone_accounts_configure_account_settings" msgid="1361715069911607109">"アカウントを設定"</string>
     <string name="phone_accounts_all_calling_accounts" msgid="207619531589278471">"すべての通話アカウント"</string>
@@ -494,14 +494,14 @@
     <string name="ota_skip_activation_dialog_message" msgid="2440770373498870550">"スキップして有効にしない場合、通話やモバイルデータネットワークの接続ができません（Wi-Fiネットワークには接続できます）。携帯を有効にするまでは、電源を入れるたびに有効にするかどうかを尋ねるメッセージが表示されます。"</string>
     <string name="ota_skip_activation_dialog_skip_label" msgid="3458532775091563208">"スキップ"</string>
     <string name="ota_activate" msgid="1368528132525626264">"有効にする"</string>
-    <string name="ota_title_activate_success" msgid="6570240212263372046">"携帯端末が有効になりました。"</string>
+    <string name="ota_title_activate_success" msgid="6570240212263372046">"モバイル端末が有効になりました。"</string>
     <string name="ota_title_problem_with_activation" msgid="7095824491970084367">"有効にする際のエラー"</string>
     <string name="ota_listen" msgid="162923839877584937">"完了したというメッセージが流れるまで音声ガイダンスに従ってください。"</string>
     <string name="ota_speaker" msgid="6904589278542719647">"スピーカー"</string>
     <string name="ota_progress" msgid="460876637828044519">"プログラムを設定しています…"</string>
     <string name="ota_failure" msgid="7713756181204620397">"プログラムを設定できませんでした"</string>
     <string name="ota_successful" msgid="1880780692887077407">"携帯が有効に設定されました。サービスが開始されるまで最大で15分ほどかかることがあります。"</string>
-    <string name="ota_unsuccessful" msgid="8072141612635635357">"携帯端末を有効にできませんでした。\n電波状態が悪い可能性があります。\n\n電波の良い場所（窓のそばや屋外）に移動してもう一度お試しいただくか、カスタマーサービスに他の方法をお問い合わせください。"</string>
+    <string name="ota_unsuccessful" msgid="8072141612635635357">"モバイル端末を有効にできませんでした。\n電波状態が悪い可能性があります。\n\n電波の良い場所（窓のそばや屋外）に移動してもう一度お試しいただくか、カスタマーサービスに他の方法をお問い合わせください。"</string>
     <string name="ota_spc_failure" msgid="3909983542575030796">"超過SPCによる失敗"</string>
     <string name="ota_call_end" msgid="4537279738134612388">"戻る"</string>
     <string name="ota_try_again" msgid="7685477206465902290">"再試行"</string>
