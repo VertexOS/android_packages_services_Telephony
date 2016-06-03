@@ -69,7 +69,7 @@ public class GsmUmtsCallForwardOptions extends TimeConsumingPreferenceActivity
         int defaultDataSub = subscriptionManager.getDefaultDataSubscriptionId();
         CarrierConfigManager configManager = (CarrierConfigManager)mPhone.
                 getContext().getSystemService(Context.CARRIER_CONFIG_SERVICE);
-        PersistableBundle pb = configManager.getConfig(mPhone.getSubId());
+        PersistableBundle pb = configManager.getConfigForSubId(mPhone.getSubId());
         boolean checkData = pb.getBoolean("check_mobile_data_for_cf");
         if (mPhone != null && mPhone.isUtEnabled() && checkData) {
             int activeNetworkType = getActiveNetworkType();
