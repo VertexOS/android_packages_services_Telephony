@@ -25,7 +25,7 @@
     <string name="sip_call_options_wifi_only_title" msgid="5112579243580893890">"Звонок через SIP (только Wi-Fi)"</string>
     <string name="sip_call_options_entry_1" msgid="7217659161237099900">"Для всех вызовов при возможности передачи данных"</string>
     <string name="sip_call_options_entry_2" msgid="1815335903940609729">"Только для звонков через SIP"</string>
-    <string name="sip_call_options_wifi_only_entry_1" msgid="1358513095551847314">"Для всех вызовов"</string>
+    <string name="sip_call_options_wifi_only_entry_1" msgid="1358513095551847314">"Для всех звонков"</string>
     <string name="add_sip_account" msgid="800843669753980091">"Добавить аккаунт"</string>
     <string name="remove_sip_account" msgid="1367664438506503690">"Удалить аккаунт"</string>
     <string name="sip_account_list" msgid="5610858485304821480">"SIP-аккаунты"</string>

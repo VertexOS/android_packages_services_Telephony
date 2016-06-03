@@ -146,7 +146,25 @@
     <string name="fw_get_in_vm_failed" msgid="8862896836093833973">"გადამისამართების ნომრის პარამეტრების მოძიება და შენახვა ვერ მოხერხდა.\nმაინც გსურთ ახალ პროვაიდერზე გადართვა?"</string>
     <string name="no_change" msgid="3186040086622435212">"ცვლილებები არ განხორციელებულა."</string>
     <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"ხმოვანი ფოსტის სერვისის არჩევა"</string>
-    <string name="voicemail_default" msgid="2001233554889016880">"თქვენი მომწოდებელი"</string>
+    <string name="voicemail_default" msgid="2001233554889016880">"თქვენი ოპერატორი"</string>
+    <!-- no translation found for vm_change_pin_old_pin (7295220109886682573) -->
+    <skip />
+    <!-- no translation found for vm_change_pin_new_pin (5412922262839438097) -->
+    <skip />
+    <!-- no translation found for vm_change_pin_progress_message (6727847908454506025) -->
+    <skip />
+    <!-- no translation found for vm_change_pin_error_too_short (5974971097302710497) -->
+    <skip />
+    <!-- no translation found for vm_change_pin_error_too_long (8476870806115051865) -->
+    <skip />
+    <!-- no translation found for vm_change_pin_error_too_weak (7883744811891784882) -->
+    <skip />
+    <!-- no translation found for vm_change_pin_error_mismatch (2754685537970757317) -->
+    <skip />
+    <!-- no translation found for vm_change_pin_error_invalid (3972205462701668653) -->
+    <skip />
+    <!-- no translation found for vm_change_pin_error_system_error (6610603326230000207) -->
+    <skip />
     <string name="mobile_networks" msgid="2843854043339307375">"ფიჭური ქსელის პარამეტრებიჶ"</string>
     <string name="label_available" msgid="1181658289009300430">"ხელმისაწვდომი ქსელები"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"ძიება..."</string>
@@ -473,7 +491,7 @@
     <string name="hac_mode_title" msgid="8740268574688743289">"სმენის დახმარებები"</string>
     <string name="hac_mode_summary" msgid="6833851160514929341">"სმენის დახმარების თავსებადობის ჩართვა"</string>
   <string-array name="tty_mode_entries">
-    <item msgid="512950011423868021">"TTY გამორთვა"</item>
+    <item msgid="512950011423868021">"TTY გამორთულია"</item>
     <item msgid="3971695875449640648">"TTY სრული"</item>
     <item msgid="1937509904407445684">"TTY HCO"</item>
     <item msgid="5644925873488772224">"TTY VCO"</item>
@@ -540,6 +558,8 @@
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"ვიბრაცია"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"ვიბრაცია"</string>
     <string name="voicemail_visual_voicemail_switch_title" msgid="5012622186976275457">"ვიზუალური ხმოვანი ფოსტა"</string>
+    <!-- no translation found for voicemail_change_pin_dialog_title (6035421908626121564) -->
+    <skip />
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"ხმა"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"ზარის მელოდია &amp; ვიბრაცია"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"ჩაშენებული SIM ბარათები"</string>

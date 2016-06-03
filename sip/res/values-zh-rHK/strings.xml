@@ -58,7 +58,7 @@
     <string name="port_title" msgid="6693965912656593862">"通訊埠號碼"</string>
     <string name="transport_title" msgid="889155457465372527">"傳輸類型"</string>
     <string name="send_keepalive_title" msgid="599627072150501159">"傳送 keep-alive"</string>
-    <string name="advanced_settings" msgid="6622996380747040711">"選用設定"</string>
+    <string name="advanced_settings" msgid="6622996380747040711">"可選設定"</string>
     <string name="auth_username_title" msgid="8262491689004708265">"驗證使用者名稱"</string>
     <string name="auth_username_summary" msgid="941160241371436473">"用於驗證的使用者名稱"</string>
     <string name="default_preference_summary" msgid="1979249643719483249">"&lt;未設定&gt;"</string>

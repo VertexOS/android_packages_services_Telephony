@@ -21,10 +21,10 @@
     <string name="sip_accounts_title" msgid="2082527045326874519">"Kontod"</string>
     <string name="sip_receive_calls" msgid="426678617137462173">"Võta vastu sissetulevad kõned"</string>
     <string name="sip_receive_calls_summary" msgid="946161517528227523">"Kasutab rohkem akut"</string>
-    <string name="sip_call_options_title" msgid="8421210494703869806">"SIP-kõnede tegemine"</string>
+    <string name="sip_call_options_title" msgid="8421210494703869806">"SIP-helistamise kasutus"</string>
     <string name="sip_call_options_wifi_only_title" msgid="5112579243580893890">"SIP-kõnede tegemine (ainult WiFi)"</string>
     <string name="sip_call_options_entry_1" msgid="7217659161237099900">"Kõikide kõnede puhul, kui andmesidevõrk on saadaval"</string>
-    <string name="sip_call_options_entry_2" msgid="1815335903940609729">"Ainult SIP-kõnede tegemiseks"</string>
+    <string name="sip_call_options_entry_2" msgid="1815335903940609729">"Ainult SIP-kõnede jaoks"</string>
     <string name="sip_call_options_wifi_only_entry_1" msgid="1358513095551847314">"Kõikide kõnede jaoks"</string>
     <string name="add_sip_account" msgid="800843669753980091">"Lisa konto"</string>
     <string name="remove_sip_account" msgid="1367664438506503690">"Eemalda konto"</string>

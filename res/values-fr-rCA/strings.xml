@@ -147,7 +147,25 @@
     <string name="no_change" msgid="3186040086622435212">"Aucune modification n\'a été apportée."</string>
     <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"Choisissez un service de messagerie vocale."</string>
     <string name="voicemail_default" msgid="2001233554889016880">"Votre fournisseur de services"</string>
-    <string name="mobile_networks" msgid="2843854043339307375">"Paramètres des réseaux cellulaires"</string>
+    <!-- no translation found for vm_change_pin_old_pin (7295220109886682573) -->
+    <skip />
+    <!-- no translation found for vm_change_pin_new_pin (5412922262839438097) -->
+    <skip />
+    <!-- no translation found for vm_change_pin_progress_message (6727847908454506025) -->
+    <skip />
+    <!-- no translation found for vm_change_pin_error_too_short (5974971097302710497) -->
+    <skip />
+    <!-- no translation found for vm_change_pin_error_too_long (8476870806115051865) -->
+    <skip />
+    <!-- no translation found for vm_change_pin_error_too_weak (7883744811891784882) -->
+    <skip />
+    <!-- no translation found for vm_change_pin_error_mismatch (2754685537970757317) -->
+    <skip />
+    <!-- no translation found for vm_change_pin_error_invalid (3972205462701668653) -->
+    <skip />
+    <!-- no translation found for vm_change_pin_error_system_error (6610603326230000207) -->
+    <skip />
+    <string name="mobile_networks" msgid="2843854043339307375">"Paramètres réseaux cellulaires"</string>
     <string name="label_available" msgid="1181658289009300430">"Réseaux disponibles"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"Recherche en cours…"</string>
     <string name="empty_networks_list" msgid="4249426905018815316">"Aucun réseau trouvé"</string>
@@ -477,10 +495,10 @@
     <string name="hac_mode_title" msgid="8740268574688743289">"Assistance auditive"</string>
     <string name="hac_mode_summary" msgid="6833851160514929341">"Activer la compatibilité du service d\'assistance auditive"</string>
   <string-array name="tty_mode_entries">
-    <item msgid="512950011423868021">"Mode TTY désactivé"</item>
+    <item msgid="512950011423868021">"TTY désactivé"</item>
     <item msgid="3971695875449640648">"TTY complet"</item>
     <item msgid="1937509904407445684">"TTY HCO"</item>
-    <item msgid="5644925873488772224">"Mode TTY VCO"</item>
+    <item msgid="5644925873488772224">"TTY VCO"</item>
   </string-array>
     <string name="dtmf_tones_title" msgid="5163153771291340803">"Tonalités DTMF"</string>
     <string name="dtmf_tones_summary" msgid="3351820372864020331">"Définir la durée des tonalités DTMF"</string>
@@ -544,6 +562,8 @@
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"Vibreur"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"Vibreur"</string>
     <string name="voicemail_visual_voicemail_switch_title" msgid="5012622186976275457">"Messagerie vocale visuelle"</string>
+    <!-- no translation found for voicemail_change_pin_dialog_title (6035421908626121564) -->
+    <skip />
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"Son"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"Sonnerie et vibreur"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"Cartes SIM intégrées"</string>

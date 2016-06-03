@@ -21,8 +21,8 @@
     <string name="sip_accounts_title" msgid="2082527045326874519">"Reikningar"</string>
     <string name="sip_receive_calls" msgid="426678617137462173">"Svara símtölum"</string>
     <string name="sip_receive_calls_summary" msgid="946161517528227523">"Notar meiri rafhlöðuorku"</string>
-    <string name="sip_call_options_title" msgid="8421210494703869806">"Nota SIP-símtal"</string>
-    <string name="sip_call_options_wifi_only_title" msgid="5112579243580893890">"Nota SIP-símtal (eingöngu Wi-Fi)"</string>
+    <string name="sip_call_options_title" msgid="8421210494703869806">"Nota SIP-hringingar"</string>
+    <string name="sip_call_options_wifi_only_title" msgid="5112579243580893890">"Nota SIP-hringingar (eingöngu Wi-Fi)"</string>
     <string name="sip_call_options_entry_1" msgid="7217659161237099900">"Fyrir öll símtöl þegar gagnanet er tiltækt"</string>
     <string name="sip_call_options_entry_2" msgid="1815335903940609729">"Aðeins fyrir SIP-símtöl"</string>
     <string name="sip_call_options_wifi_only_entry_1" msgid="1358513095551847314">"Fyrir öll símtöl"</string>

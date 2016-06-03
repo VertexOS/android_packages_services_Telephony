@@ -20,7 +20,7 @@
     <string name="sip_accounts" msgid="85559497282185405">"SIP အကောင့်များ"</string>
     <string name="sip_accounts_title" msgid="2082527045326874519">"အကောင့်များ"</string>
     <string name="sip_receive_calls" msgid="426678617137462173">"အဝင် ခေါ်ဆိုမှုများ လက်ခံရန်"</string>
-    <string name="sip_receive_calls_summary" msgid="946161517528227523">"ဘတ်ထရီ သက်တမ်းပိုသုံးပါသည်"</string>
+    <string name="sip_receive_calls_summary" msgid="946161517528227523">"ဘက်ထရီ သက်တမ်းပိုသုံးပါသည်"</string>
     <string name="sip_call_options_title" msgid="8421210494703869806">"SIP ခေါ်ဆိုမှု အသုံးပြုမည်"</string>
     <string name="sip_call_options_wifi_only_title" msgid="5112579243580893890">"SIP ခေါ်ဆိုမှု အသုံးပြုမည် (ကြိုးမဲ့ အင်တာနက်သာ)"</string>
     <string name="sip_call_options_entry_1" msgid="7217659161237099900">"ဒေတာ ကွန်ရက် ရှိနေစဉ် ခေါ်ဆိုမှုများ အားလုံး အတွက်"</string>
@@ -54,11 +54,11 @@
     <string name="username_title" msgid="6770064611005663470">"အသုံးပြုသူ အမည်"</string>
     <string name="password_title" msgid="5289013731515564295">"စကားဝှက်"</string>
     <string name="display_name_title" msgid="579241787583079773">"အမည်ကို ပြပေးရန်"</string>
-    <string name="proxy_address_title" msgid="6890163365640631841">"အထွက် ပရော့စီ လိပ်စာ"</string>
+    <string name="proxy_address_title" msgid="6890163365640631841">"အထွက် ပရောက်စီ လိပ်စာ"</string>
     <string name="port_title" msgid="6693965912656593862">"ပို့ နံပါတ်"</string>
     <string name="transport_title" msgid="889155457465372527">"သယ်ယူပို့ဆောင်ရေးအမျိုးအစား"</string>
     <string name="send_keepalive_title" msgid="599627072150501159">"keep-alive ကို ပို့ပါ"</string>
-    <string name="advanced_settings" msgid="6622996380747040711">"ရွေးနိုင်သော ရွေးစရာများ"</string>
+    <string name="advanced_settings" msgid="6622996380747040711">"ရွေးနိုင်သော ဆက်တင်များ"</string>
     <string name="auth_username_title" msgid="8262491689004708265">"အသုံးပြုသူ အမည် အထောက်အထားကို စိစစ်ခြင်း"</string>
     <string name="auth_username_summary" msgid="941160241371436473">"အသုံးပြုသူ အမည်ကို အထောက်အထား စိစစ်ရန် သုံးခဲ့"</string>
     <string name="default_preference_summary" msgid="1979249643719483249">"&lt;သတ်မှတ်မထားပါ&gt;"</string>
@@ -69,7 +69,7 @@
     <string name="all_empty_alert" msgid="4087734950375192387">"SIP အကောင့်သစ်၏ အသေးစိတ်များရိုက်ထည့်ပါ။"</string>
     <string name="empty_alert" msgid="6659484914371384024">"<xliff:g id="INPUT_FIELD_NAME">%s</xliff:g> မှာ လိုအပ်ပြီး ပလာထား မရပါ"</string>
     <string name="not_a_valid_port" msgid="7931422555587011830">"ပို့ နံပါတ်မှာ ၁၀၀၀ မှ ၆၅၅၃၄ အတွင်းမှာ ရှိရပါမည်"</string>
-    <string name="no_internet_available" msgid="5523747991760017298">"SIP ခေါ်ဆိုမှု ပြုလုပ်ရန်၊ သင့်အင်တာနက် ချိတ်ဆက်မှုကိုဦးစွာ စစ်ဆေးပါ။"</string>
+    <string name="no_internet_available" msgid="5523747991760017298">"SIP ဖုန်းခေါ်ရန်၊ သင့်အင်တာနက် ချိတ်ဆက်မှုကိုဦးစွာ စစ်ဆေးပါ။"</string>
     <string name="no_wifi_available" msgid="1955023904229673488">"ခေါ်ဆိုမှုအတွက် ကြိုးမဲ့ကွန်ရက် ချိတ်ဆက်ရန်လိုအပ်ပါသည် (ကြိုးမဲ့ နှင့် ကွန်ရက်ချိန်ညှိချက်များကို အသုံးပြုပါ)။"</string>
     <string name="no_voip" msgid="3038021971231952704">"SIP ခေါ်ဆိုမှု မထောက်ပံံ့ပါ။"</string>
     <string name="sip_system_decide" msgid="5577696249416700671">"အလိုအလျောက်"</string>

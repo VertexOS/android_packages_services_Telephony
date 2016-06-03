@@ -20,7 +20,7 @@
     <string name="sip_accounts" msgid="85559497282185405">"SIP അക്കൗണ്ടുകൾ"</string>
     <string name="sip_accounts_title" msgid="2082527045326874519">"അക്കൗണ്ടുകൾ"</string>
     <string name="sip_receive_calls" msgid="426678617137462173">"ഇൻകമിംഗ് കോൾ സ്വീകരിക്കൂ"</string>
-    <string name="sip_receive_calls_summary" msgid="946161517528227523">"കൂടുതൽ ബാറ്ററി ആയുസ് ഉപയോഗിക്കുന്നു"</string>
+    <string name="sip_receive_calls_summary" msgid="946161517528227523">"കൂടുതൽ ബാറ്ററി ഉപയോഗിക്കുന്നു"</string>
     <string name="sip_call_options_title" msgid="8421210494703869806">"SIP കോൾചെയ്യൽ ഉപയോഗിക്കുക"</string>
     <string name="sip_call_options_wifi_only_title" msgid="5112579243580893890">"SIP കോൾചെയ്യൽ ഉപയോഗിക്കുക (വൈഫൈ മാത്രം)"</string>
     <string name="sip_call_options_entry_1" msgid="7217659161237099900">"ഡാറ്റ നെറ്റ്‌വർക്ക് ലഭ്യമാകുമ്പോൾ എല്ലാ കോളുകൾക്കായും"</string>
@@ -31,8 +31,8 @@
     <string name="sip_account_list" msgid="5610858485304821480">"SIP അക്കൗണ്ടുകൾ"</string>
     <string name="saving_account" msgid="5336529880235177448">"അക്കൗണ്ട് സംരക്ഷിക്കുന്നു…"</string>
     <string name="removing_account" msgid="5537351356808985756">"അക്കൗണ്ട് നീക്കംചെയ്യുന്നു…"</string>
-    <string name="sip_menu_save" msgid="7882219814563869225">"സംരക്ഷിക്കുക"</string>
-    <string name="sip_menu_discard" msgid="2350421645423888438">"നിരസിക്കുക"</string>
+    <string name="sip_menu_save" msgid="7882219814563869225">"സംരക്ഷിക്കൂ"</string>
+    <string name="sip_menu_discard" msgid="2350421645423888438">"നിരസിക്കൂ"</string>
     <string name="alert_dialog_close" msgid="1326011828713435134">"പ്രൊഫൈൽ അടയ്‌ക്കുക"</string>
     <string name="alert_dialog_ok" msgid="4752048404605388940">"ശരി"</string>
     <string name="close_profile" msgid="3122414058856309881">"അടയ്‌ക്കുക"</string>
@@ -72,7 +72,7 @@
     <string name="no_internet_available" msgid="5523747991760017298">"SIP കോൾചെയ്യുന്നതിന്, ആദ്യം നിങ്ങളുടെ ഇന്റർനെറ്റ് കണക്ഷൻ പരിശോധിക്കുക."</string>
     <string name="no_wifi_available" msgid="1955023904229673488">"SIP കോളുകൾക്കായി വൈഫൈ നെറ്റ്‌വർക്കിലേക്ക് കണക്‌റ്റുചെയ്യേണ്ടതുണ്ട് (വയർലെസ്, നെറ്റ്‌വർക്ക് ക്രമീകരണങ്ങൾ ഉപയോഗിക്കുക)."</string>
     <string name="no_voip" msgid="3038021971231952704">"SIP കോൾചെയ്യൽ പിന്തുണയ്‌ക്കുന്നില്ല"</string>
-    <string name="sip_system_decide" msgid="5577696249416700671">"യാന്ത്രികമായി"</string>
+    <string name="sip_system_decide" msgid="5577696249416700671">"സ്വയമേവ"</string>
     <string name="sip_always_send_keepalive" msgid="4773022409239823318">"എല്ലായ്പ്പോഴും അയയ്‌ക്കുക"</string>
     <string name="sip_connection_service_label" msgid="6935325004265884453">"അന്തർ നിർമ്മിത SIP കോൾചെയ്യൽ"</string>
 </resources>

@@ -19,12 +19,12 @@
     <string name="sip_settings" msgid="3768482698061677257">"SIP ezarpenak"</string>
     <string name="sip_accounts" msgid="85559497282185405">"SIP kontuak"</string>
     <string name="sip_accounts_title" msgid="2082527045326874519">"Kontuak"</string>
-    <string name="sip_receive_calls" msgid="426678617137462173">"Jaso sarrerako deiak"</string>
+    <string name="sip_receive_calls" msgid="426678617137462173">"Jaso deiak"</string>
     <string name="sip_receive_calls_summary" msgid="946161517528227523">"Bateria gehiago erabiltzen du"</string>
     <string name="sip_call_options_title" msgid="8421210494703869806">"Erabili SIP deiak"</string>
     <string name="sip_call_options_wifi_only_title" msgid="5112579243580893890">"Erabili SIP deiak (Wi-Fi bidez soilik)"</string>
     <string name="sip_call_options_entry_1" msgid="7217659161237099900">"Dei guztietan datu-sarea erabilgarri dagoenean"</string>
-    <string name="sip_call_options_entry_2" msgid="1815335903940609729">"SIP deietarako soilik"</string>
+    <string name="sip_call_options_entry_2" msgid="1815335903940609729">"SIP deietan soilik"</string>
     <string name="sip_call_options_wifi_only_entry_1" msgid="1358513095551847314">"Dei guztietan"</string>
     <string name="add_sip_account" msgid="800843669753980091">"Gehitu kontua"</string>
     <string name="remove_sip_account" msgid="1367664438506503690">"Kendu kontua"</string>
