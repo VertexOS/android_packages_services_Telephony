@@ -48,8 +48,8 @@
     <string name="registration_status_invalid_credentials" msgid="8406872554323334182">"O rexistro da conta non se completou correctamente: nome de usuario ou contrasinal incorrectos."</string>
     <string name="registration_status_server_unreachable" msgid="7710275557045148634">"Rexistro da conta incorrecto. Comproba o nome do servidor."</string>
     <string name="third_party_account_summary" msgid="9041060473615403041">"Esta conta está sendo utilizada actualmente pola aplicación de <xliff:g id="ACCOUNT_OWNER">%s</xliff:g>."</string>
-    <string name="sip_edit_title" msgid="1967247832635750410">"Detalles da conta SIP"</string>
-    <string name="sip_edit_new_title" msgid="266414118302574305">"Detalles da conta SIP"</string>
+    <string name="sip_edit_title" msgid="1967247832635750410">"Conta SIP"</string>
+    <string name="sip_edit_new_title" msgid="266414118302574305">"Conta SIP"</string>
     <string name="domain_address_title" msgid="1968479941328225423">"Servidor"</string>
     <string name="username_title" msgid="6770064611005663470">"Nome de usuario"</string>
     <string name="password_title" msgid="5289013731515564295">"Contrasinal"</string>

@@ -91,8 +91,8 @@
     <string name="sum_show_caller_id" msgid="6768534125447290401">"Numeris pateikiamas išeinančiuose skambučiuose"</string>
     <string name="sum_default_caller_id" msgid="1954518825510901365">"Naudoti numatytuosius nustatymus, kad išeinančiuose skambučiuose būtų pateikiamas mano numeris"</string>
     <string name="labelCW" msgid="6120513814915920200">"Laukiantis skambutis"</string>
-    <string name="sum_cw_enabled" msgid="8083061901633671397">"Skambučio metu praneškite man apie gaunamuosius skambučius"</string>
-    <string name="sum_cw_disabled" msgid="3648693907300104575">"Skambučio metu praneškite man apie gaunamuosius skambučius"</string>
+    <string name="sum_cw_enabled" msgid="8083061901633671397">"Skambučio metu pranešti man apie gaunamuosius skambučius"</string>
+    <string name="sum_cw_disabled" msgid="3648693907300104575">"Skambučio metu pranešti man apie gaunamuosius skambučius"</string>
     <string name="call_forwarding_settings" msgid="3378927671091537173">"Skambučio peradresavimo nustatymai"</string>
     <string name="call_forwarding_settings_with_label" msgid="8569489414006897127">"Skambučių peradresavimo nustatymai (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="labelCF" msgid="2574386948026924737">"Skambučio peradresavimas"</string>
@@ -147,6 +147,15 @@
     <string name="no_change" msgid="3186040086622435212">"Neatlikta jokių pakeitimų."</string>
     <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"Pasirinkti balso pašto paslaugą"</string>
     <string name="voicemail_default" msgid="2001233554889016880">"Jūsų operatorius"</string>
+    <string name="vm_change_pin_old_pin" msgid="7295220109886682573">"Senas PIN kodas"</string>
+    <string name="vm_change_pin_new_pin" msgid="5412922262839438097">"Naujas PIN"</string>
+    <string name="vm_change_pin_progress_message" msgid="6727847908454506025">"PIN kodo keitimas"</string>
+    <string name="vm_change_pin_error_too_short" msgid="5974971097302710497">"Naujas PIN kodas per trumpas."</string>
+    <string name="vm_change_pin_error_too_long" msgid="8476870806115051865">"Naujas PIN kodas per ilgas."</string>
+    <string name="vm_change_pin_error_too_weak" msgid="7883744811891784882">"Naujas PIN kodas nepakankamai patikimas. Patikimame slaptažodyje neturėtų būti kelių vienodų simbolių iš eilės ar pasikartojančių skaitmenų."</string>
+    <string name="vm_change_pin_error_mismatch" msgid="2754685537970757317">"Senas PIN kodas nesutampa."</string>
+    <string name="vm_change_pin_error_invalid" msgid="3972205462701668653">"Naujame PIN kode yra netinkamų simbolių."</string>
+    <string name="vm_change_pin_error_system_error" msgid="6610603326230000207">"Nepavyko pakeisti PIN kodo"</string>
     <string name="mobile_networks" msgid="2843854043339307375">"Korinio tinklo nustatymai"</string>
     <string name="label_available" msgid="1181658289009300430">"Galimi tinklai"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"Ieškoma…"</string>
@@ -354,7 +363,7 @@
     <string name="auto_retry_mode_title" msgid="4073265511427813322">"Automatinis bandymas iš naujo"</string>
     <string name="auto_retry_mode_summary" msgid="4973886004067532288">"Įgalinti automatinio kartotinio bandymo režimą"</string>
     <string name="tty_mode_not_allowed_video_call" msgid="3795846787901909176">"Vykstant vaizdo skambučiui negalima keisti TTY režimo"</string>
-    <string name="menu_add" msgid="1882023737425114762">"Pridėti adresatą"</string>
+    <string name="menu_add" msgid="1882023737425114762">"Pridėti kontaktą"</string>
     <string name="menu_edit" msgid="7143003705504672374">"Redaguoti adresatą"</string>
     <string name="menu_delete" msgid="3977150783449642851">"Ištrinti adresatą"</string>
     <string name="get_pin2" msgid="8204677063922225311">"Įveskite PIN2 kodą"</string>
@@ -533,7 +542,7 @@
     <string name="alert_dialog_yes" msgid="6674268047820703974">"Taip"</string>
     <string name="alert_dialog_no" msgid="1476091437797628703">"Ne"</string>
     <string name="alert_dialog_dismiss" msgid="2491494287075907171">"Atsisakyti"</string>
-    <string name="voicemail_provider" msgid="5135942703327136909">"Paslauga"</string>
+    <string name="voicemail_provider" msgid="5135942703327136909">"Paslaugos teikėjas"</string>
     <string name="voicemail_settings" msgid="72448049107749316">"Sąranka"</string>
     <string name="voicemail_number_not_set" msgid="6724904736891087856">"&lt;Nenustatyta&gt;"</string>
     <string name="other_settings" msgid="3672912580359716394">"Kiti skambučio nustatymai"</string>
@@ -546,6 +555,7 @@
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"Vibruoti"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"Vibruoti"</string>
     <string name="voicemail_visual_voicemail_switch_title" msgid="5012622186976275457">"Vaizdinis balso paštas"</string>
+    <string name="voicemail_change_pin_dialog_title" msgid="6035421908626121564">"Keisti PIN kodą"</string>
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"Garsas"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"Skambėjimo tonas ir vibracija"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"Įtaisytosios SIM kortelės"</string>

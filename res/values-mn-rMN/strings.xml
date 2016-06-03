@@ -31,7 +31,7 @@
     <string name="cancel" msgid="5044513931633602634">"Цуцлах"</string>
     <string name="enter_input" msgid="1810529547726803893">"USSD зурвасын үсгийн тоо <xliff:g id="MIN_LEN">%d</xliff:g> болон <xliff:g id="MAX_LEN">%d</xliff:g> хооронд байх шаардлагатай. Дахин оролдоно уу."</string>
     <string name="manageConferenceLabel" msgid="4691922394301969053">"Утсан хурлыг удирдах"</string>
-    <string name="ok" msgid="3811371167865772377">"Тийм"</string>
+    <string name="ok" msgid="3811371167865772377">"OK"</string>
     <string name="audio_mode_speaker" msgid="27649582100085266">"Чанга яригч"</string>
     <string name="audio_mode_earpiece" msgid="4156527186373869107">"Утасны чихэвч"</string>
     <string name="audio_mode_wired_headset" msgid="1465350758489175975">"Утастай чихэвч"</string>
@@ -59,15 +59,15 @@
     <string name="labelCdmaMore_with_label" msgid="6333588719319970399">"CDMA дуудлагын тохиргоо (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="apn_settings" msgid="9043423184895642077">"Хандалтын Цэгийн Нэрс"</string>
     <string name="settings_label" msgid="3876743539816984008">"Сүлжээний тохиргоо"</string>
-    <string name="phone_accounts" msgid="6376603393888116364">"Дуудах акаунт"</string>
+    <string name="phone_accounts" msgid="6376603393888116364">"Дуудах бүртгэл"</string>
     <string name="phone_accounts_make_calls_with" msgid="1969188078933152231">"Дараахаар дуудлага хийх"</string>
     <string name="phone_accounts_make_sip_calls_with" msgid="4677789312053828493">"Дараахаар SIP дуудлага хийх"</string>
     <string name="phone_accounts_ask_every_time" msgid="4346499067149985702">"Эхлэж хандах"</string>
     <string name="phone_accounts_default_account_label" msgid="4183772241814460014">"Сүлжээ байхгүй байна"</string>
     <string name="phone_accounts_settings_header" msgid="4141710640883261094">"Тохиргоонууд"</string>
-    <string name="phone_accounts_choose_accounts" msgid="5232948804226424002">"Акаунт сонгох"</string>
-    <string name="phone_accounts_selection_header" msgid="1365215726106915865">"Гар утасны акаунт"</string>
-    <string name="phone_accounts_add_sip_account" msgid="2023821743341923271">"SIP акаунт нэмэх"</string>
+    <string name="phone_accounts_choose_accounts" msgid="5232948804226424002">"Бүртгэл сонгох"</string>
+    <string name="phone_accounts_selection_header" msgid="1365215726106915865">"Гар утасны бүртгэл"</string>
+    <string name="phone_accounts_add_sip_account" msgid="2023821743341923271">"SIP бүртгэл нэмэх"</string>
     <string name="phone_accounts_configure_account_settings" msgid="1361715069911607109">"Акаунтын тохиргоог хийх"</string>
     <string name="phone_accounts_all_calling_accounts" msgid="207619531589278471">"Дуудлагын эрхтэй бүх бүртгэл"</string>
     <string name="phone_accounts_all_calling_accounts_summary" msgid="8594186415822657011">"Дуудлага хийх боломжтой бүртгэлээ сонгоно уу"</string>
@@ -131,7 +131,7 @@
     <string name="stk_cc_ss_to_ss_error" msgid="5057846756489053759">"SS хүсэлтийг шинэ SS хүсэлт болгон өөрчилсөн."</string>
     <string name="fdn_check_failure" msgid="18200614306525434">"Таны Phone апп-н FDN тохиргоо асаалттай байна. Тус шалтгаанаар дуудлагатай холбоотой зарим функц ажиллахгүй."</string>
     <string name="radio_off_error" msgid="2304459933248513376">"Эдгээр тохиргоог харахын өмнө радиог асаана уу."</string>
-    <string name="close_dialog" msgid="2365884406356986917">"Тийм"</string>
+    <string name="close_dialog" msgid="2365884406356986917">"OK"</string>
     <string name="enable" msgid="7248657275000173526">"Асаах"</string>
     <string name="disable" msgid="4678348128118573672">"Унтраах"</string>
     <string name="change_num" msgid="239476305819844391">"Шинэчлэх"</string>
@@ -147,6 +147,24 @@
     <string name="no_change" msgid="3186040086622435212">"Ямар ч өөрчлөлт хийгдсэнгүй."</string>
     <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"Дуут шуудангийн үйлчилгээг сонгох"</string>
     <string name="voicemail_default" msgid="2001233554889016880">"Таны оператор компани"</string>
+    <!-- no translation found for vm_change_pin_old_pin (7295220109886682573) -->
+    <skip />
+    <!-- no translation found for vm_change_pin_new_pin (5412922262839438097) -->
+    <skip />
+    <!-- no translation found for vm_change_pin_progress_message (6727847908454506025) -->
+    <skip />
+    <!-- no translation found for vm_change_pin_error_too_short (5974971097302710497) -->
+    <skip />
+    <!-- no translation found for vm_change_pin_error_too_long (8476870806115051865) -->
+    <skip />
+    <!-- no translation found for vm_change_pin_error_too_weak (7883744811891784882) -->
+    <skip />
+    <!-- no translation found for vm_change_pin_error_mismatch (2754685537970757317) -->
+    <skip />
+    <!-- no translation found for vm_change_pin_error_invalid (3972205462701668653) -->
+    <skip />
+    <!-- no translation found for vm_change_pin_error_system_error (6610603326230000207) -->
+    <skip />
     <string name="mobile_networks" msgid="2843854043339307375">"Үүрэн сүлжээний тохиргоо"</string>
     <string name="label_available" msgid="1181658289009300430">"Боломжтой сүлжээнүүд"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"Хайж байна..."</string>
@@ -473,7 +491,7 @@
     <string name="hac_mode_title" msgid="8740268574688743289">"Сонсголын төхөөрөмж"</string>
     <string name="hac_mode_summary" msgid="6833851160514929341">"Сонсголын төхөөрөмж тааруулагчийг асаана уу"</string>
   <string-array name="tty_mode_entries">
-    <item msgid="512950011423868021">"TTY Үгүй"</item>
+    <item msgid="512950011423868021">"TTY Унтраасан"</item>
     <item msgid="3971695875449640648">"TTY Дүүрэн"</item>
     <item msgid="1937509904407445684">"TTY HCO"</item>
     <item msgid="5644925873488772224">"TTY VCO"</item>
@@ -540,6 +558,8 @@
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"Чичиргээ"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"Чичиргээ"</string>
     <string name="voicemail_visual_voicemail_switch_title" msgid="5012622186976275457">"Уншиж болохуйц дуут шуудан"</string>
+    <!-- no translation found for voicemail_change_pin_dialog_title (6035421908626121564) -->
+    <skip />
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"Дуу"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"Хонхны ая &amp; Чичиргээ"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"Суурилагдсан SIM карт"</string>

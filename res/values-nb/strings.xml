@@ -125,7 +125,7 @@
     <string name="updating_settings" msgid="8171225533884883252">"Oppdaterer innstillinger…"</string>
     <string name="reverting_settings" msgid="4752151682666912828">"Tilbakestiller innstillinger ..."</string>
     <string name="response_error" msgid="6674110501330139405">"Uventet svar fra nettverket."</string>
-    <string name="exception_error" msgid="7027667130619518211">"Nettverks- eller SIM-kort-feil."</string>
+    <string name="exception_error" msgid="7027667130619518211">"Nettverks- eller SIM-kortfeil."</string>
     <string name="stk_cc_ss_to_dial_error" msgid="2816779198916570502">"SS-forespørselen er endret til en DIAL-forespørsel."</string>
     <string name="stk_cc_ss_to_ussd_error" msgid="7490626178582654236">"SS-forespørselen er endret til en USSD-forespørsel."</string>
     <string name="stk_cc_ss_to_ss_error" msgid="5057846756489053759">"SS-forespørselen er endret til en ny SS-forespørsel."</string>
@@ -147,6 +147,24 @@
     <string name="no_change" msgid="3186040086622435212">"Ingen endringer ble utført."</string>
     <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"Velg leverandør for talepostkasse"</string>
     <string name="voicemail_default" msgid="2001233554889016880">"Operatøren din"</string>
+    <!-- no translation found for vm_change_pin_old_pin (7295220109886682573) -->
+    <skip />
+    <!-- no translation found for vm_change_pin_new_pin (5412922262839438097) -->
+    <skip />
+    <!-- no translation found for vm_change_pin_progress_message (6727847908454506025) -->
+    <skip />
+    <!-- no translation found for vm_change_pin_error_too_short (5974971097302710497) -->
+    <skip />
+    <!-- no translation found for vm_change_pin_error_too_long (8476870806115051865) -->
+    <skip />
+    <!-- no translation found for vm_change_pin_error_too_weak (7883744811891784882) -->
+    <skip />
+    <!-- no translation found for vm_change_pin_error_mismatch (2754685537970757317) -->
+    <skip />
+    <!-- no translation found for vm_change_pin_error_invalid (3972205462701668653) -->
+    <skip />
+    <!-- no translation found for vm_change_pin_error_system_error (6610603326230000207) -->
+    <skip />
     <string name="mobile_networks" msgid="2843854043339307375">"Mobilnettinnstillinger"</string>
     <string name="label_available" msgid="1181658289009300430">"Tilgjengelige nettverk"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"Søker …"</string>
@@ -351,7 +369,7 @@
     <string name="enable_fdn_ok" msgid="7215588870329688132">"Slå av faste numre"</string>
     <string name="disable_fdn_ok" msgid="5727046928930740173">"Slå på faste numre"</string>
     <string name="sum_fdn" msgid="1959399454900272878">"Vedlikehold liste over faste numre"</string>
-    <string name="sum_fdn_change_pin" msgid="6666549734792827932">"Endre PIN-kode for å styre faste numre"</string>
+    <string name="sum_fdn_change_pin" msgid="6666549734792827932">"Endre PIN-kode for tilgang til faste numre"</string>
     <string name="sum_fdn_manage_list" msgid="8431088265332628316">"Administrer liste over telefonnumre"</string>
     <string name="voice_privacy" msgid="3776841382844614716">"Personvern for Google Voice"</string>
     <string name="voice_privacy_summary" msgid="3159383389833516214">"Aktiver forbedret personvern"</string>
@@ -477,7 +495,7 @@
     <string name="singleContactImportedMsg" msgid="6868483416182599206">"Kontakten er importert"</string>
     <string name="failedToImportSingleContactMsg" msgid="415399285420353917">"Kunne ikke importere kontakten"</string>
     <string name="hac_mode_title" msgid="8740268574688743289">"Høreapparater"</string>
-    <string name="hac_mode_summary" msgid="6833851160514929341">"Slå på kompatibilitet med høreapparat"</string>
+    <string name="hac_mode_summary" msgid="6833851160514929341">"Slå på kompatibilitet med høreapparater"</string>
   <string-array name="tty_mode_entries">
     <item msgid="512950011423868021">"TTY av"</item>
     <item msgid="3971695875449640648">"TTY full"</item>
@@ -546,6 +564,8 @@
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"Vibrering"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"Vibrering"</string>
     <string name="voicemail_visual_voicemail_switch_title" msgid="5012622186976275457">"Visuell talepostkasse"</string>
+    <!-- no translation found for voicemail_change_pin_dialog_title (6035421908626121564) -->
+    <skip />
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"Lyd"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"Ringetone og vibrering"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"Innebygde SIM-kort"</string>

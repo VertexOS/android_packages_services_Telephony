@@ -26,13 +26,13 @@
     <string name="sip_call_options_entry_1" msgid="7217659161237099900">"ਜਦੋਂ ਡਾਟਾ ਨੈਟਵਰਕ ਉਪਲਬਧ ਹੋਵੇ ਤਾਂ ਸਾਰੀਆਂ ਕਾਲਾਂ ਲਈ"</string>
     <string name="sip_call_options_entry_2" msgid="1815335903940609729">"ਕੇਵਲ SIP ਕਾਲਾਂ ਲਈ"</string>
     <string name="sip_call_options_wifi_only_entry_1" msgid="1358513095551847314">"ਸਾਰੀਆਂ ਕਾਲਾਂ ਲਈ"</string>
-    <string name="add_sip_account" msgid="800843669753980091">"ਖਾਤਾ ਜੋੜੋ"</string>
+    <string name="add_sip_account" msgid="800843669753980091">"ਖਾਤਾ ਸ਼ਾਮਲ ਕਰੋ"</string>
     <string name="remove_sip_account" msgid="1367664438506503690">"ਖਾਤਾ ਹਟਾਓ"</string>
     <string name="sip_account_list" msgid="5610858485304821480">"SIP ਖਾਤੇ"</string>
     <string name="saving_account" msgid="5336529880235177448">"ਖਾਤਾ ਸੁਰੱਖਿਅਤ ਕਰ ਰਿਹਾ ਹੈ…"</string>
     <string name="removing_account" msgid="5537351356808985756">"ਖਾਤਾ ਹਟਾ ਰਿਹਾ ਹੈ…"</string>
-    <string name="sip_menu_save" msgid="7882219814563869225">"ਸੁਰੱਖਿਅਤ ਕਰੋ"</string>
-    <string name="sip_menu_discard" msgid="2350421645423888438">"ਬਰਖਾਸਤ ਕਰੋ"</string>
+    <string name="sip_menu_save" msgid="7882219814563869225">"ਰੱਖਿਅਤ ਕਰੋ"</string>
+    <string name="sip_menu_discard" msgid="2350421645423888438">"ਖਾਰਜ ਕਰੋ"</string>
     <string name="alert_dialog_close" msgid="1326011828713435134">"ਪ੍ਰੋਫਾਈਲ ਬੰਦ ਕਰੋ"</string>
     <string name="alert_dialog_ok" msgid="4752048404605388940">"ਠੀਕ"</string>
     <string name="close_profile" msgid="3122414058856309881">"ਬੰਦ ਕਰੋ"</string>
@@ -72,7 +72,7 @@
     <string name="no_internet_available" msgid="5523747991760017298">"ਇੱਕ SIP ਕਾਲ ਕਰਨ ਲਈ, ਪਹਿਲਾਂ ਆਪਣੇ ਇੰਟਰਨੈਟ ਕਨੈਕਸ਼ਨ ਦੀ ਜਾਂਚ ਕਰੋ।"</string>
     <string name="no_wifi_available" msgid="1955023904229673488">"SIP ਕਾਲਾਂ ਲਈ ਤੁਹਾਨੂੰ ਇੱਕ Wi-Fi ਨੈਟਵਰਕ ਨਾਲ ਕਨੈਕਟ ਕਰਨ ਦੀ ਲੋੜ ਹੋਵੇਗੀ (ਵਾਇਰਲੈਸ &amp; ਨੈਟਵਰਕ ਸੈਟਿੰਗਾਂ ਵਰਤੋ)।"</string>
     <string name="no_voip" msgid="3038021971231952704">"SIP ਕਾਲਿੰਗ ਸਮਰਥਿਤ ਨਹੀਂ"</string>
-    <string name="sip_system_decide" msgid="5577696249416700671">"ਆਟੋਮੈਟਿਕ"</string>
+    <string name="sip_system_decide" msgid="5577696249416700671">"ਸਵੈਚਲਿਤ"</string>
     <string name="sip_always_send_keepalive" msgid="4773022409239823318">"ਹਮੇਸ਼ਾਂ ਭੇਜੋ"</string>
     <string name="sip_connection_service_label" msgid="6935325004265884453">"ਬਿਲਟ-ਇਨ SIP ਕਾਲਿੰਗ"</string>
 </resources>

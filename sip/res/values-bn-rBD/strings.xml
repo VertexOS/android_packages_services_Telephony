@@ -22,7 +22,7 @@
     <string name="sip_receive_calls" msgid="426678617137462173">"আগত কলগুলি গ্রহণ করুন"</string>
     <string name="sip_receive_calls_summary" msgid="946161517528227523">"আরো বেশি ব্যাটারি লাইফ ব্যবহার করে"</string>
     <string name="sip_call_options_title" msgid="8421210494703869806">"SIP কলিং ব্যবহার করুন"</string>
-    <string name="sip_call_options_wifi_only_title" msgid="5112579243580893890">"SIP কলিং ব্যবহার করুন (শুধুমাত্র Wi-Fi)"</string>
+    <string name="sip_call_options_wifi_only_title" msgid="5112579243580893890">"SIP কলিং ব্যবহার করুন (শুধুমাত্র ওয়াই-ফাই)"</string>
     <string name="sip_call_options_entry_1" msgid="7217659161237099900">"যখন ডেটা নেটওয়ার্ক উপলব্ধ তখন সব কলের জন্য"</string>
     <string name="sip_call_options_entry_2" msgid="1815335903940609729">"শুধুমাত্র SIP কলগুলির জন্য"</string>
     <string name="sip_call_options_wifi_only_entry_1" msgid="1358513095551847314">"সব কলের জন্য"</string>
@@ -41,7 +41,7 @@
     <string name="registration_status_still_trying" msgid="7648151061205513458">"এখনও চেষ্টা করছে..."</string>
     <string name="registration_status_not_receiving" msgid="7620333886153361090">"কলগুলি গ্রহণ করা হচ্ছে না৷"</string>
     <string name="registration_status_no_data" msgid="2541999976218192413">"কোনো ইন্টারনেট সংযোগ না থাকায় অ্যাকাউন্ট নিবন্ধন করা বন্ধ হয়ে গেছে৷"</string>
-    <string name="registration_status_no_wifi_data" msgid="9154717387473039546">"কোনো Wi-Fi সংযোগ না থাকায় অ্যাকাউন্ট নিবন্ধন করা বন্ধ হয়ে গেছে৷"</string>
+    <string name="registration_status_no_wifi_data" msgid="9154717387473039546">"কোনো ওয়াই-ফাই সংযোগ না থাকায় অ্যাকাউন্ট নিবন্ধন করা বন্ধ হয়ে গেছে৷"</string>
     <string name="registration_status_not_running" msgid="514205414303796800">"অ্যাকাউন্টের নিবন্ধন অসফল হয়েছে৷"</string>
     <string name="registration_status_done" msgid="3264961069247314253">"কলগুলি গ্রহণ করা হচ্ছে৷"</string>
     <string name="registration_status_failed_try_later" msgid="2199970021756384317">"অ্যাকাউন্টের নিবন্ধন অসফল হয়েছে: (<xliff:g id="REGISTRATION_ERROR_MESSAGE">%s</xliff:g>); পরে আবার চেষ্টা করা হবে"</string>
@@ -70,7 +70,7 @@
     <string name="empty_alert" msgid="6659484914371384024">"<xliff:g id="INPUT_FIELD_NAME">%s</xliff:g> প্রয়োজনীয় এবং এটিকে ফাঁকা রাখা যাবে না৷"</string>
     <string name="not_a_valid_port" msgid="7931422555587011830">"পোর্ট নম্বরটিকে ১০০০ ও ৬৫৫৩৪ এর মধ্যে হতে হবে৷"</string>
     <string name="no_internet_available" msgid="5523747991760017298">"একটি SIP কল করতে প্রথমে আপনার ইন্টারনেট সংযোগ পরীক্ষা করুন৷"</string>
-    <string name="no_wifi_available" msgid="1955023904229673488">"SIP কলগুলি করার জন্য আপনাকে একটি Wi-Fi নেটওয়ার্কের সাথে সংযুক্ত হতে হবে (ওয়ারলেস নেটওয়ার্ক সেটিংস ব্যবহার করুন)৷"</string>
+    <string name="no_wifi_available" msgid="1955023904229673488">"SIP কলগুলি করার জন্য আপনাকে একটি ওয়াই-ফাই নেটওয়ার্কের সাথে সংযুক্ত হতে হবে (ওয়ারলেস নেটওয়ার্ক সেটিংস ব্যবহার করুন)৷"</string>
     <string name="no_voip" msgid="3038021971231952704">"SIP কলিং সমর্থিত নয়"</string>
     <string name="sip_system_decide" msgid="5577696249416700671">"স্বয়ংক্রিয়"</string>
     <string name="sip_always_send_keepalive" msgid="4773022409239823318">"সবসময় পাঠান"</string>

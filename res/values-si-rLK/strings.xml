@@ -67,7 +67,7 @@
     <string name="phone_accounts_settings_header" msgid="4141710640883261094">"සැකසීම්"</string>
     <string name="phone_accounts_choose_accounts" msgid="5232948804226424002">"ගිණුම් තෝරන්න"</string>
     <string name="phone_accounts_selection_header" msgid="1365215726106915865">"දුරකථන ගිණුම්"</string>
-    <string name="phone_accounts_add_sip_account" msgid="2023821743341923271">"SIP ගිණුම් එකතු කරන්න"</string>
+    <string name="phone_accounts_add_sip_account" msgid="2023821743341923271">"SIP ගිණුම එක් කරන්න"</string>
     <string name="phone_accounts_configure_account_settings" msgid="1361715069911607109">"ගිණුමේ සැකසීම් වින්‍යාස කරන්න"</string>
     <string name="phone_accounts_all_calling_accounts" msgid="207619531589278471">"සියලු ඇමතුම් ගිණුම්"</string>
     <string name="phone_accounts_all_calling_accounts_summary" msgid="8594186415822657011">"ඇමතුම් සිදු කළ හැකි ගිණුම් තෝරන්න"</string>
@@ -147,6 +147,24 @@
     <string name="no_change" msgid="3186040086622435212">"කිසිඳු වෙනස්කමක් සිදු නොකෙරුණි."</string>
     <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"හඬ තැපැල් සේවාව තෝරන්න"</string>
     <string name="voicemail_default" msgid="2001233554889016880">"ඔබගේ වාහකයා"</string>
+    <!-- no translation found for vm_change_pin_old_pin (7295220109886682573) -->
+    <skip />
+    <!-- no translation found for vm_change_pin_new_pin (5412922262839438097) -->
+    <skip />
+    <!-- no translation found for vm_change_pin_progress_message (6727847908454506025) -->
+    <skip />
+    <!-- no translation found for vm_change_pin_error_too_short (5974971097302710497) -->
+    <skip />
+    <!-- no translation found for vm_change_pin_error_too_long (8476870806115051865) -->
+    <skip />
+    <!-- no translation found for vm_change_pin_error_too_weak (7883744811891784882) -->
+    <skip />
+    <!-- no translation found for vm_change_pin_error_mismatch (2754685537970757317) -->
+    <skip />
+    <!-- no translation found for vm_change_pin_error_invalid (3972205462701668653) -->
+    <skip />
+    <!-- no translation found for vm_change_pin_error_system_error (6610603326230000207) -->
+    <skip />
     <string name="mobile_networks" msgid="2843854043339307375">"සෙලියුලර් ජාල සැකසීම්"</string>
     <string name="label_available" msgid="1181658289009300430">"තිබෙන ජාල"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"සොයමින්..."</string>
@@ -540,6 +558,8 @@
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"කම්පනය වීම"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"කම්පනය වීම"</string>
     <string name="voicemail_visual_voicemail_switch_title" msgid="5012622186976275457">"දෘශ්‍ය හඬ තැපෑල"</string>
+    <!-- no translation found for voicemail_change_pin_dialog_title (6035421908626121564) -->
+    <skip />
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"ශබ්දය"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"රිගින් ටෝන් සහ කම්පනය කරන්න"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"තිළැලි SIM කාඩ් පත්"</string>

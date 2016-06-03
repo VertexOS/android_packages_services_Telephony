@@ -60,7 +60,7 @@
     <string name="send_keepalive_title" msgid="599627072150501159">"发送持续连接消息"</string>
     <string name="advanced_settings" msgid="6622996380747040711">"可选设置"</string>
     <string name="auth_username_title" msgid="8262491689004708265">"身份验证用户名"</string>
-    <string name="auth_username_summary" msgid="941160241371436473">"用于身份验证的用户名"</string>
+    <string name="auth_username_summary" msgid="941160241371436473">"用于验证身份的用户名"</string>
     <string name="default_preference_summary" msgid="1979249643719483249">"&lt;未设置&gt;"</string>
     <string name="display_name_summary" msgid="7155076491675565407">"&lt;与用户名相同&gt;"</string>
     <string name="optional_summary" msgid="2363105560396317624">"&lt;可选&gt;"</string>

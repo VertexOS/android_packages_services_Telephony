@@ -31,7 +31,7 @@
     <string name="cancel" msgid="5044513931633602634">"રદ કરો"</string>
     <string name="enter_input" msgid="1810529547726803893">"USSD સંદેશ <xliff:g id="MIN_LEN">%d</xliff:g> અને <xliff:g id="MAX_LEN">%d</xliff:g> વર્ણ વચ્ચેનો હોવો આવશ્યક છે. કૃપા કરીને ફરી પ્રયાસ કરો."</string>
     <string name="manageConferenceLabel" msgid="4691922394301969053">"કોન્ફરન્સ કૉલ સંચાલિત કરો"</string>
-    <string name="ok" msgid="3811371167865772377">"ઑકે"</string>
+    <string name="ok" msgid="3811371167865772377">"ઓકે"</string>
     <string name="audio_mode_speaker" msgid="27649582100085266">"સ્પીકર્સ"</string>
     <string name="audio_mode_earpiece" msgid="4156527186373869107">"હેન્ડસેટ ઇઅરપીસ"</string>
     <string name="audio_mode_wired_headset" msgid="1465350758489175975">"વાયર્ડ હેડસેટ"</string>
@@ -131,7 +131,7 @@
     <string name="stk_cc_ss_to_ss_error" msgid="5057846756489053759">"SS વિનંતીને નવી SS વિનંતી પર સંશોધિત કરી."</string>
     <string name="fdn_check_failure" msgid="18200614306525434">"તમારી ફોન એપ્લિકેશનની ફિક્સ્ડ ડાયલિંગ નંબર્સ સેટિંગ ચાલુ છે. પરિણામ રૂપે, કેટલીક કૉલ સંબંધિત સુવિધાઓ કાર્ય કરતી નથી."</string>
     <string name="radio_off_error" msgid="2304459933248513376">"આ સેટિંગ્સ જોતા પહેલાં રેડિઓ ચાલુ કરો."</string>
-    <string name="close_dialog" msgid="2365884406356986917">"ઑકે"</string>
+    <string name="close_dialog" msgid="2365884406356986917">"ઓકે"</string>
     <string name="enable" msgid="7248657275000173526">"ચાલુ કરો"</string>
     <string name="disable" msgid="4678348128118573672">"બંધ કરો"</string>
     <string name="change_num" msgid="239476305819844391">"અપડેટ"</string>
@@ -147,6 +147,24 @@
     <string name="no_change" msgid="3186040086622435212">"કોઇ બદલાવો થયાં ન હતાં."</string>
     <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"વૉઇસમેઇલ સેવા પસંદ કરો"</string>
     <string name="voicemail_default" msgid="2001233554889016880">"તમારો કેરિઅર"</string>
+    <!-- no translation found for vm_change_pin_old_pin (7295220109886682573) -->
+    <skip />
+    <!-- no translation found for vm_change_pin_new_pin (5412922262839438097) -->
+    <skip />
+    <!-- no translation found for vm_change_pin_progress_message (6727847908454506025) -->
+    <skip />
+    <!-- no translation found for vm_change_pin_error_too_short (5974971097302710497) -->
+    <skip />
+    <!-- no translation found for vm_change_pin_error_too_long (8476870806115051865) -->
+    <skip />
+    <!-- no translation found for vm_change_pin_error_too_weak (7883744811891784882) -->
+    <skip />
+    <!-- no translation found for vm_change_pin_error_mismatch (2754685537970757317) -->
+    <skip />
+    <!-- no translation found for vm_change_pin_error_invalid (3972205462701668653) -->
+    <skip />
+    <!-- no translation found for vm_change_pin_error_system_error (6610603326230000207) -->
+    <skip />
     <string name="mobile_networks" msgid="2843854043339307375">"સેલ્યુલર નેટવર્ક સેટિંગ્સ"</string>
     <string name="label_available" msgid="1181658289009300430">"ઉપલબ્ધ નેટવર્ક્સ"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"શોધી રહ્યું છે..."</string>
@@ -470,8 +488,8 @@
     <string name="importToFDNfromContacts" msgid="2130620207013368580">"સંપર્કોમાંથી આયાત કરો"</string>
     <string name="singleContactImportedMsg" msgid="6868483416182599206">"સંપર્ક આયાત કર્યો"</string>
     <string name="failedToImportSingleContactMsg" msgid="415399285420353917">"સંપર્ક આયાત કરવામાં નિષ્ફળ થયાં"</string>
-    <string name="hac_mode_title" msgid="8740268574688743289">"સાંભળવામાં સહાયો"</string>
-    <string name="hac_mode_summary" msgid="6833851160514929341">"સાંભળવું અને સુસંગતતા ચાલુ કરો"</string>
+    <string name="hac_mode_title" msgid="8740268574688743289">"સાંભળવામાં સહાયતા"</string>
+    <string name="hac_mode_summary" msgid="6833851160514929341">"સાંભળવામાં સહાયતા સુસંગતતા ચાલુ કરો"</string>
   <string-array name="tty_mode_entries">
     <item msgid="512950011423868021">"TTY બંધ"</item>
     <item msgid="3971695875449640648">"TTY સંપૂર્ણ"</item>
@@ -540,6 +558,8 @@
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"વાઇબ્રેટ"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"વાઇબ્રેટ"</string>
     <string name="voicemail_visual_voicemail_switch_title" msgid="5012622186976275457">"વિઝ્યુઅલ વૉઇસમેઇલ"</string>
+    <!-- no translation found for voicemail_change_pin_dialog_title (6035421908626121564) -->
+    <skip />
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"ધ્વનિ"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"રિંગટોન અને વાઇબ્રેટ"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"બિલ્ટ-ઇન SIM કાર્ડ્સ"</string>

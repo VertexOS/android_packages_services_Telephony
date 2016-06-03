@@ -17,14 +17,14 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="sip_settings" msgid="3768482698061677257">"SIP жөндөөлөрү"</string>
-    <string name="sip_accounts" msgid="85559497282185405">"SIP эсептик жазуулары"</string>
+    <string name="sip_accounts" msgid="85559497282185405">"SIP каттоо эсептери"</string>
     <string name="sip_accounts_title" msgid="2082527045326874519">"Каттоо эсептери"</string>
     <string name="sip_receive_calls" msgid="426678617137462173">"Келген чалууларды кабыл алуу"</string>
-    <string name="sip_receive_calls_summary" msgid="946161517528227523">"Көбүрөөк батарея кубатын колдонот"</string>
-    <string name="sip_call_options_title" msgid="8421210494703869806">"SIP чалуусун пайдалануу"</string>
-    <string name="sip_call_options_wifi_only_title" msgid="5112579243580893890">"SIP чалуусун пайдалануу (Wi-Fi гана)"</string>
+    <string name="sip_receive_calls_summary" msgid="946161517528227523">"Батареянын кубаты көбүрөөк керектелет"</string>
+    <string name="sip_call_options_title" msgid="8421210494703869806">"SIP аркылуу чалуу"</string>
+    <string name="sip_call_options_wifi_only_title" msgid="5112579243580893890">"SIP аркылуу чалуу (Wi-Fi гана)"</string>
     <string name="sip_call_options_entry_1" msgid="7217659161237099900">"Дайындар тармагы жеткиликтүү болгон учурдагы бардык чалуулар үчүн"</string>
-    <string name="sip_call_options_entry_2" msgid="1815335903940609729">"SIP чалуулар үчүн гана"</string>
+    <string name="sip_call_options_entry_2" msgid="1815335903940609729">"SIP аркылуу чалуулар үчүн гана"</string>
     <string name="sip_call_options_wifi_only_entry_1" msgid="1358513095551847314">"Бардык чалуулар үчүн"</string>
     <string name="add_sip_account" msgid="800843669753980091">"Каттоо эсебин кошуу"</string>
     <string name="remove_sip_account" msgid="1367664438506503690">"Каттоо эсебин алып салуу"</string>

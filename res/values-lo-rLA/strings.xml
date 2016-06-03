@@ -147,6 +147,15 @@
     <string name="no_change" msgid="3186040086622435212">"ບໍ່ມີການປ່ຽນແປງເກີດຂຶ້ນ."</string>
     <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"ເລືອກບໍລິການຂໍ້ຄວາມສຽງ"</string>
     <string name="voicemail_default" msgid="2001233554889016880">"ຜູ້​ໃຫ້​ບໍ​ລິ​ການ​ຂອງ​ທ່ານ"</string>
+    <string name="vm_change_pin_old_pin" msgid="7295220109886682573">"ລະຫັດ PIN ເກົ່າ"</string>
+    <string name="vm_change_pin_new_pin" msgid="5412922262839438097">"ລະຫັດ PIN ໃໝ່"</string>
+    <string name="vm_change_pin_progress_message" msgid="6727847908454506025">"ກຳລັງປ່ຽນລະຫັດ PIN"</string>
+    <string name="vm_change_pin_error_too_short" msgid="5974971097302710497">"ລະຫັດ PIN ໃໝ່ສັ້ນເກີນໄປ."</string>
+    <string name="vm_change_pin_error_too_long" msgid="8476870806115051865">"ລະຫັດ PIN ໃໝ່ຍາວເກີນໄປ."</string>
+    <string name="vm_change_pin_error_too_weak" msgid="7883744811891784882">"ລະຫັດ PIN ໃໝ່ງ່າຍເກີນໄປ. ລະຫັດຜ່ານທີ່ຍາກບໍ່ຄວນຈະມີຕົວເລກຕໍ່ເນື່ອງ ຫຼື ຕົວເລກຊໍ້າໆກັນ."</string>
+    <string name="vm_change_pin_error_mismatch" msgid="2754685537970757317">"ລະຫັດ PIN ເກົ່າບໍ່ກົງກັນ."</string>
+    <string name="vm_change_pin_error_invalid" msgid="3972205462701668653">"ລະຫັດ PIN ໃໝ່ມີຕົວອັກສອນທີ່ບໍ່ຖືກຕ້ອງ."</string>
+    <string name="vm_change_pin_error_system_error" msgid="6610603326230000207">"ບໍ່ສາມາດປ່ຽນລະຫັດ PIN ໄດ້"</string>
     <string name="mobile_networks" msgid="2843854043339307375">"ການ​ຕັ້ງ​ຄ່າ​ເຄືອ​ຂ່າຍ​ມື​ຖື"</string>
     <string name="label_available" msgid="1181658289009300430">"ເຄືອຂ່າຍທີ່ມີ"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"ກຳລັງຊອກຫາ..."</string>
@@ -467,7 +476,7 @@
     <string name="importSimEntry" msgid="6614358325359736031">"ນຳເຂົ້າ"</string>
     <string name="importAllSimEntries" msgid="1503181169636198673">"ນຳເຂົ້າທັງໝົດ"</string>
     <string name="importingSimContacts" msgid="7374056215462575769">"ກຳລັງນຳເຂົ້າລາຍຊື່ຜູ່ຕິດຕໍ່ຈາກ SIM"</string>
-    <string name="importToFDNfromContacts" msgid="2130620207013368580">"ນຳເຂົ້າຈາກລາຍຊື່ຜູ່ຕິດຕໍ່"</string>
+    <string name="importToFDNfromContacts" msgid="2130620207013368580">"ນຳເຂົ້າຈາກລາຍຊື່ຜູ້ຕິດຕໍ່"</string>
     <string name="singleContactImportedMsg" msgid="6868483416182599206">"ລາຍ​ຊື່​ຕິດ​ຕໍ່​ນຳ​ເຂົ້າ​ແລ້ວ"</string>
     <string name="failedToImportSingleContactMsg" msgid="415399285420353917">"ນຳ​ລາຍ​ຊື່​ຕິດ​ຕໍ່​ເຂົ້າ​ບໍ່​ສຳ​ເລັດ"</string>
     <string name="hac_mode_title" msgid="8740268574688743289">"ການຊ່ວຍໄດ້ຍິນ"</string>
@@ -540,6 +549,7 @@
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"ສັ່ນເຕືອນ"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"ສັ່ນເຕືອນ"</string>
     <string name="voicemail_visual_voicemail_switch_title" msgid="5012622186976275457">"ຂໍ້​ຄວາມ​ສຽງ​ປະ​ກອບ​ພາບ"</string>
+    <string name="voicemail_change_pin_dialog_title" msgid="6035421908626121564">"​ປ່ຽນ​ລະຫັດ PIN"</string>
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"ສຽງ"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"ຣິງໂທນ &amp; ການສັ່ນເຕືອນ"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"SIM ກາດ​ທີ່​ມາ​ກັບ​ເຄື່ອງ"</string>

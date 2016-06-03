@@ -91,8 +91,8 @@
     <string name="sum_show_caller_id" msgid="6768534125447290401">"Номер, отображающийся при исходящих вызовах"</string>
     <string name="sum_default_caller_id" msgid="1954518825510901365">"Использовать стандартные настройки оператора для показа моего номера при исходящих вызовах."</string>
     <string name="labelCW" msgid="6120513814915920200">"Параллельный вызов"</string>
-    <string name="sum_cw_enabled" msgid="8083061901633671397">"Извещать меня о входящих вызовах во время разговора."</string>
-    <string name="sum_cw_disabled" msgid="3648693907300104575">"Извещать меня о входящих вызовах во время разговора."</string>
+    <string name="sum_cw_enabled" msgid="8083061901633671397">"Извещать меня о входящих вызовах во время разговора"</string>
+    <string name="sum_cw_disabled" msgid="3648693907300104575">"Извещать меня о входящих вызовах во время разговора"</string>
     <string name="call_forwarding_settings" msgid="3378927671091537173">"Переадресация"</string>
     <string name="call_forwarding_settings_with_label" msgid="8569489414006897127">"Переадресация (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="labelCF" msgid="2574386948026924737">"Переадресация вызовов"</string>
@@ -147,6 +147,24 @@
     <string name="no_change" msgid="3186040086622435212">"Номер не изменен."</string>
     <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"Выберите службу голосовой почты"</string>
     <string name="voicemail_default" msgid="2001233554889016880">"Ваш оператор связи"</string>
+    <!-- no translation found for vm_change_pin_old_pin (7295220109886682573) -->
+    <skip />
+    <!-- no translation found for vm_change_pin_new_pin (5412922262839438097) -->
+    <skip />
+    <!-- no translation found for vm_change_pin_progress_message (6727847908454506025) -->
+    <skip />
+    <!-- no translation found for vm_change_pin_error_too_short (5974971097302710497) -->
+    <skip />
+    <!-- no translation found for vm_change_pin_error_too_long (8476870806115051865) -->
+    <skip />
+    <!-- no translation found for vm_change_pin_error_too_weak (7883744811891784882) -->
+    <skip />
+    <!-- no translation found for vm_change_pin_error_mismatch (2754685537970757317) -->
+    <skip />
+    <!-- no translation found for vm_change_pin_error_invalid (3972205462701668653) -->
+    <skip />
+    <!-- no translation found for vm_change_pin_error_system_error (6610603326230000207) -->
+    <skip />
     <string name="mobile_networks" msgid="2843854043339307375">"Настройки мобильных сетей"</string>
     <string name="label_available" msgid="1181658289009300430">"Доступные сети"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"Поиск…"</string>
@@ -340,7 +358,7 @@
     <string name="fdn_list_with_label" msgid="7437232552210469217">"Список разрешенных номеров (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="fdn_activation" msgid="2156479741307463576">"Активация разреш. номеров"</string>
     <string name="fdn_enabled" msgid="5238109009915521240">"Разрешенные номера включены"</string>
-    <string name="fdn_disabled" msgid="4700049736675368279">"Разрешенные номера отключены"</string>
+    <string name="fdn_disabled" msgid="4700049736675368279">"Разрешенные номера не используются"</string>
     <string name="enable_fdn" msgid="3740191529180493851">"Вкл. разрешенные номера"</string>
     <string name="disable_fdn" msgid="7944020890722540616">"Откл. разреш. номера"</string>
     <string name="change_pin2" msgid="2153563695382176676">"Изменить PIN2"</string>
@@ -377,7 +395,7 @@
     <string name="pin2_or_fdn_invalid" msgid="6025144083384701197">"Список разрешенных номеров не обновлен. Указан неверный PIN2 или номер телефона."</string>
     <string name="fdn_failed" msgid="540018079008319747">"Не удалось включить FDN"</string>
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"Считывание с SIM-карты…"</string>
-    <string name="simContacts_empty" msgid="5270660846489561932">"На SIM-карте нет контактов."</string>
+    <string name="simContacts_empty" msgid="5270660846489561932">"На SIM-карте нет контактов"</string>
     <string name="simContacts_title" msgid="1861472842524839921">"Выберите контакты для импорта"</string>
     <string name="simContacts_airplaneMode" msgid="5254946758982621072">"Чтобы импортировать контакты с SIM-карты, отключите режим полета."</string>
     <string name="enable_pin" msgid="5422767284133234860">"Включить/отключить запрос PIN SIM-карты"</string>
@@ -473,7 +491,7 @@
     <string name="singleContactImportedMsg" msgid="6868483416182599206">"Контакт импортирован"</string>
     <string name="failedToImportSingleContactMsg" msgid="415399285420353917">"Не удалось импортировать контакт"</string>
     <string name="hac_mode_title" msgid="8740268574688743289">"Слуховые аппараты"</string>
-    <string name="hac_mode_summary" msgid="6833851160514929341">"Включить слуховой аппарат"</string>
+    <string name="hac_mode_summary" msgid="6833851160514929341">"Включить поддержку слухового аппарата"</string>
   <string-array name="tty_mode_entries">
     <item msgid="512950011423868021">"Телетайп выключен"</item>
     <item msgid="3971695875449640648">"Полнофункциональный телетайп"</item>
@@ -548,6 +566,8 @@
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"Вибросигнал"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"Вибросигнал"</string>
     <string name="voicemail_visual_voicemail_switch_title" msgid="5012622186976275457">"Визуальная голосовая почта"</string>
+    <!-- no translation found for voicemail_change_pin_dialog_title (6035421908626121564) -->
+    <skip />
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"Звук"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"Рингтон и вибросигнал"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"Встроенные SIM-карты"</string>
