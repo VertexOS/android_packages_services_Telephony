@@ -263,6 +263,9 @@ public class VoicemailSettingsActivity extends PreferenceActivity
 
         mVoicemailChangePinPreference = (VoicemailChangePinDialogPreference) findPreference(
                 getResources().getString(R.string.voicemail_change_pin_key));
+        mVoicemailChangePinPreference
+                .setPhoneAccountHandle(PhoneUtils.makePstnPhoneAccountHandle(mPhone));
+
         if (mOmtpVvmCarrierConfigHelper.isValid()) {
             mVoicemailVisualVoicemail.setOnPreferenceChangeListener(this);
             mVoicemailVisualVoicemail.setChecked(

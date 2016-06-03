@@ -89,17 +89,17 @@ public class OmtpMessageReceiver extends BroadcastReceiver {
                 updateSource(phone, subId, message);
             } else {
                 Log.v(TAG, "Subscriber not ready, start provisioning");
-                startProvisioning(phone, data);
+                startProvisioning(phone, message, data);
             }
         } else {
             Log.e(TAG, "Unknown prefix: " + eventType);
         }
     }
 
-    private void startProvisioning(PhoneAccountHandle phone, Bundle data) {
+    private void startProvisioning(PhoneAccountHandle phone, StatusMessage message, Bundle data) {
         OmtpVvmCarrierConfigHelper helper = new OmtpVvmCarrierConfigHelper(mContext,
                 PhoneUtils.getSubIdForPhoneAccountHandle(phone));
-        helper.startProvisioning(data);
+        helper.startProvisioning(phone, message, data);
     }
 
     /**

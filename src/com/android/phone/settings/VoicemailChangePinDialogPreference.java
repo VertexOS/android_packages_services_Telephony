@@ -16,17 +16,21 @@
 
 package com.android.phone.settings;
 
+import android.annotation.Nullable;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Network;
 import android.preference.DialogPreference;
+import android.preference.PreferenceManager;
 import android.telecom.PhoneAccountHandle;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
+import com.android.phone.PhoneUtils;
 import com.android.phone.R;
 import com.android.phone.common.mail.MessagingException;
 import com.android.phone.vvm.omtp.OmtpConstants;
@@ -48,6 +52,8 @@ public class VoicemailChangePinDialogPreference extends DialogPreference {
 
     private ProgressDialog mProgressDialog;
 
+    private static final String DEFAULT_OLD_PIN_KEY = "default_old_pin";
+
     public VoicemailChangePinDialogPreference(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
@@ -65,7 +71,13 @@ public class VoicemailChangePinDialogPreference extends DialogPreference {
 
         mOldPin = (EditText) dialog.findViewById(R.id.vm_old_pin);
         mNewPin = (EditText) dialog.findViewById(R.id.vm_new_pin);
-
+        String defaultOldPin = getDefaultOldPin(getContext(), mPhoneAccountHandle);
+        if (defaultOldPin != null) {
+            // If the old PIN was set by the system, read its' value and hide the input box.
+            mOldPin.setText(defaultOldPin);
+            mOldPin.setVisibility(View.GONE);
+            dialog.findViewById(R.id.vm_old_pin_label).setVisibility(View.GONE);
+        }
         return dialog;
     }
 
@@ -80,6 +92,29 @@ public class VoicemailChangePinDialogPreference extends DialogPreference {
     public VoicemailChangePinDialogPreference setPhoneAccountHandle(PhoneAccountHandle handle) {
         mPhoneAccountHandle = handle;
         return this;
+    }
+
+    @Nullable
+    public static String getDefaultOldPin(Context context, PhoneAccountHandle handle) {
+        return getSharedPreference(context)
+                .getString(getPerPhoneAccountKey(handle, DEFAULT_OLD_PIN_KEY), null);
+    }
+
+    public static void setDefaultOldPIN(Context context, PhoneAccountHandle handle,
+            @Nullable String pin) {
+        SharedPreferences preferences = getSharedPreference(context);
+        preferences.edit()
+                .putString(getPerPhoneAccountKey(handle, DEFAULT_OLD_PIN_KEY), pin)
+                .apply();
+    }
+
+    private static String getPerPhoneAccountKey(PhoneAccountHandle handle, String key) {
+        return "voicemail_pin_dialog_preference_"
+                + PhoneUtils.getSubIdForPhoneAccountHandle(handle) + "_" + key;
+    }
+
+    private static SharedPreferences getSharedPreference(Context context) {
+        return PreferenceManager.getDefaultSharedPreferences(context);
     }
 
     private void processPinChange() {
@@ -147,6 +182,16 @@ public class VoicemailChangePinDialogPreference extends DialogPreference {
                 finishPinChange();
                 if (result != OmtpConstants.CHANGE_PIN_SUCCESS) {
                     showError(result);
+                }
+
+                if (result == OmtpConstants.CHANGE_PIN_SUCCESS
+                        || result == OmtpConstants.CHANGE_PIN_MISMATCH) {
+                    // If the PIN change succeeded we no longer know what the old (current) PIN is.
+                    // If the default old PIN is rejected by the server, the PIN is probably changed
+                    // through other means.
+                    // Wipe the default old PIN so the old PIN input box will be shown to the user
+                    // on the next time.
+                    setDefaultOldPIN(mContext, mPhoneAccountHandle, null);
                 }
             } catch (MessagingException e) {
                 finishPinChange();

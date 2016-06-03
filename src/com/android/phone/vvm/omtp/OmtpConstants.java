@@ -194,8 +194,26 @@ public class OmtpConstants {
 
     /**
      * OMTP spec v1.3 2.3.1 Change password request syntax
+     *
+     * This changes the PIN to access the Telephone User Interface, the traditional voicemail
+     * system.
      */
-    public static final String IMAP_CHANGE_TUI_PWD_FORMAT = "XCHANGE_TUI_PWD PWD=%1s OLD_PWD=%2s";
+    public static final String IMAP_CHANGE_TUI_PWD_FORMAT = "XCHANGE_TUI_PWD PWD=%1$s OLD_PWD=%2$s";
+
+    /**
+     * OMTP spec v1.3 2.4.1 Change languate request syntax
+     *
+     * This changes the language in the Telephone User Interface.
+     */
+    public static final String IMAP_CHANGE_VM_LANG_FORMAT = "XCHANGE_VM_LANG LANG=%1$s";
+
+    /**
+     * OMTP spec v1.3 2.5.1 Close NUT Request syntax
+     *
+     * This disables the new user tutorial, the message played to new users calling in the Telephone
+     * User Interface.
+     */
+    public static final String IMAP_CLOSE_NUT = "XCLOSE_NUT";
 
     /**
      * Possible NO responses for CHANGE_TUI_PWD

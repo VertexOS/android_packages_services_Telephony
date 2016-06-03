@@ -149,6 +149,10 @@ public class ImapHelper {
         return mConfig;
     }
 
+    public ImapConnection connect() {
+        return mImapStore.getConnection();
+    }
+
     /** The caller thread will block until the method returns. */
     public boolean markMessagesAsRead(List<Voicemail> voicemails) {
         return setFlags(voicemails, Flag.SEEN);
@@ -389,6 +393,34 @@ public class ImapHelper {
             return getChangePinResultFromImapResponse(connection.readResponse());
         } catch (IOException ioe) {
             return OmtpConstants.CHANGE_PIN_SYSTEM_ERROR;
+        } finally {
+            connection.destroyResponses();
+        }
+    }
+
+    public void changeVoicemailTuiLanguage(String languageCode)
+            throws MessagingException {
+        ImapConnection connection = mImapStore.getConnection();
+        try {
+            String command = getConfig().getProtocol()
+                    .getCommand(OmtpConstants.IMAP_CHANGE_VM_LANG_FORMAT);
+            connection.sendCommand(
+                    String.format(Locale.US, command, languageCode), true);
+        } catch (IOException ioe) {
+            LogUtils.e(TAG, ioe.toString());
+        } finally {
+            connection.destroyResponses();
+        }
+    }
+
+    public void closeNewUserTutorial() throws MessagingException {
+        ImapConnection connection = mImapStore.getConnection();
+        try {
+            String command = getConfig().getProtocol()
+                    .getCommand(OmtpConstants.IMAP_CLOSE_NUT);
+            connection.executeSimpleCommand(command, false);
+        } catch (IOException ioe) {
+            throw new MessagingException(MessagingException.SERVER_ERROR, ioe.toString());
         } finally {
             connection.destroyResponses();
         }

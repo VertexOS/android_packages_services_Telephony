@@ -93,7 +93,7 @@ public class ImapConnection {
         return mLoginPhrase;
     }
 
-    void open() throws IOException, MessagingException {
+    public void open() throws IOException, MessagingException {
         if (mTransport != null && mTransport.isOpen()) {
             return;
         }
@@ -314,7 +314,7 @@ public class ImapConnection {
      * @throws IOException
      * @throws MessagingException
      */
-    List<ImapResponse> executeSimpleCommand(String command, boolean sensitive)
+    public List<ImapResponse> executeSimpleCommand(String command, boolean sensitive)
             throws IOException, MessagingException {
         // TODO: It may be nice to catch IOExceptions and close the connection here.
         // Currently, we expect callers to do that, but if they fail to we'll be in a broken state.
@@ -332,7 +332,6 @@ public class ImapConnection {
         String tag = Integer.toString(mNextCommandTag.incrementAndGet());
         String commandToSend = tag + " " + command;
         mTransport.writeLine(commandToSend, (sensitive ? IMAP_REDACTED_LOG : command));
-
         return tag;
     }
 
