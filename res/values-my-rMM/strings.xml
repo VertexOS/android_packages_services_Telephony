@@ -147,24 +147,15 @@
     <string name="no_change" msgid="3186040086622435212">"အပြောင်းအလဲများ မပြုလုပ်ထားပါ"</string>
     <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"အသံစာပို့စနစ် ဝန်ဆောင်မှု ရွေးပါ"</string>
     <string name="voicemail_default" msgid="2001233554889016880">"သင့် မိုဘိုင်းဆက်သွယ်ရေး ဝန်ဆောင်မှုဌာန"</string>
-    <!-- no translation found for vm_change_pin_old_pin (7295220109886682573) -->
-    <skip />
-    <!-- no translation found for vm_change_pin_new_pin (5412922262839438097) -->
-    <skip />
-    <!-- no translation found for vm_change_pin_progress_message (6727847908454506025) -->
-    <skip />
-    <!-- no translation found for vm_change_pin_error_too_short (5974971097302710497) -->
-    <skip />
-    <!-- no translation found for vm_change_pin_error_too_long (8476870806115051865) -->
-    <skip />
-    <!-- no translation found for vm_change_pin_error_too_weak (7883744811891784882) -->
-    <skip />
-    <!-- no translation found for vm_change_pin_error_mismatch (2754685537970757317) -->
-    <skip />
-    <!-- no translation found for vm_change_pin_error_invalid (3972205462701668653) -->
-    <skip />
-    <!-- no translation found for vm_change_pin_error_system_error (6610603326230000207) -->
-    <skip />
+    <string name="vm_change_pin_old_pin" msgid="7295220109886682573">"ပင်နံပါတ်အဟောင်း"</string>
+    <string name="vm_change_pin_new_pin" msgid="5412922262839438097">"ပင်နံပါတ်အသစ်"</string>
+    <string name="vm_change_pin_progress_message" msgid="6727847908454506025">"ပင်နံပါတ်ပြောင်းနေသည်"</string>
+    <string name="vm_change_pin_error_too_short" msgid="5974971097302710497">"ပင်နံပါတ်အသစ်မှာ တိုလွန်းနေသည်။"</string>
+    <string name="vm_change_pin_error_too_long" msgid="8476870806115051865">"ပင်နံပါတ်အသစ်မှာ ရှည်လွန်းနေသည်။"</string>
+    <string name="vm_change_pin_error_too_weak" msgid="7883744811891784882">"ပင်နံပါတ်အသစ်မှာ အားနည်းလွန်းနေသည်။ အားကောင်းသောစကားဝှက်တစ်ခုတွင် အစဉ်လိုက်စာလုံးများ (သို့) ထပ်တလဲလဲသုံးထားသောကိန်းဂဏန်းများ မပါသင့်ပါ။"</string>
+    <string name="vm_change_pin_error_mismatch" msgid="2754685537970757317">"ပင်နံပါတ်အဟောင်းမှာ မကိုက်ညီပါ။"</string>
+    <string name="vm_change_pin_error_invalid" msgid="3972205462701668653">"ပင်နံပါတ်အသစ်တွင် အသုံးပြု၍မရသောစာလုံးများ ပါဝင်နေပါသည်။"</string>
+    <string name="vm_change_pin_error_system_error" msgid="6610603326230000207">"ပင်နံပါတ်ကို ပြောင်း၍မရပါ"</string>
     <string name="mobile_networks" msgid="2843854043339307375">"ဆဲလ်လူလာ ကွန်ရက် ဆက်တင်များ"</string>
     <string name="label_available" msgid="1181658289009300430">"ရရှိနိုင်သော ကွန်ယက်များ"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"ရှာဖွေနေသည်…"</string>
@@ -558,8 +549,7 @@
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"တုန်ခါခြင်း"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"တုန်ခါခြင်း"</string>
     <string name="voicemail_visual_voicemail_switch_title" msgid="5012622186976275457">"အမြင် အသံမေးလ်"</string>
-    <!-- no translation found for voicemail_change_pin_dialog_title (6035421908626121564) -->
-    <skip />
+    <string name="voicemail_change_pin_dialog_title" msgid="6035421908626121564">"ပင်နံပါတ်ပြောင်းပါ"</string>
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"အသံ"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"ဖုန်းမြည်သံ &amp; တုန်ခါသံ"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"တပ်ဆင်ပြီး ဆင်းမ် ကဒ်များ"</string>

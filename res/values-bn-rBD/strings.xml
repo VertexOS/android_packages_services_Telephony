@@ -147,24 +147,15 @@
     <string name="no_change" msgid="3186040086622435212">"কোনো পরিবর্তন করা হয়নি৷"</string>
     <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"ভয়েসমেল পরিষেবা বেছে নিন"</string>
     <string name="voicemail_default" msgid="2001233554889016880">"আপনার পরিষেবা প্রদানকারী"</string>
-    <!-- no translation found for vm_change_pin_old_pin (7295220109886682573) -->
-    <skip />
-    <!-- no translation found for vm_change_pin_new_pin (5412922262839438097) -->
-    <skip />
-    <!-- no translation found for vm_change_pin_progress_message (6727847908454506025) -->
-    <skip />
-    <!-- no translation found for vm_change_pin_error_too_short (5974971097302710497) -->
-    <skip />
-    <!-- no translation found for vm_change_pin_error_too_long (8476870806115051865) -->
-    <skip />
-    <!-- no translation found for vm_change_pin_error_too_weak (7883744811891784882) -->
-    <skip />
-    <!-- no translation found for vm_change_pin_error_mismatch (2754685537970757317) -->
-    <skip />
-    <!-- no translation found for vm_change_pin_error_invalid (3972205462701668653) -->
-    <skip />
-    <!-- no translation found for vm_change_pin_error_system_error (6610603326230000207) -->
-    <skip />
+    <string name="vm_change_pin_old_pin" msgid="7295220109886682573">"পুরানো পিন"</string>
+    <string name="vm_change_pin_new_pin" msgid="5412922262839438097">"নতুন পিন"</string>
+    <string name="vm_change_pin_progress_message" msgid="6727847908454506025">"পিন পরিবর্তন করুন"</string>
+    <string name="vm_change_pin_error_too_short" msgid="5974971097302710497">"নতুন পিনটি খুবই ছোট৷"</string>
+    <string name="vm_change_pin_error_too_long" msgid="8476870806115051865">"নতুন পিনটি খুবই দীর্ঘ৷"</string>
+    <string name="vm_change_pin_error_too_weak" msgid="7883744811891784882">"নতুন পিনটি খুবই দুর্বল৷ একটি শক্তিশালী পাসওয়ার্ডে ধারাবাহিক ক্রম বা পুনরাবৃত্ত সংখ্যা থাকা উচিৎ নয়৷"</string>
+    <string name="vm_change_pin_error_mismatch" msgid="2754685537970757317">"পুরানো পিন মিলছে না৷"</string>
+    <string name="vm_change_pin_error_invalid" msgid="3972205462701668653">"নতুন পিনে অবৈধ অক্ষর রয়েছে৷"</string>
+    <string name="vm_change_pin_error_system_error" msgid="6610603326230000207">"পিন পরিবর্তন করা গেল না"</string>
     <string name="mobile_networks" msgid="2843854043339307375">"সেলুলার নেটওয়ার্ক সেটিংস"</string>
     <string name="label_available" msgid="1181658289009300430">"উপলব্ধ নেটওয়ার্কগুলি"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"অনুসন্ধান করছে..."</string>
@@ -558,8 +549,7 @@
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"কম্পন"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"কম্পন"</string>
     <string name="voicemail_visual_voicemail_switch_title" msgid="5012622186976275457">"ভিজ্যুয়াল ভয়েসমেল"</string>
-    <!-- no translation found for voicemail_change_pin_dialog_title (6035421908626121564) -->
-    <skip />
+    <string name="voicemail_change_pin_dialog_title" msgid="6035421908626121564">"পিন পরিবর্তন করুন"</string>
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"শব্দ"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"রিংটোন ও কম্পন"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"বিল্ট-ইন সিম কার্ডগুলি"</string>

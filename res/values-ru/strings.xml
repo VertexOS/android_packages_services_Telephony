@@ -147,24 +147,15 @@
     <string name="no_change" msgid="3186040086622435212">"Номер не изменен."</string>
     <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"Выберите службу голосовой почты"</string>
     <string name="voicemail_default" msgid="2001233554889016880">"Ваш оператор связи"</string>
-    <!-- no translation found for vm_change_pin_old_pin (7295220109886682573) -->
-    <skip />
-    <!-- no translation found for vm_change_pin_new_pin (5412922262839438097) -->
-    <skip />
-    <!-- no translation found for vm_change_pin_progress_message (6727847908454506025) -->
-    <skip />
-    <!-- no translation found for vm_change_pin_error_too_short (5974971097302710497) -->
-    <skip />
-    <!-- no translation found for vm_change_pin_error_too_long (8476870806115051865) -->
-    <skip />
-    <!-- no translation found for vm_change_pin_error_too_weak (7883744811891784882) -->
-    <skip />
-    <!-- no translation found for vm_change_pin_error_mismatch (2754685537970757317) -->
-    <skip />
-    <!-- no translation found for vm_change_pin_error_invalid (3972205462701668653) -->
-    <skip />
-    <!-- no translation found for vm_change_pin_error_system_error (6610603326230000207) -->
-    <skip />
+    <string name="vm_change_pin_old_pin" msgid="7295220109886682573">"Старый PIN-код"</string>
+    <string name="vm_change_pin_new_pin" msgid="5412922262839438097">"Новый PIN-код"</string>
+    <string name="vm_change_pin_progress_message" msgid="6727847908454506025">"Изменение PIN-кода…"</string>
+    <string name="vm_change_pin_error_too_short" msgid="5974971097302710497">"Новый PIN-код слишком короткий"</string>
+    <string name="vm_change_pin_error_too_long" msgid="8476870806115051865">"Новый PIN-код слишком длинный"</string>
+    <string name="vm_change_pin_error_too_weak" msgid="7883744811891784882">"Новый PIN-код слишком простой. Чтобы пароль был надежным, он не должен содержать непрерывную последовательность чисел или повторяющиеся цифры."</string>
+    <string name="vm_change_pin_error_mismatch" msgid="2754685537970757317">"Старый PIN-код указан неверно"</string>
+    <string name="vm_change_pin_error_invalid" msgid="3972205462701668653">"Новый PIN-код содержит недопустимые символы"</string>
+    <string name="vm_change_pin_error_system_error" msgid="6610603326230000207">"Не удалось сменить PIN-код"</string>
     <string name="mobile_networks" msgid="2843854043339307375">"Настройки мобильных сетей"</string>
     <string name="label_available" msgid="1181658289009300430">"Доступные сети"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"Поиск…"</string>
@@ -566,8 +557,7 @@
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"Вибросигнал"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"Вибросигнал"</string>
     <string name="voicemail_visual_voicemail_switch_title" msgid="5012622186976275457">"Визуальная голосовая почта"</string>
-    <!-- no translation found for voicemail_change_pin_dialog_title (6035421908626121564) -->
-    <skip />
+    <string name="voicemail_change_pin_dialog_title" msgid="6035421908626121564">"Изменение PIN-кода"</string>
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"Звук"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"Рингтон и вибросигнал"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"Встроенные SIM-карты"</string>

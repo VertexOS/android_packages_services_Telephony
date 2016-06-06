@@ -147,24 +147,15 @@
     <string name="no_change" msgid="3186040086622435212">"કોઇ બદલાવો થયાં ન હતાં."</string>
     <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"વૉઇસમેઇલ સેવા પસંદ કરો"</string>
     <string name="voicemail_default" msgid="2001233554889016880">"તમારો કેરિઅર"</string>
-    <!-- no translation found for vm_change_pin_old_pin (7295220109886682573) -->
-    <skip />
-    <!-- no translation found for vm_change_pin_new_pin (5412922262839438097) -->
-    <skip />
-    <!-- no translation found for vm_change_pin_progress_message (6727847908454506025) -->
-    <skip />
-    <!-- no translation found for vm_change_pin_error_too_short (5974971097302710497) -->
-    <skip />
-    <!-- no translation found for vm_change_pin_error_too_long (8476870806115051865) -->
-    <skip />
-    <!-- no translation found for vm_change_pin_error_too_weak (7883744811891784882) -->
-    <skip />
-    <!-- no translation found for vm_change_pin_error_mismatch (2754685537970757317) -->
-    <skip />
-    <!-- no translation found for vm_change_pin_error_invalid (3972205462701668653) -->
-    <skip />
-    <!-- no translation found for vm_change_pin_error_system_error (6610603326230000207) -->
-    <skip />
+    <string name="vm_change_pin_old_pin" msgid="7295220109886682573">"જૂનો PIN"</string>
+    <string name="vm_change_pin_new_pin" msgid="5412922262839438097">"નવો PIN"</string>
+    <string name="vm_change_pin_progress_message" msgid="6727847908454506025">"PIN બદલી રહ્યાં છે"</string>
+    <string name="vm_change_pin_error_too_short" msgid="5974971097302710497">"નવો PIN ખૂબ ટૂંકો છે."</string>
+    <string name="vm_change_pin_error_too_long" msgid="8476870806115051865">"નવો PIN ખૂબ લાંબો છે."</string>
+    <string name="vm_change_pin_error_too_weak" msgid="7883744811891784882">"નવો PIN ખૂબ નબળો છે. સશક્ત પાસવર્ડ સતત ક્રમ અથવા પુનરાવર્તિત અંકો ધરાવતો હોવો જોઇએ નહીં."</string>
+    <string name="vm_change_pin_error_mismatch" msgid="2754685537970757317">"જૂનો PIN મેળ ખાતો નથી."</string>
+    <string name="vm_change_pin_error_invalid" msgid="3972205462701668653">"નવો PIN અમાન્ય અક્ષરો ધરાવે છે."</string>
+    <string name="vm_change_pin_error_system_error" msgid="6610603326230000207">"PIN બદલવામાં અસમર્થ"</string>
     <string name="mobile_networks" msgid="2843854043339307375">"સેલ્યુલર નેટવર્ક સેટિંગ્સ"</string>
     <string name="label_available" msgid="1181658289009300430">"ઉપલબ્ધ નેટવર્ક્સ"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"શોધી રહ્યું છે..."</string>
@@ -558,8 +549,7 @@
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"વાઇબ્રેટ"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"વાઇબ્રેટ"</string>
     <string name="voicemail_visual_voicemail_switch_title" msgid="5012622186976275457">"વિઝ્યુઅલ વૉઇસમેઇલ"</string>
-    <!-- no translation found for voicemail_change_pin_dialog_title (6035421908626121564) -->
-    <skip />
+    <string name="voicemail_change_pin_dialog_title" msgid="6035421908626121564">"PIN બદલો"</string>
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"ધ્વનિ"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"રિંગટોન અને વાઇબ્રેટ"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"બિલ્ટ-ઇન SIM કાર્ડ્સ"</string>
