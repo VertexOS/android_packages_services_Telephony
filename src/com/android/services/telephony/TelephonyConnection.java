@@ -79,6 +79,8 @@ abstract class TelephonyConnection extends Connection {
     private static final int MSG_CONNECTION_EXTRAS_CHANGED = 12;
     private static final int MSG_SET_ORIGNAL_CONNECTION_CAPABILITIES = 13;
     private static final int MSG_ON_HOLD_TONE = 14;
+    private static final int MSG_CDMA_VOICE_PRIVACY_ON = 15;
+    private static final int MSG_CDMA_VOICE_PRIVACY_OFF = 16;
 
     private final Handler mHandler = new Handler() {
         @Override
@@ -205,6 +207,15 @@ abstract class TelephonyConnection extends Connection {
                             sendConnectionEvent(EVENT_ON_HOLD_TONE_END, null);
                         }
                     }
+                    break;
+
+                case MSG_CDMA_VOICE_PRIVACY_ON:
+                    Log.d(this, "MSG_CDMA_VOICE_PRIVACY_ON received");
+                    setCdmaVoicePrivacy(true);
+                    break;
+                case MSG_CDMA_VOICE_PRIVACY_OFF:
+                    Log.d(this, "MSG_CDMA_VOICE_PRIVACY_OFF received");
+                    setCdmaVoicePrivacy(false);
                     break;
             }
         }
@@ -386,6 +397,11 @@ abstract class TelephonyConnection extends Connection {
      * Indicates whether this connection supports being a part of a conference..
      */
     private boolean mIsConferenceSupported;
+
+    /**
+     * Indicates whether or not this connection has CDMA Enhanced Voice Privacy enabled.
+     */
+    private boolean mIsCdmaVoicePrivacyEnabled;
 
     /**
      * Listeners to our TelephonyConnection specific callbacks
@@ -662,6 +678,8 @@ abstract class TelephonyConnection extends Connection {
         newProperties = changeBitmask(newProperties, PROPERTY_WIFI, mIsWifi);
         newProperties = changeBitmask(newProperties, PROPERTY_IS_EXTERNAL_CALL,
                 isExternalConnection());
+        newProperties = changeBitmask(newProperties, PROPERTY_HAS_CDMA_VOICE_PRIVACY,
+                mIsCdmaVoicePrivacyEnabled);
 
         if (getConnectionProperties() != newProperties) {
             setConnectionProperties(newProperties);
@@ -712,6 +730,8 @@ abstract class TelephonyConnection extends Connection {
         getPhone().registerForDisconnect(mHandler, MSG_DISCONNECT, null);
         getPhone().registerForSuppServiceNotification(mHandler, MSG_SUPP_SERVICE_NOTIFY, null);
         getPhone().registerForOnHoldTone(mHandler, MSG_ON_HOLD_TONE, null);
+        getPhone().registerForInCallVoicePrivacyOn(mHandler, MSG_CDMA_VOICE_PRIVACY_ON, null);
+        getPhone().registerForInCallVoicePrivacyOff(mHandler, MSG_CDMA_VOICE_PRIVACY_OFF, null);
         mOriginalConnection.addPostDialListener(mPostDialListener);
         mOriginalConnection.addListener(mOriginalConnectionListener);
 
@@ -780,6 +800,8 @@ abstract class TelephonyConnection extends Connection {
                 getPhone().unregisterForDisconnect(mHandler);
                 getPhone().unregisterForSuppServiceNotification(mHandler);
                 getPhone().unregisterForOnHoldTone(mHandler);
+                getPhone().unregisterForInCallVoicePrivacyOn(mHandler);
+                getPhone().unregisterForInCallVoicePrivacyOff(mHandler);
             }
             mOriginalConnection.removePostDialListener(mPostDialListener);
             mOriginalConnection.removeListener(mOriginalConnectionListener);
@@ -1142,6 +1164,16 @@ abstract class TelephonyConnection extends Connection {
     private boolean isPullable() {
         return can(mOriginalConnectionCapabilities, Capability.IS_EXTERNAL_CONNECTION)
                 && can(mOriginalConnectionCapabilities, Capability.IS_PULLABLE);
+    }
+
+    /**
+     * Sets whether or not CDMA enhanced call privacy is enabled for this connection.
+     */
+    private void setCdmaVoicePrivacy(boolean isEnabled) {
+        if(mIsCdmaVoicePrivacyEnabled != isEnabled) {
+            mIsCdmaVoicePrivacyEnabled = isEnabled;
+            updateConnectionProperties();
+        }
     }
 
     /**
