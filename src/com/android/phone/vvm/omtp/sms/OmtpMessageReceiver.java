@@ -28,7 +28,6 @@ import android.telecom.Voicemail;
 import android.util.Log;
 
 import com.android.phone.PhoneGlobals;
-import com.android.phone.PhoneUtils;
 import com.android.phone.settings.VisualVoicemailSettingsUtil;
 import com.android.phone.vvm.omtp.LocalLogHelper;
 import com.android.phone.vvm.omtp.OmtpConstants;
@@ -89,17 +88,11 @@ public class OmtpMessageReceiver extends BroadcastReceiver {
                 updateSource(phone, subId, message);
             } else {
                 Log.v(TAG, "Subscriber not ready, start provisioning");
-                startProvisioning(phone, message, data);
+                mContext.startService(OmtpProvisioningService.getProvisionIntent(mContext, intent));
             }
         } else {
             Log.e(TAG, "Unknown prefix: " + eventType);
         }
-    }
-
-    private void startProvisioning(PhoneAccountHandle phone, StatusMessage message, Bundle data) {
-        OmtpVvmCarrierConfigHelper helper = new OmtpVvmCarrierConfigHelper(mContext,
-                PhoneUtils.getSubIdForPhoneAccountHandle(phone));
-        helper.startProvisioning(phone, message, data);
     }
 
     /**
