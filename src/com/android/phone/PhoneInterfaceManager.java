@@ -505,7 +505,8 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
                     Pair<String, Byte> openChannelArgs = (Pair<String, Byte>) request.argument;
                     if (uiccCard == null) {
                         loge("iccOpenLogicalChannel: No UICC");
-                        request.result = new IccIoResult(0x6F, 0, (byte[])null);
+                        request.result = new IccOpenLogicalChannelResponse(-1,
+                            IccOpenLogicalChannelResponse.STATUS_MISSING_RESOURCE, null);
                         synchronized (request) {
                             request.notifyAll();
                         }
