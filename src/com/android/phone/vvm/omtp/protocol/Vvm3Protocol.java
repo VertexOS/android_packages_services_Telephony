@@ -81,8 +81,8 @@ public class Vvm3Protocol extends VisualVoicemailProtocol {
             OmtpVvmCarrierConfigHelper config, StatusMessage message, Bundle data) {
         Log.i(TAG, "start vvm3 provisioning");
         if ("U".equals(message.getProvisioningStatus())) {
-            Log.i(TAG, "Provisioning status: Unknown. VVM subscription not implemented.");
-            // TODO: implement (b/28697797).
+            Log.i(TAG, "Provisioning status: Unknown, subscribing");
+            new Vvm3Subscriber(phoneAccountHandle, config, data).subscribe();
         } else if ("N".equals(message.getProvisioningStatus())) {
             Log.i(TAG, "setting up new user");
             VisualVoicemailSettingsUtil.setVisualVoicemailCredentialsFromStatusMessage(
@@ -203,8 +203,6 @@ public class Vvm3Protocol extends VisualVoicemailProtocol {
 
         }
     }
-
-
 
     private static String generatePin() {
         SecureRandom random = new SecureRandom();

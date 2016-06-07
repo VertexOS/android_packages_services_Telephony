@@ -15,6 +15,7 @@
  */
 package com.android.phone.vvm.omtp.sms;
 
+import android.annotation.Nullable;
 import android.os.Bundle;
 
 import com.android.phone.vvm.omtp.OmtpConstants;
@@ -36,6 +37,7 @@ public class SyncMessage {
     // UID of the new message.
     private final String mMessageId;
     // Length of the message.
+    @Nullable
     private final Integer mMessageLength;
     // Content type (voice, video, fax...) of the new message.
     private final String mContentType;
@@ -58,7 +60,12 @@ public class SyncMessage {
     public SyncMessage(Bundle wrappedData) {
         mSyncTriggerEvent = wrappedData.getString(OmtpConstants.SYNC_TRIGGER_EVENT);
         mMessageId = wrappedData.getString(OmtpConstants.MESSAGE_UID);
-        mMessageLength = Integer.parseInt(wrappedData.getString(OmtpConstants.MESSAGE_LENGTH));
+        if (wrappedData.getString(OmtpConstants.MESSAGE_LENGTH) != null) {
+            mMessageLength = Integer.parseInt(wrappedData.getString(OmtpConstants.MESSAGE_LENGTH));
+        } else {
+            // Optional field
+            mMessageLength = null;
+        }
         mContentType = wrappedData.getString(OmtpConstants.CONTENT_TYPE);
         mSender = wrappedData.getString(OmtpConstants.SENDER);
         mNewMessageCount = Integer.parseInt(wrappedData.getString(OmtpConstants.NUM_MESSAGE_COUNT));
