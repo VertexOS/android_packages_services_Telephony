@@ -58,6 +58,7 @@
     <protected-broadcast android:name= "android.intent.action.CARRIER_SIGNAL_REDIRECTED" />
     <protected-broadcast android:name= "android.intent.action.CARRIER_SIGNAL_REQUEST_NETWORK_FAILED" />
     <protected-broadcast android:name= "android.intent.action.CARRIER_SIGNAL_PCO_VALUE" />
+    <protected-broadcast android:name= "android.intent.action.VOICEMAIL_SMS_RECEIVED" />
     <protected-broadcast android:name= "com.android.intent.isim_refresh" />
 
     <uses-permission android:name="android.permission.BROADCAST_STICKY" />
