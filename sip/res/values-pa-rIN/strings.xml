@@ -20,7 +20,7 @@
     <string name="sip_accounts" msgid="85559497282185405">"SIP ਖਾਤੇ"</string>
     <string name="sip_accounts_title" msgid="2082527045326874519">"ਖਾਤੇ"</string>
     <string name="sip_receive_calls" msgid="426678617137462173">"ਇਨਕਮਿੰਗ ਕਾਲਾਂ ਪ੍ਰਾਪਤ ਕਰੋ"</string>
-    <string name="sip_receive_calls_summary" msgid="946161517528227523">"ਵੱਧ ਬੈਟਰੀ ਸਮਰੱਥਾ ਵਰਤਦਾ ਹੈ"</string>
+    <string name="sip_receive_calls_summary" msgid="946161517528227523">"ਬੈਟਰੀ ਦੀ ਖਪਤ ਵਧ ਜਾਂਦੀ ਹੈ"</string>
     <string name="sip_call_options_title" msgid="8421210494703869806">"SIP ਕਾਲਿੰਗ ਵਰਤੋ"</string>
     <string name="sip_call_options_wifi_only_title" msgid="5112579243580893890">"SIP ਕਾਲਿੰਗ ਵਰਤੋ (ਕੇਵਲ Wi-Fi)"</string>
     <string name="sip_call_options_entry_1" msgid="7217659161237099900">"ਜਦੋਂ ਡਾਟਾ ਨੈਟਵਰਕ ਉਪਲਬਧ ਹੋਵੇ ਤਾਂ ਸਾਰੀਆਂ ਕਾਲਾਂ ਲਈ"</string>
@@ -45,27 +45,27 @@
     <string name="registration_status_not_running" msgid="514205414303796800">"ਖਾਤਾ ਰਜਿਸਟਰੇਸ਼ਨ ਅਸਫਲ।"</string>
     <string name="registration_status_done" msgid="3264961069247314253">"ਕਾਲਾਂ ਪ੍ਰਾਪਤ ਕਰ ਰਿਹਾ ਹੈ।"</string>
     <string name="registration_status_failed_try_later" msgid="2199970021756384317">"ਖਾਤਾ ਰਜਿਸਟਰੇਸ਼ਨ ਅਸਫਲ: (<xliff:g id="REGISTRATION_ERROR_MESSAGE">%s</xliff:g>); ਬਾਅਦ ਵਿੱਚ ਕੋਸ਼ਿਸ਼ ਕਰੇਗਾ"</string>
-    <string name="registration_status_invalid_credentials" msgid="8406872554323334182">"ਖਾਤਾ ਰਜਿਸਟਰੇਸ਼ਨ ਅਸਫਲ: ਗ਼ਲਤ ਉਪਭੋਗਤਾ ਨਾਮ ਜਾਂ ਪਾਸਵਰਡ।"</string>
+    <string name="registration_status_invalid_credentials" msgid="8406872554323334182">"ਖਾਤਾ ਰਜਿਸਟਰੇਸ਼ਨ ਅਸਫਲ: ਗ਼ਲਤ ਵਰਤੋਂਕਾਰ ਨਾਮ ਜਾਂ ਪਾਸਵਰਡ।"</string>
     <string name="registration_status_server_unreachable" msgid="7710275557045148634">"ਖਾਤਾ ਰਜਿਸਟਰੇਸ਼ਨ ਅਸਫਲ: ਸਰਵਰ ਨਾਮ ਦੀ ਜਾਂਚ ਕਰੋ।"</string>
     <string name="third_party_account_summary" msgid="9041060473615403041">"ਇਹ ਖਾਤਾ ਇਸ ਵੇਲੇ <xliff:g id="ACCOUNT_OWNER">%s</xliff:g> ਐਪ ਵੱਲੋਂ ਵਰਤੋਂ ਵਿੱਚ ਹੈ।"</string>
     <string name="sip_edit_title" msgid="1967247832635750410">"SIP ਖਾਤਾ ਵੇਰਵੇ"</string>
     <string name="sip_edit_new_title" msgid="266414118302574305">"SIP ਖਾਤਾ ਵੇਰਵੇ"</string>
     <string name="domain_address_title" msgid="1968479941328225423">"ਸਰਵਰ"</string>
-    <string name="username_title" msgid="6770064611005663470">"ਉਪਭੋਗਤਾ ਨਾਮ"</string>
+    <string name="username_title" msgid="6770064611005663470">"ਵਰਤੋਂਕਾਰ ਨਾਮ"</string>
     <string name="password_title" msgid="5289013731515564295">"ਪਾਸਵਰਡ"</string>
     <string name="display_name_title" msgid="579241787583079773">"ਡਿਸਪਲੇ ਨਾਮ"</string>
     <string name="proxy_address_title" msgid="6890163365640631841">"ਆਊਟਬਾਊਂਡ ਪ੍ਰੌਕਸੀ ਪਤਾ"</string>
     <string name="port_title" msgid="6693965912656593862">"ਪੋਰਟ ਨੰਬਰ"</string>
-    <string name="transport_title" msgid="889155457465372527">"ਟ੍ਰਾਂਸਪੋਰਟ ਪ੍ਰਕਾਰ"</string>
+    <string name="transport_title" msgid="889155457465372527">"ਟ੍ਰਾਂਸਪੋਰਟ ਦੀ ਕਿਸਮ"</string>
     <string name="send_keepalive_title" msgid="599627072150501159">"ਕੀਪ-ਅਲਾਈਵ ਭੇਜੋ"</string>
-    <string name="advanced_settings" msgid="6622996380747040711">"ਚੋਣ ਸੰਬੰਧੀ ਸੈਟਿੰਗਾਂ"</string>
-    <string name="auth_username_title" msgid="8262491689004708265">"ਪ੍ਰਮਾਣੀਕਰਨ ਉਪਭੋਗਤਾ ਨਾਮ"</string>
-    <string name="auth_username_summary" msgid="941160241371436473">"ਪ੍ਰਮਾਣੀਕਰਨ ਲਈ ਵਰਤਿਆ ਗਿਆ ਉਪਭੋਗਤਾ ਨਾਮ"</string>
-    <string name="default_preference_summary" msgid="1979249643719483249">"&lt;ਸੈਟ ਨਹੀਂ ਕੀਤਾ&gt;"</string>
-    <string name="display_name_summary" msgid="7155076491675565407">"&lt;ਉਪਭੋਗਤਾ ਨਾਮ ਦੇ ਸਮਾਨ&gt;"</string>
-    <string name="optional_summary" msgid="2363105560396317624">"&lt;ਚੋਣਵਾਂ&gt;"</string>
-    <string name="advanced_settings_show" msgid="7838761602853998622">"▷ ਸਾਰੇ ਦਿਖਾਉਣ ਲਈ ਛੋਹਵੋ"</string>
-    <string name="advanced_settings_hide" msgid="3480554978705290228">"▽ ਸਾਰੇ ਲੁਕਾਉਣ ਲਈ ਛੋਹਵੋ"</string>
+    <string name="advanced_settings" msgid="6622996380747040711">"ਵਿਕਲਪਕ ਸੈਟਿੰਗਾਂ"</string>
+    <string name="auth_username_title" msgid="8262491689004708265">"ਪ੍ਰਮਾਣੀਕਰਨ ਵਰਤੋਂਕਾਰ ਨਾਮ"</string>
+    <string name="auth_username_summary" msgid="941160241371436473">"ਪ੍ਰਮਾਣੀਕਰਨ ਲਈ ਵਰਤਿਆ ਗਿਆ ਵਰਤੋਂਕਾਰ ਨਾਮ"</string>
+    <string name="default_preference_summary" msgid="1979249643719483249">"&lt;ਸੈੱਟ ਨਹੀਂ ਕੀਤਾ&gt;"</string>
+    <string name="display_name_summary" msgid="7155076491675565407">"&lt;ਉਹੀ ਹੈ ਜੋ ਵਰਤੋਂਕਾਰ ਨਾਮ ਹੈ&gt;"</string>
+    <string name="optional_summary" msgid="2363105560396317624">"&lt;ਵਿਕਲਪਕ&gt;"</string>
+    <string name="advanced_settings_show" msgid="7838761602853998622">"▷ ਸਾਰੇ ਦਿਖਾਉਣ ਲਈ ਸਪੱਰਸ਼ ਕਰੋ"</string>
+    <string name="advanced_settings_hide" msgid="3480554978705290228">"▽ ਸਾਰੇ ਲੁਕਾਉਣ ਲਈ ਸਪੱਰਸ਼ ਕਰੋ"</string>
     <string name="all_empty_alert" msgid="4087734950375192387">"ਨਵੇਂ SIP ਖਾਤੇ ਦੇ ਵੇਰਵੇ ਦਾਖ਼ਲ ਕਰੋ।"</string>
     <string name="empty_alert" msgid="6659484914371384024">"<xliff:g id="INPUT_FIELD_NAME">%s</xliff:g> ਲੁੜੀਂਦਾ ਹੈ ਅਤੇ ਇਸਨੂੰ ਖਾਲੀ ਨਹੀਂ ਛੱਡਿਆ ਜਾ ਸਕਦਾ।"</string>
     <string name="not_a_valid_port" msgid="7931422555587011830">"ਪੋਰਟ ਨੰਬਰ 1000 ਅਤੇ 65534 ਵਿਚਕਾਰ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ।"</string>
