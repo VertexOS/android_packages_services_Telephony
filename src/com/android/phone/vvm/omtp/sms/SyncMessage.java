@@ -18,6 +18,7 @@ package com.android.phone.vvm.omtp.sms;
 import android.annotation.Nullable;
 import android.os.Bundle;
 
+import com.android.phone.NeededForTesting;
 import com.android.phone.vvm.omtp.OmtpConstants;
 
 import java.text.ParseException;
@@ -33,18 +34,17 @@ public class SyncMessage {
     // Sync event that triggered this message.
     private final String mSyncTriggerEvent;
     // Total number of new messages on the server.
-    private final Integer mNewMessageCount;
+    private final int mNewMessageCount;
     // UID of the new message.
     private final String mMessageId;
     // Length of the message.
-    @Nullable
-    private final Integer mMessageLength;
+    private final int mMessageLength;
     // Content type (voice, video, fax...) of the new message.
     private final String mContentType;
     // Sender of the new message.
     private final String mSender;
     // Timestamp (in millis) of the new message.
-    private final Long mMsgTimeMillis;
+    private final long mMsgTimeMillis;
 
     @Override
     public String toString() {
@@ -58,21 +58,19 @@ public class SyncMessage {
     }
 
     public SyncMessage(Bundle wrappedData) {
-        mSyncTriggerEvent = wrappedData.getString(OmtpConstants.SYNC_TRIGGER_EVENT);
-        mMessageId = wrappedData.getString(OmtpConstants.MESSAGE_UID);
-        if (wrappedData.getString(OmtpConstants.MESSAGE_LENGTH) != null) {
-            mMessageLength = Integer.parseInt(wrappedData.getString(OmtpConstants.MESSAGE_LENGTH));
-        } else {
-            // Optional field
-            mMessageLength = null;
-        }
-        mContentType = wrappedData.getString(OmtpConstants.CONTENT_TYPE);
-        mSender = wrappedData.getString(OmtpConstants.SENDER);
-        mNewMessageCount = Integer.parseInt(wrappedData.getString(OmtpConstants.NUM_MESSAGE_COUNT));
+        mSyncTriggerEvent = getString(wrappedData, OmtpConstants.SYNC_TRIGGER_EVENT);
+        mMessageId = getString(wrappedData, OmtpConstants.MESSAGE_UID);
+        mMessageLength = getInt(wrappedData, OmtpConstants.MESSAGE_LENGTH);
+        mContentType = getString(wrappedData, OmtpConstants.CONTENT_TYPE);
+        mSender = getString(wrappedData, OmtpConstants.SENDER);
+        mNewMessageCount = getInt(wrappedData, OmtpConstants.NUM_MESSAGE_COUNT);
         mMsgTimeMillis = parseTime(wrappedData.getString(OmtpConstants.TIME));
     }
 
-    static Long parseTime(String value) {
+    private static long parseTime(@Nullable String value) {
+        if (value == null) {
+            return 0L;
+        }
         try {
             return new SimpleDateFormat(
                     OmtpConstants.DATE_TIME_FORMAT, Locale.US)
@@ -92,8 +90,9 @@ public class SyncMessage {
     /**
      * @return the number of new messages stored on the voicemail server.
      */
+    @NeededForTesting
     public int getNewMessageCount() {
-        return mNewMessageCount != null ? mNewMessageCount : 0;
+        return mNewMessageCount;
     }
 
     /**
@@ -112,6 +111,7 @@ public class SyncMessage {
      * Expected to be set only for
      * {@link com.android.phone.vvm.omtp.OmtpConstants#NEW_MESSAGE}
      */
+    @NeededForTesting
     public String getContentType() {
         return mContentType;
     }
@@ -123,7 +123,7 @@ public class SyncMessage {
      * {@link com.android.phone.vvm.omtp.OmtpConstants#NEW_MESSAGE}
      */
     public int getLength() {
-        return mMessageLength != null ? mMessageLength : 0;
+        return mMessageLength;
     }
 
     /**
@@ -143,6 +143,26 @@ public class SyncMessage {
      * {@link com.android.phone.vvm.omtp.OmtpConstants#NEW_MESSAGE}
      */
     public long getTimestampMillis() {
-        return mMsgTimeMillis != null ? mMsgTimeMillis : 0;
+        return mMsgTimeMillis;
+    }
+
+    private static int getInt(Bundle wrappedData, String key) {
+        String value = wrappedData.getString(key);
+        if (value == null) {
+            return 0;
+        }
+        try {
+            return Integer.parseInt(value);
+        } catch (NumberFormatException e) {
+            return 0;
+        }
+    }
+
+    private static String getString(Bundle wrappedData, String key) {
+        String value = wrappedData.getString(key);
+        if (value == null) {
+            return "";
+        }
+        return value;
     }
 }
