@@ -140,6 +140,9 @@ public class DisconnectCauseUtil {
             case android.telephony.DisconnectCause.CALL_PULLED:
                 return DisconnectCause.CALL_PULLED;
 
+            case android.telephony.DisconnectCause.ANSWERED_ELSEWHERE:
+                return DisconnectCause.ANSWERED_ELSEWHERE;
+
             default:
                 Log.w("DisconnectCauseUtil.toTelecomDisconnectCauseCode",
                         "Unrecognized Telephony DisconnectCause "
