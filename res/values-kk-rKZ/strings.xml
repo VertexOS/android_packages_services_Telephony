@@ -149,7 +149,7 @@
     <string name="voicemail_default" msgid="2001233554889016880">"Операторыңыз"</string>
     <string name="vm_change_pin_old_pin" msgid="7295220109886682573">"Ескі PIN"</string>
     <string name="vm_change_pin_new_pin" msgid="5412922262839438097">"Жаңа PIN"</string>
-    <string name="vm_change_pin_progress_message" msgid="6727847908454506025">"PIN өзгерту"</string>
+    <string name="vm_change_pin_progress_message" msgid="6727847908454506025">"PIN код өзгертілуде"</string>
     <string name="vm_change_pin_error_too_short" msgid="5974971097302710497">"Жаңа PIN код тым қысқа."</string>
     <string name="vm_change_pin_error_too_long" msgid="8476870806115051865">"Жаңа PIN код тым ұзын."</string>
     <string name="vm_change_pin_error_too_weak" msgid="7883744811891784882">"Жаңа PIN код тым әлсіз. Күшті құпия сөзде үздіксіз реттік немесе қайталанатын таңбалар болмауы тиіс."</string>

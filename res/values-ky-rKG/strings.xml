@@ -152,7 +152,7 @@
     <string name="vm_change_pin_progress_message" msgid="6727847908454506025">"PIN код өзгөртүлүүдө"</string>
     <string name="vm_change_pin_error_too_short" msgid="5974971097302710497">"Жаңы PIN код өтө эле кыска."</string>
     <string name="vm_change_pin_error_too_long" msgid="8476870806115051865">"Жаңы PIN код өтө эле узун."</string>
-    <string name="vm_change_pin_error_too_weak" msgid="7883744811891784882">"Жаңы PIN код өтө эле туруксуз. Туруктуу сырсөз үзгүлтүксүз катардан же кайталанган сандардан турбашы керек."</string>
+    <string name="vm_change_pin_error_too_weak" msgid="7883744811891784882">"Жаңы PIN код өтө эле жөнөкөй. Сырсөз күчтүү болушу үчүн анда сандар үзгүлтүксүз катардан турбашы же сандар кайталанбашы керек."</string>
     <string name="vm_change_pin_error_mismatch" msgid="2754685537970757317">"Эски PIN код дал келген жок."</string>
     <string name="vm_change_pin_error_invalid" msgid="3972205462701668653">"Жаңы PIN коддо жараксыз белгилер бар."</string>
     <string name="vm_change_pin_error_system_error" msgid="6610603326230000207">"PIN код өзгөртүлгөн жок"</string>

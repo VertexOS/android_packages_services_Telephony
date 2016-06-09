@@ -151,7 +151,7 @@
     <string name="vm_change_pin_new_pin" msgid="5412922262839438097">"নতুন পিন"</string>
     <string name="vm_change_pin_progress_message" msgid="6727847908454506025">"পিন পরিবর্তন করুন"</string>
     <string name="vm_change_pin_error_too_short" msgid="5974971097302710497">"নতুন পিনটি খুবই ছোট৷"</string>
-    <string name="vm_change_pin_error_too_long" msgid="8476870806115051865">"নতুন পিনটি খুবই দীর্ঘ৷"</string>
+    <string name="vm_change_pin_error_too_long" msgid="8476870806115051865">"নতুন পিনটি খুবই বড়৷"</string>
     <string name="vm_change_pin_error_too_weak" msgid="7883744811891784882">"নতুন পিনটি খুবই দুর্বল৷ একটি শক্তিশালী পাসওয়ার্ডে ধারাবাহিক ক্রম বা পুনরাবৃত্ত সংখ্যা থাকা উচিৎ নয়৷"</string>
     <string name="vm_change_pin_error_mismatch" msgid="2754685537970757317">"পুরানো পিন মিলছে না৷"</string>
     <string name="vm_change_pin_error_invalid" msgid="3972205462701668653">"নতুন পিনে অবৈধ অক্ষর রয়েছে৷"</string>
