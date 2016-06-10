@@ -166,11 +166,7 @@ public class OmtpMessageReceiver extends BroadcastReceiver {
 
             PhoneGlobals.getInstance().clearMwiIndicator(subId);
         } else {
-            Log.w(TAG, "Visual voicemail not available for subscriber.");
-            // Override default isEnabled setting to false since visual voicemail is unable to
-            // be accessed for some reason.
-            VisualVoicemailSettingsUtil.setVisualVoicemailEnabled(mContext, phone,
-                    /* isEnabled */ false, /* isUserSet */ true);
+            Log.e(TAG, "Visual voicemail not available for subscriber.");
         }
     }
 }

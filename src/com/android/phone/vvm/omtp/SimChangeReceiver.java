@@ -28,7 +28,6 @@ import android.util.Log;
 import com.android.internal.telephony.IccCardConstants;
 import com.android.internal.telephony.PhoneConstants;
 import com.android.internal.telephony.TelephonyIntents;
-import com.android.phone.R;
 import com.android.phone.settings.VisualVoicemailSettingsUtil;
 import com.android.phone.vvm.omtp.sync.OmtpVvmSourceManager;
 import com.android.phone.vvm.omtp.utils.PhoneAccountHandleConverter;
@@ -90,24 +89,7 @@ public class SimChangeReceiver extends BroadcastReceiver {
         if (carrierConfigHelper.isValid()) {
             PhoneAccountHandle phoneAccount = PhoneAccountHandleConverter.fromSubId(subId);
 
-            boolean isUserSet = VisualVoicemailSettingsUtil.isVisualVoicemailUserSet(
-                    context, phoneAccount);
-            boolean isEnabledInSettings =
-                    VisualVoicemailSettingsUtil.isVisualVoicemailEnabled(context,
-                            phoneAccount);
-            boolean isSupported =
-                    context.getResources().getBoolean(R.bool.allow_visual_voicemail);
-            boolean isEnabled = isSupported && (isUserSet ? isEnabledInSettings :
-                    carrierConfigHelper.isEnabledByDefault());
-
-            if (!isUserSet) {
-                // Preserve the previous setting for "isVisualVoicemailEnabled" if it is
-                // set by the user, otherwise, set this value for the first time.
-                VisualVoicemailSettingsUtil.setVisualVoicemailEnabled(context, phoneAccount,
-                        isEnabled, /** isUserSet */false);
-            }
-
-            if (isEnabled) {
+            if (VisualVoicemailSettingsUtil.isVisualVoicemailEnabled(context, phoneAccount)) {
                 LocalLogHelper.log(TAG, "Sim state or carrier config changed: requesting"
                         + " activation for " + phoneAccount.getId());
 

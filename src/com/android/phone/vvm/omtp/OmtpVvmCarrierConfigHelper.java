@@ -174,6 +174,10 @@ public class OmtpVvmCarrierConfigHelper {
      * so by checking if the carrier's voicemail app is installed.
      */
     public boolean isEnabledByDefault() {
+        if (!isValid()) {
+            return false;
+        }
+
         Set<String> carrierPackages = getCarrierVvmPackageNames();
         if (carrierPackages == null) {
             return true;

@@ -56,8 +56,9 @@ public class VvmPackageInstallReceiver extends BroadcastReceiver {
                 continue;
             }
             if (carrierConfigHelper.getCarrierVvmPackageNames().contains(packageName)) {
-                VisualVoicemailSettingsUtil.setVisualVoicemailEnabled(
-                        context, phoneAccount, false, false);
+                // Force deactivate the client. The user can re-enable it in the settings.
+                // There are no need to update the settings for deactivation. At this point, if the
+                // default value is used it should be false because a carrier package is present.
                 OmtpVvmSourceManager.getInstance(context).removeSource(phoneAccount);
                 carrierConfigHelper.startDeactivation();
             }

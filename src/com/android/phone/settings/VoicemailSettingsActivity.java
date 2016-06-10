@@ -30,6 +30,7 @@ import android.preference.PreferenceActivity;
 import android.preference.PreferenceScreen;
 import android.preference.SwitchPreference;
 import android.provider.ContactsContract.CommonDataKinds;
+import android.telecom.PhoneAccountHandle;
 import android.text.BidiFormatter;
 import android.text.TextDirectionHeuristics;
 import android.text.TextUtils;
@@ -397,8 +398,10 @@ public class VoicemailSettingsActivity extends PreferenceActivity
             VoicemailNotificationSettingsUtil.setVibrationEnabled(
                     mPhone, Boolean.TRUE.equals(objValue));
         } else if (preference.getKey().equals(mVoicemailVisualVoicemail.getKey())) {
-            boolean isEnabled = (Boolean) objValue;
-            VisualVoicemailSettingsUtil.setVisualVoicemailEnabled(mPhone, isEnabled, true);
+            boolean isEnabled = (boolean) objValue;
+            PhoneAccountHandle handle = PhoneUtils.makePstnPhoneAccountHandle(mPhone);
+            VisualVoicemailSettingsUtil
+                    .setVisualVoicemailEnabled(mPhone.getContext(), handle, isEnabled);
             PreferenceScreen prefSet = getPreferenceScreen();
             if (isEnabled) {
                 OmtpVvmSourceManager.getInstance(mPhone.getContext()).addPhoneStateListener(mPhone);

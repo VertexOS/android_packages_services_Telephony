@@ -22,8 +22,11 @@ import android.telecom.PhoneAccountHandle;
 
 import com.android.internal.telephony.Phone;
 import com.android.phone.PhoneUtils;
+import com.android.phone.R;
 import com.android.phone.vvm.omtp.OmtpConstants;
+import com.android.phone.vvm.omtp.OmtpVvmCarrierConfigHelper;
 import com.android.phone.vvm.omtp.sms.StatusMessage;
+import com.android.phone.vvm.omtp.utils.PhoneAccountHandleConverter;
 
 /**
  * Save visual voicemail login values and whether or not a particular account is enabled in shared
@@ -36,9 +39,6 @@ public class VisualVoicemailSettingsUtil {
             "visual_voicemail_";
 
     private static final String IS_ENABLED_KEY = "is_enabled";
-    // If a carrier vvm app is installed, Google visual voicemail is automatically switched off
-    // however, the user can override this setting.
-    private static final String IS_USER_SET = "is_user_set";
     // Record the timestamp of the last full sync so that duplicate syncs can be reduced.
     private static final String LAST_FULL_SYNC_TIMESTAMP = "last_full_sync_timestamp";
     // Constant indicating that there has never been a full sync.
@@ -49,23 +49,14 @@ public class VisualVoicemailSettingsUtil {
     private static final long MAX_SYNC_RETRY_INTERVAL_MS = 86400000;   // 24 hours
     private static final long DEFAULT_SYNC_RETRY_INTERVAL_MS = 900000; // 15 minutes
 
-
-    public static void setVisualVoicemailEnabled(Phone phone, boolean isEnabled,
-            boolean isUserSet) {
-        setVisualVoicemailEnabled(phone.getContext(), PhoneUtils.makePstnPhoneAccountHandle(phone),
-                isEnabled, isUserSet);
-    }
-
-    public static void setVisualVoicemailEnabled(Context context, PhoneAccountHandle phoneAccount,
-            boolean isEnabled, boolean isUserSet) {
+    /* package */
+    static void setVisualVoicemailEnabled(Context context, PhoneAccountHandle phoneAccount,
+            boolean isEnabled) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        SharedPreferences.Editor editor = prefs.edit();
-        editor.putBoolean(
-                getVisualVoicemailSharedPrefsKey(IS_ENABLED_KEY, phoneAccount), isEnabled);
-        editor.putBoolean(
-                getVisualVoicemailSharedPrefsKey(IS_USER_SET, phoneAccount),
-                isUserSet);
-        editor.commit();
+        prefs.edit()
+                .putBoolean(getVisualVoicemailSharedPrefsKey(IS_ENABLED_KEY, phoneAccount),
+                        isEnabled)
+                .apply();
     }
 
     public static boolean isVisualVoicemailEnabled(Context context,
@@ -73,9 +64,19 @@ public class VisualVoicemailSettingsUtil {
         if (phoneAccount == null) {
             return false;
         }
+        if (!context.getResources().getBoolean(R.bool.allow_visual_voicemail)) {
+            return false;
+        }
+
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        return prefs.getBoolean(getVisualVoicemailSharedPrefsKey(IS_ENABLED_KEY, phoneAccount),
-                false);
+        String key = getVisualVoicemailSharedPrefsKey(IS_ENABLED_KEY, phoneAccount);
+        if (prefs.contains(key)) {
+            // isEnableByDefault is a bit expensive, so don't use it as default value of
+            // getBoolean(). The "false" here should never be actually used.
+            return prefs.getBoolean(key, false);
+        }
+        return new OmtpVvmCarrierConfigHelper(context,
+                PhoneAccountHandleConverter.toSubId(phoneAccount)).isEnabledByDefault();
     }
 
     public static boolean isVisualVoicemailEnabled(Phone phone) {
@@ -84,9 +85,10 @@ public class VisualVoicemailSettingsUtil {
     }
 
     /**
-     * Differentiate user-enabled/disabled to know whether to ignore automatic enabling and
-     * disabling by the system. This is relevant when a carrier vvm app is installed and the user
-     * manually enables dialer visual voicemail. In that case we would want that setting to persist.
+     * Whether the client enabled status is explicitly set by user or by default(Whether carrier VVM
+     * app is installed). This is used to determine whether to disable the client when the carrier
+     * VVM app is installed. If the carrier VVM app is installed the client should give priority to
+     * it if the settings are not touched.
      */
     public static boolean isVisualVoicemailUserSet(Context context,
             PhoneAccountHandle phoneAccount) {
@@ -94,9 +96,7 @@ public class VisualVoicemailSettingsUtil {
             return false;
         }
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        return prefs.getBoolean(
-                getVisualVoicemailSharedPrefsKey(IS_USER_SET, phoneAccount),
-                false);
+        return prefs.contains(getVisualVoicemailSharedPrefsKey(IS_ENABLED_KEY, phoneAccount));
     }
 
     public static void setVisualVoicemailCredentialsFromStatusMessage(Context context,
