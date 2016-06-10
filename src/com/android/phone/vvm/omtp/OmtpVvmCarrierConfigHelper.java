@@ -99,7 +99,7 @@ public class OmtpVvmCarrierConfigHelper {
         TelephonyManager telephonyManager =
                 (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         mTelephonyConfig = new TelephonyVvmConfigManager(context.getResources())
-                .getConfig(telephonyManager.getNetworkOperator(subId));
+                .getConfig(telephonyManager.getSimOperator(subId));
 
         mVvmType = getVvmType();
         mProtocol = VisualVoicemailProtocolFactory.create(mVvmType);

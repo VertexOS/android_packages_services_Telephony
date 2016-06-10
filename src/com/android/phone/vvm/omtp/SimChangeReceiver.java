@@ -23,6 +23,7 @@ import android.os.UserManager;
 import android.telecom.PhoneAccountHandle;
 import android.telephony.CarrierConfigManager;
 import android.telephony.SubscriptionManager;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 
 import com.android.internal.telephony.IccCardConstants;
@@ -42,7 +43,7 @@ import com.android.phone.vvm.omtp.utils.PhoneAccountHandleConverter;
  */
 public class SimChangeReceiver extends BroadcastReceiver {
 
-    private static final String TAG = "SimChangeReceiver";
+    private static final String TAG = "VvmSimChangeReceiver";
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -73,8 +74,9 @@ public class SimChangeReceiver extends BroadcastReceiver {
                     Log.i(TAG, "Received SIM change for invalid subscription id.");
                     return;
                 }
-
+                Log.d(TAG, "Carrier config changed");
                 if (!UserManager.get(context).isUserUnlocked()) {
+                    Log.d(TAG, "User locked, activation request delayed until unlock");
                     OmtpBootCompletedReceiver.addDeferredSubId(context, subId);
                 } else {
                     processSubId(context, subId);
@@ -90,7 +92,7 @@ public class SimChangeReceiver extends BroadcastReceiver {
             PhoneAccountHandle phoneAccount = PhoneAccountHandleConverter.fromSubId(subId);
 
             if (VisualVoicemailSettingsUtil.isVisualVoicemailEnabled(context, phoneAccount)) {
-                LocalLogHelper.log(TAG, "Sim state or carrier config changed: requesting"
+                Log.i(TAG, "Sim state or carrier config changed: requesting"
                         + " activation for " + phoneAccount.getId());
 
                 // Add a phone state listener so that changes to the communication channels
@@ -104,6 +106,10 @@ public class SimChangeReceiver extends BroadcastReceiver {
                 OmtpVvmSourceManager.getInstance(context).removeSource(phoneAccount);
                 Log.v(TAG, "Sim change for disabled account.");
             }
+        } else {
+            String mccMnc = context.getSystemService(TelephonyManager.class).getSimOperator(subId);
+            Log.d(TAG,
+                    "visual voicemail not supported for carrier " + mccMnc + " on subId " + subId);
         }
     }
 }
