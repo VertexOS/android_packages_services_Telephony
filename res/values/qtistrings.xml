@@ -34,6 +34,118 @@
     <!-- IMS settings related strings -->
     <!-- Title displayed IMS account settings in the sip settings category. [CHAR LIMIT=NONE] -->
     <string name="ims_settings">IMS Settings</string>
+    <!-- Label text for PIN entry widget on SIM Network Subset Depersonalization panel -->
+    <string name="PERSOSUBSTATE_SIM_NETWORK_SUBSET_ENTRY">SIM network subset unlock PIN</string>
+    <!-- Label text for PIN entry widget on SIM Corporate Depersonalization panel -->
+    <string name="PERSOSUBSTATE_SIM_CORPORATE_ENTRY">SIM corporate unlock PIN</string>
+    <!-- Label text for PIN entry widget on SIM Service Provider Depersonalization panel -->
+    <string name="PERSOSUBSTATE_SIM_SERVICE_PROVIDER_ENTRY">SIM service provider unlock PIN</string>
+    <!-- Label text for PIN entry widget on SIM SIM Depersonalization panel -->
+    <string name="PERSOSUBSTATE_SIM_SIM_ENTRY">SIM unlock PIN</string>
+    <!-- Label text for PIN entry widget on RUIM Network1 Depersonalization panel -->
+    <string name="PERSOSUBSTATE_RUIM_NETWORK1_ENTRY">RUIM network1 unlock PIN</string>
+    <!-- Label text for PIN entry widget on RUIM Network2 Depersonalization panel -->
+    <string name="PERSOSUBSTATE_RUIM_NETWORK2_ENTRY">RUIM network2 unlock PIN</string>
+    <!-- Label text for PIN entry widget on RUIM Hrpd Depersonalization panel -->
+    <string name="PERSOSUBSTATE_RUIM_HRPD_ENTRY">RUIM hrpd unlock PIN</string>
+    <!-- Label text for PIN entry widget on RUIM Corporate Depersonalization panel -->
+    <string name="PERSOSUBSTATE_RUIM_CORPORATE_ENTRY">RUIM corporate unlock PIN</string>
+    <!-- Label text for PIN entry widget on RUIM Service Provider Depersonalization panel -->
+    <string name="PERSOSUBSTATE_RUIM_SERVICE_PROVIDER_ENTRY">RUIM service provider unlock PIN</string>
+    <!-- Label text for PIN entry widget on RUIM RUIM Depersonalization panel -->
+    <string name="PERSOSUBSTATE_RUIM_RUIM_ENTRY">RUIM unlock PIN</string>
+    <!-- Label text for PUK entry widget on Depersonalization panel -->
+    <string name="PERSOSUBSTATE_RUIM_NETWORK1_PUK_ENTRY">Enter PUK</string>
+    <!-- Status message displayed on SIM Network Subset Depersonalization panel -->
+    <string name="PERSOSUBSTATE_SIM_NETWORK_SUBSET_IN_PROGRESS">Requesting SIM network subset unlock\u2026</string>
+    <!-- Status message displayed on SIM Service Provider Depersonalization panel -->
+    <string name="PERSOSUBSTATE_SIM_SERVICE_PROVIDER_IN_PROGRESS">Requesting SIM service provider unlock\u2026</string>
+    <!-- Status message displayed on SIM Corporate Depersonalization panel -->
+    <string name="PERSOSUBSTATE_SIM_CORPORATE_IN_PROGRESS">Requesting SIM corporate unlock\u2026</string>
+    <!-- Status message displayed on SIM SIM Depersonalization panel -->
+    <string name="PERSOSUBSTATE_SIM_SIM_IN_PROGRESS">Requesting SIM unlock\u2026</string>
+    <!-- Status message displayed on RUIM Network1 Depersonalization panel -->
+    <string name="PERSOSUBSTATE_RUIM_NETWORK1_IN_PROGRESS">Requesting RUIM network1 unlock\u2026</string>
+    <!-- Status message displayed on RUIM Network2 Depersonalization panel -->
+    <string name="PERSOSUBSTATE_RUIM_NETWORK2_IN_PROGRESS">Requesting RUIM network2 unlock\u2026</string>
+    <!-- Status message displayed on RUIM Hrpd Depersonalization panel -->
+    <string name="PERSOSUBSTATE_RUIM_HRPD_IN_PROGRESS">Requesting RUIM hrpd unlock\u2026</string>
+    <!-- Status message displayed on RUIM Service Provider Depersonalization panel -->
+    <string name="PERSOSUBSTATE_RUIM_SERVICE_PROVIDER_IN_PROGRESS">Requesting RUIM service provider unlock\u2026</string>
+    <!-- Status message displayed on RUIM Corporate Depersonalization panel -->
+    <string name="PERSOSUBSTATE_RUIM_CORPORATE_IN_PROGRESS">Requesting RUIM corporate unlock\u2026</string>
+    <!-- Status message displayed on RUIM RUIM Depersonalization panel -->
+    <string name="PERSOSUBSTATE_RUIM_RUIM_IN_PROGRESS">Requesting RUIM unlock\u2026</string>
+    <!-- Status message displayed on PUK Depersonalization panel -->
+    <string name="PERSOSUBSTATE_RUIM_NETWORK1_PUK_IN_PROGRESS">Requesting PUK unlock\u2026</string>
+    <!-- Error message displayed on SIM Network Subset Depersonalization panel -->
+    <string name="PERSOSUBSTATE_SIM_NETWORK_SUBSET_ERROR">SIM Network Subset unlock request unsuccessful.</string>
+    <!-- Error message displayed on SIM Service Provider Depersonalization panel -->
+    <string name="PERSOSUBSTATE_SIM_SERVICE_PROVIDER_ERROR">SIM Service Provider unlock request unsuccessful.</string>
+    <!-- Error message displayed on SIM Corporate Depersonalization panel -->
+    <string name="PERSOSUBSTATE_SIM_CORPORATE_ERROR">SIM Corporate unlock request unsuccessful.</string>
+    <!-- Error message displayed on SIM SIM Depersonalization panel -->
+    <string name="PERSOSUBSTATE_SIM_SIM_ERROR">SIM unlock request unsuccessful.</string>
+    <!-- Error message displayed on RUIM Network1 Depersonalization panel -->
+    <string name="PERSOSUBSTATE_RUIM_NETWORK1_ERROR">RUIM Network1 unlock request unsuccessful.</string>
+    <!-- Error message displayed on RUIM Network2 Depersonalization panel -->
+    <string name="PERSOSUBSTATE_RUIM_NETWORK2_ERROR">RUIM Network2 unlock request unsuccessful.</string>
+    <!-- Error message displayed on RUIM Hrpd Depersonalization panel -->
+    <string name="PERSOSUBSTATE_RUIM_HRPD_ERROR">RUIM Hrpd unlock request unsuccessful.</string>
+    <!-- Error message displayed on RUIM Service Provider Depersonalization panel -->
+    <string name="PERSOSUBSTATE_RUIM_SERVICE_PROVIDER_ERROR">RUIM Service Provider unlock request unsuccessful.</string>
+    <!-- Error message displayed on RUIM Corporate Depersonalization panel -->
+    <string name="PERSOSUBSTATE_RUIM_CORPORATE_PUK_ERROR">RUIM Corporate unlock request unsuccessful.</string>
+    <!-- Error message displayed on RUIM RUIM Depersonalization panel -->
+    <string name="PERSOSUBSTATE_RUIM_RUIM_PUK_ERROR">RUIM unlock request unsuccessful.</string>
+    <!-- Error message displayed on PUK Depersonalization panel -->
+    <string name="PERSOSUBSTATE_SIM_NETWORK_PUK_ERROR">PUK unlock unsuccessful.</string>
+    <string name="PERSOSUBSTATE_SIM_NETWORK_SUBSET_PUK_ERROR">PUK unlock unsuccessful.</string>
+    <string name="PERSOSUBSTATE_SIM_CORPORATE_PUK_ERROR">PUK unlock unsuccessful.</string>
+    <string name="PERSOSUBSTATE_SIM_SERVICE_PROVIDER_PUK_ERROR">PUK unlock unsuccessful.</string>
+    <string name="PERSOSUBSTATE_SIM_SIM_PUK_ERROR">PUK unlock unsuccessful.</string>
+    <string name="PERSOSUBSTATE_RUIM_NETWORK1_PUK_ERROR">PUK unlock unsuccessful.</string>
+    <string name="PERSOSUBSTATE_RUIM_NETWORK2_PUK_ERROR">PUK unlock unsuccessful.</string>
+    <string name="PERSOSUBSTATE_RUIM_HRPD_PUK_ERROR">PUK unlock unsuccessful.</string>
+    <string name="PERSOSUBSTATE_RUIM_SERVICE_PROVIDER_PUK_ERROR">PUK unlock unsuccessful.</string>
+    <string name="PERSOSUBSTATE_RUIM_RUIM_PUK_ERROR">PUK unlock unsuccessful.</string>
+    <string name="PERSOSUBSTATE_RUIM_CORPORATE_PUK_ERROR">PUK unlock unsuccessful.</string>
+    <!-- Success message displayed on SIM Network Subset Depersonalization panel -->
+    <string name="PERSOSUBSTATE_SIM_NETWORK_SUBSET_SUCCESS">SIM Network Subset unlock successful.</string>
+    <!-- Success message displayed on SIM Service Provider Depersonalization panel -->
+    <string name="PERSOSUBSTATE_SIM_SERVICE_PROVIDER_SUCCESS">SIM Service Provider unlock successful.</string>
+    <!-- Success message displayed on SIM Corporate Depersonalization panel -->
+    <string name="PERSOSUBSTATE_SIM_CORPORATE_SUCCESS">SIM Corporate unlock successful.</string>
+    <!-- Success message displayed on SIM SIM Depersonalization panel -->
+    <string name="PERSOSUBSTATE_SIM_SIM_SUCCESS">SIM unlock successful.</string>
+    <!-- Success message displayed on RUIM Network1 Depersonalization panel -->
+    <string name="PERSOSUBSTATE_RUIM_NETWORK1_SUCCESS">RUIM Network1 unlock successful.</string>
+    <!-- Success message displayed on RUIM Network2 Depersonalization panel -->
+    <string name="PERSOSUBSTATE_RUIM_NETWORK2_PUK_SUCCESS">RUIM Network2 unlock successful.</string>
+    <!-- Success message displayed on RUIM Hrpd Depersonalization panel -->
+    <string name="PERSOSUBSTATE_RUIM_HRPD_SUCCESS">RUIM Hrpd unlock successful.</string>
+    <!-- Success message displayed on RUIM Service Provider Depersonalization panel -->
+    <string name="PERSOSUBSTATE_RUIM_SERVICE_PROVIDER_SUCCESS">RUIM Service Provider unlock successful.</string>
+    <!-- Success message displayed on RUIM Corporate Depersonalization panel -->
+    <string name="PERSOSUBSTATE_RUIM_CORPORATE_SUCCESS">RUIM Corporate unlock successful.</string>
+    <!-- Success message displayed on RUIM RUIM Depersonalization panel -->
+    <string name="PERSOSUBSTATE_RUIM_RUIM_SUCCESS">RUIM unlock successful.</string>
+    <!-- Success message displayed on PUK Depersonalization panel -->
+    <string name="PERSOSUBSTATE_SIM_NETWORK_PUK_SUCCESS">PUK unlock successful.</string>
+    <string name="PERSOSUBSTATE_SIM_NETWORK_SUBSET_PUK_SUCCESS">PUK unlock successful.</string>
+    <string name="PERSOSUBSTATE_SIM_CORPORATE_PUK_SUCCESS">PUK unlock successful.</string>
+    <string name="PERSOSUBSTATE_SIM_SERVICE_PROVIDER_PUK_SUCCESS">PUK unlock successful.</string>
+    <string name="PERSOSUBSTATE_SIM_SIM_PUK_SUCCESS">PUK unlock successful.</string>
+    <string name="PERSOSUBSTATE_RUIM_NETWORK1_PUK_SUCCESS">PUK unlock successful.</string>
+    <string name="PERSOSUBSTATE_RUIM_NETWORK2_PUK_SUCCESS">PUK unlock successful.</string>
+    <string name="PERSOSUBSTATE_RUIM_HRPD_PUK_SUCCESS">PUK unlock successful.</string>
+    <string name="PERSOSUBSTATE_RUIM_CORPORATE_PUK_SUCCESS">PUK unlock successful.</string>
+    <string name="PERSOSUBSTATE_RUIM_SERVICE_PROVIDER_PUK_SUCCESS">PUK unlock successful.</string>
+    <string name="PERSOSUBSTATE_RUIM_RUIM_PUK_SUCCESS">PUK unlock successful.</string>
+    <string name="preferred_network_mode_dialogtitle_cmcc">Network mode</string>
+    <!-- Mobile network settings, summary for preferred network mode 4G/3G/2G [CHAR LIMIT=100] -->
+    <string name="preferred_network_mode_4g_3g_2g_auto">"4G/3G/2G (auto)"</string>
+    <string name="preferred_network_mode_3g_2g_auto">"3G/2G (auto)"</string>
     <string name="preferred_duration_title">Display duration</string>
     <string name="duration_enable_summary">Display duration is ON</string>
     <string name="duration_disable_summary">Display duration is OFF</string>
