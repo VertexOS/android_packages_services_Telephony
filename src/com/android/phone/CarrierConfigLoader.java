@@ -665,9 +665,11 @@ public class CarrierConfigLoader extends ICarrierConfigLoader.Stub {
         // TODO: Check that the calling packages is privileged for subId specifically.
         int privilegeStatus = TelephonyManager.from(mContext).checkCarrierPrivilegesForPackage(
                 callingPackageName);
+        // Requires the calling app to be either a carrier privileged app or
+        // system privileged app with MODIFY_PHONE_STATE permission.
         if (privilegeStatus != TelephonyManager.CARRIER_PRIVILEGE_STATUS_HAS_ACCESS) {
-            throw new SecurityException(
-                    "Package is not privileged for subId=" + subId + ": " + callingPackageName);
+            mContext.enforceCallingOrSelfPermission(android.Manifest.permission.MODIFY_PHONE_STATE,
+                    "Require carrier privileges or MODIFY_PHONE_STATE permission.");
         }
 
         // This method should block until deleting has completed, so that an error which prevents us
