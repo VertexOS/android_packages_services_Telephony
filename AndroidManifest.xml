@@ -60,6 +60,14 @@
     <protected-broadcast android:name= "android.intent.action.CARRIER_SIGNAL_PCO_VALUE" />
     <protected-broadcast android:name= "android.intent.action.VOICEMAIL_SMS_RECEIVED" />
     <protected-broadcast android:name= "com.android.intent.isim_refresh" />
+    <protected-broadcast android:name= "com.android.ims.IMS_SERVICE_UP" />
+    <protected-broadcast android:name= "com.android.ims.IMS_SERVICE_DOWN" />
+    <protected-broadcast android:name= "com.android.ims.IMS_INCOMING_CALL" />
+    <protected-broadcast android:name= "com.android.ims.internal.uce.UCE_SERVICE_UP" />
+    <protected-broadcast android:name= "com.android.ims.internal.uce.UCE_SERVICE_DOWN" />
+    <protected-broadcast android:name= "com.android.imsconnection.DISCONNECTED" />
+    <protected-broadcast android:name= "com.android.intent.action.IMS_FEATURE_CHANGED" />
+    <protected-broadcast android:name= "com.android.intent.action.IMS_CONFIG_CHANGED" />
 
     <uses-permission android:name="android.permission.BROADCAST_STICKY" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
