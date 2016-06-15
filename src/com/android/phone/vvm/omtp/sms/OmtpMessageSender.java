@@ -75,7 +75,7 @@ public abstract class OmtpMessageSender {
         if (mApplicationPort == 0) {
             Log.v(TAG, String.format("Sending TEXT sms '%s' to %s", text, mDestinationNumber));
             mSmsManager.sendTextMessageWithSelfPermissions(mDestinationNumber, null, text,
-                    sentIntent, null);
+                    sentIntent, null, false);
         } else {
             byte[] data;
             try {
