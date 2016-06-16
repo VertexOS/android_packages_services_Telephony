@@ -63,8 +63,13 @@ public class OmtpMessageReceiver extends BroadcastReceiver {
             return;
         }
 
+        OmtpVvmCarrierConfigHelper helper = new OmtpVvmCarrierConfigHelper(mContext, subId);
         if (!VisualVoicemailSettingsUtil.isVisualVoicemailEnabled(mContext, phone)) {
-            Log.i(TAG, "Received vvm message for disabled vvm source.");
+            if (helper.isLegacyModeEnabled()) {
+                LegacyModeSmsHandler.handle(context, intent, phone);
+            } else {
+                Log.i(TAG, "Received vvm message for disabled vvm source.");
+            }
             return;
         }
 

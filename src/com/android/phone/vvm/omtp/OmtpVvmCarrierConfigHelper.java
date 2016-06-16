@@ -74,6 +74,12 @@ public class OmtpVvmCarrierConfigHelper {
             "vvm_ssl_port_number_int";
 
     /**
+     * @see #isLegacyModeEnabled()
+     */
+    static final String KEY_VVM_LEGACY_MODE_ENABLED_BOOL =
+            "vvm_legacy_mode_enabled_bool";
+
+    /**
      * Ban a capability reported by the server from being used. The array of string should be a
      * subset of the capabilities returned IMAP CAPABILITY command.
      *
@@ -263,24 +269,46 @@ public class OmtpVvmCarrierConfigHelper {
         return "//VVM";
     }
 
+    /**
+     * Should legacy mode be used when the OMTP VVM client is disabled?
+     *
+     * <p>Legacy mode is a mode that on the carrier side visual voicemail is still activated, but on
+     * the client side all network operations are disabled. SMSs are still monitored so a new
+     * message SYNC SMS will be translated to show a message waiting indicator, like traditional
+     * voicemails.
+     *
+     * <p>This is for carriers that does not support VVM deactivation so voicemail can continue to
+     * function without the data cost.
+     */
+    public boolean isLegacyModeEnabled() {
+        return (boolean) getValue(KEY_VVM_LEGACY_MODE_ENABLED_BOOL, false);
+    }
+
     public void startActivation() {
         VoicemailStatus.edit(mContext, mSubId)
                 .setType(getVvmType())
                 .apply();
 
-        TelephonyManager telephonyManager = mContext.getSystemService(TelephonyManager.class);
-        telephonyManager.enableVisualVoicemailSmsFilter(mSubId,
-                new VisualVoicemailSmsFilterSettings.Builder().setClientPrefix(getClientPrefix())
-                        .build());
+        activateSmsFilter();
 
         if (mProtocol != null) {
             mProtocol.startActivation(this);
         }
     }
 
+    public void activateSmsFilter() {
+        TelephonyManager telephonyManager = mContext.getSystemService(TelephonyManager.class);
+        telephonyManager.enableVisualVoicemailSmsFilter(mSubId,
+                new VisualVoicemailSmsFilterSettings.Builder().setClientPrefix(getClientPrefix())
+                        .build());
+    }
+
     public void startDeactivation() {
-        mContext.getSystemService(TelephonyManager.class)
-                .disableVisualVoicemailSmsFilter(mSubId);
+        if (!isLegacyModeEnabled()) {
+            // SMS should still be filtered in legacy mode
+            mContext.getSystemService(TelephonyManager.class)
+                    .disableVisualVoicemailSmsFilter(mSubId);
+        }
         if (mProtocol != null) {
             mProtocol.startDeactivation(this);
         }

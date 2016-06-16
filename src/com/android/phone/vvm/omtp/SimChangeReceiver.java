@@ -99,6 +99,10 @@ public class SimChangeReceiver extends BroadcastReceiver {
                         phoneAccount);
                 carrierConfigHelper.startActivation();
             } else {
+                if (carrierConfigHelper.isLegacyModeEnabled()) {
+                    // SMS still need to be filtered under legacy mode.
+                    carrierConfigHelper.activateSmsFilter();
+                }
                 // It may be that the source was not registered to begin with but we want
                 // to run through the steps to remove the source just in case.
                 OmtpVvmSourceManager.getInstance(context).removeSource(phoneAccount);
