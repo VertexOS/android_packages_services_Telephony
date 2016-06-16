@@ -134,5 +134,6 @@
     <string name="vvm_type_string">vvm_type_vvm3</string>
     <string name="vvm_client_prefix_string">//VZWVVM</string>
     <boolean name="vvm_cellular_data_required_bool" value="true"/>
+    <boolean name="vvm_legacy_mode_enabled_bool" value="true"/>
   </pbundle_as_map>
 </list>
