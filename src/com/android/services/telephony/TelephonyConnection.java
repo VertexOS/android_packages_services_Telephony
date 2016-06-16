@@ -771,11 +771,21 @@ abstract class TelephonyConnection extends Connection {
         }
         mIsMultiParty = mOriginalConnection.isMultiparty();
 
+        Bundle extrasToPut = new Bundle();
+        List<String> extrasToRemove = new ArrayList<>();
         if (mOriginalConnection.isActiveCallDisconnectedOnAnswer()) {
-            putExtra(Connection.EXTRA_ANSWERING_DROPS_FG_CALL, true);
+            extrasToPut.putBoolean(Connection.EXTRA_ANSWERING_DROPS_FG_CALL, true);
         } else {
-            removeExtras(Connection.EXTRA_ANSWERING_DROPS_FG_CALL);
+            extrasToRemove.add(Connection.EXTRA_ANSWERING_DROPS_FG_CALL);
         }
+
+        if (!mOriginalConnection.shouldAllowAddCallDuringVideoCall()) {
+            extrasToPut.putBoolean(Connection.EXTRA_DISABLE_ADD_CALL_DURING_VIDEO_CALL, true);
+        } else {
+            extrasToRemove.add(Connection.EXTRA_DISABLE_ADD_CALL_DURING_VIDEO_CALL);
+        }
+        putExtras(extrasToPut);
+        removeExtras(extrasToRemove);
 
         // updateState can set mOriginalConnection to null if its state is DISCONNECTED, so this
         // should be executed *after* the above setters have run.
