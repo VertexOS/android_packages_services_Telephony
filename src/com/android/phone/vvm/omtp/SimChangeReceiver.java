@@ -79,7 +79,22 @@ public class SimChangeReceiver extends BroadcastReceiver {
                     Log.d(TAG, "User locked, activation request delayed until unlock");
                     OmtpBootCompletedReceiver.addDeferredSubId(context, subId);
                 } else {
-                    processSubId(context, subId);
+                    try {
+                        processSubId(context, subId);
+                    } catch (IllegalArgumentException e) {
+                        // b/29358683 for some unknown reason UserManager.isUserUnlocked() could
+                        // return true even if the device is not unlocked, which will cause a
+                        // IllegalArgumentException when trying to write voicemail status.
+                        // Catch it as a workaround while investigating.
+                        Log.e(TAG, e.toString());
+                        Log.e(TAG, "UserManager.isUserUnlocked: " + UserManager.get(context)
+                            .isUserUnlocked());
+                        PhoneAccountHandle phoneAccount = PhoneAccountHandleConverter
+                            .fromSubId(subId);
+                        OmtpVvmSourceManager.getInstance(context)
+                            .removePhoneStateListener(phoneAccount);
+                        OmtpBootCompletedReceiver.addDeferredSubId(context, subId);
+                    }
                 }
                 break;
         }
