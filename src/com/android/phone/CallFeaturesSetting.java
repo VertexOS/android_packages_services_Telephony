@@ -300,7 +300,8 @@ public class CallFeaturesSetting extends PreferenceActivity
             } else {
                 prefSet.removePreference(wifiCallingSettings);
             }
-        } else if (!ImsManager.isWfcEnabledByPlatform(mPhone.getContext())) {
+        } else if (!ImsManager.isWfcEnabledByPlatform(mPhone.getContext()) ||
+                !ImsManager.isWfcProvisionedOnDevice(mPhone.getContext())) {
             prefSet.removePreference(wifiCallingSettings);
         } else {
             int resId = com.android.internal.R.string.wifi_calling_off_summary;
