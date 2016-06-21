@@ -18,6 +18,9 @@ package com.android.phone.vvm.omtp;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.IPackageManager;
+import android.os.RemoteException;
+import android.os.ServiceManager;
 import android.os.UserHandle;
 import android.os.UserManager;
 import android.telecom.PhoneAccountHandle;
@@ -75,26 +78,12 @@ public class SimChangeReceiver extends BroadcastReceiver {
                     return;
                 }
                 Log.d(TAG, "Carrier config changed");
-                if (!UserManager.get(context).isUserUnlocked()) {
-                    Log.d(TAG, "User locked, activation request delayed until unlock");
-                    OmtpBootCompletedReceiver.addDeferredSubId(context, subId);
+                if (UserManager.get(context).isUserUnlocked() && !isCryptKeeperMode()) {
+                    processSubId(context, subId);
                 } else {
-                    try {
-                        processSubId(context, subId);
-                    } catch (IllegalArgumentException e) {
-                        // b/29358683 for some unknown reason UserManager.isUserUnlocked() could
-                        // return true even if the device is not unlocked, which will cause a
-                        // IllegalArgumentException when trying to write voicemail status.
-                        // Catch it as a workaround while investigating.
-                        Log.e(TAG, e.toString());
-                        Log.e(TAG, "UserManager.isUserUnlocked: " + UserManager.get(context)
-                            .isUserUnlocked());
-                        PhoneAccountHandle phoneAccount = PhoneAccountHandleConverter
-                            .fromSubId(subId);
-                        OmtpVvmSourceManager.getInstance(context)
-                            .removePhoneStateListener(phoneAccount);
-                        OmtpBootCompletedReceiver.addDeferredSubId(context, subId);
-                    }
+                    Log.d(TAG, "User locked, activation request delayed until unlock");
+                    // After the device is unlocked, VvmBootCompletedReceiver will iterate through
+                    // all call capable subIds, nothing need to be done here.
                 }
                 break;
         }
@@ -130,5 +119,20 @@ public class SimChangeReceiver extends BroadcastReceiver {
             Log.d(TAG,
                     "visual voicemail not supported for carrier " + mccMnc + " on subId " + subId);
         }
+    }
+
+    /**
+     * CryptKeeper mode is the pre-file based encryption locked state, when the user has selected
+     * "Require password to boot" and the device hasn't been unlocked yet during a reboot. {@link
+     * UserManager#isUserUnlocked()} will still return true in this mode, but storage in /data and
+     * all content providers will not be available(including SharedPreference).
+     */
+    private static boolean isCryptKeeperMode() {
+        try {
+            return IPackageManager.Stub.asInterface(ServiceManager.getService("package")).
+                    isOnlyCoreApps();
+        } catch (RemoteException e) {
+        }
+        return false;
     }
 }

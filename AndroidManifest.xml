@@ -678,7 +678,7 @@
             </intent-filter>
         </receiver>
         <receiver
-            android:name="com.android.phone.vvm.omtp.OmtpBootCompletedReceiver"
+            android:name="com.android.phone.vvm.omtp.VvmBootCompletedReceiver"
             android:exported="true"
             android:permission="android.permission.RECEIVE_BOOT_COMPLETED">
             <intent-filter>
