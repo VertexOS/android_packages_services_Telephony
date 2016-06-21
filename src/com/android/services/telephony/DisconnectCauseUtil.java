@@ -441,6 +441,7 @@ public class DisconnectCauseUtil {
 
             case android.telephony.DisconnectCause.LIMIT_EXCEEDED:
                 resourceId = R.string.callFailed_limitExceeded;
+                break;
 
             case android.telephony.DisconnectCause.INVALID_NUMBER:
                 resourceId = R.string.callFailed_invalid_number_format;
