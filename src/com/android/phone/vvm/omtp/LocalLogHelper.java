@@ -15,21 +15,31 @@
  */
 package com.android.phone.vvm.omtp;
 
-import com.android.internal.telephony.PhoneFactory;
+import android.util.LocalLog;
+
+import com.android.internal.util.IndentingPrintWriter;
+
+import java.io.FileDescriptor;
+import java.io.PrintWriter;
 
 /**
- * Helper methods for adding to Telephony local logs.
+ * Helper methods for adding to OMTP visual voicemail local logs.
  */
 public class LocalLogHelper {
-    public static final String KEY = "OmtpVvm";
-    private static final int MAX_OMTP_VVM_LOGS = 20;
+
+    private static final int MAX_OMTP_VVM_LOGS = 100;
+
+    private static final LocalLog sLocalLog = new LocalLog(MAX_OMTP_VVM_LOGS);
 
     public static void log(String tag, String log) {
-        try {
-            PhoneFactory.addLocalLog(KEY, MAX_OMTP_VVM_LOGS);
-        } catch (IllegalArgumentException e){
-        } finally {
-            PhoneFactory.localLog(KEY, tag + ": " + log);
-        }
+        sLocalLog.log(tag + ": " + log);
+    }
+
+    public static void dump(FileDescriptor fd, PrintWriter printwriter, String[] args) {
+        IndentingPrintWriter indentingPrintWriter = new IndentingPrintWriter(printwriter, "  ");
+        indentingPrintWriter.println("OmtpVvm:");
+        indentingPrintWriter.increaseIndent();
+        sLocalLog.dump(fd, indentingPrintWriter, args);
+        indentingPrintWriter.decreaseIndent();
     }
 }

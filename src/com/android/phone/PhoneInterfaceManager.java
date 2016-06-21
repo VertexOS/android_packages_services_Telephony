@@ -85,6 +85,8 @@ import com.android.internal.telephony.uicc.UiccController;
 import com.android.internal.util.HexDump;
 import com.android.phone.settings.VoicemailNotificationSettingsUtil;
 
+import java.io.FileDescriptor;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -3289,4 +3291,12 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         }
     }
 
+    /**
+     * Called when "adb shell dumpsys phone" is invoked. Dump is also automatically invoked when a
+     * bug report is being generated.
+     */
+    @Override
+    protected void dump(FileDescriptor fd, final PrintWriter writer, String[] args) {
+        DumpsysHandler.dump(fd, writer, args);
+    }
 }
