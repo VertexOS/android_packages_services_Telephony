@@ -35,6 +35,7 @@ import com.android.phone.R;
 import com.android.phone.common.mail.MessagingException;
 import com.android.phone.vvm.omtp.OmtpConstants;
 import com.android.phone.vvm.omtp.OmtpConstants.ChangePinResult;
+import com.android.phone.vvm.omtp.OmtpEvents;
 import com.android.phone.vvm.omtp.imap.ImapHelper;
 import com.android.phone.vvm.omtp.sync.VvmNetworkRequestCallback;
 
@@ -192,6 +193,7 @@ public class VoicemailChangePinDialogPreference extends DialogPreference {
                     // Wipe the default old PIN so the old PIN input box will be shown to the user
                     // on the next time.
                     setDefaultOldPIN(mContext, mPhoneAccountHandle, null);
+                    helper.handleEvent(OmtpEvents.CONFIG_PIN_SET);
                 }
             } catch (MessagingException e) {
                 finishPinChange();

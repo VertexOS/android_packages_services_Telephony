@@ -15,7 +15,6 @@
  */
 package com.android.phone.common.mail.store;
 
-import android.text.TextUtils;
 import android.util.ArraySet;
 import android.util.Base64;
 
@@ -180,18 +179,48 @@ public class ImapConnection {
             }
         } catch (ImapException ie) {
             LogUtils.d(TAG, "ImapException", ie);
-            final String status = ie.getStatus();
-            final String code = ie.getResponseCode();
-            final String alertText = ie.getAlertText();
+            String status = ie.getStatus();
+            String statusMessage = ie.getStatusMessage();
+            String alertText = ie.getAlertText();
 
-            // if the response code indicates expired or bad credentials, throw a special exception
-            if (ImapConstants.AUTHENTICATIONFAILED.equals(code) ||
-                    ImapConstants.EXPIRED.equals(code) ||
-                    (ImapConstants.NO.equals(status) && TextUtils.isEmpty(code))) {
-                mImapStore.getImapHelper().handleEvent(OmtpEvents.DATA_BAD_IMAP_CREDENTIAL);
+            if (ImapConstants.NO.equals(status)) {
+                switch (statusMessage) {
+                    case ImapConstants.NO_UNKNOWN_USER:
+                        mImapStore.getImapHelper().handleEvent(OmtpEvents.DATA_AUTH_UNKNOWN_USER);
+                        break;
+                    case ImapConstants.NO_UNKNOWN_CLIENT:
+                        mImapStore.getImapHelper().handleEvent(OmtpEvents.DATA_AUTH_UNKNOWN_DEVICE);
+                        break;
+                    case ImapConstants.NO_INVALID_PASSWORD:
+                        mImapStore.getImapHelper()
+                                .handleEvent(OmtpEvents.DATA_AUTH_INVALID_PASSWORD);
+                        break;
+                    case ImapConstants.NO_MAILBOX_NOT_INITIALIZED:
+                        mImapStore.getImapHelper()
+                                .handleEvent(OmtpEvents.DATA_AUTH_MAILBOX_NOT_INITIALIZED);
+                        break;
+                    case ImapConstants.NO_SERVICE_IS_NOT_PROVISIONED:
+                        mImapStore.getImapHelper()
+                                .handleEvent(OmtpEvents.DATA_AUTH_SERVICE_NOT_PROVISIONED);
+                        break;
+                    case ImapConstants.NO_SERVICE_IS_NOT_ACTIVATED:
+                        mImapStore.getImapHelper()
+                                .handleEvent(OmtpEvents.DATA_AUTH_SERVICE_NOT_ACTIVATED);
+                        break;
+                    case ImapConstants.NO_USER_IS_BLOCKED:
+                        mImapStore.getImapHelper()
+                                .handleEvent(OmtpEvents.DATA_AUTH_USER_IS_BLOCKED);
+                        break;
+                    case ImapConstants.NO_APPLICATION_ERROR:
+                        mImapStore.getImapHelper()
+                                .handleEvent(OmtpEvents.DATA_REJECTED_SERVER_RESPONSE);
+                    default:
+                        mImapStore.getImapHelper().handleEvent(OmtpEvents.DATA_BAD_IMAP_CREDENTIAL);
+                }
                 throw new AuthenticationFailedException(alertText, ie);
             }
 
+            mImapStore.getImapHelper().handleEvent(OmtpEvents.DATA_REJECTED_SERVER_RESPONSE);
             throw new MessagingException(alertText, ie);
         }
     }
@@ -359,16 +388,11 @@ public class ImapConnection {
         if (!(response.isOk() || response.isContinuationRequest())) {
             final String toString = response.toString();
             final String status = response.getStatusOrEmpty().getString();
+            final String statusMessage = response.getStatusResponseTextOrEmpty().getString();
             final String alert = response.getAlertTextOrEmpty().getString();
             final String responseCode = response.getResponseCodeOrEmpty().getString();
             destroyResponses();
-            mImapStore.getImapHelper().handleEvent(OmtpEvents.DATA_REJECTED_SERVER_RESPONSE);
-            // if the response code indicates an error occurred within the server, indicate that
-            if (ImapConstants.UNAVAILABLE.equals(responseCode)) {
-
-                throw new MessagingException(MessagingException.SERVER_ERROR, alert);
-            }
-            throw new ImapException(toString, status, alert, responseCode);
+            throw new ImapException(toString, status, statusMessage, alert, responseCode);
         }
         return responses;
     }

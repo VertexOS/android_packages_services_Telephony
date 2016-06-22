@@ -130,19 +130,25 @@ public class ImapStore {
         private static final long serialVersionUID = 1L;
 
         private final String mStatus;
+        private final String mStatusMessage;
         private final String mAlertText;
         private final String mResponseCode;
 
-        public ImapException(String message, String status, String alertText,
+        public ImapException(String message, String status, String statusMessage, String alertText,
                 String responseCode) {
             super(message);
             mStatus = status;
+            mStatusMessage = statusMessage;
             mAlertText = alertText;
             mResponseCode = responseCode;
         }
 
         public String getStatus() {
             return mStatus;
+        }
+
+        public String getStatusMessage() {
+            return mStatusMessage;
         }
 
         public String getAlertText() {

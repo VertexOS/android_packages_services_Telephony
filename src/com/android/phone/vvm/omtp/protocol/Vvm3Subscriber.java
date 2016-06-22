@@ -28,6 +28,7 @@ import android.text.style.URLSpan;
 import android.util.ArrayMap;
 
 import com.android.phone.Assert;
+import com.android.phone.vvm.omtp.OmtpEvents;
 import com.android.phone.vvm.omtp.OmtpVvmCarrierConfigHelper;
 import com.android.phone.vvm.omtp.VvmLog;
 import com.android.phone.vvm.omtp.sync.VvmNetworkRequestCallback;
@@ -204,6 +205,7 @@ public class Vvm3Subscriber {
         try {
             return future.get(REQUEST_TIMEOUT_SECONDS, TimeUnit.SECONDS);
         } catch (InterruptedException | ExecutionException | TimeoutException e) {
+            mHelper.handleEvent(OmtpEvents.VVM3_SPG_CONNECTION_FAILED);
             throw new ProvisioningException(e.toString());
         }
     }
@@ -219,6 +221,7 @@ public class Vvm3Subscriber {
         try {
             future.get(REQUEST_TIMEOUT_SECONDS, TimeUnit.SECONDS);
         } catch (InterruptedException | ExecutionException | TimeoutException e) {
+            mHelper.handleEvent(OmtpEvents.VVM3_SPG_CONNECTION_FAILED);
             throw new ProvisioningException(e.toString());
         }
     }
@@ -251,6 +254,7 @@ public class Vvm3Subscriber {
             }
             return response;
         } catch (InterruptedException | ExecutionException | TimeoutException e) {
+            mHelper.handleEvent(OmtpEvents.VVM3_VMG_CONNECTION_FAILED);
             throw new ProvisioningException(e.toString());
         }
     }

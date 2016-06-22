@@ -17,6 +17,7 @@
 package com.android.phone.vvm.omtp.protocol;
 
 import android.annotation.Nullable;
+import android.content.Context;
 import android.net.Network;
 import android.os.Bundle;
 import android.telecom.PhoneAccountHandle;
@@ -26,6 +27,7 @@ import com.android.phone.common.mail.MessagingException;
 import com.android.phone.settings.VisualVoicemailSettingsUtil;
 import com.android.phone.settings.VoicemailChangePinDialogPreference;
 import com.android.phone.vvm.omtp.OmtpConstants;
+import com.android.phone.vvm.omtp.OmtpEvents;
 import com.android.phone.vvm.omtp.OmtpVvmCarrierConfigHelper;
 import com.android.phone.vvm.omtp.VvmLog;
 import com.android.phone.vvm.omtp.imap.ImapHelper;
@@ -95,6 +97,11 @@ public class Vvm3Protocol extends VisualVoicemailProtocol {
     }
 
     @Override
+    public void handleEvent(Context context, int subId, OmtpEvents event) {
+        Vvm3EventHandler.handleEvent(context, subId, event);
+    }
+
+    @Override
     public String getCommand(String command) {
         if (command == OmtpConstants.IMAP_CHANGE_TUI_PWD_FORMAT) {
             return IMAP_CHANGE_TUI_PWD_FORMAT;
@@ -155,6 +162,7 @@ public class Vvm3Protocol extends VisualVoicemailProtocol {
                     mConfig.requestStatus();
                 }
             } catch (MessagingException | IOException e) {
+                helper.handleEvent(OmtpEvents.VVM3_NEW_USER_SETUP_FAILED);
                 VvmLog.e(TAG, e.toString());
             }
         }
@@ -176,9 +184,7 @@ public class Vvm3Protocol extends VisualVoicemailProtocol {
             if (helper.changePin(defaultPin, newPin) == OmtpConstants.CHANGE_PIN_SUCCESS) {
                 VoicemailChangePinDialogPreference
                         .setDefaultOldPIN(mContext, mPhoneAccount, newPin);
-
-                // TODO(b/29082418): set CONFIGURATION_STATE to VVM3_CONFIGURATION_PIN_NOT_SET
-                // to prompt the user to set the PIN
+                helper.handleEvent(OmtpEvents.CONFIG_DEFAULT_PIN_REPLACED);
             }
             VvmLog.i(TAG, "new user: PIN set");
             return true;

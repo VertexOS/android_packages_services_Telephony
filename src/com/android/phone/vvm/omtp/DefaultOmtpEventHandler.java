@@ -50,6 +50,7 @@ public class DefaultOmtpEventHandler {
             OmtpEvents event) {
         switch (event) {
             case CONFIG_REQUEST_STATUS_SUCCESS:
+            case CONFIG_PIN_SET:
                 VoicemailStatus.edit(context, subId)
                         .setConfigurationState(VoicemailContract.Status.CONFIGURATION_STATE_OK)
                         .setNotificationChannelState(Status.NOTIFICATION_CHANNEL_STATE_OK)
@@ -102,6 +103,13 @@ public class DefaultOmtpEventHandler {
                         .apply();
                 break;
             case DATA_BAD_IMAP_CREDENTIAL:
+            case DATA_AUTH_UNKNOWN_USER:
+            case DATA_AUTH_UNKNOWN_DEVICE:
+            case DATA_AUTH_INVALID_PASSWORD:
+            case DATA_AUTH_MAILBOX_NOT_INITIALIZED:
+            case DATA_AUTH_SERVICE_NOT_PROVISIONED:
+            case DATA_AUTH_SERVICE_NOT_ACTIVATED:
+            case DATA_AUTH_USER_IS_BLOCKED:
                 VoicemailStatus.edit(context, subId)
                         .setDataChannelState(
                                 VoicemailContract.Status.DATA_CHANNEL_STATE_BAD_CONFIGURATION)
