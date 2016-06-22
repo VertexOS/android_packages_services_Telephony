@@ -26,10 +26,10 @@ import android.text.Html;
 import android.text.Spanned;
 import android.text.style.URLSpan;
 import android.util.ArrayMap;
-import android.util.Log;
 
 import com.android.phone.Assert;
 import com.android.phone.vvm.omtp.OmtpVvmCarrierConfigHelper;
+import com.android.phone.vvm.omtp.VvmLog;
 import com.android.phone.vvm.omtp.sync.VvmNetworkRequestCallback;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -151,6 +151,7 @@ public class Vvm3Subscriber {
         Assert.isNotMainThread();
         // Cellular data is required to subscribe.
         // processSubscription() is called after network is available.
+        VvmLog.i(TAG, "Subscribing");
         new Vvm3ProvisioningNetworkRequestCallback(mHelper, mHandle).requestNetwork();
     }
 
@@ -161,7 +162,7 @@ public class Vvm3Subscriber {
             String subscribeLink = findSubscribeLink(selfProvisionResponse);
             clickSubscribeLink(subscribeLink);
         } catch (ProvisioningException e) {
-            Log.e(TAG, e.toString());
+            VvmLog.e(TAG, e.toString());
         }
     }
 
@@ -169,6 +170,7 @@ public class Vvm3Subscriber {
      * Get the URL to perform self-provisioning from the voicemail management gateway.
      */
     private String getSelfProvisioningGateway() throws ProvisioningException {
+        VvmLog.i(TAG, "retrieving SPG URL");
         String response = vvm3XmlRequest(OPERATION_GET_SPG_URL);
         return extractText(response, SPG_URL_TAG);
     }
@@ -179,6 +181,8 @@ public class Vvm3Subscriber {
      * subscription. The cookie from this response and cellular data is required to click the link.
      */
     private String getSelfProvisionResponse(String url) throws ProvisioningException {
+        VvmLog.i(TAG, "Retrieving self provisioning response");
+
         RequestFuture<String> future = RequestFuture.newFuture();
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, future, future) {
@@ -205,6 +209,7 @@ public class Vvm3Subscriber {
     }
 
     private void clickSubscribeLink(String subscribeLink) throws ProvisioningException {
+        VvmLog.i(TAG, "Clicking subscribe link");
         RequestFuture<String> future = RequestFuture.newFuture();
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST,
@@ -219,10 +224,10 @@ public class Vvm3Subscriber {
     }
 
     private String vvm3XmlRequest(String operation) throws ProvisioningException {
-        Log.d(TAG, "Sending vvm3XmlRequest for " + operation);
+        VvmLog.d(TAG, "Sending vvm3XmlRequest for " + operation);
         String voicemailManagementGateway = mData.getString(VMG_URL_KEY);
         if (voicemailManagementGateway == null) {
-            Log.e(TAG, "voicemailManagementGateway url unknown");
+            VvmLog.e(TAG, "voicemailManagementGateway url unknown");
             return null;
         }
         String transactionId = createTransactionId();
@@ -285,7 +290,7 @@ public class Vvm3Subscriber {
         @Override
         public void onAvailable(Network network) {
             super.onAvailable(network);
-            Log.d(TAG, "provisioning: network available");
+            VvmLog.d(TAG, "provisioning: network available");
             mRequestQueue = Volley
                     .newRequestQueue(mContext, new NetworkSpecifiedHurlStack(network));
             processSubscription();

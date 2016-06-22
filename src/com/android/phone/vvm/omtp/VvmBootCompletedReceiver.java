@@ -21,7 +21,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.telecom.PhoneAccountHandle;
 import android.telecom.TelecomManager;
-import android.util.Log;
 
 import com.android.phone.vvm.omtp.utils.PhoneAccountHandleConverter;
 
@@ -46,11 +45,11 @@ public class VvmBootCompletedReceiver extends BroadcastReceiver {
             return;
         }
 
-        Log.v(TAG, "processing subId list");
+        VvmLog.v(TAG, "processing subId list");
         for (PhoneAccountHandle handle : TelecomManager.from(context)
                 .getCallCapablePhoneAccounts()) {
             int subId = PhoneAccountHandleConverter.toSubId(handle);
-            Log.v(TAG, "processing subId " + subId);
+            VvmLog.v(TAG, "processing subId " + subId);
             SimChangeReceiver.processSubId(context, subId);
         }
     }

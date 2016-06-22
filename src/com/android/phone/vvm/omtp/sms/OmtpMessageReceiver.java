@@ -25,14 +25,13 @@ import android.os.UserManager;
 import android.provider.VoicemailContract;
 import android.telecom.PhoneAccountHandle;
 import android.telecom.Voicemail;
-import android.util.Log;
 
 import com.android.phone.PhoneGlobals;
 import com.android.phone.settings.VisualVoicemailSettingsUtil;
-import com.android.phone.vvm.omtp.LocalLogHelper;
 import com.android.phone.vvm.omtp.OmtpConstants;
 import com.android.phone.vvm.omtp.OmtpEvents;
 import com.android.phone.vvm.omtp.OmtpVvmCarrierConfigHelper;
+import com.android.phone.vvm.omtp.VvmLog;
 import com.android.phone.vvm.omtp.sync.OmtpVvmSourceManager;
 import com.android.phone.vvm.omtp.sync.OmtpVvmSyncService;
 import com.android.phone.vvm.omtp.sync.VoicemailsQueryHelper;
@@ -49,7 +48,7 @@ public class OmtpMessageReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         if (!UserManager.get(context).isUserUnlocked()) {
-            Log.i(TAG, "Received message on locked device");
+            VvmLog.i(TAG, "Received message on locked device");
             // A full sync will happen after the device is unlocked, so nothing need to be done.
             return;
         }
@@ -59,7 +58,7 @@ public class OmtpMessageReceiver extends BroadcastReceiver {
         PhoneAccountHandle phone = PhoneAccountHandleConverter.fromSubId(subId);
 
         if (phone == null) {
-            Log.i(TAG, "Received message for null phone account");
+            VvmLog.i(TAG, "Received message for null phone account");
             return;
         }
 
@@ -68,7 +67,7 @@ public class OmtpMessageReceiver extends BroadcastReceiver {
             if (helper.isLegacyModeEnabled()) {
                 LegacyModeSmsHandler.handle(context, intent, phone);
             } else {
-                Log.i(TAG, "Received vvm message for disabled vvm source.");
+                VvmLog.i(TAG, "Received vvm message for disabled vvm source.");
             }
             return;
         }
@@ -80,23 +79,20 @@ public class OmtpMessageReceiver extends BroadcastReceiver {
         if (eventType.equals(OmtpConstants.SYNC_SMS_PREFIX)) {
             SyncMessage message = new SyncMessage(data);
 
-            Log.v(TAG, "Received SYNC sms for " + phone.getId() +
-                    " with event " + message.getSyncTriggerEvent());
-            LocalLogHelper.log(TAG, "Received SYNC sms for " + phone.getId() +
+            VvmLog.v(TAG, "Received SYNC sms for " + subId +
                     " with event " + message.getSyncTriggerEvent());
             processSync(phone, message);
         } else if (eventType.equals(OmtpConstants.STATUS_SMS_PREFIX)) {
-            Log.v(TAG, "Received STATUS sms for " + phone.getId());
-            LocalLogHelper.log(TAG, "Received Status sms for " + phone.getId());
+            VvmLog.v(TAG, "Received Status sms for " + subId);
             StatusMessage message = new StatusMessage(data);
             if (message.getProvisioningStatus().equals(OmtpConstants.SUBSCRIBER_READY)) {
                 updateSource(phone, subId, message);
             } else {
-                Log.v(TAG, "Subscriber not ready, start provisioning");
+                VvmLog.v(TAG, "Subscriber not ready, start provisioning");
                 mContext.startService(OmtpProvisioningService.getProvisionIntent(mContext, intent));
             }
         } else {
-            Log.e(TAG, "Unknown prefix: " + eventType);
+            VvmLog.e(TAG, "Unknown prefix: " + eventType);
         }
     }
 
@@ -138,7 +134,8 @@ public class OmtpMessageReceiver extends BroadcastReceiver {
                 // Not implemented in V1
                 break;
             default:
-               Log.e(TAG, "Unrecognized sync trigger event: " + message.getSyncTriggerEvent());
+                VvmLog.e(TAG,
+                        "Unrecognized sync trigger event: " + message.getSyncTriggerEvent());
                break;
         }
 
@@ -171,7 +168,7 @@ public class OmtpMessageReceiver extends BroadcastReceiver {
 
             PhoneGlobals.getInstance().clearMwiIndicator(subId);
         } else {
-            Log.e(TAG, "Visual voicemail not available for subscriber.");
+            VvmLog.e(TAG, "Visual voicemail not available for subscriber.");
         }
     }
 }

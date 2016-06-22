@@ -18,9 +18,9 @@ package com.android.phone.vvm.omtp.protocol;
 
 import android.telephony.SmsManager;
 import android.text.TextUtils;
-import android.util.Log;
 
 import com.android.phone.vvm.omtp.OmtpVvmCarrierConfigHelper;
+import com.android.phone.vvm.omtp.VvmLog;
 import com.android.phone.vvm.omtp.sms.OmtpMessageSender;
 
 public class ProtocolHelper {
@@ -33,7 +33,7 @@ public class ProtocolHelper {
         int applicationPort = config.getApplicationPort();
         String destinationNumber = config.getDestinationNumber();
         if (TextUtils.isEmpty(destinationNumber)) {
-            Log.w(TAG, "No destination number for this carrier.");
+            VvmLog.w(TAG, "No destination number for this carrier.");
             return null;
         }
 

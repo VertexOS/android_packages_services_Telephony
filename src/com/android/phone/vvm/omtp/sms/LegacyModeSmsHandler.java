@@ -21,12 +21,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.provider.VoicemailContract;
 import android.telecom.PhoneAccountHandle;
-import android.util.Log;
 
 import com.android.internal.telephony.Phone;
 import com.android.phone.PhoneUtils;
 import com.android.phone.vvm.omtp.OmtpConstants;
 import com.android.phone.vvm.omtp.OmtpVvmCarrierConfigHelper;
+import com.android.phone.vvm.omtp.VvmLog;
 
 /**
  * Class ot handle voicemail SMS under legacy mode
@@ -38,14 +38,14 @@ public class LegacyModeSmsHandler {
     private static final String TAG = "LegacyModeSmsHandler";
 
     public static void handle(Context context, Intent intent, PhoneAccountHandle handle) {
-        Log.v(TAG, "processing VVM SMS on legacy mode");
+        VvmLog.v(TAG, "processing VVM SMS on legacy mode");
         String eventType = intent.getExtras()
                 .getString(VoicemailContract.EXTRA_VOICEMAIL_SMS_PREFIX);
         Bundle data = intent.getExtras().getBundle(VoicemailContract.EXTRA_VOICEMAIL_SMS_FIELDS);
 
         if (eventType.equals(OmtpConstants.SYNC_SMS_PREFIX)) {
             SyncMessage message = new SyncMessage(data);
-            Log.v(TAG, "Received SYNC sms for " + handle.getId() +
+            VvmLog.v(TAG, "Received SYNC sms for " + handle.getId() +
                     " with event " + message.getSyncTriggerEvent());
 
             switch (message.getSyncTriggerEvent()) {
@@ -55,7 +55,7 @@ public class LegacyModeSmsHandler {
                     // change.
                     // For some carriers new message count could be set to 0 even if there are still
                     // unread messages, to clear the message waiting indicator.
-                    Log.v(TAG, "updating MWI");
+                    VvmLog.v(TAG, "updating MWI");
                     Phone phone = PhoneUtils.getPhoneForPhoneAccountHandle(handle);
                     // Setting voicemail message count to non-zero will show the telephony voicemail
                     // notification, and zero will clear it.

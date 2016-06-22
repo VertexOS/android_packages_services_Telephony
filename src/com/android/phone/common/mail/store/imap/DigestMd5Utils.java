@@ -19,12 +19,12 @@ package com.android.phone.common.mail.store.imap;
 import android.annotation.Nullable;
 import android.util.ArrayMap;
 import android.util.Base64;
-import android.util.Log;
 
 import com.android.internal.annotations.VisibleForTesting;
 import com.android.phone.common.mail.MailTransport;
 import com.android.phone.common.mail.MessagingException;
 import com.android.phone.common.mail.store.ImapStore;
+import com.android.phone.vvm.omtp.VvmLog;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -244,7 +244,7 @@ public class DigestMd5Utils {
                     }
                 }
             } catch (IndexOutOfBoundsException e) {
-                Log.e(TAG, e.toString());
+                VvmLog.e(TAG, e.toString());
                 return null;
             }
             return mResult;

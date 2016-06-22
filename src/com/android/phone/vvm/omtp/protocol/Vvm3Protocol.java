@@ -21,13 +21,13 @@ import android.net.Network;
 import android.os.Bundle;
 import android.telecom.PhoneAccountHandle;
 import android.telephony.SmsManager;
-import android.util.Log;
 
 import com.android.phone.common.mail.MessagingException;
 import com.android.phone.settings.VisualVoicemailSettingsUtil;
 import com.android.phone.settings.VoicemailChangePinDialogPreference;
 import com.android.phone.vvm.omtp.OmtpConstants;
 import com.android.phone.vvm.omtp.OmtpVvmCarrierConfigHelper;
+import com.android.phone.vvm.omtp.VvmLog;
 import com.android.phone.vvm.omtp.imap.ImapHelper;
 import com.android.phone.vvm.omtp.sms.OmtpMessageSender;
 import com.android.phone.vvm.omtp.sms.StatusMessage;
@@ -58,15 +58,12 @@ public class Vvm3Protocol extends VisualVoicemailProtocol {
 
     private static final int PIN_LENGTH = 6;
 
-    public Vvm3Protocol() {
-        Log.d(TAG, "Vvm3Protocol created");
-    }
-
     @Override
     public void startActivation(OmtpVvmCarrierConfigHelper config) {
         // VVM3 does not support activation SMS.
         // Send a status request which will start the provisioning process if the user is not
         // provisioned.
+        VvmLog.i(TAG, "Activating");
         config.requestStatus();
     }
 
@@ -79,12 +76,12 @@ public class Vvm3Protocol extends VisualVoicemailProtocol {
     @Override
     public void startProvisioning(PhoneAccountHandle phoneAccountHandle,
             OmtpVvmCarrierConfigHelper config, StatusMessage message, Bundle data) {
-        Log.i(TAG, "start vvm3 provisioning");
+        VvmLog.i(TAG, "start vvm3 provisioning");
         if ("U".equals(message.getProvisioningStatus())) {
-            Log.i(TAG, "Provisioning status: Unknown, subscribing");
+            VvmLog.i(TAG, "Provisioning status: Unknown, subscribing");
             new Vvm3Subscriber(phoneAccountHandle, config, data).subscribe();
         } else if ("N".equals(message.getProvisioningStatus())) {
-            Log.i(TAG, "setting up new user");
+            VvmLog.i(TAG, "setting up new user");
             VisualVoicemailSettingsUtil.setVisualVoicemailCredentialsFromStatusMessage(
                     config.getContext(), phoneAccountHandle, message);
             startProvisionNewUser(phoneAccountHandle, config, message);
@@ -132,7 +129,7 @@ public class Vvm3Protocol extends VisualVoicemailProtocol {
         @Override
         public void onAvailable(Network network) {
             super.onAvailable(network);
-            Log.i(TAG, "new user: network available");
+            VvmLog.i(TAG, "new user: network available");
             ImapHelper helper = new ImapHelper(mContext, mPhoneAccount, network);
 
             try {
@@ -148,29 +145,31 @@ public class Vvm3Protocol extends VisualVoicemailProtocol {
                     // English
                     helper.changeVoicemailTuiLanguage(VVM3_VM_LANGUAGE_ENGLISH_STANDARD);
                 }
-                Log.i(TAG, "new user: language set");
+                VvmLog.i(TAG, "new user: language set");
 
                 if (setPin(helper)) {
                     // Only close new user tutorial if the PIN has been changed.
                     helper.closeNewUserTutorial();
-                    Log.i(TAG, "new user: NUT closed");
+                    VvmLog.i(TAG, "new user: NUT closed");
 
                     mConfig.requestStatus();
                 }
             } catch (MessagingException | IOException e) {
-                Log.e(TAG, e.toString());
+                VvmLog.e(TAG, e.toString());
             }
         }
 
         private boolean setPin(ImapHelper helper) throws IOException, MessagingException {
             String defaultPin = getDefaultPin();
             if (defaultPin == null) {
+                VvmLog.i(TAG, "cannot generate default PIN");
                 return false;
             }
 
             if (VoicemailChangePinDialogPreference.getDefaultOldPin(mContext, mPhoneAccount)
                     != null) {
                 // The pin was already set
+                VvmLog.i(TAG, "PIN already set");
                 return true;
             }
             String newPin = generatePin();
@@ -181,7 +180,7 @@ public class Vvm3Protocol extends VisualVoicemailProtocol {
                 // TODO(b/29082418): set CONFIGURATION_STATE to VVM3_CONFIGURATION_PIN_NOT_SET
                 // to prompt the user to set the PIN
             }
-            Log.i(TAG, "new user: PIN set");
+            VvmLog.i(TAG, "new user: PIN set");
             return true;
         }
 
@@ -192,12 +191,12 @@ public class Vvm3Protocol extends VisualVoicemailProtocol {
             try {
                 String number = username.substring(0, username.indexOf('@'));
                 if (number.length() < 4) {
-                    Log.e(TAG, "unable to extract number from IMAP username");
+                    VvmLog.e(TAG, "unable to extract number from IMAP username");
                     return null;
                 }
                 return "1" + number.substring(number.length() - 4);
             } catch (StringIndexOutOfBoundsException e) {
-                Log.e(TAG, "unable to extract number from IMAP username");
+                VvmLog.e(TAG, "unable to extract number from IMAP username");
                 return null;
             }
 

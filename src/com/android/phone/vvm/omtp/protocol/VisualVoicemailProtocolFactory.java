@@ -18,7 +18,8 @@ package com.android.phone.vvm.omtp.protocol;
 
 import android.annotation.Nullable;
 import android.telephony.TelephonyManager;
-import android.util.Log;
+
+import com.android.phone.vvm.omtp.VvmLog;
 
 public class VisualVoicemailProtocolFactory {
 
@@ -39,7 +40,7 @@ public class VisualVoicemailProtocolFactory {
             case VVM_TYPE_VVM3:
                 return new Vvm3Protocol();
             default:
-                Log.e(TAG, "Unexpected visual voicemail type: " + type);
+                VvmLog.e(TAG, "Unexpected visual voicemail type: " + type);
         }
         return null;
     }

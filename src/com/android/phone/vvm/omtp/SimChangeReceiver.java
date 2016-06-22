@@ -27,7 +27,6 @@ import android.telecom.PhoneAccountHandle;
 import android.telephony.CarrierConfigManager;
 import android.telephony.SubscriptionManager;
 import android.telephony.TelephonyManager;
-import android.util.Log;
 
 import com.android.internal.telephony.IccCardConstants;
 import com.android.internal.telephony.PhoneConstants;
@@ -51,13 +50,13 @@ public class SimChangeReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         if (UserHandle.myUserId() != UserHandle.USER_SYSTEM) {
-            Log.v(TAG, "Received broadcast for user that is not system.");
+            VvmLog.v(TAG, "Received broadcast for user that is not system.");
             return;
         }
 
         final String action = intent.getAction();
         if (action == null) {
-            Log.w(TAG, "Null action for intent.");
+            VvmLog.w(TAG, "Null action for intent.");
             return;
         }
 
@@ -65,7 +64,7 @@ public class SimChangeReceiver extends BroadcastReceiver {
             case TelephonyIntents.ACTION_SIM_STATE_CHANGED:
                 if (IccCardConstants.INTENT_VALUE_ICC_ABSENT.equals(
                         intent.getStringExtra(IccCardConstants.INTENT_KEY_ICC_STATE))) {
-                    Log.i(TAG, "Sim removed, removing inactive accounts");
+                    VvmLog.i(TAG, "Sim removed, removing inactive accounts");
                     OmtpVvmSourceManager.getInstance(context).removeInactiveSources();
                 }
                 break;
@@ -74,14 +73,14 @@ public class SimChangeReceiver extends BroadcastReceiver {
                         SubscriptionManager.INVALID_SUBSCRIPTION_ID);
 
                 if (subId == SubscriptionManager.INVALID_SUBSCRIPTION_ID) {
-                    Log.i(TAG, "Received SIM change for invalid subscription id.");
+                    VvmLog.i(TAG, "Received SIM change for invalid subscription id.");
                     return;
                 }
-                Log.d(TAG, "Carrier config changed");
+                VvmLog.d(TAG, "Carrier config changed");
                 if (UserManager.get(context).isUserUnlocked() && !isCryptKeeperMode()) {
                     processSubId(context, subId);
                 } else {
-                    Log.d(TAG, "User locked, activation request delayed until unlock");
+                    VvmLog.d(TAG, "User locked, activation request delayed until unlock");
                     // After the device is unlocked, VvmBootCompletedReceiver will iterate through
                     // all call capable subIds, nothing need to be done here.
                 }
@@ -96,8 +95,8 @@ public class SimChangeReceiver extends BroadcastReceiver {
             PhoneAccountHandle phoneAccount = PhoneAccountHandleConverter.fromSubId(subId);
 
             if (VisualVoicemailSettingsUtil.isVisualVoicemailEnabled(context, phoneAccount)) {
-                Log.i(TAG, "Sim state or carrier config changed: requesting"
-                        + " activation for " + phoneAccount.getId());
+                VvmLog.i(TAG, "Sim state or carrier config changed: requesting"
+                        + " activation for " + subId);
 
                 // Add a phone state listener so that changes to the communication channels
                 // can be recorded.
@@ -107,16 +106,17 @@ public class SimChangeReceiver extends BroadcastReceiver {
             } else {
                 if (carrierConfigHelper.isLegacyModeEnabled()) {
                     // SMS still need to be filtered under legacy mode.
+                    VvmLog.i(TAG, "activating SMS filter for legacy mode");
                     carrierConfigHelper.activateSmsFilter();
                 }
                 // It may be that the source was not registered to begin with but we want
                 // to run through the steps to remove the source just in case.
                 OmtpVvmSourceManager.getInstance(context).removeSource(phoneAccount);
-                Log.v(TAG, "Sim change for disabled account.");
+                VvmLog.v(TAG, "Sim change for disabled account.");
             }
         } else {
             String mccMnc = context.getSystemService(TelephonyManager.class).getSimOperator(subId);
-            Log.d(TAG,
+            VvmLog.d(TAG,
                     "visual voicemail not supported for carrier " + mccMnc + " on subId " + subId);
         }
     }

@@ -22,7 +22,6 @@ import android.provider.VoicemailContract.Status;
 
 import com.android.phone.VoicemailStatus;
 import com.android.phone.vvm.omtp.OmtpEvents.Type;
-import com.android.services.telephony.Log;
 
 public class DefaultOmtpEventHandler {
 
@@ -43,7 +42,7 @@ public class DefaultOmtpEventHandler {
                 handleOtherEvent(context, subId, event);
                 break;
             default:
-                Log.wtf(TAG, "invalid event type " + event.getType() + " for " + event);
+                VvmLog.wtf(TAG, "invalid event type " + event.getType() + " for " + event);
         }
     }
 
@@ -57,7 +56,7 @@ public class DefaultOmtpEventHandler {
                         .apply();
                 break;
             default:
-                Log.wtf(TAG, "invalid configuration event " + event);
+                VvmLog.wtf(TAG, "invalid configuration event " + event);
         }
     }
 
@@ -120,7 +119,7 @@ public class DefaultOmtpEventHandler {
                 break;
 
             default:
-                Log.wtf(TAG, "invalid data channel event " + event);
+                VvmLog.wtf(TAG, "invalid data channel event " + event);
         }
     }
 
@@ -139,7 +138,7 @@ public class DefaultOmtpEventHandler {
                         .apply();
                 break;
             default:
-                Log.wtf(TAG, "invalid notification channel event " + event);
+                VvmLog.wtf(TAG, "invalid notification channel event " + event);
         }
     }
 
@@ -154,7 +153,7 @@ public class DefaultOmtpEventHandler {
                         .apply();
                 break;
             default:
-                Log.wtf(TAG, "invalid other event " + event);
+                VvmLog.wtf(TAG, "invalid other event " + event);
         }
     }
 }

@@ -3296,7 +3296,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
      * bug report is being generated.
      */
     @Override
-    protected void dump(FileDescriptor fd, final PrintWriter writer, String[] args) {
-        DumpsysHandler.dump(fd, writer, args);
+    protected void dump(FileDescriptor fd, PrintWriter writer, String[] args) {
+        DumpsysHandler.dump(mPhone.getContext(), fd, writer, args);
     }
 }

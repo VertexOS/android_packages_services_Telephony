@@ -16,7 +16,7 @@
 
 package com.android.phone.common.mail.store.imap;
 
-import android.util.Log;
+import com.android.phone.vvm.omtp.VvmLog;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
@@ -49,7 +49,7 @@ public class ImapSimpleString extends ImapString {
         try {
             return new ByteArrayInputStream(mString.getBytes("US-ASCII"));
         } catch (UnsupportedEncodingException e) {
-            Log.e(TAG, "Unsupported encoding: ", e);
+            VvmLog.e(TAG, "Unsupported encoding: ", e);
         }
         return null;
     }

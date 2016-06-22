@@ -27,14 +27,13 @@ import android.provider.VoicemailContract;
 import android.telecom.PhoneAccountHandle;
 import android.telecom.Voicemail;
 import android.text.TextUtils;
-import android.util.Log;
 
 import com.android.phone.PhoneUtils;
 import com.android.phone.VoicemailStatus;
 import com.android.phone.settings.VisualVoicemailSettingsUtil;
-import com.android.phone.vvm.omtp.LocalLogHelper;
 import com.android.phone.vvm.omtp.OmtpEvents;
 import com.android.phone.vvm.omtp.OmtpVvmCarrierConfigHelper;
+import com.android.phone.vvm.omtp.VvmLog;
 import com.android.phone.vvm.omtp.fetch.VoicemailFetchedCallback;
 import com.android.phone.vvm.omtp.imap.ImapHelper;
 
@@ -169,21 +168,21 @@ public class OmtpVvmSyncService extends IntentService {
     @Override
     protected void onHandleIntent(Intent intent) {
         if (intent == null) {
-            Log.d(TAG, "onHandleIntent: could not handle null intent");
+            VvmLog.d(TAG, "onHandleIntent: could not handle null intent");
             return;
         }
         String action = intent.getAction();
         PhoneAccountHandle phoneAccount = intent.getParcelableExtra(EXTRA_PHONE_ACCOUNT);
-        LocalLogHelper.log(TAG, "Sync requested: " + action +
+        VvmLog.log(TAG, "Sync requested: " + action +
                 " for all accounts: " + String.valueOf(phoneAccount == null));
 
         boolean isManualSync = intent.getBooleanExtra(EXTRA_IS_MANUAL_SYNC, false);
         Voicemail voicemail = intent.getParcelableExtra(EXTRA_VOICEMAIL);
         if (phoneAccount != null) {
-            Log.v(TAG, "Sync requested: " + action + " - for account: " + phoneAccount);
+            VvmLog.v(TAG, "Sync requested: " + action + " - for account: " + phoneAccount);
             setupAndSendRequest(phoneAccount, voicemail, action, isManualSync);
         } else {
-            Log.v(TAG, "Sync requested: " + action + " - for all accounts");
+            VvmLog.v(TAG, "Sync requested: " + action + " - for all accounts");
             OmtpVvmSourceManager vvmSourceManager =
                     OmtpVvmSourceManager.getInstance(this);
             Set<PhoneAccountHandle> sources = vvmSourceManager.getOmtpVvmSources();
@@ -196,7 +195,7 @@ public class OmtpVvmSyncService extends IntentService {
     private void setupAndSendRequest(PhoneAccountHandle phoneAccount, Voicemail voicemail,
             String action, boolean isManualSync) {
         if (!VisualVoicemailSettingsUtil.isVisualVoicemailEnabled(this, phoneAccount)) {
-            Log.v(TAG, "Sync requested for disabled account");
+            VvmLog.v(TAG, "Sync requested for disabled account");
             return;
         }
 
@@ -208,7 +207,7 @@ public class OmtpVvmSyncService extends IntentService {
                     : MINIMUM_MANUAL_SYNC_INTERVAL_MILLIS;
             if (currentTime - lastSyncTime < minimumInterval) {
                 // If it's been less than a minute since the last sync, bail.
-                Log.v(TAG, "Avoiding duplicate full sync: synced recently for "
+                VvmLog.v(TAG, "Avoiding duplicate full sync: synced recently for "
                         + phoneAccount.getId());
 
                 /**
@@ -238,7 +237,7 @@ public class OmtpVvmSyncService extends IntentService {
             while (retryCount > 0) {
                 ImapHelper imapHelper = new ImapHelper(this, phoneAccount, network);
                 if (!imapHelper.isSuccessfullyInitialized()) {
-                    Log.w(TAG, "Can't retrieve Imap credentials.");
+                    VvmLog.w(TAG, "Can't retrieve Imap credentials.");
                     VisualVoicemailSettingsUtil.resetVisualVoicemailRetryInterval(this,
                             phoneAccount);
                     return;
@@ -257,7 +256,7 @@ public class OmtpVvmSyncService extends IntentService {
                 if (VisualVoicemailSettingsUtil.isVisualVoicemailEnabled(this, phoneAccount) &&
                         !success) {
                     retryCount--;
-                    Log.v(TAG, "Retrying " + action);
+                    VvmLog.v(TAG, "Retrying " + action);
                 } else {
                     // Nothing more to do here, just exit.
                     VisualVoicemailSettingsUtil.resetVisualVoicemailRetryInterval(this,
@@ -285,7 +284,7 @@ public class OmtpVvmSyncService extends IntentService {
             downloadSuccess = download(imapHelper, account);
         }
 
-        Log.v(TAG, "upload succeeded: [" + String.valueOf(uploadSuccess)
+        VvmLog.v(TAG, "upload succeeded: [" + String.valueOf(uploadSuccess)
                 + "] download succeeded: [" + String.valueOf(downloadSuccess) + "]");
 
         boolean success = uploadSuccess && downloadSuccess;
@@ -330,9 +329,9 @@ public class OmtpVvmSyncService extends IntentService {
             super.onAvailable(network);
             NetworkInfo info = getConnectivityManager().getNetworkInfo(network);
             if (info == null) {
-                Log.d(TAG, "Network Type: Unknown");
+                VvmLog.d(TAG, "Network Type: Unknown");
             } else {
-                Log.d(TAG, "Network Type: " + info.getTypeName());
+                VvmLog.d(TAG, "Network Type: " + info.getTypeName());
             }
 
             doSync(network, this, mPhoneAccount, mVoicemail, mAction);
@@ -428,7 +427,7 @@ public class OmtpVvmSyncService extends IntentService {
         long retryInterval = VisualVoicemailSettingsUtil.getVisualVoicemailRetryInterval(this,
                 phoneAccount);
 
-        Log.v(TAG, "Retrying " + action + " in " + retryInterval + "ms");
+        VvmLog.v(TAG, "Retrying " + action + " in " + retryInterval + "ms");
 
         AlarmManager alarmManager = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
         alarmManager.set(AlarmManager.RTC, System.currentTimeMillis() + retryInterval,

@@ -20,7 +20,8 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.provider.VoicemailContract;
-import android.util.Log;
+
+import com.android.phone.vvm.omtp.VvmLog;
 
 public class OmtpVvmSyncReceiver extends BroadcastReceiver {
 
@@ -29,7 +30,7 @@ public class OmtpVvmSyncReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(final Context context, Intent intent) {
         if (VoicemailContract.ACTION_SYNC_VOICEMAIL.equals(intent.getAction())) {
-            Log.v(TAG, "Sync intent received");
+            VvmLog.v(TAG, "Sync intent received");
             Intent syncIntent = OmtpVvmSyncService
                     .getSyncIntent(context, OmtpVvmSyncService.SYNC_FULL_SYNC, null, true);
             intent.putExtra(OmtpVvmSyncService.EXTRA_IS_MANUAL_SYNC, true);

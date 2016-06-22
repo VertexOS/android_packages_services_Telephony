@@ -31,6 +31,9 @@ import java.util.Set;
  * enabled dialer vvm sources.
  */
 public class VvmPackageInstallReceiver extends BroadcastReceiver {
+
+    private static final String TAG = "VvmPkgInstallReceiver";
+
     @Override
     public void onReceive(Context context, Intent intent) {
         if (intent.getData() == null) {
@@ -59,6 +62,7 @@ public class VvmPackageInstallReceiver extends BroadcastReceiver {
                 // Force deactivate the client. The user can re-enable it in the settings.
                 // There are no need to update the settings for deactivation. At this point, if the
                 // default value is used it should be false because a carrier package is present.
+                VvmLog.i(TAG, "Carrier VVM package installed, disabling system VVM client");
                 OmtpVvmSourceManager.getInstance(context).removeSource(phoneAccount);
                 carrierConfigHelper.startDeactivation();
             }

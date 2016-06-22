@@ -20,8 +20,8 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.net.Uri;
 import android.provider.VoicemailContract.Voicemails;
-import android.util.Log;
 
+import com.android.phone.vvm.omtp.VvmLog;
 import com.android.phone.vvm.omtp.imap.VoicemailPayload;
 
 import libcore.io.IoUtils;
@@ -51,7 +51,7 @@ public class VoicemailFetchedCallback {
      * @param voicemailPayload The object containing the content data for the voicemail
      */
     public void setVoicemailContent(VoicemailPayload voicemailPayload) {
-        Log.d(TAG, String.format("Writing new voicemail content: %s", mUri));
+        VvmLog.d(TAG, String.format("Writing new voicemail content: %s", mUri));
         OutputStream outputStream = null;
 
         try {
@@ -61,7 +61,7 @@ public class VoicemailFetchedCallback {
                 outputStream.write(inputBytes);
             }
         } catch (IOException e) {
-            Log.w(TAG, String.format("File not found for %s", mUri));
+            VvmLog.w(TAG, String.format("File not found for %s", mUri));
             return;
         } finally {
             IoUtils.closeQuietly(outputStream);
@@ -73,7 +73,8 @@ public class VoicemailFetchedCallback {
         values.put(Voicemails.HAS_CONTENT, true);
         int updatedCount = mContentResolver.update(mUri, values, null, null);
         if (updatedCount != 1) {
-            Log.e(TAG, "Updating voicemail should have updated 1 row, was: " + updatedCount);
+            VvmLog
+                    .e(TAG, "Updating voicemail should have updated 1 row, was: " + updatedCount);
         }
     }
 }

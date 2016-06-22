@@ -20,6 +20,7 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.android.internal.annotations.VisibleForTesting;
+import com.android.phone.vvm.omtp.VvmLog;
 
 import java.util.List;
 import java.util.regex.Pattern;
@@ -184,7 +185,7 @@ public class LogUtils {
      */
     public static int v(String tag, String format, Object... args) {
         if (isLoggable(tag, VERBOSE)) {
-            return Log.v(tag, String.format(format, args));
+            return VvmLog.v(tag, String.format(format, args));
         }
         return 0;
     }
@@ -202,7 +203,7 @@ public class LogUtils {
      */
     public static int v(String tag, Throwable tr, String format, Object... args) {
         if (isLoggable(tag, VERBOSE)) {
-            return Log.v(tag, String.format(format, args), tr);
+            return VvmLog.v(tag, String.format(format, args), tr);
         }
         return 0;
     }
@@ -219,7 +220,7 @@ public class LogUtils {
      */
     public static int d(String tag, String format, Object... args) {
         if (isLoggable(tag, DEBUG)) {
-            return Log.d(tag, String.format(format, args));
+            return VvmLog.d(tag, String.format(format, args));
         }
         return 0;
     }
@@ -237,7 +238,7 @@ public class LogUtils {
      */
     public static int d(String tag, Throwable tr, String format, Object... args) {
         if (isLoggable(tag, DEBUG)) {
-            return Log.d(tag, String.format(format, args), tr);
+            return VvmLog.d(tag, String.format(format, args), tr);
         }
         return 0;
     }
@@ -254,7 +255,7 @@ public class LogUtils {
      */
     public static int i(String tag, String format, Object... args) {
         if (isLoggable(tag, INFO)) {
-            return Log.i(tag, String.format(format, args));
+            return VvmLog.i(tag, String.format(format, args));
         }
         return 0;
     }
@@ -272,7 +273,7 @@ public class LogUtils {
      */
     public static int i(String tag, Throwable tr, String format, Object... args) {
         if (isLoggable(tag, INFO)) {
-            return Log.i(tag, String.format(format, args), tr);
+            return VvmLog.i(tag, String.format(format, args), tr);
         }
         return 0;
     }
@@ -289,7 +290,7 @@ public class LogUtils {
      */
     public static int w(String tag, String format, Object... args) {
         if (isLoggable(tag, WARN)) {
-            return Log.w(tag, String.format(format, args));
+            return VvmLog.w(tag, String.format(format, args));
         }
         return 0;
     }
@@ -307,7 +308,7 @@ public class LogUtils {
      */
     public static int w(String tag, Throwable tr, String format, Object... args) {
         if (isLoggable(tag, WARN)) {
-            return Log.w(tag, String.format(format, args), tr);
+            return VvmLog.w(tag, String.format(format, args), tr);
         }
         return 0;
     }
@@ -324,7 +325,7 @@ public class LogUtils {
      */
     public static int e(String tag, String format, Object... args) {
         if (isLoggable(tag, ERROR)) {
-            return Log.e(tag, String.format(format, args));
+            return VvmLog.e(tag, String.format(format, args));
         }
         return 0;
     }
@@ -342,7 +343,7 @@ public class LogUtils {
      */
     public static int e(String tag, Throwable tr, String format, Object... args) {
         if (isLoggable(tag, ERROR)) {
-            return Log.e(tag, String.format(format, args), tr);
+            return VvmLog.e(tag, String.format(format, args), tr);
         }
         return 0;
     }
@@ -362,7 +363,7 @@ public class LogUtils {
      *            additional arguments are ignored.
      */
     public static int wtf(String tag, String format, Object... args) {
-        return Log.wtf(tag, String.format(format, args), new Error());
+        return VvmLog.wtf(tag, String.format(format, args), new Error());
     }
 
     /**
@@ -381,7 +382,7 @@ public class LogUtils {
      *            additional arguments are ignored.
      */
     public static int wtf(String tag, Throwable tr, String format, Object... args) {
-        return Log.wtf(tag, String.format(format, args), tr);
+        return VvmLog.wtf(tag, String.format(format, args), tr);
     }
 
 

@@ -22,6 +22,7 @@ import android.util.Log;
 import com.android.phone.common.mail.FixedLengthInputStream;
 import com.android.phone.common.mail.MessagingException;
 import com.android.phone.common.mail.PeekableInputStream;
+import com.android.phone.vvm.omtp.VvmLog;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -83,9 +84,7 @@ public class ImapResponseParser {
 
     private static IOException newEOSException() {
         final String message = "End of stream reached";
-        if (Log.isLoggable(TAG, Log.DEBUG)) {
-            Log.d(TAG, message);
-        }
+        VvmLog.d(TAG, message);
         return new IOException(message);
     }
 
@@ -144,9 +143,6 @@ public class ImapResponseParser {
         ImapResponse response = null;
         try {
             response = parseResponse();
-            if (Log.isLoggable(TAG, Log.DEBUG)) {
-                Log.d(TAG, "<<< " + response.toString());
-            }
         } catch (RuntimeException e) {
             // Parser crash -- log network activities.
             onParseError(e);
@@ -183,7 +179,7 @@ public class ImapResponseParser {
             }
         } catch (IOException ignore) {
         }
-        Log.w(TAG, "Exception detected: " + e.getMessage());
+        VvmLog.w(TAG, "Exception detected: " + e.getMessage());
     }
 
     /**

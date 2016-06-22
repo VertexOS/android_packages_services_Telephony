@@ -27,7 +27,6 @@ import android.telephony.TelephonyManager;
 import android.telephony.VisualVoicemailSmsFilterSettings;
 import android.text.TextUtils;
 import android.util.ArraySet;
-import android.util.Log;
 
 import com.android.internal.annotations.VisibleForTesting;
 import com.android.phone.VoicemailStatus;
@@ -327,29 +326,48 @@ public class OmtpVvmCarrierConfigHelper {
     }
 
     public void handleEvent(OmtpEvents event) {
+        VvmLog.i(TAG, "OmtpEvent:" + event);
         if (mProtocol != null) {
             mProtocol.handleEvent(mContext, mSubId, event);
         }
     }
 
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder("OmtpVvmCarrierConfigHelper [");
+        builder.append("subId: ").append(getSubId())
+                .append(", carrierConfig: ").append(mCarrierConfig != null)
+                .append(", telephonyConfig: ").append(mTelephonyConfig != null)
+                .append(", type: ").append(getVvmType())
+                .append(", destinationNumber: ").append(getDestinationNumber())
+                .append(", applicationPort: ").append(getApplicationPort())
+                .append(", sslPort: ").append(getSslPort())
+                .append(", isEnabledByDefault: ").append(isEnabledByDefault())
+                .append(", isCellularDataRequired: ").append(isCellularDataRequired())
+                .append(", isPrefetchEnabled: ").append(isPrefetchEnabled())
+                .append(", isLegacyModeEnabled: ").append(isLegacyModeEnabled())
+                .append("]");
+        return builder.toString();
+    }
+
     @Nullable
     private PersistableBundle getCarrierConfig() {
         if (!SubscriptionManager.isValidSubscriptionId(mSubId)) {
-            Log.w(TAG, "Invalid subscriptionId or subscriptionId not provided in intent.");
+            VvmLog
+                    .w(TAG, "Invalid subscriptionId or subscriptionId not provided in intent.");
             return null;
         }
 
         CarrierConfigManager carrierConfigManager = (CarrierConfigManager)
                 mContext.getSystemService(Context.CARRIER_CONFIG_SERVICE);
         if (carrierConfigManager == null) {
-            Log.w(TAG, "No carrier config service found.");
+            VvmLog.w(TAG, "No carrier config service found.");
             return null;
         }
 
         PersistableBundle config = carrierConfigManager.getConfigForSubId(mSubId);
 
         if (TextUtils.isEmpty(config.getString(CarrierConfigManager.KEY_VVM_TYPE_STRING))) {
-            Log.w(TAG, "Carrier config missing VVM type, ignoring.");
             return null;
         }
         return config;

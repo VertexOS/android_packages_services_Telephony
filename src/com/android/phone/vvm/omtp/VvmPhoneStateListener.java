@@ -20,7 +20,6 @@ import android.content.Intent;
 import android.telecom.PhoneAccountHandle;
 import android.telephony.PhoneStateListener;
 import android.telephony.ServiceState;
-import android.util.Log;
 
 import com.android.phone.PhoneGlobals;
 import com.android.phone.PhoneUtils;
@@ -65,16 +64,16 @@ public class VvmPhoneStateListener extends PhoneStateListener {
                     new VoicemailStatusQueryHelper(mContext);
             if (voicemailStatusQueryHelper.isVoicemailSourceConfigured(mPhoneAccount)) {
                 if (!voicemailStatusQueryHelper.isNotificationsChannelActive(mPhoneAccount)) {
-                    Log.v(TAG, "Notifications channel is active for " + mPhoneAccount.getId());
+                    VvmLog
+                            .v(TAG, "Notifications channel is active for " + subId);
                     helper.handleEvent(OmtpEvents.NOTIFICATION_IN_SERVICE);
                     PhoneGlobals.getInstance().clearMwiIndicator(subId);
                 }
             }
 
             if (OmtpVvmSourceManager.getInstance(mContext).isVvmSourceRegistered(mPhoneAccount)) {
-                Log.v(TAG, "Signal returned: requesting resync for " + mPhoneAccount.getId());
-                LocalLogHelper.log(TAG,
-                        "Signal returned: requesting resync for " + mPhoneAccount.getId());
+                VvmLog
+                        .v(TAG, "Signal returned: requesting resync for " + subId);
                 // If the source is already registered, run a full sync in case something was missed
                 // while signal was down.
                 Intent serviceIntent = OmtpVvmSyncService.getSyncIntent(
@@ -82,16 +81,15 @@ public class VvmPhoneStateListener extends PhoneStateListener {
                         true /* firstAttempt */);
                 mContext.startService(serviceIntent);
             } else {
-                Log.v(TAG, "Signal returned: reattempting activation for " + mPhoneAccount.getId());
-                LocalLogHelper.log(TAG,
-                        "Signal returned: reattempting activation for " + mPhoneAccount.getId());
+                VvmLog.v(TAG,
+                        "Signal returned: reattempting activation for " + subId);
                 // Otherwise initiate an activation because this means that an OMTP source was
                 // recognized but either the activation text was not successfully sent or a response
                 // was not received.
                 helper.startActivation();
             }
         } else {
-            Log.v(TAG, "Notifications channel is inactive for " + mPhoneAccount.getId());
+            VvmLog.v(TAG, "Notifications channel is inactive for " + subId);
             mContext.stopService(OmtpVvmSyncService.getSyncIntent(
                     mContext, OmtpVvmSyncService.SYNC_FULL_SYNC, mPhoneAccount,
                     true /* firstAttempt */));

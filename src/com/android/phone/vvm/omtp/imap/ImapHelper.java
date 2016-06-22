@@ -25,7 +25,6 @@ import android.provider.VoicemailContract;
 import android.telecom.PhoneAccountHandle;
 import android.telecom.Voicemail;
 import android.util.Base64;
-import android.util.Log;
 
 import com.android.phone.PhoneUtils;
 import com.android.phone.VoicemailStatus;
@@ -50,6 +49,7 @@ import com.android.phone.vvm.omtp.OmtpConstants;
 import com.android.phone.vvm.omtp.OmtpConstants.ChangePinResult;
 import com.android.phone.vvm.omtp.OmtpEvents;
 import com.android.phone.vvm.omtp.OmtpVvmCarrierConfigHelper;
+import com.android.phone.vvm.omtp.VvmLog;
 import com.android.phone.vvm.omtp.fetch.VoicemailFetchedCallback;
 import com.android.phone.vvm.omtp.sync.OmtpVvmSyncService.TranscriptionFetchedCallback;
 
@@ -135,11 +135,11 @@ public class ImapHelper {
         return mImapStore != null;
     }
 
-    public boolean isRoaming(){
+    public boolean isRoaming() {
         ConnectivityManager connectivityManager = (ConnectivityManager) mContext.getSystemService(
                 Context.CONNECTIVITY_SERVICE);
         NetworkInfo info = connectivityManager.getNetworkInfo(mNetwork);
-        if(info == null){
+        if (info == null) {
             return false;
         }
         return info.isRoaming();
@@ -153,12 +153,16 @@ public class ImapHelper {
         return mImapStore.getConnection();
     }
 
-    /** The caller thread will block until the method returns. */
+    /**
+     * The caller thread will block until the method returns.
+     */
     public boolean markMessagesAsRead(List<Voicemail> voicemails) {
         return setFlags(voicemails, Flag.SEEN);
     }
 
-    /** The caller thread will block until the method returns. */
+    /**
+     * The caller thread will block until the method returns.
+     */
     public boolean markMessagesAsDeleted(List<Voicemail> voicemails) {
         return setFlags(voicemails, Flag.DELETED);
     }
@@ -232,7 +236,7 @@ public class ImapHelper {
      * transcription exists.
      */
     private Voicemail getVoicemailFromMessageStructure(
-            MessageStructureWrapper messageStructureWrapper) throws MessagingException{
+            MessageStructureWrapper messageStructureWrapper) throws MessagingException {
         Message messageDetails = messageStructureWrapper.messageStructure;
 
         TranscriptionFetchedListener listener = new TranscriptionFetchedListener();
@@ -240,7 +244,7 @@ public class ImapHelper {
             FetchProfile fetchProfile = new FetchProfile();
             fetchProfile.add(messageStructureWrapper.transcriptionBodyPart);
 
-            mFolder.fetch(new Message[] {messageDetails}, fetchProfile, listener);
+            mFolder.fetch(new Message[]{messageDetails}, fetchProfile, listener);
         }
 
         // Found an audio attachment, this is a valid voicemail.
@@ -257,8 +261,8 @@ public class ImapHelper {
     }
 
     /**
-     * The "from" field of a visual voicemail IMAP message is the number of the caller who left
-     * the message. Extract this number from the list of "from" addresses.
+     * The "from" field of a visual voicemail IMAP message is the number of the caller who left the
+     * message. Extract this number from the list of "from" addresses.
      *
      * @param fromAddresses A list of addresses that comprise the "from" line.
      * @return The number of the voicemail sender.
@@ -297,7 +301,7 @@ public class ImapHelper {
 
         // The IMAP folder fetch method will call "messageRetrieved" on the listener when the
         // message is successfully retrieved.
-        mFolder.fetch(new Message[] {message}, fetchProfile, listener);
+        mFolder.fetch(new Message[]{message}, fetchProfile, listener);
         return listener.getMessageStructure();
     }
 
@@ -341,7 +345,7 @@ public class ImapHelper {
         FetchProfile fetchProfile = new FetchProfile();
         fetchProfile.add(FetchProfile.Item.BODY);
 
-        mFolder.fetch(new Message[] {message}, fetchProfile, listener);
+        mFolder.fetch(new Message[]{message}, fetchProfile, listener);
         return listener.getVoicemailPayload();
     }
 
@@ -367,7 +371,7 @@ public class ImapHelper {
 
                     // This method is called synchronously so the transcription will be populated
                     // in the listener once the next method is called.
-                    mFolder.fetch(new Message[] {message}, fetchProfile, listener);
+                    mFolder.fetch(new Message[]{message}, fetchProfile, listener);
                     callback.setVoicemailTranscription(listener.getVoicemailTranscription());
                 }
             }
@@ -481,7 +485,7 @@ public class ImapHelper {
             return;
         }
         if (quota.occupied == mQuotaOccupied && quota.total == mQuotaTotal) {
-            Log.v(TAG, "Quota hasn't changed");
+            VvmLog.v(TAG, "Quota hasn't changed");
             return;
         }
         mQuotaOccupied = quota.occupied;
@@ -493,17 +497,20 @@ public class ImapHelper {
                 .putInt(getSharedPrefsKey(PREF_KEY_QUOTA_OCCUPIED), mQuotaOccupied)
                 .putInt(getSharedPrefsKey(PREF_KEY_QUOTA_TOTAL), mQuotaTotal)
                 .apply();
-        Log.v(TAG, "Quota changed to " + mQuotaOccupied + "/" + mQuotaTotal);
+        VvmLog.v(TAG, "Quota changed to " + mQuotaOccupied + "/" + mQuotaTotal);
     }
+
     /**
-     * A wrapper to hold a message with its header details and the structure for transcriptions
-     * (so they can be fetched in the future).
+     * A wrapper to hold a message with its header details and the structure for transcriptions (so
+     * they can be fetched in the future).
      */
     public class MessageStructureWrapper {
+
         public Message messageStructure;
         public BodyPart transcriptionBodyPart;
 
-        public MessageStructureWrapper() { }
+        public MessageStructureWrapper() {
+        }
     }
 
     /**
@@ -511,6 +518,7 @@ public class ImapHelper {
      */
     private final class MessageStructureFetchedListener
             implements ImapFolder.MessageRetrievalListener {
+
         private MessageStructureWrapper mMessageStructure;
 
         public MessageStructureFetchedListener() {
@@ -542,7 +550,6 @@ public class ImapHelper {
          * @param message The IMAP message.
          * @return The MessageStructureWrapper object corresponding to an IMAP message and
          * transcription.
-         * @throws MessagingException
          */
         private MessageStructureWrapper getMessageOrNull(Message message)
                 throws MessagingException {
@@ -579,9 +586,12 @@ public class ImapHelper {
      * Listener for the message body being fetched.
      */
     private final class MessageBodyFetchedListener implements ImapFolder.MessageRetrievalListener {
+
         private VoicemailPayload mVoicemailPayload;
 
-        /** Returns the fetch voicemail payload. */
+        /**
+         * Returns the fetch voicemail payload.
+         */
         public VoicemailPayload getVoicemailPayload() {
             return mVoicemailPayload;
         }
@@ -602,18 +612,18 @@ public class ImapHelper {
         private VoicemailPayload getVoicemailPayloadFromMessage(Message message)
                 throws MessagingException, IOException {
             Multipart multipart = (Multipart) message.getBody();
+            List<String> mimeTypes = new ArrayList<>();
             for (int i = 0; i < multipart.getCount(); ++i) {
                 BodyPart bodyPart = multipart.getBodyPart(i);
                 String bodyPartMimeType = bodyPart.getMimeType().toLowerCase();
-                LogUtils.d(TAG, "bodyPart mime type: " + bodyPartMimeType);
-
+                mimeTypes.add(bodyPartMimeType);
                 if (bodyPartMimeType.startsWith("audio/")) {
                     byte[] bytes = getDataFromBody(bodyPart.getBody());
                     LogUtils.d(TAG, String.format("Fetched %s bytes of data", bytes.length));
                     return new VoicemailPayload(bodyPartMimeType, bytes);
                 }
             }
-            LogUtils.e(TAG, "No audio attachment found on this voicemail");
+            LogUtils.e(TAG, "No audio attachment found on this voicemail, mimeTypes:" + mimeTypes);
             return null;
         }
     }
@@ -623,9 +633,12 @@ public class ImapHelper {
      */
     private final class TranscriptionFetchedListener implements
             ImapFolder.MessageRetrievalListener {
+
         private String mVoicemailTranscription;
 
-        /** Returns the fetched voicemail transcription. */
+        /**
+         * Returns the fetched voicemail transcription.
+         */
         public String getVoicemailTranscription() {
             return mVoicemailTranscription;
         }
