@@ -759,6 +759,12 @@ abstract class TelephonyConnection extends Connection {
         }
         mIsMultiParty = mOriginalConnection.isMultiparty();
 
+        if (mOriginalConnection.isActiveCallDisconnectedOnAnswer()) {
+            putExtra(Connection.EXTRA_ANSWERING_DROPS_FG_CALL, true);
+        } else {
+            removeExtras(Connection.EXTRA_ANSWERING_DROPS_FG_CALL);
+        }
+
         // updateState can set mOriginalConnection to null if its state is DISCONNECTED, so this
         // should be executed *after* the above setters have run.
         updateState();
