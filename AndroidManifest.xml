@@ -664,14 +664,16 @@
             </intent-filter>
         </provider>
         <receiver android:name="com.android.phone.vvm.omtp.sms.OmtpMessageReceiver"
-            android:exported="true">
+            android:exported="true"
+            androidprv:systemUserOnly="true">
             <intent-filter>
                 <action android:name="android.intent.action.VOICEMAIL_SMS_RECEIVED"/>
             </intent-filter>
         </receiver>
         <receiver
             android:name="com.android.phone.vvm.omtp.SimChangeReceiver"
-            android:exported="true">
+            android:exported="true"
+            androidprv:systemUserOnly="true">
             <intent-filter>
                 <action android:name="android.telephony.action.CARRIER_CONFIG_CHANGED" />
                 <action android:name="android.intent.action.SIM_STATE_CHANGED" />
@@ -680,7 +682,8 @@
         <receiver
             android:name="com.android.phone.vvm.omtp.VvmBootCompletedReceiver"
             android:exported="true"
-            android:permission="android.permission.RECEIVE_BOOT_COMPLETED">
+            android:permission="android.permission.RECEIVE_BOOT_COMPLETED"
+            androidprv:systemUserOnly="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>
             </intent-filter>
@@ -688,7 +691,8 @@
         <receiver
             android:name="com.android.phone.vvm.omtp.fetch.FetchVoicemailReceiver"
             android:exported="true"
-            android:permission="com.android.voicemail.permission.READ_VOICEMAIL">
+            android:permission="com.android.voicemail.permission.READ_VOICEMAIL"
+            androidprv:systemUserOnly="true">
             <intent-filter>
                 <action android:name="android.intent.action.FETCH_VOICEMAIL" />
                     <data
@@ -700,14 +704,16 @@
         <receiver
             android:name="com.android.phone.vvm.omtp.sync.OmtpVvmSyncReceiver"
             android:exported="true"
-            android:permission="com.android.voicemail.permission.READ_VOICEMAIL">
+            android:permission="com.android.voicemail.permission.READ_VOICEMAIL"
+            androidprv:systemUserOnly="true">
             <intent-filter>
                 <action android:name="android.provider.action.SYNC_VOICEMAIL"/>
             </intent-filter>
         </receiver>
         <receiver
             android:name="com.android.phone.vvm.omtp.sync.VoicemailProviderChangeReceiver"
-            android:exported="true">
+            android:exported="true"
+            androidprv:systemUserOnly="true">
             <intent-filter>
                 <action android:name="android.intent.action.PROVIDER_CHANGED" />
                 <data
@@ -724,7 +730,8 @@
             android:name="com.android.phone.vvm.omtp.sms.OmtpProvisioningService"
             android:exported="false" />
 
-        <receiver android:name="com.android.phone.vvm.omtp.VvmPackageInstallReceiver">
+        <receiver android:name="com.android.phone.vvm.omtp.VvmPackageInstallReceiver"
+            androidprv:systemUserOnly="true">
             <intent-filter>
                 <action android:name="android.intent.action.PACKAGE_INSTALL" />
                 <action android:name="android.intent.action.PACKAGE_ADDED" />
