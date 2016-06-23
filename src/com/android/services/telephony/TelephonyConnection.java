@@ -1256,9 +1256,9 @@ abstract class TelephonyConnection extends Connection {
         int cause = mOriginalConnection.getDisconnectCause();
         final boolean isEmergencyNumber = PhoneUtils.isLocalEmergencyNumber(number);
 
-        Log.v(this, "Update state from %s to %s for %s", mOriginalConnectionState, newState, this);
-        if (mOriginalConnectionState != newState) {
-            mOriginalConnectionState = newState;
+        Log.v(this, "Update state from %s to %s for %s", mConnectionState, newState, this);
+        if (mConnectionState != newState) {
+            mConnectionState = newState;
             switch (newState) {
                 case IDLE:
                     break;
