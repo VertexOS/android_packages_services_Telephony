@@ -55,8 +55,11 @@ public class Vvm3Protocol extends VisualVoicemailProtocol {
 
     private static String ISO639_Spanish = "es";
 
-    private static String VVM3_VM_LANGUAGE_ENGLISH_STANDARD = "1";
-    private static String VVM3_VM_LANGUAGE_SPANISH_STANDARD = "2";
+    // Default prompt level when using the telephone user interface.
+    // Standard prompt when the user call into the voicemail, and no prompts when someone else is
+    // leaving a voicemail.
+    private static String VVM3_VM_LANGUAGE_ENGLISH_STANDARD_NO_GUEST_PROMPTS = "5";
+    private static String VVM3_VM_LANGUAGE_SPANISH_STANDARD_NO_GUEST_PROMPTS = "6";
 
     private static final int PIN_LENGTH = 6;
 
@@ -147,10 +150,12 @@ public class Vvm3Protocol extends VisualVoicemailProtocol {
                 if (Locale.getDefault().getLanguage()
                         .equals(new Locale(ISO639_Spanish).getLanguage())) {
                     // Spanish
-                    helper.changeVoicemailTuiLanguage(VVM3_VM_LANGUAGE_SPANISH_STANDARD);
+                    helper.changeVoicemailTuiLanguage(
+                            VVM3_VM_LANGUAGE_SPANISH_STANDARD_NO_GUEST_PROMPTS);
                 } else {
                     // English
-                    helper.changeVoicemailTuiLanguage(VVM3_VM_LANGUAGE_ENGLISH_STANDARD);
+                    helper.changeVoicemailTuiLanguage(
+                            VVM3_VM_LANGUAGE_ENGLISH_STANDARD_NO_GUEST_PROMPTS);
                 }
                 VvmLog.i(TAG, "new user: language set");
 
