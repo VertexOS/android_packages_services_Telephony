@@ -21,7 +21,6 @@ import android.content.Intent;
 import android.content.pm.IPackageManager;
 import android.os.RemoteException;
 import android.os.ServiceManager;
-import android.os.UserHandle;
 import android.os.UserManager;
 import android.telecom.PhoneAccountHandle;
 import android.telephony.CarrierConfigManager;
@@ -49,11 +48,6 @@ public class SimChangeReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        if (UserHandle.myUserId() != UserHandle.USER_SYSTEM) {
-            VvmLog.v(TAG, "Received broadcast for user that is not system.");
-            return;
-        }
-
         final String action = intent.getAction();
         if (action == null) {
             VvmLog.w(TAG, "Null action for intent.");
