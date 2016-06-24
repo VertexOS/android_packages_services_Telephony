@@ -337,7 +337,7 @@
              non-voice-capable tablets and regular phone devices. -->
         <activity android:name="MobileNetworkSettings"
             android:label="@string/settings_label"
-            android:theme="@style/SettingsLight">
+            android:theme="@style/NetworkOperatorsSettingsTheme">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <action android:name="android.intent.action.MAIN" />
