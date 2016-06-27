@@ -78,6 +78,12 @@ public class ImsConferenceController {
             Log.v(this, "onConferenceStarted");
             recalculate();
         }
+
+        @Override
+        public void onConferenceSupportedChanged(Connection c, boolean isConferenceSupported) {
+            Log.v(this, "onConferenceSupportedChanged");
+            recalculate();
+        }
     };
 
     /**
@@ -172,6 +178,7 @@ public class ImsConferenceController {
             // If this connection does not support being in a conference call, then it is not
             // conferenceable with any other connection.
             if (!connection.isConferenceSupported()) {
+                connection.setConferenceableConnections(Collections.<Connection>emptyList());
                 continue;
             }
 

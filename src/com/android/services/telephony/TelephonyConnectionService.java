@@ -623,15 +623,6 @@ public class TelephonyConnectionService extends ConnectionService {
             returnConnection.setVideoPauseSupported(
                     TelecomAccountRegistry.getInstance(this).isVideoPauseSupported(
                             phoneAccountHandle));
-            boolean isEmergencyCall = (address != null && PhoneNumberUtils.isEmergencyNumber(
-                    address.getSchemeSpecificPart()));
-            boolean isVideoCall = VideoProfile.isVideo(videoState);
-            boolean isConferencingSupported = TelecomAccountRegistry.getInstance(this)
-                    .isMergeCallSupported(phoneAccountHandle);
-            boolean isVideoConferencingSupported = TelecomAccountRegistry.getInstance(this)
-                    .isVideoConferencingSupported(phoneAccountHandle);
-            returnConnection.setConferenceSupported(!isEmergencyCall && isConferencingSupported
-                    && (!isVideoCall || (isVideoCall && isVideoConferencingSupported)));
         }
         return returnConnection;
     }

@@ -27,8 +27,10 @@ import android.telecom.CallAudioState;
 import android.telecom.ConferenceParticipant;
 import android.telecom.Connection;
 import android.telecom.PhoneAccount;
+import android.telecom.PhoneAccountHandle;
 import android.telecom.StatusHints;
 import android.telecom.TelecomManager;
+import android.telecom.VideoProfile;
 import android.telephony.PhoneNumberUtils;
 import android.util.Pair;
 
@@ -41,6 +43,8 @@ import com.android.internal.telephony.PhoneConstants;
 import com.android.internal.telephony.gsm.SuppServiceNotification;
 
 import com.android.internal.telephony.Phone;
+import com.android.internal.telephony.imsphone.ImsPhone;
+import com.android.phone.PhoneUtils;
 import com.android.phone.R;
 
 import java.lang.Override;
@@ -158,6 +162,10 @@ abstract class TelephonyConnection extends Connection {
                 case MSG_SET_VIDEO_STATE:
                     int videoState = (int) msg.obj;
                     setVideoState(videoState);
+
+                    // A change to the video state of the call can influence whether or not it
+                    // can be part of a conference.
+                    refreshConferenceSupported();
                     break;
 
                 case MSG_SET_VIDEO_PROVIDER:
@@ -709,6 +717,10 @@ abstract class TelephonyConnection extends Connection {
             if (PhoneNumberUtils.isEmergencyNumber(mOriginalConnection.getAddress())) {
                 mTreatAsEmergencyCall = true;
             }
+
+            // Changing the address of the connection can change whether it is an emergency call or
+            // not, which can impact whether it can be part of a conference.
+            refreshConferenceSupported();
         }
     }
 
@@ -1420,6 +1432,62 @@ abstract class TelephonyConnection extends Connection {
     }
 
     /**
+     * Determines whether the connection supports conference calling.  A connection supports
+     * conference calling if it:
+     * 1. Is not an emergency call.
+     * 2. Carrier supports conference calls.
+     * 3. If call is a video call, carrier supports video conference calls.
+     * 4. If call is a wifi call and VoWIFI is disabled and carrier supports merging these calls.
+     */
+    private void refreshConferenceSupported() {
+        boolean isVideoCall = VideoProfile.isVideo(getVideoState());
+        Phone phone = getPhone();
+        boolean isIms = phone.getPhoneType() == PhoneConstants.PHONE_TYPE_IMS;
+        boolean isVoWifiEnabled = false;
+        if (isIms) {
+            ImsPhone imsPhone = (ImsPhone) phone;
+            isVoWifiEnabled = imsPhone.isWifiCallingEnabled();
+        }
+        PhoneAccountHandle phoneAccountHandle = isIms ? PhoneUtils
+                .makePstnPhoneAccountHandle(phone.getDefaultPhone())
+                : PhoneUtils.makePstnPhoneAccountHandle(phone);
+        TelecomAccountRegistry telecomAccountRegistry = TelecomAccountRegistry
+                .getInstance(getPhone().getContext());
+        boolean isConferencingSupported = telecomAccountRegistry
+                .isMergeCallSupported(phoneAccountHandle);
+        boolean isVideoConferencingSupported = telecomAccountRegistry
+                .isVideoConferencingSupported(phoneAccountHandle);
+        boolean isMergeOfWifiCallsAllowedWhenVoWifiOff = telecomAccountRegistry
+                .isMergeOfWifiCallsAllowedWhenVoWifiOff(phoneAccountHandle);
+
+        Log.v(this, "refreshConferenceSupported : isConfSupp=%b, isVidConfSupp=%b, " +
+                "isMergeOfWifiAllowed=%b, isWifi=%b, isVoWifiEnabled=%b", isConferencingSupported,
+                isVideoConferencingSupported, isMergeOfWifiCallsAllowedWhenVoWifiOff, isWifi(),
+                isVoWifiEnabled);
+        boolean isConferenceSupported = true;
+        if (mTreatAsEmergencyCall) {
+            isConferenceSupported = false;
+            Log.d(this, "refreshConferenceSupported = false; emergency call");
+        } else if (!isConferencingSupported) {
+            isConferenceSupported = false;
+            Log.d(this, "refreshConferenceSupported = false; carrier doesn't support conf.");
+        } else if (isVideoCall && !isVideoConferencingSupported) {
+            isConferenceSupported = false;
+            Log.d(this, "refreshConferenceSupported = false; video conf not supported.");
+        } else if (!isMergeOfWifiCallsAllowedWhenVoWifiOff && isWifi() && !isVoWifiEnabled) {
+            isConferenceSupported = false;
+            Log.d(this,
+                    "refreshConferenceSupported = false; can't merge wifi calls when voWifi off.");
+        } else {
+            Log.d(this, "refreshConferenceSupported = true.");
+        }
+
+        if (isConferenceSupported != isConferenceSupported()) {
+            setConferenceSupported(isConferenceSupported);
+            notifyConferenceSupportedChanged(isConferenceSupported);
+        }
+    }
+    /**
      * Provides a mapping from extras keys which may be found in the
      * {@link com.android.internal.telephony.Connection} to their equivalents defined in
      * {@link android.telecom.Connection}.
@@ -1472,6 +1540,8 @@ abstract class TelephonyConnection extends Connection {
         } else {
             sb.append("Y");
         }
+        sb.append(" confSupported:");
+        sb.append(mIsConferenceSupported ? "Y" : "N");
         sb.append("]");
         return sb.toString();
     }
