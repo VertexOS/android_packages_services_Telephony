@@ -3297,6 +3297,15 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
      */
     @Override
     protected void dump(FileDescriptor fd, PrintWriter writer, String[] args) {
+        if (mPhone.getContext().checkCallingOrSelfPermission(android.Manifest.permission.DUMP)
+                != PackageManager.PERMISSION_GRANTED) {
+            writer.println("Permission Denial: can't dump Phone from pid="
+                    + Binder.getCallingPid()
+                    + ", uid=" + Binder.getCallingUid()
+                    + "without permission "
+                    + android.Manifest.permission.DUMP);
+            return;
+        }
         DumpsysHandler.dump(mPhone.getContext(), fd, writer, args);
     }
 }
