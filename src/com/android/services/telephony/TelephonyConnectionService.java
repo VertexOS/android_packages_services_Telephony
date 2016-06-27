@@ -175,10 +175,83 @@ public class TelephonyConnectionService extends ConnectionService {
             }
         }
 
-        boolean isEmergencyNumber = PhoneNumberUtils.isLocalEmergencyNumber(this, number);
+        final boolean isEmergencyNumber = PhoneNumberUtils.isLocalEmergencyNumber(this, number);
 
-        // Get the right phone object from the account data passed in.
-        final Phone phone = getPhoneForAccount(request.getAccountHandle(), isEmergencyNumber);
+        if (isEmergencyNumber && !isRadioOn()) {
+            final Uri emergencyHandle = handle;
+            // By default, Connection based on the default Phone, since we need to return to Telecom
+            // now.
+            final int defaultPhoneType = PhoneFactory.getDefaultPhone().getPhoneType();
+            final Connection emergencyConnection = getTelephonyConnection(request, number,
+                    isEmergencyNumber, emergencyHandle, PhoneFactory.getDefaultPhone());
+            if (mEmergencyCallHelper == null) {
+                mEmergencyCallHelper = new EmergencyCallHelper(this);
+            }
+            mEmergencyCallHelper.enableEmergencyCalling(new EmergencyCallStateListener.Callback() {
+                @Override
+                public void onComplete(EmergencyCallStateListener listener, boolean isRadioReady) {
+                    if (isRadioReady) {
+                        // Get the right phone object since the radio has been turned on
+                        // successfully.
+                        final Phone phone = getPhoneForAccount(request.getAccountHandle(),
+                                isEmergencyNumber);
+                        // If the PhoneType of the Phone being used is different than the Default
+                        // Phone, then we need create a new Connection using that PhoneType and
+                        // replace it in Telecom.
+                        if (phone.getPhoneType() != defaultPhoneType) {
+                            Connection repConnection = getTelephonyConnection(request, number,
+                                    isEmergencyNumber, emergencyHandle, phone);
+                            // If there was a failure, the resulting connection will not be a
+                            // TelephonyConnection, so don't place the call, just return!
+                            if (repConnection instanceof TelephonyConnection) {
+                                placeOutgoingConnection((TelephonyConnection) repConnection, phone,
+                                        request);
+                            }
+                            // Notify Telecom of the new Connection type.
+                            // TODO: Switch out the underlying connection instead of creating a new
+                            // one and causing UI Jank.
+                            addExistingConnection(PhoneUtils.makePstnPhoneAccountHandle(phone),
+                                    repConnection);
+                            // Remove the old connection from Telecom after.
+                            emergencyConnection.setDisconnected(
+                                    DisconnectCauseUtil.toTelecomDisconnectCause(
+                                            android.telephony.DisconnectCause.OUTGOING_CANCELED,
+                                            "Reconnecting outgoing Emergency Call."));
+                            emergencyConnection.destroy();
+                        } else {
+                            placeOutgoingConnection((TelephonyConnection) emergencyConnection,
+                                    phone, request);
+                        }
+                    } else {
+                        Log.w(this, "onCreateOutgoingConnection, failed to turn on radio");
+                        emergencyConnection.setDisconnected(
+                                DisconnectCauseUtil.toTelecomDisconnectCause(
+                                        android.telephony.DisconnectCause.POWER_OFF,
+                                        "Failed to turn on radio."));
+                        emergencyConnection.destroy();
+                    }
+                }
+            });
+            // Return the still unconnected GsmConnection and wait for the Radios to boot before
+            // connecting it to the underlying Phone.
+            return emergencyConnection;
+        } else {
+            // Get the right phone object from the account data passed in.
+            final Phone phone = getPhoneForAccount(request.getAccountHandle(), isEmergencyNumber);
+            Connection resultConnection = getTelephonyConnection(request, number, isEmergencyNumber,
+                    handle, phone);
+            // If there was a failure, the resulting connection will not be a TelephonyConnection,
+            // so don't place the call!
+            if(resultConnection instanceof TelephonyConnection) {
+                placeOutgoingConnection((TelephonyConnection) resultConnection, phone, request);
+            }
+            return resultConnection;
+        }
+    }
+
+    private Connection getTelephonyConnection(final ConnectionRequest request, final String number,
+            boolean isEmergencyNumber, final Uri handle, Phone phone) {
+
         if (phone == null) {
             final Context context = getApplicationContext();
             if (context.getResources().getBoolean(R.bool.config_checkSimStateBeforeOutgoingCall)) {
@@ -228,7 +301,6 @@ public class TelephonyConnectionService extends ConnectionService {
                 state = phone.getServiceState().getDataRegState();
             }
         }
-        boolean useEmergencyCallHelper = false;
 
         // If we're dialing a non-emergency number and the phone is in ECM mode, reject the call if
         // carrier configuration specifies that we cannot make non-emergency calls in ECM mode.
@@ -250,11 +322,7 @@ public class TelephonyConnectionService extends ConnectionService {
             }
         }
 
-        if (isEmergencyNumber) {
-            if (!phone.isRadioOn()) {
-                useEmergencyCallHelper = true;
-            }
-        } else {
+        if (!isEmergencyNumber) {
             switch (state) {
                 case ServiceState.STATE_IN_SERVICE:
                 case ServiceState.STATE_EMERGENCY_ONLY:
@@ -308,34 +376,6 @@ public class TelephonyConnectionService extends ConnectionService {
         connection.setAddress(handle, PhoneConstants.PRESENTATION_ALLOWED);
         connection.setInitializing();
         connection.setVideoState(request.getVideoState());
-
-        if (useEmergencyCallHelper) {
-            if (mEmergencyCallHelper == null) {
-                mEmergencyCallHelper = new EmergencyCallHelper(this);
-            }
-            mEmergencyCallHelper.enableEmergencyCalling(new EmergencyCallStateListener.Callback() {
-                        @Override
-                        public void onComplete(EmergencyCallStateListener listener,
-                                boolean isRadioReady) {
-                            if (connection.getState() == Connection.STATE_DISCONNECTED) {
-                                // If the connection has already been disconnected, do nothing.
-                            } else if (isRadioReady) {
-                                connection.setInitialized();
-                                placeOutgoingConnection(connection, phone, request);
-                            } else {
-                                Log.d(this, "onCreateOutgoingConnection, failed to turn on radio");
-                                connection.setDisconnected(
-                                        DisconnectCauseUtil.toTelecomDisconnectCause(
-                                                android.telephony.DisconnectCause.POWER_OFF,
-                                                "Failed to turn on radio."));
-                                connection.destroy();
-                            }
-                        }
-                    });
-
-        } else {
-            placeOutgoingConnection(connection, phone, request);
-        }
 
         return connection;
     }
@@ -512,6 +552,14 @@ public class TelephonyConnectionService extends ConnectionService {
                 (TelephonyConnection) connection2);
         }
 
+    }
+
+    private boolean isRadioOn() {
+        boolean result = false;
+        for (Phone phone : PhoneFactory.getPhones()) {
+            result |= phone.isRadioOn();
+        }
+        return result;
     }
 
     private void placeOutgoingConnection(
