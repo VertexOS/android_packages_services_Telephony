@@ -313,10 +313,10 @@ public class TelephonyConnectionService extends ConnectionService {
             if (mEmergencyCallHelper == null) {
                 mEmergencyCallHelper = new EmergencyCallHelper(this);
             }
-            mEmergencyCallHelper.startTurnOnRadioSequence(phone,
-                    new EmergencyCallHelper.Callback() {
+            mEmergencyCallHelper.enableEmergencyCalling(new EmergencyCallStateListener.Callback() {
                         @Override
-                        public void onComplete(boolean isRadioReady) {
+                        public void onComplete(EmergencyCallStateListener listener,
+                                boolean isRadioReady) {
                             if (connection.getState() == Connection.STATE_DISCONNECTED) {
                                 // If the connection has already been disconnected, do nothing.
                             } else if (isRadioReady) {
