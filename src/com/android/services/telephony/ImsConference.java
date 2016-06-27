@@ -808,13 +808,19 @@ public class ImsConference extends Conference {
             }
 
             PhoneAccountHandle phoneAccountHandle = null;
-            if (mConferenceHost.getPhone() != null &&
-                    mConferenceHost.getPhone().getPhoneType() == PhoneConstants.PHONE_TYPE_IMS) {
-                Phone imsPhone = mConferenceHost.getPhone();
-                // The phone account handle for an ImsPhone is based on the default phone (ie the
-                // base GSM or CDMA phone, not on the ImsPhone itself).
-                phoneAccountHandle =
-                        PhoneUtils.makePstnPhoneAccountHandle(imsPhone.getDefaultPhone());
+            if (mConferenceHost.getPhone() != null) {
+                if (mConferenceHost.getPhone().getPhoneType() == PhoneConstants.PHONE_TYPE_IMS) {
+                    Phone imsPhone = mConferenceHost.getPhone();
+                    // The phone account handle for an ImsPhone is based on the default phone (ie the
+                    // base GSM or CDMA phone, not on the ImsPhone itself).
+                    phoneAccountHandle =
+                            PhoneUtils.makePstnPhoneAccountHandle(imsPhone.getDefaultPhone());
+                } else {
+                    // In the case of SRVCC, we still need a phone account, so use the top level phone
+                    // to create a phone account.
+                    phoneAccountHandle = PhoneUtils.makePstnPhoneAccountHandle(
+                            mConferenceHost.getPhone());
+                }
             }
 
             if (mConferenceHost.getPhone().getPhoneType() == PhoneConstants.PHONE_TYPE_GSM) {

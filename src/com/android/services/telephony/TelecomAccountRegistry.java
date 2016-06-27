@@ -27,7 +27,6 @@ import android.graphics.drawable.Icon;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.PersistableBundle;
-import android.os.ServiceManager;
 import android.telecom.PhoneAccount;
 import android.telecom.PhoneAccountHandle;
 import android.telecom.TelecomManager;
@@ -40,7 +39,6 @@ import android.telephony.SubscriptionManager.OnSubscriptionsChangedListener;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 
-import com.android.internal.telephony.IPhoneSubInfo;
 import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneFactory;
 import com.android.phone.PhoneGlobals;
@@ -50,6 +48,7 @@ import com.android.phone.R;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Owns all data we have registered with Telecom including handling dynamic addition and
@@ -72,6 +71,7 @@ final class TelecomAccountRegistry {
         private boolean mIsVideoPauseSupported;
         private boolean mIsMergeCallSupported;
         private boolean mIsVideoConferencingSupported;
+        private boolean mIsMergeOfWifiCallsAllowedWhenVoWifiOff;
 
         AccountEntry(Phone phone, boolean isEmergency, boolean isDummy) {
             mPhone = phone;
@@ -191,6 +191,8 @@ final class TelecomAccountRegistry {
             }
             mIsMergeCallSupported = isCarrierMergeCallSupported();
             mIsVideoConferencingSupported = isCarrierVideoConferencingSupported();
+            mIsMergeOfWifiCallsAllowedWhenVoWifiOff =
+                    isCarrierMergeOfWifiCallsAllowedWhenVoWifiOff();
 
             if (isEmergency && mContext.getResources().getBoolean(
                     R.bool.config_emergency_account_emergency_calls_only)) {
@@ -312,6 +314,20 @@ final class TelecomAccountRegistry {
         }
 
         /**
+         * Determines from carrier config whether merging of wifi calls is allowed when VoWIFI is
+         * turned off.
+         *
+         * @return {@code true} merging of wifi calls when VoWIFI is disabled should be prevented,
+         *      {@code false} otherwise.
+         */
+        private boolean isCarrierMergeOfWifiCallsAllowedWhenVoWifiOff() {
+            PersistableBundle b =
+                    PhoneGlobals.getInstance().getCarrierConfigForSubId(mPhone.getSubId());
+            return b != null && b.getBoolean(
+                    CarrierConfigManager.KEY_ALLOW_MERGE_WIFI_CALLS_WHEN_VOWIFI_OFF_BOOL);
+        }
+
+        /**
          * @return The {@linke PhoneAccount} extras associated with the current subscription.
          */
         private Bundle getPhoneAccountExtras() {
@@ -366,6 +382,14 @@ final class TelecomAccountRegistry {
         public boolean isVideoConferencingSupported() {
             return mIsVideoConferencingSupported;
         }
+
+        /**
+         * Indicate whether this account allow merging of wifi calls when VoWIFI is off.
+         * @return {@code true} if allowed, {@code false} otherwise.
+         */
+        public boolean isMergeOfWifiCallsAllowedWhenVoWifiOff() {
+            return mIsMergeOfWifiCallsAllowedWhenVoWifiOff;
+        }
     }
 
     private OnSubscriptionsChangedListener mOnSubscriptionsChangedListener =
@@ -396,6 +420,7 @@ final class TelecomAccountRegistry {
     private final TelephonyManager mTelephonyManager;
     private final SubscriptionManager mSubscriptionManager;
     private List<AccountEntry> mAccounts = new LinkedList<AccountEntry>();
+    private Object mAccountsLock = new Object();
     private int mServiceState = ServiceState.STATE_POWER_OFF;
 
     // TODO: Remove back-pointer from app singleton to Service, since this is not a preferred
@@ -432,9 +457,11 @@ final class TelecomAccountRegistry {
      * @return {@code True} if video pausing is supported.
      */
     boolean isVideoPauseSupported(PhoneAccountHandle handle) {
-        for (AccountEntry entry : mAccounts) {
-            if (entry.getPhoneAccountHandle().equals(handle)) {
-                return entry.isVideoPauseSupported();
+        synchronized (mAccountsLock) {
+            for (AccountEntry entry : mAccounts) {
+                if (entry.getPhoneAccountHandle().equals(handle)) {
+                    return entry.isVideoPauseSupported();
+                }
             }
         }
         return false;
@@ -448,9 +475,11 @@ final class TelecomAccountRegistry {
      * @return {@code True} if merging calls is supported.
      */
     boolean isMergeCallSupported(PhoneAccountHandle handle) {
-        for (AccountEntry entry : mAccounts) {
-            if (entry.getPhoneAccountHandle().equals(handle)) {
-                return entry.isMergeCallSupported();
+        synchronized (mAccountsLock) {
+            for (AccountEntry entry : mAccounts) {
+                if (entry.getPhoneAccountHandle().equals(handle)) {
+                    return entry.isMergeCallSupported();
+                }
             }
         }
         return false;
@@ -464,12 +493,34 @@ final class TelecomAccountRegistry {
      * @return {@code True} if video conferencing is supported.
      */
     boolean isVideoConferencingSupported(PhoneAccountHandle handle) {
-        for (AccountEntry entry : mAccounts) {
-            if (entry.getPhoneAccountHandle().equals(handle)) {
-                return entry.isVideoConferencingSupported();
+        synchronized (mAccountsLock) {
+            for (AccountEntry entry : mAccounts) {
+                if (entry.getPhoneAccountHandle().equals(handle)) {
+                    return entry.isVideoConferencingSupported();
+                }
             }
         }
         return false;
+    }
+
+    /**
+     * Determines if the {@link AccountEntry} associated with a {@link PhoneAccountHandle} allows
+     * merging of wifi calls when VoWIFI is disabled.
+     *
+     * @param handle The {@link PhoneAccountHandle}.
+     * @return {@code True} if merging of wifi calls is allowed when VoWIFI is disabled.
+     */
+    boolean isMergeOfWifiCallsAllowedWhenVoWifiOff(final PhoneAccountHandle handle) {
+        synchronized (mAccountsLock) {
+            Optional<AccountEntry> result = mAccounts.stream().filter(
+                    entry -> entry.getPhoneAccountHandle().equals(handle)).findFirst();
+
+            if (result.isPresent()) {
+                return result.get().isMergeOfWifiCallsAllowedWhenVoWifiOff();
+            } else {
+                return false;
+            }
+        }
     }
 
     /**
@@ -486,9 +537,11 @@ final class TelecomAccountRegistry {
      * @return The address.
      */
     Uri getAddress(PhoneAccountHandle handle) {
-        for (AccountEntry entry : mAccounts) {
-            if (entry.getPhoneAccountHandle().equals(handle)) {
-                return entry.mAccount.getAddress();
+        synchronized (mAccountsLock) {
+            for (AccountEntry entry : mAccounts) {
+                if (entry.getPhoneAccountHandle().equals(handle)) {
+                    return entry.mAccount.getAddress();
+                }
             }
         }
         return null;
@@ -521,9 +574,11 @@ final class TelecomAccountRegistry {
      * @return {@code True} if an entry exists.
      */
     boolean hasAccountEntryForPhoneAccount(PhoneAccountHandle handle) {
-        for (AccountEntry entry : mAccounts) {
-            if (entry.getPhoneAccountHandle().equals(handle)) {
-                return true;
+        synchronized (mAccountsLock) {
+            for (AccountEntry entry : mAccounts) {
+                if (entry.getPhoneAccountHandle().equals(handle)) {
+                    return true;
+                }
             }
         }
         return false;
@@ -562,28 +617,31 @@ final class TelecomAccountRegistry {
         final boolean phoneAccountsEnabled = mContext.getResources().getBoolean(
                 R.bool.config_pstn_phone_accounts_enabled);
 
-        if (phoneAccountsEnabled) {
-            for (Phone phone : phones) {
-                int subscriptionId = phone.getSubId();
-                Log.d(this, "Phone with subscription id %d", subscriptionId);
-                if (subscriptionId >= 0) {
-                    mAccounts.add(new AccountEntry(phone, false /* emergency */,
-                            false /* isDummy */));
+        synchronized (mAccountsLock) {
+            if (phoneAccountsEnabled) {
+                for (Phone phone : phones) {
+                    int subscriptionId = phone.getSubId();
+                    Log.d(this, "Phone with subscription id %d", subscriptionId);
+                    if (subscriptionId >= 0) {
+                        mAccounts.add(new AccountEntry(phone, false /* emergency */,
+                                false /* isDummy */));
+                    }
                 }
             }
-        }
 
-        // If we did not list ANY accounts, we need to provide a "default" SIM account
-        // for emergency numbers since no actual SIM is needed for dialing emergency
-        // numbers but a phone account is.
-        if (mAccounts.isEmpty()) {
-            mAccounts.add(new AccountEntry(PhoneFactory.getDefaultPhone(), true /* emergency */,
-                    false /* isDummy */));
-        }
+            // If we did not list ANY accounts, we need to provide a "default" SIM account
+            // for emergency numbers since no actual SIM is needed for dialing emergency
+            // numbers but a phone account is.
+            if (mAccounts.isEmpty()) {
+                mAccounts.add(new AccountEntry(PhoneFactory.getDefaultPhone(), true /* emergency */,
+                        false /* isDummy */));
+            }
 
-        // Add a fake account entry.
-        if (DBG && phones.length > 0 && "TRUE".equals(System.getProperty("dummy_sim"))) {
-            mAccounts.add(new AccountEntry(phones[0], false /* emergency */, true /* isDummy */));
+            // Add a fake account entry.
+            if (DBG && phones.length > 0 && "TRUE".equals(System.getProperty("dummy_sim"))) {
+                mAccounts.add(new AccountEntry(phones[0], false /* emergency */,
+                        true /* isDummy */));
+            }
         }
 
         // Clean up any PhoneAccounts that are no longer relevant
@@ -615,9 +673,11 @@ final class TelecomAccountRegistry {
     }
 
     private void tearDownAccounts() {
-        for (AccountEntry entry : mAccounts) {
-            entry.teardown();
+        synchronized (mAccountsLock) {
+            for (AccountEntry entry : mAccounts) {
+                entry.teardown();
+            }
+            mAccounts.clear();
         }
-        mAccounts.clear();
     }
 }
