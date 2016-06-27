@@ -421,7 +421,6 @@ public class MobileNetworkSettings extends PreferenceActivity
     @Override
     protected void onCreate(Bundle icicle) {
         if (DBG) log("onCreate:+");
-        setTheme(R.style.Theme_Material_Settings);
         super.onCreate(icicle);
 
         mHandler = new MyHandler();
