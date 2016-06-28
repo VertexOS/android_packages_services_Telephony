@@ -328,7 +328,7 @@ public class OmtpVvmCarrierConfigHelper {
     public void handleEvent(OmtpEvents event) {
         VvmLog.i(TAG, "OmtpEvent:" + event);
         if (mProtocol != null) {
-            mProtocol.handleEvent(mContext, mSubId, event);
+            mProtocol.handleEvent(mContext, this, event);
         }
     }
 

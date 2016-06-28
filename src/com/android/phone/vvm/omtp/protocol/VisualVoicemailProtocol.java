@@ -70,7 +70,8 @@ public abstract class VisualVoicemailProtocol {
         return command;
     }
 
-    public void handleEvent(Context context, int subId, OmtpEvents event) {
-        DefaultOmtpEventHandler.handleEvent(context, subId, event);
+    public void handleEvent(Context context, OmtpVvmCarrierConfigHelper config,
+            OmtpEvents event) {
+        DefaultOmtpEventHandler.handleEvent(context, config, event);
     }
 }

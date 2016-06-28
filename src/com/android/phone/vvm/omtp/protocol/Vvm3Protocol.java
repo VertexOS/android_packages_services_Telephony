@@ -82,14 +82,21 @@ public class Vvm3Protocol extends VisualVoicemailProtocol {
     public void startProvisioning(PhoneAccountHandle phoneAccountHandle,
             OmtpVvmCarrierConfigHelper config, StatusMessage message, Bundle data) {
         VvmLog.i(TAG, "start vvm3 provisioning");
-        if ("U".equals(message.getProvisioningStatus())) {
+        if (OmtpConstants.SUBSCRIBER_UNKNOWN.equals(message.getProvisioningStatus())) {
             VvmLog.i(TAG, "Provisioning status: Unknown, subscribing");
             new Vvm3Subscriber(phoneAccountHandle, config, data).subscribe();
-        } else if ("N".equals(message.getProvisioningStatus())) {
+        } else if (OmtpConstants.SUBSCRIBER_NEW.equals(message.getProvisioningStatus())) {
             VvmLog.i(TAG, "setting up new user");
             VisualVoicemailSettingsUtil.setVisualVoicemailCredentialsFromStatusMessage(
                     config.getContext(), phoneAccountHandle, message);
             startProvisionNewUser(phoneAccountHandle, config, message);
+        } else if (OmtpConstants.SUBSCRIBER_PROVISIONED.equals(message.getProvisioningStatus())) {
+            VvmLog.i(TAG, "User provisioned but not activated, disabling VVM");
+            VisualVoicemailSettingsUtil
+                    .setVisualVoicemailEnabled(config.getContext(), phoneAccountHandle, false);
+        } else if (OmtpConstants.SUBSCRIBER_BLOCKED.equals(message.getProvisioningStatus())) {
+            VvmLog.i(TAG, "User blocked");
+            config.handleEvent(OmtpEvents.VVM3_SUBSCRIBER_BLOCKED);
         }
     }
 
@@ -100,8 +107,8 @@ public class Vvm3Protocol extends VisualVoicemailProtocol {
     }
 
     @Override
-    public void handleEvent(Context context, int subId, OmtpEvents event) {
-        Vvm3EventHandler.handleEvent(context, subId, event);
+    public void handleEvent(Context context, OmtpVvmCarrierConfigHelper config, OmtpEvents event) {
+        Vvm3EventHandler.handleEvent(context, config, event);
     }
 
     @Override

@@ -49,8 +49,7 @@ public class VisualVoicemailSettingsUtil {
     private static final long MAX_SYNC_RETRY_INTERVAL_MS = 86400000;   // 24 hours
     private static final long DEFAULT_SYNC_RETRY_INTERVAL_MS = 900000; // 15 minutes
 
-    /* package */
-    static void setVisualVoicemailEnabled(Context context, PhoneAccountHandle phoneAccount,
+    public static void setVisualVoicemailEnabled(Context context, PhoneAccountHandle phoneAccount,
             boolean isEnabled) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         prefs.edit()

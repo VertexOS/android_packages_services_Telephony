@@ -98,9 +98,6 @@ public class VvmPhoneStateListener extends PhoneStateListener {
                 return;
             }
             helper.handleEvent(OmtpEvents.NOTIFICATION_SERVICE_LOST);
-            if (helper.isCellularDataRequired()) {
-                helper.handleEvent(OmtpEvents.DATA_NO_CONNECTION_CELLULAR_REQUIRED);
-            }
         }
         mPreviousState = state;
     }

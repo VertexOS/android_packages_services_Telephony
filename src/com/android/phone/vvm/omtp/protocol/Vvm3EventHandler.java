@@ -26,6 +26,7 @@ import com.android.phone.settings.VoicemailChangePinDialogPreference;
 import com.android.phone.vvm.omtp.DefaultOmtpEventHandler;
 import com.android.phone.vvm.omtp.OmtpEvents;
 import com.android.phone.vvm.omtp.OmtpEvents.Type;
+import com.android.phone.vvm.omtp.OmtpVvmCarrierConfigHelper;
 import com.android.phone.vvm.omtp.utils.PhoneAccountHandleConverter;
 
 import java.lang.annotation.Retention;
@@ -84,43 +85,45 @@ public class Vvm3EventHandler {
     public static final int PIN_NOT_SET = -100;
 
 
-    public static void handleEvent(Context context, int subId, OmtpEvents event) {
+    public static void handleEvent(Context context, OmtpVvmCarrierConfigHelper config,
+            OmtpEvents event) {
         boolean handled = false;
         switch (event.getType()) {
             case Type.CONFIGURATION:
-                handled = handleConfigurationEvent(context, subId, event);
+                handled = handleConfigurationEvent(context, config, event);
                 break;
             case Type.DATA_CHANNEL:
-                handled = handleDataChannelEvent(context, subId, event);
+                handled = handleDataChannelEvent(context, config, event);
                 break;
             case Type.NOTIFICATION_CHANNEL:
-                handled = handleNotificationChannelEvent(context, subId, event);
+                handled = handleNotificationChannelEvent(context, config, event);
                 break;
             case Type.OTHER:
-                handled = handleOtherEvent(context, subId, event);
+                handled = handleOtherEvent(context, config, event);
                 break;
             default:
                 com.android.services.telephony.Log
                         .wtf(TAG, "invalid event type " + event.getType() + " for " + event);
         }
         if (!handled) {
-            DefaultOmtpEventHandler.handleEvent(context, subId, event);
+            DefaultOmtpEventHandler.handleEvent(context, config, event);
         }
     }
 
-    private static boolean handleConfigurationEvent(Context context, int subId,
-            OmtpEvents event) {
+    private static boolean handleConfigurationEvent(Context context,
+            OmtpVvmCarrierConfigHelper config, OmtpEvents event) {
         switch (event) {
             case CONFIG_REQUEST_STATUS_SUCCESS:
-                PhoneAccountHandle handle = PhoneAccountHandleConverter.fromSubId(subId);
+                PhoneAccountHandle handle = PhoneAccountHandleConverter
+                        .fromSubId(config.getSubId());
                 if (VoicemailChangePinDialogPreference.getDefaultOldPin(context, handle) == null) {
                     return false;
                 } else {
-                    postError(context, subId, PIN_NOT_SET);
+                    postError(context, config, PIN_NOT_SET);
                 }
                 break;
             case CONFIG_DEFAULT_PIN_REPLACED:
-                postError(context, subId, PIN_NOT_SET);
+                postError(context, config, PIN_NOT_SET);
                 break;
             default:
                 return false;
@@ -128,39 +131,39 @@ public class Vvm3EventHandler {
         return true;
     }
 
-    private static boolean handleDataChannelEvent(Context context, int subId,
-            OmtpEvents event) {
+    private static boolean handleDataChannelEvent(Context context,
+            OmtpVvmCarrierConfigHelper config, OmtpEvents event) {
         switch (event) {
             case DATA_NO_CONNECTION:
             case DATA_NO_CONNECTION_CELLULAR_REQUIRED:
-                postError(context, subId, VMS_NO_CELLULAR);
+                postError(context, config, VMS_NO_CELLULAR);
                 break;
             case DATA_CANNOT_RESOLVE_HOST_ON_NETWORK:
-                postError(context, subId, VMS_DNS_FAILURE);
+                postError(context, config, VMS_DNS_FAILURE);
                 break;
             case DATA_BAD_IMAP_CREDENTIAL:
-                postError(context, subId, IMAP_ERROR);
+                postError(context, config, IMAP_ERROR);
                 break;
             case DATA_AUTH_UNKNOWN_USER:
-                postError(context, subId, UNKNOWN_USER);
+                postError(context, config, UNKNOWN_USER);
                 break;
             case DATA_AUTH_UNKNOWN_DEVICE:
-                postError(context, subId, UNKNOWN_DEVICE);
+                postError(context, config, UNKNOWN_DEVICE);
                 break;
             case DATA_AUTH_INVALID_PASSWORD:
-                postError(context, subId, INVALID_PASSWORD);
+                postError(context, config, INVALID_PASSWORD);
                 break;
             case DATA_AUTH_MAILBOX_NOT_INITIALIZED:
-                postError(context, subId, MAILBOX_NOT_INITIALIZED);
+                postError(context, config, MAILBOX_NOT_INITIALIZED);
                 break;
             case DATA_AUTH_SERVICE_NOT_PROVISIONED:
-                postError(context, subId, SERVICE_NOT_PROVISIONED);
+                postError(context, config, SERVICE_NOT_PROVISIONED);
                 break;
             case DATA_AUTH_SERVICE_NOT_ACTIVATED:
-                postError(context, subId, SERVICE_NOT_ACTIVATED);
+                postError(context, config, SERVICE_NOT_ACTIVATED);
                 break;
             case DATA_AUTH_USER_IS_BLOCKED:
-                postError(context, subId, USER_BLOCKED);
+                postError(context, config, USER_BLOCKED);
                 break;
 
             case DATA_INVALID_PORT:
@@ -171,7 +174,7 @@ public class Vvm3EventHandler {
             case DATA_INVALID_INITIAL_SERVER_RESPONSE:
             case DATA_SSL_EXCEPTION:
             case DATA_ALL_SOCKET_CONNECTION_FAILED:
-                postError(context, subId, IMAP_ERROR);
+                postError(context, config, IMAP_ERROR);
                 break;
 
             default:
@@ -180,44 +183,46 @@ public class Vvm3EventHandler {
         return true;
     }
 
-    private static boolean handleNotificationChannelEvent(Context context, int subId,
-            OmtpEvents event) {
+    private static boolean handleNotificationChannelEvent(Context context,
+            OmtpVvmCarrierConfigHelper config, OmtpEvents event) {
         return false;
     }
 
-    private static boolean handleOtherEvent(Context context, int subId, OmtpEvents event) {
+    private static boolean handleOtherEvent(Context context, OmtpVvmCarrierConfigHelper config,
+            OmtpEvents event) {
         switch (event) {
             case VVM3_NEW_USER_SETUP_FAILED:
-                postError(context, subId, MAILBOX_NOT_INITIALIZED);
+                postError(context, config, MAILBOX_NOT_INITIALIZED);
                 break;
             case VVM3_VMG_DNS_FAILURE:
-                postError(context, subId, VMG_DNS_FAILURE);
+                postError(context, config, VMG_DNS_FAILURE);
                 break;
             case VVM3_SPG_DNS_FAILURE:
-                postError(context, subId, SPG_DNS_FAILURE);
+                postError(context, config, SPG_DNS_FAILURE);
                 break;
             case VVM3_VMG_CONNECTION_FAILED:
-                postError(context, subId, VMG_NO_CELLULAR);
+                postError(context, config, VMG_NO_CELLULAR);
                 break;
             case VVM3_SPG_CONNECTION_FAILED:
-                postError(context, subId, SPG_NO_CELLULAR);
+                postError(context, config, SPG_NO_CELLULAR);
                 break;
             case VVM3_VMG_TIMEOUT:
-                postError(context, subId, VMG_TIMEOUT);
+                postError(context, config, VMG_TIMEOUT);
                 break;
 
             case VVM3_SUBSCRIBER_PROVISIONED:
-                postError(context, subId, SERVICE_NOT_ACTIVATED);
+                postError(context, config, SERVICE_NOT_ACTIVATED);
             case VVM3_SUBSCRIBER_BLOCKED:
-                postError(context, subId, SUBSCRIBER_BLOCKED);
+                postError(context, config, SUBSCRIBER_BLOCKED);
             default:
                 return false;
         }
         return true;
     }
 
-    private static void postError(Context context, int subId, @ErrorCode int errorCode) {
-        VoicemailStatus.Editor editor = VoicemailStatus.edit(context, subId);
+    private static void postError(Context context, OmtpVvmCarrierConfigHelper config,
+            @ErrorCode int errorCode) {
+        VoicemailStatus.Editor editor = VoicemailStatus.edit(context, config.getSubId());
 
         switch (errorCode) {
             case VMG_DNS_FAILURE:
