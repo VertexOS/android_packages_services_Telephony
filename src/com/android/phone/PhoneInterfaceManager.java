@@ -3308,4 +3308,28 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         }
         DumpsysHandler.dump(mPhone.getContext(), fd, writer, args);
     }
+
+    /**
+     * Get aggregated video call data usage from all subscriptions since boot.
+     * @return total data usage in bytes
+     * {@hide}
+     */
+    @Override
+    public long getVtDataUsage() {
+        mApp.enforceCallingOrSelfPermission(android.Manifest.permission.READ_NETWORK_USAGE_HISTORY,
+                null);
+
+        // NetworkStatsService keeps tracking the active network interface and identity. It will
+        // record the delta with the corresponding network identity. What we need to do here is
+        // returning total video call data usage from all subscriptions since boot.
+
+        // TODO: Add sub id support in the future. We'll need it when we support DSDA and
+        // simultaneous VT calls.
+        final Phone[] phones = PhoneFactory.getPhones();
+        long total = 0;
+        for (Phone phone : phones) {
+            total += phone.getVtDataUsage();
+        }
+        return total;
+    }
 }
