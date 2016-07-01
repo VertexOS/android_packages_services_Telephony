@@ -571,8 +571,12 @@ public class ImsConference extends Conference {
 
         mConferenceHost.addConnectionListener(mConferenceHostListener);
         mConferenceHost.addTelephonyConnectionListener(mTelephonyConnectionListener);
-        setState(mConferenceHost.getState());
+        setConnectionCapabilities(applyHostCapabilities(getConnectionCapabilities(),
+                mConferenceHost.getConnectionCapabilities()));
+        setConnectionProperties(applyHostProperties(getConnectionProperties(),
+                mConferenceHost.getConnectionProperties()));
 
+        setState(mConferenceHost.getState());
         updateStatusHints();
     }
 
