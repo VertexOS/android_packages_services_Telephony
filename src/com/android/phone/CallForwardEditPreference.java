@@ -98,7 +98,7 @@ public class CallForwardEditPreference extends EditPhoneNumberPreference {
                     Log.d(LOG_TAG, "getCallForwardUncondTimer failed. Exception = " + e);
                 }
             } else {
-                mPhone.getCallForwardingOption(reason,
+                mPhone.getCallForwardingOption(reason, mServiceClass,
                         mHandler.obtainMessage(MyHandler.MESSAGE_GET_CF,
                         // unused in this case
                         CommandsInterface.CF_ACTION_DISABLE,
