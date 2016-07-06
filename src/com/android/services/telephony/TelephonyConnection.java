@@ -1093,7 +1093,11 @@ abstract class TelephonyConnection extends Connection {
                     break;
                 case DIALING:
                 case ALERTING:
-                    setDialing();
+                    if (mOriginalConnection != null && mOriginalConnection.isPulledCall()) {
+                        setPulling();
+                    } else {
+                        setDialing();
+                    }
                     break;
                 case INCOMING:
                 case WAITING:

@@ -117,6 +117,13 @@ public class ImsConferenceController {
      * @param connection
      */
     void add(TelephonyConnection connection) {
+        // DO NOT add external calls; we don't want to consider them as a potential conference
+        // member.
+        if ((connection.getConnectionProperties() & Connection.PROPERTY_IS_EXTERNAL_CALL) ==
+                Connection.PROPERTY_IS_EXTERNAL_CALL) {
+            return;
+        }
+
         // Note: Wrap in Log.VERBOSE to avoid calling connection.toString if we are not going to be
         // outputting the value.
         if (Log.VERBOSE) {
@@ -134,6 +141,12 @@ public class ImsConferenceController {
      * @param connection
      */
     void remove(Connection connection) {
+        // External calls are not part of the conference controller, so don't remove them.
+        if ((connection.getConnectionProperties() & Connection.PROPERTY_IS_EXTERNAL_CALL) ==
+                Connection.PROPERTY_IS_EXTERNAL_CALL) {
+            return;
+        }
+
         if (Log.VERBOSE) {
             Log.v(this, "remove connection: %s", connection);
         }

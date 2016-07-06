@@ -125,6 +125,7 @@ public class DisconnectCauseUtil {
             case android.telephony.DisconnectCause.DIAL_MODIFIED_TO_SS:
             case android.telephony.DisconnectCause.DIAL_MODIFIED_TO_DIAL:
             case android.telephony.DisconnectCause.ERROR_UNSPECIFIED:
+            case android.telephony.DisconnectCause.MAXIMUM_NUMBER_OF_CALLS_REACHED:
                 return DisconnectCause.ERROR;
 
             case android.telephony.DisconnectCause.DIALED_MMI:
@@ -222,6 +223,9 @@ public class DisconnectCauseUtil {
 
             case android.telephony.DisconnectCause.CALL_PULLED:
                 resourceId = R.string.callEnded_pulled;
+
+            case android.telephony.DisconnectCause.MAXIMUM_NUMBER_OF_CALLS_REACHED:
+                resourceId = R.string.callFailed_maximum_reached;
 
             default:
                 break;
@@ -345,6 +349,9 @@ public class DisconnectCauseUtil {
             case android.telephony.DisconnectCause.CALL_PULLED:
                 resourceId = R.string.callEnded_pulled;
                 break;
+
+            case android.telephony.DisconnectCause.MAXIMUM_NUMBER_OF_CALLS_REACHED:
+                resourceId = R.string.callFailed_maximum_reached;
 
             case android.telephony.DisconnectCause.OUTGOING_CANCELED:
                 // We don't want to show any dialog for the canceled case since the call was
