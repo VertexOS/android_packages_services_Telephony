@@ -24,6 +24,7 @@ import android.telephony.ServiceState;
 
 import com.android.internal.annotations.VisibleForTesting;
 import com.android.internal.os.SomeArgs;
+import com.android.internal.telephony.CommandsInterface;
 import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneConstants;
 import com.android.internal.telephony.SubscriptionController;
@@ -159,30 +160,19 @@ public class EmergencyCallStateListener {
             onComplete(true);
             cleanup();
         } else {
-            // The service state changed, but we're still not ready to call yet. (This probably was
-            // the transition from STATE_POWER_OFF to STATE_OUT_OF_SERVICE, which happens
-            // immediately after powering-on the radio.)
-            //
-            // So just keep waiting; we'll probably get to either STATE_IN_SERVICE or
-            // STATE_EMERGENCY_ONLY very shortly. (Or even if that doesn't happen, we'll at least do
-            // another retry when the RETRY_TIMEOUT event fires.)
+            // The service state changed, but we're still not ready to call yet.
             Log.d(this, "onServiceStateChanged: not ready to call yet, keep waiting.");
         }
     }
 
+    /**
+     * We currently only look to make sure that the radio is on before dialing. We should be able to
+     * make emergency calls at any time after the radio has been powered on and isn't in the
+     * UNAVAILABLE state, even if it is reporting the OUT_OF_SERVICE state.
+     */
     private boolean isOkToCall(int serviceState) {
-        // Once we reach either STATE_IN_SERVICE or STATE_EMERGENCY_ONLY, it's finally OK to place
-        // the emergency call.
-        return ((mPhone.getState() == PhoneConstants.State.OFFHOOK)
-                || (serviceState == ServiceState.STATE_IN_SERVICE)
-                || (serviceState == ServiceState.STATE_EMERGENCY_ONLY))
-                // STATE_EMERGENCY_ONLY currently is not used, so we must also check the service
-                // state for emergency only calling.
-                || (serviceState == ServiceState.STATE_OUT_OF_SERVICE &&
-                        mPhone.getServiceState().isEmergencyOnly())
-                // Allow STATE_OUT_OF_SERVICE if we are at the max number of retries.
-                || (mNumRetriesSoFar == MAX_NUM_RETRIES &&
-                        serviceState == ServiceState.STATE_OUT_OF_SERVICE);
+        return (mPhone.getState() == PhoneConstants.State.OFFHOOK) ||
+                mPhone.getServiceStateTracker().isRadioOn();
     }
 
     /**
