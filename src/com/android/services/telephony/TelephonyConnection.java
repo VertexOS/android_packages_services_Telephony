@@ -34,6 +34,7 @@ import android.telecom.VideoProfile;
 import android.telephony.PhoneNumberUtils;
 import android.util.Pair;
 
+import com.android.ims.ImsCall;
 import com.android.ims.ImsCallProfile;
 import com.android.internal.telephony.Call;
 import com.android.internal.telephony.CallStateException;
@@ -44,6 +45,7 @@ import com.android.internal.telephony.gsm.SuppServiceNotification;
 
 import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.imsphone.ImsPhone;
+import com.android.internal.telephony.imsphone.ImsPhoneCallTracker;
 import com.android.phone.PhoneUtils;
 import com.android.phone.R;
 
@@ -164,8 +166,9 @@ abstract class TelephonyConnection extends Connection {
                     setVideoState(videoState);
 
                     // A change to the video state of the call can influence whether or not it
-                    // can be part of a conference.
+                    // can be part of a conference and whether another call can be added.
                     refreshConferenceSupported();
+                    refreshDisableAddCall();
                     break;
 
                 case MSG_SET_VIDEO_PROVIDER:
@@ -779,10 +782,10 @@ abstract class TelephonyConnection extends Connection {
             extrasToRemove.add(Connection.EXTRA_ANSWERING_DROPS_FG_CALL);
         }
 
-        if (!mOriginalConnection.shouldAllowAddCallDuringVideoCall()) {
-            extrasToPut.putBoolean(Connection.EXTRA_DISABLE_ADD_CALL_DURING_VIDEO_CALL, true);
+        if (shouldSetDisableAddCallExtra()) {
+            extrasToPut.putBoolean(Connection.EXTRA_DISABLE_ADD_CALL, true);
         } else {
-            extrasToRemove.add(Connection.EXTRA_DISABLE_ADD_CALL_DURING_VIDEO_CALL);
+            extrasToRemove.add(Connection.EXTRA_DISABLE_ADD_CALL);
         }
         putExtras(extrasToPut);
         removeExtras(extrasToRemove);
@@ -805,6 +808,48 @@ abstract class TelephonyConnection extends Connection {
         if (getPhone() != null) {
             putExtra(TelecomManager.EXTRA_CALL_TECHNOLOGY_TYPE, getPhone().getPhoneType());
         }
+    }
+
+    private void refreshDisableAddCall() {
+        if (shouldSetDisableAddCallExtra()) {
+            putExtra(Connection.EXTRA_DISABLE_ADD_CALL, true);
+        } else {
+            removeExtras(Connection.EXTRA_DISABLE_ADD_CALL);
+        }
+    }
+
+    private boolean shouldSetDisableAddCallExtra() {
+        boolean carrierShouldAllowAddCall = mOriginalConnection.shouldAllowAddCallDuringVideoCall();
+        if (carrierShouldAllowAddCall) {
+            return false;
+        }
+        Phone phone = getPhone();
+        if (phone == null) {
+            return false;
+        }
+        boolean isCurrentVideoCall = false;
+        boolean wasVideoCall = false;
+        boolean isWifiCall = false;
+        boolean isVowifiEnabled = false;
+        if (phone instanceof ImsPhone) {
+            ImsPhone imsPhone = (ImsPhone) phone;
+            if (imsPhone.getForegroundCall() != null
+                    && imsPhone.getForegroundCall().getImsCall() != null) {
+                ImsCall call = imsPhone.getForegroundCall().getImsCall();
+                isCurrentVideoCall = call.isVideoCall();
+                wasVideoCall = call.wasVideoCall();
+                isWifiCall = call.isWifiCall();
+            }
+
+            isVowifiEnabled = ((ImsPhoneCallTracker) imsPhone.getCallTracker()).isVowifiEnabled();
+        }
+
+        if (isCurrentVideoCall) {
+            return true;
+        } else if (wasVideoCall && isWifiCall && !isVowifiEnabled) {
+            return true;
+        }
+        return false;
     }
 
     /**
