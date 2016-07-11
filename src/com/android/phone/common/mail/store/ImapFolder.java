@@ -94,23 +94,7 @@ public class ImapFolder {
     public void open(String mode) throws MessagingException {
         try {
             if (isOpen()) {
-                if (mMode == mode) {
-                    // Make sure the connection is valid.
-                    // If it's not we'll close it down and continue on to get a new one.
-                    try {
-                        mConnection.executeSimpleCommand(ImapConstants.NOOP);
-                        return;
-
-                    } catch (IOException ioe) {
-                        mStore.getImapHelper().handleEvent(OmtpEvents.DATA_GENERIC_IMAP_IOE);
-                        ioExceptionHandler(mConnection, ioe);
-                    } finally {
-                        destroyResponses();
-                    }
-                } else {
-                    // Return the connection to the pool, if exists.
-                    close(false);
-                }
+                throw new AssertionError("Duplicated open on ImapFolder");
             }
             synchronized (this) {
                 mConnection = mStore.getConnection();
