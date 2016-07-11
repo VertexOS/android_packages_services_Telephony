@@ -290,7 +290,9 @@ public class DisconnectCauseUtil {
                 // TODO: Offer the option to turn the radio on, and automatically retry the call
                 // once network registration is complete.
 
-                if (ImsUtil.isWfcModeWifiOnly(context)) {
+                if (ImsUtil.shouldPromoteWfc(context)) {
+                    resourceId = R.string.incall_error_promote_wfc;
+                } else if (ImsUtil.isWfcModeWifiOnly(context)) {
                     resourceId = R.string.incall_error_wfc_only_no_wireless_network;
                 } else if (ImsUtil.isWfcEnabled(context)) {
                     resourceId = R.string.incall_error_power_off_wfc;
@@ -312,7 +314,9 @@ public class DisconnectCauseUtil {
 
             case android.telephony.DisconnectCause.OUT_OF_SERVICE:
                 // No network connection.
-                if (ImsUtil.isWfcModeWifiOnly(context)) {
+                if (ImsUtil.shouldPromoteWfc(context)) {
+                    resourceId = R.string.incall_error_promote_wfc;
+                } else if (ImsUtil.isWfcModeWifiOnly(context)) {
                     resourceId = R.string.incall_error_wfc_only_no_wireless_network;
                 } else if (ImsUtil.isWfcEnabled(context)) {
                     resourceId = R.string.incall_error_out_of_service_wfc;

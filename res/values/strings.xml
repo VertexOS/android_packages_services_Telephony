@@ -1011,6 +1011,8 @@
     <string name="incall_error_supp_service_hold">Can\'t hold calls.</string>
     <!-- In-call screen: call failure message displayed in an error dialog when WFC is enabled, is wifi-only, and not connected to a wireless network. [CHAR_LIMIT=NONE] -->
     <string name="incall_error_wfc_only_no_wireless_network">Connect to a wireless network to make a call.</string>
+    <!-- In-call screen: call failure message displayed in an error dialog when the user is connected to a wireless network, but wifi calling is turned off. [CHAR_LIMIT=NONE] -->
+    <string name="incall_error_promote_wfc">Enable Wi-Fi calling to make a call.</string>
 
     <!-- Dialog title for the "radio enable" UI for emergency calls -->
     <string name="emergency_enable_radio_dialog_title">Emergency call</string>
