@@ -541,12 +541,6 @@
         </activity>
 
         <!-- Start SIP -->
-        <service android:name="com.android.services.telephony.sip.SipCallServiceProvider"
-                 android:singleUser="true" >
-            <intent-filter>
-                <action android:name="android.telecom.CallServiceProvider" />
-            </intent-filter>
-        </service>
         <service android:name="com.android.services.telephony.sip.SipConnectionService"
                  android:label="@string/sip_connection_service_label"
                  android:singleUser="true"
