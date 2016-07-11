@@ -139,6 +139,7 @@ abstract class TelephonyConnection extends Connection {
                     if (isMultiParty) {
                         notifyConferenceStarted();
                     }
+                    break;
                 case MSG_CONFERENCE_MERGE_FAILED:
                     notifyConferenceMergeFailed();
                     break;
