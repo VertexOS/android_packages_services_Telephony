@@ -136,10 +136,12 @@ public class ImapResponseParser {
      * is stored in the internal storage.  When the {@link ImapResponse} is no longer used
      * {@link #destroyResponses} should be called to destroy all the responses in the array.
      *
+     * @param byeExpected is a untagged BYE response expected? If not proper cleanup will be done
+     * and {@link ByeException} will be thrown.
      * @return the parsed {@link ImapResponse} object.
-     * @exception ByeException when detects BYE.
+     * @exception ByeException when detects BYE and <code>byeExpected</code> is false.
      */
-    public ImapResponse readResponse() throws IOException, MessagingException {
+    public ImapResponse readResponse(boolean byeExpected) throws IOException, MessagingException {
         ImapResponse response = null;
         try {
             response = parseResponse();
@@ -154,7 +156,7 @@ public class ImapResponseParser {
         }
 
         // Handle this outside of try-catch.  We don't have to dump protocol log when getting BYE.
-        if (response.is(0, ImapConstants.BYE)) {
+        if (!byeExpected && response.is(0, ImapConstants.BYE)) {
             Log.w(TAG, ByeException.MESSAGE);
             response.destroy();
             throw new ByeException();

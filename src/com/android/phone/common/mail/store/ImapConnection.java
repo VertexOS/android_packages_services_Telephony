@@ -30,6 +30,7 @@ import com.android.phone.common.mail.store.imap.ImapResponseParser;
 import com.android.phone.common.mail.store.imap.ImapUtility;
 import com.android.phone.common.mail.utils.LogUtils;
 import com.android.phone.vvm.omtp.OmtpEvents;
+import com.android.phone.vvm.omtp.VvmLog;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -110,7 +111,7 @@ public class ImapConnection {
             // The server should greet us with something like
             // * OK IMAP4rev1 Server
             // consume the response before doing anything else.
-            ImapResponse response = mParser.readResponse();
+            ImapResponse response = mParser.readResponse(false);
             if (!response.isOk()) {
                 mImapStore.getImapHelper()
                         .handleEvent(OmtpEvents.DATA_INVALID_INITIAL_SERVER_RESPONSE);
@@ -138,11 +139,26 @@ public class ImapConnection {
         }
     }
 
+    void logout() {
+        try {
+            sendCommand(ImapConstants.LOGOUT, false);
+            if (!mParser.readResponse(true).is(0, ImapConstants.BYE)) {
+                VvmLog.e(TAG, "Server did not respond LOGOUT with BYE");
+            }
+            if (!mParser.readResponse(false).isOk()) {
+                VvmLog.e(TAG, "Server did not respond OK after LOGOUT");
+            }
+        } catch (IOException | MessagingException e) {
+            VvmLog.e(TAG, "Error while logging out:" + e);
+        }
+    }
+
     /**
      * Closes the connection and releases all resources. This connection can not be used again
      * until {@link #setStore(ImapStore)} is called.
      */
     void close() {
+        logout();
         if (mTransport != null) {
             mTransport.close();
             mTransport = null;
@@ -323,7 +339,7 @@ public class ImapConnection {
     }
 
     public ImapResponse readResponse() throws IOException, MessagingException {
-        return mParser.readResponse();
+        return mParser.readResponse(false);
     }
 
     public List<ImapResponse> executeSimpleCommand(String command)
@@ -377,11 +393,12 @@ public class ImapConnection {
      * @throws IOException
      * @throws MessagingException
      */
-    List<ImapResponse> getCommandResponses() throws IOException, MessagingException {
+    List<ImapResponse> getCommandResponses()
+            throws IOException, MessagingException {
         final List<ImapResponse> responses = new ArrayList<ImapResponse>();
         ImapResponse response;
         do {
-            response = mParser.readResponse();
+            response = mParser.readResponse(false);
             responses.add(response);
         } while (!(response.isTagged() || response.isContinuationRequest()));
 

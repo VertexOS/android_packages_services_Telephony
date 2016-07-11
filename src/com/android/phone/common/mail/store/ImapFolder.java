@@ -161,7 +161,6 @@ public class ImapFolder {
         }
         mMessageCount = -1;
         synchronized (this) {
-            mStore.closeConnection();
             mConnection = null;
         }
     }

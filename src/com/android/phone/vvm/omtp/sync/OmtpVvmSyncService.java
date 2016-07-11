@@ -235,35 +235,36 @@ public class OmtpVvmSyncService extends IntentService {
         int retryCount = NETWORK_RETRY_COUNT;
         try {
             while (retryCount > 0) {
-                ImapHelper imapHelper = new ImapHelper(this, phoneAccount, network);
-                if (!imapHelper.isSuccessfullyInitialized()) {
-                    VvmLog.w(TAG, "Can't retrieve Imap credentials.");
-                    VisualVoicemailSettingsUtil.resetVisualVoicemailRetryInterval(this,
-                            phoneAccount);
-                    return;
-                }
+                try (ImapHelper imapHelper = new ImapHelper(this, phoneAccount, network)) {
+                    if (!imapHelper.isSuccessfullyInitialized()) {
+                        VvmLog.w(TAG, "Can't retrieve Imap credentials.");
+                        VisualVoicemailSettingsUtil.resetVisualVoicemailRetryInterval(this,
+                                phoneAccount);
+                        return;
+                    }
 
-                boolean success = true;
-                if (voicemail == null) {
-                    success = syncAll(action, imapHelper, phoneAccount);
-                } else {
-                    success = syncOne(imapHelper, voicemail, phoneAccount);
-                }
-                imapHelper.updateQuota();
+                    boolean success = true;
+                    if (voicemail == null) {
+                        success = syncAll(action, imapHelper, phoneAccount);
+                    } else {
+                        success = syncOne(imapHelper, voicemail, phoneAccount);
+                    }
+                    imapHelper.updateQuota();
 
-                // Need to check again for whether visual voicemail is enabled because it could have
-                // been disabled while waiting for the response from the network.
-                if (VisualVoicemailSettingsUtil.isVisualVoicemailEnabled(this, phoneAccount) &&
-                        !success) {
-                    retryCount--;
-                    VvmLog.v(TAG, "Retrying " + action);
-                } else {
-                    // Nothing more to do here, just exit.
-                    VisualVoicemailSettingsUtil.resetVisualVoicemailRetryInterval(this,
-                            phoneAccount);
+                    // Need to check again for whether visual voicemail is enabled because it could
+                    // have been disabled while waiting for the response from the network.
+                    if (VisualVoicemailSettingsUtil.isVisualVoicemailEnabled(this, phoneAccount) &&
+                            !success) {
+                        retryCount--;
+                        VvmLog.v(TAG, "Retrying " + action);
+                    } else {
+                        // Nothing more to do here, just exit.
+                        VisualVoicemailSettingsUtil.resetVisualVoicemailRetryInterval(this,
+                                phoneAccount);
 
-                    imapHelper.handleEvent(OmtpEvents.DATA_IMAP_OPERATION_COMPLETED);
-                    return;
+                        imapHelper.handleEvent(OmtpEvents.DATA_IMAP_OPERATION_COMPLETED);
+                        return;
+                    }
                 }
             }
         } finally {

@@ -175,8 +175,7 @@ public class VoicemailChangePinDialogPreference extends DialogPreference {
         @Override
         public void onAvailable(Network network) {
             super.onAvailable(network);
-            ImapHelper helper = new ImapHelper(getContext(), mPhoneAccountHandle, network);
-            try {
+            try (ImapHelper helper = new ImapHelper(getContext(), mPhoneAccountHandle, network)) {
                 @ChangePinResult int result =
                         helper.changePin(mOldPin.getText().toString(),
                                 mNewPin.getText().toString());
