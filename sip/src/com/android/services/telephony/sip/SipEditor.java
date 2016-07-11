@@ -68,9 +68,10 @@ public class SipEditor extends PreferenceActivity
     private SipAccountRegistry mSipAccountRegistry;
 
     enum PreferenceKey {
-        Username(R.string.username, 0, R.string.default_preference_summary),
-        Password(R.string.password, 0, R.string.default_preference_summary),
-        DomainAddress(R.string.domain_address, 0, R.string.default_preference_summary),
+        Username(R.string.username, 0, R.string.default_preference_summary_username),
+        Password(R.string.password, 0, R.string.default_preference_summary_password),
+        DomainAddress(R.string.domain_address, 0,
+                R.string.default_preference_summary_domain_address),
         DisplayName(R.string.display_name, 0, R.string.display_name_summary),
         ProxyAddress(R.string.proxy_address, 0, R.string.optional_summary),
         Port(R.string.port, R.string.default_port, R.string.default_port),

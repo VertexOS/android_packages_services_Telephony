@@ -22,7 +22,7 @@
         android:key="@string/username"
         android:title="@string/username_title"
         android:dialogTitle="@string/username_title"
-        android:summary="@string/default_preference_summary"
+        android:summary="@string/default_preference_summary_username"
         android:persistent="false"
         android:singleLine="true"
         android:inputType="textNoSuggestions"/>
@@ -32,7 +32,7 @@
         android:title="@string/password_title"
         android:dialogTitle="@string/password_title"
         android:password="true"
-        android:summary="@string/default_preference_summary"
+        android:summary="@string/default_preference_summary_password"
         android:persistent="false"
         android:singleLine="true"/>
 
@@ -40,7 +40,7 @@
         android:key="@string/domain_address"
         android:title="@string/domain_address_title"
         android:dialogTitle="@string/domain_address_title"
-        android:summary="@string/default_preference_summary"
+        android:summary="@string/default_preference_summary_domain_address"
         android:persistent="false"
         android:singleLine="true"
         android:inputType="textNoSuggestions"/>
