@@ -292,6 +292,10 @@ public class ConferenceParticipantConnection extends Connection {
         sb.append(System.identityHashCode(this));
         sb.append(" endPoint:");
         sb.append(Log.pii(mEndpoint));
+        sb.append(" address:");
+        sb.append(Log.pii(getAddress()));
+        sb.append(" addressPresentation:");
+        sb.append(getAddressPresentation());
         sb.append(" parentConnection:");
         sb.append(Log.pii(mParentConnection.getAddress()));
         sb.append(" state:");

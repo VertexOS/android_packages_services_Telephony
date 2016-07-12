@@ -610,6 +610,8 @@ public class ImsConference extends Conference {
             return;
         }
 
+        Log.i(this, "handleConferenceParticipantsUpdate: size=%d", participants.size());
+
         // Perform the update in a synchronized manner.  It is possible for the IMS framework to
         // trigger two onConferenceParticipantsChanged callbacks in quick succession.  If the first
         // update adds new participants, and the second does something like update the status of one
@@ -636,6 +638,8 @@ public class ImsConference extends Conference {
                 } else {
                     ConferenceParticipantConnection connection =
                             mConferenceParticipantConnections.get(userEntity);
+                    Log.i(this, "handleConferenceParticipantsUpdate: updateState, participant = %s",
+                            participant);
                     connection.updateState(participant.getState());
                 }
             }
@@ -696,9 +700,8 @@ public class ImsConference extends Conference {
         connection.addConnectionListener(mParticipantListener);
         connection.setConnectTimeMillis(parent.getConnectTimeMillis());
 
-        if (Log.VERBOSE) {
-            Log.v(this, "createConferenceParticipantConnection: %s", connection);
-        }
+        Log.i(this, "createConferenceParticipantConnection: participant=%s, connection=%s",
+                participant, connection);
 
         synchronized(mUpdateSyncRoot) {
             mConferenceParticipantConnections.put(participant.getEndpoint(), connection);
@@ -714,7 +717,7 @@ public class ImsConference extends Conference {
      * @param participant The participant to remove.
      */
     private void removeConferenceParticipant(ConferenceParticipantConnection participant) {
-        Log.d(this, "removeConferenceParticipant: %s", participant);
+        Log.i(this, "removeConferenceParticipant: %s", participant);
 
         participant.removeConnectionListener(mParticipantListener);
         synchronized(mUpdateSyncRoot) {
@@ -822,29 +825,28 @@ public class ImsConference extends Conference {
 
         if (originalConnection != null &&
                 originalConnection.getPhoneType() != PhoneConstants.PHONE_TYPE_IMS) {
-            if (Log.VERBOSE) {
-                Log.v(this,
-                        "Original connection for conference host is no longer an IMS connection; " +
-                                "new connection: %s", originalConnection);
-            }
+            Log.i(this,
+                    "handleOriginalConnectionChange : handover from IMS connection to " +
+                            "new connection: %s", originalConnection);
 
             PhoneAccountHandle phoneAccountHandle = null;
             if (mConferenceHost.getPhone() != null) {
                 if (mConferenceHost.getPhone().getPhoneType() == PhoneConstants.PHONE_TYPE_IMS) {
                     Phone imsPhone = mConferenceHost.getPhone();
-                    // The phone account handle for an ImsPhone is based on the default phone (ie the
-                    // base GSM or CDMA phone, not on the ImsPhone itself).
+                    // The phone account handle for an ImsPhone is based on the default phone (ie
+                    // the base GSM or CDMA phone, not on the ImsPhone itself).
                     phoneAccountHandle =
                             PhoneUtils.makePstnPhoneAccountHandle(imsPhone.getDefaultPhone());
                 } else {
-                    // In the case of SRVCC, we still need a phone account, so use the top level phone
-                    // to create a phone account.
+                    // In the case of SRVCC, we still need a phone account, so use the top level
+                    // phone to create a phone account.
                     phoneAccountHandle = PhoneUtils.makePstnPhoneAccountHandle(
                             mConferenceHost.getPhone());
                 }
             }
 
             if (mConferenceHost.getPhone().getPhoneType() == PhoneConstants.PHONE_TYPE_GSM) {
+                Log.i(this,"handleOriginalConnectionChange : SRVCC to GSM");
                 GsmConnection c = new GsmConnection(originalConnection, getTelecomCallId());
                 // This is a newly created conference connection as a result of SRVCC
                 c.setConferenceSupported(true);
