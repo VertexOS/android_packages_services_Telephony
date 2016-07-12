@@ -175,7 +175,10 @@ public class ImsConference extends Conference {
             Log.d(this, "onConnectionCapabilitiesChanged: Connection: %s," +
                     " connectionCapabilities: %s", c, connectionCapabilities);
             int capabilites = ImsConference.this.getConnectionCapabilities();
-            setConnectionCapabilities(applyHostCapabilities(capabilites, connectionCapabilities));
+            boolean isVideoConferencingSupported = mConferenceHost == null ? false :
+                    mConferenceHost.isCarrierVideoConferencingSupported();
+            setConnectionCapabilities(applyHostCapabilities(capabilites, connectionCapabilities,
+                    isVideoConferencingSupported));
         }
 
         @Override
@@ -277,7 +280,8 @@ public class ImsConference extends Conference {
         int capabilities = Connection.CAPABILITY_SUPPORT_HOLD | Connection.CAPABILITY_HOLD |
                 Connection.CAPABILITY_MUTE | Connection.CAPABILITY_CONFERENCE_HAS_NO_CHILDREN;
         capabilities = applyHostCapabilities(capabilities,
-                mConferenceHost.getConnectionCapabilities());
+                mConferenceHost.getConnectionCapabilities(),
+                mConferenceHost.isCarrierVideoConferencingSupported());
         setConnectionCapabilities(capabilities);
 
     }
@@ -287,24 +291,36 @@ public class ImsConference extends Conference {
      *
      * @param conferenceCapabilities The current conference capabilities.
      * @param capabilities The new conference host capabilities.
+     * @param isVideoConferencingSupported Whether video conferencing is supported.
      * @return The merged capabilities to be applied to the conference.
      */
-    private int applyHostCapabilities(int conferenceCapabilities, int capabilities) {
+    private int applyHostCapabilities(int conferenceCapabilities, int capabilities,
+            boolean isVideoConferencingSupported) {
+
         conferenceCapabilities = changeBitmask(conferenceCapabilities,
                     Connection.CAPABILITY_SUPPORTS_VT_LOCAL_BIDIRECTIONAL,
                     can(capabilities, Connection.CAPABILITY_SUPPORTS_VT_LOCAL_BIDIRECTIONAL));
 
-        conferenceCapabilities = changeBitmask(conferenceCapabilities,
+        if (isVideoConferencingSupported) {
+            conferenceCapabilities = changeBitmask(conferenceCapabilities,
                     Connection.CAPABILITY_SUPPORTS_VT_REMOTE_BIDIRECTIONAL,
                     can(capabilities, Connection.CAPABILITY_SUPPORTS_VT_REMOTE_BIDIRECTIONAL));
-
-        conferenceCapabilities = changeBitmask(conferenceCapabilities,
-                    Connection.CAPABILITY_CANNOT_DOWNGRADE_VIDEO_TO_AUDIO,
-                    can(capabilities, Connection.CAPABILITY_CANNOT_DOWNGRADE_VIDEO_TO_AUDIO));
-
-        conferenceCapabilities = changeBitmask(conferenceCapabilities,
+            conferenceCapabilities = changeBitmask(conferenceCapabilities,
                     Connection.CAPABILITY_CAN_UPGRADE_TO_VIDEO,
                     can(capabilities, Connection.CAPABILITY_CAN_UPGRADE_TO_VIDEO));
+        } else {
+            // If video conferencing is not supported, explicitly turn off the remote video
+            // capability and the ability to upgrade to video.
+            Log.v(this, "applyHostCapabilities : video conferencing not supported");
+            conferenceCapabilities = changeBitmask(conferenceCapabilities,
+                    Connection.CAPABILITY_SUPPORTS_VT_REMOTE_BIDIRECTIONAL, false);
+            conferenceCapabilities = changeBitmask(conferenceCapabilities,
+                    Connection.CAPABILITY_CAN_UPGRADE_TO_VIDEO, false);
+        }
+
+        conferenceCapabilities = changeBitmask(conferenceCapabilities,
+                Connection.CAPABILITY_CANNOT_DOWNGRADE_VIDEO_TO_AUDIO,
+                can(capabilities, Connection.CAPABILITY_CANNOT_DOWNGRADE_VIDEO_TO_AUDIO));
 
         return conferenceCapabilities;
     }
@@ -572,7 +588,8 @@ public class ImsConference extends Conference {
         mConferenceHost.addConnectionListener(mConferenceHostListener);
         mConferenceHost.addTelephonyConnectionListener(mTelephonyConnectionListener);
         setConnectionCapabilities(applyHostCapabilities(getConnectionCapabilities(),
-                mConferenceHost.getConnectionCapabilities()));
+                mConferenceHost.getConnectionCapabilities(),
+                mConferenceHost.isCarrierVideoConferencingSupported()));
         setConnectionProperties(applyHostProperties(getConnectionProperties(),
                 mConferenceHost.getConnectionProperties()));
 

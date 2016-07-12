@@ -234,6 +234,13 @@ abstract class TelephonyConnection extends Connection {
     };
 
     /**
+     * @return {@code true} if carrier video conferencing is supported, {@code false} otherwise.
+     */
+    public boolean isCarrierVideoConferencingSupported() {
+        return mIsCarrierVideoConferencingSupported;
+    }
+
+    /**
      * A listener/callback mechanism that is specific communication from TelephonyConnections
      * to TelephonyConnectionService (for now). It is more specific that Connection.Listener
      * because it is only exposed in Telephony.
@@ -409,6 +416,13 @@ abstract class TelephonyConnection extends Connection {
      * Indicates whether this connection supports being a part of a conference..
      */
     private boolean mIsConferenceSupported;
+
+    /**
+     * Indicates whether the carrier supports video conferencing; captures the current state of the
+     * carrier config
+     * {@link android.telephony.CarrierConfigManager#KEY_SUPPORT_VIDEO_CONFERENCE_CALL_BOOL}.
+     */
+    private boolean mIsCarrierVideoConferencingSupported;
 
     /**
      * Indicates whether or not this connection has CDMA Enhanced Voice Privacy enabled.
@@ -1515,15 +1529,15 @@ abstract class TelephonyConnection extends Connection {
                 .getInstance(getPhone().getContext());
         boolean isConferencingSupported = telecomAccountRegistry
                 .isMergeCallSupported(phoneAccountHandle);
-        boolean isVideoConferencingSupported = telecomAccountRegistry
+        mIsCarrierVideoConferencingSupported = telecomAccountRegistry
                 .isVideoConferencingSupported(phoneAccountHandle);
         boolean isMergeOfWifiCallsAllowedWhenVoWifiOff = telecomAccountRegistry
                 .isMergeOfWifiCallsAllowedWhenVoWifiOff(phoneAccountHandle);
 
         Log.v(this, "refreshConferenceSupported : isConfSupp=%b, isVidConfSupp=%b, " +
                 "isMergeOfWifiAllowed=%b, isWifi=%b, isVoWifiEnabled=%b", isConferencingSupported,
-                isVideoConferencingSupported, isMergeOfWifiCallsAllowedWhenVoWifiOff, isWifi(),
-                isVoWifiEnabled);
+                mIsCarrierVideoConferencingSupported, isMergeOfWifiCallsAllowedWhenVoWifiOff,
+                isWifi(), isVoWifiEnabled);
         boolean isConferenceSupported = true;
         if (mTreatAsEmergencyCall) {
             isConferenceSupported = false;
@@ -1531,7 +1545,7 @@ abstract class TelephonyConnection extends Connection {
         } else if (!isConferencingSupported) {
             isConferenceSupported = false;
             Log.d(this, "refreshConferenceSupported = false; carrier doesn't support conf.");
-        } else if (isVideoCall && !isVideoConferencingSupported) {
+        } else if (isVideoCall && !mIsCarrierVideoConferencingSupported) {
             isConferenceSupported = false;
             Log.d(this, "refreshConferenceSupported = false; video conf not supported.");
         } else if (!isMergeOfWifiCallsAllowedWhenVoWifiOff && isWifi() && !isVoWifiEnabled) {
