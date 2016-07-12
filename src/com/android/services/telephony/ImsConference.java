@@ -605,7 +605,7 @@ public class ImsConference extends Conference {
 
             // Add any new participants and update existing.
             for (ConferenceParticipant participant : participants) {
-                Uri userEntity = participant.getHandle();
+                Uri userEntity = participant.getEndpoint();
 
                 participantUserEntities.add(userEntity);
                 if (!mConferenceParticipantConnections.containsKey(userEntity)) {
@@ -628,7 +628,7 @@ public class ImsConference extends Conference {
                 // Set the state of the new participants at once and add to the conference
                 for (ConferenceParticipant newParticipant : newParticipants) {
                     ConferenceParticipantConnection connection =
-                            mConferenceParticipantConnections.get(newParticipant.getHandle());
+                            mConferenceParticipantConnections.get(newParticipant.getEndpoint());
                     connection.updateState(newParticipant.getState());
                 }
             }
@@ -684,7 +684,7 @@ public class ImsConference extends Conference {
         }
 
         synchronized(mUpdateSyncRoot) {
-            mConferenceParticipantConnections.put(participant.getHandle(), connection);
+            mConferenceParticipantConnections.put(participant.getEndpoint(), connection);
         }
         mTelephonyConnectionService.addExistingConnection(mConferenceHostPhoneAccountHandle,
                 connection);
