@@ -16,11 +16,9 @@
 package com.android.phone.vvm.omtp.imap;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.Network;
 import android.net.NetworkInfo;
-import android.preference.PreferenceManager;
 import android.provider.VoicemailContract;
 import android.telecom.PhoneAccountHandle;
 import android.telecom.Voicemail;
@@ -44,11 +42,11 @@ import com.android.phone.common.mail.store.ImapStore;
 import com.android.phone.common.mail.store.imap.ImapConstants;
 import com.android.phone.common.mail.store.imap.ImapResponse;
 import com.android.phone.common.mail.utils.LogUtils;
-import com.android.phone.settings.VisualVoicemailSettingsUtil;
 import com.android.phone.vvm.omtp.OmtpConstants;
 import com.android.phone.vvm.omtp.OmtpConstants.ChangePinResult;
 import com.android.phone.vvm.omtp.OmtpEvents;
 import com.android.phone.vvm.omtp.OmtpVvmCarrierConfigHelper;
+import com.android.phone.vvm.omtp.VisualVoicemailPreferences;
 import com.android.phone.vvm.omtp.VvmLog;
 import com.android.phone.vvm.omtp.fetch.VoicemailFetchedCallback;
 import com.android.phone.vvm.omtp.sync.OmtpVvmSyncService.TranscriptionFetchedCallback;
@@ -78,7 +76,7 @@ public class ImapHelper implements Closeable {
     private final PhoneAccountHandle mPhoneAccount;
     private final Network mNetwork;
 
-    SharedPreferences mPrefs;
+    VisualVoicemailPreferences mPrefs;
     private static final String PREF_KEY_QUOTA_OCCUPIED = "quota_occupied_";
     private static final String PREF_KEY_QUOTA_TOTAL = "quota_total_";
 
@@ -93,18 +91,16 @@ public class ImapHelper implements Closeable {
         mNetwork = network;
         mConfig = new OmtpVvmCarrierConfigHelper(context,
                 PhoneUtils.getSubIdForPhoneAccountHandle(phoneAccount));
+        mPrefs = new VisualVoicemailPreferences(context,
+                phoneAccount);
         try {
             TempDirectory.setTempDirectory(context);
 
-            String username = VisualVoicemailSettingsUtil.getVisualVoicemailCredentials(context,
-                    OmtpConstants.IMAP_USER_NAME, phoneAccount);
-            String password = VisualVoicemailSettingsUtil.getVisualVoicemailCredentials(context,
-                    OmtpConstants.IMAP_PASSWORD, phoneAccount);
-            String serverName = VisualVoicemailSettingsUtil.getVisualVoicemailCredentials(context,
-                    OmtpConstants.SERVER_ADDRESS, phoneAccount);
+            String username = mPrefs.getString(OmtpConstants.IMAP_USER_NAME, null);
+            String password = mPrefs.getString(OmtpConstants.IMAP_PASSWORD, null);
+            String serverName = mPrefs.getString(OmtpConstants.SERVER_ADDRESS, null);
             int port = Integer.parseInt(
-                    VisualVoicemailSettingsUtil.getVisualVoicemailCredentials(context,
-                            OmtpConstants.IMAP_PORT, phoneAccount));
+                    mPrefs.getString(OmtpConstants.IMAP_PORT, null));
             int auth = ImapStore.FLAG_NONE;
 
             int sslPort = mConfig.getSslPort();
@@ -120,11 +116,10 @@ public class ImapHelper implements Closeable {
             LogUtils.w(TAG, "Could not parse port number");
         }
 
-        mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-        mQuotaOccupied = mPrefs.getInt(getSharedPrefsKey(PREF_KEY_QUOTA_OCCUPIED),
-                VoicemailContract.Status.QUOTA_UNAVAILABLE);
-        mQuotaTotal = mPrefs.getInt(getSharedPrefsKey(PREF_KEY_QUOTA_TOTAL),
-                VoicemailContract.Status.QUOTA_UNAVAILABLE);
+        mQuotaOccupied = mPrefs
+                .getInt(PREF_KEY_QUOTA_OCCUPIED, VoicemailContract.Status.QUOTA_UNAVAILABLE);
+        mQuotaTotal = mPrefs
+                .getInt(PREF_KEY_QUOTA_TOTAL, VoicemailContract.Status.QUOTA_UNAVAILABLE);
     }
 
     @Override
@@ -500,8 +495,8 @@ public class ImapHelper implements Closeable {
                 .setQuota(mQuotaOccupied, mQuotaTotal)
                 .apply();
         mPrefs.edit()
-                .putInt(getSharedPrefsKey(PREF_KEY_QUOTA_OCCUPIED), mQuotaOccupied)
-                .putInt(getSharedPrefsKey(PREF_KEY_QUOTA_TOTAL), mQuotaTotal)
+                .putInt(PREF_KEY_QUOTA_OCCUPIED, mQuotaOccupied)
+                .putInt(PREF_KEY_QUOTA_TOTAL, mQuotaTotal)
                 .apply();
         VvmLog.v(TAG, "Quota changed to " + mQuotaOccupied + "/" + mQuotaTotal);
     }
@@ -701,9 +696,5 @@ public class ImapHelper implements Closeable {
             IoUtils.closeQuietly(bufferedOut);
             IoUtils.closeQuietly(out);
         }
-    }
-
-    private String getSharedPrefsKey(String key) {
-        return VisualVoicemailSettingsUtil.getVisualVoicemailSharedPrefsKey(key, mPhoneAccount);
     }
 }

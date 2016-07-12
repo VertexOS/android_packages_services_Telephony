@@ -88,7 +88,7 @@ public class SimChangeReceiver extends BroadcastReceiver {
         if (carrierConfigHelper.isValid()) {
             PhoneAccountHandle phoneAccount = PhoneAccountHandleConverter.fromSubId(subId);
 
-            if (VisualVoicemailSettingsUtil.isVisualVoicemailEnabled(context, phoneAccount)) {
+            if (VisualVoicemailSettingsUtil.isEnabled(context, phoneAccount)) {
                 VvmLog.i(TAG, "Sim state or carrier config changed: requesting"
                         + " activation for " + subId);
 

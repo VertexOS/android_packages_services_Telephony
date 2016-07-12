@@ -25,10 +25,11 @@ import android.telephony.SmsManager;
 
 import com.android.phone.common.mail.MessagingException;
 import com.android.phone.settings.VisualVoicemailSettingsUtil;
-import com.android.phone.settings.VoicemailChangePinDialogPreference;
+import com.android.phone.settings.VoicemailChangePinActivity;
 import com.android.phone.vvm.omtp.OmtpConstants;
 import com.android.phone.vvm.omtp.OmtpEvents;
 import com.android.phone.vvm.omtp.OmtpVvmCarrierConfigHelper;
+import com.android.phone.vvm.omtp.VisualVoicemailPreferences;
 import com.android.phone.vvm.omtp.VvmLog;
 import com.android.phone.vvm.omtp.imap.ImapHelper;
 import com.android.phone.vvm.omtp.sms.OmtpMessageSender;
@@ -61,7 +62,7 @@ public class Vvm3Protocol extends VisualVoicemailProtocol {
     private static String VVM3_VM_LANGUAGE_ENGLISH_STANDARD_NO_GUEST_PROMPTS = "5";
     private static String VVM3_VM_LANGUAGE_SPANISH_STANDARD_NO_GUEST_PROMPTS = "6";
 
-    private static final int PIN_LENGTH = 6;
+    private static final int DEFAULT_PIN_LENGTH = 6;
 
     @Override
     public void startActivation(OmtpVvmCarrierConfigHelper config) {
@@ -92,13 +93,16 @@ public class Vvm3Protocol extends VisualVoicemailProtocol {
             new Vvm3Subscriber(phoneAccountHandle, config, data).subscribe();
         } else if (OmtpConstants.SUBSCRIBER_NEW.equals(message.getProvisioningStatus())) {
             VvmLog.i(TAG, "setting up new user");
-            VisualVoicemailSettingsUtil.setVisualVoicemailCredentialsFromStatusMessage(
-                    config.getContext(), phoneAccountHandle, message);
+            // Save the IMAP credentials in preferences so they are persistent and can be retrieved.
+            VisualVoicemailPreferences prefs =
+                    new VisualVoicemailPreferences(config.getContext(), phoneAccountHandle);
+            message.putStatus(prefs.edit()).apply();
+
             startProvisionNewUser(phoneAccountHandle, config, message);
         } else if (OmtpConstants.SUBSCRIBER_PROVISIONED.equals(message.getProvisioningStatus())) {
             VvmLog.i(TAG, "User provisioned but not activated, disabling VVM");
             VisualVoicemailSettingsUtil
-                    .setVisualVoicemailEnabled(config.getContext(), phoneAccountHandle, false);
+                    .setEnabled(config.getContext(), phoneAccountHandle, false);
         } else if (OmtpConstants.SUBSCRIBER_BLOCKED.equals(message.getProvisioningStatus())) {
             VvmLog.i(TAG, "User blocked");
             config.handleEvent(OmtpEvents.VVM3_SUBSCRIBER_BLOCKED);
@@ -192,16 +196,14 @@ public class Vvm3Protocol extends VisualVoicemailProtocol {
                 return false;
             }
 
-            if (VoicemailChangePinDialogPreference.getDefaultOldPin(mContext, mPhoneAccount)
-                    != null) {
+            if (VoicemailChangePinActivity.isDefaultOldPinSet(mContext, mPhoneAccount)) {
                 // The pin was already set
                 VvmLog.i(TAG, "PIN already set");
                 return true;
             }
-            String newPin = generatePin();
+            String newPin = generatePin(getMinimumPinLength(mContext, mPhoneAccount));
             if (helper.changePin(defaultPin, newPin) == OmtpConstants.CHANGE_PIN_SUCCESS) {
-                VoicemailChangePinDialogPreference
-                        .setDefaultOldPIN(mContext, mPhoneAccount, newPin);
+                VoicemailChangePinActivity.setDefaultOldPIN(mContext, mPhoneAccount, newPin);
                 helper.handleEvent(OmtpEvents.CONFIG_DEFAULT_PIN_REPLACED);
             }
             VvmLog.i(TAG, "new user: PIN set");
@@ -227,10 +229,25 @@ public class Vvm3Protocol extends VisualVoicemailProtocol {
         }
     }
 
-    private static String generatePin() {
+    private static int getMinimumPinLength(Context context, PhoneAccountHandle phoneAccountHandle) {
+        VisualVoicemailPreferences preferences = new VisualVoicemailPreferences(context,
+                phoneAccountHandle);
+        // The OMTP pin length format is {min}-{max}
+        String[] lengths = preferences.getString(OmtpConstants.TUI_PASSWORD_LENGTH, "").split("-");
+        if (lengths.length == 2) {
+            try {
+                return Integer.parseInt(lengths[0]);
+            } catch (NumberFormatException e) {
+                return DEFAULT_PIN_LENGTH;
+            }
+        }
+        return DEFAULT_PIN_LENGTH;
+    }
+
+    private static String generatePin(int length) {
         SecureRandom random = new SecureRandom();
-        // TODO(b/29102412): generate base on the length requirement from the server
-        return String.format("%010d", Math.abs(random.nextLong())).substring(0, PIN_LENGTH);
+        return String.format(Locale.US, "%010d", Math.abs(random.nextLong()))
+                .substring(0, length);
 
     }
 }

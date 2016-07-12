@@ -125,6 +125,7 @@ public class OmtpConstants {
     public static final String SERVER_ADDRESS = "srv";
     /** Phone number to access voicemails through Telephony User Interface */
     public static final String TUI_ACCESS_NUMBER = "tui";
+    public static final String TUI_PASSWORD_LENGTH = "pw_len";
     /** Number to send client origination SMS */
     public static final String CLIENT_SMS_DESTINATION_NUMBER = "dn";
     public static final String IMAP_PORT = "ipt";

@@ -40,6 +40,7 @@ public class StatusMessageTest extends TestCase {
         bundle.putString(OmtpConstants.SMTP_PORT, "s1234");
         bundle.putString(OmtpConstants.SMTP_USER_NAME, "susername");
         bundle.putString(OmtpConstants.SMTP_PASSWORD, "spassword");
+        bundle.putString(OmtpConstants.TUI_PASSWORD_LENGTH, "4-7");
 
         StatusMessage message = new StatusMessage(bundle);
         assertEquals("status", message.getProvisioningStatus());
@@ -54,6 +55,7 @@ public class StatusMessageTest extends TestCase {
         assertEquals("s1234", message.getSmtpPort());
         assertEquals("susername", message.getSmtpUserName());
         assertEquals("spassword", message.getSmtpPassword());
+        assertEquals("4-7", message.getTuiPasswordLength());
     }
 
     public void testSyncMessage_EmptyBundle() {
@@ -70,5 +72,6 @@ public class StatusMessageTest extends TestCase {
         assertEquals("", message.getSmtpPort());
         assertEquals("", message.getSmtpUserName());
         assertEquals("", message.getSmtpPassword());
+        assertEquals("", message.getTuiPasswordLength());
     }
 }
