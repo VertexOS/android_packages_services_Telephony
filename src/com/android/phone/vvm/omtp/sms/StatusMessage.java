@@ -20,6 +20,7 @@ import android.telecom.Log;
 
 import com.android.phone.NeededForTesting;
 import com.android.phone.vvm.omtp.OmtpConstants;
+import com.android.phone.vvm.omtp.VisualVoicemailPreferences;
 
 /**
  * Structured data representation of OMTP STATUS message.
@@ -44,6 +45,7 @@ public class StatusMessage {
     private final String mSmtpPort;
     private final String mSmtpUserName;
     private final String mSmtpPassword;
+    private final String mTuiPasswordLength;
 
     @Override
     public String toString() {
@@ -58,7 +60,8 @@ public class StatusMessage {
                 + ", mImapPassword=" + Log.pii(mImapPassword)
                 + ", mSmtpPort=" + mSmtpPort
                 + ", mSmtpUserName=" + mSmtpUserName
-                + ", mSmtpPassword=" + Log.pii(mSmtpPassword) + "]";
+                + ", mSmtpPassword=" + Log.pii(mSmtpPassword)
+                + ", mTuiPasswordLength=" + mTuiPasswordLength + "]";
     }
 
     public StatusMessage(Bundle wrappedData) {
@@ -75,6 +78,7 @@ public class StatusMessage {
         mSmtpPort = getString(wrappedData, OmtpConstants.SMTP_PORT);
         mSmtpUserName = getString(wrappedData, OmtpConstants.SMTP_USER_NAME);
         mSmtpPassword = getString(wrappedData, OmtpConstants.SMTP_PASSWORD);
+        mTuiPasswordLength = getString(wrappedData, OmtpConstants.TUI_PASSWORD_LENGTH);
     }
 
     private static String unquote(String string) {
@@ -180,11 +184,27 @@ public class StatusMessage {
         return mSmtpPassword;
     }
 
+    public String getTuiPasswordLength() {
+        return mTuiPasswordLength;
+    }
+
     private static String getString(Bundle bundle, String key) {
         String value = bundle.getString(key);
         if (value == null) {
             return "";
         }
         return value;
+    }
+
+    /**
+     * Saves a StatusMessage to the {@link VisualVoicemailPreferences}. Not all fields are saved.
+     */
+    public VisualVoicemailPreferences.Editor putStatus(VisualVoicemailPreferences.Editor editor) {
+        return editor
+                .putString(OmtpConstants.IMAP_PORT, getImapPort())
+                .putString(OmtpConstants.SERVER_ADDRESS, getServerAddress())
+                .putString(OmtpConstants.IMAP_USER_NAME, getImapUserName())
+                .putString(OmtpConstants.IMAP_PASSWORD, getImapPassword())
+                .putString(OmtpConstants.TUI_PASSWORD_LENGTH, getTuiPasswordLength());
     }
 }

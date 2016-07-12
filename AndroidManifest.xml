@@ -732,5 +732,11 @@
                 <data android:scheme="package"/>
             </intent-filter>
         </receiver>
+
+        <activity android:name=".settings.VoicemailChangePinActivity"
+          android:exported="false"
+          android:theme="@style/DialerSettingsLight"
+          android:windowSoftInputMode="stateVisible|adjustResize">
+          </activity>
     </application>
 </manifest>

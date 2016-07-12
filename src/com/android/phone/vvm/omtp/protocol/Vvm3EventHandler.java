@@ -22,7 +22,7 @@ import android.telecom.PhoneAccountHandle;
 import android.util.Log;
 
 import com.android.phone.VoicemailStatus;
-import com.android.phone.settings.VoicemailChangePinDialogPreference;
+import com.android.phone.settings.VoicemailChangePinActivity;
 import com.android.phone.vvm.omtp.DefaultOmtpEventHandler;
 import com.android.phone.vvm.omtp.OmtpEvents;
 import com.android.phone.vvm.omtp.OmtpEvents.Type;
@@ -116,7 +116,7 @@ public class Vvm3EventHandler {
             case CONFIG_REQUEST_STATUS_SUCCESS:
                 PhoneAccountHandle handle = PhoneAccountHandleConverter
                         .fromSubId(config.getSubId());
-                if (VoicemailChangePinDialogPreference.getDefaultOldPin(context, handle) == null) {
+                if (VoicemailChangePinActivity.isDefaultOldPinSet(context, handle)) {
                     return false;
                 } else {
                     postError(context, config, PIN_NOT_SET);

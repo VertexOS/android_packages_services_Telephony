@@ -48,7 +48,7 @@ public class VvmPackageInstallReceiver extends BroadcastReceiver {
         OmtpVvmSourceManager vvmSourceManager = OmtpVvmSourceManager.getInstance(context);
         Set<PhoneAccountHandle> phoneAccounts = vvmSourceManager.getOmtpVvmSources();
         for (PhoneAccountHandle phoneAccount : phoneAccounts) {
-            if (VisualVoicemailSettingsUtil.isVisualVoicemailUserSet(context, phoneAccount)) {
+            if (VisualVoicemailSettingsUtil.isEnabledUserSet(context, phoneAccount)) {
                 // Skip the check if this voicemail source's setting is overridden by the user.
                 continue;
             }

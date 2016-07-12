@@ -65,8 +65,7 @@
         android:key="@string/voicemail_visual_voicemail_key"
         android:title="@string/voicemail_visual_voicemail_switch_title" />"
 
-    <com.android.phone.settings.VoicemailChangePinDialogPreference
-        android:key="@string/voicemail_change_pin_key"
-        android:title="@string/voicemail_change_pin_dialog_title" />
-
+    <Preference
+      android:key="@string/voicemail_change_pin_key"
+      android:title="@string/voicemail_change_pin_dialog_title" />
 </PreferenceScreen>

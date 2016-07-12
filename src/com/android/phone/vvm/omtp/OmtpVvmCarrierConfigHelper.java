@@ -33,6 +33,7 @@ import com.android.phone.VoicemailStatus;
 import com.android.phone.vvm.omtp.protocol.VisualVoicemailProtocol;
 import com.android.phone.vvm.omtp.protocol.VisualVoicemailProtocolFactory;
 import com.android.phone.vvm.omtp.sms.StatusMessage;
+import com.android.phone.vvm.omtp.utils.PhoneAccountHandleConverter;
 
 import java.util.Arrays;
 import java.util.Set;
@@ -96,6 +97,8 @@ public class OmtpVvmCarrierConfigHelper {
     private final VisualVoicemailProtocol mProtocol;
     private final PersistableBundle mTelephonyConfig;
 
+    private PhoneAccountHandle mPhoneAccountHandle;
+
     public OmtpVvmCarrierConfigHelper(Context context, int subId) {
         mContext = context;
         mSubId = subId;
@@ -108,6 +111,11 @@ public class OmtpVvmCarrierConfigHelper {
 
         mVvmType = getVvmType();
         mProtocol = VisualVoicemailProtocolFactory.create(mVvmType);
+    }
+
+    public OmtpVvmCarrierConfigHelper(Context context, PhoneAccountHandle handle) {
+        this(context, PhoneAccountHandleConverter.toSubId(handle));
+        mPhoneAccountHandle = handle;
     }
 
     @VisibleForTesting
@@ -127,6 +135,13 @@ public class OmtpVvmCarrierConfigHelper {
 
     public int getSubId() {
         return mSubId;
+    }
+
+    public PhoneAccountHandle getPhoneAccountHandle() {
+        if (mPhoneAccountHandle == null) {
+            mPhoneAccountHandle = PhoneAccountHandleConverter.fromSubId(mSubId);
+        }
+        return mPhoneAccountHandle;
     }
 
     /**

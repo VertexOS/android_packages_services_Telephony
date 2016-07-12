@@ -336,7 +336,7 @@
     <string name="vm_change_pin_new_pin">New PIN</string>
 
     <!-- Message on the dialog when PIN changing is in progress -->
-    <string name="vm_change_pin_progress_message">Changing PIN</string>
+    <string name="vm_change_pin_progress_message">Please wait.</string>
     <!-- Error message for the voicemail PIN change if the PIN is too short -->
     <string name="vm_change_pin_error_too_short">The new PIN is too short.</string>
     <!-- Error message for the voicemail PIN change if the PIN is too long -->
@@ -1258,6 +1258,8 @@
     <string name="voicemail_visual_voicemail_switch_title">Visual Voicemail</string>
 
     <!-- Voicemail change PIN dialog title [CHAR LIMIT=40] -->
+    <string name="voicemail_set_pin_dialog_title">Set PIN</string>
+    <!-- Voicemail change PIN dialog title [CHAR LIMIT=40] -->
     <string name="voicemail_change_pin_dialog_title">Change PIN</string>
 
     <!-- Voicemail ringtone title. The user clicks on this preference to select
@@ -1353,4 +1355,28 @@
         There are too many active calls. Please end or merge existing calls before placing a new one.
     </string>
 
+    <!-- The title for the change voicemail PIN activity -->
+    <string name="change_pin_title">Change Voicemail PIN</string>
+    <!-- The label for the continue button in change voicemail PIN activity -->
+    <string name="change_pin_continue_label">Continue</string>
+    <!-- The label for the cancel button in change voicemail PIN activity -->
+    <string name="change_pin_cancel_label">Cancel</string>
+    <!-- The label for the ok button in change voicemail PIN activity -->
+    <string name="change_pin_ok_label">Ok</string>
+    <!-- The title for the enter old pin step in change voicemail PIN activity -->
+    <string name="change_pin_enter_old_pin_header">Confirm your old PIN</string>
+    <!-- The hint for the enter old pin step in change voicemail PIN activity -->
+    <string name="change_pin_enter_old_pin_hint">Enter your voicemail PIN to continue.</string>
+    <!-- The title for the enter new pin step in change voicemail PIN activity -->
+    <string name="change_pin_enter_new_pin_header">Set a new PIN</string>
+    <!-- The hint for the enter new pin step in change voicemail PIN activity -->
+    <string name="change_pin_enter_new_pin_hint">PIN must be <xliff:g id="min" example="4">%1$d</xliff:g>-<xliff:g id="max" example="7">%2$d</xliff:g> digits.</string>
+    <!-- The title for the confirm new pin step in change voicemail PIN activity -->
+    <string name="change_pin_confirm_pin_header">Confirm your PIN</string>
+    <!-- The error message for th confirm new pin step in change voicemail PIN activity, if the pin doen't match the one previously entered -->
+    <string name="change_pin_confirm_pins_dont_match">PINs don\'t match</string>
+    <!-- The toast to show after the voicemail PIN has been successfully changed -->
+    <string name="change_pin_succeeded">Voicemail PIN updated</string>
+    <!-- The error message to show if the server reported an error while attempting to change the voicemail PIN -->
+    <string name="change_pin_system_error">Unable to set PIN</string>
 </resources>

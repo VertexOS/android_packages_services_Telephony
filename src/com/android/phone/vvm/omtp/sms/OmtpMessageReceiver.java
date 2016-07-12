@@ -31,6 +31,7 @@ import com.android.phone.settings.VisualVoicemailSettingsUtil;
 import com.android.phone.vvm.omtp.OmtpConstants;
 import com.android.phone.vvm.omtp.OmtpEvents;
 import com.android.phone.vvm.omtp.OmtpVvmCarrierConfigHelper;
+import com.android.phone.vvm.omtp.VisualVoicemailPreferences;
 import com.android.phone.vvm.omtp.VvmLog;
 import com.android.phone.vvm.omtp.sync.OmtpVvmSourceManager;
 import com.android.phone.vvm.omtp.sync.OmtpVvmSyncService;
@@ -41,6 +42,7 @@ import com.android.phone.vvm.omtp.utils.PhoneAccountHandleConverter;
  * Receive SMS messages and send for processing by the OMTP visual voicemail source.
  */
 public class OmtpMessageReceiver extends BroadcastReceiver {
+
     private static final String TAG = "OmtpMessageReceiver";
 
     private Context mContext;
@@ -63,7 +65,7 @@ public class OmtpMessageReceiver extends BroadcastReceiver {
         }
 
         OmtpVvmCarrierConfigHelper helper = new OmtpVvmCarrierConfigHelper(mContext, subId);
-        if (!VisualVoicemailSettingsUtil.isVisualVoicemailEnabled(mContext, phone)) {
+        if (!VisualVoicemailSettingsUtil.isEnabled(mContext, phone)) {
             if (helper.isLegacyModeEnabled()) {
                 LegacyModeSmsHandler.handle(context, intent, phone);
             } else {
@@ -136,7 +138,7 @@ public class OmtpMessageReceiver extends BroadcastReceiver {
             default:
                 VvmLog.e(TAG,
                         "Unrecognized sync trigger event: " + message.getSyncTriggerEvent());
-               break;
+                break;
         }
 
         if (serviceIntent != null) {
@@ -153,10 +155,8 @@ public class OmtpMessageReceiver extends BroadcastReceiver {
             helper.handleEvent(OmtpEvents.CONFIG_REQUEST_STATUS_SUCCESS);
 
             // Save the IMAP credentials in preferences so they are persistent and can be retrieved.
-            VisualVoicemailSettingsUtil.setVisualVoicemailCredentialsFromStatusMessage(
-                    mContext,
-                    phone,
-                    message);
+            VisualVoicemailPreferences prefs = new VisualVoicemailPreferences(mContext, phone);
+            message.putStatus(prefs.edit()).apply();
 
             // Add the source to indicate that it is active.
             vvmSourceManager.addSource(phone);
