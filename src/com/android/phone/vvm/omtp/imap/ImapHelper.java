@@ -57,6 +57,7 @@ import libcore.io.IoUtils;
 
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.Closeable;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -66,7 +67,7 @@ import java.util.Locale;
 /**
  * A helper interface to abstract commands sent across IMAP interface for a given account.
  */
-public class ImapHelper {
+public class ImapHelper implements Closeable {
 
     private static final String TAG = "ImapHelper";
 
@@ -124,6 +125,11 @@ public class ImapHelper {
                 VoicemailContract.Status.QUOTA_UNAVAILABLE);
         mQuotaTotal = mPrefs.getInt(getSharedPrefsKey(PREF_KEY_QUOTA_TOTAL),
                 VoicemailContract.Status.QUOTA_UNAVAILABLE);
+    }
+
+    @Override
+    public void close() {
+        mImapStore.closeConnection();
     }
 
     /**

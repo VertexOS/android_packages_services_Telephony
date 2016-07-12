@@ -148,9 +148,7 @@ public class Vvm3Protocol extends VisualVoicemailProtocol {
             super.onAvailable(network);
             VvmLog.i(TAG, "new user: network available");
             ImapHelper helper = new ImapHelper(mContext, mPhoneAccount, network);
-
             try {
-
                 // VVM3 has inconsistent error language code to OMTP. Just issue a raw command
                 // here.
                 // TODO(b/29082671): use LocaleList
@@ -176,7 +174,10 @@ public class Vvm3Protocol extends VisualVoicemailProtocol {
             } catch (MessagingException | IOException e) {
                 helper.handleEvent(OmtpEvents.VVM3_NEW_USER_SETUP_FAILED);
                 VvmLog.e(TAG, e.toString());
+            } finally {
+                helper.close();
             }
+
         }
 
         private boolean setPin(ImapHelper helper) throws IOException, MessagingException {

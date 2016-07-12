@@ -159,19 +159,21 @@ public class FetchVoicemailReceiver extends BroadcastReceiver {
                 try {
                     while (mRetryCount > 0) {
                         VvmLog.i(TAG, "fetching voicemail, retry count=" + mRetryCount);
-                        ImapHelper imapHelper = new ImapHelper(mContext, mPhoneAccount, network);
-                        if (!imapHelper.isSuccessfullyInitialized()) {
-                            VvmLog.w(TAG, "Can't retrieve Imap credentials.");
-                            return;
-                        }
+                        try (ImapHelper imapHelper = new ImapHelper(mContext, mPhoneAccount,
+                                network)) {
+                            if (!imapHelper.isSuccessfullyInitialized()) {
+                                VvmLog.w(TAG, "Can't retrieve Imap credentials.");
+                                return;
+                            }
 
-                        boolean success = imapHelper.fetchVoicemailPayload(
-                                new VoicemailFetchedCallback(mContext, mUri), mUid);
-                        if (!success && mRetryCount > 0) {
-                            VvmLog.i(TAG, "fetch voicemail failed, retrying");
-                            mRetryCount--;
-                        } else {
-                            return;
+                            boolean success = imapHelper.fetchVoicemailPayload(
+                                    new VoicemailFetchedCallback(mContext, mUri), mUid);
+                            if (!success && mRetryCount > 0) {
+                                VvmLog.i(TAG, "fetch voicemail failed, retrying");
+                                mRetryCount--;
+                            } else {
+                                return;
+                            }
                         }
                     }
                 } finally {
