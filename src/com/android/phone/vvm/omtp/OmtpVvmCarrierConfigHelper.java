@@ -313,6 +313,13 @@ public class OmtpVvmCarrierConfigHelper {
         }
     }
 
+    public boolean supportsProvisioning() {
+        if (mProtocol != null) {
+            return mProtocol.supportsProvisioning();
+        }
+        return false;
+    }
+
     public void startProvisioning(PhoneAccountHandle phone, StatusMessage message, Bundle data) {
         if (mProtocol != null) {
             mProtocol.startProvisioning(phone, this, message, data);
@@ -395,4 +402,5 @@ public class OmtpVvmCarrierConfigHelper {
         }
         return defaultValue;
     }
+
 }

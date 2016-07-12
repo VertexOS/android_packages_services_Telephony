@@ -43,6 +43,10 @@ public abstract class VisualVoicemailProtocol {
         }
     }
 
+    public boolean supportsProvisioning() {
+        return false;
+    }
+
     public void startProvisioning(PhoneAccountHandle handle, OmtpVvmCarrierConfigHelper config,
             StatusMessage message, Bundle data) {
         // Do nothing
