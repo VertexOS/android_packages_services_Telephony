@@ -60,6 +60,7 @@ final class TelecomAccountRegistry {
     // This icon is the one that is used when the Slot ID that we have for a particular SIM
     // is not supported, i.e. SubscriptionManager.INVALID_SLOT_ID or the 5th SIM in a phone.
     private final static int DEFAULT_SIM_ICON =  R.drawable.ic_multi_sim;
+    private final static String GROUP_PREFIX = "group_";
 
     final class AccountEntry implements PstnPhoneCapabilitiesNotifier.Listener {
         private final Phone mPhone;
@@ -101,6 +102,7 @@ final class TelecomAccountRegistry {
 
             // Populate the phone account data.
             int subId = mPhone.getSubId();
+            String subscriberId = mPhone.getSubscriberId();
             int color = PhoneAccount.NO_HIGHLIGHT_COLOR;
             int slotId = SubscriptionManager.INVALID_SIM_SLOT_INDEX;
             String line1Number = mTelephonyManager.getLine1Number(subId);
@@ -216,6 +218,23 @@ final class TelecomAccountRegistry {
                 icon = Icon.createWithBitmap(bitmap);
             }
 
+            // Check to see if the newly registered account should replace the old account.
+            String groupId = "";
+            String[] mergedImsis = mTelephonyManager.getMergedSubscriberIds();
+            boolean isMergedSim = false;
+            if (mergedImsis != null && subscriberId != null && !isEmergency) {
+                for (String imsi : mergedImsis) {
+                    if (imsi.equals(subscriberId)) {
+                        isMergedSim = true;
+                        break;
+                    }
+                }
+            }
+            if(isMergedSim) {
+                groupId = GROUP_PREFIX + line1Number;
+                Log.i(this, "Adding Merged Account with group: " + Log.pii(groupId));
+            }
+
             PhoneAccount account = PhoneAccount.builder(phoneAccountHandle, label)
                     .setAddress(Uri.fromParts(PhoneAccount.SCHEME_TEL, line1Number, null))
                     .setSubscriptionAddress(
@@ -227,6 +246,7 @@ final class TelecomAccountRegistry {
                     .setSupportedUriSchemes(Arrays.asList(
                             PhoneAccount.SCHEME_TEL, PhoneAccount.SCHEME_VOICEMAIL))
                     .setExtras(instantLetteringExtras)
+                    .setGroupId(groupId)
                     .build();
 
             // Register with Telecom and put into the account entry.
@@ -622,7 +642,9 @@ final class TelecomAccountRegistry {
                 for (Phone phone : phones) {
                     int subscriptionId = phone.getSubId();
                     Log.d(this, "Phone with subscription id %d", subscriptionId);
-                    if (subscriptionId >= 0) {
+                    // setupAccounts can be called multiple times during service changes. Don't add an
+                    // account if the Icc has not been set yet.
+                    if (subscriptionId >= 0 && phone.getFullIccSerialNumber() != null) {
                         mAccounts.add(new AccountEntry(phone, false /* emergency */,
                                 false /* isDummy */));
                     }
