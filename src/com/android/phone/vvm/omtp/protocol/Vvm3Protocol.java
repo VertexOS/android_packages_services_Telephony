@@ -79,6 +79,11 @@ public class Vvm3Protocol extends VisualVoicemailProtocol {
     }
 
     @Override
+    public boolean supportsProvisioning() {
+        return true;
+    }
+
+    @Override
     public void startProvisioning(PhoneAccountHandle phoneAccountHandle,
             OmtpVvmCarrierConfigHelper config, StatusMessage message, Bundle data) {
         VvmLog.i(TAG, "start vvm3 provisioning");

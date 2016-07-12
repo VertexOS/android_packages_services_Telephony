@@ -88,8 +88,18 @@ public class OmtpMessageReceiver extends BroadcastReceiver {
             if (message.getProvisioningStatus().equals(OmtpConstants.SUBSCRIBER_READY)) {
                 updateSource(phone, subId, message);
             } else {
-                VvmLog.v(TAG, "Subscriber not ready, start provisioning");
-                mContext.startService(OmtpProvisioningService.getProvisionIntent(mContext, intent));
+                if (helper.supportsProvisioning()) {
+                    VvmLog.i(TAG, "Subscriber not ready, start provisioning");
+                    mContext.startService(
+                            OmtpProvisioningService.getProvisionIntent(mContext, intent));
+                } else {
+                    VvmLog.i(TAG, "Subscriber not ready but provisioning is not supported");
+                    VvmLog.i(TAG, "st=" + message.getProvisioningStatus() +
+                            ",rc=" + message.getReturnCode());
+                    // Ignore the non-ready state and attempt to use the provided info as is.
+                    // This is probably caused by not completing the new user tutorial.
+                    updateSource(phone, subId, message);
+                }
             }
         } else {
             VvmLog.e(TAG, "Unknown prefix: " + eventType);
