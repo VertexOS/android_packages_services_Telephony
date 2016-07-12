@@ -34,10 +34,8 @@ import android.os.Handler;
 import android.os.Message;
 import android.os.PersistableBundle;
 import android.os.PowerManager;
-import android.os.ServiceManager;
 import android.os.SystemClock;
 import android.os.SystemProperties;
-import android.os.SystemService;
 import android.os.UpdateLock;
 import android.os.UserManager;
 import android.preference.PreferenceManager;
@@ -59,7 +57,6 @@ import com.android.internal.telephony.TelephonyCapabilities;
 import com.android.internal.telephony.TelephonyIntents;
 import com.android.phone.common.CallLogAsync;
 import com.android.phone.settings.SettingsConstants;
-import com.android.server.sip.SipService;
 import com.android.services.telephony.activation.SimActivationManager;
 import com.android.services.telephony.sip.SipUtil;
 
@@ -851,6 +848,8 @@ public class PhoneGlobals extends ContextWrapper {
      * @param subId the subscription id we should dismiss the notification for.
      */
     public void clearMwiIndicator(int subId) {
-        notificationMgr.updateMwi(subId, false);
+        // Setting voiceMessageCount to 0 will remove the current notification and clear the system
+        // cached value.
+        getPhone(subId).setVoiceMessageCount(0);
     }
 }
