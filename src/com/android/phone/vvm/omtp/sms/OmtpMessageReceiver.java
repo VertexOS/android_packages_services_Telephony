@@ -35,6 +35,8 @@ import com.android.phone.vvm.omtp.VisualVoicemailPreferences;
 import com.android.phone.vvm.omtp.VvmLog;
 import com.android.phone.vvm.omtp.sync.OmtpVvmSourceManager;
 import com.android.phone.vvm.omtp.sync.OmtpVvmSyncService;
+import com.android.phone.vvm.omtp.sync.SyncOneTask;
+import com.android.phone.vvm.omtp.sync.SyncTask;
 import com.android.phone.vvm.omtp.sync.VoicemailsQueryHelper;
 import com.android.phone.vvm.omtp.utils.PhoneAccountHandleConverter;
 
@@ -132,15 +134,11 @@ public class OmtpMessageReceiver extends BroadcastReceiver {
                 if (queryHelper.isVoicemailUnique(voicemail)) {
                     Uri uri = VoicemailContract.Voicemails.insert(mContext, voicemail);
                     voicemail = builder.setId(ContentUris.parseId(uri)).setUri(uri).build();
-                    serviceIntent = OmtpVvmSyncService.getSyncIntent(mContext,
-                            OmtpVvmSyncService.SYNC_DOWNLOAD_ONE_TRANSCRIPTION, phone,
-                            voicemail, true /* firstAttempt */);
+                    SyncOneTask.start(mContext, phone, voicemail);
                 }
                 break;
             case OmtpConstants.MAILBOX_UPDATE:
-                serviceIntent = OmtpVvmSyncService.getSyncIntent(
-                        mContext, OmtpVvmSyncService.SYNC_DOWNLOAD_ONLY, phone,
-                        true /* firstAttempt */);
+                SyncTask.start(mContext, phone, OmtpVvmSyncService.SYNC_DOWNLOAD_ONLY);
                 break;
             case OmtpConstants.GREETINGS_UPDATE:
                 // Not implemented in V1
@@ -149,10 +147,6 @@ public class OmtpMessageReceiver extends BroadcastReceiver {
                 VvmLog.e(TAG,
                         "Unrecognized sync trigger event: " + message.getSyncTriggerEvent());
                 break;
-        }
-
-        if (serviceIntent != null) {
-            mContext.startService(serviceIntent);
         }
     }
 
@@ -171,10 +165,7 @@ public class OmtpMessageReceiver extends BroadcastReceiver {
             // Add the source to indicate that it is active.
             vvmSourceManager.addSource(phone);
 
-            Intent serviceIntent = OmtpVvmSyncService.getSyncIntent(
-                    mContext, OmtpVvmSyncService.SYNC_FULL_SYNC, phone,
-                    true /* firstAttempt */);
-            mContext.startService(serviceIntent);
+            SyncTask.start(mContext, phone, OmtpVvmSyncService.SYNC_FULL_SYNC);
 
             PhoneGlobals.getInstance().clearMwiIndicator(subId);
         } else {

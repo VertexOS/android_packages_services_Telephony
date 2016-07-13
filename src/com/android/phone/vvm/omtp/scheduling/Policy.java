@@ -14,24 +14,23 @@
  * limitations under the License
  */
 
-package com.android.phone.vvm.omtp.sync;
+package com.android.phone.vvm.omtp.scheduling;
 
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.provider.VoicemailContract;
 
-import com.android.phone.vvm.omtp.VvmLog;
+/**
+ * A set of listeners managed by {@link BaseTask} for common behaviors such as retrying. Call {@link
+ * BaseTask#addPolicy(Policy)} to add a policy.
+ */
+public interface Policy {
 
-public class OmtpVvmSyncReceiver extends BroadcastReceiver {
+    void onCreate(BaseTask task, Intent intent, int flags, int startId);
 
-    private static final String TAG = "OmtpVvmSyncReceiver";
+    void onBeforeExecute();
 
-    @Override
-    public void onReceive(final Context context, Intent intent) {
-        if (VoicemailContract.ACTION_SYNC_VOICEMAIL.equals(intent.getAction())) {
-            VvmLog.v(TAG, "Sync intent received");
-            SyncTask.start(context, null, OmtpVvmSyncService.SYNC_FULL_SYNC);
-        }
-    }
+    void onCompleted();
+
+    void onFail();
+
+    void onDuplicatedTaskAdded();
 }

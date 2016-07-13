@@ -111,7 +111,6 @@ public class OmtpVvmSourceManager {
                 .handleEvent(OmtpEvents.OTHER_SOURCE_REMOVED);
         removePhoneStateListener(phoneAccount);
         mActiveVvmSources.remove(phoneAccount);
-        OmtpVvmSyncService.cancelAllRetries(mContext, phoneAccount);
     }
 
     public void addPhoneStateListener(Phone phone) {

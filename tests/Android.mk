@@ -25,7 +25,7 @@ LOCAL_CERTIFICATE := platform
 
 LOCAL_MODULE_TAGS := tests
 
-LOCAL_JAVA_LIBRARIES := telephony-common
+LOCAL_JAVA_LIBRARIES := telephony-common android-support-test
 
 LOCAL_INSTRUMENTATION_FOR := TeleService
 

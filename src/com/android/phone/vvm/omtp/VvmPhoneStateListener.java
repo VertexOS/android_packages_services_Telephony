@@ -16,7 +16,6 @@
 package com.android.phone.vvm.omtp;
 
 import android.content.Context;
-import android.content.Intent;
 import android.telecom.PhoneAccountHandle;
 import android.telephony.PhoneStateListener;
 import android.telephony.ServiceState;
@@ -25,6 +24,7 @@ import com.android.phone.PhoneGlobals;
 import com.android.phone.PhoneUtils;
 import com.android.phone.vvm.omtp.sync.OmtpVvmSourceManager;
 import com.android.phone.vvm.omtp.sync.OmtpVvmSyncService;
+import com.android.phone.vvm.omtp.sync.SyncTask;
 import com.android.phone.vvm.omtp.sync.VoicemailStatusQueryHelper;
 import com.android.phone.vvm.omtp.utils.PhoneAccountHandleConverter;
 
@@ -76,10 +76,7 @@ public class VvmPhoneStateListener extends PhoneStateListener {
                         .v(TAG, "Signal returned: requesting resync for " + subId);
                 // If the source is already registered, run a full sync in case something was missed
                 // while signal was down.
-                Intent serviceIntent = OmtpVvmSyncService.getSyncIntent(
-                        mContext, OmtpVvmSyncService.SYNC_FULL_SYNC, mPhoneAccount,
-                        true /* firstAttempt */);
-                mContext.startService(serviceIntent);
+                SyncTask.start(mContext, mPhoneAccount, OmtpVvmSyncService.SYNC_FULL_SYNC);
             } else {
                 VvmLog.v(TAG,
                         "Signal returned: reattempting activation for " + subId);
@@ -90,9 +87,6 @@ public class VvmPhoneStateListener extends PhoneStateListener {
             }
         } else {
             VvmLog.v(TAG, "Notifications channel is inactive for " + subId);
-            mContext.stopService(OmtpVvmSyncService.getSyncIntent(
-                    mContext, OmtpVvmSyncService.SYNC_FULL_SYNC, mPhoneAccount,
-                    true /* firstAttempt */));
 
             if (!OmtpVvmSourceManager.getInstance(mContext).isVvmSourceRegistered(mPhoneAccount)) {
                 return;

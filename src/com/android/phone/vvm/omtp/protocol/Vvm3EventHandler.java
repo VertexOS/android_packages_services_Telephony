@@ -116,7 +116,7 @@ public class Vvm3EventHandler {
             case CONFIG_REQUEST_STATUS_SUCCESS:
                 PhoneAccountHandle handle = PhoneAccountHandleConverter
                         .fromSubId(config.getSubId());
-                if (VoicemailChangePinActivity.isDefaultOldPinSet(context, handle)) {
+                if (!VoicemailChangePinActivity.isDefaultOldPinSet(context, handle)) {
                     return false;
                 } else {
                     postError(context, config, PIN_NOT_SET);
