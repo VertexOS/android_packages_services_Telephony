@@ -24,17 +24,39 @@ import android.os.Looper;
  */
 public class Assert {
 
+    private static Boolean sIsMainThreadForTest;
+
     public static void isTrue(boolean condition) {
         if (!condition) {
             throw new AssertionError("Expected condition to be true");
         }
     }
 
+    public static void isMainThread() {
+        if (sIsMainThreadForTest != null) {
+            isTrue(sIsMainThreadForTest);
+            return;
+        }
+        isTrue(Looper.getMainLooper().equals(Looper.myLooper()));
+    }
+
     public static void isNotMainThread() {
+        if (sIsMainThreadForTest != null) {
+            isTrue(!sIsMainThreadForTest);
+            return;
+        }
         isTrue(!Looper.getMainLooper().equals(Looper.myLooper()));
     }
 
     public static void fail() {
         throw new AssertionError("Fail");
+    }
+
+    /**
+     * Override the main thread status for tests. Set to null to revert to normal behavior
+     */
+    @NeededForTesting
+    public static void setIsMainThreadForTesting(Boolean isMainThread) {
+        sIsMainThreadForTest = isMainThread;
     }
 }

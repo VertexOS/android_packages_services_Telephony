@@ -86,13 +86,19 @@ public class ImapHelper implements Closeable {
     private final OmtpVvmCarrierConfigHelper mConfig;
 
     public ImapHelper(Context context, PhoneAccountHandle phoneAccount, Network network) {
+        this(context, new OmtpVvmCarrierConfigHelper(context,
+                PhoneUtils.getSubIdForPhoneAccountHandle(phoneAccount)), phoneAccount, network);
+    }
+
+    public ImapHelper(Context context, OmtpVvmCarrierConfigHelper config,
+            PhoneAccountHandle phoneAccount, Network network) {
         mContext = context;
         mPhoneAccount = phoneAccount;
         mNetwork = network;
-        mConfig = new OmtpVvmCarrierConfigHelper(context,
-                PhoneUtils.getSubIdForPhoneAccountHandle(phoneAccount));
+        mConfig = config;
         mPrefs = new VisualVoicemailPreferences(context,
                 phoneAccount);
+
         try {
             TempDirectory.setTempDirectory(context);
 
