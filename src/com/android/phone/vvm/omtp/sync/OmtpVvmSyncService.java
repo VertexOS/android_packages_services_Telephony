@@ -25,9 +25,9 @@ import android.text.TextUtils;
 
 import com.android.phone.PhoneUtils;
 import com.android.phone.settings.VisualVoicemailSettingsUtil;
+import com.android.phone.vvm.omtp.ActivationTask;
 import com.android.phone.vvm.omtp.OmtpEvents;
 import com.android.phone.vvm.omtp.OmtpVvmCarrierConfigHelper;
-import com.android.phone.vvm.omtp.VisualVoicemailPreferences;
 import com.android.phone.vvm.omtp.VvmLog;
 import com.android.phone.vvm.omtp.fetch.VoicemailFetchedCallback;
 import com.android.phone.vvm.omtp.imap.ImapHelper;
@@ -103,9 +103,13 @@ public class OmtpVvmSyncService {
             VvmLog.v(TAG, "Sync requested for disabled account");
             return;
         }
+        int subId = PhoneAccountHandleConverter.toSubId(phoneAccount);
+        if (!OmtpVvmSourceManager.getInstance(mContext).isVvmSourceRegistered(phoneAccount)) {
+            ActivationTask.start(mContext, subId, null);
+            return;
+        }
 
-        OmtpVvmCarrierConfigHelper config = new OmtpVvmCarrierConfigHelper(mContext,
-                PhoneAccountHandleConverter.toSubId(phoneAccount));
+        OmtpVvmCarrierConfigHelper config = new OmtpVvmCarrierConfigHelper(mContext, subId);
         try (NetworkWrapper network = VvmNetworkRequest.getNetwork(config, phoneAccount)) {
             if (network == null) {
                 VvmLog.e(TAG, "unable to acquire network");

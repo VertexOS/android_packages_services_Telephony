@@ -57,6 +57,15 @@ public class DefaultOmtpEventHandler {
                         .setNotificationChannelState(Status.NOTIFICATION_CHANNEL_STATE_OK)
                         .apply();
                 break;
+            case CONFIG_ACTIVATING:
+                VoicemailStatus.edit(context, config.getSubId())
+                        .setConfigurationState(Status.CONFIGURATION_STATE_CONFIGURING).apply();
+                break;
+            case CONFIG_STATUS_SMS_TIME_OUT:
+                VoicemailStatus.edit(context, config.getSubId())
+                        .setConfigurationState(Status.CONFIGURATION_STATE_FAILED)
+                        .apply();
+                break;
             default:
                 VvmLog.wtf(TAG, "invalid configuration event " + event);
         }

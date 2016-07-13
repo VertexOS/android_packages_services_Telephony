@@ -48,6 +48,7 @@ public interface Task {
 
     int TASK_UPLOAD = 1;
     int TASK_SYNC = 2;
+    int TASK_ACTIVATION = 3;
 
     /**
      * Used to differentiate between types of tasks. If a task with the same TaskId is already in
