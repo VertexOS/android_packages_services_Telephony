@@ -223,9 +223,11 @@ public class DisconnectCauseUtil {
 
             case android.telephony.DisconnectCause.CALL_PULLED:
                 resourceId = R.string.callEnded_pulled;
+                break;
 
             case android.telephony.DisconnectCause.MAXIMUM_NUMBER_OF_CALLS_REACHED:
                 resourceId = R.string.callFailed_maximum_reached;
+                break;
 
             default:
                 break;
