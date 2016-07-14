@@ -919,6 +919,19 @@ abstract class TelephonyConnection extends Connection {
             } catch (CallStateException e) {
                 Log.e(this, e, "Call to Connection.hangup failed with exception");
             }
+        } else {
+            if (getState() == STATE_DISCONNECTED) {
+                Log.i(this, "hangup called on an already disconnected call!");
+                close();
+            } else {
+                // There are a few cases where mOriginalConnection has not been set yet. For
+                // example, when the radio has to be turned on to make an emergency call,
+                // mOriginalConnection could not be set for many seconds.
+                setDisconnected(DisconnectCauseUtil.toTelecomDisconnectCause(
+                        android.telephony.DisconnectCause.LOCAL,
+                        "Local Disconnect before connection established."));
+                close();
+            }
         }
     }
 
