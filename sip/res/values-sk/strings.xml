@@ -61,7 +61,12 @@
     <string name="advanced_settings" msgid="6622996380747040711">"Voliteľné nastavenia"</string>
     <string name="auth_username_title" msgid="8262491689004708265">"Používateľské meno na overenie"</string>
     <string name="auth_username_summary" msgid="941160241371436473">"Používateľské meno použité na overenie"</string>
-    <string name="default_preference_summary" msgid="1979249643719483249">"&lt;Nenastavené&gt;"</string>
+    <!-- no translation found for default_preference_summary_username (8404717434312826082) -->
+    <skip />
+    <!-- no translation found for default_preference_summary_password (4464464672997027904) -->
+    <skip />
+    <!-- no translation found for default_preference_summary_domain_address (4871971710197441673) -->
+    <skip />
     <string name="display_name_summary" msgid="7155076491675565407">"&lt;Rovnaké ako používateľské meno&gt;"</string>
     <string name="optional_summary" msgid="2363105560396317624">"&lt;Voliteľné&gt;"</string>
     <string name="advanced_settings_show" msgid="7838761602853998622">"▷ Klepnutím všetko zobrazíte"</string>

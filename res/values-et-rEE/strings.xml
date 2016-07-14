@@ -149,7 +149,8 @@
     <string name="voicemail_default" msgid="2001233554889016880">"Teie operaator"</string>
     <string name="vm_change_pin_old_pin" msgid="7295220109886682573">"Vana PIN-kood"</string>
     <string name="vm_change_pin_new_pin" msgid="5412922262839438097">"Uus PIN-kood"</string>
-    <string name="vm_change_pin_progress_message" msgid="6727847908454506025">"PIN-koodi muutmine"</string>
+    <!-- no translation found for vm_change_pin_progress_message (3977357361934350336) -->
+    <skip />
     <string name="vm_change_pin_error_too_short" msgid="5974971097302710497">"Uus PIN-kood on liiga lühike."</string>
     <string name="vm_change_pin_error_too_long" msgid="8476870806115051865">"Uus PIN-kood on liiga pikk."</string>
     <string name="vm_change_pin_error_too_weak" msgid="7883744811891784882">"Uus PIN-kood on liiga nõrk. Tugevas paroolis ei tohi olla mitut järjestikust samasugust tähemärki ega korduvaid numbreid."</string>
@@ -455,6 +456,8 @@
     <string name="incall_error_supp_service_hangup" msgid="7434513517153834426">"Kõnet (kõnesid) ei saa vabastada."</string>
     <string name="incall_error_supp_service_hold" msgid="7967020511232222078">"Kõnesid ei saa ootele panna."</string>
     <string name="incall_error_wfc_only_no_wireless_network" msgid="1782466780452640089">"Helistamiseks looge ühendus traadita võrguga."</string>
+    <!-- no translation found for incall_error_promote_wfc (106510757624022064) -->
+    <skip />
     <string name="emergency_enable_radio_dialog_title" msgid="4627849966634578257">"Hädaabikõne"</string>
     <string name="emergency_enable_radio_dialog_message" msgid="207613549344420291">"Raadioside sisselülitamine ..."</string>
     <string name="emergency_enable_radio_dialog_retry" msgid="5960061579996526883">"Teenus puudub. Uuesti proovimine ..."</string>
@@ -549,6 +552,8 @@
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"Vibreerimine"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"Vibreerimine"</string>
     <string name="voicemail_visual_voicemail_switch_title" msgid="5012622186976275457">"Visuaalne kõnepost"</string>
+    <!-- no translation found for voicemail_set_pin_dialog_title (2797924461029093837) -->
+    <skip />
     <string name="voicemail_change_pin_dialog_title" msgid="6035421908626121564">"PIN-koodi muutmine"</string>
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"Heli"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"Helin ja vibratsioon"</string>
@@ -567,4 +572,28 @@
     <string name="message_decode_error" msgid="3456481534066924855">"Sõnumi dekodeerimisel ilmnes viga."</string>
     <string name="callFailed_cdma_activation" msgid="2307989779233262164">"SIM-kaart aktiveeris teenuse ja värskendas telefoni rändlusvõimeid."</string>
     <string name="callFailed_cdma_call_limit" msgid="1556916577171457086">"Liiga palju aktiivseid kõnesid. Enne uue kõne tegemist lõpetage mõni olemasolev kõne või ühendage mitu kõnet omavahel."</string>
+    <!-- no translation found for change_pin_title (7790232089699034029) -->
+    <skip />
+    <!-- no translation found for change_pin_continue_label (2135088662420163447) -->
+    <skip />
+    <!-- no translation found for change_pin_cancel_label (353535488390948596) -->
+    <skip />
+    <!-- no translation found for change_pin_ok_label (6204308560844889926) -->
+    <skip />
+    <!-- no translation found for change_pin_enter_old_pin_header (419179847657548887) -->
+    <skip />
+    <!-- no translation found for change_pin_enter_old_pin_hint (8579171678763615453) -->
+    <skip />
+    <!-- no translation found for change_pin_enter_new_pin_header (2611191814590251532) -->
+    <skip />
+    <!-- no translation found for change_pin_enter_new_pin_hint (2322940054329689309) -->
+    <skip />
+    <!-- no translation found for change_pin_confirm_pin_header (8113764019347322170) -->
+    <skip />
+    <!-- no translation found for change_pin_confirm_pins_dont_match (4795052654904027909) -->
+    <skip />
+    <!-- no translation found for change_pin_succeeded (2022852286442211151) -->
+    <skip />
+    <!-- no translation found for change_pin_system_error (8308462387154257840) -->
+    <skip />
 </resources>
