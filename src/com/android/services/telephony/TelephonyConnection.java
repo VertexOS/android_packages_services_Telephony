@@ -46,6 +46,7 @@ import com.android.internal.telephony.gsm.SuppServiceNotification;
 import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.imsphone.ImsPhone;
 import com.android.internal.telephony.imsphone.ImsPhoneCallTracker;
+import com.android.phone.ImsUtil;
 import com.android.phone.PhoneUtils;
 import com.android.phone.R;
 
@@ -830,7 +831,6 @@ abstract class TelephonyConnection extends Connection {
         }
         boolean isCurrentVideoCall = false;
         boolean wasVideoCall = false;
-        boolean isWifiCall = false;
         boolean isVowifiEnabled = false;
         if (phone instanceof ImsPhone) {
             ImsPhone imsPhone = (ImsPhone) phone;
@@ -839,15 +839,14 @@ abstract class TelephonyConnection extends Connection {
                 ImsCall call = imsPhone.getForegroundCall().getImsCall();
                 isCurrentVideoCall = call.isVideoCall();
                 wasVideoCall = call.wasVideoCall();
-                isWifiCall = call.isWifiCall();
             }
 
-            isVowifiEnabled = ((ImsPhoneCallTracker) imsPhone.getCallTracker()).isVowifiEnabled();
+            isVowifiEnabled = ImsUtil.isWfcEnabled(phone.getContext());
         }
 
         if (isCurrentVideoCall) {
             return true;
-        } else if (wasVideoCall && isWifiCall && !isVowifiEnabled) {
+        } else if (wasVideoCall && mIsWifi && !isVowifiEnabled) {
             return true;
         }
         return false;
@@ -1322,6 +1321,7 @@ abstract class TelephonyConnection extends Connection {
         mIsWifi = isWifi;
         updateConnectionProperties();
         updateStatusHints();
+        refreshDisableAddCall();
     }
 
     /**
