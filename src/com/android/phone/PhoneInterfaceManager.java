@@ -3332,4 +3332,19 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         }
         return total;
     }
+
+    /**
+     * Policy control of data connection. Usually used when data limit is passed.
+     * @param enabled True if enabling the data, otherwise disabling.
+     * @param subId Subscription index
+     * {@hide}
+     */
+    @Override
+    public void setPolicyDataEnabled(boolean enabled, int subId) {
+        enforceModifyPermission();
+        Phone phone = getPhone(subId);
+        if (phone != null) {
+            phone.setPolicyDataEnabled(enabled);
+        }
+    }
 }
