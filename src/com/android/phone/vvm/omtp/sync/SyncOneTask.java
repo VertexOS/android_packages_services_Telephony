@@ -44,7 +44,8 @@ public class SyncOneTask extends BaseTask {
 
     public static void start(Context context, PhoneAccountHandle phone, Voicemail voicemail) {
         Intent intent = BaseTask
-                .createIntent(context, SyncTask.class, PhoneAccountHandleConverter.toSubId(phone));
+                .createIntent(context, SyncOneTask.class,
+                        PhoneAccountHandleConverter.toSubId(phone));
         intent.putExtra(EXTRA_PHONE_ACCOUNT_HANDLE, phone);
         intent.putExtra(EXTRA_SYNC_TYPE, OmtpVvmSyncService.SYNC_DOWNLOAD_ONE_TRANSCRIPTION);
         intent.putExtra(EXTRA_VOICEMAIL, voicemail);
