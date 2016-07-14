@@ -28,14 +28,13 @@ import static com.android.phone.vvm.omtp.OmtpVvmCarrierConfigHelper.KEY_VVM_SSL_
 import static com.android.phone.vvm.omtp.OmtpVvmCarrierConfigHelper.KEY_VVM_TYPE_STRING;
 
 import android.os.PersistableBundle;
-
-import junit.framework.TestCase;
+import android.test.AndroidTestCase;
 
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-public class OmtpVvmCarrierConfigHelperTest extends TestCase {
+public class OmtpVvmCarrierConfigHelperTest extends AndroidTestCase {
 
     private static final String CARRIER_TYPE = "omtp.carrier";
     private static final String CARRIER_PACKAGE_NAME = "omtp.carrier.package";
@@ -58,19 +57,20 @@ public class OmtpVvmCarrierConfigHelperTest extends TestCase {
     private OmtpVvmCarrierConfigHelper mHelper;
 
     public void testCarrierConfig() {
-        mHelper = new OmtpVvmCarrierConfigHelper(createCarrierConfig(), null);
+        mHelper = new OmtpVvmCarrierConfigHelper(getContext(), createCarrierConfig(), null);
         verifyCarrierConfig();
         verifyDefaultExtraConfig();
     }
 
     public void testTelephonyConfig() {
-        mHelper = new OmtpVvmCarrierConfigHelper(null, createTelephonyConfig());
+        mHelper = new OmtpVvmCarrierConfigHelper(getContext(), null, createTelephonyConfig());
         verifyTelephonyConfig();
         verifyTelephonyExtraConfig();
     }
 
     public void testMixedConfig() {
-        mHelper = new OmtpVvmCarrierConfigHelper(createCarrierConfig(), createTelephonyConfig());
+        mHelper = new OmtpVvmCarrierConfigHelper(getContext(), createCarrierConfig(),
+                createTelephonyConfig());
         verifyCarrierConfig();
         verifyTelephonyExtraConfig();
     }
