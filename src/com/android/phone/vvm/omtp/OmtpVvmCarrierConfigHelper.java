@@ -110,7 +110,7 @@ public class OmtpVvmCarrierConfigHelper {
                 .getConfig(telephonyManager.getSimOperator(subId));
 
         mVvmType = getVvmType();
-        mProtocol = VisualVoicemailProtocolFactory.create(mVvmType);
+        mProtocol = VisualVoicemailProtocolFactory.create(mContext.getResources(), mVvmType);
     }
 
     public OmtpVvmCarrierConfigHelper(Context context, PhoneAccountHandle handle) {
@@ -119,14 +119,14 @@ public class OmtpVvmCarrierConfigHelper {
     }
 
     @VisibleForTesting
-    OmtpVvmCarrierConfigHelper(PersistableBundle carrierConfig,
+    OmtpVvmCarrierConfigHelper(Context context, PersistableBundle carrierConfig,
             PersistableBundle telephonyConfig) {
-        mContext = null;
+        mContext = context;
         mSubId = 0;
         mCarrierConfig = carrierConfig;
         mTelephonyConfig = telephonyConfig;
         mVvmType = getVvmType();
-        mProtocol = VisualVoicemailProtocolFactory.create(mVvmType);
+        mProtocol = VisualVoicemailProtocolFactory.create(mContext.getResources(), mVvmType);
     }
 
     public Context getContext() {
