@@ -306,7 +306,7 @@ public class OmtpVvmCarrierConfigHelper {
         activateSmsFilter();
 
         if (mProtocol != null) {
-            mProtocol.startActivation(this);
+            ActivationTask.start(mContext, mSubId, null);
         }
     }
 
@@ -335,9 +335,10 @@ public class OmtpVvmCarrierConfigHelper {
         return false;
     }
 
-    public void startProvisioning(PhoneAccountHandle phone, StatusMessage message, Bundle data) {
+    public void startProvisioning(ActivationTask task, PhoneAccountHandle phone,
+            StatusMessage message, Bundle data) {
         if (mProtocol != null) {
-            mProtocol.startProvisioning(phone, this, message, data);
+            mProtocol.startProvisioning(task, phone, this, message, data);
         }
     }
 

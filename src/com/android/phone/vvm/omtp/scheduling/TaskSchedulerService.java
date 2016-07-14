@@ -86,7 +86,6 @@ public class TaskSchedulerService extends Service {
         public void run() {
             VvmLog.d(TAG, "Stopping service");
             stopSelf();
-
         }
     };
     /**

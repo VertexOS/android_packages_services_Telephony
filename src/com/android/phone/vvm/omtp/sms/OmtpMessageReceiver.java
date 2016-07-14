@@ -26,14 +26,11 @@ import android.provider.VoicemailContract;
 import android.telecom.PhoneAccountHandle;
 import android.telecom.Voicemail;
 
-import com.android.phone.PhoneGlobals;
 import com.android.phone.settings.VisualVoicemailSettingsUtil;
+import com.android.phone.vvm.omtp.ActivationTask;
 import com.android.phone.vvm.omtp.OmtpConstants;
-import com.android.phone.vvm.omtp.OmtpEvents;
 import com.android.phone.vvm.omtp.OmtpVvmCarrierConfigHelper;
-import com.android.phone.vvm.omtp.VisualVoicemailPreferences;
 import com.android.phone.vvm.omtp.VvmLog;
-import com.android.phone.vvm.omtp.sync.OmtpVvmSourceManager;
 import com.android.phone.vvm.omtp.sync.OmtpVvmSyncService;
 import com.android.phone.vvm.omtp.sync.SyncOneTask;
 import com.android.phone.vvm.omtp.sync.SyncTask;
@@ -88,23 +85,11 @@ public class OmtpMessageReceiver extends BroadcastReceiver {
             processSync(phone, message);
         } else if (eventType.equals(OmtpConstants.STATUS_SMS_PREFIX)) {
             VvmLog.v(TAG, "Received Status sms for " + subId);
-            StatusMessage message = new StatusMessage(data);
-            if (message.getProvisioningStatus().equals(OmtpConstants.SUBSCRIBER_READY)) {
-                updateSource(phone, subId, message);
-            } else {
-                if (helper.supportsProvisioning()) {
-                    VvmLog.i(TAG, "Subscriber not ready, start provisioning");
-                    mContext.startService(
-                            OmtpProvisioningService.getProvisionIntent(mContext, intent));
-                } else {
-                    VvmLog.i(TAG, "Subscriber not ready but provisioning is not supported");
-                    VvmLog.i(TAG, "st=" + message.getProvisioningStatus() +
-                            ",rc=" + message.getReturnCode());
-                    // Ignore the non-ready state and attempt to use the provided info as is.
-                    // This is probably caused by not completing the new user tutorial.
-                    updateSource(phone, subId, message);
-                }
-            }
+            // If the STATUS SMS is initiated by ActivationTask the TaskSchedulerService will reject
+            // the follow request. Providing the data will also prevent ActivationTask from
+            // requesting another STATUS SMS. The following task will only run if the carrier
+            // spontaneous send a STATUS SMS, in that case, the VVM service should be reactivated.
+            ActivationTask.start(context, subId, data);
         } else {
             VvmLog.e(TAG, "Unknown prefix: " + eventType);
         }
@@ -147,29 +132,6 @@ public class OmtpMessageReceiver extends BroadcastReceiver {
                 VvmLog.e(TAG,
                         "Unrecognized sync trigger event: " + message.getSyncTriggerEvent());
                 break;
-        }
-    }
-
-    private void updateSource(PhoneAccountHandle phone, int subId, StatusMessage message) {
-        OmtpVvmSourceManager vvmSourceManager =
-                OmtpVvmSourceManager.getInstance(mContext);
-
-        if (OmtpConstants.SUCCESS.equals(message.getReturnCode())) {
-            OmtpVvmCarrierConfigHelper helper = new OmtpVvmCarrierConfigHelper(mContext, subId);
-            helper.handleEvent(OmtpEvents.CONFIG_REQUEST_STATUS_SUCCESS);
-
-            // Save the IMAP credentials in preferences so they are persistent and can be retrieved.
-            VisualVoicemailPreferences prefs = new VisualVoicemailPreferences(mContext, phone);
-            message.putStatus(prefs.edit()).apply();
-
-            // Add the source to indicate that it is active.
-            vvmSourceManager.addSource(phone);
-
-            SyncTask.start(mContext, phone, OmtpVvmSyncService.SYNC_FULL_SYNC);
-
-            PhoneGlobals.getInstance().clearMwiIndicator(subId);
-        } else {
-            VvmLog.e(TAG, "Visual voicemail not available for subscriber.");
         }
     }
 }

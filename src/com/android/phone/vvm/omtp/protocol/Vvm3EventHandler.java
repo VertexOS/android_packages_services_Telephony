@@ -83,6 +83,9 @@ public class Vvm3EventHandler {
     // Non VVM3 codes:
     public static final int VMG_UNKNOWN_ERROR = -1;
     public static final int PIN_NOT_SET = -100;
+    // STATUS SMS returned st=U and rc!=2. The user cannot be provisioned and must contact customer
+    // support.
+    public static final int SUBSCRIBER_UNKNOWN = -99;
 
 
     public static void handleEvent(Context context, OmtpVvmCarrierConfigHelper config,
@@ -124,6 +127,9 @@ public class Vvm3EventHandler {
                 break;
             case CONFIG_DEFAULT_PIN_REPLACED:
                 postError(context, config, PIN_NOT_SET);
+                break;
+            case CONFIG_STATUS_SMS_TIME_OUT:
+                postError(context, config, STATUS_SMS_TIMEOUT);
                 break;
             default:
                 return false;
@@ -209,11 +215,15 @@ public class Vvm3EventHandler {
             case VVM3_VMG_TIMEOUT:
                 postError(context, config, VMG_TIMEOUT);
                 break;
-
             case VVM3_SUBSCRIBER_PROVISIONED:
                 postError(context, config, SERVICE_NOT_ACTIVATED);
+                break;
             case VVM3_SUBSCRIBER_BLOCKED:
                 postError(context, config, SUBSCRIBER_BLOCKED);
+                break;
+            case VVM3_SUBSCRIBER_UNKNOWN:
+                postError(context, config, SUBSCRIBER_UNKNOWN);
+                break;
             default:
                 return false;
         }
@@ -244,6 +254,7 @@ public class Vvm3EventHandler {
             case VMG_DB_ERROR:
             case VMG_COMMUNICATION_ERROR:
             case PIN_NOT_SET:
+            case SUBSCRIBER_UNKNOWN:
                 editor.setConfigurationState(errorCode);
                 break;
             case VMS_NO_CELLULAR:

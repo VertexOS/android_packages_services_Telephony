@@ -21,6 +21,7 @@ import android.os.Bundle;
 import android.telecom.PhoneAccountHandle;
 import android.telephony.SmsManager;
 
+import com.android.phone.vvm.omtp.ActivationTask;
 import com.android.phone.vvm.omtp.DefaultOmtpEventHandler;
 import com.android.phone.vvm.omtp.OmtpEvents;
 import com.android.phone.vvm.omtp.OmtpVvmCarrierConfigHelper;
@@ -29,6 +30,9 @@ import com.android.phone.vvm.omtp.sms.StatusMessage;
 
 public abstract class VisualVoicemailProtocol {
 
+    /**
+     * Activation should cause the carrier to respond with a STATUS SMS.
+     */
     public void startActivation(OmtpVvmCarrierConfigHelper config) {
         OmtpMessageSender messageSender = ProtocolHelper.getMessageSender(this, config);
         if (messageSender != null) {
@@ -47,8 +51,8 @@ public abstract class VisualVoicemailProtocol {
         return false;
     }
 
-    public void startProvisioning(PhoneAccountHandle handle, OmtpVvmCarrierConfigHelper config,
-            StatusMessage message, Bundle data) {
+    public void startProvisioning(ActivationTask task, PhoneAccountHandle handle,
+            OmtpVvmCarrierConfigHelper config, StatusMessage message, Bundle data) {
         // Do nothing
     }
 

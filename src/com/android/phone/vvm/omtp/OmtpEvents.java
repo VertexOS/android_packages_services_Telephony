@@ -34,6 +34,8 @@ public enum OmtpEvents {
     CONFIG_PIN_SET(Type.CONFIGURATION, true),
     // The voicemail PIN is replaced with a generated PIN, user should change it.
     CONFIG_DEFAULT_PIN_REPLACED(Type.CONFIGURATION, true),
+    CONFIG_ACTIVATING(Type.CONFIGURATION, true),
+    CONFIG_STATUS_SMS_TIME_OUT(Type.CONFIGURATION),
 
     // Data channel State
 
@@ -103,7 +105,8 @@ public enum OmtpEvents {
     VVM3_STATUS_SMS_TIMEOUT,
 
     VVM3_SUBSCRIBER_PROVISIONED,
-    VVM3_SUBSCRIBER_BLOCKED;
+    VVM3_SUBSCRIBER_BLOCKED,
+    VVM3_SUBSCRIBER_UNKNOWN;
 
     public static class Type {
 

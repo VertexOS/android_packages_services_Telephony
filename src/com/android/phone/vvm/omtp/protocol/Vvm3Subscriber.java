@@ -28,10 +28,15 @@ import android.text.style.URLSpan;
 import android.util.ArrayMap;
 
 import com.android.phone.Assert;
+import com.android.phone.vvm.omtp.ActivationTask;
+import com.android.phone.vvm.omtp.OmtpConstants;
 import com.android.phone.vvm.omtp.OmtpEvents;
 import com.android.phone.vvm.omtp.OmtpVvmCarrierConfigHelper;
 import com.android.phone.vvm.omtp.VvmLog;
-import com.android.phone.vvm.omtp.sync.VvmNetworkRequestCallback;
+import com.android.phone.vvm.omtp.sms.StatusMessage;
+import com.android.phone.vvm.omtp.sms.StatusSmsFetcher;
+import com.android.phone.vvm.omtp.sync.VvmNetworkRequest;
+import com.android.phone.vvm.omtp.sync.VvmNetworkRequest.NetworkWrapper;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -109,6 +114,7 @@ public class Vvm3Subscriber {
 
     private static final int REQUEST_TIMEOUT_SECONDS = 30;
 
+    private final ActivationTask mTask;
     private final PhoneAccountHandle mHandle;
     private final OmtpVvmCarrierConfigHelper mHelper;
     private final Bundle mData;
@@ -134,9 +140,10 @@ public class Vvm3Subscriber {
     }
 
     @WorkerThread
-    public Vvm3Subscriber(PhoneAccountHandle handle, OmtpVvmCarrierConfigHelper helper,
-            Bundle data) {
+    public Vvm3Subscriber(ActivationTask task, PhoneAccountHandle handle,
+            OmtpVvmCarrierConfigHelper helper, Bundle data) {
         Assert.isNotMainThread();
+        mTask = task;
         mHandle = handle;
         mHelper = helper;
         mData = data;
@@ -153,7 +160,14 @@ public class Vvm3Subscriber {
         // Cellular data is required to subscribe.
         // processSubscription() is called after network is available.
         VvmLog.i(TAG, "Subscribing");
-        new Vvm3ProvisioningNetworkRequestCallback(mHelper, mHandle).requestNetwork();
+
+        try (NetworkWrapper wrapper = VvmNetworkRequest.getNetwork(mHelper, mHandle)) {
+            Network network = wrapper.get();
+            VvmLog.d(TAG, "provisioning: network available");
+            mRequestQueue = Volley
+                    .newRequestQueue(mHelper.getContext(), new NetworkSpecifiedHurlStack(network));
+            processSubscription();
+        }
     }
 
     private void processSubscription() {
@@ -164,6 +178,7 @@ public class Vvm3Subscriber {
             clickSubscribeLink(subscribeLink);
         } catch (ProvisioningException e) {
             VvmLog.e(TAG, e.toString());
+            mTask.fail();
         }
     }
 
@@ -217,10 +232,33 @@ public class Vvm3Subscriber {
         StringRequest stringRequest = new StringRequest(Request.Method.POST,
                 subscribeLink, future, future);
         mRequestQueue.add(stringRequest);
-
-        try {
-            future.get(REQUEST_TIMEOUT_SECONDS, TimeUnit.SECONDS);
-        } catch (InterruptedException | ExecutionException | TimeoutException e) {
+        try (StatusSmsFetcher fetcher = new StatusSmsFetcher(mHelper.getContext(),
+                mHelper.getSubId())) {
+            try {
+                // A new STATUS SMS will be sent after this request.
+                future.get(REQUEST_TIMEOUT_SECONDS, TimeUnit.SECONDS);
+            } catch (TimeoutException e) {
+                mHelper.handleEvent(OmtpEvents.VVM3_SPG_CONNECTION_FAILED);
+                throw new ProvisioningException(e.toString());
+            }
+            Bundle data = fetcher.get();
+            StatusMessage message = new StatusMessage(data);
+            switch (message.getProvisioningStatus()) {
+                case OmtpConstants.SUBSCRIBER_READY:
+                    ActivationTask.updateSource(mHelper.getContext(), mHandle,
+                            mHelper.getSubId(), message);
+                    break;
+                case OmtpConstants.SUBSCRIBER_NEW:
+                    mHelper.getProtocol().startProvisioning(mTask, mHandle, mHelper, message, data);
+                    break;
+                default:
+                    mHelper.handleEvent(OmtpEvents.VVM3_SPG_CONNECTION_FAILED);
+                    throw new ProvisioningException("status is not ready or new after subscribed");
+            }
+        } catch (TimeoutException e) {
+            mHelper.handleEvent(OmtpEvents.CONFIG_STATUS_SMS_TIME_OUT);
+            throw new ProvisioningException("Timed out waiting for STATUS SMS after subscribed");
+        } catch (InterruptedException | ExecutionException | IOException e) {
             mHelper.handleEvent(OmtpEvents.VVM3_SPG_CONNECTION_FAILED);
             throw new ProvisioningException(e.toString());
         }
@@ -262,13 +300,15 @@ public class Vvm3Subscriber {
     private String findSubscribeLink(String response) throws ProvisioningException {
         Spanned doc = Html.fromHtml(response, Html.FROM_HTML_MODE_LEGACY);
         URLSpan[] spans = doc.getSpans(0, doc.length(), URLSpan.class);
+        StringBuilder fulltext = new StringBuilder();
         for (URLSpan span : spans) {
             String text = doc.subSequence(doc.getSpanStart(span), doc.getSpanEnd(span)).toString();
             if (BASIC_SUBSCRIBE_LINK_TEXT.equals(text)) {
                 return span.getURL();
             }
+            fulltext.append(text);
         }
-        throw new ProvisioningException("Subscribe link not found");
+        throw new ProvisioningException("Subscribe link not found: " + fulltext);
     }
 
     private String createTransactionId() {
@@ -282,23 +322,6 @@ public class Vvm3Subscriber {
             return matcher.group(1);
         }
         throw new ProvisioningException("Tag " + tag + " not found in xml response");
-    }
-
-    private class Vvm3ProvisioningNetworkRequestCallback extends VvmNetworkRequestCallback {
-
-        public Vvm3ProvisioningNetworkRequestCallback(OmtpVvmCarrierConfigHelper config,
-                PhoneAccountHandle phoneAccountHandle) {
-            super(config, phoneAccountHandle);
-        }
-
-        @Override
-        public void onAvailable(Network network) {
-            super.onAvailable(network);
-            VvmLog.d(TAG, "provisioning: network available");
-            mRequestQueue = Volley
-                    .newRequestQueue(mContext, new NetworkSpecifiedHurlStack(network));
-            processSubscription();
-        }
     }
 
     private static class NetworkSpecifiedHurlStack extends HurlStack {

@@ -65,6 +65,6 @@ public class OmtpProvisioningService extends IntentService {
     private void startProvisioning(PhoneAccountHandle phone, StatusMessage message, Bundle data) {
         OmtpVvmCarrierConfigHelper helper = new OmtpVvmCarrierConfigHelper(this,
                 PhoneUtils.getSubIdForPhoneAccountHandle(phone));
-        helper.startProvisioning(phone, message, data);
+
     }
 }

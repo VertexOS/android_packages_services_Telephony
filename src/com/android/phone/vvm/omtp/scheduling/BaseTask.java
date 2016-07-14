@@ -84,6 +84,9 @@ public abstract class BaseTask implements Task {
         return mContext;
     }
 
+    public int getSubId() {
+        return mSubId;
+    }
     /**
      * Should be call in the constructor or {@link Policy#onCreate(BaseTask, Intent, int, int)} will
      * be missed.
