@@ -25,7 +25,6 @@ import android.os.UserManager;
 import android.provider.VoicemailContract;
 import android.telecom.PhoneAccountHandle;
 import android.telecom.Voicemail;
-
 import com.android.phone.settings.VisualVoicemailSettingsUtil;
 import com.android.phone.vvm.omtp.ActivationTask;
 import com.android.phone.vvm.omtp.OmtpConstants;
@@ -48,18 +47,21 @@ public class OmtpMessageReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        if (!UserManager.get(context).isUserUnlocked()) {
-            VvmLog.i(TAG, "Received message on locked device");
-            // A full sync will happen after the device is unlocked, so nothing need to be done.
-            return;
-        }
-
         mContext = context;
         int subId = intent.getExtras().getInt(VoicemailContract.EXTRA_VOICEMAIL_SMS_SUBID);
         PhoneAccountHandle phone = PhoneAccountHandleConverter.fromSubId(subId);
 
         if (phone == null) {
             VvmLog.i(TAG, "Received message for null phone account");
+            return;
+        }
+
+        if (!UserManager.get(context).isUserUnlocked()) {
+            VvmLog.i(TAG, "Received message on locked device");
+            // LegacyModeSmsHandler can handle new message notifications without storage access
+            LegacyModeSmsHandler.handle(context, intent, phone);
+            // A full sync will happen after the device is unlocked, so nothing else need to be
+            // done.
             return;
         }
 
