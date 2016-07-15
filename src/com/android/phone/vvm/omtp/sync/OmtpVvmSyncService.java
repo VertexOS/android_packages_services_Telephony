@@ -22,7 +22,6 @@ import android.provider.VoicemailContract;
 import android.telecom.PhoneAccountHandle;
 import android.telecom.Voicemail;
 import android.text.TextUtils;
-
 import com.android.phone.PhoneUtils;
 import com.android.phone.settings.VisualVoicemailSettingsUtil;
 import com.android.phone.vvm.omtp.ActivationTask;
@@ -31,10 +30,10 @@ import com.android.phone.vvm.omtp.OmtpVvmCarrierConfigHelper;
 import com.android.phone.vvm.omtp.VvmLog;
 import com.android.phone.vvm.omtp.fetch.VoicemailFetchedCallback;
 import com.android.phone.vvm.omtp.imap.ImapHelper;
+import com.android.phone.vvm.omtp.imap.ImapHelper.InitializingException;
 import com.android.phone.vvm.omtp.scheduling.BaseTask;
 import com.android.phone.vvm.omtp.sync.VvmNetworkRequest.NetworkWrapper;
 import com.android.phone.vvm.omtp.utils.PhoneAccountHandleConverter;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -123,11 +122,6 @@ public class OmtpVvmSyncService {
     private void doSync(BaseTask task, Network network, PhoneAccountHandle phoneAccount,
             Voicemail voicemail, String action) {
         try(ImapHelper imapHelper = new ImapHelper(mContext, phoneAccount, network)) {
-            if (!imapHelper.isSuccessfullyInitialized()) {
-                VvmLog.w(TAG, "Can't retrieve Imap credentials.");
-                return;
-            }
-
             boolean success;
             if (voicemail == null) {
                 success = syncAll(action, imapHelper, phoneAccount);
@@ -141,6 +135,9 @@ public class OmtpVvmSyncService {
             } else {
                 task.fail();
             }
+        } catch (InitializingException e) {
+            VvmLog.w(TAG, "Can't retrieve Imap credentials.", e);
+            return;
         }
     }
 

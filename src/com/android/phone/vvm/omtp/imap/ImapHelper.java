@@ -23,7 +23,6 @@ import android.provider.VoicemailContract;
 import android.telecom.PhoneAccountHandle;
 import android.telecom.Voicemail;
 import android.util.Base64;
-
 import com.android.phone.PhoneUtils;
 import com.android.phone.VoicemailStatus;
 import com.android.phone.common.mail.Address;
@@ -50,9 +49,6 @@ import com.android.phone.vvm.omtp.VisualVoicemailPreferences;
 import com.android.phone.vvm.omtp.VvmLog;
 import com.android.phone.vvm.omtp.fetch.VoicemailFetchedCallback;
 import com.android.phone.vvm.omtp.sync.OmtpVvmSyncService.TranscriptionFetchedCallback;
-
-import libcore.io.IoUtils;
-
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.Closeable;
@@ -61,6 +57,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
+import libcore.io.IoUtils;
 
 /**
  * A helper interface to abstract commands sent across IMAP interface for a given account.
@@ -85,13 +82,21 @@ public class ImapHelper implements Closeable {
 
     private final OmtpVvmCarrierConfigHelper mConfig;
 
-    public ImapHelper(Context context, PhoneAccountHandle phoneAccount, Network network) {
+    public class InitializingException extends Exception {
+
+        public InitializingException(String message) {
+            super(message);
+        }
+    }
+
+    public ImapHelper(Context context, PhoneAccountHandle phoneAccount, Network network)
+        throws InitializingException {
         this(context, new OmtpVvmCarrierConfigHelper(context,
                 PhoneUtils.getSubIdForPhoneAccountHandle(phoneAccount)), phoneAccount, network);
     }
 
     public ImapHelper(Context context, OmtpVvmCarrierConfigHelper config,
-            PhoneAccountHandle phoneAccount, Network network) {
+        PhoneAccountHandle phoneAccount, Network network) throws InitializingException {
         mContext = context;
         mPhoneAccount = phoneAccount;
         mNetwork = network;
@@ -120,6 +125,7 @@ public class ImapHelper implements Closeable {
         } catch (NumberFormatException e) {
             mConfig.handleEvent(OmtpEvents.DATA_INVALID_PORT);
             LogUtils.w(TAG, "Could not parse port number");
+            throw new InitializingException("cannot initialize ImapHelper:" + e.toString());
         }
 
         mQuotaOccupied = mPrefs
@@ -131,15 +137,6 @@ public class ImapHelper implements Closeable {
     @Override
     public void close() {
         mImapStore.closeConnection();
-    }
-
-    /**
-     * If mImapStore is null, this means that there was a missing or badly formatted port number,
-     * which means there aren't sufficient credentials for login. If mImapStore is succcessfully
-     * initialized, then ImapHelper is ready to go.
-     */
-    public boolean isSuccessfullyInitialized() {
-        return mImapStore != null;
     }
 
     public boolean isRoaming() {
