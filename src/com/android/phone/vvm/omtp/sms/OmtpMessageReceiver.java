@@ -109,6 +109,12 @@ public class OmtpMessageReceiver extends BroadcastReceiver {
         Intent serviceIntent = null;
         switch (message.getSyncTriggerEvent()) {
             case OmtpConstants.NEW_MESSAGE:
+                if (!OmtpConstants.VOICE.equals(message.getContentType())) {
+                    VvmLog.i(TAG, "Non-voice message of type '" + message.getContentType()
+                        + "' received, ignoring");
+                    return;
+                }
+
                 Voicemail.Builder builder = Voicemail.createForInsertion(
                         message.getTimestampMillis(), message.getSender())
                         .setPhoneAccount(phone)
