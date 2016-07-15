@@ -25,7 +25,6 @@ import android.os.UserManager;
 import android.provider.VoicemailContract;
 import android.telecom.PhoneAccountHandle;
 import android.telecom.Voicemail;
-
 import com.android.phone.settings.VisualVoicemailSettingsUtil;
 import com.android.phone.vvm.omtp.ActivationTask;
 import com.android.phone.vvm.omtp.OmtpConstants;
@@ -107,6 +106,12 @@ public class OmtpMessageReceiver extends BroadcastReceiver {
         Intent serviceIntent = null;
         switch (message.getSyncTriggerEvent()) {
             case OmtpConstants.NEW_MESSAGE:
+                if (!OmtpConstants.VOICE.equals(message.getContentType())) {
+                    VvmLog.i(TAG, "Non-voice message of type '" + message.getContentType()
+                        + "' received, ignoring");
+                    return;
+                }
+
                 Voicemail.Builder builder = Voicemail.createForInsertion(
                         message.getTimestampMillis(), message.getSender())
                         .setPhoneAccount(phone)
