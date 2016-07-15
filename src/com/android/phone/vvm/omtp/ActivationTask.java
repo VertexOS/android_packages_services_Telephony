@@ -22,12 +22,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.telecom.PhoneAccountHandle;
-
 import com.android.phone.Assert;
 import com.android.phone.PhoneGlobals;
 import com.android.phone.vvm.omtp.protocol.VisualVoicemailProtocol;
 import com.android.phone.vvm.omtp.scheduling.BaseTask;
-import com.android.phone.vvm.omtp.scheduling.MinimalIntervalPolicy;
 import com.android.phone.vvm.omtp.scheduling.RetryPolicy;
 import com.android.phone.vvm.omtp.sms.StatusMessage;
 import com.android.phone.vvm.omtp.sms.StatusSmsFetcher;
@@ -35,7 +33,6 @@ import com.android.phone.vvm.omtp.sync.OmtpVvmSourceManager;
 import com.android.phone.vvm.omtp.sync.OmtpVvmSyncService;
 import com.android.phone.vvm.omtp.sync.SyncTask;
 import com.android.phone.vvm.omtp.utils.PhoneAccountHandleConverter;
-
 import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeoutException;
@@ -53,7 +50,6 @@ public class ActivationTask extends BaseTask {
 
     private static final int RETRY_TIMES = 4;
     private static final int RETRY_INTERVAL_MILLIS = 5_000;
-    private static final int MINIMAL_INTERVAL_MILLIS = 30_000;
 
     private static final String EXTRA_MESSAGE_DATA_BUNDLE = "extra_message_data_bundle";
 
@@ -62,7 +58,6 @@ public class ActivationTask extends BaseTask {
     public ActivationTask() {
         super(TASK_ACTIVATION);
         addPolicy(new RetryPolicy(RETRY_TIMES, RETRY_INTERVAL_MILLIS));
-        addPolicy(new MinimalIntervalPolicy(MINIMAL_INTERVAL_MILLIS));
     }
 
     public static void start(Context context, int subId, @Nullable Bundle data) {

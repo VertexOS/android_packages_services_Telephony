@@ -22,6 +22,8 @@ import android.net.Network;
 import android.os.Bundle;
 import android.telecom.PhoneAccountHandle;
 import android.telephony.SmsManager;
+import android.text.TextUtils;
+
 import com.android.phone.common.mail.MessagingException;
 import com.android.phone.settings.VisualVoicemailSettingsUtil;
 import com.android.phone.settings.VoicemailChangePinActivity;
@@ -38,6 +40,7 @@ import com.android.phone.vvm.omtp.sms.StatusMessage;
 import com.android.phone.vvm.omtp.sms.Vvm3MessageSender;
 import com.android.phone.vvm.omtp.sync.VvmNetworkRequest;
 import com.android.phone.vvm.omtp.sync.VvmNetworkRequest.NetworkWrapper;
+
 import java.io.IOException;
 import java.security.SecureRandom;
 import java.util.Locale;
@@ -49,13 +52,18 @@ import java.util.Locale;
  */
 public class Vvm3Protocol extends VisualVoicemailProtocol {
 
-    private static String TAG = "Vvm3Protocol";
+    private static final String TAG = "Vvm3Protocol";
 
-    private static String IMAP_CHANGE_TUI_PWD_FORMAT = "CHANGE_TUI_PWD PWD=%1$s OLD_PWD=%2$s";
-    private static String IMAP_CHANGE_VM_LANG_FORMAT = "CHANGE_VM_LANG Lang=%1$s";
-    private static String IMAP_CLOSE_NUT = "CLOSE_NUT";
+    private static final String SMS_EVENT_UNRECOGNIZED = "UNRECOGNIZED";
+    private static final String SMS_EVENT_UNRECOGNIZED_CMD = "cmd";
+    private static final String SMS_EVENT_UNRECOGNIZED_STATUS = "STATUS";
+    private static final String DEFAULT_VMG_URL_KEY = "default_vmg_url";
 
-    private static String ISO639_Spanish = "es";
+    private static final String IMAP_CHANGE_TUI_PWD_FORMAT = "CHANGE_TUI_PWD PWD=%1$s OLD_PWD=%2$s";
+    private static final String IMAP_CHANGE_VM_LANG_FORMAT = "CHANGE_VM_LANG Lang=%1$s";
+    private static final String IMAP_CLOSE_NUT = "CLOSE_NUT";
+
+    private static final String ISO639_Spanish = "es";
 
     /**
      * For VVM3, if the STATUS SMS returns {@link StatusMessage#getProvisioningStatus()} of {@link
@@ -147,6 +155,32 @@ public class Vvm3Protocol extends VisualVoicemailProtocol {
             return IMAP_CHANGE_VM_LANG_FORMAT;
         }
         return super.getCommand(command);
+    }
+
+    @Override
+    public Bundle translateStatusSmsBundle(OmtpVvmCarrierConfigHelper config, String event,
+            Bundle data) {
+        // UNRECOGNIZED?cmd=STATUS is the response of a STATUS request when the user is provisioned
+        // with iPhone visual voicemail without VoLTE. Translate it into an unprovisioned status
+        // so provisioning can be done.
+        if (!SMS_EVENT_UNRECOGNIZED.equals(event)) {
+            return null;
+        }
+        if (!SMS_EVENT_UNRECOGNIZED_STATUS.equals(data.getString(SMS_EVENT_UNRECOGNIZED_CMD))) {
+            return null;
+        }
+        Bundle bundle = new Bundle();
+        bundle.putString(OmtpConstants.PROVISIONING_STATUS, OmtpConstants.SUBSCRIBER_UNKNOWN);
+        bundle.putString(OmtpConstants.RETURN_CODE,
+                VVM3_UNKNOWN_SUBSCRIBER_CAN_SUBSCRIBE_RESPONSE_CODE);
+        String vmgUrl = config.getString(DEFAULT_VMG_URL_KEY);
+        if (TextUtils.isEmpty(vmgUrl)) {
+            VvmLog.e(TAG, "Unable to translate STATUS SMS: VMG URL is not set in config");
+            return null;
+        }
+        bundle.putString(Vvm3Subscriber.VMG_URL_KEY, vmgUrl);
+        VvmLog.i(TAG, "UNRECOGNIZED?cmd=STATUS translated into unprovisioned STATUS SMS");
+        return bundle;
     }
 
     private void startProvisionNewUser(PhoneAccountHandle phoneAccountHandle,

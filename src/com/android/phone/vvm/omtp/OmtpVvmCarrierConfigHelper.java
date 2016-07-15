@@ -27,14 +27,12 @@ import android.telephony.TelephonyManager;
 import android.telephony.VisualVoicemailSmsFilterSettings;
 import android.text.TextUtils;
 import android.util.ArraySet;
-
 import com.android.internal.annotations.VisibleForTesting;
 import com.android.phone.VoicemailStatus;
 import com.android.phone.vvm.omtp.protocol.VisualVoicemailProtocol;
 import com.android.phone.vvm.omtp.protocol.VisualVoicemailProtocolFactory;
 import com.android.phone.vvm.omtp.sms.StatusMessage;
 import com.android.phone.vvm.omtp.utils.PhoneAccountHandleConverter;
-
 import java.util.Arrays;
 import java.util.Set;
 
@@ -160,6 +158,14 @@ public class OmtpVvmCarrierConfigHelper {
     @Nullable
     public VisualVoicemailProtocol getProtocol() {
         return mProtocol;
+    }
+
+    /**
+     * @returns arbitrary String stored in the config file. Used for protocol specific values.
+     */
+    @Nullable
+    public String getString(String key) {
+        return (String) getValue(key);
     }
 
     @Nullable

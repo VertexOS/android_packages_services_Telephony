@@ -135,5 +135,8 @@
     <string name="vvm_client_prefix_string">//VZWVVM</string>
     <boolean name="vvm_cellular_data_required_bool" value="true"/>
     <boolean name="vvm_legacy_mode_enabled_bool" value="true"/>
+    <!-- VVM3 specific value for the voicemail management gateway to use if the SMS didn't provide
+         one -->
+    <string name="default_vmg_url">https://mobile.vzw.com/VMGIMS/VMServices</string>
   </pbundle_as_map>
 </list>

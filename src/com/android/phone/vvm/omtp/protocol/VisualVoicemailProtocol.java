@@ -16,11 +16,11 @@
 
 package com.android.phone.vvm.omtp.protocol;
 
+import android.annotation.Nullable;
 import android.content.Context;
 import android.os.Bundle;
 import android.telecom.PhoneAccountHandle;
 import android.telephony.SmsManager;
-
 import com.android.phone.vvm.omtp.ActivationTask;
 import com.android.phone.vvm.omtp.DefaultOmtpEventHandler;
 import com.android.phone.vvm.omtp.OmtpEvents;
@@ -81,5 +81,15 @@ public abstract class VisualVoicemailProtocol {
     public void handleEvent(Context context, OmtpVvmCarrierConfigHelper config,
             OmtpEvents event) {
         DefaultOmtpEventHandler.handleEvent(context, config, event);
+    }
+
+    /**
+     * Given an VVM SMS with an unknown {@code event}, let the protocol attempt to translate it into
+     * an equivalent STATUS SMS. Returns {@code null} if it cannot be translated.
+     */
+    @Nullable
+    public Bundle translateStatusSmsBundle(OmtpVvmCarrierConfigHelper config, String event,
+            Bundle data) {
+        return null;
     }
 }

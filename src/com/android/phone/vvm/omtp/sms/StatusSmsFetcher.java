@@ -24,10 +24,11 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.provider.VoicemailContract;
-
 import com.android.phone.Assert;
 import com.android.phone.vvm.omtp.OmtpConstants;
-
+import com.android.phone.vvm.omtp.OmtpVvmCarrierConfigHelper;
+import com.android.phone.vvm.omtp.VvmLog;
+import com.android.phone.vvm.omtp.protocol.VisualVoicemailProtocol;
 import java.io.Closeable;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
@@ -39,6 +40,8 @@ import java.util.concurrent.TimeoutException;
  * Intercepts a incoming STATUS SMS with a blocking call.
  */
 public class StatusSmsFetcher extends BroadcastReceiver implements Closeable {
+
+    private static final String TAG = "VvmStatusSmsFetcher";
 
     private static final long STATUS_SMS_TIMEOUT_MILLIS = 60_000;
 
@@ -78,10 +81,28 @@ public class StatusSmsFetcher extends BroadcastReceiver implements Closeable {
         String eventType = intent.getExtras()
                 .getString(VoicemailContract.EXTRA_VOICEMAIL_SMS_PREFIX);
 
-        if (!eventType.equals(OmtpConstants.STATUS_SMS_PREFIX)) {
+        if (eventType.equals(OmtpConstants.STATUS_SMS_PREFIX)) {
+            mFuture.complete(intent.getBundleExtra(VoicemailContract.EXTRA_VOICEMAIL_SMS_FIELDS));
             return;
         }
 
-        mFuture.complete(intent.getBundleExtra(VoicemailContract.EXTRA_VOICEMAIL_SMS_FIELDS));
+        if (eventType.equals(OmtpConstants.SYNC_SMS_PREFIX)) {
+            return;
+        }
+
+        VvmLog.i(TAG, "VVM SMS with event " + eventType
+                + " received, attempting to translate to STATUS SMS");
+        OmtpVvmCarrierConfigHelper helper = new OmtpVvmCarrierConfigHelper(context, subId);
+        VisualVoicemailProtocol protocol = helper.getProtocol();
+        if (protocol == null) {
+            return;
+        }
+        Bundle translatedBundle = protocol.translateStatusSmsBundle(helper, eventType,
+                intent.getBundleExtra(VoicemailContract.EXTRA_VOICEMAIL_SMS_FIELDS));
+
+        if (translatedBundle != null) {
+            VvmLog.i(TAG, "Translated to STATUS SMS");
+            mFuture.complete(translatedBundle);
+        }
     }
 }

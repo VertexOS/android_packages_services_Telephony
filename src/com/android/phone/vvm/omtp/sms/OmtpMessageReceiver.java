@@ -30,6 +30,7 @@ import com.android.phone.vvm.omtp.ActivationTask;
 import com.android.phone.vvm.omtp.OmtpConstants;
 import com.android.phone.vvm.omtp.OmtpVvmCarrierConfigHelper;
 import com.android.phone.vvm.omtp.VvmLog;
+import com.android.phone.vvm.omtp.protocol.VisualVoicemailProtocol;
 import com.android.phone.vvm.omtp.sync.OmtpVvmSyncService;
 import com.android.phone.vvm.omtp.sync.SyncOneTask;
 import com.android.phone.vvm.omtp.sync.SyncTask;
@@ -93,7 +94,17 @@ public class OmtpMessageReceiver extends BroadcastReceiver {
             // spontaneous send a STATUS SMS, in that case, the VVM service should be reactivated.
             ActivationTask.start(context, subId, data);
         } else {
-            VvmLog.e(TAG, "Unknown prefix: " + eventType);
+            VvmLog.w(TAG, "Unknown prefix: " + eventType);
+            VisualVoicemailProtocol protocol = helper.getProtocol();
+            if (protocol == null) {
+                return;
+            }
+            Bundle statusData = helper.getProtocol()
+                    .translateStatusSmsBundle(helper, eventType, data);
+            if (statusData != null) {
+                VvmLog.i(TAG, "Protocol recognized the SMS as STATUS, activating");
+                ActivationTask.start(context, subId, data);
+            }
         }
     }
 

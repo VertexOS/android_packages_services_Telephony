@@ -26,15 +26,11 @@ import android.text.Html;
 import android.text.Spanned;
 import android.text.style.URLSpan;
 import android.util.ArrayMap;
-
 import com.android.phone.Assert;
 import com.android.phone.vvm.omtp.ActivationTask;
-import com.android.phone.vvm.omtp.OmtpConstants;
 import com.android.phone.vvm.omtp.OmtpEvents;
 import com.android.phone.vvm.omtp.OmtpVvmCarrierConfigHelper;
 import com.android.phone.vvm.omtp.VvmLog;
-import com.android.phone.vvm.omtp.sms.StatusMessage;
-import com.android.phone.vvm.omtp.sms.StatusSmsFetcher;
 import com.android.phone.vvm.omtp.sync.VvmNetworkRequest;
 import com.android.phone.vvm.omtp.sync.VvmNetworkRequest.NetworkWrapper;
 import com.android.volley.AuthFailureError;
@@ -44,7 +40,6 @@ import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.RequestFuture;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-
 import java.io.IOException;
 import java.net.CookieHandler;
 import java.net.CookieManager;
@@ -96,7 +91,7 @@ public class Vvm3Subscriber {
             + "  </MessageBody>"
             + "</VMGVVMRequest>";
 
-    private static final String VMG_URL_KEY = "vmg_url";
+    static final String VMG_URL_KEY = "vmg_url";
 
     // Self provisioning POST key/values. VVM3 API 2.1.0 12.3
     private static final String SPG_VZW_MDN_PARAM = "VZW_MDN";
@@ -232,36 +227,16 @@ public class Vvm3Subscriber {
         StringRequest stringRequest = new StringRequest(Request.Method.POST,
                 subscribeLink, future, future);
         mRequestQueue.add(stringRequest);
-        try (StatusSmsFetcher fetcher = new StatusSmsFetcher(mHelper.getContext(),
-                mHelper.getSubId())) {
-            try {
-                // A new STATUS SMS will be sent after this request.
-                future.get(REQUEST_TIMEOUT_SECONDS, TimeUnit.SECONDS);
-            } catch (TimeoutException e) {
-                mHelper.handleEvent(OmtpEvents.VVM3_SPG_CONNECTION_FAILED);
-                throw new ProvisioningException(e.toString());
-            }
-            Bundle data = fetcher.get();
-            StatusMessage message = new StatusMessage(data);
-            switch (message.getProvisioningStatus()) {
-                case OmtpConstants.SUBSCRIBER_READY:
-                    ActivationTask.updateSource(mHelper.getContext(), mHandle,
-                            mHelper.getSubId(), message);
-                    break;
-                case OmtpConstants.SUBSCRIBER_NEW:
-                    mHelper.getProtocol().startProvisioning(mTask, mHandle, mHelper, message, data);
-                    break;
-                default:
-                    mHelper.handleEvent(OmtpEvents.VVM3_SPG_CONNECTION_FAILED);
-                    throw new ProvisioningException("status is not ready or new after subscribed");
-            }
-        } catch (TimeoutException e) {
-            mHelper.handleEvent(OmtpEvents.CONFIG_STATUS_SMS_TIME_OUT);
-            throw new ProvisioningException("Timed out waiting for STATUS SMS after subscribed");
-        } catch (InterruptedException | ExecutionException | IOException e) {
+        try {
+            // A new STATUS SMS will be sent after this request.
+            future.get(REQUEST_TIMEOUT_SECONDS, TimeUnit.SECONDS);
+        } catch (TimeoutException | ExecutionException | InterruptedException e) {
             mHelper.handleEvent(OmtpEvents.VVM3_SPG_CONNECTION_FAILED);
             throw new ProvisioningException(e.toString());
         }
+        // It could take very long for the STATUS SMS to return. Waiting for it is unreliable.
+        // Just leave the CONFIG STATUS as CONFIGURING and end the task. The user can always
+        // manually retry if it took too long.
     }
 
     private String vvm3XmlRequest(String operation) throws ProvisioningException {
