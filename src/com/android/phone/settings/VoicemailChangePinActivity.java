@@ -44,7 +44,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
-
 import com.android.phone.PhoneUtils;
 import com.android.phone.R;
 import com.android.phone.common.mail.MessagingException;
@@ -55,6 +54,7 @@ import com.android.phone.vvm.omtp.OmtpVvmCarrierConfigHelper;
 import com.android.phone.vvm.omtp.VisualVoicemailPreferences;
 import com.android.phone.vvm.omtp.VvmLog;
 import com.android.phone.vvm.omtp.imap.ImapHelper;
+import com.android.phone.vvm.omtp.imap.ImapHelper.InitializingException;
 import com.android.phone.vvm.omtp.sync.VvmNetworkRequestCallback;
 
 /**
@@ -594,7 +594,7 @@ public class VoicemailChangePinActivity extends Activity implements OnClickListe
                 @ChangePinResult int result =
                         helper.changePin(mOldPin, mNewPin);
                 sendResult(result);
-            } catch (MessagingException e) {
+            } catch (InitializingException | MessagingException e) {
                 sendResult(OmtpConstants.CHANGE_PIN_SYSTEM_ERROR);
             }
         }

@@ -35,6 +35,7 @@ import com.android.phone.PhoneUtils;
 import com.android.phone.vvm.omtp.OmtpVvmCarrierConfigHelper;
 import com.android.phone.vvm.omtp.VvmLog;
 import com.android.phone.vvm.omtp.imap.ImapHelper;
+import com.android.phone.vvm.omtp.imap.ImapHelper.InitializingException;
 import com.android.phone.vvm.omtp.sync.OmtpVvmSourceManager;
 import com.android.phone.vvm.omtp.sync.VvmNetworkRequestCallback;
 
@@ -161,11 +162,6 @@ public class FetchVoicemailReceiver extends BroadcastReceiver {
                         VvmLog.i(TAG, "fetching voicemail, retry count=" + mRetryCount);
                         try (ImapHelper imapHelper = new ImapHelper(mContext, mPhoneAccount,
                                 network)) {
-                            if (!imapHelper.isSuccessfullyInitialized()) {
-                                VvmLog.w(TAG, "Can't retrieve Imap credentials.");
-                                return;
-                            }
-
                             boolean success = imapHelper.fetchVoicemailPayload(
                                     new VoicemailFetchedCallback(mContext, mUri), mUid);
                             if (!success && mRetryCount > 0) {
@@ -174,6 +170,9 @@ public class FetchVoicemailReceiver extends BroadcastReceiver {
                             } else {
                                 return;
                             }
+                        } catch (InitializingException e) {
+                          VvmLog.w(TAG, "Can't retrieve Imap credentials ", e);
+                            return;
                         }
                     }
                 } finally {

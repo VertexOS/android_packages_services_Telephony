@@ -22,7 +22,6 @@ import android.net.Network;
 import android.os.Bundle;
 import android.telecom.PhoneAccountHandle;
 import android.telephony.SmsManager;
-
 import com.android.phone.common.mail.MessagingException;
 import com.android.phone.settings.VisualVoicemailSettingsUtil;
 import com.android.phone.settings.VoicemailChangePinActivity;
@@ -33,12 +32,12 @@ import com.android.phone.vvm.omtp.OmtpVvmCarrierConfigHelper;
 import com.android.phone.vvm.omtp.VisualVoicemailPreferences;
 import com.android.phone.vvm.omtp.VvmLog;
 import com.android.phone.vvm.omtp.imap.ImapHelper;
+import com.android.phone.vvm.omtp.imap.ImapHelper.InitializingException;
 import com.android.phone.vvm.omtp.sms.OmtpMessageSender;
 import com.android.phone.vvm.omtp.sms.StatusMessage;
 import com.android.phone.vvm.omtp.sms.Vvm3MessageSender;
 import com.android.phone.vvm.omtp.sync.VvmNetworkRequest;
 import com.android.phone.vvm.omtp.sync.VvmNetworkRequest.NetworkWrapper;
-
 import java.io.IOException;
 import java.security.SecureRandom;
 import java.util.Locale;
@@ -156,8 +155,8 @@ public class Vvm3Protocol extends VisualVoicemailProtocol {
             Network network = wrapper.get();
 
             VvmLog.i(TAG, "new user: network available");
-            ImapHelper helper = new ImapHelper(config.getContext(), phoneAccountHandle, network);
-            try {
+            try (ImapHelper helper = new ImapHelper(config.getContext(), phoneAccountHandle,
+                network)) {
                 // VVM3 has inconsistent error language code to OMTP. Just issue a raw command
                 // here.
                 // TODO(b/29082671): use LocaleList
@@ -180,11 +179,9 @@ public class Vvm3Protocol extends VisualVoicemailProtocol {
 
                     config.requestStatus();
                 }
-            } catch (MessagingException | IOException e) {
-                helper.handleEvent(OmtpEvents.VVM3_NEW_USER_SETUP_FAILED);
+            } catch (InitializingException | MessagingException | IOException e) {
+                config.handleEvent(OmtpEvents.VVM3_NEW_USER_SETUP_FAILED);
                 VvmLog.e(TAG, e.toString());
-            } finally {
-                helper.close();
             }
 
         }

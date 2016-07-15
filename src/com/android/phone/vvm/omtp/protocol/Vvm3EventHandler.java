@@ -20,7 +20,6 @@ import android.annotation.IntDef;
 import android.content.Context;
 import android.telecom.PhoneAccountHandle;
 import android.util.Log;
-
 import com.android.phone.VoicemailStatus;
 import com.android.phone.settings.VoicemailChangePinActivity;
 import com.android.phone.vvm.omtp.DefaultOmtpEventHandler;
@@ -28,7 +27,6 @@ import com.android.phone.vvm.omtp.OmtpEvents;
 import com.android.phone.vvm.omtp.OmtpEvents.Type;
 import com.android.phone.vvm.omtp.OmtpVvmCarrierConfigHelper;
 import com.android.phone.vvm.omtp.utils.PhoneAccountHandleConverter;
-
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
@@ -142,7 +140,13 @@ public class Vvm3EventHandler {
         switch (event) {
             case DATA_NO_CONNECTION:
             case DATA_NO_CONNECTION_CELLULAR_REQUIRED:
+            case DATA_ALL_SOCKET_CONNECTION_FAILED:
                 postError(context, config, VMS_NO_CELLULAR);
+                break;
+            case DATA_SSL_INVALID_HOST_NAME:
+            case DATA_CANNOT_ESTABLISH_SSL_SESSION:
+            case DATA_IOE_ON_OPEN:
+                postError(context, config, VMS_TIMEOUT);
                 break;
             case DATA_CANNOT_RESOLVE_HOST_ON_NETWORK:
                 postError(context, config, VMS_DNS_FAILURE);
@@ -171,18 +175,11 @@ public class Vvm3EventHandler {
             case DATA_AUTH_USER_IS_BLOCKED:
                 postError(context, config, USER_BLOCKED);
                 break;
-
-            case DATA_INVALID_PORT:
-            case DATA_SSL_INVALID_HOST_NAME:
-            case DATA_CANNOT_ESTABLISH_SSL_SESSION:
-            case DATA_IOE_ON_OPEN:
             case DATA_REJECTED_SERVER_RESPONSE:
             case DATA_INVALID_INITIAL_SERVER_RESPONSE:
             case DATA_SSL_EXCEPTION:
-            case DATA_ALL_SOCKET_CONNECTION_FAILED:
                 postError(context, config, IMAP_ERROR);
                 break;
-
             default:
                 return false;
         }
