@@ -39,6 +39,7 @@ import com.android.phone.PhoneUtils;
 import com.android.phone.R;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -226,7 +227,7 @@ public class ImsConference extends Conference {
     /**
      * The address of the conference host.
      */
-    private Uri mConferenceHostAddress;
+    private Uri[] mConferenceHostAddress;
 
     /**
      * The known conference participant connections.  The HashMap is keyed by endpoint Uri.
@@ -581,8 +582,23 @@ public class ImsConference extends Conference {
             Phone imsPhone = mConferenceHost.getPhone();
             mConferenceHostPhoneAccountHandle =
                     PhoneUtils.makePstnPhoneAccountHandle(imsPhone.getDefaultPhone());
-            mConferenceHostAddress = TelecomAccountRegistry.getInstance(mTelephonyConnectionService)
+            Uri hostAddress = TelecomAccountRegistry.getInstance(mTelephonyConnectionService)
                     .getAddress(mConferenceHostPhoneAccountHandle);
+
+            ArrayList<Uri> hostAddresses = new ArrayList<>();
+
+            // add address from TelecomAccountRegistry
+            if (hostAddress != null) {
+                hostAddresses.add(hostAddress);
+            }
+
+            // add addresses from phone
+            if (imsPhone.getCurrentSubscriberUris() != null) {
+                hostAddresses.addAll(
+                        new ArrayList<>(Arrays.asList(imsPhone.getCurrentSubscriberUris())));
+            }
+
+            mConferenceHostAddress = (Uri[])hostAddresses.toArray();
         }
 
         mConferenceHost.addConnectionListener(mConferenceHostListener);
@@ -752,20 +768,14 @@ public class ImsConference extends Conference {
      * Starts with a simple equality check.  However, the handles from a conference event package
      * will be a SIP uri, so we need to pull that apart to look for the participant's phone number.
      *
-     * @param hostHandle The handle of the connection hosting the conference.
+     * @param hostHandles The handle(s) of the connection hosting the conference.
      * @param handle The handle of the conference participant.
      * @return {@code true} if the host's handle matches the participant's handle, {@code false}
      *      otherwise.
      */
-    private boolean isParticipantHost(Uri hostHandle, Uri handle) {
-        // If host and participant handles are the same, bail early.
-        if (Objects.equals(hostHandle, handle)) {
-            Log.v(this, "isParticipantHost(Y) : uris equal");
-            return true;
-        }
-
-        // If there is no host handle or not participant handle, bail early.
-        if (hostHandle == null || handle == null) {
+    private boolean isParticipantHost(Uri[] hostHandles, Uri handle) {
+        // If there is no host handle or no participant handle, bail early.
+        if (hostHandles == null || hostHandles.length == 0 || handle == null) {
             Log.v(this, "isParticipantHost(N) : host or participant uri null");
             return false;
         }
@@ -792,18 +802,27 @@ public class ImsConference extends Conference {
         }
         number = numberParts[0];
 
-        // The host number will be a tel: uri.  Per RFC3966, the part after tel: is the phone
-        // number.
-        String hostNumber = hostHandle.getSchemeSpecificPart();
+        for (Uri hostHandle : hostHandles) {
+            if (hostHandle == null) {
+                continue;
+            }
+            // The host number will be a tel: uri.  Per RFC3966, the part after tel: is the phone
+            // number.
+            String hostNumber = hostHandle.getSchemeSpecificPart();
 
-        // Use a loose comparison of the phone numbers.  This ensures that numbers that differ by
-        // special characters are counted as equal.
-        // E.g. +16505551212 would be the same as 16505551212
-        boolean isHost = PhoneNumberUtils.compare(hostNumber, number);
+            // Use a loose comparison of the phone numbers.  This ensures that numbers that differ
+            // by special characters are counted as equal.
+            // E.g. +16505551212 would be the same as 16505551212
+            boolean isHost = PhoneNumberUtils.compare(hostNumber, number);
 
-        Log.v(this, "isParticipantHost(%s) : host: %s, participant %s", (isHost ? "Y" : "N"),
-                Log.pii(hostNumber), Log.pii(number));
-        return isHost;
+            Log.v(this, "isParticipantHost(%s) : host: %s, participant %s", (isHost ? "Y" : "N"),
+                    Log.pii(hostNumber), Log.pii(number));
+
+            if (isHost) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
