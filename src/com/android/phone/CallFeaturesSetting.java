@@ -198,6 +198,7 @@ public class CallFeaturesSetting extends PreferenceActivity
 
     @Override
     protected void onPause() {
+        super.onPause();
         TelephonyManager telephonyManager =
                 (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
         telephonyManager.listen(mPhoneStateListener, PhoneStateListener.LISTEN_NONE);
