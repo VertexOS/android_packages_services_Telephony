@@ -28,6 +28,8 @@
 
     <original-package android:name="com.android.phone" />
 
+    <protected-broadcast android:name="android.telecom.action.TTY_PREFERRED_MODE_CHANGED" />
+    <protected-broadcast android:name="android.telecom.action.CURRENT_TTY_MODE_CHANGED" />
     <protected-broadcast android:name="android.intent.action.SERVICE_STATE" />
     <protected-broadcast android:name="android.intent.action.RADIO_TECHNOLOGY" />
     <protected-broadcast android:name="android.intent.action.EMERGENCY_CALLBACK_MODE_CHANGED" />
