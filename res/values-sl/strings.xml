@@ -149,8 +149,7 @@
     <string name="voicemail_default" msgid="2001233554889016880">"Vaš operater"</string>
     <string name="vm_change_pin_old_pin" msgid="7295220109886682573">"Stara koda PIN"</string>
     <string name="vm_change_pin_new_pin" msgid="5412922262839438097">"Nova koda PIN"</string>
-    <!-- no translation found for vm_change_pin_progress_message (3977357361934350336) -->
-    <skip />
+    <string name="vm_change_pin_progress_message" msgid="3977357361934350336">"Počakajte."</string>
     <string name="vm_change_pin_error_too_short" msgid="5974971097302710497">"Nova koda PIN je prekratka."</string>
     <string name="vm_change_pin_error_too_long" msgid="8476870806115051865">"Nova koda PIN je predolga."</string>
     <string name="vm_change_pin_error_too_weak" msgid="7883744811891784882">"Nova koda PIN je prešibka. Zapleteno geslo ne sme vsebovati zaporednih ali ponavljajočih se števk."</string>
@@ -456,8 +455,7 @@
     <string name="incall_error_supp_service_hangup" msgid="7434513517153834426">"Prevzem klicev ni mogoč."</string>
     <string name="incall_error_supp_service_hold" msgid="7967020511232222078">"Klicev ni mogoče zadržati."</string>
     <string name="incall_error_wfc_only_no_wireless_network" msgid="1782466780452640089">"Povežite se v omrežje Wi-Fi, če želite opraviti klic."</string>
-    <!-- no translation found for incall_error_promote_wfc (106510757624022064) -->
-    <skip />
+    <string name="incall_error_promote_wfc" msgid="106510757624022064">"Če želite opraviti klic, omogočite klicanja prek Wi-Fi-ja."</string>
     <string name="emergency_enable_radio_dialog_title" msgid="4627849966634578257">"Klic v sili"</string>
     <string name="emergency_enable_radio_dialog_message" msgid="207613549344420291">"Vklop radia …"</string>
     <string name="emergency_enable_radio_dialog_retry" msgid="5960061579996526883">"Ni signala. Vnovičen poskus …"</string>
@@ -558,8 +556,7 @@
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"Vibriraj"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"Vibriraj"</string>
     <string name="voicemail_visual_voicemail_switch_title" msgid="5012622186976275457">"Vizualno sporočilo v odzivniku"</string>
-    <!-- no translation found for voicemail_set_pin_dialog_title (2797924461029093837) -->
-    <skip />
+    <string name="voicemail_set_pin_dialog_title" msgid="2797924461029093837">"Nastavitev kode PIN"</string>
     <string name="voicemail_change_pin_dialog_title" msgid="6035421908626121564">"Sprememba kode PIN"</string>
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"Zvok"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"Zvonjenje in vibriranje"</string>
@@ -578,28 +575,16 @@
     <string name="message_decode_error" msgid="3456481534066924855">"Napaka pri dekodiranju sporočila."</string>
     <string name="callFailed_cdma_activation" msgid="2307989779233262164">"Kartica SIM je aktivirala vašo storitev in posodobila zmožnosti telefona za gostovanje."</string>
     <string name="callFailed_cdma_call_limit" msgid="1556916577171457086">"Preveč aktivnih klicev. Preden začnete nov klic, končajte ali združite obstoječe klice."</string>
-    <!-- no translation found for change_pin_title (7790232089699034029) -->
-    <skip />
-    <!-- no translation found for change_pin_continue_label (2135088662420163447) -->
-    <skip />
-    <!-- no translation found for change_pin_cancel_label (353535488390948596) -->
-    <skip />
-    <!-- no translation found for change_pin_ok_label (6204308560844889926) -->
-    <skip />
-    <!-- no translation found for change_pin_enter_old_pin_header (419179847657548887) -->
-    <skip />
-    <!-- no translation found for change_pin_enter_old_pin_hint (8579171678763615453) -->
-    <skip />
-    <!-- no translation found for change_pin_enter_new_pin_header (2611191814590251532) -->
-    <skip />
-    <!-- no translation found for change_pin_enter_new_pin_hint (2322940054329689309) -->
-    <skip />
-    <!-- no translation found for change_pin_confirm_pin_header (8113764019347322170) -->
-    <skip />
-    <!-- no translation found for change_pin_confirm_pins_dont_match (4795052654904027909) -->
-    <skip />
-    <!-- no translation found for change_pin_succeeded (2022852286442211151) -->
-    <skip />
-    <!-- no translation found for change_pin_system_error (8308462387154257840) -->
-    <skip />
+    <string name="change_pin_title" msgid="7790232089699034029">"Sprememba kode PIN za sporočila v odzivniku"</string>
+    <string name="change_pin_continue_label" msgid="2135088662420163447">"Naprej"</string>
+    <string name="change_pin_cancel_label" msgid="353535488390948596">"Prekliči"</string>
+    <string name="change_pin_ok_label" msgid="6204308560844889926">"V redu"</string>
+    <string name="change_pin_enter_old_pin_header" msgid="419179847657548887">"Potrditev stare kode PIN"</string>
+    <string name="change_pin_enter_old_pin_hint" msgid="8579171678763615453">"Če želite nadaljevati, vnesite kodo PIN za sporočila v odzivniku."</string>
+    <string name="change_pin_enter_new_pin_header" msgid="2611191814590251532">"Nastavitev nove kode PIN"</string>
+    <string name="change_pin_enter_new_pin_hint" msgid="2322940054329689309">"Koda PIN mora imeti <xliff:g id="MIN">%1$d</xliff:g>–<xliff:g id="MAX">%2$d</xliff:g> števk."</string>
+    <string name="change_pin_confirm_pin_header" msgid="8113764019347322170">"Potrditev kode PIN"</string>
+    <string name="change_pin_confirm_pins_dont_match" msgid="4795052654904027909">"Kodi PIN se ne ujemata"</string>
+    <string name="change_pin_succeeded" msgid="2022852286442211151">"Koda PIN za sporočila v odzivniku je posodobljena"</string>
+    <string name="change_pin_system_error" msgid="8308462387154257840">"Kode PIN ni mogoče nastaviti"</string>
 </resources>

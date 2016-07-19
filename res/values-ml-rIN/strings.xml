@@ -149,8 +149,7 @@
     <string name="voicemail_default" msgid="2001233554889016880">"നിങ്ങളുടെ കാരിയർ"</string>
     <string name="vm_change_pin_old_pin" msgid="7295220109886682573">"പഴയ പിൻ"</string>
     <string name="vm_change_pin_new_pin" msgid="5412922262839438097">"പുതിയ പിൻ"</string>
-    <!-- no translation found for vm_change_pin_progress_message (3977357361934350336) -->
-    <skip />
+    <string name="vm_change_pin_progress_message" msgid="3977357361934350336">"ദയവായി കാത്തിരിക്കുക."</string>
     <string name="vm_change_pin_error_too_short" msgid="5974971097302710497">"പുതിയ പിൻ വളരെ ചെറുതാണ്."</string>
     <string name="vm_change_pin_error_too_long" msgid="8476870806115051865">"പുതിയ പിൻ വളരെ ദൈർഘ്യമേറിയതാണ്."</string>
     <string name="vm_change_pin_error_too_weak" msgid="7883744811891784882">"പുതിയ പിൻ വളരെ ദുർബലമാണ്. ഒരു ദൃഢമായ പാസ്‌വേഡിൽ തുടർച്ചയായി വരുന്നതോ ആവർത്തിച്ച് വരുന്നതോ ആയ അക്കങ്ങൾ ഉണ്ടാവരുത്."</string>
@@ -456,8 +455,7 @@
     <string name="incall_error_supp_service_hangup" msgid="7434513517153834426">"കോൾ (കോളുകൾ) വിളിക്കാനാവില്ല."</string>
     <string name="incall_error_supp_service_hold" msgid="7967020511232222078">"കോളുകൾ ഹോൾഡുചെയ്യാൻ കഴിയില്ല."</string>
     <string name="incall_error_wfc_only_no_wireless_network" msgid="1782466780452640089">"ഒരു കോൾ വിളിക്കാൻ വയർലെസ്സ് നെറ്റ്‌വർക്കിലേക്ക് കണക്റ്റുചെയ്യുക."</string>
-    <!-- no translation found for incall_error_promote_wfc (106510757624022064) -->
-    <skip />
+    <string name="incall_error_promote_wfc" msgid="106510757624022064">"കോൾ ചെയ്യാൻ Wi-Fi കോളിംഗ് പ്രവർത്തനക്ഷമമാക്കുക."</string>
     <string name="emergency_enable_radio_dialog_title" msgid="4627849966634578257">"അടിയന്തര കോൾ"</string>
     <string name="emergency_enable_radio_dialog_message" msgid="207613549344420291">"റേഡിയോ ഓൺ ചെയ്യുന്നു…"</string>
     <string name="emergency_enable_radio_dialog_retry" msgid="5960061579996526883">"സേവനമൊന്നുമില്ല. വീണ്ടും ശ്രമിക്കുന്നു…"</string>
@@ -552,8 +550,7 @@
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"വൈബ്രേറ്റുചെയ്യുക"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"വൈബ്രേറ്റുചെയ്യുക"</string>
     <string name="voicemail_visual_voicemail_switch_title" msgid="5012622186976275457">"വിഷ്വൽ വോയ്‌സ്‌മെയിൽ"</string>
-    <!-- no translation found for voicemail_set_pin_dialog_title (2797924461029093837) -->
-    <skip />
+    <string name="voicemail_set_pin_dialog_title" msgid="2797924461029093837">"പിൻ സജ്ജമാക്കുക"</string>
     <string name="voicemail_change_pin_dialog_title" msgid="6035421908626121564">"പിൻ മാറ്റുക"</string>
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"ശബ്‌ദം"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"റിംഗ്ടോണും വൈബ്രേറ്റുചെയ്യലും"</string>
@@ -572,28 +569,16 @@
     <string name="message_decode_error" msgid="3456481534066924855">"സന്ദേശം ഡീകോഡുചെയ്യുമ്പോൾ ഒരു പിശകുണ്ടായി."</string>
     <string name="callFailed_cdma_activation" msgid="2307989779233262164">"ഒരു SIM കാർഡ് നിങ്ങളുടെ സേവനം സജീവമാക്കി, ഫോണിന്റെ റോമിംഗ് ശേഷികൾ അപ്‌ഡേറ്റ് ചെയ്തു."</string>
     <string name="callFailed_cdma_call_limit" msgid="1556916577171457086">"നിരവധി കോളുകൾ നിലവിൽ സജീവമായുണ്ട്. പുതിയ കോൾ വിളിക്കുന്നതിനുമുമ്പ് നിലവിലുള്ള കോളുകൾ അവസാനിപ്പിക്കുകയോ ലയിപ്പിക്കുകയോ ചെയ്യുക."</string>
-    <!-- no translation found for change_pin_title (7790232089699034029) -->
-    <skip />
-    <!-- no translation found for change_pin_continue_label (2135088662420163447) -->
-    <skip />
-    <!-- no translation found for change_pin_cancel_label (353535488390948596) -->
-    <skip />
-    <!-- no translation found for change_pin_ok_label (6204308560844889926) -->
-    <skip />
-    <!-- no translation found for change_pin_enter_old_pin_header (419179847657548887) -->
-    <skip />
-    <!-- no translation found for change_pin_enter_old_pin_hint (8579171678763615453) -->
-    <skip />
-    <!-- no translation found for change_pin_enter_new_pin_header (2611191814590251532) -->
-    <skip />
-    <!-- no translation found for change_pin_enter_new_pin_hint (2322940054329689309) -->
-    <skip />
-    <!-- no translation found for change_pin_confirm_pin_header (8113764019347322170) -->
-    <skip />
-    <!-- no translation found for change_pin_confirm_pins_dont_match (4795052654904027909) -->
-    <skip />
-    <!-- no translation found for change_pin_succeeded (2022852286442211151) -->
-    <skip />
-    <!-- no translation found for change_pin_system_error (8308462387154257840) -->
-    <skip />
+    <string name="change_pin_title" msgid="7790232089699034029">"വോയ്‌സ്മെയിൽ പിൻ മാറ്റുക"</string>
+    <string name="change_pin_continue_label" msgid="2135088662420163447">"തുടരുക"</string>
+    <string name="change_pin_cancel_label" msgid="353535488390948596">"റദ്ദാക്കുക"</string>
+    <string name="change_pin_ok_label" msgid="6204308560844889926">"ശരി"</string>
+    <string name="change_pin_enter_old_pin_header" msgid="419179847657548887">"നിങ്ങളുടെ പഴയ പിൻ സ്ഥിരീകരിക്കുക"</string>
+    <string name="change_pin_enter_old_pin_hint" msgid="8579171678763615453">"തുടരാൻ നിങ്ങളുടെ വോയ്‌സ്മെയിൽ പിൻ നൽകുക."</string>
+    <string name="change_pin_enter_new_pin_header" msgid="2611191814590251532">"പുതിയ PIN സജ്ജമാക്കുക"</string>
+    <string name="change_pin_enter_new_pin_hint" msgid="2322940054329689309">"പിന്നിൽ <xliff:g id="MIN">%1$d</xliff:g>-<xliff:g id="MAX">%2$d</xliff:g> അക്കങ്ങൾ ഉണ്ടായിരിക്കണം."</string>
+    <string name="change_pin_confirm_pin_header" msgid="8113764019347322170">"നിങ്ങളുടെ പിൻ സ്ഥിരീകരിക്കുക"</string>
+    <string name="change_pin_confirm_pins_dont_match" msgid="4795052654904027909">"PIN-കൾ പൊരുത്തപ്പെടുന്നില്ല"</string>
+    <string name="change_pin_succeeded" msgid="2022852286442211151">"വോയ്‌സ്‌മെയിൽ പിൻ അപ്‌ഡേറ്റുചെയ്‌തു"</string>
+    <string name="change_pin_system_error" msgid="8308462387154257840">"പിൻ സജ്ജമാക്കാൻ കഴിയുന്നില്ല"</string>
 </resources>

@@ -149,8 +149,7 @@
     <string name="voicemail_default" msgid="2001233554889016880">"သင့် မိုဘိုင်းဆက်သွယ်ရေး ဝန်ဆောင်မှုဌာန"</string>
     <string name="vm_change_pin_old_pin" msgid="7295220109886682573">"ပင်နံပါတ်အဟောင်း"</string>
     <string name="vm_change_pin_new_pin" msgid="5412922262839438097">"ပင်နံပါတ်အသစ်"</string>
-    <!-- no translation found for vm_change_pin_progress_message (3977357361934350336) -->
-    <skip />
+    <string name="vm_change_pin_progress_message" msgid="3977357361934350336">"ခဏစောင့်ပါ။"</string>
     <string name="vm_change_pin_error_too_short" msgid="5974971097302710497">"ပင်နံပါတ်အသစ်မှာ တိုလွန်းနေသည်။"</string>
     <string name="vm_change_pin_error_too_long" msgid="8476870806115051865">"ပင်နံပါတ်အသစ်မှာ ရှည်လွန်းနေသည်။"</string>
     <string name="vm_change_pin_error_too_weak" msgid="7883744811891784882">"ပင်နံပါတ်အသစ်မှာ အားနည်းလွန်းနေသည်။ အားကောင်းသောစကားဝှက်တစ်ခုတွင် အစဉ်လိုက်စာလုံးများ (သို့) ထပ်တလဲလဲသုံးထားသောကိန်းဂဏန်းများ မပါသင့်ပါ။"</string>
@@ -456,8 +455,7 @@
     <string name="incall_error_supp_service_hangup" msgid="7434513517153834426">"ဖုန်းခေါ်ခြင်း(များ)အား လွှတ်မပေးနိုင်ပါ။"</string>
     <string name="incall_error_supp_service_hold" msgid="7967020511232222078">"ခေါ်ဆိုမှုများကို ကိုင်ထား၍မရပါ။"</string>
     <string name="incall_error_wfc_only_no_wireless_network" msgid="1782466780452640089">"ဖုန်းခေါ်ရန် ကြိုးမဲကွန်ယက်တစ်ခုသို့ ချိတ်ဆက်ပါ။"</string>
-    <!-- no translation found for incall_error_promote_wfc (106510757624022064) -->
-    <skip />
+    <string name="incall_error_promote_wfc" msgid="106510757624022064">"ဖုန်းဆက်ရန် Wi-Fi ခေါ်ဆိုခြင်းကို ဖွင့်ပါ။"</string>
     <string name="emergency_enable_radio_dialog_title" msgid="4627849966634578257">"အရေးပေါ်ခေါ်ဆိုမှု"</string>
     <string name="emergency_enable_radio_dialog_message" msgid="207613549344420291">"ရေဒီယို ဖွင့်နေစဉ်…"</string>
     <string name="emergency_enable_radio_dialog_retry" msgid="5960061579996526883">"ဝန်ဆောင်မှု မရှိပါ။ ထပ်မံကြိုးစားပါ…"</string>
@@ -552,8 +550,7 @@
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"တုန်ခါခြင်း"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"တုန်ခါခြင်း"</string>
     <string name="voicemail_visual_voicemail_switch_title" msgid="5012622186976275457">"အမြင် အသံမေးလ်"</string>
-    <!-- no translation found for voicemail_set_pin_dialog_title (2797924461029093837) -->
-    <skip />
+    <string name="voicemail_set_pin_dialog_title" msgid="2797924461029093837">"ပင်နံပါတ်သတ်မှတ်ရန်"</string>
     <string name="voicemail_change_pin_dialog_title" msgid="6035421908626121564">"ပင်နံပါတ်ပြောင်းပါ"</string>
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"အသံ"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"ဖုန်းမြည်သံ &amp; တုန်ခါသံ"</string>
@@ -572,28 +569,16 @@
     <string name="message_decode_error" msgid="3456481534066924855">"စာကို ကုဒ်ဖွင့်နေစဉ် အမှားရှိခဲ့သည်။"</string>
     <string name="callFailed_cdma_activation" msgid="2307989779233262164">"SIM ကဒ်သည် သင့် ဖုန်းဝန်ဆောင်မှုအား အသက်သွင်းခဲ့ပြီး သင့်ဖုန်း၏ ကွန်ယက်ပြင်ပဒေတာသုံးနိုင်စွမ်းအား ပြင်ဆင်မွမ်းမံပြီးဖြစ်၏။"</string>
     <string name="callFailed_cdma_call_limit" msgid="1556916577171457086">"လက်ရှိခေါ်ဆိုမှုများ အလွန်များနေပါသည်။ ခေါ်ဆိုမှုအသစ်တစ်ခု မပြုလုပ်ခင် လက်ရှိဖုန်းခေါ်ဆိုမှုများကို အဆုံးသတ် (သို့) ပေါင်း လိုက်ပါ။"</string>
-    <!-- no translation found for change_pin_title (7790232089699034029) -->
-    <skip />
-    <!-- no translation found for change_pin_continue_label (2135088662420163447) -->
-    <skip />
-    <!-- no translation found for change_pin_cancel_label (353535488390948596) -->
-    <skip />
-    <!-- no translation found for change_pin_ok_label (6204308560844889926) -->
-    <skip />
-    <!-- no translation found for change_pin_enter_old_pin_header (419179847657548887) -->
-    <skip />
-    <!-- no translation found for change_pin_enter_old_pin_hint (8579171678763615453) -->
-    <skip />
-    <!-- no translation found for change_pin_enter_new_pin_header (2611191814590251532) -->
-    <skip />
-    <!-- no translation found for change_pin_enter_new_pin_hint (2322940054329689309) -->
-    <skip />
-    <!-- no translation found for change_pin_confirm_pin_header (8113764019347322170) -->
-    <skip />
-    <!-- no translation found for change_pin_confirm_pins_dont_match (4795052654904027909) -->
-    <skip />
-    <!-- no translation found for change_pin_succeeded (2022852286442211151) -->
-    <skip />
-    <!-- no translation found for change_pin_system_error (8308462387154257840) -->
-    <skip />
+    <string name="change_pin_title" msgid="7790232089699034029">"အသံမေးလ်ပင်နံပါတ် ပြောင်းရန်"</string>
+    <string name="change_pin_continue_label" msgid="2135088662420163447">"ဆက်လုပ်ရန်"</string>
+    <string name="change_pin_cancel_label" msgid="353535488390948596">"မလုပ်တော့"</string>
+    <string name="change_pin_ok_label" msgid="6204308560844889926">"အိုကေ"</string>
+    <string name="change_pin_enter_old_pin_header" msgid="419179847657548887">"သင့်ပင်နံပါတ်အဟောင်းကို အတည်ပြုရန်"</string>
+    <string name="change_pin_enter_old_pin_hint" msgid="8579171678763615453">"ဆက်လုပ်ရန် သင့်အသံမေးလ်ပင်နံပါတ် ထည့်ပါ။"</string>
+    <string name="change_pin_enter_new_pin_header" msgid="2611191814590251532">"ပင်နံပါတ်အသစ် သတ်မှတ်ရန်"</string>
+    <string name="change_pin_enter_new_pin_hint" msgid="2322940054329689309">"ပင်နံပါတ်တွင် ဂဏန်း <xliff:g id="MIN">%1$d</xliff:g>-<xliff:g id="MAX">%2$d</xliff:g> လုံး ပါရှိရမည်။"</string>
+    <string name="change_pin_confirm_pin_header" msgid="8113764019347322170">"ပင်နံပါတ်အတည်ပြုရန်"</string>
+    <string name="change_pin_confirm_pins_dont_match" msgid="4795052654904027909">"ပင်နံပါတ်များ မကိုက်ညီပါ"</string>
+    <string name="change_pin_succeeded" msgid="2022852286442211151">"အသံမေးလ်ပင်နံပါတ် အပ်ဒိတ်လုပ်ပြီးပါပြီ"</string>
+    <string name="change_pin_system_error" msgid="8308462387154257840">"ပင်နံပါတ်သတ်မှတ်၍ မရပါ"</string>
 </resources>

@@ -61,12 +61,9 @@
     <string name="advanced_settings" msgid="6622996380747040711">"Izborne postavke"</string>
     <string name="auth_username_title" msgid="8262491689004708265">"Korisničko ime za autentifikaciju"</string>
     <string name="auth_username_summary" msgid="941160241371436473">"Korisničko ime koje se upotrebljava za autentifikaciju"</string>
-    <!-- no translation found for default_preference_summary_username (8404717434312826082) -->
-    <skip />
-    <!-- no translation found for default_preference_summary_password (4464464672997027904) -->
-    <skip />
-    <!-- no translation found for default_preference_summary_domain_address (4871971710197441673) -->
-    <skip />
+    <string name="default_preference_summary_username" msgid="8404717434312826082">"&lt;Nije postavljeno&gt;"</string>
+    <string name="default_preference_summary_password" msgid="4464464672997027904">"&lt;Nije postavljeno&gt;"</string>
+    <string name="default_preference_summary_domain_address" msgid="4871971710197441673">"&lt;Nije postavljeno&gt;"</string>
     <string name="display_name_summary" msgid="7155076491675565407">"&lt;Isto kao korisničko ime&gt;"</string>
     <string name="optional_summary" msgid="2363105560396317624">"&lt;Izborno&gt;"</string>
     <string name="advanced_settings_show" msgid="7838761602853998622">"▷ Dodirnite da biste prikazali sve"</string>
