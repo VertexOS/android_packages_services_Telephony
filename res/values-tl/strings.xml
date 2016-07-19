@@ -149,8 +149,7 @@
     <string name="voicemail_default" msgid="2001233554889016880">"Ang iyong carrier"</string>
     <string name="vm_change_pin_old_pin" msgid="7295220109886682573">"Lumang PIN"</string>
     <string name="vm_change_pin_new_pin" msgid="5412922262839438097">"Bagong PIN"</string>
-    <!-- no translation found for vm_change_pin_progress_message (3977357361934350336) -->
-    <skip />
+    <string name="vm_change_pin_progress_message" msgid="3977357361934350336">"Pakihintay."</string>
     <string name="vm_change_pin_error_too_short" msgid="5974971097302710497">"Masyadong maikli ang bagong PIN."</string>
     <string name="vm_change_pin_error_too_long" msgid="8476870806115051865">"Masyadong mahaba ang bagong PIN."</string>
     <string name="vm_change_pin_error_too_weak" msgid="7883744811891784882">"Masyadong mahina ang bagong PIN. Ang isang malakas na password ay hindi dapat magkaroon ng tuloy-tuloy na sequence o paulit-ulit na mga digit."</string>
@@ -456,8 +455,7 @@
     <string name="incall_error_supp_service_hangup" msgid="7434513517153834426">"Hindi mailabas ang (mga) tawag."</string>
     <string name="incall_error_supp_service_hold" msgid="7967020511232222078">"Hindi makakapag-hold ng mga tawag."</string>
     <string name="incall_error_wfc_only_no_wireless_network" msgid="1782466780452640089">"Kumonekta sa isang wireless network upang makatawag."</string>
-    <!-- no translation found for incall_error_promote_wfc (106510757624022064) -->
-    <skip />
+    <string name="incall_error_promote_wfc" msgid="106510757624022064">"I-enable ang pagtawag sa Wi-Fi upang tumawag."</string>
     <string name="emergency_enable_radio_dialog_title" msgid="4627849966634578257">"Emergency na tawag"</string>
     <string name="emergency_enable_radio_dialog_message" msgid="207613549344420291">"Ino-on ang radyo…"</string>
     <string name="emergency_enable_radio_dialog_retry" msgid="5960061579996526883">"Walang serbisyo. Sinusubukang muli…"</string>
@@ -552,8 +550,7 @@
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"Mag-vibrate"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"Mag-vibrate"</string>
     <string name="voicemail_visual_voicemail_switch_title" msgid="5012622186976275457">"Visual Voicemail"</string>
-    <!-- no translation found for voicemail_set_pin_dialog_title (2797924461029093837) -->
-    <skip />
+    <string name="voicemail_set_pin_dialog_title" msgid="2797924461029093837">"Magtakda ng PIN"</string>
     <string name="voicemail_change_pin_dialog_title" msgid="6035421908626121564">"Baguhin ang PIN"</string>
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"Tunog"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"Ringtone at Pag-vibrate"</string>
@@ -572,28 +569,16 @@
     <string name="message_decode_error" msgid="3456481534066924855">"Nagkaroon ng error habang dine-decode ang mensahe."</string>
     <string name="callFailed_cdma_activation" msgid="2307989779233262164">"Na-activate ng isang SIM card ang iyong serbisyo at na-update ang mga kakayahang roaming ng iyong telepono."</string>
     <string name="callFailed_cdma_call_limit" msgid="1556916577171457086">"Masyadong maraming aktibong tawag. Mangyaring tapusin o pagsamahin ang mga umiiral na tawag bago gumawa ng bago."</string>
-    <!-- no translation found for change_pin_title (7790232089699034029) -->
-    <skip />
-    <!-- no translation found for change_pin_continue_label (2135088662420163447) -->
-    <skip />
-    <!-- no translation found for change_pin_cancel_label (353535488390948596) -->
-    <skip />
-    <!-- no translation found for change_pin_ok_label (6204308560844889926) -->
-    <skip />
-    <!-- no translation found for change_pin_enter_old_pin_header (419179847657548887) -->
-    <skip />
-    <!-- no translation found for change_pin_enter_old_pin_hint (8579171678763615453) -->
-    <skip />
-    <!-- no translation found for change_pin_enter_new_pin_header (2611191814590251532) -->
-    <skip />
-    <!-- no translation found for change_pin_enter_new_pin_hint (2322940054329689309) -->
-    <skip />
-    <!-- no translation found for change_pin_confirm_pin_header (8113764019347322170) -->
-    <skip />
-    <!-- no translation found for change_pin_confirm_pins_dont_match (4795052654904027909) -->
-    <skip />
-    <!-- no translation found for change_pin_succeeded (2022852286442211151) -->
-    <skip />
-    <!-- no translation found for change_pin_system_error (8308462387154257840) -->
-    <skip />
+    <string name="change_pin_title" msgid="7790232089699034029">"Baguhin ang PIN sa Voicemail"</string>
+    <string name="change_pin_continue_label" msgid="2135088662420163447">"Magpatuloy"</string>
+    <string name="change_pin_cancel_label" msgid="353535488390948596">"Kanselahin"</string>
+    <string name="change_pin_ok_label" msgid="6204308560844889926">"Ok"</string>
+    <string name="change_pin_enter_old_pin_header" msgid="419179847657548887">"Kumpirmahin ang luma mong PIN"</string>
+    <string name="change_pin_enter_old_pin_hint" msgid="8579171678763615453">"Ilagay ang iyong PIN sa voicemail upang magpatuloy."</string>
+    <string name="change_pin_enter_new_pin_header" msgid="2611191814590251532">"Magtakda ng bagong PIN"</string>
+    <string name="change_pin_enter_new_pin_hint" msgid="2322940054329689309">"Ang PIN ay dapat <xliff:g id="MIN">%1$d</xliff:g>-<xliff:g id="MAX">%2$d</xliff:g> (na) digit."</string>
+    <string name="change_pin_confirm_pin_header" msgid="8113764019347322170">"Kumpirmahin ang iyong PIN"</string>
+    <string name="change_pin_confirm_pins_dont_match" msgid="4795052654904027909">"Hindi tugma ang mga PIN"</string>
+    <string name="change_pin_succeeded" msgid="2022852286442211151">"In-update ang PIN sa voicemail"</string>
+    <string name="change_pin_system_error" msgid="8308462387154257840">"Hindi naitakda ang PIN"</string>
 </resources>

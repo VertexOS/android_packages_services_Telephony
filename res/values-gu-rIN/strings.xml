@@ -149,8 +149,7 @@
     <string name="voicemail_default" msgid="2001233554889016880">"તમારો કેરિઅર"</string>
     <string name="vm_change_pin_old_pin" msgid="7295220109886682573">"જૂનો PIN"</string>
     <string name="vm_change_pin_new_pin" msgid="5412922262839438097">"નવો PIN"</string>
-    <!-- no translation found for vm_change_pin_progress_message (3977357361934350336) -->
-    <skip />
+    <string name="vm_change_pin_progress_message" msgid="3977357361934350336">"કૃપા કરીને રાહ જુઓ."</string>
     <string name="vm_change_pin_error_too_short" msgid="5974971097302710497">"નવો PIN ખૂબ ટૂંકો છે."</string>
     <string name="vm_change_pin_error_too_long" msgid="8476870806115051865">"નવો PIN ખૂબ લાંબો છે."</string>
     <string name="vm_change_pin_error_too_weak" msgid="7883744811891784882">"નવો PIN ખૂબ નબળો છે. સશક્ત પાસવર્ડ સતત ક્રમ અથવા પુનરાવર્તિત અંકો ધરાવતો હોવો જોઇએ નહીં."</string>
@@ -456,8 +455,7 @@
     <string name="incall_error_supp_service_hangup" msgid="7434513517153834426">"કૉલ(લ્સ) રિલીઝ કરી શકતા નથી."</string>
     <string name="incall_error_supp_service_hold" msgid="7967020511232222078">"કૉલ્સને હોલ્ડ કરી શકતાં નથી."</string>
     <string name="incall_error_wfc_only_no_wireless_network" msgid="1782466780452640089">"કૉલ કરવા માટે વાયરલેસ નેટવર્કથી કનેક્ટ કરો."</string>
-    <!-- no translation found for incall_error_promote_wfc (106510757624022064) -->
-    <skip />
+    <string name="incall_error_promote_wfc" msgid="106510757624022064">"કૉલ કરવા માટે Wi-Fi કૉલિંગ સક્ષમ કરો."</string>
     <string name="emergency_enable_radio_dialog_title" msgid="4627849966634578257">"કટોકટીનો કૉલ"</string>
     <string name="emergency_enable_radio_dialog_message" msgid="207613549344420291">"રેડિઓ ચાલુ કરી રહ્યાં છે…"</string>
     <string name="emergency_enable_radio_dialog_retry" msgid="5960061579996526883">"કોઈ સેવા નથી. ફરી પ્રયાસ કરી રહ્યાં છે…"</string>
@@ -552,8 +550,7 @@
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"વાઇબ્રેટ"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"વાઇબ્રેટ"</string>
     <string name="voicemail_visual_voicemail_switch_title" msgid="5012622186976275457">"વિઝ્યુઅલ વૉઇસમેઇલ"</string>
-    <!-- no translation found for voicemail_set_pin_dialog_title (2797924461029093837) -->
-    <skip />
+    <string name="voicemail_set_pin_dialog_title" msgid="2797924461029093837">"PIN સેટ કરો"</string>
     <string name="voicemail_change_pin_dialog_title" msgid="6035421908626121564">"PIN બદલો"</string>
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"ધ્વનિ"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"રિંગટોન અને વાઇબ્રેટ"</string>
@@ -572,28 +569,16 @@
     <string name="message_decode_error" msgid="3456481534066924855">"સંદેશ ડીકોડિંગ કરતી વખતે ભૂલ આવી હતી."</string>
     <string name="callFailed_cdma_activation" msgid="2307989779233262164">"એક SIM કાર્ડ એ તમારી સેવા સક્રિય કરી છે અને તમારા ફોનની રોમિંગ ક્ષમતાઓને અપડેટ કરી છે."</string>
     <string name="callFailed_cdma_call_limit" msgid="1556916577171457086">"અહીં ઘણા બધા સક્રિય કૉલ્સ છે. કૃપા કરીને એક નવો કૉલ કરવા પહેલાં અસ્તિત્વમાંના કૉલ્સને સમાપ્ત કરો અથવા મર્જ કરો."</string>
-    <!-- no translation found for change_pin_title (7790232089699034029) -->
-    <skip />
-    <!-- no translation found for change_pin_continue_label (2135088662420163447) -->
-    <skip />
-    <!-- no translation found for change_pin_cancel_label (353535488390948596) -->
-    <skip />
-    <!-- no translation found for change_pin_ok_label (6204308560844889926) -->
-    <skip />
-    <!-- no translation found for change_pin_enter_old_pin_header (419179847657548887) -->
-    <skip />
-    <!-- no translation found for change_pin_enter_old_pin_hint (8579171678763615453) -->
-    <skip />
-    <!-- no translation found for change_pin_enter_new_pin_header (2611191814590251532) -->
-    <skip />
-    <!-- no translation found for change_pin_enter_new_pin_hint (2322940054329689309) -->
-    <skip />
-    <!-- no translation found for change_pin_confirm_pin_header (8113764019347322170) -->
-    <skip />
-    <!-- no translation found for change_pin_confirm_pins_dont_match (4795052654904027909) -->
-    <skip />
-    <!-- no translation found for change_pin_succeeded (2022852286442211151) -->
-    <skip />
-    <!-- no translation found for change_pin_system_error (8308462387154257840) -->
-    <skip />
+    <string name="change_pin_title" msgid="7790232089699034029">"વૉઇસમેઇલ PIN બદલો"</string>
+    <string name="change_pin_continue_label" msgid="2135088662420163447">"ચાલુ રાખો"</string>
+    <string name="change_pin_cancel_label" msgid="353535488390948596">"રદ કરો"</string>
+    <string name="change_pin_ok_label" msgid="6204308560844889926">"ઓકે"</string>
+    <string name="change_pin_enter_old_pin_header" msgid="419179847657548887">"તમારા જૂના PIN ની પુષ્ટિ કરો"</string>
+    <string name="change_pin_enter_old_pin_hint" msgid="8579171678763615453">"ચાલુ રાખવા માટે તમારો વૉઇસમેઇલ PIN દાખલ કરો."</string>
+    <string name="change_pin_enter_new_pin_header" msgid="2611191814590251532">"એક નવો PIN સેટ કરો"</string>
+    <string name="change_pin_enter_new_pin_hint" msgid="2322940054329689309">"PIN <xliff:g id="MIN">%1$d</xliff:g>-<xliff:g id="MAX">%2$d</xliff:g> અંકનો હોવો આવશ્યક છે."</string>
+    <string name="change_pin_confirm_pin_header" msgid="8113764019347322170">"તમારા PIN ની પુષ્ટિ કરો"</string>
+    <string name="change_pin_confirm_pins_dont_match" msgid="4795052654904027909">"PIN મેળ ખાતા નથી"</string>
+    <string name="change_pin_succeeded" msgid="2022852286442211151">"વૉઇસમેઇલ PIN અપડેટ કર્યો"</string>
+    <string name="change_pin_system_error" msgid="8308462387154257840">"PIN સેટ કરવામાં અસમર્થ"</string>
 </resources>

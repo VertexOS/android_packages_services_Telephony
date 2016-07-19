@@ -149,8 +149,7 @@
     <string name="voicemail_default" msgid="2001233554889016880">"Votre opérateur"</string>
     <string name="vm_change_pin_old_pin" msgid="7295220109886682573">"Ancien code"</string>
     <string name="vm_change_pin_new_pin" msgid="5412922262839438097">"Nouveau code"</string>
-    <!-- no translation found for vm_change_pin_progress_message (3977357361934350336) -->
-    <skip />
+    <string name="vm_change_pin_progress_message" msgid="3977357361934350336">"Veuillez patienter."</string>
     <string name="vm_change_pin_error_too_short" msgid="5974971097302710497">"Le nouveau code est trop court."</string>
     <string name="vm_change_pin_error_too_long" msgid="8476870806115051865">"Le nouveau code est trop long."</string>
     <string name="vm_change_pin_error_too_weak" msgid="7883744811891784882">"Le nouveau code n\'est pas suffisamment sécurisé. Pour qu\'un mot de passe soit sûr, il ne doit pas contenir de chiffres qui se suivent ou qui se répètent."</string>
@@ -456,8 +455,7 @@
     <string name="incall_error_supp_service_hangup" msgid="7434513517153834426">"Impossible de lancer les appels."</string>
     <string name="incall_error_supp_service_hold" msgid="7967020511232222078">"Impossible de mettre les appels en attente."</string>
     <string name="incall_error_wfc_only_no_wireless_network" msgid="1782466780452640089">"Connectez-vous à un réseau sans fil pour passer un appel."</string>
-    <!-- no translation found for incall_error_promote_wfc (106510757624022064) -->
-    <skip />
+    <string name="incall_error_promote_wfc" msgid="106510757624022064">"Pour passer un appel, veuillez activer les appels Wi-Fi."</string>
     <string name="emergency_enable_radio_dialog_title" msgid="4627849966634578257">"Appel d\'urgence"</string>
     <string name="emergency_enable_radio_dialog_message" msgid="207613549344420291">"Activation du signal radio..."</string>
     <string name="emergency_enable_radio_dialog_retry" msgid="5960061579996526883">"Aucun service disponible. Nouvelle tentative en cours…"</string>
@@ -552,8 +550,7 @@
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"Vibreur"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"Vibreur"</string>
     <string name="voicemail_visual_voicemail_switch_title" msgid="5012622186976275457">"Messagerie vocale visuelle"</string>
-    <!-- no translation found for voicemail_set_pin_dialog_title (2797924461029093837) -->
-    <skip />
+    <string name="voicemail_set_pin_dialog_title" msgid="2797924461029093837">"Définir un code"</string>
     <string name="voicemail_change_pin_dialog_title" msgid="6035421908626121564">"Modifier le code"</string>
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"Sonnerie"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"Sonnerie et vibreur"</string>
@@ -572,28 +569,16 @@
     <string name="message_decode_error" msgid="3456481534066924855">"Une erreur s\'est produite lors du décodage du message."</string>
     <string name="callFailed_cdma_activation" msgid="2307989779233262164">"Votre service a été activé et les fonctionnalités d\'itinérance de votre téléphone ont été mises à jour via une carte SIM."</string>
     <string name="callFailed_cdma_call_limit" msgid="1556916577171457086">"Il y a trop d\'appels actifs. Pour passer un autre appel, vous devez mettre fin aux appels existants ou fusionner ces derniers."</string>
-    <!-- no translation found for change_pin_title (7790232089699034029) -->
-    <skip />
-    <!-- no translation found for change_pin_continue_label (2135088662420163447) -->
-    <skip />
-    <!-- no translation found for change_pin_cancel_label (353535488390948596) -->
-    <skip />
-    <!-- no translation found for change_pin_ok_label (6204308560844889926) -->
-    <skip />
-    <!-- no translation found for change_pin_enter_old_pin_header (419179847657548887) -->
-    <skip />
-    <!-- no translation found for change_pin_enter_old_pin_hint (8579171678763615453) -->
-    <skip />
-    <!-- no translation found for change_pin_enter_new_pin_header (2611191814590251532) -->
-    <skip />
-    <!-- no translation found for change_pin_enter_new_pin_hint (2322940054329689309) -->
-    <skip />
-    <!-- no translation found for change_pin_confirm_pin_header (8113764019347322170) -->
-    <skip />
-    <!-- no translation found for change_pin_confirm_pins_dont_match (4795052654904027909) -->
-    <skip />
-    <!-- no translation found for change_pin_succeeded (2022852286442211151) -->
-    <skip />
-    <!-- no translation found for change_pin_system_error (8308462387154257840) -->
-    <skip />
+    <string name="change_pin_title" msgid="7790232089699034029">"Modifier le code de la boîte vocale"</string>
+    <string name="change_pin_continue_label" msgid="2135088662420163447">"Continuer"</string>
+    <string name="change_pin_cancel_label" msgid="353535488390948596">"Annuler"</string>
+    <string name="change_pin_ok_label" msgid="6204308560844889926">"OK"</string>
+    <string name="change_pin_enter_old_pin_header" msgid="419179847657548887">"Confirmer votre ancien code"</string>
+    <string name="change_pin_enter_old_pin_hint" msgid="8579171678763615453">"Pour continuer, saisissez le code de votre boîte vocale."</string>
+    <string name="change_pin_enter_new_pin_header" msgid="2611191814590251532">"Définir un nouveau code"</string>
+    <string name="change_pin_enter_new_pin_hint" msgid="2322940054329689309">"Le code ne peut être composé que de chiffres de <xliff:g id="MIN">%1$d</xliff:g> à <xliff:g id="MAX">%2$d</xliff:g>."</string>
+    <string name="change_pin_confirm_pin_header" msgid="8113764019347322170">"Confirmer votre code"</string>
+    <string name="change_pin_confirm_pins_dont_match" msgid="4795052654904027909">"Les codes ne correspondent pas."</string>
+    <string name="change_pin_succeeded" msgid="2022852286442211151">"Le code de votre boîte vocale a été mis à jour."</string>
+    <string name="change_pin_system_error" msgid="8308462387154257840">"Impossible de définir le code"</string>
 </resources>
