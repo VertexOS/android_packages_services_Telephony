@@ -40,6 +40,7 @@ import android.provider.Settings;
 import android.telecom.PhoneAccountHandle;
 import android.telecom.TelecomManager;
 import android.telephony.CarrierConfigManager;
+import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
@@ -185,6 +186,23 @@ public class CallFeaturesSetting extends PreferenceActivity
         mTelecomManager = TelecomManager.from(this);
     }
 
+    private final PhoneStateListener mPhoneStateListener = new PhoneStateListener() {
+        @Override
+        public void onCallStateChanged(int state, String incomingNumber) {
+            if (DBG) log("PhoneStateListener onCallStateChanged: state is " + state);
+            if (mEnableVideoCalling != null) {
+                mEnableVideoCalling.setEnabled(state == TelephonyManager.CALL_STATE_IDLE);
+            }
+        }
+    };
+
+    @Override
+    protected void onPause() {
+        TelephonyManager telephonyManager =
+                (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+        telephonyManager.listen(mPhoneStateListener, PhoneStateListener.LISTEN_NONE);
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -198,6 +216,7 @@ public class CallFeaturesSetting extends PreferenceActivity
 
         TelephonyManager telephonyManager =
                 (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+        telephonyManager.listen(mPhoneStateListener, PhoneStateListener.LISTEN_CALL_STATE);
 
         Preference phoneAccountSettingsPreference = findPreference(PHONE_ACCOUNT_SETTINGS_KEY);
         if (telephonyManager.isMultiSimEnabled() || !SipUtil.isVoipSupported(mPhone.getContext())) {
