@@ -89,6 +89,8 @@ abstract class TelephonyConnection extends Connection {
     private static final int MSG_CDMA_VOICE_PRIVACY_ON = 15;
     private static final int MSG_CDMA_VOICE_PRIVACY_OFF = 16;
 
+    private static final String CONF_CALL_SUBSTRING = "conf-factory";
+
     private final Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -708,6 +710,9 @@ abstract class TelephonyConnection extends Connection {
             if (!Objects.equals(address, getAddress()) ||
                     presentation != getAddressPresentation()) {
                 Log.v(this, "updateAddress, address changed");
+                if (address != null && address.toString().contains(CONF_CALL_SUBSTRING)) {
+                    address = null;
+                }
                 setAddress(address, presentation);
             }
 
