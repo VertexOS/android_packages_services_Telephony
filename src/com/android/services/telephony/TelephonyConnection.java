@@ -23,6 +23,7 @@ import android.os.AsyncResult;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.os.PersistableBundle;
 import android.telecom.CallAudioState;
 import android.telecom.ConferenceParticipant;
 import android.telecom.Connection;
@@ -31,6 +32,7 @@ import android.telecom.PhoneAccountHandle;
 import android.telecom.StatusHints;
 import android.telecom.TelecomManager;
 import android.telecom.VideoProfile;
+import android.telephony.CarrierConfigManager;
 import android.telephony.PhoneNumberUtils;
 import android.util.Pair;
 
@@ -47,6 +49,7 @@ import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.imsphone.ImsPhone;
 import com.android.internal.telephony.imsphone.ImsPhoneCallTracker;
 import com.android.phone.ImsUtil;
+import com.android.phone.PhoneGlobals;
 import com.android.phone.PhoneUtils;
 import com.android.phone.R;
 
@@ -168,9 +171,11 @@ abstract class TelephonyConnection extends Connection {
                     setVideoState(videoState);
 
                     // A change to the video state of the call can influence whether or not it
-                    // can be part of a conference and whether another call can be added.
+                    // can be part of a conference, whether another call can be added, and
+                    // whether the call should have the HD audio property set.
                     refreshConferenceSupported();
                     refreshDisableAddCall();
+                    updateConnectionProperties();
                     break;
 
                 case MSG_SET_VIDEO_PROVIDER:
@@ -701,7 +706,8 @@ abstract class TelephonyConnection extends Connection {
     protected final void updateConnectionProperties() {
         int newProperties = buildConnectionProperties();
 
-        newProperties = changeBitmask(newProperties, PROPERTY_HIGH_DEF_AUDIO, mHasHighDefAudio);
+        newProperties = changeBitmask(newProperties, PROPERTY_HIGH_DEF_AUDIO,
+                hasHighDefAudioProperty());
         newProperties = changeBitmask(newProperties, PROPERTY_WIFI, mIsWifi);
         newProperties = changeBitmask(newProperties, PROPERTY_IS_EXTERNAL_CALL,
                 isExternalConnection());
@@ -864,6 +870,38 @@ abstract class TelephonyConnection extends Connection {
             return true;
         }
         return false;
+    }
+
+    private boolean hasHighDefAudioProperty() {
+        if (!mHasHighDefAudio) {
+            return false;
+        }
+
+        boolean isVideoCall = VideoProfile.isVideo(getVideoState());
+
+        PersistableBundle b = getCarrierConfig();
+        boolean canWifiCallsBeHdAudio =
+                b != null && b.getBoolean(CarrierConfigManager.KEY_WIFI_CALLS_CAN_BE_HD_AUDIO);
+        boolean canVideoCallsBeHdAudio =
+                b != null && b.getBoolean(CarrierConfigManager.KEY_VIDEO_CALLS_CAN_BE_HD_AUDIO);
+
+        if (isVideoCall && !canVideoCallsBeHdAudio) {
+            return false;
+        }
+
+        if (mIsWifi && !canWifiCallsBeHdAudio) {
+            return false;
+        }
+
+        return true;
+    }
+
+    private PersistableBundle getCarrierConfig() {
+        Phone phone = getPhone();
+        if (phone == null) {
+            return null;
+        }
+        return PhoneGlobals.getInstance().getCarrierConfigForSubId(phone.getSubId());
     }
 
     /**
