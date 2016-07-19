@@ -3209,6 +3209,28 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     }
 
     /**
+     * Return the Preferred Roaming List Version.
+     *
+     * @param subId the subscription ID that this request applies to.
+     * @return PRLVersion or null if error.
+     */
+    @Override
+    public String getCdmaPrlVersion(int subId) {
+        enforceReadPrivilegedPermission();
+        Phone phone = getPhone(subId);
+        if (phone == null) {
+            return null;
+        }
+        String cdmaPrlVersion = null;
+        try {
+            cdmaPrlVersion = phone.getCdmaPrlVersion();
+        } catch (Exception e) {
+            Log.e(LOG_TAG, "Not getting PRLVersion", e);
+        }
+        return cdmaPrlVersion;
+    }
+
+    /**
      * Get snapshot of Telephony histograms
      * @return List of Telephony histograms
      * @hide
