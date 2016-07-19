@@ -348,7 +348,7 @@ final class TelecomAccountRegistry {
         }
 
         /**
-         * @return The {@linke PhoneAccount} extras associated with the current subscription.
+         * @return The {@link PhoneAccount} extras associated with the current subscription.
          */
         private Bundle getPhoneAccountExtras() {
             PersistableBundle b =
