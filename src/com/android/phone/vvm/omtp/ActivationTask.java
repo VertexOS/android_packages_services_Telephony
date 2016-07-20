@@ -20,7 +20,10 @@ import android.annotation.Nullable;
 import android.annotation.WorkerThread;
 import android.content.Context;
 import android.content.Intent;
+import android.database.ContentObserver;
 import android.os.Bundle;
+import android.provider.Settings;
+import android.provider.Settings.Global;
 import android.telecom.PhoneAccountHandle;
 import com.android.phone.Assert;
 import com.android.phone.PhoneGlobals;
@@ -34,6 +37,8 @@ import com.android.phone.vvm.omtp.sync.OmtpVvmSyncService;
 import com.android.phone.vvm.omtp.sync.SyncTask;
 import com.android.phone.vvm.omtp.utils.PhoneAccountHandleConverter;
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeoutException;
 
@@ -46,12 +51,15 @@ import java.util.concurrent.TimeoutException;
  */
 public class ActivationTask extends BaseTask {
 
-    private static final String TAG = "ActivationTask";
+    private static final String TAG = "VvmActivationTask";
 
     private static final int RETRY_TIMES = 4;
     private static final int RETRY_INTERVAL_MILLIS = 5_000;
 
     private static final String EXTRA_MESSAGE_DATA_BUNDLE = "extra_message_data_bundle";
+
+    @Nullable
+    private static DeviceProvisionedObserver sDeviceProvisionedObserver;
 
     private Bundle mData;
 
@@ -60,7 +68,24 @@ public class ActivationTask extends BaseTask {
         addPolicy(new RetryPolicy(RETRY_TIMES, RETRY_INTERVAL_MILLIS));
     }
 
+    /**
+     * Has the user gone through the setup wizard yet.
+     */
+    private static boolean isDeviceProvisioned(Context context) {
+        return Settings.Global.getInt(
+            context.getContentResolver(), Settings.Global.DEVICE_PROVISIONED, 0) == 1;
+    }
+
     public static void start(Context context, int subId, @Nullable Bundle data) {
+        if (!isDeviceProvisioned(context)) {
+            VvmLog.i(TAG, "Activation requested while device is not provisioned, postponing");
+            // Activation might need information such as system language to be set, so wait until
+            // the setup wizard is finished. The data bundle from the SMS will be re-requested upon
+            // activation.
+            queueActivationAfterProvisioned(context, subId);
+            return;
+        }
+
         Intent intent = BaseTask.createIntent(context, ActivationTask.class, subId);
         if (data != null) {
             intent.putExtra(EXTRA_MESSAGE_DATA_BUNDLE, data);
@@ -161,6 +186,43 @@ public class ActivationTask extends BaseTask {
             PhoneGlobals.getInstance().clearMwiIndicator(subId);
         } else {
             VvmLog.e(TAG, "Visual voicemail not available for subscriber.");
+        }
+    }
+
+    private static void queueActivationAfterProvisioned(Context context, int subId) {
+        if (sDeviceProvisionedObserver == null) {
+            sDeviceProvisionedObserver = new DeviceProvisionedObserver(context);
+            context.getContentResolver()
+                .registerContentObserver(Settings.Global.getUriFor(Global.DEVICE_PROVISIONED),
+                    false, sDeviceProvisionedObserver);
+        }
+        sDeviceProvisionedObserver.addSubId(subId);
+    }
+
+    private static class DeviceProvisionedObserver extends ContentObserver {
+
+        private final Context mContext;
+        private final Set<Integer> mSubIds = new HashSet<>();
+
+        private DeviceProvisionedObserver(Context context) {
+            super(null);
+            mContext = context;
+        }
+
+        public void addSubId(int subId) {
+            mSubIds.add(subId);
+        }
+
+        @Override
+        public void onChange(boolean selfChange) {
+            if (isDeviceProvisioned(mContext)) {
+                VvmLog.i(TAG, "device provisioned, resuming activation");
+                for (int subId : mSubIds) {
+                    start(mContext, subId, null);
+                }
+                mContext.getContentResolver().unregisterContentObserver(sDeviceProvisionedObserver);
+                sDeviceProvisionedObserver = null;
+            }
         }
     }
 }
