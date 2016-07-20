@@ -20,6 +20,7 @@ import android.net.Network;
 import android.net.Uri;
 import android.provider.VoicemailContract;
 import android.telecom.PhoneAccountHandle;
+import android.telecom.TelecomManager;
 import android.telecom.Voicemail;
 import android.text.TextUtils;
 import com.android.phone.PhoneUtils;
@@ -33,6 +34,7 @@ import com.android.phone.vvm.omtp.imap.ImapHelper;
 import com.android.phone.vvm.omtp.imap.ImapHelper.InitializingException;
 import com.android.phone.vvm.omtp.scheduling.BaseTask;
 import com.android.phone.vvm.omtp.sync.VvmNetworkRequest.NetworkWrapper;
+import com.android.phone.vvm.omtp.sync.VvmNetworkRequest.RequestFailedException;
 import com.android.phone.vvm.omtp.utils.PhoneAccountHandleConverter;
 import java.util.HashMap;
 import java.util.List;
@@ -93,6 +95,22 @@ public class OmtpVvmSyncService {
             for (PhoneAccountHandle source : sources) {
                 setupAndSendRequest(task, source, null, action);
             }
+            activateUnactivatedAccounts();
+        }
+    }
+
+    private void activateUnactivatedAccounts() {
+        List<PhoneAccountHandle> accounts =
+            mContext.getSystemService(TelecomManager.class).getCallCapablePhoneAccounts();
+        for (PhoneAccountHandle phoneAccount : accounts) {
+            if (!VisualVoicemailSettingsUtil.isEnabled(mContext, phoneAccount)) {
+                continue;
+            }
+            int subId = PhoneAccountHandleConverter.toSubId(phoneAccount);
+            if (!OmtpVvmSourceManager.getInstance(mContext).isVvmSourceRegistered(phoneAccount)) {
+                VvmLog.i(TAG, "Unactivated account " + phoneAccount + " found, activating");
+                ActivationTask.start(mContext, subId, null);
+            }
         }
     }
 
@@ -116,6 +134,9 @@ public class OmtpVvmSyncService {
                 return;
             }
             doSync(task, network.get(), phoneAccount, voicemail, action);
+        } catch (RequestFailedException e) {
+            config.handleEvent(OmtpEvents.DATA_NO_CONNECTION_CELLULAR_REQUIRED);
+            task.fail();
         }
     }
 

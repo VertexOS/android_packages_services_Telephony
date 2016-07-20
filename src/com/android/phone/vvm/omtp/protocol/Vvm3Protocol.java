@@ -23,7 +23,6 @@ import android.os.Bundle;
 import android.telecom.PhoneAccountHandle;
 import android.telephony.SmsManager;
 import android.text.TextUtils;
-
 import com.android.phone.common.mail.MessagingException;
 import com.android.phone.settings.VisualVoicemailSettingsUtil;
 import com.android.phone.settings.VoicemailChangePinActivity;
@@ -40,7 +39,7 @@ import com.android.phone.vvm.omtp.sms.StatusMessage;
 import com.android.phone.vvm.omtp.sms.Vvm3MessageSender;
 import com.android.phone.vvm.omtp.sync.VvmNetworkRequest;
 import com.android.phone.vvm.omtp.sync.VvmNetworkRequest.NetworkWrapper;
-
+import com.android.phone.vvm.omtp.sync.VvmNetworkRequest.RequestFailedException;
 import java.io.IOException;
 import java.security.SecureRandom;
 import java.util.Locale;
@@ -121,7 +120,7 @@ public class Vvm3Protocol extends VisualVoicemailProtocol {
                     new VisualVoicemailPreferences(config.getContext(), phoneAccountHandle);
             message.putStatus(prefs.edit()).apply();
 
-            startProvisionNewUser(phoneAccountHandle, config, message);
+            startProvisionNewUser(task, phoneAccountHandle, config, message);
         } else if (OmtpConstants.SUBSCRIBER_PROVISIONED.equals(message.getProvisioningStatus())) {
             VvmLog.i(TAG, "User provisioned but not activated, disabling VVM");
             VisualVoicemailSettingsUtil
@@ -183,7 +182,7 @@ public class Vvm3Protocol extends VisualVoicemailProtocol {
         return bundle;
     }
 
-    private void startProvisionNewUser(PhoneAccountHandle phoneAccountHandle,
+    private void startProvisionNewUser(ActivationTask task, PhoneAccountHandle phoneAccountHandle,
             OmtpVvmCarrierConfigHelper config, StatusMessage message) {
         try (NetworkWrapper wrapper = VvmNetworkRequest.getNetwork(config, phoneAccountHandle)) {
             Network network = wrapper.get();
@@ -215,9 +214,12 @@ public class Vvm3Protocol extends VisualVoicemailProtocol {
                 }
             } catch (InitializingException | MessagingException | IOException e) {
                 config.handleEvent(OmtpEvents.VVM3_NEW_USER_SETUP_FAILED);
+                task.fail();
                 VvmLog.e(TAG, e.toString());
             }
-
+        } catch (RequestFailedException e) {
+            config.handleEvent(OmtpEvents.DATA_NO_CONNECTION_CELLULAR_REQUIRED);
+            task.fail();
         }
 
     }

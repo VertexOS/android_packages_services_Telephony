@@ -19,7 +19,6 @@ package com.android.phone.vvm.omtp;
 import android.content.Context;
 import android.provider.VoicemailContract;
 import android.provider.VoicemailContract.Status;
-
 import com.android.phone.VoicemailStatus;
 import com.android.phone.vvm.omtp.OmtpEvents.Type;
 
@@ -58,8 +57,12 @@ public class DefaultOmtpEventHandler {
                         .apply();
                 break;
             case CONFIG_ACTIVATING:
+                // Wipe all errors from the last activation. All errors shown should be new errors
+                // for this activation.
                 VoicemailStatus.edit(context, config.getSubId())
-                        .setConfigurationState(Status.CONFIGURATION_STATE_CONFIGURING).apply();
+                        .setConfigurationState(Status.CONFIGURATION_STATE_CONFIGURING)
+                        .setDataChannelState(Status.DATA_CHANNEL_STATE_OK)
+                        .setNotificationChannelState(Status.NOTIFICATION_CHANNEL_STATE_OK).apply();
                 break;
             case CONFIG_STATUS_SMS_TIME_OUT:
                 VoicemailStatus.edit(context, config.getSubId())

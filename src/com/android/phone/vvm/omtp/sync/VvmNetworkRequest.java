@@ -17,11 +17,10 @@
 package com.android.phone.vvm.omtp.sync;
 
 import android.net.Network;
+import android.support.annotation.NonNull;
 import android.telecom.PhoneAccountHandle;
-
 import com.android.phone.vvm.omtp.OmtpVvmCarrierConfigHelper;
 import com.android.phone.vvm.omtp.VvmLog;
-
 import java.io.Closeable;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
@@ -59,15 +58,24 @@ public class VvmNetworkRequest {
         }
     }
 
+    public static class RequestFailedException extends Exception {
+
+        private RequestFailedException(Throwable cause) {
+            super(cause);
+        }
+    }
+
+    @NonNull
     public static NetworkWrapper getNetwork(OmtpVvmCarrierConfigHelper config,
-            PhoneAccountHandle handle) {
+            PhoneAccountHandle handle) throws RequestFailedException {
         FutureNetworkRequestCallback callback = new FutureNetworkRequestCallback(config, handle);
         callback.requestNetwork();
         try {
             return callback.getFuture().get();
         } catch (InterruptedException | ExecutionException e) {
+            callback.releaseNetwork();
             VvmLog.e(TAG, "can't get future network", e);
-            return null;
+            throw new RequestFailedException(e);
         }
     }
 
