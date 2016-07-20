@@ -598,7 +598,8 @@ public class ImsConference extends Conference {
                         new ArrayList<>(Arrays.asList(imsPhone.getCurrentSubscriberUris())));
             }
 
-            mConferenceHostAddress = (Uri[])hostAddresses.toArray();
+            mConferenceHostAddress = new Uri[hostAddresses.size()];
+            mConferenceHostAddress = hostAddresses.toArray(mConferenceHostAddress);
         }
 
         mConferenceHost.addConnectionListener(mConferenceHostListener);
