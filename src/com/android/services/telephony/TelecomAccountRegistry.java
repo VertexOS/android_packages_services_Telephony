@@ -64,9 +64,11 @@ final class TelecomAccountRegistry {
 
     final class AccountEntry implements PstnPhoneCapabilitiesNotifier.Listener {
         private final Phone mPhone;
-        private final PhoneAccount mAccount;
+        private PhoneAccount mAccount;
         private final PstnIncomingCallNotifier mIncomingCallNotifier;
         private final PstnPhoneCapabilitiesNotifier mPhoneCapabilitiesNotifier;
+        private boolean mIsEmergency;
+        private boolean mIsDummy;
         private boolean mIsVideoCapable;
         private boolean mIsVideoPresenceSupported;
         private boolean mIsVideoPauseSupported;
@@ -76,6 +78,8 @@ final class TelecomAccountRegistry {
 
         AccountEntry(Phone phone, boolean isEmergency, boolean isDummy) {
             mPhone = phone;
+            mIsEmergency = isEmergency;
+            mIsDummy = isDummy;
             mAccount = registerPstnPhoneAccount(isEmergency, isDummy);
             Log.i(this, "Registered phoneAccount: %s with handle: %s",
                     mAccount, mAccount.getAccountHandle());
@@ -376,6 +380,16 @@ final class TelecomAccountRegistry {
         @Override
         public void onVideoCapabilitiesChanged(boolean isVideoCapable) {
             mIsVideoCapable = isVideoCapable;
+            synchronized (mAccountsLock) {
+                if (!mAccounts.contains(this)) {
+                    // Account has already been torn down, don't try to register it again.
+                    // This handles the case where teardown has already happened, and we got a video
+                    // update that lost the race for the mAccountsLock.  In such a scenario by the
+                    // time we get here, the original phone account could have been torn down.
+                    return;
+                }
+                mAccount = registerPstnPhoneAccount(mIsEmergency, mIsDummy);
+            }
         }
 
         /**
