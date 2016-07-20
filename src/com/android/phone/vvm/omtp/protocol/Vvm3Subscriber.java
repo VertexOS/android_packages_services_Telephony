@@ -33,6 +33,7 @@ import com.android.phone.vvm.omtp.OmtpVvmCarrierConfigHelper;
 import com.android.phone.vvm.omtp.VvmLog;
 import com.android.phone.vvm.omtp.sync.VvmNetworkRequest;
 import com.android.phone.vvm.omtp.sync.VvmNetworkRequest.NetworkWrapper;
+import com.android.phone.vvm.omtp.sync.VvmNetworkRequest.RequestFailedException;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -162,6 +163,9 @@ public class Vvm3Subscriber {
             mRequestQueue = Volley
                     .newRequestQueue(mHelper.getContext(), new NetworkSpecifiedHurlStack(network));
             processSubscription();
+        } catch (RequestFailedException e) {
+            mHelper.handleEvent(OmtpEvents.VVM3_VMG_CONNECTION_FAILED);
+            mTask.fail();
         }
     }
 
