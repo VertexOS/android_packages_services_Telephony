@@ -647,7 +647,7 @@ public class ImsConference extends Conference {
                 if (!mConferenceParticipantConnections.containsKey(userEntity)) {
                     // Some carriers will also include the conference host in the CEP.  We will
                     // filter that out here.
-                    if (!isParticipantHost(mConferenceHostAddress, userEntity)) {
+                    if (!isParticipantHost(mConferenceHostAddress, participant.getHandle())) {
                         createConferenceParticipantConnection(parent, participant);
                         newParticipants.add(participant);
                         newParticipantsAdded = true;
