@@ -364,6 +364,28 @@ abstract class TelephonyConnection extends Connection {
         public void onExitedEcmMode() {
             handleExitedEcmMode();
         }
+
+        /**
+         * Called from {@link ImsPhoneCallTracker} when a request to pull an external call has
+         * failed.
+         * @param externalConnection
+         */
+        @Override
+        public void onCallPullFailed(com.android.internal.telephony.Connection externalConnection) {
+            if (externalConnection == null) {
+                return;
+            }
+
+            Log.i(this, "onCallPullFailed - pull failed; swapping back to call: %s",
+                    externalConnection);
+
+            // Swap the ImsPhoneConnection we used to do the pull for the ImsExternalConnection
+            // which originally represented the call.
+            setOriginalConnection(externalConnection);
+
+            // Set our state to active again since we're no longer pulling.
+            setActiveInternal();
+        }
     };
 
     protected com.android.internal.telephony.Connection mOriginalConnection;
