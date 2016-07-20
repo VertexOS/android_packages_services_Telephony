@@ -190,6 +190,12 @@ public class TelephonyConnectionService extends ConnectionService {
             mEmergencyCallHelper.enableEmergencyCalling(new EmergencyCallStateListener.Callback() {
                 @Override
                 public void onComplete(EmergencyCallStateListener listener, boolean isRadioReady) {
+                    // Make sure the Call has not already been canceled by the user.
+                    if (emergencyConnection.getState() == Connection.STATE_DISCONNECTED) {
+                        Log.i(this, "Emergency call disconnected before the outgoing call was " +
+                                "placed. Skipping emergency call placement.");
+                        return;
+                    }
                     if (isRadioReady) {
                         // Get the right phone object since the radio has been turned on
                         // successfully.
