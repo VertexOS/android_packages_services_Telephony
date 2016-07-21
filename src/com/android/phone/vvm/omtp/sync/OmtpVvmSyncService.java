@@ -127,6 +127,7 @@ public class OmtpVvmSyncService {
         }
 
         OmtpVvmCarrierConfigHelper config = new OmtpVvmCarrierConfigHelper(mContext, subId);
+        config.handleEvent(OmtpEvents.DATA_IMAP_OPERATION_STARTED);
         try (NetworkWrapper network = VvmNetworkRequest.getNetwork(config, phoneAccount)) {
             if (network == null) {
                 VvmLog.e(TAG, "unable to acquire network");

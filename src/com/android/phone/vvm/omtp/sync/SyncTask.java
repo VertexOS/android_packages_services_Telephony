@@ -19,7 +19,6 @@ package com.android.phone.vvm.omtp.sync;
 import android.content.Context;
 import android.content.Intent;
 import android.telecom.PhoneAccountHandle;
-
 import com.android.phone.vvm.omtp.scheduling.BaseTask;
 import com.android.phone.vvm.omtp.scheduling.MinimalIntervalPolicy;
 import com.android.phone.vvm.omtp.scheduling.RetryPolicy;
@@ -30,7 +29,8 @@ import com.android.phone.vvm.omtp.utils.PhoneAccountHandleConverter;
  */
 public class SyncTask extends BaseTask {
 
-    private static final int RETRY_TIMES = 2;
+    // Try sync for a total of 5 times, should take around 5 minutes before finally giving up.
+    private static final int RETRY_TIMES = 4;
     private static final int RETRY_INTERVAL_MILLIS = 5_000;
     private static final int MINIMAL_INTERVAL_MILLIS = 60_000;
 
