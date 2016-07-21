@@ -17,7 +17,6 @@
 package com.android.phone.vvm.omtp;
 
 import android.annotation.IntDef;
-
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
@@ -36,9 +35,12 @@ public enum OmtpEvents {
     CONFIG_DEFAULT_PIN_REPLACED(Type.CONFIGURATION, true),
     CONFIG_ACTIVATING(Type.CONFIGURATION, true),
     CONFIG_STATUS_SMS_TIME_OUT(Type.CONFIGURATION),
+    CONFIG_SERVICE_NOT_AVAILABLE(Type.CONFIGURATION),
 
     // Data channel State
 
+    // A new sync has started, old errors in data channel should be cleared.
+    DATA_IMAP_OPERATION_STARTED(Type.DATA_CHANNEL, true),
     // Successfully downloaded/uploaded data from the server, which means the data channel is clear.
     DATA_IMAP_OPERATION_COMPLETED(Type.DATA_CHANNEL, true),
     // The port provided in the STATUS SMS is invalid.

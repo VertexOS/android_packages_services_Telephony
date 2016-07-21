@@ -209,6 +209,10 @@ public class VoicemailChangePinActivity extends Activity implements OnClickListe
             @Override
             public void onInputChanged(VoicemailChangePinActivity activity) {
                 String password = activity.getCurrentPasswordInput();
+                if (password.length() == 0) {
+                    activity.setNextEnabled(false);
+                    return;
+                }
                 CharSequence error = activity.validatePassword(password);
                 if (error != null) {
                     activity.mErrorText.setText(error);
@@ -246,7 +250,10 @@ public class VoicemailChangePinActivity extends Activity implements OnClickListe
 
             @Override
             public void onInputChanged(VoicemailChangePinActivity activity) {
-
+                if (activity.getCurrentPasswordInput().length() == 0) {
+                    activity.setNextEnabled(false);
+                    return;
+                }
                 if (activity.getCurrentPasswordInput().equals(activity.mFirstPin)) {
                     activity.setNextEnabled(true);
                     activity.mErrorText.setText(null);
@@ -272,6 +279,7 @@ public class VoicemailChangePinActivity extends Activity implements OnClickListe
                             Toast.LENGTH_SHORT).show();
                 } else {
                     CharSequence message = activity.getChangePinResultMessage(result);
+                    VvmLog.i(TAG, "Change PIN failed: " + message);
                     activity.showError(message);
                     if (result == OmtpConstants.CHANGE_PIN_MISMATCH) {
                         // Somehow the PIN has changed, prompt to enter the old PIN again.
@@ -595,6 +603,7 @@ public class VoicemailChangePinActivity extends Activity implements OnClickListe
                         helper.changePin(mOldPin, mNewPin);
                 sendResult(result);
             } catch (InitializingException | MessagingException e) {
+                VvmLog.e(TAG, "ChangePinNetworkRequestCallback: onAvailable: ", e);
                 sendResult(OmtpConstants.CHANGE_PIN_SYSTEM_ERROR);
             }
         }
@@ -606,6 +615,7 @@ public class VoicemailChangePinActivity extends Activity implements OnClickListe
         }
 
         private void sendResult(@ChangePinResult int result) {
+            VvmLog.i(TAG, "Change PIN result: " + result);
             mProgressDialog.dismiss();
             mHandler.obtainMessage(MESSAGE_HANDLE_RESULT, result, 0).sendToTarget();
             releaseNetwork();

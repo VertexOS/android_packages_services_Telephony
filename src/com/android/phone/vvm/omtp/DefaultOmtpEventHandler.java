@@ -64,6 +64,11 @@ public class DefaultOmtpEventHandler {
                         .setDataChannelState(Status.DATA_CHANNEL_STATE_OK)
                         .setNotificationChannelState(Status.NOTIFICATION_CHANNEL_STATE_OK).apply();
                 break;
+            case CONFIG_SERVICE_NOT_AVAILABLE:
+                VoicemailStatus.edit(context, config.getSubId())
+                    .setConfigurationState(Status.CONFIGURATION_STATE_FAILED)
+                    .apply();
+                break;
             case CONFIG_STATUS_SMS_TIME_OUT:
                 VoicemailStatus.edit(context, config.getSubId())
                         .setConfigurationState(Status.CONFIGURATION_STATE_FAILED)
@@ -77,6 +82,7 @@ public class DefaultOmtpEventHandler {
     private static void handleDataChannelEvent(Context context, OmtpVvmCarrierConfigHelper config,
             OmtpEvents event) {
         switch (event) {
+            case DATA_IMAP_OPERATION_STARTED:
             case DATA_IMAP_OPERATION_COMPLETED:
                 VoicemailStatus.edit(context, config.getSubId())
                         .setDataChannelState(Status.DATA_CHANNEL_STATE_OK)

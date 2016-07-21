@@ -25,6 +25,8 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.provider.Settings.Global;
 import android.telecom.PhoneAccountHandle;
+import android.telephony.ServiceState;
+import android.telephony.TelephonyManager;
 import com.android.phone.Assert;
 import com.android.phone.PhoneGlobals;
 import com.android.phone.vvm.omtp.protocol.VisualVoicemailProtocol;
@@ -84,6 +86,15 @@ public class ActivationTask extends BaseTask {
             // activation.
             queueActivationAfterProvisioned(context, subId);
             return;
+        }
+
+        // Check for signal before activating. The event often happen while boot and the
+        // network is not connected yet. Launching activation will likely to cause the SMS
+        // sending to fail and waste unnecessary time waiting for time out.
+        if (context.getSystemService(TelephonyManager.class)
+            .getServiceStateForSubscriber(subId).getState()
+            != ServiceState.STATE_IN_SERVICE) {
+            VvmLog.i(TAG, "Activation requested while not in service, rejecting");
         }
 
         Intent intent = BaseTask.createIntent(context, ActivationTask.class, subId);
@@ -155,11 +166,14 @@ public class ActivationTask extends BaseTask {
                 VvmLog.i(TAG, "Subscriber not ready, start provisioning");
                 helper.startProvisioning(this, phoneAccountHandle, message, data);
 
-            } else {
-                VvmLog.i(TAG, "Subscriber not ready but provisioning is not supported");
+            } else if (message.getProvisioningStatus().equals(OmtpConstants.SUBSCRIBER_NEW)) {
+                VvmLog.i(TAG, "Subscriber new but provisioning is not supported");
                 // Ignore the non-ready state and attempt to use the provided info as is.
                 // This is probably caused by not completing the new user tutorial.
                 updateSource(getContext(), phoneAccountHandle, getSubId(), message);
+            } else {
+                VvmLog.i(TAG, "Subscriber not ready but provisioning is not supported");
+                helper.handleEvent(OmtpEvents.CONFIG_SERVICE_NOT_AVAILABLE);
             }
         }
     }

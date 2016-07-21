@@ -24,10 +24,8 @@ import android.os.ServiceManager;
 import android.os.UserManager;
 import android.telecom.PhoneAccountHandle;
 import android.telephony.CarrierConfigManager;
-import android.telephony.ServiceState;
 import android.telephony.SubscriptionManager;
 import android.telephony.TelephonyManager;
-
 import com.android.internal.telephony.IccCardConstants;
 import com.android.internal.telephony.PhoneConstants;
 import com.android.internal.telephony.TelephonyIntents;
@@ -95,17 +93,7 @@ public class SimChangeReceiver extends BroadcastReceiver {
                 // can be recorded.
                 OmtpVvmSourceManager.getInstance(context).addPhoneStateListener(
                         phoneAccount);
-                // Check for signal before activating. The event often happen while boot and the
-                // network is not connected yet. Launching activation will likely to cause the SMS
-                // sending to fail and waste unnecessary time waiting for time out.
-                if (context.getSystemService(TelephonyManager.class)
-                        .getServiceStateForSubscriber(subId).getState()
-                        == ServiceState.STATE_IN_SERVICE) {
-                    VvmLog.i(TAG, "Sim/config changed while in service, requesting activation");
-                    carrierConfigHelper.startActivation();
-                } else {
-                    VvmLog.i(TAG, "Sim/config changed while not in service.");
-                }
+                carrierConfigHelper.startActivation();
             } else {
                 if (carrierConfigHelper.isLegacyModeEnabled()) {
                     // SMS still need to be filtered under legacy mode.

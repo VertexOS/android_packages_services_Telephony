@@ -400,6 +400,7 @@ public class ImapHelper implements Closeable {
                     String.format(Locale.US, command, newPin, oldPin), true);
             return getChangePinResultFromImapResponse(connection.readResponse());
         } catch (IOException ioe) {
+            VvmLog.e(TAG, "changePin: ", ioe);
             return OmtpConstants.CHANGE_PIN_SYSTEM_ERROR;
         } finally {
             connection.destroyResponses();
