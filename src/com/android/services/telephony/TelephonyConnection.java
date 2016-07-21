@@ -1562,8 +1562,8 @@ abstract class TelephonyConnection extends Connection {
     private boolean isAddParticipantCapable() {
         return getPhone() != null &&
                (getPhone().getPhoneType() == PhoneConstants.PHONE_TYPE_IMS) &&
-               !mIsEmergencyNumber && (mOriginalConnectionState == Call.State.ACTIVE
-               || mOriginalConnectionState == Call.State.HOLDING);
+               !mIsEmergencyNumber && (mConnectionState == Call.State.ACTIVE
+               || mConnectionState == Call.State.HOLDING);
     }
 
     private int applyCapability(int capabilities, int capability) {
