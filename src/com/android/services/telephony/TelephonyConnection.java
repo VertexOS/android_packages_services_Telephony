@@ -662,12 +662,10 @@ abstract class TelephonyConnection extends Connection {
         if (mOriginalConnection != null && mOriginalConnection.isIncoming()) {
             callCapabilities |= CAPABILITY_SPEED_UP_MT_AUDIO;
         }
-        if (isImsConnection()) {
-            if (!shouldTreatAsEmergencyCall()) {
-                callCapabilities |= CAPABILITY_SUPPORT_HOLD;
-                if (getState() == STATE_ACTIVE || getState() == STATE_HOLDING) {
-                    callCapabilities |= CAPABILITY_HOLD;
-                }
+        if (!shouldTreatAsEmergencyCall() && isImsConnection() && canHoldImsCalls()) {
+            callCapabilities |= CAPABILITY_SUPPORT_HOLD;
+            if (getState() == STATE_ACTIVE || getState() == STATE_HOLDING) {
+                callCapabilities |= CAPABILITY_HOLD;
             }
         }
 
@@ -899,6 +897,12 @@ abstract class TelephonyConnection extends Connection {
         }
 
         return true;
+    }
+
+    private boolean canHoldImsCalls() {
+        PersistableBundle b = getCarrierConfig();
+        // Return true if the CarrierConfig is unavailable
+        return b == null || b.getBoolean(CarrierConfigManager.KEY_ALLOW_HOLD_IN_IMS_CALL_BOOL);
     }
 
     private PersistableBundle getCarrierConfig() {
