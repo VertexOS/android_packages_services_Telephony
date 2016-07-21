@@ -584,7 +584,7 @@
     <string name="change_pin_enter_new_pin_header" msgid="2611191814590251532">"Angi en ny PIN-kode"</string>
     <string name="change_pin_enter_new_pin_hint" msgid="2322940054329689309">"PIN-koden må bestå av <xliff:g id="MIN">%1$d</xliff:g>-<xliff:g id="MAX">%2$d</xliff:g> sifre."</string>
     <string name="change_pin_confirm_pin_header" msgid="8113764019347322170">"Bekreft PIN-koden"</string>
-    <string name="change_pin_confirm_pins_dont_match" msgid="4795052654904027909">"PIN-kodene er forskjellige"</string>
+    <string name="change_pin_confirm_pins_dont_match" msgid="4795052654904027909">"PIN-kodene stemmer ikke overens"</string>
     <string name="change_pin_succeeded" msgid="2022852286442211151">"PIN-koden for talemeldinger ble oppdatert"</string>
     <string name="change_pin_system_error" msgid="8308462387154257840">"Kan ikke angi PIN-kode"</string>
 </resources>

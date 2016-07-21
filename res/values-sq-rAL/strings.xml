@@ -576,7 +576,7 @@
     <string name="change_pin_enter_old_pin_header" msgid="419179847657548887">"Konfirmo kodin PIN të vjetër"</string>
     <string name="change_pin_enter_old_pin_hint" msgid="8579171678763615453">"Shkruaj kodin PIN të postës zanore për të vazhduar."</string>
     <string name="change_pin_enter_new_pin_header" msgid="2611191814590251532">"Cakto një kod të ri PIN."</string>
-    <string name="change_pin_enter_new_pin_hint" msgid="2322940054329689309">"Kodi PIN duhet të ketë <xliff:g id="MIN">%1$d</xliff:g> - <xliff:g id="MAX">%2$d</xliff:g> shifra."</string>
+    <string name="change_pin_enter_new_pin_hint" msgid="2322940054329689309">"Kodi PIN duhet të ketë <xliff:g id="MIN">%1$d</xliff:g>-<xliff:g id="MAX">%2$d</xliff:g> shifra."</string>
     <string name="change_pin_confirm_pin_header" msgid="8113764019347322170">"Konfirmo kodin tënd PIN"</string>
     <string name="change_pin_confirm_pins_dont_match" msgid="4795052654904027909">"Kodet PIN nuk përputhen"</string>
     <string name="change_pin_succeeded" msgid="2022852286442211151">"Kodi PIN i postës zanore u përditësua"</string>

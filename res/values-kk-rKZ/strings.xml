@@ -455,7 +455,7 @@
     <string name="incall_error_supp_service_hangup" msgid="7434513517153834426">"Қоңырау(лар)ды босату мүмкін емес."</string>
     <string name="incall_error_supp_service_hold" msgid="7967020511232222078">"Қоңырауларды ұстау мүмкін емес."</string>
     <string name="incall_error_wfc_only_no_wireless_network" msgid="1782466780452640089">"Қоңырау шалу үшін сымсыз желіге қосылыңыз."</string>
-    <string name="incall_error_promote_wfc" msgid="106510757624022064">"Қоңырау жасау үшін, Wi-Fi желісін қосыңыз."</string>
+    <string name="incall_error_promote_wfc" msgid="106510757624022064">"Қоңырау шалу үшін, Wi-Fi желісін қосыңыз."</string>
     <string name="emergency_enable_radio_dialog_title" msgid="4627849966634578257">"Төтенше қоңырау"</string>
     <string name="emergency_enable_radio_dialog_message" msgid="207613549344420291">"Радионы қосуда…"</string>
     <string name="emergency_enable_radio_dialog_retry" msgid="5960061579996526883">"Қызмет жоқ. Әрекет қайталануда…"</string>
@@ -576,9 +576,9 @@
     <string name="change_pin_enter_old_pin_header" msgid="419179847657548887">"Ескі PIN кодыңызды растаңыз"</string>
     <string name="change_pin_enter_old_pin_hint" msgid="8579171678763615453">"Жалғастыру үшін, дауыстық поштаңыздың PIN кодын енгізіңіз."</string>
     <string name="change_pin_enter_new_pin_header" msgid="2611191814590251532">"Жаңа PIN кодын орнатыңыз"</string>
-    <string name="change_pin_enter_new_pin_hint" msgid="2322940054329689309">"PIN код <xliff:g id="MIN">%1$d</xliff:g>-<xliff:g id="MAX">%2$d</xliff:g> бірліктен тұруы тиіс."</string>
+    <string name="change_pin_enter_new_pin_hint" msgid="2322940054329689309">"PIN коды <xliff:g id="MIN">%1$d</xliff:g>-<xliff:g id="MAX">%2$d</xliff:g> бірліктен тұруы тиіс."</string>
     <string name="change_pin_confirm_pin_header" msgid="8113764019347322170">"PIN кодын растаңыз"</string>
-    <string name="change_pin_confirm_pins_dont_match" msgid="4795052654904027909">"PIN кодтар дұрыс емес"</string>
+    <string name="change_pin_confirm_pins_dont_match" msgid="4795052654904027909">"PIN кодтары сәйкес келмейді"</string>
     <string name="change_pin_succeeded" msgid="2022852286442211151">"Дауыстық пошта PIN коды жаңартылды"</string>
     <string name="change_pin_system_error" msgid="8308462387154257840">"PIN кодын орнату мүмкін болмады"</string>
 </resources>

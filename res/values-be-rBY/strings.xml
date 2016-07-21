@@ -101,16 +101,16 @@
     <string name="sum_cfu_enabled_indicator" msgid="4014187342724130197">"Пераадрасацыя ўсіх выклікаў"</string>
     <string name="sum_cfu_enabled" msgid="2450052502198827927">"Пераадрасацыя ўсіх тэлефанаванняў на <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
     <string name="sum_cfu_enabled_no_number" msgid="6591985777096823616">"Нумар недаступны"</string>
-    <string name="sum_cfu_disabled" msgid="8384177689501334080">"Адкл."</string>
+    <string name="sum_cfu_disabled" msgid="8384177689501334080">"Выкл."</string>
     <string name="labelCFB" msgid="6139853033106283172">"Калі заняты"</string>
     <string name="messageCFB" msgid="3711089705936187129">"Нумар, калі занята"</string>
     <string name="sum_cfb_enabled" msgid="5984198104833116690">"Пераадрасацыя на <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
-    <string name="sum_cfb_disabled" msgid="4913145177320506827">"Адкл."</string>
+    <string name="sum_cfb_disabled" msgid="4913145177320506827">"Выкл."</string>
     <string name="disable_cfb_forbidden" msgid="3506984333877998061">"Ваш аператар не падтрымлівае адключэнне перанакіравання выклікаў, калі тэлефон заняты."</string>
     <string name="labelCFNRy" msgid="1736067178393744351">"Калі няма адказу"</string>
     <string name="messageCFNRy" msgid="672317899884380374">"Нумар, калі няма адказу"</string>
     <string name="sum_cfnry_enabled" msgid="6955775691317662910">"Пераадрасацыя на <xliff:g id="PHONENUMBER">{0}</xliff:g>"</string>
-    <string name="sum_cfnry_disabled" msgid="3884684060443538097">"Адкл."</string>
+    <string name="sum_cfnry_disabled" msgid="3884684060443538097">"Выкл."</string>
     <string name="disable_cfnry_forbidden" msgid="4308233959150658058">"Ваш аператар не падтрымлівае адключэнне перанакіравання выклікаў, калі тэлефон не адказвае."</string>
     <string name="labelCFNRc" msgid="2614827454402079766">"Калі недасягальны"</string>
     <string name="messageCFNRc" msgid="6380695421020295119">"Нумар, калі недаступны"</string>
@@ -147,7 +147,16 @@
     <string name="no_change" msgid="3186040086622435212">"Змены не выкананы."</string>
     <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"Выберыце службу галасавой пошты"</string>
     <string name="voicemail_default" msgid="2001233554889016880">"Ваш аператар"</string>
-    <string name="mobile_networks" msgid="2843854043339307375">"Налады мабільнай сеткі"</string>
+    <string name="vm_change_pin_old_pin" msgid="7295220109886682573">"Стары PIN-код"</string>
+    <string name="vm_change_pin_new_pin" msgid="5412922262839438097">"Новы PIN-код"</string>
+    <string name="vm_change_pin_progress_message" msgid="3977357361934350336">"Пачакайце."</string>
+    <string name="vm_change_pin_error_too_short" msgid="5974971097302710497">"Новы PIN-код занадта кароткі."</string>
+    <string name="vm_change_pin_error_too_long" msgid="8476870806115051865">"Новы PIN-код занадта доўгі."</string>
+    <string name="vm_change_pin_error_too_weak" msgid="7883744811891784882">"Новы PIN-код занадта слабы. Моцны пароль не павінен змяшчаць знакаў, што ідуць па чарзе, або лічбы, якія паўтараюцца."</string>
+    <string name="vm_change_pin_error_mismatch" msgid="2754685537970757317">"Стары PIN-код не падыходзіць."</string>
+    <string name="vm_change_pin_error_invalid" msgid="3972205462701668653">"Новы PIN-код змяшчае несапраўдныя сімвалы."</string>
+    <string name="vm_change_pin_error_system_error" msgid="6610603326230000207">"Немагчыма змяніць PIN-код"</string>
+    <string name="mobile_networks" msgid="2843854043339307375">"Налады сотавай сеткі"</string>
     <string name="label_available" msgid="1181658289009300430">"Даступныя сеткі"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"Пошук..."</string>
     <string name="empty_networks_list" msgid="4249426905018815316">"Сеткі не знойдзены."</string>
@@ -162,9 +171,9 @@
     <string name="select_automatically" msgid="5628402124471810174">"Выбраць аўтаматычна"</string>
     <string name="sum_select_automatically" msgid="5614890115123292400">"Аўтаматычна выбраць прыярытэтную сетку"</string>
     <string name="register_automatically" msgid="6017849844573519637">"Аўтаматычная рэгістрацыя..."</string>
-    <string name="preferred_network_mode_title" msgid="2336624679902659306">"Пажаданы тып сеткі"</string>
+    <string name="preferred_network_mode_title" msgid="2336624679902659306">"Прыярытэтны тып сеткі"</string>
     <string name="preferred_network_mode_summary" msgid="1434820673166126609">"Змяніць рэжым работы сеткі"</string>
-    <string name="preferred_network_mode_dialogtitle" msgid="4048082093347807230">"Пажаданы тып сеткі"</string>
+    <string name="preferred_network_mode_dialogtitle" msgid="4048082093347807230">"Прыярытэтны тып сеткі"</string>
     <string name="preferred_network_mode_wcdma_perf_summary" msgid="8521677230113533809">"Пераважны рэжым сеткі: пераважна WCDMA"</string>
     <string name="preferred_network_mode_gsm_only_summary" msgid="3352445413437453511">"Пераважны рэжым сеткі: толькі GSM"</string>
     <string name="preferred_network_mode_wcdma_only_summary" msgid="2836897236221063413">"Пераважны рэжым сеткі: толькі WCDMA"</string>
@@ -202,16 +211,16 @@
     <string name="data_enabled" msgid="5972538663568715366">"Дадзеныя ўключаныя"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"Дазволіць выкарыстанне даных"</string>
     <string name="dialog_alert_title" msgid="6751344986194435476">"Увага"</string>
-    <string name="roaming" msgid="8871412572928323707">"Перадача дадзеных у роўмінгу"</string>
-    <string name="roaming_enable" msgid="7331106985174381987">"Злучацца з паслугамі перадачы дадзеных ў роўмінгу"</string>
-    <string name="roaming_disable" msgid="1843417228755568110">"Злучацца з паслугамі перадачы дадзеных у роўмінгу"</string>
+    <string name="roaming" msgid="8871412572928323707">"Перадача даных у роўмінгу"</string>
+    <string name="roaming_enable" msgid="7331106985174381987">"Падключацца да сэрвісаў перадачы даных у роўмінгу"</string>
+    <string name="roaming_disable" msgid="1843417228755568110">"Падключацца да сэрвісаў перадачы даных у роўмінгу"</string>
     <string name="roaming_reenable_message" msgid="8913735676127858115">"Падлучэнне для перадачы дадзеных страчана, таму што вы выйшлі з зоны пакрыцця сваёй сеткі, а перадача дадзеных у роўмінгу адключана."</string>
     <string name="roaming_warning" msgid="1603164667540144353">"Гэта можа прывесці да значных выдаткаў."</string>
     <string name="roaming_alert_title" msgid="3654815360303826008">"Дазволіць перадачу даных у роўмінгу?"</string>
     <string name="gsm_umts_options" msgid="6538311689850981686">"Параметры GSM/UMTS"</string>
     <string name="cdma_options" msgid="4016822858172249884">"Параметры CDMA"</string>
-    <string name="throttle_data_usage" msgid="3715677828160555808">"Выкарыстанне дадзеных"</string>
-    <string name="throttle_current_usage" msgid="8762280193043815361">"Выкарыстанне дадзеных у бягучы перыяд"</string>
+    <string name="throttle_data_usage" msgid="3715677828160555808">"Выкарыстанне трафіку"</string>
+    <string name="throttle_current_usage" msgid="8762280193043815361">"Выкарыстанне даных у бягучы перыяд"</string>
     <string name="throttle_time_frame" msgid="1915198770363734685">"Перыяд выкарыстання дадзеных"</string>
     <string name="throttle_rate" msgid="4710388992676803508">"Палітыка хуткасці перадачы дадзеных"</string>
     <string name="throttle_help" msgid="243651091785169900">"Дадатковая iнфармацыя"</string>
@@ -349,7 +358,7 @@
     <string name="sum_fdn_manage_list" msgid="8431088265332628316">"Кіраванне спісам тэлефонных нумароў"</string>
     <string name="voice_privacy" msgid="3776841382844614716">"Палiтыка прыватнасцi Voice"</string>
     <string name="voice_privacy_summary" msgid="3159383389833516214">"Уключыць пашыраны рэжым прыватнасці"</string>
-    <string name="tty_mode_option_title" msgid="9033098925144434669">"TTY рэжым"</string>
+    <string name="tty_mode_option_title" msgid="9033098925144434669">"Рэжым TTY"</string>
     <string name="tty_mode_option_summary" msgid="1073835131534808732">"Задаць рэжым TTY"</string>
     <string name="auto_retry_mode_title" msgid="4073265511427813322">"Аўтаматычны паўтор"</string>
     <string name="auto_retry_mode_summary" msgid="4973886004067532288">"Уключыць рэжым аўтаматычнага паўтору"</string>
@@ -446,6 +455,7 @@
     <string name="incall_error_supp_service_hangup" msgid="7434513517153834426">"Немагчыма скончыць выклік(і)."</string>
     <string name="incall_error_supp_service_hold" msgid="7967020511232222078">"Немагчыма ўтрымліваць выклікі."</string>
     <string name="incall_error_wfc_only_no_wireless_network" msgid="1782466780452640089">"Падлучыцеся да бесправадной сеткі, каб зрабіць выклік."</string>
+    <string name="incall_error_promote_wfc" msgid="106510757624022064">"Дазволіць выклік па Wi-Fi-тэлефаніі."</string>
     <string name="emergency_enable_radio_dialog_title" msgid="4627849966634578257">"Экстраны выклік"</string>
     <string name="emergency_enable_radio_dialog_message" msgid="207613549344420291">"Уключэнне радыё..."</string>
     <string name="emergency_enable_radio_dialog_retry" msgid="5960061579996526883">"Не абслугоўваецца. Паўтор спробы..."</string>
@@ -533,8 +543,8 @@
     <string name="alert_dialog_yes" msgid="6674268047820703974">"Так"</string>
     <string name="alert_dialog_no" msgid="1476091437797628703">"Не"</string>
     <string name="alert_dialog_dismiss" msgid="2491494287075907171">"Скасаваць"</string>
-    <string name="voicemail_provider" msgid="5135942703327136909">"Служба"</string>
-    <string name="voicemail_settings" msgid="72448049107749316">"Налады"</string>
+    <string name="voicemail_provider" msgid="5135942703327136909">"Сэрвіс"</string>
+    <string name="voicemail_settings" msgid="72448049107749316">"Наладка"</string>
     <string name="voicemail_number_not_set" msgid="6724904736891087856">"&lt;Не заданы&gt;"</string>
     <string name="other_settings" msgid="3672912580359716394">"Іншыя налады выкліку"</string>
     <string name="calling_via_template" msgid="4839419581866928142">"Званкі праз правайдара <xliff:g id="PROVIDER_NAME">%s</xliff:g>"</string>
@@ -546,6 +556,8 @@
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"Вібрацыя"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"Вібрацыя"</string>
     <string name="voicemail_visual_voicemail_switch_title" msgid="5012622186976275457">"Візуальная галасавая пошта"</string>
+    <string name="voicemail_set_pin_dialog_title" msgid="2797924461029093837">"Задаць PIN-код"</string>
+    <string name="voicemail_change_pin_dialog_title" msgid="6035421908626121564">"Змяніць PIN-код"</string>
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"Гук"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"Рынгтон і вiбрацыя"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"Убудаваныя SIM-карты"</string>
@@ -563,4 +575,16 @@
     <string name="message_decode_error" msgid="3456481534066924855">"Памылка расшыфравання паведамлення."</string>
     <string name="callFailed_cdma_activation" msgid="2307989779233262164">"SIM-карта актывавала вашу службу і абнавіла функцыі роўмінгу вашага тэлефона."</string>
     <string name="callFailed_cdma_call_limit" msgid="1556916577171457086">"Занадта шмат актыўных выклікаў. Скончыце ці аб\'яднайце існуючыя выклікі, перш чым рабіць новы выклік."</string>
+    <string name="change_pin_title" msgid="7790232089699034029">"Змяніць PIN-код галасавой пошты"</string>
+    <string name="change_pin_continue_label" msgid="2135088662420163447">"Працягнуць"</string>
+    <string name="change_pin_cancel_label" msgid="353535488390948596">"Скасаваць"</string>
+    <string name="change_pin_ok_label" msgid="6204308560844889926">"ОК"</string>
+    <string name="change_pin_enter_old_pin_header" msgid="419179847657548887">"Пацвердзіце свой стары PIN-код"</string>
+    <string name="change_pin_enter_old_pin_hint" msgid="8579171678763615453">"Каб працягнуць, увядзіце PIN-код галасавой пошты."</string>
+    <string name="change_pin_enter_new_pin_header" msgid="2611191814590251532">"Задайце новы PIN-код"</string>
+    <string name="change_pin_enter_new_pin_hint" msgid="2322940054329689309">"PIN-код павінен утрымліваць <xliff:g id="MIN">%1$d</xliff:g>-<xliff:g id="MAX">%2$d</xliff:g> лічбаў."</string>
+    <string name="change_pin_confirm_pin_header" msgid="8113764019347322170">"Пацвердзіце PIN-код"</string>
+    <string name="change_pin_confirm_pins_dont_match" msgid="4795052654904027909">"PIN-код не супадае"</string>
+    <string name="change_pin_succeeded" msgid="2022852286442211151">"PIN-код галасавой пошты абноўлены"</string>
+    <string name="change_pin_system_error" msgid="8308462387154257840">"Немагчыма прызначыць PIN-код"</string>
 </resources>
