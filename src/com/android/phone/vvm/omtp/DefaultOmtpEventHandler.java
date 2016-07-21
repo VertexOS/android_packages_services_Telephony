@@ -156,6 +156,9 @@ public class DefaultOmtpEventHandler {
             case NOTIFICATION_IN_SERVICE:
                 VoicemailStatus.edit(context, config.getSubId())
                         .setNotificationChannelState(Status.NOTIFICATION_CHANNEL_STATE_OK)
+                        // Clear the error state. A sync should follow signal return so any error
+                        // will be reposted.
+                        .setDataChannelState(Status.DATA_CHANNEL_STATE_OK)
                         .apply();
                 break;
             case NOTIFICATION_SERVICE_LOST:
