@@ -580,7 +580,7 @@
     <string name="change_pin_enter_old_pin_header" msgid="419179847657548887">"Confirmez votre ancien NIP"</string>
     <string name="change_pin_enter_old_pin_hint" msgid="8579171678763615453">"Entrez votre NIP de messagerie vocale pour continuer."</string>
     <string name="change_pin_enter_new_pin_header" msgid="2611191814590251532">"Choisissez un nouveau NIP"</string>
-    <string name="change_pin_enter_new_pin_hint" msgid="2322940054329689309">"Le NIP doit comporter <xliff:g id="MIN">%1$d</xliff:g> à <xliff:g id="MAX">%2$d</xliff:g> chiffres."</string>
+    <string name="change_pin_enter_new_pin_hint" msgid="2322940054329689309">"Le NIP doit comporter de <xliff:g id="MIN">%1$d</xliff:g> à <xliff:g id="MAX">%2$d</xliff:g> chiffres."</string>
     <string name="change_pin_confirm_pin_header" msgid="8113764019347322170">"Confirmez votre NIP"</string>
     <string name="change_pin_confirm_pins_dont_match" msgid="4795052654904027909">"Les NIP ne correspondent pas"</string>
     <string name="change_pin_succeeded" msgid="2022852286442211151">"NIP de messagerie vocale mis à jour"</string>

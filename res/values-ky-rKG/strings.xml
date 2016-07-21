@@ -455,7 +455,7 @@
     <string name="incall_error_supp_service_hangup" msgid="7434513517153834426">"Чалуу(лар) бошотулбай жатат."</string>
     <string name="incall_error_supp_service_hold" msgid="7967020511232222078">"Чалууну кармап туруу мүмкүн эмес."</string>
     <string name="incall_error_wfc_only_no_wireless_network" msgid="1782466780452640089">"Чалуу үчүн зымсыз тармакка туташыңыз."</string>
-    <string name="incall_error_promote_wfc" msgid="106510757624022064">"Телефон чалууга Wi-Fi чалууну иштетиңиз."</string>
+    <string name="incall_error_promote_wfc" msgid="106510757624022064">"Wi-Fi аркылуу чалыңыз."</string>
     <string name="emergency_enable_radio_dialog_title" msgid="4627849966634578257">"Шашылыш чалуу"</string>
     <string name="emergency_enable_radio_dialog_message" msgid="207613549344420291">"Радио күйгүзүлүүдө…"</string>
     <string name="emergency_enable_radio_dialog_retry" msgid="5960061579996526883">"Кызмат жок. Кайра аракет кылууда…"</string>
@@ -550,7 +550,7 @@
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"Дирилдөө"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"Дирилдөө"</string>
     <string name="voicemail_visual_voicemail_switch_title" msgid="5012622186976275457">"Визуалдык үн почтасы"</string>
-    <string name="voicemail_set_pin_dialog_title" msgid="2797924461029093837">"PIN кодду койуу"</string>
+    <string name="voicemail_set_pin_dialog_title" msgid="2797924461029093837">"PIN код коюу"</string>
     <string name="voicemail_change_pin_dialog_title" msgid="6035421908626121564">"PIN кодду өзгөртүү"</string>
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"Үнү"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"Рингтон жана Титирөө"</string>
@@ -578,7 +578,7 @@
     <string name="change_pin_enter_new_pin_header" msgid="2611191814590251532">"Жаңы PIN коюңуз"</string>
     <string name="change_pin_enter_new_pin_hint" msgid="2322940054329689309">"PIN <xliff:g id="MIN">%1$d</xliff:g>-<xliff:g id="MAX">%2$d</xliff:g> сандан турушу керек."</string>
     <string name="change_pin_confirm_pin_header" msgid="8113764019347322170">"PIN кодуңузду ырастаңыз"</string>
-    <string name="change_pin_confirm_pins_dont_match" msgid="4795052654904027909">"PIN коддор туура келген жок"</string>
+    <string name="change_pin_confirm_pins_dont_match" msgid="4795052654904027909">"PIN коддор дал келген жок"</string>
     <string name="change_pin_succeeded" msgid="2022852286442211151">"Үн почтасынын PIN коду жаңыртылды"</string>
     <string name="change_pin_system_error" msgid="8308462387154257840">"PIN код коюлбайт"</string>
 </resources>
