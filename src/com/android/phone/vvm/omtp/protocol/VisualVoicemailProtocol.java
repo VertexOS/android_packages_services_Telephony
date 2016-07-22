@@ -21,6 +21,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.telecom.PhoneAccountHandle;
 import android.telephony.SmsManager;
+import com.android.phone.VoicemailStatus;
 import com.android.phone.vvm.omtp.ActivationTask;
 import com.android.phone.vvm.omtp.DefaultOmtpEventHandler;
 import com.android.phone.vvm.omtp.OmtpEvents;
@@ -52,7 +53,8 @@ public abstract class VisualVoicemailProtocol {
     }
 
     public void startProvisioning(ActivationTask task, PhoneAccountHandle handle,
-            OmtpVvmCarrierConfigHelper config, StatusMessage message, Bundle data) {
+        OmtpVvmCarrierConfigHelper config, VoicemailStatus.Editor editor, StatusMessage message,
+        Bundle data) {
         // Do nothing
     }
 
@@ -79,8 +81,8 @@ public abstract class VisualVoicemailProtocol {
     }
 
     public void handleEvent(Context context, OmtpVvmCarrierConfigHelper config,
-            OmtpEvents event) {
-        DefaultOmtpEventHandler.handleEvent(context, config, event);
+        VoicemailStatus.Editor status, OmtpEvents event) {
+        DefaultOmtpEventHandler.handleEvent(context, config, status, event);
     }
 
     /**

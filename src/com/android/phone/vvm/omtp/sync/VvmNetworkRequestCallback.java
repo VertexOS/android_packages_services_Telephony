@@ -24,8 +24,8 @@ import android.net.NetworkRequest;
 import android.os.Handler;
 import android.os.Looper;
 import android.telecom.PhoneAccountHandle;
-
 import com.android.phone.PhoneUtils;
+import com.android.phone.VoicemailStatus;
 import com.android.phone.vvm.omtp.OmtpEvents;
 import com.android.phone.vvm.omtp.OmtpVvmCarrierConfigHelper;
 import com.android.phone.vvm.omtp.VvmLog;
@@ -50,24 +50,32 @@ public abstract class VvmNetworkRequestCallback extends ConnectivityManager.Netw
     private ConnectivityManager mConnectivityManager;
     private final OmtpVvmCarrierConfigHelper mCarrierConfigHelper;
     private final int mSubId;
+    private final VoicemailStatus.Editor mStatus;
     private boolean mRequestSent = false;
     private boolean mResultReceived = false;
 
-    public VvmNetworkRequestCallback(Context context, PhoneAccountHandle phoneAccount) {
+    public VvmNetworkRequestCallback(Context context, PhoneAccountHandle phoneAccount,
+        VoicemailStatus.Editor status) {
         mContext = context;
         mPhoneAccount = phoneAccount;
         mSubId = PhoneUtils.getSubIdForPhoneAccountHandle(phoneAccount);
+        mStatus = status;
         mCarrierConfigHelper = new OmtpVvmCarrierConfigHelper(context, mSubId);
         mNetworkRequest = createNetworkRequest();
     }
 
     public VvmNetworkRequestCallback(OmtpVvmCarrierConfigHelper config,
-            PhoneAccountHandle phoneAccount) {
+        PhoneAccountHandle phoneAccount, VoicemailStatus.Editor status) {
         mContext = config.getContext();
         mPhoneAccount = phoneAccount;
         mSubId = config.getSubId();
+        mStatus = status;
         mCarrierConfigHelper = config;
         mNetworkRequest = createNetworkRequest();
+    }
+
+    public VoicemailStatus.Editor getVoicemailStatusEditor() {
+        return mStatus;
     }
 
     /**
@@ -154,9 +162,10 @@ public abstract class VvmNetworkRequestCallback extends ConnectivityManager.Netw
     public void onFailed(String reason) {
         VvmLog.d(TAG, "onFailed: " + reason);
         if (mCarrierConfigHelper.isCellularDataRequired()) {
-            mCarrierConfigHelper.handleEvent(OmtpEvents.DATA_NO_CONNECTION_CELLULAR_REQUIRED);
+            mCarrierConfigHelper
+                .handleEvent(mStatus, OmtpEvents.DATA_NO_CONNECTION_CELLULAR_REQUIRED);
         } else {
-            mCarrierConfigHelper.handleEvent(OmtpEvents.DATA_NO_CONNECTION);
+            mCarrierConfigHelper.handleEvent(mStatus, OmtpEvents.DATA_NO_CONNECTION);
         }
         releaseNetwork();
     }

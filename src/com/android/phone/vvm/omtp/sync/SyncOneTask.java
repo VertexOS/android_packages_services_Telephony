@@ -20,7 +20,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.telecom.PhoneAccountHandle;
 import android.telecom.Voicemail;
-
+import com.android.phone.VoicemailStatus;
 import com.android.phone.vvm.omtp.scheduling.BaseTask;
 import com.android.phone.vvm.omtp.scheduling.RetryPolicy;
 import com.android.phone.vvm.omtp.utils.PhoneAccountHandleConverter;
@@ -67,7 +67,8 @@ public class SyncOneTask extends BaseTask {
     @Override
     public void onExecuteInBackgroundThread() {
         OmtpVvmSyncService service = new OmtpVvmSyncService(getContext());
-        service.sync(this, mSyncType, mPhone, mVoicemail);
+        service.sync(this, mSyncType, mPhone, mVoicemail,
+                VoicemailStatus.edit(getContext(), mPhone));
     }
 
     @Override

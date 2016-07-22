@@ -19,6 +19,7 @@ package com.android.phone.vvm.omtp.sync;
 import android.net.Network;
 import android.support.annotation.NonNull;
 import android.telecom.PhoneAccountHandle;
+import com.android.phone.VoicemailStatus;
 import com.android.phone.vvm.omtp.OmtpVvmCarrierConfigHelper;
 import com.android.phone.vvm.omtp.VvmLog;
 import java.io.Closeable;
@@ -67,8 +68,9 @@ public class VvmNetworkRequest {
 
     @NonNull
     public static NetworkWrapper getNetwork(OmtpVvmCarrierConfigHelper config,
-            PhoneAccountHandle handle) throws RequestFailedException {
-        FutureNetworkRequestCallback callback = new FutureNetworkRequestCallback(config, handle);
+        PhoneAccountHandle handle, VoicemailStatus.Editor status) throws RequestFailedException {
+        FutureNetworkRequestCallback callback = new FutureNetworkRequestCallback(config, handle,
+            status);
         callback.requestNetwork();
         try {
             return callback.getFuture().get();
@@ -88,8 +90,8 @@ public class VvmNetworkRequest {
         private final CompletableFuture<NetworkWrapper> mFuture = new CompletableFuture<>();
 
         public FutureNetworkRequestCallback(OmtpVvmCarrierConfigHelper config,
-                PhoneAccountHandle phoneAccount) {
-            super(config, phoneAccount);
+            PhoneAccountHandle phoneAccount, VoicemailStatus.Editor status) {
+            super(config, phoneAccount, status);
         }
 
         public Future<NetworkWrapper> getFuture() {

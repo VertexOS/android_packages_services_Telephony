@@ -23,6 +23,7 @@ import android.os.Bundle;
 import android.telecom.PhoneAccountHandle;
 import android.telephony.SmsManager;
 import android.text.TextUtils;
+import com.android.phone.VoicemailStatus;
 import com.android.phone.common.mail.MessagingException;
 import com.android.phone.settings.VisualVoicemailSettingsUtil;
 import com.android.phone.settings.VoicemailChangePinActivity;
@@ -102,16 +103,17 @@ public class Vvm3Protocol extends VisualVoicemailProtocol {
 
     @Override
     public void startProvisioning(ActivationTask task, PhoneAccountHandle phoneAccountHandle,
-            OmtpVvmCarrierConfigHelper config, StatusMessage message, Bundle data) {
+            OmtpVvmCarrierConfigHelper config, VoicemailStatus.Editor status, StatusMessage message,
+            Bundle data) {
         VvmLog.i(TAG, "start vvm3 provisioning");
         if (OmtpConstants.SUBSCRIBER_UNKNOWN.equals(message.getProvisioningStatus())) {
             VvmLog.i(TAG, "Provisioning status: Unknown");
             if (VVM3_UNKNOWN_SUBSCRIBER_CAN_SUBSCRIBE_RESPONSE_CODE
                     .equals(message.getReturnCode())) {
                 VvmLog.i(TAG, "Self provisioning available, subscribing");
-                new Vvm3Subscriber(task, phoneAccountHandle, config, data).subscribe();
+                new Vvm3Subscriber(task, phoneAccountHandle, config, status, data).subscribe();
             } else {
-                config.handleEvent(OmtpEvents.VVM3_SUBSCRIBER_UNKNOWN);
+                config.handleEvent(status, OmtpEvents.VVM3_SUBSCRIBER_UNKNOWN);
             }
         } else if (OmtpConstants.SUBSCRIBER_NEW.equals(message.getProvisioningStatus())) {
             VvmLog.i(TAG, "setting up new user");
@@ -120,14 +122,14 @@ public class Vvm3Protocol extends VisualVoicemailProtocol {
                     new VisualVoicemailPreferences(config.getContext(), phoneAccountHandle);
             message.putStatus(prefs.edit()).apply();
 
-            startProvisionNewUser(task, phoneAccountHandle, config, message);
+            startProvisionNewUser(task, phoneAccountHandle, config, status, message);
         } else if (OmtpConstants.SUBSCRIBER_PROVISIONED.equals(message.getProvisioningStatus())) {
             VvmLog.i(TAG, "User provisioned but not activated, disabling VVM");
             VisualVoicemailSettingsUtil
                     .setEnabled(config.getContext(), phoneAccountHandle, false);
         } else if (OmtpConstants.SUBSCRIBER_BLOCKED.equals(message.getProvisioningStatus())) {
             VvmLog.i(TAG, "User blocked");
-            config.handleEvent(OmtpEvents.VVM3_SUBSCRIBER_BLOCKED);
+            config.handleEvent(status, OmtpEvents.VVM3_SUBSCRIBER_BLOCKED);
         }
     }
 
@@ -138,8 +140,9 @@ public class Vvm3Protocol extends VisualVoicemailProtocol {
     }
 
     @Override
-    public void handleEvent(Context context, OmtpVvmCarrierConfigHelper config, OmtpEvents event) {
-        Vvm3EventHandler.handleEvent(context, config, event);
+    public void handleEvent(Context context, OmtpVvmCarrierConfigHelper config,
+            VoicemailStatus.Editor status, OmtpEvents event) {
+        Vvm3EventHandler.handleEvent(context, config, status, event);
     }
 
     @Override
@@ -183,13 +186,15 @@ public class Vvm3Protocol extends VisualVoicemailProtocol {
     }
 
     private void startProvisionNewUser(ActivationTask task, PhoneAccountHandle phoneAccountHandle,
-            OmtpVvmCarrierConfigHelper config, StatusMessage message) {
-        try (NetworkWrapper wrapper = VvmNetworkRequest.getNetwork(config, phoneAccountHandle)) {
+            OmtpVvmCarrierConfigHelper config, VoicemailStatus.Editor status,
+            StatusMessage message) {
+        try (NetworkWrapper wrapper = VvmNetworkRequest
+                .getNetwork(config, phoneAccountHandle, status)) {
             Network network = wrapper.get();
 
             VvmLog.i(TAG, "new user: network available");
             try (ImapHelper helper = new ImapHelper(config.getContext(), phoneAccountHandle,
-                network)) {
+                    network, status)) {
                 // VVM3 has inconsistent error language code to OMTP. Just issue a raw command
                 // here.
                 // TODO(b/29082671): use LocaleList
@@ -213,12 +218,12 @@ public class Vvm3Protocol extends VisualVoicemailProtocol {
                     config.requestStatus();
                 }
             } catch (InitializingException | MessagingException | IOException e) {
-                config.handleEvent(OmtpEvents.VVM3_NEW_USER_SETUP_FAILED);
+                config.handleEvent(status, OmtpEvents.VVM3_NEW_USER_SETUP_FAILED);
                 task.fail();
                 VvmLog.e(TAG, e.toString());
             }
         } catch (RequestFailedException e) {
-            config.handleEvent(OmtpEvents.DATA_NO_CONNECTION_CELLULAR_REQUIRED);
+            config.handleEvent(status, OmtpEvents.DATA_NO_CONNECTION_CELLULAR_REQUIRED);
             task.fail();
         }
 

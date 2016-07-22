@@ -27,6 +27,7 @@ import android.text.Spanned;
 import android.text.style.URLSpan;
 import android.util.ArrayMap;
 import com.android.phone.Assert;
+import com.android.phone.VoicemailStatus;
 import com.android.phone.vvm.omtp.ActivationTask;
 import com.android.phone.vvm.omtp.OmtpEvents;
 import com.android.phone.vvm.omtp.OmtpVvmCarrierConfigHelper;
@@ -113,6 +114,7 @@ public class Vvm3Subscriber {
     private final ActivationTask mTask;
     private final PhoneAccountHandle mHandle;
     private final OmtpVvmCarrierConfigHelper mHelper;
+    private final VoicemailStatus.Editor mStatus;
     private final Bundle mData;
 
     private final String mNumber;
@@ -137,11 +139,12 @@ public class Vvm3Subscriber {
 
     @WorkerThread
     public Vvm3Subscriber(ActivationTask task, PhoneAccountHandle handle,
-            OmtpVvmCarrierConfigHelper helper, Bundle data) {
+            OmtpVvmCarrierConfigHelper helper, VoicemailStatus.Editor status, Bundle data) {
         Assert.isNotMainThread();
         mTask = task;
         mHandle = handle;
         mHelper = helper;
+        mStatus = status;
         mData = data;
 
         // Assuming getLine1Number() will work with VVM3. For unprovisioned users the IMAP username
@@ -157,14 +160,14 @@ public class Vvm3Subscriber {
         // processSubscription() is called after network is available.
         VvmLog.i(TAG, "Subscribing");
 
-        try (NetworkWrapper wrapper = VvmNetworkRequest.getNetwork(mHelper, mHandle)) {
+        try (NetworkWrapper wrapper = VvmNetworkRequest.getNetwork(mHelper, mHandle, mStatus)) {
             Network network = wrapper.get();
             VvmLog.d(TAG, "provisioning: network available");
             mRequestQueue = Volley
                     .newRequestQueue(mHelper.getContext(), new NetworkSpecifiedHurlStack(network));
             processSubscription();
         } catch (RequestFailedException e) {
-            mHelper.handleEvent(OmtpEvents.VVM3_VMG_CONNECTION_FAILED);
+            mHelper.handleEvent(mStatus, OmtpEvents.VVM3_VMG_CONNECTION_FAILED);
             mTask.fail();
         }
     }
@@ -219,7 +222,7 @@ public class Vvm3Subscriber {
         try {
             return future.get(REQUEST_TIMEOUT_SECONDS, TimeUnit.SECONDS);
         } catch (InterruptedException | ExecutionException | TimeoutException e) {
-            mHelper.handleEvent(OmtpEvents.VVM3_SPG_CONNECTION_FAILED);
+            mHelper.handleEvent(mStatus, OmtpEvents.VVM3_SPG_CONNECTION_FAILED);
             throw new ProvisioningException(e.toString());
         }
     }
@@ -235,7 +238,7 @@ public class Vvm3Subscriber {
             // A new STATUS SMS will be sent after this request.
             future.get(REQUEST_TIMEOUT_SECONDS, TimeUnit.SECONDS);
         } catch (TimeoutException | ExecutionException | InterruptedException e) {
-            mHelper.handleEvent(OmtpEvents.VVM3_SPG_CONNECTION_FAILED);
+            mHelper.handleEvent(mStatus, OmtpEvents.VVM3_SPG_CONNECTION_FAILED);
             throw new ProvisioningException(e.toString());
         }
         // It could take very long for the STATUS SMS to return. Waiting for it is unreliable.
@@ -271,7 +274,7 @@ public class Vvm3Subscriber {
             }
             return response;
         } catch (InterruptedException | ExecutionException | TimeoutException e) {
-            mHelper.handleEvent(OmtpEvents.VVM3_VMG_CONNECTION_FAILED);
+            mHelper.handleEvent(mStatus, OmtpEvents.VVM3_VMG_CONNECTION_FAILED);
             throw new ProvisioningException(e.toString());
         }
     }

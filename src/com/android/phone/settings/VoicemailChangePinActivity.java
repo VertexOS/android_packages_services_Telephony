@@ -46,6 +46,7 @@ import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
 import com.android.phone.PhoneUtils;
 import com.android.phone.R;
+import com.android.phone.VoicemailStatus;
 import com.android.phone.common.mail.MessagingException;
 import com.android.phone.vvm.omtp.OmtpConstants;
 import com.android.phone.vvm.omtp.OmtpConstants.ChangePinResult;
@@ -181,7 +182,7 @@ public class VoicemailChangePinActivity extends Activity implements OnClickListe
                     // Wipe the default old PIN so the old PIN input box will be shown to the user
                     // on the next time.
                     setDefaultOldPIN(activity, activity.mPhoneAccountHandle, null);
-                    activity.mConfig.handleEvent(OmtpEvents.CONFIG_PIN_SET);
+                    activity.handleOmtpEvent(OmtpEvents.CONFIG_PIN_SET);
                     activity.updateState(State.EnterOldPin);
                 }
             }
@@ -271,7 +272,7 @@ public class VoicemailChangePinActivity extends Activity implements OnClickListe
                     // Wipe the default old PIN so the old PIN input box will be shown to the user
                     // on the next time.
                     setDefaultOldPIN(activity, activity.mPhoneAccountHandle, null);
-                    activity.mConfig.handleEvent(OmtpEvents.CONFIG_PIN_SET);
+                    activity.handleOmtpEvent(OmtpEvents.CONFIG_PIN_SET);
 
                     activity.finish();
 
@@ -375,6 +376,16 @@ public class VoicemailChangePinActivity extends Activity implements OnClickListe
         } else {
             updateState(State.EnterOldPin);
         }
+    }
+
+    private void handleOmtpEvent(OmtpEvents event) {
+        mConfig.handleEvent(getVoicemailStatusEditor(), event);
+    }
+
+    private VoicemailStatus.Editor getVoicemailStatusEditor() {
+        // This activity does not have any automatic retry mechanism, errors should be written right
+        // away.
+        return VoicemailStatus.edit(this, mPhoneAccountHandle);
     }
 
     /**
@@ -588,7 +599,8 @@ public class VoicemailChangePinActivity extends Activity implements OnClickListe
         private final String mNewPin;
 
         public ChangePinNetworkRequestCallback(String oldPin, String newPin) {
-            super(mConfig, mPhoneAccountHandle);
+            super(mConfig, mPhoneAccountHandle,
+                VoicemailChangePinActivity.this.getVoicemailStatusEditor());
             mOldPin = oldPin;
             mNewPin = newPin;
         }
@@ -597,7 +609,8 @@ public class VoicemailChangePinActivity extends Activity implements OnClickListe
         public void onAvailable(Network network) {
             super.onAvailable(network);
             try (ImapHelper helper =
-                new ImapHelper(VoicemailChangePinActivity.this, mPhoneAccountHandle, network)){
+                new ImapHelper(VoicemailChangePinActivity.this, mPhoneAccountHandle, network,
+                    getVoicemailStatusEditor())) {
 
                 @ChangePinResult int result =
                         helper.changePin(mOldPin, mNewPin);
