@@ -663,6 +663,7 @@ public class CallNotifier extends Handler {
         while (itr.hasNext()) {
             int subId = itr.next();
             if (subInfos == null || !containsSubId(subInfos, subId)) {
+                Log.d(LOG_TAG, "updatePhoneStateListeners: Hide the outstanding notifications.");
                 // Hide the outstanding notifications.
                 mApplication.notificationMgr.updateMwi(subId, false);
                 mApplication.notificationMgr.updateCfi(subId, false);
@@ -671,6 +672,10 @@ public class CallNotifier extends Handler {
                 mTelephonyManager.listen(
                         mPhoneStateListeners.get(subId), PhoneStateListener.LISTEN_NONE);
                 itr.remove();
+            } else {
+                Log.d(LOG_TAG, "updatePhoneStateListeners: update CF notifications.");
+                mApplication.notificationMgr.updateCfi(subId, mCFIStatus.get(subId));
+                mApplication.notificationMgr.updateMwi(subId, mCFIStatus.get(subId));
             }
         }
 
