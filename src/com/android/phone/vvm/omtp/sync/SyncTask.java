@@ -37,6 +37,8 @@ public class SyncTask extends BaseTask {
     private static final String EXTRA_PHONE_ACCOUNT_HANDLE = "extra_phone_account_handle";
     private static final String EXTRA_SYNC_TYPE = "extra_sync_type";
 
+    private final RetryPolicy mRetryPolicy;
+
     private PhoneAccountHandle mPhone;
     private String mSyncType;
 
@@ -50,7 +52,8 @@ public class SyncTask extends BaseTask {
 
     public SyncTask() {
         super(TASK_SYNC);
-        addPolicy(new RetryPolicy(RETRY_TIMES, RETRY_INTERVAL_MILLIS));
+        mRetryPolicy = new RetryPolicy(RETRY_TIMES, RETRY_INTERVAL_MILLIS);
+        addPolicy(mRetryPolicy);
         addPolicy(new MinimalIntervalPolicy(MINIMAL_INTERVAL_MILLIS));
     }
 
@@ -63,7 +66,7 @@ public class SyncTask extends BaseTask {
     @Override
     public void onExecuteInBackgroundThread() {
         OmtpVvmSyncService service = new OmtpVvmSyncService(getContext());
-        service.sync(this, mSyncType, mPhone, null);
+        service.sync(this, mSyncType, mPhone, null, mRetryPolicy.getVoicemailStatusEditor());
     }
 
     @Override

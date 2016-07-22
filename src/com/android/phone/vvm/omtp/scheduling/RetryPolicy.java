@@ -17,7 +17,7 @@
 package com.android.phone.vvm.omtp.scheduling;
 
 import android.content.Intent;
-
+import com.android.phone.VoicemailStatus;
 import com.android.phone.vvm.omtp.VvmLog;
 
 /**
@@ -38,9 +38,24 @@ public class RetryPolicy implements Policy {
     private int mRetryCount;
     private boolean mFailed;
 
+    private VoicemailStatus.DeferredEditor mVoicemailStatusEditor;
+
     public RetryPolicy(int retryLimit, int retryDelayMillis) {
         mRetryLimit = retryLimit;
         mRetryDelayMillis = retryDelayMillis;
+    }
+
+    private boolean hasMoreRetries() {
+        return mRetryCount < mRetryLimit;
+    }
+
+    /**
+     * Error status should only be set if retries has exhausted or the task is successful. Status
+     * writes to this editor will be deferred until the task has ended, and will only be committed
+     * if the task is successful or there are no retries left.
+     */
+    public VoicemailStatus.Editor getVoicemailStatusEditor() {
+        return mVoicemailStatusEditor;
     }
 
     @Override
@@ -52,6 +67,8 @@ public class RetryPolicy implements Policy {
                     + mRetryDelayMillis);
             mTask.setExecutionTime(mTask.getTimeMillis() + mRetryDelayMillis);
         }
+        mVoicemailStatusEditor = VoicemailStatus.deferredEdit(task.getContext(),
+                task.getSubId());
     }
 
     @Override
@@ -61,14 +78,18 @@ public class RetryPolicy implements Policy {
 
     @Override
     public void onCompleted() {
-        if (!mFailed) {
+        if (!mFailed || !hasMoreRetries()) {
+            if (!mFailed) {
+                VvmLog.d(TAG, mTask.toString() + " completed successfully");
+            }
+            if (!hasMoreRetries()) {
+                VvmLog.d(TAG, "Retry limit for " + mTask + " reached");
+            }
+            VvmLog.i(TAG, "committing deferred status: " + mVoicemailStatusEditor.getValues());
+            mVoicemailStatusEditor.deferredApply();
             return;
         }
-        if (mRetryCount >= mRetryLimit) {
-            VvmLog.d(TAG, "Retry limit for " + mTask + " reached");
-            return;
-        }
-
+        VvmLog.i(TAG, "discarding deferred status: " + mVoicemailStatusEditor.getValues());
         Intent intent = mTask.createRestartIntent();
         intent.putExtra(EXTRA_RETRY_COUNT, mRetryCount + 1);
 

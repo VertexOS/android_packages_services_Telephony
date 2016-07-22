@@ -18,7 +18,7 @@ package com.android.phone.vvm.omtp.sync;
 
 import android.content.Context;
 import android.content.Intent;
-
+import com.android.phone.VoicemailStatus;
 import com.android.phone.vvm.omtp.scheduling.BaseTask;
 import com.android.phone.vvm.omtp.scheduling.PostponePolicy;
 
@@ -44,6 +44,7 @@ public class UploadTask extends BaseTask {
     @Override
     public void onExecuteInBackgroundThread() {
         OmtpVvmSyncService service = new OmtpVvmSyncService(getContext());
-        service.sync(this, OmtpVvmSyncService.SYNC_UPLOAD_ONLY, null, null);
+        service.sync(this, OmtpVvmSyncService.SYNC_UPLOAD_ONLY, null, null,
+                VoicemailStatus.edit(getContext(), getSubId()));
     }
 }
