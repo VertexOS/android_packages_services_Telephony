@@ -29,6 +29,7 @@ import android.telephony.ServiceState;
 import android.telephony.TelephonyManager;
 import com.android.phone.Assert;
 import com.android.phone.PhoneGlobals;
+import com.android.phone.VoicemailStatus;
 import com.android.phone.vvm.omtp.protocol.VisualVoicemailProtocol;
 import com.android.phone.vvm.omtp.scheduling.BaseTask;
 import com.android.phone.vvm.omtp.scheduling.RetryPolicy;
@@ -63,11 +64,14 @@ public class ActivationTask extends BaseTask {
     @Nullable
     private static DeviceProvisionedObserver sDeviceProvisionedObserver;
 
+    private final RetryPolicy mRetryPolicy;
+
     private Bundle mData;
 
     public ActivationTask() {
         super(TASK_ACTIVATION);
-        addPolicy(new RetryPolicy(RETRY_TIMES, RETRY_INTERVAL_MILLIS));
+        mRetryPolicy = new RetryPolicy(RETRY_TIMES, RETRY_INTERVAL_MILLIS);
+        addPolicy(mRetryPolicy);
     }
 
     /**
@@ -123,9 +127,18 @@ public class ActivationTask extends BaseTask {
         int subId = getSubId();
 
         OmtpVvmCarrierConfigHelper helper = new OmtpVvmCarrierConfigHelper(getContext(), subId);
-        helper.handleEvent(OmtpEvents.CONFIG_ACTIVATING);
-        helper.activateSmsFilter();
         PhoneAccountHandle phoneAccountHandle = PhoneAccountHandleConverter.fromSubId(subId);
+        if (!OmtpVvmSourceManager.getInstance(getContext())
+                .isVvmSourceRegistered(phoneAccountHandle)) {
+            // Only show the "activating" message if activation has not been completed before in
+            // this boot. Subsequent activations are more of a status check and usually does not
+            // concern the user.
+            helper.handleEvent(VoicemailStatus.edit(getContext(), subId),
+                    OmtpEvents.CONFIG_ACTIVATING);
+        }
+
+        helper.activateSmsFilter();
+        VoicemailStatus.Editor status = mRetryPolicy.getVoicemailStatusEditor();
 
         VisualVoicemailProtocol protocol = helper.getProtocol();
 
@@ -144,7 +157,7 @@ public class ActivationTask extends BaseTask {
             } catch (TimeoutException e) {
                 // The carrier is expected to return an STATUS SMS within STATUS_SMS_TIMEOUT_MILLIS
                 // handleEvent() will do the logging.
-                helper.handleEvent(OmtpEvents.CONFIG_STATUS_SMS_TIME_OUT);
+                helper.handleEvent(status, OmtpEvents.CONFIG_STATUS_SMS_TIME_OUT);
                 fail();
                 return;
             } catch (InterruptedException | ExecutionException | IOException e) {
@@ -160,32 +173,32 @@ public class ActivationTask extends BaseTask {
 
         if (message.getProvisioningStatus().equals(OmtpConstants.SUBSCRIBER_READY)) {
             VvmLog.d(TAG, "subscriber ready, no activation required");
-            updateSource(getContext(), phoneAccountHandle, getSubId(), message);
+            updateSource(getContext(), phoneAccountHandle, getSubId(), status, message);
         } else {
             if (helper.supportsProvisioning()) {
                 VvmLog.i(TAG, "Subscriber not ready, start provisioning");
-                helper.startProvisioning(this, phoneAccountHandle, message, data);
+                helper.startProvisioning(this, phoneAccountHandle, status, message, data);
 
             } else if (message.getProvisioningStatus().equals(OmtpConstants.SUBSCRIBER_NEW)) {
                 VvmLog.i(TAG, "Subscriber new but provisioning is not supported");
                 // Ignore the non-ready state and attempt to use the provided info as is.
                 // This is probably caused by not completing the new user tutorial.
-                updateSource(getContext(), phoneAccountHandle, getSubId(), message);
+                updateSource(getContext(), phoneAccountHandle, getSubId(), status, message);
             } else {
                 VvmLog.i(TAG, "Subscriber not ready but provisioning is not supported");
-                helper.handleEvent(OmtpEvents.CONFIG_SERVICE_NOT_AVAILABLE);
+                helper.handleEvent(status, OmtpEvents.CONFIG_SERVICE_NOT_AVAILABLE);
             }
         }
     }
 
     public static void updateSource(Context context, PhoneAccountHandle phone, int subId,
-            StatusMessage message) {
+            VoicemailStatus.Editor status, StatusMessage message) {
         OmtpVvmSourceManager vvmSourceManager =
                 OmtpVvmSourceManager.getInstance(context);
 
         if (OmtpConstants.SUCCESS.equals(message.getReturnCode())) {
             OmtpVvmCarrierConfigHelper helper = new OmtpVvmCarrierConfigHelper(context, subId);
-            helper.handleEvent(OmtpEvents.CONFIG_REQUEST_STATUS_SUCCESS);
+            helper.handleEvent(status, OmtpEvents.CONFIG_REQUEST_STATUS_SUCCESS);
 
             // Save the IMAP credentials in preferences so they are persistent and can be retrieved.
             VisualVoicemailPreferences prefs = new VisualVoicemailPreferences(context, phone);

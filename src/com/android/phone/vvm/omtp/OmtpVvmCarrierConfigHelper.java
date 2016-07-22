@@ -342,9 +342,9 @@ public class OmtpVvmCarrierConfigHelper {
     }
 
     public void startProvisioning(ActivationTask task, PhoneAccountHandle phone,
-            StatusMessage message, Bundle data) {
+        VoicemailStatus.Editor status, StatusMessage message, Bundle data) {
         if (mProtocol != null) {
-            mProtocol.startProvisioning(task, phone, this, message, data);
+            mProtocol.startProvisioning(task, phone, this, status, message, data);
         }
     }
 
@@ -354,10 +354,10 @@ public class OmtpVvmCarrierConfigHelper {
         }
     }
 
-    public void handleEvent(OmtpEvents event) {
+    public void handleEvent(VoicemailStatus.Editor status, OmtpEvents event) {
         VvmLog.i(TAG, "OmtpEvent:" + event);
         if (mProtocol != null) {
-            mProtocol.handleEvent(mContext, this, event);
+            mProtocol.handleEvent(mContext, this, status, event);
         }
     }
 

@@ -19,9 +19,9 @@ import android.content.Context;
 import android.telecom.PhoneAccountHandle;
 import android.telephony.PhoneStateListener;
 import android.telephony.ServiceState;
-
 import com.android.phone.PhoneGlobals;
 import com.android.phone.PhoneUtils;
+import com.android.phone.VoicemailStatus;
 import com.android.phone.vvm.omtp.sync.OmtpVvmSourceManager;
 import com.android.phone.vvm.omtp.sync.OmtpVvmSyncService;
 import com.android.phone.vvm.omtp.sync.SyncTask;
@@ -66,7 +66,8 @@ public class VvmPhoneStateListener extends PhoneStateListener {
                 if (!voicemailStatusQueryHelper.isNotificationsChannelActive(mPhoneAccount)) {
                     VvmLog
                             .v(TAG, "Notifications channel is active for " + subId);
-                    helper.handleEvent(OmtpEvents.NOTIFICATION_IN_SERVICE);
+                    helper.handleEvent(VoicemailStatus.edit(mContext, mPhoneAccount),
+                        OmtpEvents.NOTIFICATION_IN_SERVICE);
                     PhoneGlobals.getInstance().clearMwiIndicator(subId);
                 }
             }
@@ -91,7 +92,8 @@ public class VvmPhoneStateListener extends PhoneStateListener {
             if (!OmtpVvmSourceManager.getInstance(mContext).isVvmSourceRegistered(mPhoneAccount)) {
                 return;
             }
-            helper.handleEvent(OmtpEvents.NOTIFICATION_SERVICE_LOST);
+            helper.handleEvent(VoicemailStatus.edit(mContext, mPhoneAccount),
+                OmtpEvents.NOTIFICATION_SERVICE_LOST);
         }
         mPreviousState = state;
     }

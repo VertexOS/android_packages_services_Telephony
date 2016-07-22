@@ -23,10 +23,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.SystemClock;
 import android.support.annotation.NonNull;
-
 import com.android.phone.Assert;
 import com.android.phone.NeededForTesting;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -167,6 +165,7 @@ public abstract class BaseTask implements Task {
     }
 
     @Override
+    @CallSuper
     public void onCompleted() {
         if (mHasFailed) {
             for (Policy policy : mPolicies) {

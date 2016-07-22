@@ -24,6 +24,7 @@ import android.telecom.TelecomManager;
 import android.telecom.Voicemail;
 import android.text.TextUtils;
 import com.android.phone.PhoneUtils;
+import com.android.phone.VoicemailStatus;
 import com.android.phone.settings.VisualVoicemailSettingsUtil;
 import com.android.phone.vvm.omtp.ActivationTask;
 import com.android.phone.vvm.omtp.OmtpEvents;
@@ -81,19 +82,19 @@ public class OmtpVvmSyncService {
     }
 
     public void sync(BaseTask task, String action, PhoneAccountHandle phoneAccount,
-            Voicemail voicemail) {
+            Voicemail voicemail, VoicemailStatus.Editor status) {
         VvmLog.log(TAG, "Sync requested: " + action +
                 " for all accounts: " + String.valueOf(phoneAccount == null));
         if (phoneAccount != null) {
             VvmLog.v(TAG, "Sync requested: " + action + " - for account: " + phoneAccount);
-            setupAndSendRequest(task, phoneAccount, voicemail, action);
+            setupAndSendRequest(task, phoneAccount, voicemail, action, status);
         } else {
             VvmLog.v(TAG, "Sync requested: " + action + " - for all accounts");
             OmtpVvmSourceManager vvmSourceManager =
                     OmtpVvmSourceManager.getInstance(mContext);
             Set<PhoneAccountHandle> sources = vvmSourceManager.getOmtpVvmSources();
             for (PhoneAccountHandle source : sources) {
-                setupAndSendRequest(task, source, null, action);
+                setupAndSendRequest(task, source, null, action, status);
             }
             activateUnactivatedAccounts();
         }
@@ -115,7 +116,7 @@ public class OmtpVvmSyncService {
     }
 
     private void setupAndSendRequest(BaseTask task, PhoneAccountHandle phoneAccount,
-            Voicemail voicemail, String action) {
+            Voicemail voicemail, String action, VoicemailStatus.Editor status) {
         if (!VisualVoicemailSettingsUtil.isEnabled(mContext, phoneAccount)) {
             VvmLog.v(TAG, "Sync requested for disabled account");
             return;
@@ -127,23 +128,27 @@ public class OmtpVvmSyncService {
         }
 
         OmtpVvmCarrierConfigHelper config = new OmtpVvmCarrierConfigHelper(mContext, subId);
-        config.handleEvent(OmtpEvents.DATA_IMAP_OPERATION_STARTED);
-        try (NetworkWrapper network = VvmNetworkRequest.getNetwork(config, phoneAccount)) {
+        // DATA_IMAP_OPERATION_STARTED posting should not be deferred. This event clears all data
+        // channel errors, which should happen when the task starts, not when it ends. It is the
+        // "Sync in progress..." status.
+        config.handleEvent(VoicemailStatus.edit(mContext, phoneAccount),
+                OmtpEvents.DATA_IMAP_OPERATION_STARTED);
+        try (NetworkWrapper network = VvmNetworkRequest.getNetwork(config, phoneAccount, status)) {
             if (network == null) {
                 VvmLog.e(TAG, "unable to acquire network");
                 task.fail();
                 return;
             }
-            doSync(task, network.get(), phoneAccount, voicemail, action);
+            doSync(task, network.get(), phoneAccount, voicemail, action, status);
         } catch (RequestFailedException e) {
-            config.handleEvent(OmtpEvents.DATA_NO_CONNECTION_CELLULAR_REQUIRED);
+            config.handleEvent(status, OmtpEvents.DATA_NO_CONNECTION_CELLULAR_REQUIRED);
             task.fail();
         }
     }
 
     private void doSync(BaseTask task, Network network, PhoneAccountHandle phoneAccount,
-            Voicemail voicemail, String action) {
-        try(ImapHelper imapHelper = new ImapHelper(mContext, phoneAccount, network)) {
+            Voicemail voicemail, String action, VoicemailStatus.Editor status) {
+        try (ImapHelper imapHelper = new ImapHelper(mContext, phoneAccount, network, status)) {
             boolean success;
             if (voicemail == null) {
                 success = syncAll(action, imapHelper, phoneAccount);

@@ -27,31 +27,31 @@ public class DefaultOmtpEventHandler {
     private static final String TAG = "DefErrorCodeHandler";
 
     public static void handleEvent(Context context, OmtpVvmCarrierConfigHelper config,
-            OmtpEvents event) {
+        VoicemailStatus.Editor status, OmtpEvents event) {
         switch (event.getType()) {
             case Type.CONFIGURATION:
-                handleConfigurationEvent(context, config, event);
+                handleConfigurationEvent(context, status, event);
                 break;
             case Type.DATA_CHANNEL:
-                handleDataChannelEvent(context, config, event);
+                handleDataChannelEvent(context, status, event);
                 break;
             case Type.NOTIFICATION_CHANNEL:
-                handleNotificationChannelEvent(context, config, event);
+                handleNotificationChannelEvent(context, config, status, event);
                 break;
             case Type.OTHER:
-                handleOtherEvent(context, config, event);
+                handleOtherEvent(context, status, event);
                 break;
             default:
                 VvmLog.wtf(TAG, "invalid event type " + event.getType() + " for " + event);
         }
     }
 
-    private static void handleConfigurationEvent(Context context, OmtpVvmCarrierConfigHelper config,
+    private static void handleConfigurationEvent(Context context, VoicemailStatus.Editor status,
             OmtpEvents event) {
         switch (event) {
             case CONFIG_REQUEST_STATUS_SUCCESS:
             case CONFIG_PIN_SET:
-                VoicemailStatus.edit(context, config.getSubId())
+                status
                         .setConfigurationState(VoicemailContract.Status.CONFIGURATION_STATE_OK)
                         .setNotificationChannelState(Status.NOTIFICATION_CHANNEL_STATE_OK)
                         .apply();
@@ -59,18 +59,18 @@ public class DefaultOmtpEventHandler {
             case CONFIG_ACTIVATING:
                 // Wipe all errors from the last activation. All errors shown should be new errors
                 // for this activation.
-                VoicemailStatus.edit(context, config.getSubId())
+                status
                         .setConfigurationState(Status.CONFIGURATION_STATE_CONFIGURING)
                         .setDataChannelState(Status.DATA_CHANNEL_STATE_OK)
                         .setNotificationChannelState(Status.NOTIFICATION_CHANNEL_STATE_OK).apply();
                 break;
             case CONFIG_SERVICE_NOT_AVAILABLE:
-                VoicemailStatus.edit(context, config.getSubId())
+                status
                     .setConfigurationState(Status.CONFIGURATION_STATE_FAILED)
                     .apply();
                 break;
             case CONFIG_STATUS_SMS_TIME_OUT:
-                VoicemailStatus.edit(context, config.getSubId())
+                status
                         .setConfigurationState(Status.CONFIGURATION_STATE_FAILED)
                         .apply();
                 break;
@@ -79,36 +79,36 @@ public class DefaultOmtpEventHandler {
         }
     }
 
-    private static void handleDataChannelEvent(Context context, OmtpVvmCarrierConfigHelper config,
+    private static void handleDataChannelEvent(Context context, VoicemailStatus.Editor status,
             OmtpEvents event) {
         switch (event) {
             case DATA_IMAP_OPERATION_STARTED:
             case DATA_IMAP_OPERATION_COMPLETED:
-                VoicemailStatus.edit(context, config.getSubId())
+                status
                         .setDataChannelState(Status.DATA_CHANNEL_STATE_OK)
                         .apply();
                 break;
 
             case DATA_NO_CONNECTION:
-                VoicemailStatus.edit(context, config.getSubId())
+                status
                         .setDataChannelState(Status.DATA_CHANNEL_STATE_NO_CONNECTION)
                         .apply();
                 break;
 
             case DATA_NO_CONNECTION_CELLULAR_REQUIRED:
-                VoicemailStatus.edit(context, config.getSubId())
+                status
                         .setDataChannelState(
                                 Status.DATA_CHANNEL_STATE_NO_CONNECTION_CELLULAR_REQUIRED)
                         .apply();
                 break;
             case DATA_INVALID_PORT:
-                VoicemailStatus.edit(context, config.getSubId())
+                status
                         .setDataChannelState(
                                 VoicemailContract.Status.DATA_CHANNEL_STATE_BAD_CONFIGURATION)
                         .apply();
                 break;
             case DATA_CANNOT_RESOLVE_HOST_ON_NETWORK:
-                VoicemailStatus.edit(context, config.getSubId())
+                status
                         .setDataChannelState(
                                 VoicemailContract.Status.DATA_CHANNEL_STATE_SERVER_CONNECTION_ERROR)
                         .apply();
@@ -116,7 +116,7 @@ public class DefaultOmtpEventHandler {
             case DATA_SSL_INVALID_HOST_NAME:
             case DATA_CANNOT_ESTABLISH_SSL_SESSION:
             case DATA_IOE_ON_OPEN:
-                VoicemailStatus.edit(context, config.getSubId())
+                status
                         .setDataChannelState(
                                 VoicemailContract.Status.DATA_CHANNEL_STATE_COMMUNICATION_ERROR)
                         .apply();
@@ -129,7 +129,7 @@ public class DefaultOmtpEventHandler {
             case DATA_AUTH_SERVICE_NOT_PROVISIONED:
             case DATA_AUTH_SERVICE_NOT_ACTIVATED:
             case DATA_AUTH_USER_IS_BLOCKED:
-                VoicemailStatus.edit(context, config.getSubId())
+                status
                         .setDataChannelState(
                                 VoicemailContract.Status.DATA_CHANNEL_STATE_BAD_CONFIGURATION)
                         .apply();
@@ -139,7 +139,7 @@ public class DefaultOmtpEventHandler {
             case DATA_INVALID_INITIAL_SERVER_RESPONSE:
             case DATA_SSL_EXCEPTION:
             case DATA_ALL_SOCKET_CONNECTION_FAILED:
-                VoicemailStatus.edit(context, config.getSubId())
+                status
                         .setDataChannelState(
                                 VoicemailContract.Status.DATA_CHANNEL_STATE_SERVER_ERROR)
                         .apply();
@@ -151,10 +151,10 @@ public class DefaultOmtpEventHandler {
     }
 
     private static void handleNotificationChannelEvent(Context context,
-            OmtpVvmCarrierConfigHelper config, OmtpEvents event) {
+        OmtpVvmCarrierConfigHelper config, VoicemailStatus.Editor status, OmtpEvents event) {
         switch (event) {
             case NOTIFICATION_IN_SERVICE:
-                VoicemailStatus.edit(context, config.getSubId())
+                status
                         .setNotificationChannelState(Status.NOTIFICATION_CHANNEL_STATE_OK)
                         // Clear the error state. A sync should follow signal return so any error
                         // will be reposted.
@@ -162,24 +162,23 @@ public class DefaultOmtpEventHandler {
                         .apply();
                 break;
             case NOTIFICATION_SERVICE_LOST:
-                VoicemailStatus.Editor editor = VoicemailStatus.edit(context, config.getSubId());
-                editor.setNotificationChannelState(Status.NOTIFICATION_CHANNEL_STATE_NO_CONNECTION);
+                status.setNotificationChannelState(Status.NOTIFICATION_CHANNEL_STATE_NO_CONNECTION);
                 if (config.isCellularDataRequired()) {
-                    editor.setDataChannelState(
+                    status.setDataChannelState(
                             Status.DATA_CHANNEL_STATE_NO_CONNECTION_CELLULAR_REQUIRED);
                 }
-                editor.apply();
+                status.apply();
                 break;
             default:
                 VvmLog.wtf(TAG, "invalid notification channel event " + event);
         }
     }
 
-    private static void handleOtherEvent(Context context, OmtpVvmCarrierConfigHelper config,
+    private static void handleOtherEvent(Context context, VoicemailStatus.Editor status,
             OmtpEvents event) {
         switch (event) {
             case OTHER_SOURCE_REMOVED:
-                VoicemailStatus.edit(context, config.getSubId())
+                status
                         .setConfigurationState(Status.CONFIGURATION_STATE_NOT_CONFIGURED)
                         .setNotificationChannelState(
                                 Status.NOTIFICATION_CHANNEL_STATE_NO_CONNECTION)

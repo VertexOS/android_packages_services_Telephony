@@ -30,15 +30,14 @@ import android.provider.VoicemailContract.Voicemails;
 import android.telecom.PhoneAccountHandle;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
-
 import com.android.phone.PhoneUtils;
+import com.android.phone.VoicemailStatus;
 import com.android.phone.vvm.omtp.OmtpVvmCarrierConfigHelper;
 import com.android.phone.vvm.omtp.VvmLog;
 import com.android.phone.vvm.omtp.imap.ImapHelper;
 import com.android.phone.vvm.omtp.imap.ImapHelper.InitializingException;
 import com.android.phone.vvm.omtp.sync.OmtpVvmSourceManager;
 import com.android.phone.vvm.omtp.sync.VvmNetworkRequestCallback;
-
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
@@ -142,17 +141,17 @@ public class FetchVoicemailReceiver extends BroadcastReceiver {
 
         public fetchVoicemailNetworkRequestCallback(Context context,
                 PhoneAccountHandle phoneAccount) {
-            super(context, phoneAccount);
+            super(context, phoneAccount, VoicemailStatus.edit(context, phoneAccount));
         }
 
         @Override
         public void onAvailable(final Network network) {
             super.onAvailable(network);
-            fetchVoicemail(network);
+            fetchVoicemail(network, getVoicemailStatusEditor());
         }
     }
 
-    private void fetchVoicemail(final Network network) {
+    private void fetchVoicemail(final Network network, final VoicemailStatus.Editor status) {
         Executor executor = Executors.newCachedThreadPool();
         executor.execute(new Runnable() {
             @Override
@@ -161,7 +160,7 @@ public class FetchVoicemailReceiver extends BroadcastReceiver {
                     while (mRetryCount > 0) {
                         VvmLog.i(TAG, "fetching voicemail, retry count=" + mRetryCount);
                         try (ImapHelper imapHelper = new ImapHelper(mContext, mPhoneAccount,
-                                network)) {
+                            network, status)) {
                             boolean success = imapHelper.fetchVoicemailPayload(
                                     new VoicemailFetchedCallback(mContext, mUri), mUid);
                             if (!success && mRetryCount > 0) {

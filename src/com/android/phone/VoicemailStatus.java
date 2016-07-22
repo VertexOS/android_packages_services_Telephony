@@ -23,7 +23,6 @@ import android.net.Uri;
 import android.provider.VoicemailContract;
 import android.provider.VoicemailContract.Status;
 import android.telecom.PhoneAccountHandle;
-
 import com.android.phone.vvm.omtp.utils.PhoneAccountHandleConverter;
 
 public class VoicemailStatus {
@@ -39,6 +38,10 @@ public class VoicemailStatus {
         private Editor(Context context, PhoneAccountHandle phoneAccountHandle) {
             mContext = context;
             mPhoneAccountHandle = phoneAccountHandle;
+        }
+
+        public PhoneAccountHandle getPhoneAccountHandle() {
+            return mPhoneAccountHandle;
         }
 
         public Editor setType(String type) {
@@ -79,6 +82,33 @@ public class VoicemailStatus {
             ContentResolver contentResolver = mContext.getContentResolver();
             Uri statusUri = VoicemailContract.Status.buildSourceUri(mContext.getPackageName());
             contentResolver.insert(statusUri, mValues);
+            mValues.clear();
+        }
+
+        public ContentValues getValues() {
+            return mValues;
+        }
+    }
+
+    /**
+     * A voicemail status editor that the decision of whether to actually write to the database can
+     * be deferred. This object will be passed around as a usual {@link Editor}, but {@link
+     * #apply()} doesn't do anything. If later the creator of this object decides any status changes
+     * written to it should be committed, {@link #deferredApply()} should be called.
+     */
+    public static class DeferredEditor extends Editor {
+
+        private DeferredEditor(Context context, PhoneAccountHandle phoneAccountHandle) {
+            super(context, phoneAccountHandle);
+        }
+
+        @Override
+        public void apply() {
+            // Do nothing
+        }
+
+        public void deferredApply() {
+            super.apply();
         }
     }
 
@@ -88,5 +118,9 @@ public class VoicemailStatus {
 
     public static Editor edit(Context context, int subId) {
         return new Editor(context, PhoneAccountHandleConverter.fromSubId(subId));
+    }
+
+    public static DeferredEditor deferredEdit(Context context, int subId) {
+        return new DeferredEditor(context, PhoneAccountHandleConverter.fromSubId(subId));
     }
 }

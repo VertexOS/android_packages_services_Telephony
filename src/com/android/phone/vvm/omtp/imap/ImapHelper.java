@@ -72,6 +72,7 @@ public class ImapHelper implements Closeable {
     private final Context mContext;
     private final PhoneAccountHandle mPhoneAccount;
     private final Network mNetwork;
+    private final VoicemailStatus.Editor mStatus;
 
     VisualVoicemailPreferences mPrefs;
     private static final String PREF_KEY_QUOTA_OCCUPIED = "quota_occupied_";
@@ -89,17 +90,20 @@ public class ImapHelper implements Closeable {
         }
     }
 
-    public ImapHelper(Context context, PhoneAccountHandle phoneAccount, Network network)
+    public ImapHelper(Context context, PhoneAccountHandle phoneAccount, Network network,
+        VoicemailStatus.Editor status)
         throws InitializingException {
         this(context, new OmtpVvmCarrierConfigHelper(context,
-                PhoneUtils.getSubIdForPhoneAccountHandle(phoneAccount)), phoneAccount, network);
+            PhoneUtils.getSubIdForPhoneAccountHandle(phoneAccount)), phoneAccount, network, status);
     }
 
     public ImapHelper(Context context, OmtpVvmCarrierConfigHelper config,
-        PhoneAccountHandle phoneAccount, Network network) throws InitializingException {
+        PhoneAccountHandle phoneAccount, Network network, VoicemailStatus.Editor status)
+        throws InitializingException {
         mContext = context;
         mPhoneAccount = phoneAccount;
         mNetwork = network;
+        mStatus = status;
         mConfig = config;
         mPrefs = new VisualVoicemailPreferences(context,
                 phoneAccount);
@@ -123,7 +127,7 @@ public class ImapHelper implements Closeable {
             mImapStore = new ImapStore(
                     context, this, username, password, port, serverName, auth, network);
         } catch (NumberFormatException e) {
-            mConfig.handleEvent(OmtpEvents.DATA_INVALID_PORT);
+            handleEvent(OmtpEvents.DATA_INVALID_PORT);
             LogUtils.w(TAG, "Could not parse port number");
             throw new InitializingException("cannot initialize ImapHelper:" + e.toString());
         }
@@ -172,7 +176,7 @@ public class ImapHelper implements Closeable {
     }
 
     public void handleEvent(OmtpEvents event) {
-        mConfig.handleEvent(event);
+        mConfig.handleEvent(mStatus, event);
     }
 
     /**
