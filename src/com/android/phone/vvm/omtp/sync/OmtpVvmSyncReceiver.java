@@ -20,8 +20,13 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.provider.VoicemailContract;
-
+import android.telecom.PhoneAccountHandle;
+import android.telecom.TelecomManager;
+import com.android.phone.settings.VisualVoicemailSettingsUtil;
+import com.android.phone.vvm.omtp.ActivationTask;
 import com.android.phone.vvm.omtp.VvmLog;
+import com.android.phone.vvm.omtp.utils.PhoneAccountHandleConverter;
+import java.util.List;
 
 public class OmtpVvmSyncReceiver extends BroadcastReceiver {
 
@@ -31,7 +36,26 @@ public class OmtpVvmSyncReceiver extends BroadcastReceiver {
     public void onReceive(final Context context, Intent intent) {
         if (VoicemailContract.ACTION_SYNC_VOICEMAIL.equals(intent.getAction())) {
             VvmLog.v(TAG, "Sync intent received");
-            SyncTask.start(context, null, OmtpVvmSyncService.SYNC_FULL_SYNC);
+            for (PhoneAccountHandle source : OmtpVvmSourceManager.getInstance(context)
+                    .getOmtpVvmSources()) {
+                SyncTask.start(context, source, OmtpVvmSyncService.SYNC_FULL_SYNC);
+            }
+            activateUnactivatedAccounts(context);
+        }
+    }
+
+    private static void activateUnactivatedAccounts(Context context) {
+        List<PhoneAccountHandle> accounts =
+                context.getSystemService(TelecomManager.class).getCallCapablePhoneAccounts();
+        for (PhoneAccountHandle phoneAccount : accounts) {
+            if (!VisualVoicemailSettingsUtil.isEnabled(context, phoneAccount)) {
+                continue;
+            }
+            int subId = PhoneAccountHandleConverter.toSubId(phoneAccount);
+            if (!OmtpVvmSourceManager.getInstance(context).isVvmSourceRegistered(phoneAccount)) {
+                VvmLog.i(TAG, "Unactivated account " + phoneAccount + " found, activating");
+                ActivationTask.start(context, subId, null);
+            }
         }
     }
 }

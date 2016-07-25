@@ -18,9 +18,11 @@ package com.android.phone.vvm.omtp.sync;
 
 import android.content.Context;
 import android.content.Intent;
+import android.telecom.PhoneAccountHandle;
 import com.android.phone.VoicemailStatus;
 import com.android.phone.vvm.omtp.scheduling.BaseTask;
 import com.android.phone.vvm.omtp.scheduling.PostponePolicy;
+import com.android.phone.vvm.omtp.utils.PhoneAccountHandleConverter;
 
 /**
  * Upload task triggered by database changes. Will wait until the database has been stable for
@@ -35,16 +37,23 @@ public class UploadTask extends BaseTask {
         addPolicy(new PostponePolicy(POSTPONE_MILLIS));
     }
 
-    public static void start(Context context) {
+    public static void start(Context context, PhoneAccountHandle phoneAccountHandle) {
         Intent intent = BaseTask
-                .createIntent(context, UploadTask.class, TaskId.SUB_ID_ANY);
+                .createIntent(context, UploadTask.class,
+                        PhoneAccountHandleConverter.toSubId(phoneAccountHandle));
         context.startService(intent);
+    }
+
+    @Override
+    public void onCreate(Context context, Intent intent, int flags, int startId) {
+        super.onCreate(context, intent, flags, startId);
     }
 
     @Override
     public void onExecuteInBackgroundThread() {
         OmtpVvmSyncService service = new OmtpVvmSyncService(getContext());
-        service.sync(this, OmtpVvmSyncService.SYNC_UPLOAD_ONLY, null, null,
+        service.sync(this, OmtpVvmSyncService.SYNC_UPLOAD_ONLY,
+                PhoneAccountHandleConverter.fromSubId(getSubId()), null,
                 VoicemailStatus.edit(getContext(), getSubId()));
     }
 }
