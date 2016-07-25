@@ -19,6 +19,7 @@ import android.content.Context;
 import android.telecom.PhoneAccountHandle;
 import android.telephony.PhoneStateListener;
 import android.telephony.ServiceState;
+import android.telephony.SubscriptionManager;
 import com.android.phone.PhoneGlobals;
 import com.android.phone.PhoneUtils;
 import com.android.phone.VoicemailStatus;
@@ -47,6 +48,13 @@ public class VvmPhoneStateListener extends PhoneStateListener {
 
     @Override
     public void onServiceStateChanged(ServiceState serviceState) {
+        int subId = PhoneAccountHandleConverter.toSubId(mPhoneAccount);
+        if (!SubscriptionManager.isValidSubscriptionId(subId)) {
+            VvmLog.e(TAG, "onServiceStateChanged on phoneAccount " + mPhoneAccount
+                    + " with invalid subId, ignoring");
+            return;
+        }
+
         int state = serviceState.getState();
         if (state == mPreviousState || (state != ServiceState.STATE_IN_SERVICE
                 && mPreviousState != ServiceState.STATE_IN_SERVICE)) {
@@ -56,7 +64,6 @@ public class VvmPhoneStateListener extends PhoneStateListener {
             return;
         }
 
-        int subId = PhoneAccountHandleConverter.toSubId(mPhoneAccount);
         OmtpVvmCarrierConfigHelper helper = new OmtpVvmCarrierConfigHelper(mContext, subId);
 
         if (state == ServiceState.STATE_IN_SERVICE) {

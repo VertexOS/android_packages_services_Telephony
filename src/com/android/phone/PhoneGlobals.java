@@ -45,7 +45,6 @@ import android.telephony.ServiceState;
 import android.telephony.SubscriptionManager;
 import android.util.Log;
 import android.widget.Toast;
-
 import com.android.internal.telephony.Call;
 import com.android.internal.telephony.CallManager;
 import com.android.internal.telephony.IccCardConstants;
@@ -850,6 +849,11 @@ public class PhoneGlobals extends ContextWrapper {
     public void clearMwiIndicator(int subId) {
         // Setting voiceMessageCount to 0 will remove the current notification and clear the system
         // cached value.
-        getPhone(subId).setVoiceMessageCount(0);
+        Phone phone = getPhone(subId);
+        if (phone == null) {
+            Log.w(LOG_TAG, "clearMwiIndicator on null phone, subId:" + subId);
+        } else {
+            phone.setVoiceMessageCount(0);
+        }
     }
 }
