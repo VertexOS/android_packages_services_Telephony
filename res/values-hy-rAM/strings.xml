@@ -445,7 +445,7 @@
     <string name="notification_network_selection_text" msgid="2607085729661923269">"Ընտրված ցանցը (<xliff:g id="OPERATOR_NAME">%s</xliff:g>) անհասանելի է"</string>
     <string name="incall_error_power_off" msgid="2947938060513306698">"Զանգ կատարելու համար անջատեք Ինքնաթիռի ռեժիմը:"</string>
     <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"Զանգ կատարելու համար անջատեք Ինքնաթիռի ռեժիմը կամ միացեք անլար ցանցին:"</string>
-    <string name="incall_error_ecm_emergency_only" msgid="738708660612388692">"Սովորական զանգ կատարելու համար դուրս եկեք արտակարգ իրավիճակների հետզանգի ռեժիմից:"</string>
+    <string name="incall_error_ecm_emergency_only" msgid="738708660612388692">"Սովորական զանգ կատարելու համար դուրս եկեք շտապ կանչի ռեժիմից։"</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"Ցանցում գրանցված չէ:"</string>
     <string name="incall_error_out_of_service" msgid="4100065333878929223">"Բջջային ցանցն անհասանելի է:"</string>
     <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"Բջջային ցանցն անհասանելի է: Զանգ կատարելու համար միացեք անլար ցանցին:"</string>
@@ -465,7 +465,7 @@
     <string name="emergency_enable_radio_dialog_title" msgid="4627849966634578257">"Շտապ կանչ"</string>
     <string name="emergency_enable_radio_dialog_message" msgid="207613549344420291">"Ռադիոն միացվում է..."</string>
     <string name="emergency_enable_radio_dialog_retry" msgid="5960061579996526883">"Ծառայությունը մատչելի չէ: Նորից փորձեք…"</string>
-    <string name="radio_off_during_emergency_call" msgid="2535800034010306830">"Արտակարգ իրավիճակների զանգի ժամանակ հնարավոր չէ մտնել ինքնաթիռի ռեժիմ:"</string>
+    <string name="radio_off_during_emergency_call" msgid="2535800034010306830">"Շտապ կանչի ժամանակ հնարավոր չէ մտնել ինքնաթիռի ռեժիմ:"</string>
     <string name="dial_emergency_error" msgid="1509085166367420355">"Հնարավոր չէ զանգել: <xliff:g id="NON_EMERGENCY_NUMBER">%s</xliff:g> համարը արտակարգ իրավիճակի համար չէ:"</string>
     <string name="dial_emergency_empty_error" msgid="9130194953830414638">"Հնարավոր չէ զանգել: Հավաքեք արտակարգ իրավիճակի որևէ համար:"</string>
     <string name="dialerKeyboardHintText" msgid="9192914825413747792">"Օգտագործեք ստեղնաշարը՝ համարհավաքման համար"</string>
@@ -538,7 +538,7 @@
       <item quantity="one">Նշված գործողությունն Արտակարգ իրավիճակների հետզանգի ռեժիմում հասանելի չէ: Հեռախոսը գտնվելու է այս ռեժիմում <xliff:g id="COUNT_1">%s</xliff:g> րոպե: Ցանկանո՞ւմ եք դուրս գալ հիմա:</item>
       <item quantity="other">Նշված գործողությունն Արտակարգ իրավիճակների հետզանգի ռեժիմում հասանելի չէ: Հեռախոսը գտնվելու է այս ռեժիմում <xliff:g id="COUNT_1">%s</xliff:g> րոպե: Ցանկանո՞ւմ եք դուրս գալ հիմա:</item>
     </plurals>
-    <string name="alert_dialog_in_ecm_call" msgid="1886723687211887104">"Ընտրված գործողությունը մատչելի չէ արտակարգ հետզանգի ռեժիմում գտնվելիս:"</string>
+    <string name="alert_dialog_in_ecm_call" msgid="1886723687211887104">"Ընտրված գործողությունը հասանելի չէ շտապ կանչի ժամանակ:"</string>
     <string name="progress_dialog_exiting_ecm" msgid="4835734101617817074">"Դուրս է գալիս արտակարգ իրավիճակների հետզանգի ռեժիմից"</string>
     <string name="alert_dialog_yes" msgid="6674268047820703974">"Այո"</string>
     <string name="alert_dialog_no" msgid="1476091437797628703">"Ոչ"</string>
