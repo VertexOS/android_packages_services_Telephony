@@ -23,6 +23,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.SystemClock;
 import android.support.annotation.NonNull;
+import android.telephony.SubscriptionManager;
 import com.android.phone.Assert;
 import com.android.phone.NeededForTesting;
 import java.util.ArrayList;
@@ -39,7 +40,7 @@ public abstract class BaseTask implements Task {
     private Context mContext;
 
     private int mId;
-    private int mSubId = TaskId.SUB_ID_ANY;
+    private int mSubId = SubscriptionManager.INVALID_SUBSCRIPTION_ID;
 
     private boolean mHasStarted;
     private volatile boolean mHasFailed;
@@ -144,7 +145,7 @@ public abstract class BaseTask implements Task {
     @CallSuper
     public void onCreate(Context context, Intent intent, int flags, int startId) {
         mContext = context;
-        mSubId = intent.getIntExtra(EXTRA_SUB_ID, TaskId.SUB_ID_ANY);
+        mSubId = intent.getIntExtra(EXTRA_SUB_ID, SubscriptionManager.INVALID_SUBSCRIPTION_ID);
         for (Policy policy : mPolicies) {
             policy.onCreate(this, intent, flags, startId);
         }

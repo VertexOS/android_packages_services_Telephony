@@ -20,9 +20,9 @@ import android.net.Network;
 import android.net.Uri;
 import android.provider.VoicemailContract;
 import android.telecom.PhoneAccountHandle;
-import android.telecom.TelecomManager;
 import android.telecom.Voicemail;
 import android.text.TextUtils;
+import com.android.phone.Assert;
 import com.android.phone.PhoneUtils;
 import com.android.phone.VoicemailStatus;
 import com.android.phone.settings.VisualVoicemailSettingsUtil;
@@ -40,7 +40,6 @@ import com.android.phone.vvm.omtp.utils.PhoneAccountHandleConverter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * Sync OMTP visual voicemail.
@@ -83,36 +82,9 @@ public class OmtpVvmSyncService {
 
     public void sync(BaseTask task, String action, PhoneAccountHandle phoneAccount,
             Voicemail voicemail, VoicemailStatus.Editor status) {
-        VvmLog.log(TAG, "Sync requested: " + action +
-                " for all accounts: " + String.valueOf(phoneAccount == null));
-        if (phoneAccount != null) {
-            VvmLog.v(TAG, "Sync requested: " + action + " - for account: " + phoneAccount);
-            setupAndSendRequest(task, phoneAccount, voicemail, action, status);
-        } else {
-            VvmLog.v(TAG, "Sync requested: " + action + " - for all accounts");
-            OmtpVvmSourceManager vvmSourceManager =
-                    OmtpVvmSourceManager.getInstance(mContext);
-            Set<PhoneAccountHandle> sources = vvmSourceManager.getOmtpVvmSources();
-            for (PhoneAccountHandle source : sources) {
-                setupAndSendRequest(task, source, null, action, status);
-            }
-            activateUnactivatedAccounts();
-        }
-    }
-
-    private void activateUnactivatedAccounts() {
-        List<PhoneAccountHandle> accounts =
-            mContext.getSystemService(TelecomManager.class).getCallCapablePhoneAccounts();
-        for (PhoneAccountHandle phoneAccount : accounts) {
-            if (!VisualVoicemailSettingsUtil.isEnabled(mContext, phoneAccount)) {
-                continue;
-            }
-            int subId = PhoneAccountHandleConverter.toSubId(phoneAccount);
-            if (!OmtpVvmSourceManager.getInstance(mContext).isVvmSourceRegistered(phoneAccount)) {
-                VvmLog.i(TAG, "Unactivated account " + phoneAccount + " found, activating");
-                ActivationTask.start(mContext, subId, null);
-            }
-        }
+        Assert.isTrue(phoneAccount != null);
+        VvmLog.v(TAG, "Sync requested: " + action + " - for account: " + phoneAccount);
+        setupAndSendRequest(task, phoneAccount, voicemail, action, status);
     }
 
     private void setupAndSendRequest(BaseTask task, PhoneAccountHandle phoneAccount,

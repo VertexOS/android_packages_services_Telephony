@@ -30,13 +30,11 @@ import android.os.Looper;
 import android.os.Message;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
-
 import com.android.internal.annotations.VisibleForTesting;
 import com.android.phone.Assert;
 import com.android.phone.NeededForTesting;
 import com.android.phone.vvm.omtp.VvmLog;
 import com.android.phone.vvm.omtp.scheduling.Task.TaskId;
-
 import java.util.ArrayDeque;
 import java.util.Queue;
 
@@ -109,7 +107,7 @@ public class TaskSchedulerService extends Service {
                 VvmLog.v(TAG, "executing task " + task);
                 task.onExecuteInBackgroundThread();
             } catch (Throwable throwable) {
-                VvmLog.e(TAG, "Exception while executing task " + task + ":" + throwable);
+                VvmLog.e(TAG, "Exception while executing task " + task + ":", throwable);
             }
 
             Message schedulerMessage = mMainThreadHandler.obtainMessage();

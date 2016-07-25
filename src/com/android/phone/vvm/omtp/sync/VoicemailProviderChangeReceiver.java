@@ -19,6 +19,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.provider.VoicemailContract;
+import android.telecom.PhoneAccountHandle;
 
 /**
  * Receives changes to the voicemail provider so they can be sent to the voicemail server.
@@ -31,7 +32,10 @@ public class VoicemailProviderChangeReceiver extends BroadcastReceiver {
         OmtpVvmSourceManager vvmSourceManager =
                 OmtpVvmSourceManager.getInstance(context);
         if (vvmSourceManager.getOmtpVvmSources().size() > 0 && !isSelfChanged) {
-            UploadTask.start(context);
+            for (PhoneAccountHandle source : OmtpVvmSourceManager.getInstance(context)
+                    .getOmtpVvmSources()) {
+                UploadTask.start(context, source);
+            }
         }
     }
 }

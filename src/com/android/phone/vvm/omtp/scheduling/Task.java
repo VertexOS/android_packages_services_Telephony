@@ -20,7 +20,6 @@ import android.annotation.MainThread;
 import android.annotation.WorkerThread;
 import android.content.Context;
 import android.content.Intent;
-
 import java.util.Objects;
 
 /**
@@ -55,12 +54,6 @@ public interface Task {
      * the queue the new task will be rejected.
      */
     class TaskId {
-
-        /**
-         * Special subId value to indicate unspecified subId. Having SUB_ID_ANY does NOT prevent
-         * task on other subId from executing.
-         */
-        public static final int SUB_ID_ANY = -1;
 
         /**
          * Indicates the operation type of the task.
