@@ -748,6 +748,9 @@ abstract class TelephonyConnection extends Connection {
             if (!Objects.equals(address, getAddress()) ||
                     presentation != getAddressPresentation()) {
                 Log.v(this, "updateAddress, address changed");
+                if ((getConnectionProperties() & PROPERTY_IS_DOWNGRADED_CONFERENCE) != 0) {
+                    address = null;
+                }
                 setAddress(address, presentation);
             }
 
