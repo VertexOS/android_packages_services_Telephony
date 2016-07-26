@@ -16,8 +16,11 @@
 
 package com.android.services.telephony;
 
+import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -27,6 +30,8 @@ import android.graphics.drawable.Icon;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.os.UserHandle;
+import android.os.UserManager;
 import android.telecom.PhoneAccount;
 import android.telecom.PhoneAccountHandle;
 import android.telecom.TelecomManager;
@@ -176,6 +181,12 @@ final class TelecomAccountRegistry {
             }
 
             mIsVideoCapable = mPhone.isVideoEnabled();
+
+            if (!mIsPrimaryUser) {
+                Log.i(this, "Disabling video calling for secondary user.");
+                mIsVideoCapable = false;
+            }
+
             if (mIsVideoCapable) {
                 capabilities |= PhoneAccount.CAPABILITY_VIDEO_CALLING;
             }
@@ -436,6 +447,22 @@ final class TelecomAccountRegistry {
         }
     };
 
+    private final BroadcastReceiver mUserSwitchedReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Log.i(this, "User changed, re-registering phone accounts.");
+
+            int userHandleId = intent.getIntExtra(Intent.EXTRA_USER_HANDLE, 0);
+            UserHandle currentUserHandle = new UserHandle(userHandleId);
+            mIsPrimaryUser = UserManager.get(mContext).getPrimaryUser().getUserHandle()
+                    .equals(currentUserHandle);
+
+            // Any time the user changes, re-register the accounts.
+            tearDownAccounts();
+            setupAccounts();
+        }
+    };
+
     private final PhoneStateListener mPhoneStateListener = new PhoneStateListener() {
         @Override
         public void onServiceStateChanged(ServiceState serviceState) {
@@ -456,6 +483,7 @@ final class TelecomAccountRegistry {
     private List<AccountEntry> mAccounts = new LinkedList<AccountEntry>();
     private Object mAccountsLock = new Object();
     private int mServiceState = ServiceState.STATE_POWER_OFF;
+    private boolean mIsPrimaryUser = true;
 
     // TODO: Remove back-pointer from app singleton to Service, since this is not a preferred
     // pattern; redesign. This was added to fix a late release bug.
@@ -598,6 +626,11 @@ final class TelecomAccountRegistry {
         // We also need to listen for changes to the service state (e.g. emergency -> in service)
         // because this could signal a removal or addition of a SIM in a single SIM phone.
         mTelephonyManager.listen(mPhoneStateListener, PhoneStateListener.LISTEN_SERVICE_STATE);
+
+        // Listen for user switches.  When the user switches, we need to ensure that if the current
+        // use is not the primary user we disable video calling.
+        mContext.registerReceiver(mUserSwitchedReceiver,
+                new IntentFilter(Intent.ACTION_USER_SWITCHED));
     }
 
     /**
