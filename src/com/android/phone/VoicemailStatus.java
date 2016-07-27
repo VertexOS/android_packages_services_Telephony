@@ -120,6 +120,18 @@ public class VoicemailStatus {
         return new Editor(context, PhoneAccountHandleConverter.fromSubId(subId));
     }
 
+    /**
+     * Reset the status to the "disabled" state, which the UI should not show anything for this
+     * subId.
+     */
+    public static void disable(Context context, int subId) {
+        edit(context, subId)
+                .setConfigurationState(Status.CONFIGURATION_STATE_NOT_CONFIGURED)
+                .setDataChannelState(Status.DATA_CHANNEL_STATE_NO_CONNECTION)
+                .setNotificationChannelState(Status.NOTIFICATION_CHANNEL_STATE_NO_CONNECTION)
+                .apply();
+    }
+
     public static DeferredEditor deferredEdit(Context context, int subId) {
         return new DeferredEditor(context, PhoneAccountHandleConverter.fromSubId(subId));
     }
