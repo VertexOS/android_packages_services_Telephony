@@ -127,6 +127,11 @@ public class ActivationTask extends BaseTask {
         int subId = getSubId();
 
         OmtpVvmCarrierConfigHelper helper = new OmtpVvmCarrierConfigHelper(getContext(), subId);
+        if (!helper.isValid()) {
+            VvmLog.i(TAG, "VVM not supported on subId " + subId);
+            VoicemailStatus.disable(getContext(), subId);
+            return;
+        }
         PhoneAccountHandle phoneAccountHandle = PhoneAccountHandleConverter.fromSubId(subId);
         if (!OmtpVvmSourceManager.getInstance(getContext())
                 .isVvmSourceRegistered(phoneAccountHandle)) {
