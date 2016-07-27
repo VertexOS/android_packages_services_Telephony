@@ -29,6 +29,7 @@ import android.telephony.TelephonyManager;
 import com.android.internal.telephony.IccCardConstants;
 import com.android.internal.telephony.PhoneConstants;
 import com.android.internal.telephony.TelephonyIntents;
+import com.android.phone.VoicemailStatus;
 import com.android.phone.settings.VisualVoicemailSettingsUtil;
 import com.android.phone.vvm.omtp.sync.OmtpVvmSourceManager;
 import com.android.phone.vvm.omtp.utils.PhoneAccountHandleConverter;
@@ -109,6 +110,7 @@ public class SimChangeReceiver extends BroadcastReceiver {
             String mccMnc = context.getSystemService(TelephonyManager.class).getSimOperator(subId);
             VvmLog.d(TAG,
                     "visual voicemail not supported for carrier " + mccMnc + " on subId " + subId);
+            VoicemailStatus.disable(context, subId);
         }
     }
 
