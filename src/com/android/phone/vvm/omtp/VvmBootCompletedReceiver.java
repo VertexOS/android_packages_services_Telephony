@@ -21,7 +21,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.telecom.PhoneAccountHandle;
 import android.telecom.TelecomManager;
-
+import android.telephony.SubscriptionManager;
 import com.android.phone.vvm.omtp.utils.PhoneAccountHandleConverter;
 
 /**
@@ -49,6 +49,12 @@ public class VvmBootCompletedReceiver extends BroadcastReceiver {
         for (PhoneAccountHandle handle : TelecomManager.from(context)
                 .getCallCapablePhoneAccounts()) {
             int subId = PhoneAccountHandleConverter.toSubId(handle);
+            if (!SubscriptionManager.isValidSubscriptionId(subId)) {
+                // b/30474294 getCallCapablePhoneAccounts() might return a PhoneAccountHandle with
+                // invalid subId if no SIM is inserted.
+                VvmLog.e(TAG, "phone account " + handle + " has invalid subId " + subId);
+                continue;
+            }
             VvmLog.v(TAG, "processing subId " + subId);
             SimChangeReceiver.processSubId(context, subId);
         }

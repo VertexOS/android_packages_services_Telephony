@@ -20,6 +20,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.telecom.PhoneAccountHandle;
 import com.android.phone.VoicemailStatus;
+import com.android.phone.vvm.omtp.VvmLog;
 import com.android.phone.vvm.omtp.scheduling.BaseTask;
 import com.android.phone.vvm.omtp.scheduling.PostponePolicy;
 import com.android.phone.vvm.omtp.utils.PhoneAccountHandleConverter;
@@ -29,6 +30,8 @@ import com.android.phone.vvm.omtp.utils.PhoneAccountHandleConverter;
  * {@link #POSTPONE_MILLIS} to execute.
  */
 public class UploadTask extends BaseTask {
+
+    private static final String TAG = "VvmUploadTask";
 
     private static final int POSTPONE_MILLIS = 5_000;
 
@@ -52,8 +55,15 @@ public class UploadTask extends BaseTask {
     @Override
     public void onExecuteInBackgroundThread() {
         OmtpVvmSyncService service = new OmtpVvmSyncService(getContext());
+
+        PhoneAccountHandle phoneAccountHandle = PhoneAccountHandleConverter.fromSubId(getSubId());
+        if (phoneAccountHandle == null) {
+            // This should never happen
+            VvmLog.e(TAG, "null phone account for subId " + getSubId());
+            return;
+        }
         service.sync(this, OmtpVvmSyncService.SYNC_UPLOAD_ONLY,
-                PhoneAccountHandleConverter.fromSubId(getSubId()), null,
-                VoicemailStatus.edit(getContext(), getSubId()));
+                phoneAccountHandle, null,
+                VoicemailStatus.edit(getContext(), phoneAccountHandle));
     }
 }

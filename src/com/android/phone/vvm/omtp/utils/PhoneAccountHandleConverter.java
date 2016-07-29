@@ -16,10 +16,13 @@
 
 package com.android.phone.vvm.omtp.utils;
 
+import android.annotation.Nullable;
 import android.telecom.PhoneAccountHandle;
 import android.telephony.SubscriptionManager;
-
+import com.android.internal.telephony.Phone;
+import com.android.internal.telephony.PhoneFactory;
 import com.android.phone.PhoneUtils;
+import com.android.phone.vvm.omtp.VvmLog;
 
 /**
  * Utility to convert between PhoneAccountHandle and subId, which is a common operation in OMTP
@@ -29,9 +32,22 @@ import com.android.phone.PhoneUtils;
  */
 public class PhoneAccountHandleConverter {
 
+    private static final String TAG = "PhoneAccountHndCvtr";
+
+    @Nullable
     public static PhoneAccountHandle fromSubId(int subId) {
-        return PhoneUtils.makePstnPhoneAccountHandle(
-                SubscriptionManager.getPhoneId(subId));
+        if (!SubscriptionManager.isValidSubscriptionId(subId)) {
+            VvmLog.e(TAG, "invalid subId " + subId);
+            return null;
+        }
+        // Calling PhoneUtils.makePstnPhoneAccountHandle() with a phoneId might throw a NPE if the
+        // phone object cannot be found, so the Phone object should be created and checked here.
+        Phone phone = PhoneFactory.getPhone(SubscriptionManager.getPhoneId(subId));
+        if (phone == null) {
+            VvmLog.e(TAG, "Unable to find Phone for subId " + subId);
+            return null;
+        }
+        return PhoneUtils.makePstnPhoneAccountHandle(phone);
     }
 
     public static int toSubId(PhoneAccountHandle handle) {
