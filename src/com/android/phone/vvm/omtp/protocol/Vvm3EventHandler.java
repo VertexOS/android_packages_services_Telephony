@@ -113,6 +113,12 @@ public class Vvm3EventHandler {
         OmtpEvents event) {
         switch (event) {
             case CONFIG_REQUEST_STATUS_SUCCESS:
+                if (status.getPhoneAccountHandle() == null) {
+                    // This should never happen.
+                    Log.e(TAG, "status editor has null phone account handle");
+                    return true;
+                }
+
                 if (!VoicemailChangePinActivity
                     .isDefaultOldPinSet(context, status.getPhoneAccountHandle())) {
                     return false;

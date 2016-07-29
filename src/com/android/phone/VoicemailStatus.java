@@ -16,6 +16,7 @@
 
 package com.android.phone;
 
+import android.annotation.Nullable;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
@@ -23,14 +24,16 @@ import android.net.Uri;
 import android.provider.VoicemailContract;
 import android.provider.VoicemailContract.Status;
 import android.telecom.PhoneAccountHandle;
-import com.android.phone.vvm.omtp.utils.PhoneAccountHandleConverter;
+import com.android.phone.vvm.omtp.VvmLog;
 
 public class VoicemailStatus {
 
+    private static final String TAG = "VvmStatus";
 
     public static class Editor {
 
         private final Context mContext;
+        @Nullable
         private final PhoneAccountHandle mPhoneAccountHandle;
 
         private ContentValues mValues = new ContentValues();
@@ -38,8 +41,13 @@ public class VoicemailStatus {
         private Editor(Context context, PhoneAccountHandle phoneAccountHandle) {
             mContext = context;
             mPhoneAccountHandle = phoneAccountHandle;
+            if (mPhoneAccountHandle == null) {
+                VvmLog.w(TAG, "VoicemailStatus.Editor created with null phone account, status will"
+                        + " not be written");
+            }
         }
 
+        @Nullable
         public PhoneAccountHandle getPhoneAccountHandle() {
             return mPhoneAccountHandle;
         }
@@ -76,6 +84,9 @@ public class VoicemailStatus {
         }
 
         public void apply() {
+            if (mPhoneAccountHandle == null) {
+                return;
+            }
             mValues.put(Status.PHONE_ACCOUNT_COMPONENT_NAME,
                     mPhoneAccountHandle.getComponentName().flattenToString());
             mValues.put(Status.PHONE_ACCOUNT_ID, mPhoneAccountHandle.getId());
@@ -116,23 +127,20 @@ public class VoicemailStatus {
         return new Editor(context, phoneAccountHandle);
     }
 
-    public static Editor edit(Context context, int subId) {
-        return new Editor(context, PhoneAccountHandleConverter.fromSubId(subId));
-    }
-
     /**
      * Reset the status to the "disabled" state, which the UI should not show anything for this
      * subId.
      */
-    public static void disable(Context context, int subId) {
-        edit(context, subId)
+    public static void disable(Context context, PhoneAccountHandle phoneAccountHandle) {
+        edit(context, phoneAccountHandle)
                 .setConfigurationState(Status.CONFIGURATION_STATE_NOT_CONFIGURED)
                 .setDataChannelState(Status.DATA_CHANNEL_STATE_NO_CONNECTION)
                 .setNotificationChannelState(Status.NOTIFICATION_CHANNEL_STATE_NO_CONNECTION)
                 .apply();
     }
 
-    public static DeferredEditor deferredEdit(Context context, int subId) {
-        return new DeferredEditor(context, PhoneAccountHandleConverter.fromSubId(subId));
+    public static DeferredEditor deferredEdit(Context context,
+            PhoneAccountHandle phoneAccountHandle) {
+        return new DeferredEditor(context, phoneAccountHandle);
     }
 }

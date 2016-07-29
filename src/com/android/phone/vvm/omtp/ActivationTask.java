@@ -126,19 +126,25 @@ public class ActivationTask extends BaseTask {
         Assert.isNotMainThread();
         int subId = getSubId();
 
+        PhoneAccountHandle phoneAccountHandle = PhoneAccountHandleConverter.fromSubId(subId);
+        if (phoneAccountHandle == null) {
+            // This should never happen
+            VvmLog.e(TAG, "null phone account for subId " + subId);
+            return;
+        }
+
         OmtpVvmCarrierConfigHelper helper = new OmtpVvmCarrierConfigHelper(getContext(), subId);
         if (!helper.isValid()) {
             VvmLog.i(TAG, "VVM not supported on subId " + subId);
-            VoicemailStatus.disable(getContext(), subId);
+            VoicemailStatus.disable(getContext(), phoneAccountHandle);
             return;
         }
-        PhoneAccountHandle phoneAccountHandle = PhoneAccountHandleConverter.fromSubId(subId);
         if (!OmtpVvmSourceManager.getInstance(getContext())
                 .isVvmSourceRegistered(phoneAccountHandle)) {
             // Only show the "activating" message if activation has not been completed before in
             // this boot. Subsequent activations are more of a status check and usually does not
             // concern the user.
-            helper.handleEvent(VoicemailStatus.edit(getContext(), subId),
+            helper.handleEvent(VoicemailStatus.edit(getContext(), phoneAccountHandle),
                     OmtpEvents.CONFIG_ACTIVATING);
         }
 
