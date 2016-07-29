@@ -53,7 +53,8 @@ public class OmtpMessageReceiver extends BroadcastReceiver {
         PhoneAccountHandle phone = PhoneAccountHandleConverter.fromSubId(subId);
 
         if (phone == null) {
-            VvmLog.i(TAG, "Received message for null phone account");
+            // This should never happen
+            VvmLog.i(TAG, "Received message for null phone account on subId " + subId);
             return;
         }
 

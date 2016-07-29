@@ -135,9 +135,13 @@ public class OmtpVvmCarrierConfigHelper {
         return mSubId;
     }
 
+    @Nullable
     public PhoneAccountHandle getPhoneAccountHandle() {
         if (mPhoneAccountHandle == null) {
             mPhoneAccountHandle = PhoneAccountHandleConverter.fromSubId(mSubId);
+            if (mPhoneAccountHandle == null) {
+                VvmLog.e(TAG, "null phone account for subId " + mSubId);
+            }
         }
         return mPhoneAccountHandle;
     }
@@ -305,7 +309,13 @@ public class OmtpVvmCarrierConfigHelper {
     }
 
     public void startActivation() {
-        VoicemailStatus.edit(mContext, mSubId)
+        PhoneAccountHandle phoneAccountHandle = getPhoneAccountHandle();
+        if (phoneAccountHandle == null) {
+            // This should never happen
+            // Error logged in getPhoneAccountHandle().
+            return;
+        }
+        VoicemailStatus.edit(mContext, phoneAccountHandle)
                 .setType(getVvmType())
                 .apply();
 

@@ -66,7 +66,7 @@ public class SimChangeReceiver extends BroadcastReceiver {
                 int subId = intent.getIntExtra(PhoneConstants.SUBSCRIPTION_KEY,
                         SubscriptionManager.INVALID_SUBSCRIPTION_ID);
 
-                if (subId == SubscriptionManager.INVALID_SUBSCRIPTION_ID) {
+                if (!SubscriptionManager.isValidSubscriptionId(subId)) {
                     VvmLog.i(TAG, "Received SIM change for invalid subscription id.");
                     return;
                 }
@@ -83,11 +83,16 @@ public class SimChangeReceiver extends BroadcastReceiver {
     }
 
     public static void processSubId(Context context, int subId) {
+        PhoneAccountHandle phoneAccount = PhoneAccountHandleConverter.fromSubId(subId);
+        if (phoneAccount == null) {
+            // This should never happen
+            VvmLog.e(TAG, "unable to convert subId " + subId + " to PhoneAccountHandle");
+            return;
+        }
+
         OmtpVvmCarrierConfigHelper carrierConfigHelper =
                 new OmtpVvmCarrierConfigHelper(context, subId);
         if (carrierConfigHelper.isValid()) {
-            PhoneAccountHandle phoneAccount = PhoneAccountHandleConverter.fromSubId(subId);
-
             if (VisualVoicemailSettingsUtil.isEnabled(context, phoneAccount)) {
                 VvmLog.i(TAG, "Sim state or carrier config changed for " + subId);
                 // Add a phone state listener so that changes to the communication channels
@@ -110,7 +115,7 @@ public class SimChangeReceiver extends BroadcastReceiver {
             String mccMnc = context.getSystemService(TelephonyManager.class).getSimOperator(subId);
             VvmLog.d(TAG,
                     "visual voicemail not supported for carrier " + mccMnc + " on subId " + subId);
-            VoicemailStatus.disable(context, subId);
+            VoicemailStatus.disable(context, phoneAccount);
         }
     }
 

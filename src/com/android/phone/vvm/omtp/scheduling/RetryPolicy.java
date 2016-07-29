@@ -17,8 +17,10 @@
 package com.android.phone.vvm.omtp.scheduling;
 
 import android.content.Intent;
+import android.telecom.PhoneAccountHandle;
 import com.android.phone.VoicemailStatus;
 import com.android.phone.vvm.omtp.VvmLog;
+import com.android.phone.vvm.omtp.utils.PhoneAccountHandleConverter;
 
 /**
  * A task with this policy will automatically re-queue itself if {@link BaseTask#fail()} has been
@@ -67,8 +69,15 @@ public class RetryPolicy implements Policy {
                     + mRetryDelayMillis);
             mTask.setExecutionTime(mTask.getTimeMillis() + mRetryDelayMillis);
         }
-        mVoicemailStatusEditor = VoicemailStatus.deferredEdit(task.getContext(),
-                task.getSubId());
+        PhoneAccountHandle phoneAccountHandle = PhoneAccountHandleConverter
+                .fromSubId(task.getSubId());
+        if (phoneAccountHandle == null) {
+            VvmLog.e(TAG, "null phone account for subId " + task.getSubId());
+            // This should never happen, but continue on if it does. The status write will be
+            // discarded.
+        }
+        mVoicemailStatusEditor = VoicemailStatus
+                .deferredEdit(task.getContext(), phoneAccountHandle);
     }
 
     @Override
