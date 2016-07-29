@@ -95,6 +95,8 @@
     <string name="no_vm_number_msg">No voicemail number is stored on the SIM card.</string>
     <!-- Button label on the "Missing voicemail number" dialog -->
     <string name="add_vm_number_str">Add number</string>
+    <!--Toast in Call settings when asked to launch voicemail for a guest user -->
+    <string name="voice_number_setting_primary_user_only">Voicei mail for Call settings can only be changed by the primary user.</string>
 
     <!-- Status message displayed on SIM PIN unlock panel -->
     <string name="puk_unlocked">Your SIM card has been unblocked. Your phone is unlocking\u2026</string>
