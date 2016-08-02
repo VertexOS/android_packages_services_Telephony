@@ -15,6 +15,7 @@
  */
 package com.android.phone.vvm.omtp.fetch;
 
+import android.annotation.Nullable;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.ContentResolver;
@@ -30,6 +31,7 @@ import android.provider.VoicemailContract.Voicemails;
 import android.telecom.PhoneAccountHandle;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
+import com.android.internal.telephony.Phone;
 import com.android.phone.PhoneUtils;
 import com.android.phone.VoicemailStatus;
 import com.android.phone.vvm.omtp.OmtpVvmCarrierConfigHelper;
@@ -119,8 +121,12 @@ public class FetchVoicemailReceiver extends BroadcastReceiver {
                             cursor.getString(PHONE_ACCOUNT_ID));
                     if (!OmtpVvmSourceManager.getInstance(context)
                             .isVvmSourceRegistered(mPhoneAccount)) {
-                        VvmLog.w(TAG, "Account not registered - cannot retrieve message.");
-                        return;
+                        mPhoneAccount = getAccountFromMarshmallowAccount(context, mPhoneAccount);
+                        if (mPhoneAccount == null) {
+                            VvmLog.w(TAG, "Account not registered - cannot retrieve message.");
+                            return;
+                        }
+                        VvmLog.i(TAG, "Fetching voicemail with Marshmallow PhoneAccountHandle");
                     }
 
                     int subId = PhoneUtils.getSubIdForPhoneAccountHandle(mPhoneAccount);
@@ -135,6 +141,29 @@ public class FetchVoicemailReceiver extends BroadcastReceiver {
                 cursor.close();
             }
         }
+    }
+
+    /**
+     * In ag/930496 the format of PhoneAccountHandle has changed between Marshmallow and Nougat.
+     * This method attempts to search the account from the old database in registered sources using
+     * the old format. There's a chance of M phone account collisions on multi-SIM devices, but
+     * visual voicemail is not supported on M multi-SIM.
+     */
+    @Nullable
+    private static PhoneAccountHandle getAccountFromMarshmallowAccount(Context context,
+            PhoneAccountHandle oldAccount) {
+        for (PhoneAccountHandle handle : OmtpVvmSourceManager.getInstance(context)
+                .getOmtpVvmSources()) {
+            Phone phone = PhoneUtils.getPhoneForPhoneAccountHandle(handle);
+            if (phone == null) {
+                continue;
+            }
+            // getIccSerialNumber() is used for ID before N, and getFullIccSerialNumber() after.
+            if (phone.getIccSerialNumber().equals(oldAccount.getId())) {
+                return handle;
+            }
+        }
+        return null;
     }
 
     private class fetchVoicemailNetworkRequestCallback extends VvmNetworkRequestCallback {

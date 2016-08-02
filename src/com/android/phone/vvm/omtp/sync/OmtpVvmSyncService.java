@@ -127,9 +127,9 @@ public class OmtpVvmSyncService {
             } else {
                 success = syncOne(imapHelper, voicemail, phoneAccount);
             }
-            imapHelper.updateQuota();
-
             if (success) {
+                // TODO: b/30569269 failure should interrupt all subsequent task via exceptions
+                imapHelper.updateQuota();
                 imapHelper.handleEvent(OmtpEvents.DATA_IMAP_OPERATION_COMPLETED);
             } else {
                 task.fail();

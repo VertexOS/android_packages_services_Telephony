@@ -50,8 +50,8 @@ public class VvmBootCompletedReceiver extends BroadcastReceiver {
                 .getCallCapablePhoneAccounts()) {
             int subId = PhoneAccountHandleConverter.toSubId(handle);
             if (!SubscriptionManager.isValidSubscriptionId(subId)) {
-                // b/30474294 getCallCapablePhoneAccounts() might return a PhoneAccountHandle with
-                // invalid subId if no SIM is inserted.
+                // getCallCapablePhoneAccounts() might return a PhoneAccountHandle with invalid
+                // subId if no SIM is inserted. This is intended as it is for emergency calls.
                 VvmLog.e(TAG, "phone account " + handle + " has invalid subId " + subId);
                 continue;
             }
