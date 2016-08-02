@@ -17,7 +17,6 @@ package com.android.phone.common.mail.store;
 
 import android.util.ArraySet;
 import android.util.Base64;
-
 import com.android.phone.common.mail.AuthenticationFailedException;
 import com.android.phone.common.mail.CertificateValidationException;
 import com.android.phone.common.mail.MailTransport;
@@ -31,14 +30,12 @@ import com.android.phone.common.mail.store.imap.ImapUtility;
 import com.android.phone.common.mail.utils.LogUtils;
 import com.android.phone.vvm.omtp.OmtpEvents;
 import com.android.phone.vvm.omtp.VvmLog;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
-
 import javax.net.ssl.SSLException;
 
 /**
@@ -158,8 +155,8 @@ public class ImapConnection {
      * until {@link #setStore(ImapStore)} is called.
      */
     void close() {
-        logout();
         if (mTransport != null) {
+            logout();
             mTransport.close();
             mTransport = null;
         }

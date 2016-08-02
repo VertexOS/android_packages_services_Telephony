@@ -24,6 +24,7 @@ import android.database.ContentObserver;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.provider.Settings.Global;
+import android.provider.VoicemailContract.Status;
 import android.telecom.PhoneAccountHandle;
 import android.telephony.ServiceState;
 import android.telephony.TelephonyManager;
@@ -141,11 +142,21 @@ public class ActivationTask extends BaseTask {
         }
         if (!OmtpVvmSourceManager.getInstance(getContext())
                 .isVvmSourceRegistered(phoneAccountHandle)) {
-            // Only show the "activating" message if activation has not been completed before in
-            // this boot. Subsequent activations are more of a status check and usually does not
-            // concern the user.
-            helper.handleEvent(VoicemailStatus.edit(getContext(), phoneAccountHandle),
-                    OmtpEvents.CONFIG_ACTIVATING);
+            VisualVoicemailPreferences preferences = new VisualVoicemailPreferences(getContext(),
+                    phoneAccountHandle);
+            if (preferences.getString(OmtpConstants.SERVER_ADDRESS, null) == null) {
+                // Only show the "activating" message if activation has not been completed before.
+                // Subsequent activations are more of a status check and usually does not
+                // concern the user.
+                helper.handleEvent(VoicemailStatus.edit(getContext(), phoneAccountHandle),
+                        OmtpEvents.CONFIG_ACTIVATING);
+            } else {
+                // The account has been activated on this device before. Pretend it is already
+                // activated. If there are any activation error it will overwrite this status.
+                VoicemailStatus.edit(getContext(), phoneAccountHandle)
+                        .setConfigurationState(Status.CONFIGURATION_STATE_OK);
+            }
+
         }
 
         helper.activateSmsFilter();
