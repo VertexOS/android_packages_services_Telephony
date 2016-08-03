@@ -191,7 +191,8 @@ public class FetchVoicemailReceiver extends BroadcastReceiver {
                         try (ImapHelper imapHelper = new ImapHelper(mContext, mPhoneAccount,
                             network, status)) {
                             boolean success = imapHelper.fetchVoicemailPayload(
-                                    new VoicemailFetchedCallback(mContext, mUri), mUid);
+                                    new VoicemailFetchedCallback(mContext, mUri, mPhoneAccount),
+                                    mUid);
                             if (!success && mRetryCount > 0) {
                                 VvmLog.i(TAG, "fetch voicemail failed, retrying");
                                 mRetryCount--;

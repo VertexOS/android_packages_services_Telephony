@@ -325,11 +325,6 @@ public class ImapHelper implements Closeable {
                 return false;
             }
             VoicemailPayload voicemailPayload = fetchVoicemailPayload(message);
-
-            if (voicemailPayload == null) {
-                return false;
-            }
-
             callback.setVoicemailContent(voicemailPayload);
             return true;
         } catch (MessagingException e) {
