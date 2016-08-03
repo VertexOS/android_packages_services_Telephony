@@ -384,6 +384,10 @@ abstract class TelephonyConnection extends Connection {
             Log.i(this, "onCallPullFailed - pull failed; swapping back to call: %s",
                     externalConnection);
 
+            // Inform the InCallService of the fact that the call pull failed (it may choose to
+            // display a message informing the user of the pull failure).
+            sendConnectionEvent(Connection.EVENT_CALL_PULL_FAILED, null);
+
             // Swap the ImsPhoneConnection we used to do the pull for the ImsExternalConnection
             // which originally represented the call.
             setOriginalConnection(externalConnection);
