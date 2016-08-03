@@ -161,7 +161,7 @@ public class OmtpVvmSyncService {
             PhoneAccountHandle account) {
         if (shouldPerformPrefetch(account, imapHelper)) {
             VoicemailFetchedCallback callback = new VoicemailFetchedCallback(mContext,
-                    voicemail.getUri());
+                    voicemail.getUri(), account);
             imapHelper.fetchVoicemailPayload(callback, voicemail.getSourceData());
         }
 
@@ -237,7 +237,7 @@ public class OmtpVvmSyncService {
             Uri uri = VoicemailContract.Voicemails.insert(mContext, remoteVoicemail);
             if (prefetchEnabled) {
                 VoicemailFetchedCallback fetchedCallback =
-                        new VoicemailFetchedCallback(mContext, uri);
+                        new VoicemailFetchedCallback(mContext, uri, account);
                 imapHelper.fetchVoicemailPayload(fetchedCallback, remoteVoicemail.getSourceData());
             }
         }

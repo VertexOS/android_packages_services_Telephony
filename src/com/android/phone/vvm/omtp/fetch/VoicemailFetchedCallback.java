@@ -15,19 +15,20 @@
  */
 package com.android.phone.vvm.omtp.fetch;
 
+import android.annotation.Nullable;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
 import android.net.Uri;
 import android.provider.VoicemailContract.Voicemails;
-
+import android.telecom.PhoneAccountHandle;
+import android.telecom.TelecomManager;
+import com.android.phone.R;
 import com.android.phone.vvm.omtp.VvmLog;
 import com.android.phone.vvm.omtp.imap.VoicemailPayload;
-
-import libcore.io.IoUtils;
-
 import java.io.IOException;
 import java.io.OutputStream;
+import libcore.io.IoUtils;
 
 /**
  * Callback for when a voicemail payload is fetched. It copies the returned stream to the data
@@ -36,12 +37,17 @@ import java.io.OutputStream;
 public class VoicemailFetchedCallback {
     private static final String TAG = "VoicemailFetchedCallback";
 
-    private ContentResolver mContentResolver;
-    private Uri mUri;
+    private final Context mContext;
+    private final ContentResolver mContentResolver;
+    private final Uri mUri;
+    private final PhoneAccountHandle mPhoneAccountHandle;
 
-    public VoicemailFetchedCallback(Context context, Uri uri) {
+    public VoicemailFetchedCallback(Context context, Uri uri,
+        PhoneAccountHandle phoneAccountHandle) {
+        mContext = context;
         mContentResolver = context.getContentResolver();
         mUri = uri;
+        mPhoneAccountHandle = phoneAccountHandle;
     }
 
     /**
@@ -50,7 +56,17 @@ public class VoicemailFetchedCallback {
      *
      * @param voicemailPayload The object containing the content data for the voicemail
      */
-    public void setVoicemailContent(VoicemailPayload voicemailPayload) {
+    public void setVoicemailContent(@Nullable VoicemailPayload voicemailPayload) {
+        if (voicemailPayload == null) {
+            VvmLog.i(TAG, "Payload not found, message has unsupported format");
+            ContentValues values = new ContentValues();
+            values.put(Voicemails.TRANSCRIPTION,
+                mContext.getString(R.string.vvm_unsupported_message_format,
+                    TelecomManager.from(mContext).getVoiceMailNumber(mPhoneAccountHandle)));
+            updateVoicemail(values);
+            return;
+        }
+
         VvmLog.d(TAG, String.format("Writing new voicemail content: %s", mUri));
         OutputStream outputStream = null;
 
@@ -71,10 +87,14 @@ public class VoicemailFetchedCallback {
         ContentValues values = new ContentValues();
         values.put(Voicemails.MIME_TYPE, voicemailPayload.getMimeType());
         values.put(Voicemails.HAS_CONTENT, true);
+        updateVoicemail(values);
+    }
+
+    private void updateVoicemail(ContentValues values) {
         int updatedCount = mContentResolver.update(mUri, values, null, null);
         if (updatedCount != 1) {
             VvmLog
-                    .e(TAG, "Updating voicemail should have updated 1 row, was: " + updatedCount);
+                .e(TAG, "Updating voicemail should have updated 1 row, was: " + updatedCount);
         }
     }
 }
