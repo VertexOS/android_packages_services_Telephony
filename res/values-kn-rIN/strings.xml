@@ -156,6 +156,8 @@
     <string name="vm_change_pin_error_mismatch" msgid="2754685537970757317">"ಹಳೆಯ ಪಿನ್ ಹೊಂದಾಣಿಕೆಯಾಗುತ್ತಿಲ್ಲ."</string>
     <string name="vm_change_pin_error_invalid" msgid="3972205462701668653">"ಹೊಸ ಪಿನ್ ಅಮಾನ್ಯವಾದ ಅಕ್ಷರಗಳನ್ನು ಒಳಗೊಂಡಿದೆ."</string>
     <string name="vm_change_pin_error_system_error" msgid="6610603326230000207">"ಪಿನ್ ಬದಲಾಯಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ"</string>
+    <!-- no translation found for vvm_unsupported_message_format (11795090778411977) -->
+    <skip />
     <string name="mobile_networks" msgid="2843854043339307375">"ಸೆಲ್ಯುಲಾರ್‌ ನೆಟ್‌ವರ್ಕ್‌ ಸೆಟ್ಟಿಂಗ್‌ಗಳು"</string>
     <string name="label_available" msgid="1181658289009300430">"ಲಭ್ಯವಿರುವ ನೆಟ್‌ವರ್ಕ್‌ಗಳು"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"ಹುಡುಕಲಾಗುತ್ತಿದೆ…"</string>
@@ -364,7 +366,7 @@
     <string name="auto_retry_mode_summary" msgid="4973886004067532288">"ಸ್ವಯಂ ಮರುಪ್ರಯತ್ನಿಸುವಿಕೆ ಮೋಡ್‌‌ ಅನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ"</string>
     <string name="tty_mode_not_allowed_video_call" msgid="3795846787901909176">"TTY ಮೋಡ್ ವೀಡಿಯೊ ಕರೆಯ ಸಂದರ್ಭದಲ್ಲಿ ಅನುಮತಿಸಲಾಗುವುದಿಲ್ಲ"</string>
     <string name="menu_add" msgid="1882023737425114762">"ಸಂಪರ್ಕ ಸೇರಿಸಿ"</string>
-    <string name="menu_edit" msgid="7143003705504672374">"ಸಂಪರ್ಕವನ್ನು ಸಂಪಾದಿಸಿ"</string>
+    <string name="menu_edit" msgid="7143003705504672374">"ಸಂಪರ್ಕವನ್ನು ಎಡಿಟ್ ಮಾಡಿ"</string>
     <string name="menu_delete" msgid="3977150783449642851">"ಸಂಪರ್ಕವನ್ನು ಅಳಿಸಿ"</string>
     <string name="get_pin2" msgid="8204677063922225311">"PIN2 ಅನ್ನು ಟೈಪ್‌ ಮಾಡಿ"</string>
     <string name="name" msgid="7329028332786872378">"ಹೆಸರು"</string>
@@ -373,7 +375,7 @@
     <string name="add_fdn_contact" msgid="2481915899633353976">"ಸ್ಥಿರ ಡಯಲಿಂಗ್ ಸಂಖ್ಯೆಯನ್ನು ಸೇರಿಸಿ"</string>
     <string name="adding_fdn_contact" msgid="7627379633721940991">"ಸ್ಥಿರ ಡಯಲಿಂಗ್‌‌ ಸಂಖ್ಯೆಯನ್ನು ಸೇರಿಸಲಾಗುತ್ತಿದೆ…"</string>
     <string name="fdn_contact_added" msgid="7458335758501736665">"ಸ್ಥಿರ ಡಯಲಿಂಗ್ ಸಂಖ್ಯೆಯನ್ನು ಸೇರಿಸಲಾಗಿದೆ."</string>
-    <string name="edit_fdn_contact" msgid="7976936035587081480">"ಸ್ಥಿರ ಡಯಲಿಂಗ್‌‌ ಸಂಖ್ಯೆಯನ್ನು ಸಂಪಾದಿಸಿ"</string>
+    <string name="edit_fdn_contact" msgid="7976936035587081480">"ಸ್ಥಿರ ಡಯಲಿಂಗ್‌‌ ಸಂಖ್ಯೆಯನ್ನು ಎಡಿಟ್ ಮಾಡಿ"</string>
     <string name="updating_fdn_contact" msgid="8370929876849803600">"ಸ್ಥಿರ ಡಯಲಿಂಗ್‌‌ ಸಂಖ್ಯೆಯನ್ನು ನವೀಕರಿಸಲಾಗುತ್ತಿದೆ…"</string>
     <string name="fdn_contact_updated" msgid="5497828782609005017">"ಸ್ಥಿರ ಡಯಲಿಂಗ್ ಸಂಖ್ಯೆಯನ್ನು ನವೀಕರಿಸಲಾಗಿದೆ."</string>
     <string name="delete_fdn_contact" msgid="6668958073074151717">"ಸ್ಥಿರ ಡಯಲಿಂಗ್‌‌ ಸಂಖ್ಯೆಯನ್ನು ಅಳಿಸು"</string>

@@ -156,6 +156,8 @@
     <string name="vm_change_pin_error_mismatch" msgid="2754685537970757317">"លេខ​កូដ PIN ចាស់​មិន​ត្រូវ​គ្នា។"</string>
     <string name="vm_change_pin_error_invalid" msgid="3972205462701668653">"លេខ​កូដ PIN ថ្មី​​មាន​តួអក្សរ​មិន​ត្រឹមត្រូវ។"</string>
     <string name="vm_change_pin_error_system_error" msgid="6610603326230000207">"មិន​អាច​ប្ដូរ​លេខ​កូដ PIN"</string>
+    <!-- no translation found for vvm_unsupported_message_format (11795090778411977) -->
+    <skip />
     <string name="mobile_networks" msgid="2843854043339307375">"ការ​កំណត់​បណ្ដាញ​ចល័ត"</string>
     <string name="label_available" msgid="1181658289009300430">"បណ្ដាញ​ដែល​មាន"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"កំពុង​ស្វែងរក..."</string>
