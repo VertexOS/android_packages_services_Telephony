@@ -907,18 +907,11 @@ public class ImsConference extends Conference {
                                 "new connection: %s", originalConnection);
             }
 
-            PhoneAccountHandle phoneAccountHandle = null;
             if (mConferenceHost.getPhone() != null &&
-                    mConferenceHost.getPhone().getPhoneType() == PhoneConstants.PHONE_TYPE_IMS) {
-                Phone imsPhone = mConferenceHost.getPhone();
-                // The phone account handle for an ImsPhone is based on the default phone (ie the
-                // base GSM or CDMA phone, not on the ImsPhone itself).
-                phoneAccountHandle =
-                        PhoneUtils.makePstnPhoneAccountHandle(imsPhone.getDefaultPhone());
-            }
-
-            if (mConferenceHost.getPhone().getPhoneType() == PhoneConstants.PHONE_TYPE_GSM) {
+                    mConferenceHost.getPhone().getPhoneType() == PhoneConstants.PHONE_TYPE_GSM) {
                 GsmConnection c = new GsmConnection(originalConnection, getTelecomCallId());
+                PhoneAccountHandle phoneAccountHandle =
+                        PhoneUtils.makePstnPhoneAccountHandle(mConferenceHost.getPhone());
                 // This is a newly created conference connection as a result of SRVCC
                 c.setConferenceSupported(true);
                 c.updateState();
