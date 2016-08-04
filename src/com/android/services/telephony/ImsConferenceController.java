@@ -29,8 +29,10 @@ import android.telecom.PhoneAccountHandle;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Manages conferences for IMS connections.
@@ -169,8 +171,8 @@ public class ImsConferenceController {
      */
     private void recalculateConferenceable() {
         Log.v(this, "recalculateConferenceable : %d", mTelephonyConnections.size());
-        List<Conferenceable> activeConnections = new ArrayList<>(mTelephonyConnections.size());
-        List<Conferenceable> backgroundConnections = new ArrayList<>(mTelephonyConnections.size());
+        HashSet<Conferenceable> conferenceableSet = new HashSet<>(mTelephonyConnections.size() +
+                mImsConferences.size());
 
         // Loop through and collect all calls which are active or holding
         for (TelephonyConnection connection : mTelephonyConnections) {
@@ -191,23 +193,23 @@ public class ImsConferenceController {
             // If this connection does not support being in a conference call, then it is not
             // conferenceable with any other connection.
             if (!connection.isConferenceSupported()) {
-                connection.setConferenceableConnections(Collections.<Connection>emptyList());
+                connection.setConferenceables(Collections.<Conferenceable>emptyList());
                 continue;
             }
 
             switch (connection.getState()) {
                 case Connection.STATE_ACTIVE:
-                    activeConnections.add(connection);
-                    continue;
+                    // fall through
                 case Connection.STATE_HOLDING:
-                    backgroundConnections.add(connection);
+                    conferenceableSet.add(connection);
                     continue;
                 default:
                     break;
             }
-            connection.setConferenceableConnections(Collections.<Connection>emptyList());
+            // This connection is not active or holding, so clear all conferencable connections
+            connection.setConferenceables(Collections.<Conferenceable>emptyList());
         }
-
+        // Also loop through all active conferences and collect the ones that are ACTIVE or HOLDING.
         for (ImsConference conference : mImsConferences) {
             if (Log.DEBUG) {
                 Log.d(this, "recalc - %s %s", conference.getState(), conference);
@@ -222,61 +224,36 @@ public class ImsConferenceController {
 
             switch (conference.getState()) {
                 case Connection.STATE_ACTIVE:
-                    activeConnections.add(conference);
-                    continue;
+                    //fall through
                 case Connection.STATE_HOLDING:
-                    backgroundConnections.add(conference);
+                    conferenceableSet.add(conference);
                     continue;
                 default:
                     break;
             }
         }
 
-        Log.v(this, "active: %d, holding: %d", activeConnections.size(),
-                backgroundConnections.size());
+        Log.v(this, "conferenceableSet size: " + conferenceableSet.size());
 
-        // Go through all the active connections and set the background connections as
-        // conferenceable.
-        for (Conferenceable conferenceable : activeConnections) {
-            if (conferenceable instanceof Connection) {
-                Connection connection = (Connection) conferenceable;
-                connection.setConferenceables(backgroundConnections);
+        for (Conferenceable c : conferenceableSet) {
+            if (c instanceof Connection) {
+                // Remove this connection from the Set and add all others
+                List<Conferenceable> conferenceables = conferenceableSet
+                        .stream()
+                        .filter(conferenceable -> c != conferenceable)
+                        .collect(Collectors.toList());
+                ((Connection) c).setConferenceables(conferenceables);
+            } else if (c instanceof Conference) {
+                // Remove all conferences from the set, since we can not conference a conference
+                // to another conference.
+                List<Connection> connections = conferenceableSet
+                        .stream()
+                        .filter(conferenceable -> conferenceable instanceof Connection)
+                        .map(conferenceable -> (Connection) conferenceable)
+                        .collect(Collectors.toList());
+                // Conference equivalent to setConferenceables that only accepts Connections
+                ((Conference) c).setConferenceableConnections(connections);
             }
-        }
-
-        // Go through all the background connections and set the active connections as
-        // conferenceable.
-        for (Conferenceable conferenceable : backgroundConnections) {
-            if (conferenceable instanceof Connection) {
-                Connection connection = (Connection) conferenceable;
-                connection.setConferenceables(activeConnections);
-            }
-
-        }
-
-        // Set the conference as conferenceable with all the connections
-        for (ImsConference conference : mImsConferences) {
-            // If this conference is not being hosted on the current device, we cannot conference it
-            // with any other connections.
-            if (!conference.isConferenceHost()) {
-                if (Log.VERBOSE) {
-                    Log.v(this, "skipping conference (not hosted on this device): %s",
-                            conference);
-                }
-                continue;
-            }
-
-            List<Connection> nonConferencedConnections =
-                new ArrayList<>(mTelephonyConnections.size());
-            for (TelephonyConnection c : mTelephonyConnections) {
-                if (c.getConference() == null && c.isConferenceSupported()) {
-                    nonConferencedConnections.add(c);
-                }
-            }
-            if (Log.VERBOSE) {
-                Log.v(this, "conference conferenceable: %s", nonConferencedConnections);
-            }
-            conference.setConferenceableConnections(nonConferencedConnections);
         }
     }
 
