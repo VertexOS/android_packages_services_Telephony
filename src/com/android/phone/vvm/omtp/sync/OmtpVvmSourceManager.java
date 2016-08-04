@@ -23,10 +23,7 @@ import android.telephony.TelephonyManager;
 import com.android.internal.telephony.Phone;
 import com.android.phone.PhoneUtils;
 import com.android.phone.VoicemailStatus;
-import com.android.phone.vvm.omtp.OmtpEvents;
-import com.android.phone.vvm.omtp.OmtpVvmCarrierConfigHelper;
 import com.android.phone.vvm.omtp.VvmPhoneStateListener;
-import com.android.phone.vvm.omtp.utils.PhoneAccountHandleConverter;
 import java.util.Collections;
 import java.util.Map;
 import java.util.Set;
@@ -106,9 +103,9 @@ public class OmtpVvmSourceManager {
     }
 
     public void removeSource(PhoneAccountHandle phoneAccount) {
-        new OmtpVvmCarrierConfigHelper(mContext, PhoneAccountHandleConverter.toSubId(phoneAccount))
-            .handleEvent(VoicemailStatus.edit(mContext, phoneAccount),
-                OmtpEvents.OTHER_SOURCE_REMOVED);
+        // TODO: should use OmtpVvmCarrierConfigHelper to handle the event. But currently it
+        // couldn't handle events on removed SIMs
+        VoicemailStatus.disable(mContext, phoneAccount);
         removePhoneStateListener(phoneAccount);
         mActiveVvmSources.remove(phoneAccount);
     }
