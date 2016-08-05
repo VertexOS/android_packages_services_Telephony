@@ -34,6 +34,7 @@ import android.telecom.TelecomManager;
 import android.telecom.VideoProfile;
 import android.telephony.CarrierConfigManager;
 import android.telephony.PhoneNumberUtils;
+import android.telephony.TelephonyManager;
 import android.util.Pair;
 
 import com.android.ims.ImsCall;
@@ -394,6 +395,14 @@ abstract class TelephonyConnection extends Connection {
 
             // Set our state to active again since we're no longer pulling.
             setActiveInternal();
+        }
+
+        /**
+         * Called from {@link ImsPhoneCallTracker} when a handover to WIFI has failed.
+         */
+        @Override
+        public void onHandoverToWifiFailed() {
+            sendConnectionEvent(TelephonyManager.EVENT_HANDOVER_TO_WIFI_FAILED, null);
         }
     };
 
