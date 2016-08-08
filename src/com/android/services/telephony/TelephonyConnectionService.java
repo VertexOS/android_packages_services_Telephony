@@ -53,6 +53,7 @@ import com.android.phone.PhoneUtils;
 import com.android.phone.R;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -242,6 +243,17 @@ public class TelephonyConnectionService extends ConnectionService {
             // connecting it to the underlying Phone.
             return emergencyConnection;
         } else {
+            if (!canAddCall() && !isEmergencyNumber) {
+                Log.d(this, "onCreateOutgoingConnection, cannot add call .");
+                return Connection.createFailedConnection(
+                        new DisconnectCause(DisconnectCause.ERROR,
+                                getApplicationContext().getText(
+                                        R.string.incall_error_cannot_add_call),
+                                getApplicationContext().getText(
+                                        R.string.incall_error_cannot_add_call),
+                                "Add call restricted due to ongoing video call"));
+            }
+
             // Get the right phone object from the account data passed in.
             final Phone phone = getPhoneForAccount(request.getAccountHandle(), isEmergencyNumber);
             Connection resultConnection = getTelephonyConnection(request, number, isEmergencyNumber,
@@ -253,6 +265,21 @@ public class TelephonyConnectionService extends ConnectionService {
             }
             return resultConnection;
         }
+    }
+
+    /**
+     * @return {@code true} if any other call is disabling the ability to add calls, {@code false}
+     *      otherwise.
+     */
+    private boolean canAddCall() {
+        Collection<Connection> connections = getAllConnections();
+        for (Connection connection : connections) {
+            if (connection.getExtras() != null &&
+                    connection.getExtras().getBoolean(Connection.EXTRA_DISABLE_ADD_CALL, false)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     private Connection getTelephonyConnection(final ConnectionRequest request, final String number,
