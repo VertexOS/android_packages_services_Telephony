@@ -156,8 +156,7 @@
     <string name="vm_change_pin_error_mismatch" msgid="2754685537970757317">"Eski PIN kod mos kelmayapti."</string>
     <string name="vm_change_pin_error_invalid" msgid="3972205462701668653">"Yangi PIN kodda yaroqsiz belgilar mavjud."</string>
     <string name="vm_change_pin_error_system_error" msgid="6610603326230000207">"PIN kodni o‘zgartirib bo‘lmadi"</string>
-    <!-- no translation found for vvm_unsupported_message_format (11795090778411977) -->
-    <skip />
+    <string name="vvm_unsupported_message_format" msgid="11795090778411977">"Bu xabar turi qo‘llab-quvvatlanmaydi. Uni eshitish uchun <xliff:g id="NUMBER">%s</xliff:g> raqamiga qo‘ng‘iroq qiling."</string>
     <string name="mobile_networks" msgid="2843854043339307375">"Mobil tarmoq sozlamalari"</string>
     <string name="label_available" msgid="1181658289009300430">"Mavjud tarmoqlar"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"Qidirilmoqda…"</string>
@@ -209,6 +208,7 @@
     <item msgid="3817924849415716259">"GSM/WCDMA xohishingiz bo‘yicha"</item>
   </string-array>
     <string name="enhanced_4g_lte_mode_title" msgid="522191650223239171">"Kuchaytirilgan 4G LTE rejimi"</string>
+    <string name="enhanced_4g_lte_mode_title_variant" msgid="4871126028907265406">"Keng imkoniyatli qo‘ng‘iroqlar"</string>
     <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"Ovozli va boshqa aloqalarni yaxshilash uchun LTE xizmatlaridan foydalaning"</string>
     <string name="data_enabled" msgid="5972538663568715366">"Internet yoqildi"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"Mobil internetdan foydalanishga ruxsat"</string>

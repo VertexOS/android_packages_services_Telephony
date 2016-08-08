@@ -156,8 +156,7 @@
     <string name="vm_change_pin_error_mismatch" msgid="2754685537970757317">"پین قدیمی مطابقت ندارد."</string>
     <string name="vm_change_pin_error_invalid" msgid="3972205462701668653">"پین جدید نویسه‌های نامعتبری دارد."</string>
     <string name="vm_change_pin_error_system_error" msgid="6610603326230000207">"پین تغییر نکرد"</string>
-    <!-- no translation found for vvm_unsupported_message_format (11795090778411977) -->
-    <skip />
+    <string name="vvm_unsupported_message_format" msgid="11795090778411977">"نوع پیام پشتیبانی نمی‌شود، برای گوش کردن با <xliff:g id="NUMBER">%s</xliff:g> تماس بگیرید."</string>
     <string name="mobile_networks" msgid="2843854043339307375">"تنظیمات شبکه تلفن همراه"</string>
     <string name="label_available" msgid="1181658289009300430">"شبکه‌های موجود"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"در حال جستجو…"</string>
@@ -209,6 +208,7 @@
     <item msgid="3817924849415716259">"‏GSM/WCDMA برگزیده"</item>
   </string-array>
     <string name="enhanced_4g_lte_mode_title" msgid="522191650223239171">"‏حالت پیشرفته 4G LTE"</string>
+    <string name="enhanced_4g_lte_mode_title_variant" msgid="4871126028907265406">"تماس پیشرفته"</string>
     <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"‏استفاده از سرویس‌های LTE جهت بهبود ارتباطات صوتی و سایر ارتباطات (توصیه می‌شود)"</string>
     <string name="data_enabled" msgid="5972538663568715366">"داده‌ها فعال شدند"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"استفاده از داده مجاز است"</string>

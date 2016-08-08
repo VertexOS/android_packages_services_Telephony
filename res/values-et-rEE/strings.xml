@@ -156,8 +156,7 @@
     <string name="vm_change_pin_error_mismatch" msgid="2754685537970757317">"Vana PIN-kood ei sobi."</string>
     <string name="vm_change_pin_error_invalid" msgid="3972205462701668653">"Uus PIN-kood sisaldab sobimatuid tähemärke."</string>
     <string name="vm_change_pin_error_system_error" msgid="6610603326230000207">"PIN-koodi ei õnnestu muuta"</string>
-    <!-- no translation found for vvm_unsupported_message_format (11795090778411977) -->
-    <skip />
+    <string name="vvm_unsupported_message_format" msgid="11795090778411977">"Toetamata sõnumi tüüp, kuulamiseks helistage numbrile <xliff:g id="NUMBER">%s</xliff:g>."</string>
     <string name="mobile_networks" msgid="2843854043339307375">"Mobiilsidevõrgu seaded"</string>
     <string name="label_available" msgid="1181658289009300430">"Saadaolevad võrgud"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"Otsimine ..."</string>
@@ -209,6 +208,7 @@
     <item msgid="3817924849415716259">"Eelistatud GSM/WCDMA"</item>
   </string-array>
     <string name="enhanced_4g_lte_mode_title" msgid="522191650223239171">"Tõhustatud 4G LTE režiim"</string>
+    <string name="enhanced_4g_lte_mode_title_variant" msgid="4871126028907265406">"Täpsem helistamine"</string>
     <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"Kasutage hääl- ja muu suhtluse täiustamiseks LTE-teenuseid (soovitatav)"</string>
     <string name="data_enabled" msgid="5972538663568715366">"Andmeside lubatud"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"Luba andmekasutus"</string>

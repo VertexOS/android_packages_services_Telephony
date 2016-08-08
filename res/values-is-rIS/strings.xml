@@ -156,8 +156,7 @@
     <string name="vm_change_pin_error_mismatch" msgid="2754685537970757317">"Gamla PIN-númerið passar ekki."</string>
     <string name="vm_change_pin_error_invalid" msgid="3972205462701668653">"Nýja PIN-númerið inniheldur ógilda stafi."</string>
     <string name="vm_change_pin_error_system_error" msgid="6610603326230000207">"Ekki var hægt að breyta PIN-númerinu"</string>
-    <!-- no translation found for vvm_unsupported_message_format (11795090778411977) -->
-    <skip />
+    <string name="vvm_unsupported_message_format" msgid="11795090778411977">"Óstudd skilaboðagerð, hringdu í <xliff:g id="NUMBER">%s</xliff:g> til að hlusta."</string>
     <string name="mobile_networks" msgid="2843854043339307375">"Farsímakerfisstillingar"</string>
     <string name="label_available" msgid="1181658289009300430">"Símkerfi í boði"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"Leitar…"</string>
@@ -209,6 +208,7 @@
     <item msgid="3817924849415716259">"GSM/WCDMA fyrsta val"</item>
   </string-array>
     <string name="enhanced_4g_lte_mode_title" msgid="522191650223239171">"endurbætt 4G LTE-stilling"</string>
+    <string name="enhanced_4g_lte_mode_title_variant" msgid="4871126028907265406">"Betri símtöl"</string>
     <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"Nota LTE-þjónustu til að bæta talsamband og önnur samskipti (ráðlagt)"</string>
     <string name="data_enabled" msgid="5972538663568715366">"Kveikt á gagnaaðgangi"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"Leyfa gagnanotkun"</string>

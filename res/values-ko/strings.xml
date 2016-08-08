@@ -156,8 +156,7 @@
     <string name="vm_change_pin_error_mismatch" msgid="2754685537970757317">"이전 PIN이 일치하지 않습니다."</string>
     <string name="vm_change_pin_error_invalid" msgid="3972205462701668653">"새 PIN에 잘못된 문자가 있습니다."</string>
     <string name="vm_change_pin_error_system_error" msgid="6610603326230000207">"PIN을 변경할 수 없습니다."</string>
-    <!-- no translation found for vvm_unsupported_message_format (11795090778411977) -->
-    <skip />
+    <string name="vvm_unsupported_message_format" msgid="11795090778411977">"지원되지 않는 메시지 유형입니다. 들으려면 <xliff:g id="NUMBER">%s</xliff:g>번으로 전화하세요."</string>
     <string name="mobile_networks" msgid="2843854043339307375">"이동통신망 설정"</string>
     <string name="label_available" msgid="1181658289009300430">"사용 가능한 네트워크"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"검색 중..."</string>
@@ -209,6 +208,7 @@
     <item msgid="3817924849415716259">"GSM/WCDMA로 기본 설정"</item>
   </string-array>
     <string name="enhanced_4g_lte_mode_title" msgid="522191650223239171">"향상된 4G LTE 모드"</string>
+    <string name="enhanced_4g_lte_mode_title_variant" msgid="4871126028907265406">"고급 통화"</string>
     <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"LTE 서비스를 사용하여 음성 및 기타 통신을 개선할 수 있습니다(권장)."</string>
     <string name="data_enabled" msgid="5972538663568715366">"데이터 사용"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"데이터 사용 허용"</string>

@@ -156,8 +156,7 @@
     <string name="vm_change_pin_error_mismatch" msgid="2754685537970757317">"ਪੁਰਾਣਾ PIN ਮੇਲ ਨਹੀਂ ਖਾਂਦਾ।"</string>
     <string name="vm_change_pin_error_invalid" msgid="3972205462701668653">"ਨਵੇਂ PIN ਵਿੱਚ ਅਵੈਧ ਅੱਖਰ-ਚਿੰਨ੍ਹ ਹਨ।"</string>
     <string name="vm_change_pin_error_system_error" msgid="6610603326230000207">"PIN ਨੂੰ ਬਦਲਣ ਵਿੱਚ ਅਸਮਰੱਥ"</string>
-    <!-- no translation found for vvm_unsupported_message_format (11795090778411977) -->
-    <skip />
+    <string name="vvm_unsupported_message_format" msgid="11795090778411977">"ਅਸਮਰਥਿਤ ਸੁਨੇਹਾ ਕਿਸਮ, ਸੁਣਨ ਲਈ <xliff:g id="NUMBER">%s</xliff:g> \'ਤੇ ਕਾਲ ਕਰੋ।"</string>
     <string name="mobile_networks" msgid="2843854043339307375">"ਸੈਲਿਊਲਰ ਨੈਟਵਰਕ ਸੈਟਿੰਗਾਂ"</string>
     <string name="label_available" msgid="1181658289009300430">"ਉਪਲਬਧ ਨੈਟਵਰਕ"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"ਖੋਜ ਰਿਹਾ ਹੈ..."</string>
@@ -209,6 +208,7 @@
     <item msgid="3817924849415716259">"GSM/WCDMA ਤਰਜੀਹੀ"</item>
   </string-array>
     <string name="enhanced_4g_lte_mode_title" msgid="522191650223239171">"ਵਿਸਤ੍ਰਿਤ 4G LTE ਮੋਡ"</string>
+    <string name="enhanced_4g_lte_mode_title_variant" msgid="4871126028907265406">"ਉੱਨਤ ਕਾਲਿੰਗ"</string>
     <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"ਵੌਇਸ ਅਤੇ ਹੋਰ ਸੰਚਾਰ ਬਿਹਤਰ ਬਣਾਉਣ ਲਈ  LTE ਸੇਵਾਵਾਂ ਵਰਤੋ (ਸਿਫਾਰਿਸ਼ ਕੀਤਾ)"</string>
     <string name="data_enabled" msgid="5972538663568715366">"ਡਾਟਾ ਸਮਰਥਿਤ"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"ਡਾਟਾ ਵਰਤੋਂ ਦੀ ਆਗਿਆ ਦਿਓ"</string>

@@ -156,8 +156,7 @@
     <string name="vm_change_pin_error_mismatch" msgid="2754685537970757317">"পুরানো পিন মিলছে না৷"</string>
     <string name="vm_change_pin_error_invalid" msgid="3972205462701668653">"নতুন পিনে অবৈধ অক্ষর রয়েছে৷"</string>
     <string name="vm_change_pin_error_system_error" msgid="6610603326230000207">"পিন পরিবর্তন করা গেল না"</string>
-    <!-- no translation found for vvm_unsupported_message_format (11795090778411977) -->
-    <skip />
+    <string name="vvm_unsupported_message_format" msgid="11795090778411977">"অসমর্থিত বার্তার প্রকার, শুনতে <xliff:g id="NUMBER">%s</xliff:g> এ কল করুন৷"</string>
     <string name="mobile_networks" msgid="2843854043339307375">"সেলুলার নেটওয়ার্ক সেটিংস"</string>
     <string name="label_available" msgid="1181658289009300430">"উপলব্ধ নেটওয়ার্কগুলি"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"অনুসন্ধান করছে..."</string>
@@ -209,6 +208,7 @@
     <item msgid="3817924849415716259">"GSM/WCDMA সুবিধাজনক"</item>
   </string-array>
     <string name="enhanced_4g_lte_mode_title" msgid="522191650223239171">"উন্নত 4G LTE মোড"</string>
+    <string name="enhanced_4g_lte_mode_title_variant" msgid="4871126028907265406">"উন্নত কলিং"</string>
     <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"ভয়েস এবং অন্যান্য যোগাযোগব্যবস্থা উন্নত করতে LTE পরিষেবা ব্যবহার করুন (প্রস্তাবিত)"</string>
     <string name="data_enabled" msgid="5972538663568715366">"ডেটা সক্ষম করা হয়েছে"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"ডেটা ব্যবহারের অনুমতি দিন"</string>

@@ -156,8 +156,7 @@
     <string name="vm_change_pin_error_mismatch" msgid="2754685537970757317">"Հին PIN-ը չի համընկնում:"</string>
     <string name="vm_change_pin_error_invalid" msgid="3972205462701668653">"Նոր PIN-ը պարունակում է անվավեր գրանշաններ:"</string>
     <string name="vm_change_pin_error_system_error" msgid="6610603326230000207">"Չհաջողվեց փոխել PIN-ը"</string>
-    <!-- no translation found for vvm_unsupported_message_format (11795090778411977) -->
-    <skip />
+    <string name="vvm_unsupported_message_format" msgid="11795090778411977">"Հաղորդագրության չաջակցվող տեսակ, զանգեք <xliff:g id="NUMBER">%s</xliff:g> համարին՝ լսելու համար:"</string>
     <string name="mobile_networks" msgid="2843854043339307375">"Բջջային ցանցի կարգավորումները"</string>
     <string name="label_available" msgid="1181658289009300430">"Հասանելի ցանցեր"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"Որոնում..."</string>
@@ -209,6 +208,7 @@
     <item msgid="3817924849415716259">"GSM/WCDMA նախընտրելի"</item>
   </string-array>
     <string name="enhanced_4g_lte_mode_title" msgid="522191650223239171">"Ընդլայնված 4G LTE ռեժիմ"</string>
+    <string name="enhanced_4g_lte_mode_title_variant" msgid="4871126028907265406">"Ընդլայնված զանգ"</string>
     <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"Ձայնի և կապի որակը բարելավելու համար օգտվեք LTE ծառայություններից (հանձնարարելի)"</string>
     <string name="data_enabled" msgid="5972538663568715366">"Տվյալները միացված են"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"Թույլատրել տվյալների օգտագործումը"</string>

@@ -156,8 +156,7 @@
     <string name="vm_change_pin_error_mismatch" msgid="2754685537970757317">"旧的 PIN 码不匹配。"</string>
     <string name="vm_change_pin_error_invalid" msgid="3972205462701668653">"新的 PIN 码包含无效字符。"</string>
     <string name="vm_change_pin_error_system_error" msgid="6610603326230000207">"无法更改 PIN 码"</string>
-    <!-- no translation found for vvm_unsupported_message_format (11795090778411977) -->
-    <skip />
+    <string name="vvm_unsupported_message_format" msgid="11795090778411977">"不受支持的语音邮件类型，请拨打 <xliff:g id="NUMBER">%s</xliff:g> 收听。"</string>
     <string name="mobile_networks" msgid="2843854043339307375">"移动网络设置"</string>
     <string name="label_available" msgid="1181658289009300430">"可用网络"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"正在搜索..."</string>
@@ -209,6 +208,7 @@
     <item msgid="3817924849415716259">"首选 GSM/WCDMA"</item>
   </string-array>
     <string name="enhanced_4g_lte_mode_title" msgid="522191650223239171">"增强型 4G LTE 模式"</string>
+    <string name="enhanced_4g_lte_mode_title_variant" msgid="4871126028907265406">"高级通话"</string>
     <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"使用 LTE 服务改进语音和其他通信功能（推荐）"</string>
     <string name="data_enabled" msgid="5972538663568715366">"启用移动数据网络"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"允许使用数据流量"</string>
@@ -465,7 +465,7 @@
     <string name="dial_emergency_error" msgid="1509085166367420355">"无法拨打该电话。<xliff:g id="NON_EMERGENCY_NUMBER">%s</xliff:g> 不是紧急呼救号码。"</string>
     <string name="dial_emergency_empty_error" msgid="9130194953830414638">"无法拨打该电话。请拨打紧急呼救电话。"</string>
     <string name="dialerKeyboardHintText" msgid="9192914825413747792">"使用键盘拨号"</string>
-    <string name="onscreenHoldText" msgid="2285258239691145872">"等待"</string>
+    <string name="onscreenHoldText" msgid="2285258239691145872">"保持"</string>
     <string name="onscreenEndCallText" msgid="4403855834875398585">"挂断"</string>
     <string name="onscreenShowDialpadText" msgid="8561805492659639893">"拨号键盘"</string>
     <string name="onscreenMuteText" msgid="5011369181754261374">"静音"</string>

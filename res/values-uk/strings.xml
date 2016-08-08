@@ -156,8 +156,7 @@
     <string name="vm_change_pin_error_mismatch" msgid="2754685537970757317">"Старий PIN-код неправильний."</string>
     <string name="vm_change_pin_error_invalid" msgid="3972205462701668653">"Новий PIN-код містить недійсні символи"</string>
     <string name="vm_change_pin_error_system_error" msgid="6610603326230000207">"Не вдалося змінити PIN-код"</string>
-    <!-- no translation found for vvm_unsupported_message_format (11795090778411977) -->
-    <skip />
+    <string name="vvm_unsupported_message_format" msgid="11795090778411977">"Повідомлення непідтримуваного типу. Зателефонуйте на номер <xliff:g id="NUMBER">%s</xliff:g>, щоб прослухати."</string>
     <string name="mobile_networks" msgid="2843854043339307375">"Налаштування моб. мереж"</string>
     <string name="label_available" msgid="1181658289009300430">"Доступні мережі"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"Пошук…"</string>
@@ -209,6 +208,7 @@
     <item msgid="3817924849415716259">"Рекомендовано GSM/WCDMA"</item>
   </string-array>
     <string name="enhanced_4g_lte_mode_title" msgid="522191650223239171">"Розширений режим 4G LTE"</string>
+    <string name="enhanced_4g_lte_mode_title_variant" msgid="4871126028907265406">"Дзвінки з розширеними можливостями"</string>
     <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"Використ. служби LTE для покращення голосового й інших типів зв’язку (рекоменд.)"</string>
     <string name="data_enabled" msgid="5972538663568715366">"Передавання даних"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"Дозволити використання даних"</string>

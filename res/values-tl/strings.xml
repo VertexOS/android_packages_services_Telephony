@@ -156,8 +156,7 @@
     <string name="vm_change_pin_error_mismatch" msgid="2754685537970757317">"Hindi tumutugma ang lumang PIN."</string>
     <string name="vm_change_pin_error_invalid" msgid="3972205462701668653">"Ang bagong PIN ay naglalaman ng mga di-wastong character."</string>
     <string name="vm_change_pin_error_system_error" msgid="6610603326230000207">"Hindi nabago ang PIN"</string>
-    <!-- no translation found for vvm_unsupported_message_format (11795090778411977) -->
-    <skip />
+    <string name="vvm_unsupported_message_format" msgid="11795090778411977">"Hindi sinusuportahang uri ng mensahe, tawagan ang <xliff:g id="NUMBER">%s</xliff:g> upang pakinggan."</string>
     <string name="mobile_networks" msgid="2843854043339307375">"Setting ng cellular network"</string>
     <string name="label_available" msgid="1181658289009300430">"Mga available na network"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"Naghahanap…"</string>
@@ -209,6 +208,7 @@
     <item msgid="3817924849415716259">"Ninanais ang GSM/WCDMA"</item>
   </string-array>
     <string name="enhanced_4g_lte_mode_title" msgid="522191650223239171">"Enhanced 4G LTE Mode"</string>
+    <string name="enhanced_4g_lte_mode_title_variant" msgid="4871126028907265406">"Advanced na Pagtawag"</string>
     <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"Gamitin ang LTE upang pahusayin ang voice at ibang komunikasyon (inirerekomenda)"</string>
     <string name="data_enabled" msgid="5972538663568715366">"Pinagana ang data"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"Payagan ang paggamit ng data"</string>

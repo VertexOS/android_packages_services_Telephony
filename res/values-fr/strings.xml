@@ -156,8 +156,7 @@
     <string name="vm_change_pin_error_mismatch" msgid="2754685537970757317">"L\'ancien code est erroné."</string>
     <string name="vm_change_pin_error_invalid" msgid="3972205462701668653">"Le nouveau code contient des caractères incorrects."</string>
     <string name="vm_change_pin_error_system_error" msgid="6610603326230000207">"Impossible de modifier le code"</string>
-    <!-- no translation found for vvm_unsupported_message_format (11795090778411977) -->
-    <skip />
+    <string name="vvm_unsupported_message_format" msgid="11795090778411977">"Type de message incompatible, composez le <xliff:g id="NUMBER">%s</xliff:g> pour l\'écouter."</string>
     <string name="mobile_networks" msgid="2843854043339307375">"Paramètres réseau mobile"</string>
     <string name="label_available" msgid="1181658289009300430">"Réseaux disponibles"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"Recherche..."</string>
@@ -209,6 +208,7 @@
     <item msgid="3817924849415716259">"GSM/WCDMA de préférence"</item>
   </string-array>
     <string name="enhanced_4g_lte_mode_title" msgid="522191650223239171">"Mode LTE 4G avancé"</string>
+    <string name="enhanced_4g_lte_mode_title_variant" msgid="4871126028907265406">"Appel avancé"</string>
     <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"Utiliser services LTE pour améliorer communications vocales et autres (recommandé)"</string>
     <string name="data_enabled" msgid="5972538663568715366">"Données activées"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"Autoriser la consommation des données"</string>

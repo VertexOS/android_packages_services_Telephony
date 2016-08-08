@@ -156,8 +156,7 @@
     <string name="vm_change_pin_error_mismatch" msgid="2754685537970757317">"പഴയ പിന്നുമായി യോജിക്കുന്നില്ല."</string>
     <string name="vm_change_pin_error_invalid" msgid="3972205462701668653">"പുതിയ പിന്നിൽ അസാധുവായ പ്രതീകങ്ങൾ അടങ്ങിയിരിക്കുന്നു."</string>
     <string name="vm_change_pin_error_system_error" msgid="6610603326230000207">"പിൻ മാറ്റാനായില്ല"</string>
-    <!-- no translation found for vvm_unsupported_message_format (11795090778411977) -->
-    <skip />
+    <string name="vvm_unsupported_message_format" msgid="11795090778411977">"സന്ദേശ തരം പിന്തുണയ്‌ക്കുന്നില്ല, കേൾക്കാൻ <xliff:g id="NUMBER">%s</xliff:g> നമ്പറിൽ വിളിക്കുക."</string>
     <string name="mobile_networks" msgid="2843854043339307375">"സെല്ലുലാർ നെറ്റ്‌വർക്ക് ക്രമീകരണങ്ങൾ"</string>
     <string name="label_available" msgid="1181658289009300430">"ലഭ്യമായ നെറ്റ്‌വർക്കുകൾ"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"തിരയുന്നു…"</string>
@@ -209,6 +208,7 @@
     <item msgid="3817924849415716259">"GSM/WCDMA തിരഞ്ഞെടുത്തത്"</item>
   </string-array>
     <string name="enhanced_4g_lte_mode_title" msgid="522191650223239171">"മെച്ചപ്പെടുത്തിയ 4G LTE മോഡ്"</string>
+    <string name="enhanced_4g_lte_mode_title_variant" msgid="4871126028907265406">"വിപുലമായ കോളിംഗ്"</string>
     <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"വോയ്‌സ്, മറ്റ് ആശയവിനിമയങ്ങൾ (ശുപാർശിതം) എന്നിവ മികച്ചതാക്കുന്നതിന് LTE സേവനങ്ങൾ ഉപയോഗിക്കുക"</string>
     <string name="data_enabled" msgid="5972538663568715366">"ഡാറ്റ പ്രവർത്തനക്ഷമമാക്കി"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"ഡാറ്റ ഉപയോഗം അനുവദിക്കുക"</string>
