@@ -37,7 +37,6 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.ListAdapter;
-
 import com.android.internal.telephony.CallForwardInfo;
 import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneConstants;
@@ -47,8 +46,6 @@ import com.android.phone.PhoneUtils;
 import com.android.phone.R;
 import com.android.phone.SubscriptionInfoHelper;
 import com.android.phone.vvm.omtp.OmtpVvmCarrierConfigHelper;
-import com.android.phone.vvm.omtp.sync.OmtpVvmSourceManager;
-
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -414,12 +411,8 @@ public class VoicemailSettingsActivity extends PreferenceActivity
                     .setEnabled(mPhone.getContext(), handle, isEnabled);
             PreferenceScreen prefSet = getPreferenceScreen();
             if (isEnabled) {
-                OmtpVvmSourceManager.getInstance(mPhone.getContext()).addPhoneStateListener(mPhone);
-                mOmtpVvmCarrierConfigHelper.startActivation();
                 prefSet.addPreference(mVoicemailChangePinPreference);
             } else {
-                OmtpVvmSourceManager.getInstance(mPhone.getContext()).removeSource(mPhone);
-                mOmtpVvmCarrierConfigHelper.startDeactivation();
                 prefSet.removePreference(mVoicemailChangePinPreference);
             }
         }

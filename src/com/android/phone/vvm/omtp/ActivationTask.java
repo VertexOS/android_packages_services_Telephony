@@ -154,7 +154,8 @@ public class ActivationTask extends BaseTask {
                 // The account has been activated on this device before. Pretend it is already
                 // activated. If there are any activation error it will overwrite this status.
                 VoicemailStatus.edit(getContext(), phoneAccountHandle)
-                        .setConfigurationState(Status.CONFIGURATION_STATE_OK);
+                        .setConfigurationState(Status.CONFIGURATION_STATE_OK)
+                        .apply();
             }
 
         }
