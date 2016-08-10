@@ -30,6 +30,7 @@ import android.telecom.PhoneAccountHandle;
 import android.telecom.StatusHints;
 import android.telecom.VideoProfile;
 import android.telephony.PhoneNumberUtils;
+import android.util.Pair;
 
 import com.android.internal.telephony.Call;
 import com.android.internal.telephony.CallStateException;
@@ -45,7 +46,6 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 /**
  * Represents an IMS conference call.
@@ -230,11 +230,12 @@ public class ImsConference extends Conference {
     private Uri[] mConferenceHostAddress;
 
     /**
-     * The known conference participant connections.  The HashMap is keyed by endpoint Uri.
+     * The known conference participant connections.  The HashMap is keyed by a Pair containing
+     * the handle and endpoint Uris.
      * Access to the hashmap is protected by the {@link #mUpdateSyncRoot}.
      */
-    private final HashMap<Uri, ConferenceParticipantConnection>
-            mConferenceParticipantConnections = new HashMap<Uri, ConferenceParticipantConnection>();
+    private final HashMap<Pair<Uri, Uri>, ConferenceParticipantConnection>
+            mConferenceParticipantConnections = new HashMap<>();
 
     /**
      * Sychronization root used to ensure that updates to the
@@ -637,11 +638,12 @@ public class ImsConference extends Conference {
             boolean newParticipantsAdded = false;
             boolean oldParticipantsRemoved = false;
             ArrayList<ConferenceParticipant> newParticipants = new ArrayList<>(participants.size());
-            HashSet<Uri> participantUserEntities = new HashSet<>(participants.size());
+            HashSet<Pair<Uri,Uri>> participantUserEntities = new HashSet<>(participants.size());
 
             // Add any new participants and update existing.
             for (ConferenceParticipant participant : participants) {
-                Uri userEntity = participant.getEndpoint();
+                Pair<Uri,Uri> userEntity = new Pair<>(participant.getHandle(),
+                        participant.getEndpoint());
 
                 participantUserEntities.add(userEntity);
                 if (!mConferenceParticipantConnections.containsKey(userEntity)) {
@@ -666,17 +668,20 @@ public class ImsConference extends Conference {
                 // Set the state of the new participants at once and add to the conference
                 for (ConferenceParticipant newParticipant : newParticipants) {
                     ConferenceParticipantConnection connection =
-                            mConferenceParticipantConnections.get(newParticipant.getEndpoint());
+                            mConferenceParticipantConnections.get(new Pair<>(
+                                    newParticipant.getHandle(),
+                                    newParticipant.getEndpoint()));
                     connection.updateState(newParticipant.getState());
                 }
             }
 
             // Finally, remove any participants from the conference that no longer exist in the
             // conference event package data.
-            Iterator<Map.Entry<Uri, ConferenceParticipantConnection>> entryIterator =
+            Iterator<Map.Entry<Pair<Uri, Uri>, ConferenceParticipantConnection>> entryIterator =
                     mConferenceParticipantConnections.entrySet().iterator();
             while (entryIterator.hasNext()) {
-                Map.Entry<Uri, ConferenceParticipantConnection> entry = entryIterator.next();
+                Map.Entry<Pair<Uri, Uri>, ConferenceParticipantConnection> entry =
+                        entryIterator.next();
 
                 if (!participantUserEntities.contains(entry.getKey())) {
                     ConferenceParticipantConnection participant = entry.getValue();
@@ -721,7 +726,8 @@ public class ImsConference extends Conference {
                 participant, connection);
 
         synchronized(mUpdateSyncRoot) {
-            mConferenceParticipantConnections.put(participant.getEndpoint(), connection);
+            mConferenceParticipantConnections.put(new Pair<>(participant.getHandle(),
+                    participant.getEndpoint()), connection);
         }
         mTelephonyConnectionService.addExistingConnection(mConferenceHostPhoneAccountHandle,
                 connection);
