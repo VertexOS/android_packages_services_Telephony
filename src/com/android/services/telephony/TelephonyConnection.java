@@ -1670,6 +1670,13 @@ abstract class TelephonyConnection extends Connection {
     }
 
     /**
+     * @return {@code true} if this connection supports pausing the outgoing video.
+     */
+    public boolean getVideoPauseSupported() {
+        return mIsVideoPauseSupported;
+    }
+
+    /**
      * Sets whether this connection supports conference calling.
      * @param isConferenceSupported {@code true} if conference calling is supported by this
      *                                         connection, {@code false} otherwise.

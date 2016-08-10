@@ -375,7 +375,17 @@ public class ImsConference extends Conference {
                     Connection.CAPABILITY_CAN_UPGRADE_TO_VIDEO,
                     can(capabilities, Connection.CAPABILITY_CAN_UPGRADE_TO_VIDEO));
 
+        conferenceCapabilities = changeBitmask(conferenceCapabilities,
+                    Connection.CAPABILITY_CAN_PAUSE_VIDEO,
+                    mConferenceHost.getVideoPauseSupported() && isVideoCapable());
+
         return conferenceCapabilities;
+    }
+
+    private boolean isVideoCapable() {
+        int capabilities = mConferenceHost.getConnectionCapabilities();
+        return can(capabilities, Connection.CAPABILITY_SUPPORTS_VT_LOCAL_BIDIRECTIONAL)
+                && can(capabilities, Connection.CAPABILITY_SUPPORTS_VT_REMOTE_BIDIRECTIONAL);
     }
 
     /**
