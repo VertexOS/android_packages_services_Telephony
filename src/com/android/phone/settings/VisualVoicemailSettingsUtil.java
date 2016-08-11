@@ -17,12 +17,12 @@ package com.android.phone.settings;
 
 import android.content.Context;
 import android.telecom.PhoneAccountHandle;
-
 import com.android.internal.telephony.Phone;
 import com.android.phone.PhoneUtils;
 import com.android.phone.R;
 import com.android.phone.vvm.omtp.OmtpVvmCarrierConfigHelper;
 import com.android.phone.vvm.omtp.VisualVoicemailPreferences;
+import com.android.phone.vvm.omtp.sync.OmtpVvmSourceManager;
 import com.android.phone.vvm.omtp.utils.PhoneAccountHandleConverter;
 
 /**
@@ -38,6 +38,14 @@ public class VisualVoicemailSettingsUtil {
         new VisualVoicemailPreferences(context, phoneAccount).edit()
                 .putBoolean(IS_ENABLED_KEY, isEnabled)
                 .apply();
+        OmtpVvmCarrierConfigHelper config = new OmtpVvmCarrierConfigHelper(context, phoneAccount);
+        if (isEnabled) {
+            OmtpVvmSourceManager.getInstance(context).addPhoneStateListener(phoneAccount);
+            config.startActivation();
+        } else {
+            OmtpVvmSourceManager.getInstance(context).removeSource(phoneAccount);
+            config.startDeactivation();
+        }
     }
 
     public static boolean isEnabled(Context context,
