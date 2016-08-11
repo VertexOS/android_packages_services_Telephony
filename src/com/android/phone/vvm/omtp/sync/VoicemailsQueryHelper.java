@@ -21,11 +21,11 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
+import android.provider.CallLog.Calls;
 import android.provider.VoicemailContract;
 import android.provider.VoicemailContract.Voicemails;
 import android.telecom.PhoneAccountHandle;
 import android.telecom.Voicemail;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -174,6 +174,7 @@ public class VoicemailsQueryHelper {
         Uri uri = ContentUris.withAppendedId(mSourceUri, voicemail.getId());
         ContentValues contentValues = new ContentValues();
         contentValues.put(Voicemails.IS_READ, "1");
+        contentValues.put(Calls.NEW, false);
         mContentResolver.update(uri, contentValues, null, null);
     }
 
