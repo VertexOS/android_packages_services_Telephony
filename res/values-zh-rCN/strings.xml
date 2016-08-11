@@ -447,6 +447,7 @@
     <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"移动网络不可用。需连接至无线网络才能拨打电话。"</string>
     <string name="incall_error_no_phone_number_supplied" msgid="1150414018684246528">"要拨打电话，请输入有效的电话号码。"</string>
     <string name="incall_error_call_failed" msgid="5891978320269774095">"无法通话。"</string>
+    <string name="incall_error_cannot_add_call" msgid="5206923515522412110">"目前无法添加通话。"</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"正在启动 MMI 序列..."</string>
     <string name="incall_error_supp_service_unknown" msgid="655570339115407698">"服务不受支持"</string>
     <string name="incall_error_supp_service_switch" msgid="5237002176899962862">"无法切换通话。"</string>

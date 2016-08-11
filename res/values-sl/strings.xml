@@ -447,6 +447,7 @@
     <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"Mobilno omrežje ni na voljo. Povežite se v omrežje Wi-Fi, če želite opraviti klic."</string>
     <string name="incall_error_no_phone_number_supplied" msgid="1150414018684246528">"Če želite opraviti klic, vnesite veljavno številko."</string>
     <string name="incall_error_call_failed" msgid="5891978320269774095">"Klic ni uspel."</string>
+    <string name="incall_error_cannot_add_call" msgid="5206923515522412110">"Klica trenutno ni mogoče dodati."</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"Začetek zaporedja MMI ..."</string>
     <string name="incall_error_supp_service_unknown" msgid="655570339115407698">"Storitev ni podprta"</string>
     <string name="incall_error_supp_service_switch" msgid="5237002176899962862">"Preklop med klici ni mogoč."</string>

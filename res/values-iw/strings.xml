@@ -447,6 +447,7 @@
     <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"רשת סלולרית אינה זמינה. התחבר לרשת אלחוטית כדי לבצע שיחה."</string>
     <string name="incall_error_no_phone_number_supplied" msgid="1150414018684246528">"כדי להתקשר, הזן מספר טלפון חוקי."</string>
     <string name="incall_error_call_failed" msgid="5891978320269774095">"השיחה נכשלה."</string>
+    <string name="incall_error_cannot_add_call" msgid="5206923515522412110">"לא ניתן להוסיף את השיחה כרגע."</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"‏מתחיל רצף MMI…"</string>
     <string name="incall_error_supp_service_unknown" msgid="655570339115407698">"שירות לא נתמך"</string>
     <string name="incall_error_supp_service_switch" msgid="5237002176899962862">"לא ניתן לעבור בין שיחות."</string>

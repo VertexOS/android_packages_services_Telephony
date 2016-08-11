@@ -447,6 +447,7 @@
     <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"ဆဲလူလာ ကွန်ရက် မရပါ။ ဖုန်းခေါ်ရန် ကြိုးမဲ့ကွန်ရက်သို့ ချိတ်ဆက်ပါ။"</string>
     <string name="incall_error_no_phone_number_supplied" msgid="1150414018684246528">"ဖုန်းခေါ်ရန်အတွက်၊ သင့်လျော်သည့်နံပါတ် ရိုက်ထည့်ပါ။"</string>
     <string name="incall_error_call_failed" msgid="5891978320269774095">"ခေါ်ဆို၍ မရပါ။"</string>
+    <string name="incall_error_cannot_add_call" msgid="5206923515522412110">"ယခုအချိန်တွင် ခေါ်ဆိုမှု ထပ်မထည့်နိုင်ပါ။"</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"MMI အမှတ်စဉ်ကို စတင်နေပါသည်…"</string>
     <string name="incall_error_supp_service_unknown" msgid="655570339115407698">"ဤဝန်ဆောင်မှုအား မပံ့ပိုးပါ။"</string>
     <string name="incall_error_supp_service_switch" msgid="5237002176899962862">"ဖုန်းခေါ်ခြင်းများကြား မကူးပ​ြောင်းနိုင်ပါ။"</string>

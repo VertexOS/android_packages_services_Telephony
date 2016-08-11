@@ -447,6 +447,7 @@
     <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"モバイルネットワークが利用できません。電話をかけるには無線ネットワークに接続してください。"</string>
     <string name="incall_error_no_phone_number_supplied" msgid="1150414018684246528">"発信するには、有効な番号を入力してください。"</string>
     <string name="incall_error_call_failed" msgid="5891978320269774095">"発信できませんでした。"</string>
+    <string name="incall_error_cannot_add_call" msgid="5206923515522412110">"現在、通話を追加できません。"</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"MMIシーケンスを開始中..."</string>
     <string name="incall_error_supp_service_unknown" msgid="655570339115407698">"サービスはサポートされていません"</string>
     <string name="incall_error_supp_service_switch" msgid="5237002176899962862">"通話を切り替えられません。"</string>
