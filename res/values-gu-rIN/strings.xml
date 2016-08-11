@@ -447,6 +447,7 @@
     <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"સેલ્યુલર નેટવર્ક ઉપલબ્ધ નથી. કૉલ કરવા માટે વાયરલેસ નેટવર્કથી કનેક્ટ કરો."</string>
     <string name="incall_error_no_phone_number_supplied" msgid="1150414018684246528">"કૉલ કરવા માટે, માન્ય નંબર દાખલ કરો."</string>
     <string name="incall_error_call_failed" msgid="5891978320269774095">"કૉલ નિષ્ફળ થયો."</string>
+    <string name="incall_error_cannot_add_call" msgid="5206923515522412110">"આ સમયે કૉલ ઉમેરી શકાતો નથી."</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"MMI અનુક્રમ પ્રારંભ કરી રહ્યાં છે…"</string>
     <string name="incall_error_supp_service_unknown" msgid="655570339115407698">"સેવા સમર્થિત નથી"</string>
     <string name="incall_error_supp_service_switch" msgid="5237002176899962862">"કૉલ્સ સ્વિચ કરી શકાતા નથી."</string>

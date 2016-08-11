@@ -447,6 +447,7 @@
     <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"Sieć komórkowa jest niedostępna. Połącz się z siecią bezprzewodową, by zadzwonić."</string>
     <string name="incall_error_no_phone_number_supplied" msgid="1150414018684246528">"Aby zadzwonić, wybierz prawidłowy numer."</string>
     <string name="incall_error_call_failed" msgid="5891978320269774095">"Nie udało się połączyć."</string>
+    <string name="incall_error_cannot_add_call" msgid="5206923515522412110">"Nie można w tej chwili dodać połączenia."</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"Rozpoczynanie sekwencji MMI..."</string>
     <string name="incall_error_supp_service_unknown" msgid="655570339115407698">"Usługa nie jest obsługiwana"</string>
     <string name="incall_error_supp_service_switch" msgid="5237002176899962862">"Nie można przełączyć połączeń."</string>

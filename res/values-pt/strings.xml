@@ -447,6 +447,7 @@
     <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"A rede celular não está disponível. Conecte-se a uma rede sem fio para fazer uma chamada."</string>
     <string name="incall_error_no_phone_number_supplied" msgid="1150414018684246528">"Para realizar uma chamada, digite um número válido."</string>
     <string name="incall_error_call_failed" msgid="5891978320269774095">"Falha na chamada."</string>
+    <string name="incall_error_cannot_add_call" msgid="5206923515522412110">"No momento, não é possível adicionar a chamada."</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"Iniciando sequência MMI…"</string>
     <string name="incall_error_supp_service_unknown" msgid="655570339115407698">"Serviço não suportado"</string>
     <string name="incall_error_supp_service_switch" msgid="5237002176899962862">"Não é possível alternar as chamadas."</string>

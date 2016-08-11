@@ -447,6 +447,7 @@
     <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"Mobiilivõrk pole saadaval. Helistamiseks looge ühendus traadita võrguga."</string>
     <string name="incall_error_no_phone_number_supplied" msgid="1150414018684246528">"Helistamiseks sisestage kehtiv number."</string>
     <string name="incall_error_call_failed" msgid="5891978320269774095">"Kõne ebaõnnestus."</string>
+    <string name="incall_error_cannot_add_call" msgid="5206923515522412110">"Kõnet ei saa praegu lisada."</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"MMI-jada alustamine ..."</string>
     <string name="incall_error_supp_service_unknown" msgid="655570339115407698">"Teenust ei toetata"</string>
     <string name="incall_error_supp_service_switch" msgid="5237002176899962862">"Kõnesid ei saa vahetada."</string>

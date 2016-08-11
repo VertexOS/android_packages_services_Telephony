@@ -447,6 +447,7 @@
     <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"Jaringan selular tidak tersedia. Sambungkan ke jaringan nirkabel untuk melakukan panggilan."</string>
     <string name="incall_error_no_phone_number_supplied" msgid="1150414018684246528">"Untuk melakukan panggilan telepon, masukkan nomor yang valid."</string>
     <string name="incall_error_call_failed" msgid="5891978320269774095">"Telepon gagal."</string>
+    <string name="incall_error_cannot_add_call" msgid="5206923515522412110">"Panggilan tidak dapat ditambahkan untuk saat ini."</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"Memulai urutan MMI..."</string>
     <string name="incall_error_supp_service_unknown" msgid="655570339115407698">"Layanan tidak didukung"</string>
     <string name="incall_error_supp_service_switch" msgid="5237002176899962862">"Tidak dapat berganti panggilan telepon."</string>

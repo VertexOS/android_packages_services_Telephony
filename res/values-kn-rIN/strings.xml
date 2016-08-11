@@ -447,6 +447,7 @@
     <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"ಸೆಲ್ಯುಲಾರ್ ನೆಟ್‌ವರ್ಕ್ ಲಭ್ಯವಿಲ್ಲ. ಕರೆ ಮಾಡಲು ವೈರ್‌ಲೆಸ್ ನೆಟ್‌ವರ್ಕ್‌ಗೆ ಸಂಪರ್ಕಪಡಿಸಿ."</string>
     <string name="incall_error_no_phone_number_supplied" msgid="1150414018684246528">"ಕರೆಯನ್ನು ಮಾಡಲು, ಮಾನ್ಯವಾದ ಸಂಖ್ಯೆಯನ್ನು ನಮೂದಿಸಿ."</string>
     <string name="incall_error_call_failed" msgid="5891978320269774095">"ಕರೆ ವಿಫಲವಾಗಿದೆ."</string>
+    <string name="incall_error_cannot_add_call" msgid="5206923515522412110">"ಕರೆಯನ್ನು ಈ ಸಮಯದಲ್ಲಿ ಸೇರಿಸಲಾಗುವುದಿಲ್ಲ."</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"MMI ಅನುಕ್ರಮ ಪ್ರಾರಂಭವಾಗುತ್ತಿದೆ…"</string>
     <string name="incall_error_supp_service_unknown" msgid="655570339115407698">"ಸೇವೆಯು ಬೆಂಬಲಿತವಾಗಿಲ್ಲ"</string>
     <string name="incall_error_supp_service_switch" msgid="5237002176899962862">"ಕರೆಗಳನ್ನು ಬದಲಾಯಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ."</string>

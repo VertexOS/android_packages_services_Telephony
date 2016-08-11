@@ -447,6 +447,7 @@
     <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"Mobiliojo ryšio tinklas nepasiekiamas. Prisijunkite prie belaidžio ryšio tinklo, kad galėtumėte skambinti."</string>
     <string name="incall_error_no_phone_number_supplied" msgid="1150414018684246528">"Kad galėtumėte paskambinti, įveskite tinkamą numerį."</string>
     <string name="incall_error_call_failed" msgid="5891978320269774095">"Paskambinti nepavyko."</string>
+    <string name="incall_error_cannot_add_call" msgid="5206923515522412110">"Šiuo metu skambučio atlikti negalima."</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"Paleidžiama MMI seka..."</string>
     <string name="incall_error_supp_service_unknown" msgid="655570339115407698">"Paslauga nepalaikoma"</string>
     <string name="incall_error_supp_service_switch" msgid="5237002176899962862">"Nepavyko perjungti skambučių."</string>

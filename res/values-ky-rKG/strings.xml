@@ -156,7 +156,7 @@
     <string name="vm_change_pin_error_mismatch" msgid="2754685537970757317">"Эски PIN код дал келген жок."</string>
     <string name="vm_change_pin_error_invalid" msgid="3972205462701668653">"Жаңы PIN коддо жараксыз белгилер бар."</string>
     <string name="vm_change_pin_error_system_error" msgid="6610603326230000207">"PIN код өзгөртүлгөн жок"</string>
-    <string name="vvm_unsupported_message_format" msgid="11795090778411977">"Колдоого алынбаган билдирүү түрү, угуу үчүн <xliff:g id="NUMBER">%s</xliff:g> чалыңыз."</string>
+    <string name="vvm_unsupported_message_format" msgid="11795090778411977">"Колдоого алынбаган билдирүү, угуу үчүн <xliff:g id="NUMBER">%s</xliff:g> чалыңыз."</string>
     <string name="mobile_networks" msgid="2843854043339307375">"Мобилдик тармактын жөндөөлөрү"</string>
     <string name="label_available" msgid="1181658289009300430">"Жеткиликтүү тармактар"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"Изделүүдө…"</string>
@@ -447,6 +447,7 @@
     <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"Уюлдук тармак жеткиликтүү эмес. Чалуу үчүн зымсыз тармакка туташыңыз."</string>
     <string name="incall_error_no_phone_number_supplied" msgid="1150414018684246528">"Чалуу үчүн, жарактуу номер киргизиңиз."</string>
     <string name="incall_error_call_failed" msgid="5891978320269774095">"Чалынбай калды."</string>
+    <string name="incall_error_cannot_add_call" msgid="5206923515522412110">"Бул жолу чалууну кошуу мүмкүн эмес."</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"MMI кезеги башталууда…"</string>
     <string name="incall_error_supp_service_unknown" msgid="655570339115407698">"Кызмат колдоого алынбайт"</string>
     <string name="incall_error_supp_service_switch" msgid="5237002176899962862">"Чалуулар которуштурулбай жатат."</string>
