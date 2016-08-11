@@ -61,7 +61,6 @@ import android.util.ArraySet;
 import android.util.Log;
 import android.util.Pair;
 import android.util.Slog;
-
 import com.android.ims.ImsManager;
 import com.android.internal.telephony.CallManager;
 import com.android.internal.telephony.CellNetworkScanResult;
@@ -83,8 +82,8 @@ import com.android.internal.telephony.uicc.IccUtils;
 import com.android.internal.telephony.uicc.UiccCard;
 import com.android.internal.telephony.uicc.UiccController;
 import com.android.internal.util.HexDump;
+import com.android.phone.settings.VisualVoicemailSettingsUtil;
 import com.android.phone.settings.VoicemailNotificationSettingsUtil;
-
 import java.io.FileDescriptor;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -1897,6 +1896,27 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         Boolean success = (Boolean) sendRequest(CMD_SET_VOICEMAIL_NUMBER,
                 new Pair<String, String>(alphaTag, number), new Integer(subId));
         return success;
+    }
+
+    @Override
+    public void setVisualVoicemailEnabled(String callingPackage,
+            PhoneAccountHandle phoneAccountHandle, boolean enabled) {
+        mAppOps.checkPackage(Binder.getCallingUid(), callingPackage);
+        if (!TextUtils.equals(callingPackage,
+                TelecomManager.from(mPhone.getContext()).getDefaultDialerPackage())) {
+            enforceModifyPermissionOrCarrierPrivilege(
+                    PhoneUtils.getSubIdForPhoneAccountHandle(phoneAccountHandle));
+        }
+        VisualVoicemailSettingsUtil.setEnabled(mPhone.getContext(), phoneAccountHandle, enabled);
+    }
+
+    @Override
+    public boolean isVisualVoicemailEnabled(String callingPackage,
+            PhoneAccountHandle phoneAccountHandle) {
+        if (!canReadPhoneState(callingPackage, "isVisualVoicemailEnabled")) {
+            return false;
+        }
+        return VisualVoicemailSettingsUtil.isEnabled(mPhone.getContext(), phoneAccountHandle);
     }
 
     @Override
