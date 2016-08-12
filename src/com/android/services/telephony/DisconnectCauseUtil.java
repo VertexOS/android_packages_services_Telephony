@@ -126,6 +126,8 @@ public class DisconnectCauseUtil {
             case android.telephony.DisconnectCause.DIAL_MODIFIED_TO_DIAL:
             case android.telephony.DisconnectCause.ERROR_UNSPECIFIED:
             case android.telephony.DisconnectCause.MAXIMUM_NUMBER_OF_CALLS_REACHED:
+            case android.telephony.DisconnectCause.DATA_DISABLED:
+            case android.telephony.DisconnectCause.DATA_LIMIT_REACHED:
                 return DisconnectCause.ERROR;
 
             case android.telephony.DisconnectCause.DIALED_MMI:
@@ -227,6 +229,14 @@ public class DisconnectCauseUtil {
 
             case android.telephony.DisconnectCause.MAXIMUM_NUMBER_OF_CALLS_REACHED:
                 resourceId = R.string.callFailed_maximum_reached;
+                break;
+
+            case android.telephony.DisconnectCause.DATA_DISABLED:
+                resourceId = R.string.callFailed_data_disabled;
+                break;
+
+            case android.telephony.DisconnectCause.DATA_LIMIT_REACHED:
+                resourceId = R.string.callFailed_data_limit_reached;
                 break;
 
             default:
@@ -360,6 +370,16 @@ public class DisconnectCauseUtil {
                 // either canceled by the user explicitly (end-call button pushed immediately)
                 // or some other app canceled the call and immediately issued a new CALL to
                 // replace it.
+                break;
+
+            case android.telephony.DisconnectCause.DATA_DISABLED:
+                resourceId = R.string.callFailed_data_disabled;
+                break;
+
+            case android.telephony.DisconnectCause.DATA_LIMIT_REACHED:
+                resourceId = R.string.callFailed_data_limit_reached;
+                break;
+
             default:
                 break;
         }
