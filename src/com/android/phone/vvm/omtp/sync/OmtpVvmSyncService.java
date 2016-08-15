@@ -188,7 +188,7 @@ public class OmtpVvmSyncService {
 
         if (readVoicemails.size() > 0) {
             if (imapHelper.markMessagesAsRead(readVoicemails)) {
-                mQueryHelper.markReadInDatabase(readVoicemails);
+                mQueryHelper.markCleanInDatabase(readVoicemails);
             } else {
                 success = false;
             }
