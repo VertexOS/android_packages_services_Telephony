@@ -304,7 +304,7 @@
     <style name="cfut_value">
         <item name="android:layout_width">80dip</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
+        <item name="android:textAppearance">?android:attr/textAppearanceSmall</item>
         <item name="android:singleLine">true</item>
     </style>
 </resources>
