@@ -83,6 +83,7 @@ public class CallNotifier extends Handler {
     private Map<Integer, CallNotifierPhoneStateListener> mPhoneStateListeners =
             new ArrayMap<Integer, CallNotifierPhoneStateListener>();
     private Map<Integer, Boolean> mCFIStatus = new ArrayMap<Integer, Boolean>();
+    private Map<Integer, Boolean> mMWIStatus = new ArrayMap<Integer, Boolean>();
     private PhoneGlobals mApplication;
     private CallManager mCM;
     private BluetoothHeadset mBluetoothHeadset;
@@ -130,9 +131,15 @@ public class CallNotifier extends Handler {
                 int subId[] = SubscriptionController.getInstance().getSubIdUsingSlotId(slotId);
                 if (mCFIStatus.containsKey(subId[0]) && (mCFIStatus.get(subId[0]) == true) &&
                     newProvisionedState == NOT_PROVISIONED) {
-                    Log.d(LOG_TAG, "SubId: " +subId[0]+" "+"NOT_PROVISIONED");
+                    Log.d(LOG_TAG, "SubId: for updateCfi" +subId[0]+" "+"NOT_PROVISIONED");
                     mApplication.notificationMgr.updateCfi(subId[0], false);
                 }
+                if (mMWIStatus.containsKey(subId[0]) && (mMWIStatus.get(subId[0]) == true) &&
+                    newProvisionedState == NOT_PROVISIONED) {
+                    Log.d(LOG_TAG, "SubId: for updateMwi" +subId[0]+" "+"NOT_PROVISIONED");
+                    mApplication.notificationMgr.updateMwi(subId[0], false);
+                }
+
             }
         }
     };
@@ -674,8 +681,13 @@ public class CallNotifier extends Handler {
                 itr.remove();
             } else {
                 Log.d(LOG_TAG, "updatePhoneStateListeners: update CF notifications.");
-                mApplication.notificationMgr.updateCfi(subId, mCFIStatus.get(subId));
-                mApplication.notificationMgr.updateMwi(subId, mCFIStatus.get(subId));
+
+                if (mCFIStatus.containsKey(subId)) {
+                    mApplication.notificationMgr.updateCfi(subId, mCFIStatus.get(subId));
+                }
+                if (mMWIStatus.containsKey(subId)) {
+                    mApplication.notificationMgr.updateMwi(subId, mMWIStatus.get(subId));
+                }
             }
         }
 
@@ -846,6 +858,7 @@ public class CallNotifier extends Handler {
         @Override
         public void onMessageWaitingIndicatorChanged(boolean visible) {
             if (VDBG) log("onMessageWaitingIndicatorChanged(): " + this.mSubId + " " + visible);
+            mMWIStatus.put(this.mSubId, visible);
             mApplication.notificationMgr.updateMwi(this.mSubId, visible);
         }
 
