@@ -767,7 +767,7 @@ abstract class TelephonyConnection extends Connection {
                 setAddress(address, presentation);
             }
 
-            String name = mOriginalConnection.getCnapName();
+            String name = filterCnapName(mOriginalConnection.getCnapName());
             int namePresentation = mOriginalConnection.getCnapNamePresentation();
             if (!Objects.equals(name, getCallerDisplayName()) ||
                     namePresentation != getCallerDisplayNamePresentation()) {
@@ -857,6 +857,33 @@ abstract class TelephonyConnection extends Connection {
         }
 
         fireOnOriginalConnectionConfigured();
+    }
+
+    /**
+     * Filters the CNAP name to not include a list of names that are unhelpful to the user for
+     * Caller ID purposes.
+     */
+    private String filterCnapName(final String cnapName) {
+        if (cnapName == null) {
+            return null;
+        }
+        PersistableBundle carrierConfig = getCarrierConfig();
+        String[] filteredCnapNames = null;
+        if (carrierConfig != null) {
+            filteredCnapNames = carrierConfig.getStringArray(
+                    CarrierConfigManager.FILTERED_CNAP_NAMES_STRING_ARRAY);
+        }
+        if (filteredCnapNames != null) {
+            long cnapNameMatches = Arrays.asList(filteredCnapNames)
+                    .stream()
+                    .filter(filteredCnapName -> filteredCnapName.equals(cnapName.toUpperCase()))
+                    .count();
+            if (cnapNameMatches > 0) {
+                Log.i(this, "filterCnapName: Filtered CNAP Name: " + cnapName);
+                return "";
+            }
+        }
+        return cnapName;
     }
 
     /**
