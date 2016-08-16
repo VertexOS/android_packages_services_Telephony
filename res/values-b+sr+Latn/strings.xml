@@ -548,7 +548,7 @@
     <string name="voicemail_number_not_set" msgid="6724904736891087856">"&lt;Nije podešeno&gt;"</string>
     <string name="other_settings" msgid="3672912580359716394">"Druga podešavanja poziva"</string>
     <string name="calling_via_template" msgid="4839419581866928142">"Pozivanje preko <xliff:g id="PROVIDER_NAME">%s</xliff:g>"</string>
-    <string name="contactPhoto" msgid="4713193418046639466">"fotografija kontakta"</string>
+    <string name="contactPhoto" msgid="4713193418046639466">"slika kontakta"</string>
     <string name="goPrivate" msgid="865837794424530980">"idi na privatno"</string>
     <string name="selectContact" msgid="781975788478987237">"izaberite kontakt"</string>
     <string name="not_voice_capable" msgid="2739898841461577811">"Audio pozivi nisu podržani"</string>
