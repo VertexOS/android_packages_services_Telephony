@@ -20,6 +20,7 @@ import android.content.Context;
 import android.graphics.drawable.Icon;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.telecom.Conference;
 import android.telecom.ConferenceParticipant;
 import android.telecom.Connection.VideoProvider;
@@ -29,6 +30,7 @@ import android.telecom.Log;
 import android.telecom.PhoneAccountHandle;
 import android.telecom.StatusHints;
 import android.telecom.VideoProfile;
+import android.telephony.CarrierConfigManager;
 import android.telephony.PhoneNumberUtils;
 import android.util.Pair;
 
@@ -36,6 +38,7 @@ import com.android.internal.telephony.Call;
 import com.android.internal.telephony.CallStateException;
 import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneConstants;
+import com.android.phone.PhoneGlobals;
 import com.android.phone.PhoneUtils;
 import com.android.phone.R;
 
@@ -279,8 +282,11 @@ public class ImsConference extends Conference {
         mTelephonyConnectionService = telephonyConnectionService;
         setConferenceHost(conferenceHost);
 
-        int capabilities = Connection.CAPABILITY_SUPPORT_HOLD | Connection.CAPABILITY_HOLD |
-                Connection.CAPABILITY_MUTE | Connection.CAPABILITY_CONFERENCE_HAS_NO_CHILDREN;
+        int capabilities = Connection.CAPABILITY_MUTE |
+                Connection.CAPABILITY_CONFERENCE_HAS_NO_CHILDREN;
+        if (canHoldImsCalls()) {
+            capabilities |= Connection.CAPABILITY_SUPPORT_HOLD | Connection.CAPABILITY_HOLD;
+        }
         capabilities = applyHostCapabilities(capabilities,
                 mConferenceHost.getConnectionCapabilities(),
                 mConferenceHost.isCarrierVideoConferencingSupported());
@@ -975,5 +981,23 @@ public class ImsConference extends Conference {
         sb.append(mConferenceParticipantConnections.size());
         sb.append("]");
         return sb.toString();
+    }
+
+    private boolean canHoldImsCalls() {
+        PersistableBundle b = getCarrierConfig();
+        // Return true if the CarrierConfig is unavailable
+        return b == null || b.getBoolean(CarrierConfigManager.KEY_ALLOW_HOLD_IN_IMS_CALL_BOOL);
+    }
+
+    private PersistableBundle getCarrierConfig() {
+        if (mConferenceHost == null) {
+            return null;
+        }
+
+        Phone phone = mConferenceHost.getPhone();
+        if (phone == null) {
+            return null;
+        }
+        return PhoneGlobals.getInstance().getCarrierConfigForSubId(phone.getSubId());
     }
 }
