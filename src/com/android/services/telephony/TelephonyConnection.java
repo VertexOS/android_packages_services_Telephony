@@ -404,6 +404,17 @@ abstract class TelephonyConnection extends Connection {
         public void onHandoverToWifiFailed() {
             sendConnectionEvent(TelephonyManager.EVENT_HANDOVER_TO_WIFI_FAILED, null);
         }
+
+        /**
+         * Informs the {@link android.telecom.ConnectionService} of a connection event raised by the
+         * original connection.
+         * @param event The connection event.
+         * @param extras The extras.
+         */
+        @Override
+        public void onConnectionEvent(String event, Bundle extras) {
+            sendConnectionEvent(event, extras);
+        }
     };
 
     protected com.android.internal.telephony.Connection mOriginalConnection;
