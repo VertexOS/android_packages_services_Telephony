@@ -19,13 +19,16 @@ package com.android.services.telephony;
 import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneConstants;
 import com.android.phone.PhoneUtils;
+import com.android.phone.R;
 
+import android.content.Context;
 import android.telecom.Conference;
 import android.telecom.Connection;
 import android.telecom.ConnectionService;
 import android.telecom.DisconnectCause;
 import android.telecom.Conferenceable;
 import android.telecom.PhoneAccountHandle;
+import android.telecom.VideoProfile;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -36,7 +39,8 @@ import java.util.List;
  * Manages conferences for IMS connections.
  */
 public class ImsConferenceController {
-
+    private int mVideoConferenceMaxSupported = -1;
+    private boolean mIsConferenceCallLimited = false;
     /**
      * Conference listener; used to receive notification when a conference has been disconnected.
      */
@@ -146,6 +150,22 @@ public class ImsConferenceController {
     }
 
     /**
+    *return whether need to limit video conference call max supported for TMO feature
+    */
+    private boolean allowAddingVideoConfParticipant(ImsConference conference) {
+        if (mVideoConferenceMaxSupported == -1) {
+            Context context = mConnectionService.getApplicationContext();
+            mIsConferenceCallLimited = context.getResources()
+                    .getBoolean(R.bool.config_enable_video_conference_call_limit);
+            mVideoConferenceMaxSupported = context.getResources().getInteger(
+                    R.integer.conference_call_max_participants_supported);
+        }
+        boolean isVideoConference = !VideoProfile.isAudioOnly(conference.getVideoState());;
+        return mIsConferenceCallLimited && isVideoConference && conference.getConnections().size()
+                >= mVideoConferenceMaxSupported;
+    }
+
+    /**
      * Calculates the conference-capable state of all GSM connections in this connection service.
      */
     private void recalculateConferenceable() {
@@ -192,10 +212,12 @@ public class ImsConferenceController {
             if (Log.DEBUG) {
                 Log.d(this, "recalc - %s %s", conference.getState(), conference);
             }
-
-            if (!conference.isConferenceHost()) {
+            if (!conference.isConferenceHost()
+                    || allowAddingVideoConfParticipant(conference)) {
                 if (Log.VERBOSE) {
                     Log.v(this, "skipping conference (not hosted on this device): %s", conference);
+                    Log.v(this,"the conference call connection size is : %d"
+                            , conference.getConnections().size());
                 }
                 continue;
             }

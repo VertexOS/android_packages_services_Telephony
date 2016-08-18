@@ -237,4 +237,10 @@
     <bool name="config_xdivert_enable">true</bool>
 
     <bool name="config_regional_ussd_hide_error_from_network_enable">false</bool>
+
+    <!-- the number which the video conference call max supported for TMO -->
+    <integer name="conference_call_max_participants_supported">4</integer>
+
+    <!-- Flag indicating whether to allow limit video confernece call max supported -->
+    <bool name="config_enable_video_conference_call_limit">false</bool>
 </resources>
