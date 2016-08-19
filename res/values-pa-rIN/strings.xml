@@ -566,7 +566,7 @@
     <string name="sim_description_emergency_calls" msgid="7535215397212301562">"ਕੇਵਲ ਐਮਰਜੈਂਸੀ ਕਾਲਿੰਗ"</string>
     <string name="sim_description_default" msgid="4778679519938775515">"SIM ਕਾਰਡ, ਸਲੌਟ: <xliff:g id="SLOT_ID">%s</xliff:g>"</string>
     <string name="accessibility_settings_activity_title" msgid="8562004288733103868">"ਪਹੁੰਚਯੋਗਤਾ"</string>
-    <string name="status_hint_label_incoming_wifi_call" msgid="8772915926382037499">"ਇਨਕਮਿੰਗ Wi-Fi ਕਾਲ"</string>
+    <string name="status_hint_label_incoming_wifi_call" msgid="5932176406432044638">"ਇਸ ਤੋਂ Wi-Fi ਕਾਲ"</string>
     <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"Wi-Fi ਕਾਲ"</string>
     <string name="emergency_action_launch_hint" msgid="4906759256275562674">"ਖੋਲ੍ਹਣ ਲਈ ਦੁਬਾਰਾ ਟੈਪ ਕਰੋ"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"ਸੁਨੇਹਾ ਡੀਕੋਡ ਕਰਦੇ ਸਮੇਂ ਇੱਕ ਅਸ਼ੁੱਧੀ ਹੋਈ ਸੀ।"</string>

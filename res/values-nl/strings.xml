@@ -566,7 +566,7 @@
     <string name="sim_description_emergency_calls" msgid="7535215397212301562">"Alleen noodoproepen"</string>
     <string name="sim_description_default" msgid="4778679519938775515">"Simkaart, sleuf: <xliff:g id="SLOT_ID">%s</xliff:g>"</string>
     <string name="accessibility_settings_activity_title" msgid="8562004288733103868">"Toegankelijkheid"</string>
-    <string name="status_hint_label_incoming_wifi_call" msgid="8772915926382037499">"Inkomende wifi-oproep"</string>
+    <string name="status_hint_label_incoming_wifi_call" msgid="5932176406432044638">"Wifi-oproep van"</string>
     <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"Wifi-oproep"</string>
     <string name="emergency_action_launch_hint" msgid="4906759256275562674">"Tik nogmaals om te openen"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"Er is een fout opgetreden tijdens het decoderen van het bericht."</string>

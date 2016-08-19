@@ -566,7 +566,7 @@
     <string name="sim_description_emergency_calls" msgid="7535215397212301562">"အရေးပေါ် ခေါ်ဆိုမှုသာလျှင်"</string>
     <string name="sim_description_default" msgid="4778679519938775515">"SIM ကဒ်၊ အပေါက်: <xliff:g id="SLOT_ID">%s</xliff:g>"</string>
     <string name="accessibility_settings_activity_title" msgid="8562004288733103868">"ရယူသုံးနိုင်မှု"</string>
-    <string name="status_hint_label_incoming_wifi_call" msgid="8772915926382037499">"ဝင်လာသော ဝိုင်ဖိုင်ခေါ်ဆိုမှု"</string>
+    <string name="status_hint_label_incoming_wifi_call" msgid="5932176406432044638">"အောက်ပါမှ Wi-Fi ခေါ်ခြင်း"</string>
     <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"ဝိုင်ဖိုင်ခေါ်ဆိုမှု"</string>
     <string name="emergency_action_launch_hint" msgid="4906759256275562674">"ဖွင့်ရန် ထပ်တို့ပါ"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"စာကို ကုဒ်ဖွင့်နေစဉ် အမှားရှိခဲ့သည်။"</string>

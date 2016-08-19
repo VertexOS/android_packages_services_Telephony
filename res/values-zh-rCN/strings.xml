@@ -566,7 +566,7 @@
     <string name="sim_description_emergency_calls" msgid="7535215397212301562">"只能拨打紧急呼救电话"</string>
     <string name="sim_description_default" msgid="4778679519938775515">"SIM 卡，插槽：<xliff:g id="SLOT_ID">%s</xliff:g>"</string>
     <string name="accessibility_settings_activity_title" msgid="8562004288733103868">"无障碍功能"</string>
-    <string name="status_hint_label_incoming_wifi_call" msgid="8772915926382037499">"WLAN 来电"</string>
+    <string name="status_hint_label_incoming_wifi_call" msgid="5932176406432044638">"WLAN 通话来电："</string>
     <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"WLAN 通话"</string>
     <string name="emergency_action_launch_hint" msgid="4906759256275562674">"再次点按即可打开"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"对邮件解码时出错。"</string>
