@@ -83,17 +83,29 @@ public class VoicemailStatus {
             return this;
         }
 
-        public void apply() {
+        /**
+         * Apply the changes to the {@link VoicemailStatus} {@link #Editor}.
+         *
+         * @return {@code true} if the changes were successfully applied, {@code false} otherwise.
+         */
+        public boolean apply() {
             if (mPhoneAccountHandle == null) {
-                return;
+                return false;
             }
             mValues.put(Status.PHONE_ACCOUNT_COMPONENT_NAME,
                     mPhoneAccountHandle.getComponentName().flattenToString());
             mValues.put(Status.PHONE_ACCOUNT_ID, mPhoneAccountHandle.getId());
             ContentResolver contentResolver = mContext.getContentResolver();
             Uri statusUri = VoicemailContract.Status.buildSourceUri(mContext.getPackageName());
-            contentResolver.insert(statusUri, mValues);
+            try {
+                contentResolver.insert(statusUri, mValues);
+            } catch (IllegalArgumentException iae) {
+                VvmLog.e(TAG, "apply :: failed to insert content resolver ", iae);
+                mValues.clear();
+                return false;
+            }
             mValues.clear();
+            return true;
         }
 
         public ContentValues getValues() {
@@ -114,8 +126,9 @@ public class VoicemailStatus {
         }
 
         @Override
-        public void apply() {
+        public boolean apply() {
             // Do nothing
+            return true;
         }
 
         public void deferredApply() {
