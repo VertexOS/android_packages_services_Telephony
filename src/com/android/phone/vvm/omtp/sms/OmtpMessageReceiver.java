@@ -81,6 +81,11 @@ public class OmtpMessageReceiver extends BroadcastReceiver {
                 .getString(VoicemailContract.EXTRA_VOICEMAIL_SMS_PREFIX);
         Bundle data = intent.getExtras().getBundle(VoicemailContract.EXTRA_VOICEMAIL_SMS_FIELDS);
 
+        if (eventType == null || data == null) {
+            VvmLog.e(TAG, "Unparsable VVM SMS received, ignoring");
+            return;
+        }
+
         if (eventType.equals(OmtpConstants.SYNC_SMS_PREFIX)) {
             SyncMessage message = new SyncMessage(data);
 
