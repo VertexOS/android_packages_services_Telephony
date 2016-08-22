@@ -214,7 +214,7 @@ public class PhoneGlobals extends ContextWrapper {
                     break;
 
                 case EVENT_DATA_ROAMING_DISCONNECTED:
-                    notificationMgr.showDataDisconnectedRoaming();
+                    notificationMgr.showDataDisconnectedRoaming(msg.arg1);
                     break;
 
                 case EVENT_DATA_ROAMING_OK:
@@ -785,8 +785,11 @@ public class PhoneGlobals extends ContextWrapper {
 
                 if (mDataDisconnectedDueToRoaming != disconnectedDueToRoaming) {
                     mDataDisconnectedDueToRoaming = disconnectedDueToRoaming;
-                    mHandler.sendEmptyMessage(disconnectedDueToRoaming
+                    int defaultDataSubId = SubscriptionManager.getDefaultDataSubId();
+                    Message msg = mHandler.obtainMessage(disconnectedDueToRoaming
                             ? EVENT_DATA_ROAMING_DISCONNECTED : EVENT_DATA_ROAMING_OK);
+                    msg.arg1 = SubscriptionManager.getSlotId(defaultDataSubId);
+                    mHandler.sendMessage(msg);
                 }
             } else if (action.equals(TelephonyIntents.ACTION_SIM_STATE_CHANGED)) {
                 if (mPUKEntryActivity != null) {

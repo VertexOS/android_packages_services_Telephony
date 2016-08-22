@@ -84,6 +84,8 @@ public class MobileNetworkSettings extends PreferenceActivity
     private static final boolean DBG = true;
     public static final int REQUEST_CODE_EXIT_ECM = 17;
 
+    public static final String EXTRA_INITIAL_SLOT_TAB = "initial_slot_id";
+
     // Number of active Subscriptions to show tabs
     private static final int TAB_THRESHOLD = 2;
 
@@ -489,6 +491,10 @@ public class MobileNetworkSettings extends PreferenceActivity
         IntentFilter intentFilter = new IntentFilter(
                 TelephonyIntents.ACTION_RADIO_TECHNOLOGY_CHANGED);
         registerReceiver(mPhoneChangeReceiver, intentFilter);
+        int initialSlotId = getIntent().getIntExtra(EXTRA_INITIAL_SLOT_TAB , -1);
+        if (initialSlotId != -1) {
+            mTabHost.setCurrentTab(initialSlotId);
+        }
         if (DBG) log("onCreate:-");
     }
 
