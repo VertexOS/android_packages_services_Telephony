@@ -70,6 +70,7 @@
     <protected-broadcast android:name= "com.android.imsconnection.DISCONNECTED" />
     <protected-broadcast android:name= "com.android.intent.action.IMS_FEATURE_CHANGED" />
     <protected-broadcast android:name= "com.android.intent.action.IMS_CONFIG_CHANGED" />
+    <protected-broadcast android:name= "com.android.ims.REGISTRATION_ERROR" />
 
     <uses-permission android:name="android.permission.BROADCAST_STICKY" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
