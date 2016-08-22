@@ -366,22 +366,6 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="GsmUmtsOptions"
-                android:label="@string/gsm_umts_options"
-                android:theme="@style/DialerSettingsLight">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-            </intent-filter>
-        </activity>
-
-        <activity android:name="CdmaOptions"
-                android:label="@string/cdma_options"
-                android:theme="@style/DialerSettingsLight">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-            </intent-filter>
-        </activity>
-
         <activity android:name="GsmUmtsCallOptions"
                 android:label="@string/gsm_umts_options"
                 android:theme="@style/DialerSettingsLight">
@@ -411,14 +395,6 @@
                 android:label="@string/labelGSMMore"
                 android:configChanges="orientation|screenSize|keyboardHidden"
                 android:theme="@style/SettingsLight">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-            </intent-filter>
-        </activity>
-
-        <activity android:name="CellBroadcastSms"
-            android:label="@string/cell_broadcast_sms"
-            android:theme="@android:style/Theme.Holo.DialogWhenLarge">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
@@ -466,23 +442,6 @@
         <activity android:name="com.android.phone.settings.fdn.DeleteFdnContactScreen"
                 android:theme="@style/DialerSettingsLight"
                 android:label="@string/delete_fdn_contact">
-        </activity>
-
-        <activity android:name="DataRoamingReenable"
-                android:label="@string/dialog_alert_title"
-                android:theme="@android:style/Theme.Holo.Dialog">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-            </intent-filter>
-        </activity>
-
-        <!-- data roaming setting -->
-        <activity android:name="RoamingSetting"
-                android:label="@string/roaming"
-                android:theme="@android:style/Theme.Holo.DialogWhenLarge">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-            </intent-filter>
         </activity>
 
         <!-- "Call settings" UI, used only on voice-capable phone devices. -->
