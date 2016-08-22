@@ -47,6 +47,7 @@
     <protected-broadcast android:name="android.intent.action.DATA_SMS_RECEIVED" />
     <protected-broadcast android:name="android.provider.Telephony.SMS_RECEIVED" />
     <protected-broadcast android:name="android.provider.Telephony.SMS_DELIVER" />
+    <protected-broadcast android:name="android.provider.Telephony.SMS_REJECTED" />
     <protected-broadcast android:name="android.provider.Telephony.WAP_PUSH_DELIVER" />
     <protected-broadcast android:name="android.provider.Telephony.WAP_PUSH_RECEIVED" />
     <protected-broadcast android:name="android.provider.Telephony.SMS_CB_RECEIVED" />
