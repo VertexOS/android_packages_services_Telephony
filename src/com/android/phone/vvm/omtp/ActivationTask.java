@@ -62,6 +62,8 @@ public class ActivationTask extends BaseTask {
 
     private static final String EXTRA_MESSAGE_DATA_BUNDLE = "extra_message_data_bundle";
 
+    public static final String EXTRA_REGISTER_CONTENT_PROVIDER = "extra_register_content_provider";
+
     @Nullable
     private static DeviceProvisionedObserver sDeviceProvisionedObserver;
 
@@ -140,6 +142,21 @@ public class ActivationTask extends BaseTask {
             VoicemailStatus.disable(getContext(), phoneAccountHandle);
             return;
         }
+
+        if (mData != null && mData.getBoolean(EXTRA_REGISTER_CONTENT_PROVIDER)) {
+            // OmtmVvmCarrierConfigHelper can start the activation process; it will pass in a vvm
+            // content provider URI which we will use.  On some occasions, setting that URI will
+            // fail, so we will perform a few attempts to ensure that the vvm content provider has
+            // a good chance of being started up.
+            if (!VoicemailStatus.edit(getContext(), phoneAccountHandle)
+                    .setType(helper.getVvmType())
+                    .apply()) {
+                VvmLog.e(TAG, "Failed to configure content provider - " + helper.getVvmType());
+                fail();
+            }
+            VvmLog.i(TAG, "VVM content provider configured - " + helper.getVvmType());
+        }
+
         if (!OmtpVvmSourceManager.getInstance(getContext())
                 .isVvmSourceRegistered(phoneAccountHandle)) {
             VisualVoicemailPreferences preferences = new VisualVoicemailPreferences(getContext(),
