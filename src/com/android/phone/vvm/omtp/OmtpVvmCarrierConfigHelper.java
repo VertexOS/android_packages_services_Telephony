@@ -315,14 +315,22 @@ public class OmtpVvmCarrierConfigHelper {
             // Error logged in getPhoneAccountHandle().
             return;
         }
-        VoicemailStatus.edit(mContext, phoneAccountHandle)
-                .setType(getVvmType())
-                .apply();
+
+        if (mVvmType == null || mVvmType.isEmpty()) {
+            // The VVM type is invalid; we should never have gotten here in the first place since
+            // this is loaded initially in the constructor, and callers should check isValid()
+            // before trying to start activation anyways.
+            VvmLog.e(TAG, "startActivation : vvmType is null or empty for account " +
+                    phoneAccountHandle);
+            return;
+        }
 
         activateSmsFilter();
 
         if (mProtocol != null) {
-            ActivationTask.start(mContext, mSubId, null);
+            Bundle extras = new Bundle();
+            extras.putBoolean(ActivationTask.EXTRA_REGISTER_CONTENT_PROVIDER, true);
+            ActivationTask.start(mContext, mSubId, extras);
         }
     }
 
