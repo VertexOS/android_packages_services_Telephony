@@ -629,7 +629,12 @@ public class VoicemailChangePinActivity extends Activity implements OnClickListe
 
         private void sendResult(@ChangePinResult int result) {
             VvmLog.i(TAG, "Change PIN result: " + result);
-            mProgressDialog.dismiss();
+            if (mProgressDialog.isShowing() && !VoicemailChangePinActivity.this.isDestroyed() &&
+                    !VoicemailChangePinActivity.this.isFinishing()) {
+                mProgressDialog.dismiss();
+            } else {
+                VvmLog.i(TAG, "Dialog not visible, not dismissing");
+            }
             mHandler.obtainMessage(MESSAGE_HANDLE_RESULT, result, 0).sendToTarget();
             releaseNetwork();
         }
