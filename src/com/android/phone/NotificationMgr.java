@@ -216,6 +216,10 @@ public class NotificationMgr {
         int [] mwiIcon = {R.drawable.stat_notify_voicemail_sub1,
                 R.drawable.stat_notify_voicemail_sub2};
         Phone phone = PhoneGlobals.getPhone(subId);
+        if (phone == null) {
+            Log.w(LOG_TAG, "updateMwi: phone is null, returning...");
+            return;
+        }
         int phoneId = phone.getPhoneId();
         int notificationId = getNotificationId(VOICEMAIL_NOTIFICATION, phoneId);
 
@@ -423,7 +427,12 @@ public class NotificationMgr {
      */
     /* package */ void updateCfi(int subId, boolean visible) {
         if (DBG) log("updateCfi(): " + visible);
-        int phoneId = PhoneGlobals.getPhone(subId).getPhoneId();
+        Phone phone = PhoneGlobals.getPhone(subId);
+        if (phone == null) {
+            Log.w(LOG_TAG, "updateCfi: phone is null, returning...");
+            return;
+        }
+        int phoneId = phone.getPhoneId();
         int [] callfwdIcon = {R.drawable.stat_sys_phone_call_forward_sub1,
                 R.drawable.stat_sys_phone_call_forward_sub2};
         int notificationId = getNotificationId(CALL_FORWARD_NOTIFICATION, phoneId);
