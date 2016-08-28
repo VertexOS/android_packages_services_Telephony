@@ -77,10 +77,6 @@ public class NetworkSetting extends PreferenceActivity
     private HashMap<Preference, OperatorInfo> mNetworkMap;
 
     int mPhoneId = SubscriptionManager.INVALID_PHONE_INDEX;
-
-    //map of RAT type values to user understandable strings
-    private HashMap<String, String> mRatMap;
-
     protected boolean mIsForeground = false;
 
     private UserManager mUm;
@@ -266,8 +262,6 @@ public class NetworkSetting extends PreferenceActivity
 
         mNetworkList = (PreferenceGroup) getPreferenceScreen().findPreference(LIST_NETWORKS_KEY);
         mNetworkMap = new HashMap<Preference, OperatorInfo>();
-        mRatMap = new HashMap<String, String>();
-        initRatMap();
 
         mSearchButton = getPreferenceScreen().findPreference(BUTTON_SRCH_NETWRKS_KEY);
         mAutoSelect = getPreferenceScreen().findPreference(BUTTON_AUTO_SELECT_KEY);
@@ -515,20 +509,14 @@ public class NetworkSetting extends PreferenceActivity
      */
 
     private String getNetworkTitle(OperatorInfo ni) {
-        String title;
-
         if (!TextUtils.isEmpty(ni.getOperatorAlphaLong())) {
-            title = ni.getOperatorAlphaLong();
+            return ni.getOperatorAlphaLong();
         } else if (!TextUtils.isEmpty(ni.getOperatorAlphaShort())) {
-            title = ni.getOperatorAlphaShort();
+            return ni.getOperatorAlphaShort();
         } else {
             BidiFormatter bidiFormatter = BidiFormatter.getInstance();
-            title = bidiFormatter.unicodeWrap(ni.getOperatorNumeric(), TextDirectionHeuristics.LTR);
+            return bidiFormatter.unicodeWrap(ni.getOperatorNumeric(), TextDirectionHeuristics.LTR);
         }
-        if (!ni.getRadioTech().equals(""))
-            title += " " + mRatMap.get(ni.getRadioTech());
-
-        return title;
     }
 
     private void clearList() {
@@ -549,27 +537,6 @@ public class NetworkSetting extends PreferenceActivity
         if (phone != null) {
             phone.setNetworkSelectionModeAutomatic(msg);
         }
-    }
-
-    private void initRatMap() {
-        mRatMap.put(String.valueOf(ServiceState.RIL_RADIO_TECHNOLOGY_UNKNOWN), "Unknown");
-        mRatMap.put(String.valueOf(ServiceState.RIL_RADIO_TECHNOLOGY_GPRS), "2G");
-        mRatMap.put(String.valueOf(ServiceState.RIL_RADIO_TECHNOLOGY_EDGE), "2G");
-        mRatMap.put(String.valueOf(ServiceState.RIL_RADIO_TECHNOLOGY_UMTS), "3G");
-        mRatMap.put(String.valueOf(ServiceState.RIL_RADIO_TECHNOLOGY_IS95A), "2G");
-        mRatMap.put(String.valueOf(ServiceState.RIL_RADIO_TECHNOLOGY_IS95B), "2G");
-        mRatMap.put(String.valueOf(ServiceState.RIL_RADIO_TECHNOLOGY_1xRTT), "2G");
-        mRatMap.put(String.valueOf(ServiceState.RIL_RADIO_TECHNOLOGY_EVDO_0), "3G");
-        mRatMap.put(String.valueOf(ServiceState.RIL_RADIO_TECHNOLOGY_EVDO_A), "3G");
-        mRatMap.put(String.valueOf(ServiceState.RIL_RADIO_TECHNOLOGY_HSDPA), "3G");
-        mRatMap.put(String.valueOf(ServiceState.RIL_RADIO_TECHNOLOGY_HSUPA), "3G");
-        mRatMap.put(String.valueOf(ServiceState.RIL_RADIO_TECHNOLOGY_HSPA), "3G");
-        mRatMap.put(String.valueOf(ServiceState.RIL_RADIO_TECHNOLOGY_EVDO_B), "3G");
-        mRatMap.put(String.valueOf(ServiceState.RIL_RADIO_TECHNOLOGY_EHRPD), "3G");
-        mRatMap.put(String.valueOf(ServiceState.RIL_RADIO_TECHNOLOGY_LTE), "4G");
-        mRatMap.put(String.valueOf(ServiceState.RIL_RADIO_TECHNOLOGY_HSPAP), "3G");
-        mRatMap.put(String.valueOf(ServiceState.RIL_RADIO_TECHNOLOGY_GSM), "2G");
-        mRatMap.put(String.valueOf(ServiceState.RIL_RADIO_TECHNOLOGY_TD_SCDMA), "3G");
     }
 
     private void log(String msg) {
