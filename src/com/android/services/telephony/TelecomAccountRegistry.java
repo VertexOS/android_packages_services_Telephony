@@ -49,6 +49,7 @@ import com.android.phone.PhoneUtils;
 import com.android.phone.R;
 
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import org.codeaurora.internal.IExtTelephony;
@@ -520,6 +521,8 @@ final class TelecomAccountRegistry {
 
         final boolean phoneAccountsEnabled = mContext.getResources().getBoolean(
                 R.bool.config_pstn_phone_accounts_enabled);
+        int activeCount = 0;
+        int activeSubscriptionId = SubscriptionManager.INVALID_SUBSCRIPTION_ID;
 
         if (phoneAccountsEnabled) {
             // states we are interested in from what
@@ -550,7 +553,10 @@ final class TelecomAccountRegistry {
                 }
                 Log.d(this, "Phone with subscription id: " + subscriptionId +
                         " slotId: " + slotId + " provisionStatus: " + provisionStatus);
-                if ((subscriptionId >= 0) && (provisionStatus == PROVISIONED)) {
+                if ((subscriptionId >= 0) && (provisionStatus == PROVISIONED) &&
+                        (mSubscriptionManager.isActiveSubId(subscriptionId))) {
+                    activeCount++;
+                    activeSubscriptionId = subscriptionId;
                     mAccounts.add(new AccountEntry(phone,
                              false /* emergency */, false /* isDummy */));
                 }
@@ -595,7 +601,43 @@ final class TelecomAccountRegistry {
                     mTelecomManager.setUserSelectedOutgoingPhoneAccount(upgradedPhoneAccount);
                 }
             }
+        } else if ((defaultPhoneAccount == null) && (mTelephonyManager.getPhoneCount() > 1) &&
+                    (activeCount == 1) && (!isNonSimAccountFound())) {
+            PhoneAccountHandle phoneAccountHandle =
+                    subscriptionIdToPhoneAccountHandle(activeSubscriptionId);
+            if (phoneAccountHandle != null) {
+                mTelecomManager.setUserSelectedOutgoingPhoneAccount(phoneAccountHandle);
+            }
         }
+    }
+
+    private boolean isNonSimAccountFound() {
+        final Iterator<PhoneAccountHandle> phoneAccounts =
+                mTelecomManager.getCallCapablePhoneAccounts().listIterator();
+        while (phoneAccounts.hasNext()) {
+            final PhoneAccountHandle phoneAccountHandle = phoneAccounts.next();
+            final PhoneAccount phoneAccount = mTelecomManager.getPhoneAccount(phoneAccountHandle);
+            if (mTelephonyManager.getSubIdForPhoneAccount(phoneAccount) ==
+                    SubscriptionManager.INVALID_SUBSCRIPTION_ID) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private PhoneAccountHandle subscriptionIdToPhoneAccountHandle(final int subId) {
+        final Iterator<PhoneAccountHandle> phoneAccounts =
+                mTelecomManager.getCallCapablePhoneAccounts().listIterator();
+        List<PhoneAccountHandle> phoneAccountsList =
+                mTelecomManager.getCallCapablePhoneAccounts();
+        while (phoneAccounts.hasNext()) {
+            final PhoneAccountHandle phoneAccountHandle = phoneAccounts.next();
+            final PhoneAccount phoneAccount = mTelecomManager.getPhoneAccount(phoneAccountHandle);
+            if (subId == mTelephonyManager.getSubIdForPhoneAccount(phoneAccount)) {
+                return phoneAccountHandle;
+            }
+        }
+        return null;
     }
 
     private void tearDownAccounts() {
