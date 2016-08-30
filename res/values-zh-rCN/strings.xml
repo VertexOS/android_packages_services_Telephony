@@ -559,4 +559,20 @@
     <string name="callFailed_cdma_call_limit" msgid="1556916577171457086">"进行中的通话过多。请结束现有通话或将其合并，然后再拨打新的电话。"</string>
     <string name="cf_setting_mobile_data_alert">请开启手机数据连接，并确保WLAN已关闭</string>
     <string name="no_mobile_data">移动数据连接不可用</string>
+    <!-- Call forwarding settings screen, setting timer info for cfut case -->
+    <string name="set_time_period">设置时间区间</string>
+    <string name="all_day">全天</string>
+    <string name="time_interval_char">: </string>
+    <string name="time_start">自</string>
+    <string name="time_start_hour">起始小时</string>
+    <string name="time_start_minute">起始分钟</string>
+    <string name="time_end">到</string>
+    <string name="time_end_hour">结束小时</string>
+    <string name="time_end_minute">结束分钟</string>
+    <string name="time_formate_am">上午</string>
+    <string name="time_formate_pm">下午</string>
+    <string name="labelCFType">呼叫转移设置</string>
+    <string name="labelCFVoice">语音</string>
+    <string name="labelCFVideo">视频</string>
+    <string name="call_forward_option">呼叫转移选项</string>
 </resources>
