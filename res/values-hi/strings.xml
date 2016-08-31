@@ -358,8 +358,8 @@
     <string name="sum_fdn" msgid="1959399454900272878">"फ़िक्स्ड डायलिंग नंबर प्रबंधित करें"</string>
     <string name="sum_fdn_change_pin" msgid="6666549734792827932">"FDN पहुंच के लिए पिन बदलें"</string>
     <string name="sum_fdn_manage_list" msgid="8431088265332628316">"फ़ोन नंबर सूची प्रबंधित करें"</string>
-    <string name="voice_privacy" msgid="3776841382844614716">"ध्वनि गोपनीयता"</string>
-    <string name="voice_privacy_summary" msgid="3159383389833516214">"उन्नत गोपनीयता मोड सक्षम करें"</string>
+    <string name="voice_privacy" msgid="3776841382844614716">"ध्वनि निजता"</string>
+    <string name="voice_privacy_summary" msgid="3159383389833516214">"उन्नत निजता मोड सक्षम करें"</string>
     <string name="tty_mode_option_title" msgid="9033098925144434669">"TTY मोड"</string>
     <string name="tty_mode_option_summary" msgid="1073835131534808732">"TTY मोड सेट करें"</string>
     <string name="auto_retry_mode_title" msgid="4073265511427813322">"स्वतः पुन: प्रयास"</string>
