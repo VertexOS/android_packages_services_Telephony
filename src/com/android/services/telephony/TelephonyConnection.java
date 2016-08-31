@@ -738,7 +738,7 @@ abstract class TelephonyConnection extends Connection {
         // shown.
         Phone phone = getPhone();
         if (phone != null && phone.isInEcm()) {
-            connectionProperties |= PROPERTY_SHOW_CALLBACK_NUMBER;
+            connectionProperties |= PROPERTY_EMERGENCY_CALLBACK_MODE;
         }
 
         return connectionProperties;
