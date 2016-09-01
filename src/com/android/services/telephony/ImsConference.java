@@ -34,6 +34,7 @@ import android.telecom.PhoneAccountHandle;
 import android.telecom.StatusHints;
 import android.telecom.VideoProfile;
 import android.telephony.PhoneNumberUtils;
+import android.telephony.SubscriptionManager;
 
 import com.android.internal.telephony.Call;
 import com.android.internal.telephony.CallStateException;
@@ -717,7 +718,15 @@ public class ImsConference extends Conference {
                 if (!mConferenceParticipantConnections.containsKey(userEntity)) {
                     // Some carriers will also include the conference host in the CEP.  We will
                     // filter that out here.
-                    if (!isParticipantHost(mConferenceHostAddress, userEntity)) {
+                    boolean disableFilter = false;
+                    Phone phone = parent.getPhone();
+                    if (phone != null) {
+                        Context context = phone.getContext();
+                        final int subId = phone.getSubId();
+                        disableFilter = SubscriptionManager.getResourcesForSubId(context, subId)
+                                     .getBoolean(R.bool.disable_filter_out_conference_host);
+                    }
+                    if (!isParticipantHost(mConferenceHostAddress, userEntity)||disableFilter) {
                         createConferenceParticipantConnection(parent, participant);
                         newParticipants.add(participant);
                         newParticipantsAdded = true;
