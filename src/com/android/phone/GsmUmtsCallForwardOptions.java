@@ -66,7 +66,7 @@ public class GsmUmtsCallForwardOptions extends TimeConsumingPreferenceActivity
         mPhone = mSubscriptionInfoHelper.getPhone();
         final SubscriptionManager subscriptionManager = SubscriptionManager.from(this);
         // check the active data sub.
-        int sub = mSubscriptionInfoHelper.getSubId();
+        int sub = mPhone.getSubId();
         int defaultDataSub = subscriptionManager.getDefaultDataSubscriptionId();
         CarrierConfigManager configManager = (CarrierConfigManager)mPhone.
                 getContext().getSystemService(Context.CARRIER_CONFIG_SERVICE);
