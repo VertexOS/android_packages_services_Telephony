@@ -519,6 +519,7 @@
 
     <!-- USSD aggregation dialog box: separator strings between messages (new-lines will be added before and after) -->
     <string name="ussd_dialog_sep" translatable="false">----------</string>
+    <string name=" hide_error_from_network_text">Unable to Process Request</string>
 
     <string name="gsm_umts_options">GSM/UMTS Options</string>
     <string name="call_forward_option">CallForward Options</string>

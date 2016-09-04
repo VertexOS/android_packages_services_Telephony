@@ -222,6 +222,9 @@
     <!-- To disable/enable CallForwardUnconditional Timer -->
     <bool name="config_enable_cfu_time">false</bool>
 
+    <!-- Whether to set voicemail address editable-->
+    <bool name="config_regional_voicemail_address_editable">false</bool>
+
     <!-- enable network checking for ut interface-->
     <bool name="check_mobile_data_for_cf">false</bool>
     <!-- Config to show/hide toast for ims srvcc -->
@@ -233,4 +236,5 @@
     <!-- If false, removes the X-Divert option from Call Settings -->
     <bool name="config_xdivert_enable">true</bool>
 
+    <bool name="config_regional_ussd_hide_error_from_network_enable">false</bool>
 </resources>

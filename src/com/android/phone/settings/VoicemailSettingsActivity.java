@@ -253,7 +253,13 @@ public class VoicemailSettingsActivity extends PreferenceActivity
         mVoicemailProviders.setOnPreferenceChangeListener(this);
         mPreviousVMProviderKey = mVoicemailProviders.getValue();
 
-        mVoicemailSettings = (PreferenceScreen) findPreference(BUTTON_VOICEMAIL_SETTING_KEY);
+        mVoicemailSettings = (PreferenceScreen) prefSet.findPreference(
+                BUTTON_VOICEMAIL_SETTING_KEY);
+        if (getResources().getBoolean(
+                R.bool.config_regional_voicemail_address_editable)){
+            mVoicemailSettings.removePreference(mSubMenuVoicemailSettings);
+            prefSet.removePreference(mVoicemailSettings);
+        }
 
         mVoicemailNotificationRingtone = (VoicemailRingtonePreference) findPreference(
                 getResources().getString(R.string.voicemail_notification_ringtone_key));
@@ -321,7 +327,8 @@ public class VoicemailSettingsActivity extends PreferenceActivity
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
         if (preference == mSubMenuVoicemailSettings) {
             return true;
-        } else if (preference.getKey().equals(mVoicemailSettings.getKey())) {
+        } else if (mVoicemailSettings != null
+                && preference.getKey().equals(mVoicemailSettings.getKey())) {
             // Check key instead of comparing reference because closing the voicemail notification
             // ringtone dialog invokes onResume(), but leaves the old preference screen up,
             // TODO: Revert to checking reference after migrating voicemail to its own activity.
@@ -521,7 +528,9 @@ public class VoicemailSettingsActivity extends PreferenceActivity
                     if (DBG) log("onActivityResult: bad contact data, no results found.");
                     return;
                 }
-                mSubMenuVoicemailSettings.onPickActivityResult(cursor.getString(0));
+                if (mSubMenuVoicemailSettings != null) {
+                    mSubMenuVoicemailSettings.onPickActivityResult(cursor.getString(0));
+                }
                 return;
             } finally {
                 if (cursor != null) {
@@ -577,7 +586,7 @@ public class VoicemailSettingsActivity extends PreferenceActivity
             return;
         }
 
-        if (preference == mSubMenuVoicemailSettings) {
+        if (mSubMenuVoicemailSettings != null && preference == mSubMenuVoicemailSettings) {
             VoicemailProviderSettings newSettings = new VoicemailProviderSettings(
                     mSubMenuVoicemailSettings.getPhoneNumber(),
                     VoicemailProviderSettings.NO_FORWARDING);
@@ -999,16 +1008,20 @@ public class VoicemailSettingsActivity extends PreferenceActivity
             if (DBG) log("updateVMPreferenceWidget: key: " + key + " -> null.");
 
             mVoicemailProviders.setSummary(getString(R.string.sum_voicemail_choose_provider));
-            mVoicemailSettings.setEnabled(false);
-            mVoicemailSettings.setIntent(null);
+            if (mVoicemailSettings != null) {
+                mVoicemailSettings.setEnabled(false);
+                mVoicemailSettings.setIntent(null);
+            }
             mVoicemailNotificationVibrate.setEnabled(false);
         } else {
             if (DBG) log("updateVMPreferenceWidget: key: " + key + " -> " + provider.toString());
 
             final String providerName = provider.name;
             mVoicemailProviders.setSummary(providerName);
-            mVoicemailSettings.setEnabled(true);
-            mVoicemailSettings.setIntent(provider.intent);
+            if (mVoicemailSettings != null) {
+                mVoicemailSettings.setEnabled(true);
+                mVoicemailSettings.setIntent(provider.intent);
+            }
             mVoicemailNotificationVibrate.setEnabled(true);
         }
     }
@@ -1020,10 +1033,10 @@ public class VoicemailSettingsActivity extends PreferenceActivity
         if (DBG) log("updateVoiceNumberField()");
 
         mOldVmNumber = mPhone.getVoiceMailNumber();
-        if (TextUtils.isEmpty(mOldVmNumber)) {
+        if (TextUtils.isEmpty(mOldVmNumber) && mSubMenuVoicemailSettings != null) {
             mSubMenuVoicemailSettings.setPhoneNumber("");
             mSubMenuVoicemailSettings.setSummary(getString(R.string.voicemail_number_not_set));
-        } else {
+        } else if (mSubMenuVoicemailSettings != null) {
             mSubMenuVoicemailSettings.setPhoneNumber(mOldVmNumber);
             mSubMenuVoicemailSettings.setSummary(BidiFormatter.getInstance().unicodeWrap(
                     mOldVmNumber, TextDirectionHeuristics.LTR));
