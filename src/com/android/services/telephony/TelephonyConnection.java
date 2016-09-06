@@ -23,6 +23,7 @@ import android.os.AsyncResult;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.os.PersistableBundle;
 import android.widget.Toast;
 import android.telecom.CallAudioState;
 import android.telecom.ConferenceParticipant;
@@ -32,6 +33,7 @@ import android.telecom.StatusHints;
 import android.telecom.PhoneAccountHandle;
 import android.telecom.TelecomManager;
 import android.telecom.VideoProfile;
+import android.telephony.CarrierConfigManager;
 import android.telephony.PhoneNumberUtils;
 import android.telephony.SubscriptionInfo;
 import android.telephony.SubscriptionManager;
@@ -925,7 +927,25 @@ abstract class TelephonyConnection extends Connection {
         updateConnectionCapabilities();
         updateConnectionProperties();
         if (mOriginalConnection != null) {
-            Uri address = getAddressFromNumber(mOriginalConnection.getAddress());
+            Uri address;
+            boolean showOrigDialString = false;
+            Phone phone = getPhone();
+            if (phone != null) {
+                CarrierConfigManager configManager = (CarrierConfigManager)phone.getContext().
+                        getSystemService(Context.CARRIER_CONFIG_SERVICE);
+                PersistableBundle pb = configManager.getConfigForSubId(phone.getSubId());
+                if (pb != null) {
+                    showOrigDialString = pb.getBoolean("config_show_orig_dial_string_for_cdma");
+                    Log.d(this, "showOrigDialString: " + showOrigDialString);
+                }
+            }
+            if (showOrigDialString && ((getAddress() != null) && phone != null &&
+                    (phone.getPhoneType() == TelephonyManager.PHONE_TYPE_CDMA)) &&
+                    !mOriginalConnection.isIncoming()) {
+                address = getAddressFromNumber(mOriginalConnection.getOrigDialString());
+            } else {
+                address = getAddressFromNumber(mOriginalConnection.getAddress());
+            }
             int presentation = mOriginalConnection.getNumberPresentation();
             if (!Objects.equals(address, getAddress()) ||
                     presentation != getAddressPresentation()) {
