@@ -960,6 +960,12 @@ abstract class TelephonyConnection extends Connection {
                 b != null && b.getBoolean(CarrierConfigManager.KEY_WIFI_CALLS_CAN_BE_HD_AUDIO);
         boolean canVideoCallsBeHdAudio =
                 b != null && b.getBoolean(CarrierConfigManager.KEY_VIDEO_CALLS_CAN_BE_HD_AUDIO);
+        boolean shouldDisplayHdAudio =
+                b != null && b.getBoolean(CarrierConfigManager.KEY_DISPLAY_HD_AUDIO_PROPERTY_BOOL);
+
+        if (!shouldDisplayHdAudio) {
+            return false;
+        }
 
         if (isVideoCall && !canVideoCallsBeHdAudio) {
             return false;
