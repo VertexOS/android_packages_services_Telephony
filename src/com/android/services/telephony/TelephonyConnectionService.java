@@ -785,22 +785,32 @@ public class TelephonyConnectionService extends ConnectionService {
      * @param connection The connection to be added to the controller
      */
     public void addConnectionToConferenceController(TelephonyConnection connection) {
-        // TODO: Do we need to handle the case of the original connection changing
-        // and triggering this callback multiple times for the same connection?
-        // If that is the case, we might want to remove this connection from all
-        // conference controllers first before re-adding it.
+        // TODO: Need to revisit what happens when the original connection for the
+        // TelephonyConnection changes.  If going from CDMA --> GSM (for example), the
+        // instance of TelephonyConnection will still be a CdmaConnection, not a GsmConnection.
+        // The CDMA conference controller makes the assumption that it will only have CDMA
+        // connections in it, while the other conference controllers aren't as restrictive.  Really,
+        // when we go between CDMA and GSM we should replace the TelephonyConnection.
         if (connection.isImsConnection()) {
             Log.d(this, "Adding IMS connection to conference controller: " + connection);
             mImsConferenceController.add(connection);
+            mTelephonyConferenceController.remove(connection);
+            if (connection instanceof CdmaConnection) {
+                mCdmaConferenceController.remove((CdmaConnection) connection);
+            }
         } else {
             int phoneType = connection.getCall().getPhone().getPhoneType();
             if (phoneType == TelephonyManager.PHONE_TYPE_GSM) {
                 Log.d(this, "Adding GSM connection to conference controller: " + connection);
                 mTelephonyConferenceController.add(connection);
+                if (connection instanceof CdmaConnection) {
+                    mCdmaConferenceController.remove((CdmaConnection) connection);
+                }
             } else if (phoneType == TelephonyManager.PHONE_TYPE_CDMA &&
                     connection instanceof CdmaConnection) {
                 Log.d(this, "Adding CDMA connection to conference controller: " + connection);
-                mCdmaConferenceController.add((CdmaConnection)connection);
+                mCdmaConferenceController.add((CdmaConnection) connection);
+                mTelephonyConferenceController.remove(connection);
             }
             Log.d(this, "Removing connection from IMS conference controller: " + connection);
             mImsConferenceController.remove(connection);
