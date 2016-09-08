@@ -84,12 +84,24 @@ final class TelephonyConferenceController {
     }
 
     void add(TelephonyConnection connection) {
+        if (mTelephonyConnections.contains(connection)) {
+            // Adding a duplicate realistically shouldn't happen.
+            Log.w(this, "add - connection already tracked; connection=%s", connection);
+            return;
+        }
+
         mTelephonyConnections.add(connection);
         connection.addConnectionListener(mConnectionListener);
         recalculate();
     }
 
     void remove(Connection connection) {
+        if (!mTelephonyConnections.contains(connection)) {
+            // Debug only since TelephonyConnectionService tries to clean up the connections tracked
+            // when the original connection changes.  It does this proactively.
+            Log.d(this, "remove - connection not tracked; connection=%s", connection);
+            return;
+        }
         connection.removeConnectionListener(mConnectionListener);
         mTelephonyConnections.remove(connection);
         recalculate();

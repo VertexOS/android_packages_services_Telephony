@@ -126,6 +126,12 @@ public class ImsConferenceController {
             return;
         }
 
+        if (mTelephonyConnections.contains(connection)) {
+            // Adding a duplicate realistically shouldn't happen.
+            Log.w(this, "add - connection already tracked; connection=%s", connection);
+            return;
+        }
+
         // Note: Wrap in Log.VERBOSE to avoid calling connection.toString if we are not going to be
         // outputting the value.
         if (Log.VERBOSE) {
@@ -149,10 +155,18 @@ public class ImsConferenceController {
             return;
         }
 
+        if (!mTelephonyConnections.contains(connection)) {
+            // Debug only since TelephonyConnectionService tries to clean up the connections tracked
+            // when the original connection changes.  It does this proactively.
+            Log.d(this, "remove - connection not tracked; connection=%s", connection);
+            return;
+        }
+
         if (Log.VERBOSE) {
             Log.v(this, "remove connection: %s", connection);
         }
 
+        connection.removeConnectionListener(mConnectionListener);
         mTelephonyConnections.remove(connection);
         recalculateConferenceable();
     }
