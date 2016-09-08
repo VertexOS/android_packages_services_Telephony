@@ -62,14 +62,12 @@ public class ActivationTask extends BaseTask {
 
     private static final String EXTRA_MESSAGE_DATA_BUNDLE = "extra_message_data_bundle";
 
-    public static final String EXTRA_REGISTER_CONTENT_PROVIDER = "extra_register_content_provider";
-
     @Nullable
     private static DeviceProvisionedObserver sDeviceProvisionedObserver;
 
     private final RetryPolicy mRetryPolicy;
 
-    private Bundle mData;
+    private Bundle mMessageData;
 
     public ActivationTask() {
         super(TASK_ACTIVATION);
@@ -85,7 +83,12 @@ public class ActivationTask extends BaseTask {
             context.getContentResolver(), Settings.Global.DEVICE_PROVISIONED, 0) == 1;
     }
 
-    public static void start(Context context, int subId, @Nullable Bundle data) {
+    /**
+     * @param messageData The optional bundle from {@link android.provider.VoicemailContract#
+     * EXTRA_VOICEMAIL_SMS_FIELDS}, if the task is initiated by a status SMS. If null the task will
+     * request a status SMS itself.
+     */
+    public static void start(Context context, int subId, @Nullable Bundle messageData) {
         if (!isDeviceProvisioned(context)) {
             VvmLog.i(TAG, "Activation requested while device is not provisioned, postponing");
             // Activation might need information such as system language to be set, so wait until
@@ -105,21 +108,21 @@ public class ActivationTask extends BaseTask {
         }
 
         Intent intent = BaseTask.createIntent(context, ActivationTask.class, subId);
-        if (data != null) {
-            intent.putExtra(EXTRA_MESSAGE_DATA_BUNDLE, data);
+        if (messageData != null) {
+            intent.putExtra(EXTRA_MESSAGE_DATA_BUNDLE, messageData);
         }
         context.startService(intent);
     }
 
     public void onCreate(Context context, Intent intent, int flags, int startId) {
         super.onCreate(context, intent, flags, startId);
-        mData = intent.getParcelableExtra(EXTRA_MESSAGE_DATA_BUNDLE);
+        mMessageData = intent.getParcelableExtra(EXTRA_MESSAGE_DATA_BUNDLE);
     }
 
     @Override
     public Intent createRestartIntent() {
         Intent intent = super.createRestartIntent();
-        // mData is discarded, request a fresh STATUS SMS for retries.
+        // mMessageData is discarded, request a fresh STATUS SMS for retries.
         return intent;
     }
 
@@ -143,19 +146,17 @@ public class ActivationTask extends BaseTask {
             return;
         }
 
-        if (mData != null && mData.getBoolean(EXTRA_REGISTER_CONTENT_PROVIDER)) {
-            // OmtmVvmCarrierConfigHelper can start the activation process; it will pass in a vvm
-            // content provider URI which we will use.  On some occasions, setting that URI will
-            // fail, so we will perform a few attempts to ensure that the vvm content provider has
-            // a good chance of being started up.
-            if (!VoicemailStatus.edit(getContext(), phoneAccountHandle)
-                    .setType(helper.getVvmType())
-                    .apply()) {
-                VvmLog.e(TAG, "Failed to configure content provider - " + helper.getVvmType());
-                fail();
-            }
-            VvmLog.i(TAG, "VVM content provider configured - " + helper.getVvmType());
+        // OmtpVvmCarrierConfigHelper can start the activation process; it will pass in a vvm
+        // content provider URI which we will use.  On some occasions, setting that URI will
+        // fail, so we will perform a few attempts to ensure that the vvm content provider has
+        // a good chance of being started up.
+        if (!VoicemailStatus.edit(getContext(), phoneAccountHandle)
+            .setType(helper.getVvmType())
+            .apply()) {
+            VvmLog.e(TAG, "Failed to configure content provider - " + helper.getVvmType());
+            fail();
         }
+        VvmLog.i(TAG, "VVM content provider configured - " + helper.getVvmType());
 
         if (!OmtpVvmSourceManager.getInstance(getContext())
                 .isVvmSourceRegistered(phoneAccountHandle)) {
@@ -183,10 +184,10 @@ public class ActivationTask extends BaseTask {
         VisualVoicemailProtocol protocol = helper.getProtocol();
 
         Bundle data;
-        if (mData != null) {
+        if (mMessageData != null) {
             // The content of STATUS SMS is provided to launch this task, no need to request it
             // again.
-            data = mData;
+            data = mMessageData;
         } else {
             try (StatusSmsFetcher fetcher = new StatusSmsFetcher(getContext(), subId)) {
                 protocol.startActivation(helper);
