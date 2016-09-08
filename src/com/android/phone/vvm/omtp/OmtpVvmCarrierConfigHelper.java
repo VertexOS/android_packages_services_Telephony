@@ -328,9 +328,7 @@ public class OmtpVvmCarrierConfigHelper {
         activateSmsFilter();
 
         if (mProtocol != null) {
-            Bundle extras = new Bundle();
-            extras.putBoolean(ActivationTask.EXTRA_REGISTER_CONTENT_PROVIDER, true);
-            ActivationTask.start(mContext, mSubId, extras);
+            ActivationTask.start(mContext, mSubId, null);
         }
     }
 
