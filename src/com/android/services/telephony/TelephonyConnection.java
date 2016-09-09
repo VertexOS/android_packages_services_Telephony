@@ -243,6 +243,12 @@ abstract class TelephonyConnection extends Connection {
                     Log.v(TelephonyConnection.this, "MSG_SUPP_SERVICE_NOTIFY on phoneId : "
                             +phoneId);
                     if (msg.obj != null && ((AsyncResult) msg.obj).result != null) {
+                        //Handle call forward history notification only in dialing, alerting states
+                        if (mOriginalConnection != null && ((SuppServiceNotification)((AsyncResult)
+                                msg.obj).result).history != null && !(mConnectionState ==
+                                Call.State.DIALING || mConnectionState == Call.State.ALERTING)) {
+                           return;
+                        }
                         mSsNotification =
                                 (SuppServiceNotification)((AsyncResult) msg.obj).result;
                         final String notificationText =
