@@ -112,7 +112,7 @@ public class TelephonyConnectionService extends ConnectionService {
         }
 
         String scheme = handle.getScheme();
-        final String number;
+        String number;
         if (PhoneAccount.SCHEME_VOICEMAIL.equals(scheme)) {
             // TODO: We don't check for SecurityException here (requires
             // CALL_PRIVILEGED permission).
@@ -176,14 +176,36 @@ public class TelephonyConnectionService extends ConnectionService {
             }
         }
 
-        final boolean isEmergencyNumber = PhoneNumberUtils.isLocalEmergencyNumber(this, number);
+        // Convert into emergency number if necessary
+        // This is required in some regions (e.g. Taiwan).
+        if (!PhoneNumberUtils.isLocalEmergencyNumber(this, number) &&
+                PhoneNumberUtils.isConvertToEmergencyNumberEnabled()) {
+            final Phone phone = getPhoneForAccount(request.getAccountHandle(), false);
+            // We only do the conversion if the phone is not in service. The un-converted
+            // emergency numbers will go to the correct destination when the phone is in-service,
+            // so they will only need the special emergency call setup when the phone is out of
+            // service.
+            if (phone == null || phone.getServiceState().getState()
+                    != ServiceState.STATE_IN_SERVICE) {
+                String convertedNumber = PhoneNumberUtils.convertToEmergencyNumber(number);
+                if (!TextUtils.equals(convertedNumber, number)) {
+                    Log.i(this, "onCreateOutgoingConnection, converted to emergency number");
+                    number = convertedNumber;
+                    handle = Uri.fromParts(PhoneAccount.SCHEME_TEL, number, null);
+                }
+            }
+        }
+        final String numberToDial = number;
+
+        final boolean isEmergencyNumber =
+                PhoneNumberUtils.isLocalEmergencyNumber(this, numberToDial);
 
         if (isEmergencyNumber && !isRadioOn()) {
             final Uri emergencyHandle = handle;
             // By default, Connection based on the default Phone, since we need to return to Telecom
             // now.
             final int defaultPhoneType = PhoneFactory.getDefaultPhone().getPhoneType();
-            final Connection emergencyConnection = getTelephonyConnection(request, number,
+            final Connection emergencyConnection = getTelephonyConnection(request, numberToDial,
                     isEmergencyNumber, emergencyHandle, PhoneFactory.getDefaultPhone());
             if (mEmergencyCallHelper == null) {
                 mEmergencyCallHelper = new EmergencyCallHelper(this);
@@ -206,7 +228,7 @@ public class TelephonyConnectionService extends ConnectionService {
                         // Phone, then we need create a new Connection using that PhoneType and
                         // replace it in Telecom.
                         if (phone.getPhoneType() != defaultPhoneType) {
-                            Connection repConnection = getTelephonyConnection(request, number,
+                            Connection repConnection = getTelephonyConnection(request, numberToDial,
                                     isEmergencyNumber, emergencyHandle, phone);
                             // If there was a failure, the resulting connection will not be a
                             // TelephonyConnection, so don't place the call, just return!
@@ -256,8 +278,8 @@ public class TelephonyConnectionService extends ConnectionService {
 
             // Get the right phone object from the account data passed in.
             final Phone phone = getPhoneForAccount(request.getAccountHandle(), isEmergencyNumber);
-            Connection resultConnection = getTelephonyConnection(request, number, isEmergencyNumber,
-                    handle, phone);
+            Connection resultConnection = getTelephonyConnection(request, numberToDial,
+                    isEmergencyNumber, handle, phone);
             // If there was a failure, the resulting connection will not be a TelephonyConnection,
             // so don't place the call!
             if(resultConnection instanceof TelephonyConnection) {
