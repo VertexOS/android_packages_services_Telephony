@@ -43,6 +43,7 @@ import com.android.phone.vvm.omtp.utils.PhoneAccountHandleConverter;
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.concurrent.CancellationException;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeoutException;
 
@@ -101,9 +102,7 @@ public class ActivationTask extends BaseTask {
         // Check for signal before activating. The event often happen while boot and the
         // network is not connected yet. Launching activation will likely to cause the SMS
         // sending to fail and waste unnecessary time waiting for time out.
-        if (context.getSystemService(TelephonyManager.class)
-            .getServiceStateForSubscriber(subId).getState()
-            != ServiceState.STATE_IN_SERVICE) {
+        if (!hasSignal(context, subId)) {
             VvmLog.i(TAG, "Activation requested while not in service, rejecting");
         }
 
@@ -136,6 +135,12 @@ public class ActivationTask extends BaseTask {
         if (phoneAccountHandle == null) {
             // This should never happen
             VvmLog.e(TAG, "null phone account for subId " + subId);
+            return;
+        }
+
+        if (!hasSignal(getContext(), subId)) {
+            VvmLog.i(TAG, "Service lost during activation, aborting");
+            // Don't retry, a new activation will be started after the signal returned.
             return;
         }
 
@@ -190,7 +195,7 @@ public class ActivationTask extends BaseTask {
             data = mMessageData;
         } else {
             try (StatusSmsFetcher fetcher = new StatusSmsFetcher(getContext(), subId)) {
-                protocol.startActivation(helper);
+                protocol.startActivation(helper, fetcher.getSentIntent());
                 // Both the fetcher and OmtpMessageReceiver will be triggered, but
                 // OmtpMessageReceiver will just route the SMS back to ActivationTask, which will be
                 // rejected because the task is still running.
@@ -199,6 +204,10 @@ public class ActivationTask extends BaseTask {
                 // The carrier is expected to return an STATUS SMS within STATUS_SMS_TIMEOUT_MILLIS
                 // handleEvent() will do the logging.
                 helper.handleEvent(status, OmtpEvents.CONFIG_STATUS_SMS_TIME_OUT);
+                fail();
+                return;
+            } catch (CancellationException e) {
+                VvmLog.e(TAG, "Unable to send status request SMS");
                 fail();
                 return;
             } catch (InterruptedException | ExecutionException | IOException e) {
@@ -255,6 +264,11 @@ public class ActivationTask extends BaseTask {
         } else {
             VvmLog.e(TAG, "Visual voicemail not available for subscriber.");
         }
+    }
+
+    private static boolean hasSignal(Context context, int subId) {
+        return context.getSystemService(TelephonyManager.class)
+                .getServiceStateForSubscriber(subId).getState() == ServiceState.STATE_IN_SERVICE;
     }
 
     private static void queueActivationAfterProvisioned(Context context, int subId) {

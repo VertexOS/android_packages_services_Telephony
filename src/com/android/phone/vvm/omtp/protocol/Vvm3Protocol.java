@@ -17,6 +17,7 @@
 package com.android.phone.vvm.omtp.protocol;
 
 import android.annotation.Nullable;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.net.Network;
 import android.os.Bundle;
@@ -82,12 +83,13 @@ public class Vvm3Protocol extends VisualVoicemailProtocol {
     private static final int DEFAULT_PIN_LENGTH = 6;
 
     @Override
-    public void startActivation(OmtpVvmCarrierConfigHelper config) {
+    public void startActivation(OmtpVvmCarrierConfigHelper config,
+            @Nullable PendingIntent sentIntent) {
         // VVM3 does not support activation SMS.
         // Send a status request which will start the provisioning process if the user is not
         // provisioned.
         VvmLog.i(TAG, "Activating");
-        config.requestStatus();
+        config.requestStatus(sentIntent);
     }
 
     @Override
@@ -215,7 +217,7 @@ public class Vvm3Protocol extends VisualVoicemailProtocol {
                     helper.closeNewUserTutorial();
                     VvmLog.i(TAG, "new user: NUT closed");
 
-                    config.requestStatus();
+                    config.requestStatus(null);
                 }
             } catch (InitializingException | MessagingException | IOException e) {
                 config.handleEvent(status, OmtpEvents.VVM3_NEW_USER_SETUP_FAILED);
