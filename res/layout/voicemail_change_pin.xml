@@ -28,7 +28,9 @@
     android:layout_height="0dp"
     android:layout_weight="1"
     android:orientation="vertical"
-    android:padding="48dp">
+    android:paddingTop="48dp"
+    android:paddingStart="48dp"
+    android:paddingEnd="48dp">
     <TextView
       android:id="@+id/headerText"
       android:layout_width="match_parent"

@@ -45,7 +45,9 @@ import com.android.phone.PhoneGlobals;
 import com.android.phone.PhoneUtils;
 import com.android.phone.R;
 import com.android.phone.SubscriptionInfoHelper;
+import com.android.phone.vvm.omtp.OmtpConstants;
 import com.android.phone.vvm.omtp.OmtpVvmCarrierConfigHelper;
+import com.android.phone.vvm.omtp.VisualVoicemailPreferences;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -193,6 +195,7 @@ public class VoicemailSettingsActivity extends PreferenceActivity
 
     private boolean mForeground;
     private Phone mPhone;
+    private PhoneAccountHandle mPhoneAccountHandle;
     private SubscriptionInfoHelper mSubscriptionInfoHelper;
     private OmtpVvmCarrierConfigHelper mOmtpVvmCarrierConfigHelper;
 
@@ -221,6 +224,7 @@ public class VoicemailSettingsActivity extends PreferenceActivity
         mSubscriptionInfoHelper.setActionBarTitle(
                 getActionBar(), getResources(), R.string.voicemail_settings_with_label);
         mPhone = mSubscriptionInfoHelper.getPhone();
+        mPhoneAccountHandle = PhoneUtils.makePstnPhoneAccountHandle(mPhone);
         mOmtpVvmCarrierConfigHelper = new OmtpVvmCarrierConfigHelper(
                 mPhone.getContext(), mPhone.getSubId());
     }
@@ -265,13 +269,12 @@ public class VoicemailSettingsActivity extends PreferenceActivity
 
         mVoicemailChangePinPreference = findPreference(
                 getResources().getString(R.string.voicemail_change_pin_key));
-        PhoneAccountHandle phoneAccountHandle = PhoneUtils.makePstnPhoneAccountHandle(mPhone);
         Intent changePinIntent = new Intent(new Intent(this, VoicemailChangePinActivity.class));
         changePinIntent.putExtra(VoicemailChangePinActivity.EXTRA_PHONE_ACCOUNT_HANDLE,
-                phoneAccountHandle);
+                mPhoneAccountHandle);
 
         mVoicemailChangePinPreference.setIntent(changePinIntent);
-        if (VoicemailChangePinActivity.isDefaultOldPinSet(this, phoneAccountHandle)) {
+        if (VoicemailChangePinActivity.isDefaultOldPinSet(this, mPhoneAccountHandle)) {
             mVoicemailChangePinPreference.setTitle(R.string.voicemail_set_pin_dialog_title);
         } else {
             mVoicemailChangePinPreference.setTitle(R.string.voicemail_change_pin_dialog_title);
@@ -280,7 +283,10 @@ public class VoicemailSettingsActivity extends PreferenceActivity
         if (mOmtpVvmCarrierConfigHelper.isValid()) {
             mVoicemailVisualVoicemail.setOnPreferenceChangeListener(this);
             mVoicemailVisualVoicemail.setChecked(
-                    VisualVoicemailSettingsUtil.isEnabled(mPhone));
+                    VisualVoicemailSettingsUtil.isEnabled(this, mPhoneAccountHandle));
+            if (!isVisualVoicemailActivated()) {
+                prefSet.removePreference(mVoicemailChangePinPreference);
+            }
         } else {
             prefSet.removePreference(mVoicemailVisualVoicemail);
             prefSet.removePreference(mVoicemailChangePinPreference);
@@ -406,11 +412,10 @@ public class VoicemailSettingsActivity extends PreferenceActivity
                     mPhone, Boolean.TRUE.equals(objValue));
         } else if (preference.getKey().equals(mVoicemailVisualVoicemail.getKey())) {
             boolean isEnabled = (boolean) objValue;
-            PhoneAccountHandle handle = PhoneUtils.makePstnPhoneAccountHandle(mPhone);
             VisualVoicemailSettingsUtil
-                    .setEnabled(mPhone.getContext(), handle, isEnabled);
+                    .setEnabled(mPhone.getContext(), mPhoneAccountHandle, isEnabled);
             PreferenceScreen prefSet = getPreferenceScreen();
-            if (isEnabled) {
+            if (isVisualVoicemailActivated()) {
                 prefSet.addPreference(mVoicemailChangePinPreference);
             } else {
                 prefSet.removePreference(mVoicemailChangePinPreference);
@@ -1148,6 +1153,16 @@ public class VoicemailSettingsActivity extends PreferenceActivity
             return false;
         }
         return true;
+    }
+
+    private boolean isVisualVoicemailActivated() {
+        if (!VisualVoicemailSettingsUtil.isEnabled(this, mPhoneAccountHandle)) {
+            return false;
+        }
+        VisualVoicemailPreferences preferences = new VisualVoicemailPreferences(this,
+                mPhoneAccountHandle);
+        return preferences.getString(OmtpConstants.SERVER_ADDRESS, null) != null;
+
     }
 
     private static void log(String msg) {
