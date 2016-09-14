@@ -437,6 +437,9 @@ public class VoicemailChangePinActivity extends Activity implements OnClickListe
     }
 
     public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+      if (!mNextButton.isEnabled()) {
+        return true;
+      }
         // Check if this was the result of hitting the enter or "done" key
         if (actionId == EditorInfo.IME_NULL
                 || actionId == EditorInfo.IME_ACTION_DONE

@@ -17,8 +17,6 @@ package com.android.phone.settings;
 
 import android.content.Context;
 import android.telecom.PhoneAccountHandle;
-import com.android.internal.telephony.Phone;
-import com.android.phone.PhoneUtils;
 import com.android.phone.R;
 import com.android.phone.vvm.omtp.OmtpVvmCarrierConfigHelper;
 import com.android.phone.vvm.omtp.VisualVoicemailPreferences;
@@ -65,11 +63,6 @@ public class VisualVoicemailSettingsUtil {
         }
         return new OmtpVvmCarrierConfigHelper(context,
                 PhoneAccountHandleConverter.toSubId(phoneAccount)).isEnabledByDefault();
-    }
-
-    public static boolean isEnabled(Phone phone) {
-        return isEnabled(phone.getContext(),
-                PhoneUtils.makePstnPhoneAccountHandle(phone));
     }
 
     /**
