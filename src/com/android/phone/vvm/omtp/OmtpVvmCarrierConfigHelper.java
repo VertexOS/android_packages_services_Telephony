@@ -16,6 +16,7 @@
 package com.android.phone.vvm.omtp;
 
 import android.annotation.Nullable;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
@@ -364,9 +365,9 @@ public class OmtpVvmCarrierConfigHelper {
         }
     }
 
-    public void requestStatus() {
+    public void requestStatus(@Nullable PendingIntent sentIntent) {
         if (mProtocol != null) {
-            mProtocol.requestStatus(this);
+            mProtocol.requestStatus(this, sentIntent);
         }
     }
 

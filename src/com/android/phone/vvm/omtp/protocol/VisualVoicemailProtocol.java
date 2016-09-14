@@ -17,6 +17,7 @@
 package com.android.phone.vvm.omtp.protocol;
 
 import android.annotation.Nullable;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.os.Bundle;
 import android.telecom.PhoneAccountHandle;
@@ -34,10 +35,10 @@ public abstract class VisualVoicemailProtocol {
     /**
      * Activation should cause the carrier to respond with a STATUS SMS.
      */
-    public void startActivation(OmtpVvmCarrierConfigHelper config) {
+    public void startActivation(OmtpVvmCarrierConfigHelper config, PendingIntent sentIntent) {
         OmtpMessageSender messageSender = ProtocolHelper.getMessageSender(this, config);
         if (messageSender != null) {
-            messageSender.requestVvmActivation(null);
+            messageSender.requestVvmActivation(sentIntent);
         }
     }
 
@@ -58,10 +59,11 @@ public abstract class VisualVoicemailProtocol {
         // Do nothing
     }
 
-    public void requestStatus(OmtpVvmCarrierConfigHelper config) {
+    public void requestStatus(OmtpVvmCarrierConfigHelper config,
+            @Nullable PendingIntent sentIntent) {
         OmtpMessageSender messageSender = ProtocolHelper.getMessageSender(this, config);
         if (messageSender != null) {
-            messageSender.requestVvmStatus(null);
+            messageSender.requestVvmStatus(sentIntent);
         }
     }
 
