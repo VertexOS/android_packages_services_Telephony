@@ -19,6 +19,8 @@ package com.android.phone.vvm.omtp.scheduling;
 import android.annotation.MainThread;
 import android.annotation.Nullable;
 import android.annotation.WorkerThread;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
@@ -30,6 +32,7 @@ import android.os.Looper;
 import android.os.Message;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
+import android.os.SystemClock;
 import com.android.internal.annotations.VisibleForTesting;
 import com.android.phone.Assert;
 import com.android.phone.NeededForTesting;
@@ -45,9 +48,25 @@ import java.util.Queue;
  */
 public class TaskSchedulerService extends Service {
 
-    private static final String TAG = "TaskSchedulerService";
+    private static final String TAG = "VvmTaskScheduler";
+
+    private static final String ACTION_WAKEUP = "action_wakeup";
 
     private static final int READY_TOLERANCE_MILLISECONDS = 100;
+
+    /**
+     * Threshold to determine whether to do a short or long sleep when a task is scheduled in the
+     * future.
+     *
+     * <p>A short sleep will continue to held the wake lock and use {@link
+     * Handler#postDelayed(Runnable, long)} to wait for the next task.
+     *
+     * <p>A long sleep will release the wake lock and set a {@link AlarmManager} alarm. The alarm is
+     * exact and will wake up the device. Note: as this service is run in the telephony process it
+     * does not seem to be restricted by doze or sleep, it will fire exactly at the moment. The
+     * unbundled version should take doze into account.
+     */
+    private static final int SHORT_SLEEP_THRESHOLD_MILLISECONDS = 60_000;
     /**
      * When there are no more tasks to be run the service should be stopped. But when all tasks has
      * finished there might still be more tasks in the message queue waiting to be processed,
@@ -141,7 +160,7 @@ public class TaskSchedulerService extends Service {
         super.onCreate();
         mWakeLock = getSystemService(PowerManager.class)
                 .newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, WAKE_LOCK_TAG);
-        mWakeLock.acquire();
+        mWakeLock.setReferenceCounted(false);
         HandlerThread thread = new HandlerThread("VvmTaskSchedulerService");
         thread.start();
 
@@ -159,12 +178,20 @@ public class TaskSchedulerService extends Service {
     @MainThread
     public int onStartCommand(@Nullable Intent intent, int flags, int startId) {
         Assert.isMainThread();
-        Task task = createTask(intent, flags, startId);
-        if (task == null) {
-            VvmLog.e(TAG, "cannot create task form intent");
+        // maybeRunNextTask() will release the wakelock either by entering a long sleep or stopping
+        // the service.
+        mWakeLock.acquire();
+        if (ACTION_WAKEUP.equals(intent.getAction())) {
+            VvmLog.d(TAG, "woke up by AlarmManager");
         } else {
-            addTask(task);
+            Task task = createTask(intent, flags, startId);
+            if (task == null) {
+                VvmLog.e(TAG, "cannot create task form intent");
+            } else {
+                addTask(task);
+            }
         }
+        maybeRunNextTask();
         // STICKY means the service will be automatically restarted will the last intent if it is
         // killed.
         return START_NOT_STICKY;
@@ -187,7 +214,6 @@ public class TaskSchedulerService extends Service {
         mMainThreadHandler.removeCallbacks(mStopServiceWithDelay);
         getTasks().add(task);
         maybeRunNextTask();
-
     }
 
     @MainThread
@@ -258,6 +284,8 @@ public class TaskSchedulerService extends Service {
     @MainThread
     void runNextTask() {
         Assert.isMainThread();
+        // The current alarm is no longer valid, a new one will be set up if required.
+        getSystemService(AlarmManager.class).cancel(getWakeupIntent());
         if (getTasks().isEmpty()) {
             prepareStop();
             return;
@@ -280,15 +308,37 @@ public class TaskSchedulerService extends Service {
         }
         VvmLog.d(TAG, "minimal wait time:" + minimalWaitTime);
         if (!mTaskAutoRunDisabledForTesting && minimalWaitTime != null) {
-            // No tests are currently ready. Sleep until the next one should be.
+            // No tasks are currently ready. Sleep until the next one should be.
             // If a new task is added during the sleep the service will wake immediately.
+            sleep(minimalWaitTime);
+        }
+    }
+
+    private void sleep(long timeMillis) {
+        if (timeMillis < SHORT_SLEEP_THRESHOLD_MILLISECONDS) {
             mMainThreadHandler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     maybeRunNextTask();
                 }
-            }, minimalWaitTime);
+            }, timeMillis);
+            return;
         }
+
+        // Tasks does not have a strict timing requirement, use AlarmManager.set() so the OS could
+        // optimize the battery usage. As this service currently run in the telephony process the
+        // OS give it privileges to behave the same as setExact(), but set() is the targeted
+        // behavior once this is unbundled.
+        getSystemService(AlarmManager.class).set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                SystemClock.elapsedRealtime() + timeMillis,
+                getWakeupIntent());
+        mWakeLock.release();
+        VvmLog.d(TAG, "Long sleep for " + timeMillis + " millis");
+    }
+
+    private PendingIntent getWakeupIntent() {
+        Intent intent = new Intent(ACTION_WAKEUP, null, this, getClass());
+        return PendingIntent.getService(this, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
     }
 
     private void prepareStop() {
