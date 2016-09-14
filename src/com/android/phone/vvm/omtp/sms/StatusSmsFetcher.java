@@ -17,13 +17,17 @@
 package com.android.phone.vvm.omtp.sms;
 
 import android.annotation.MainThread;
+import android.annotation.Nullable;
 import android.annotation.WorkerThread;
+import android.app.Activity;
+import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.provider.VoicemailContract;
+import android.telephony.SmsManager;
 import com.android.phone.Assert;
 import com.android.phone.vvm.omtp.OmtpConstants;
 import com.android.phone.vvm.omtp.OmtpVvmCarrierConfigHelper;
@@ -31,6 +35,7 @@ import com.android.phone.vvm.omtp.VvmLog;
 import com.android.phone.vvm.omtp.protocol.VisualVoicemailProtocol;
 import java.io.Closeable;
 import java.io.IOException;
+import java.util.concurrent.CancellationException;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
@@ -44,6 +49,8 @@ public class StatusSmsFetcher extends BroadcastReceiver implements Closeable {
     private static final String TAG = "VvmStatusSmsFetcher";
 
     private static final long STATUS_SMS_TIMEOUT_MILLIS = 60_000;
+    private static final String ACTION_REQUEST_SENT_INTENT = "action_request_sent_intent";
+    private static final int ACTION_REQUEST_SENT_REQUEST_CODE = 0;
 
     private CompletableFuture<Bundle> mFuture = new CompletableFuture<>();
 
@@ -54,6 +61,7 @@ public class StatusSmsFetcher extends BroadcastReceiver implements Closeable {
         mContext = context;
         mSubId = subId;
         IntentFilter filter = new IntentFilter(VoicemailContract.ACTION_VOICEMAIL_SMS_RECEIVED);
+        filter.addAction(ACTION_REQUEST_SENT_INTENT);
         context.registerReceiver(this, filter);
     }
 
@@ -63,16 +71,38 @@ public class StatusSmsFetcher extends BroadcastReceiver implements Closeable {
     }
 
     @WorkerThread
-    public Bundle get()
-            throws InterruptedException, ExecutionException, TimeoutException {
+    @Nullable
+    public Bundle get() throws InterruptedException, ExecutionException, TimeoutException,
+            CancellationException {
         Assert.isNotMainThread();
         return mFuture.get(STATUS_SMS_TIMEOUT_MILLIS, TimeUnit.MILLISECONDS);
+    }
+
+    public PendingIntent getSentIntent() {
+        Intent intent = new Intent(ACTION_REQUEST_SENT_INTENT);
+        // Because the receiver is registered dynamically, implicit intent must be used.
+        // There should only be a single status SMS request at a time.
+        return PendingIntent.getBroadcast(mContext, ACTION_REQUEST_SENT_REQUEST_CODE, intent,
+                PendingIntent.FLAG_CANCEL_CURRENT);
     }
 
     @Override
     @MainThread
     public void onReceive(Context context, Intent intent) {
         Assert.isMainThread();
+        if (ACTION_REQUEST_SENT_INTENT.equals(intent.getAction())) {
+            int resultCode = getResultCode();
+
+            if (resultCode == Activity.RESULT_OK) {
+                VvmLog.d(TAG, "Request SMS successfully sent");
+                return;
+            }
+
+            VvmLog.e(TAG, "Request SMS send failed: " + sentSmsResultToString(resultCode));
+            mFuture.cancel(true);
+            return;
+        }
+
         int subId = intent.getExtras().getInt(VoicemailContract.EXTRA_VOICEMAIL_SMS_SUBID);
 
         if (mSubId != subId) {
@@ -103,6 +133,23 @@ public class StatusSmsFetcher extends BroadcastReceiver implements Closeable {
         if (translatedBundle != null) {
             VvmLog.i(TAG, "Translated to STATUS SMS");
             mFuture.complete(translatedBundle);
+        }
+    }
+
+    private static String sentSmsResultToString(int resultCode) {
+        switch (resultCode) {
+            case Activity.RESULT_OK:
+                return "OK";
+            case SmsManager.RESULT_ERROR_GENERIC_FAILURE:
+                return "RESULT_ERROR_GENERIC_FAILURE";
+            case SmsManager.RESULT_ERROR_NO_SERVICE:
+                return "RESULT_ERROR_GENERIC_FAILURE";
+            case SmsManager.RESULT_ERROR_NULL_PDU:
+                return "RESULT_ERROR_GENERIC_FAILURE";
+            case SmsManager.RESULT_ERROR_RADIO_OFF:
+                return "RESULT_ERROR_GENERIC_FAILURE";
+            default:
+                return "UNKNOWN CODE: " + resultCode;
         }
     }
 }
