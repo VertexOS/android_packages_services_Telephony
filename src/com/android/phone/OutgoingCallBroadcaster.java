@@ -473,9 +473,9 @@ public class OutgoingCallBroadcaster extends Activity
         // emergency number but might still result in an emergency call
         // with some networks.)
         final boolean isExactEmergencyNumber = (number != null) &&
-                    PhoneUtils.isLocalEmergencyNumber(number);
+                    PhoneUtils.isLocalEmergencyNumber(this, number);
         final boolean isPotentialEmergencyNumber = (number != null) &&
-                    PhoneUtils.isPotentialLocalEmergencyNumber(number);
+                    PhoneUtils.isPotentialLocalEmergencyNumber(this, number);
 
         if (VDBG) {
             Log.v(TAG, " - Checking restrictions for number '" + number + "':");

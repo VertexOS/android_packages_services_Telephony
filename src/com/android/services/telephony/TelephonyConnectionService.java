@@ -262,7 +262,7 @@ public class TelephonyConnectionService extends ConnectionService {
 
         // Convert into emergency number if necessary
         // This is required in some regions (e.g. Taiwan).
-        if (!PhoneUtils.isLocalEmergencyNumber(number) &&
+        if (!PhoneUtils.isLocalEmergencyNumber(this, number) &&
                 PhoneNumberUtils.isConvertToEmergencyNumberEnabled()) {
             final Phone phone = getPhoneForAccount(request.getAccountHandle(), false);
             // We only do the conversion if the phone is not in service. The un-converted
@@ -282,7 +282,7 @@ public class TelephonyConnectionService extends ConnectionService {
         final String numberToDial = number;
 
         final boolean isEmergencyNumber =
-                PhoneUtils.isLocalEmergencyNumber(numberToDial);
+                PhoneUtils.isLocalEmergencyNumber(this, numberToDial);
         final boolean isAirplaneModeOn = Settings.System.getInt(getContentResolver(),
                 Settings.System.AIRPLANE_MODE_ON, 0) != 0;
         if (isEmergencyNumber) {

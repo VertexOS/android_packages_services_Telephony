@@ -249,13 +249,18 @@ public class IccNetworkDepersonalizationPanel extends IccPanel {
             }
 
             log("Requesting De-Personalization for subtype " + mPersoSubtype);
-            try {
-                mExtTelephony.supplyIccDepersonalization(pin, Integer.toString(mPersoSubtype),
-                        mCallback, mPhone.getPhoneId());
-            } catch (RemoteException ex) {
-                log("RemoteException @supplyIccDepersonalization" + ex);
-            } catch (NullPointerException ex) {
-                log("NullPointerException @supplyIccDepersonalization" + ex);
+            if (mExtTelephony != null) {
+                try {
+                    mExtTelephony.supplyIccDepersonalization(pin, Integer.toString(mPersoSubtype),
+                            mCallback, mPhone.getPhoneId());
+                } catch (RemoteException ex) {
+                    log("RemoteException @supplyIccDepersonalization" + ex);
+                    mPhone.getIccCard().supplyNetworkDepersonalization(pin,
+                            Message.obtain(mHandler, EVENT_ICC_NTWRK_DEPERSONALIZATION_RESULT));
+                }
+            } else {
+                mPhone.getIccCard().supplyNetworkDepersonalization(pin,
+                        Message.obtain(mHandler, EVENT_ICC_NTWRK_DEPERSONALIZATION_RESULT));
             }
             displayStatus(statusType.IN_PROGRESS.name());
         }
