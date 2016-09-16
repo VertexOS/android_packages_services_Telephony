@@ -431,7 +431,7 @@
     <string name="pin2_error_exception" msgid="1088689322248996699">"Ցանցի կամ SIM քարտի սխալ"</string>
     <string name="doneButton" msgid="2859593360997984240">"Կատարված է"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"Ձայնային փոստի համարը"</string>
-    <string name="card_title_dialing" msgid="5769417478498348054">"Համարարկվում է"</string>
+    <string name="card_title_dialing" msgid="5769417478498348054">"Համարը հավաքվում է"</string>
     <string name="card_title_redialing" msgid="8253487008234167266">"Վերահամարարկում"</string>
     <string name="card_title_conf_call" msgid="1162980346189744501">"Կոնֆերանս զանգ"</string>
     <string name="card_title_incoming_call" msgid="7364539451234646909">"Մուտքային զանգ"</string>
@@ -572,7 +572,7 @@
     <string name="sim_description_emergency_calls" msgid="7535215397212301562">"Միայն արտակարգ իրավիճակների զանգեր"</string>
     <string name="sim_description_default" msgid="4778679519938775515">"SIM քարտ, բնիկը՝ <xliff:g id="SLOT_ID">%s</xliff:g>"</string>
     <string name="accessibility_settings_activity_title" msgid="8562004288733103868">"Մատչելիություն"</string>
-    <string name="status_hint_label_incoming_wifi_call" msgid="8772915926382037499">"Մուտքային Wi-Fi զանգ"</string>
+    <string name="status_hint_label_incoming_wifi_call" msgid="5932176406432044638">"Wi-Fi զանգ այս օգտվողից՝"</string>
     <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"Զանգ Wi-Fi-ի միջոցով"</string>
     <string name="emergency_action_launch_hint" msgid="4906759256275562674">"Կրկին հպեք՝ բացելու համար"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"Հաղորդագրությունն ապակոդավորելիս սխալ առաջացավ:"</string>

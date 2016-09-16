@@ -572,7 +572,7 @@
     <string name="sim_description_emergency_calls" msgid="7535215397212301562">"Tiesňové volania iba na čísla"</string>
     <string name="sim_description_default" msgid="4778679519938775515">"Slot na SIM kartu: <xliff:g id="SLOT_ID">%s</xliff:g>"</string>
     <string name="accessibility_settings_activity_title" msgid="8562004288733103868">"Dostupnosť"</string>
-    <string name="status_hint_label_incoming_wifi_call" msgid="8772915926382037499">"Prich. hovor cez Wi-Fi"</string>
+    <string name="status_hint_label_incoming_wifi_call" msgid="5932176406432044638">"Hovor cez Wi-Fi od:"</string>
     <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"Hovor cez Wi-Fi"</string>
     <string name="emergency_action_launch_hint" msgid="4906759256275562674">"Otvoríte opätovným klepnutím"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"Pri dekódovaní správy sa vyskytla chyba"</string>

@@ -210,7 +210,7 @@
     <string name="enhanced_4g_lte_mode_title" msgid="522191650223239171">"Tryb rozszerzonego 4G LTE"</string>
     <string name="enhanced_4g_lte_mode_title_variant" msgid="4871126028907265406">"Zaawansowane połączenia"</string>
     <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"Użyj usług LTE, by poprawić łączność głosową i inną (zalecane)"</string>
-    <string name="data_enabled" msgid="5972538663568715366">"Włącz przesył danych"</string>
+    <string name="data_enabled" msgid="5972538663568715366">"Włączone przesyłanie danych"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"Zezwalaj na transmisję danych"</string>
     <string name="dialog_alert_title" msgid="6751344986194435476">"Uwaga"</string>
     <string name="roaming" msgid="8871412572928323707">"Roaming danych"</string>
@@ -572,7 +572,7 @@
     <string name="sim_description_emergency_calls" msgid="7535215397212301562">"Tylko połączenia alarmowe"</string>
     <string name="sim_description_default" msgid="4778679519938775515">"Karta SIM, gniazdo: <xliff:g id="SLOT_ID">%s</xliff:g>"</string>
     <string name="accessibility_settings_activity_title" msgid="8562004288733103868">"Ułatwienia dostępu"</string>
-    <string name="status_hint_label_incoming_wifi_call" msgid="8772915926382037499">"Przychodzące połączenie przez Wi-Fi"</string>
+    <string name="status_hint_label_incoming_wifi_call" msgid="5932176406432044638">"Połączenie przez Wi-Fi od:"</string>
     <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"Połączenie przez Wi-Fi"</string>
     <string name="emergency_action_launch_hint" msgid="4906759256275562674">"Dotknij ponownie, by otworzyć"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"Podczas dekodowania wiadomości wystąpił błąd."</string>

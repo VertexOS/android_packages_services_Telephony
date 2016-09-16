@@ -358,8 +358,8 @@
     <string name="sum_fdn" msgid="1959399454900272878">"फ़िक्स्ड डायलिंग नंबर प्रबंधित करें"</string>
     <string name="sum_fdn_change_pin" msgid="6666549734792827932">"FDN पहुंच के लिए पिन बदलें"</string>
     <string name="sum_fdn_manage_list" msgid="8431088265332628316">"फ़ोन नंबर सूची प्रबंधित करें"</string>
-    <string name="voice_privacy" msgid="3776841382844614716">"ध्वनि गोपनीयता"</string>
-    <string name="voice_privacy_summary" msgid="3159383389833516214">"उन्नत गोपनीयता मोड सक्षम करें"</string>
+    <string name="voice_privacy" msgid="3776841382844614716">"ध्वनि निजता"</string>
+    <string name="voice_privacy_summary" msgid="3159383389833516214">"उन्नत निजता मोड सक्षम करें"</string>
     <string name="tty_mode_option_title" msgid="9033098925144434669">"TTY मोड"</string>
     <string name="tty_mode_option_summary" msgid="1073835131534808732">"TTY मोड सेट करें"</string>
     <string name="auto_retry_mode_title" msgid="4073265511427813322">"स्वतः पुन: प्रयास"</string>
@@ -566,7 +566,7 @@
     <string name="sim_description_emergency_calls" msgid="7535215397212301562">"केवल आपातकालीन कॉल"</string>
     <string name="sim_description_default" msgid="4778679519938775515">"सिम कार्ड, स्‍लॉट: <xliff:g id="SLOT_ID">%s</xliff:g>"</string>
     <string name="accessibility_settings_activity_title" msgid="8562004288733103868">"सरल उपयोग"</string>
-    <string name="status_hint_label_incoming_wifi_call" msgid="8772915926382037499">"इनकमिंग वाई-फ़ाई कॉल"</string>
+    <string name="status_hint_label_incoming_wifi_call" msgid="5932176406432044638">"इससे वाई-फ़ाई कॉल"</string>
     <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"वाई-फ़ाई कॉल"</string>
     <string name="emergency_action_launch_hint" msgid="4906759256275562674">"खोलने के लिए पुन: टैप करें"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"संदेश डीकोड करते समय कोई त्रुटि हुई थी."</string>
