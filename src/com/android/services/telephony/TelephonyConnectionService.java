@@ -79,6 +79,7 @@ public class TelephonyConnectionService extends ConnectionService {
     private EmergencyCallHelper mEmergencyCallHelper;
     private EmergencyTonePlayer mEmergencyTonePlayer;
     private ConnectionRequest mRequest;
+    private boolean mUseEmergencyCallHelper = false;
 
     /**
      * A listener to actionable events specific to the TelephonyConnection.
@@ -274,7 +275,6 @@ public class TelephonyConnectionService extends ConnectionService {
                         state = phone.getServiceState().getDataRegState();
             }
         }
-        boolean useEmergencyCallHelper = false;
         final boolean isAirplaneModeOn = Settings.System.getInt(getContentResolver(),
                 Settings.System.AIRPLANE_MODE_ON, 0) != 0;
 
@@ -301,7 +301,7 @@ public class TelephonyConnectionService extends ConnectionService {
         if (isEmergencyNumber) {
             mRequest = request;
             if (!phone.isRadioOn() || isAirplaneModeOn) {
-                useEmergencyCallHelper = true;
+                mUseEmergencyCallHelper = true;
             }
         } else {
             switch (state) {
@@ -358,7 +358,7 @@ public class TelephonyConnectionService extends ConnectionService {
         connection.setInitializing();
         connection.setVideoState(request.getVideoState());
 
-        if (useEmergencyCallHelper) {
+        if (mUseEmergencyCallHelper) {
             if (mEmergencyCallHelper == null) {
                 mEmergencyCallHelper = new EmergencyCallHelper(this);
             }
@@ -573,7 +573,17 @@ public class TelephonyConnectionService extends ConnectionService {
         if (TelephonyManager.getDefault().isMultiSimEnabled() && !Objects.equals(pHandle,
                 request.getAccountHandle())) {
             Log.i(this, "setPhoneAccountHandle, account = " + pHandle);
-            request.setAccountHandle(pHandle);
+            if (mUseEmergencyCallHelper) {
+                Bundle connExtras = connection.getExtras();
+                if (connExtras == null) {
+                    connExtras = new Bundle();
+                }
+                connExtras.putParcelable(TelephonyManager.EMR_DIAL_ACCOUNT, pHandle);
+                connection.setExtras(connExtras);
+                mUseEmergencyCallHelper = false;
+            } else {
+                request.setAccountHandle(pHandle);
+            }
         }
 
         Bundle bundle = request.getExtras();
