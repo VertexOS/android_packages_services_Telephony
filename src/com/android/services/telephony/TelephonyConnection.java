@@ -33,6 +33,7 @@ import android.telecom.StatusHints;
 import android.telecom.TelecomManager;
 import android.telecom.VideoProfile;
 import android.telephony.CarrierConfigManager;
+import android.telephony.DisconnectCause;
 import android.telephony.PhoneNumberUtils;
 import android.telephony.TelephonyManager;
 import android.util.Pair;
@@ -254,6 +255,7 @@ abstract class TelephonyConnection extends Connection {
      */
     public abstract static class TelephonyConnectionListener {
         public void onOriginalConnectionConfigured(TelephonyConnection c) {}
+        public void onOriginalConnectionRetry(TelephonyConnection c) {}
     }
 
     private final PostDialListener mPostDialListener = new PostDialListener() {
@@ -1266,10 +1268,19 @@ abstract class TelephonyConnection extends Connection {
                     setRinging();
                     break;
                 case DISCONNECTED:
-                    setDisconnected(DisconnectCauseUtil.toTelecomDisconnectCause(
-                            mOriginalConnection.getDisconnectCause(),
-                            mOriginalConnection.getVendorDisconnectCause()));
-                    close();
+                    // We can get into a situation where the radio wants us to redial the same
+                    // emergency call on the other available slot. This will not set the state to
+                    // disconnected and will instead tell the TelephonyConnectionService to create
+                    // a new originalConnection using the new Slot.
+                    if (mOriginalConnection.getDisconnectCause() ==
+                            DisconnectCause.DIALED_ON_WRONG_SLOT) {
+                        fireOnOriginalConnectionRetryDial();
+                    } else {
+                        setDisconnected(DisconnectCauseUtil.toTelecomDisconnectCause(
+                                mOriginalConnection.getDisconnectCause(),
+                                mOriginalConnection.getVendorDisconnectCause()));
+                        close();
+                    }
                     break;
                 case DISCONNECTING:
                     break;
@@ -1644,6 +1655,12 @@ abstract class TelephonyConnection extends Connection {
     private final void fireOnOriginalConnectionConfigured() {
         for (TelephonyConnectionListener l : mTelephonyListeners) {
             l.onOriginalConnectionConfigured(this);
+        }
+    }
+
+    private final void fireOnOriginalConnectionRetryDial() {
+        for (TelephonyConnectionListener l : mTelephonyListeners) {
+            l.onOriginalConnectionRetry(this);
         }
     }
 
