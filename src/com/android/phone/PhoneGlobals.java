@@ -45,6 +45,7 @@ import android.telephony.ServiceState;
 import android.telephony.SubscriptionManager;
 import android.util.Log;
 import android.widget.Toast;
+
 import com.android.internal.telephony.Call;
 import com.android.internal.telephony.CallManager;
 import com.android.internal.telephony.IccCardConstants;
@@ -855,5 +856,24 @@ public class PhoneGlobals extends ContextWrapper {
         } else {
             phone.setVoiceMessageCount(0);
         }
+    }
+
+    /**
+     * Enables or disables the visual voicemail check for message waiting indicator. Default value
+     * is true. MWI is the traditional voicemail notification which should be suppressed if visual
+     * voicemail is active. {@link NotificationMgr#updateMwi(int, boolean, boolean)} currently
+     * checks the {@link android.provider.VoicemailContract.Status#CONFIGURATION_STATE} to suppress
+     * the MWI, but there are several issues. b/31229016 is a bug that when the device boots the
+     * configuration state will be cleared and the MWI for voicemail that arrives when the device
+     * is offline will be cleared, even if the account cannot be activated. A full solution will be
+     * adding a setMwiEnabled() method and stop checking the configuration state, but that is too
+     * risky at this moment. This is a temporary workaround to shut down the configuration state
+     * check if visual voicemail cannot be activated.
+     * <p>TODO(twyen): implement the setMwiEnabled() mentioned above.
+     *
+     * @param subId the account to set the enabled state
+     */
+    public void setShouldCheckVisualVoicemailConfigurationForMwi(int subId, boolean enabled) {
+        notificationMgr.setShouldCheckVisualVoicemailConfigurationForMwi(subId, enabled);
     }
 }
