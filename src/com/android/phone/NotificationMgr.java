@@ -47,11 +47,13 @@ import android.text.TextUtils;
 import android.util.ArrayMap;
 import android.util.Log;
 import android.widget.Toast;
+
 import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.TelephonyCapabilities;
 import com.android.phone.settings.VoicemailNotificationSettingsUtil;
 import com.android.phone.settings.VoicemailSettingsActivity;
 import com.android.phone.vvm.omtp.sync.VoicemailStatusQueryHelper;
+
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -71,6 +73,9 @@ public class NotificationMgr {
             (PhoneGlobals.DBG_LEVEL >= 1) && (SystemProperties.getInt("ro.debuggable", 0) == 1);
     // Do not check in with VDBG = true, since that may write PII to the system log.
     private static final boolean VDBG = false;
+
+    private static final String MWI_SHOULD_CHECK_VVM_CONFIGURATION_KEY_PREFIX =
+            "mwi_should_check_vvm_configuration_state_";
 
     // notification types
     static final int MMI_NOTIFICATION = 1;
@@ -201,6 +206,27 @@ public class NotificationMgr {
         }
     }
 
+    public void setShouldCheckVisualVoicemailConfigurationForMwi(int subId, boolean enabled) {
+        if (!SubscriptionManager.isValidSubscriptionId(subId)) {
+            Log.e(LOG_TAG, "setShouldCheckVisualVoicemailConfigurationForMwi: invalid subId"
+                    + subId);
+            return;
+        }
+
+        PreferenceManager.getDefaultSharedPreferences(mContext).edit()
+                .putBoolean(MWI_SHOULD_CHECK_VVM_CONFIGURATION_KEY_PREFIX + subId, enabled)
+                .apply();
+    }
+
+    private boolean shouldCheckVisualVoicemailConfigurationForMwi(int subId) {
+        if (!SubscriptionManager.isValidSubscriptionId(subId)) {
+            Log.e(LOG_TAG, "shouldCheckVisualVoicemailConfigurationForMwi: invalid subId" + subId);
+            return true;
+        }
+        return PreferenceManager
+                .getDefaultSharedPreferences(mContext)
+                .getBoolean(MWI_SHOULD_CHECK_VVM_CONFIGURATION_KEY_PREFIX + subId, true);
+    }
     /**
      * Updates the message waiting indicator (voicemail) notification.
      *
@@ -226,7 +252,7 @@ public class NotificationMgr {
         }
 
         Phone phone = PhoneGlobals.getPhone(subId);
-        if (visible && phone != null) {
+        if (visible && phone != null && shouldCheckVisualVoicemailConfigurationForMwi(subId)) {
             VoicemailStatusQueryHelper queryHelper = new VoicemailStatusQueryHelper(mContext);
             PhoneAccountHandle phoneAccount = PhoneUtils.makePstnPhoneAccountHandle(phone);
             if (queryHelper.isVoicemailSourceConfigured(phoneAccount)) {

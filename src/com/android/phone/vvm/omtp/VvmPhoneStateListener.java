@@ -20,7 +20,7 @@ import android.telecom.PhoneAccountHandle;
 import android.telephony.PhoneStateListener;
 import android.telephony.ServiceState;
 import android.telephony.SubscriptionManager;
-import com.android.phone.PhoneGlobals;
+
 import com.android.phone.PhoneUtils;
 import com.android.phone.VoicemailStatus;
 import com.android.phone.vvm.omtp.sync.OmtpVvmSourceManager;
@@ -75,7 +75,6 @@ public class VvmPhoneStateListener extends PhoneStateListener {
                             .v(TAG, "Notifications channel is active for " + subId);
                     helper.handleEvent(VoicemailStatus.edit(mContext, mPhoneAccount),
                         OmtpEvents.NOTIFICATION_IN_SERVICE);
-                    PhoneGlobals.getInstance().clearMwiIndicator(subId);
                 }
             }
 

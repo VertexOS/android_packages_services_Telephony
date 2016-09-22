@@ -24,6 +24,8 @@ import android.os.Bundle;
 import android.telecom.PhoneAccountHandle;
 import android.telephony.SmsManager;
 import android.text.TextUtils;
+
+import com.android.phone.PhoneGlobals;
 import com.android.phone.VoicemailStatus;
 import com.android.phone.common.mail.MessagingException;
 import com.android.phone.settings.VisualVoicemailSettingsUtil;
@@ -42,6 +44,7 @@ import com.android.phone.vvm.omtp.sms.Vvm3MessageSender;
 import com.android.phone.vvm.omtp.sync.VvmNetworkRequest;
 import com.android.phone.vvm.omtp.sync.VvmNetworkRequest.NetworkWrapper;
 import com.android.phone.vvm.omtp.sync.VvmNetworkRequest.RequestFailedException;
+
 import java.io.IOException;
 import java.security.SecureRandom;
 import java.util.Locale;
@@ -116,6 +119,8 @@ public class Vvm3Protocol extends VisualVoicemailProtocol {
                 new Vvm3Subscriber(task, phoneAccountHandle, config, status, data).subscribe();
             } else {
                 config.handleEvent(status, OmtpEvents.VVM3_SUBSCRIBER_UNKNOWN);
+                PhoneGlobals.getInstance().setShouldCheckVisualVoicemailConfigurationForMwi(task.getSubId(),
+                        false);
             }
         } else if (OmtpConstants.SUBSCRIBER_NEW.equals(message.getProvisioningStatus())) {
             VvmLog.i(TAG, "setting up new user");
@@ -129,9 +134,13 @@ public class Vvm3Protocol extends VisualVoicemailProtocol {
             VvmLog.i(TAG, "User provisioned but not activated, disabling VVM");
             VisualVoicemailSettingsUtil
                     .setEnabled(config.getContext(), phoneAccountHandle, false);
+            PhoneGlobals.getInstance().setShouldCheckVisualVoicemailConfigurationForMwi(task.getSubId(),
+                    false);
         } else if (OmtpConstants.SUBSCRIBER_BLOCKED.equals(message.getProvisioningStatus())) {
             VvmLog.i(TAG, "User blocked");
             config.handleEvent(status, OmtpEvents.VVM3_SUBSCRIBER_BLOCKED);
+            PhoneGlobals.getInstance().setShouldCheckVisualVoicemailConfigurationForMwi(task.getSubId(),
+                    false);
         }
     }
 

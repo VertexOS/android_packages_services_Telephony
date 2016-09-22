@@ -28,6 +28,7 @@ import android.provider.VoicemailContract.Status;
 import android.telecom.PhoneAccountHandle;
 import android.telephony.ServiceState;
 import android.telephony.TelephonyManager;
+
 import com.android.phone.Assert;
 import com.android.phone.PhoneGlobals;
 import com.android.phone.VoicemailStatus;
@@ -40,6 +41,7 @@ import com.android.phone.vvm.omtp.sync.OmtpVvmSourceManager;
 import com.android.phone.vvm.omtp.sync.OmtpVvmSyncService;
 import com.android.phone.vvm.omtp.sync.SyncTask;
 import com.android.phone.vvm.omtp.utils.PhoneAccountHandleConverter;
+
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
@@ -237,6 +239,7 @@ public class ActivationTask extends BaseTask {
             } else {
                 VvmLog.i(TAG, "Subscriber not ready but provisioning is not supported");
                 helper.handleEvent(status, OmtpEvents.CONFIG_SERVICE_NOT_AVAILABLE);
+                PhoneGlobals.getInstance().setShouldCheckVisualVoicemailConfigurationForMwi(subId, false);
             }
         }
     }
@@ -258,8 +261,10 @@ public class ActivationTask extends BaseTask {
             vvmSourceManager.addSource(phone);
 
             SyncTask.start(context, phone, OmtpVvmSyncService.SYNC_FULL_SYNC);
-            // Remove the message waiting indicator, which is a stick notification fo traditional
+            // Remove the message waiting indicator, which is a sticky notification for traditional
             // voicemails.
+            PhoneGlobals.getInstance()
+                    .setShouldCheckVisualVoicemailConfigurationForMwi(subId, true);
             PhoneGlobals.getInstance().clearMwiIndicator(subId);
         } else {
             VvmLog.e(TAG, "Visual voicemail not available for subscriber.");
