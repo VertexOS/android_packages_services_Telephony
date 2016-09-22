@@ -1098,6 +1098,11 @@ public class PhoneGlobals extends ContextWrapper implements WiredHeadsetListener
             KeyEvent event = (KeyEvent) intent.getParcelableExtra(Intent.EXTRA_KEY_EVENT);
             if (VDBG) Log.d(LOG_TAG,
                            "MediaButtonBroadcastReceiver.onReceive()...  event = " + event);
+            if (getSendingUserId() != UserHandle.USER_ALL) {
+                Log.w(LOG_TAG, "Ignore media keys from the non-system app userId="
+                        + getSendingUserId());
+                return;
+            }
             if ((event != null)
                 && (event.getKeyCode() == KeyEvent.KEYCODE_HEADSETHOOK)) {
                 if (VDBG) Log.d(LOG_TAG, "MediaButtonBroadcastReceiver: HEADSETHOOK");
