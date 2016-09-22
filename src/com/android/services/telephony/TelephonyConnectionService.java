@@ -33,10 +33,12 @@ import android.telecom.TelecomManager;
 import android.telecom.VideoProfile;
 import android.telephony.CarrierConfigManager;
 import android.telephony.PhoneNumberUtils;
+import android.telephony.RadioAccessFamily;
 import android.telephony.ServiceState;
 import android.telephony.SubscriptionManager;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
+import android.util.Pair;
 
 import com.android.internal.telephony.Call;
 import com.android.internal.telephony.CallStateException;
@@ -54,6 +56,7 @@ import com.android.phone.R;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -721,12 +724,11 @@ public class TelephonyConnectionService extends ConnectionService {
      *  list (for multi-SIM devices):
      *  1) The User's SIM preference for Voice calling
      *  2) The First Phone that is currently IN_SERVICE or is available for emergency calling
-     *  3) The First Phone that has a SIM card in it (Starting from Slot 0...N)
-     *  4) The Default Phone (Currently set as Slot 0)
+     *  3) The Phone with more Capabilities.
+     *  4) The First Phone that has a SIM card in it (Starting from Slot 0...N)
+     *  5) The Default Phone (Currently set as Slot 0)
      */
     private Phone getFirstPhoneForEmergencyCall() {
-        Phone firstPhoneWithSim = null;
-
         // 1)
         int phoneId = SubscriptionManager.getDefaultVoicePhoneId();
         if (phoneId != SubscriptionManager.INVALID_PHONE_INDEX) {
@@ -736,32 +738,77 @@ public class TelephonyConnectionService extends ConnectionService {
             }
         }
 
-        for (int i = 0; i < TelephonyManager.getDefault().getPhoneCount(); i++) {
+        Phone firstPhoneWithSim = null;
+        int phoneCount = TelephonyManager.getDefault().getPhoneCount();
+        List<Pair<Integer, Integer>> phoneNetworkType = new ArrayList<>(phoneCount);
+        for (int i = 0; i < phoneCount; i++) {
             Phone phone = PhoneFactory.getPhone(i);
             if (phone == null)
                 continue;
             // 2)
             if (isAvailableForEmergencyCalls(phone)) {
                 // the slot has the radio on & state is in service.
-                Log.d(this, "getFirstPhoneForEmergencyCall, radio on & in service, Phone Id:" + i);
+                Log.i(this, "getFirstPhoneForEmergencyCall, radio on & in service, Phone Id:" + i);
                 return phone;
             }
             // 3)
+            // Store the RAF Capabilities for sorting later only if there are capabilities to sort.
+            int radioAccessFamily = phone.getRadioAccessFamily();
+            if(RadioAccessFamily.getHighestRafCapability(radioAccessFamily) != 0) {
+                phoneNetworkType.add(new Pair<>(i, radioAccessFamily));
+                Log.i(this, "getFirstPhoneForEmergencyCall, RAF:" +
+                        Integer.toHexString(radioAccessFamily) + " saved for Phone Id:" + i);
+            }
+            // 4)
             if (firstPhoneWithSim == null && TelephonyManager.getDefault().hasIccCard(i)) {
                 // The slot has a SIM card inserted, but is not in service, so keep track of this
                 // Phone. Do not return because we want to make sure that none of the other Phones
                 // are in service (because that is always faster).
-                Log.d(this, "getFirstPhoneForEmergencyCall, SIM card inserted, Phone Id:" + i);
+                Log.i(this, "getFirstPhoneForEmergencyCall, SIM card inserted, Phone Id:" + i);
                 firstPhoneWithSim = phone;
             }
         }
-        // 4)
-        if (firstPhoneWithSim == null) {
+        // 5)
+        if (firstPhoneWithSim == null && phoneNetworkType.isEmpty()) {
             // No SIMs inserted, get the default.
-            Log.d(this, "getFirstPhoneForEmergencyCall, return default phone");
+            Log.i(this, "getFirstPhoneForEmergencyCall, return default phone");
             return PhoneFactory.getDefaultPhone();
         } else {
-            return firstPhoneWithSim;
+            // 3)
+            final Phone firstOccupiedSlot = firstPhoneWithSim;
+            if (!phoneNetworkType.isEmpty()) {
+                // Only sort if there are enough elements to do so.
+                if(phoneNetworkType.size() > 1) {
+                    Collections.sort(phoneNetworkType, (o1, o2) -> {
+                        // First start by sorting by number of RadioAccessFamily Capabilities.
+                        int compare = Integer.bitCount(o1.second) - Integer.bitCount(o2.second);
+                        if (compare == 0) {
+                            // Sort by highest RAF Capability if the number is the same.
+                            compare = RadioAccessFamily.getHighestRafCapability(o1.second) -
+                                    RadioAccessFamily.getHighestRafCapability(o2.second);
+                            if (compare == 0 && firstOccupiedSlot != null) {
+                                // If the RAF capability is the same, choose based on whether or not
+                                // any of the slots are occupied with a SIM card (if both are,
+                                // always choose the first).
+                                if (o1.first == firstOccupiedSlot.getPhoneId()) {
+                                    return 1;
+                                } else if (o2.first == firstOccupiedSlot.getPhoneId()) {
+                                    return -1;
+                                }
+                                // Compare is still 0, return equal.
+                            }
+                        }
+                        return compare;
+                    });
+                }
+                int mostCapablePhoneId = phoneNetworkType.get(phoneNetworkType.size()-1).first;
+                Log.i(this, "getFirstPhoneForEmergencyCall, Using Phone Id: " + mostCapablePhoneId +
+                        "with highest capability");
+                return PhoneFactory.getPhone(mostCapablePhoneId);
+            } else {
+                // 4)
+                return firstPhoneWithSim;
+            }
         }
     }
 
