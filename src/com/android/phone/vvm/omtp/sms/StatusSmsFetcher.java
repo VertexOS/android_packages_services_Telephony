@@ -28,11 +28,13 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.provider.VoicemailContract;
 import android.telephony.SmsManager;
+
 import com.android.phone.Assert;
 import com.android.phone.vvm.omtp.OmtpConstants;
 import com.android.phone.vvm.omtp.OmtpVvmCarrierConfigHelper;
 import com.android.phone.vvm.omtp.VvmLog;
 import com.android.phone.vvm.omtp.protocol.VisualVoicemailProtocol;
+
 import java.io.Closeable;
 import java.io.IOException;
 import java.util.concurrent.CancellationException;
@@ -49,7 +51,8 @@ public class StatusSmsFetcher extends BroadcastReceiver implements Closeable {
     private static final String TAG = "VvmStatusSmsFetcher";
 
     private static final long STATUS_SMS_TIMEOUT_MILLIS = 60_000;
-    private static final String ACTION_REQUEST_SENT_INTENT = "action_request_sent_intent";
+    private static final String ACTION_REQUEST_SENT_INTENT
+            = "com.android.phone.vvm.omtp.sms.REQUEST_SENT";
     private static final int ACTION_REQUEST_SENT_REQUEST_CODE = 0;
 
     private CompletableFuture<Bundle> mFuture = new CompletableFuture<>();
@@ -80,6 +83,7 @@ public class StatusSmsFetcher extends BroadcastReceiver implements Closeable {
 
     public PendingIntent getSentIntent() {
         Intent intent = new Intent(ACTION_REQUEST_SENT_INTENT);
+        intent.setPackage(mContext.getPackageName());
         // Because the receiver is registered dynamically, implicit intent must be used.
         // There should only be a single status SMS request at a time.
         return PendingIntent.getBroadcast(mContext, ACTION_REQUEST_SENT_REQUEST_CODE, intent,
