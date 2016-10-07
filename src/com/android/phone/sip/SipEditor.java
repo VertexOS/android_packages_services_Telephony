@@ -258,7 +258,13 @@ public class SipEditor extends PreferenceActivity
         }
     }
 
-    private void deleteAndUnregisterProfile(SipProfile p) {
+    /**
+     * Deletes a {@link SipProfile} and un-registers the associated
+     * {@link android.telecom.PhoneAccount}.
+     *
+     * @param p The {@link SipProfile} to delete.
+     */
+    private void deleteAndUnregisterProfile(SipProfile p) throws IOException {
         if (p == null) return;
         mProfileDb.deleteProfile(p);
         unregisterProfile(p.getUriString());
