@@ -258,7 +258,7 @@ public class SipEditor extends PreferenceActivity
      *
      * @param p The {@link SipProfile} to delete.
      */
-    private void deleteAndUnregisterProfile(SipProfile p) throws IOException {
+    private void deleteAndUnregisterProfile(SipProfile p) {
         if (p == null) return;
         mProfileDb.deleteProfile(p);
         mSipAccountRegistry.stopSipService(this, p.getProfileName());
