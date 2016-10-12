@@ -892,7 +892,7 @@ public class PhoneUtils {
                 // the FAILED case.
 
             case FAILED:
-                if (context.getResources().getBoolean(
+                if (state == MmiCode.State.FAILED && context.getResources().getBoolean(
                         R.bool.config_regional_ussd_hide_error_from_network_enable)) {
                     text = context.getString(R.string.hide_error_from_network_text);
                 } else {
