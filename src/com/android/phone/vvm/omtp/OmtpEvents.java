@@ -17,6 +17,7 @@
 package com.android.phone.vvm.omtp;
 
 import android.annotation.IntDef;
+
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
@@ -34,6 +35,8 @@ public enum OmtpEvents {
     // The voicemail PIN is replaced with a generated PIN, user should change it.
     CONFIG_DEFAULT_PIN_REPLACED(Type.CONFIGURATION, true),
     CONFIG_ACTIVATING(Type.CONFIGURATION, true),
+    // There are already activation records, this is only a book-keeping activation.
+    CONFIG_ACTIVATING_SUBSEQUENT(Type.CONFIGURATION, true),
     CONFIG_STATUS_SMS_TIME_OUT(Type.CONFIGURATION),
     CONFIG_SERVICE_NOT_AVAILABLE(Type.CONFIGURATION),
 

@@ -24,7 +24,6 @@ import android.database.ContentObserver;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.provider.Settings.Global;
-import android.provider.VoicemailContract.Status;
 import android.telecom.PhoneAccountHandle;
 import android.telephony.ServiceState;
 import android.telephony.TelephonyManager;
@@ -101,13 +100,6 @@ public class ActivationTask extends BaseTask {
             return;
         }
 
-        // Check for signal before activating. The event often happen while boot and the
-        // network is not connected yet. Launching activation will likely to cause the SMS
-        // sending to fail and waste unnecessary time waiting for time out.
-        if (!hasSignal(context, subId)) {
-            VvmLog.i(TAG, "Activation requested while not in service, rejecting");
-        }
-
         Intent intent = BaseTask.createIntent(context, ActivationTask.class, subId);
         if (messageData != null) {
             intent.putExtra(EXTRA_MESSAGE_DATA_BUNDLE, messageData);
@@ -140,12 +132,6 @@ public class ActivationTask extends BaseTask {
             return;
         }
 
-        if (!hasSignal(getContext(), subId)) {
-            VvmLog.i(TAG, "Service lost during activation, aborting");
-            // Don't retry, a new activation will be started after the signal returned.
-            return;
-        }
-
         OmtpVvmCarrierConfigHelper helper = new OmtpVvmCarrierConfigHelper(getContext(), subId);
         if (!helper.isValid()) {
             VvmLog.i(TAG, "VVM not supported on subId " + subId);
@@ -167,6 +153,7 @@ public class ActivationTask extends BaseTask {
 
         if (!OmtpVvmSourceManager.getInstance(getContext())
                 .isVvmSourceRegistered(phoneAccountHandle)) {
+            // This account has not been activated before during the lifetime of this boot.
             VisualVoicemailPreferences preferences = new VisualVoicemailPreferences(getContext(),
                     phoneAccountHandle);
             if (preferences.getString(OmtpConstants.SERVER_ADDRESS, null) == null) {
@@ -178,11 +165,19 @@ public class ActivationTask extends BaseTask {
             } else {
                 // The account has been activated on this device before. Pretend it is already
                 // activated. If there are any activation error it will overwrite this status.
-                VoicemailStatus.edit(getContext(), phoneAccountHandle)
-                        .setConfigurationState(Status.CONFIGURATION_STATE_OK)
-                        .apply();
+                helper.handleEvent(VoicemailStatus.edit(getContext(), phoneAccountHandle),
+                        OmtpEvents.CONFIG_ACTIVATING_SUBSEQUENT);
             }
 
+        }
+        if (!hasSignal(getContext(), subId)) {
+            VvmLog.i(TAG, "Service lost during activation, aborting");
+            // Restore the "NO SIGNAL" state since it will be overwritten by the CONFIG_ACTIVATING
+            // event.
+            helper.handleEvent(VoicemailStatus.edit(getContext(), phoneAccountHandle),
+                    OmtpEvents.NOTIFICATION_SERVICE_LOST);
+            // Don't retry, a new activation will be started after the signal returned.
+            return;
         }
 
         helper.activateSmsFilter();
