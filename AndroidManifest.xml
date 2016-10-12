@@ -644,7 +644,7 @@
             </intent-filter>
         </provider>
         <receiver android:name="com.android.phone.vvm.omtp.sms.OmtpMessageReceiver"
-            android:exported="true">
+            android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.DATA_SMS_RECEIVED" />
                 <data android:scheme="sms" />
