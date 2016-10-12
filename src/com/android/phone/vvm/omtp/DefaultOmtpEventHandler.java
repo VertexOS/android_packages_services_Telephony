@@ -63,8 +63,14 @@ public class DefaultOmtpEventHandler {
                 // for this activation.
                 status
                         .setConfigurationState(Status.CONFIGURATION_STATE_CONFIGURING)
-                        .setDataChannelState(Status.DATA_CHANNEL_STATE_OK)
-                        .setNotificationChannelState(Status.NOTIFICATION_CHANNEL_STATE_OK).apply();
+                        .setNotificationChannelState(Status.NOTIFICATION_CHANNEL_STATE_OK)
+                        .setDataChannelState(Status.DATA_CHANNEL_STATE_OK).apply();
+                break;
+            case CONFIG_ACTIVATING_SUBSEQUENT:
+                status
+                        .setConfigurationState(Status.CONFIGURATION_STATE_OK)
+                        .setNotificationChannelState(Status.NOTIFICATION_CHANNEL_STATE_OK)
+                        .setDataChannelState(Status.DATA_CHANNEL_STATE_OK).apply();
                 break;
             case CONFIG_SERVICE_NOT_AVAILABLE:
                 status
