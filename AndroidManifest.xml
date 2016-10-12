@@ -660,7 +660,7 @@
             </intent-filter>
         </provider>
         <receiver android:name="com.android.phone.vvm.omtp.sms.OmtpMessageReceiver"
-            android:exported="true"
+            android:exported="false"
             androidprv:systemUserOnly="true">
             <intent-filter>
                 <action android:name="android.intent.action.VOICEMAIL_SMS_RECEIVED"/>
