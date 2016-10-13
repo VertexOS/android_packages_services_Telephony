@@ -41,4 +41,6 @@
     <string name="no_mobile_data">移动数据连接不可用</string>
     <string name="cf_setting_mobile_data_alert_roaming">请开启数据漫游</string>
     <string name="no_mobile_data_roaming">数据漫游不可用</string>
+    <string name="ims_settings">"IMS 设置"</string>
+    <string name="call_barring">"呼入限制"</string>
 </resources>
