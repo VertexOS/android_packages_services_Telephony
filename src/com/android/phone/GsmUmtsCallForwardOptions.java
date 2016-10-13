@@ -263,7 +263,7 @@ public class GsmUmtsCallForwardOptions extends TimeConsumingPreferenceActivity
     public boolean onOptionsItemSelected(MenuItem item) {
         final int itemId = item.getItemId();
         if (itemId == android.R.id.home) {  // See ActionBar#setDisplayHomeAsUpEnabled()
-            CallFeaturesSetting.goUpToTopLevelSetting(this, mSubscriptionInfoHelper);
+            finish();
             return true;
         }
         return super.onOptionsItemSelected(item);
