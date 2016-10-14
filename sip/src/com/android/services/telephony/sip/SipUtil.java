@@ -164,7 +164,12 @@ public class SipUtil {
                 }
                 Log.i(LOG_TAG, "(Migration) Deleting SIP profile: " +
                         profileToMove.getProfileName());
-                dbDeStorage.deleteProfile(profileToMove);
+                try {
+                    dbDeStorage.deleteProfile(profileToMove);
+                } catch (IOException e) {
+                    Log.w(LOG_TAG, "Error Deleting file: " +
+                            profileToMove.getProfileName(), e);
+                }
             }
         }
         // Delete supporting structures if they exist
