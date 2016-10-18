@@ -439,7 +439,7 @@ public class ImsConference extends Conference {
     @Override
     public void onMerge(android.telecom.Connection connection) {
         try {
-            Phone phone = ((TelephonyConnection) connection).getPhone();
+            Phone phone = mConferenceHost.getPhone();
             if (phone != null) {
                 phone.conference();
             }
