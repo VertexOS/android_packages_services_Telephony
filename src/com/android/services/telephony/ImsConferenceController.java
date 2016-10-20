@@ -187,6 +187,7 @@ public class ImsConferenceController {
         Log.v(this, "recalculateConferenceable : %d", mTelephonyConnections.size());
         HashSet<Conferenceable> conferenceableSet = new HashSet<>(mTelephonyConnections.size() +
                 mImsConferences.size());
+        HashSet<Conferenceable> conferenceParticipantsSet = new HashSet<>();
 
         // Loop through and collect all calls which are active or holding
         for (TelephonyConnection connection : mTelephonyConnections) {
@@ -240,6 +241,7 @@ public class ImsConferenceController {
                 case Connection.STATE_ACTIVE:
                     //fall through
                 case Connection.STATE_HOLDING:
+                    conferenceParticipantsSet.addAll(conference.getConnections());
                     conferenceableSet.add(conference);
                     continue;
                 default:
@@ -256,6 +258,16 @@ public class ImsConferenceController {
                         .stream()
                         .filter(conferenceable -> c != conferenceable)
                         .collect(Collectors.toList());
+                // TODO: Remove this once RemoteConnection#setConferenceableConnections is fixed.
+                // Add all conference participant connections as conferenceable with a standalone
+                // Connection.  We need to do this to ensure that RemoteConnections work properly.
+                // At the current time, a RemoteConnection will not be conferenceable with a
+                // Conference, so we need to add its children to ensure the user can merge the call
+                // into the conference.
+                // We should add support for RemoteConnection#setConferenceables, which accepts a
+                // list of remote conferences and connections in the future.
+                conferenceables.addAll(conferenceParticipantsSet);
+
                 ((Connection) c).setConferenceables(conferenceables);
             } else if (c instanceof Conference) {
                 // Remove all conferences from the set, since we can not conference a conference

@@ -683,7 +683,7 @@ abstract class TelephonyConnection extends Connection {
         }
     }
 
-    public void performConference(TelephonyConnection otherConnection) {
+    public void performConference(Connection otherConnection) {
         Log.d(this, "performConference - %s", this);
         if (getPhone() != null) {
             try {
