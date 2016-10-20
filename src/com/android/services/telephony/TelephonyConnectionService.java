@@ -616,14 +616,35 @@ public class TelephonyConnectionService extends ConnectionService {
         }
     }
 
+    /**
+     * Conferences two connections.
+     *
+     * Note: The {@link android.telecom.RemoteConnection#setConferenceableConnections(List)} API has
+     * a limitation in that it can only specify conferenceables which are instances of
+     * {@link android.telecom.RemoteConnection}.  In the case of an {@link ImsConference}, the
+     * regular {@link Connection#setConferenceables(List)} API properly handles being able to merge
+     * a {@link Conference} and a {@link Connection}.  As a result when, merging a
+     * {@link android.telecom.RemoteConnection} into a {@link android.telecom.RemoteConference}
+     * require merging a {@link ConferenceParticipantConnection} which is a child of the
+     * {@link Conference} with a {@link TelephonyConnection}.  The
+     * {@link ConferenceParticipantConnection} class does not have the capability to initiate a
+     * conference merge, so we need to call
+     * {@link TelephonyConnection#performConference(Connection)} on either {@code connection1} or
+     * {@code connection2}, one of which is an instance of {@link TelephonyConnection}.
+     *
+     * @param connection1 A connection to merge into a conference call.
+     * @param connection2 A connection to merge into a conference call.
+     */
     @Override
     public void onConference(Connection connection1, Connection connection2) {
-        if (connection1 instanceof TelephonyConnection &&
-                connection2 instanceof TelephonyConnection) {
-            ((TelephonyConnection) connection1).performConference(
-                (TelephonyConnection) connection2);
+        if (connection1 instanceof TelephonyConnection) {
+            ((TelephonyConnection) connection1).performConference(connection2);
+        } else if (connection2 instanceof TelephonyConnection) {
+            ((TelephonyConnection) connection2).performConference(connection1);
+        } else {
+            Log.w(this, "onConference - cannot merge connections " +
+                    "Connection1: %s, Connection2: %2", connection1, connection2);
         }
-
     }
 
     private boolean isRadioOn() {
