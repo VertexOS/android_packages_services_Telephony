@@ -36,6 +36,10 @@
     </string-array>
     <string name="vvm_type_string">vvm_type_omtp</string>
     <boolean name="vvm_cellular_data_required_bool" value="true"/>
+    <string-array name="vvm_disabled_capabilities_string_array">
+      <!-- b/32365569 -->
+      <item value="STARTTLS"/>
+    </string-array>
   </pbundle_as_map>
 
   <pbundle_as_map>
