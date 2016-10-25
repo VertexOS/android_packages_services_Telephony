@@ -50,4 +50,24 @@ public class DigestMd5UtilsTest extends TestCase {
         assertEquals("ea40f60335c427b5527b84dbabcdfffd", response);
     }
 
+    public void testData_createResponse() {
+        DigestMd5Utils.Data data = new DigestMd5Utils.Data();
+        data.username = "chris";
+        data.password = "secret";
+        data.realm = "elwood.innosoft.com";
+        data.nonce = "OA6MG9tEQGm2hh";
+        data.cnonce = "OA6MHXh6VqTrRk";
+        data.nc = "00000001";
+        data.qop = "auth";
+        data.digestUri = "imap/elwood.innosoft.com";
+        assertEquals(data.createResponse(), "CHARSET=utf-8,"
+                + "username=\"chris\","
+                + "realm=\"elwood.innosoft.com\","
+                + "nonce=\"OA6MG9tEQGm2hh\","
+                + "nc=00000001,"
+                + "cnonce=\"OA6MHXh6VqTrRk\","
+                + "digest-uri=\"imap/elwood.innosoft.com\","
+                + "response=d388dad90d4bbd760a152321f2143af7,"
+                + "qop=auth");
+    }
 }

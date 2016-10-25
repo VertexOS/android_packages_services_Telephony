@@ -54,7 +54,7 @@ public class DigestMd5Utils {
      */
     public static class Data {
 
-        private static final String CHARSET = "utf-8'";
+        private static final String CHARSET = "utf-8";
 
         public String username;
         public String password;
