@@ -1433,7 +1433,7 @@
     </string>
      <!-- Smart Divert Settings -->
      <!-- Title for the Smart Divert Feature displayed in Call Settings -->
-     <string name="smart_divert_title">Smart-Divert</string>
+     <string name="smart_divert_title" translatable="false">Smart-Divert</string>
      <!-- Summary for the Smart Divert Feature displayed in Call Settings -->
      <string name="smart_divert_summary">CFNRc Settings</string>
      <string name="no_mobile_data">Mobile data is not available</string>

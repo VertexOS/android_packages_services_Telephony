@@ -575,4 +575,7 @@
     <string name="labelCFVoice">语音</string>
     <string name="labelCFVideo">视频</string>
     <string name="call_forward_option">呼叫转移选项</string>
+    <!-- Smart Divert Settings -->
+    <!-- Summary for the Smart Divert Feature displayed in Call Settings -->
+    <string name="smart_divert_summary">"CFNRc 设置"</string>
 </resources>
