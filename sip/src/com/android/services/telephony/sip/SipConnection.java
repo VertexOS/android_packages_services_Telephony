@@ -24,6 +24,7 @@ import android.telecom.AudioState;
 import android.telecom.Connection;
 import android.telecom.PhoneAccount;
 import android.telecom.TelecomManager;
+import android.util.EventLog;
 import android.util.Log;
 
 import com.android.internal.telephony.Call;
@@ -181,6 +182,18 @@ final class SipConnection extends Connection {
             }
         } catch (CallStateException e) {
             log("onAnswer, exception: " + e);
+        } catch (IllegalStateException e) {
+            // Call could not be answered due to an invalid audio-codec offered by the caller.  We
+            // will reject the call to stop it from ringing.
+            log("onAnswer, IllegalStateException: " + e);
+            EventLog.writeEvent(0x534e4554, "31752213", -1, "Invalid codec.");
+            onReject();
+        } catch (IllegalArgumentException e) {
+            // Call could not be answered due to an error parsing the SDP.  We will reject the call
+            // to stop it from ringing.
+            log("onAnswer, IllegalArgumentException: " + e);
+            EventLog.writeEvent(0x534e4554, "31752213", -1, "Invalid SDP.");
+            onReject();
         }
     }
 
