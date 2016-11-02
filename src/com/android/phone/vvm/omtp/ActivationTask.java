@@ -27,7 +27,6 @@ import android.provider.Settings.Global;
 import android.telecom.PhoneAccountHandle;
 import android.telephony.ServiceState;
 import android.telephony.TelephonyManager;
-
 import com.android.phone.Assert;
 import com.android.phone.PhoneGlobals;
 import com.android.phone.VoicemailStatus;
@@ -40,7 +39,6 @@ import com.android.phone.vvm.omtp.sync.OmtpVvmSourceManager;
 import com.android.phone.vvm.omtp.sync.OmtpVvmSyncService;
 import com.android.phone.vvm.omtp.sync.SyncTask;
 import com.android.phone.vvm.omtp.utils.PhoneAccountHandleConverter;
-
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
@@ -135,7 +133,7 @@ public class ActivationTask extends BaseTask {
         OmtpVvmCarrierConfigHelper helper = new OmtpVvmCarrierConfigHelper(getContext(), subId);
         if (!helper.isValid()) {
             VvmLog.i(TAG, "VVM not supported on subId " + subId);
-            VoicemailStatus.disable(getContext(), phoneAccountHandle);
+            OmtpVvmSourceManager.getInstance(getContext()).removeSource(phoneAccountHandle);
             return;
         }
 
