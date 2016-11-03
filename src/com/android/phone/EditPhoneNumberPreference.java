@@ -505,17 +505,20 @@ public class EditPhoneNumberPreference extends EditTextPreference
         mValidEndTimeHour = endhour;
         mValidEndTimeMinute = endminute;
         if (mTimePeriodAllDayChecked){
-            mTimePeriodString = " all day";
+            mTimePeriodString = getContext().getResources().getString(R.string.all_day);
         } else {
             String fomatedStartTimeString = formateTime(mStartDate,
                     mValidStartTimeHour, mValidStartTimeMinute);
             String fomatedEndTimeString = formateTime(mEndDate,
                     mValidEndTimeHour, mValidEndTimeMinute);
-            mTimePeriodString = " from " + fomatedStartTimeString
-                    + " to " + fomatedEndTimeString;
+            mTimePeriodString = getContext().getResources().getString(R.string.time_start)
+                    + fomatedStartTimeString
+                    + getContext().getResources().getString(R.string.time_end)
+                    + fomatedEndTimeString;
             if (mValidEndTimeHour*60 + mValidEndTimeMinute
                     < mValidStartTimeHour*60 + mValidStartTimeMinute){
-                mTimePeriodString = mTimePeriodString + " next day";
+                mTimePeriodString = mTimePeriodString
+                        + getContext().getResources().getString(R.string.time_next_day);
             }
         }
     }
