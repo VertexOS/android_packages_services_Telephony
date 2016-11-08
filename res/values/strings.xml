@@ -231,12 +231,13 @@
 
     <!-- Call forwarding settings screen, setting timer info for cfut case -->
     <string name="set_time_period">Set time period</string>
-    <string name="all_day">All day</string>
+    <string name="all_day">\u0020All day\u0020</string>
     <string name="time_interval_char">: </string>
-    <string name="time_start">From</string>
+    <string name="time_start">\u0020From\u0020</string>
     <string name="time_start_hour">time start hour</string>
     <string name="time_start_minute">time start minute</string>
-    <string name="time_end">To</string>
+    <string name="time_end">\u0020To\u0020</string>
+    <string name="time_next_day">\u0020next day\u0020</string>
     <string name="time_end_hour">time end hour</string>
     <string name="time_end_minute">time end minute</string>
     <string name="time_formate_am">AM</string>
