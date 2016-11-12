@@ -19,4 +19,6 @@
     <bool name="config_support_tdscdma" translatable="false">true</bool>
     <!-- Config to show/hide toast for ims srvcc -->
     <bool name="config_show_srvcc_toast">true</bool>
+    <!-- Disable filter out conference host-->
+    <bool name="disable_filter_out_conference_host">true</bool>
 </resources>
