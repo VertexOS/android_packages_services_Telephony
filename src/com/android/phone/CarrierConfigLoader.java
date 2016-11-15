@@ -472,8 +472,13 @@ public class CarrierConfigLoader extends ICarrierConfigLoader.Stub {
             loge("Cannot save config with null packageName or iccid.");
             return;
         }
-        if (config == null) {
-          config = new PersistableBundle();
+        // b/32668103 Only save to file if config isn't empty.
+        // In case of failure, not caching an empty bundle will
+        // try loading config again on next power on or sim loaded.
+        // Downside is for genuinely empty bundle, will bind and load
+        // on every power on.
+        if (config == null || config.isEmpty()) {
+            return;
         }
 
         final String version = getPackageVersion(packageName);
