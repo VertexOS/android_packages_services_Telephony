@@ -16,6 +16,8 @@
 
 package com.android.phone;
 
+import static android.Manifest.permission.READ_PHONE_STATE;
+
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -24,6 +26,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ResolveInfo;
 import android.content.pm.UserInfo;
 import android.content.res.Resources;
 import android.net.Uri;
@@ -33,6 +36,7 @@ import android.os.UserHandle;
 import android.os.UserManager;
 import android.preference.PreferenceManager;
 import android.provider.ContactsContract.PhoneLookup;
+import android.telecom.DefaultDialerManager;
 import android.telecom.PhoneAccount;
 import android.telecom.PhoneAccountHandle;
 import android.telecom.TelecomManager;
@@ -93,7 +97,6 @@ public class NotificationMgr {
 
     private Context mContext;
     private NotificationManager mNotificationManager;
-    private final ComponentName mNotificationComponent;
     private StatusBarManager mStatusBarManager;
     private UserManager mUserManager;
     private Toast mToast;
@@ -123,12 +126,6 @@ public class NotificationMgr {
         mSubscriptionManager = SubscriptionManager.from(mContext);
         mTelecomManager = TelecomManager.from(mContext);
         mTelephonyManager = (TelephonyManager) app.getSystemService(Context.TELEPHONY_SERVICE);
-
-        final String notificationComponent = mContext.getString(
-                R.string.config_customVoicemailComponent);
-
-        mNotificationComponent = notificationComponent != null
-                ? ComponentName.unflattenFromString(notificationComponent) : null;
 
         mSubscriptionManager.addOnSubscriptionsChangedListener(
                 new OnSubscriptionsChangedListener() {
@@ -383,8 +380,8 @@ public class NotificationMgr {
                 if (!mUserManager.hasUserRestriction(
                         UserManager.DISALLOW_OUTGOING_CALLS, userHandle)
                         && !user.isManagedProfile()) {
-                    if (!sendNotificationCustomComponent(vmCount, vmNumber, pendingIntent,
-                            isSettingsIntent)) {
+                    if (!maybeSendVoicemailNotificationUsingDefaultDialer(vmCount, vmNumber,
+                            pendingIntent, isSettingsIntent, userHandle)) {
                         mNotificationManager.notifyAsUser(
                                 Integer.toString(subId) /* tag */,
                                 VOICEMAIL_NOTIFICATION,
@@ -394,19 +391,29 @@ public class NotificationMgr {
                 }
             }
         } else {
-            if (!sendNotificationCustomComponent(0, null, null, false)) {
-                mNotificationManager.cancelAsUser(
-                        Integer.toString(subId) /* tag */,
-                        VOICEMAIL_NOTIFICATION,
-                        UserHandle.ALL);
+            List<UserInfo> users = mUserManager.getUsers(true /* excludeDying */);
+            for (int i = 0; i < users.size(); i++) {
+                final UserInfo user = users.get(i);
+                final UserHandle userHandle = user.getUserHandle();
+                if (!mUserManager.hasUserRestriction(
+                        UserManager.DISALLOW_OUTGOING_CALLS, userHandle)
+                        && !user.isManagedProfile()) {
+                    if (!maybeSendVoicemailNotificationUsingDefaultDialer(0, null, null, false,
+                            userHandle)) {
+                        mNotificationManager.cancelAsUser(
+                                Integer.toString(subId) /* tag */,
+                                VOICEMAIL_NOTIFICATION,
+                                userHandle);
+                    }
+                }
             }
         }
     }
 
     /**
-     * Sends a broadcast with the voicemail notification information to a custom component to
-     * handle. This method is also used to indicate to the custom component when to clear the
-     * notification. A pending intent can be passed to the custom component to indicate an action to
+     * Sends a broadcast with the voicemail notification information to the default dialer. This
+     * method is also used to indicate to the default dialer when to clear the
+     * notification. A pending intent can be passed to the default dialer to indicate an action to
      * be taken as it would by a notification produced in this class.
      * @param count The number of pending voicemail messages to indicate on the notification. A
      *              Value of 0 is passed here to indicate that the notification should be cleared.
@@ -414,14 +421,16 @@ public class NotificationMgr {
      * @param pendingIntent The intent that should be passed as the action to be taken.
      * @param isSettingsIntent {@code true} to indicate the pending intent is to launch settings.
      *                         otherwise, {@code false} to indicate the intent launches voicemail.
-     * @return {@code true} if a custom component was notified of the notification.
+     * @param userHandle The user to receive the notification. Each user can have their own default
+     *                   dialer.
+     * @return {@code true} if the default was notified of the notification.
      */
-    private boolean sendNotificationCustomComponent(Integer count, String number,
-            PendingIntent pendingIntent, boolean isSettingsIntent) {
-        if (mNotificationComponent != null) {
-            Intent intent = new Intent();
+    private boolean maybeSendVoicemailNotificationUsingDefaultDialer(Integer count, String number,
+            PendingIntent pendingIntent, boolean isSettingsIntent, UserHandle userHandle) {
+
+        if (shouldManageNotificationThroughDefaultDialer(userHandle)) {
+            Intent intent = getShowVoicemailIntentForDefaultDialer(userHandle);
             intent.setFlags(Intent.FLAG_RECEIVER_FOREGROUND);
-            intent.setComponent(mNotificationComponent);
             intent.setAction(TelephonyManager.ACTION_SHOW_VOICEMAIL_NOTIFICATION);
 
             if (count != null) {
@@ -443,12 +452,29 @@ public class NotificationMgr {
                             pendingIntent);
                 }
             }
-
-            mContext.sendBroadcast(intent);
+            mContext.sendBroadcastAsUser(intent, userHandle, READ_PHONE_STATE);
             return true;
         }
 
         return false;
+    }
+
+    private Intent getShowVoicemailIntentForDefaultDialer(UserHandle userHandle) {
+        String dialerPackage = DefaultDialerManager
+                .getDefaultDialerApplication(mContext, userHandle.getIdentifier());
+        return new Intent(TelephonyManager.ACTION_SHOW_VOICEMAIL_NOTIFICATION)
+                .setPackage(dialerPackage);
+    }
+
+    private boolean shouldManageNotificationThroughDefaultDialer(UserHandle userHandle) {
+        Intent intent = getShowVoicemailIntentForDefaultDialer(userHandle);
+        if (intent == null) {
+            return false;
+        }
+
+        List<ResolveInfo> receivers = mContext.getPackageManager()
+                .queryBroadcastReceivers(intent, 0);
+        return receivers.size() > 0;
     }
 
     /**
