@@ -26,6 +26,7 @@ import android.telecom.PhoneAccountHandle;
 import android.telephony.CarrierConfigManager;
 import android.telephony.SubscriptionManager;
 import android.telephony.TelephonyManager;
+import android.text.TextUtils;
 import com.android.internal.telephony.IccCardConstants;
 import com.android.internal.telephony.PhoneConstants;
 import com.android.internal.telephony.TelephonyIntents;
@@ -70,6 +71,25 @@ public class SimChangeReceiver extends BroadcastReceiver {
                     VvmLog.i(TAG, "Received SIM change for invalid subscription id.");
                     return;
                 }
+
+                TelephonyManager telephonyManager = context
+                        .getSystemService(TelephonyManager.class);
+                if(TextUtils.isEmpty(telephonyManager.getSimOperator())){
+                    VvmLog.e(TAG,
+                            "Empty MCCMNC, possible modem crash."
+                                    + " Ignoring carrier config changed event");
+                    return;
+                }
+
+                PhoneAccountHandle phoneAccountHandle = PhoneAccountHandleConverter
+                        .fromSubId(subId);
+                if("null".equals(phoneAccountHandle.getId())){
+                    VvmLog.e(TAG,
+                            "null phone account handle ID, possible modem crash."
+                                    + " Ignoring carrier config changed event");
+                    return;
+                }
+
                 VvmLog.d(TAG, "Carrier config changed");
                 if (UserManager.get(context).isUserUnlocked() && !isCryptKeeperMode()) {
                     processSubId(context, subId);
