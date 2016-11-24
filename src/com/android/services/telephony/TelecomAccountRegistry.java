@@ -721,15 +721,16 @@ final class TelecomAccountRegistry {
                             Log.w(this, "Failed to get status , slotId: "+ slotId +" Exception: "
                                     + ex);
                         }
-                        Log.d(this, "Phone with subscription id: " + subscriptionId +
-                                " slotId: " + slotId + " provisionStatus: " + provisionStatus);
-                        if ((subscriptionId >= 0) && (provisionStatus == PROVISIONED) &&
-                                (mSubscriptionManager.isActiveSubId(subscriptionId))) {
-                            activeCount++;
-                            activeSubscriptionId = subscriptionId;
-                            mAccounts.add(new AccountEntry(phone,
-                                     false /* emergency */, false /* isDummy */));
-                        }
+                    }
+
+                    Log.d(this, "Phone with subscription id: " + subscriptionId +
+                            " slotId: " + slotId + " provisionStatus: " + provisionStatus);
+                    if ((subscriptionId >= 0) && (provisionStatus == PROVISIONED) &&
+                            (mSubscriptionManager.isActiveSubId(subscriptionId))) {
+                        activeCount++;
+                        activeSubscriptionId = subscriptionId;
+                        mAccounts.add(new AccountEntry(phone,
+                                 false /* emergency */, false /* isDummy */));
                     }
                 }
             }
