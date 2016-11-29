@@ -161,4 +161,7 @@
     <string name="call_barring">Call barring</string>
     <string name="srvcc_video_message">"Video call has been downgraded to 2G/3G voice call, because the 4G network is not available."</string>
     <string name="srvcc_message">"4G voice call has been downgraded to 2G/3G voice call, because the 4G network is not available."</string>
+    <string name="proximity_mode_title">Turn on proximity sensor</string>
+    <string name="proximity_on_summary">When you answer a call, the screen will be turned off to save power.</string>
+    <string name="proximity_off_summary">When you answer a call, the screen will be turned on always.</string>
 </resources>

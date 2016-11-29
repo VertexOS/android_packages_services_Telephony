@@ -67,6 +67,13 @@
             android:summary="@string/vibrate_after_connected_summary"
             android:order="1200" />
 
+        <CheckBoxPreference
+            android:key="button_proximity_key"
+            android:title="@string/proximity_mode_title"
+            android:persistent="false"
+            android:summary="@string/proximity_on_summary"
+            android:order="1300" />
+
     </PreferenceCategory>
 
     <PreferenceCategory
