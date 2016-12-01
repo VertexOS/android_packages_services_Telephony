@@ -37,6 +37,8 @@ import com.android.phone.PhoneGlobals;
 import com.android.phone.R;
 import com.android.phone.SubscriptionInfoHelper;
 
+import org.codeaurora.ims.utils.QtiImsExtUtils;
+
 /**
  * FDN settings UI for the Phone app.
  * Rewritten to look and behave closer to the other preferences.
@@ -553,7 +555,11 @@ public class FdnSetting extends PreferenceActivity
     public boolean onOptionsItemSelected(MenuItem item) {
         final int itemId = item.getItemId();
         if (itemId == android.R.id.home) {  // See ActionBar#setDisplayHomeAsUpEnabled()
-            CallFeaturesSetting.goUpToTopLevelSetting(this, mSubscriptionInfoHelper);
+            if (QtiImsExtUtils.isCarrierOneSupported()) {
+                onBackPressed();
+            } else {
+                CallFeaturesSetting.goUpToTopLevelSetting(this, mSubscriptionInfoHelper);
+            }
             return true;
         }
         return super.onOptionsItemSelected(item);
