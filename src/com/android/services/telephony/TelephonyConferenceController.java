@@ -23,6 +23,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import android.net.Uri;
 import android.telecom.Conference;
@@ -83,12 +84,24 @@ final class TelephonyConferenceController {
     }
 
     void add(TelephonyConnection connection) {
+        if (mTelephonyConnections.contains(connection)) {
+            // Adding a duplicate realistically shouldn't happen.
+            Log.w(this, "add - connection already tracked; connection=%s", connection);
+            return;
+        }
+
         mTelephonyConnections.add(connection);
         connection.addConnectionListener(mConnectionListener);
         recalculate();
     }
 
     void remove(Connection connection) {
+        if (!mTelephonyConnections.contains(connection)) {
+            // Debug only since TelephonyConnectionService tries to clean up the connections tracked
+            // when the original connection changes.  It does this proactively.
+            Log.d(this, "remove - connection not tracked; connection=%s", connection);
+            return;
+        }
         connection.removeConnectionListener(mConnectionListener);
         mTelephonyConnections.remove(connection);
         recalculate();
@@ -113,10 +126,7 @@ final class TelephonyConferenceController {
      */
     private void recalculateConferenceable() {
         Log.v(this, "recalculateConferenceable : %d", mTelephonyConnections.size());
-
-        List<Connection> activeConnections = new ArrayList<>(mTelephonyConnections.size());
-        List<Connection> backgroundConnections = new ArrayList<>(
-                mTelephonyConnections.size());
+        HashSet<Connection> conferenceableConnections = new HashSet<>(mTelephonyConnections.size());
 
         // Loop through and collect all calls which are active or holding
         for (TelephonyConnection connection : mTelephonyConnections) {
@@ -126,10 +136,9 @@ final class TelephonyConferenceController {
             if (connection.isConferenceSupported() && !participatesInFullConference(connection)) {
                 switch (connection.getState()) {
                     case Connection.STATE_ACTIVE:
-                        activeConnections.add(connection);
-                        continue;
+                        //fall through
                     case Connection.STATE_HOLDING:
-                        backgroundConnections.add(connection);
+                        conferenceableConnections.add(connection);
                         continue;
                     default:
                         break;
@@ -139,34 +148,30 @@ final class TelephonyConferenceController {
             connection.setConferenceableConnections(Collections.<Connection>emptyList());
         }
 
-        Log.v(this, "active: %d, holding: %d",
-                activeConnections.size(), backgroundConnections.size());
+        Log.v(this, "conferenceable: " + conferenceableConnections.size());
 
-        // Go through all the active connections and set the background connections as
-        // conferenceable.
-        for (Connection connection : activeConnections) {
-            connection.setConferenceableConnections(backgroundConnections);
+        // Go through all the conferenceable connections and add all other conferenceable
+        // connections that is not the connection itself
+        for (Connection c : conferenceableConnections) {
+            List<Connection> connections = conferenceableConnections
+                    .stream()
+                    // Filter out this connection from the list of connections
+                    .filter(connection -> c != connection)
+                    .collect(Collectors.toList());
+            c.setConferenceableConnections(connections);
         }
 
-        // Go through all the background connections and set the active connections as
-        // conferenceable.
-        for (Connection connection : backgroundConnections) {
-            connection.setConferenceableConnections(activeConnections);
-        }
-
-        // Set the conference as conferenceable with all the connections
+        // Set the conference as conferenceable with all of the connections that are not in the
+        // conference.
         if (mTelephonyConference != null && !isFullConference(mTelephonyConference)) {
-            List<Connection> nonConferencedConnections =
-                    new ArrayList<>(mTelephonyConnections.size());
-            for (TelephonyConnection c : mTelephonyConnections) {
-                if (c.isConferenceSupported() && c.getConference() == null) {
-                    nonConferencedConnections.add(c);
-                }
-            }
-            Log.v(this, "conference conferenceable: %s", nonConferencedConnections);
+            List<Connection> nonConferencedConnections = mTelephonyConnections
+                    .stream()
+                    // Only retrieve Connections that are not in a conference (but support
+                    // conferences).
+                    .filter(c -> c.isConferenceSupported() && c.getConference() == null)
+                    .collect(Collectors.toList());
             mTelephonyConference.setConferenceableConnections(nonConferencedConnections);
         }
-
         // TODO: Do not allow conferencing of already conferenced connections.
     }
 

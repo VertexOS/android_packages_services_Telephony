@@ -140,6 +140,10 @@ public class DisconnectCauseUtil {
             case android.telephony.DisconnectCause.DIAL_MODIFIED_TO_SS:
             case android.telephony.DisconnectCause.DIAL_MODIFIED_TO_DIAL:
             case android.telephony.DisconnectCause.ERROR_UNSPECIFIED:
+            case android.telephony.DisconnectCause.MAXIMUM_NUMBER_OF_CALLS_REACHED:
+            case android.telephony.DisconnectCause.DATA_DISABLED:
+            case android.telephony.DisconnectCause.DATA_LIMIT_REACHED:
+            case android.telephony.DisconnectCause.DIALED_ON_WRONG_SLOT:
                 return DisconnectCause.ERROR;
 
             case android.telephony.DisconnectCause.DIALED_MMI:
@@ -194,6 +198,12 @@ public class DisconnectCauseUtil {
             case android.telephony.DisconnectCause.NOT_VALID:
             case android.telephony.DisconnectCause.NOT_DISCONNECTED:
                 return DisconnectCause.UNKNOWN;
+
+            case android.telephony.DisconnectCause.CALL_PULLED:
+                return DisconnectCause.CALL_PULLED;
+
+            case android.telephony.DisconnectCause.ANSWERED_ELSEWHERE:
+                return DisconnectCause.ANSWERED_ELSEWHERE;
 
             default:
                 Log.w("DisconnectCauseUtil.toTelecomDisconnectCauseCode",
@@ -270,6 +280,22 @@ public class DisconnectCauseUtil {
             case android.telephony.DisconnectCause.INVALID_NUMBER:
             case android.telephony.DisconnectCause.UNOBTAINABLE_NUMBER:
                 resourceId = R.string.callFailed_unobtainable_number;
+                break;
+
+            case android.telephony.DisconnectCause.CALL_PULLED:
+                resourceId = R.string.callEnded_pulled;
+                break;
+
+            case android.telephony.DisconnectCause.MAXIMUM_NUMBER_OF_CALLS_REACHED:
+                resourceId = R.string.callFailed_maximum_reached;
+                break;
+
+            case android.telephony.DisconnectCause.DATA_DISABLED:
+                resourceId = R.string.callFailed_data_disabled;
+                break;
+
+            case android.telephony.DisconnectCause.DATA_LIMIT_REACHED:
+                resourceId = R.string.callFailed_data_limit_reached;
                 break;
 
             default:
@@ -362,7 +388,9 @@ public class DisconnectCauseUtil {
                 // TODO: Offer the option to turn the radio on, and automatically retry the call
                 // once network registration is complete.
 
-                if (ImsUtil.isWfcModeWifiOnly(context)) {
+                if (ImsUtil.shouldPromoteWfc(context)) {
+                    resourceId = R.string.incall_error_promote_wfc;
+                } else if (ImsUtil.isWfcModeWifiOnly(context)) {
                     resourceId = R.string.incall_error_wfc_only_no_wireless_network;
                 } else if (ImsUtil.isWfcEnabled(context)) {
                     resourceId = R.string.incall_error_power_off_wfc;
@@ -384,7 +412,9 @@ public class DisconnectCauseUtil {
 
             case android.telephony.DisconnectCause.OUT_OF_SERVICE:
                 // No network connection.
-                if (ImsUtil.isWfcModeWifiOnly(context)) {
+                if (ImsUtil.shouldPromoteWfc(context)) {
+                    resourceId = R.string.incall_error_promote_wfc;
+                } else if (ImsUtil.isWfcModeWifiOnly(context)) {
                     resourceId = R.string.incall_error_wfc_only_no_wireless_network;
                 } else if (ImsUtil.isWfcEnabled(context)) {
                     resourceId = R.string.incall_error_out_of_service_wfc;
@@ -607,11 +637,28 @@ public class DisconnectCauseUtil {
                 resourceId = R.string.callFailed_non_selected_user_clearing;
                 break;
 
+            case android.telephony.DisconnectCause.CALL_PULLED:
+                resourceId = R.string.callEnded_pulled;
+                break;
+
+            case android.telephony.DisconnectCause.MAXIMUM_NUMBER_OF_CALLS_REACHED:
+                resourceId = R.string.callFailed_maximum_reached;
+
             case android.telephony.DisconnectCause.OUTGOING_CANCELED:
                 // We don't want to show any dialog for the canceled case since the call was
                 // either canceled by the user explicitly (end-call button pushed immediately)
                 // or some other app canceled the call and immediately issued a new CALL to
                 // replace it.
+                break;
+
+            case android.telephony.DisconnectCause.DATA_DISABLED:
+                resourceId = R.string.callFailed_data_disabled;
+                break;
+
+            case android.telephony.DisconnectCause.DATA_LIMIT_REACHED:
+                resourceId = R.string.callFailed_data_limit_reached_description;
+                break;
+
             default:
                 break;
         }

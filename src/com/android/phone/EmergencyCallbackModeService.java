@@ -171,8 +171,8 @@ public class EmergencyCallbackModeService extends Service {
      * Shows notification for Emergency Callback Mode
      */
     private void showNotification(long millisUntilFinished) {
-        final boolean isInEcm = Boolean.parseBoolean(
-                SystemProperties.get(TelephonyProperties.PROPERTY_INECM_MODE));
+        Phone imsPhone = mPhone.getImsPhone();
+        boolean isInEcm = mPhone.isInEcm() || (imsPhone != null && imsPhone.isInEcm());
         if (!isInEcm) {
             Log.i(LOG_TAG, "Asked to show notification but not in ECM mode");
             if (mTimer != null) {

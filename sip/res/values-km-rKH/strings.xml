@@ -61,7 +61,9 @@
     <string name="advanced_settings" msgid="6622996380747040711">"ការ​កំណត់​​ជា​​ជម្រើស"</string>
     <string name="auth_username_title" msgid="8262491689004708265">"ឈ្មោះ​អ្នកប្រើ​​ប្រាស់​សម្រាប់​​ផ្ទៀងផ្ទាត់"</string>
     <string name="auth_username_summary" msgid="941160241371436473">"ឈ្មោះ​អ្នកប្រើប្រាស់​ដែលបាន​ប្រើ​សម្រាប់​​​ផ្ទៀងផ្ទាត់"</string>
-    <string name="default_preference_summary" msgid="1979249643719483249">"&lt;មិន​បាន​កំណត់&gt;"</string>
+    <string name="default_preference_summary_username" msgid="8404717434312826082">"&lt;មិន​បាន​កំណត់&gt;"</string>
+    <string name="default_preference_summary_password" msgid="4464464672997027904">"&lt;មិន​បាន​កំណត់&gt;"</string>
+    <string name="default_preference_summary_domain_address" msgid="4871971710197441673">"&lt;មិន​បាន​កំណត់&gt;"</string>
     <string name="display_name_summary" msgid="7155076491675565407">"&lt;ដូច​ឈ្មោះ​អ្នកប្រើ&gt;"</string>
     <string name="optional_summary" msgid="2363105560396317624">"&lt;ជា​ជម្រើស&gt;"</string>
     <string name="advanced_settings_show" msgid="7838761602853998622">"ប៉ះ ▷ ដើម្បី​បង្ហាញ​ទាំងអស់"</string>

@@ -21,6 +21,7 @@ import com.android.internal.os.AtomicFile;
 import android.content.Context;
 import android.net.sip.SipProfile;
 import android.text.TextUtils;
+import android.util.EventLog;
 import android.util.Log;
 
 import java.io.File;
@@ -66,9 +67,13 @@ class SipProfileDb {
         mSipPreferences = new SipPreferences(mContext);
     }
 
-    public void deleteProfile(SipProfile p) {
+    public void deleteProfile(SipProfile p) throws IOException {
         synchronized(SipProfileDb.class) {
-            deleteProfile(new File(mProfilesDirectory + p.getProfileName()));
+            File profileFile = new File(mProfilesDirectory, p.getProfileName());
+            if (!isChild(new File(mProfilesDirectory), profileFile)) {
+                throw new IOException("Invalid Profile Credentials!");
+            }
+            deleteProfile(profileFile);
             if (mProfilesCount < 0) retrieveSipProfileListInternal();
         }
     }
@@ -93,7 +98,10 @@ class SipProfileDb {
     public void saveProfile(SipProfile p) throws IOException {
         synchronized(SipProfileDb.class) {
             if (mProfilesCount < 0) retrieveSipProfileListInternal();
-            File f = new File(mProfilesDirectory + p.getProfileName());
+            File f = new File(mProfilesDirectory, p.getProfileName());
+            if (!isChild(new File(mProfilesDirectory), f)) {
+                throw new IOException("Invalid Profile Credentials!");
+            }
             if (!f.exists()) f.mkdirs();
             AtomicFile atomicFile = new AtomicFile(new File(f, PROFILE_OBJ_FILE));
             FileOutputStream fos = null;
@@ -172,5 +180,20 @@ class SipProfileDb {
 
     private static void log(String msg) {
         Log.d(SipUtil.LOG_TAG, PREFIX + msg);
+    }
+
+    /**
+     * Verifies that the file is a direct child of the base directory.
+     */
+    private boolean isChild(File base, File file) {
+        if (base == null || file == null) {
+            return false;
+        }
+        if (!base.equals(file.getAbsoluteFile().getParentFile())) {
+            Log.w(SipUtil.LOG_TAG, "isChild, file is not a child of the base dir.");
+            EventLog.writeEvent(0x534e4554, "31530456", -1, "");
+            return false;
+        }
+        return true;
     }
 }

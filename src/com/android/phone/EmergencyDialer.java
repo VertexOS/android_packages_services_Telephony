@@ -530,6 +530,11 @@ public class EmergencyDialer extends Activity implements View.OnClickListener,
      */
     private void placeCall() {
         mLastNumber = mDigits.getText().toString();
+        // Convert into emergency number if necessary
+        // This is required in some regions (e.g. Taiwan).
+        if (PhoneNumberUtils.isConvertToEmergencyNumberEnabled()) {
+            mLastNumber = PhoneNumberUtils.convertToEmergencyNumber(mLastNumber);
+        }
         if (PhoneUtils.isLocalEmergencyNumber(mLastNumber)) {
             if (DBG) Log.d(LOG_TAG, "placing call to " + mLastNumber);
 

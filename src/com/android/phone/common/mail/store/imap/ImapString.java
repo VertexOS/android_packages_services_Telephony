@@ -16,7 +16,7 @@
 
 package com.android.phone.common.mail.store.imap;
 
-import android.util.Log;
+import com.android.phone.vvm.omtp.VvmLog;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
@@ -137,7 +137,7 @@ public abstract class ImapString extends ImapElement {
             mParsedDate = DATE_TIME_FORMAT.parse(getString());
             return true;
         } catch (ParseException e) {
-            Log.w("ImapString", getString() + " can't be parsed as a date.");
+            VvmLog.w("ImapString", getString() + " can't be parsed as a date.");
             return false;
         }
     }

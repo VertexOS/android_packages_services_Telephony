@@ -19,7 +19,6 @@ import android.text.TextUtils;
 import android.util.Base64;
 import android.util.Base64DataException;
 import android.util.Base64InputStream;
-import android.util.Log;
 
 import com.android.phone.common.mail.Body;
 import com.android.phone.common.mail.BodyPart;
@@ -27,6 +26,7 @@ import com.android.phone.common.mail.Message;
 import com.android.phone.common.mail.MessagingException;
 import com.android.phone.common.mail.Multipart;
 import com.android.phone.common.mail.Part;
+import com.android.phone.vvm.omtp.VvmLog;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.james.mime4j.codec.EncoderUtil;
@@ -267,14 +267,14 @@ public class MimeUtility {
              * If we are not able to process the body there's nothing we can do about it. Return
              * null and let the upper layers handle the missing content.
              */
-            Log.e(LOG_TAG, "Unable to getTextFromPart " + oom.toString());
+            VvmLog.e(LOG_TAG, "Unable to getTextFromPart " + oom.toString());
         }
         catch (Exception e) {
             /*
              * If we are not able to process the body there's nothing we can do about it. Return
              * null and let the upper layers handle the missing content.
              */
-            Log.e(LOG_TAG, "Unable to getTextFromPart " + e.toString());
+            VvmLog.e(LOG_TAG, "Unable to getTextFromPart " + e.toString());
         }
         return null;
     }

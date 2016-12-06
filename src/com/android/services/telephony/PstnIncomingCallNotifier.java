@@ -312,6 +312,17 @@ final class PstnIncomingCallNotifier {
         Connection original = telephonyConnection.getOriginalConnection();
         if (original != null && !original.isIncoming()
                 && Objects.equals(original.getAddress(), unknown.getAddress())) {
+            // If the new unknown connection is an external connection, don't swap one with an
+            // actual connection.  This means a call got pulled away.  We want the actual connection
+            // to disconnect.
+            if (unknown instanceof ImsExternalConnection &&
+                    !(telephonyConnection
+                            .getOriginalConnection() instanceof ImsExternalConnection)) {
+                Log.v(this, "maybeSwapWithUnknownConnection - not swapping regular connection " +
+                        "with external connection.");
+                return false;
+            }
+
             telephonyConnection.setOriginalConnection(unknown);
             return true;
         }

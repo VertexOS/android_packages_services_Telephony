@@ -20,9 +20,10 @@ import android.app.PendingIntent;
 import android.telephony.SmsManager;
 
 import com.android.phone.vvm.omtp.OmtpConstants;
-import com.android.services.telephony.Log;
+import com.android.phone.vvm.omtp.VvmLog;
 
 import java.io.UnsupportedEncodingException;
+import java.util.Locale;
 
 /**
  * Send client originated OMTP messages to the OMTP server.
@@ -73,9 +74,10 @@ public abstract class OmtpMessageSender {
     protected void sendSms(String text, PendingIntent sentIntent) {
         // If application port is set to 0 then send simple text message, else send data message.
         if (mApplicationPort == 0) {
-            Log.v(TAG, String.format("Sending TEXT sms '%s' to %s", text, mDestinationNumber));
+            VvmLog
+                    .v(TAG, String.format("Sending TEXT sms '%s' to %s", text, mDestinationNumber));
             mSmsManager.sendTextMessageWithSelfPermissions(mDestinationNumber, null, text,
-                    sentIntent, null);
+                    sentIntent, null, false);
         } else {
             byte[] data;
             try {
@@ -83,8 +85,9 @@ public abstract class OmtpMessageSender {
             } catch (UnsupportedEncodingException e) {
                 throw new IllegalStateException("Failed to encode: " + text);
             }
-            Log.v(TAG, String.format("Sending BINARY sms '%s' to %s:%d", text, mDestinationNumber,
-                    mApplicationPort));
+            VvmLog.v(TAG,
+                    String.format(Locale.US, "Sending BINARY sms '%s' to %s:%d", text,
+                            mDestinationNumber, mApplicationPort));
             mSmsManager.sendDataMessageWithSelfPermissions(mDestinationNumber, null,
                     mApplicationPort, data, sentIntent, null);
         }

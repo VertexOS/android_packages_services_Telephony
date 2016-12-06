@@ -40,16 +40,16 @@
     <string name="registration_status_registering" msgid="2677183977796278749">"Бүртгэж байна…"</string>
     <string name="registration_status_still_trying" msgid="7648151061205513458">"Оролдож байна…"</string>
     <string name="registration_status_not_receiving" msgid="7620333886153361090">"Дуудлага хүлээж авахгүй байна."</string>
-    <string name="registration_status_no_data" msgid="2541999976218192413">"Интернэт холболтгүй болсон учир акаунтын бүртгэл зогслоо."</string>
-    <string name="registration_status_no_wifi_data" msgid="9154717387473039546">"Wi-Fi холболтгүй болсон учир акаунтын бүртгэл зогслоо"</string>
+    <string name="registration_status_no_data" msgid="2541999976218192413">"Интернэт холболтгүй болсон учир бүртгэлийн бүртгэл зогслоо."</string>
+    <string name="registration_status_no_wifi_data" msgid="9154717387473039546">"Wi-Fi холболтгүй болсон учир бүртгэлийн бүртгэл зогслоо"</string>
     <string name="registration_status_not_running" msgid="514205414303796800">"Акаунтын бүртгэл амжилтгүй."</string>
     <string name="registration_status_done" msgid="3264961069247314253">"Дуудлага хүлээн авч байна."</string>
     <string name="registration_status_failed_try_later" msgid="2199970021756384317">"Акаунтын бүртгэл амжилтгүй боллоо: (<xliff:g id="REGISTRATION_ERROR_MESSAGE">%s</xliff:g>); дараа дахин оролдох болно"</string>
     <string name="registration_status_invalid_credentials" msgid="8406872554323334182">"Акаунтын бүртгэл амжилтгүй боллооl: Хэрэглэгчийн нэр буюу нууц үг буруу"</string>
     <string name="registration_status_server_unreachable" msgid="7710275557045148634">"Акаунтын бүртгэл амжилтгүй: Серверийн нэрийг шалгана уу."</string>
     <string name="third_party_account_summary" msgid="9041060473615403041">"Энэ акаунтыг <xliff:g id="ACCOUNT_OWNER">%s</xliff:g> апп одоо ашиглаж байна."</string>
-    <string name="sip_edit_title" msgid="1967247832635750410">"SIP акаунтын мэдээлэл"</string>
-    <string name="sip_edit_new_title" msgid="266414118302574305">"SIP акаунтын мэдээлэл"</string>
+    <string name="sip_edit_title" msgid="1967247832635750410">"SIP бүртгэлийн мэдээлэл"</string>
+    <string name="sip_edit_new_title" msgid="266414118302574305">"SIP бүртгэлийн мэдээлэл"</string>
     <string name="domain_address_title" msgid="1968479941328225423">"Сервер"</string>
     <string name="username_title" msgid="6770064611005663470">"Хэрэглэгчийн нэр"</string>
     <string name="password_title" msgid="5289013731515564295">"Нууц үг"</string>
@@ -61,7 +61,9 @@
     <string name="advanced_settings" msgid="6622996380747040711">"Сонголтын тохиргоо"</string>
     <string name="auth_username_title" msgid="8262491689004708265">"Гэрчлэлийн хэрэглэгчийн нэр"</string>
     <string name="auth_username_summary" msgid="941160241371436473">"Гэрчлэлд ашигласан хэрэглэгчийн нэр"</string>
-    <string name="default_preference_summary" msgid="1979249643719483249">"&lt;Тохируулаагүй&gt;"</string>
+    <string name="default_preference_summary_username" msgid="8404717434312826082">"&lt;Тохируулаагүй&gt;"</string>
+    <string name="default_preference_summary_password" msgid="4464464672997027904">"&lt;Тохируулаагүй&gt;"</string>
+    <string name="default_preference_summary_domain_address" msgid="4871971710197441673">"&lt;Тохируулаагүй&gt;"</string>
     <string name="display_name_summary" msgid="7155076491675565407">"&lt;Хэрэглэгчийн нэртэй адил&gt;"</string>
     <string name="optional_summary" msgid="2363105560396317624">"&lt;Сонголтын&gt;"</string>
     <string name="advanced_settings_show" msgid="7838761602853998622">"▷ Бүгдийг харуулахын тулд хүрнэ үү"</string>

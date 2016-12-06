@@ -61,7 +61,9 @@
     <string name="advanced_settings" msgid="6622996380747040711">"İsteğe bağlı ayarlar"</string>
     <string name="auth_username_title" msgid="8262491689004708265">"Kimlik doğrulama kullanıcı adı"</string>
     <string name="auth_username_summary" msgid="941160241371436473">"Kimlik doğrulama için kullanılan kullanıcı adı"</string>
-    <string name="default_preference_summary" msgid="1979249643719483249">"&lt;Ayarlanmadı&gt;"</string>
+    <string name="default_preference_summary_username" msgid="8404717434312826082">"&lt;Ayarlanmadı&gt;"</string>
+    <string name="default_preference_summary_password" msgid="4464464672997027904">"&lt;Ayarlanmadı&gt;"</string>
+    <string name="default_preference_summary_domain_address" msgid="4871971710197441673">"&lt;Ayarlanmadı&gt;"</string>
     <string name="display_name_summary" msgid="7155076491675565407">"&lt;Kullanıcı adıyla aynı&gt;"</string>
     <string name="optional_summary" msgid="2363105560396317624">"&lt;İsteğe bağlı&gt;"</string>
     <string name="advanced_settings_show" msgid="7838761602853998622">"▷ Tümünü görmek için dokunun"</string>

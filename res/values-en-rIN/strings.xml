@@ -147,6 +147,16 @@
     <string name="no_change" msgid="3186040086622435212">"No changes were made."</string>
     <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"Choose voicemail service"</string>
     <string name="voicemail_default" msgid="2001233554889016880">"Your operator"</string>
+    <string name="vm_change_pin_old_pin" msgid="7295220109886682573">"Old PIN"</string>
+    <string name="vm_change_pin_new_pin" msgid="5412922262839438097">"New PIN"</string>
+    <string name="vm_change_pin_progress_message" msgid="3977357361934350336">"Please wait."</string>
+    <string name="vm_change_pin_error_too_short" msgid="5974971097302710497">"The new PIN is too short."</string>
+    <string name="vm_change_pin_error_too_long" msgid="8476870806115051865">"The new PIN is too long."</string>
+    <string name="vm_change_pin_error_too_weak" msgid="7883744811891784882">"The new PIN is too weak. A strong password should not have a continuous sequence or repeated digits."</string>
+    <string name="vm_change_pin_error_mismatch" msgid="2754685537970757317">"The old PIN doesn\'t match."</string>
+    <string name="vm_change_pin_error_invalid" msgid="3972205462701668653">"The new PIN contains invalid characters."</string>
+    <string name="vm_change_pin_error_system_error" msgid="6610603326230000207">"Unable to change PIN"</string>
+    <string name="vvm_unsupported_message_format" msgid="11795090778411977">"Unsupported message type. Call <xliff:g id="NUMBER">%s</xliff:g> to listen."</string>
     <string name="mobile_networks" msgid="2843854043339307375">"Mobile network settings"</string>
     <string name="label_available" msgid="1181658289009300430">"Available networks"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"Searching…"</string>
@@ -198,6 +208,7 @@
     <item msgid="3817924849415716259">"GSM/WCDMA preferred"</item>
   </string-array>
     <string name="enhanced_4g_lte_mode_title" msgid="522191650223239171">"Enhanced 4G LTE Mode"</string>
+    <string name="enhanced_4g_lte_mode_title_variant" msgid="4871126028907265406">"Advanced calling"</string>
     <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"Use LTE services to improve voice and other communications (recommended)"</string>
     <string name="data_enabled" msgid="5972538663568715366">"Data enabled"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"Allow data usage"</string>
@@ -436,6 +447,7 @@
     <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"Mobile network is not available. Connect to a wireless network to make a call."</string>
     <string name="incall_error_no_phone_number_supplied" msgid="1150414018684246528">"To place a call, enter a valid number."</string>
     <string name="incall_error_call_failed" msgid="5891978320269774095">"Call failed."</string>
+    <string name="incall_error_cannot_add_call" msgid="5206923515522412110">"Call cannot be added at the moment."</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"Starting MMI sequence…"</string>
     <string name="incall_error_supp_service_unknown" msgid="655570339115407698">"Service not supported"</string>
     <string name="incall_error_supp_service_switch" msgid="5237002176899962862">"Can\'t switch calls."</string>
@@ -446,6 +458,7 @@
     <string name="incall_error_supp_service_hangup" msgid="7434513517153834426">"Can\'t release call(s)."</string>
     <string name="incall_error_supp_service_hold" msgid="7967020511232222078">"Can\'t hold calls."</string>
     <string name="incall_error_wfc_only_no_wireless_network" msgid="1782466780452640089">"Connect to a wireless network to make a call."</string>
+    <string name="incall_error_promote_wfc" msgid="106510757624022064">"Enable Wi-Fi calling to make a call."</string>
     <string name="emergency_enable_radio_dialog_title" msgid="4627849966634578257">"Emergency call"</string>
     <string name="emergency_enable_radio_dialog_message" msgid="207613549344420291">"Turning on radio…"</string>
     <string name="emergency_enable_radio_dialog_retry" msgid="5960061579996526883">"No service. Trying again…"</string>
@@ -540,6 +553,8 @@
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"Vibrate"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"Vibrate"</string>
     <string name="voicemail_visual_voicemail_switch_title" msgid="5012622186976275457">"Visual Voicemail"</string>
+    <string name="voicemail_set_pin_dialog_title" msgid="2797924461029093837">"Set PIN"</string>
+    <string name="voicemail_change_pin_dialog_title" msgid="6035421908626121564">"Change PIN"</string>
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"Sound"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"Ringtone &amp; Vibrate"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"Built-in SIM cards"</string>
@@ -551,10 +566,22 @@
     <string name="sim_description_emergency_calls" msgid="7535215397212301562">"Emergency calling only"</string>
     <string name="sim_description_default" msgid="4778679519938775515">"SIM card, slot: <xliff:g id="SLOT_ID">%s</xliff:g>"</string>
     <string name="accessibility_settings_activity_title" msgid="8562004288733103868">"Accessibility"</string>
-    <string name="status_hint_label_incoming_wifi_call" msgid="8772915926382037499">"Incoming Wi-Fi call"</string>
+    <string name="status_hint_label_incoming_wifi_call" msgid="5932176406432044638">"Wi-Fi call from"</string>
     <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"Wi-Fi call"</string>
     <string name="emergency_action_launch_hint" msgid="4906759256275562674">"Tap again to open"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"There was an error while decoding the message."</string>
     <string name="callFailed_cdma_activation" msgid="2307989779233262164">"A SIM card has activated your service and updated your phone\'s roaming capabilities."</string>
     <string name="callFailed_cdma_call_limit" msgid="1556916577171457086">"There are too many active calls. Please end or merge existing calls before placing a new one."</string>
+    <string name="change_pin_title" msgid="7790232089699034029">"Change Voicemail PIN"</string>
+    <string name="change_pin_continue_label" msgid="2135088662420163447">"Continue"</string>
+    <string name="change_pin_cancel_label" msgid="353535488390948596">"Cancel"</string>
+    <string name="change_pin_ok_label" msgid="6204308560844889926">"OK"</string>
+    <string name="change_pin_enter_old_pin_header" msgid="419179847657548887">"Confirm your old PIN"</string>
+    <string name="change_pin_enter_old_pin_hint" msgid="8579171678763615453">"Enter your voicemail PIN to continue."</string>
+    <string name="change_pin_enter_new_pin_header" msgid="2611191814590251532">"Set a new PIN"</string>
+    <string name="change_pin_enter_new_pin_hint" msgid="2322940054329689309">"PIN must be <xliff:g id="MIN">%1$d</xliff:g>-<xliff:g id="MAX">%2$d</xliff:g> digits long."</string>
+    <string name="change_pin_confirm_pin_header" msgid="8113764019347322170">"Confirm your PIN"</string>
+    <string name="change_pin_confirm_pins_dont_match" msgid="4795052654904027909">"PINs don\'t match"</string>
+    <string name="change_pin_succeeded" msgid="2022852286442211151">"Voicemail PIN updated"</string>
+    <string name="change_pin_system_error" msgid="8308462387154257840">"Unable to set PIN"</string>
 </resources>

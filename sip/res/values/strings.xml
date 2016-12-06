@@ -115,8 +115,12 @@
     <!-- Help text of the auth_username field. [CHAR LIMIT=NONE] -->
     <string name="auth_username_summary">Username used for authentication</string>
 
-    <!-- Initial status of the preferences is '<Not set>'. [CHAR LIMIT=NONE] -->
-    <string name="default_preference_summary">&lt;Not set&gt;</string>
+    <!-- Initial status of the username preference is '<Not set>'. [CHAR LIMIT=NONE] -->
+    <string name="default_preference_summary_username">&lt;Not set&gt;</string>
+    <!-- Initial status of the password preference is '<Not set>'. [CHAR LIMIT=NONE] -->
+    <string name="default_preference_summary_password">&lt;Not set&gt;</string>
+    <!-- Initial status of the domain address preference is '<Not set>'. [CHAR LIMIT=NONE] -->
+    <string name="default_preference_summary_domain_address">&lt;Not set&gt;</string>
     <!-- Default value for the display-name preference summary. [CHAR LIMIT=NONE] -->
     <string name="display_name_summary">&lt;Same as username&gt;</string>
     <!-- Default value for the outbound-proxy-address preference summary. [CHAR LIMIT=NONE] -->

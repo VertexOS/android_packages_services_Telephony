@@ -91,25 +91,6 @@ final class PstnPhoneCapabilitiesNotifier {
         try {
             boolean isVideoCapable = (Boolean) ar.result;
             Log.d(this, "handleVideoCapabilitesChanged. Video capability - " + isVideoCapable);
-            PhoneAccountHandle accountHandle =
-                    PhoneUtils.makePstnPhoneAccountHandle(mPhone);
-
-            TelecomManager telecomMgr = TelecomManager.from(mPhone.getContext());
-            PhoneAccount oldPhoneAccount = telecomMgr.getPhoneAccount(accountHandle);
-            PhoneAccount.Builder builder = new PhoneAccount.Builder(oldPhoneAccount);
-
-            int oldCapabilities = oldPhoneAccount.getCapabilities();
-            boolean wasVideoPresenceSupported =
-                    (oldCapabilities & PhoneAccount.CAPABILITY_VIDEO_CALLING_RELIES_ON_PRESENCE)
-                            != 0;
-            int capabilites = newCapabilities(oldPhoneAccount.getCapabilities(),
-                    PhoneAccount.CAPABILITY_VIDEO_CALLING, isVideoCapable);
-            if (wasVideoPresenceSupported && isVideoCapable) {
-                capabilites |= PhoneAccount.CAPABILITY_VIDEO_CALLING_RELIES_ON_PRESENCE;
-            }
-
-            builder.setCapabilities(capabilites);
-            telecomMgr.registerPhoneAccount(builder.build());
             mListener.onVideoCapabilitiesChanged(isVideoCapable);
         } catch (Exception e) {
             Log.d(this, "handleVideoCapabilitesChanged. Exception=" + e);

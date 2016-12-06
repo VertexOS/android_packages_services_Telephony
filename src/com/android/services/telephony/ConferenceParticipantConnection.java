@@ -180,8 +180,19 @@ public class ConferenceParticipantConnection extends Connection {
         if (TextUtils.isEmpty(number)) {
             return PhoneConstants.PRESENTATION_RESTRICTED;
         }
+        // Per RFC3261, the host name portion can also potentially include extra information:
+        // E.g. sip:anonymous1@anonymous.invalid;legid=1
+        // In this case, hostName will be anonymous.invalid and there is an extra parameter for
+        // legid=1.
+        // Parameters are optional, and the address (e.g. test@test.com) will always be the first
+        // part, with any parameters coming afterwards.
+        String hostParts[] = number.split("[;]");
+        String addressPart = hostParts[0];
 
-        String numberParts[] = number.split("[@]");
+        // Get the number portion from the address part.
+        // This will typically be formatted similar to: 6505551212@test.com
+        String numberParts[] = addressPart.split("[@]");
+
         // If we can't parse the host name out of the URI, then there is probably other data
         // present, and is likely a valid SIP URI.
         if (numberParts.length != 2) {
@@ -314,6 +325,10 @@ public class ConferenceParticipantConnection extends Connection {
         sb.append(System.identityHashCode(this));
         sb.append(" endPoint:");
         sb.append(Log.pii(mEndpoint));
+        sb.append(" address:");
+        sb.append(Log.pii(getAddress()));
+        sb.append(" addressPresentation:");
+        sb.append(getAddressPresentation());
         sb.append(" parentConnection:");
         sb.append(Log.pii(mParentConnection.getAddress()));
         sb.append(" state:");

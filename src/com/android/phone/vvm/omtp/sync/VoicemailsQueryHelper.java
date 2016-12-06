@@ -25,7 +25,6 @@ import android.provider.VoicemailContract;
 import android.provider.VoicemailContract.Voicemails;
 import android.telecom.PhoneAccountHandle;
 import android.telecom.Voicemail;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -150,15 +149,6 @@ public class VoicemailsQueryHelper {
                 new String[] { Long.toString(voicemail.getId()) });
     }
 
-    /**
-     * Sends an update command to the voicemail content provider for a list of voicemails.
-     * From the view of the provider, since the updater is the owner of the entry, a blank
-     * "update" means that the voicemail source is indicating that the server has up-to-date
-     * information on the voicemail. This flips the "dirty" bit to "0".
-     *
-     * @param voicemails The list of voicemails to update
-     * @return The number of voicemails updated
-     */
     public int markReadInDatabase(List<Voicemail> voicemails) {
         int count = voicemails.size();
         for (int i = 0; i < count; i++) {
@@ -174,6 +164,32 @@ public class VoicemailsQueryHelper {
         Uri uri = ContentUris.withAppendedId(mSourceUri, voicemail.getId());
         ContentValues contentValues = new ContentValues();
         contentValues.put(Voicemails.IS_READ, "1");
+        mContentResolver.update(uri, contentValues, null, null);
+    }
+
+    /**
+     * Sends an update command to the voicemail content provider for a list of voicemails. From the
+     * view of the provider, since the updater is the owner of the entry, a blank "update" means
+     * that the voicemail source is indicating that the server has up-to-date information on the
+     * voicemail. This flips the "dirty" bit to "0".
+     *
+     * @param voicemails The list of voicemails to update
+     * @return The number of voicemails updated
+     */
+    public int markCleanInDatabase(List<Voicemail> voicemails) {
+        int count = voicemails.size();
+        for (int i = 0; i < count; i++) {
+            markCleanInDatabase(voicemails.get(i));
+        }
+        return count;
+    }
+
+    /**
+     * Utility method to mark single message as clean.
+     */
+    public void markCleanInDatabase(Voicemail voicemail) {
+        Uri uri = ContentUris.withAppendedId(mSourceUri, voicemail.getId());
+        ContentValues contentValues = new ContentValues();
         mContentResolver.update(uri, contentValues, null, null);
     }
 

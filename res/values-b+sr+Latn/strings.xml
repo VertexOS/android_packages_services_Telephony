@@ -147,6 +147,16 @@
     <string name="no_change" msgid="3186040086622435212">"Nisu izvršene nikakve promene."</string>
     <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"Odaberite uslugu govorne pošte"</string>
     <string name="voicemail_default" msgid="2001233554889016880">"Mobilni operater"</string>
+    <string name="vm_change_pin_old_pin" msgid="7295220109886682573">"Stari PIN"</string>
+    <string name="vm_change_pin_new_pin" msgid="5412922262839438097">"Novi PIN"</string>
+    <string name="vm_change_pin_progress_message" msgid="3977357361934350336">"Sačekajte."</string>
+    <string name="vm_change_pin_error_too_short" msgid="5974971097302710497">"Novi PIN je prekratak."</string>
+    <string name="vm_change_pin_error_too_long" msgid="8476870806115051865">"Novi PIN je predugačak."</string>
+    <string name="vm_change_pin_error_too_weak" msgid="7883744811891784882">"Novi PIN je preslab. Jaka lozinka ne treba da sadrži uzastopni niz ni ponovljene cifre."</string>
+    <string name="vm_change_pin_error_mismatch" msgid="2754685537970757317">"Stari PIN se ne podudara."</string>
+    <string name="vm_change_pin_error_invalid" msgid="3972205462701668653">"Novi PIN sadrži nevažeće znakove."</string>
+    <string name="vm_change_pin_error_system_error" msgid="6610603326230000207">"Promena PIN-a nije uspela"</string>
+    <string name="vvm_unsupported_message_format" msgid="11795090778411977">"Nepodržani tip poruke. Pozovite <xliff:g id="NUMBER">%s</xliff:g> da biste je preslušali."</string>
     <string name="mobile_networks" msgid="2843854043339307375">"Podešavanja mobilne mreže"</string>
     <string name="label_available" msgid="1181658289009300430">"Dostupne mreže"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"Pretražuje se…"</string>
@@ -198,6 +208,7 @@
     <item msgid="3817924849415716259">"GSM/WCDMA ima prednost"</item>
   </string-array>
     <string name="enhanced_4g_lte_mode_title" msgid="522191650223239171">"Poboljšani 4G LTE režim"</string>
+    <string name="enhanced_4g_lte_mode_title_variant" msgid="4871126028907265406">"Napredno pozivanje"</string>
     <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"Korišćenje LTE usluga za poboljšanje glasovnih i drugih komunikacija (preporučeno)"</string>
     <string name="data_enabled" msgid="5972538663568715366">"Podaci su omogućeni"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"Omogućavanje potrošnje podataka"</string>
@@ -436,6 +447,7 @@
     <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"Mobilna mreža nije dostupna. Povežite se na bežičnu mrežu da biste uputili poziv."</string>
     <string name="incall_error_no_phone_number_supplied" msgid="1150414018684246528">"Da biste uputili poziv, unesite važeći broj."</string>
     <string name="incall_error_call_failed" msgid="5891978320269774095">"Poziv nije uspeo."</string>
+    <string name="incall_error_cannot_add_call" msgid="5206923515522412110">"Trenutno nije moguće dodati poziv."</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"Pokretanje MMI sekvence"</string>
     <string name="incall_error_supp_service_unknown" msgid="655570339115407698">"Usluga nije podržana"</string>
     <string name="incall_error_supp_service_switch" msgid="5237002176899962862">"Zamena poziva nije uspela."</string>
@@ -446,6 +458,7 @@
     <string name="incall_error_supp_service_hangup" msgid="7434513517153834426">"Uspostavljanje poziva nije uspelo."</string>
     <string name="incall_error_supp_service_hold" msgid="7967020511232222078">"Nije moguće stavljati pozive na čekanje."</string>
     <string name="incall_error_wfc_only_no_wireless_network" msgid="1782466780452640089">"Povežite se na bežičnu mrežu da biste uputili poziv."</string>
+    <string name="incall_error_promote_wfc" msgid="106510757624022064">"Omogućite pozivanje preko Wi-Fi-ja da biste uputili poziv."</string>
     <string name="emergency_enable_radio_dialog_title" msgid="4627849966634578257">"Hitan poziv"</string>
     <string name="emergency_enable_radio_dialog_message" msgid="207613549344420291">"Uključivanje radija…"</string>
     <string name="emergency_enable_radio_dialog_retry" msgid="5960061579996526883">"Nema mreže. Ponovni pokušaj…"</string>
@@ -535,7 +548,7 @@
     <string name="voicemail_number_not_set" msgid="6724904736891087856">"&lt;Nije podešeno&gt;"</string>
     <string name="other_settings" msgid="3672912580359716394">"Druga podešavanja poziva"</string>
     <string name="calling_via_template" msgid="4839419581866928142">"Pozivanje preko <xliff:g id="PROVIDER_NAME">%s</xliff:g>"</string>
-    <string name="contactPhoto" msgid="4713193418046639466">"fotografija kontakta"</string>
+    <string name="contactPhoto" msgid="4713193418046639466">"slika kontakta"</string>
     <string name="goPrivate" msgid="865837794424530980">"idi na privatno"</string>
     <string name="selectContact" msgid="781975788478987237">"izaberite kontakt"</string>
     <string name="not_voice_capable" msgid="2739898841461577811">"Audio pozivi nisu podržani"</string>
@@ -543,6 +556,8 @@
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"Vibracija"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"Vibracija"</string>
     <string name="voicemail_visual_voicemail_switch_title" msgid="5012622186976275457">"Vizuelna govorna pošta"</string>
+    <string name="voicemail_set_pin_dialog_title" msgid="2797924461029093837">"Podesite PIN"</string>
+    <string name="voicemail_change_pin_dialog_title" msgid="6035421908626121564">"Promenite PIN"</string>
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"Zvuk"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"Melodija zvona i vibracija"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"Ugrađene SIM kartice"</string>
@@ -554,10 +569,22 @@
     <string name="sim_description_emergency_calls" msgid="7535215397212301562">"Samo za hitne pozive"</string>
     <string name="sim_description_default" msgid="4778679519938775515">"SIM kartica, otvor: <xliff:g id="SLOT_ID">%s</xliff:g>"</string>
     <string name="accessibility_settings_activity_title" msgid="8562004288733103868">"Pristupačnost"</string>
-    <string name="status_hint_label_incoming_wifi_call" msgid="8772915926382037499">"Dolazni Wi-Fi poziv"</string>
+    <string name="status_hint_label_incoming_wifi_call" msgid="5932176406432044638">"Wi-Fi poziv od"</string>
     <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"Wi-Fi poziv"</string>
     <string name="emergency_action_launch_hint" msgid="4906759256275562674">"Dodirnite ponovo da biste otvorili"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"Došlo je do greške pri dekodiranju poruke."</string>
     <string name="callFailed_cdma_activation" msgid="2307989779233262164">"SIM kartica je aktivirala uslugu i ažurirala funkcije rominga na telefonu."</string>
     <string name="callFailed_cdma_call_limit" msgid="1556916577171457086">"Ima previše aktivnih poziva. Završite ili objedinite postojeće pozive pre nego što uputite novi."</string>
+    <string name="change_pin_title" msgid="7790232089699034029">"Promenite PIN kôd govorne pošte"</string>
+    <string name="change_pin_continue_label" msgid="2135088662420163447">"Nastavi"</string>
+    <string name="change_pin_cancel_label" msgid="353535488390948596">"Otkaži"</string>
+    <string name="change_pin_ok_label" msgid="6204308560844889926">"Potvrdi"</string>
+    <string name="change_pin_enter_old_pin_header" msgid="419179847657548887">"Potvrdite stari PIN"</string>
+    <string name="change_pin_enter_old_pin_hint" msgid="8579171678763615453">"kôd govorne pošte da biste nastavili."</string>
+    <string name="change_pin_enter_new_pin_header" msgid="2611191814590251532">"Podesite novi PIN"</string>
+    <string name="change_pin_enter_new_pin_hint" msgid="2322940054329689309">"Broj cifara koje PIN mora da sadrži: <xliff:g id="MIN">%1$d</xliff:g>–<xliff:g id="MAX">%2$d</xliff:g>."</string>
+    <string name="change_pin_confirm_pin_header" msgid="8113764019347322170">"Potvrdite PIN"</string>
+    <string name="change_pin_confirm_pins_dont_match" msgid="4795052654904027909">"PIN-ovi se ne podudaraju"</string>
+    <string name="change_pin_succeeded" msgid="2022852286442211151">"PIN kôd govorne pošte je ažuriran"</string>
+    <string name="change_pin_system_error" msgid="8308462387154257840">"Podešavanje PIN-a nije uspelo"</string>
 </resources>

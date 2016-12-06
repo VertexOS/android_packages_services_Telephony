@@ -15,9 +15,12 @@
  */
 package com.android.phone.vvm.omtp.sms;
 
+import android.os.Bundle;
 import android.telecom.Log;
 
+import com.android.phone.NeededForTesting;
 import com.android.phone.vvm.omtp.OmtpConstants;
+import com.android.phone.vvm.omtp.VisualVoicemailPreferences;
 
 /**
  * Structured data representation of OMTP STATUS message.
@@ -42,6 +45,7 @@ public class StatusMessage {
     private final String mSmtpPort;
     private final String mSmtpUserName;
     private final String mSmtpPassword;
+    private final String mTuiPasswordLength;
 
     @Override
     public String toString() {
@@ -56,23 +60,35 @@ public class StatusMessage {
                 + ", mImapPassword=" + Log.pii(mImapPassword)
                 + ", mSmtpPort=" + mSmtpPort
                 + ", mSmtpUserName=" + mSmtpUserName
-                + ", mSmtpPassword=" + Log.pii(mSmtpPassword) + "]";
+                + ", mSmtpPassword=" + Log.pii(mSmtpPassword)
+                + ", mTuiPasswordLength=" + mTuiPasswordLength + "]";
     }
 
-    public StatusMessage(WrappedMessageData wrappedData) {
-        mProvisioningStatus = wrappedData.extractString(OmtpConstants.PROVISIONING_STATUS);
-        mStatusReturnCode = wrappedData.extractString(OmtpConstants.RETURN_CODE);
-        mSubscriptionUrl = wrappedData.extractString(OmtpConstants.SUBSCRIPTION_URL);
-        mServerAddress = wrappedData.extractString(OmtpConstants.SERVER_ADDRESS);
-        mTuiAccessNumber = wrappedData.extractString(OmtpConstants.TUI_ACCESS_NUMBER);
-        mClientSmsDestinationNumber = wrappedData.extractString(
+    public StatusMessage(Bundle wrappedData) {
+        mProvisioningStatus = unquote(getString(wrappedData, OmtpConstants.PROVISIONING_STATUS));
+        mStatusReturnCode = getString(wrappedData, OmtpConstants.RETURN_CODE);
+        mSubscriptionUrl = getString(wrappedData, OmtpConstants.SUBSCRIPTION_URL);
+        mServerAddress = getString(wrappedData, OmtpConstants.SERVER_ADDRESS);
+        mTuiAccessNumber = getString(wrappedData, OmtpConstants.TUI_ACCESS_NUMBER);
+        mClientSmsDestinationNumber = getString(wrappedData,
                 OmtpConstants.CLIENT_SMS_DESTINATION_NUMBER);
-        mImapPort = wrappedData.extractString(OmtpConstants.IMAP_PORT);
-        mImapUserName = wrappedData.extractString(OmtpConstants.IMAP_USER_NAME);
-        mImapPassword = wrappedData.extractString(OmtpConstants.IMAP_PASSWORD);
-        mSmtpPort = wrappedData.extractString(OmtpConstants.SMTP_PORT);
-        mSmtpUserName = wrappedData.extractString(OmtpConstants.SMTP_USER_NAME);
-        mSmtpPassword = wrappedData.extractString(OmtpConstants.SMTP_PASSWORD);
+        mImapPort = getString(wrappedData, OmtpConstants.IMAP_PORT);
+        mImapUserName = getString(wrappedData, OmtpConstants.IMAP_USER_NAME);
+        mImapPassword = getString(wrappedData, OmtpConstants.IMAP_PASSWORD);
+        mSmtpPort = getString(wrappedData, OmtpConstants.SMTP_PORT);
+        mSmtpUserName = getString(wrappedData, OmtpConstants.SMTP_USER_NAME);
+        mSmtpPassword = getString(wrappedData, OmtpConstants.SMTP_PASSWORD);
+        mTuiPasswordLength = getString(wrappedData, OmtpConstants.TUI_PASSWORD_LENGTH);
+    }
+
+    private static String unquote(String string) {
+        if (string.length() < 2) {
+            return string;
+        }
+        if (string.startsWith("\"") && string.endsWith("\"")) {
+            return string.substring(1, string.length() - 1);
+        }
+        return string;
     }
 
     /**
@@ -93,6 +109,7 @@ public class StatusMessage {
      * @return the URL of the voicemail server. This is the URL to send the users to for subscribing
      * to the visual voicemail service.
      */
+    @NeededForTesting
     public String getSubscriptionUrl() {
         return mSubscriptionUrl;
     }
@@ -109,6 +126,7 @@ public class StatusMessage {
      * @return the Telephony User Interface number to call to access voicemails directly from the
      * IVR.
      */
+    @NeededForTesting
     public String getTuiAccessNumber() {
         return mTuiAccessNumber;
     }
@@ -116,6 +134,7 @@ public class StatusMessage {
     /**
      * @return the number to which client originated SMSes should be sent to.
      */
+    @NeededForTesting
     public String getClientSmsDestinationNumber() {
         return mClientSmsDestinationNumber;
     }
@@ -144,6 +163,7 @@ public class StatusMessage {
     /**
      * @return the SMTP server port to talk to.
      */
+    @NeededForTesting
     public String getSmtpPort() {
         return mSmtpPort;
     }
@@ -151,6 +171,7 @@ public class StatusMessage {
     /**
      * @return the SMTP user name to be used for SMTP authentication.
      */
+    @NeededForTesting
     public String getSmtpUserName() {
         return mSmtpUserName;
     }
@@ -158,7 +179,32 @@ public class StatusMessage {
     /**
      * @return the SMTP password to be used for SMTP authentication.
      */
+    @NeededForTesting
     public String getSmtpPassword() {
         return mSmtpPassword;
+    }
+
+    public String getTuiPasswordLength() {
+        return mTuiPasswordLength;
+    }
+
+    private static String getString(Bundle bundle, String key) {
+        String value = bundle.getString(key);
+        if (value == null) {
+            return "";
+        }
+        return value;
+    }
+
+    /**
+     * Saves a StatusMessage to the {@link VisualVoicemailPreferences}. Not all fields are saved.
+     */
+    public VisualVoicemailPreferences.Editor putStatus(VisualVoicemailPreferences.Editor editor) {
+        return editor
+                .putString(OmtpConstants.IMAP_PORT, getImapPort())
+                .putString(OmtpConstants.SERVER_ADDRESS, getServerAddress())
+                .putString(OmtpConstants.IMAP_USER_NAME, getImapUserName())
+                .putString(OmtpConstants.IMAP_PASSWORD, getImapPassword())
+                .putString(OmtpConstants.TUI_PASSWORD_LENGTH, getTuiPasswordLength());
     }
 }
