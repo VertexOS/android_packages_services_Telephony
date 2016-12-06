@@ -439,7 +439,8 @@
     <string name="notification_voicemail_no_vm_number" msgid="760963466895609716">"Número correio de voz desconhecido"</string>
     <string name="notification_network_selection_title" msgid="4224455487793492772">"Sem serviço"</string>
     <string name="notification_network_selection_text" msgid="2607085729661923269">"A rede selecionada (<xliff:g id="OPERATOR_NAME">%s</xliff:g>) não está disponível"</string>
-    <string name="incall_error_power_off" msgid="2947938060513306698">"Desative o modo avião para fazer uma chamada."</string>
+    <string name="incall_error_power_off" product="watch" msgid="772302793483607711">"Desative o modo avião ou o modo de economia de bateria para fazer uma chamada."</string>
+    <string name="incall_error_power_off" product="default" msgid="2947938060513306698">"Desative o modo avião para fazer uma chamada."</string>
     <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"Desative o modo avião ou conecte-se a uma rede sem fio para fazer uma chamada."</string>
     <string name="incall_error_ecm_emergency_only" msgid="738708660612388692">"Saia do modo de retorno de chamada de emergência para fazer uma chamada que não seja de emergência."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"Não registrado na rede."</string>

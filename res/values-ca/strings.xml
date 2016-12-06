@@ -439,7 +439,9 @@
     <string name="notification_voicemail_no_vm_number" msgid="760963466895609716">"Número de la bústia de veu desconegut"</string>
     <string name="notification_network_selection_title" msgid="4224455487793492772">"Sense servei"</string>
     <string name="notification_network_selection_text" msgid="2607085729661923269">"La xarxa seleccionada (<xliff:g id="OPERATOR_NAME">%s</xliff:g>) no està disponible"</string>
-    <string name="incall_error_power_off" msgid="2947938060513306698">"Per fer una trucada, desactiva el mode d\'avió."</string>
+    <!-- no translation found for incall_error_power_off (772302793483607711) -->
+    <skip />
+    <string name="incall_error_power_off" product="default" msgid="2947938060513306698">"Per fer una trucada, desactiva el mode d\'avió."</string>
     <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"Per fer una trucada, desactiva el mode d\'avió o connecta amb una xarxa sense fil."</string>
     <string name="incall_error_ecm_emergency_only" msgid="738708660612388692">"Surt del mode de devolució de trucada d\'emergència per fer un altre tipus de trucada."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"No registrat a la xarxa."</string>

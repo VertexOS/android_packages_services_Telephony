@@ -439,7 +439,8 @@
     <string name="notification_voicemail_no_vm_number" msgid="760963466895609716">"குரலஞ்சல் எண் அறியப்படவில்லை"</string>
     <string name="notification_network_selection_title" msgid="4224455487793492772">"சேவை இல்லை"</string>
     <string name="notification_network_selection_text" msgid="2607085729661923269">"தேர்ந்தெடுத்த நெட்வொர்க் (<xliff:g id="OPERATOR_NAME">%s</xliff:g>) கிடைக்கவில்லை"</string>
-    <string name="incall_error_power_off" msgid="2947938060513306698">"அழைக்க, விமானப் பயன்முறையை முடக்கவும்."</string>
+    <string name="incall_error_power_off" product="watch" msgid="772302793483607711">"அழைக்க, விமானப் பயன்முறை அல்லது பேட்டரி சேமிப்பான் பயன்முறையை முடக்கவும்."</string>
+    <string name="incall_error_power_off" product="default" msgid="2947938060513306698">"அழைக்க, விமானப் பயன்முறையை முடக்கவும்."</string>
     <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"அழைக்க, விமானப் பயன்முறையை முடக்கவும் அல்லது வயர்லெஸ் நெட்வொர்க்குடன் இணைக்கவும்."</string>
     <string name="incall_error_ecm_emergency_only" msgid="738708660612388692">"வழக்கமான அழைப்பிற்கு, அவசரகாலத் திரும்ப அழைக்கும் பயன்முறையிலிருந்து வெளியேறவும்."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"நெட்வொர்க்கில் பதிவுசெய்யப்படவில்லை."</string>

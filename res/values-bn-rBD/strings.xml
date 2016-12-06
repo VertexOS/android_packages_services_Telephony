@@ -439,7 +439,8 @@
     <string name="notification_voicemail_no_vm_number" msgid="760963466895609716">"ভয়েসমেল নম্বর অজানা"</string>
     <string name="notification_network_selection_title" msgid="4224455487793492772">"কোনো পরিষেবা নেই"</string>
     <string name="notification_network_selection_text" msgid="2607085729661923269">"নির্বাচিত নেটওয়ার্ক (<xliff:g id="OPERATOR_NAME">%s</xliff:g>) অনুপলব্ধ"</string>
-    <string name="incall_error_power_off" msgid="2947938060513306698">"কল করতে বিমান মোড বন্ধ করুন৷"</string>
+    <string name="incall_error_power_off" product="watch" msgid="772302793483607711">"কল করতে বিমান মোড বা ব্যাটারি সেভার বন্ধ করুন৷"</string>
+    <string name="incall_error_power_off" product="default" msgid="2947938060513306698">"কল করতে বিমান মোড বন্ধ করুন৷"</string>
     <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"বিমান মোড বন্ধ করুন বা কল করতে কোনো ওয়্যারলেস নেটওয়ার্কে সংযোগ করুন৷"</string>
     <string name="incall_error_ecm_emergency_only" msgid="738708660612388692">"একটি সাধারণ কল করতে জরুরি কলব্যাক মোডের বাইরে আসুন৷"</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"নেটওয়ার্কে নিবন্ধিত নয়৷"</string>
