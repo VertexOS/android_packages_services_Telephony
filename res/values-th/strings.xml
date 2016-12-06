@@ -156,6 +156,7 @@
     <string name="vm_change_pin_error_mismatch" msgid="2754685537970757317">"PIN เก่าไม่ถูกต้อง"</string>
     <string name="vm_change_pin_error_invalid" msgid="3972205462701668653">"PIN ใหม่มีอักขระที่ไม่ถูกต้อง"</string>
     <string name="vm_change_pin_error_system_error" msgid="6610603326230000207">"ไม่สามารถเปลี่ยน PIN ได้"</string>
+    <string name="vvm_unsupported_message_format" msgid="11795090778411977">"ไม่รองรับข้อความประเภทนี้ โปรดโทร <xliff:g id="NUMBER">%s</xliff:g> เพื่อฟังข้อความเสียง"</string>
     <string name="mobile_networks" msgid="2843854043339307375">"การตั้งค่าเครือข่ายมือถือ"</string>
     <string name="label_available" msgid="1181658289009300430">"เครือข่ายที่ใช้งานได้"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"กำลังค้นหา…"</string>
@@ -207,6 +208,7 @@
     <item msgid="3817924849415716259">"ต้องการ GSM/WCDMA"</item>
   </string-array>
     <string name="enhanced_4g_lte_mode_title" msgid="522191650223239171">"โหมด 4G LTE ที่ปรับปรุงแล้ว"</string>
+    <string name="enhanced_4g_lte_mode_title_variant" msgid="4871126028907265406">"การโทรขั้นสูง"</string>
     <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"ใช้บริการ LTE เพื่อปรับปรุงเสียงและการติดต่อสื่อสารด้วยวิธีอื่นๆ (แนะนำ)"</string>
     <string name="data_enabled" msgid="5972538663568715366">"เปิดใช้งานข้อมูลแล้ว"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"อนุญาตการใช้ข้อมูล"</string>
@@ -437,7 +439,8 @@
     <string name="notification_voicemail_no_vm_number" msgid="760963466895609716">"ไม่ทราบหมายเลขข้อความเสียง"</string>
     <string name="notification_network_selection_title" msgid="4224455487793492772">"ไม่มีบริการ"</string>
     <string name="notification_network_selection_text" msgid="2607085729661923269">"เครือข่ายที่เลือกไว้ (<xliff:g id="OPERATOR_NAME">%s</xliff:g>) ไม่พร้อมใช้งาน"</string>
-    <string name="incall_error_power_off" msgid="2947938060513306698">"ปิดโหมดบนเครื่องบินเพื่อโทรออก"</string>
+    <string name="incall_error_power_off" product="watch" msgid="772302793483607711">"ปิดโหมดบนเครื่องบินหรือโหมดประหยัดแบตเตอรี่เพื่อโทรออก"</string>
+    <string name="incall_error_power_off" product="default" msgid="2947938060513306698">"ปิดโหมดบนเครื่องบินเพื่อโทรออก"</string>
     <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"ปิดโหมดบนเครื่องบินหรือเชื่อมต่อเครือข่ายไร้สายเพื่อโทรออก"</string>
     <string name="incall_error_ecm_emergency_only" msgid="738708660612388692">"โปรดออกจากโหมดการโทรกลับกรณีฉุกเฉินเพื่อโทรไปยังหมายเลขที่ไม่ใช่หมายเลขฉุกเฉิน"</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"ยังไม่ได้ลงทะเบียนบนเครือข่าย"</string>
@@ -445,6 +448,7 @@
     <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"เครือข่ายมือถือไม่พร้อมใช้งาน โปรดเชื่อมต่อเครือข่ายไร้สายเพื่อโทรออก"</string>
     <string name="incall_error_no_phone_number_supplied" msgid="1150414018684246528">"หากต้องการโทรออก โปรดป้อนหมายเลขที่ถูกต้อง"</string>
     <string name="incall_error_call_failed" msgid="5891978320269774095">"การโทรล้มเหลว"</string>
+    <string name="incall_error_cannot_add_call" msgid="5206923515522412110">"ไม่สามารถเพิ่มสายได้ในขณะนี้"</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"กำลังเริ่มต้นลำดับ MMI..."</string>
     <string name="incall_error_supp_service_unknown" msgid="655570339115407698">"บริการนี้ไม่ได้รับการสนับสนุน"</string>
     <string name="incall_error_supp_service_switch" msgid="5237002176899962862">"ไม่สามารถสลับสายได้"</string>
@@ -563,7 +567,7 @@
     <string name="sim_description_emergency_calls" msgid="7535215397212301562">"เฉพาะหมายเลขฉุกเฉินเท่านั้น"</string>
     <string name="sim_description_default" msgid="4778679519938775515">"ซิมการ์ด ช่อง: <xliff:g id="SLOT_ID">%s</xliff:g>"</string>
     <string name="accessibility_settings_activity_title" msgid="8562004288733103868">"การเข้าถึง"</string>
-    <string name="status_hint_label_incoming_wifi_call" msgid="8772915926382037499">"สายโทรเข้าผ่าน Wi-Fi"</string>
+    <string name="status_hint_label_incoming_wifi_call" msgid="5932176406432044638">"โทรผ่าน Wi-Fi จาก"</string>
     <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"การโทรผ่าน Wi-Fi"</string>
     <string name="emergency_action_launch_hint" msgid="4906759256275562674">"แตะอีกครั้งเพื่อเปิด"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"เกิดข้อผิดพลาดขณะถอดรหัสข้อความ"</string>

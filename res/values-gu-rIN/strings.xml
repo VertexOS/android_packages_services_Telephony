@@ -156,6 +156,7 @@
     <string name="vm_change_pin_error_mismatch" msgid="2754685537970757317">"જૂનો PIN મેળ ખાતો નથી."</string>
     <string name="vm_change_pin_error_invalid" msgid="3972205462701668653">"નવો PIN અમાન્ય અક્ષરો ધરાવે છે."</string>
     <string name="vm_change_pin_error_system_error" msgid="6610603326230000207">"PIN બદલવામાં અસમર્થ"</string>
+    <string name="vvm_unsupported_message_format" msgid="11795090778411977">"અસમર્થિત સંદેશ પ્રકાર, સાંભળવા માટે <xliff:g id="NUMBER">%s</xliff:g> પર કૉલ કરો."</string>
     <string name="mobile_networks" msgid="2843854043339307375">"સેલ્યુલર નેટવર્ક સેટિંગ્સ"</string>
     <string name="label_available" msgid="1181658289009300430">"ઉપલબ્ધ નેટવર્ક્સ"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"શોધી રહ્યું છે..."</string>
@@ -207,6 +208,7 @@
     <item msgid="3817924849415716259">"GSM/WCDMA પસંદ કરેલ છે"</item>
   </string-array>
     <string name="enhanced_4g_lte_mode_title" msgid="522191650223239171">"વિસ્તૃત 4G LTE મોડ"</string>
+    <string name="enhanced_4g_lte_mode_title_variant" msgid="4871126028907265406">"વિગતવાર કૉલિંગ"</string>
     <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"વૉઇસ અને અન્ય સંચારોને બહેતર બનાવવા માટે LTE સેવાઓનો ઉપયોગ કરો (ભલામણ કરેલ)"</string>
     <string name="data_enabled" msgid="5972538663568715366">"ડેટા સક્ષમ કરેલ છે"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"ડેટા વપરાશની મંજૂરી આપો"</string>
@@ -437,7 +439,8 @@
     <string name="notification_voicemail_no_vm_number" msgid="760963466895609716">"વૉઇસમેઇલ નંબર અજાણ"</string>
     <string name="notification_network_selection_title" msgid="4224455487793492772">"કોઈ સેવા નથી"</string>
     <string name="notification_network_selection_text" msgid="2607085729661923269">"પસંદ કરેલ નેટવર્ક (<xliff:g id="OPERATOR_NAME">%s</xliff:g>) અનુપલબ્ધ"</string>
-    <string name="incall_error_power_off" msgid="2947938060513306698">"કૉલ કરવા માટે એરપ્લેન મોડ બંધ કરો."</string>
+    <string name="incall_error_power_off" product="watch" msgid="772302793483607711">"કૉલ કરવા માટે એરપ્લેન મોડ અથવા બૅટરી બચતકર્તા મોડ બંધ કરો."</string>
+    <string name="incall_error_power_off" product="default" msgid="2947938060513306698">"કૉલ કરવા માટે એરપ્લેન મોડ બંધ કરો."</string>
     <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"કૉલ કરવા માટે એરપ્લેન મોડ બંધ કરો અથવા વાયરલેસ નેટવર્કથી કનેક્ટ કરો."</string>
     <string name="incall_error_ecm_emergency_only" msgid="738708660612388692">"બિન-કટોકટીનો કૉલ કરવા માટે કટોકટી કૉલબૅક મોડમાંથી બહાર નીકળો."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"નેટવર્ક પર નોંધણી કરાયેલ નથી."</string>
@@ -445,6 +448,7 @@
     <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"સેલ્યુલર નેટવર્ક ઉપલબ્ધ નથી. કૉલ કરવા માટે વાયરલેસ નેટવર્કથી કનેક્ટ કરો."</string>
     <string name="incall_error_no_phone_number_supplied" msgid="1150414018684246528">"કૉલ કરવા માટે, માન્ય નંબર દાખલ કરો."</string>
     <string name="incall_error_call_failed" msgid="5891978320269774095">"કૉલ નિષ્ફળ થયો."</string>
+    <string name="incall_error_cannot_add_call" msgid="5206923515522412110">"આ સમયે કૉલ ઉમેરી શકાતો નથી."</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"MMI અનુક્રમ પ્રારંભ કરી રહ્યાં છે…"</string>
     <string name="incall_error_supp_service_unknown" msgid="655570339115407698">"સેવા સમર્થિત નથી"</string>
     <string name="incall_error_supp_service_switch" msgid="5237002176899962862">"કૉલ્સ સ્વિચ કરી શકાતા નથી."</string>
@@ -563,7 +567,7 @@
     <string name="sim_description_emergency_calls" msgid="7535215397212301562">"ફક્ત કટોકટીની કૉલિંગ"</string>
     <string name="sim_description_default" msgid="4778679519938775515">"SIM કાર્ડ, સ્લોટ: <xliff:g id="SLOT_ID">%s</xliff:g>"</string>
     <string name="accessibility_settings_activity_title" msgid="8562004288733103868">"ઍક્સેસિબિલિટી"</string>
-    <string name="status_hint_label_incoming_wifi_call" msgid="8772915926382037499">"આવનાર Wi-Fi કૉલ"</string>
+    <string name="status_hint_label_incoming_wifi_call" msgid="5932176406432044638">"આમના તરફથી Wi-Fi કૉલ"</string>
     <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"Wi-Fi કૉલ"</string>
     <string name="emergency_action_launch_hint" msgid="4906759256275562674">"ખોલવા માટે ફરીથી ટૅપ કરો"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"સંદેશ ડીકોડિંગ કરતી વખતે ભૂલ આવી હતી."</string>
