@@ -265,6 +265,10 @@ public class TelephonyConnectionService extends ConnectionService {
                 PhoneUtils.isLocalEmergencyNumber(numberToDial);
         final boolean isAirplaneModeOn = Settings.System.getInt(getContentResolver(),
                 Settings.System.AIRPLANE_MODE_ON, 0) != 0;
+        if (isEmergencyNumber) {
+            mRequest = request;
+        }
+
         if (isEmergencyNumber && (!isRadioOn() || isAirplaneModeOn)) {
             final Uri emergencyHandle = handle;
             // By default, Connection based on the default Phone, since we need to return to Telecom
