@@ -56,12 +56,14 @@
     <string name="display_name_title" msgid="579241787583079773">"نام نمایشی"</string>
     <string name="proxy_address_title" msgid="6890163365640631841">"آدرس پروکسی خارج از محدوده"</string>
     <string name="port_title" msgid="6693965912656593862">"شماره درگاه"</string>
-    <string name="transport_title" msgid="889155457465372527">"نوع حمل و نقل"</string>
+    <string name="transport_title" msgid="889155457465372527">"نوع حمل‌ونقل"</string>
     <string name="send_keepalive_title" msgid="599627072150501159">"ارسال حفظ اتصال"</string>
     <string name="advanced_settings" msgid="6622996380747040711">"تنظیمات اختیاری"</string>
     <string name="auth_username_title" msgid="8262491689004708265">"نام کاربری برای احراز هویت"</string>
     <string name="auth_username_summary" msgid="941160241371436473">"نام کاربری مورد استفاده برای احراز هویت"</string>
-    <string name="default_preference_summary" msgid="1979249643719483249">"‏&lt;تنظیم نشده&gt;"</string>
+    <string name="default_preference_summary_username" msgid="8404717434312826082">"‏&lt;تنظیم نشده&gt;"</string>
+    <string name="default_preference_summary_password" msgid="4464464672997027904">"‏&lt;تنظیم نشده&gt;"</string>
+    <string name="default_preference_summary_domain_address" msgid="4871971710197441673">"‏&lt;تنظیم نشده&gt;"</string>
     <string name="display_name_summary" msgid="7155076491675565407">"‏&lt;مانند نام کاربری&gt;"</string>
     <string name="optional_summary" msgid="2363105560396317624">"‏&lt;اختیاری&gt;"</string>
     <string name="advanced_settings_show" msgid="7838761602853998622">"▷ جهت نمایش همه لمس کنید"</string>

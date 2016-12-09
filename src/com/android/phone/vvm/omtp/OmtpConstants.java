@@ -15,22 +15,24 @@
  */
 package com.android.phone.vvm.omtp;
 
+import android.annotation.IntDef;
+
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Wrapper class to hold relevant OMTP constants as defined in the OMTP spec.
- * <p>
- * In essence this is a programmatic representation of the relevant portions of OMTP spec.
+ * Wrapper class to hold relevant OMTP constants as defined in the OMTP spec. <p> In essence this is
+ * a programmatic representation of the relevant portions of OMTP spec.
  */
 public class OmtpConstants {
     public static final String SMS_FIELD_SEPARATOR = ";";
     public static final String SMS_KEY_VALUE_SEPARATOR = "=";
     public static final String SMS_PREFIX_SEPARATOR = ":";
 
-    public static final String CLIENT_PREFIX = "//VVM";
-    public static final String SYNC_SMS_PREFIX = CLIENT_PREFIX + ":SYNC:";
-    public static final String STATUS_SMS_PREFIX = CLIENT_PREFIX + ":STATUS:";
+    public static final String SYNC_SMS_PREFIX = "SYNC";
+    public static final String STATUS_SMS_PREFIX = "STATUS";
 
     // This is the format designated by the OMTP spec.
     public static final String DATE_TIME_FORMAT = "dd/MM/yyyy HH:mm Z";
@@ -123,6 +125,7 @@ public class OmtpConstants {
     public static final String SERVER_ADDRESS = "srv";
     /** Phone number to access voicemails through Telephony User Interface */
     public static final String TUI_ACCESS_NUMBER = "tui";
+    public static final String TUI_PASSWORD_LENGTH = "pw_len";
     /** Number to send client origination SMS */
     public static final String CLIENT_SMS_DESTINATION_NUMBER = "dn";
     public static final String IMAP_PORT = "ipt";
@@ -137,8 +140,6 @@ public class OmtpConstants {
      * <p>
      * Referred by {@link OmtpConstants#PROVISIONING_STATUS}.
      */
-    // TODO: As per the spec the code could be either be with or w/o quotes  = "N"/N). Currently
-    // this only handles the w/o quotes values.
     public static final String SUBSCRIBER_NEW = "N";
     public static final String SUBSCRIBER_READY = "R";
     public static final String SUBSCRIBER_PROVISIONED = "P";
@@ -187,6 +188,61 @@ public class OmtpConstants {
         put(PROVISIONING_STATUS, PROVISIONING_STATUS_VALUES);
         put(RETURN_CODE, RETURN_CODE_VALUES);
     }};
+
+    /**
+     * IMAP command extensions
+     */
+
+    /**
+     * OMTP spec v1.3 2.3.1 Change password request syntax
+     *
+     * This changes the PIN to access the Telephone User Interface, the traditional voicemail
+     * system.
+     */
+    public static final String IMAP_CHANGE_TUI_PWD_FORMAT = "XCHANGE_TUI_PWD PWD=%1$s OLD_PWD=%2$s";
+
+    /**
+     * OMTP spec v1.3 2.4.1 Change languate request syntax
+     *
+     * This changes the language in the Telephone User Interface.
+     */
+    public static final String IMAP_CHANGE_VM_LANG_FORMAT = "XCHANGE_VM_LANG LANG=%1$s";
+
+    /**
+     * OMTP spec v1.3 2.5.1 Close NUT Request syntax
+     *
+     * This disables the new user tutorial, the message played to new users calling in the Telephone
+     * User Interface.
+     */
+    public static final String IMAP_CLOSE_NUT = "XCLOSE_NUT";
+
+    /**
+     * Possible NO responses for CHANGE_TUI_PWD
+     */
+
+    public static final String RESPONSE_CHANGE_PIN_TOO_SHORT = "password too short";
+    public static final String RESPONSE_CHANGE_PIN_TOO_LONG = "password too long";
+    public static final String RESPONSE_CHANGE_PIN_TOO_WEAK = "password too weak";
+    public static final String RESPONSE_CHANGE_PIN_MISMATCH = "old password mismatch";
+    public static final String RESPONSE_CHANGE_PIN_INVALID_CHARACTER =
+            "password contains invalid characters";
+
+    @Retention(RetentionPolicy.SOURCE)
+    @IntDef(value = {CHANGE_PIN_SUCCESS, CHANGE_PIN_TOO_SHORT, CHANGE_PIN_TOO_LONG,
+            CHANGE_PIN_TOO_WEAK, CHANGE_PIN_MISMATCH, CHANGE_PIN_INVALID_CHARACTER,
+            CHANGE_PIN_SYSTEM_ERROR})
+
+    public @interface ChangePinResult {
+
+    }
+
+    public static final int CHANGE_PIN_SUCCESS = 0;
+    public static final int CHANGE_PIN_TOO_SHORT = 1;
+    public static final int CHANGE_PIN_TOO_LONG = 2;
+    public static final int CHANGE_PIN_TOO_WEAK = 3;
+    public static final int CHANGE_PIN_MISMATCH = 4;
+    public static final int CHANGE_PIN_INVALID_CHARACTER = 5;
+    public static final int CHANGE_PIN_SYSTEM_ERROR = 6;
 
     /** Indicates the client is Google visual voicemail version 1.0. */
     public static final String CLIENT_TYPE_GOOGLE_10 = "google.vvm.10";

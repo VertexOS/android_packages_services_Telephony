@@ -147,6 +147,16 @@
     <string name="no_change" msgid="3186040086622435212">"Nicio schimbare efectuată."</string>
     <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"Alegeți serviciul de mesagerie vocală"</string>
     <string name="voicemail_default" msgid="2001233554889016880">"Operatorul dvs."</string>
+    <string name="vm_change_pin_old_pin" msgid="7295220109886682573">"Codul PIN vechi"</string>
+    <string name="vm_change_pin_new_pin" msgid="5412922262839438097">"Codul PIN nou"</string>
+    <string name="vm_change_pin_progress_message" msgid="3977357361934350336">"Așteptați."</string>
+    <string name="vm_change_pin_error_too_short" msgid="5974971097302710497">"Codul PIN nou este prea scurt."</string>
+    <string name="vm_change_pin_error_too_long" msgid="8476870806115051865">"Codul PIN nou este prea lung."</string>
+    <string name="vm_change_pin_error_too_weak" msgid="7883744811891784882">"Codul PIN nou este prea slab. O parolă puternică nu ar trebui să aibă o secvență continuă sau cifre repetitive."</string>
+    <string name="vm_change_pin_error_mismatch" msgid="2754685537970757317">"Codul PIN vechi nu corespunde."</string>
+    <string name="vm_change_pin_error_invalid" msgid="3972205462701668653">"Codul PIN nou conține caractere nevalide."</string>
+    <string name="vm_change_pin_error_system_error" msgid="6610603326230000207">"Nu se poate schimba codul PIN"</string>
+    <string name="vvm_unsupported_message_format" msgid="11795090778411977">"Tip de mesaj neacceptat. Apelează numărul <xliff:g id="NUMBER">%s</xliff:g> pentru a-l asculta."</string>
     <string name="mobile_networks" msgid="2843854043339307375">"Setările pentru rețeaua mobilă"</string>
     <string name="label_available" msgid="1181658289009300430">"Rețele disponibile"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"Se caută…"</string>
@@ -198,6 +208,7 @@
     <item msgid="3817924849415716259">"GSM/WCDMA preferat"</item>
   </string-array>
     <string name="enhanced_4g_lte_mode_title" msgid="522191650223239171">"Mod 4G LTE îmbunătățit"</string>
+    <string name="enhanced_4g_lte_mode_title_variant" msgid="4871126028907265406">"Apelare avansată"</string>
     <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"Folosiți servicii LTE pt. a îmbunătăți comunicări vocale și altele (recomandat)"</string>
     <string name="data_enabled" msgid="5972538663568715366">"Date activate"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"Permiteți utilizarea datelor"</string>
@@ -436,6 +447,7 @@
     <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"Rețeaua mobilă nu este disponibilă. Pentru a apela, conectați-vă la o rețea wireless."</string>
     <string name="incall_error_no_phone_number_supplied" msgid="1150414018684246528">"Pentru a apela, introduceți un număr valid."</string>
     <string name="incall_error_call_failed" msgid="5891978320269774095">"Apelul nu a fost inițiat."</string>
+    <string name="incall_error_cannot_add_call" msgid="5206923515522412110">"Apelul nu poate fi adăugat în acest moment."</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"Se pornește secvența MMI..."</string>
     <string name="incall_error_supp_service_unknown" msgid="655570339115407698">"Serviciul nu este compatibil"</string>
     <string name="incall_error_supp_service_switch" msgid="5237002176899962862">"Apelurile nu pot fi comutate."</string>
@@ -446,6 +458,7 @@
     <string name="incall_error_supp_service_hangup" msgid="7434513517153834426">"Apelurile nu pot fi eliberate."</string>
     <string name="incall_error_supp_service_hold" msgid="7967020511232222078">"Apelurile nu pot fi puse în așteptare."</string>
     <string name="incall_error_wfc_only_no_wireless_network" msgid="1782466780452640089">"Pentru a apela, conectați-vă la o rețea wireless."</string>
+    <string name="incall_error_promote_wfc" msgid="106510757624022064">"Activați apelarea prin Wi-Fi pentru a iniția un apel."</string>
     <string name="emergency_enable_radio_dialog_title" msgid="4627849966634578257">"Apel de urgență"</string>
     <string name="emergency_enable_radio_dialog_message" msgid="207613549344420291">"Se activează semnalul radio..."</string>
     <string name="emergency_enable_radio_dialog_retry" msgid="5960061579996526883">"Fără semnal. Se încearcă din nou..."</string>
@@ -543,6 +556,8 @@
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"Vibrații"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"Vibrații"</string>
     <string name="voicemail_visual_voicemail_switch_title" msgid="5012622186976275457">"Mesagerie vocală vizuală"</string>
+    <string name="voicemail_set_pin_dialog_title" msgid="2797924461029093837">"Setați codul PIN"</string>
+    <string name="voicemail_change_pin_dialog_title" msgid="6035421908626121564">"Schimbați codul PIN"</string>
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"Sunet"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"Ton de apel și vibrare"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"Carduri SIM încorporate"</string>
@@ -554,10 +569,22 @@
     <string name="sim_description_emergency_calls" msgid="7535215397212301562">"Numai apeluri de urgență"</string>
     <string name="sim_description_default" msgid="4778679519938775515">"Cardul SIM, slotul: <xliff:g id="SLOT_ID">%s</xliff:g>"</string>
     <string name="accessibility_settings_activity_title" msgid="8562004288733103868">"Accesibilitate"</string>
-    <string name="status_hint_label_incoming_wifi_call" msgid="8772915926382037499">"Apel prin Wi-Fi primit"</string>
+    <string name="status_hint_label_incoming_wifi_call" msgid="5932176406432044638">"Apel prin Wi-Fi de la"</string>
     <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"Apel prin Wi-Fi"</string>
     <string name="emergency_action_launch_hint" msgid="4906759256275562674">"Atingeți din nou pentru a deschide"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"A apărut o eroare la decodificarea mesajului."</string>
     <string name="callFailed_cdma_activation" msgid="2307989779233262164">"Un card SIM a activat serviciul și a actualizat funcțiile de roaming ale telefonului."</string>
     <string name="callFailed_cdma_call_limit" msgid="1556916577171457086">"Prea multe apeluri active. Încheiați sau îmbinați apeluri existente înainte de a iniția unul nou."</string>
+    <string name="change_pin_title" msgid="7790232089699034029">"Schimbați codul PIN pentru mesageria vocală"</string>
+    <string name="change_pin_continue_label" msgid="2135088662420163447">"Continuați"</string>
+    <string name="change_pin_cancel_label" msgid="353535488390948596">"Anulați"</string>
+    <string name="change_pin_ok_label" msgid="6204308560844889926">"OK"</string>
+    <string name="change_pin_enter_old_pin_header" msgid="419179847657548887">"Confirmați vechiul cod PIN"</string>
+    <string name="change_pin_enter_old_pin_hint" msgid="8579171678763615453">"Introduceți codul PIN pentru mesageria vocală pentru a continua."</string>
+    <string name="change_pin_enter_new_pin_header" msgid="2611191814590251532">"Setați un cod PIN nou"</string>
+    <string name="change_pin_enter_new_pin_hint" msgid="2322940054329689309">"Codul PIN trebuie să aibă între <xliff:g id="MIN">%1$d</xliff:g> - <xliff:g id="MAX">%2$d</xliff:g> cifre."</string>
+    <string name="change_pin_confirm_pin_header" msgid="8113764019347322170">"Confirmați codul PIN"</string>
+    <string name="change_pin_confirm_pins_dont_match" msgid="4795052654904027909">"Codurile PIN nu corespund"</string>
+    <string name="change_pin_succeeded" msgid="2022852286442211151">"Codul PIN pentru mesageria vocală a fost actualizat"</string>
+    <string name="change_pin_system_error" msgid="8308462387154257840">"Nu s-a putut seta codul PIN"</string>
 </resources>

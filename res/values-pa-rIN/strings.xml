@@ -147,6 +147,16 @@
     <string name="no_change" msgid="3186040086622435212">"ਕੋਈ ਬਦਲਾਵ ਨਹੀਂ ਕੀਤੇ ਗਏ ਹਨ।"</string>
     <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"ਵੌਇਸਮੇਲ ਸੇਵਾ ਚੁਣੋ"</string>
     <string name="voicemail_default" msgid="2001233554889016880">"ਤੁਹਾਡਾ ਕੈਰੀਅਰ"</string>
+    <string name="vm_change_pin_old_pin" msgid="7295220109886682573">"ਪੁਰਾਣਾ PIN"</string>
+    <string name="vm_change_pin_new_pin" msgid="5412922262839438097">"ਨਵਾਂ PIN"</string>
+    <string name="vm_change_pin_progress_message" msgid="3977357361934350336">"ਕਿਰਪਾ ਕਰਕੇ ਉਡੀਕ ਕਰੋ।"</string>
+    <string name="vm_change_pin_error_too_short" msgid="5974971097302710497">"ਨਵਾਂ PIN ਬਹੁਤ ਹੀ ਛੋਟਾ ਹੈ।"</string>
+    <string name="vm_change_pin_error_too_long" msgid="8476870806115051865">"ਨਵਾਂ PIN ਬਹੁਤ ਹੀ ਵੱਡਾ ਹੈ।"</string>
+    <string name="vm_change_pin_error_too_weak" msgid="7883744811891784882">"ਨਵਾਂ PIN ਬਹੁਤ ਹੀ ਕਮਜ਼ੋਰ ਹੈ। ਮਜ਼ਬੂਤ ਪਾਸਵਰਡ ਵਿੱਚ ਨਿਰੰਤਰ ਲੜੀ ਜਾਂ ਦੁਹਰਾਏ ਗਏ ਅੰਕ ਹੋਣੇ ਚਾਹੀਦੇ ਹਨ।"</string>
+    <string name="vm_change_pin_error_mismatch" msgid="2754685537970757317">"ਪੁਰਾਣਾ PIN ਮੇਲ ਨਹੀਂ ਖਾਂਦਾ।"</string>
+    <string name="vm_change_pin_error_invalid" msgid="3972205462701668653">"ਨਵੇਂ PIN ਵਿੱਚ ਅਵੈਧ ਅੱਖਰ-ਚਿੰਨ੍ਹ ਹਨ।"</string>
+    <string name="vm_change_pin_error_system_error" msgid="6610603326230000207">"PIN ਨੂੰ ਬਦਲਣ ਵਿੱਚ ਅਸਮਰੱਥ"</string>
+    <string name="vvm_unsupported_message_format" msgid="11795090778411977">"ਅਸਮਰਥਿਤ ਸੁਨੇਹਾ ਕਿਸਮ, ਸੁਣਨ ਲਈ <xliff:g id="NUMBER">%s</xliff:g> \'ਤੇ ਕਾਲ ਕਰੋ।"</string>
     <string name="mobile_networks" msgid="2843854043339307375">"ਸੈਲਿਊਲਰ ਨੈਟਵਰਕ ਸੈਟਿੰਗਾਂ"</string>
     <string name="label_available" msgid="1181658289009300430">"ਉਪਲਬਧ ਨੈਟਵਰਕ"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"ਖੋਜ ਰਿਹਾ ਹੈ..."</string>
@@ -198,6 +208,7 @@
     <item msgid="3817924849415716259">"GSM/WCDMA ਤਰਜੀਹੀ"</item>
   </string-array>
     <string name="enhanced_4g_lte_mode_title" msgid="522191650223239171">"ਵਿਸਤ੍ਰਿਤ 4G LTE ਮੋਡ"</string>
+    <string name="enhanced_4g_lte_mode_title_variant" msgid="4871126028907265406">"ਉੱਨਤ ਕਾਲਿੰਗ"</string>
     <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"ਵੌਇਸ ਅਤੇ ਹੋਰ ਸੰਚਾਰ ਬਿਹਤਰ ਬਣਾਉਣ ਲਈ  LTE ਸੇਵਾਵਾਂ ਵਰਤੋ (ਸਿਫਾਰਿਸ਼ ਕੀਤਾ)"</string>
     <string name="data_enabled" msgid="5972538663568715366">"ਡਾਟਾ ਸਮਰਥਿਤ"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"ਡਾਟਾ ਵਰਤੋਂ ਦੀ ਆਗਿਆ ਦਿਓ"</string>
@@ -436,6 +447,7 @@
     <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"ਸੈਲਿਊਲਰ ਨੈਟਵਰਕ ਉਪਲਬਧ ਨਹੀਂ ਹੈ। ਇੱਕ ਕਾਲ ਕਰਨ ਲਈ ਇੱਕ ਵਾਇਰਲੈਸ ਨੈਟਵਰਕ ਨਾਲ ਕਨੈਕਟ ਕਰੋ।"</string>
     <string name="incall_error_no_phone_number_supplied" msgid="1150414018684246528">"ਇੱਕ ਕਾਲ ਕਰਨ ਲਈ, ਇੱਕ ਪ੍ਰਮਾਣਿਕ ਨੰਬਰ ਦਰਜ ਕਰੋ।"</string>
     <string name="incall_error_call_failed" msgid="5891978320269774095">"ਕਾਲ ਕਰਨਾ ਅਸਫਲ ਰਿਹਾ।"</string>
+    <string name="incall_error_cannot_add_call" msgid="5206923515522412110">"ਇਸ ਵੇਲੇ ਕਾਲ ਸ਼ਾਮਲ ਨਹੀਂ ਕੀਤੀ ਜਾ ਸਕਦੀ।"</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"MMI ਕੜੀ ਚਾਲੂ ਕਰ ਰਿਹਾ ਹੈ…"</string>
     <string name="incall_error_supp_service_unknown" msgid="655570339115407698">"ਸੇਵਾ ਸਮਰਥਿਤ ਨਹੀਂ"</string>
     <string name="incall_error_supp_service_switch" msgid="5237002176899962862">"ਕਾਲਾਂ ਸਵਿਚ ਨਹੀਂ ਕਰ ਸਕਦਾ।"</string>
@@ -446,6 +458,7 @@
     <string name="incall_error_supp_service_hangup" msgid="7434513517153834426">"ਕਾਲ(ਕਾਲਾਂ) ਰਿਲੀਜ ਨਹੀਂ ਕਰ ਸਕਦਾ।"</string>
     <string name="incall_error_supp_service_hold" msgid="7967020511232222078">"ਕਾਲਾਂ ਹੋਲਡ ਨਹੀਂ ਕੀਤੀਆਂ ਜਾ ਸਕਦੀਆਂ ਹਨ।"</string>
     <string name="incall_error_wfc_only_no_wireless_network" msgid="1782466780452640089">"ਇੱਕ ਕਾਲ ਕਰਨ ਲਈ ਇੱਕ ਵਾਇਰਲੈਸ ਨੈਟਵਰਕ ਨਾਲ ਕਨੈਕਟ ਕਰੋ।"</string>
+    <string name="incall_error_promote_wfc" msgid="106510757624022064">"ਇੱਕ ਕਾਲ ਕਰਨ ਲਈ Wi-Fi ਕਾਲਿੰਗ ਯੋਗ ਬਣਾਓ।"</string>
     <string name="emergency_enable_radio_dialog_title" msgid="4627849966634578257">"ਐਮਰਜੈਂਸੀ ਕਾਲ"</string>
     <string name="emergency_enable_radio_dialog_message" msgid="207613549344420291">"ਰੇਡੀਓ ਚਾਲੂ ਕਰ ਰਿਹਾ ਹੈ…"</string>
     <string name="emergency_enable_radio_dialog_retry" msgid="5960061579996526883">"ਕੋਈ ਸੇਵਾ ਨਹੀਂ। ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰ ਰਿਹਾ ਹੈ…"</string>
@@ -540,6 +553,8 @@
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"ਥਰਥਰਾਹਟ ਕਰੋ"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"ਥਰਥਰਾਹਟ ਕਰੋ"</string>
     <string name="voicemail_visual_voicemail_switch_title" msgid="5012622186976275457">"ਵਿਜੁਅਲ ਵੌਇਸਮੇਲ"</string>
+    <string name="voicemail_set_pin_dialog_title" msgid="2797924461029093837">"PIN ਸੈੱਟ ਕਰੋ"</string>
+    <string name="voicemail_change_pin_dialog_title" msgid="6035421908626121564">"PIN ਬਦਲੋ"</string>
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"ਅਵਾਜ਼"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"ਰਿੰਗਟੋਨ ਅਤੇ ਥਰਥਰਾਹਟ"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"ਬਿਲਟ-ਇਨ SIM ਕਾਰਡ"</string>
@@ -551,10 +566,22 @@
     <string name="sim_description_emergency_calls" msgid="7535215397212301562">"ਕੇਵਲ ਐਮਰਜੈਂਸੀ ਕਾਲਿੰਗ"</string>
     <string name="sim_description_default" msgid="4778679519938775515">"SIM ਕਾਰਡ, ਸਲੌਟ: <xliff:g id="SLOT_ID">%s</xliff:g>"</string>
     <string name="accessibility_settings_activity_title" msgid="8562004288733103868">"ਪਹੁੰਚਯੋਗਤਾ"</string>
-    <string name="status_hint_label_incoming_wifi_call" msgid="8772915926382037499">"ਇਨਕਮਿੰਗ Wi-Fi ਕਾਲ"</string>
+    <string name="status_hint_label_incoming_wifi_call" msgid="5932176406432044638">"ਇਸ ਤੋਂ Wi-Fi ਕਾਲ"</string>
     <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"Wi-Fi ਕਾਲ"</string>
     <string name="emergency_action_launch_hint" msgid="4906759256275562674">"ਖੋਲ੍ਹਣ ਲਈ ਦੁਬਾਰਾ ਟੈਪ ਕਰੋ"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"ਸੁਨੇਹਾ ਡੀਕੋਡ ਕਰਦੇ ਸਮੇਂ ਇੱਕ ਅਸ਼ੁੱਧੀ ਹੋਈ ਸੀ।"</string>
     <string name="callFailed_cdma_activation" msgid="2307989779233262164">"ਇੱਕ SIM ਕਾਰਡ ਨੇ ਤੁਹਾਡੀ ਸੇਵਾ ਸਕਿਰਿਆ ਕੀਤੀ ਹੈ ਅਤੇ ਤੁਹਾਡੇ ਫੋਨ ਦੀਆਂ ਰੋਮਿੰਗ ਸਮਰੱਥਤਾਵਾਂ ਅਪਡੇਟ ਕੀਤੀਆਂ ਹਨ।"</string>
     <string name="callFailed_cdma_call_limit" msgid="1556916577171457086">"ਇੱਥੇ ਬਹੁਤ ਸਾਰੀਆਂ ਕਿਰਿਆਸ਼ੀਲ ਕਾਲਾਂ ਹਨ। ਕਿਰਪਾ ਕਰਕੇ ਇੱਕ ਨਵੀਂ ਕਾਲ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਮੌਜੂਦਾ ਕਾਲਾਂ ਨੂੰ ਸਮਾਪਤ ਜਾਂ ਮਿਲਾਓ।"</string>
+    <string name="change_pin_title" msgid="7790232089699034029">"ਵੌਇਸਮੇਲ PIN ਬਦਲੋ"</string>
+    <string name="change_pin_continue_label" msgid="2135088662420163447">"ਜਾਰੀ ਰੱਖੋ"</string>
+    <string name="change_pin_cancel_label" msgid="353535488390948596">"ਰੱਦ ਕਰੋ"</string>
+    <string name="change_pin_ok_label" msgid="6204308560844889926">"ਠੀਕ"</string>
+    <string name="change_pin_enter_old_pin_header" msgid="419179847657548887">"ਆਪਣੇ ਪੁਰਾਣੇ PIN ਦੀ ਪੁਸ਼ਟੀ ਕਰੋ"</string>
+    <string name="change_pin_enter_old_pin_hint" msgid="8579171678763615453">"ਜਾਰੀ ਰੱਖਣ ਲਈ ਆਪਣਾ ਵੌਇਸਮੇਲ PIN ਦਾਖਲ ਕਰੋ।"</string>
+    <string name="change_pin_enter_new_pin_header" msgid="2611191814590251532">"ਇੱਕ ਨਵਾਂ PIN ਸੈੱਟ ਕਰੋ"</string>
+    <string name="change_pin_enter_new_pin_hint" msgid="2322940054329689309">"PIN ਲਾਜ਼ਮੀ ਤੌਰ \'ਤੇ <xliff:g id="MIN">%1$d</xliff:g>-<xliff:g id="MAX">%2$d</xliff:g> ਅੰਕਾਂ ਦਾ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ।"</string>
+    <string name="change_pin_confirm_pin_header" msgid="8113764019347322170">"ਆਪਣੇ PIN ਦੀ ਪੁਸ਼ਟੀ ਕਰੋ"</string>
+    <string name="change_pin_confirm_pins_dont_match" msgid="4795052654904027909">"PIN ਮੇਲ ਨਹੀਂ ਖਾਂਦੇ"</string>
+    <string name="change_pin_succeeded" msgid="2022852286442211151">"ਵੌਇਸਮੇਲ PIN ਅੱਪਡੇਟ ਕੀਤਾ ਗਿਆ"</string>
+    <string name="change_pin_system_error" msgid="8308462387154257840">"PIN ਸਥਾਪਤ ਕਰਨ ਦੇ ਅਯੋਗ"</string>
 </resources>

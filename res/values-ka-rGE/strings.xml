@@ -147,6 +147,16 @@
     <string name="no_change" msgid="3186040086622435212">"ცვლილებები არ განხორციელებულა."</string>
     <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"ხმოვანი ფოსტის სერვისის არჩევა"</string>
     <string name="voicemail_default" msgid="2001233554889016880">"თქვენი ოპერატორი"</string>
+    <string name="vm_change_pin_old_pin" msgid="7295220109886682573">"ძველი PIN-კოდი"</string>
+    <string name="vm_change_pin_new_pin" msgid="5412922262839438097">"ახალი PIN-კოდი"</string>
+    <string name="vm_change_pin_progress_message" msgid="3977357361934350336">"გთხოვთ, დაელოდოთ."</string>
+    <string name="vm_change_pin_error_too_short" msgid="5974971097302710497">"ახალი PIN-კოდი ძალიან მოკლეა."</string>
+    <string name="vm_change_pin_error_too_long" msgid="8476870806115051865">"ახალი PIN-კოდი ძალიან გრძელია."</string>
+    <string name="vm_change_pin_error_too_weak" msgid="7883744811891784882">"ახალი PIN-კოდი ძალიან სუსტია. ძლიერი პაროლი არ უნდა შეიცავდეს გამეორებული ციფრების გრძელ თანმიმდევრობას."</string>
+    <string name="vm_change_pin_error_mismatch" msgid="2754685537970757317">"ძველი PIN-კოდი არ თანხვდება."</string>
+    <string name="vm_change_pin_error_invalid" msgid="3972205462701668653">"ახალი PIN-კოდი არასწორ სიმბოლოებს შეიცავს."</string>
+    <string name="vm_change_pin_error_system_error" msgid="6610603326230000207">"PIN-კოდის შეცვლა შეუძლებელია"</string>
+    <string name="vvm_unsupported_message_format" msgid="11795090778411977">"შეტყობინების ტიპი მხარდაუჭერელია. მოსასმენად დარეკეთ <xliff:g id="NUMBER">%s</xliff:g>-ზე."</string>
     <string name="mobile_networks" msgid="2843854043339307375">"ფიჭური ქსელის პარამეტრებიჶ"</string>
     <string name="label_available" msgid="1181658289009300430">"ხელმისაწვდომი ქსელები"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"ძიება..."</string>
@@ -198,6 +208,7 @@
     <item msgid="3817924849415716259">"GSM/WCDMA უპირატესობით"</item>
   </string-array>
     <string name="enhanced_4g_lte_mode_title" msgid="522191650223239171">"გაუმჯობესებული 4G LTE რეჟიმი"</string>
+    <string name="enhanced_4g_lte_mode_title_variant" msgid="4871126028907265406">"გაუმჯობესებული დარეკვა"</string>
     <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"ხმოვანი და სხვა სახის კომუნიკაციებიგამოიყენეთ LTE მომსახურება გაუმჯობესება ხმა და სხვა კომუნიკაციები (რეკომენდირებულია)"</string>
     <string name="data_enabled" msgid="5972538663568715366">"მონაცემთა გადაცემა ჩართულია჻"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"მონაცემების გამოყენება"</string>
@@ -436,6 +447,7 @@
     <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"ფიჭური ქსელი მიუწვდომელია. ზარის განსახორციელებლად, დაუკავშირდით უსადენო ქსელს."</string>
     <string name="incall_error_no_phone_number_supplied" msgid="1150414018684246528">"ზარის განხორციელებისათვის, შეიყვანეთ მოქმედი ნომერი."</string>
     <string name="incall_error_call_failed" msgid="5891978320269774095">"ზარი ვერ განხორციელდა."</string>
+    <string name="incall_error_cannot_add_call" msgid="5206923515522412110">"ამჯერად ზარის დამატება ვერ ხერხდება."</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"MMI თანმიმდევრობის დაწყება…"</string>
     <string name="incall_error_supp_service_unknown" msgid="655570339115407698">"მომსახურება არ არის მხარდაჭერილი"</string>
     <string name="incall_error_supp_service_switch" msgid="5237002176899962862">"ვერ ხორციელდება ზარების გადართვა."</string>
@@ -446,6 +458,7 @@
     <string name="incall_error_supp_service_hangup" msgid="7434513517153834426">"ვერ ხერხდება ზარ(ებ)ის გაშვება."</string>
     <string name="incall_error_supp_service_hold" msgid="7967020511232222078">"ზარების დაყოვნება ვერ ხერხდება."</string>
     <string name="incall_error_wfc_only_no_wireless_network" msgid="1782466780452640089">"ზარის განსახორციელებლად, დაუკავშირდით უსადენო ქსელს."</string>
+    <string name="incall_error_promote_wfc" msgid="106510757624022064">"ზარის განსახორციელებლად ჩართეთ Wi-Fi დარეკვა."</string>
     <string name="emergency_enable_radio_dialog_title" msgid="4627849966634578257">"გადაუდებელი ზარი"</string>
     <string name="emergency_enable_radio_dialog_message" msgid="207613549344420291">"გადამცემის ჩართვა…"</string>
     <string name="emergency_enable_radio_dialog_retry" msgid="5960061579996526883">"მომხსახურება არ არის. სცადეთ ხელხლა..."</string>
@@ -540,6 +553,8 @@
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"ვიბრაცია"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"ვიბრაცია"</string>
     <string name="voicemail_visual_voicemail_switch_title" msgid="5012622186976275457">"ვიზუალური ხმოვანი ფოსტა"</string>
+    <string name="voicemail_set_pin_dialog_title" msgid="2797924461029093837">"დააყენეთ PIN-კოდი"</string>
+    <string name="voicemail_change_pin_dialog_title" msgid="6035421908626121564">"PIN-კოდის შეცვლა"</string>
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"ხმა"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"ზარის მელოდია &amp; ვიბრაცია"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"ჩაშენებული SIM ბარათები"</string>
@@ -551,10 +566,22 @@
     <string name="sim_description_emergency_calls" msgid="7535215397212301562">"მხოლოდ საგანგებო ნომრებზე დარეკვა"</string>
     <string name="sim_description_default" msgid="4778679519938775515">"SIM ბარათი, სლოტი: <xliff:g id="SLOT_ID">%s</xliff:g>"</string>
     <string name="accessibility_settings_activity_title" msgid="8562004288733103868">"მარტივი წვდომა"</string>
-    <string name="status_hint_label_incoming_wifi_call" msgid="8772915926382037499">"შემომავალი Wi-Fi ზარი"</string>
+    <string name="status_hint_label_incoming_wifi_call" msgid="5932176406432044638">"Wi-Fi ზარი აბონენტისგან"</string>
     <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"Wi-Fi ზარი"</string>
     <string name="emergency_action_launch_hint" msgid="4906759256275562674">"გასახსნელად, შეეხეთ ხელახლა"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"შეტყობინების გაშიფრვისას წარმოიშვა შეცდომა."</string>
     <string name="callFailed_cdma_activation" msgid="2307989779233262164">"SIM ბარათმა გაააქტიურა თქვენი სერვისი და თქვენი ტელეფონის როუმინგის შესაძლებლობები განაახლა."</string>
     <string name="callFailed_cdma_call_limit" msgid="1556916577171457086">"ძალიან ბევრი აქტიური ზარია. გთხოვთ, დაასრულოთ ან გააერთიანოთ არსებული ზარები ახალი ზარის განხორციელებამდე."</string>
+    <string name="change_pin_title" msgid="7790232089699034029">"ხმოვანი ფოსტის PIN-კოდის შეცვლა"</string>
+    <string name="change_pin_continue_label" msgid="2135088662420163447">"გაგრძელება"</string>
+    <string name="change_pin_cancel_label" msgid="353535488390948596">"გაუქმება"</string>
+    <string name="change_pin_ok_label" msgid="6204308560844889926">"კარგი"</string>
+    <string name="change_pin_enter_old_pin_header" msgid="419179847657548887">"დაადასტურეთ თქვენი ძველი PIN-კოდი"</string>
+    <string name="change_pin_enter_old_pin_hint" msgid="8579171678763615453">"გასაგრძელებლად შეიყვანეთ თქვენი ხმოვანი ფოსტის PIN-კოდი."</string>
+    <string name="change_pin_enter_new_pin_header" msgid="2611191814590251532">"დააყენეთ ახალი PIN-კოდი"</string>
+    <string name="change_pin_enter_new_pin_hint" msgid="2322940054329689309">"PIN-კოდი უნდა იყოს <xliff:g id="MIN">%1$d</xliff:g>-დან <xliff:g id="MAX">%2$d</xliff:g> ციფრამდე."</string>
+    <string name="change_pin_confirm_pin_header" msgid="8113764019347322170">"დაადასტურეთ PIN-კოდი"</string>
+    <string name="change_pin_confirm_pins_dont_match" msgid="4795052654904027909">"PIN-კოდები არ ემთხვევა"</string>
+    <string name="change_pin_succeeded" msgid="2022852286442211151">"ხმოვანი ფოსტის PIN-კოდი განახლდა"</string>
+    <string name="change_pin_system_error" msgid="8308462387154257840">"PIN-კოდის დაყენება შეუძლებელია"</string>
 </resources>

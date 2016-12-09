@@ -28,7 +28,7 @@
     <string name="mmiStarted" msgid="6347869857061147003">"MMIကုတ်နံပါတ်ကို စတင်ပြီးပါပြီ"</string>
     <string name="ussdRunning" msgid="485588686340541690">"USSD ကုဒ် လုပ်ဆောင်နေပါသည်…"</string>
     <string name="mmiCancelled" msgid="2771923949751842276">"MMIကုတ်နံပါတ်ကို ပယ်ဖျက်ပြီးပါပြီ"</string>
-    <string name="cancel" msgid="5044513931633602634">"မလုပ်တော့ပါ"</string>
+    <string name="cancel" msgid="5044513931633602634">"မလုပ်တော့"</string>
     <string name="enter_input" msgid="1810529547726803893">"USSD စာများဟာ စာလုံးရေ <xliff:g id="MIN_LEN">%d</xliff:g> မှ<xliff:g id="MAX_LEN">%d</xliff:g> အတွင်း ဖြစ်ရပါမည်။ နောက်တစ်ခေါက်ကြိုးစားပါ"</string>
     <string name="manageConferenceLabel" msgid="4691922394301969053">"ကွန်းဖရင့် ခေါ်ဆိုမှုကို ထိန်းချုပ်သည်"</string>
     <string name="ok" msgid="3811371167865772377">"အိုကေ"</string>
@@ -39,7 +39,7 @@
     <string name="wait_prompt_str" msgid="7601815427707856238">"အောက်ပါ တီးလုံးများကို ပို့မလား?\n"</string>
     <string name="pause_prompt_str" msgid="1789964702154314806">"အသံ ပို့နေစဉ်\n"</string>
     <string name="send_button" msgid="4106860097497818751">"ပို့ခြင်း"</string>
-    <string name="pause_prompt_yes" msgid="3564467212025151797">"ဟုတ်ကဲ့"</string>
+    <string name="pause_prompt_yes" msgid="3564467212025151797">"Yes"</string>
     <string name="pause_prompt_no" msgid="6686238803236884877">"No"</string>
     <string name="wild_prompt_str" msgid="5543521676355533577">"wildစာလုံးကို အစားထိုးရန်မှာ"</string>
     <string name="no_vm_number" msgid="4164780423805688336">"အသံစာပို့စနစ် နံပါတ် ပျောက်နေပါသည်"</string>
@@ -48,7 +48,7 @@
     <string name="puk_unlocked" msgid="2284912838477558454">"သင့် ဆင်းမ်ကဒ်အား ပိတ်ဆို့မှုကို ဖယ်ရှားပြီးပါပြီ။ သင့်ဖုန်းဟာ သော့ဖွင့်နေပါသည်…"</string>
     <string name="label_ndp" msgid="780479633159517250">"ဆင်းမ်ကဒ် ကွန်ရက် သော့ဖွင့်သော ပင်နံပါတ်"</string>
     <string name="sim_ndp_unlock_text" msgid="683628237760543009">"ဖွင့်ရန်"</string>
-    <string name="sim_ndp_dismiss_text" msgid="1604823375752456947">"လွှတ်လိုက်သည်"</string>
+    <string name="sim_ndp_dismiss_text" msgid="1604823375752456947">"ပယ်ရန်"</string>
     <string name="requesting_unlock" msgid="6412629401033249351">"ကွန်ယက်သော့ဖွင့်ခြင်း တောင်းဆိုနေပါသည်…"</string>
     <string name="unlock_failed" msgid="6490531697031504225">"ကွန်ယက်ဖွင့်ရန် တောင်းဆိုမှု မအောင်မြင်ပါ"</string>
     <string name="unlock_success" msgid="6770085622238180152">"ကွန်ယက်ဖွင့်ခြင်း မအောင်မြင်ပါ"</string>
@@ -147,6 +147,16 @@
     <string name="no_change" msgid="3186040086622435212">"အပြောင်းအလဲများ မပြုလုပ်ထားပါ"</string>
     <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"အသံစာပို့စနစ် ဝန်ဆောင်မှု ရွေးပါ"</string>
     <string name="voicemail_default" msgid="2001233554889016880">"သင့် မိုဘိုင်းဆက်သွယ်ရေး ဝန်ဆောင်မှုဌာန"</string>
+    <string name="vm_change_pin_old_pin" msgid="7295220109886682573">"ပင်နံပါတ်အဟောင်း"</string>
+    <string name="vm_change_pin_new_pin" msgid="5412922262839438097">"ပင်နံပါတ်အသစ်"</string>
+    <string name="vm_change_pin_progress_message" msgid="3977357361934350336">"ခဏစောင့်ပါ။"</string>
+    <string name="vm_change_pin_error_too_short" msgid="5974971097302710497">"ပင်နံပါတ်အသစ်မှာ တိုလွန်းနေသည်။"</string>
+    <string name="vm_change_pin_error_too_long" msgid="8476870806115051865">"ပင်နံပါတ်အသစ်မှာ ရှည်လွန်းနေသည်။"</string>
+    <string name="vm_change_pin_error_too_weak" msgid="7883744811891784882">"ပင်နံပါတ်အသစ်မှာ အားနည်းလွန်းနေသည်။ အားကောင်းသောစကားဝှက်တစ်ခုတွင် အစဉ်လိုက်စာလုံးများ (သို့) ထပ်တလဲလဲသုံးထားသောကိန်းဂဏန်းများ မပါသင့်ပါ။"</string>
+    <string name="vm_change_pin_error_mismatch" msgid="2754685537970757317">"ပင်နံပါတ်အဟောင်းမှာ မကိုက်ညီပါ။"</string>
+    <string name="vm_change_pin_error_invalid" msgid="3972205462701668653">"ပင်နံပါတ်အသစ်တွင် အသုံးပြု၍မရသောစာလုံးများ ပါဝင်နေပါသည်။"</string>
+    <string name="vm_change_pin_error_system_error" msgid="6610603326230000207">"ပင်နံပါတ်ကို ပြောင်း၍မရပါ"</string>
+    <string name="vvm_unsupported_message_format" msgid="11795090778411977">"ပံ့ပိုးမထားသော မက်ဆေ့ဂျ်အမျိုးအစားဖြစ်၍ နားထောင်ရန် <xliff:g id="NUMBER">%s</xliff:g> ကို ခေါ်ဆိုပါ။"</string>
     <string name="mobile_networks" msgid="2843854043339307375">"ဆဲလ်လူလာ ကွန်ရက် ဆက်တင်များ"</string>
     <string name="label_available" msgid="1181658289009300430">"ရရှိနိုင်သော ကွန်ယက်များ"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"ရှာဖွေနေသည်…"</string>
@@ -198,6 +208,7 @@
     <item msgid="3817924849415716259">"GSM/WCDMA preferred"</item>
   </string-array>
     <string name="enhanced_4g_lte_mode_title" msgid="522191650223239171">"မြှင့်တင်ထား 4G LTE မုဒ်"</string>
+    <string name="enhanced_4g_lte_mode_title_variant" msgid="4871126028907265406">"အဆင့်မြင့်ဖုန်းခေါ်ဆိုခြင်း"</string>
     <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"အသံခေါ်ဆိုမှုနှင့် အခြားဆက်သွယ်ရေးများ တိုးတက်စေရန် LTE ဝန်ဆောင်မှုများ ကိုအသုံးပြုမည် (အကြံပြုထား)"</string>
     <string name="data_enabled" msgid="5972538663568715366">"ဒေတာ ဖွင့်ထားပြီး"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"ဒေတာ သုံးစွဲမှု ခွင့်ပြုရန်"</string>
@@ -436,6 +447,7 @@
     <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"ဆဲလူလာ ကွန်ရက် မရပါ။ ဖုန်းခေါ်ရန် ကြိုးမဲ့ကွန်ရက်သို့ ချိတ်ဆက်ပါ။"</string>
     <string name="incall_error_no_phone_number_supplied" msgid="1150414018684246528">"ဖုန်းခေါ်ရန်အတွက်၊ သင့်လျော်သည့်နံပါတ် ရိုက်ထည့်ပါ။"</string>
     <string name="incall_error_call_failed" msgid="5891978320269774095">"ခေါ်ဆို၍ မရပါ။"</string>
+    <string name="incall_error_cannot_add_call" msgid="5206923515522412110">"ယခုအချိန်တွင် ခေါ်ဆိုမှု ထပ်မထည့်နိုင်ပါ။"</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"MMI အမှတ်စဉ်ကို စတင်နေပါသည်…"</string>
     <string name="incall_error_supp_service_unknown" msgid="655570339115407698">"ဤဝန်ဆောင်မှုအား မပံ့ပိုးပါ။"</string>
     <string name="incall_error_supp_service_switch" msgid="5237002176899962862">"ဖုန်းခေါ်ခြင်းများကြား မကူးပ​ြောင်းနိုင်ပါ။"</string>
@@ -446,6 +458,7 @@
     <string name="incall_error_supp_service_hangup" msgid="7434513517153834426">"ဖုန်းခေါ်ခြင်း(များ)အား လွှတ်မပေးနိုင်ပါ။"</string>
     <string name="incall_error_supp_service_hold" msgid="7967020511232222078">"ခေါ်ဆိုမှုများကို ကိုင်ထား၍မရပါ။"</string>
     <string name="incall_error_wfc_only_no_wireless_network" msgid="1782466780452640089">"ဖုန်းခေါ်ရန် ကြိုးမဲကွန်ယက်တစ်ခုသို့ ချိတ်ဆက်ပါ။"</string>
+    <string name="incall_error_promote_wfc" msgid="106510757624022064">"ဖုန်းဆက်ရန် Wi-Fi ခေါ်ဆိုခြင်းကို ဖွင့်ပါ။"</string>
     <string name="emergency_enable_radio_dialog_title" msgid="4627849966634578257">"အရေးပေါ်ခေါ်ဆိုမှု"</string>
     <string name="emergency_enable_radio_dialog_message" msgid="207613549344420291">"ရေဒီယို ဖွင့်နေစဉ်…"</string>
     <string name="emergency_enable_radio_dialog_retry" msgid="5960061579996526883">"ဝန်ဆောင်မှု မရှိပါ။ ထပ်မံကြိုးစားပါ…"</string>
@@ -503,7 +516,7 @@
     <string name="ota_successful" msgid="1880780692887077407">"သင့်ဖုန်းမှာ အခု အက်တီဗိတ် ဖြစ်နေပါပြီ။ ဝန်ဆောင်မှုများ စတင်ရန် ၁၅ မိနစ်ထိ ကြာနိုင်ပါသည်"</string>
     <string name="ota_unsuccessful" msgid="8072141612635635357">"သင့်ဖုန်း အက်တီဗိတ် မဖြစ်ပါ။ \nဖုန်းလိုင်းအားပိုကောင်းသော နေရာကိုရှာပါ (ပြတင်းပေါက်နား, သို့မဟုတ် အပြင်ဖက်)။ \n\nပြန်လည်ကြိုးစားပါ သို့မဟုတ် သုံးစွဲသူအား အကူအညီပေးဝန်ဆောင်မှု ကို ဆက်သွယ်ပြီး နည်းလမ်းရှာပါ။"</string>
     <string name="ota_spc_failure" msgid="3909983542575030796">"အလွန်အကျွံ SPC မအောင်မြင်မှုများ"</string>
-    <string name="ota_call_end" msgid="4537279738134612388">"နောက်ပြန်သွားရန်"</string>
+    <string name="ota_call_end" msgid="4537279738134612388">"နောက်သို့"</string>
     <string name="ota_try_again" msgid="7685477206465902290">"ပြန်ကြိုးစားပါ"</string>
     <string name="ota_next" msgid="3904945374358235910">"ရှေ့ဆက်သွားရန်"</string>
     <string name="ecm_exit_dialog" msgid="4448531867763097533">"EcmExitDialog"</string>
@@ -515,8 +528,8 @@
       <item quantity="one"> ဒေတာဆက်သွယ်မှု <xliff:g id="COUNT_0">%s</xliff:g> မိနစ်မရှိပါ</item>
     </plurals>
     <plurals name="alert_dialog_exit_ecm" formatted="false" msgid="7179911675595441201">
-      <item quantity="other"> ဖုန်းသည် <xliff:g id="COUNT_1">%s</xliff:g> မိနစ်လောက် အရေးပေါ် ပြန်ခေါ်ခြင်းမုဒ်တွင် ရှိနေလိမ့်မည်။ ဤမုဒ်တွင် ဒေတာချိတ်ဆက်မှုအသုံးပြုသည့် app များကို အသုံးပြု၍ ရနိုင်မည်မဟုတ်ပါ။ ယခုထွက်လိုပါသလား? </item>
-      <item quantity="one"> ဖုန်းသည် <xliff:g id="COUNT_0">%s</xliff:g> မိနစ်လောက် အရေးပေါ် ပြန်ခေါ်ခြင်းမုဒ်တွင် ရှိနေလိမ့်မည်။ ဤမုဒ်တွင် ဒေတာချိတ်ဆက်မှုအသုံးပြုသည့် app များကို အသုံးပြု၍ ရနိုင်မည်မဟုတ်ပါ။ ယခုထွက်လိုပါသလား?</item>
+      <item quantity="other"> ဖုန်းသည် <xliff:g id="COUNT_1">%s</xliff:g> မိနစ်လောက် အရေးပေါ် ပြန်ခေါ်ခြင်းမုဒ်တွင် ရှိနေလိမ့်မည်။ ဤမုဒ်တွင် ဒေတာချိတ်ဆက်မှုအသုံးပြုသည့် အက်ပ်များကို အသုံးပြု၍ ရနိုင်မည်မဟုတ်ပါ။ ယခုထွက်လိုပါသလား? </item>
+      <item quantity="one"> ဖုန်းသည် <xliff:g id="COUNT_0">%s</xliff:g> မိနစ်လောက် အရေးပေါ် ပြန်ခေါ်ခြင်းမုဒ်တွင် ရှိနေလိမ့်မည်။ ဤမုဒ်တွင် ဒေတာချိတ်ဆက်မှုအသုံးပြုသည့် အက်ပ်များကို အသုံးပြု၍ ရနိုင်မည်မဟုတ်ပါ။ ယခုထွက်လိုပါသလား?</item>
     </plurals>
     <plurals name="alert_dialog_not_avaialble_in_ecm" formatted="false" msgid="8042973425225093895">
       <item quantity="other"> ရွေးချယ်ထားသော အပြုအမူမှာ အရေပေါ်ခေါ်ဆိုမှုပြုလုပ်နေစဉ် မရှိနိုင်ပါ။ ဖုန်းသည်ဤ မုဒ်တွင် <xliff:g id="COUNT_1">%s</xliff:g> မိနစ်ရှိနေမည်ဖြစ်သည်။ ယခုထွက်လိုပါသလား?</item>
@@ -524,9 +537,9 @@
     </plurals>
     <string name="alert_dialog_in_ecm_call" msgid="1886723687211887104">"ရွေးချယ်ထားသော အပြုအမူမှာ အရေပေါ်ခေါ်ဆိုမှုပြုလုပ်နေစဉ် မရှိနိုင်ပါ"</string>
     <string name="progress_dialog_exiting_ecm" msgid="4835734101617817074">"အရေးပေါ်ပြန်လည်ခေါ်ဆိုမှု အခြေအနေအား ထွက်ပါမည်"</string>
-    <string name="alert_dialog_yes" msgid="6674268047820703974">"ဟုတ်သည်"</string>
+    <string name="alert_dialog_yes" msgid="6674268047820703974">"Yes"</string>
     <string name="alert_dialog_no" msgid="1476091437797628703">"No"</string>
-    <string name="alert_dialog_dismiss" msgid="2491494287075907171">"လွှတ်လိုက်သည်"</string>
+    <string name="alert_dialog_dismiss" msgid="2491494287075907171">"ပယ်ရန်"</string>
     <string name="voicemail_provider" msgid="5135942703327136909">"ဝန်ဆောင်မှု"</string>
     <string name="voicemail_settings" msgid="72448049107749316">"ပြင်ဆင်သည်"</string>
     <string name="voicemail_number_not_set" msgid="6724904736891087856">"မသတ်မှတ်ထားပါ"</string>
@@ -540,6 +553,8 @@
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"တုန်ခါခြင်း"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"တုန်ခါခြင်း"</string>
     <string name="voicemail_visual_voicemail_switch_title" msgid="5012622186976275457">"အမြင် အသံမေးလ်"</string>
+    <string name="voicemail_set_pin_dialog_title" msgid="2797924461029093837">"ပင်နံပါတ်သတ်မှတ်ရန်"</string>
+    <string name="voicemail_change_pin_dialog_title" msgid="6035421908626121564">"ပင်နံပါတ်ပြောင်းပါ"</string>
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"အသံ"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"ဖုန်းမြည်သံ &amp; တုန်ခါသံ"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"တပ်ဆင်ပြီး ဆင်းမ် ကဒ်များ"</string>
@@ -551,10 +566,22 @@
     <string name="sim_description_emergency_calls" msgid="7535215397212301562">"အရေးပေါ် ခေါ်ဆိုမှုသာလျှင်"</string>
     <string name="sim_description_default" msgid="4778679519938775515">"SIM ကဒ်၊ အပေါက်: <xliff:g id="SLOT_ID">%s</xliff:g>"</string>
     <string name="accessibility_settings_activity_title" msgid="8562004288733103868">"ရယူသုံးနိုင်မှု"</string>
-    <string name="status_hint_label_incoming_wifi_call" msgid="8772915926382037499">"ဝင်လာသော ဝိုင်ဖိုင်ခေါ်ဆိုမှု"</string>
+    <string name="status_hint_label_incoming_wifi_call" msgid="5932176406432044638">"အောက်ပါမှ Wi-Fi ခေါ်ခြင်း"</string>
     <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"ဝိုင်ဖိုင်ခေါ်ဆိုမှု"</string>
     <string name="emergency_action_launch_hint" msgid="4906759256275562674">"ဖွင့်ရန် ထပ်တို့ပါ"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"စာကို ကုဒ်ဖွင့်နေစဉ် အမှားရှိခဲ့သည်။"</string>
     <string name="callFailed_cdma_activation" msgid="2307989779233262164">"SIM ကဒ်သည် သင့် ဖုန်းဝန်ဆောင်မှုအား အသက်သွင်းခဲ့ပြီး သင့်ဖုန်း၏ ကွန်ယက်ပြင်ပဒေတာသုံးနိုင်စွမ်းအား ပြင်ဆင်မွမ်းမံပြီးဖြစ်၏။"</string>
     <string name="callFailed_cdma_call_limit" msgid="1556916577171457086">"လက်ရှိခေါ်ဆိုမှုများ အလွန်များနေပါသည်။ ခေါ်ဆိုမှုအသစ်တစ်ခု မပြုလုပ်ခင် လက်ရှိဖုန်းခေါ်ဆိုမှုများကို အဆုံးသတ် (သို့) ပေါင်း လိုက်ပါ။"</string>
+    <string name="change_pin_title" msgid="7790232089699034029">"အသံမေးလ်ပင်နံပါတ် ပြောင်းရန်"</string>
+    <string name="change_pin_continue_label" msgid="2135088662420163447">"ဆက်လုပ်ရန်"</string>
+    <string name="change_pin_cancel_label" msgid="353535488390948596">"မလုပ်တော့"</string>
+    <string name="change_pin_ok_label" msgid="6204308560844889926">"အိုကေ"</string>
+    <string name="change_pin_enter_old_pin_header" msgid="419179847657548887">"သင့်ပင်နံပါတ်အဟောင်းကို အတည်ပြုရန်"</string>
+    <string name="change_pin_enter_old_pin_hint" msgid="8579171678763615453">"ဆက်လုပ်ရန် သင့်အသံမေးလ်ပင်နံပါတ် ထည့်ပါ။"</string>
+    <string name="change_pin_enter_new_pin_header" msgid="2611191814590251532">"ပင်နံပါတ်အသစ် သတ်မှတ်ရန်"</string>
+    <string name="change_pin_enter_new_pin_hint" msgid="2322940054329689309">"ပင်နံပါတ်တွင် ဂဏန်း <xliff:g id="MIN">%1$d</xliff:g>-<xliff:g id="MAX">%2$d</xliff:g> လုံး ပါရှိရမည်။"</string>
+    <string name="change_pin_confirm_pin_header" msgid="8113764019347322170">"ပင်နံပါတ်အတည်ပြုရန်"</string>
+    <string name="change_pin_confirm_pins_dont_match" msgid="4795052654904027909">"ပင်နံပါတ်များ မကိုက်ညီပါ"</string>
+    <string name="change_pin_succeeded" msgid="2022852286442211151">"အသံမေးလ်ပင်နံပါတ် အပ်ဒိတ်လုပ်ပြီးပါပြီ"</string>
+    <string name="change_pin_system_error" msgid="8308462387154257840">"ပင်နံပါတ်သတ်မှတ်၍ မရပါ"</string>
 </resources>

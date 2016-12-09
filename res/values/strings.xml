@@ -351,6 +351,28 @@
     <!-- Call settings screen, "Voicemail" screen, default option - Your Carrier -->
     <string name="voicemail_default">Your carrier</string>
 
+    <!-- Hint for the old PIN field in the change vociemail PIN dialog -->
+    <string name="vm_change_pin_old_pin">Old PIN</string>
+    <!-- Hint for the new PIN field in the change vociemail PIN dialog -->
+    <string name="vm_change_pin_new_pin">New PIN</string>
+
+    <!-- Message on the dialog when PIN changing is in progress -->
+    <string name="vm_change_pin_progress_message">Please wait.</string>
+    <!-- Error message for the voicemail PIN change if the PIN is too short -->
+    <string name="vm_change_pin_error_too_short">The new PIN is too short.</string>
+    <!-- Error message for the voicemail PIN change if the PIN is too long -->
+    <string name="vm_change_pin_error_too_long">The new PIN is too long.</string>
+    <!-- Error message for the voicemail PIN change if the PIN is too weak -->
+    <string name="vm_change_pin_error_too_weak">The new PIN is too weak. A strong password should not have continuous sequence or repeated digits.</string>
+    <!-- Error message for the voicemail PIN change if the old PIN entered doesn't match  -->
+    <string name="vm_change_pin_error_mismatch">The old PIN does not match.</string>
+    <!-- Error message for the voicemail PIN change if the new PIN contains invalid character -->
+    <string name="vm_change_pin_error_invalid">The new PIN contains invalid characters.</string>
+    <!-- Error message for the voicemail PIN change if operation has failed -->
+    <string name="vm_change_pin_error_system_error">Unable to change PIN</string>
+    <!-- Message to replace the transcription if a visual voicemail message is not supported-->
+    <string name="vvm_unsupported_message_format">Unsupported message type, call <xliff:g id="number" example="*86">%s</xliff:g> to listen.</string>
+
     <!-- networks setting strings --><skip/>
     <!-- Mobile network settings screen title -->
     <string name="mobile_networks">Cellular network settings</string>
@@ -494,6 +516,8 @@
     </string-array>
     <!-- Cellular network 4G title [CHAR LIMIT=30] -->
     <string name="enhanced_4g_lte_mode_title">Enhanced 4G LTE Mode</string>
+    <!-- Carrier variant of Enhaced 4G LTE Mode title.  [CHAR LIMIT=50] -->
+    <string name="enhanced_4g_lte_mode_title_variant">Advanced Calling</string>
     <!-- Cellular network 4G summary [CHAR LIMIT=80] -->
     <string name="enhanced_4g_lte_mode_summary">Use LTE services to improve voice and other communications (recommended)</string>
 
@@ -1078,6 +1102,8 @@
     <string name="incall_error_no_phone_number_supplied">To place a call, enter a valid number.</string>
     <!-- In-call screen: call failure message displayed in an error dialog -->
     <string name="incall_error_call_failed">Call failed.</string>
+    <!-- In-call screen: call failure message displayed in an error dialog -->
+    <string name="incall_error_cannot_add_call">Call cannot be added at this time.</string>
     <!-- In-call screen: status message displayed in a dialog when starting an MMI -->
     <string name="incall_status_dialed_mmi">Starting MMI sequence\u2026</string>
     <!-- In-call screen: message displayed in an error dialog -->
@@ -1098,6 +1124,8 @@
     <string name="incall_error_supp_service_hold">Can\'t hold calls.</string>
     <!-- In-call screen: call failure message displayed in an error dialog when WFC is enabled, is wifi-only, and not connected to a wireless network. [CHAR_LIMIT=NONE] -->
     <string name="incall_error_wfc_only_no_wireless_network">Connect to a wireless network to make a call.</string>
+    <!-- In-call screen: call failure message displayed in an error dialog when the user is connected to a wireless network, but wifi calling is turned off. [CHAR_LIMIT=NONE] -->
+    <string name="incall_error_promote_wfc">Enable Wi-Fi calling to make a call.</string>
 
     <!-- Dialog title for the "radio enable" UI for emergency calls -->
     <string name="emergency_enable_radio_dialog_title">Emergency call</string>
@@ -1342,6 +1370,11 @@
     <!-- Visual voicemail on/off title [CHAR LIMIT=40] -->
     <string name="voicemail_visual_voicemail_switch_title">Visual Voicemail</string>
 
+    <!-- Voicemail change PIN dialog title [CHAR LIMIT=40] -->
+    <string name="voicemail_set_pin_dialog_title">Set PIN</string>
+    <!-- Voicemail change PIN dialog title [CHAR LIMIT=40] -->
+    <string name="voicemail_change_pin_dialog_title">Change PIN</string>
+
     <!-- Voicemail ringtone title. The user clicks on this preference to select
          which sound to play when a voicemail notification is received.
          [CHAR LIMIT=30] -->
@@ -1399,7 +1432,7 @@
 
     <!-- Status hint label for an incoming call over a wifi network which has not been accepted yet.
          [CHAR LIMIT=25] -->
-    <string name="status_hint_label_incoming_wifi_call">Incoming Wi-Fi call</string>
+    <string name="status_hint_label_incoming_wifi_call">Wi-Fi call from</string>
     <!-- Status hint label for a call being made over a wifi network. [CHAR LIMIT=25] -->
     <string name="status_hint_label_wifi_call">Wi-Fi call</string>
 
@@ -1409,6 +1442,8 @@
     <string name="voicemail_notification_vibrate_key">voicemail_notification_vibrate_key</string>
     <!-- DO NOT TRANSLATE. Internal key for a visual voicemail preference. -->
     <string name="voicemail_visual_voicemail_key">voicemail_visual_voicemail_key</string>
+    <!-- DO NOT TRANSLATE. Internal key for a voicemail change pin preference. -->
+    <string name="voicemail_change_pin_key">voicemail_change_pin_key</string>
     <!-- DO NOT TRANSLATE. Internal key for tty mode preference. -->
     <string name="tty_mode_key">button_tty_mode_key</string>
     <!-- DO NOT TRANSLATE. Internal key for a voicemail notification preference. -->
@@ -1438,4 +1473,29 @@
      <!-- Summary for the Smart Divert Feature displayed in Call Settings -->
      <string name="smart_divert_summary">CFNRc Settings</string>
      <string name="no_mobile_data">Mobile data is not available</string>
+
+    <!-- The title for the change voicemail PIN activity -->
+    <string name="change_pin_title">Change Voicemail PIN</string>
+    <!-- The label for the continue button in change voicemail PIN activity -->
+    <string name="change_pin_continue_label">Continue</string>
+    <!-- The label for the cancel button in change voicemail PIN activity -->
+    <string name="change_pin_cancel_label">Cancel</string>
+    <!-- The label for the ok button in change voicemail PIN activity -->
+    <string name="change_pin_ok_label">Ok</string>
+    <!-- The title for the enter old pin step in change voicemail PIN activity -->
+    <string name="change_pin_enter_old_pin_header">Confirm your old PIN</string>
+    <!-- The hint for the enter old pin step in change voicemail PIN activity -->
+    <string name="change_pin_enter_old_pin_hint">Enter your voicemail PIN to continue.</string>
+    <!-- The title for the enter new pin step in change voicemail PIN activity -->
+    <string name="change_pin_enter_new_pin_header">Set a new PIN</string>
+    <!-- The hint for the enter new pin step in change voicemail PIN activity -->
+    <string name="change_pin_enter_new_pin_hint">PIN must be <xliff:g id="min" example="4">%1$d</xliff:g>-<xliff:g id="max" example="7">%2$d</xliff:g> digits.</string>
+    <!-- The title for the confirm new pin step in change voicemail PIN activity -->
+    <string name="change_pin_confirm_pin_header">Confirm your PIN</string>
+    <!-- The error message for th confirm new pin step in change voicemail PIN activity, if the pin doen't match the one previously entered -->
+    <string name="change_pin_confirm_pins_dont_match">PINs don\'t match</string>
+    <!-- The toast to show after the voicemail PIN has been successfully changed -->
+    <string name="change_pin_succeeded">Voicemail PIN updated</string>
+    <!-- The error message to show if the server reported an error while attempting to change the voicemail PIN -->
+    <string name="change_pin_system_error">Unable to set PIN</string>
 </resources>

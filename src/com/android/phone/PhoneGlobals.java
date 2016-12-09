@@ -34,10 +34,8 @@ import android.os.Handler;
 import android.os.Message;
 import android.os.PersistableBundle;
 import android.os.PowerManager;
-import android.os.ServiceManager;
 import android.os.SystemClock;
 import android.os.SystemProperties;
-import android.os.SystemService;
 import android.os.UpdateLock;
 import android.os.UserManager;
 import android.preference.PreferenceManager;
@@ -59,7 +57,6 @@ import com.android.internal.telephony.TelephonyCapabilities;
 import com.android.internal.telephony.TelephonyIntents;
 import com.android.phone.common.CallLogAsync;
 import com.android.phone.settings.SettingsConstants;
-import com.android.server.sip.SipService;
 import com.android.services.telephony.activation.SimActivationManager;
 import com.android.services.telephony.sip.SipUtil;
 
@@ -640,8 +637,53 @@ public class PhoneGlobals extends ContextWrapper {
         notifier.updateCallNotifierRegistrationsAfterRadioTechnologyChange();
     }
 
-    private void handleAirplaneModeChange(int newMode) {
-        if (newMode == AIRPLANE_ON) {
+    private void handleAirplaneModeChange(Context context, int newMode) {
+        int cellState = Settings.Global.getInt(context.getContentResolver(),
+                Settings.Global.CELL_ON, PhoneConstants.CELL_ON_FLAG);
+        boolean isAirplaneNewlyOn = (newMode == 1);
+        switch (cellState) {
+            case PhoneConstants.CELL_OFF_FLAG:
+                // Airplane mode does not affect the cell radio if user
+                // has turned it off.
+                break;
+            case PhoneConstants.CELL_ON_FLAG:
+                maybeTurnCellOff(context, isAirplaneNewlyOn);
+                break;
+            case PhoneConstants.CELL_OFF_DUE_TO_AIRPLANE_MODE_FLAG:
+                maybeTurnCellOn(context, isAirplaneNewlyOn);
+                break;
+        }
+    }
+
+    /*
+     * Returns true if the radio must be turned off when entering airplane mode.
+     */
+    private boolean isCellOffInAirplaneMode(Context context) {
+        String airplaneModeRadios = Settings.Global.getString(context.getContentResolver(),
+                Settings.Global.AIRPLANE_MODE_RADIOS);
+        return airplaneModeRadios == null
+                || airplaneModeRadios.contains(Settings.Global.RADIO_CELL);
+    }
+
+    private void setRadioPowerOff(Context context) {
+        Log.i(LOG_TAG, "Turning radio off - airplane");
+        Settings.Global.putInt(context.getContentResolver(), Settings.Global.CELL_ON,
+                 PhoneConstants.CELL_OFF_DUE_TO_AIRPLANE_MODE_FLAG);
+        Settings.Global.putInt(getContentResolver(), Settings.Global.ENABLE_CELLULAR_ON_BOOT, 0);
+        PhoneUtils.setRadioPower(false);
+    }
+
+    private void setRadioPowerOn(Context context) {
+        Log.i(LOG_TAG, "Turning radio on - airplane");
+        Settings.Global.putInt(context.getContentResolver(), Settings.Global.CELL_ON,
+                PhoneConstants.CELL_ON_FLAG);
+        Settings.Global.putInt(getContentResolver(), Settings.Global.ENABLE_CELLULAR_ON_BOOT,
+                1);
+        PhoneUtils.setRadioPower(true);
+    }
+
+    private void maybeTurnCellOff(Context context, boolean isAirplaneNewlyOn) {
+        if (isAirplaneNewlyOn) {
             // If we are trying to turn off the radio, make sure there are no active
             // emergency calls.  If there are, switch airplane mode back to off.
             if (PhoneUtils.isInEmergencyCall(mCM)) {
@@ -651,17 +693,17 @@ public class PhoneGlobals extends ContextWrapper {
                 Toast.makeText(this, R.string.radio_off_during_emergency_call, Toast.LENGTH_LONG)
                         .show();
                 Log.i(LOG_TAG, "Ignoring airplane mode: emergency call. Turning airplane off");
+            } else if (isCellOffInAirplaneMode(context)) {
+                setRadioPowerOff(context);
             } else {
-                Log.i(LOG_TAG, "Turning radio off - airplane");
-
-                Log.d(LOG_TAG, "Setting property " + PROPERTY_AIRPLANE_MODE_ON);
-                SystemProperties.set(PROPERTY_AIRPLANE_MODE_ON, "1");
-                PhoneUtils.setRadioPower(false);
+                Log.i(LOG_TAG, "Ignoring airplane mode: settings prevent cell radio power off");
             }
-        } else {
-            Log.i(LOG_TAG, "Turning radio on - airplane");
-            SystemProperties.set(PROPERTY_AIRPLANE_MODE_ON, "0");
-            PhoneUtils.setRadioPower(true);
+        }
+    }
+
+    private void maybeTurnCellOn(Context context, boolean isAirplaneNewlyOn) {
+        if (!isAirplaneNewlyOn) {
+            setRadioPowerOn(context);
         }
     }
 
@@ -679,7 +721,7 @@ public class PhoneGlobals extends ContextWrapper {
                 if (airplaneMode != AIRPLANE_OFF) {
                     airplaneMode = AIRPLANE_ON;
                 }
-                handleAirplaneModeChange(airplaneMode);
+                handleAirplaneModeChange(context, airplaneMode);
             } else if (action.equals(TelephonyIntents.ACTION_ANY_DATA_CONNECTION_STATE_CHANGED) ||
                     action.equals(TelephonyIntents.ACTION_DEFAULT_DATA_SUBSCRIPTION_CHANGED)) {
                 int subId = intent.getIntExtra(PhoneConstants.SUBSCRIPTION_KEY,
@@ -834,6 +876,32 @@ public class PhoneGlobals extends ContextWrapper {
      * @param subId the subscription id we should dismiss the notification for.
      */
     public void clearMwiIndicator(int subId) {
-        notificationMgr.updateMwi(subId, false);
+        // Setting voiceMessageCount to 0 will remove the current notification and clear the system
+        // cached value.
+        Phone phone = getPhone(subId);
+        if (phone == null) {
+            Log.w(LOG_TAG, "clearMwiIndicator on null phone, subId:" + subId);
+        } else {
+            phone.setVoiceMessageCount(0);
+        }
+    }
+
+    /**
+     * Enables or disables the visual voicemail check for message waiting indicator. Default value
+     * is true. MWI is the traditional voicemail notification which should be suppressed if visual
+     * voicemail is active. {@link NotificationMgr#updateMwi(int, boolean, boolean)} currently
+     * checks the {@link android.provider.VoicemailContract.Status#CONFIGURATION_STATE} to suppress
+     * the MWI, but there are several issues. b/31229016 is a bug that when the device boots the
+     * configuration state will be cleared and the MWI for voicemail that arrives when the device
+     * is offline will be cleared, even if the account cannot be activated. A full solution will be
+     * adding a setMwiEnabled() method and stop checking the configuration state, but that is too
+     * risky at this moment. This is a temporary workaround to shut down the configuration state
+     * check if visual voicemail cannot be activated.
+     * <p>TODO(twyen): implement the setMwiEnabled() mentioned above.
+     *
+     * @param subId the account to set the enabled state
+     */
+    public void setShouldCheckVisualVoicemailConfigurationForMwi(int subId, boolean enabled) {
+        notificationMgr.setShouldCheckVisualVoicemailConfigurationForMwi(subId, enabled);
     }
 }

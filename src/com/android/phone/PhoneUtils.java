@@ -67,7 +67,6 @@ import com.android.internal.telephony.TelephonyCapabilities;
 import com.android.internal.telephony.TelephonyProperties;
 import com.android.internal.telephony.sip.SipPhone;
 import com.android.phone.CallGatewayManager.RawGatewayInfo;
-import com.android.services.telephony.TelephonyConnectionService;
 
 import java.util.Arrays;
 import java.util.List;
@@ -2456,7 +2455,7 @@ public class PhoneUtils {
         return SubscriptionManager.INVALID_SUBSCRIPTION_ID;
     }
 
-    static Phone getPhoneForPhoneAccountHandle(PhoneAccountHandle handle) {
+    public static Phone getPhoneForPhoneAccountHandle(PhoneAccountHandle handle) {
         if (handle != null && handle.getComponentName().equals(getPstnConnectionServiceName())
                 && handle.getId() != null) {
             try {

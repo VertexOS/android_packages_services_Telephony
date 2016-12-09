@@ -147,6 +147,16 @@
     <string name="no_change" msgid="3186040086622435212">"ไม่มีการเปลี่ยนแปลง"</string>
     <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"เลือกบริการข้อความเสียง"</string>
     <string name="voicemail_default" msgid="2001233554889016880">"ผู้ให้บริการของคุณ"</string>
+    <string name="vm_change_pin_old_pin" msgid="7295220109886682573">"PIN เก่า"</string>
+    <string name="vm_change_pin_new_pin" msgid="5412922262839438097">"PIN ใหม่"</string>
+    <string name="vm_change_pin_progress_message" msgid="3977357361934350336">"โปรดรอสักครู่"</string>
+    <string name="vm_change_pin_error_too_short" msgid="5974971097302710497">"PIN ใหม่สั้นเกินไป"</string>
+    <string name="vm_change_pin_error_too_long" msgid="8476870806115051865">"PIN ใหม่ยาวเกินไป"</string>
+    <string name="vm_change_pin_error_too_weak" msgid="7883744811891784882">"PIN ใหม่เดาง่ายเกินไป รหัสผ่านที่เดายากไม่ควรมีตัวเลขที่เรียงค่ากันหรือตัวเลขซ้ำๆ"</string>
+    <string name="vm_change_pin_error_mismatch" msgid="2754685537970757317">"PIN เก่าไม่ถูกต้อง"</string>
+    <string name="vm_change_pin_error_invalid" msgid="3972205462701668653">"PIN ใหม่มีอักขระที่ไม่ถูกต้อง"</string>
+    <string name="vm_change_pin_error_system_error" msgid="6610603326230000207">"ไม่สามารถเปลี่ยน PIN ได้"</string>
+    <string name="vvm_unsupported_message_format" msgid="11795090778411977">"ไม่รองรับข้อความประเภทนี้ โปรดโทร <xliff:g id="NUMBER">%s</xliff:g> เพื่อฟังข้อความเสียง"</string>
     <string name="mobile_networks" msgid="2843854043339307375">"การตั้งค่าเครือข่ายมือถือ"</string>
     <string name="label_available" msgid="1181658289009300430">"เครือข่ายที่ใช้งานได้"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"กำลังค้นหา…"</string>
@@ -198,6 +208,7 @@
     <item msgid="3817924849415716259">"ต้องการ GSM/WCDMA"</item>
   </string-array>
     <string name="enhanced_4g_lte_mode_title" msgid="522191650223239171">"โหมด 4G LTE ที่ปรับปรุงแล้ว"</string>
+    <string name="enhanced_4g_lte_mode_title_variant" msgid="4871126028907265406">"การโทรขั้นสูง"</string>
     <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"ใช้บริการ LTE เพื่อปรับปรุงเสียงและการติดต่อสื่อสารด้วยวิธีอื่นๆ (แนะนำ)"</string>
     <string name="data_enabled" msgid="5972538663568715366">"เปิดใช้งานข้อมูลแล้ว"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"อนุญาตการใช้ข้อมูล"</string>
@@ -436,6 +447,7 @@
     <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"เครือข่ายมือถือไม่พร้อมใช้งาน โปรดเชื่อมต่อเครือข่ายไร้สายเพื่อโทรออก"</string>
     <string name="incall_error_no_phone_number_supplied" msgid="1150414018684246528">"หากต้องการโทรออก โปรดป้อนหมายเลขที่ถูกต้อง"</string>
     <string name="incall_error_call_failed" msgid="5891978320269774095">"การโทรล้มเหลว"</string>
+    <string name="incall_error_cannot_add_call" msgid="5206923515522412110">"ไม่สามารถเพิ่มสายได้ในขณะนี้"</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"กำลังเริ่มต้นลำดับ MMI..."</string>
     <string name="incall_error_supp_service_unknown" msgid="655570339115407698">"บริการนี้ไม่ได้รับการสนับสนุน"</string>
     <string name="incall_error_supp_service_switch" msgid="5237002176899962862">"ไม่สามารถสลับสายได้"</string>
@@ -446,6 +458,7 @@
     <string name="incall_error_supp_service_hangup" msgid="7434513517153834426">"ไม่สามารถเริ่มการโทรได้"</string>
     <string name="incall_error_supp_service_hold" msgid="7967020511232222078">"ไม่สามารถถือสายรอได้"</string>
     <string name="incall_error_wfc_only_no_wireless_network" msgid="1782466780452640089">"เชื่อมต่อเครือข่ายไร้สายเพื่อโทรออก"</string>
+    <string name="incall_error_promote_wfc" msgid="106510757624022064">"เปิดใช้การโทรผ่าน Wi-Fi เพื่อโทรออก"</string>
     <string name="emergency_enable_radio_dialog_title" msgid="4627849966634578257">"หมายเลขฉุกเฉิน"</string>
     <string name="emergency_enable_radio_dialog_message" msgid="207613549344420291">"กำลังเปิดวิทยุ…"</string>
     <string name="emergency_enable_radio_dialog_retry" msgid="5960061579996526883">"ไม่มีบริการ โปรดลองอีกครั้ง…"</string>
@@ -540,6 +553,8 @@
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"สั่น"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"สั่น"</string>
     <string name="voicemail_visual_voicemail_switch_title" msgid="5012622186976275457">"ข้อความเสียงพร้อมภาพ"</string>
+    <string name="voicemail_set_pin_dialog_title" msgid="2797924461029093837">"ตั้งค่า PIN"</string>
+    <string name="voicemail_change_pin_dialog_title" msgid="6035421908626121564">"เปลี่ยน PIN"</string>
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"เสียง"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"เสียงเรียกเข้าและสั่น"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"ซิมการ์ดในตัว"</string>
@@ -551,10 +566,22 @@
     <string name="sim_description_emergency_calls" msgid="7535215397212301562">"เฉพาะหมายเลขฉุกเฉินเท่านั้น"</string>
     <string name="sim_description_default" msgid="4778679519938775515">"ซิมการ์ด ช่อง: <xliff:g id="SLOT_ID">%s</xliff:g>"</string>
     <string name="accessibility_settings_activity_title" msgid="8562004288733103868">"การเข้าถึง"</string>
-    <string name="status_hint_label_incoming_wifi_call" msgid="8772915926382037499">"สายโทรเข้าผ่าน Wi-Fi"</string>
+    <string name="status_hint_label_incoming_wifi_call" msgid="5932176406432044638">"โทรผ่าน Wi-Fi จาก"</string>
     <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"การโทรผ่าน Wi-Fi"</string>
     <string name="emergency_action_launch_hint" msgid="4906759256275562674">"แตะอีกครั้งเพื่อเปิด"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"เกิดข้อผิดพลาดขณะถอดรหัสข้อความ"</string>
     <string name="callFailed_cdma_activation" msgid="2307989779233262164">"ซิมการ์ดได้เปิดใช้บริการของคุณและอัปเดตความสามารถในการโรมมิ่งของโทรศัพท์"</string>
     <string name="callFailed_cdma_call_limit" msgid="1556916577171457086">"มีสายที่ใช้งานอยู่มากเกินไป โปรดวางสายหรือรวมสายที่มีก่อนโทรออกครั้งใหม่"</string>
+    <string name="change_pin_title" msgid="7790232089699034029">"เปลี่ยน PIN ข้อความเสียง"</string>
+    <string name="change_pin_continue_label" msgid="2135088662420163447">"ดำเนินการต่อ"</string>
+    <string name="change_pin_cancel_label" msgid="353535488390948596">"ยกเลิก"</string>
+    <string name="change_pin_ok_label" msgid="6204308560844889926">"ตกลง"</string>
+    <string name="change_pin_enter_old_pin_header" msgid="419179847657548887">"ยืนยัน PIN เก่าของคุณ"</string>
+    <string name="change_pin_enter_old_pin_hint" msgid="8579171678763615453">"ป้อน PIN ข้อความเสียงเพื่อดำเนินการต่อ"</string>
+    <string name="change_pin_enter_new_pin_header" msgid="2611191814590251532">"ตั้งค่า PIN ใหม่"</string>
+    <string name="change_pin_enter_new_pin_hint" msgid="2322940054329689309">"PIN ต้องยาวระหว่าง <xliff:g id="MIN">%1$d</xliff:g>-<xliff:g id="MAX">%2$d</xliff:g> หลัก"</string>
+    <string name="change_pin_confirm_pin_header" msgid="8113764019347322170">"ยืนยัน PIN"</string>
+    <string name="change_pin_confirm_pins_dont_match" msgid="4795052654904027909">"PIN ไม่ตรงกัน"</string>
+    <string name="change_pin_succeeded" msgid="2022852286442211151">"อัปเดต PIN ข้อความเสียงแล้ว"</string>
+    <string name="change_pin_system_error" msgid="8308462387154257840">"ไม่สามารถตั้งค่า PIN"</string>
 </resources>

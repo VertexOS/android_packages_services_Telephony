@@ -31,6 +31,9 @@ import java.util.Set;
  * enabled dialer vvm sources.
  */
 public class VvmPackageInstallReceiver extends BroadcastReceiver {
+
+    private static final String TAG = "VvmPkgInstallReceiver";
+
     @Override
     public void onReceive(Context context, Intent intent) {
         if (intent.getData() == null) {
@@ -45,17 +48,23 @@ public class VvmPackageInstallReceiver extends BroadcastReceiver {
         OmtpVvmSourceManager vvmSourceManager = OmtpVvmSourceManager.getInstance(context);
         Set<PhoneAccountHandle> phoneAccounts = vvmSourceManager.getOmtpVvmSources();
         for (PhoneAccountHandle phoneAccount : phoneAccounts) {
-            if (VisualVoicemailSettingsUtil.isVisualVoicemailUserSet(context, phoneAccount)) {
+            if (VisualVoicemailSettingsUtil.isEnabledUserSet(context, phoneAccount)) {
                 // Skip the check if this voicemail source's setting is overridden by the user.
                 continue;
             }
 
             OmtpVvmCarrierConfigHelper carrierConfigHelper = new OmtpVvmCarrierConfigHelper(
                     context, PhoneUtils.getSubIdForPhoneAccountHandle(phoneAccount));
-            if (packageName.equals(carrierConfigHelper.getCarrierVvmPackageName())) {
-                VisualVoicemailSettingsUtil.setVisualVoicemailEnabled(
-                        context, phoneAccount, false, false);
+            if (carrierConfigHelper.getCarrierVvmPackageNames() == null) {
+                continue;
+            }
+            if (carrierConfigHelper.getCarrierVvmPackageNames().contains(packageName)) {
+                // Force deactivate the client. The user can re-enable it in the settings.
+                // There are no need to update the settings for deactivation. At this point, if the
+                // default value is used it should be false because a carrier package is present.
+                VvmLog.i(TAG, "Carrier VVM package installed, disabling system VVM client");
                 OmtpVvmSourceManager.getInstance(context).removeSource(phoneAccount);
+                carrierConfigHelper.startDeactivation();
             }
         }
     }

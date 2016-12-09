@@ -23,14 +23,12 @@ import android.net.NetworkCapabilities;
 import android.net.NetworkRequest;
 import android.os.Handler;
 import android.os.Looper;
-import android.provider.VoicemailContract;
-import android.provider.VoicemailContract.Status;
 import android.telecom.PhoneAccountHandle;
-import android.util.Log;
-
 import com.android.phone.PhoneUtils;
-import com.android.phone.VoicemailUtils;
+import com.android.phone.VoicemailStatus;
+import com.android.phone.vvm.omtp.OmtpEvents;
 import com.android.phone.vvm.omtp.OmtpVvmCarrierConfigHelper;
+import com.android.phone.vvm.omtp.VvmLog;
 
 /**
  * Base class for network request call backs for visual voicemail syncing with the Imap server. This
@@ -52,15 +50,32 @@ public abstract class VvmNetworkRequestCallback extends ConnectivityManager.Netw
     private ConnectivityManager mConnectivityManager;
     private final OmtpVvmCarrierConfigHelper mCarrierConfigHelper;
     private final int mSubId;
+    private final VoicemailStatus.Editor mStatus;
     private boolean mRequestSent = false;
     private boolean mResultReceived = false;
 
-    public VvmNetworkRequestCallback(Context context, PhoneAccountHandle phoneAccount) {
+    public VvmNetworkRequestCallback(Context context, PhoneAccountHandle phoneAccount,
+        VoicemailStatus.Editor status) {
         mContext = context;
         mPhoneAccount = phoneAccount;
         mSubId = PhoneUtils.getSubIdForPhoneAccountHandle(phoneAccount);
+        mStatus = status;
         mCarrierConfigHelper = new OmtpVvmCarrierConfigHelper(context, mSubId);
         mNetworkRequest = createNetworkRequest();
+    }
+
+    public VvmNetworkRequestCallback(OmtpVvmCarrierConfigHelper config,
+        PhoneAccountHandle phoneAccount, VoicemailStatus.Editor status) {
+        mContext = config.getContext();
+        mPhoneAccount = phoneAccount;
+        mSubId = config.getSubId();
+        mStatus = status;
+        mCarrierConfigHelper = config;
+        mNetworkRequest = createNetworkRequest();
+    }
+
+    public VoicemailStatus.Editor getVoicemailStatusEditor() {
+        return mStatus;
     }
 
     /**
@@ -73,11 +88,11 @@ public abstract class VvmNetworkRequestCallback extends ConnectivityManager.Netw
                 .addCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET);
 
         if (mCarrierConfigHelper.isCellularDataRequired()) {
-            Log.d(TAG, "Transport type: CELLULAR");
+            VvmLog.d(TAG, "Transport type: CELLULAR");
             builder.addTransportType(NetworkCapabilities.TRANSPORT_CELLULAR)
                     .setNetworkSpecifier(Integer.toString(mSubId));
         } else {
-            Log.d(TAG, "Transport type: ANY");
+            VvmLog.d(TAG, "Transport type: ANY");
         }
         return builder.build();
     }
@@ -89,7 +104,7 @@ public abstract class VvmNetworkRequestCallback extends ConnectivityManager.Netw
     @Override
     @CallSuper
     public void onLost(Network network) {
-        Log.d(TAG, "onLost");
+        VvmLog.d(TAG, "onLost");
         mResultReceived = true;
         onFailed(NETWORK_REQUEST_FAILED_LOST);
     }
@@ -110,7 +125,7 @@ public abstract class VvmNetworkRequestCallback extends ConnectivityManager.Netw
 
     public void requestNetwork() {
         if (mRequestSent == true) {
-            Log.e(TAG, "requestNetwork() called twice");
+            VvmLog.e(TAG, "requestNetwork() called twice");
             return;
         }
         mRequestSent = true;
@@ -131,7 +146,7 @@ public abstract class VvmNetworkRequestCallback extends ConnectivityManager.Netw
     }
 
     public void releaseNetwork() {
-        Log.d(TAG, "releaseNetwork");
+        VvmLog.d(TAG, "releaseNetwork");
         getConnectivityManager().unregisterNetworkCallback(this);
     }
 
@@ -145,14 +160,12 @@ public abstract class VvmNetworkRequestCallback extends ConnectivityManager.Netw
 
     @CallSuper
     public void onFailed(String reason) {
-        Log.d(TAG, "onFailed: " + reason);
+        VvmLog.d(TAG, "onFailed: " + reason);
         if (mCarrierConfigHelper.isCellularDataRequired()) {
-            VoicemailUtils.setDataChannelState(
-                    mContext, mPhoneAccount,
-                    Status.DATA_CHANNEL_STATE_NO_CONNECTION_CELLULAR_REQUIRED);
+            mCarrierConfigHelper
+                .handleEvent(mStatus, OmtpEvents.DATA_NO_CONNECTION_CELLULAR_REQUIRED);
         } else {
-            VoicemailUtils.setDataChannelState(
-                    mContext, mPhoneAccount, Status.DATA_CHANNEL_STATE_NO_CONNECTION);
+            mCarrierConfigHelper.handleEvent(mStatus, OmtpEvents.DATA_NO_CONNECTION);
         }
         releaseNetwork();
     }

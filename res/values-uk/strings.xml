@@ -147,6 +147,16 @@
     <string name="no_change" msgid="3186040086622435212">"Не здійсн. жодних змін."</string>
     <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"Вибер. службу голос. пошти"</string>
     <string name="voicemail_default" msgid="2001233554889016880">"Ваш оператор"</string>
+    <string name="vm_change_pin_old_pin" msgid="7295220109886682573">"Старий PIN-код"</string>
+    <string name="vm_change_pin_new_pin" msgid="5412922262839438097">"Новий PIN-код"</string>
+    <string name="vm_change_pin_progress_message" msgid="3977357361934350336">"Зачекайте."</string>
+    <string name="vm_change_pin_error_too_short" msgid="5974971097302710497">"Новий PIN-код закороткий."</string>
+    <string name="vm_change_pin_error_too_long" msgid="8476870806115051865">"Новий PIN-код задовгий."</string>
+    <string name="vm_change_pin_error_too_weak" msgid="7883744811891784882">"Новий PIN-код недостатньо надійний. Надійний PIN-код не має містити прямих послідовностей або повторюваних цифр."</string>
+    <string name="vm_change_pin_error_mismatch" msgid="2754685537970757317">"Старий PIN-код неправильний."</string>
+    <string name="vm_change_pin_error_invalid" msgid="3972205462701668653">"Новий PIN-код містить недійсні символи"</string>
+    <string name="vm_change_pin_error_system_error" msgid="6610603326230000207">"Не вдалося змінити PIN-код"</string>
+    <string name="vvm_unsupported_message_format" msgid="11795090778411977">"Повідомлення непідтримуваного типу. Зателефонуйте на номер <xliff:g id="NUMBER">%s</xliff:g>, щоб прослухати."</string>
     <string name="mobile_networks" msgid="2843854043339307375">"Налаштування моб. мереж"</string>
     <string name="label_available" msgid="1181658289009300430">"Доступні мережі"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"Пошук…"</string>
@@ -198,6 +208,7 @@
     <item msgid="3817924849415716259">"Рекомендовано GSM/WCDMA"</item>
   </string-array>
     <string name="enhanced_4g_lte_mode_title" msgid="522191650223239171">"Розширений режим 4G LTE"</string>
+    <string name="enhanced_4g_lte_mode_title_variant" msgid="4871126028907265406">"Дзвінки з розширеними можливостями"</string>
     <string name="enhanced_4g_lte_mode_summary" msgid="2332175070522125850">"Використ. служби LTE для покращення голосового й інших типів зв’язку (рекоменд.)"</string>
     <string name="data_enabled" msgid="5972538663568715366">"Передавання даних"</string>
     <string name="data_enable_summary" msgid="2382798156640007971">"Дозволити використання даних"</string>
@@ -436,6 +447,7 @@
     <string name="incall_error_out_of_service_wfc" msgid="323851839058697057">"Мобільна мережа недоступна. Щоб зателефонувати, під’єднайтеся до бездротової мережі."</string>
     <string name="incall_error_no_phone_number_supplied" msgid="1150414018684246528">"Щоб зателефонувати, введіть дійсний номер."</string>
     <string name="incall_error_call_failed" msgid="5891978320269774095">"Не вдалося здійснити виклик."</string>
+    <string name="incall_error_cannot_add_call" msgid="5206923515522412110">"Зараз не можна додати виклик."</string>
     <string name="incall_status_dialed_mmi" msgid="3672498861336189563">"Запуск ряду MMI..."</string>
     <string name="incall_error_supp_service_unknown" msgid="655570339115407698">"Служба не підтримується"</string>
     <string name="incall_error_supp_service_switch" msgid="5237002176899962862">"Неможливо переключитися між викликами."</string>
@@ -446,6 +458,7 @@
     <string name="incall_error_supp_service_hangup" msgid="7434513517153834426">"Неможливо телефонувати."</string>
     <string name="incall_error_supp_service_hold" msgid="7967020511232222078">"Не можна призупиняти виклики."</string>
     <string name="incall_error_wfc_only_no_wireless_network" msgid="1782466780452640089">"Щоб зателефонувати, під’єднайтеся до бездротової мережі."</string>
+    <string name="incall_error_promote_wfc" msgid="106510757624022064">"Щоб мати змогу телефонувати, увімкніть виклики через Wi-Fi."</string>
     <string name="emergency_enable_radio_dialog_title" msgid="4627849966634578257">"Аварійний виклик"</string>
     <string name="emergency_enable_radio_dialog_message" msgid="207613549344420291">"Увімкнення радіо…"</string>
     <string name="emergency_enable_radio_dialog_retry" msgid="5960061579996526883">"Зв’язку немає. Повторна спроба…"</string>
@@ -546,6 +559,8 @@
     <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"Вібросигнал"</string>
     <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"Вібросигнал"</string>
     <string name="voicemail_visual_voicemail_switch_title" msgid="5012622186976275457">"Візуальна голосова пошта"</string>
+    <string name="voicemail_set_pin_dialog_title" msgid="2797924461029093837">"Установити PIN-код"</string>
+    <string name="voicemail_change_pin_dialog_title" msgid="6035421908626121564">"Змінити PIN-код"</string>
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"Звук"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"Сигнал дзвінка та вібросигнал"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"Вбудовані SIM-карти"</string>
@@ -557,10 +572,22 @@
     <string name="sim_description_emergency_calls" msgid="7535215397212301562">"Лише екстрені виклики"</string>
     <string name="sim_description_default" msgid="4778679519938775515">"SIM-карта, роз’єм: <xliff:g id="SLOT_ID">%s</xliff:g>"</string>
     <string name="accessibility_settings_activity_title" msgid="8562004288733103868">"Спеціальні можливості"</string>
-    <string name="status_hint_label_incoming_wifi_call" msgid="8772915926382037499">"Вхід. дзвінок через Wi-Fi"</string>
+    <string name="status_hint_label_incoming_wifi_call" msgid="5932176406432044638">"Виклик Wi-Fi від"</string>
     <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"Дзвінок через Wi-Fi"</string>
     <string name="emergency_action_launch_hint" msgid="4906759256275562674">"Торкніться знову, щоб відкрити"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"Під час розшифрування повідомлення сталася помилка."</string>
     <string name="callFailed_cdma_activation" msgid="2307989779233262164">"Коли ви вставили SIM-карту, було активовано мобільний зв’язок і оновлено можливості роумінгу вашого телефона."</string>
     <string name="callFailed_cdma_call_limit" msgid="1556916577171457086">"Забагато активних викликів. Перш ніж зателефонувати новому абоненту, завершіть або об’єднайте поточні виклики."</string>
+    <string name="change_pin_title" msgid="7790232089699034029">"Змінити PIN-код голосової пошти"</string>
+    <string name="change_pin_continue_label" msgid="2135088662420163447">"Продовжити"</string>
+    <string name="change_pin_cancel_label" msgid="353535488390948596">"Скасувати"</string>
+    <string name="change_pin_ok_label" msgid="6204308560844889926">"OK"</string>
+    <string name="change_pin_enter_old_pin_header" msgid="419179847657548887">"Підтвердьте старий PIN-код"</string>
+    <string name="change_pin_enter_old_pin_hint" msgid="8579171678763615453">"Щоб продовжити, введіть PIN-код голосової пошти."</string>
+    <string name="change_pin_enter_new_pin_header" msgid="2611191814590251532">"Введіть новий PIN-код"</string>
+    <string name="change_pin_enter_new_pin_hint" msgid="2322940054329689309">"Рекомендована кількість цифр у PIN-коді: <xliff:g id="MIN">%1$d</xliff:g>–<xliff:g id="MAX">%2$d</xliff:g>."</string>
+    <string name="change_pin_confirm_pin_header" msgid="8113764019347322170">"Підтвердьте свій PIN-код"</string>
+    <string name="change_pin_confirm_pins_dont_match" msgid="4795052654904027909">"PIN-коди не збігаються"</string>
+    <string name="change_pin_succeeded" msgid="2022852286442211151">"PIN-код голосової пошти змінено"</string>
+    <string name="change_pin_system_error" msgid="8308462387154257840">"Не вдалося встановити PIN-код"</string>
 </resources>

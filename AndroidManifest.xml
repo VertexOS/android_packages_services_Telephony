@@ -49,6 +49,7 @@
     <protected-broadcast android:name="android.intent.action.DATA_SMS_RECEIVED" />
     <protected-broadcast android:name="android.provider.Telephony.SMS_RECEIVED" />
     <protected-broadcast android:name="android.provider.Telephony.SMS_DELIVER" />
+    <protected-broadcast android:name="android.provider.Telephony.SMS_REJECTED" />
     <protected-broadcast android:name="android.provider.Telephony.WAP_PUSH_DELIVER" />
     <protected-broadcast android:name="android.provider.Telephony.WAP_PUSH_RECEIVED" />
     <protected-broadcast android:name="android.provider.Telephony.SMS_CB_RECEIVED" />
@@ -57,9 +58,21 @@
     <protected-broadcast android:name= "android.intent.action.stk.session_end" />
     <protected-broadcast android:name= "android.intent.action.stk.icc_status_change" />
     <protected-broadcast android:name= "android.intent.action.stk.alpha_notify" />
-    <protected-broadcast android:name= "android.intent.action.REDIRECTION_DETECTED" />
-    <protected-broadcast android:name= "android.intent.action.REQUEST_NETWORK_FAILED" />
+    <protected-broadcast android:name= "android.intent.action.CARRIER_SIGNAL_REDIRECTED" />
+    <protected-broadcast android:name= "android.intent.action.CARRIER_SIGNAL_REQUEST_NETWORK_FAILED" />
+    <protected-broadcast android:name= "android.intent.action.CARRIER_SIGNAL_PCO_VALUE" />
+    <protected-broadcast android:name= "android.intent.action.VOICEMAIL_SMS_RECEIVED" />
     <protected-broadcast android:name= "com.android.intent.isim_refresh" />
+    <protected-broadcast android:name= "com.android.ims.IMS_SERVICE_UP" />
+    <protected-broadcast android:name= "com.android.ims.IMS_SERVICE_DOWN" />
+    <protected-broadcast android:name= "com.android.ims.IMS_INCOMING_CALL" />
+    <protected-broadcast android:name= "com.android.ims.internal.uce.UCE_SERVICE_UP" />
+    <protected-broadcast android:name= "com.android.ims.internal.uce.UCE_SERVICE_DOWN" />
+    <protected-broadcast android:name= "com.android.imsconnection.DISCONNECTED" />
+    <protected-broadcast android:name= "com.android.intent.action.IMS_FEATURE_CHANGED" />
+    <protected-broadcast android:name= "com.android.intent.action.IMS_CONFIG_CHANGED" />
+    <protected-broadcast android:name= "com.android.ims.REGISTRATION_ERROR" />
+    <protected-broadcast android:name= "com.android.phone.vvm.omtp.sms.REQUEST_SENT" />
 
     <uses-permission android:name="android.permission.BROADCAST_STICKY" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
@@ -331,7 +344,7 @@
              non-voice-capable tablets and regular phone devices. -->
         <activity android:name="MobileNetworkSettings"
             android:label="@string/settings_label"
-            android:theme="@style/SettingsLight">
+            android:theme="@style/NetworkOperatorsSettingsTheme">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <action android:name="android.intent.action.MAIN" />
@@ -355,22 +368,6 @@
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.settings.NETWORK_OPERATOR_SETTINGS" />
                 <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-
-        <activity android:name="GsmUmtsOptions"
-                android:label="@string/gsm_umts_options"
-                android:theme="@style/DialerSettingsLight">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-            </intent-filter>
-        </activity>
-
-        <activity android:name="CdmaOptions"
-                android:label="@string/cdma_options"
-                android:theme="@style/DialerSettingsLight">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
 
@@ -412,14 +409,6 @@
                 android:label="@string/call_forward_option"
                 android:configChanges="orientation|screenSize|keyboardHidden"
                 android:theme="@style/SettingsLight">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-            </intent-filter>
-        </activity>
-
-        <activity android:name="CellBroadcastSms"
-            android:label="@string/cell_broadcast_sms"
-            android:theme="@android:style/Theme.Holo.DialogWhenLarge">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
@@ -468,23 +457,6 @@
         <activity android:name="com.android.phone.settings.fdn.DeleteFdnContactScreen"
                 android:theme="@style/DialerSettingsLight"
                 android:label="@string/delete_fdn_contact">
-        </activity>
-
-        <activity android:name="DataRoamingReenable"
-                android:label="@string/dialog_alert_title"
-                android:theme="@android:style/Theme.Holo.Dialog">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-            </intent-filter>
-        </activity>
-
-        <!-- data roaming setting -->
-        <activity android:name="RoamingSetting"
-                android:label="@string/roaming"
-                android:theme="@android:style/Theme.Holo.DialogWhenLarge">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-            </intent-filter>
         </activity>
 
         <!-- "Call settings" UI, used only on voice-capable phone devices. -->
@@ -545,12 +517,6 @@
         </activity>
 
         <!-- Start SIP -->
-        <service android:name="com.android.services.telephony.sip.SipCallServiceProvider"
-                 android:singleUser="true" >
-            <intent-filter>
-                <action android:name="android.telecom.CallServiceProvider" />
-            </intent-filter>
-        </service>
         <service android:name="com.android.services.telephony.sip.SipConnectionService"
                  android:label="@string/sip_connection_service_label"
                  android:singleUser="true"
@@ -669,69 +635,86 @@
             </intent-filter>
         </provider>
         <receiver android:name="com.android.phone.vvm.omtp.sms.OmtpMessageReceiver"
-            android:exported="true">
+            android:exported="false"
+            androidprv:systemUserOnly="true">
             <intent-filter>
-                <action android:name="android.intent.action.DATA_SMS_RECEIVED" />
-                <data android:scheme="sms" />
+                <action android:name="android.intent.action.VOICEMAIL_SMS_RECEIVED"/>
             </intent-filter>
         </receiver>
         <receiver
             android:name="com.android.phone.vvm.omtp.SimChangeReceiver"
-            android:exported="true">
+            android:exported="true"
+            androidprv:systemUserOnly="true">
             <intent-filter>
                 <action android:name="android.telephony.action.CARRIER_CONFIG_CHANGED" />
                 <action android:name="android.intent.action.SIM_STATE_CHANGED" />
             </intent-filter>
         </receiver>
         <receiver
-            android:name="com.android.phone.vvm.omtp.OmtpBootCompletedReceiver"
+            android:name="com.android.phone.vvm.omtp.VvmBootCompletedReceiver"
             android:exported="true"
-            android:permission="android.permission.RECEIVE_BOOT_COMPLETED">
+            android:permission="android.permission.RECEIVE_BOOT_COMPLETED"
+            androidprv:systemUserOnly="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>
             </intent-filter>
         </receiver>
-       <receiver
-           android:name="com.android.phone.vvm.omtp.fetch.FetchVoicemailReceiver"
-           android:exported="true"
-           android:permission="com.android.voicemail.permission.READ_VOICEMAIL">
-           <intent-filter>
-              <action android:name="android.intent.action.FETCH_VOICEMAIL" />
-               <data
-                   android:scheme="content"
-                   android:host="com.android.voicemail"
-                   android:mimeType="vnd.android.cursor.item/voicemail" />
-          </intent-filter>
-       </receiver>
+        <receiver
+            android:name="com.android.phone.vvm.omtp.fetch.FetchVoicemailReceiver"
+            android:exported="true"
+            android:permission="com.android.voicemail.permission.READ_VOICEMAIL"
+            androidprv:systemUserOnly="true">
+            <intent-filter>
+                <action android:name="android.intent.action.FETCH_VOICEMAIL" />
+                    <data
+                        android:scheme="content"
+                        android:host="com.android.voicemail"
+                        android:mimeType="vnd.android.cursor.item/voicemail" />
+            </intent-filter>
+        </receiver>
         <receiver
             android:name="com.android.phone.vvm.omtp.sync.OmtpVvmSyncReceiver"
             android:exported="true"
-            android:permission="com.android.voicemail.permission.READ_VOICEMAIL">
+            android:permission="com.android.voicemail.permission.READ_VOICEMAIL"
+            androidprv:systemUserOnly="true">
             <intent-filter>
                 <action android:name="android.provider.action.SYNC_VOICEMAIL"/>
             </intent-filter>
         </receiver>
-       <receiver
-           android:name="com.android.phone.vvm.omtp.sync.VoicemailProviderChangeReceiver"
-           android:exported="true">
-           <intent-filter>
-              <action android:name="android.intent.action.PROVIDER_CHANGED" />
-               <data
-                   android:scheme="content"
-                   android:host="com.android.voicemail"
-                   android:mimeType="vnd.android.cursor.dir/voicemails"/>
-          </intent-filter>
-       </receiver>
-       <service
-            android:name="com.android.phone.vvm.omtp.sync.OmtpVvmSyncService"
-            android:exported="false"
-       />
-       <receiver android:name="com.android.phone.vvm.omtp.VvmPackageInstallReceiver">
-          <intent-filter>
-              <action android:name="android.intent.action.PACKAGE_INSTALL" />
-              <action android:name="android.intent.action.PACKAGE_ADDED" />
-              <data android:scheme="package"/>
-          </intent-filter>
-       </receiver>
+        <receiver
+            android:name="com.android.phone.vvm.omtp.sync.VoicemailProviderChangeReceiver"
+            android:exported="true"
+            androidprv:systemUserOnly="true">
+            <intent-filter>
+                <action android:name="android.intent.action.PROVIDER_CHANGED" />
+                <data
+                    android:scheme="content"
+                    android:host="com.android.voicemail"
+                    android:mimeType="vnd.android.cursor.dir/voicemails"/>
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name="com.android.phone.vvm.omtp.sms.OmtpProvisioningService"
+            android:exported="false" />
+
+        <service
+          android:name="com.android.phone.vvm.omtp.scheduling.TaskSchedulerService"
+          android:exported="false" />
+
+        <receiver android:name="com.android.phone.vvm.omtp.VvmPackageInstallReceiver"
+            androidprv:systemUserOnly="true">
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_INSTALL" />
+                <action android:name="android.intent.action.PACKAGE_ADDED" />
+                <data android:scheme="package"/>
+            </intent-filter>
+        </receiver>
+
+        <activity android:name=".settings.VoicemailChangePinActivity"
+          android:exported="false"
+          android:theme="@style/DialerSettingsLight"
+          android:windowSoftInputMode="stateVisible|adjustResize">
+          </activity>
     </application>
 </manifest>

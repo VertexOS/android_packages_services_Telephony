@@ -211,7 +211,7 @@ final class CdmaConnection extends TelephonyConnection {
     }
 
     @Override
-    public void performConference(TelephonyConnection otherConnection) {
+    public void performConference(android.telecom.Connection otherConnection) {
         if (isImsConnection()) {
             super.performConference(otherConnection);
         } else {

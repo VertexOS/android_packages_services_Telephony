@@ -19,20 +19,23 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.provider.VoicemailContract;
+import android.telecom.PhoneAccountHandle;
 
 /**
  * Receives changes to the voicemail provider so they can be sent to the voicemail server.
  */
 public class VoicemailProviderChangeReceiver extends BroadcastReceiver {
+
     @Override
     public void onReceive(Context context, Intent intent) {
         boolean isSelfChanged = intent.getBooleanExtra(VoicemailContract.EXTRA_SELF_CHANGE, false);
         OmtpVvmSourceManager vvmSourceManager =
                 OmtpVvmSourceManager.getInstance(context);
         if (vvmSourceManager.getOmtpVvmSources().size() > 0 && !isSelfChanged) {
-            Intent serviceIntent = OmtpVvmSyncService.getSyncIntent(
-                    context, OmtpVvmSyncService.SYNC_UPLOAD_ONLY, null, true /* firstAttempt */);
-            context.startService(serviceIntent);
+            for (PhoneAccountHandle source : OmtpVvmSourceManager.getInstance(context)
+                    .getOmtpVvmSources()) {
+                UploadTask.start(context, source);
+            }
         }
     }
 }

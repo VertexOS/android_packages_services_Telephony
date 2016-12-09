@@ -90,6 +90,12 @@ final class CdmaConferenceController {
     private CdmaConference mConference;
 
     void add(final CdmaConnection connection) {
+        if (mCdmaConnections.contains(connection)) {
+            // Adding a duplicate realistically shouldn't happen.
+            Log.w(this, "add - connection already tracked; connection=%s", connection);
+            return;
+        }
+
         if (!mCdmaConnections.isEmpty() && connection.isOutgoing()) {
             // There already exists a connection, so this will probably result in a conference once
             // it is added. For outgoing connections which are added while another connection
@@ -127,7 +133,14 @@ final class CdmaConferenceController {
         recalculateConference();
     }
 
-    private void remove(CdmaConnection connection) {
+    void remove(CdmaConnection connection) {
+        if (!mCdmaConnections.contains(connection)) {
+            // Debug only since TelephonyConnectionService tries to clean up the connections tracked
+            // when the original connection changes.  It does this proactively.
+            Log.d(this, "remove - connection not tracked; connection=%s", connection);
+            return;
+        }
+
         connection.removeConnectionListener(mConnectionListener);
         mCdmaConnections.remove(connection);
         recalculateConference();

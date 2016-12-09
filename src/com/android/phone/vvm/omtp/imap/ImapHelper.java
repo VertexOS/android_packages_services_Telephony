@@ -16,21 +16,15 @@
 package com.android.phone.vvm.omtp.imap;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.Network;
 import android.net.NetworkInfo;
-import android.preference.PreferenceManager;
 import android.provider.VoicemailContract;
-import android.provider.VoicemailContract.Status;
 import android.telecom.PhoneAccountHandle;
 import android.telecom.Voicemail;
-import android.telephony.TelephonyManager;
 import android.util.Base64;
-import android.util.Log;
-
 import com.android.phone.PhoneUtils;
-import com.android.phone.VoicemailUtils;
+import com.android.phone.VoicemailStatus;
 import com.android.phone.common.mail.Address;
 import com.android.phone.common.mail.Body;
 import com.android.phone.common.mail.BodyPart;
@@ -41,30 +35,36 @@ import com.android.phone.common.mail.MessagingException;
 import com.android.phone.common.mail.Multipart;
 import com.android.phone.common.mail.TempDirectory;
 import com.android.phone.common.mail.internet.MimeMessage;
+import com.android.phone.common.mail.store.ImapConnection;
 import com.android.phone.common.mail.store.ImapFolder;
 import com.android.phone.common.mail.store.ImapStore;
 import com.android.phone.common.mail.store.imap.ImapConstants;
+import com.android.phone.common.mail.store.imap.ImapResponse;
 import com.android.phone.common.mail.utils.LogUtils;
-import com.android.phone.settings.VisualVoicemailSettingsUtil;
 import com.android.phone.vvm.omtp.OmtpConstants;
+import com.android.phone.vvm.omtp.OmtpConstants.ChangePinResult;
+import com.android.phone.vvm.omtp.OmtpEvents;
 import com.android.phone.vvm.omtp.OmtpVvmCarrierConfigHelper;
+import com.android.phone.vvm.omtp.VisualVoicemailPreferences;
+import com.android.phone.vvm.omtp.VvmLog;
 import com.android.phone.vvm.omtp.fetch.VoicemailFetchedCallback;
 import com.android.phone.vvm.omtp.sync.OmtpVvmSyncService.TranscriptionFetchedCallback;
-
-import libcore.io.IoUtils;
-
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.Closeable;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
+import libcore.io.IoUtils;
 
 /**
  * A helper interface to abstract commands sent across IMAP interface for a given account.
  */
-public class ImapHelper {
-    private final String TAG = "ImapHelper";
+public class ImapHelper implements Closeable {
+
+    private static final String TAG = "ImapHelper";
 
     private ImapFolder mFolder;
     private ImapStore mImapStore;
@@ -72,88 +72,111 @@ public class ImapHelper {
     private final Context mContext;
     private final PhoneAccountHandle mPhoneAccount;
     private final Network mNetwork;
+    private final VoicemailStatus.Editor mStatus;
 
-    SharedPreferences mPrefs;
+    VisualVoicemailPreferences mPrefs;
     private static final String PREF_KEY_QUOTA_OCCUPIED = "quota_occupied_";
     private static final String PREF_KEY_QUOTA_TOTAL = "quota_total_";
 
     private int mQuotaOccupied;
     private int mQuotaTotal;
 
-    public ImapHelper(Context context, PhoneAccountHandle phoneAccount, Network network) {
+    private final OmtpVvmCarrierConfigHelper mConfig;
+
+    public class InitializingException extends Exception {
+
+        public InitializingException(String message) {
+            super(message);
+        }
+    }
+
+    public ImapHelper(Context context, PhoneAccountHandle phoneAccount, Network network,
+        VoicemailStatus.Editor status)
+        throws InitializingException {
+        this(context, new OmtpVvmCarrierConfigHelper(context,
+            PhoneUtils.getSubIdForPhoneAccountHandle(phoneAccount)), phoneAccount, network, status);
+    }
+
+    public ImapHelper(Context context, OmtpVvmCarrierConfigHelper config,
+        PhoneAccountHandle phoneAccount, Network network, VoicemailStatus.Editor status)
+        throws InitializingException {
         mContext = context;
         mPhoneAccount = phoneAccount;
         mNetwork = network;
+        mStatus = status;
+        mConfig = config;
+        mPrefs = new VisualVoicemailPreferences(context,
+                phoneAccount);
+
         try {
             TempDirectory.setTempDirectory(context);
 
-            String username = VisualVoicemailSettingsUtil.getVisualVoicemailCredentials(context,
-                    OmtpConstants.IMAP_USER_NAME, phoneAccount);
-            String password = VisualVoicemailSettingsUtil.getVisualVoicemailCredentials(context,
-                    OmtpConstants.IMAP_PASSWORD, phoneAccount);
-            String serverName = VisualVoicemailSettingsUtil.getVisualVoicemailCredentials(context,
-                    OmtpConstants.SERVER_ADDRESS, phoneAccount);
+            String username = mPrefs.getString(OmtpConstants.IMAP_USER_NAME, null);
+            String password = mPrefs.getString(OmtpConstants.IMAP_PASSWORD, null);
+            String serverName = mPrefs.getString(OmtpConstants.SERVER_ADDRESS, null);
             int port = Integer.parseInt(
-                    VisualVoicemailSettingsUtil.getVisualVoicemailCredentials(context,
-                            OmtpConstants.IMAP_PORT, phoneAccount));
+                    mPrefs.getString(OmtpConstants.IMAP_PORT, null));
             int auth = ImapStore.FLAG_NONE;
 
-            OmtpVvmCarrierConfigHelper carrierConfigHelper = new OmtpVvmCarrierConfigHelper(context,
-                    PhoneUtils.getSubIdForPhoneAccountHandle(phoneAccount));
-            if (TelephonyManager.VVM_TYPE_CVVM.equals(carrierConfigHelper.getVvmType())) {
-                // TODO: move these into the carrier config app
-                port = 993;
+            int sslPort = mConfig.getSslPort();
+            if (sslPort != 0) {
+                port = sslPort;
                 auth = ImapStore.FLAG_SSL;
             }
 
             mImapStore = new ImapStore(
                     context, this, username, password, port, serverName, auth, network);
         } catch (NumberFormatException e) {
-            VoicemailUtils.setDataChannelState(
-                    mContext, mPhoneAccount, Status.DATA_CHANNEL_STATE_BAD_CONFIGURATION);
+            handleEvent(OmtpEvents.DATA_INVALID_PORT);
             LogUtils.w(TAG, "Could not parse port number");
+            throw new InitializingException("cannot initialize ImapHelper:" + e.toString());
         }
 
-        mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-        mQuotaOccupied = mPrefs.getInt(getSharedPrefsKey(PREF_KEY_QUOTA_OCCUPIED),
-                VoicemailContract.Status.QUOTA_UNAVAILABLE);
-        mQuotaTotal = mPrefs.getInt(getSharedPrefsKey(PREF_KEY_QUOTA_TOTAL),
-                VoicemailContract.Status.QUOTA_UNAVAILABLE);
-
-        Log.v(TAG, "Quota:" + mQuotaOccupied + "/" + mQuotaTotal);
+        mQuotaOccupied = mPrefs
+                .getInt(PREF_KEY_QUOTA_OCCUPIED, VoicemailContract.Status.QUOTA_UNAVAILABLE);
+        mQuotaTotal = mPrefs
+                .getInt(PREF_KEY_QUOTA_TOTAL, VoicemailContract.Status.QUOTA_UNAVAILABLE);
     }
 
-    /**
-     * If mImapStore is null, this means that there was a missing or badly formatted port number,
-     * which means there aren't sufficient credentials for login. If mImapStore is succcessfully
-     * initialized, then ImapHelper is ready to go.
-     */
-    public boolean isSuccessfullyInitialized() {
-        return mImapStore != null;
+    @Override
+    public void close() {
+        mImapStore.closeConnection();
     }
 
-    public boolean isRoaming(){
+    public boolean isRoaming() {
         ConnectivityManager connectivityManager = (ConnectivityManager) mContext.getSystemService(
                 Context.CONNECTIVITY_SERVICE);
         NetworkInfo info = connectivityManager.getNetworkInfo(mNetwork);
-        if(info == null){
+        if (info == null) {
             return false;
         }
         return info.isRoaming();
     }
 
-    /** The caller thread will block until the method returns. */
+    public OmtpVvmCarrierConfigHelper getConfig() {
+        return mConfig;
+    }
+
+    public ImapConnection connect() {
+        return mImapStore.getConnection();
+    }
+
+    /**
+     * The caller thread will block until the method returns.
+     */
     public boolean markMessagesAsRead(List<Voicemail> voicemails) {
         return setFlags(voicemails, Flag.SEEN);
     }
 
-    /** The caller thread will block until the method returns. */
+    /**
+     * The caller thread will block until the method returns.
+     */
     public boolean markMessagesAsDeleted(List<Voicemail> voicemails) {
         return setFlags(voicemails, Flag.DELETED);
     }
 
-    public void setDataChannelState(int dataChannelState) {
-        VoicemailUtils.setDataChannelState(mContext, mPhoneAccount, dataChannelState);
+    public void handleEvent(OmtpEvents event) {
+        mConfig.handleEvent(mStatus, event);
     }
 
     /**
@@ -221,7 +244,7 @@ public class ImapHelper {
      * transcription exists.
      */
     private Voicemail getVoicemailFromMessageStructure(
-            MessageStructureWrapper messageStructureWrapper) throws MessagingException{
+            MessageStructureWrapper messageStructureWrapper) throws MessagingException {
         Message messageDetails = messageStructureWrapper.messageStructure;
 
         TranscriptionFetchedListener listener = new TranscriptionFetchedListener();
@@ -229,7 +252,7 @@ public class ImapHelper {
             FetchProfile fetchProfile = new FetchProfile();
             fetchProfile.add(messageStructureWrapper.transcriptionBodyPart);
 
-            mFolder.fetch(new Message[] {messageDetails}, fetchProfile, listener);
+            mFolder.fetch(new Message[]{messageDetails}, fetchProfile, listener);
         }
 
         // Found an audio attachment, this is a valid voicemail.
@@ -246,8 +269,8 @@ public class ImapHelper {
     }
 
     /**
-     * The "from" field of a visual voicemail IMAP message is the number of the caller who left
-     * the message. Extract this number from the list of "from" addresses.
+     * The "from" field of a visual voicemail IMAP message is the number of the caller who left the
+     * message. Extract this number from the list of "from" addresses.
      *
      * @param fromAddresses A list of addresses that comprise the "from" line.
      * @return The number of the voicemail sender.
@@ -286,7 +309,7 @@ public class ImapHelper {
 
         // The IMAP folder fetch method will call "messageRetrieved" on the listener when the
         // message is successfully retrieved.
-        mFolder.fetch(new Message[] {message}, fetchProfile, listener);
+        mFolder.fetch(new Message[]{message}, fetchProfile, listener);
         return listener.getMessageStructure();
     }
 
@@ -302,11 +325,6 @@ public class ImapHelper {
                 return false;
             }
             VoicemailPayload voicemailPayload = fetchVoicemailPayload(message);
-
-            if (voicemailPayload == null) {
-                return false;
-            }
-
             callback.setVoicemailContent(voicemailPayload);
             return true;
         } catch (MessagingException e) {
@@ -330,7 +348,7 @@ public class ImapHelper {
         FetchProfile fetchProfile = new FetchProfile();
         fetchProfile.add(FetchProfile.Item.BODY);
 
-        mFolder.fetch(new Message[] {message}, fetchProfile, listener);
+        mFolder.fetch(new Message[]{message}, fetchProfile, listener);
         return listener.getVoicemailPayload();
     }
 
@@ -356,7 +374,7 @@ public class ImapHelper {
 
                     // This method is called synchronously so the transcription will be populated
                     // in the listener once the next method is called.
-                    mFolder.fetch(new Message[] {message}, fetchProfile, listener);
+                    mFolder.fetch(new Message[]{message}, fetchProfile, listener);
                     callback.setVoicemailTranscription(listener.getVoicemailTranscription());
                 }
             }
@@ -367,6 +385,84 @@ public class ImapHelper {
         } finally {
             closeImapFolder();
         }
+    }
+
+
+    @ChangePinResult
+    public int changePin(String oldPin, String newPin)
+            throws MessagingException {
+        ImapConnection connection = mImapStore.getConnection();
+        try {
+            String command = getConfig().getProtocol()
+                    .getCommand(OmtpConstants.IMAP_CHANGE_TUI_PWD_FORMAT);
+            connection.sendCommand(
+                    String.format(Locale.US, command, newPin, oldPin), true);
+            return getChangePinResultFromImapResponse(connection.readResponse());
+        } catch (IOException ioe) {
+            VvmLog.e(TAG, "changePin: ", ioe);
+            return OmtpConstants.CHANGE_PIN_SYSTEM_ERROR;
+        } finally {
+            connection.destroyResponses();
+        }
+    }
+
+    public void changeVoicemailTuiLanguage(String languageCode)
+            throws MessagingException {
+        ImapConnection connection = mImapStore.getConnection();
+        try {
+            String command = getConfig().getProtocol()
+                    .getCommand(OmtpConstants.IMAP_CHANGE_VM_LANG_FORMAT);
+            connection.sendCommand(
+                    String.format(Locale.US, command, languageCode), true);
+        } catch (IOException ioe) {
+            LogUtils.e(TAG, ioe.toString());
+        } finally {
+            connection.destroyResponses();
+        }
+    }
+
+    public void closeNewUserTutorial() throws MessagingException {
+        ImapConnection connection = mImapStore.getConnection();
+        try {
+            String command = getConfig().getProtocol()
+                    .getCommand(OmtpConstants.IMAP_CLOSE_NUT);
+            connection.executeSimpleCommand(command, false);
+        } catch (IOException ioe) {
+            throw new MessagingException(MessagingException.SERVER_ERROR, ioe.toString());
+        } finally {
+            connection.destroyResponses();
+        }
+    }
+
+    @ChangePinResult
+    private static int getChangePinResultFromImapResponse(ImapResponse response)
+            throws MessagingException {
+        if (!response.isTagged()) {
+            throw new MessagingException(MessagingException.SERVER_ERROR,
+                    "tagged response expected");
+        }
+        if (!response.isOk()) {
+            String message = response.getStringOrEmpty(1).getString();
+            LogUtils.d(TAG, "change PIN failed: " + message);
+            if (OmtpConstants.RESPONSE_CHANGE_PIN_TOO_SHORT.equals(message)) {
+                return OmtpConstants.CHANGE_PIN_TOO_SHORT;
+            }
+            if (OmtpConstants.RESPONSE_CHANGE_PIN_TOO_LONG.equals(message)) {
+                return OmtpConstants.CHANGE_PIN_TOO_LONG;
+            }
+            if (OmtpConstants.RESPONSE_CHANGE_PIN_TOO_WEAK.equals(message)) {
+                return OmtpConstants.CHANGE_PIN_TOO_WEAK;
+            }
+            if (OmtpConstants.RESPONSE_CHANGE_PIN_MISMATCH.equals(message)) {
+                return OmtpConstants.CHANGE_PIN_MISMATCH;
+            }
+            if (OmtpConstants.RESPONSE_CHANGE_PIN_INVALID_CHARACTER.equals(message)) {
+                return OmtpConstants.CHANGE_PIN_INVALID_CHARACTER;
+            }
+            return OmtpConstants.CHANGE_PIN_SYSTEM_ERROR;
+        }
+        LogUtils.d(TAG, "change PIN succeeded");
+        return OmtpConstants.CHANGE_PIN_SUCCESS;
     }
 
     public void updateQuota() {
@@ -393,28 +489,32 @@ public class ImapHelper {
             return;
         }
         if (quota.occupied == mQuotaOccupied && quota.total == mQuotaTotal) {
-            Log.v(TAG, "Quota hasn't changed");
+            VvmLog.v(TAG, "Quota hasn't changed");
             return;
         }
         mQuotaOccupied = quota.occupied;
         mQuotaTotal = quota.total;
-        VoicemailContract.Status
-                .setQuota(mContext, mPhoneAccount, mQuotaOccupied, mQuotaTotal);
-        mPrefs.edit()
-                .putInt(getSharedPrefsKey(PREF_KEY_QUOTA_OCCUPIED), mQuotaOccupied)
-                .putInt(getSharedPrefsKey(PREF_KEY_QUOTA_TOTAL), mQuotaTotal)
+        VoicemailStatus.edit(mContext, mPhoneAccount)
+                .setQuota(mQuotaOccupied, mQuotaTotal)
                 .apply();
-        Log.v(TAG, "Quota changed to " + mQuotaOccupied + "/" + mQuotaTotal);
+        mPrefs.edit()
+                .putInt(PREF_KEY_QUOTA_OCCUPIED, mQuotaOccupied)
+                .putInt(PREF_KEY_QUOTA_TOTAL, mQuotaTotal)
+                .apply();
+        VvmLog.v(TAG, "Quota changed to " + mQuotaOccupied + "/" + mQuotaTotal);
     }
+
     /**
-     * A wrapper to hold a message with its header details and the structure for transcriptions
-     * (so they can be fetched in the future).
+     * A wrapper to hold a message with its header details and the structure for transcriptions (so
+     * they can be fetched in the future).
      */
     public class MessageStructureWrapper {
+
         public Message messageStructure;
         public BodyPart transcriptionBodyPart;
 
-        public MessageStructureWrapper() { }
+        public MessageStructureWrapper() {
+        }
     }
 
     /**
@@ -422,6 +522,7 @@ public class ImapHelper {
      */
     private final class MessageStructureFetchedListener
             implements ImapFolder.MessageRetrievalListener {
+
         private MessageStructureWrapper mMessageStructure;
 
         public MessageStructureFetchedListener() {
@@ -453,7 +554,6 @@ public class ImapHelper {
          * @param message The IMAP message.
          * @return The MessageStructureWrapper object corresponding to an IMAP message and
          * transcription.
-         * @throws MessagingException
          */
         private MessageStructureWrapper getMessageOrNull(Message message)
                 throws MessagingException {
@@ -474,6 +574,8 @@ public class ImapHelper {
                     messageStructureWrapper.messageStructure = message;
                 } else if (bodyPartMimeType.startsWith("text/")) {
                     messageStructureWrapper.transcriptionBodyPart = bodyPart;
+                } else {
+                    VvmLog.v(TAG, "Unknown bodyPart MIME: " + bodyPartMimeType);
                 }
             }
 
@@ -490,9 +592,12 @@ public class ImapHelper {
      * Listener for the message body being fetched.
      */
     private final class MessageBodyFetchedListener implements ImapFolder.MessageRetrievalListener {
+
         private VoicemailPayload mVoicemailPayload;
 
-        /** Returns the fetch voicemail payload. */
+        /**
+         * Returns the fetch voicemail payload.
+         */
         public VoicemailPayload getVoicemailPayload() {
             return mVoicemailPayload;
         }
@@ -513,18 +618,18 @@ public class ImapHelper {
         private VoicemailPayload getVoicemailPayloadFromMessage(Message message)
                 throws MessagingException, IOException {
             Multipart multipart = (Multipart) message.getBody();
+            List<String> mimeTypes = new ArrayList<>();
             for (int i = 0; i < multipart.getCount(); ++i) {
                 BodyPart bodyPart = multipart.getBodyPart(i);
                 String bodyPartMimeType = bodyPart.getMimeType().toLowerCase();
-                LogUtils.d(TAG, "bodyPart mime type: " + bodyPartMimeType);
-
+                mimeTypes.add(bodyPartMimeType);
                 if (bodyPartMimeType.startsWith("audio/")) {
                     byte[] bytes = getDataFromBody(bodyPart.getBody());
                     LogUtils.d(TAG, String.format("Fetched %s bytes of data", bytes.length));
                     return new VoicemailPayload(bodyPartMimeType, bytes);
                 }
             }
-            LogUtils.e(TAG, "No audio attachment found on this voicemail");
+            LogUtils.e(TAG, "No audio attachment found on this voicemail, mimeTypes:" + mimeTypes);
             return null;
         }
     }
@@ -534,9 +639,12 @@ public class ImapHelper {
      */
     private final class TranscriptionFetchedListener implements
             ImapFolder.MessageRetrievalListener {
+
         private String mVoicemailTranscription;
 
-        /** Returns the fetched voicemail transcription. */
+        /**
+         * Returns the fetched voicemail transcription.
+         */
         public String getVoicemailTranscription() {
             return mVoicemailTranscription;
         }
@@ -593,9 +701,5 @@ public class ImapHelper {
             IoUtils.closeQuietly(bufferedOut);
             IoUtils.closeQuietly(out);
         }
-    }
-
-    private String getSharedPrefsKey(String key) {
-        return VisualVoicemailSettingsUtil.getVisualVoicemailSharedPrefsKey(key, mPhoneAccount);
     }
 }

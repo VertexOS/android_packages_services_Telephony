@@ -16,9 +16,8 @@
 
 package com.android.phone.common.mail.store.imap;
 
-import android.util.Log;
-
 import com.android.phone.common.mail.FixedLengthInputStream;
+import com.android.phone.vvm.omtp.VvmLog;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -45,7 +44,7 @@ public class ImapMemoryLiteral extends ImapString {
             pos += read;
         }
         if (pos != mData.length) {
-            Log.w(TAG, "");
+            VvmLog.w(TAG, "length mismatch");
         }
     }
 
@@ -60,7 +59,7 @@ public class ImapMemoryLiteral extends ImapString {
         try {
             return new String(mData, "US-ASCII");
         } catch (UnsupportedEncodingException e) {
-            Log.e(TAG, "Unsupported encoding: ", e);
+            VvmLog.e(TAG, "Unsupported encoding: ", e);
         }
         return null;
     }

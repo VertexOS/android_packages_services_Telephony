@@ -61,7 +61,7 @@ public class MailTransportTest extends AndroidTestCase {
     @Override
     public void setUp() throws Exception {
         super.setUp();
-        mMokitoHelper.setUp(getClass());
+        mMokitoHelper.setUp(getContext(), getClass());
         MockitoAnnotations.initMocks(this);
     }
 

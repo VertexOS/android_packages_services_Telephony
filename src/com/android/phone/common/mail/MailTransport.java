@@ -17,11 +17,11 @@ package com.android.phone.common.mail;
 
 import android.content.Context;
 import android.net.Network;
-import android.provider.VoicemailContract.Status;
 
 import com.android.internal.annotations.VisibleForTesting;
 import com.android.phone.common.mail.store.ImapStore;
 import com.android.phone.common.mail.utils.LogUtils;
+import com.android.phone.vvm.omtp.OmtpEvents;
 import com.android.phone.vvm.omtp.imap.ImapHelper;
 
 import java.io.BufferedInputStream;
@@ -32,7 +32,6 @@ import java.io.OutputStream;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.Socket;
-import java.net.SocketAddress;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -66,6 +65,7 @@ public class MailTransport {
     private BufferedOutputStream mOut;
     private final int mFlags;
     private SocketCreator mSocketCreator;
+    private InetSocketAddress mAddress;
 
     public MailTransport(Context context, ImapHelper imapHelper, Network network, String address,
             int port, int flags) {
@@ -117,7 +117,7 @@ public class MailTransport {
                 }
             } catch (IOException ioe) {
                 LogUtils.d(TAG, ioe.toString());
-                mImapHelper.setDataChannelState(Status.DATA_CHANNEL_STATE_SERVER_CONNECTION_ERROR);
+                mImapHelper.handleEvent(OmtpEvents.DATA_CANNOT_RESOLVE_HOST_ON_NETWORK);
                 throw new MessagingException(MessagingException.IOERROR, ioe.toString());
             }
         }
@@ -126,37 +126,28 @@ public class MailTransport {
         while (socketAddresses.size() > 0) {
             mSocket = createSocket();
             try {
-                InetSocketAddress address = socketAddresses.remove(0);
-                mSocket.connect(address, SOCKET_CONNECT_TIMEOUT);
+                mAddress = socketAddresses.remove(0);
+                mSocket.connect(mAddress, SOCKET_CONNECT_TIMEOUT);
 
                 if (canTrySslSecurity()) {
-                    /**
-                     * {@link SSLSocket} must connect in its constructor, or create through a
-                     * already connected socket. Since we need to use
-                     * {@link Socket#connect(SocketAddress, int) } to set timeout, we can only
-                     * create it here.
+                    /*
+                    SSLSocket cannot be created with a connection timeout, so instead of doing a
+                    direct SSL connection, we connect with a normal connection and upgrade it into
+                    SSL
                      */
-                    LogUtils.d(TAG, "open: converting to SSL socket");
-                    mSocket = HttpsURLConnection.getDefaultSSLSocketFactory()
-                            .createSocket(mSocket, address.getHostName(), address.getPort(), true);
-                    // After the socket connects to an SSL server, confirm that the hostname is as
-                    // expected
-                    if (!canTrustAllCertificates()) {
-                        verifyHostname(mSocket, mHost);
-                    }
+                    reopenTls();
+                } else {
+                    mIn = new BufferedInputStream(mSocket.getInputStream(), 1024);
+                    mOut = new BufferedOutputStream(mSocket.getOutputStream(), 512);
+                    mSocket.setSoTimeout(SOCKET_READ_TIMEOUT);
                 }
-
-                mIn = new BufferedInputStream(mSocket.getInputStream(), 1024);
-                mOut = new BufferedOutputStream(mSocket.getOutputStream(), 512);
-                mSocket.setSoTimeout(SOCKET_READ_TIMEOUT);
                 success = true;
                 return;
             } catch (IOException ioe) {
                 LogUtils.d(TAG, ioe.toString());
                 if (socketAddresses.size() == 0) {
                     // Only throw an error when there are no more sockets to try.
-                    mImapHelper
-                            .setDataChannelState(Status.DATA_CHANNEL_STATE_SERVER_CONNECTION_ERROR);
+                    mImapHelper.handleEvent(OmtpEvents.DATA_ALL_SOCKET_CONNECTION_FAILED);
                     throw new MessagingException(MessagingException.IOERROR, ioe.toString());
                 }
             } finally {
@@ -205,6 +196,32 @@ public class MailTransport {
     }
 
     /**
+     * Attempts to reopen a normal connection into a TLS connection.
+     */
+    public void reopenTls() throws MessagingException {
+        try {
+            LogUtils.d(TAG, "open: converting to TLS socket");
+            mSocket = HttpsURLConnection.getDefaultSSLSocketFactory()
+                    .createSocket(mSocket, mAddress.getHostName(), mAddress.getPort(), true);
+            // After the socket connects to an SSL server, confirm that the hostname is as
+            // expected
+            if (!canTrustAllCertificates()) {
+                verifyHostname(mSocket, mHost);
+            }
+            mSocket.setSoTimeout(SOCKET_READ_TIMEOUT);
+            mIn = new BufferedInputStream(mSocket.getInputStream(), 1024);
+            mOut = new BufferedOutputStream(mSocket.getOutputStream(), 512);
+
+        } catch (SSLException e) {
+            LogUtils.d(TAG, e.toString());
+            throw new CertificateValidationException(e.getMessage(), e);
+        } catch (IOException ioe) {
+            LogUtils.d(TAG, ioe.toString());
+            throw new MessagingException(MessagingException.IOERROR, ioe.toString());
+        }
+    }
+
+    /**
      * Lightweight version of SSLCertificateSocketFactory.verifyHostname, which provides this
      * service but is not in the public API.
      *
@@ -229,7 +246,7 @@ public class MailTransport {
 
         SSLSession session = ssl.getSession();
         if (session == null) {
-            mImapHelper.setDataChannelState(Status.DATA_CHANNEL_STATE_COMMUNICATION_ERROR);
+            mImapHelper.handleEvent(OmtpEvents.DATA_CANNOT_ESTABLISH_SSL_SESSION);
             throw new SSLException("Cannot verify SSL socket without session");
         }
         // TODO: Instead of reporting the name of the server we think we're connecting to,
@@ -237,7 +254,7 @@ public class MailTransport {
         // in the verifier code and is not available in the verifier API, and extracting the
         // CN & alts is beyond the scope of this patch.
         if (!HOSTNAME_VERIFIER.verify(hostname, session)) {
-            mImapHelper.setDataChannelState(Status.DATA_CHANNEL_STATE_COMMUNICATION_ERROR);
+            mImapHelper.handleEvent(OmtpEvents.DATA_SSL_INVALID_HOST_NAME);
             throw new SSLPeerUnverifiedException("Certificate hostname not useable for server: "
                     + session.getPeerPrincipal());
         }
@@ -270,6 +287,10 @@ public class MailTransport {
         mIn = null;
         mOut = null;
         mSocket = null;
+    }
+
+    public String getHost() {
+        return mHost;
     }
 
     public InputStream getInputStream() {

@@ -98,6 +98,32 @@ public final class ImapConstants {
     public static final String NIL = "NIL";
 
     /**
+     * NO responses
+     */
+    public static final String NO_COMMAND_NOT_ALLOWED = "command not allowed";
+    public static final String NO_RESERVATION_FAILED = "reservation failed";
+    public static final String NO_APPLICATION_ERROR = "application error";
+    public static final String NO_INVALID_PARAMETER = "invalid parameter";
+    public static final String NO_INVALID_COMMAND = "invalid command";
+    public static final String NO_UNKNOWN_COMMAND = "unknown command";
+    // AUTHENTICATE
+    // The subscriber can not be located in the system.
+    public static final String NO_UNKNOWN_USER = "unknown user";
+    // The Client Type or Protocol Version is unknown.
+    public static final String NO_UNKNOWN_CLIENT = "unknown client";
+    // The password received from the client does not match the password defined in the subscriber's profile.
+    public static final String NO_INVALID_PASSWORD = "invalid password";
+    // The subscriber's mailbox has not yet been initialised via the TUI
+    public static final String NO_MAILBOX_NOT_INITIALIZED = "mailbox not initialized";
+    // The subscriber has not been provisioned for the VVM service.
+    public static final String NO_SERVICE_IS_NOT_PROVISIONED =
+            "service is not provisioned";
+    // The subscriber is provisioned for the VVM service but the VVM service is currently not active
+    public static final String NO_SERVICE_IS_NOT_ACTIVATED = "service is not activated";
+    // The Voice Mail Blocked flag in the subscriber's profile is set to YES.
+    public static final String NO_USER_IS_BLOCKED = "user is blocked";
+
+    /**
      * extensions
      */
     public static final String GETQUOTA = "GETQUOTA";
@@ -105,8 +131,14 @@ public final class ImapConstants {
     public static final String QUOTAROOT = "QUOTAROOT";
     public static final String QUOTA = "QUOTA";
 
-    /** response codes within IMAP responses */
-    public static final String EXPIRED = "EXPIRED";
-    public static final String AUTHENTICATIONFAILED = "AUTHENTICATIONFAILED";
-    public static final String UNAVAILABLE = "UNAVAILABLE";
+    /**
+     * capabilities
+     */
+    public static final String CAPABILITY_AUTH_DIGEST_MD5 = "AUTH=DIGEST-MD5";
+    public static final String CAPABILITY_STARTTLS = "STARTTLS";
+
+    /**
+     * authentication
+     */
+    public static final String AUTH_DIGEST_MD5 = "DIGEST-MD5";
 }
