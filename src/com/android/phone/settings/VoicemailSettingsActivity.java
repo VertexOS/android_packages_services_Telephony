@@ -537,7 +537,11 @@ public class VoicemailSettingsActivity extends PreferenceActivity
                     if (DBG) log("onActivityResult: bad contact data, no results found.");
                     return;
                 }
-                mSubMenuVoicemailSettings.onPickActivityResult(cursor.getString(0));
+                if (mSubMenuVoicemailSettings != null) {
+                    mSubMenuVoicemailSettings.onPickActivityResult(cursor.getString(0));
+                } else {
+                    Log.w(LOG_TAG, "VoicemailSettingsActivity destroyed while setting contacts.");
+                }
                 return;
             } finally {
                 if (cursor != null) {
