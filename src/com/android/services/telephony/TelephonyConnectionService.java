@@ -436,6 +436,15 @@ public class TelephonyConnectionService extends ConnectionService {
             return failedConnection;
         }
 
+        // Check roaming status to see if we should block custom call forwarding codes
+        if (blockCallForwardingNumberWhileRoaming(phone, number)) {
+            return Connection.createFailedConnection(
+                    DisconnectCauseUtil.toTelecomDisconnectCause(
+                            android.telephony.DisconnectCause.DIALED_CALL_FORWARDING_WHILE_ROAMING,
+                            "Call forwarding while roaming"));
+        }
+
+
         final TelephonyConnection connection =
                 createConnectionFor(phone, null, true /* isOutgoing */, request.getAccountHandle(),
                         request.getTelecomCallId(), request.getAddress(), request.getVideoState());
@@ -645,6 +654,28 @@ public class TelephonyConnectionService extends ConnectionService {
             Log.w(this, "onConference - cannot merge connections " +
                     "Connection1: %s, Connection2: %2", connection1, connection2);
         }
+    }
+
+    private boolean blockCallForwardingNumberWhileRoaming(Phone phone, String number) {
+        if (phone == null || TextUtils.isEmpty(number) || !phone.getServiceState().getRoaming()) {
+            return false;
+        }
+        String[] blockPrefixes = null;
+        CarrierConfigManager cfgManager = (CarrierConfigManager)
+                phone.getContext().getSystemService(Context.CARRIER_CONFIG_SERVICE);
+        if (cfgManager != null) {
+            blockPrefixes = cfgManager.getConfigForSubId(phone.getSubId()).getStringArray(
+                    CarrierConfigManager.KEY_CALL_FORWARDING_BLOCKS_WHILE_ROAMING_STRING_ARRAY);
+        }
+
+        if (blockPrefixes != null) {
+            for (String prefix : blockPrefixes) {
+                if (number.startsWith(prefix)) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     private boolean isRadioOn() {
