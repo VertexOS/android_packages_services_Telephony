@@ -52,7 +52,7 @@
     <string name="requesting_unlock" msgid="6412629401033249351">"Հայցվում է ցանցի ապակողպում..."</string>
     <string name="unlock_failed" msgid="6490531697031504225">"Ցանցի ապակողպման հարցումը խափանվեց:"</string>
     <string name="unlock_success" msgid="6770085622238180152">"Ցանցի ապակողպումը խափանվեց"</string>
-    <string name="mobile_network_settings_not_available" msgid="3831911315358856062">"Բջջային ցանցի կարգավորումներն անհասանելի են այս օգտվողի համար"</string>
+    <string name="mobile_network_settings_not_available" msgid="3831911315358856062">"Բջջային ցանցի կարգավորումներն անհասանելի են այս օգտատիրոջ"</string>
     <string name="labelGSMMore" msgid="5930842194056092106">"GSM զանգերի կարգավորումներ"</string>
     <string name="labelGsmMore_with_label" msgid="2674012918829238901">"GSM զանգի կարգավորումներ (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="labelCDMAMore" msgid="1630676740428229339">"CDMA զանգերի կարգավորումներ"</string>
@@ -118,7 +118,7 @@
     <string name="sum_cfnrc_disabled" msgid="7222141261321276464">"Անջատված է"</string>
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"Ձեր սպասարկողը չի աջակցում զանգի վերահասցեավորման կասեցում, երբ ձեր հեռախոսն անհասանելի է:"</string>
     <string name="updating_title" msgid="6146755386174019046">"Զանգի կարգավորումներ"</string>
-    <string name="call_settings_admin_user_only" msgid="4526094783818216374">"Զանգի կարգավորումները կարող է փոխել միայն ադմինիստրատոր հանդիսացող օգտվողը:"</string>
+    <string name="call_settings_admin_user_only" msgid="4526094783818216374">"Զանգի կարգավորումները կարող է փոխել միայն ադմինիստրատոր հանդիսացող օգտատերը:"</string>
     <string name="call_settings_with_label" msgid="3401177261468593519">"Կարգավորումներ (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="error_updating_title" msgid="7970259216988931777">"Զանգի կարգավորումների սխալ"</string>
     <string name="reading_settings" msgid="1920291699287055284">"Ընթերցման կարգավորումներ..."</string>
@@ -557,8 +557,8 @@
     <string name="selectContact" msgid="781975788478987237">"ընտրել կոնտակտ"</string>
     <string name="not_voice_capable" msgid="2739898841461577811">"Ձայնային զանգերը չեն սպասարկվում"</string>
     <string name="description_dial_button" msgid="7459705245418435351">"համարհավաքել"</string>
-    <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"Թրթռալ"</string>
-    <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"Թրթռալ"</string>
+    <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"Թրթռոց"</string>
+    <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"Թրթռոց"</string>
     <string name="voicemail_visual_voicemail_switch_title" msgid="5012622186976275457">"Տեսանելի ձայնային փոստ"</string>
     <string name="voicemail_set_pin_dialog_title" msgid="2797924461029093837">"Ընտրեք PIN"</string>
     <string name="voicemail_change_pin_dialog_title" msgid="6035421908626121564">"Փոխել PIN-ը"</string>

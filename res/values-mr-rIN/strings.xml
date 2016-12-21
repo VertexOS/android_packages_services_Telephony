@@ -456,7 +456,7 @@
     <string name="incall_error_supp_service_transfer" msgid="7235952238189391438">"हस्तांतर करू शकत नाही."</string>
     <string name="incall_error_supp_service_conference" msgid="2505727299596357312">"परिषद कॉल करण्‍यात अक्षम."</string>
     <string name="incall_error_supp_service_reject" msgid="8998568661508655638">"कॉल नाकारू शकत नाही."</string>
-    <string name="incall_error_supp_service_hangup" msgid="7434513517153834426">"कॉल रिलीझ करू शकत नाही."</string>
+    <string name="incall_error_supp_service_hangup" msgid="7434513517153834426">"कॉल रिलीज करू शकत नाही."</string>
     <string name="incall_error_supp_service_hold" msgid="7967020511232222078">"कॉल सुरु ठेवू शकत नाही."</string>
     <string name="incall_error_wfc_only_no_wireless_network" msgid="1782466780452640089">"कॉल करण्‍यासाठी वायरलेस नेटवर्कशी कनेक्‍ट करा."</string>
     <string name="incall_error_promote_wfc" msgid="106510757624022064">"कॉल करण्यासाठी वाय-फाय कॉलिंग सक्षम करा."</string>
