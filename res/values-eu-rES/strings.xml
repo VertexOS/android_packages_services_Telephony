@@ -152,7 +152,7 @@
     <string name="vm_change_pin_progress_message" msgid="3977357361934350336">"Itxaron, mesedez."</string>
     <string name="vm_change_pin_error_too_short" msgid="5974971097302710497">"Laburregia da PIN kode berria."</string>
     <string name="vm_change_pin_error_too_long" msgid="8476870806115051865">"Luzeegia da PIN kode berria."</string>
-    <string name="vm_change_pin_error_too_weak" msgid="7883744811891784882">"Ahulegia da PIN kode berria. Pasahitza sendoa izan dadin, ez du izan behar zenbaki-segidarik edo errepikatutako zenbakirik."</string>
+    <string name="vm_change_pin_error_too_weak" msgid="7883744811891784882">"Ahulegia da PIN kode berria. Pasahitza segurua izan dadin, ez du izan behar zenbaki-segidarik edo errepikatutako zenbakirik."</string>
     <string name="vm_change_pin_error_mismatch" msgid="2754685537970757317">"PIN kode zaharra ez dator bat."</string>
     <string name="vm_change_pin_error_invalid" msgid="3972205462701668653">"Balio ez duten karaktereak ditu PIN kode berriak."</string>
     <string name="vm_change_pin_error_system_error" msgid="6610603326230000207">"Ezin da aldatu PIN kodea"</string>
