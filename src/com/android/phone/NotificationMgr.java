@@ -552,10 +552,17 @@ public class NotificationMgr {
                         userHandle);
             }
         } else {
-            mNotificationManager.cancelAsUser(
-                    Integer.toString(subId) /* tag */,
-                    notificationId,
-                    UserHandle.ALL);
+            List<UserInfo> users = mUserManager.getUsers(true);
+            for (int i = 0; i < users.size(); i++) {
+                final UserInfo user = users.get(i);
+                if (user.isManagedProfile()) {
+                    continue;
+                }
+                UserHandle userHandle = user.getUserHandle();
+                mNotificationManager.cancelAsUser(
+                        Integer.toString(subId) /* tag */,
+                        notificationId, userHandle);
+            }
         }
     }
 
