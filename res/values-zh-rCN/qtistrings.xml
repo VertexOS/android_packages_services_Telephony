@@ -43,6 +43,8 @@
     <string name="no_mobile_data_roaming">数据漫游不可用</string>
     <string name="ims_settings">"IMS 设置"</string>
     <string name="call_barring">"呼入限制"</string>
+    <string name="srvcc_video_message">"由于 4G 网络不可用，视频通话已降级为 2G/3G 语音通话。"</string>
+    <string name="srvcc_message">"由于 4G 网络不可用，4G 语音通话已降级为 2G/3G 语音通话。"</string>
     <string name="proximity_mode_title">"打开距离传感器"</string>
     <string name="proximity_on_summary">"接听电话时，屏幕会关闭，从而节省电量"</string>
     <string name="proximity_off_summary">"接听电话时，屏幕保持开启状态"</string>
