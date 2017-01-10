@@ -163,14 +163,20 @@ final class TelephonyConferenceController {
 
         // Set the conference as conferenceable with all of the connections that are not in the
         // conference.
-        if (mTelephonyConference != null && !isFullConference(mTelephonyConference)) {
-            List<Connection> nonConferencedConnections = mTelephonyConnections
-                    .stream()
-                    // Only retrieve Connections that are not in a conference (but support
-                    // conferences).
-                    .filter(c -> c.isConferenceSupported() && c.getConference() == null)
-                    .collect(Collectors.toList());
-            mTelephonyConference.setConferenceableConnections(nonConferencedConnections);
+        if (mTelephonyConference != null) {
+            if (!isFullConference(mTelephonyConference)) {
+                List<Connection> nonConferencedConnections = mTelephonyConnections
+                        .stream()
+                        // Only retrieve Connections that are not in a conference (but support
+                        // conferences).
+                        .filter(c -> c.isConferenceSupported() && c.getConference() == null)
+                        .collect(Collectors.toList());
+                mTelephonyConference.setConferenceableConnections(nonConferencedConnections);
+            } else {
+                Log.d(this, "cannot merge anymore due it is full");
+                mTelephonyConference
+                        .setConferenceableConnections(Collections.<Connection>emptyList());
+            }
         }
         // TODO: Do not allow conferencing of already conferenced connections.
     }
