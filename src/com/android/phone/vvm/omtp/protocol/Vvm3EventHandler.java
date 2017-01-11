@@ -18,13 +18,17 @@ package com.android.phone.vvm.omtp.protocol;
 
 import android.annotation.IntDef;
 import android.content.Context;
+import android.provider.VoicemailContract.Status;
+import android.telecom.PhoneAccountHandle;
 import android.util.Log;
+
 import com.android.phone.VoicemailStatus;
 import com.android.phone.settings.VoicemailChangePinActivity;
 import com.android.phone.vvm.omtp.DefaultOmtpEventHandler;
 import com.android.phone.vvm.omtp.OmtpEvents;
 import com.android.phone.vvm.omtp.OmtpEvents.Type;
 import com.android.phone.vvm.omtp.OmtpVvmCarrierConfigHelper;
+
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
@@ -113,18 +117,21 @@ public class Vvm3EventHandler {
         OmtpEvents event) {
         switch (event) {
             case CONFIG_REQUEST_STATUS_SUCCESS:
-                if (status.getPhoneAccountHandle() == null) {
-                    // This should never happen.
-                    Log.e(TAG, "status editor has null phone account handle");
-                    return true;
-                }
-
-                if (!VoicemailChangePinActivity
-                    .isDefaultOldPinSet(context, status.getPhoneAccountHandle())) {
+                if (!isPinRandomized(context, status.getPhoneAccountHandle())) {
                     return false;
                 } else {
                     postError(status, PIN_NOT_SET);
                 }
+                break;
+            case CONFIG_ACTIVATING_SUBSEQUENT:
+                if (isPinRandomized(context, status.getPhoneAccountHandle())) {
+                    status.setConfigurationState(PIN_NOT_SET);
+                } else {
+                    status.setConfigurationState(Status.CONFIGURATION_STATE_OK);
+                }
+                status
+                        .setNotificationChannelState(Status.NOTIFICATION_CHANNEL_STATE_OK)
+                        .setDataChannelState(Status.DATA_CHANNEL_STATE_OK).apply();
                 break;
             case CONFIG_DEFAULT_PIN_REPLACED:
                 postError(status, PIN_NOT_SET);
@@ -268,5 +275,14 @@ public class Vvm3EventHandler {
                 Log.wtf(TAG, "unknown error code: " + errorCode);
         }
         editor.apply();
+    }
+
+    private static boolean isPinRandomized(Context context, PhoneAccountHandle phoneAccountHandle) {
+        if (phoneAccountHandle == null) {
+            // This should never happen.
+            Log.e(TAG, "status editor has null phone account handle");
+            return false;
+        }
+        return VoicemailChangePinActivity.isDefaultOldPinSet(context, phoneAccountHandle);
     }
 }
