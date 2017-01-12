@@ -2104,7 +2104,7 @@ abstract class TelephonyConnection extends Connection {
         boolean isVoWifiEnabled = false;
         if (isIms) {
             ImsPhone imsPhone = (ImsPhone) phone;
-            isVoWifiEnabled = imsPhone.isWifiCallingEnabled();
+            isVoWifiEnabled = ImsUtil.isWfcEnabled(phone.getContext());
         }
         PhoneAccountHandle phoneAccountHandle = isIms ? PhoneUtils
                 .makePstnPhoneAccountHandle(phone.getDefaultPhone())
