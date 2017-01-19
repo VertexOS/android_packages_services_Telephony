@@ -330,7 +330,8 @@ public class CallFeaturesSetting extends PreferenceActivity
         } else {
             int resId = com.android.internal.R.string.wifi_calling_off_summary;
             if (ImsManager.isWfcEnabledByUser(mPhone.getContext())) {
-                int wfcMode = ImsManager.getWfcMode(mPhone.getContext());
+                boolean isRoaming = telephonyManager.isNetworkRoaming();
+                int wfcMode = ImsManager.getWfcMode(mPhone.getContext(), isRoaming);
                 switch (wfcMode) {
                     case ImsConfig.WfcModeFeatureValueConstants.WIFI_ONLY:
                         resId = com.android.internal.R.string.wfc_mode_wifi_only_summary;
