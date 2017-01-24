@@ -122,8 +122,18 @@ final class CdmaConferenceController {
                 }
             }, ADD_OUTGOING_CONNECTION_DELAY_MILLIS);
         } else {
-            // This is the first connection, or it is incoming, so let it flow through.
-            addInternal(connection);
+            // Post the call to addInternal to the handler with no delay.
+            // Why you ask?  In TelephonyConnectionService#
+            // onCreateIncomingConnection(PhoneAccountHandle, ConnectionRequest) or
+            // TelephonyConnectionService#onCreateOutgoingConnection(PhoneAccountHandle,
+            // ConnectionRequest) we can create a new connection it will trigger a call to
+            // TelephonyConnectionService#addConnectionToConferenceController, which will cause us
+            // to get here.  HOWEVER, at this point ConnectionService#addConnection has not yet run,
+            // so if we end up calling ConnectionService#addConference, the connection service will
+            // not yet know about the new connection, so it won't get added to the conference.
+            // Posting to the handler ensures addConnection has a chance to happen before we add the
+            // conference.
+            mHandler.post(() -> addInternal(connection));
         }
     }
 
