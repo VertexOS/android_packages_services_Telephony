@@ -606,4 +606,7 @@
     <!-- Smart Divert Settings -->
     <!-- Summary for the Smart Divert Feature displayed in Call Settings -->
     <string name="smart_divert_summary">"CFNRc 设置"</string>
+    <string name="ut_not_support">UT补充业务不可用</string>
+    <string name="ct_ut_not_support_close_4glte">UT补充业务不可用，请在设置中关闭增强4G LTE选项</string>
+
 </resources>

@@ -1498,4 +1498,6 @@
     <string name="change_pin_succeeded">Voicemail PIN updated</string>
     <!-- The error message to show if the server reported an error while attempting to change the voicemail PIN -->
     <string name="change_pin_system_error">Unable to set PIN</string>
+    <string name="ut_not_support">UT is not available</string>
+    <string name="ct_ut_not_support_close_4glte">UT is not available, please turn off Enhanced 4G LTE Mode in Settings</string>
 </resources>
