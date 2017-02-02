@@ -752,6 +752,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub implements CallModele
     }
 
     public void setCellInfoListRate(int rateInMillis) {
+        enforceModifyPermission();
         mPhone.setCellInfoListRate(rateInMillis);
     }
 
