@@ -555,7 +555,8 @@ public class FdnSetting extends PreferenceActivity
     public boolean onOptionsItemSelected(MenuItem item) {
         final int itemId = item.getItemId();
         if (itemId == android.R.id.home) {  // See ActionBar#setDisplayHomeAsUpEnabled()
-            if (QtiImsExtUtils.isCarrierOneSupported()) {
+            if (QtiImsExtUtils.isCarrierOneSupported()
+                     && QtiImsExtUtils.isCarrierOneCallSettingsAvailable(this)) {
                 onBackPressed();
             } else {
                 CallFeaturesSetting.goUpToTopLevelSetting(this, mSubscriptionInfoHelper);
