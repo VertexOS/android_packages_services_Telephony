@@ -85,7 +85,7 @@
     <string name="additional_cdma_call_settings" msgid="8628958775721886909">"अतिरिक्‍त CDMA कॉल सेटिंग्‍ज"</string>
     <string name="sum_cdma_call_settings" msgid="284753265979035549">"अतिरिक्त CDMA केवळ कॉल सेटिंग्‍ज"</string>
     <string name="labelNwService" msgid="4699970172021870983">"नेटवर्क सेवा सेटिंग्ज"</string>
-    <string name="labelCallerId" msgid="3888899447379069198">"कॉलर ID"</string>
+    <string name="labelCallerId" msgid="3888899447379069198">"कॉलर आयडी"</string>
     <string name="sum_loading_settings" msgid="1826692909391168620">"सेटिंग्ज लोड करीत आहे..."</string>
     <string name="sum_hide_caller_id" msgid="1071407020290873782">"केल्‍या जाणार्‍या कॉलमध्‍ये नंबर लपविला"</string>
     <string name="sum_show_caller_id" msgid="6768534125447290401">"केल्‍या जाणार्‍या कॉलमध्‍ये नंबर प्रदर्शित केला"</string>

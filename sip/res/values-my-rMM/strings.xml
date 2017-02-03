@@ -32,7 +32,7 @@
     <string name="saving_account" msgid="5336529880235177448">"အကောင့်ကို သိမ်းဆည်းနေ…"</string>
     <string name="removing_account" msgid="5537351356808985756">"အကောင့်ကို ဖယ်ရှားနေ…"</string>
     <string name="sip_menu_save" msgid="7882219814563869225">"သိမ်းပါ"</string>
-    <string name="sip_menu_discard" msgid="2350421645423888438">"စွန့်ပစ်ရန်"</string>
+    <string name="sip_menu_discard" msgid="2350421645423888438">"ဖယ်ပစ်ရန်"</string>
     <string name="alert_dialog_close" msgid="1326011828713435134">"ပရိုဖိုင်ကို ပိတ်ရန်"</string>
     <string name="alert_dialog_ok" msgid="4752048404605388940">"အိုကေ"</string>
     <string name="close_profile" msgid="3122414058856309881">"ပိတ်ရန်"</string>
