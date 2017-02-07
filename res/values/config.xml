@@ -221,4 +221,7 @@
 
     <!-- Whether the emergency only account can make emergency calls -->
     <bool name="config_pstnCanPlaceEmergencyCalls">true</bool>
+
+    <!-- Whether the cellular radio is allowed to be power down when the Bluetooth can provide the data/call capabilities -->
+    <bool name="config_allowRadioPowerDownOnBluetooth">false</bool>
 </resources>
