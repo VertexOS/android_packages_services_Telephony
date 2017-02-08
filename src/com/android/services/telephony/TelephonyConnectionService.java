@@ -901,9 +901,16 @@ public class TelephonyConnectionService extends ConnectionService {
         if (isEmergency) {
             return PhoneFactory.getPhone(PhoneUtils.getPhoneIdForECall());
         }
+        int subId = SubscriptionManager.INVALID_SUBSCRIPTION_ID;
+        try {
+            subId = Integer.parseInt(accountHandle.getId());
+        } catch (NumberFormatException ex) {
+            Log.d(this, "getPhoneForAccount for subId: " + accountHandle.getId());
+            subId = PhoneUtils.getSubIdForPhoneAccountHandle(accountHandle);
+        }
 
-        int subId = PhoneUtils.getSubIdForPhoneAccountHandle(accountHandle);
-        if (subId != SubscriptionManager.INVALID_SUBSCRIPTION_ID) {
+        if (subId != SubscriptionManager.INVALID_SUBSCRIPTION_ID  &&
+                 SubscriptionController.getInstance().isActiveSubId(subId)) {
             int phoneId = SubscriptionController.getInstance().getPhoneId(subId);
             chosenPhone = PhoneFactory.getPhone(phoneId);
         }
