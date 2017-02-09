@@ -284,7 +284,7 @@ public class TelephonyConnectionService extends ConnectionService {
                 R.bool.config_allowRadioPowerDownOnBluetooth);
         final int cellOn = Settings.Global.getInt(context.getContentResolver(),
                 Settings.Global.CELL_ON,
-                PhoneConstants.CELL_OFF_FLAG);
+                PhoneConstants.CELL_ON_FLAG);
         return (allowed && cellOn == PhoneConstants.CELL_ON_FLAG && !isRadioOn());
     }
 
