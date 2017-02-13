@@ -102,7 +102,8 @@ public class AccessibilitySettingsFragment extends PreferenceFragment {
             getPreferenceScreen().removePreference(mButtonHac);
             mButtonHac = null;
         }
-        if (QtiImsExtUtils.isCarrierOneSupported()) {
+        if (QtiImsExtUtils.isCarrierOneSupported()
+                  && QtiImsExtUtils.isCarrierOneCallSettingsAvailable(mContext)) {
            if (mButtonTty != null) {
                // TTY mode added in Call Settings.
                getPreferenceScreen().removePreference(mButtonTty);
