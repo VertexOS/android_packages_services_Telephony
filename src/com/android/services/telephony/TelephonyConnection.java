@@ -134,8 +134,12 @@ abstract class TelephonyConnection extends Connection {
                             Log.d(TelephonyConnection.this,
                                     "SettingOriginalConnection " + mOriginalConnection.toString()
                                             + " with " + connection.toString());
-                            boolean isShowToast = getPhone().getContext().getResources()
-                                    .getBoolean(R.bool.config_show_srvcc_toast);
+
+                            boolean isShowToast = (getPhone() != null) ?
+                                    getPhone().getContext().getResources()
+                                    .getBoolean(R.bool.config_show_srvcc_toast)
+                                    : false;
+
                             if (isShowToast && !shouldTreatAsEmergencyCall()) {
                                 int srvccMessageRes = VideoProfile.isVideo(
                                         mOriginalConnection.getVideoState()) ?
@@ -239,6 +243,9 @@ abstract class TelephonyConnection extends Connection {
                    break;
 
                 case MSG_SUPP_SERVICE_NOTIFY:
+                    if (getPhone() == null) {
+                        break;
+                    }
                     int phoneId = getPhone().getPhoneId();
                     Log.v(TelephonyConnection.this, "MSG_SUPP_SERVICE_NOTIFY on phoneId : "
                             +phoneId);
@@ -321,6 +328,10 @@ abstract class TelephonyConnection extends Connection {
 
     private String getMtSsNotificationText(int code, int phoneId) {
         String callForwardTxt = "";
+        if (getPhone() == null) {
+            return callForwardTxt;
+        }
+
         Context context = getPhone().getContext();
         switch (code) {
             case SuppServiceNotification.MT_CODE_FORWARDED_CALL:
@@ -399,6 +410,11 @@ abstract class TelephonyConnection extends Connection {
 
     private String getMoSsNotificationText(int code, int phoneId) {
         String callForwardTxt = "";
+
+        if (getPhone() == null) {
+            return callForwardTxt;
+        }
+
         Context context = getPhone().getContext();
         switch (code) {
             case SuppServiceNotification.MO_CODE_UNCONDITIONAL_CF_ACTIVE:
@@ -1064,16 +1080,24 @@ abstract class TelephonyConnection extends Connection {
         mOriginalConnectionExtras.clear();
         mOriginalConnection = originalConnection;
         mOriginalConnection.setTelecomCallId(getTelecomCallId());
-        getPhone().registerForPreciseCallStateChanged(
-                mHandler, MSG_PRECISE_CALL_STATE_CHANGED, null);
-        getPhone().registerForHandoverStateChanged(
-                mHandler, MSG_HANDOVER_STATE_CHANGED, null);
-        getPhone().registerForRingbackTone(mHandler, MSG_RINGBACK_TONE, null);
-        getPhone().registerForDisconnect(mHandler, MSG_DISCONNECT, null);
-        getPhone().registerForSuppServiceNotification(mHandler, MSG_SUPP_SERVICE_NOTIFY, null);
-        getPhone().registerForOnHoldTone(mHandler, MSG_ON_HOLD_TONE, null);
-        getPhone().registerForInCallVoicePrivacyOn(mHandler, MSG_CDMA_VOICE_PRIVACY_ON, null);
-        getPhone().registerForInCallVoicePrivacyOff(mHandler, MSG_CDMA_VOICE_PRIVACY_OFF, null);
+
+        if (getPhone() != null) {
+            getPhone().registerForPreciseCallStateChanged(mHandler,
+                    MSG_PRECISE_CALL_STATE_CHANGED, null);
+            getPhone().registerForHandoverStateChanged(mHandler,
+                    MSG_HANDOVER_STATE_CHANGED, null);
+            getPhone().registerForRingbackTone(mHandler, MSG_RINGBACK_TONE,
+                    null);
+            getPhone().registerForDisconnect(mHandler, MSG_DISCONNECT, null);
+            getPhone().registerForSuppServiceNotification(mHandler,
+                    MSG_SUPP_SERVICE_NOTIFY, null);
+            getPhone().registerForOnHoldTone(mHandler, MSG_ON_HOLD_TONE, null);
+            getPhone().registerForInCallVoicePrivacyOn(mHandler,
+                    MSG_CDMA_VOICE_PRIVACY_ON, null);
+            getPhone().registerForInCallVoicePrivacyOff(mHandler,
+                    MSG_CDMA_VOICE_PRIVACY_OFF, null);
+        }
+
         mOriginalConnection.addPostDialListener(mPostDialListener);
         mOriginalConnection.addListener(mOriginalConnectionListener);
 
@@ -1673,8 +1697,9 @@ abstract class TelephonyConnection extends Connection {
             close();
         } else {
             Log.d(this,"Redial emergency call on subscription " + PhoneIdToCall);
-            TelecomManager telecommMgr = (TelecomManager)
-            getPhone().getContext().getSystemService(Context.TELECOM_SERVICE);
+            TelecomManager telecommMgr = (getPhone() != null) ? (TelecomManager)
+                    getPhone().getContext().getSystemService(Context.
+                            TELECOM_SERVICE) : null;
             if (telecommMgr != null) {
                 List<PhoneAccountHandle> phoneAccountHandles =
                         telecommMgr.getCallCapablePhoneAccounts();
@@ -2018,7 +2043,8 @@ abstract class TelephonyConnection extends Connection {
 
     private void updateStatusHints() {
         boolean isIncoming = isValidRingingCall();
-        if (mIsWifi && (isIncoming || getState() == STATE_ACTIVE)) {
+        if (mIsWifi && (isIncoming || getState() == STATE_ACTIVE) &&
+                (getPhone() != null)) {
             int labelId = isIncoming
                     ? R.string.status_hint_label_incoming_wifi_call
                     : R.string.status_hint_label_wifi_call;

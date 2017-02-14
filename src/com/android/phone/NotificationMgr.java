@@ -51,6 +51,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.android.internal.telephony.Phone;
+import com.android.internal.telephony.SubscriptionController;
 import com.android.internal.telephony.TelephonyCapabilities;
 import com.android.phone.settings.VoicemailNotificationSettingsUtil;
 import com.android.phone.settings.VoicemailSettingsActivity;
@@ -259,16 +260,7 @@ public class NotificationMgr {
             Log.w(LOG_TAG, "Called updateMwi() on non-voice-capable device! Ignoring...");
             return;
         }
-        int [] mwiIcon = {R.drawable.stat_notify_voicemail_sub1,
-                R.drawable.stat_notify_voicemail_sub2};
         Phone phone = PhoneGlobals.getPhone(subId);
-        if (phone == null) {
-            Log.w(LOG_TAG, "updateMwi: phone is null, returning...");
-            return;
-        }
-        int phoneId = phone.getPhoneId();
-        int notificationId = getNotificationId(VOICEMAIL_NOTIFICATION, phoneId);
-
         if (visible && phone != null && shouldCheckVisualVoicemailConfigurationForMwi(subId)) {
             VoicemailStatusQueryHelper queryHelper = new VoicemailStatusQueryHelper(mContext);
             PhoneAccountHandle phoneAccount = PhoneUtils.makePstnPhoneAccountHandle(phone);
@@ -300,7 +292,8 @@ public class NotificationMgr {
 
             int resId = android.R.drawable.stat_notify_voicemail;
             if (mTelephonyManager.getPhoneCount() > 1) {
-                resId = mwiIcon[phoneId];
+                resId = (phone.getPhoneId() == 0) ? R.drawable.stat_notify_voicemail_sub1
+                        : R.drawable.stat_notify_voicemail_sub2;
             }
 
             // This Notification can get a lot fancier once we have more
@@ -413,7 +406,7 @@ public class NotificationMgr {
                             isSettingsIntent)) {
                         mNotificationManager.notifyAsUser(
                                 Integer.toString(subId) /* tag */,
-                                notificationId,
+                                VOICEMAIL_NOTIFICATION,
                                 notification,
                                 userHandle);
                     }
@@ -423,7 +416,7 @@ public class NotificationMgr {
             if (!sendNotificationCustomComponent(0, null, null, false)) {
                 mNotificationManager.cancelAsUser(
                         Integer.toString(subId) /* tag */,
-                        notificationId,
+                        VOICEMAIL_NOTIFICATION,
                         UserHandle.ALL);
             }
         }
@@ -484,16 +477,6 @@ public class NotificationMgr {
      */
     /* package */ void updateCfi(int subId, boolean visible) {
         if (DBG) log("updateCfi(): " + visible);
-        Phone phone = PhoneGlobals.getPhone(subId);
-        if (phone == null) {
-            Log.w(LOG_TAG, "updateCfi: phone is null, returning...");
-            return;
-        }
-        int phoneId = phone.getPhoneId();
-        int [] callfwdIcon = {R.drawable.stat_sys_phone_call_forward_sub1,
-                R.drawable.stat_sys_phone_call_forward_sub2};
-        int notificationId = getNotificationId(CALL_FORWARD_NOTIFICATION, phoneId);
-
         if (visible) {
             // If Unconditional Call Forwarding (forward all calls) for VOICE
             // is enabled, just show a notification.  We'll default to expanded
@@ -515,7 +498,9 @@ public class NotificationMgr {
             String notificationTitle;
             int resId = R.drawable.stat_sys_phone_call_forward;
             if (mTelephonyManager.getPhoneCount() > 1) {
-                resId = callfwdIcon[phoneId];
+                int mSlotId = SubscriptionController.getInstance().getSlotId(subId);
+                resId = (mSlotId == 0) ? R.drawable.stat_sys_phone_call_forward_sub1
+                        : R.drawable.stat_sys_phone_call_forward_sub2;
                 notificationTitle = subInfo.getDisplayName().toString();
             } else {
                 notificationTitle = mContext.getString(R.string.labelCF);
@@ -547,7 +532,7 @@ public class NotificationMgr {
                 builder.setContentIntent(user.isAdmin() ? contentIntent : null);
                 mNotificationManager.notifyAsUser(
                         Integer.toString(subId) /* tag */,
-                        notificationId,
+                        CALL_FORWARD_NOTIFICATION,
                         builder.build(),
                         userHandle);
             }
@@ -561,7 +546,7 @@ public class NotificationMgr {
                 UserHandle userHandle = user.getUserHandle();
                 mNotificationManager.cancelAsUser(
                         Integer.toString(subId) /* tag */,
-                        notificationId, userHandle);
+                        CALL_FORWARD_NOTIFICATION, userHandle);
             }
         }
     }
@@ -724,10 +709,6 @@ public class NotificationMgr {
 
         mToast = Toast.makeText(mContext, msg, Toast.LENGTH_LONG);
         mToast.show();
-    }
-
-    private int getNotificationId(int notificationId, int slotId) {
-        return notificationId + (slotId * NOTIFICATION_ID_OFFSET);
     }
 
     private void log(String msg) {
