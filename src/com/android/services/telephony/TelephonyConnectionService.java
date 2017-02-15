@@ -806,6 +806,8 @@ public class TelephonyConnectionService extends ConnectionService {
             int cause = android.telephony.DisconnectCause.OUTGOING_FAILURE;
             if (e.getError() == CallStateException.ERROR_DISCONNECTED) {
                 cause = android.telephony.DisconnectCause.OUT_OF_SERVICE;
+            } else if (e.getError() == CallStateException.ERROR_POWER_OFF) {
+                cause = android.telephony.DisconnectCause.POWER_OFF;
             }
             connection.setDisconnected(DisconnectCauseUtil.toTelecomDisconnectCause(
                     cause, e.getMessage()));
