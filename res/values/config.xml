@@ -236,6 +236,9 @@
     <!-- Flag indicating if SIP settings ennbled -->
     <bool name="sip_settings_on">true</bool>
 
+    <!-- Flag indicating if Proximity settings ennbled -->
+    <bool name="proximity_settings_on">true</bool>
+
     <!-- If false, removes the X-Divert option from Call Settings -->
     <bool name="config_xdivert_enable">true</bool>
 
