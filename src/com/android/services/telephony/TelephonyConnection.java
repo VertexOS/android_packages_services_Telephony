@@ -665,7 +665,7 @@ abstract class TelephonyConnection extends Connection
     };
 
     protected com.android.internal.telephony.Connection mOriginalConnection;
-    private Call.State mConnectionState = Call.State.IDLE;
+    protected Call.State mConnectionState = Call.State.IDLE;
     private Bundle mOriginalConnectionExtras = new Bundle();
     private boolean mIsStateOverridden = false;
     private Call.State mOriginalConnectionState = Call.State.IDLE;
