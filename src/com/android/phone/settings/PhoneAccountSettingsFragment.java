@@ -220,20 +220,25 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
         }
 
         mVibrateAfterConnected = (CheckBoxPreference) findPreference(BUTTON_VIBRATE_CONNECTED_KEY);
-        mButtonProximity = (CheckBoxPreference) findPreference(BUTTON_PROXIMITY_KEY);
-        if (mButtonProximity != null) {
-            mButtonProximity.setOnPreferenceChangeListener(this);
-            boolean checked = Settings.System.getInt(getContext().getContentResolver(),
-                    Constants.SETTINGS_PROXIMITY_SENSOR, 1) == 1;
-            mButtonProximity.setChecked(checked);
-            mButtonProximity.setSummary(checked ? R.string.proximity_on_summary
-                    : R.string.proximity_off_summary);
-        }
         if (mVibrateAfterConnected != null) {
             mVibrateAfterConnected.setOnPreferenceChangeListener(this);
             boolean checked = Settings.System.getInt(getContext().getContentResolver(),
                     Constants.SETTINGS_VIBRATE_WHEN_ACCEPTED, 1) == 1;
             mVibrateAfterConnected.setChecked(checked);
+        }
+
+        mButtonProximity = (CheckBoxPreference) findPreference(BUTTON_PROXIMITY_KEY);
+        if (mButtonProximity != null) {
+            if (getResources().getBoolean(R.bool.proximity_settings_on)) {
+                    mButtonProximity.setOnPreferenceChangeListener(this);
+                    boolean checked = Settings.System.getInt(getContext().getContentResolver(),
+                            Constants.SETTINGS_PROXIMITY_SENSOR, 1) == 1;
+                    mButtonProximity.setChecked(checked);
+                    mButtonProximity.setSummary(checked ? R.string.proximity_on_summary
+                            : R.string.proximity_off_summary);
+            } else {
+                mAccountList.removePreference(mButtonProximity);
+            }
         }
     }
 
