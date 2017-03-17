@@ -142,25 +142,33 @@ final class TelecomAccountRegistry {
             String label;
             String description;
             Icon icon = null;
+            CharSequence subDisplayName = null;
 
             // We can only get the real slotId from the SubInfoRecord, we can't calculate the
             // slotId from the subId or the phoneId in all instances.
             SubscriptionInfo record =
                     mSubscriptionManager.getActiveSubscriptionInfo(subId);
 
+            if (record != null) {
+                subDisplayName = record.getDisplayName();
+            }
+
             if (isEmergency) {
                 label = mContext.getResources().getString(R.string.sim_label_emergency_calls);
                 description =
                         mContext.getResources().getString(R.string.sim_description_emergency_calls);
             } else if (mTelephonyManager.getPhoneCount() == 1) {
-                // For single-SIM devices, we show the label and description as whatever the name of
-                // the network is.
-                description = label = mTelephonyManager.getNetworkOperatorName();
+                // For single-sim device as well, we use the displayname
+                // from the subinfo to keep the operator name displayed
+                // in the InCall UI in sync with multi-sim device.
+                if (!TextUtils.isEmpty(subDisplayName)) {
+                    description = label = subDisplayName.toString();
+                } else {
+                    description = label = null;
+                }
             } else {
-                CharSequence subDisplayName = null;
 
                 if (record != null) {
-                    subDisplayName = record.getDisplayName();
                     slotId = record.getSimSlotIndex();
                     color = record.getIconTint();
                     icon = Icon.createWithBitmap(record.createIconBitmap(mContext));
