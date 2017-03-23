@@ -110,6 +110,14 @@ public class TelephonyConnectionService extends ConnectionService {
                 TelephonyConnection connection, PhoneAccountHandle redialPhoneAccount,
                         int phoneId) {
             Log.d(this,"onEmergencyRedial");
+
+            if (mRequest == null) {
+                Log.w(this, "onEmergencyRedial, Possible Phantom EM Call redial");
+                connection.setDisconnected(DisconnectCauseUtil.toTelecomDisconnectCause(
+                        android.telephony.DisconnectCause.OUTGOING_CANCELED,
+                        "Initial EM Call request is null"));
+                return;
+            }
             String number = connection.getAddress().getSchemeSpecificPart();
             Phone phone = PhoneFactory.getPhone(phoneId);
 
