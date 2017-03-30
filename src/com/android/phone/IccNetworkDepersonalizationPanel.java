@@ -69,6 +69,7 @@ public class IccNetworkDepersonalizationPanel extends IccPanel {
     private Phone mPhone;
     private int mPersoSubtype;
     private int ERROR = 1;
+    private static IccNetworkDepersonalizationPanel sNdpPanel = null;
 
     //UI elements
     private EditText     mPinEntry;
@@ -101,9 +102,14 @@ public class IccNetworkDepersonalizationPanel extends IccPanel {
         }
         Log.i(TAG, "[IccNetworkDepersonalizationPanel] - showDialog; showing dialog.");
         sShowingDialog = true;
-        IccNetworkDepersonalizationPanel ndpPanel =
-                new IccNetworkDepersonalizationPanel(PhoneGlobals.getInstance(), subType);
-        ndpPanel.show();
+        sNdpPanel = new IccNetworkDepersonalizationPanel(PhoneGlobals.getInstance(), subType);
+        sNdpPanel.show();
+    }
+
+    public static void dialogDismiss() {
+        if (sNdpPanel != null && sShowingDialog) {
+            sNdpPanel.dismiss();
+        }
     }
 
     //private textwatcher to control text entry.
