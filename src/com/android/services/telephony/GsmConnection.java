@@ -16,6 +16,7 @@
 
 package com.android.services.telephony;
 
+import com.android.internal.telephony.Call;
 import com.android.internal.telephony.Connection;
 
 /**
@@ -74,7 +75,9 @@ final class GsmConnection extends TelephonyConnection {
         // Overwrites TelephonyConnection.buildConnectionCapabilities() and resets the hold options
         // because all GSM calls should hold, even if the carrier config option is set to not show
         // hold for IMS calls.
-        if (!shouldTreatAsEmergencyCall()) {
+        // Remove the capability HOLD when disconnecting so that UI does not show a disccnnecting
+        // child call of the conference call as secondary info.
+        if (!shouldTreatAsEmergencyCall() && mConnectionState != Call.State.DISCONNECTING) {
             capabilities |= CAPABILITY_SUPPORT_HOLD;
             if (getState() == STATE_ACTIVE || getState() == STATE_HOLDING) {
                 capabilities |= CAPABILITY_HOLD;
