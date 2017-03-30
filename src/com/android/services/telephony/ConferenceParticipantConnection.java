@@ -75,6 +75,7 @@ public class ConferenceParticipantConnection extends Connection {
             address = getParticipantAddress(participant, countryIso);
         }
         setAddress(address, presentation);
+        setVideoState(parentConnection.getVideoState());
         setCallerDisplayName(participant.getDisplayName(), presentation);
 
         mUserEntity = participant.getHandle();
