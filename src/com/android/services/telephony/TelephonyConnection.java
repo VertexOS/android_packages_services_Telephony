@@ -40,6 +40,7 @@ import android.telephony.PhoneNumberUtils;
 import android.telephony.SubscriptionInfo;
 import android.telephony.SubscriptionManager;
 import android.telephony.TelephonyManager;
+import android.text.TextUtils;
 import android.util.Pair;
 
 import com.android.ims.ImsCall;
@@ -129,8 +130,8 @@ abstract class TelephonyConnection extends Connection
                          (com.android.internal.telephony.Connection) ar.result;
                     if (mOriginalConnection != null) {
                         if (connection != null &&
-                            ((connection.getAddress() != null &&
-                            mOriginalConnection.getAddress() != null &&
+                            ((!TextUtils.isEmpty(mOriginalConnection.getAddress()) &&
+                            !TextUtils.isEmpty(connection.getAddress()) &&
                             mOriginalConnection.getAddress().contains(connection.getAddress())) ||
                             connection.getState() == mOriginalConnection.getStateBeforeHandover())) {
                             Log.d(TelephonyConnection.this,
