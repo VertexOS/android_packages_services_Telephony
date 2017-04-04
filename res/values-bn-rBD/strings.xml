@@ -388,7 +388,7 @@
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"সিম কার্ড থেকে পড়া হচ্ছে…"</string>
     <string name="simContacts_empty" msgid="5270660846489561932">"আপনার সিম কার্ডে কোনো পরিচিত নেই৷"</string>
     <string name="simContacts_title" msgid="1861472842524839921">"পরিচিতগুলি আমদানি করুন"</string>
-    <string name="simContacts_airplaneMode" msgid="5254946758982621072">"SIM কার্ডটি থেকে পরিচিতিগুলি আমদানি করতে বিমান মোড বন্ধ করুন৷"</string>
+    <string name="simContacts_airplaneMode" msgid="5254946758982621072">"সিম কার্ডটি থেকে পরিচিতিগুলি আমদানি করতে বিমান মোড বন্ধ করুন৷"</string>
     <string name="enable_pin" msgid="5422767284133234860">"সিম পিন সক্ষম/অক্ষম করুন"</string>
     <string name="change_pin" msgid="9174186126330785343">"সিম পিন পরিবর্তন করুন"</string>
     <string name="enter_pin_text" msgid="8532615714751931951">"সিম পিন:"</string>
@@ -398,8 +398,8 @@
     <string name="badPin" msgid="8955102849303984935">"আপনার দ্বারা টাইপ করা পুরানো পিন সঠিক নয়৷ আবার চেষ্টা করুন৷"</string>
     <string name="mismatchPin" msgid="5923253370683071889">"আপনার টাইপ করা PINগুলি মিলছে না৷ আবার চেষ্টা করুন৷"</string>
     <string name="invalidPin" msgid="5981171102258684792">"৪ থেকে ৮ সংখ্যা বিশিষ্ট একটি পিন টাইপ করুন৷"</string>
-    <string name="disable_sim_pin" msgid="3419351358300716472">"SIM এর পিন সাফ করুন"</string>
-    <string name="enable_sim_pin" msgid="4845145659651484248">"SIM এর পিন সেট করুন"</string>
+    <string name="disable_sim_pin" msgid="3419351358300716472">"সিম এর পিন সাফ করুন"</string>
+    <string name="enable_sim_pin" msgid="4845145659651484248">"সিম এর পিন সেট করুন"</string>
     <string name="enable_in_progress" msgid="3417917024688497010">"পিন সেটিং…"</string>
     <string name="enable_pin_ok" msgid="2918545971413270063">"পিন সেট করুন"</string>
     <string name="disable_pin_ok" msgid="2109571368635883688">"পিন সাফ করা হয়েছে"</string>
@@ -418,11 +418,11 @@
     <string name="pin2_changed" msgid="3724522579945610956">"PIN2 আপডেট হয়েছে"</string>
     <string name="label_puk2_code" msgid="4688069961795341948">"PUK2 কোড লিখুন"</string>
     <string name="fdn_enable_puk2_requested" msgid="4991074891459554705">"পাসওয়ার্ডটি ভুল৷ পিন2 এখন অবরুদ্ধ৷ আবার চেষ্টা করতে, পিন 2 পরিবর্তন করুন৷"</string>
-    <string name="puk2_requested" msgid="5831015200030161434">"পাসওয়ার্ডটি ভুল৷ SIM এখন অবরুদ্ধ৷ PUK2 লিখুন৷"</string>
+    <string name="puk2_requested" msgid="5831015200030161434">"পাসওয়ার্ডটি ভুল৷ সিম এখন অবরুদ্ধ৷ PUK2 লিখুন৷"</string>
     <string name="puk2_blocked" msgid="3150263853077280049">"PUK2 স্থায়ীভাবে অবরুদ্ধ করা হয়েছে৷"</string>
     <string name="pin2_attempts" msgid="720736232885011507">\n"আপনার কাছে <xliff:g id="NUMBER">%d</xliff:g>টি প্রচেষ্টা অবশিষ্ট রয়েছে৷"</string>
     <string name="pin2_unblocked" msgid="7791600368153469078">"PIN2 এখন আর অবরুদ্ধ নয়"</string>
-    <string name="pin2_error_exception" msgid="1088689322248996699">"নেটওয়ার্ক বা SIM কার্ড ত্রুটি৷"</string>
+    <string name="pin2_error_exception" msgid="1088689322248996699">"নেটওয়ার্ক বা সিম কার্ড ত্রুটি৷"</string>
     <string name="doneButton" msgid="2859593360997984240">"সম্পন্ন হয়েছে"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"ভয়েসমেল নম্বর"</string>
     <string name="card_title_dialing" msgid="5769417478498348054">"ডায়াল করা হচ্ছে"</string>
@@ -439,7 +439,8 @@
     <string name="notification_voicemail_no_vm_number" msgid="760963466895609716">"ভয়েসমেল নম্বর অজানা"</string>
     <string name="notification_network_selection_title" msgid="4224455487793492772">"কোনো পরিষেবা নেই"</string>
     <string name="notification_network_selection_text" msgid="2607085729661923269">"নির্বাচিত নেটওয়ার্ক (<xliff:g id="OPERATOR_NAME">%s</xliff:g>) অনুপলব্ধ"</string>
-    <string name="incall_error_power_off" msgid="2947938060513306698">"কল করতে বিমান মোড বন্ধ করুন৷"</string>
+    <string name="incall_error_power_off" product="watch" msgid="772302793483607711">"কল করতে বিমান মোড বা ব্যাটারি সেভার বন্ধ করুন৷"</string>
+    <string name="incall_error_power_off" product="default" msgid="2947938060513306698">"কল করতে বিমান মোড বন্ধ করুন৷"</string>
     <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"বিমান মোড বন্ধ করুন বা কল করতে কোনো ওয়্যারলেস নেটওয়ার্কে সংযোগ করুন৷"</string>
     <string name="incall_error_ecm_emergency_only" msgid="738708660612388692">"একটি সাধারণ কল করতে জরুরি কলব্যাক মোডের বাইরে আসুন৷"</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"নেটওয়ার্কে নিবন্ধিত নয়৷"</string>
@@ -564,13 +565,13 @@
     <string name="enable_video_calling_dialog_close" msgid="7411471282167927991">"বন্ধ করুন"</string>
     <string name="sim_label_emergency_calls" msgid="4847699229529306397">"জরুরি কলগুলি"</string>
     <string name="sim_description_emergency_calls" msgid="7535215397212301562">"শুধুমাত্র জরুরী কলিং"</string>
-    <string name="sim_description_default" msgid="4778679519938775515">"SIM কার্ড, স্লট: <xliff:g id="SLOT_ID">%s</xliff:g>"</string>
+    <string name="sim_description_default" msgid="4778679519938775515">"সিম কার্ড, স্লট: <xliff:g id="SLOT_ID">%s</xliff:g>"</string>
     <string name="accessibility_settings_activity_title" msgid="8562004288733103868">"অ্যাক্সেসযোগ্যতা"</string>
     <string name="status_hint_label_incoming_wifi_call" msgid="5932176406432044638">"এর থেকে Wi-Fi কল"</string>
     <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"ওয়াই-ফাই কল"</string>
     <string name="emergency_action_launch_hint" msgid="4906759256275562674">"খোলার জন্য আবার আলতো চাপুন"</string>
     <string name="message_decode_error" msgid="3456481534066924855">"বার্তাটি ডিকোড করার সময় একটি ত্রুটি ঘটেছে৷"</string>
-    <string name="callFailed_cdma_activation" msgid="2307989779233262164">"একটি SIM কার্ড আপনার পরিষেবা সক্রিয় করেছে এবং আপনার ফোনের রোমিং ক্ষমতা আপডেট করা হয়েছে৷"</string>
+    <string name="callFailed_cdma_activation" msgid="2307989779233262164">"একটি সিম কার্ড আপনার পরিষেবা সক্রিয় করেছে এবং আপনার ফোনের রোমিং ক্ষমতা আপডেট করা হয়েছে৷"</string>
     <string name="callFailed_cdma_call_limit" msgid="1556916577171457086">"অনেকগুলি কল সক্রিয় রয়েছে। অনুগ্রহ করে একটি নতুন কল করার আগে বিদ্যমান কলগুলি কেটে দিন বা এটিকে সেই কলগুলিতে অন্তর্ভুক্ত করুন।"</string>
     <string name="change_pin_title" msgid="7790232089699034029">"ভয়েসমেলের PIN পরিবর্তন করুন"</string>
     <string name="change_pin_continue_label" msgid="2135088662420163447">"চালিয়ে যান"</string>

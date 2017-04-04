@@ -86,7 +86,7 @@
     <string name="sum_cdma_call_settings" msgid="284753265979035549">"Dodatkowe ustawienia tylko połączenia CDMA"</string>
     <string name="labelNwService" msgid="4699970172021870983">"Ustawienia usługi sieciowej"</string>
     <string name="labelCallerId" msgid="3888899447379069198">"Nazwa rozmówcy"</string>
-    <string name="sum_loading_settings" msgid="1826692909391168620">"Wczytywanie ustawień…"</string>
+    <string name="sum_loading_settings" msgid="1826692909391168620">"Wczytuję ustawienia…"</string>
     <string name="sum_hide_caller_id" msgid="1071407020290873782">"Ukrycie numeru podczas rozmów wychodzących"</string>
     <string name="sum_show_caller_id" msgid="6768534125447290401">"Numer wyświetlany w połączeniach wychodzących"</string>
     <string name="sum_default_caller_id" msgid="1954518825510901365">"Do wyświetlania mojego numeru w połączeniach wychodzących używaj domyślnych ustawień operatora"</string>
@@ -439,7 +439,8 @@
     <string name="notification_voicemail_no_vm_number" msgid="760963466895609716">"Nieznany numer poczty głosowej"</string>
     <string name="notification_network_selection_title" msgid="4224455487793492772">"Brak usługi"</string>
     <string name="notification_network_selection_text" msgid="2607085729661923269">"Wybrana sieć (<xliff:g id="OPERATOR_NAME">%s</xliff:g>) jest niedostępna"</string>
-    <string name="incall_error_power_off" msgid="2947938060513306698">"Wyłącz tryb samolotowy, by zadzwonić."</string>
+    <string name="incall_error_power_off" product="watch" msgid="772302793483607711">"Aby zadzwonić, wyłącz tryb samolotowy lub tryb oszczędzania baterii."</string>
+    <string name="incall_error_power_off" product="default" msgid="2947938060513306698">"Wyłącz tryb samolotowy, by zadzwonić."</string>
     <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"Wyłącz tryb samolotowy lub połącz się z siecią bezprzewodową, by zadzwonić."</string>
     <string name="incall_error_ecm_emergency_only" msgid="738708660612388692">"Aby zadzwonić normalnie, wyjdź z trybu alarmowego połączenia zwrotnego."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"Nie zarejestrowano w sieci"</string>

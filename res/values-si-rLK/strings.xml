@@ -79,8 +79,8 @@
     <string name="networks" msgid="8873030692174541976">"ජාල ක්‍රියාකරුවන්"</string>
     <string name="cell_broadcast_settings" msgid="8740238216690502563">"හදිසි විකාශන"</string>
     <string name="call_settings" msgid="6112441768261754562">"ඇමතුම් සැකසුම්"</string>
-    <string name="additional_gsm_call_settings" msgid="1391795981938800617">"අමතර සැකසීම්"</string>
-    <string name="additional_gsm_call_settings_with_label" msgid="1385241520708457376">"අමතර සැකසීම් (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
+    <string name="additional_gsm_call_settings" msgid="1391795981938800617">"අතිරේක සැකසීම්"</string>
+    <string name="additional_gsm_call_settings_with_label" msgid="1385241520708457376">"අතිරේක සැකසීම් (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="sum_gsm_call_settings" msgid="4076647190996778012">"අමතර GSM පමණක් ඇමතුම් සැකසුම්"</string>
     <string name="additional_cdma_call_settings" msgid="8628958775721886909">"අමතර CDMA ඇමතුම් සැකසුම්"</string>
     <string name="sum_cdma_call_settings" msgid="284753265979035549">"අමතර CDMA පමණක් ඇමතුම් සැකසුම්"</string>
@@ -439,7 +439,8 @@
     <string name="notification_voicemail_no_vm_number" msgid="760963466895609716">"හඬතැපැල් අංකය නොදනී"</string>
     <string name="notification_network_selection_title" msgid="4224455487793492772">"සේවාව නැත"</string>
     <string name="notification_network_selection_text" msgid="2607085729661923269">"තෝරා ඇති ජාලය (<xliff:g id="OPERATOR_NAME">%s</xliff:g>) නොමැත"</string>
-    <string name="incall_error_power_off" msgid="2947938060513306698">"ඇමතුමක් ගැනීමට ගුවන් යානා මාදිලිය අක්‍රිය කරන්න."</string>
+    <string name="incall_error_power_off" product="watch" msgid="772302793483607711">"ඇමතුමක් ගැනීමට ගුවන් යානා ප්‍රකාරය හෝ බැටරි සුරැකුම් ප්‍රකාරය ක්‍රියාවිරහිත කරන්න."</string>
+    <string name="incall_error_power_off" product="default" msgid="2947938060513306698">"ඇමතුමක් ගැනීමට ගුවන් යානා මාදිලිය අක්‍රිය කරන්න."</string>
     <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"ඇමතුමක් ලබා ගැනීමට ගුවන් යානා මෝඩය අක්‍රිය කරන්න හෝ රැහැන් රහිත ජාලයකට සම්බන්ධ වෙන්න."</string>
     <string name="incall_error_ecm_emergency_only" msgid="738708660612388692">"හදිසි-නොවන ඇමතුමක් සිදු කිරීමට හදිසි අවස්ථා පසු ඇමතුම් ප්‍රකාරයෙන් ඉවත් වන්න."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"ජාලය මත ලියාපදිංචි වී නැත."</string>

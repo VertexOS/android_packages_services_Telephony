@@ -557,6 +557,8 @@ public class VoicemailSettingsActivity extends PreferenceActivity
                 }
                 if (mSubMenuVoicemailSettings != null) {
                     mSubMenuVoicemailSettings.onPickActivityResult(cursor.getString(0));
+                } else {
+                    Log.w(LOG_TAG, "VoicemailSettingsActivity destroyed while setting contacts.");
                 }
                 return;
             } finally {
