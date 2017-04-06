@@ -29,7 +29,7 @@
     <string name="ussdRunning" msgid="485588686340541690">"USSD кôд је покренут…"</string>
     <string name="mmiCancelled" msgid="2771923949751842276">"MMI кôд је отказан"</string>
     <string name="cancel" msgid="5044513931633602634">"Откажи"</string>
-    <string name="enter_input" msgid="1810529547726803893">"USSD порука мора да има између <xliff:g id="MIN_LEN">%d</xliff:g> и <xliff:g id="MAX_LEN">%d</xliff:g> знакова. Покушајте поново."</string>
+    <string name="enter_input" msgid="1810529547726803893">"USSD порука мора да има између <xliff:g id="MIN_LEN">%d</xliff:g> и <xliff:g id="MAX_LEN">%d</xliff:g> знакова. Пробајте поново."</string>
     <string name="manageConferenceLabel" msgid="4691922394301969053">"Управљање конференцијским позивом"</string>
     <string name="ok" msgid="3811371167865772377">"Потврди"</string>
     <string name="audio_mode_speaker" msgid="27649582100085266">"Звучник"</string>
@@ -165,7 +165,7 @@
     <string name="network_query_error" msgid="6828516148953325006">"Грешка током тражења мрежа."</string>
     <string name="register_on_network" msgid="9055203954040805084">"Регистровање на <xliff:g id="NETWORK">%s</xliff:g>…"</string>
     <string name="not_allowed" msgid="5613353860205691579">"SIM картица не дозвољава везу са овом мрежом."</string>
-    <string name="connect_later" msgid="2308119155752343975">"Тренутно није могуће повезати се са овом мрежом. Покушајте поново касније."</string>
+    <string name="connect_later" msgid="2308119155752343975">"Тренутно није могуће повезати се са овом мрежом. Пробајте поново касније."</string>
     <string name="registration_done" msgid="495135664535876612">"Регистровано на мрежи."</string>
     <string name="sum_carrier_select" msgid="3494252551249882718">"Изаберите мрежног оператера"</string>
     <string name="sum_search_networks" msgid="2921092249873272715">"Потражи све доступне мреже"</string>
@@ -395,8 +395,8 @@
     <string name="oldPinLabel" msgid="5287773661246368314">"Стари PIN"</string>
     <string name="newPinLabel" msgid="207488227285336897">"Нови PIN"</string>
     <string name="confirmPinLabel" msgid="257597715098070206">"Потврдите нови PIN"</string>
-    <string name="badPin" msgid="8955102849303984935">"Стари PIN кôд који сте унели је нетачан. Покушајте поново."</string>
-    <string name="mismatchPin" msgid="5923253370683071889">"PIN кодови које сте унели се не подударају. Покушајте поново."</string>
+    <string name="badPin" msgid="8955102849303984935">"Стари PIN кôд који сте унели је нетачан. Пробајте поново."</string>
+    <string name="mismatchPin" msgid="5923253370683071889">"PIN кодови које сте унели се не подударају. Пробајте поново."</string>
     <string name="invalidPin" msgid="5981171102258684792">"Откуцајте PIN који има од 4 до 8 бројева."</string>
     <string name="disable_sim_pin" msgid="3419351358300716472">"Брисање PIN-а за SIM"</string>
     <string name="enable_sim_pin" msgid="4845145659651484248">"Подешавање PIN-а за SIM"</string>
@@ -410,9 +410,9 @@
     <string name="oldPin2Label" msgid="8559146795026261502">"Стари PIN2"</string>
     <string name="newPin2Label" msgid="4573956902204349054">"Нови PIN2"</string>
     <string name="confirmPin2Label" msgid="8100319484454787708">"Потврдите нови PIN2"</string>
-    <string name="badPuk2" msgid="7910064009531541708">"PUK2 није тачан. Покушајте поново."</string>
-    <string name="badPin2" msgid="6646896629970023109">"Стари PIN2 није тачан. Покушајте поново."</string>
-    <string name="mismatchPin2" msgid="4177967478551851117">"PIN2 кодови се не подударају. Покушајте поново."</string>
+    <string name="badPuk2" msgid="7910064009531541708">"PUK2 није тачан. Пробајте поново."</string>
+    <string name="badPin2" msgid="6646896629970023109">"Стари PIN2 није тачан. Пробајте поново."</string>
+    <string name="mismatchPin2" msgid="4177967478551851117">"PIN2 кодови се не подударају. Пробајте поново."</string>
     <string name="invalidPin2" msgid="1757045131429105595">"Унесите PIN2 који садржи 4 до 8 цифара."</string>
     <string name="invalidPuk2" msgid="7059081153334815973">"Унесите PUK2 који садржи 8 цифара."</string>
     <string name="pin2_changed" msgid="3724522579945610956">"PIN2 је ажуриран"</string>
@@ -439,7 +439,8 @@
     <string name="notification_voicemail_no_vm_number" msgid="760963466895609716">"Непознат број говорне поште"</string>
     <string name="notification_network_selection_title" msgid="4224455487793492772">"Нема услуге"</string>
     <string name="notification_network_selection_text" msgid="2607085729661923269">"Изабрана мрежа (<xliff:g id="OPERATOR_NAME">%s</xliff:g>) није доступна"</string>
-    <string name="incall_error_power_off" msgid="2947938060513306698">"Искључите режим рада у авиону да бисте упутили позив."</string>
+    <string name="incall_error_power_off" product="watch" msgid="772302793483607711">"Искључите режим рада у авиону или уштеде батерије да бисте упутили позив."</string>
+    <string name="incall_error_power_off" product="default" msgid="2947938060513306698">"Искључите режим рада у авиону да бисте упутили позив."</string>
     <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"Искључите режим рада у авиону или се повежите на бежичну мрежу да бисте упутили позив."</string>
     <string name="incall_error_ecm_emergency_only" msgid="738708660612388692">"Изађите из режима хитног повратног позива да бисте упутили позив који није хитан."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"Није регистровано на мрежи."</string>
@@ -514,10 +515,10 @@
     <string name="ota_progress" msgid="460876637828044519">"Телефон се програмира…"</string>
     <string name="ota_failure" msgid="7713756181204620397">"Програмирање телефона није успело"</string>
     <string name="ota_successful" msgid="1880780692887077407">"Телефон је сада активиран. Можда ће бити потребно највише 15 минута да би се услуга покренула."</string>
-    <string name="ota_unsuccessful" msgid="8072141612635635357">"Телефон се није активирао. \nМожда је потребно да пронађете област са бољом покривеношћу (близу прозора или напољу). \n\nПокушајте поново или позовите корисничку подршку за још опција."</string>
+    <string name="ota_unsuccessful" msgid="8072141612635635357">"Телефон се није активирао. \nМожда је потребно да пронађете област са бољом покривеношћу (близу прозора или напољу). \n\nПробајте поново или позовите корисничку подршку за још опција."</string>
     <string name="ota_spc_failure" msgid="3909983542575030796">"СЛУЧАЈНА SPC ГРЕШКА"</string>
     <string name="ota_call_end" msgid="4537279738134612388">"Назад"</string>
-    <string name="ota_try_again" msgid="7685477206465902290">"Покушај поново"</string>
+    <string name="ota_try_again" msgid="7685477206465902290">"Пробај поново"</string>
     <string name="ota_next" msgid="3904945374358235910">"Следеће"</string>
     <string name="ecm_exit_dialog" msgid="4448531867763097533">"Дијалог за излазак из режима хитног повратног позива"</string>
     <string name="phone_entered_ecm_text" msgid="6266424252578731203">"Унет је режим за хитан повратни позив"</string>

@@ -439,7 +439,8 @@
     <string name="notification_voicemail_no_vm_number" msgid="760963466895609716">"알 수 없는 음성사서함 번호"</string>
     <string name="notification_network_selection_title" msgid="4224455487793492772">"서비스 불가"</string>
     <string name="notification_network_selection_text" msgid="2607085729661923269">"선택한 네트워크(<xliff:g id="OPERATOR_NAME">%s</xliff:g>)를 사용할 수 없음"</string>
-    <string name="incall_error_power_off" msgid="2947938060513306698">"전화를 걸려면 비행기 모드를 사용 중지하세요."</string>
+    <string name="incall_error_power_off" product="watch" msgid="772302793483607711">"전화를 걸려면 비행기 모드 또는 배터리 세이버 모드를 사용 중지하세요."</string>
+    <string name="incall_error_power_off" product="default" msgid="2947938060513306698">"전화를 걸려면 비행기 모드를 사용 중지하세요."</string>
     <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"전화를 걸려면 비행기 모드를 사용 중지하거나 무선 네트워크에 연결하세요."</string>
     <string name="incall_error_ecm_emergency_only" msgid="738708660612388692">"일반 전화를 걸려면 긴급 콜백 모드를 해제하세요."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"네트워크에서 등록되지 않았습니다."</string>

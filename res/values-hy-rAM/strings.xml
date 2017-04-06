@@ -52,7 +52,7 @@
     <string name="requesting_unlock" msgid="6412629401033249351">"Հայցվում է ցանցի ապակողպում..."</string>
     <string name="unlock_failed" msgid="6490531697031504225">"Ցանցի ապակողպման հարցումը խափանվեց:"</string>
     <string name="unlock_success" msgid="6770085622238180152">"Ցանցի ապակողպումը խափանվեց"</string>
-    <string name="mobile_network_settings_not_available" msgid="3831911315358856062">"Բջջային ցանցի կարգավորումներն անհասանելի են այս օգտվողի համար"</string>
+    <string name="mobile_network_settings_not_available" msgid="3831911315358856062">"Բջջային ցանցի կարգավորումներն անհասանելի են այս օգտատիրոջ"</string>
     <string name="labelGSMMore" msgid="5930842194056092106">"GSM զանգերի կարգավորումներ"</string>
     <string name="labelGsmMore_with_label" msgid="2674012918829238901">"GSM զանգի կարգավորումներ (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="labelCDMAMore" msgid="1630676740428229339">"CDMA զանգերի կարգավորումներ"</string>
@@ -118,7 +118,7 @@
     <string name="sum_cfnrc_disabled" msgid="7222141261321276464">"Անջատված է"</string>
     <string name="disable_cfnrc_forbidden" msgid="5646361343094064333">"Ձեր սպասարկողը չի աջակցում զանգի վերահասցեավորման կասեցում, երբ ձեր հեռախոսն անհասանելի է:"</string>
     <string name="updating_title" msgid="6146755386174019046">"Զանգի կարգավորումներ"</string>
-    <string name="call_settings_admin_user_only" msgid="4526094783818216374">"Զանգի կարգավորումները կարող է փոխել միայն ադմինիստրատոր հանդիսացող օգտվողը:"</string>
+    <string name="call_settings_admin_user_only" msgid="4526094783818216374">"Զանգի կարգավորումները կարող է փոխել միայն ադմինիստրատոր հանդիսացող օգտատերը:"</string>
     <string name="call_settings_with_label" msgid="3401177261468593519">"Կարգավորումներ (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="error_updating_title" msgid="7970259216988931777">"Զանգի կարգավորումների սխալ"</string>
     <string name="reading_settings" msgid="1920291699287055284">"Ընթերցման կարգավորումներ..."</string>
@@ -429,7 +429,7 @@
     <string name="pin2_attempts" msgid="720736232885011507">\n"Ձեզ մնացել է <xliff:g id="NUMBER">%d</xliff:g> փորձ:"</string>
     <string name="pin2_unblocked" msgid="7791600368153469078">"PIN2 կոդն այլևս արգելափակված չէ"</string>
     <string name="pin2_error_exception" msgid="1088689322248996699">"Ցանցի կամ SIM քարտի սխալ"</string>
-    <string name="doneButton" msgid="2859593360997984240">"Կատարված է"</string>
+    <string name="doneButton" msgid="2859593360997984240">"Պատրաստ է"</string>
     <string name="voicemail_settings_number_label" msgid="8524164258691887790">"Ձայնային փոստի համարը"</string>
     <string name="card_title_dialing" msgid="5769417478498348054">"Համարը հավաքվում է"</string>
     <string name="card_title_redialing" msgid="8253487008234167266">"Վերահամարարկում"</string>
@@ -445,7 +445,8 @@
     <string name="notification_voicemail_no_vm_number" msgid="760963466895609716">"Ձայնային փոստի համարն անհայտ է"</string>
     <string name="notification_network_selection_title" msgid="4224455487793492772">"Ծառայություններ չկան"</string>
     <string name="notification_network_selection_text" msgid="2607085729661923269">"Ընտրված ցանցը (<xliff:g id="OPERATOR_NAME">%s</xliff:g>) անհասանելի է"</string>
-    <string name="incall_error_power_off" msgid="2947938060513306698">"Զանգ կատարելու համար անջատեք Ինքնաթիռի ռեժիմը:"</string>
+    <string name="incall_error_power_off" product="watch" msgid="772302793483607711">"Զանգ կատարելու համար անջատեք ինքնաթիռի կամ էներգախնայման ռեժիմը:"</string>
+    <string name="incall_error_power_off" product="default" msgid="2947938060513306698">"Զանգ կատարելու համար անջատեք Ինքնաթիռի ռեժիմը:"</string>
     <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"Զանգ կատարելու համար անջատեք Ինքնաթիռի ռեժիմը կամ միացեք անլար ցանցին:"</string>
     <string name="incall_error_ecm_emergency_only" msgid="738708660612388692">"Սովորական զանգ կատարելու համար դուրս եկեք շտապ կանչի ռեժիմից։"</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"Ցանցում գրանցված չէ:"</string>
@@ -510,7 +511,7 @@
     <string name="ota_hfa_activation_title" msgid="2234246934160473981">"Ակտիվացվում է..."</string>
     <string name="ota_hfa_activation_dialog_message" msgid="8092479227918463415">"Հեռախոսը ակտիվացնում է ձեր բջջային տվյալների ծառայությունը:\n\nՍա կարող է տևել մինչև 5 րոպե:"</string>
     <string name="ota_skip_activation_dialog_title" msgid="2943366608272261306">"Բաց թողնե՞լ ակտիվացումը"</string>
-    <string name="ota_skip_activation_dialog_message" msgid="2440770373498870550">"Եթե ​​դուք բաց թողնեք ակտիվացումը, դուք չեք կարող կատարել զանգեր կամ միանալ բջջային տվյալների ցանցերին (թեև դուք կարող եք միանալ Wi-Fi ցանցերին): Մինչև դուք չակտիվացնեեք ձեր հեռախոսը, ձեզ հարցվելու է ակտիվացնել յուրաքանչյուր անգամ, երբ դուք միացնեք այն:"</string>
+    <string name="ota_skip_activation_dialog_message" msgid="2440770373498870550">"Եթե ​​դուք բաց թողնեք ակտիվացումը, դուք չեք կարող կատարել զանգեր և միանալ բջջային տվյալների ցանցերին (թեև դուք կարող եք միանալ Wi-Fi ցանցերին): Մինչև դուք չակտիվացնեեք ձեր հեռախոսը, ձեզ հարցվելու է ակտիվացնել յուրաքանչյուր անգամ, երբ դուք միացնեք այն:"</string>
     <string name="ota_skip_activation_dialog_skip_label" msgid="3458532775091563208">"Բաց թողնել"</string>
     <string name="ota_activate" msgid="1368528132525626264">"Ակտիվացնել"</string>
     <string name="ota_title_activate_success" msgid="6570240212263372046">"Հեռախոսն ակտիվացված է:"</string>
@@ -556,10 +557,10 @@
     <string name="selectContact" msgid="781975788478987237">"ընտրել կոնտակտ"</string>
     <string name="not_voice_capable" msgid="2739898841461577811">"Ձայնային զանգերը չեն սպասարկվում"</string>
     <string name="description_dial_button" msgid="7459705245418435351">"համարհավաքել"</string>
-    <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"Թրթռալ"</string>
-    <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"Թրթռալ"</string>
+    <string name="voicemail_notification_vibrate_when_title" msgid="8361970092063604886">"Թրթռոց"</string>
+    <string name="voicemail_notification_vibarte_when_dialog_title" msgid="5739583146522136440">"Թրթռոց"</string>
     <string name="voicemail_visual_voicemail_switch_title" msgid="5012622186976275457">"Տեսանելի ձայնային փոստ"</string>
-    <string name="voicemail_set_pin_dialog_title" msgid="2797924461029093837">"Սահմանել PIN"</string>
+    <string name="voicemail_set_pin_dialog_title" msgid="2797924461029093837">"Ընտրեք PIN"</string>
     <string name="voicemail_change_pin_dialog_title" msgid="6035421908626121564">"Փոխել PIN-ը"</string>
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"Ձայն"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"Ձայներանգ &amp; Թրթռոց"</string>
@@ -584,10 +585,10 @@
     <string name="change_pin_ok_label" msgid="6204308560844889926">"Լավ"</string>
     <string name="change_pin_enter_old_pin_header" msgid="419179847657548887">"Հաստատեք ձեր հին PIN-ը"</string>
     <string name="change_pin_enter_old_pin_hint" msgid="8579171678763615453">"Շարունակելու համար մուտքագրեք ձայնային փոստի PIN-ը:"</string>
-    <string name="change_pin_enter_new_pin_header" msgid="2611191814590251532">"Սահմանեք նոր PIN"</string>
+    <string name="change_pin_enter_new_pin_header" msgid="2611191814590251532">"Ընտրեք նոր PIN"</string>
     <string name="change_pin_enter_new_pin_hint" msgid="2322940054329689309">"PIN-ը պետք է բաղկացած լինի <xliff:g id="MIN">%1$d</xliff:g>-<xliff:g id="MAX">%2$d</xliff:g> թվանշանից:"</string>
     <string name="change_pin_confirm_pin_header" msgid="8113764019347322170">"Հաստատեք ձեր PIN-ը"</string>
     <string name="change_pin_confirm_pins_dont_match" msgid="4795052654904027909">"PIN-երը չեն համընկնում"</string>
     <string name="change_pin_succeeded" msgid="2022852286442211151">"Ձայնային փոստի PIN-ը թարմացվեց"</string>
-    <string name="change_pin_system_error" msgid="8308462387154257840">"Չհաջողվեց սահմանել PIN"</string>
+    <string name="change_pin_system_error" msgid="8308462387154257840">"Չհաջողվեց փոխել PIN-ը"</string>
 </resources>

@@ -31,15 +31,16 @@ import com.android.internal.telephony.SubscriptionController;
 
 /**
  * Helper class that listens to a Phone's radio state and sends a callback when the radio state of
- * that Phone is either "in service" or "emergency calls only."
+ * that Phone is either "in service" or ("emergency calls only." if is emergency).
  */
-public class EmergencyCallStateListener {
+public class RadioOnStateListener {
 
     /**
-     * Receives the result of the EmergencyCallStateListener's attempt to turn on the radio.
+     * Receives the result of the RadioOnStateListener's attempt to turn on the radio.
      */
     interface Callback {
-        void onComplete(EmergencyCallStateListener listener, boolean isRadioReady);
+        void onComplete(RadioOnStateListener listener, boolean isRadioReady);
+        boolean isOkToCall(Phone phone, int serviceState);
     }
 
     // Number of times to retry the call, and time between retry attempts.
@@ -62,8 +63,8 @@ public class EmergencyCallStateListener {
                     SomeArgs args = (SomeArgs) msg.obj;
                     try {
                         Phone phone = (Phone) args.arg1;
-                        EmergencyCallStateListener.Callback callback =
-                                (EmergencyCallStateListener.Callback) args.arg2;
+                        RadioOnStateListener.Callback callback =
+                                (RadioOnStateListener.Callback) args.arg2;
                         startSequenceInternal(phone, callback);
                     } finally {
                         args.recycle();
@@ -89,7 +90,7 @@ public class EmergencyCallStateListener {
 
     /**
      * Starts the "wait for radio" sequence. This is the (single) external API of the
-     * EmergencyCallStateListener class.
+     * RadioOnStateListener class.
      *
      * This method kicks off the following sequence:
      * - Listen for the service state change event telling us the radio has come up.
@@ -98,7 +99,7 @@ public class EmergencyCallStateListener {
      * - Finally, clean up any leftover state.
      *
      * This method is safe to call from any thread, since it simply posts a message to the
-     * EmergencyCallStateListener's handler (thus ensuring that the rest of the sequence is entirely
+     * RadioOnStateListener's handler (thus ensuring that the rest of the sequence is entirely
      * serialized, and runs only on the handler thread.)
      */
     public void waitForRadioOn(Phone phone, Callback callback) {
@@ -123,7 +124,7 @@ public class EmergencyCallStateListener {
     private void startSequenceInternal(Phone phone, Callback callback) {
         Log.d(this, "startSequenceInternal: Phone " + phone.getPhoneId());
 
-        // First of all, clean up any state left over from a prior emergency call sequence. This
+        // First of all, clean up any state left over from a prior RadioOn call sequence. This
         // ensures that we'll behave sanely if another startTurnOnRadioSequence() comes in while
         // we're already in the middle of the sequence.
         cleanup();
@@ -140,7 +141,7 @@ public class EmergencyCallStateListener {
 
     /**
      * Handles the SERVICE_STATE_CHANGED event. Normally this event tells us that the radio has
-     * finally come up. In that case, it's now safe to actually place the emergency call.
+     * finally come up. In that case, it's now safe to actually place the RadioOn call.
      */
     private void onServiceStateChanged(ServiceState state) {
         Log.d(this, "onServiceStateChanged(), new state = %s, Phone = %s", state,
@@ -171,8 +172,7 @@ public class EmergencyCallStateListener {
      * UNAVAILABLE state, even if it is reporting the OUT_OF_SERVICE state.
      */
     private boolean isOkToCall(int serviceState) {
-        return (mPhone.getState() == PhoneConstants.State.OFFHOOK) ||
-                mPhone.getServiceStateTracker().isRadioOn();
+        return (mCallback == null) ? false : mCallback.isOkToCall(mPhone, serviceState);
     }
 
     /**
@@ -223,7 +223,7 @@ public class EmergencyCallStateListener {
      * - Clean up any extraneous handler messages (like retry timeouts) still in the queue
      *
      * Basically this method guarantees that there will be no more activity from the
-     * EmergencyCallStateListener until someone kicks off the whole sequence again with another call
+     * RadioOnStateListener until someone kicks off the whole sequence again with another call
      * to {@link #waitForRadioOn}
      *
      * TODO: Do the work for the comment below:
@@ -298,7 +298,7 @@ public class EmergencyCallStateListener {
         if (this == o) return true;
         if (o == null || !getClass().equals(o.getClass())) return false;
 
-        EmergencyCallStateListener that = (EmergencyCallStateListener) o;
+        RadioOnStateListener that = (RadioOnStateListener) o;
 
         if (mNumRetriesSoFar != that.mNumRetriesSoFar) {
             return false;

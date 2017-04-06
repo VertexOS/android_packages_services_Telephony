@@ -439,7 +439,8 @@
     <string name="notification_voicemail_no_vm_number" msgid="760963466895609716">"വോയ്‌സ്‌മെയിൽ നമ്പർ അജ്ഞാതമാണ്"</string>
     <string name="notification_network_selection_title" msgid="4224455487793492772">"സേവനമില്ല"</string>
     <string name="notification_network_selection_text" msgid="2607085729661923269">"തിരഞ്ഞെടുത്ത നെറ്റ്‌വർക്ക് (<xliff:g id="OPERATOR_NAME">%s</xliff:g>) ലഭ്യമല്ല"</string>
-    <string name="incall_error_power_off" msgid="2947938060513306698">"ഒരു കോൾ വിളിക്കാൻ വിമാന മോഡ് ഓഫാക്കുക."</string>
+    <string name="incall_error_power_off" product="watch" msgid="772302793483607711">"ഒരു കോൾ വിളിക്കാൻ ഫ്ലൈറ്റ് മോഡോ ബാറ്ററി സേവർ മോഡോ ഓഫാക്കുക."</string>
+    <string name="incall_error_power_off" product="default" msgid="2947938060513306698">"ഒരു കോൾ വിളിക്കാൻ വിമാന മോഡ് ഓഫാക്കുക."</string>
     <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"ഒരു കോൾ വിളിക്കാൻ വിമാന മോഡ് ഓഫാക്കുക അല്ലെങ്കിൽ വയർലെസ്സ് നെറ്റ്‌വർക്കിലേക്ക് കണക്റ്റുചെയ്യുക."</string>
     <string name="incall_error_ecm_emergency_only" msgid="738708660612388692">"അടിയന്തിരമല്ലാത്ത കോൾ ചെയ്യാൻ അടിയന്തിര കോൾബാക്ക് മോഡിൽ നിന്ന് പുറത്തുകടക്കുക."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"നെറ്റ്‌വർക്കിൽ രജിസ്റ്റർ ചെയ്‌തിട്ടില്ല."</string>
@@ -565,7 +566,7 @@
     <string name="sim_label_emergency_calls" msgid="4847699229529306397">"അടിയന്തിര കോളുകൾ"</string>
     <string name="sim_description_emergency_calls" msgid="7535215397212301562">"അടിയന്തിര കോൾചെയ്യൽ മാത്രം"</string>
     <string name="sim_description_default" msgid="4778679519938775515">"SIM കാർഡ്, സ്ലോട്ട്: <xliff:g id="SLOT_ID">%s</xliff:g>"</string>
-    <string name="accessibility_settings_activity_title" msgid="8562004288733103868">"പ്രവേശനക്ഷമത"</string>
+    <string name="accessibility_settings_activity_title" msgid="8562004288733103868">"ഉപയോഗസഹായി"</string>
     <string name="status_hint_label_incoming_wifi_call" msgid="5932176406432044638">"ഈ വ്യക്തിയിൽ നിന്നുള്ള Wi-Fi കോൾ"</string>
     <string name="status_hint_label_wifi_call" msgid="8900805254974653903">"വൈഫൈ കോൾ"</string>
     <string name="emergency_action_launch_hint" msgid="4906759256275562674">"തുറക്കുന്നതിന് വീണ്ടും ടാപ്പുചെയ്യുക"</string>

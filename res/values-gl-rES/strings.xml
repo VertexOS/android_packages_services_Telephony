@@ -228,9 +228,9 @@
     <string name="throttle_help" msgid="243651091785169900">"Máis información"</string>
     <string name="throttle_status_subtext" msgid="1657318943142085170">"<xliff:g id="USED_0">%1$s</xliff:g> (<xliff:g id="USED_1">%2$d</xliff:g>٪) de <xliff:g id="USED_2">%3$s</xliff:g> de período máximo\nO seguinte período comeza dentro de <xliff:g id="USED_3">%4$d</xliff:g> días (<xliff:g id="USED_4">%5$s</xliff:g>)"</string>
     <string name="throttle_data_usage_subtext" msgid="6029276011123694701">"<xliff:g id="USED_0">%1$s</xliff:g> (<xliff:g id="USED_1">%2$d</xliff:g>٪) de <xliff:g id="USED_2">%3$s</xliff:g> de período máximo"</string>
-    <string name="throttle_data_rate_reduced_subtext" msgid="7492763592720107737">"<xliff:g id="USED_0">%1$s</xliff:g> máximo superado\nTaxa de datos reducida a <xliff:g id="USED_1">%2$d</xliff:g> Kb/s"</string>
+    <string name="throttle_data_rate_reduced_subtext" msgid="7492763592720107737">"<xliff:g id="USED_0">%1$s</xliff:g> máximo superado\nTaxa de datos reducida a <xliff:g id="USED_1">%2$d</xliff:g> kb/s"</string>
     <string name="throttle_time_frame_subtext" msgid="7732763021560399960">"<xliff:g id="USED_0">%1$d</xliff:g>٪ do ciclo transcorrido\nO seguinte período comeza dentro de <xliff:g id="USED_1">%2$d</xliff:g> días (<xliff:g id="USED_2">%3$s</xliff:g>)"</string>
-    <string name="throttle_rate_subtext" msgid="2149102656120726855">"A velocidade de datos redúcese a <xliff:g id="USED">%1$d</xliff:g> Kb/s se se supera o límite de uso de datos"</string>
+    <string name="throttle_rate_subtext" msgid="2149102656120726855">"A velocidade de datos redúcese a <xliff:g id="USED">%1$d</xliff:g> kb/s se se supera o límite de uso de datos"</string>
     <string name="throttle_help_subtext" msgid="3633091498168446044">"Máis información sobre a política de uso de datos da rede móbil do teu operador"</string>
     <string name="cell_broadcast_sms" msgid="5584192824053625842">"SMS de difusión móbil"</string>
     <string name="enable_disable_cell_bc_sms" msgid="4851147873691392255">"SMS de difusión móbil"</string>
@@ -439,7 +439,8 @@
     <string name="notification_voicemail_no_vm_number" msgid="760963466895609716">"Número de correo de voz descoñecido"</string>
     <string name="notification_network_selection_title" msgid="4224455487793492772">"Sen servizo"</string>
     <string name="notification_network_selection_text" msgid="2607085729661923269">"Rede seleccionada (<xliff:g id="OPERATOR_NAME">%s</xliff:g>) non dispoñible"</string>
-    <string name="incall_error_power_off" msgid="2947938060513306698">"Desactiva o modo avión para facer unha chamada."</string>
+    <string name="incall_error_power_off" product="watch" msgid="772302793483607711">"Desactiva o modo avión ou o de aforro de batería para facer unha chamada."</string>
+    <string name="incall_error_power_off" product="default" msgid="2947938060513306698">"Desactiva o modo avión para facer unha chamada."</string>
     <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"Desactiva o modo avión ou conéctate a unha rede sen fíos para facer unha chamada."</string>
     <string name="incall_error_ecm_emergency_only" msgid="738708660612388692">"Sae do modo de devolución de chamada de emerxencia para facer unha chamada que non sexa de emerxencia."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"Sen rexistro na rede"</string>

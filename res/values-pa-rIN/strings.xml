@@ -357,11 +357,11 @@
     <string name="disable_fdn_ok" msgid="5727046928930740173">"FDN ਨੂੰ ਯੋਗ ਬਣਾਓ"</string>
     <string name="sum_fdn" msgid="1959399454900272878">"ਫਿਕਸਡ ਡਾਇਲਿੰਗ ਨੰਬਰਾਂ ਨੂੰ ਵਿਵਸਥਿਤ ਕਰੋ"</string>
     <string name="sum_fdn_change_pin" msgid="6666549734792827932">"FDN ਪਹੁੰਚ ਲਈ PIN ਬਦਲੋ"</string>
-    <string name="sum_fdn_manage_list" msgid="8431088265332628316">"ਫੋਨ ਨੰਬਰ ਸੂਚੀ ਵਿਵਸਥਿਤ ਕਰੋ"</string>
+    <string name="sum_fdn_manage_list" msgid="8431088265332628316">"ਫ਼ੋਨ ਨੰਬਰ ਸੂਚੀ ਵਿਵਸਥਿਤ ਕਰੋ"</string>
     <string name="voice_privacy" msgid="3776841382844614716">"ਵੌਇਸ ਪ੍ਰਾਈਵੇਸੀ"</string>
     <string name="voice_privacy_summary" msgid="3159383389833516214">"ਵਿਸਤ੍ਰਿਤ ਪ੍ਰਾਈਵੇਸੀ ਮੋਡ ਸਮਰੱਥ ਬਣਾਓ"</string>
     <string name="tty_mode_option_title" msgid="9033098925144434669">"TTY ਮੋਡ"</string>
-    <string name="tty_mode_option_summary" msgid="1073835131534808732">"TTY ਮੋਡ ਸੈਟ ਕਰੋ"</string>
+    <string name="tty_mode_option_summary" msgid="1073835131534808732">"TTY ਮੋਡ ਸੈੱਟ ਕਰੋ"</string>
     <string name="auto_retry_mode_title" msgid="4073265511427813322">"ਆਟੋ-ਰੀਟ੍ਰਾਈ"</string>
     <string name="auto_retry_mode_summary" msgid="4973886004067532288">"ਆਟੋ-ਰੀਟ੍ਰਾਈ ਮੋਡ ਨੂੰ ਸਮਰੱਥ ਬਣਾਓ"</string>
     <string name="tty_mode_not_allowed_video_call" msgid="3795846787901909176">"TTY ਮੋਡ ਪਰਿਵਰਤਨ ਨੂੰ ਵੀਡੀਓ ਕਾਲ ਦੇ ਦੌਰਾਨ ਅਨੁਮਤੀ ਨਹੀਂ ਹੈ"</string>
@@ -383,7 +383,7 @@
     <string name="fdn_contact_deleted" msgid="7154162327112259569">"ਫਿਕਸਡ ਡਾਇਲਿੰਗ ਨੰਬਰ ਮਿਟਾਇਆ।"</string>
     <string name="pin2_invalid" msgid="5470854099230755944">"FDN ਅਪਡੇਟ ਨਹੀਂ ਕੀਤਾ ਗਿਆ ਸੀ ਕਿਉਂਕਿ ਤੁਸੀਂ ਇੱਕ ਗ਼ਲਤ PIN ਟਾਈਪ ਕੀਤਾ ਸੀ।"</string>
     <string name="fdn_invalid_number" msgid="1494755047900009147">"FDN ਅਪਡੇਟ ਨਹੀਂ ਕੀਤਾ ਗਿਆ ਸੀ ਕਿਉਂਕਿ ਨੰਬਰ 20 ਅੰਕਾਂ ਤੋਂ ਵੱਧ ਨਹੀਂ ਹੋ ਸਕਦਾ।"</string>
-    <string name="pin2_or_fdn_invalid" msgid="6025144083384701197">"FDN ਅਪਡੇਟ ਨਹੀਂ ਕੀਤਾ ਗਿਆ ਸੀ। PIN2 ਗ਼ਲਤ ਸੀ ਜਾਂ ਫੋਨ ਨੰਬਰ ਅਸਵੀਕਾਰ ਕੀਤਾ ਗਿਆ ਸੀ।"</string>
+    <string name="pin2_or_fdn_invalid" msgid="6025144083384701197">"FDN ਅਪਡੇਟ ਨਹੀਂ ਕੀਤਾ ਗਿਆ ਸੀ। PIN2 ਗ਼ਲਤ ਸੀ ਜਾਂ ਫ਼ੋਨ ਨੰਬਰ ਅਸਵੀਕਾਰ ਕੀਤਾ ਗਿਆ ਸੀ।"</string>
     <string name="fdn_failed" msgid="540018079008319747">"FDN ਓਪਰੇਸ਼ਨ ਅਸਫਲ।"</string>
     <string name="simContacts_emptyLoading" msgid="2203331234764498011">"SIM ਕਾਰਡ ਤੋਂ ਪੜ੍ਹ ਰਿਹਾ ਹੈ…"</string>
     <string name="simContacts_empty" msgid="5270660846489561932">"ਤੁਹਾਡੇ SIM ਕਾਰਡ ’ਤੇ ਕੋਈ ਸੰਪਰਕ ਨਹੀਂ।"</string>
@@ -399,9 +399,9 @@
     <string name="mismatchPin" msgid="5923253370683071889">"ਤੁਹਾਡੇ ਵੱਲੋਂ ਟਾਈਪ ਕੀਤੇ PIN ਮੇਲ ਨਹੀਂ ਖਾਂਦੇ। ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।"</string>
     <string name="invalidPin" msgid="5981171102258684792">"ਇੱਕ PIN ਟਾਈਪ ਕਰੋ ਜੋ 4 ਤੋਂ 8 ਸੰਖਿਆਵਾਂ ਦਾ ਹੋਵੇ।"</string>
     <string name="disable_sim_pin" msgid="3419351358300716472">"SIM PIN ਹਟਾਓ"</string>
-    <string name="enable_sim_pin" msgid="4845145659651484248">"SIM PIN ਸੈਟ ਕਰੋ"</string>
+    <string name="enable_sim_pin" msgid="4845145659651484248">"SIM PIN ਸੈੱਟ ਕਰੋ"</string>
     <string name="enable_in_progress" msgid="3417917024688497010">"PIN ਸੈਟ ਕਰ ਰਿਹਾ ਹੈ…"</string>
-    <string name="enable_pin_ok" msgid="2918545971413270063">"PIN ਸੈਟ ਕਰੋ"</string>
+    <string name="enable_pin_ok" msgid="2918545971413270063">"PIN ਸੈੱਟ ਕਰੋ"</string>
     <string name="disable_pin_ok" msgid="2109571368635883688">"PIN ਹਟਾਇਆ"</string>
     <string name="pin_failed" msgid="5644377896213584760">"PIN ਗ਼ਲਤ"</string>
     <string name="pin_changed" msgid="4455736268023261662">"PIN ਅਪਡੇਟ ਕੀਤਾ"</string>
@@ -439,7 +439,8 @@
     <string name="notification_voicemail_no_vm_number" msgid="760963466895609716">"ਵੌਇਸਮੇਲ ਨੰਬਰ ਅਗਿਆਤ"</string>
     <string name="notification_network_selection_title" msgid="4224455487793492772">"ਕੋਈ ਸੇਵਾ ਨਹੀਂ"</string>
     <string name="notification_network_selection_text" msgid="2607085729661923269">"ਚੁਣੇ ਗਏ ਨੈਟਵਰਕ (<xliff:g id="OPERATOR_NAME">%s</xliff:g>) ਅਣਉਪਲਬਧ"</string>
-    <string name="incall_error_power_off" msgid="2947938060513306698">"ਇੱਕ ਕਾਲ ਕਰਨ ਲਈ ਏਅਰਪਲੇਨ ਮੋਡ ਬੰਦ ਕਰੋ।"</string>
+    <string name="incall_error_power_off" product="watch" msgid="772302793483607711">"ਕਾਲ ਕਰਨ ਲਈ ਜਹਾਜ਼ ਮੋਡ ਜਾਂ ਬੈਟਰੀ ਸੇਵਰ ਮੋਡ ਬੰਦ ਕਰੋ।"</string>
+    <string name="incall_error_power_off" product="default" msgid="2947938060513306698">"ਇੱਕ ਕਾਲ ਕਰਨ ਲਈ ਏਅਰਪਲੇਨ ਮੋਡ ਬੰਦ ਕਰੋ।"</string>
     <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"ਏਅਰਪਲੇਨ ਮੋਡ ਬੰਦ ਕਰੋ ਜਾਂ ਇੱਕ ਕਾਲ ਕਰਨ ਲਈ ਇੱਕ ਵਾਇਰਲੈਸ ਨੈਟਵਰਕ ਨਾਲ ਕਨੈਕਟ ਕਰੋ।"</string>
     <string name="incall_error_ecm_emergency_only" msgid="738708660612388692">"ਇੱਕ ਗ਼ੈਰ-ਅਪਾਤਕਾਲ ਕਾਲ ਕਰਨ ਲਈ ਅਪਾਤਕਾਲ ਕਾਲਬੈਕ ਮੋਡ ਤੋਂ ਬਾਹਰ ਆਓ।"</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"ਨੈਟਵਰਕ ਤੇ ਰਜਿਸਟਰ ਨਹੀਂ ਕੀਤਾ।"</string>
@@ -492,7 +493,7 @@
     <item msgid="5644925873488772224">"TTY VCO"</item>
   </string-array>
     <string name="dtmf_tones_title" msgid="5163153771291340803">"DTMF ਟੋਨਾਂ"</string>
-    <string name="dtmf_tones_summary" msgid="3351820372864020331">"DTMF ਟੋਨਾਂ ਦੀ ਲੰਮਾਈ ਸੈਟ ਕਰੋ"</string>
+    <string name="dtmf_tones_summary" msgid="3351820372864020331">"DTMF ਟੋਨਾਂ ਦੀ ਲੰਮਾਈ ਸੈੱਟ ਕਰੋ"</string>
   <string-array name="dtmf_tone_entries">
     <item msgid="899650777817315681">"ਸਧਾਰਨ"</item>
     <item msgid="2883365539347850535">"ਲੰਮਾ"</item>
@@ -545,7 +546,7 @@
     <string name="voicemail_number_not_set" msgid="6724904736891087856">"&lt;ਸੈੱਟ ਨਹੀਂ ਕੀਤਾ&gt;"</string>
     <string name="other_settings" msgid="3672912580359716394">"ਹੋਰ ਕਾਲ ਸੈਟਿੰਗਾਂ"</string>
     <string name="calling_via_template" msgid="4839419581866928142">"<xliff:g id="PROVIDER_NAME">%s</xliff:g> ਰਾਹੀਂ ਕਾਲ ਕਰ ਰਿਹਾ ਹੈ"</string>
-    <string name="contactPhoto" msgid="4713193418046639466">"ਸੰਪਰਕ ਫੋਟੋ"</string>
+    <string name="contactPhoto" msgid="4713193418046639466">"ਸੰਪਰਕ ਫ਼ੋਟੋ"</string>
     <string name="goPrivate" msgid="865837794424530980">"ਨਿੱਜੀ ਜਾਓ"</string>
     <string name="selectContact" msgid="781975788478987237">"ਸੰਪਰਕ ਚੁਣੋ"</string>
     <string name="not_voice_capable" msgid="2739898841461577811">"ਵੌਇਸ ਕਾਲਿੰਗ ਸਮਰਥਿਤ ਨਹੀਂ"</string>

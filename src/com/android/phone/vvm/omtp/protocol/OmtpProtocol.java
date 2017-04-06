@@ -28,6 +28,7 @@ public class OmtpProtocol extends VisualVoicemailProtocol {
     public OmtpMessageSender createMessageSender(SmsManager smsManager, short applicationPort,
             String destinationNumber) {
         return new OmtpStandardMessageSender(smsManager, applicationPort, destinationNumber,
-                null, OmtpConstants.PROTOCOL_VERSION1_1, null);
+                OmtpConstants.CLIENT_TYPE_GOOGLE_10, OmtpConstants.PROTOCOL_VERSION1_1,
+                null /*clientPrefix*/);
     }
 }

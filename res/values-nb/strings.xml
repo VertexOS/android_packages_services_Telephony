@@ -246,7 +246,7 @@
     <string name="enable_disable_emergency_broadcast" msgid="2157014609041245335">"Nødkringkasting"</string>
     <string name="emergency_broadcast_enable" msgid="2645980025414010211">"Nødkringkasting aktivert"</string>
     <string name="emergency_broadcast_disable" msgid="3665199821267569426">"Nødkringkasting deaktivert"</string>
-    <string name="enable_disable_administrative" msgid="6501582322182059412">"Administrativia"</string>
+    <string name="enable_disable_administrative" msgid="6501582322182059412">"Administrativ"</string>
     <string name="administrative_enable" msgid="1750086122962032235">"Administrativia aktivert"</string>
     <string name="administrative_disable" msgid="8433273857248698539">"Administartivia aktivert"</string>
     <string name="enable_disable_maintenance" msgid="1819693083025106678">"Vedlikehold"</string>
@@ -445,7 +445,8 @@
     <string name="notification_voicemail_no_vm_number" msgid="760963466895609716">"Mangler nummer til talepostkasse"</string>
     <string name="notification_network_selection_title" msgid="4224455487793492772">"Ingen tjeneste"</string>
     <string name="notification_network_selection_text" msgid="2607085729661923269">"Valgt nettverk (<xliff:g id="OPERATOR_NAME">%s</xliff:g>) er ikke tilgjengelig"</string>
-    <string name="incall_error_power_off" msgid="2947938060513306698">"Slå av flymodus for å ringe."</string>
+    <string name="incall_error_power_off" product="watch" msgid="772302793483607711">"Slå av flymodus eller batterisparing for å ringe."</string>
+    <string name="incall_error_power_off" product="default" msgid="2947938060513306698">"Slå av flymodus for å ringe."</string>
     <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"Slå av flymodus eller koble til et trådløst nettverk for å ringe."</string>
     <string name="incall_error_ecm_emergency_only" msgid="738708660612388692">"Avslutt modusen for nødanrop for å gjøre et vanlig anrop."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"Ikke registrert på nettverket."</string>

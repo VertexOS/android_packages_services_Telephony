@@ -21,14 +21,14 @@
     <string name="emergencyDialerIconLabel" msgid="7812140032168171053">"ತುರ್ತು ಡಯಲರ್"</string>
     <string name="phoneIconLabel" msgid="2331230813161304895">"ಫೋನ್"</string>
     <string name="fdnListLabel" msgid="8630418672279521003">"FDN ಪಟ್ಟಿ"</string>
-    <string name="unknown" msgid="6878797917991465859">"ಅಜ್ಞಾತ"</string>
+    <string name="unknown" msgid="6878797917991465859">"ಅಪರಿಚಿತ"</string>
     <string name="private_num" msgid="6713286113000232309">"ಖಾಸಗಿ ಸಂಖ್ಯೆ"</string>
     <string name="payphone" msgid="4793877574636445118">"ಪೇಫೋನ್"</string>
     <string name="onHold" msgid="9035493194749959955">"ತಡೆಹಿಡಿಯಲಾಗಿದೆ"</string>
     <string name="mmiStarted" msgid="6347869857061147003">"MMI ಕೋಡ್‌ ಪ್ರಾರಂಭಿಸಲಾಗಿದೆ"</string>
     <string name="ussdRunning" msgid="485588686340541690">"USSD ಕೋಡ್‌ ಚಾಲನೆಯಲ್ಲಿದೆ…"</string>
     <string name="mmiCancelled" msgid="2771923949751842276">"MMI ಕೋಡ್‌ ರದ್ದು ಮಾಡಲಾಗಿದೆ"</string>
-    <string name="cancel" msgid="5044513931633602634">"ರದ್ದುಮಾಡು"</string>
+    <string name="cancel" msgid="5044513931633602634">"ರದ್ದುಮಾಡಿ"</string>
     <string name="enter_input" msgid="1810529547726803893">"USSD ಸಂದೇಶದ ಅಕ್ಷರಗಳು <xliff:g id="MIN_LEN">%d</xliff:g> ಮತ್ತು <xliff:g id="MAX_LEN">%d</xliff:g> ನಡುವೆ ಇರಬೇಕು. ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ."</string>
     <string name="manageConferenceLabel" msgid="4691922394301969053">"ಕಾನ್ಫರೆನ್ಸ್ ಕರೆಯನ್ನು ನಿರ್ವಹಿಸಿ"</string>
     <string name="ok" msgid="3811371167865772377">"ಸರಿ"</string>
@@ -161,14 +161,14 @@
     <string name="label_available" msgid="1181658289009300430">"ಲಭ್ಯವಿರುವ ನೆಟ್‌ವರ್ಕ್‌ಗಳು"</string>
     <string name="load_networks_progress" msgid="5230707536168902952">"ಹುಡುಕಲಾಗುತ್ತಿದೆ…"</string>
     <string name="empty_networks_list" msgid="4249426905018815316">"ಯಾವುದೇ ನೆಟ್‌ವರ್ಕ್‌ಗಳು ಕಂಡುಬಂದಿಲ್ಲ."</string>
-    <string name="search_networks" msgid="1601136049300882441">"ನೆಟ್‌ವರ್ಕ್‌ಗಳನ್ನು ಹುಡುಕು"</string>
+    <string name="search_networks" msgid="1601136049300882441">"ನೆಟ್‌ವರ್ಕ್‌ಗಳನ್ನು ಹುಡುಕಿ"</string>
     <string name="network_query_error" msgid="6828516148953325006">"ನೆಟ್‌ವರ್ಕ್‌ಗಳಿಗಾಗಿ ಹುಡುಕುತ್ತಿರುವಾಗ ದೋಷ."</string>
     <string name="register_on_network" msgid="9055203954040805084">"<xliff:g id="NETWORK">%s</xliff:g> ನಲ್ಲಿ ನೋಂದಾಯಿಸಲಾಗುತ್ತಿದೆ…"</string>
     <string name="not_allowed" msgid="5613353860205691579">"ಈ ನೆಟ್‌ವರ್ಕ್‌ಗೆ ಸಂಪರ್ಕವನ್ನು ನಿಮ್ಮ ಸಿಮ್‌ ಕಾರ್ಡ್‌ ಅನುಮತಿಸುವುದಿಲ್ಲ."</string>
     <string name="connect_later" msgid="2308119155752343975">"ಇದೀಗ ಈ ನೆಟ್‌ವರ್ಕ್‌ಗೆ ಸಂಪರ್ಕಪಡಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ. ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ."</string>
     <string name="registration_done" msgid="495135664535876612">"ನೆಟ್‌ವರ್ಕ್‌ನಲ್ಲಿ ನೋಂದಾಯಿಸಲಾಗಿದೆ."</string>
     <string name="sum_carrier_select" msgid="3494252551249882718">"ನೆಟ್‌ವರ್ಕ್‌ ಆಪರೇಟರ್‌ ಅನ್ನು ಆಯ್ಕೆಮಾಡಿ"</string>
-    <string name="sum_search_networks" msgid="2921092249873272715">"ಎಲ್ಲ ಲಭ್ಯವಿರುವ ನೆಟ್‌ವರ್ಕ್‌ಗಳಿಗಾಗಿ ಹುಡುಕು"</string>
+    <string name="sum_search_networks" msgid="2921092249873272715">"ಎಲ್ಲ ಲಭ್ಯವಿರುವ ನೆಟ್‌ವರ್ಕ್‌ಗಳಿಗಾಗಿ ಹುಡುಕಿ"</string>
     <string name="select_automatically" msgid="5628402124471810174">"ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಆಯ್ಕೆಮಾಡು"</string>
     <string name="sum_select_automatically" msgid="5614890115123292400">"ಪ್ರಾಶಸ್ತ್ಯ ನೀಡಲಾದ ನೆಟ್‌ವರ್ಕ್‌ ಅನ್ನು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಆಯ್ಕೆಮಾಡು"</string>
     <string name="register_automatically" msgid="6017849844573519637">"ಸ್ವಯಂಚಾಲಿತ ನೋಂದಣಿ…"</string>
@@ -216,7 +216,7 @@
     <string name="roaming" msgid="8871412572928323707">"ಡೇಟಾ ರೋಮಿಂಗ್"</string>
     <string name="roaming_enable" msgid="7331106985174381987">"ರೋಮಿಂಗ್‌ನಲ್ಲಿರುವಾಗ ಡೇಟಾ ಸೇವೆಗಳಿಗೆ ಸಂಪರ್ಕಿಸು"</string>
     <string name="roaming_disable" msgid="1843417228755568110">"ರೋಮಿಂಗ್‌ನಲ್ಲಿರುವಾಗ ಡೇಟಾ ಸೇವೆಗಳಿಗೆ ಸಂಪರ್ಕಿಸು"</string>
-    <string name="roaming_reenable_message" msgid="8913735676127858115">"ಡೇಟಾ ರೋಮಿಂಗ್ ಅನ್ನು ಆಫ್‌ ಮಾಡಿರುವ ಸ್ಥಿತಿಯಲ್ಲಿ ನಿಮ್ಮ ಹೋಮ್‌ ನೆಟ್‌ವರ್ಕ್‌ ಅನ್ನು ನೀವು ಇರಿಸಿರುವ ಕಾರಣ ನೀವು ಡೇಟಾ ಸಂಪರ್ಕವನ್ನು ಕಳೆದುಕೊಂಡಿರುವಿರಿ."</string>
+    <string name="roaming_reenable_message" msgid="8913735676127858115">"ಡೇಟಾ ರೋಮಿಂಗ್ ಅನ್ನು ಆಫ್‌ ಮಾಡಿರುವ ಸ್ಥಿತಿಯಲ್ಲಿ ನಿಮ್ಮ ಮುಖಪುಟ‌ ನೆಟ್‌ವರ್ಕ್‌ ಅನ್ನು ನೀವು ಇರಿಸಿರುವ ಕಾರಣ ನೀವು ಡೇಟಾ ಸಂಪರ್ಕವನ್ನು ಕಳೆದುಕೊಂಡಿರುವಿರಿ."</string>
     <string name="roaming_warning" msgid="1603164667540144353">"ನೀವು ಗಣನೀಯವಾಗಿ ಶುಲ್ಕಗಳನ್ನು ತೆರಬೇಕಾಗಬಹುದು."</string>
     <string name="roaming_alert_title" msgid="3654815360303826008">"ಡೇಟಾ ರೋಮಿಂಗ್ ಅನುಮತಿಸುವುದೇ?"</string>
     <string name="gsm_umts_options" msgid="6538311689850981686">"GSM/UMTS ಆಯ್ಕೆಗಳು"</string>
@@ -439,7 +439,8 @@
     <string name="notification_voicemail_no_vm_number" msgid="760963466895609716">"ಅಪರಿಚಿತ ಧ್ವನಿಮೇಲ್‌ ಸಂಖ್ಯೆ"</string>
     <string name="notification_network_selection_title" msgid="4224455487793492772">"ಯಾವುದೇ ಸೇವೆಯಿಲ್ಲ"</string>
     <string name="notification_network_selection_text" msgid="2607085729661923269">"ಆಯ್ಕೆಮಾಡಿದ (<xliff:g id="OPERATOR_NAME">%s</xliff:g>) ನೆಟ್‌ವರ್ಕ್‌ ಲಭ್ಯವಿಲ್ಲ"</string>
-    <string name="incall_error_power_off" msgid="2947938060513306698">"ಕರೆ ಮಾಡಲು ಏರ್‌ಪ್ಲೇನ್ ಮೋಡ್ ಆಫ್ ಮಾಡಿ."</string>
+    <string name="incall_error_power_off" product="watch" msgid="772302793483607711">"ಕರೆ ಮಾಡಲು ಏರ್‌ಪ್ಲೇನ್ ಮೋಡ್ ಅಥವಾ ಬ್ಯಾಟರಿ ಉಳಿತಾಯ ಮೋಡ್ ಅನ್ನು ಆಫ್ ಮಾಡಿ."</string>
+    <string name="incall_error_power_off" product="default" msgid="2947938060513306698">"ಕರೆ ಮಾಡಲು ಏರ್‌ಪ್ಲೇನ್ ಮೋಡ್ ಆಫ್ ಮಾಡಿ."</string>
     <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"ಏರ್‌ಪ್ಲೇನ್ ಮೋಡ್ ಆಫ್ ಮಾಡಿ ಅಥವಾ ಕರೆ ಮಾಡಲು ವೈರ್‌ಲೆಸ್ ನೆಟ್‌ವರ್ಕ್‌ಗೆ ಸಂಪರ್ಕಪಡಿಸಿ."</string>
     <string name="incall_error_ecm_emergency_only" msgid="738708660612388692">"ತುರ್ತು ರಹಿತ ಕರೆಯನ್ನು ಮಾಡಲು ತುರ್ತು ಮರು ಕರೆಮಾಡುವಿಕೆ ಮೋಡ್ ಅನ್ನು ನಿರ್ಗಮಿಸಿ."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"ನೆಟ್‌ವರ್ಕ್‌ನಲ್ಲಿ ಇನ್ನೂ ನೋಂದಣಿಯಾಗಿಲ್ಲ."</string>
@@ -469,7 +470,7 @@
     <string name="onscreenHoldText" msgid="2285258239691145872">"ಹೋಲ್ಡ್‌‌ ಮಾಡು"</string>
     <string name="onscreenEndCallText" msgid="4403855834875398585">"ಮುಕ್ತಾಯ"</string>
     <string name="onscreenShowDialpadText" msgid="8561805492659639893">"ಡಯಲ್‌ಪ್ಯಾಡ್‌"</string>
-    <string name="onscreenMuteText" msgid="5011369181754261374">"ಮ್ಯೂಟ್ ಮಾಡು"</string>
+    <string name="onscreenMuteText" msgid="5011369181754261374">"ಮ್ಯೂಟ್ ಮಾಡಿ"</string>
     <string name="onscreenAddCallText" msgid="5140385634712287403">"ಕರೆಯನ್ನು ಸೇರಿಸು"</string>
     <string name="onscreenMergeCallsText" msgid="6640195098064538950">"ಕರೆಗಳನ್ನು ವಿಲೀನಗೊಳಿಸು"</string>
     <string name="onscreenSwapCallsText" msgid="1602990689244030047">"ಸ್ವ್ಯಾಪ್‌ ಮಾಡು"</string>
@@ -574,7 +575,7 @@
     <string name="callFailed_cdma_call_limit" msgid="1556916577171457086">"ಹಲವಾರು ಸಕ್ರಿಯ ಕರೆಗಳು. ಹೊಸ ಕರೆ ಮಾಡುವ ಮೊದಲು ಅಸ್ತಿತ್ವದಲ್ಲಿರುವ ಕರೆಗಳನ್ನು ಅಂತ್ಯಗೊಳಿಸಿ ಅಥವಾ ವಿಲೀನಗೊಳಿಸಿ."</string>
     <string name="change_pin_title" msgid="7790232089699034029">"ಧ್ವನಿಮೇಲ್ ಪಿನ್‌ ಬದಲಾಯಿಸಿ"</string>
     <string name="change_pin_continue_label" msgid="2135088662420163447">"ಮುಂದುವರಿಸು"</string>
-    <string name="change_pin_cancel_label" msgid="353535488390948596">"ರದ್ದುಮಾಡು"</string>
+    <string name="change_pin_cancel_label" msgid="353535488390948596">"ರದ್ದುಮಾಡಿ"</string>
     <string name="change_pin_ok_label" msgid="6204308560844889926">"ಸರಿ"</string>
     <string name="change_pin_enter_old_pin_header" msgid="419179847657548887">"ನಿಮ್ಮ ಹಳೆಯ ಪಿನ್‌ ಅನ್ನು ದೃಢೀಕರಿಸಿ"</string>
     <string name="change_pin_enter_old_pin_hint" msgid="8579171678763615453">"ಮುಂದುವರಿಸಲು ನಿಮ್ಮ ಧ್ವನಿಮೇಲ್ ಪಿನ್ ಅನ್ನು ನಮೂದಿಸಿ."</string>

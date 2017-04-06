@@ -439,7 +439,8 @@
     <string name="notification_voicemail_no_vm_number" msgid="760963466895609716">"အသံဖုန်းခေါ်မှုနံပါတ် မသိပါ"</string>
     <string name="notification_network_selection_title" msgid="4224455487793492772">"ဝန်ဆောင်မှု မရှိပါ"</string>
     <string name="notification_network_selection_text" msgid="2607085729661923269">"ရွေးချယ်ထားသော ကွန်ရက် (<xliff:g id="OPERATOR_NAME">%s</xliff:g>) မရရှိနိုင်ပါ"</string>
-    <string name="incall_error_power_off" msgid="2947938060513306698">"ဖုန်းခေါ်ရန် လေယာဉ်ပျံမုဒ် ပိတ်ထားပါ။"</string>
+    <string name="incall_error_power_off" product="watch" msgid="772302793483607711">"ခေါ်ဆိုမှုပြုလုပ်ရန် လေယာဉ်ပျံမုဒ် (သို့) ဘက်ထရီချွေတာရေးမုဒ်ကို ပိတ်ထားပါ။"</string>
+    <string name="incall_error_power_off" product="default" msgid="2947938060513306698">"ဖုန်းခေါ်ရန် လေယာဉ်ပျံမုဒ် ပိတ်ထားပါ။"</string>
     <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"ဖုန်းခေါ်ရန် လေယာဉ်ပျံမုဒ် ပိတ်ပါ သို့မဟုတ် ကြိုးမဲ့ကွန်ယက်သို့ ချိတ်ဆက်ပါ။"</string>
     <string name="incall_error_ecm_emergency_only" msgid="738708660612388692">"အရေးပေါ် မဟုတ်သည့် ခေါ်ဆိုမှုကို ပြုလုပ်ရန် အရေးပေါ် ဖုန်းခေါ်မှုမှ ထွက်ပါ။"</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"ကွန်ယက်ပေါ်မှာ မှတ်ပုံတင်မှု မပြုလုပ်ထားပါ"</string>

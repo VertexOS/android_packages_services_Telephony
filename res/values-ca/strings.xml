@@ -85,7 +85,7 @@
     <string name="additional_cdma_call_settings" msgid="8628958775721886909">"Configuració addicional de trucades CDMA"</string>
     <string name="sum_cdma_call_settings" msgid="284753265979035549">"Configuració addicional de trucades només CDMA"</string>
     <string name="labelNwService" msgid="4699970172021870983">"Configuració del servei de xarxa"</string>
-    <string name="labelCallerId" msgid="3888899447379069198">"Identificador de l\'emissor"</string>
+    <string name="labelCallerId" msgid="3888899447379069198">"Identificador de trucada"</string>
     <string name="sum_loading_settings" msgid="1826692909391168620">"Carregant la configuració..."</string>
     <string name="sum_hide_caller_id" msgid="1071407020290873782">"Número amagat en trucades sortints"</string>
     <string name="sum_show_caller_id" msgid="6768534125447290401">"Número mostrat a les trucades de sortida"</string>
@@ -439,7 +439,8 @@
     <string name="notification_voicemail_no_vm_number" msgid="760963466895609716">"Número de la bústia de veu desconegut"</string>
     <string name="notification_network_selection_title" msgid="4224455487793492772">"Sense servei"</string>
     <string name="notification_network_selection_text" msgid="2607085729661923269">"La xarxa seleccionada (<xliff:g id="OPERATOR_NAME">%s</xliff:g>) no està disponible"</string>
-    <string name="incall_error_power_off" msgid="2947938060513306698">"Per fer una trucada, desactiva el mode d\'avió."</string>
+    <string name="incall_error_power_off" product="watch" msgid="772302793483607711">"Per fer una trucada, desactiva el mode d\'avió i l\'estalvi de bateria."</string>
+    <string name="incall_error_power_off" product="default" msgid="2947938060513306698">"Per fer una trucada, desactiva el mode d\'avió."</string>
     <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"Per fer una trucada, desactiva el mode d\'avió o connecta amb una xarxa sense fil."</string>
     <string name="incall_error_ecm_emergency_only" msgid="738708660612388692">"Surt del mode de devolució de trucada d\'emergència per fer un altre tipus de trucada."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"No registrat a la xarxa."</string>

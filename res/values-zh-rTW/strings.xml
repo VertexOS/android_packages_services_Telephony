@@ -445,7 +445,8 @@
     <string name="notification_voicemail_no_vm_number" msgid="760963466895609716">"無語音信箱號碼"</string>
     <string name="notification_network_selection_title" msgid="4224455487793492772">"沒有服務"</string>
     <string name="notification_network_selection_text" msgid="2607085729661923269">"您所選取的網路 (<xliff:g id="OPERATOR_NAME">%s</xliff:g>) 無法使用"</string>
-    <string name="incall_error_power_off" msgid="2947938060513306698">"關閉飛航模式即可撥打電話。"</string>
+    <string name="incall_error_power_off" product="watch" msgid="772302793483607711">"如要撥打電話，請關閉飛航模式或節約耗電量模式。"</string>
+    <string name="incall_error_power_off" product="default" msgid="2947938060513306698">"關閉飛航模式即可撥打電話。"</string>
     <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"關閉飛航模式或連上無線網路即可撥打電話。"</string>
     <string name="incall_error_ecm_emergency_only" msgid="738708660612388692">"結束緊急回撥模式，以便撥打非緊急電話。"</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"尚未註冊網路。"</string>

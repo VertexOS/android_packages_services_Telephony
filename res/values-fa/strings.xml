@@ -364,7 +364,7 @@
     <string name="tty_mode_option_summary" msgid="1073835131534808732">"‏تنظیم حالت TTY"</string>
     <string name="auto_retry_mode_title" msgid="4073265511427813322">"سعی مجدد خودکار"</string>
     <string name="auto_retry_mode_summary" msgid="4973886004067532288">"فعال کردن حالت سعی مجدد خودکار"</string>
-    <string name="tty_mode_not_allowed_video_call" msgid="3795846787901909176">"‏تغییر حالت TTY در طول تماس ویدیویی مجاز نیست"</string>
+    <string name="tty_mode_not_allowed_video_call" msgid="3795846787901909176">"‏تغییر حالت TTY در طول تماس ویدئویی مجاز نیست"</string>
     <string name="menu_add" msgid="1882023737425114762">"افزودن مخاطب"</string>
     <string name="menu_edit" msgid="7143003705504672374">"ویرایش مخاطب"</string>
     <string name="menu_delete" msgid="3977150783449642851">"حذف مخاطب"</string>
@@ -439,7 +439,8 @@
     <string name="notification_voicemail_no_vm_number" msgid="760963466895609716">"شماره پست صوتی ناشناس"</string>
     <string name="notification_network_selection_title" msgid="4224455487793492772">"بدون سرویس"</string>
     <string name="notification_network_selection_text" msgid="2607085729661923269">"شبکه انتخابی (<xliff:g id="OPERATOR_NAME">%s</xliff:g>) قابل دسترس نیست"</string>
-    <string name="incall_error_power_off" msgid="2947938060513306698">"برای برقراری تماس، حالت پرواز را خاموش کنید."</string>
+    <string name="incall_error_power_off" product="watch" msgid="772302793483607711">"برای برقراری تماس، حالت هواپیما یا بهینه‌سازی باتری را غیرفعال کنید."</string>
+    <string name="incall_error_power_off" product="default" msgid="2947938060513306698">"برای برقراری تماس، حالت پرواز را خاموش کنید."</string>
     <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"برای برقرای تماس، حالت پرواز را خاموش کنید یا به شبکه بی‌سیم وصل شوید."</string>
     <string name="incall_error_ecm_emergency_only" msgid="738708660612388692">"برای برقراری تماس غیراضطراری از حالت پاسخ تماس اضطراری خارج شوید."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"در شبکه ثبت نشده است."</string>
@@ -476,7 +477,7 @@
     <string name="onscreenManageCallsText" msgid="5473231160123254154">"مدیریت تماس‌ها"</string>
     <string name="onscreenManageConferenceText" msgid="6485935856534311346">"مدیریت کنفرانس"</string>
     <string name="onscreenAudioText" msgid="1710087112800041743">"صوتی"</string>
-    <string name="onscreenVideoCallText" msgid="4800924186056115442">"تماس ویدیویی"</string>
+    <string name="onscreenVideoCallText" msgid="4800924186056115442">"تماس ویدئویی"</string>
     <string name="importSimEntry" msgid="6614358325359736031">"وارد کردن"</string>
     <string name="importAllSimEntries" msgid="1503181169636198673">"وارد کردن همه"</string>
     <string name="importingSimContacts" msgid="7374056215462575769">"وارد کردن مخاطبین سیم"</string>
@@ -558,8 +559,8 @@
     <string name="voicemail_notification_ringtone_title" msgid="2609519527849101590">"صدا"</string>
     <string name="preference_category_ringtone" msgid="5197960752529332721">"آهنگ‌ زنگ و لرزش"</string>
     <string name="pstn_connection_service_label" msgid="1743245930577325900">"سیم‌کارت‌های داخلی"</string>
-    <string name="enable_video_calling_title" msgid="7237253660669000899">"روشن کردن تماس ویدیویی"</string>
-    <string name="enable_video_calling_dialog_msg" msgid="8948186136957417948">"‏برای روشن کردن تماس ویدیویی، باید حالت پیشرفته 4G LTE را در تنظیمات شبکه فعال کنید."</string>
+    <string name="enable_video_calling_title" msgid="7237253660669000899">"روشن کردن تماس ویدئویی"</string>
+    <string name="enable_video_calling_dialog_msg" msgid="8948186136957417948">"‏برای روشن کردن تماس ویدئویی، باید حالت پیشرفته 4G LTE را در تنظیمات شبکه فعال کنید."</string>
     <string name="enable_video_calling_dialog_settings" msgid="576528473599603249">"تنظیمات شبکه"</string>
     <string name="enable_video_calling_dialog_close" msgid="7411471282167927991">"بستن"</string>
     <string name="sim_label_emergency_calls" msgid="4847699229529306397">"تماس‌های اضطراری"</string>
