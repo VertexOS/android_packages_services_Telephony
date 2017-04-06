@@ -61,6 +61,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import org.codeaurora.ims.utils.QtiImsExtUtils;
 import org.codeaurora.internal.IExtTelephony;
 
 /**
@@ -514,9 +515,15 @@ public class NotificationMgr {
                     .setShowWhen(false)
                     .setOngoing(true);
 
-            Intent intent = new Intent(Intent.ACTION_MAIN);
+            Intent intent = null;
+            if (QtiImsExtUtils.isCarrierOneSupported()
+                       && QtiImsExtUtils.isCarrierOneCallSettingsAvailable(mContext)) {
+                intent = new Intent("org.codeaurora.CALL_SETTINGS");
+            } else {
+                intent = new Intent(Intent.ACTION_MAIN);
+                intent.setClassName("com.android.phone", "com.android.phone.CallFeaturesSetting");
+            }
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            intent.setClassName("com.android.phone", "com.android.phone.CallFeaturesSetting");
             SubscriptionInfoHelper.addExtrasToIntent(
                     intent, mSubscriptionManager.getActiveSubscriptionInfo(subId));
             PendingIntent contentIntent =
