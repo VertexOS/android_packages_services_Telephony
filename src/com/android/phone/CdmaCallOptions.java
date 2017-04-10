@@ -42,6 +42,7 @@ import android.util.Log;
 import android.view.MenuItem;
 
 import com.android.ims.ImsManager;
+import com.android.internal.telephony.imsphone.ImsPhone;
 import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneConstants;
 import com.android.internal.telephony.SubscriptionController;
@@ -87,7 +88,10 @@ public class CdmaCallOptions extends PreferenceActivity
         if (phone == null) {
             return false;
         }
-         return ImsManager.isEnhanced4gLteModeSettingEnabledByUser(this)
+
+        ImsPhone imsPhone = (ImsPhone)phone.getImsPhone();
+        return (imsPhone != null)
+             && ImsManager.isEnhanced4gLteModeSettingEnabledByUser(this)
              && ImsManager.isNonTtyOrTtyOnVolteEnabled(this)
              && !phone.isUtEnabled()
              && !phone.isVolteEnabled()
