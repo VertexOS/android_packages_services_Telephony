@@ -443,7 +443,8 @@
     <string name="notification_voicemail_no_vm_number" msgid="760963466895609716">"Mailboxnummer unbekannt"</string>
     <string name="notification_network_selection_title" msgid="4224455487793492772">"kein Dienst"</string>
     <string name="notification_network_selection_text" msgid="2607085729661923269">"Ausgewähltes Netzwerk (<xliff:g id="OPERATOR_NAME">%s</xliff:g>) nicht verfügbar"</string>
-    <string name="incall_error_power_off" msgid="2947938060513306698">"Deaktiviere zum Telefonieren den Flugmodus."</string>
+    <string name="incall_error_power_off" product="watch" msgid="772302793483607711">"Deaktiviere zum Telefonieren den Flugmodus oder Energiesparmodus."</string>
+    <string name="incall_error_power_off" product="default" msgid="2947938060513306698">"Deaktiviere zum Telefonieren den Flugmodus."</string>
     <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"Deaktiviere zum Telefonieren den Flugmodus oder stelle eine WLAN-Verbindung her."</string>
     <string name="incall_error_ecm_emergency_only" msgid="738708660612388692">"Beende den Notfallrückrufmodus, um einen Anruf zu tätigen, bei dem es sich nicht um einen Notfall handelt."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"Nicht in Netzwerk registriert."</string>

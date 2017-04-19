@@ -30,21 +30,22 @@ import java.util.HashSet;
 import java.util.List;
 
 /**
- * Helper class that implements special behavior related to emergency calls. Specifically, this
- * class handles the case of the user trying to dial an emergency number while the radio is off
- * (i.e. the device is in airplane mode), by forcibly turning the radio back on, waiting for it to
- * come up, and then retrying the emergency call.
+ * Helper class that implements special behavior related to emergency calls or make phone calls when
+ * radio is power off due to the device being on Bluetooth. Specifically, this class handles the
+ * case of the user trying to dial an emergency number while the radio is off (i.e. the device is
+ * in airplane mode) or a normal number while the radio is off (because of the device is on
+ * Bluetooth), by forcibly turning the radio back on, waiting for it to come up, and then retrying
+ * the call.
  */
-public class EmergencyCallHelper implements EmergencyCallStateListener.Callback {
+public class RadioOnHelper implements RadioOnStateListener.Callback {
 
     private final Context mContext;
-    private EmergencyCallStateListener.Callback mCallback;
-    private List<EmergencyCallStateListener> mListeners;
-    private List<EmergencyCallStateListener> mInProgressListeners;
-    private boolean mIsEmergencyCallingEnabled;
+    private RadioOnStateListener.Callback mCallback;
+    private List<RadioOnStateListener> mListeners;
+    private List<RadioOnStateListener> mInProgressListeners;
+    private boolean mIsRadioOnCallingEnabled;
 
-
-    public EmergencyCallHelper(Context context) {
+    public RadioOnHelper(Context context) {
         mContext = context;
         mInProgressListeners = new ArrayList<>(2);
     }
@@ -55,12 +56,12 @@ public class EmergencyCallHelper implements EmergencyCallStateListener.Callback 
         }
         mListeners = new ArrayList<>(2);
         for (int i = 0; i < TelephonyManager.getDefault().getPhoneCount(); i++) {
-            mListeners.add(new EmergencyCallStateListener());
+            mListeners.add(new RadioOnStateListener());
         }
     }
     /**
      * Starts the "turn on radio" sequence. This is the (single) external API of the
-     * EmergencyCallHelper class.
+     * RadioOnHelper class.
      *
      * This method kicks off the following sequence:
      * - Power on the radio for each Phone
@@ -69,14 +70,14 @@ public class EmergencyCallHelper implements EmergencyCallStateListener.Callback 
      * - Finally, clean up any leftover state.
      *
      * This method is safe to call from any thread, since it simply posts a message to the
-     * EmergencyCallHelper's handler (thus ensuring that the rest of the sequence is entirely
+     * RadioOnHelper's handler (thus ensuring that the rest of the sequence is entirely
      * serialized, and runs on the main looper.)
      */
-    public void enableEmergencyCalling(EmergencyCallStateListener.Callback callback) {
+    public void enableRadioOnCalling(RadioOnStateListener.Callback callback) {
         setupListeners();
         mCallback = callback;
         mInProgressListeners.clear();
-        mIsEmergencyCallingEnabled = false;
+        mIsRadioOnCallingEnabled = false;
         for (int i = 0; i < TelephonyManager.getDefault().getPhoneCount(); i++) {
             Phone phone = PhoneFactory.getPhone(i);
             if (phone == null)
@@ -120,11 +121,16 @@ public class EmergencyCallHelper implements EmergencyCallStateListener.Callback 
      * Synchronization is not necessary.
      */
     @Override
-    public void onComplete(EmergencyCallStateListener listener, boolean isRadioReady) {
-        mIsEmergencyCallingEnabled |= isRadioReady;
+    public void onComplete(RadioOnStateListener listener, boolean isRadioReady) {
+        mIsRadioOnCallingEnabled |= isRadioReady;
         mInProgressListeners.remove(listener);
         if (mCallback != null && mInProgressListeners.isEmpty()) {
-            mCallback.onComplete(null, mIsEmergencyCallingEnabled);
+            mCallback.onComplete(null, mIsRadioOnCallingEnabled);
         }
+    }
+
+    @Override
+    public boolean isOkToCall(Phone phone, int serviceState) {
+        return (mCallback == null) ? false : mCallback.isOkToCall(phone, serviceState);
     }
 }

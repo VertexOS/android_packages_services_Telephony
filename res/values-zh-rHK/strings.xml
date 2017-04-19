@@ -145,7 +145,7 @@
     <string name="fw_change_failed" msgid="5298103228470214665">"無法更改轉接號碼。\n如果問題持續發生，請與流動網絡供應商聯絡。"</string>
     <string name="fw_get_in_vm_failed" msgid="8862896836093833973">"無法擷取和儲存目前的轉接號碼設定。\n您仍要轉到新的供應商嗎？"</string>
     <string name="no_change" msgid="3186040086622435212">"沒有更改。"</string>
-    <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"選擇語音信箱服務"</string>
+    <string name="sum_voicemail_choose_provider" msgid="59911196126278922">"選擇留言信箱服務"</string>
     <string name="voicemail_default" msgid="2001233554889016880">"您的流動網絡供應商"</string>
     <string name="vm_change_pin_old_pin" msgid="7295220109886682573">"舊的 PIN"</string>
     <string name="vm_change_pin_new_pin" msgid="5412922262839438097">"新的 PIN"</string>
@@ -445,7 +445,8 @@
     <string name="notification_voicemail_no_vm_number" msgid="760963466895609716">"沒有可用的留言信箱號碼"</string>
     <string name="notification_network_selection_title" msgid="4224455487793492772">"沒有服務"</string>
     <string name="notification_network_selection_text" msgid="2607085729661923269">"您所選取的網絡 (<xliff:g id="OPERATOR_NAME">%s</xliff:g>) 無法使用"</string>
-    <string name="incall_error_power_off" msgid="2947938060513306698">"關閉飛行模式以撥打電話。"</string>
+    <string name="incall_error_power_off" product="watch" msgid="772302793483607711">"關閉飛行模式或省電模式以撥打電話。"</string>
+    <string name="incall_error_power_off" product="default" msgid="2947938060513306698">"關閉飛行模式以撥打電話。"</string>
     <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"關閉飛行模式或連接無線網絡，以撥打電話。"</string>
     <string name="incall_error_ecm_emergency_only" msgid="738708660612388692">"離開緊急回撥模式即可撥打非緊急電話。"</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"未在網絡上完成註冊。"</string>
@@ -578,16 +579,16 @@
     <string name="message_decode_error" msgid="3456481534066924855">"為訊息解碼時發生錯誤。"</string>
     <string name="callFailed_cdma_activation" msgid="2307989779233262164">"SIM 卡已啟動您的服務，並更新了您的手機漫遊功能。"</string>
     <string name="callFailed_cdma_call_limit" msgid="1556916577171457086">"進行中的通話過多。請先結束或合併現有通話，再重新撥打。"</string>
-    <string name="change_pin_title" msgid="7790232089699034029">"變更語音信箱 PIN 碼"</string>
+    <string name="change_pin_title" msgid="7790232089699034029">"變更留言信箱 PIN"</string>
     <string name="change_pin_continue_label" msgid="2135088662420163447">"繼續"</string>
     <string name="change_pin_cancel_label" msgid="353535488390948596">"取消"</string>
     <string name="change_pin_ok_label" msgid="6204308560844889926">"確認"</string>
     <string name="change_pin_enter_old_pin_header" msgid="419179847657548887">"確認舊 PIN 碼"</string>
-    <string name="change_pin_enter_old_pin_hint" msgid="8579171678763615453">"請輸入您的語音信箱 PIN 碼，然後繼續操作。"</string>
+    <string name="change_pin_enter_old_pin_hint" msgid="8579171678763615453">"請輸入留言信箱 PIN 以繼續操作。"</string>
     <string name="change_pin_enter_new_pin_header" msgid="2611191814590251532">"設定新 PIN 碼"</string>
     <string name="change_pin_enter_new_pin_hint" msgid="2322940054329689309">"PIN 碼長度必須介乎 <xliff:g id="MIN">%1$d</xliff:g>-<xliff:g id="MAX">%2$d</xliff:g> 個數字。"</string>
     <string name="change_pin_confirm_pin_header" msgid="8113764019347322170">"確認 PIN 碼"</string>
     <string name="change_pin_confirm_pins_dont_match" msgid="4795052654904027909">"PIN 碼不符"</string>
-    <string name="change_pin_succeeded" msgid="2022852286442211151">"已更新語音信箱 PIN 碼"</string>
+    <string name="change_pin_succeeded" msgid="2022852286442211151">"已更新留言信箱 PIN"</string>
     <string name="change_pin_system_error" msgid="8308462387154257840">"無法設定 PIN 碼"</string>
 </resources>

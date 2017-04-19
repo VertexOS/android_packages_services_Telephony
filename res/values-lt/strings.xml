@@ -439,7 +439,8 @@
     <string name="notification_voicemail_no_vm_number" msgid="760963466895609716">"Nežinomas balso pašto numeris"</string>
     <string name="notification_network_selection_title" msgid="4224455487793492772">"Nėra paslaugos"</string>
     <string name="notification_network_selection_text" msgid="2607085729661923269">"Pasirinktas tinklas (<xliff:g id="OPERATOR_NAME">%s</xliff:g>) negalimas"</string>
-    <string name="incall_error_power_off" msgid="2947938060513306698">"Išjunkite lėktuvo režimą, kad galėtumėte skambinti."</string>
+    <string name="incall_error_power_off" product="watch" msgid="772302793483607711">"Išjunkite lėktuvo arba akumuliatoriaus tausojimo priemonės režimą, kad galėtumėte skambinti."</string>
+    <string name="incall_error_power_off" product="default" msgid="2947938060513306698">"Išjunkite lėktuvo režimą, kad galėtumėte skambinti."</string>
     <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"Išjunkite lėktuvo režimą arba prisijunkite prie belaidžio ryšio tinklo, kad galėtumėte skambinti."</string>
     <string name="incall_error_ecm_emergency_only" msgid="738708660612388692">"Jei norite skambinti ne pagalbos numeriu, išjunkite atgalinio skambinimo pagalbos numeriu režimą."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"Neregistruota tinkle."</string>
@@ -506,7 +507,7 @@
     <string name="ota_skip_activation_dialog_title" msgid="2943366608272261306">"Praleisti aktyvinimą?"</string>
     <string name="ota_skip_activation_dialog_message" msgid="2440770373498870550">"Jei praleisite aktyvinimą, negalėsite skambinti ar prisijungti prie mobilių duomenų tinklų (nors ir galite prisijungti prie „Wi-Fi“ tinklų). Iki tol, kol suaktyvinsite telefoną, aktyvinkite jį kaskart jį įjungdami."</string>
     <string name="ota_skip_activation_dialog_skip_label" msgid="3458532775091563208">"Praleisti"</string>
-    <string name="ota_activate" msgid="1368528132525626264">"Aktyvinti"</string>
+    <string name="ota_activate" msgid="1368528132525626264">"Suaktyvinti"</string>
     <string name="ota_title_activate_success" msgid="6570240212263372046">"Telefonas suaktyvintas."</string>
     <string name="ota_title_problem_with_activation" msgid="7095824491970084367">"Aktyvinimo problema"</string>
     <string name="ota_listen" msgid="162923839877584937">"Vadovaukitės girdimomis instrukcijomis, kol išgirsite, kad aktyvinimas baigtas."</string>

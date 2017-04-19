@@ -24,7 +24,6 @@ import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceScreen;
 import android.provider.Settings;
-import android.telecom.TelecomManager;
 import android.telephony.CarrierConfigManager;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
@@ -62,7 +61,7 @@ public class AccessibilitySettingsFragment extends PreferenceFragment {
             if (pref != null) {
                 final boolean isVolteTtySupported = ImsManager.isVolteEnabledByPlatform(mContext)
                         && getVolteTtySupported();
-                pref.setEnabled((isVolteTtySupported && !isVideoCallInProgress()) ||
+                pref.setEnabled((isVolteTtySupported && !isVideoCallOrConferenceInProgress()) ||
                         (state == TelephonyManager.CALL_STATE_IDLE));
             }
         }
@@ -154,15 +153,15 @@ public class AccessibilitySettingsFragment extends PreferenceFragment {
                 CarrierConfigManager.KEY_CARRIER_VOLTE_TTY_SUPPORTED_BOOL);
     }
 
-    private boolean isVideoCallInProgress() {
+    private boolean isVideoCallOrConferenceInProgress() {
         final Phone[] phones = PhoneFactory.getPhones();
         if (phones == null) {
-            if (DBG) Log.d(LOG_TAG, "isVideoCallInProgress: No phones found. Return false");
+            if (DBG) Log.d(LOG_TAG, "isVideoCallOrConferenceInProgress: No phones found.");
             return false;
         }
 
         for (Phone phone : phones) {
-            if (phone.isVideoCallPresent()) {
+            if (phone.isImsVideoCallOrConferencePresent()) {
                 return true;
             }
         }

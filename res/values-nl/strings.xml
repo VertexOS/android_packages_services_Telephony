@@ -16,7 +16,7 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="phoneAppLabel" product="tablet" msgid="1107073389495104784">"Mobiele gegevens"</string>
+    <string name="phoneAppLabel" product="tablet" msgid="1107073389495104784">"Mobiele data"</string>
     <string name="phoneAppLabel" product="default" msgid="6790717591729922998">"Telefoonservices"</string>
     <string name="emergencyDialerIconLabel" msgid="7812140032168171053">"Kiezer noodoproep"</string>
     <string name="phoneIconLabel" msgid="2331230813161304895">"Telefoon"</string>
@@ -228,9 +228,9 @@
     <string name="throttle_help" msgid="243651091785169900">"Meer informatie"</string>
     <string name="throttle_status_subtext" msgid="1657318943142085170">"<xliff:g id="USED_0">%1$s</xliff:g> (<xliff:g id="USED_1">%2$d</xliff:g>٪) van periodemaximum van <xliff:g id="USED_2">%3$s</xliff:g>\nDe volgende periode start over<xliff:g id="USED_3">%4$d</xliff:g> dagen (<xliff:g id="USED_4">%5$s</xliff:g>)"</string>
     <string name="throttle_data_usage_subtext" msgid="6029276011123694701">"<xliff:g id="USED_0">%1$s</xliff:g> (<xliff:g id="USED_1">%2$d</xliff:g>٪) van periodemaximum van <xliff:g id="USED_2">%3$s</xliff:g>"</string>
-    <string name="throttle_data_rate_reduced_subtext" msgid="7492763592720107737">"Maximum van <xliff:g id="USED_0">%1$s</xliff:g> overschreden\nGegevenssnelheid verlaagd tot <xliff:g id="USED_1">%2$d</xliff:g> kB/s"</string>
+    <string name="throttle_data_rate_reduced_subtext" msgid="7492763592720107737">"Maximum van <xliff:g id="USED_0">%1$s</xliff:g> overschreden\nGegevenssnelheid verlaagd tot <xliff:g id="USED_1">%2$d</xliff:g>  KB/s"</string>
     <string name="throttle_time_frame_subtext" msgid="7732763021560399960">" ٪<xliff:g id="USED_0">%1$d</xliff:g>van cyclus verstreken\nDe volgende periode start over <xliff:g id="USED_1">%2$d</xliff:g> dagen (<xliff:g id="USED_2">%3$s</xliff:g>)"</string>
-    <string name="throttle_rate_subtext" msgid="2149102656120726855">"Gegevenssnelheid wordt verlaagd tot <xliff:g id="USED">%1$d</xliff:g> kB/s als de limiet voor gegevensgebruik wordt overschreden"</string>
+    <string name="throttle_rate_subtext" msgid="2149102656120726855">"Gegevenssnelheid wordt verlaagd tot <xliff:g id="USED">%1$d</xliff:g>  KB/s als de limiet voor gegevensgebruik wordt overschreden"</string>
     <string name="throttle_help_subtext" msgid="3633091498168446044">"Meer informatie over het beleid voor gegevensgebruik van je mobiele provider"</string>
     <string name="cell_broadcast_sms" msgid="5584192824053625842">"Infodienstbericht"</string>
     <string name="enable_disable_cell_bc_sms" msgid="4851147873691392255">"SMS Infodienstbericht"</string>
@@ -439,7 +439,8 @@
     <string name="notification_voicemail_no_vm_number" msgid="760963466895609716">"Voicemailnummer onbekend"</string>
     <string name="notification_network_selection_title" msgid="4224455487793492772">"Geen service"</string>
     <string name="notification_network_selection_text" msgid="2607085729661923269">"Geselecteerd netwerk (<xliff:g id="OPERATOR_NAME">%s</xliff:g>) niet beschikbaar"</string>
-    <string name="incall_error_power_off" msgid="2947938060513306698">"Schakel de vliegtuigmodus uit om te bellen."</string>
+    <string name="incall_error_power_off" product="watch" msgid="772302793483607711">"Schakel de vliegtuigmodus of Batterijbesparing uit om te bellen."</string>
+    <string name="incall_error_power_off" product="default" msgid="2947938060513306698">"Schakel de vliegtuigmodus uit om te bellen."</string>
     <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"Schakel de vliegtuigmodus uit of maak verbinding met een draadloos netwerk om te bellen."</string>
     <string name="incall_error_ecm_emergency_only" msgid="738708660612388692">"Sluit de modus voor noodoproepen af om een niet-noodoproep te plaatsen."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"Niet geregistreerd op netwerk."</string>

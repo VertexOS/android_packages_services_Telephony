@@ -152,7 +152,7 @@
     <string name="vm_change_pin_progress_message" msgid="3977357361934350336">"Itxaron, mesedez."</string>
     <string name="vm_change_pin_error_too_short" msgid="5974971097302710497">"Laburregia da PIN kode berria."</string>
     <string name="vm_change_pin_error_too_long" msgid="8476870806115051865">"Luzeegia da PIN kode berria."</string>
-    <string name="vm_change_pin_error_too_weak" msgid="7883744811891784882">"Ahulegia da PIN kode berria. Pasahitza sendoa izan dadin, ez du izan behar zenbaki-segidarik edo errepikatutako zenbakirik."</string>
+    <string name="vm_change_pin_error_too_weak" msgid="7883744811891784882">"Ahulegia da PIN kode berria. Pasahitza segurua izan dadin, ez du izan behar zenbaki-segidarik edo errepikatutako zenbakirik."</string>
     <string name="vm_change_pin_error_mismatch" msgid="2754685537970757317">"PIN kode zaharra ez dator bat."</string>
     <string name="vm_change_pin_error_invalid" msgid="3972205462701668653">"Balio ez duten karaktereak ditu PIN kode berriak."</string>
     <string name="vm_change_pin_error_system_error" msgid="6610603326230000207">"Ezin da aldatu PIN kodea"</string>
@@ -445,7 +445,8 @@
     <string name="notification_voicemail_no_vm_number" msgid="760963466895609716">"Erantzungailuaren zenbakia ezezaguna da"</string>
     <string name="notification_network_selection_title" msgid="4224455487793492772">"Ez dago zerbitzurik"</string>
     <string name="notification_network_selection_text" msgid="2607085729661923269">"Hautatutako sarea (<xliff:g id="OPERATOR_NAME">%s</xliff:g>) ez dago erabilgarri"</string>
-    <string name="incall_error_power_off" msgid="2947938060513306698">"Deia egiteko, desaktibatu hegaldi modua."</string>
+    <string name="incall_error_power_off" product="watch" msgid="772302793483607711">"Deiak egiteko, desaktibatu hegaldi modua edo Bateria-aurrezlea."</string>
+    <string name="incall_error_power_off" product="default" msgid="2947938060513306698">"Deia egiteko, desaktibatu hegaldi modua."</string>
     <string name="incall_error_power_off_wfc" msgid="8711428920632416575">"Deia egiteko, desaktibatu hegaldi modua edo konektatu haririk gabeko sare batera."</string>
     <string name="incall_error_ecm_emergency_only" msgid="738708660612388692">"Larrialdikoak ez diren deiak egiteko, irten larrialdi-deiak soilik jasotzeko modutik."</string>
     <string name="incall_error_emergency_only" msgid="4678640422710818317">"Ez dago sarean erregistratuta."</string>

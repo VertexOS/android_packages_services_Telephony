@@ -24,12 +24,13 @@ import android.os.ServiceManager;
 import android.os.UserManager;
 import android.telecom.PhoneAccountHandle;
 import android.telephony.CarrierConfigManager;
+import android.telephony.ServiceState;
 import android.telephony.SubscriptionManager;
 import android.telephony.TelephonyManager;
+import android.text.TextUtils;
 import com.android.internal.telephony.IccCardConstants;
 import com.android.internal.telephony.PhoneConstants;
 import com.android.internal.telephony.TelephonyIntents;
-import com.android.phone.VoicemailStatus;
 import com.android.phone.settings.VisualVoicemailSettingsUtil;
 import com.android.phone.vvm.omtp.sync.OmtpVvmSourceManager;
 import com.android.phone.vvm.omtp.utils.PhoneAccountHandleConverter;
@@ -70,6 +71,25 @@ public class SimChangeReceiver extends BroadcastReceiver {
                     VvmLog.i(TAG, "Received SIM change for invalid subscription id.");
                     return;
                 }
+
+                TelephonyManager telephonyManager = context
+                        .getSystemService(TelephonyManager.class);
+                if(TextUtils.isEmpty(telephonyManager.getSimOperator())){
+                    VvmLog.e(TAG,
+                            "Empty MCCMNC, possible modem crash."
+                                    + " Ignoring carrier config changed event");
+                    return;
+                }
+
+                PhoneAccountHandle phoneAccountHandle = PhoneAccountHandleConverter
+                        .fromSubId(subId);
+                if("null".equals(phoneAccountHandle.getId())){
+                    VvmLog.e(TAG,
+                            "null phone account handle ID, possible modem crash."
+                                    + " Ignoring carrier config changed event");
+                    return;
+                }
+
                 VvmLog.d(TAG, "Carrier config changed");
                 if (UserManager.get(context).isUserUnlocked() && !isCryptKeeperMode()) {
                     processSubId(context, subId);
@@ -99,6 +119,12 @@ public class SimChangeReceiver extends BroadcastReceiver {
                 // can be recorded.
                 OmtpVvmSourceManager.getInstance(context).addPhoneStateListener(
                         phoneAccount);
+                if (context.getSystemService(TelephonyManager.class)
+                        .getServiceStateForSubscriber(subId).getState()
+                        != ServiceState.STATE_IN_SERVICE) {
+                    VvmLog.i(TAG, "Cellular signal not available, not activating");
+                    return;
+                }
                 carrierConfigHelper.startActivation();
             } else {
                 if (carrierConfigHelper.isLegacyModeEnabled()) {
@@ -115,7 +141,7 @@ public class SimChangeReceiver extends BroadcastReceiver {
             String mccMnc = context.getSystemService(TelephonyManager.class).getSimOperator(subId);
             VvmLog.d(TAG,
                     "visual voicemail not supported for carrier " + mccMnc + " on subId " + subId);
-            VoicemailStatus.disable(context, phoneAccount);
+            OmtpVvmSourceManager.getInstance(context).removeSource(phoneAccount);
         }
     }
 
