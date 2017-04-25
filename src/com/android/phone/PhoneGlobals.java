@@ -696,12 +696,15 @@ public class PhoneGlobals extends ContextWrapper {
             // emergency calls.  If there are, switch airplane mode back to off.
             if (PhoneUtils.isInEmergencyCall(mCM)) {
                 // Switch airplane mode back to off.
+                Log.i(LOG_TAG, "Setting property " + PROPERTY_AIRPLANE_MODE_ON + " to 0");
                 SystemProperties.set(PROPERTY_AIRPLANE_MODE_ON, "0");
                 ConnectivityManager.from(this).setAirplaneMode(false);
                 Toast.makeText(this, R.string.radio_off_during_emergency_call, Toast.LENGTH_LONG)
                         .show();
                 Log.i(LOG_TAG, "Ignoring airplane mode: emergency call. Turning airplane off");
             } else if (isCellOffInAirplaneMode(context)) {
+                Log.i(LOG_TAG, "Setting property " + PROPERTY_AIRPLANE_MODE_ON + " to 1");
+                SystemProperties.set(PROPERTY_AIRPLANE_MODE_ON, "1");
                 setRadioPowerOff(context);
             } else {
                 Log.i(LOG_TAG, "Ignoring airplane mode: settings prevent cell radio power off");
@@ -711,6 +714,8 @@ public class PhoneGlobals extends ContextWrapper {
 
     private void maybeTurnCellOn(Context context, boolean isAirplaneNewlyOn) {
         if (!isAirplaneNewlyOn) {
+            Log.i(LOG_TAG, "Setting property " + PROPERTY_AIRPLANE_MODE_ON + " to 0");
+            SystemProperties.set(PROPERTY_AIRPLANE_MODE_ON, "0");
             setRadioPowerOn(context);
         }
     }
