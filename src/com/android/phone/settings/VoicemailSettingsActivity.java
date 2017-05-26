@@ -237,10 +237,6 @@ public class VoicemailSettingsActivity extends PreferenceActivity
         mOmtpVvmCarrierConfigHelper = new OmtpVvmCarrierConfigHelper(
                 mPhone.getContext(), mPhone.getSubId());
         addPreferencesFromResource(R.xml.voicemail_settings);
-        if (isInMultiWindowMode()) {
-            finish();
-            return;
-        }
     }
 
     @Override

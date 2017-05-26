@@ -596,7 +596,7 @@
         </activity>
 
         <activity android:name="com.android.phone.settings.VoicemailSettingsActivity"
-            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:configChanges="orientation|screenSize|keyboardHidden|screenLayout"
             android:label="@string/voicemail"
             android:theme="@style/DialerSettingsLight">
             <intent-filter >
